@@ -115,6 +115,7 @@ final class AppsyncGraphqlApiAdditionalAuthenticationProvider {
   final AppsyncGraphqlApiAdditionalAuthenticationProviderUserPoolConfig?
   userPoolConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'authentication_type': authenticationType.toTfJson(),
     'lambda_authorizer_config': ?lambdaAuthorizerConfig?.encode(),
@@ -181,6 +182,7 @@ final class AppsyncGraphqlApiLambdaAuthorizerConfig {
 
   final TfArg<String>? identityValidationExpression;
 
+  @internal
   Map<String, Object?> encode() => {
     'authorizer_result_ttl_in_seconds': ?authorizerResultTtlInSeconds
         ?.toTfJson(),
@@ -209,6 +211,7 @@ final class AppsyncGraphqlApiOpenidConnectConfig {
 
   final TfArg<String> issuer;
 
+  @internal
   Map<String, Object?> encode() => {
     'auth_ttl': ?authTtl?.toTfJson(),
     'client_id': ?clientId?.toTfJson(),
@@ -233,6 +236,7 @@ final class AppsyncGraphqlApiAdditionalAuthenticationProviderUserPoolConfig {
 
   final TfArg<String> userPoolId;
 
+  @internal
   Map<String, Object?> encode() => {
     'app_id_client_regex': ?appIdClientRegex?.toTfJson(),
     'aws_region': ?awsRegion?.toTfJson(),
@@ -259,6 +263,7 @@ final class AppsyncGraphqlApiEnhancedMetricsConfig {
   final AppsyncGraphqlApiResolverLevelMetricsBehavior
   resolverLevelMetricsBehavior;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_source_level_metrics_behavior': dataSourceLevelMetricsBehavior
         .toTfJson(),
@@ -359,6 +364,7 @@ final class AppsyncGraphqlApiLogConfig {
 
   final AppsyncGraphqlApiFieldLogLevel fieldLogLevel;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloudwatch_logs_role_arn': cloudwatchLogsRoleArn.toTfJson(),
     'exclude_verbose_content': ?excludeVerboseContent?.toTfJson(),
@@ -409,6 +415,7 @@ final class AppsyncGraphqlApiUserPoolConfig {
 
   final TfArg<String> userPoolId;
 
+  @internal
   Map<String, Object?> encode() => {
     'app_id_client_regex': ?appIdClientRegex?.toTfJson(),
     'aws_region': ?awsRegion?.toTfJson(),

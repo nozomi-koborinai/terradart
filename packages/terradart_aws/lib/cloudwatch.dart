@@ -3,6 +3,7 @@
 /// AWS CloudWatch (alarms, dashboards, logs, and events).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/cloudwatch/aws_cloudwatch_alarm_mute_rule.dart'
     show
         AwsCloudwatchAlarmMuteRule,
@@ -252,3 +253,29 @@ export 'src/cloudwatch/aws_cloudwatch_otel_enrichment.dart'
     show AwsCloudwatchOtelEnrichment;
 export 'src/cloudwatch/aws_cloudwatch_query_definition.dart'
     show AwsCloudwatchQueryDefinition;
+export 'src/data/aws_cloudwatch_contributor_managed_insight_rules.dart'
+    show DataAwsCloudwatchContributorManagedInsightRules;
+export 'src/data/aws_cloudwatch_event_bus.dart' show DataAwsCloudwatchEventBus;
+export 'src/data/aws_cloudwatch_event_buses.dart'
+    show DataAwsCloudwatchEventBuses;
+export 'src/data/aws_cloudwatch_event_connection.dart'
+    show DataAwsCloudwatchEventConnection;
+export 'src/data/aws_cloudwatch_event_source.dart'
+    show DataAwsCloudwatchEventSource;
+export 'src/data/aws_cloudwatch_log_data_protection_policy_document.dart'
+    show
+        DataAwsCloudwatchLogDataProtectionPolicyDocument,
+        DataCloudwatchLogDataProtectionPolicyDocumentAudit,
+        DataCloudwatchLogDataProtectionPolicyDocumentCloudwatchLogs,
+        DataCloudwatchLogDataProtectionPolicyDocumentConfiguration,
+        DataCloudwatchLogDataProtectionPolicyDocumentCustomDataIdentifier,
+        DataCloudwatchLogDataProtectionPolicyDocumentDeidentify,
+        DataCloudwatchLogDataProtectionPolicyDocumentFindingsDestination,
+        DataCloudwatchLogDataProtectionPolicyDocumentFirehose,
+        DataCloudwatchLogDataProtectionPolicyDocumentMaskConfig,
+        DataCloudwatchLogDataProtectionPolicyDocumentOperation,
+        DataCloudwatchLogDataProtectionPolicyDocumentS3,
+        DataCloudwatchLogDataProtectionPolicyDocumentStatement;
+export 'src/data/aws_cloudwatch_log_group.dart' show DataAwsCloudwatchLogGroup;
+export 'src/data/aws_cloudwatch_log_groups.dart'
+    show DataAwsCloudwatchLogGroups;

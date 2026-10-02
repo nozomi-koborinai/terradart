@@ -20,6 +20,7 @@ final class ConfigDeliveryChannelSnapshotDeliveryProperties {
 
   final ConfigDeliveryChannelDeliveryFrequency? deliveryFrequency;
 
+  @internal
   Map<String, Object?> encode() => {
     'delivery_frequency': ?deliveryFrequency?.toTfJson(),
   };

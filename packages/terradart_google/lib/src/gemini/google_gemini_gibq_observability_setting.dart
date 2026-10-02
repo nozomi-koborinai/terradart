@@ -26,6 +26,7 @@ final class GeminiGibqObservabilitySettingConversationalAnalyticsSetting {
 
   final TfArg<bool>? tracesEnabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'feedback_enabled': ?feedbackEnabled?.toTfJson(),
     'logging_enabled': ?loggingEnabled?.toTfJson(),

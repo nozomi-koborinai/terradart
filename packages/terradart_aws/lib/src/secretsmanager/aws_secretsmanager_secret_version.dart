@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `aws_secretsmanager_secret_version`.
@@ -34,12 +35,15 @@ sealed class SecretsmanagerSecretVersionSecret {
   ) = SecretsmanagerSecretVersionSecretStringWo;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -50,12 +54,15 @@ final class SecretsmanagerSecretVersionSecretBinary
 
   final Sensitive<String> secretBinary;
 
+  @internal
   @override
   String get blockKey => 'secret_binary';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'secret_binary': secretBinary.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'secret_binary': secretBinary};
 }
@@ -67,12 +74,15 @@ final class SecretsmanagerSecretVersionSecretString
 
   final Sensitive<String> secretString;
 
+  @internal
   @override
   String get blockKey => 'secret_string';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'secret_string': secretString.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'secret_string': secretString};
 }
@@ -84,14 +94,17 @@ final class SecretsmanagerSecretVersionSecretStringWo
 
   final Sensitive<String> secretStringWo;
 
+  @internal
   @override
   String get blockKey => 'secret_string_wo';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'secret_string_wo': secretStringWo.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'secret_string_wo': secretStringWo,

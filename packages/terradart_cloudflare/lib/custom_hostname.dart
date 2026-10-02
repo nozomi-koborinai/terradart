@@ -3,6 +3,7 @@
 /// Cloudflare for SaaS custom hostnames.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/custom_hostname/cloudflare_custom_hostname.dart'
     show
         CloudflareCustomHostname,
@@ -19,3 +20,15 @@ export 'src/custom_hostname/cloudflare_custom_hostname.dart'
         CustomHostnameType;
 export 'src/custom_hostname/cloudflare_custom_hostname_fallback_origin.dart'
     show CloudflareCustomHostnameFallbackOrigin;
+export 'src/data/cloudflare_custom_hostname.dart'
+    show
+        DataCloudflareCustomHostname,
+        DataCustomHostnameCertificateAuthority,
+        DataCustomHostnameDirection,
+        DataCustomHostnameFilter,
+        DataCustomHostnameFilterHostname,
+        DataCustomHostnameFilterHostnameStatus,
+        DataCustomHostnameOrder,
+        DataCustomHostnameSslStatus;
+export 'src/data/cloudflare_custom_hostname_fallback_origin.dart'
+    show DataCloudflareCustomHostnameFallbackOrigin;

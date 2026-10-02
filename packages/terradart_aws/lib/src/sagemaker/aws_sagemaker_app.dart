@@ -65,12 +65,15 @@ sealed class SagemakerAppOwner {
   ) = SagemakerAppOwnerUserProfileName;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -80,12 +83,15 @@ final class SagemakerAppOwnerSpaceName extends SagemakerAppOwner {
 
   final TfArg<String> spaceName;
 
+  @internal
   @override
   String get blockKey => 'space_name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'space_name': spaceName.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'space_name': spaceName};
 }
@@ -96,14 +102,17 @@ final class SagemakerAppOwnerUserProfileName extends SagemakerAppOwner {
 
   final TfArg<String> userProfileName;
 
+  @internal
   @override
   String get blockKey => 'user_profile_name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'user_profile_name': userProfileName.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'user_profile_name': userProfileName,
@@ -132,6 +141,7 @@ final class SagemakerAppResourceSpec {
 
   final TfArg<String>? sagemakerImageVersionArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'instance_type': ?instanceType?.toTfJson(),
     'lifecycle_config_arn': ?lifecycleConfigArn?.toTfJson(),

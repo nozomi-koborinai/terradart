@@ -32,11 +32,13 @@ sealed class VertexAiEndpointWithModelGardenDeploymentModel {
 
   /// Terraform attribute key (`publisher_model_name` or
   /// `hugging_face_model_id`).
+  @internal
   String get blockKey;
 
   /// Scalar value written under [blockKey].
   TfArg<String> get value;
 
+  @internal
   Map<String, Object?> encode() => {blockKey: value.toTfJson()};
 }
 
@@ -52,6 +54,7 @@ final class VertexAiEndpointWithModelGardenDeploymentPublisherModel
   final TfArg<String> publisherModelName;
 
   @override
+  @internal
   String get blockKey => 'publisher_model_name';
 
   @override
@@ -69,6 +72,7 @@ final class VertexAiEndpointWithModelGardenDeploymentHuggingFaceModel
   final TfArg<String> huggingFaceModelId;
 
   @override
+  @internal
   String get blockKey => 'hugging_face_model_id';
 
   @override
@@ -92,6 +96,7 @@ final class VertexAiEndpointWithModelGardenDeploymentDeployConfig {
   final VertexAiEndpointWithModelGardenDeploymentDedicatedResources?
   dedicatedResources;
 
+  @internal
   Map<String, Object?> encode() => {
     'fast_tryout_enabled': ?fastTryoutEnabled?.toTfJson(),
     'system_labels': ?systemLabels?.toTfJson(),
@@ -125,6 +130,7 @@ final class VertexAiEndpointWithModelGardenDeploymentDedicatedResources {
 
   final VertexAiEndpointWithModelGardenDeploymentMachineSpec machineSpec;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_replica_count': ?maxReplicaCount?.toTfJson(),
     'min_replica_count': minReplicaCount.toTfJson(),
@@ -151,6 +157,7 @@ final class VertexAiEndpointWithModelGardenDeploymentAutoscalingMetricSpecs {
 
   final TfArg<num>? target;
 
+  @internal
   Map<String, Object?> encode() => {
     'metric_name': metricName.toTfJson(),
     'target': ?target?.toTfJson(),
@@ -183,6 +190,7 @@ final class VertexAiEndpointWithModelGardenDeploymentMachineSpec {
   final VertexAiEndpointWithModelGardenDeploymentReservationAffinity?
   reservationAffinity;
 
+  @internal
   Map<String, Object?> encode() => {
     'accelerator_count': ?acceleratorCount?.toTfJson(),
     'accelerator_type': ?acceleratorType?.toTfJson(),
@@ -209,6 +217,7 @@ final class VertexAiEndpointWithModelGardenDeploymentReservationAffinity {
 
   final TfArg<List<String>>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
     'reservation_affinity_type': reservationAffinityType.toTfJson(),
@@ -233,6 +242,7 @@ final class VertexAiEndpointWithModelGardenDeploymentEndpointConfig {
   final VertexAiEndpointWithModelGardenDeploymentPrivateServiceConnectConfig?
   privateServiceConnectConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'dedicated_endpoint_enabled': ?dedicatedEndpointEnabled?.toTfJson(),
     'endpoint_display_name': ?endpointDisplayName?.toTfJson(),
@@ -257,6 +267,7 @@ final class VertexAiEndpointWithModelGardenDeploymentPrivateServiceConnectConfig
   final VertexAiEndpointWithModelGardenDeploymentPscAutomationConfigs?
   pscAutomationConfigs;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_private_service_connect': enablePrivateServiceConnect.toTfJson(),
     'project_allowlist': ?projectAllowlist?.toTfJson(),
@@ -277,6 +288,7 @@ final class VertexAiEndpointWithModelGardenDeploymentPscAutomationConfigs {
 
   final TfArg<String> projectId;
 
+  @internal
   Map<String, Object?> encode() => {
     'network': network.encodeAs('id').toTfJson(),
     'project_id': projectId.toTfJson(),
@@ -305,6 +317,7 @@ final class VertexAiEndpointWithModelGardenDeploymentModelConfig {
 
   final VertexAiEndpointWithModelGardenDeploymentContainerSpec? containerSpec;
 
+  @internal
   Map<String, Object?> encode() => {
     'accept_eula': ?acceptEula?.toTfJson(),
     'hugging_face_access_token': ?huggingFaceAccessToken?.toTfJson(),
@@ -360,6 +373,7 @@ final class VertexAiEndpointWithModelGardenDeploymentContainerSpec {
 
   final VertexAiEndpointWithModelGardenDeploymentStartupProbe? startupProbe;
 
+  @internal
   Map<String, Object?> encode() => {
     'args': ?args?.toTfJson(),
     'command': ?command?.toTfJson(),
@@ -391,6 +405,7 @@ final class VertexAiEndpointWithModelGardenDeploymentEnv {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'value': value.toTfJson(),
@@ -407,6 +422,7 @@ final class VertexAiEndpointWithModelGardenDeploymentGrpcPorts {
 
   final TfArg<num>? containerPort;
 
+  @internal
   Map<String, Object?> encode() => {
     'container_port': ?containerPort?.toTfJson(),
   };
@@ -446,6 +462,7 @@ final class VertexAiEndpointWithModelGardenDeploymentHealthProbe {
 
   final VertexAiEndpointWithModelGardenDeploymentTcpSocket? tcpSocket;
 
+  @internal
   Map<String, Object?> encode() => {
     'failure_threshold': ?failureThreshold?.toTfJson(),
     'initial_delay_seconds': ?initialDelaySeconds?.toTfJson(),
@@ -468,6 +485,7 @@ final class VertexAiEndpointWithModelGardenDeploymentExec {
 
   final TfArg<List<String>>? command;
 
+  @internal
   Map<String, Object?> encode() => {'command': ?command?.toTfJson()};
 }
 
@@ -485,6 +503,7 @@ final class VertexAiEndpointWithModelGardenDeploymentGrpc {
 
   final TfArg<String>? service;
 
+  @internal
   Map<String, Object?> encode() => {
     'port': ?port?.toTfJson(),
     'service': ?service?.toTfJson(),
@@ -514,6 +533,7 @@ final class VertexAiEndpointWithModelGardenDeploymentHttpGet {
 
   final List<VertexAiEndpointWithModelGardenDeploymentHttpHeaders>? httpHeaders;
 
+  @internal
   Map<String, Object?> encode() => {
     'host': ?host?.toTfJson(),
     'path': ?path?.toTfJson(),
@@ -538,6 +558,7 @@ final class VertexAiEndpointWithModelGardenDeploymentHttpHeaders {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'value': ?value?.toTfJson(),
@@ -558,6 +579,7 @@ final class VertexAiEndpointWithModelGardenDeploymentTcpSocket {
 
   final TfArg<num>? port;
 
+  @internal
   Map<String, Object?> encode() => {
     'host': ?host?.toTfJson(),
     'port': ?port?.toTfJson(),
@@ -598,6 +620,7 @@ final class VertexAiEndpointWithModelGardenDeploymentLivenessProbe {
 
   final VertexAiEndpointWithModelGardenDeploymentTcpSocket? tcpSocket;
 
+  @internal
   Map<String, Object?> encode() => {
     'failure_threshold': ?failureThreshold?.toTfJson(),
     'initial_delay_seconds': ?initialDelaySeconds?.toTfJson(),
@@ -619,6 +642,7 @@ final class VertexAiEndpointWithModelGardenDeploymentPorts {
 
   final TfArg<num>? containerPort;
 
+  @internal
   Map<String, Object?> encode() => {
     'container_port': ?containerPort?.toTfJson(),
   };
@@ -658,6 +682,7 @@ final class VertexAiEndpointWithModelGardenDeploymentStartupProbe {
 
   final VertexAiEndpointWithModelGardenDeploymentTcpSocket? tcpSocket;
 
+  @internal
   Map<String, Object?> encode() => {
     'failure_threshold': ?failureThreshold?.toTfJson(),
     'initial_delay_seconds': ?initialDelaySeconds?.toTfJson(),

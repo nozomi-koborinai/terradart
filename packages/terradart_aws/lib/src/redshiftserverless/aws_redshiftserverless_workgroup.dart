@@ -23,6 +23,7 @@ final class RedshiftserverlessWorkgroupConfigParameter {
 
   final TfArg<String> parameterValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'parameter_key': parameterKey.toTfJson(),
     'parameter_value': parameterValue.toTfJson(),
@@ -42,6 +43,7 @@ final class RedshiftserverlessWorkgroupPricePerformanceTarget {
 
   final TfArg<num>? level;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'level': ?level?.toTfJson(),

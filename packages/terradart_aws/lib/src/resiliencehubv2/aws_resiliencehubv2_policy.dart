@@ -17,6 +17,7 @@ final class Resiliencehubv2PolicyAvailabilitySlo {
 
   final TfArg<num> target;
 
+  @internal
   Map<String, Object?> encode() => {'target': target.toTfJson()};
 }
 
@@ -30,6 +31,7 @@ final class Resiliencehubv2PolicyDataRecovery {
 
   final TfArg<num> timeBetweenBackupsInMinutes;
 
+  @internal
   Map<String, Object?> encode() => {
     'time_between_backups_in_minutes': timeBetweenBackupsInMinutes.toTfJson(),
   };
@@ -51,6 +53,7 @@ final class Resiliencehubv2PolicyMultiAz {
 
   final TfArg<num>? rtoInMinutes;
 
+  @internal
   Map<String, Object?> encode() => {
     'disaster_recovery_approach': disasterRecoveryApproach.toTfJson(),
     'rpo_in_minutes': ?rpoInMinutes?.toTfJson(),
@@ -111,6 +114,7 @@ final class Resiliencehubv2PolicyMultiRegion {
 
   final TfArg<num>? rtoInMinutes;
 
+  @internal
   Map<String, Object?> encode() => {
     'disaster_recovery_approach': disasterRecoveryApproach.toTfJson(),
     'rpo_in_minutes': ?rpoInMinutes?.toTfJson(),

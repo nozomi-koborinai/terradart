@@ -22,6 +22,7 @@ final class BigqueryDataTransferConfigEmailPreferences {
 
   final TfArg<bool> enableFailureEmail;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_failure_email': enableFailureEmail.toTfJson(),
   };
@@ -37,6 +38,7 @@ final class BigqueryDataTransferConfigEncryptionConfiguration {
 
   final RefTo<GoogleKmsCryptoKey> kmsKeyName;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_name': kmsKeyName.encodeAs('id').toTfJson(),
   };
@@ -58,6 +60,7 @@ final class BigqueryDataTransferConfigScheduleOptions {
 
   final TfArg<String>? startTime;
 
+  @internal
   Map<String, Object?> encode() => {
     'disable_auto_scheduling': ?disableAutoScheduling?.toTfJson(),
     'end_time': ?endTime?.toTfJson(),
@@ -78,6 +81,7 @@ final class BigqueryDataTransferConfigSensitiveParams {
 
   final TfArg<String>? secretAccessKeyWoVersion;
 
+  @internal
   Map<String, Object?> encode() => {
     ...secretAccessKey.encode(),
     'secret_access_key_wo_version': ?secretAccessKeyWoVersion?.toTfJson(),
@@ -102,8 +106,10 @@ sealed class BigqueryDataTransferConfigSecretAccessKey {
   ) = BigqueryDataTransferConfigSecretAccessKeyWo;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -114,9 +120,11 @@ final class BigqueryDataTransferConfigSecretAccessKeyChoice
 
   final Sensitive<String> secretAccessKey;
 
+  @internal
   @override
   String get blockKey => 'secret_access_key';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'secret_access_key': secretAccessKey.toTfJson(),
@@ -130,9 +138,11 @@ final class BigqueryDataTransferConfigSecretAccessKeyWo
 
   final TfArg<String> secretAccessKeyWo;
 
+  @internal
   @override
   String get blockKey => 'secret_access_key_wo';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'secret_access_key_wo': secretAccessKeyWo.toTfJson(),

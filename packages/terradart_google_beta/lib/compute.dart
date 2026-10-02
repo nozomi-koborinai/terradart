@@ -5,6 +5,7 @@
 /// backend IAM adjuncts.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/compute/google_compute_backend_bucket_iam_binding.dart'
     show
         ComputeBackendBucketIamBindingCondition,

@@ -5,6 +5,9 @@
 /// source database).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/google_datastream_static_ips.dart'
+    show DataGoogleDatastreamStaticIps;
 export 'src/datastream/google_datastream_connection_profile.dart'
     show
         DatastreamConnectionProfileBigqueryProfile,

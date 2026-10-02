@@ -3,6 +3,9 @@
 /// Cloud Filestore — managed NFS instances, backups, and snapshots.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/google_filestore_instance.dart'
+    show DataGoogleFilestoreInstance;
 export 'src/filestore/google_filestore_backup.dart' show GoogleFilestoreBackup;
 export 'src/filestore/google_filestore_instance.dart'
     show

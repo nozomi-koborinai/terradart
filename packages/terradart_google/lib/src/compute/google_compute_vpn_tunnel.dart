@@ -33,12 +33,15 @@ sealed class ComputeVpnTunnelSharedSecret {
   ) = ComputeVpnTunnelSharedSecretWo;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -49,12 +52,15 @@ final class ComputeVpnTunnelSharedSecretChoice
 
   final Sensitive<String> sharedSecret;
 
+  @internal
   @override
   String get blockKey => 'shared_secret';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'shared_secret': sharedSecret.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'shared_secret': sharedSecret};
 }
@@ -66,14 +72,17 @@ final class ComputeVpnTunnelSharedSecretWo
 
   final TfArg<String> sharedSecretWo;
 
+  @internal
   @override
   String get blockKey => 'shared_secret_wo';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'shared_secret_wo': sharedSecretWo.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'shared_secret_wo': sharedSecretWo,
@@ -99,12 +108,15 @@ sealed class ComputeVpnTunnelPeer {
   ) = ComputeVpnTunnelPeerGcpGateway;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -114,9 +126,11 @@ final class ComputeVpnTunnelPeerExternalGateway extends ComputeVpnTunnelPeer {
 
   final RefTo<GoogleComputeExternalVpnGateway> peerExternalGateway;
 
+  @internal
   @override
   String get blockKey => 'peer_external_gateway';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'peer_external_gateway': peerExternalGateway
@@ -124,6 +138,7 @@ final class ComputeVpnTunnelPeerExternalGateway extends ComputeVpnTunnelPeer {
         .toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'peer_external_gateway': peerExternalGateway.encodeAs('self_link'),
@@ -136,14 +151,17 @@ final class ComputeVpnTunnelPeerGcpGateway extends ComputeVpnTunnelPeer {
 
   final RefTo<GoogleComputeHaVpnGateway> peerGcpGateway;
 
+  @internal
   @override
   String get blockKey => 'peer_gcp_gateway';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'peer_gcp_gateway': peerGcpGateway.encodeAs('self_link').toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'peer_gcp_gateway': peerGcpGateway.encodeAs('self_link'),
@@ -160,6 +178,7 @@ final class ComputeVpnTunnelCipherSuite {
 
   final ComputeVpnTunnelPhase2? phase2;
 
+  @internal
   Map<String, Object?> encode() => {
     'phase1': ?phase1?.encode(),
     'phase2': ?phase2?.encode(),
@@ -185,6 +204,7 @@ final class ComputeVpnTunnelPhase1 {
 
   final TfArg<List<String>>? prf;
 
+  @internal
   Map<String, Object?> encode() => {
     'dh': ?dh?.toTfJson(),
     'encryption': ?encryption?.toTfJson(),
@@ -205,6 +225,7 @@ final class ComputeVpnTunnelPhase2 {
 
   final TfArg<List<String>>? pfs;
 
+  @internal
   Map<String, Object?> encode() => {
     'encryption': ?encryption?.toTfJson(),
     'integrity': ?integrity?.toTfJson(),
@@ -220,6 +241,7 @@ final class ComputeVpnTunnelParams {
 
   final TfArg<Map<String, String>>? resourceManagerTags;
 
+  @internal
   Map<String, Object?> encode() => {
     'resource_manager_tags': ?resourceManagerTags?.toTfJson(),
   };

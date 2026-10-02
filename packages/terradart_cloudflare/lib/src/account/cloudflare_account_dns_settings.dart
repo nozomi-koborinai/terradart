@@ -43,6 +43,7 @@ final class AccountDnsSettingsZoneDefaults {
 
   final AccountDnsSettingsSoa? soa;
 
+  @internal
   Map<String, Object?> encode() => {
     'flatten_all_cnames': ?flattenAllCnames?.toTfJson(),
     'foundation_dns': ?foundationDns?.toTfJson(),
@@ -86,6 +87,7 @@ final class AccountDnsSettingsInternalDns {
 
   final TfArg<String>? referenceZoneId;
 
+  @internal
   Map<String, Object?> encode() => {
     'reference_zone_id': ?referenceZoneId?.toTfJson(),
   };
@@ -99,6 +101,7 @@ final class AccountDnsSettingsNameservers {
 
   final AccountDnsSettingsType? type;
 
+  @internal
   Map<String, Object?> encode() => {'type': ?type?.toTfJson()};
 }
 
@@ -159,6 +162,7 @@ final class AccountDnsSettingsSoa {
 
   final TfArg<num>? ttl;
 
+  @internal
   Map<String, Object?> encode() => {
     'expire': ?expire?.toTfJson(),
     'min_ttl': ?minTtl?.toTfJson(),

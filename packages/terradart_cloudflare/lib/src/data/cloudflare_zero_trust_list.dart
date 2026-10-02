@@ -31,6 +31,7 @@ final class DataZeroTrustListFilter {
 
   final DataZeroTrustListFilterType? type;
 
+  @internal
   Map<String, Object?> encode() => {
     'direction': ?direction?.toTfJson(),
     'filter': ?filter?.toTfJson(),

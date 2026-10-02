@@ -39,6 +39,7 @@ final class InternetmonitorMonitorHealthEventsConfig {
 
   final TfArg<num>? performanceScoreThreshold;
 
+  @internal
   Map<String, Object?> encode() => {
     'availability_score_threshold': ?availabilityScoreThreshold?.toTfJson(),
     'performance_score_threshold': ?performanceScoreThreshold?.toTfJson(),
@@ -53,6 +54,7 @@ final class InternetmonitorMonitorInternetMeasurementsLogDelivery {
 
   final InternetmonitorMonitorS3Config? s3Config;
 
+  @internal
   Map<String, Object?> encode() => {'s3_config': ?s3Config?.encode()};
 }
 
@@ -72,6 +74,7 @@ final class InternetmonitorMonitorS3Config {
 
   final InternetmonitorMonitorLogDeliveryStatus? logDeliveryStatus;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('id').toTfJson(),
     'bucket_prefix': ?bucketPrefix?.toTfJson(),

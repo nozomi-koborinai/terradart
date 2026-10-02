@@ -22,6 +22,7 @@ final class SsoadminPermissionsBoundaryAttachmentPermissionsBoundary {
   final SsoadminPermissionsBoundaryAttachmentCustomerManagedPolicyReference?
   customerManagedPolicyReference;
 
+  @internal
   Map<String, Object?> encode() => {
     'managed_policy_arn': ?managedPolicyArn?.toTfJson(),
     'customer_managed_policy_reference': ?customerManagedPolicyReference
@@ -42,6 +43,7 @@ final class SsoadminPermissionsBoundaryAttachmentCustomerManagedPolicyReference 
 
   final TfArg<String>? path;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'path': ?path?.toTfJson(),

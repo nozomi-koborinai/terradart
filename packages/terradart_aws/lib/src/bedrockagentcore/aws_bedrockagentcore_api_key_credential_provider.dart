@@ -59,12 +59,15 @@ sealed class BedrockagentcoreApiKeyCredentialProviderApiKey {
   ) = BedrockagentcoreApiKeyCredentialProviderApiKeyWo;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -75,12 +78,15 @@ final class BedrockagentcoreApiKeyCredentialProviderApiKeyChoice
 
   final Sensitive<String> apiKey;
 
+  @internal
   @override
   String get blockKey => 'api_key';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'api_key': apiKey.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'api_key': apiKey};
 }
@@ -95,14 +101,17 @@ final class BedrockagentcoreApiKeyCredentialProviderApiKeySecretConfigChoice
   final List<BedrockagentcoreApiKeyCredentialProviderApiKeySecretConfig>
   apiKeySecretConfig;
 
+  @internal
   @override
   String get blockKey => 'api_key_secret_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'api_key_secret_config': [for (final e in apiKeySecretConfig) e.encode()],
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'api_key_secret_config': TfArg.literal([
@@ -118,12 +127,15 @@ final class BedrockagentcoreApiKeyCredentialProviderApiKeyWo
 
   final Sensitive<String> apiKeyWo;
 
+  @internal
   @override
   String get blockKey => 'api_key_wo';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'api_key_wo': apiKeyWo.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'api_key_wo': apiKeyWo};
 }
@@ -141,6 +153,7 @@ final class BedrockagentcoreApiKeyCredentialProviderApiKeySecretConfig {
 
   final TfArg<String> secretId;
 
+  @internal
   Map<String, Object?> encode() => {
     'json_key': jsonKey.toTfJson(),
     'secret_id': secretId.toTfJson(),

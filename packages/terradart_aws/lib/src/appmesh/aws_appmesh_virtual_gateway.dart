@@ -23,6 +23,7 @@ final class AppmeshVirtualGatewaySpec {
 
   final AppmeshVirtualGatewayLogging? logging;
 
+  @internal
   Map<String, Object?> encode() => {
     'backend_defaults': ?backendDefaults?.encode(),
     'listener': [for (final e in listener) e.encode()],
@@ -38,6 +39,7 @@ final class AppmeshVirtualGatewayBackendDefaults {
 
   final AppmeshVirtualGatewayClientPolicy? clientPolicy;
 
+  @internal
   Map<String, Object?> encode() => {'client_policy': ?clientPolicy?.encode()};
 }
 
@@ -49,6 +51,7 @@ final class AppmeshVirtualGatewayClientPolicy {
 
   final AppmeshVirtualGatewayClientPolicyTls? tls;
 
+  @internal
   Map<String, Object?> encode() => {'tls': ?tls?.encode()};
 }
 
@@ -71,6 +74,7 @@ final class AppmeshVirtualGatewayClientPolicyTls {
 
   final AppmeshVirtualGatewayTlsValidation validation;
 
+  @internal
   Map<String, Object?> encode() => {
     'enforce': ?enforce?.toTfJson(),
     'ports': ?ports?.toTfJson(),
@@ -97,8 +101,10 @@ sealed class AppmeshVirtualGatewayTlsCertificate {
   ) = AppmeshVirtualGatewayTlsCertificateSds;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -109,9 +115,11 @@ final class AppmeshVirtualGatewayTlsCertificateFile
 
   final AppmeshVirtualGatewayCertificateFile file;
 
+  @internal
   @override
   String get blockKey => 'file';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'file': file.encode()};
 }
@@ -123,9 +131,11 @@ final class AppmeshVirtualGatewayTlsCertificateSds
 
   final AppmeshVirtualGatewaySds sds;
 
+  @internal
   @override
   String get blockKey => 'sds';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'sds': sds.encode()};
 }
@@ -144,6 +154,7 @@ final class AppmeshVirtualGatewayCertificateFile {
 
   final TfArg<String> privateKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'certificate_chain': certificateChain.toTfJson(),
     'private_key': privateKey.toTfJson(),
@@ -159,6 +170,7 @@ final class AppmeshVirtualGatewaySds {
 
   final TfArg<String> secretName;
 
+  @internal
   Map<String, Object?> encode() => {'secret_name': secretName.toTfJson()};
 }
 
@@ -175,6 +187,7 @@ final class AppmeshVirtualGatewayTlsValidation {
 
   final AppmeshVirtualGatewayValidationTrust trust;
 
+  @internal
   Map<String, Object?> encode() => {
     'subject_alternative_names': ?subjectAlternativeNames?.encode(),
     'trust': trust.encode(),
@@ -190,6 +203,7 @@ final class AppmeshVirtualGatewaySubjectAlternativeNames {
 
   final AppmeshVirtualGatewayMatch match;
 
+  @internal
   Map<String, Object?> encode() => {'match': match.encode()};
 }
 
@@ -202,6 +216,7 @@ final class AppmeshVirtualGatewayMatch {
 
   final TfArg<List<String>> exact;
 
+  @internal
   Map<String, Object?> encode() => {'exact': exact.toTfJson()};
 }
 
@@ -228,8 +243,10 @@ sealed class AppmeshVirtualGatewayValidationTrust {
   ) = AppmeshVirtualGatewayValidationTrustSds;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -240,9 +257,11 @@ final class AppmeshVirtualGatewayValidationTrustAcm
 
   final AppmeshVirtualGatewayTrustAcm acm;
 
+  @internal
   @override
   String get blockKey => 'acm';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'acm': acm.encode()};
 }
@@ -254,9 +273,11 @@ final class AppmeshVirtualGatewayValidationTrustFile
 
   final AppmeshVirtualGatewayTrustFile file;
 
+  @internal
   @override
   String get blockKey => 'file';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'file': file.encode()};
 }
@@ -268,9 +289,11 @@ final class AppmeshVirtualGatewayValidationTrustSds
 
   final AppmeshVirtualGatewaySds sds;
 
+  @internal
   @override
   String get blockKey => 'sds';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'sds': sds.encode()};
 }
@@ -283,6 +306,7 @@ final class AppmeshVirtualGatewayTrustAcm {
 
   final TfArg<List<String>> certificateAuthorityArns;
 
+  @internal
   Map<String, Object?> encode() => {
     'certificate_authority_arns': certificateAuthorityArns.toTfJson(),
   };
@@ -297,6 +321,7 @@ final class AppmeshVirtualGatewayTrustFile {
 
   final TfArg<String> certificateChain;
 
+  @internal
   Map<String, Object?> encode() => {
     'certificate_chain': certificateChain.toTfJson(),
   };
@@ -321,6 +346,7 @@ final class AppmeshVirtualGatewayListener {
 
   final AppmeshVirtualGatewayTls? tls;
 
+  @internal
   Map<String, Object?> encode() => {
     'connection_pool': ?connectionPool?.encode(),
     'health_check': ?healthCheck?.encode(),
@@ -341,6 +367,7 @@ final class AppmeshVirtualGatewayConnectionPool {
 
   final AppmeshVirtualGatewayHttp2? http2;
 
+  @internal
   Map<String, Object?> encode() => {
     'grpc': ?grpc?.encode(),
     'http': ?http?.encode(),
@@ -356,6 +383,7 @@ final class AppmeshVirtualGatewayGrpc {
 
   final TfArg<num> maxRequests;
 
+  @internal
   Map<String, Object?> encode() => {'max_requests': maxRequests.toTfJson()};
 }
 
@@ -372,6 +400,7 @@ final class AppmeshVirtualGatewayHttp {
 
   final TfArg<num>? maxPendingRequests;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_connections': maxConnections.toTfJson(),
     'max_pending_requests': ?maxPendingRequests?.toTfJson(),
@@ -386,6 +415,7 @@ final class AppmeshVirtualGatewayHttp2 {
 
   final TfArg<num> maxRequests;
 
+  @internal
   Map<String, Object?> encode() => {'max_requests': maxRequests.toTfJson()};
 }
 
@@ -417,6 +447,7 @@ final class AppmeshVirtualGatewayHealthCheck {
 
   final TfArg<num> unhealthyThreshold;
 
+  @internal
   Map<String, Object?> encode() => {
     'healthy_threshold': healthyThreshold.toTfJson(),
     'interval_millis': intervalMillis.toTfJson(),
@@ -457,6 +488,7 @@ final class AppmeshVirtualGatewayPortMapping {
 
   final AppmeshVirtualGatewayProtocol protocol;
 
+  @internal
   Map<String, Object?> encode() => {
     'port': port.toTfJson(),
     'protocol': protocol.toTfJson(),
@@ -479,6 +511,7 @@ final class AppmeshVirtualGatewayTls {
 
   final AppmeshVirtualGatewayValidation? validation;
 
+  @internal
   Map<String, Object?> encode() => {
     'mode': mode.toTfJson(),
     'certificate': certificate.encode(),
@@ -520,6 +553,7 @@ final class AppmeshVirtualGatewayCertificate {
 
   final AppmeshVirtualGatewaySds? sds;
 
+  @internal
   Map<String, Object?> encode() => {
     'acm': ?acm?.encode(),
     'file': ?file?.encode(),
@@ -535,6 +569,7 @@ final class AppmeshVirtualGatewayAcm {
 
   final TfArg<String> certificateArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'certificate_arn': certificateArn.toTfJson(),
   };
@@ -553,6 +588,7 @@ final class AppmeshVirtualGatewayValidation {
 
   final AppmeshVirtualGatewayTrust trust;
 
+  @internal
   Map<String, Object?> encode() => {
     'subject_alternative_names': ?subjectAlternativeNames?.encode(),
     'trust': trust.encode(),
@@ -569,6 +605,7 @@ final class AppmeshVirtualGatewayTrust {
 
   final AppmeshVirtualGatewaySds? sds;
 
+  @internal
   Map<String, Object?> encode() => {
     'file': ?file?.encode(),
     'sds': ?sds?.encode(),
@@ -583,6 +620,7 @@ final class AppmeshVirtualGatewayLogging {
 
   final AppmeshVirtualGatewayAccessLog? accessLog;
 
+  @internal
   Map<String, Object?> encode() => {'access_log': ?accessLog?.encode()};
 }
 
@@ -594,6 +632,7 @@ final class AppmeshVirtualGatewayAccessLog {
 
   final AppmeshVirtualGatewayFile? file;
 
+  @internal
   Map<String, Object?> encode() => {'file': ?file?.encode()};
 }
 
@@ -607,6 +646,7 @@ final class AppmeshVirtualGatewayFile {
 
   final AppmeshVirtualGatewayFormat? format;
 
+  @internal
   Map<String, Object?> encode() => {
     'path': path.toTfJson(),
     'format': ?format?.encode(),
@@ -623,6 +663,7 @@ final class AppmeshVirtualGatewayFormat {
 
   final List<AppmeshVirtualGatewayJson>? json;
 
+  @internal
   Map<String, Object?> encode() => {
     'text': ?text?.toTfJson(),
     if (json != null) 'json': [for (final e in json!) e.encode()],
@@ -639,6 +680,7 @@ final class AppmeshVirtualGatewayJson {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'value': value.toTfJson(),

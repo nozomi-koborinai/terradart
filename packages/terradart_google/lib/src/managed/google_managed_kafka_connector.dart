@@ -20,6 +20,7 @@ final class ManagedKafkaConnectorTaskRestartPolicy {
 
   final TfArg<String>? minimumBackoff;
 
+  @internal
   Map<String, Object?> encode() => {
     'maximum_backoff': ?maximumBackoff?.toTfJson(),
     'minimum_backoff': ?minimumBackoff?.toTfJson(),

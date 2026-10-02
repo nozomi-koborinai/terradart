@@ -17,6 +17,7 @@ final class ComputeReservationDeleteAfterDuration {
 
   final TfArg<String>? seconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'nanos': ?nanos?.toTfJson(),
     'seconds': ?seconds?.toTfJson(),
@@ -31,6 +32,7 @@ final class ComputeReservationParams {
 
   final TfArg<Map<String, String>>? resourceManagerTags;
 
+  @internal
   Map<String, Object?> encode() => {
     'resource_manager_tags': ?resourceManagerTags?.toTfJson(),
   };
@@ -44,6 +46,7 @@ final class ComputeReservationSharingPolicy {
 
   final ComputeReservationServiceShareType? serviceShareType;
 
+  @internal
   Map<String, Object?> encode() => {
     'service_share_type': ?serviceShareType?.toTfJson(),
   };
@@ -81,6 +84,7 @@ final class ComputeReservationShareSettings {
 
   final List<ComputeReservationProjectMap>? projectMap;
 
+  @internal
   Map<String, Object?> encode() => {
     'share_type': ?shareType?.toTfJson(),
     if (projectMap != null)
@@ -118,6 +122,7 @@ final class ComputeReservationProjectMap {
 
   final TfArg<String>? projectId;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
     'project_id': ?projectId?.toTfJson(),
@@ -137,6 +142,7 @@ final class ComputeReservationSpecificReservation {
 
   final ComputeReservationInstanceSpec instanceSpec;
 
+  @internal
   Map<String, Object?> encode() => {
     'count': count.toTfJson(),
     ...instanceSpec.encode(),
@@ -161,8 +167,10 @@ sealed class ComputeReservationInstanceSpec {
   ) = ComputeReservationInstanceSpecSourceInstanceTemplate;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -175,9 +183,11 @@ final class ComputeReservationInstanceSpecInstanceProperties
 
   final ComputeReservationInstanceProperties instanceProperties;
 
+  @internal
   @override
   String get blockKey => 'instance_properties';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'instance_properties': instanceProperties.encode(),
@@ -193,9 +203,11 @@ final class ComputeReservationInstanceSpecSourceInstanceTemplate
 
   final TfArg<String> sourceInstanceTemplate;
 
+  @internal
   @override
   String get blockKey => 'source_instance_template';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'source_instance_template': sourceInstanceTemplate.toTfJson(),
@@ -221,6 +233,7 @@ final class ComputeReservationInstanceProperties {
 
   final List<ComputeReservationLocalSsds>? localSsds;
 
+  @internal
   Map<String, Object?> encode() => {
     'machine_type': machineType.toTfJson(),
     'min_cpu_platform': ?minCpuPlatform?.toTfJson(),
@@ -244,6 +257,7 @@ final class ComputeReservationGuestAccelerators {
 
   final TfArg<String> acceleratorType;
 
+  @internal
   Map<String, Object?> encode() => {
     'accelerator_count': acceleratorCount.toTfJson(),
     'accelerator_type': acceleratorType.toTfJson(),
@@ -260,6 +274,7 @@ final class ComputeReservationLocalSsds {
 
   final ComputeReservationInterface? interface;
 
+  @internal
   Map<String, Object?> encode() => {
     'disk_size_gb': diskSizeGb.toTfJson(),
     'interface': ?interface?.toTfJson(),

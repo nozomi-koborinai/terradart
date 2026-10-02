@@ -17,6 +17,7 @@ final class IamDenyPolicyRules {
 
   final IamDenyPolicyDenyRule? denyRule;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'deny_rule': ?denyRule?.encode(),
@@ -45,6 +46,7 @@ final class IamDenyPolicyDenyRule {
 
   final IamDenyPolicyDenialCondition? denialCondition;
 
+  @internal
   Map<String, Object?> encode() => {
     'denied_permissions': ?deniedPermissions?.toTfJson(),
     'denied_principals': ?deniedPrincipals?.toTfJson(),
@@ -73,6 +75,7 @@ final class IamDenyPolicyDenialCondition {
 
   final TfArg<String>? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'expression': expression.toTfJson(),

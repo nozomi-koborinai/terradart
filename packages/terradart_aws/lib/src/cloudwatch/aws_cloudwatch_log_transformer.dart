@@ -85,6 +85,7 @@ final class CloudwatchLogTransformerConfig {
 
   final List<CloudwatchLogTransformerUpperCaseString>? upperCaseString;
 
+  @internal
   Map<String, Object?> encode() => {
     if (addKeys != null) 'add_keys': [for (final e in addKeys!) e.encode()],
     if (copyValue != null)
@@ -137,6 +138,7 @@ final class CloudwatchLogTransformerAddKeys {
 
   final List<CloudwatchLogTransformerAddKeysEntry>? entry;
 
+  @internal
   Map<String, Object?> encode() => {
     if (entry != null) 'entry': [for (final e in entry!) e.encode()],
   };
@@ -158,6 +160,7 @@ final class CloudwatchLogTransformerAddKeysEntry {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'overwrite_if_exists': ?overwriteIfExists?.toTfJson(),
@@ -173,6 +176,7 @@ final class CloudwatchLogTransformerCopyValue {
 
   final List<CloudwatchLogTransformerCopyValueEntry>? entry;
 
+  @internal
   Map<String, Object?> encode() => {
     if (entry != null) 'entry': [for (final e in entry!) e.encode()],
   };
@@ -195,6 +199,7 @@ final class CloudwatchLogTransformerCopyValueEntry {
 
   final TfArg<String> target;
 
+  @internal
   Map<String, Object?> encode() => {
     'overwrite_if_exists': ?overwriteIfExists?.toTfJson(),
     'source': source.toTfJson(),
@@ -221,6 +226,7 @@ final class CloudwatchLogTransformerCsv {
 
   final TfArg<String>? source;
 
+  @internal
   Map<String, Object?> encode() => {
     'columns': ?columns?.toTfJson(),
     'delimiter': ?delimiter?.toTfJson(),
@@ -257,6 +263,7 @@ final class CloudwatchLogTransformerDateTimeConverter {
 
   final TfArg<String>? targetTimezone;
 
+  @internal
   Map<String, Object?> encode() => {
     'locale': ?locale?.toTfJson(),
     'match_patterns': matchPatterns.toTfJson(),
@@ -276,6 +283,7 @@ final class CloudwatchLogTransformerDeleteKeys {
 
   final TfArg<List<String>> withKeys;
 
+  @internal
   Map<String, Object?> encode() => {'with_keys': withKeys.toTfJson()};
 }
 
@@ -289,6 +297,7 @@ final class CloudwatchLogTransformerGrok {
 
   final TfArg<String>? source;
 
+  @internal
   Map<String, Object?> encode() => {
     'match': match.toTfJson(),
     'source': ?source?.toTfJson(),
@@ -320,6 +329,7 @@ final class CloudwatchLogTransformerListToMap {
 
   final TfArg<String>? valueKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'flatten': ?flatten?.toTfJson(),
     'flattened_element': ?flattenedElement?.toTfJson(),
@@ -361,6 +371,7 @@ final class CloudwatchLogTransformerLowerCaseString {
 
   final TfArg<List<String>> withKeys;
 
+  @internal
   Map<String, Object?> encode() => {'with_keys': withKeys.toTfJson()};
 }
 
@@ -372,6 +383,7 @@ final class CloudwatchLogTransformerMoveKeys {
 
   final List<CloudwatchLogTransformerCopyValueEntry>? entry;
 
+  @internal
   Map<String, Object?> encode() => {
     if (entry != null) 'entry': [for (final e in entry!) e.encode()],
   };
@@ -385,6 +397,7 @@ final class CloudwatchLogTransformerParseCloudfront {
 
   final TfArg<String>? source;
 
+  @internal
   Map<String, Object?> encode() => {'source': ?source?.toTfJson()};
 }
 
@@ -398,6 +411,7 @@ final class CloudwatchLogTransformerParseJson {
 
   final TfArg<String>? source;
 
+  @internal
   Map<String, Object?> encode() => {
     'destination': ?destination?.toTfJson(),
     'source': ?source?.toTfJson(),
@@ -432,6 +446,7 @@ final class CloudwatchLogTransformerParseKeyValue {
 
   final TfArg<String>? source;
 
+  @internal
   Map<String, Object?> encode() => {
     'destination': ?destination?.toTfJson(),
     'field_delimiter': ?fieldDelimiter?.toTfJson(),
@@ -451,6 +466,7 @@ final class CloudwatchLogTransformerParsePostgres {
 
   final TfArg<String>? source;
 
+  @internal
   Map<String, Object?> encode() => {'source': ?source?.toTfJson()};
 }
 
@@ -462,6 +478,7 @@ final class CloudwatchLogTransformerParseRoute53 {
 
   final TfArg<String>? source;
 
+  @internal
   Map<String, Object?> encode() => {'source': ?source?.toTfJson()};
 }
 
@@ -481,6 +498,7 @@ final class CloudwatchLogTransformerParseToOcsf {
 
   final TfArg<String>? source;
 
+  @internal
   Map<String, Object?> encode() => {
     'event_source': eventSource.toTfJson(),
     'ocsf_version': ocsfVersion.toTfJson(),
@@ -551,6 +569,7 @@ final class CloudwatchLogTransformerParseVpc {
 
   final TfArg<String>? source;
 
+  @internal
   Map<String, Object?> encode() => {'source': ?source?.toTfJson()};
 }
 
@@ -562,6 +581,7 @@ final class CloudwatchLogTransformerParseWaf {
 
   final TfArg<String>? source;
 
+  @internal
   Map<String, Object?> encode() => {'source': ?source?.toTfJson()};
 }
 
@@ -573,6 +593,7 @@ final class CloudwatchLogTransformerRenameKeys {
 
   final List<CloudwatchLogTransformerRenameKeysEntry>? entry;
 
+  @internal
   Map<String, Object?> encode() => {
     if (entry != null) 'entry': [for (final e in entry!) e.encode()],
   };
@@ -594,6 +615,7 @@ final class CloudwatchLogTransformerRenameKeysEntry {
 
   final TfArg<String> renameTo;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'overwrite_if_exists': ?overwriteIfExists?.toTfJson(),
@@ -609,6 +631,7 @@ final class CloudwatchLogTransformerSplitString {
 
   final List<CloudwatchLogTransformerSplitStringEntry>? entry;
 
+  @internal
   Map<String, Object?> encode() => {
     if (entry != null) 'entry': [for (final e in entry!) e.encode()],
   };
@@ -627,6 +650,7 @@ final class CloudwatchLogTransformerSplitStringEntry {
 
   final TfArg<String> source;
 
+  @internal
   Map<String, Object?> encode() => {
     'delimiter': delimiter.toTfJson(),
     'source': source.toTfJson(),
@@ -641,6 +665,7 @@ final class CloudwatchLogTransformerSubstituteString {
 
   final List<CloudwatchLogTransformerSubstituteStringEntry>? entry;
 
+  @internal
   Map<String, Object?> encode() => {
     if (entry != null) 'entry': [for (final e in entry!) e.encode()],
   };
@@ -662,6 +687,7 @@ final class CloudwatchLogTransformerSubstituteStringEntry {
 
   final TfArg<String> to;
 
+  @internal
   Map<String, Object?> encode() => {
     'from': from.toTfJson(),
     'source': source.toTfJson(),
@@ -677,6 +703,7 @@ final class CloudwatchLogTransformerTrimString {
 
   final TfArg<List<String>> withKeys;
 
+  @internal
   Map<String, Object?> encode() => {'with_keys': withKeys.toTfJson()};
 }
 
@@ -688,6 +715,7 @@ final class CloudwatchLogTransformerTypeConverter {
 
   final List<CloudwatchLogTransformerTypeConverterEntry>? entry;
 
+  @internal
   Map<String, Object?> encode() => {
     if (entry != null) 'entry': [for (final e in entry!) e.encode()],
   };
@@ -706,6 +734,7 @@ final class CloudwatchLogTransformerTypeConverterEntry {
 
   final CloudwatchLogTransformerType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'type': type.toTfJson(),
@@ -746,6 +775,7 @@ final class CloudwatchLogTransformerUpperCaseString {
 
   final TfArg<List<String>> withKeys;
 
+  @internal
   Map<String, Object?> encode() => {'with_keys': withKeys.toTfJson()};
 }
 

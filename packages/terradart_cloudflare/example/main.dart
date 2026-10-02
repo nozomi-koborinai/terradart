@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:terradart_cloudflare/terradart_cloudflare.dart';
-import 'package:terradart_core/terradart_core.dart';
 
 /// Minimal example: a Cloudflare zone and a proxied CNAME record pointing
 /// a subdomain at a backend host, synthesized to Terraform JSON. Secrets

@@ -3,5 +3,6 @@
 /// Dataplex data asset (beta-only).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/dataplex/google_dataplex_data_asset.dart'
     show DataplexDataAssetAccessGroupConfigs, GoogleDataplexDataAsset;

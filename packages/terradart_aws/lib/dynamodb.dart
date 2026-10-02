@@ -3,6 +3,12 @@
 /// AWS DynamoDB.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_dynamodb_backups.dart' show DataAwsDynamodbBackups;
+export 'src/data/aws_dynamodb_table.dart'
+    show DataAwsDynamodbTable, DataDynamodbTableServerSideEncryption;
+export 'src/data/aws_dynamodb_table_item.dart' show DataAwsDynamodbTableItem;
+export 'src/data/aws_dynamodb_tables.dart' show DataAwsDynamodbTables;
 export 'src/dynamodb/aws_dynamodb_contributor_insights.dart'
     show AwsDynamodbContributorInsights, DynamodbContributorInsightsMode;
 export 'src/dynamodb/aws_dynamodb_global_secondary_index.dart'

@@ -20,6 +20,7 @@ final class SagemakerHyperParameterTuningJobAutotune {
 
   final SagemakerHyperParameterTuningJobMode mode;
 
+  @internal
   Map<String, Object?> encode() => {'mode': mode.toTfJson()};
 }
 
@@ -73,6 +74,7 @@ final class SagemakerHyperParameterTuningJobConfig {
   final List<SagemakerHyperParameterTuningJobCompletionCriteria>?
   tuningJobCompletionCriteria;
 
+  @internal
   Map<String, Object?> encode() => {
     'random_seed': ?randomSeed?.toTfJson(),
     'strategy': strategy.toTfJson(),
@@ -166,6 +168,7 @@ final class SagemakerHyperParameterTuningJobObjective {
 
   final SagemakerHyperParameterTuningJobType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'metric_name': metricName.toTfJson(),
     'type': type.toTfJson(),
@@ -217,6 +220,7 @@ final class SagemakerHyperParameterTuningJobParameterRanges {
   final List<SagemakerHyperParameterTuningJobIntegerParameterRanges>?
   integerParameterRanges;
 
+  @internal
   Map<String, Object?> encode() => {
     if (autoParameters != null)
       'auto_parameters': [for (final e in autoParameters!) e.encode()],
@@ -249,6 +253,7 @@ final class SagemakerHyperParameterTuningJobAutoParameters {
 
   final TfArg<String> valueHint;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'value_hint': valueHint.toTfJson(),
@@ -269,6 +274,7 @@ final class SagemakerHyperParameterTuningJobCategoricalParameterRanges {
 
   final TfArg<List<String>> values;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'values': values.toTfJson(),
@@ -295,6 +301,7 @@ final class SagemakerHyperParameterTuningJobContinuousParameterRanges {
 
   final SagemakerHyperParameterTuningJobScalingType? scalingType;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_value': maxValue.toTfJson(),
     'min_value': minValue.toTfJson(),
@@ -356,6 +363,7 @@ final class SagemakerHyperParameterTuningJobIntegerParameterRanges {
 
   final SagemakerHyperParameterTuningJobScalingType? scalingType;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_value': maxValue.toTfJson(),
     'min_value': minValue.toTfJson(),
@@ -380,6 +388,7 @@ final class SagemakerHyperParameterTuningJobResourceLimits {
 
   final TfArg<num>? maxRuntimeInSeconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_number_of_training_jobs': ?maxNumberOfTrainingJobs?.toTfJson(),
     'max_parallel_training_jobs': maxParallelTrainingJobs.toTfJson(),
@@ -398,6 +407,7 @@ final class SagemakerHyperParameterTuningJobStrategyConfig {
   final List<SagemakerHyperParameterTuningJobHyperbandStrategyConfig>?
   hyperbandStrategyConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     if (hyperbandStrategyConfig != null)
       'hyperband_strategy_config': [
@@ -419,6 +429,7 @@ final class SagemakerHyperParameterTuningJobHyperbandStrategyConfig {
 
   final TfArg<num>? minResource;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_resource': ?maxResource?.toTfJson(),
     'min_resource': ?minResource?.toTfJson(),
@@ -443,6 +454,7 @@ final class SagemakerHyperParameterTuningJobCompletionCriteria {
   final List<SagemakerHyperParameterTuningJobConvergenceDetected>?
   convergenceDetected;
 
+  @internal
   Map<String, Object?> encode() => {
     'target_objective_metric_value': ?targetObjectiveMetricValue?.toTfJson(),
     if (bestObjectiveNotImproving != null)
@@ -466,6 +478,7 @@ final class SagemakerHyperParameterTuningJobBestObjectiveNotImproving {
 
   final TfArg<num>? maxNumberOfTrainingJobsNotImproving;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_number_of_training_jobs_not_improving':
         ?maxNumberOfTrainingJobsNotImproving?.toTfJson(),
@@ -483,6 +496,7 @@ final class SagemakerHyperParameterTuningJobConvergenceDetected {
   final SagemakerHyperParameterTuningJobCompleteOnConvergence?
   completeOnConvergence;
 
+  @internal
   Map<String, Object?> encode() => {
     'complete_on_convergence': ?completeOnConvergence?.toTfJson(),
   };
@@ -578,6 +592,7 @@ final class SagemakerHyperParameterTuningJobTrainingJobDefinition {
 
   final List<SagemakerHyperParameterTuningJobVpcConfig>? vpcConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'definition_name': ?definitionName?.toTfJson(),
     'enable_inter_container_traffic_encryption':
@@ -632,8 +647,10 @@ sealed class SagemakerHyperParameterTuningJobTrainingJobDefinitionResources {
   ) = SagemakerHyperParameterTuningJobTrainingJobDefinitionResourcesResourceConfig;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -647,9 +664,11 @@ final class SagemakerHyperParameterTuningJobTrainingJobDefinitionResourcesHyperP
   final List<SagemakerHyperParameterTuningJobHyperParameterTuningResourceConfig>
   hyperParameterTuningResourceConfig;
 
+  @internal
   @override
   String get blockKey => 'hyper_parameter_tuning_resource_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'hyper_parameter_tuning_resource_config': [
@@ -667,9 +686,11 @@ final class SagemakerHyperParameterTuningJobTrainingJobDefinitionResourcesResour
 
   final List<SagemakerHyperParameterTuningJobResourceConfig> resourceConfig;
 
+  @internal
   @override
   String get blockKey => 'resource_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'resource_config': [for (final e in resourceConfig) e.encode()],
@@ -694,6 +715,7 @@ final class SagemakerHyperParameterTuningJobAlgorithmSpecification {
   final List<SagemakerHyperParameterTuningJobMetricDefinitions>?
   metricDefinitions;
 
+  @internal
   Map<String, Object?> encode() => {
     ...?algorithm?.encode(),
     'training_input_mode': trainingInputMode.toTfJson(),
@@ -721,8 +743,10 @@ sealed class SagemakerHyperParameterTuningJobAlgorithm {
   ) = SagemakerHyperParameterTuningJobAlgorithmTrainingImage;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -733,9 +757,11 @@ final class SagemakerHyperParameterTuningJobAlgorithmName
 
   final TfArg<String> algorithmName;
 
+  @internal
   @override
   String get blockKey => 'algorithm_name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'algorithm_name': algorithmName.toTfJson()};
 }
@@ -749,9 +775,11 @@ final class SagemakerHyperParameterTuningJobAlgorithmTrainingImage
 
   final TfArg<String> trainingImage;
 
+  @internal
   @override
   String get blockKey => 'training_image';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'training_image': trainingImage.toTfJson()};
 }
@@ -795,6 +823,7 @@ final class SagemakerHyperParameterTuningJobMetricDefinitions {
 
   final TfArg<String> regex;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'regex': regex.toTfJson(),
@@ -815,6 +844,7 @@ final class SagemakerHyperParameterTuningJobCheckpointConfig {
 
   final TfArg<String> s3Uri;
 
+  @internal
   Map<String, Object?> encode() => {
     'local_path': ?localPath?.toTfJson(),
     's3_uri': s3Uri.toTfJson(),
@@ -844,6 +874,7 @@ final class SagemakerHyperParameterTuningJobHyperParameterRanges {
   final List<SagemakerHyperParameterTuningJobIntegerParameterRanges>?
   integerParameterRanges;
 
+  @internal
   Map<String, Object?> encode() => {
     if (autoParameters != null)
       'auto_parameters': [for (final e in autoParameters!) e.encode()],
@@ -888,6 +919,7 @@ final class SagemakerHyperParameterTuningJobHyperParameterTuningResourceConfig {
 
   final List<SagemakerHyperParameterTuningJobInstanceConfigs>? instanceConfigs;
 
+  @internal
   Map<String, Object?> encode() => {
     'allocation_strategy': ?allocationStrategy?.toTfJson(),
     'instance_count': ?instanceCount?.toTfJson(),
@@ -1560,6 +1592,7 @@ final class SagemakerHyperParameterTuningJobInstanceConfigs {
 
   final TfArg<num>? volumeSizeInGb;
 
+  @internal
   Map<String, Object?> encode() => {
     'instance_count': ?instanceCount?.toTfJson(),
     'instance_type': ?instanceType?.toTfJson(),
@@ -1597,6 +1630,7 @@ final class SagemakerHyperParameterTuningJobInputDataConfig {
 
   final List<SagemakerHyperParameterTuningJobShuffleConfig>? shuffleConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'channel_name': channelName.toTfJson(),
     'compression_type': ?compressionType?.toTfJson(),
@@ -1704,6 +1738,7 @@ final class SagemakerHyperParameterTuningJobDataSource {
 
   final List<SagemakerHyperParameterTuningJobS3DataSource>? s3DataSource;
 
+  @internal
   Map<String, Object?> encode() => {
     if (fileSystemDataSource != null)
       'file_system_data_source': [
@@ -1735,6 +1770,7 @@ final class SagemakerHyperParameterTuningJobFileSystemDataSource {
 
   final SagemakerHyperParameterTuningJobFileSystemType fileSystemType;
 
+  @internal
   Map<String, Object?> encode() => {
     'directory_path': directoryPath.toTfJson(),
     'file_system_access_mode': fileSystemAccessMode.toTfJson(),
@@ -1822,6 +1858,7 @@ final class SagemakerHyperParameterTuningJobS3DataSource {
   final List<SagemakerHyperParameterTuningJobModelAccessConfig>?
   modelAccessConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'attribute_names': ?attributeNames?.toTfJson(),
     'instance_group_names': ?instanceGroupNames?.toTfJson(),
@@ -1905,6 +1942,7 @@ final class SagemakerHyperParameterTuningJobHubAccessConfig {
 
   final TfArg<String> hubContentArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'hub_content_arn': hubContentArn.toTfJson(),
   };
@@ -1921,6 +1959,7 @@ final class SagemakerHyperParameterTuningJobModelAccessConfig {
 
   final TfArg<bool> acceptEula;
 
+  @internal
   Map<String, Object?> encode() => {'accept_eula': acceptEula.toTfJson()};
 }
 
@@ -1933,6 +1972,7 @@ final class SagemakerHyperParameterTuningJobShuffleConfig {
 
   final TfArg<num> seed;
 
+  @internal
   Map<String, Object?> encode() => {'seed': seed.toTfJson()};
 }
 
@@ -1954,6 +1994,7 @@ final class SagemakerHyperParameterTuningJobOutputDataConfig {
 
   final TfArg<String> s3OutputPath;
 
+  @internal
   Map<String, Object?> encode() => {
     'compression_type': ?compressionType?.toTfJson(),
     'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
@@ -2023,6 +2064,7 @@ final class SagemakerHyperParameterTuningJobResourceConfig {
   final List<SagemakerHyperParameterTuningJobInstancePlacementConfig>?
   instancePlacementConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'instance_count': ?instanceCount?.toTfJson(),
     'instance_type': ?instanceType?.toTfJson(),
@@ -2056,6 +2098,7 @@ final class SagemakerHyperParameterTuningJobInstanceGroups {
 
   final SagemakerHyperParameterTuningJobInstanceType instanceType;
 
+  @internal
   Map<String, Object?> encode() => {
     'instance_count': instanceCount.toTfJson(),
     'instance_group_name': instanceGroupName.toTfJson(),
@@ -2078,6 +2121,7 @@ final class SagemakerHyperParameterTuningJobInstancePlacementConfig {
   final List<SagemakerHyperParameterTuningJobPlacementSpecifications>?
   placementSpecifications;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_multiple_jobs': ?enableMultipleJobs?.toTfJson(),
     if (placementSpecifications != null)
@@ -2101,6 +2145,7 @@ final class SagemakerHyperParameterTuningJobPlacementSpecifications {
 
   final TfArg<String>? ultraServerId;
 
+  @internal
   Map<String, Object?> encode() => {
     'instance_count': instanceCount.toTfJson(),
     'ultra_server_id': ?ultraServerId?.toTfJson(),
@@ -2124,6 +2169,7 @@ final class SagemakerHyperParameterTuningJobStoppingCondition {
 
   final TfArg<num>? maxWaitTimeInSeconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_pending_time_in_seconds': ?maxPendingTimeInSeconds?.toTfJson(),
     'max_runtime_in_seconds': ?maxRuntimeInSeconds?.toTfJson(),
@@ -2145,6 +2191,7 @@ final class SagemakerHyperParameterTuningJobTuningObjective {
 
   final SagemakerHyperParameterTuningJobType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'metric_name': metricName.toTfJson(),
     'type': type.toTfJson(),
@@ -2165,6 +2212,7 @@ final class SagemakerHyperParameterTuningJobVpcConfig {
 
   final TfArg<List<RefTo<AwsSubnet>>> subnets;
 
+  @internal
   Map<String, Object?> encode() => {
     'security_group_ids': securityGroupIds.encodeAs('id').toTfJson(),
     'subnets': subnets.encodeAs('id').toTfJson(),
@@ -2235,6 +2283,7 @@ final class SagemakerHyperParameterTuningJobTrainingJobDefinitions {
 
   final List<SagemakerHyperParameterTuningJobVpcConfig>? vpcConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'definition_name': ?definitionName?.toTfJson(),
     'enable_inter_container_traffic_encryption':
@@ -2289,8 +2338,10 @@ sealed class SagemakerHyperParameterTuningJobTrainingJobDefinitionsResources {
   ) = SagemakerHyperParameterTuningJobTrainingJobDefinitionsResourcesResourceConfig;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -2304,9 +2355,11 @@ final class SagemakerHyperParameterTuningJobTrainingJobDefinitionsResourcesHyper
   final List<SagemakerHyperParameterTuningJobHyperParameterTuningResourceConfig>
   hyperParameterTuningResourceConfig;
 
+  @internal
   @override
   String get blockKey => 'hyper_parameter_tuning_resource_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'hyper_parameter_tuning_resource_config': [
@@ -2324,9 +2377,11 @@ final class SagemakerHyperParameterTuningJobTrainingJobDefinitionsResourcesResou
 
   final List<SagemakerHyperParameterTuningJobResourceConfig> resourceConfig;
 
+  @internal
   @override
   String get blockKey => 'resource_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'resource_config': [for (final e in resourceConfig) e.encode()],
@@ -2347,6 +2402,7 @@ final class SagemakerHyperParameterTuningJobWarmStartConfig {
   final List<SagemakerHyperParameterTuningJobParentHyperParameterTuningJobs>?
   parentHyperParameterTuningJobs;
 
+  @internal
   Map<String, Object?> encode() => {
     'warm_start_type': ?warmStartType?.toTfJson(),
     if (parentHyperParameterTuningJobs != null)
@@ -2392,6 +2448,7 @@ final class SagemakerHyperParameterTuningJobParentHyperParameterTuningJobs {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 

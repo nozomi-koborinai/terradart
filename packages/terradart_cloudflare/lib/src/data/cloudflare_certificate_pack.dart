@@ -19,6 +19,7 @@ final class DataCertificatePackFilter {
 
   final DataCertificatePackFilterStatus? status;
 
+  @internal
   Map<String, Object?> encode() => {
     'deploy': ?deploy?.toTfJson(),
     'status': ?status?.toTfJson(),

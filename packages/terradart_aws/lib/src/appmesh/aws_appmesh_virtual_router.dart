@@ -15,6 +15,7 @@ final class AppmeshVirtualRouterSpec {
 
   final List<AppmeshVirtualRouterListener>? listener;
 
+  @internal
   Map<String, Object?> encode() => {
     if (listener != null) 'listener': [for (final e in listener!) e.encode()],
   };
@@ -28,6 +29,7 @@ final class AppmeshVirtualRouterListener {
 
   final AppmeshVirtualRouterPortMapping portMapping;
 
+  @internal
   Map<String, Object?> encode() => {'port_mapping': portMapping.encode()};
 }
 
@@ -44,6 +46,7 @@ final class AppmeshVirtualRouterPortMapping {
 
   final AppmeshVirtualRouterProtocol protocol;
 
+  @internal
   Map<String, Object?> encode() => {
     'port': port.toTfJson(),
     'protocol': protocol.toTfJson(),

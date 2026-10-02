@@ -84,6 +84,7 @@ prelude: |
     final TfArg<String>? cronSchedule;
     final GkeBackupBackupPlanRpoConfig? rpoConfig;
 
+    @internal
     Map<String, Object?> encode() => {
       if (cronSchedule != null) 'cron_schedule': cronSchedule!.toTfJson(),
       if (rpoConfig != null) 'rpo_config': [rpoConfig!.toArgMap()],

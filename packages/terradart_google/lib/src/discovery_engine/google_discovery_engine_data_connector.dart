@@ -27,12 +27,15 @@ sealed class DiscoveryEngineDataConnectorParams {
   ) = DiscoveryEngineDataConnectorJsonParams;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -43,12 +46,15 @@ final class DiscoveryEngineDataConnectorParamsChoice
 
   final TfArg<Map<String, String>> params;
 
+  @internal
   @override
   String get blockKey => 'params';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'params': params.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'params': params};
 }
@@ -60,12 +66,15 @@ final class DiscoveryEngineDataConnectorJsonParams
 
   final TfArg<String> jsonParams;
 
+  @internal
   @override
   String get blockKey => 'json_params';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'json_params': jsonParams.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'json_params': jsonParams};
 }
@@ -83,6 +92,7 @@ final class DiscoveryEngineDataConnectorActionConfig {
 
   final TfArg<bool>? createBapConnection;
 
+  @internal
   Map<String, Object?> encode() => {
     'action_params': ?actionParams?.toTfJson(),
     'create_bap_connection': ?createBapConnection?.toTfJson(),
@@ -102,6 +112,7 @@ final class DiscoveryEngineDataConnectorBapConfig {
 
   final TfArg<List<String>>? supportedConnectorModes;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled_actions': ?enabledActions?.toTfJson(),
     'supported_connector_modes': ?supportedConnectorModes?.toTfJson(),
@@ -124,6 +135,7 @@ final class DiscoveryEngineDataConnectorDestinationConfigs {
 
   final List<DiscoveryEngineDataConnectorDestinations>? destinations;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
     'params': ?params?.toTfJson(),
@@ -142,6 +154,7 @@ final class DiscoveryEngineDataConnectorDestinations {
 
   final TfArg<num>? port;
 
+  @internal
   Map<String, Object?> encode() => {
     'host': ?host?.toTfJson(),
     'port': ?port?.toTfJson(),
@@ -164,6 +177,7 @@ final class DiscoveryEngineDataConnectorEntities {
 
   final TfArg<String>? params;
 
+  @internal
   Map<String, Object?> encode() => {
     'entity_name': ?entityName?.toTfJson(),
     'key_property_mappings': ?keyPropertyMappings?.toTfJson(),
@@ -193,6 +207,7 @@ final class DiscoveryEngineDataConnectorMetadata {
 
   final TfArg<String>? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'author': ?author?.toTfJson(),
     'description': ?description?.toTfJson(),

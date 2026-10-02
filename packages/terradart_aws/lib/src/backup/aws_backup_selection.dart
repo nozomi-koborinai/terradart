@@ -28,6 +28,7 @@ final class BackupSelectionCondition {
 
   final List<BackupSelectionStringNotLike>? stringNotLike;
 
+  @internal
   Map<String, Object?> encode() => {
     if (stringEquals != null)
       'string_equals': [for (final e in stringEquals!) e.encode()],
@@ -50,6 +51,7 @@ final class BackupSelectionStringEquals {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'value': value.toTfJson(),
@@ -66,6 +68,7 @@ final class BackupSelectionStringLike {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'value': value.toTfJson(),
@@ -85,6 +88,7 @@ final class BackupSelectionStringNotEquals {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'value': value.toTfJson(),
@@ -101,6 +105,7 @@ final class BackupSelectionStringNotLike {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'value': value.toTfJson(),
@@ -123,6 +128,7 @@ final class BackupSelectionTag {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'type': type.toTfJson(),

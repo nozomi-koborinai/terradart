@@ -51,6 +51,7 @@ final class GlobalacceleratorEndpointGroupEndpointConfiguration {
 
   final TfArg<num>? weight;
 
+  @internal
   Map<String, Object?> encode() => {
     'attachment_arn': ?attachmentArn?.toTfJson(),
     'client_ip_preservation_enabled': ?clientIpPreservationEnabled?.toTfJson(),
@@ -72,6 +73,7 @@ final class GlobalacceleratorEndpointGroupPortOverride {
 
   final TfArg<num> listenerPort;
 
+  @internal
   Map<String, Object?> encode() => {
     'endpoint_port': endpointPort.toTfJson(),
     'listener_port': listenerPort.toTfJson(),

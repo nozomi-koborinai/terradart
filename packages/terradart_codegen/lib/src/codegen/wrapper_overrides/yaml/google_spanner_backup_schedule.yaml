@@ -66,10 +66,12 @@ prelude: |
     const factory SpannerBackupScheduleBackupSpec.incrementalBackupSpec() = SpannerBackupScheduleIncrementalBackupSpec;
 
     /// argMap key (`full_backup_spec` or `incremental_backup_spec`).
+    @internal
     String get blockKey;
 
     /// JSON fragment for the block value (single empty map in a list —
     /// both blocks are `nesting_mode: list, max_items: 1` with no fields).
+    @internal
     List<Map<String, Object?>> encode();
   }
 
@@ -80,9 +82,11 @@ prelude: |
     const SpannerBackupScheduleFullBackupSpec();
 
     @override
+    @internal
     String get blockKey => 'full_backup_spec';
 
     @override
+    @internal
     List<Map<String, Object?>> encode() => const [<String, Object?>{}];
   }
 
@@ -93,9 +97,11 @@ prelude: |
     const SpannerBackupScheduleIncrementalBackupSpec();
 
     @override
+    @internal
     String get blockKey => 'incremental_backup_spec';
 
     @override
+    @internal
     List<Map<String, Object?>> encode() => const [<String, Object?>{}];
   }
 

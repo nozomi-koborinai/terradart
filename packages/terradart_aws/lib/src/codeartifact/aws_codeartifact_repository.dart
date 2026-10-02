@@ -17,6 +17,7 @@ final class CodeartifactRepositoryExternalConnections {
 
   final TfArg<String> externalConnectionName;
 
+  @internal
   Map<String, Object?> encode() => {
     'external_connection_name': externalConnectionName.toTfJson(),
   };
@@ -30,6 +31,7 @@ final class CodeartifactRepositoryUpstream {
 
   final TfArg<String> repositoryName;
 
+  @internal
   Map<String, Object?> encode() => {
     'repository_name': repositoryName.toTfJson(),
   };

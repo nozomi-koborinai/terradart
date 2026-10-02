@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `aws_dms_replication_task`.
@@ -49,12 +50,15 @@ sealed class DmsReplicationTaskCdcStart {
   ) = DmsReplicationTaskCdcStartTime;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -65,14 +69,17 @@ final class DmsReplicationTaskCdcStartPosition
 
   final TfArg<String> cdcStartPosition;
 
+  @internal
   @override
   String get blockKey => 'cdc_start_position';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'cdc_start_position': cdcStartPosition.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'cdc_start_position': cdcStartPosition,
@@ -85,12 +92,15 @@ final class DmsReplicationTaskCdcStartTime extends DmsReplicationTaskCdcStart {
 
   final TfArg<String> cdcStartTime;
 
+  @internal
   @override
   String get blockKey => 'cdc_start_time';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'cdc_start_time': cdcStartTime.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'cdc_start_time': cdcStartTime};
 }

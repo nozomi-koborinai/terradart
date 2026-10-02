@@ -21,6 +21,7 @@ final class ComputeInterconnectAttachmentGroupAttachments {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {
     'attachment': ?attachment?.toTfJson(),
     'name': name.toTfJson(),
@@ -35,6 +36,7 @@ final class ComputeInterconnectAttachmentGroupIntent {
 
   final ComputeInterconnectAttachmentGroupAvailabilitySla? availabilitySla;
 
+  @internal
   Map<String, Object?> encode() => {
     'availability_sla': ?availabilitySla?.toTfJson(),
   };

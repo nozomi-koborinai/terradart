@@ -37,6 +37,7 @@ final class DataShareFilter {
 
   final DataShareFilterTargetType? targetType;
 
+  @internal
   Map<String, Object?> encode() => {
     'direction': ?direction?.toTfJson(),
     'kind': ?kind?.toTfJson(),

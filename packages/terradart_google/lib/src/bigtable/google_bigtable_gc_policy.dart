@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../bigtable/google_bigtable_instance.dart' show GoogleBigtableInstance;
@@ -23,7 +24,9 @@ sealed class BigtableGcPolicyRule {
   const factory BigtableGcPolicyRule.maxVersion({required TfArg<num> number}) =
       BigtableGcPolicyMaxVersion;
 
+  @internal
   String get blockKey;
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -35,9 +38,11 @@ final class BigtableGcPolicyMaxAge extends BigtableGcPolicyRule {
   final TfArg<String>? duration;
 
   @override
+  @internal
   String get blockKey => 'max_age';
 
   @override
+  @internal
   Map<String, Object?> encode() => {
     if (days != null) 'days': days!.toTfJson(),
     if (duration != null) 'duration': duration!.toTfJson(),
@@ -51,9 +56,11 @@ final class BigtableGcPolicyMaxVersion extends BigtableGcPolicyRule {
   final TfArg<num> number;
 
   @override
+  @internal
   String get blockKey => 'max_version';
 
   @override
+  @internal
   Map<String, Object?> encode() => {'number': number.toTfJson()};
 }
 

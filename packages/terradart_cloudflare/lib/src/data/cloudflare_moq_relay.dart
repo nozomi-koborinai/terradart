@@ -28,6 +28,7 @@ final class DataMoqRelayFilter {
 
   final TfArg<num>? perPage;
 
+  @internal
   Map<String, Object?> encode() => {
     'asc': ?asc?.toTfJson(),
     'created_after': ?createdAfter?.toTfJson(),

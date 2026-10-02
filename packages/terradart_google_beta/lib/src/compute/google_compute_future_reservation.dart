@@ -114,6 +114,7 @@ final class ComputeFutureReservationAggregateReservation {
 
   final List<ComputeFutureReservationReservedResources> reservedResources;
 
+  @internal
   Map<String, Object?> encode() => {
     'vm_family': ?vmFamily?.toTfJson(),
     'workload_type': ?workloadType?.toTfJson(),
@@ -204,6 +205,7 @@ final class ComputeFutureReservationReservedResources {
 
   final ComputeFutureReservationAccelerator? accelerator;
 
+  @internal
   Map<String, Object?> encode() => {'accelerator': ?accelerator?.encode()};
 }
 
@@ -220,6 +222,7 @@ final class ComputeFutureReservationAccelerator {
 
   final TfArg<String>? acceleratorType;
 
+  @internal
   Map<String, Object?> encode() => {
     'accelerator_count': ?acceleratorCount?.toTfJson(),
     'accelerator_type': ?acceleratorType?.toTfJson(),
@@ -239,6 +242,7 @@ final class ComputeFutureReservationAutoCreatedReservationsDuration {
 
   final TfArg<String>? seconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'nanos': ?nanos?.toTfJson(),
     'seconds': ?seconds?.toTfJson(),
@@ -262,6 +266,7 @@ final class ComputeFutureReservationCommitmentInfo {
   final ComputeFutureReservationPreviousCommitmentTerms?
   previousCommitmentTerms;
 
+  @internal
   Map<String, Object?> encode() => {
     'commitment_name': ?commitmentName?.toTfJson(),
     'commitment_plan': ?commitmentPlan?.toTfJson(),
@@ -324,6 +329,7 @@ final class ComputeFutureReservationParams {
 
   final TfArg<Map<String, String>>? resourceManagerTags;
 
+  @internal
   Map<String, Object?> encode() => {
     'resource_manager_tags': ?resourceManagerTags?.toTfJson(),
   };
@@ -345,6 +351,7 @@ final class ComputeFutureReservationShareSettings {
 
   final List<ComputeFutureReservationProjectMap>? projectMap;
 
+  @internal
   Map<String, Object?> encode() => {
     'projects': ?projects?.toTfJson(),
     'share_type': ?shareType?.toTfJson(),
@@ -385,6 +392,7 @@ final class ComputeFutureReservationProjectMap {
 
   final TfArg<String>? projectId;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
     'project_id': ?projectId?.toTfJson(),
@@ -407,6 +415,7 @@ final class ComputeFutureReservationSpecificSkuProperties {
 
   final ComputeFutureReservationInstanceProperties? instanceProperties;
 
+  @internal
   Map<String, Object?> encode() => {
     'source_instance_template': ?sourceInstanceTemplate?.toTfJson(),
     'total_count': ?totalCount?.toTfJson(),
@@ -442,6 +451,7 @@ final class ComputeFutureReservationInstanceProperties {
 
   final List<ComputeFutureReservationLocalSsds>? localSsds;
 
+  @internal
   Map<String, Object?> encode() => {
     'location_hint': ?locationHint?.toTfJson(),
     'machine_type': ?machineType?.toTfJson(),
@@ -489,6 +499,7 @@ final class ComputeFutureReservationGuestAccelerators {
 
   final TfArg<String>? acceleratorType;
 
+  @internal
   Map<String, Object?> encode() => {
     'accelerator_count': ?acceleratorCount?.toTfJson(),
     'accelerator_type': ?acceleratorType?.toTfJson(),
@@ -505,6 +516,7 @@ final class ComputeFutureReservationLocalSsds {
 
   final ComputeFutureReservationInterface? interface;
 
+  @internal
   Map<String, Object?> encode() => {
     'disk_size_gb': ?diskSizeGb?.toTfJson(),
     'interface': ?interface?.toTfJson(),
@@ -542,6 +554,7 @@ final class ComputeFutureReservationTimeWindow {
 
   final ComputeFutureReservationDuration? duration;
 
+  @internal
   Map<String, Object?> encode() => {
     'end_time': ?endTime?.toTfJson(),
     'start_time': startTime.toTfJson(),
@@ -559,6 +572,7 @@ final class ComputeFutureReservationDuration {
 
   final TfArg<String>? seconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'nanos': ?nanos?.toTfJson(),
     'seconds': ?seconds?.toTfJson(),

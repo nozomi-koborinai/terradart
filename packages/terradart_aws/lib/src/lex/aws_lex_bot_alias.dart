@@ -23,6 +23,7 @@ final class LexBotAliasConversationLogs {
 
   final List<LexBotAliasLogSettings>? logSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'iam_role_arn': iamRoleArn.encodeAs('arn').toTfJson(),
     if (logSettings != null)
@@ -49,6 +50,7 @@ final class LexBotAliasLogSettings {
 
   final TfArg<String> resourceArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'destination': destination.toTfJson(),
     'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),

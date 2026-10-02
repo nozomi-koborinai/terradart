@@ -5,7 +5,6 @@ import 'package:terradart_cloudflare/catalog.dart';
 import 'package:terradart_cloudflare/dns.dart';
 import 'package:terradart_cloudflare/provider.dart';
 import 'package:terradart_cloudflare/zone.dart';
-import 'package:terradart_core/terradart_core.dart';
 import 'package:test/test.dart';
 
 final class _TestStack extends Stack {

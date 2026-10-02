@@ -3,6 +3,12 @@
 /// AWS Systems Manager Incident Manager contacts.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_ssmcontacts_contact.dart' show DataAwsSsmcontactsContact;
+export 'src/data/aws_ssmcontacts_contact_channel.dart'
+    show DataAwsSsmcontactsContactChannel;
+export 'src/data/aws_ssmcontacts_plan.dart' show DataAwsSsmcontactsPlan;
+export 'src/data/aws_ssmcontacts_rotation.dart' show DataAwsSsmcontactsRotation;
 export 'src/ssmcontacts/aws_ssmcontacts_contact.dart'
     show AwsSsmcontactsContact;
 export 'src/ssmcontacts/aws_ssmcontacts_contact_channel.dart'

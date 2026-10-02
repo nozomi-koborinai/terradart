@@ -35,6 +35,7 @@ final class M2EnvironmentHighAvailabilityConfig {
 
   final TfArg<num> desiredCapacity;
 
+  @internal
   Map<String, Object?> encode() => {
     'desired_capacity': desiredCapacity.toTfJson(),
   };
@@ -58,8 +59,10 @@ sealed class M2EnvironmentStorageConfiguration {
   ) = M2EnvironmentStorageConfigurationFsx;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -70,9 +73,11 @@ final class M2EnvironmentStorageConfigurationEfs
 
   final List<M2EnvironmentEfs> efs;
 
+  @internal
   @override
   String get blockKey => 'efs';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'efs': [for (final e in efs) e.encode()],
@@ -86,9 +91,11 @@ final class M2EnvironmentStorageConfigurationFsx
 
   final List<M2EnvironmentFsx> fsx;
 
+  @internal
   @override
   String get blockKey => 'fsx';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'fsx': [for (final e in fsx) e.encode()],
@@ -108,6 +115,7 @@ final class M2EnvironmentEfs {
 
   final TfArg<String> mountPoint;
 
+  @internal
   Map<String, Object?> encode() => {
     'file_system_id': fileSystemId.toTfJson(),
     'mount_point': mountPoint.toTfJson(),
@@ -127,6 +135,7 @@ final class M2EnvironmentFsx {
 
   final TfArg<String> mountPoint;
 
+  @internal
   Map<String, Object?> encode() => {
     'file_system_id': fileSystemId.toTfJson(),
     'mount_point': mountPoint.toTfJson(),

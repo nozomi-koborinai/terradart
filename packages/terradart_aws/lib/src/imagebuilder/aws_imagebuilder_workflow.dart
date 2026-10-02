@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../kms/aws_kms_key.dart' show AwsKmsKey;
@@ -45,12 +46,15 @@ sealed class ImagebuilderWorkflowDocument {
       ImagebuilderWorkflowDocumentUri;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -61,12 +65,15 @@ final class ImagebuilderWorkflowDocumentData
 
   final TfArg<String> data;
 
+  @internal
   @override
   String get blockKey => 'data';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'data': data.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'data': data};
 }
@@ -78,12 +85,15 @@ final class ImagebuilderWorkflowDocumentUri
 
   final TfArg<String> uri;
 
+  @internal
   @override
   String get blockKey => 'uri';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'uri': uri.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'uri': uri};
 }

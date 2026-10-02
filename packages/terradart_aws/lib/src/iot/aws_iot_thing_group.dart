@@ -17,6 +17,7 @@ final class IotThingGroupProperties {
 
   final IotThingGroupAttributePayload? attributePayload;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'attribute_payload': ?attributePayload?.encode(),
@@ -31,6 +32,7 @@ final class IotThingGroupAttributePayload {
 
   final TfArg<Map<String, String>>? attributes;
 
+  @internal
   Map<String, Object?> encode() => {'attributes': ?attributes?.toTfJson()};
 }
 

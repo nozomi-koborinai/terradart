@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `aws_codestarconnections_connection`.
@@ -62,12 +63,15 @@ sealed class CodestarconnectionsConnectionHost {
   ) = CodestarconnectionsConnectionHostProviderType;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -78,12 +82,15 @@ final class CodestarconnectionsConnectionHostArn
 
   final TfArg<String> hostArn;
 
+  @internal
   @override
   String get blockKey => 'host_arn';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'host_arn': hostArn.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'host_arn': hostArn};
 }
@@ -95,12 +102,15 @@ final class CodestarconnectionsConnectionHostProviderType
 
   final CodestarconnectionsConnectionProviderType providerType;
 
+  @internal
   @override
   String get blockKey => 'provider_type';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'provider_type': providerType.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'provider_type': providerType};
 }

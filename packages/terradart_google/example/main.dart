@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/terradart_google.dart';
 
 /// Minimal example: a single Pub/Sub topic, synthesized to Terraform JSON.

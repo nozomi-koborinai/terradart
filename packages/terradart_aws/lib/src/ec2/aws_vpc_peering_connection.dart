@@ -17,6 +17,7 @@ final class VpcPeeringConnectionAccepter {
 
   final TfArg<bool>? allowRemoteVpcDnsResolution;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_remote_vpc_dns_resolution': ?allowRemoteVpcDnsResolution?.toTfJson(),
   };
@@ -30,6 +31,7 @@ final class VpcPeeringConnectionRequester {
 
   final TfArg<bool>? allowRemoteVpcDnsResolution;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_remote_vpc_dns_resolution': ?allowRemoteVpcDnsResolution?.toTfJson(),
   };

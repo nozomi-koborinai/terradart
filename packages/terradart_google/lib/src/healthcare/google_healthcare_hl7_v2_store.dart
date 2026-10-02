@@ -51,6 +51,7 @@ final class HealthcareHl7V2StoreNotificationConfig {
 
   final RefTo<GooglePubsubTopic> pubsubTopic;
 
+  @internal
   Map<String, Object?> encode() => {
     'pubsub_topic': pubsubTopic.encodeAs('id').toTfJson(),
   };
@@ -69,6 +70,7 @@ final class HealthcareHl7V2StoreNotificationConfigs {
 
   final RefTo<GooglePubsubTopic> pubsubTopic;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter': ?filter?.toTfJson(),
     'pubsub_topic': pubsubTopic.encodeAs('id').toTfJson(),
@@ -94,6 +96,7 @@ final class HealthcareHl7V2StoreParserConfig {
 
   final HealthcareHl7V2StoreParserConfigVersion? version;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_null_header': ?allowNullHeader?.toTfJson(),
     'schema': ?schema?.toTfJson(),

@@ -29,6 +29,7 @@ final class ComputePerInstanceConfigPreservedState {
 
   final List<ComputePerInstanceConfigInternalIp>? internalIp;
 
+  @internal
   Map<String, Object?> encode() => {
     'metadata': ?metadata?.toTfJson(),
     if (disk != null) 'disk': [for (final e in disk!) e.encode()],
@@ -58,6 +59,7 @@ final class ComputePerInstanceConfigDisk {
 
   final TfArg<String> source;
 
+  @internal
   Map<String, Object?> encode() => {
     'delete_rule': ?deleteRule?.toTfJson(),
     'device_name': deviceName.toTfJson(),
@@ -127,6 +129,7 @@ final class ComputePerInstanceConfigExternalIp {
 
   final ComputePerInstanceConfigIpAddress? ipAddress;
 
+  @internal
   Map<String, Object?> encode() => {
     'auto_delete': ?autoDelete?.toTfJson(),
     'interface_name': interfaceName.toTfJson(),
@@ -166,6 +169,7 @@ final class ComputePerInstanceConfigIpAddress {
 
   final TfArg<String>? address;
 
+  @internal
   Map<String, Object?> encode() => {'address': ?address?.toTfJson()};
 }
 
@@ -185,6 +189,7 @@ final class ComputePerInstanceConfigInternalIp {
 
   final ComputePerInstanceConfigIpAddress? ipAddress;
 
+  @internal
   Map<String, Object?> encode() => {
     'auto_delete': ?autoDelete?.toTfJson(),
     'interface_name': interfaceName.toTfJson(),

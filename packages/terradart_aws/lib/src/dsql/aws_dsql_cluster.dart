@@ -17,6 +17,7 @@ final class DsqlClusterMultiRegionProperties {
 
   final TfArg<String>? witnessRegion;
 
+  @internal
   Map<String, Object?> encode() => {
     'clusters': ?clusters?.toTfJson(),
     'witness_region': ?witnessRegion?.toTfJson(),

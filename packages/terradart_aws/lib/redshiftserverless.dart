@@ -3,6 +3,13 @@
 /// AWS Redshift Serverless.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_redshiftserverless_credentials.dart'
+    show DataAwsRedshiftserverlessCredentials;
+export 'src/data/aws_redshiftserverless_namespace.dart'
+    show DataAwsRedshiftserverlessNamespace;
+export 'src/data/aws_redshiftserverless_workgroup.dart'
+    show DataAwsRedshiftserverlessWorkgroup;
 export 'src/redshiftserverless/aws_redshiftserverless_custom_domain_association.dart'
     show AwsRedshiftserverlessCustomDomainAssociation;
 export 'src/redshiftserverless/aws_redshiftserverless_endpoint_access.dart'

@@ -5,6 +5,7 @@
 /// hardware plus GDC platform fees; never_apply for apply-smoke.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/gkeonprem/google_gkeonprem_bare_metal_admin_cluster.dart'
     show
         GkeonpremBareMetalAdminClusterAddressPools,

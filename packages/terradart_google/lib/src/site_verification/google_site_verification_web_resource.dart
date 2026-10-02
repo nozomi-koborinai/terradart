@@ -60,6 +60,7 @@ final class SiteVerificationWebResourceSite {
 
   final SiteVerificationWebResourceType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'identifier': identifier.toTfJson(),
     'type': type.toTfJson(),

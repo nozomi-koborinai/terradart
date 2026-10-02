@@ -58,6 +58,7 @@ final class DataLossPreventionJobTriggerInspectJob {
 
   final DataLossPreventionJobTriggerStorageConfig storageConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'inspect_template_name': ?inspectTemplateName?.encodeAs('name').toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -96,6 +97,7 @@ final class DataLossPreventionJobTriggerActions {
 
   final DataLossPreventionJobTriggerSaveFindings? saveFindings;
 
+  @internal
   Map<String, Object?> encode() => {
     'deidentify': ?deidentify?.encode(),
     'job_notification_emails': ?jobNotificationEmails?.encode(),
@@ -129,6 +131,7 @@ final class DataLossPreventionJobTriggerDeidentify {
   final DataLossPreventionJobTriggerTransformationDetailsStorageConfig?
   transformationDetailsStorageConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloud_storage_output': cloudStorageOutput.toTfJson(),
     if (fileTypesToTransform != null)
@@ -189,6 +192,7 @@ final class DataLossPreventionJobTriggerTransformationConfig {
 
   final TfArg<String>? structuredDeidentifyTemplate;
 
+  @internal
   Map<String, Object?> encode() => {
     'deidentify_template': ?deidentifyTemplate?.toTfJson(),
     'image_redact_template': ?imageRedactTemplate?.toTfJson(),
@@ -206,6 +210,7 @@ final class DataLossPreventionJobTriggerTransformationDetailsStorageConfig {
 
   final DataLossPreventionJobTriggerTable table;
 
+  @internal
   Map<String, Object?> encode() => {'table': table.encode()};
 }
 
@@ -226,6 +231,7 @@ final class DataLossPreventionJobTriggerTable {
 
   final TfArg<String>? tableId;
 
+  @internal
   Map<String, Object?> encode() => {
     'dataset_id': datasetId.encodeAs('dataset_id').toTfJson(),
     'project_id': projectId.toTfJson(),
@@ -239,6 +245,7 @@ final class DataLossPreventionJobTriggerTable {
 final class DataLossPreventionJobTriggerJobNotificationEmails {
   const DataLossPreventionJobTriggerJobNotificationEmails();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -250,6 +257,7 @@ final class DataLossPreventionJobTriggerPubSub {
 
   final RefTo<GooglePubsubTopic> topic;
 
+  @internal
   Map<String, Object?> encode() => {'topic': topic.encodeAs('id').toTfJson()};
 }
 
@@ -259,6 +267,7 @@ final class DataLossPreventionJobTriggerPubSub {
 final class DataLossPreventionJobTriggerPublishFindingsToDataplexCatalog {
   const DataLossPreventionJobTriggerPublishFindingsToDataplexCatalog();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -268,6 +277,7 @@ final class DataLossPreventionJobTriggerPublishFindingsToDataplexCatalog {
 final class DataLossPreventionJobTriggerPublishSummaryToCscc {
   const DataLossPreventionJobTriggerPublishSummaryToCscc();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -277,6 +287,7 @@ final class DataLossPreventionJobTriggerPublishSummaryToCscc {
 final class DataLossPreventionJobTriggerPublishToStackdriver {
   const DataLossPreventionJobTriggerPublishToStackdriver();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -288,6 +299,7 @@ final class DataLossPreventionJobTriggerSaveFindings {
 
   final DataLossPreventionJobTriggerOutputConfig outputConfig;
 
+  @internal
   Map<String, Object?> encode() => {'output_config': outputConfig.encode()};
 }
 
@@ -307,6 +319,7 @@ final class DataLossPreventionJobTriggerOutputConfig {
 
   final DataLossPreventionJobTriggerTable? table;
 
+  @internal
   Map<String, Object?> encode() => {
     'output_schema': ?outputSchema?.toTfJson(),
     'storage_path': ?storagePath?.encode(),
@@ -357,6 +370,7 @@ final class DataLossPreventionJobTriggerStoragePath {
 
   final TfArg<String> path;
 
+  @internal
   Map<String, Object?> encode() => {'path': path.toTfJson()};
 }
 
@@ -388,6 +402,7 @@ final class DataLossPreventionJobTriggerInspectConfig {
 
   final List<DataLossPreventionJobTriggerRuleSet>? ruleSet;
 
+  @internal
   Map<String, Object?> encode() => {
     'exclude_info_types': ?excludeInfoTypes?.toTfJson(),
     'include_quote': ?includeQuote?.toTfJson(),
@@ -468,6 +483,7 @@ final class DataLossPreventionJobTriggerCustomInfoTypes {
 
   final DataLossPreventionJobTriggerSurrogateType? surrogateType;
 
+  @internal
   Map<String, Object?> encode() => {
     'exclusion_type': ?exclusionType?.toTfJson(),
     'likelihood': ?likelihood?.toTfJson(),
@@ -529,6 +545,7 @@ final class DataLossPreventionJobTriggerDictionary {
 
   final DataLossPreventionJobTriggerWordList? wordList;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloud_storage_path': ?cloudStoragePath?.encode(),
     'word_list': ?wordList?.encode(),
@@ -544,6 +561,7 @@ final class DataLossPreventionJobTriggerCloudStoragePath {
 
   final TfArg<String> path;
 
+  @internal
   Map<String, Object?> encode() => {'path': path.toTfJson()};
 }
 
@@ -556,6 +574,7 @@ final class DataLossPreventionJobTriggerWordList {
 
   final TfArg<List<String>> words;
 
+  @internal
   Map<String, Object?> encode() => {'words': words.toTfJson()};
 }
 
@@ -576,6 +595,7 @@ final class DataLossPreventionJobTriggerInfoType {
 
   final DataLossPreventionJobTriggerSensitivityScore? sensitivityScore;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'version': ?version?.toTfJson(),
@@ -592,6 +612,7 @@ final class DataLossPreventionJobTriggerSensitivityScore {
 
   final DataLossPreventionJobTriggerScore score;
 
+  @internal
   Map<String, Object?> encode() => {'score': score.toTfJson()};
 }
 
@@ -635,6 +656,7 @@ final class DataLossPreventionJobTriggerRegex {
 
   final TfArg<String> pattern;
 
+  @internal
   Map<String, Object?> encode() => {
     'group_indexes': ?groupIndexes?.toTfJson(),
     'pattern': pattern.toTfJson(),
@@ -649,6 +671,7 @@ final class DataLossPreventionJobTriggerStoredType {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 
@@ -658,6 +681,7 @@ final class DataLossPreventionJobTriggerStoredType {
 final class DataLossPreventionJobTriggerSurrogateType {
   const DataLossPreventionJobTriggerSurrogateType();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -678,6 +702,7 @@ final class DataLossPreventionJobTriggerInfoTypes {
 
   final DataLossPreventionJobTriggerSensitivityScore? sensitivityScore;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'version': ?version?.toTfJson(),
@@ -702,6 +727,7 @@ final class DataLossPreventionJobTriggerLimits {
   final List<DataLossPreventionJobTriggerMaxFindingsPerInfoType>?
   maxFindingsPerInfoType;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_findings_per_item': ?maxFindingsPerItem?.toTfJson(),
     'max_findings_per_request': ?maxFindingsPerRequest?.toTfJson(),
@@ -725,6 +751,7 @@ final class DataLossPreventionJobTriggerMaxFindingsPerInfoType {
 
   final DataLossPreventionJobTriggerInfoType? infoType;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_findings': ?maxFindings?.toTfJson(),
     'info_type': ?infoType?.encode(),
@@ -744,6 +771,7 @@ final class DataLossPreventionJobTriggerRuleSet {
 
   final List<DataLossPreventionJobTriggerRules> rules;
 
+  @internal
   Map<String, Object?> encode() => {
     if (infoTypes != null)
       'info_types': [for (final e in infoTypes!) e.encode()],
@@ -764,6 +792,7 @@ final class DataLossPreventionJobTriggerRules {
 
   final DataLossPreventionJobTriggerHotwordRule? hotwordRule;
 
+  @internal
   Map<String, Object?> encode() => {
     'exclusion_rule': ?exclusionRule?.encode(),
     'hotword_rule': ?hotwordRule?.encode(),
@@ -792,6 +821,7 @@ final class DataLossPreventionJobTriggerExclusionRule {
 
   final DataLossPreventionJobTriggerRegex? regex;
 
+  @internal
   Map<String, Object?> encode() => {
     'matching_type': matchingType.toTfJson(),
     'dictionary': ?dictionary?.encode(),
@@ -844,6 +874,7 @@ final class DataLossPreventionJobTriggerExcludeByHotword {
 
   final DataLossPreventionJobTriggerProximity? proximity;
 
+  @internal
   Map<String, Object?> encode() => {
     'hotword_regex': ?hotwordRegex?.encode(),
     'proximity': ?proximity?.encode(),
@@ -864,6 +895,7 @@ final class DataLossPreventionJobTriggerHotwordRegex {
 
   final TfArg<String>? pattern;
 
+  @internal
   Map<String, Object?> encode() => {
     'group_indexes': ?groupIndexes?.toTfJson(),
     'pattern': ?pattern?.toTfJson(),
@@ -884,6 +916,7 @@ final class DataLossPreventionJobTriggerProximity {
 
   final TfArg<num>? windowBefore;
 
+  @internal
   Map<String, Object?> encode() => {
     'window_after': ?windowAfter?.toTfJson(),
     'window_before': ?windowBefore?.toTfJson(),
@@ -898,6 +931,7 @@ final class DataLossPreventionJobTriggerExcludeInfoTypes {
 
   final List<DataLossPreventionJobTriggerInfoTypes> infoTypes;
 
+  @internal
   Map<String, Object?> encode() => {
     'info_types': [for (final e in infoTypes) e.encode()],
   };
@@ -919,6 +953,7 @@ final class DataLossPreventionJobTriggerHotwordRule {
 
   final DataLossPreventionJobTriggerProximity? proximity;
 
+  @internal
   Map<String, Object?> encode() => {
     'hotword_regex': ?hotwordRegex?.encode(),
     'likelihood_adjustment': ?likelihoodAdjustment?.encode(),
@@ -939,6 +974,7 @@ final class DataLossPreventionJobTriggerLikelihoodAdjustment {
 
   final TfArg<num>? relativeLikelihood;
 
+  @internal
   Map<String, Object?> encode() => {
     'fixed_likelihood': ?fixedLikelihood?.toTfJson(),
     'relative_likelihood': ?relativeLikelihood?.toTfJson(),
@@ -1003,6 +1039,7 @@ final class DataLossPreventionJobTriggerStorageConfig {
 
   final DataLossPreventionJobTriggerTimespanConfig? timespanConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'big_query_options': ?bigQueryOptions?.encode(),
     'cloud_storage_options': ?cloudStorageOptions?.encode(),
@@ -1040,6 +1077,7 @@ final class DataLossPreventionJobTriggerBigQueryOptions {
 
   final DataLossPreventionJobTriggerTableReference tableReference;
 
+  @internal
   Map<String, Object?> encode() => {
     'rows_limit': ?rowsLimit?.toTfJson(),
     'rows_limit_percent': ?rowsLimitPercent?.toTfJson(),
@@ -1085,6 +1123,7 @@ final class DataLossPreventionJobTriggerExcludedFields {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 
@@ -1097,6 +1136,7 @@ final class DataLossPreventionJobTriggerIdentifyingFields {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 
@@ -1108,6 +1148,7 @@ final class DataLossPreventionJobTriggerIncludedFields {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 
@@ -1127,6 +1168,7 @@ final class DataLossPreventionJobTriggerTableReference {
 
   final TfArg<String> tableId;
 
+  @internal
   Map<String, Object?> encode() => {
     'dataset_id': datasetId.encodeAs('dataset_id').toTfJson(),
     'project_id': projectId.toTfJson(),
@@ -1159,6 +1201,7 @@ final class DataLossPreventionJobTriggerCloudStorageOptions {
 
   final DataLossPreventionJobTriggerFileSet fileSet;
 
+  @internal
   Map<String, Object?> encode() => {
     'bytes_limit_per_file': ?bytesLimitPerFile?.toTfJson(),
     'bytes_limit_per_file_percent': ?bytesLimitPerFilePercent?.toTfJson(),
@@ -1242,8 +1285,10 @@ sealed class DataLossPreventionJobTriggerFileSet {
   ) = DataLossPreventionJobTriggerRegexFileSetChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -1254,9 +1299,11 @@ final class DataLossPreventionJobTriggerFileSetUrl
 
   final TfArg<String> url;
 
+  @internal
   @override
   String get blockKey => 'url';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'url': url.toTfJson()};
 }
@@ -1268,9 +1315,11 @@ final class DataLossPreventionJobTriggerRegexFileSetChoice
 
   final DataLossPreventionJobTriggerRegexFileSet regexFileSet;
 
+  @internal
   @override
   String get blockKey => 'regex_file_set';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'regex_file_set': regexFileSet.encode()};
 }
@@ -1291,6 +1340,7 @@ final class DataLossPreventionJobTriggerRegexFileSet {
 
   final TfArg<List<String>>? includeRegex;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('name').toTfJson(),
     'exclude_regex': ?excludeRegex?.toTfJson(),
@@ -1311,6 +1361,7 @@ final class DataLossPreventionJobTriggerDatastoreOptions {
 
   final DataLossPreventionJobTriggerPartitionId partitionId;
 
+  @internal
   Map<String, Object?> encode() => {
     'kind': kind.encode(),
     'partition_id': partitionId.encode(),
@@ -1325,6 +1376,7 @@ final class DataLossPreventionJobTriggerKind {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 
@@ -1341,6 +1393,7 @@ final class DataLossPreventionJobTriggerPartitionId {
 
   final TfArg<String> projectId;
 
+  @internal
   Map<String, Object?> encode() => {
     'namespace_id': ?namespaceId?.toTfJson(),
     'project_id': projectId.toTfJson(),
@@ -1366,6 +1419,7 @@ final class DataLossPreventionJobTriggerHybridOptions {
 
   final DataLossPreventionJobTriggerTableOptions? tableOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'labels': ?labels?.toTfJson(),
@@ -1382,6 +1436,7 @@ final class DataLossPreventionJobTriggerTableOptions {
 
   final List<DataLossPreventionJobTriggerIdentifyingFields>? identifyingFields;
 
+  @internal
   Map<String, Object?> encode() => {
     if (identifyingFields != null)
       'identifying_fields': [for (final e in identifyingFields!) e.encode()],
@@ -1404,6 +1459,7 @@ final class DataLossPreventionJobTriggerTimespanConfig {
 
   final DataLossPreventionJobTriggerTimestampField? timestampField;
 
+  @internal
   Map<String, Object?> encode() => {
     ...?start?.encode(),
     'end_time': ?endTime?.toTfJson(),
@@ -1430,8 +1486,10 @@ sealed class DataLossPreventionJobTriggerStart {
   ) = DataLossPreventionJobTriggerStartEnableAutoPopulationOfTimespanConfig;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -1442,9 +1500,11 @@ final class DataLossPreventionJobTriggerStartTime
 
   final TfArg<String> startTime;
 
+  @internal
   @override
   String get blockKey => 'start_time';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'start_time': startTime.toTfJson()};
 }
@@ -1458,9 +1518,11 @@ final class DataLossPreventionJobTriggerStartEnableAutoPopulationOfTimespanConfi
 
   final TfArg<bool> enableAutoPopulationOfTimespanConfig;
 
+  @internal
   @override
   String get blockKey => 'enable_auto_population_of_timespan_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'enable_auto_population_of_timespan_config':
@@ -1476,6 +1538,7 @@ final class DataLossPreventionJobTriggerTimestampField {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 
@@ -1489,6 +1552,7 @@ final class DataLossPreventionJobTriggerTriggers {
 
   final DataLossPreventionJobTriggerSchedule? schedule;
 
+  @internal
   Map<String, Object?> encode() => {
     'manual': ?manual?.encode(),
     'schedule': ?schedule?.encode(),
@@ -1501,6 +1565,7 @@ final class DataLossPreventionJobTriggerTriggers {
 final class DataLossPreventionJobTriggerManual {
   const DataLossPreventionJobTriggerManual();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -1512,6 +1577,7 @@ final class DataLossPreventionJobTriggerSchedule {
 
   final TfArg<String>? recurrencePeriodDuration;
 
+  @internal
   Map<String, Object?> encode() => {
     'recurrence_period_duration': ?recurrencePeriodDuration?.toTfJson(),
   };

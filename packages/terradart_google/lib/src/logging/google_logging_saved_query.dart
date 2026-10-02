@@ -40,12 +40,15 @@ sealed class LoggingSavedQueryDefinition {
   ) = LoggingSavedQueryDefinitionOpsAnalyticsQuery;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -56,12 +59,15 @@ final class LoggingSavedQueryDefinitionLoggingQuery
 
   final LoggingSavedQueryLoggingQuery loggingQuery;
 
+  @internal
   @override
   String get blockKey => 'logging_query';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'logging_query': loggingQuery.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'logging_query': TfArg.literal(loggingQuery.encode()),
@@ -75,14 +81,17 @@ final class LoggingSavedQueryDefinitionOpsAnalyticsQuery
 
   final LoggingSavedQueryOpsAnalyticsQuery opsAnalyticsQuery;
 
+  @internal
   @override
   String get blockKey => 'ops_analytics_query';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'ops_analytics_query': opsAnalyticsQuery.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'ops_analytics_query': TfArg.literal(opsAnalyticsQuery.encode()),
@@ -105,6 +114,7 @@ final class LoggingSavedQueryLoggingQuery {
 
   final List<LoggingSavedQuerySummaryFields>? summaryFields;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter': filter.toTfJson(),
     ...?summaryField?.encode(),
@@ -132,8 +142,10 @@ sealed class LoggingSavedQuerySummaryField {
   ) = LoggingSavedQuerySummaryFieldEnd;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -144,9 +156,11 @@ final class LoggingSavedQuerySummaryFieldStart
 
   final TfArg<num> summaryFieldStart;
 
+  @internal
   @override
   String get blockKey => 'summary_field_start';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'summary_field_start': summaryFieldStart.toTfJson(),
@@ -160,9 +174,11 @@ final class LoggingSavedQuerySummaryFieldEnd
 
   final TfArg<num> summaryFieldEnd;
 
+  @internal
   @override
   String get blockKey => 'summary_field_end';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'summary_field_end': summaryFieldEnd.toTfJson(),
@@ -177,6 +193,7 @@ final class LoggingSavedQuerySummaryFields {
 
   final TfArg<String>? field;
 
+  @internal
   Map<String, Object?> encode() => {'field': ?field?.toTfJson()};
 }
 
@@ -188,6 +205,7 @@ final class LoggingSavedQueryOpsAnalyticsQuery {
 
   final TfArg<String> sqlQueryText;
 
+  @internal
   Map<String, Object?> encode() => {'sql_query_text': sqlQueryText.toTfJson()};
 }
 

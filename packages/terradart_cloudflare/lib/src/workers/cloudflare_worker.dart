@@ -31,6 +31,7 @@ final class WorkerObservability {
 
   final WorkerTraces? traces;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'head_sampling_rate': ?headSamplingRate?.toTfJson(),
@@ -49,6 +50,7 @@ final class WorkerIssues {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
@@ -75,6 +77,7 @@ final class WorkerLogs {
 
   final TfArg<bool>? persist;
 
+  @internal
   Map<String, Object?> encode() => {
     'destinations': ?destinations?.toTfJson(),
     'enabled': ?enabled?.toTfJson(),
@@ -107,6 +110,7 @@ final class WorkerTraces {
 
   final WorkerPropagationPolicy? propagationPolicy;
 
+  @internal
   Map<String, Object?> encode() => {
     'destinations': ?destinations?.toTfJson(),
     'enabled': ?enabled?.toTfJson(),
@@ -160,6 +164,7 @@ final class WorkerPreviewsBaseConfig {
 
   final List<WorkerTailConsumers>? tailConsumers;
 
+  @internal
   Map<String, Object?> encode() => {
     'logpush': ?logpush?.toTfJson(),
     'cache_options': ?cacheOptions?.encode(),
@@ -183,6 +188,7 @@ final class WorkerCacheOptions {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'cross_version_cache': ?crossVersionCache?.toTfJson(),
     'enabled': ?enabled?.toTfJson(),
@@ -197,6 +203,7 @@ final class WorkerEnv {
 
   final TfArg<String> type;
 
+  @internal
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 
@@ -210,6 +217,7 @@ final class WorkerLimits {
 
   final TfArg<num>? subrequests;
 
+  @internal
   Map<String, Object?> encode() => {
     'cpu_ms': ?cpuMs?.toTfJson(),
     'subrequests': ?subrequests?.toTfJson(),
@@ -241,6 +249,7 @@ final class WorkerPreviewsBaseConfigObservability {
 
   final WorkerTraces? traces;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'head_sampling_rate': ?headSamplingRate?.toTfJson(),
@@ -273,6 +282,7 @@ final class WorkerPlacement {
 
   final List<WorkerTarget>? target;
 
+  @internal
   Map<String, Object?> encode() => {
     'host': ?host?.toTfJson(),
     'hostname': ?hostname?.toTfJson(),
@@ -306,6 +316,7 @@ final class WorkerTarget {
 
   final TfArg<String>? region;
 
+  @internal
   Map<String, Object?> encode() => {
     'host': ?host?.toTfJson(),
     'hostname': ?hostname?.toTfJson(),
@@ -322,6 +333,7 @@ final class WorkerTailConsumers {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 
@@ -335,6 +347,7 @@ final class WorkerSubdomain {
 
   final TfArg<bool>? previewsEnabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'previews_enabled': ?previewsEnabled?.toTfJson(),

@@ -24,6 +24,7 @@ final class AppEngineApplicationUrlDispatchRules {
 
   final TfArg<String> service;
 
+  @internal
   Map<String, Object?> encode() => {
     'domain': ?domain?.toTfJson(),
     'path': path.toTfJson(),

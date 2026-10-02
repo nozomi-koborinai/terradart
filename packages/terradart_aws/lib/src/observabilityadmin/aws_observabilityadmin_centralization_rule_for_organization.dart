@@ -24,6 +24,7 @@ final class ObservabilityadminCentralizationRuleForOrganizationRule {
 
   final List<ObservabilityadminCentralizationRuleForOrganizationSource>? source;
 
+  @internal
   Map<String, Object?> encode() => {
     if (destination != null)
       'destination': [for (final e in destination!) e.encode()],
@@ -56,6 +57,7 @@ final class ObservabilityadminCentralizationRuleForOrganizationDestination {
   >?
   destinationMetricsConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'account': account.toTfJson(),
     'region': region.toTfJson(),
@@ -101,6 +103,7 @@ final class ObservabilityadminCentralizationRuleForOrganizationDestinationLogsCo
   >?
   tagPropagationConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     if (backupConfiguration != null)
       'backup_configuration': [
@@ -134,6 +137,7 @@ final class ObservabilityadminCentralizationRuleForOrganizationDestinationLogsCo
 
   final TfArg<String>? region;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
     'region': ?region?.toTfJson(),
@@ -150,6 +154,7 @@ final class ObservabilityadminCentralizationRuleForOrganizationLogGroupNameConfi
 
   final TfArg<String> logGroupNamePattern;
 
+  @internal
   Map<String, Object?> encode() => {
     'log_group_name_pattern': logGroupNamePattern.toTfJson(),
   };
@@ -177,6 +182,7 @@ final class ObservabilityadminCentralizationRuleForOrganizationLogsEncryptionCon
 
   final RefTo<AwsKmsKey>? kmsKeyArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'encryption_conflict_resolution_strategy':
         ?encryptionConflictResolutionStrategy?.toTfJson(),
@@ -287,6 +293,7 @@ final class ObservabilityadminCentralizationRuleForOrganizationTagPropagationCon
   final ObservabilityadminCentralizationRuleForOrganizationTagConflictResolutionStrategy?
   tagConflictResolutionStrategy;
 
+  @internal
   Map<String, Object?> encode() => {
     'destination_role_arn': destinationRoleArn.toTfJson(),
     'tag_conflict_resolution_strategy': ?tagConflictResolutionStrategy
@@ -340,6 +347,7 @@ final class ObservabilityadminCentralizationRuleForOrganizationDestinationMetric
   >?
   backupConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     if (backupConfiguration != null)
       'backup_configuration': [
@@ -358,6 +366,7 @@ final class ObservabilityadminCentralizationRuleForOrganizationDestinationMetric
 
   final TfArg<String> region;
 
+  @internal
   Map<String, Object?> encode() => {'region': region.toTfJson()};
 }
 
@@ -386,6 +395,7 @@ final class ObservabilityadminCentralizationRuleForOrganizationSource {
   >?
   sourceMetricsConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'regions': regions.toTfJson(),
     'scope': scope.toTfJson(),
@@ -417,6 +427,7 @@ final class ObservabilityadminCentralizationRuleForOrganizationSourceLogsConfigu
 
   final TfArg<String>? logGroupSelectionCriteria;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_source_selection_criteria': ?dataSourceSelectionCriteria?.toTfJson(),
     'encrypted_log_group_strategy': encryptedLogGroupStrategy.toTfJson(),
@@ -463,6 +474,7 @@ final class ObservabilityadminCentralizationRuleForOrganizationSourceMetricsConf
 
   final TfArg<String> metricsSelectionCriteria;
 
+  @internal
   Map<String, Object?> encode() => {
     'metrics_selection_criteria': metricsSelectionCriteria.toTfJson(),
   };

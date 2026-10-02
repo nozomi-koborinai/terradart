@@ -3,6 +3,7 @@
 /// AWS WorkSpaces Secure Browser.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/workspacesweb/aws_workspacesweb_browser_settings.dart'
     show AwsWorkspaceswebBrowserSettings;
 export 'src/workspacesweb/aws_workspacesweb_browser_settings_association.dart'

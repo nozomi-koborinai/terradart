@@ -3,5 +3,6 @@
 /// Resource Manager tag binding collection (beta-only).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/tags/google_tags_tag_binding_collection.dart'
     show GoogleTagsTagBindingCollection;

@@ -18,6 +18,7 @@ final class VertexAiReasoningEngineContextSpec {
 
   final VertexAiReasoningEngineMemoryBankConfig? memoryBankConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'memory_bank_config': ?memoryBankConfig?.encode(),
   };
@@ -49,6 +50,7 @@ final class VertexAiReasoningEngineMemoryBankConfig {
 
   final VertexAiReasoningEngineTtlConfig? ttlConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'disable_memory_revisions': ?disableMemoryRevisions?.toTfJson(),
     if (customizationConfigs != null)
@@ -91,6 +93,7 @@ final class VertexAiReasoningEngineCustomizationConfigs {
 
   final List<VertexAiReasoningEngineMemoryTopics>? memoryTopics;
 
+  @internal
   Map<String, Object?> encode() => {
     'disable_natural_language_memories': ?disableNaturalLanguageMemories
         ?.toTfJson(),
@@ -116,6 +119,7 @@ final class VertexAiReasoningEngineConsolidationConfig {
 
   final TfArg<num>? revisionsPerCandidateCount;
 
+  @internal
   Map<String, Object?> encode() => {
     'revisions_per_candidate_count': ?revisionsPerCandidateCount?.toTfJson(),
   };
@@ -134,6 +138,7 @@ final class VertexAiReasoningEngineGenerateMemoriesExamples {
 
   final List<VertexAiReasoningEngineGeneratedMemories>? generatedMemories;
 
+  @internal
   Map<String, Object?> encode() => {
     'conversation_source': ?conversationSource?.encode(),
     if (generatedMemories != null)
@@ -149,6 +154,7 @@ final class VertexAiReasoningEngineConversationSource {
 
   final List<VertexAiReasoningEngineEvents>? events;
 
+  @internal
   Map<String, Object?> encode() => {
     if (events != null) 'events': [for (final e in events!) e.encode()],
   };
@@ -162,6 +168,7 @@ final class VertexAiReasoningEngineEvents {
 
   final VertexAiReasoningEngineContent content;
 
+  @internal
   Map<String, Object?> encode() => {'content': content.encode()};
 }
 
@@ -175,6 +182,7 @@ final class VertexAiReasoningEngineContent {
 
   final List<VertexAiReasoningEngineParts> parts;
 
+  @internal
   Map<String, Object?> encode() => {
     'role': ?role?.toTfJson(),
     'parts': [for (final e in parts) e.encode()],
@@ -218,6 +226,7 @@ final class VertexAiReasoningEngineParts {
 
   final VertexAiReasoningEngineVideoMetadata? videoMetadata;
 
+  @internal
   Map<String, Object?> encode() => {
     'text': ?text?.toTfJson(),
     'thought': ?thought?.toTfJson(),
@@ -248,6 +257,7 @@ final class VertexAiReasoningEngineAudioTranscription {
 
   final List<VertexAiReasoningEngineWords>? words;
 
+  @internal
   Map<String, Object?> encode() => {
     'speaker_label': ?speakerLabel?.toTfJson(),
     'text': text.toTfJson(),
@@ -271,6 +281,7 @@ final class VertexAiReasoningEngineWords {
 
   final TfArg<String> word;
 
+  @internal
   Map<String, Object?> encode() => {
     'end_offset': ?endOffset?.toTfJson(),
     'start_offset': ?startOffset?.toTfJson(),
@@ -294,6 +305,7 @@ final class VertexAiReasoningEngineCodeExecutionResult {
 
   final TfArg<String>? output;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': ?id?.toTfJson(),
     'outcome': outcome.toTfJson(),
@@ -347,6 +359,7 @@ final class VertexAiReasoningEngineExecutableCode {
 
   final VertexAiReasoningEngineLanguage language;
 
+  @internal
   Map<String, Object?> encode() => {
     'code': code.toTfJson(),
     'id': ?id?.toTfJson(),
@@ -391,6 +404,7 @@ final class VertexAiReasoningEngineFileData {
 
   final TfArg<String> mimeType;
 
+  @internal
   Map<String, Object?> encode() => {
     'file_uri': fileUri.toTfJson(),
     'mime_type': mimeType.toTfJson(),
@@ -409,6 +423,7 @@ final class VertexAiReasoningEngineFunctionCall {
 
   final TfArg<String>? name;
 
+  @internal
   Map<String, Object?> encode() => {
     'args': ?args?.toTfJson(),
     'id': ?id?.toTfJson(),
@@ -432,6 +447,7 @@ final class VertexAiReasoningEngineFunctionResponse {
 
   final TfArg<String>? response;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': ?id?.toTfJson(),
     'name': name.toTfJson(),
@@ -452,6 +468,7 @@ final class VertexAiReasoningEngineInlineData {
 
   final TfArg<String> mimeType;
 
+  @internal
   Map<String, Object?> encode() => {
     'data': data.toTfJson(),
     'mime_type': mimeType.toTfJson(),
@@ -471,6 +488,7 @@ final class VertexAiReasoningEngineVideoMetadata {
 
   final TfArg<String>? startOffset;
 
+  @internal
   Map<String, Object?> encode() => {
     'end_offset': ?endOffset?.toTfJson(),
     'start_offset': ?startOffset?.toTfJson(),
@@ -490,6 +508,7 @@ final class VertexAiReasoningEngineGeneratedMemories {
 
   final List<VertexAiReasoningEngineTopics>? topics;
 
+  @internal
   Map<String, Object?> encode() => {
     'fact': fact.toTfJson(),
     if (topics != null) 'topics': [for (final e in topics!) e.encode()],
@@ -509,6 +528,7 @@ final class VertexAiReasoningEngineTopics {
 
   final VertexAiReasoningEngineTopicsManagedMemoryTopic? managedMemoryTopic;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_memory_topic_label': ?customMemoryTopicLabel?.toTfJson(),
     'managed_memory_topic': ?managedMemoryTopic?.toTfJson(),
@@ -569,8 +589,10 @@ sealed class VertexAiReasoningEngineMemoryTopics {
   ) = VertexAiReasoningEngineMemoryTopicsCustomMemoryTopic;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -583,9 +605,11 @@ final class VertexAiReasoningEngineMemoryTopicsManagedMemoryTopic
 
   final VertexAiReasoningEngineManagedMemoryTopic managedMemoryTopic;
 
+  @internal
   @override
   String get blockKey => 'managed_memory_topic';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'managed_memory_topic': managedMemoryTopic.encode(),
@@ -601,9 +625,11 @@ final class VertexAiReasoningEngineMemoryTopicsCustomMemoryTopic
 
   final VertexAiReasoningEngineCustomMemoryTopic customMemoryTopic;
 
+  @internal
   @override
   String get blockKey => 'custom_memory_topic';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'custom_memory_topic': customMemoryTopic.encode(),
@@ -623,6 +649,7 @@ final class VertexAiReasoningEngineCustomMemoryTopic {
 
   final TfArg<String>? label;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'label': ?label?.toTfJson(),
@@ -637,6 +664,7 @@ final class VertexAiReasoningEngineManagedMemoryTopic {
 
   final TfArg<String>? managedTopicEnum;
 
+  @internal
   Map<String, Object?> encode() => {
     'managed_topic_enum': ?managedTopicEnum?.toTfJson(),
   };
@@ -655,6 +683,7 @@ final class VertexAiReasoningEngineGenerationConfig {
 
   final VertexAiReasoningEngineGenerationTriggerConfig? generationTriggerConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'model': model.toTfJson(),
     'generation_trigger_config': ?generationTriggerConfig?.encode(),
@@ -669,6 +698,7 @@ final class VertexAiReasoningEngineGenerationTriggerConfig {
 
   final VertexAiReasoningEngineGenerationRule? generationRule;
 
+  @internal
   Map<String, Object?> encode() => {
     'generation_rule': ?generationRule?.encode(),
   };
@@ -693,6 +723,7 @@ final class VertexAiReasoningEngineGenerationRule {
 
   final TfArg<num>? overlapEventCount;
 
+  @internal
   Map<String, Object?> encode() => {
     'event_count': ?eventCount?.toTfJson(),
     'fixed_interval': ?fixedInterval?.toTfJson(),
@@ -711,6 +742,7 @@ final class VertexAiReasoningEngineSimilaritySearchConfig {
 
   final TfArg<String> embeddingModel;
 
+  @internal
   Map<String, Object?> encode() => {
     'embedding_model': embeddingModel.toTfJson(),
   };
@@ -729,6 +761,7 @@ final class VertexAiReasoningEngineStructuredMemoryConfigs {
 
   final List<VertexAiReasoningEngineSchemaConfigs>? schemaConfigs;
 
+  @internal
   Map<String, Object?> encode() => {
     'scope_keys': ?scopeKeys?.toTfJson(),
     if (schemaConfigs != null)
@@ -749,6 +782,7 @@ final class VertexAiReasoningEngineSchemaConfigs {
 
   final TfArg<String>? memorySchema;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
     'memory_schema': ?memorySchema?.toTfJson(),
@@ -768,6 +802,7 @@ final class VertexAiReasoningEngineTtlConfig {
 
   final TfArg<String>? memoryRevisionDefaultTtl;
 
+  @internal
   Map<String, Object?> encode() => {
     ...policy.encode(),
     'memory_revision_default_ttl': ?memoryRevisionDefaultTtl?.toTfJson(),
@@ -792,8 +827,10 @@ sealed class VertexAiReasoningEnginePolicy {
   ) = VertexAiReasoningEnginePolicyGranularTtlConfig;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -804,9 +841,11 @@ final class VertexAiReasoningEnginePolicyDefaultTtl
 
   final TfArg<String> defaultTtl;
 
+  @internal
   @override
   String get blockKey => 'default_ttl';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'default_ttl': defaultTtl.toTfJson()};
 }
@@ -818,9 +857,11 @@ final class VertexAiReasoningEnginePolicyGranularTtlConfig
 
   final VertexAiReasoningEngineGranularTtlConfig granularTtlConfig;
 
+  @internal
   @override
   String get blockKey => 'granular_ttl_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'granular_ttl_config': granularTtlConfig.encode(),
@@ -843,6 +884,7 @@ final class VertexAiReasoningEngineGranularTtlConfig {
 
   final TfArg<String>? generateUpdatedTtl;
 
+  @internal
   Map<String, Object?> encode() => {
     'create_ttl': ?createTtl?.toTfJson(),
     'generate_created_ttl': ?generateCreatedTtl?.toTfJson(),
@@ -858,6 +900,7 @@ final class VertexAiReasoningEngineEncryptionSpec {
 
   final RefTo<GoogleKmsCryptoKey> kmsKeyName;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_name': kmsKeyName.encodeAs('id').toTfJson(),
   };
@@ -894,6 +937,7 @@ final class VertexAiReasoningEngineSpec {
 
   final VertexAiReasoningEnginePackageSpec? packageSpec;
 
+  @internal
   Map<String, Object?> encode() => {
     'agent_framework': ?agentFramework?.toTfJson(),
     'class_methods': ?classMethods?.toTfJson(),
@@ -925,8 +969,10 @@ sealed class VertexAiReasoningEngineDeployment {
   ) = VertexAiReasoningEngineDeploymentSourceCodeSpec;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -937,9 +983,11 @@ final class VertexAiReasoningEngineDeploymentContainerSpec
 
   final VertexAiReasoningEngineContainerSpec containerSpec;
 
+  @internal
   @override
   String get blockKey => 'container_spec';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'container_spec': containerSpec.encode()};
 }
@@ -951,9 +999,11 @@ final class VertexAiReasoningEngineDeploymentSourceCodeSpec
 
   final VertexAiReasoningEngineSourceCodeSpec sourceCodeSpec;
 
+  @internal
   @override
   String get blockKey => 'source_code_spec';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'source_code_spec': sourceCodeSpec.encode(),
@@ -996,6 +1046,7 @@ final class VertexAiReasoningEngineBuildSpec {
 
   final TfArg<String>? workerPool;
 
+  @internal
   Map<String, Object?> encode() => {
     'service_account': ?serviceAccount?.encodeAs('email').toTfJson(),
     'worker_pool': ?workerPool?.toTfJson(),
@@ -1015,6 +1066,7 @@ final class VertexAiReasoningEngineContainerSpec {
 
   final TfArg<num>? port;
 
+  @internal
   Map<String, Object?> encode() => {
     'image_uri': imageUri.toTfJson(),
     'port': ?port?.toTfJson(),
@@ -1052,6 +1104,7 @@ final class VertexAiReasoningEngineDeploymentSpec {
 
   final List<VertexAiReasoningEngineSecretEnv>? secretEnv;
 
+  @internal
   Map<String, Object?> encode() => {
     'container_concurrency': ?containerConcurrency?.toTfJson(),
     'max_instances': ?maxInstances?.toTfJson(),
@@ -1078,6 +1131,7 @@ final class VertexAiReasoningEngineAgentGatewayConfig {
 
   final VertexAiReasoningEngineClientToAgentConfig? clientToAgentConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'agent_to_anywhere_config': ?agentToAnywhereConfig?.encode(),
     'client_to_agent_config': ?clientToAgentConfig?.encode(),
@@ -1094,6 +1148,7 @@ final class VertexAiReasoningEngineAgentToAnywhereConfig {
 
   final TfArg<String> agentGateway;
 
+  @internal
   Map<String, Object?> encode() => {'agent_gateway': agentGateway.toTfJson()};
 }
 
@@ -1107,6 +1162,7 @@ final class VertexAiReasoningEngineClientToAgentConfig {
 
   final TfArg<String> agentGateway;
 
+  @internal
   Map<String, Object?> encode() => {'agent_gateway': agentGateway.toTfJson()};
 }
 
@@ -1120,6 +1176,7 @@ final class VertexAiReasoningEngineEnv {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'value': value.toTfJson(),
@@ -1139,6 +1196,7 @@ final class VertexAiReasoningEnginePscInterfaceConfig {
 
   final List<VertexAiReasoningEngineDnsPeeringConfigs>? dnsPeeringConfigs;
 
+  @internal
   Map<String, Object?> encode() => {
     'network_attachment': ?networkAttachment?.toTfJson(),
     if (dnsPeeringConfigs != null)
@@ -1162,6 +1220,7 @@ final class VertexAiReasoningEngineDnsPeeringConfigs {
 
   final TfArg<String> targetProject;
 
+  @internal
   Map<String, Object?> encode() => {
     'domain': domain.toTfJson(),
     'target_network': targetNetwork.toTfJson(),
@@ -1182,6 +1241,7 @@ final class VertexAiReasoningEngineSecretEnv {
 
   final VertexAiReasoningEngineSecretRef secretRef;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'secret_ref': secretRef.encode(),
@@ -1198,6 +1258,7 @@ final class VertexAiReasoningEngineSecretRef {
 
   final TfArg<String>? version;
 
+  @internal
   Map<String, Object?> encode() => {
     'secret': secret.toTfJson(),
     'version': ?version?.toTfJson(),
@@ -1223,6 +1284,7 @@ final class VertexAiReasoningEnginePackageSpec {
 
   final TfArg<String>? requirementsGcsUri;
 
+  @internal
   Map<String, Object?> encode() => {
     'dependency_files_gcs_uri': ?dependencyFilesGcsUri?.toTfJson(),
     'pickle_object_gcs_uri': ?pickleObjectGcsUri?.toTfJson(),
@@ -1250,6 +1312,7 @@ final class VertexAiReasoningEngineSourceCodeSpec {
 
   final VertexAiReasoningEngineInlineSource? inlineSource;
 
+  @internal
   Map<String, Object?> encode() => {
     'agent_config_source': ?agentConfigSource?.encode(),
     'developer_connect_source': ?developerConnectSource?.encode(),
@@ -1277,8 +1340,10 @@ sealed class VertexAiReasoningEngineRuntime {
   ) = VertexAiReasoningEngineRuntimePythonSpec;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -1289,9 +1354,11 @@ final class VertexAiReasoningEngineRuntimeImageSpec
 
   final VertexAiReasoningEngineImageSpec imageSpec;
 
+  @internal
   @override
   String get blockKey => 'image_spec';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'image_spec': imageSpec.encode()};
 }
@@ -1303,9 +1370,11 @@ final class VertexAiReasoningEngineRuntimePythonSpec
 
   final VertexAiReasoningEnginePythonSpec pythonSpec;
 
+  @internal
   @override
   String get blockKey => 'python_spec';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'python_spec': pythonSpec.encode()};
 }
@@ -1323,6 +1392,7 @@ final class VertexAiReasoningEngineAgentConfigSource {
 
   final VertexAiReasoningEngineAgentConfigSourceInlineSource? inlineSource;
 
+  @internal
   Map<String, Object?> encode() => {
     'adk_config': ?adkConfig?.encode(),
     'inline_source': ?inlineSource?.encode(),
@@ -1337,6 +1407,7 @@ final class VertexAiReasoningEngineAdkConfig {
 
   final TfArg<String> jsonConfig;
 
+  @internal
   Map<String, Object?> encode() => {'json_config': jsonConfig.toTfJson()};
 }
 
@@ -1350,6 +1421,7 @@ final class VertexAiReasoningEngineAgentConfigSourceInlineSource {
 
   final TfArg<String> sourceArchive;
 
+  @internal
   Map<String, Object?> encode() => {'source_archive': sourceArchive.toTfJson()};
 }
 
@@ -1361,6 +1433,7 @@ final class VertexAiReasoningEngineDeveloperConnectSource {
 
   final VertexAiReasoningEngineConfig config;
 
+  @internal
   Map<String, Object?> encode() => {'config': config.encode()};
 }
 
@@ -1380,6 +1453,7 @@ final class VertexAiReasoningEngineConfig {
 
   final TfArg<String> revision;
 
+  @internal
   Map<String, Object?> encode() => {
     'dir': dir.toTfJson(),
     'git_repository_link': gitRepositoryLink.toTfJson(),
@@ -1395,6 +1469,7 @@ final class VertexAiReasoningEngineImageSpec {
 
   final TfArg<Map<String, String>>? buildArgs;
 
+  @internal
   Map<String, Object?> encode() => {'build_args': ?buildArgs?.toTfJson()};
 }
 
@@ -1406,6 +1481,7 @@ final class VertexAiReasoningEngineInlineSource {
 
   final TfArg<String>? sourceArchive;
 
+  @internal
   Map<String, Object?> encode() => {
     'source_archive': ?sourceArchive?.toTfJson(),
   };
@@ -1430,6 +1506,7 @@ final class VertexAiReasoningEnginePythonSpec {
 
   final TfArg<String>? version;
 
+  @internal
   Map<String, Object?> encode() => {
     'entrypoint_module': ?entrypointModule?.toTfJson(),
     'entrypoint_object': ?entrypointObject?.toTfJson(),

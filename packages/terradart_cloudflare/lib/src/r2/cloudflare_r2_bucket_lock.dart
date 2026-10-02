@@ -49,6 +49,7 @@ final class R2BucketLockRules {
 
   final R2BucketLockCondition condition;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'id': id.toTfJson(),
@@ -73,6 +74,7 @@ final class R2BucketLockCondition {
 
   final R2BucketLockType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'date': ?date?.toTfJson(),
     'max_age_seconds': ?maxAgeSeconds?.toTfJson(),

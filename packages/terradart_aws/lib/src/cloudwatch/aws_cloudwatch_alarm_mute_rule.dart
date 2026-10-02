@@ -15,6 +15,7 @@ final class CloudwatchAlarmMuteRuleMuteTargets {
 
   final TfArg<List<String>> alarmNames;
 
+  @internal
   Map<String, Object?> encode() => {'alarm_names': alarmNames.toTfJson()};
 }
 
@@ -26,6 +27,7 @@ final class CloudwatchAlarmMuteRule {
 
   final List<CloudwatchAlarmMuteRuleSchedule>? schedule;
 
+  @internal
   Map<String, Object?> encode() => {
     if (schedule != null) 'schedule': [for (final e in schedule!) e.encode()],
   };
@@ -47,6 +49,7 @@ final class CloudwatchAlarmMuteRuleSchedule {
 
   final TfArg<String>? timezone;
 
+  @internal
   Map<String, Object?> encode() => {
     'duration': duration.toTfJson(),
     'expression': expression.toTfJson(),

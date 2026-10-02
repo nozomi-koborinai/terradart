@@ -22,6 +22,7 @@ final class AppconfigExtensionActionPoint {
 
   final List<AppconfigExtensionAction> action;
 
+  @internal
   Map<String, Object?> encode() => {
     'point': point.toTfJson(),
     'action': [for (final e in action) e.encode()],
@@ -92,6 +93,7 @@ final class AppconfigExtensionAction {
 
   final TfArg<String> uri;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'name': name.toTfJson(),
@@ -116,6 +118,7 @@ final class AppconfigExtensionParameter {
 
   final TfArg<bool>? required;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'name': name.toTfJson(),

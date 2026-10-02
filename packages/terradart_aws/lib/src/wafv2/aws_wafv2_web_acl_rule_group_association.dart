@@ -49,12 +49,15 @@ sealed class Wafv2WebAclRuleGroupAssociationSource {
   ) = Wafv2WebAclRuleGroupAssociationSourceRuleGroupReference;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -67,14 +70,17 @@ final class Wafv2WebAclRuleGroupAssociationSourceManagedRuleGroup
 
   final List<Wafv2WebAclRuleGroupAssociationManagedRuleGroup> managedRuleGroup;
 
+  @internal
   @override
   String get blockKey => 'managed_rule_group';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'managed_rule_group': [for (final e in managedRuleGroup) e.encode()],
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'managed_rule_group': TfArg.literal([
@@ -93,14 +99,17 @@ final class Wafv2WebAclRuleGroupAssociationSourceRuleGroupReference
   final List<Wafv2WebAclRuleGroupAssociationRuleGroupReference>
   ruleGroupReference;
 
+  @internal
   @override
   String get blockKey => 'rule_group_reference';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'rule_group_reference': [for (final e in ruleGroupReference) e.encode()],
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'rule_group_reference': TfArg.literal([
@@ -133,6 +142,7 @@ final class Wafv2WebAclRuleGroupAssociationManagedRuleGroup {
   final List<Wafv2WebAclRuleGroupAssociationRuleActionOverride>?
   ruleActionOverride;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'vendor_name': vendorName.toTfJson(),
@@ -169,6 +179,7 @@ final class Wafv2WebAclRuleGroupAssociationManagedRuleGroupConfigs {
   final List<Wafv2WebAclRuleGroupAssociationAwsManagedRulesBotControlRuleSet>?
   awsManagedRulesBotControlRuleSet;
 
+  @internal
   Map<String, Object?> encode() => {
     if (awsManagedRulesAcfpRuleSet != null)
       'aws_managed_rules_acfp_rule_set': [
@@ -215,6 +226,7 @@ final class Wafv2WebAclRuleGroupAssociationAwsManagedRulesAcfpRuleSet {
   final List<Wafv2WebAclRuleGroupAssociationResponseInspection>?
   responseInspection;
 
+  @internal
   Map<String, Object?> encode() => {
     'creation_path': creationPath.toTfJson(),
     'enable_regex_in_path': ?enableRegexInPath?.toTfJson(),
@@ -252,6 +264,7 @@ final class Wafv2WebAclRuleGroupAssociationAwsManagedRulesAcfpRuleSetRequestInsp
 
   final List<Wafv2WebAclRuleGroupAssociationUsernameField>? usernameField;
 
+  @internal
   Map<String, Object?> encode() => {
     'payload_type': payloadType.toTfJson(),
     if (addressFields != null)
@@ -277,6 +290,7 @@ final class Wafv2WebAclRuleGroupAssociationAddressFields {
 
   final TfArg<List<String>> identifiers;
 
+  @internal
   Map<String, Object?> encode() => {'identifiers': identifiers.toTfJson()};
 }
 
@@ -288,6 +302,7 @@ final class Wafv2WebAclRuleGroupAssociationEmailField {
 
   final TfArg<String> identifier;
 
+  @internal
   Map<String, Object?> encode() => {'identifier': identifier.toTfJson()};
 }
 
@@ -302,6 +317,7 @@ final class Wafv2WebAclRuleGroupAssociationPasswordField {
 
   final TfArg<String> identifier;
 
+  @internal
   Map<String, Object?> encode() => {'identifier': identifier.toTfJson()};
 }
 
@@ -315,6 +331,7 @@ final class Wafv2WebAclRuleGroupAssociationPhoneNumberFields {
 
   final TfArg<List<String>> identifiers;
 
+  @internal
   Map<String, Object?> encode() => {'identifiers': identifiers.toTfJson()};
 }
 
@@ -329,6 +346,7 @@ final class Wafv2WebAclRuleGroupAssociationUsernameField {
 
   final TfArg<String> identifier;
 
+  @internal
   Map<String, Object?> encode() => {'identifier': identifier.toTfJson()};
 }
 
@@ -352,6 +370,7 @@ final class Wafv2WebAclRuleGroupAssociationResponseInspection {
 
   final List<Wafv2WebAclRuleGroupAssociationStatusCode>? statusCode;
 
+  @internal
   Map<String, Object?> encode() => {
     if (bodyContains != null)
       'body_contains': [for (final e in bodyContains!) e.encode()],
@@ -376,6 +395,7 @@ final class Wafv2WebAclRuleGroupAssociationBodyContains {
 
   final TfArg<List<String>> successStrings;
 
+  @internal
   Map<String, Object?> encode() => {
     'failure_strings': failureStrings.toTfJson(),
     'success_strings': successStrings.toTfJson(),
@@ -399,6 +419,7 @@ final class Wafv2WebAclRuleGroupAssociationHeader {
 
   final TfArg<List<String>> successValues;
 
+  @internal
   Map<String, Object?> encode() => {
     'failure_values': failureValues.toTfJson(),
     'name': name.toTfJson(),
@@ -423,6 +444,7 @@ final class Wafv2WebAclRuleGroupAssociationJson {
 
   final TfArg<List<String>> successValues;
 
+  @internal
   Map<String, Object?> encode() => {
     'failure_values': failureValues.toTfJson(),
     'identifier': identifier.toTfJson(),
@@ -444,6 +466,7 @@ final class Wafv2WebAclRuleGroupAssociationStatusCode {
 
   final TfArg<List<num>> successCodes;
 
+  @internal
   Map<String, Object?> encode() => {
     'failure_codes': failureCodes.toTfJson(),
     'success_codes': successCodes.toTfJson(),
@@ -464,6 +487,7 @@ final class Wafv2WebAclRuleGroupAssociationAwsManagedRulesAntiDdosRuleSet {
   final List<Wafv2WebAclRuleGroupAssociationClientSideActionConfig>?
   clientSideActionConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'sensitivity_to_block': ?sensitivityToBlock?.toTfJson(),
     if (clientSideActionConfig != null)
@@ -482,6 +506,7 @@ final class Wafv2WebAclRuleGroupAssociationClientSideActionConfig {
   final List<Wafv2WebAclRuleGroupAssociationClientSideActionConfigChallenge>?
   challenge;
 
+  @internal
   Map<String, Object?> encode() => {
     if (challenge != null)
       'challenge': [for (final e in challenge!) e.encode()],
@@ -505,6 +530,7 @@ final class Wafv2WebAclRuleGroupAssociationClientSideActionConfigChallenge {
   final List<Wafv2WebAclRuleGroupAssociationExemptUriRegularExpression>?
   exemptUriRegularExpression;
 
+  @internal
   Map<String, Object?> encode() => {
     'sensitivity': ?sensitivity?.toTfJson(),
     'usage_of_action': usageOfAction.toTfJson(),
@@ -525,6 +551,7 @@ final class Wafv2WebAclRuleGroupAssociationExemptUriRegularExpression {
 
   final TfArg<String>? regexString;
 
+  @internal
   Map<String, Object?> encode() => {'regex_string': ?regexString?.toTfJson()};
 }
 
@@ -551,6 +578,7 @@ final class Wafv2WebAclRuleGroupAssociationAwsManagedRulesAtpRuleSet {
   final List<Wafv2WebAclRuleGroupAssociationResponseInspection>?
   responseInspection;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_regex_in_path': ?enableRegexInPath?.toTfJson(),
     'login_path': loginPath.toTfJson(),
@@ -577,6 +605,7 @@ final class Wafv2WebAclRuleGroupAssociationAwsManagedRulesAtpRuleSetRequestInspe
 
   final List<Wafv2WebAclRuleGroupAssociationUsernameField>? usernameField;
 
+  @internal
   Map<String, Object?> encode() => {
     'payload_type': payloadType.toTfJson(),
     if (passwordField != null)
@@ -599,6 +628,7 @@ final class Wafv2WebAclRuleGroupAssociationAwsManagedRulesBotControlRuleSet {
 
   final TfArg<String> inspectionLevel;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_machine_learning': ?enableMachineLearning?.toTfJson(),
     'inspection_level': inspectionLevel.toTfJson(),
@@ -619,6 +649,7 @@ final class Wafv2WebAclRuleGroupAssociationRuleActionOverride {
 
   final List<Wafv2WebAclRuleGroupAssociationActionToUse>? actionToUse;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     if (actionToUse != null)
@@ -649,6 +680,7 @@ final class Wafv2WebAclRuleGroupAssociationActionToUse {
 
   final List<Wafv2WebAclRuleGroupAssociationCount>? count;
 
+  @internal
   Map<String, Object?> encode() => {
     if (allow != null) 'allow': [for (final e in allow!) e.encode()],
     if (block != null) 'block': [for (final e in block!) e.encode()],
@@ -669,6 +701,7 @@ final class Wafv2WebAclRuleGroupAssociationAllow {
   final List<Wafv2WebAclRuleGroupAssociationCustomRequestHandling>?
   customRequestHandling;
 
+  @internal
   Map<String, Object?> encode() => {
     if (customRequestHandling != null)
       'custom_request_handling': [
@@ -688,6 +721,7 @@ final class Wafv2WebAclRuleGroupAssociationCustomRequestHandling {
 
   final List<Wafv2WebAclRuleGroupAssociationInsertHeader>? insertHeader;
 
+  @internal
   Map<String, Object?> encode() => {
     if (insertHeader != null)
       'insert_header': [for (final e in insertHeader!) e.encode()],
@@ -708,6 +742,7 @@ final class Wafv2WebAclRuleGroupAssociationInsertHeader {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'value': value.toTfJson(),
@@ -723,6 +758,7 @@ final class Wafv2WebAclRuleGroupAssociationBlock {
 
   final List<Wafv2WebAclRuleGroupAssociationCustomResponse>? customResponse;
 
+  @internal
   Map<String, Object?> encode() => {
     if (customResponse != null)
       'custom_response': [for (final e in customResponse!) e.encode()],
@@ -746,6 +782,7 @@ final class Wafv2WebAclRuleGroupAssociationCustomResponse {
 
   final List<Wafv2WebAclRuleGroupAssociationResponseHeader>? responseHeader;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_response_body_key': ?customResponseBodyKey?.toTfJson(),
     'response_code': responseCode.toTfJson(),
@@ -768,6 +805,7 @@ final class Wafv2WebAclRuleGroupAssociationResponseHeader {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'value': value.toTfJson(),
@@ -784,6 +822,7 @@ final class Wafv2WebAclRuleGroupAssociationCaptcha {
   final List<Wafv2WebAclRuleGroupAssociationCustomRequestHandling>?
   customRequestHandling;
 
+  @internal
   Map<String, Object?> encode() => {
     if (customRequestHandling != null)
       'custom_request_handling': [
@@ -802,6 +841,7 @@ final class Wafv2WebAclRuleGroupAssociationChallenge {
   final List<Wafv2WebAclRuleGroupAssociationCustomRequestHandling>?
   customRequestHandling;
 
+  @internal
   Map<String, Object?> encode() => {
     if (customRequestHandling != null)
       'custom_request_handling': [
@@ -820,6 +860,7 @@ final class Wafv2WebAclRuleGroupAssociationCount {
   final List<Wafv2WebAclRuleGroupAssociationCustomRequestHandling>?
   customRequestHandling;
 
+  @internal
   Map<String, Object?> encode() => {
     if (customRequestHandling != null)
       'custom_request_handling': [
@@ -842,6 +883,7 @@ final class Wafv2WebAclRuleGroupAssociationRuleGroupReference {
   final List<Wafv2WebAclRuleGroupAssociationRuleActionOverride>?
   ruleActionOverride;
 
+  @internal
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
     if (ruleActionOverride != null)
@@ -865,6 +907,7 @@ final class Wafv2WebAclRuleGroupAssociationVisibilityConfig {
 
   final TfArg<bool> sampledRequestsEnabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloudwatch_metrics_enabled': cloudwatchMetricsEnabled.toTfJson(),
     'metric_name': metricName.toTfJson(),

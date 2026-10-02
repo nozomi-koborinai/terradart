@@ -23,6 +23,7 @@ final class SpannerInstanceConfigReplicas {
 
   final SpannerInstanceConfigReplicasType? type;
 
+  @internal
   Map<String, Object?> encode() => {
     'default_leader_location': ?defaultLeaderLocation?.toTfJson(),
     'location': ?location?.toTfJson(),

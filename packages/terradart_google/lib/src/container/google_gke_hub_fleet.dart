@@ -89,6 +89,7 @@ class GkeHubFleetBinaryAuthorizationConfig {
 
   final GkeHubFleetBinaryAuthorizationEvaluationMode? evaluationMode;
 
+  @internal
   Map<String, Object?> encode() => {
     if (evaluationMode != null) 'evaluation_mode': evaluationMode!.toTfJson(),
   };
@@ -101,6 +102,7 @@ class GkeHubFleetSecurityPostureConfig {
   final GkeHubFleetSecurityPostureMode? mode;
   final GkeHubFleetSecurityPostureVulnerabilityMode? vulnerabilityMode;
 
+  @internal
   Map<String, Object?> encode() => {
     if (mode != null) 'mode': mode!.toTfJson(),
     if (vulnerabilityMode != null)
@@ -118,6 +120,7 @@ class GkeHubFleetDefaultClusterConfig {
   final GkeHubFleetBinaryAuthorizationConfig? binaryAuthorizationConfig;
   final GkeHubFleetSecurityPostureConfig? securityPostureConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     if (binaryAuthorizationConfig != null)
       'binary_authorization_config': [binaryAuthorizationConfig!.encode()],

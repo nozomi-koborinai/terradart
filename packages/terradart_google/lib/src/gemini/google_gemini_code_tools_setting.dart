@@ -29,6 +29,7 @@ final class GeminiCodeToolsSettingEnabledTool {
 
   final List<GeminiCodeToolsSettingConfig>? config;
 
+  @internal
   Map<String, Object?> encode() => {
     'account_connector': ?accountConnector?.toTfJson(),
     'handle': handle.toTfJson(),
@@ -48,6 +49,7 @@ final class GeminiCodeToolsSettingConfig {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'value': value.toTfJson(),

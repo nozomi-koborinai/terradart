@@ -110,6 +110,7 @@ final class CloudRunV2WorkerPoolBinaryAuthorization {
 
   final CloudRunV2WorkerPoolPolicy? policy;
 
+  @internal
   Map<String, Object?> encode() => {
     'breakglass_justification': ?breakglassJustification?.toTfJson(),
     ...?policy?.encode(),
@@ -133,8 +134,10 @@ sealed class CloudRunV2WorkerPoolPolicy {
       CloudRunV2WorkerPoolPolicyChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -145,9 +148,11 @@ final class CloudRunV2WorkerPoolPolicyUseDefault
 
   final TfArg<bool> useDefault;
 
+  @internal
   @override
   String get blockKey => 'use_default';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'use_default': useDefault.toTfJson()};
 }
@@ -159,9 +164,11 @@ final class CloudRunV2WorkerPoolPolicyChoice
 
   final TfArg<String> policy;
 
+  @internal
   @override
   String get blockKey => 'policy';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'policy': policy.toTfJson()};
 }
@@ -182,6 +189,7 @@ final class CloudRunV2WorkerPoolInstanceSplits {
 
   final CloudRunV2WorkerPoolInstanceSplitType? type;
 
+  @internal
   Map<String, Object?> encode() => {
     'percent': ?percent?.toTfJson(),
     'revision': ?revision?.toTfJson(),
@@ -208,6 +216,7 @@ final class CloudRunV2WorkerPoolScaling {
 
   final ScalingMode? scalingMode;
 
+  @internal
   Map<String, Object?> encode() => {
     'manual_instance_count': ?manualInstanceCount?.toTfJson(),
     'max_instance_count': ?maxInstanceCount?.toTfJson(),
@@ -266,6 +275,7 @@ final class CloudRunV2WorkerPoolTemplate {
 
   final CloudRunV2WorkerPoolVpcAccess? vpcAccess;
 
+  @internal
   Map<String, Object?> encode() => {
     'annotations': ?annotations?.toTfJson(),
     'client': ?client?.toTfJson(),
@@ -330,6 +340,7 @@ final class CloudRunV2WorkerPoolContainers {
 
   final List<CloudRunV2WorkerPoolVolumeMounts>? volumeMounts;
 
+  @internal
   Map<String, Object?> encode() => {
     'args': ?args?.toTfJson(),
     'command': ?command?.toTfJson(),
@@ -357,6 +368,7 @@ final class CloudRunV2WorkerPoolEnv {
 
   final CloudRunV2WorkerPoolEnvSource source;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     ...source.encode(),
@@ -380,8 +392,10 @@ sealed class CloudRunV2WorkerPoolEnvSource {
   ) = CloudRunV2WorkerPoolEnvValueSource;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -392,9 +406,11 @@ final class CloudRunV2WorkerPoolEnvSourceValue
 
   final TfArg<String> value;
 
+  @internal
   @override
   String get blockKey => 'value';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'value': value.toTfJson()};
 }
@@ -406,9 +422,11 @@ final class CloudRunV2WorkerPoolEnvValueSource
 
   final CloudRunV2WorkerPoolValueSource valueSource;
 
+  @internal
   @override
   String get blockKey => 'value_source';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'value_source': valueSource.encode()};
 }
@@ -421,6 +439,7 @@ final class CloudRunV2WorkerPoolValueSource {
 
   final CloudRunV2WorkerPoolSecretKeyRef? secretKeyRef;
 
+  @internal
   Map<String, Object?> encode() => {'secret_key_ref': ?secretKeyRef?.encode()};
 }
 
@@ -434,6 +453,7 @@ final class CloudRunV2WorkerPoolSecretKeyRef {
 
   final TfArg<String>? version;
 
+  @internal
   Map<String, Object?> encode() => {
     'secret': secret.encodeAs('id').toTfJson(),
     'version': ?version?.toTfJson(),
@@ -468,6 +488,7 @@ final class CloudRunV2WorkerPoolLivenessProbe {
 
   final CloudRunV2WorkerPoolTcpSocket? tcpSocket;
 
+  @internal
   Map<String, Object?> encode() => {
     'failure_threshold': ?failureThreshold?.toTfJson(),
     'initial_delay_seconds': ?initialDelaySeconds?.toTfJson(),
@@ -490,6 +511,7 @@ final class CloudRunV2WorkerPoolGrpc {
 
   final TfArg<String>? service;
 
+  @internal
   Map<String, Object?> encode() => {
     'port': ?port?.toTfJson(),
     'service': ?service?.toTfJson(),
@@ -509,6 +531,7 @@ final class CloudRunV2WorkerPoolHttpGet {
 
   final List<CloudRunV2WorkerPoolHttpHeaders>? httpHeaders;
 
+  @internal
   Map<String, Object?> encode() => {
     'path': ?path?.toTfJson(),
     'port': ?port?.toTfJson(),
@@ -528,6 +551,7 @@ final class CloudRunV2WorkerPoolHttpHeaders {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'value': ?value?.toTfJson(),
@@ -543,6 +567,7 @@ final class CloudRunV2WorkerPoolTcpSocket {
 
   final TfArg<num>? port;
 
+  @internal
   Map<String, Object?> encode() => {'port': ?port?.toTfJson()};
 }
 
@@ -554,6 +579,7 @@ final class CloudRunV2WorkerPoolResources {
 
   final TfArg<Map<String, String>>? limits;
 
+  @internal
   Map<String, Object?> encode() => {'limits': ?limits?.toTfJson()};
 }
 
@@ -585,6 +611,7 @@ final class CloudRunV2WorkerPoolStartupProbe {
 
   final CloudRunV2WorkerPoolTcpSocket? tcpSocket;
 
+  @internal
   Map<String, Object?> encode() => {
     'failure_threshold': ?failureThreshold?.toTfJson(),
     'initial_delay_seconds': ?initialDelaySeconds?.toTfJson(),
@@ -612,6 +639,7 @@ final class CloudRunV2WorkerPoolVolumeMounts {
 
   final TfArg<String>? subPath;
 
+  @internal
   Map<String, Object?> encode() => {
     'mount_path': mountPath.toTfJson(),
     'name': name.toTfJson(),
@@ -627,6 +655,7 @@ final class CloudRunV2WorkerPoolNodeSelector {
 
   final TfArg<String> accelerator;
 
+  @internal
   Map<String, Object?> encode() => {'accelerator': accelerator.toTfJson()};
 }
 
@@ -640,6 +669,7 @@ final class CloudRunV2WorkerPoolVolumes {
 
   final CloudRunV2WorkerPoolSource source;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     ...source.encode(),
@@ -677,8 +707,10 @@ sealed class CloudRunV2WorkerPoolSource {
   ) = CloudRunV2WorkerPoolSourceSecret;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -689,9 +721,11 @@ final class CloudRunV2WorkerPoolSourceCloudSqlInstance
 
   final CloudRunV2WorkerPoolCloudSqlInstance cloudSqlInstance;
 
+  @internal
   @override
   String get blockKey => 'cloud_sql_instance';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'cloud_sql_instance': cloudSqlInstance.encode(),
@@ -705,9 +739,11 @@ final class CloudRunV2WorkerPoolSourceEmptyDir
 
   final CloudRunV2WorkerPoolEmptyDir emptyDir;
 
+  @internal
   @override
   String get blockKey => 'empty_dir';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'empty_dir': emptyDir.encode()};
 }
@@ -718,9 +754,11 @@ final class CloudRunV2WorkerPoolSourceGcs extends CloudRunV2WorkerPoolSource {
 
   final CloudRunV2WorkerPoolGcs gcs;
 
+  @internal
   @override
   String get blockKey => 'gcs';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'gcs': gcs.encode()};
 }
@@ -731,9 +769,11 @@ final class CloudRunV2WorkerPoolSourceNfs extends CloudRunV2WorkerPoolSource {
 
   final CloudRunV2WorkerPoolNfs nfs;
 
+  @internal
   @override
   String get blockKey => 'nfs';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'nfs': nfs.encode()};
 }
@@ -745,9 +785,11 @@ final class CloudRunV2WorkerPoolSourceSecret
 
   final CloudRunV2WorkerPoolSecret secret;
 
+  @internal
   @override
   String get blockKey => 'secret';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'secret': secret.encode()};
 }
@@ -760,6 +802,7 @@ final class CloudRunV2WorkerPoolCloudSqlInstance {
 
   final TfArg<List<String>>? instances;
 
+  @internal
   Map<String, Object?> encode() => {'instances': ?instances?.toTfJson()};
 }
 
@@ -773,6 +816,7 @@ final class CloudRunV2WorkerPoolEmptyDir {
 
   final TfArg<String>? sizeLimit;
 
+  @internal
   Map<String, Object?> encode() => {
     'medium': ?medium?.toTfJson(),
     'size_limit': ?sizeLimit?.toTfJson(),
@@ -795,6 +839,7 @@ final class CloudRunV2WorkerPoolGcs {
 
   final TfArg<bool>? readOnly;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('name').toTfJson(),
     'mount_options': ?mountOptions?.toTfJson(),
@@ -818,6 +863,7 @@ final class CloudRunV2WorkerPoolNfs {
 
   final TfArg<String> server;
 
+  @internal
   Map<String, Object?> encode() => {
     'path': path.toTfJson(),
     'read_only': ?readOnly?.toTfJson(),
@@ -841,6 +887,7 @@ final class CloudRunV2WorkerPoolSecret {
 
   final List<CloudRunV2WorkerPoolItems>? items;
 
+  @internal
   Map<String, Object?> encode() => {
     'default_mode': ?defaultMode?.toTfJson(),
     'secret': secret.encodeAs('id').toTfJson(),
@@ -864,6 +911,7 @@ final class CloudRunV2WorkerPoolItems {
 
   final TfArg<String>? version;
 
+  @internal
   Map<String, Object?> encode() => {
     'mode': ?mode?.toTfJson(),
     'path': path.toTfJson(),
@@ -887,6 +935,7 @@ final class CloudRunV2WorkerPoolVpcAccess {
 
   final List<CloudRunV2WorkerPoolNetworkInterfaces>? networkInterfaces;
 
+  @internal
   Map<String, Object?> encode() => {
     'connector': ?connector?.toTfJson(),
     'egress': ?egress?.toTfJson(),
@@ -933,6 +982,7 @@ final class CloudRunV2WorkerPoolNetworkInterfaces {
 
   final TfArg<List<String>>? tags;
 
+  @internal
   Map<String, Object?> encode() => {
     'network': ?network?.encodeAs('id').toTfJson(),
     'subnetwork': ?subnetwork?.encodeAs('id').toTfJson(),

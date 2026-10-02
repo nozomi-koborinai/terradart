@@ -27,12 +27,15 @@ sealed class AppstreamImageBuilderImage {
       AppstreamImageBuilderImageName;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -42,12 +45,15 @@ final class AppstreamImageBuilderImageArn extends AppstreamImageBuilderImage {
 
   final TfArg<String> imageArn;
 
+  @internal
   @override
   String get blockKey => 'image_arn';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'image_arn': imageArn.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'image_arn': imageArn};
 }
@@ -58,12 +64,15 @@ final class AppstreamImageBuilderImageName extends AppstreamImageBuilderImage {
 
   final TfArg<String> imageName;
 
+  @internal
   @override
   String get blockKey => 'image_name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'image_name': imageName.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'image_name': imageName};
 }
@@ -81,6 +90,7 @@ final class AppstreamImageBuilderAccessEndpoint {
 
   final TfArg<String>? vpceId;
 
+  @internal
   Map<String, Object?> encode() => {
     'endpoint_type': endpointType.toTfJson(),
     'vpce_id': ?vpceId?.toTfJson(),
@@ -116,6 +126,7 @@ final class AppstreamImageBuilderDomainJoinInfo {
 
   final TfArg<String>? organizationalUnitDistinguishedName;
 
+  @internal
   Map<String, Object?> encode() => {
     'directory_name': ?directoryName?.toTfJson(),
     'organizational_unit_distinguished_name':
@@ -133,6 +144,7 @@ final class AppstreamImageBuilderVpcConfig {
 
   final TfArg<List<RefTo<AwsSubnet>>>? subnetIds;
 
+  @internal
   Map<String, Object?> encode() => {
     'security_group_ids': ?securityGroupIds?.encodeAs('id').toTfJson(),
     'subnet_ids': ?subnetIds?.encodeAs('id').toTfJson(),

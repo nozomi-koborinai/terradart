@@ -36679,7 +36679,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
   ),
   CatalogEntry(
     tfType: 'google_project',
-    className: 'GoogleProject',
+    className: 'DataGoogleProject',
     barrel: 'data',
     kind: CatalogKind.dataSource,
     summary: 'Factory wrapper for `google_project`.',
@@ -36687,7 +36687,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_project`.\n\nUse to look up the active project\'s `number`, `name`, etc., for\ndownstream references (e.g. CMEK service-account email composition).\n\nExample:\n```dart\nfinal current = stack.add(GoogleProject(\'current\'));\nfinal cmekBinding = GooglePubsubTopicIamMember(\n  \'pubsub_cmek\',\n  topic: topic.ref,\n  role: TfArg.literal(\'roles/cloudkms.cryptoKeyEncrypterDecrypter\'),\n  member: .serviceAccount(\n    \'service-\${current.number.interpolation}@gcp-sa-pubsub.iam.gserviceaccount.com\',\n  ),\n);\n```',
+        'Factory wrapper for `google_project`.\n\nUse to look up the active project\'s `number`, `name`, etc., for\ndownstream references (e.g. CMEK service-account email composition).\n\nExample:\n```dart\nfinal current = stack.add(DataGoogleProject(\'current\'));\nfinal cmekBinding = GooglePubsubTopicIamMember(\n  \'pubsub_cmek\',\n  topic: topic.ref,\n  role: TfArg.literal(\'roles/cloudkms.cryptoKeyEncrypterDecrypter\'),\n  member: .serviceAccount(\n    \'service-\${current.number.interpolation}@gcp-sa-pubsub.iam.gserviceaccount.com\',\n  ),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_project_access_approval_settings',
@@ -43314,7 +43314,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_workload_identity_service_agent`.\n\nA Service Agent within the Workload Identity API.\n\nWorkload Identity **service agent** — calls\n`generateServiceAgents` so Google-managed service-agent\nidentities exist for one [parent] service producer.\nCreating the resource does **not** provision a VM, start a\njob, or grant IAM (do not wire the official `for_each` role\ngrants in a smoke stack).\n\nPrefer a thin smoke stack: [parent] is\n`projects/\$projectNumber/locations/global/serviceProducers/pubsub.googleapis.com`\n(an API the stack already uses). Magic Modules sets\n`exclude_delete` — destroy drops Terraform state; the API\ncannot remove Google-owned service agents. The wrap fixture\n(provider 7.43.0) has no `deletion_policy` attribute.\n\nEnable `workloadidentity.googleapis.com` via\n[GoogleProjectService] before apply. Resolve the project\n*number* with [GoogleProject] `.number`.\n\nExample:\n```dart\nGoogleWorkloadIdentityServiceAgent(\n  \'pubsub_agents\',\n  parent: TfArg.literal(\n    \'projects/\${current.number.interpolation}/locations/global/serviceProducers/pubsub.googleapis.com\',\n  ),\n);\n```',
+        'Factory wrapper for `google_workload_identity_service_agent`.\n\nA Service Agent within the Workload Identity API.\n\nWorkload Identity **service agent** — calls\n`generateServiceAgents` so Google-managed service-agent\nidentities exist for one [parent] service producer.\nCreating the resource does **not** provision a VM, start a\njob, or grant IAM (do not wire the official `for_each` role\ngrants in a smoke stack).\n\nPrefer a thin smoke stack: [parent] is\n`projects/\$projectNumber/locations/global/serviceProducers/pubsub.googleapis.com`\n(an API the stack already uses). Magic Modules sets\n`exclude_delete` — destroy drops Terraform state; the API\ncannot remove Google-owned service agents. The wrap fixture\n(provider 7.43.0) has no `deletion_policy` attribute.\n\nEnable `workloadidentity.googleapis.com` via\n[GoogleProjectService] before apply. Resolve the project\n*number* with [DataGoogleProject] `.number`.\n\nExample:\n```dart\nGoogleWorkloadIdentityServiceAgent(\n  \'pubsub_agents\',\n  parent: TfArg.literal(\n    \'projects/\${current.number.interpolation}/locations/global/serviceProducers/pubsub.googleapis.com\',\n  ),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_workstations_workstation',

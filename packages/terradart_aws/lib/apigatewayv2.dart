@@ -3,6 +3,7 @@
 /// AWS API Gateway V2 (HTTP and WebSocket APIs).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/apigatewayv2/aws_apigatewayv2_api.dart'
     show
         Apigatewayv2ApiCorsConfiguration,
@@ -69,3 +70,8 @@ export 'src/apigatewayv2/aws_apigatewayv2_stage.dart'
         AwsApigatewayv2Stage;
 export 'src/apigatewayv2/aws_apigatewayv2_vpc_link.dart'
     show AwsApigatewayv2VpcLink;
+export 'src/data/aws_apigatewayv2_api.dart' show DataAwsApigatewayv2Api;
+export 'src/data/aws_apigatewayv2_apis.dart' show DataAwsApigatewayv2Apis;
+export 'src/data/aws_apigatewayv2_export.dart' show DataAwsApigatewayv2Export;
+export 'src/data/aws_apigatewayv2_vpc_link.dart'
+    show DataAwsApigatewayv2VpcLink;

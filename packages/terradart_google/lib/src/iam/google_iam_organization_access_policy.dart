@@ -15,6 +15,7 @@ final class IamOrganizationAccessPolicyDetails {
 
   final List<IamOrganizationAccessPolicyRules> rules;
 
+  @internal
   Map<String, Object?> encode() => {
     'rules': [for (final e in rules) e.encode()],
   };
@@ -45,6 +46,7 @@ final class IamOrganizationAccessPolicyRules {
 
   final IamOrganizationAccessPolicyOperation operation;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'effect': effect.toTfJson(),
@@ -86,6 +88,7 @@ final class IamOrganizationAccessPolicyConditions {
 
   final TfArg<String> service;
 
+  @internal
   Map<String, Object?> encode() => {
     'expression': ?expression?.toTfJson(),
     'service': service.toTfJson(),
@@ -105,6 +108,7 @@ final class IamOrganizationAccessPolicyOperation {
 
   final TfArg<List<String>> permissions;
 
+  @internal
   Map<String, Object?> encode() => {
     'excluded_permissions': ?excludedPermissions?.toTfJson(),
     'permissions': permissions.toTfJson(),

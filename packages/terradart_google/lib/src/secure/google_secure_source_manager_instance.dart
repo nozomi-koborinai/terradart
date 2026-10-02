@@ -89,6 +89,7 @@ final class SecureSourceManagerInstancePrivateConfig {
 
   final SecureSourceManagerInstanceCustomHostConfig? customHostConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'ca_pool': ?caPool?.toTfJson(),
     'is_private': isPrivate.toTfJson(),
@@ -116,6 +117,7 @@ final class SecureSourceManagerInstanceCustomHostConfig {
 
   final TfArg<String> html;
 
+  @internal
   Map<String, Object?> encode() => {
     'api': api.toTfJson(),
     'git_http': gitHttp.toTfJson(),
@@ -134,6 +136,7 @@ final class SecureSourceManagerInstanceWorkforceIdentityFederationConfig {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 

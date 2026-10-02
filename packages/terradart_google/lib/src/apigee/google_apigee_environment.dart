@@ -92,6 +92,7 @@ final class ApigeeEnvironmentClientIpResolutionConfig {
 
   final ApigeeEnvironmentHeaderIndexAlgorithm? headerIndexAlgorithm;
 
+  @internal
   Map<String, Object?> encode() => {
     'header_index_algorithm': ?headerIndexAlgorithm?.encode(),
   };
@@ -110,6 +111,7 @@ final class ApigeeEnvironmentHeaderIndexAlgorithm {
 
   final TfArg<String> ipHeaderName;
 
+  @internal
   Map<String, Object?> encode() => {
     'ip_header_index': ipHeaderIndex.toTfJson(),
     'ip_header_name': ipHeaderName.toTfJson(),
@@ -126,6 +128,7 @@ final class ApigeeEnvironmentNodeConfig {
 
   final TfArg<String>? minNodeCount;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_node_count': ?maxNodeCount?.toTfJson(),
     'min_node_count': ?minNodeCount?.toTfJson(),
@@ -140,6 +143,7 @@ final class ApigeeEnvironmentProperties {
 
   final List<ApigeeEnvironmentProperty>? property;
 
+  @internal
   Map<String, Object?> encode() => {
     if (property != null) 'property': [for (final e in property!) e.encode()],
   };
@@ -155,6 +159,7 @@ final class ApigeeEnvironmentProperty {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'value': ?value?.toTfJson(),

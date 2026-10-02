@@ -108,6 +108,7 @@ final class MwaaEnvironmentLoggingConfiguration {
 
   final MwaaEnvironmentWorkerLogs? workerLogs;
 
+  @internal
   Map<String, Object?> encode() => {
     'dag_processing_logs': ?dagProcessingLogs?.encode(),
     'scheduler_logs': ?schedulerLogs?.encode(),
@@ -127,6 +128,7 @@ final class MwaaEnvironmentDagProcessingLogs {
 
   final MwaaEnvironmentLogLevel? logLevel;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'log_level': ?logLevel?.toTfJson(),
@@ -166,6 +168,7 @@ final class MwaaEnvironmentSchedulerLogs {
 
   final MwaaEnvironmentLogLevel? logLevel;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'log_level': ?logLevel?.toTfJson(),
@@ -182,6 +185,7 @@ final class MwaaEnvironmentTaskLogs {
 
   final MwaaEnvironmentLogLevel? logLevel;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'log_level': ?logLevel?.toTfJson(),
@@ -198,6 +202,7 @@ final class MwaaEnvironmentWebserverLogs {
 
   final MwaaEnvironmentLogLevel? logLevel;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'log_level': ?logLevel?.toTfJson(),
@@ -214,6 +219,7 @@ final class MwaaEnvironmentWorkerLogs {
 
   final MwaaEnvironmentLogLevel? logLevel;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'log_level': ?logLevel?.toTfJson(),
@@ -233,6 +239,7 @@ final class MwaaEnvironmentNetworkConfiguration {
 
   final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
+  @internal
   Map<String, Object?> encode() => {
     'security_group_ids': securityGroupIds.encodeAs('id').toTfJson(),
     'subnet_ids': subnetIds.encodeAs('id').toTfJson(),

@@ -27,6 +27,7 @@ final class DataLakeformationPermissionsDataCellsFilter {
 
   final TfArg<String> tableName;
 
+  @internal
   Map<String, Object?> encode() => {
     'database_name': databaseName.toTfJson(),
     'name': name.toTfJson(),
@@ -48,6 +49,7 @@ final class DataLakeformationPermissionsDataLocation {
 
   final TfArg<String>? catalogId;
 
+  @internal
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
     'catalog_id': ?catalogId?.toTfJson(),
@@ -67,6 +69,7 @@ final class DataLakeformationPermissionsDatabase {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {
     'catalog_id': ?catalogId?.toTfJson(),
     'name': name.toTfJson(),
@@ -89,6 +92,7 @@ final class DataLakeformationPermissionsLfTag {
 
   final TfArg<List<String>> values;
 
+  @internal
   Map<String, Object?> encode() => {
     'catalog_id': ?catalogId?.toTfJson(),
     'key': key.toTfJson(),
@@ -112,6 +116,7 @@ final class DataLakeformationPermissionsLfTagPolicy {
 
   final List<DataLakeformationPermissionsExpression> expression;
 
+  @internal
   Map<String, Object?> encode() => {
     'catalog_id': ?catalogId?.toTfJson(),
     'resource_type': resourceType.toTfJson(),
@@ -132,6 +137,7 @@ final class DataLakeformationPermissionsExpression {
 
   final TfArg<List<String>> values;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'values': values.toTfJson(),
@@ -157,6 +163,7 @@ final class DataLakeformationPermissionsTable {
 
   final TfArg<bool>? wildcard;
 
+  @internal
   Map<String, Object?> encode() => {
     'catalog_id': ?catalogId?.toTfJson(),
     'database_name': databaseName.toTfJson(),
@@ -190,6 +197,7 @@ final class DataLakeformationPermissionsTableWithColumns {
 
   final TfArg<bool>? wildcard;
 
+  @internal
   Map<String, Object?> encode() => {
     'catalog_id': ?catalogId?.toTfJson(),
     'column_names': ?columnNames?.toTfJson(),

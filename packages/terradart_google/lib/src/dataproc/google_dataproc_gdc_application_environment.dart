@@ -21,6 +21,7 @@ final class DataprocGdcApplicationEnvironmentSparkApplicationEnvironmentConfig {
 
   final TfArg<String>? defaultVersion;
 
+  @internal
   Map<String, Object?> encode() => {
     'default_properties': ?defaultProperties?.toTfJson(),
     'default_version': ?defaultVersion?.toTfJson(),

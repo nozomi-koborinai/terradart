@@ -46,6 +46,7 @@ final class CloudtrailEventDataStoreAdvancedEventSelector {
 
   final List<CloudtrailEventDataStoreFieldSelector>? fieldSelector;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     if (fieldSelector != null)
@@ -81,6 +82,7 @@ final class CloudtrailEventDataStoreFieldSelector {
 
   final TfArg<List<String>>? startsWith;
 
+  @internal
   Map<String, Object?> encode() => {
     'ends_with': ?endsWith?.toTfJson(),
     'equals': ?equals?.toTfJson(),

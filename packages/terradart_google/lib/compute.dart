@@ -8,6 +8,7 @@
 /// never_apply), and packet mirroring (mirrored GiBy is never_apply).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/compute/google_compute_address.dart'
     show
         AddressType,
@@ -1341,3 +1342,148 @@ export 'src/compute/google_compute_zone_vm_extension_policy.dart'
         ComputeZoneVmExtensionPolicyInstanceSelectors,
         ComputeZoneVmExtensionPolicyLabelSelector,
         GoogleComputeZoneVmExtensionPolicy;
+export 'src/data/google_compute_address.dart' show DataGoogleComputeAddress;
+export 'src/data/google_compute_addresses.dart' show DataGoogleComputeAddresses;
+export 'src/data/google_compute_backend_bucket.dart'
+    show DataGoogleComputeBackendBucket;
+export 'src/data/google_compute_backend_service.dart'
+    show DataGoogleComputeBackendService;
+export 'src/data/google_compute_default_service_account.dart'
+    show DataGoogleComputeDefaultServiceAccount;
+export 'src/data/google_compute_disk.dart' show DataGoogleComputeDisk;
+export 'src/data/google_compute_disk_iam_policy.dart'
+    show DataGoogleComputeDiskIamPolicy;
+export 'src/data/google_compute_firewall_policy_iam_policy.dart'
+    show DataGoogleComputeFirewallPolicyIamPolicy;
+export 'src/data/google_compute_forwarding_rule.dart'
+    show DataGoogleComputeForwardingRule;
+export 'src/data/google_compute_forwarding_rules.dart'
+    show DataGoogleComputeForwardingRules;
+export 'src/data/google_compute_global_address.dart'
+    show DataGoogleComputeGlobalAddress;
+export 'src/data/google_compute_global_forwarding_rule.dart'
+    show DataGoogleComputeGlobalForwardingRule;
+export 'src/data/google_compute_ha_vpn_gateway.dart'
+    show DataGoogleComputeHaVpnGateway;
+export 'src/data/google_compute_health_check.dart'
+    show DataGoogleComputeHealthCheck;
+export 'src/data/google_compute_image.dart' show DataGoogleComputeImage;
+export 'src/data/google_compute_image_iam_policy.dart'
+    show DataGoogleComputeImageIamPolicy;
+export 'src/data/google_compute_images.dart' show DataGoogleComputeImages;
+export 'src/data/google_compute_instance.dart' show DataGoogleComputeInstance;
+export 'src/data/google_compute_instance_group.dart'
+    show DataGoogleComputeInstanceGroup;
+export 'src/data/google_compute_instance_group_manager.dart'
+    show DataGoogleComputeInstanceGroupManager;
+export 'src/data/google_compute_instance_groups.dart'
+    show DataGoogleComputeInstanceGroups;
+export 'src/data/google_compute_instance_guest_attributes.dart'
+    show DataGoogleComputeInstanceGuestAttributes;
+export 'src/data/google_compute_instance_iam_policy.dart'
+    show DataGoogleComputeInstanceIamPolicy;
+export 'src/data/google_compute_instance_serial_port.dart'
+    show DataGoogleComputeInstanceSerialPort;
+export 'src/data/google_compute_instance_template.dart'
+    show DataGoogleComputeInstanceTemplate;
+export 'src/data/google_compute_instance_template_iam_policy.dart'
+    show DataGoogleComputeInstanceTemplateIamPolicy;
+export 'src/data/google_compute_instant_snapshot_iam_policy.dart'
+    show DataGoogleComputeInstantSnapshotIamPolicy;
+export 'src/data/google_compute_interconnect_location.dart'
+    show DataGoogleComputeInterconnectLocation;
+export 'src/data/google_compute_interconnect_locations.dart'
+    show DataGoogleComputeInterconnectLocations;
+export 'src/data/google_compute_lb_ip_ranges.dart'
+    show DataGoogleComputeLbIpRanges;
+export 'src/data/google_compute_machine_types.dart'
+    show DataGoogleComputeMachineTypes;
+export 'src/data/google_compute_network.dart' show DataGoogleComputeNetwork;
+export 'src/data/google_compute_network_attachment.dart'
+    show DataGoogleComputeNetworkAttachment;
+export 'src/data/google_compute_network_endpoint_group.dart'
+    show DataGoogleComputeNetworkEndpointGroup;
+export 'src/data/google_compute_network_endpoint_groups.dart'
+    show DataGoogleComputeNetworkEndpointGroups;
+export 'src/data/google_compute_network_firewall_policy_iam_policy.dart'
+    show DataGoogleComputeNetworkFirewallPolicyIamPolicy;
+export 'src/data/google_compute_network_peering.dart'
+    show DataGoogleComputeNetworkPeering;
+export 'src/data/google_compute_networks.dart' show DataGoogleComputeNetworks;
+export 'src/data/google_compute_node_types.dart'
+    show DataGoogleComputeNodeTypes;
+export 'src/data/google_compute_region_backend_service.dart'
+    show DataGoogleComputeRegionBackendService;
+export 'src/data/google_compute_region_disk.dart'
+    show DataGoogleComputeRegionDisk;
+export 'src/data/google_compute_region_disk_iam_policy.dart'
+    show DataGoogleComputeRegionDiskIamPolicy;
+export 'src/data/google_compute_region_instance_group.dart'
+    show DataGoogleComputeRegionInstanceGroup;
+export 'src/data/google_compute_region_instance_group_manager.dart'
+    show DataGoogleComputeRegionInstanceGroupManager;
+export 'src/data/google_compute_region_instance_template.dart'
+    show DataGoogleComputeRegionInstanceTemplate;
+export 'src/data/google_compute_region_instant_snapshot_iam_policy.dart'
+    show DataGoogleComputeRegionInstantSnapshotIamPolicy;
+export 'src/data/google_compute_region_network_endpoint_group.dart'
+    show DataGoogleComputeRegionNetworkEndpointGroup;
+export 'src/data/google_compute_region_network_firewall_policy_iam_policy.dart'
+    show DataGoogleComputeRegionNetworkFirewallPolicyIamPolicy;
+export 'src/data/google_compute_region_security_policy.dart'
+    show DataGoogleComputeRegionSecurityPolicy;
+export 'src/data/google_compute_region_ssl_certificate.dart'
+    show DataGoogleComputeRegionSslCertificate;
+export 'src/data/google_compute_region_ssl_policy.dart'
+    show DataGoogleComputeRegionSslPolicy;
+export 'src/data/google_compute_region_target_http_proxy.dart'
+    show DataGoogleComputeRegionTargetHttpProxy;
+export 'src/data/google_compute_region_target_https_proxy.dart'
+    show DataGoogleComputeRegionTargetHttpsProxy;
+export 'src/data/google_compute_regions.dart' show DataGoogleComputeRegions;
+export 'src/data/google_compute_reservation.dart'
+    show DataGoogleComputeReservation;
+export 'src/data/google_compute_reservation_block.dart'
+    show DataGoogleComputeReservationBlock;
+export 'src/data/google_compute_reservation_sub_block.dart'
+    show DataGoogleComputeReservationSubBlock;
+export 'src/data/google_compute_resource_policy.dart'
+    show DataGoogleComputeResourcePolicy;
+export 'src/data/google_compute_router.dart' show DataGoogleComputeRouter;
+export 'src/data/google_compute_router_nat.dart'
+    show DataGoogleComputeRouterNat;
+export 'src/data/google_compute_router_status.dart'
+    show DataGoogleComputeRouterStatus;
+export 'src/data/google_compute_routers.dart' show DataGoogleComputeRouters;
+export 'src/data/google_compute_security_policy.dart'
+    show DataGoogleComputeSecurityPolicy;
+export 'src/data/google_compute_service_attachment.dart'
+    show DataGoogleComputeServiceAttachment;
+export 'src/data/google_compute_service_attachments.dart'
+    show DataGoogleComputeServiceAttachments;
+export 'src/data/google_compute_snapshot.dart' show DataGoogleComputeSnapshot;
+export 'src/data/google_compute_snapshot_iam_policy.dart'
+    show DataGoogleComputeSnapshotIamPolicy;
+export 'src/data/google_compute_ssl_certificate.dart'
+    show DataGoogleComputeSslCertificate;
+export 'src/data/google_compute_ssl_policy.dart'
+    show DataGoogleComputeSslPolicy;
+export 'src/data/google_compute_storage_pool.dart'
+    show DataGoogleComputeStoragePool;
+export 'src/data/google_compute_storage_pool_iam_policy.dart'
+    show DataGoogleComputeStoragePoolIamPolicy;
+export 'src/data/google_compute_storage_pool_types.dart'
+    show DataGoogleComputeStoragePoolTypes;
+export 'src/data/google_compute_subnetwork.dart'
+    show DataGoogleComputeSubnetwork;
+export 'src/data/google_compute_subnetwork_iam_policy.dart'
+    show DataGoogleComputeSubnetworkIamPolicy;
+export 'src/data/google_compute_subnetworks.dart'
+    show DataGoogleComputeSubnetworks;
+export 'src/data/google_compute_target_http_proxy.dart'
+    show DataGoogleComputeTargetHttpProxy;
+export 'src/data/google_compute_target_https_proxy.dart'
+    show DataGoogleComputeTargetHttpsProxy;
+export 'src/data/google_compute_vpn_gateway.dart'
+    show DataGoogleComputeVpnGateway;
+export 'src/data/google_compute_zones.dart' show DataGoogleComputeZones;

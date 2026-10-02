@@ -6,6 +6,7 @@
 /// is never_apply).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/colab/google_colab_notebook_execution.dart'
     show
         ColabNotebookExecutionCompute,
@@ -94,3 +95,5 @@ export 'src/colab/google_colab_schedule.dart'
         ColabScheduleSource,
         ColabScheduleWorkbenchRuntime,
         GoogleColabSchedule;
+export 'src/data/google_colab_runtime_template_iam_policy.dart'
+    show DataGoogleColabRuntimeTemplateIamPolicy;

@@ -57,6 +57,7 @@ final class ServicecatalogServiceActionDefinition {
 
   final TfArg<String> version;
 
+  @internal
   Map<String, Object?> encode() => {
     'assume_role': ?assumeRole?.toTfJson(),
     'name': name.toTfJson(),

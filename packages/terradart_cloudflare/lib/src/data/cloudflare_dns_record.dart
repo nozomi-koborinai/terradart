@@ -55,6 +55,7 @@ final class DataDnsRecordFilter {
 
   final DataDnsRecordTag? tag;
 
+  @internal
   Map<String, Object?> encode() => {
     'direction': ?direction?.toTfJson(),
     'match': ?match?.toTfJson(),
@@ -219,6 +220,7 @@ final class DataDnsRecordFilterComment {
 
   final TfArg<String>? startswith;
 
+  @internal
   Map<String, Object?> encode() => {
     'absent': ?absent?.toTfJson(),
     'contains': ?contains?.toTfJson(),
@@ -248,6 +250,7 @@ final class DataDnsRecordFilterContent {
 
   final TfArg<String>? startswith;
 
+  @internal
   Map<String, Object?> encode() => {
     'contains': ?contains?.toTfJson(),
     'endswith': ?endswith?.toTfJson(),
@@ -275,6 +278,7 @@ final class DataDnsRecordFilterName {
 
   final TfArg<String>? startswith;
 
+  @internal
   Map<String, Object?> encode() => {
     'contains': ?contains?.toTfJson(),
     'endswith': ?endswith?.toTfJson(),
@@ -308,6 +312,7 @@ final class DataDnsRecordTag {
 
   final TfArg<String>? startswith;
 
+  @internal
   Map<String, Object?> encode() => {
     'absent': ?absent?.toTfJson(),
     'contains': ?contains?.toTfJson(),

@@ -61,6 +61,7 @@ final class DataLossPreventionDiscoveryConfigActions {
 
   final DataLossPreventionDiscoveryConfigTagResources? tagResources;
 
+  @internal
   Map<String, Object?> encode() => {
     'export_data': ?exportData?.encode(),
     'pub_sub_notification': ?pubSubNotification?.encode(),
@@ -85,6 +86,7 @@ final class DataLossPreventionDiscoveryConfigExportData {
   final DataLossPreventionDiscoveryConfigSampleFindingsTable?
   sampleFindingsTable;
 
+  @internal
   Map<String, Object?> encode() => {
     'profile_table': ?profileTable?.encode(),
     'sample_findings_table': ?sampleFindingsTable?.encode(),
@@ -107,6 +109,7 @@ final class DataLossPreventionDiscoveryConfigProfileTable {
 
   final TfArg<String>? tableId;
 
+  @internal
   Map<String, Object?> encode() => {
     'dataset_id': ?datasetId?.encodeAs('dataset_id').toTfJson(),
     'project_id': ?projectId?.toTfJson(),
@@ -130,6 +133,7 @@ final class DataLossPreventionDiscoveryConfigSampleFindingsTable {
 
   final TfArg<String>? tableId;
 
+  @internal
   Map<String, Object?> encode() => {
     'dataset_id': ?datasetId?.encodeAs('dataset_id').toTfJson(),
     'project_id': ?projectId?.toTfJson(),
@@ -156,6 +160,7 @@ final class DataLossPreventionDiscoveryConfigPubSubNotification {
 
   final DataLossPreventionDiscoveryConfigPubsubCondition? pubsubCondition;
 
+  @internal
   Map<String, Object?> encode() => {
     'detail_of_message': ?detailOfMessage?.toTfJson(),
     'event': ?event?.toTfJson(),
@@ -229,6 +234,7 @@ final class DataLossPreventionDiscoveryConfigPubsubCondition {
 
   final DataLossPreventionDiscoveryConfigExpressions? expressions;
 
+  @internal
   Map<String, Object?> encode() => {'expressions': ?expressions?.encode()};
 }
 
@@ -246,6 +252,7 @@ final class DataLossPreventionDiscoveryConfigExpressions {
   final List<DataLossPreventionDiscoveryConfigExpressionsConditions>?
   conditions;
 
+  @internal
   Map<String, Object?> encode() => {
     'logical_operator': ?logicalOperator?.toTfJson(),
     if (conditions != null)
@@ -291,6 +298,7 @@ final class DataLossPreventionDiscoveryConfigExpressionsConditions {
   final DataLossPreventionDiscoveryConfigMinimumSensitivityScore?
   minimumSensitivityScore;
 
+  @internal
   Map<String, Object?> encode() => {
     'minimum_risk_score': ?minimumRiskScore?.toTfJson(),
     'minimum_sensitivity_score': ?minimumSensitivityScore?.toTfJson(),
@@ -352,6 +360,7 @@ extension type const DataLossPreventionDiscoveryConfigMinimumSensitivityScore._(
 final class DataLossPreventionDiscoveryConfigPublishToChronicle {
   const DataLossPreventionDiscoveryConfigPublishToChronicle();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -361,6 +370,7 @@ final class DataLossPreventionDiscoveryConfigPublishToChronicle {
 final class DataLossPreventionDiscoveryConfigPublishToDataplexCatalog {
   const DataLossPreventionDiscoveryConfigPublishToDataplexCatalog();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -370,6 +380,7 @@ final class DataLossPreventionDiscoveryConfigPublishToDataplexCatalog {
 final class DataLossPreventionDiscoveryConfigPublishToScc {
   const DataLossPreventionDiscoveryConfigPublishToScc();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -390,6 +401,7 @@ final class DataLossPreventionDiscoveryConfigTagResources {
 
   final List<DataLossPreventionDiscoveryConfigTagConditions>? tagConditions;
 
+  @internal
   Map<String, Object?> encode() => {
     'lower_data_risk_to_low': ?lowerDataRiskToLow?.toTfJson(),
     if (profileGenerationsToTag != null)
@@ -440,6 +452,7 @@ final class DataLossPreventionDiscoveryConfigTagConditions {
 
   final DataLossPreventionDiscoveryConfigTag? tag;
 
+  @internal
   Map<String, Object?> encode() => {
     'sensitivity_score': ?sensitivityScore?.encode(),
     'tag': ?tag?.encode(),
@@ -456,6 +469,7 @@ final class DataLossPreventionDiscoveryConfigSensitivityScore {
 
   final DataLossPreventionDiscoveryConfigScore score;
 
+  @internal
   Map<String, Object?> encode() => {'score': score.toTfJson()};
 }
 
@@ -498,6 +512,7 @@ final class DataLossPreventionDiscoveryConfigTag {
 
   final TfArg<String>? namespacedValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'namespaced_value': ?namespacedValue?.toTfJson(),
   };
@@ -516,6 +531,7 @@ final class DataLossPreventionDiscoveryConfigOrgConfig {
 
   final DataLossPreventionDiscoveryConfigOrgConfigLocation? location;
 
+  @internal
   Map<String, Object?> encode() => {
     'project_id': ?projectId?.toTfJson(),
     'location': ?location?.encode(),
@@ -535,6 +551,7 @@ final class DataLossPreventionDiscoveryConfigOrgConfigLocation {
 
   final TfArg<String>? organizationId;
 
+  @internal
   Map<String, Object?> encode() => {
     'folder_id': ?folderId?.toTfJson(),
     'organization_id': ?organizationId?.toTfJson(),
@@ -551,6 +568,7 @@ final class DataLossPreventionDiscoveryConfigOtherCloudStartingLocation {
 
   final DataLossPreventionDiscoveryConfigAwsLocation? awsLocation;
 
+  @internal
   Map<String, Object?> encode() => {'aws_location': ?awsLocation?.encode()};
 }
 
@@ -567,6 +585,7 @@ final class DataLossPreventionDiscoveryConfigAwsLocation {
 
   final TfArg<bool>? allAssetInventoryAssets;
 
+  @internal
   Map<String, Object?> encode() => {
     'account_id': ?accountId?.toTfJson(),
     'all_asset_inventory_assets': ?allAssetInventoryAssets?.toTfJson(),
@@ -595,6 +614,7 @@ final class DataLossPreventionDiscoveryConfigTargets {
 
   final DataLossPreventionDiscoveryConfigSecretsTarget? secretsTarget;
 
+  @internal
   Map<String, Object?> encode() => {
     'big_query_target': ?bigQueryTarget?.encode(),
     'cloud_sql_target': ?cloudSqlTarget?.encode(),
@@ -623,6 +643,7 @@ final class DataLossPreventionDiscoveryConfigBigQueryTarget {
 
   final DataLossPreventionDiscoveryConfigBigQueryTargetFilter? filter;
 
+  @internal
   Map<String, Object?> encode() => {
     'cadence': ?cadence?.encode(),
     'conditions': ?conditions?.encode(),
@@ -653,6 +674,7 @@ final class DataLossPreventionDiscoveryConfigCadence {
   final DataLossPreventionDiscoveryConfigTableModifiedCadence?
   tableModifiedCadence;
 
+  @internal
   Map<String, Object?> encode() => {
     'refresh_frequency': ?refreshFrequency?.toTfJson(),
     'inspect_template_modified_cadence': ?inspectTemplateModifiedCadence
@@ -701,6 +723,7 @@ final class DataLossPreventionDiscoveryConfigCadenceInspectTemplateModifiedCaden
 
   final DataLossPreventionDiscoveryConfigFrequency? frequency;
 
+  @internal
   Map<String, Object?> encode() => {'frequency': ?frequency?.toTfJson()};
 }
 
@@ -748,6 +771,7 @@ final class DataLossPreventionDiscoveryConfigCadenceSchemaModifiedCadence {
 
   final List<DataLossPreventionDiscoveryConfigCadenceTypes>? types;
 
+  @internal
   Map<String, Object?> encode() => {
     'frequency': ?frequency?.toTfJson(),
     if (types != null) 'types': [for (final e in types!) e.toTfJson()],
@@ -793,6 +817,7 @@ final class DataLossPreventionDiscoveryConfigTableModifiedCadence {
 
   final TfArg<List<String>>? types;
 
+  @internal
   Map<String, Object?> encode() => {
     'frequency': ?frequency?.toTfJson(),
     'types': ?types?.toTfJson(),
@@ -818,6 +843,7 @@ final class DataLossPreventionDiscoveryConfigBigQueryTargetConditions {
 
   final DataLossPreventionDiscoveryConfigBigQueryTargetTypes? types;
 
+  @internal
   Map<String, Object?> encode() => {
     'created_after': ?createdAfter?.toTfJson(),
     'type_collection': ?typeCollection?.toTfJson(),
@@ -865,6 +891,7 @@ final class DataLossPreventionDiscoveryConfigOrConditions {
 
   final TfArg<num>? minRowCount;
 
+  @internal
   Map<String, Object?> encode() => {
     'min_age': ?minAge?.toTfJson(),
     'min_row_count': ?minRowCount?.toTfJson(),
@@ -879,6 +906,7 @@ final class DataLossPreventionDiscoveryConfigBigQueryTargetTypes {
 
   final List<DataLossPreventionDiscoveryConfigTypesTypes>? types;
 
+  @internal
   Map<String, Object?> encode() => {
     if (types != null) 'types': [for (final e in types!) e.toTfJson()],
   };
@@ -917,6 +945,7 @@ extension type const DataLossPreventionDiscoveryConfigTypesTypes._(
 final class DataLossPreventionDiscoveryConfigDisabled {
   const DataLossPreventionDiscoveryConfigDisabled();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -936,6 +965,7 @@ final class DataLossPreventionDiscoveryConfigBigQueryTargetFilter {
 
   final DataLossPreventionDiscoveryConfigTables? tables;
 
+  @internal
   Map<String, Object?> encode() => {
     'other_tables': ?otherTables?.encode(),
     'table_reference': ?tableReference?.encode(),
@@ -949,6 +979,7 @@ final class DataLossPreventionDiscoveryConfigBigQueryTargetFilter {
 final class DataLossPreventionDiscoveryConfigOtherTables {
   const DataLossPreventionDiscoveryConfigOtherTables();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -968,6 +999,7 @@ final class DataLossPreventionDiscoveryConfigTableReference {
 
   final TfArg<String> tableId;
 
+  @internal
   Map<String, Object?> encode() => {
     'dataset_id': datasetId.encodeAs('dataset_id').toTfJson(),
     'project_id': ?projectId?.toTfJson(),
@@ -983,6 +1015,7 @@ final class DataLossPreventionDiscoveryConfigTables {
 
   final DataLossPreventionDiscoveryConfigTablesIncludeRegexes? includeRegexes;
 
+  @internal
   Map<String, Object?> encode() => {
     'include_regexes': ?includeRegexes?.encode(),
   };
@@ -996,6 +1029,7 @@ final class DataLossPreventionDiscoveryConfigTablesIncludeRegexes {
 
   final List<DataLossPreventionDiscoveryConfigTablesPatterns>? patterns;
 
+  @internal
   Map<String, Object?> encode() => {
     if (patterns != null) 'patterns': [for (final e in patterns!) e.encode()],
   };
@@ -1017,6 +1051,7 @@ final class DataLossPreventionDiscoveryConfigTablesPatterns {
 
   final TfArg<String>? tableIdRegex;
 
+  @internal
   Map<String, Object?> encode() => {
     'dataset_id_regex': ?datasetIdRegex?.toTfJson(),
     'project_id_regex': ?projectIdRegex?.toTfJson(),
@@ -1044,6 +1079,7 @@ final class DataLossPreventionDiscoveryConfigCloudSqlTarget {
   final DataLossPreventionDiscoveryConfigCloudSqlTargetGenerationCadence?
   generationCadence;
 
+  @internal
   Map<String, Object?> encode() => {
     'conditions': ?conditions?.encode(),
     'disabled': ?disabled?.encode(),
@@ -1065,6 +1101,7 @@ final class DataLossPreventionDiscoveryConfigCloudSqlTargetConditions {
 
   final List<DataLossPreventionDiscoveryConfigCloudSqlTargetTypes>? types;
 
+  @internal
   Map<String, Object?> encode() => {
     if (databaseEngines != null)
       'database_engines': [for (final e in databaseEngines!) e.toTfJson()],
@@ -1144,6 +1181,7 @@ final class DataLossPreventionDiscoveryConfigCloudSqlTargetFilter {
 
   final DataLossPreventionDiscoveryConfigOthers? others;
 
+  @internal
   Map<String, Object?> encode() => {
     'collection': ?collection?.encode(),
     'database_resource_reference': ?databaseResourceReference?.encode(),
@@ -1162,6 +1200,7 @@ final class DataLossPreventionDiscoveryConfigCloudSqlTargetCollection {
   final DataLossPreventionDiscoveryConfigCloudSqlTargetIncludeRegexes?
   includeRegexes;
 
+  @internal
   Map<String, Object?> encode() => {
     'include_regexes': ?includeRegexes?.encode(),
   };
@@ -1177,6 +1216,7 @@ final class DataLossPreventionDiscoveryConfigCloudSqlTargetIncludeRegexes {
 
   final List<DataLossPreventionDiscoveryConfigCloudSqlTargetPatterns>? patterns;
 
+  @internal
   Map<String, Object?> encode() => {
     if (patterns != null) 'patterns': [for (final e in patterns!) e.encode()],
   };
@@ -1201,6 +1241,7 @@ final class DataLossPreventionDiscoveryConfigCloudSqlTargetPatterns {
 
   final TfArg<String>? projectIdRegex;
 
+  @internal
   Map<String, Object?> encode() => {
     'database_regex': ?databaseRegex?.toTfJson(),
     'database_resource_name_regex': ?databaseResourceNameRegex?.toTfJson(),
@@ -1228,6 +1269,7 @@ final class DataLossPreventionDiscoveryConfigDatabaseResourceReference {
 
   final TfArg<String> projectId;
 
+  @internal
   Map<String, Object?> encode() => {
     'database': database.toTfJson(),
     'database_resource': databaseResource.toTfJson(),
@@ -1243,6 +1285,7 @@ final class DataLossPreventionDiscoveryConfigDatabaseResourceReference {
 final class DataLossPreventionDiscoveryConfigOthers {
   const DataLossPreventionDiscoveryConfigOthers();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -1264,6 +1307,7 @@ final class DataLossPreventionDiscoveryConfigCloudSqlTargetGenerationCadence {
   final DataLossPreventionDiscoveryConfigGenerationCadenceSchemaModifiedCadence?
   schemaModifiedCadence;
 
+  @internal
   Map<String, Object?> encode() => {
     'refresh_frequency': ?refreshFrequency?.toTfJson(),
     'inspect_template_modified_cadence': ?inspectTemplateModifiedCadence
@@ -1282,6 +1326,7 @@ final class DataLossPreventionDiscoveryConfigGenerationCadenceInspectTemplateMod
 
   final DataLossPreventionDiscoveryConfigFrequency frequency;
 
+  @internal
   Map<String, Object?> encode() => {'frequency': frequency.toTfJson()};
 }
 
@@ -1298,6 +1343,7 @@ final class DataLossPreventionDiscoveryConfigGenerationCadenceSchemaModifiedCade
 
   final List<DataLossPreventionDiscoveryConfigGenerationCadenceTypes>? types;
 
+  @internal
   Map<String, Object?> encode() => {
     'frequency': ?frequency?.toTfJson(),
     if (types != null) 'types': [for (final e in types!) e.toTfJson()],
@@ -1351,6 +1397,7 @@ final class DataLossPreventionDiscoveryConfigCloudStorageTarget {
   final DataLossPreventionDiscoveryConfigCloudStorageTargetGenerationCadence?
   generationCadence;
 
+  @internal
   Map<String, Object?> encode() => {
     'conditions': ?conditions?.encode(),
     'disabled': ?disabled?.encode(),
@@ -1376,6 +1423,7 @@ final class DataLossPreventionDiscoveryConfigCloudStorageTargetConditions {
   final DataLossPreventionDiscoveryConfigCloudStorageConditions?
   cloudStorageConditions;
 
+  @internal
   Map<String, Object?> encode() => {
     'created_after': ?createdAfter?.toTfJson(),
     'min_age': ?minAge?.toTfJson(),
@@ -1398,6 +1446,7 @@ final class DataLossPreventionDiscoveryConfigCloudStorageConditions {
   final List<DataLossPreventionDiscoveryConfigIncludedObjectAttributes>?
   includedObjectAttributes;
 
+  @internal
   Map<String, Object?> encode() => {
     if (includedBucketAttributes != null)
       'included_bucket_attributes': [
@@ -1519,6 +1568,7 @@ final class DataLossPreventionDiscoveryConfigCloudStorageTargetFilter {
 
   final DataLossPreventionDiscoveryConfigOthers? others;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloud_storage_resource_reference': ?cloudStorageResourceReference
         ?.encode(),
@@ -1540,6 +1590,7 @@ final class DataLossPreventionDiscoveryConfigCloudStorageResourceReference {
 
   final TfArg<String>? projectId;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_name': ?bucketName?.encodeAs('name').toTfJson(),
     'project_id': ?projectId?.toTfJson(),
@@ -1560,6 +1611,7 @@ final class DataLossPreventionDiscoveryConfigCloudStorageTargetCollection {
 
   final DataLossPreventionDiscoveryConfigIncludeTags? includeTags;
 
+  @internal
   Map<String, Object?> encode() => {
     'include_regexes': ?includeRegexes?.encode(),
     'include_tags': ?includeTags?.encode(),
@@ -1577,6 +1629,7 @@ final class DataLossPreventionDiscoveryConfigCloudStorageTargetIncludeRegexes {
   final List<DataLossPreventionDiscoveryConfigCloudStorageTargetPatterns>?
   patterns;
 
+  @internal
   Map<String, Object?> encode() => {
     if (patterns != null) 'patterns': [for (final e in patterns!) e.encode()],
   };
@@ -1592,6 +1645,7 @@ final class DataLossPreventionDiscoveryConfigCloudStorageTargetPatterns {
 
   final DataLossPreventionDiscoveryConfigCloudStorageRegex? cloudStorageRegex;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloud_storage_regex': ?cloudStorageRegex?.encode(),
   };
@@ -1610,6 +1664,7 @@ final class DataLossPreventionDiscoveryConfigCloudStorageRegex {
 
   final TfArg<String>? projectIdRegex;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_name_regex': ?bucketNameRegex?.toTfJson(),
     'project_id_regex': ?projectIdRegex?.toTfJson(),
@@ -1624,6 +1679,7 @@ final class DataLossPreventionDiscoveryConfigIncludeTags {
 
   final List<DataLossPreventionDiscoveryConfigTagFilters>? tagFilters;
 
+  @internal
   Map<String, Object?> encode() => {
     if (tagFilters != null)
       'tag_filters': [for (final e in tagFilters!) e.encode()],
@@ -1649,8 +1705,10 @@ sealed class DataLossPreventionDiscoveryConfigTagFilters {
   ) = DataLossPreventionDiscoveryConfigTagFiltersNamespacedTagKey;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -1663,9 +1721,11 @@ final class DataLossPreventionDiscoveryConfigTagFiltersNamespacedTagValue
 
   final TfArg<String> namespacedTagValue;
 
+  @internal
   @override
   String get blockKey => 'namespaced_tag_value';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'namespaced_tag_value': namespacedTagValue.toTfJson(),
@@ -1681,9 +1741,11 @@ final class DataLossPreventionDiscoveryConfigTagFiltersNamespacedTagKey
 
   final TfArg<String> namespacedTagKey;
 
+  @internal
   @override
   String get blockKey => 'namespaced_tag_key';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'namespaced_tag_key': namespacedTagKey.toTfJson(),
@@ -1705,6 +1767,7 @@ final class DataLossPreventionDiscoveryConfigCloudStorageTargetGenerationCadence
   final DataLossPreventionDiscoveryConfigCadenceInspectTemplateModifiedCadence?
   inspectTemplateModifiedCadence;
 
+  @internal
   Map<String, Object?> encode() => {
     'refresh_frequency': ?refreshFrequency?.toTfJson(),
     'inspect_template_modified_cadence': ?inspectTemplateModifiedCadence
@@ -1735,6 +1798,7 @@ final class DataLossPreventionDiscoveryConfigOtherCloudTarget {
   final DataLossPreventionDiscoveryConfigCloudStorageTargetGenerationCadence?
   generationCadence;
 
+  @internal
   Map<String, Object?> encode() => {
     'conditions': ?conditions?.encode(),
     'data_source_type': ?dataSourceType?.encode(),
@@ -1758,6 +1822,7 @@ final class DataLossPreventionDiscoveryConfigOtherCloudTargetConditions {
   final DataLossPreventionDiscoveryConfigAmazonS3BucketConditions?
   amazonS3BucketConditions;
 
+  @internal
   Map<String, Object?> encode() => {
     'min_age': ?minAge?.toTfJson(),
     'amazon_s3_bucket_conditions': ?amazonS3BucketConditions?.encode(),
@@ -1778,6 +1843,7 @@ final class DataLossPreventionDiscoveryConfigAmazonS3BucketConditions {
   final List<DataLossPreventionDiscoveryConfigObjectStorageClasses>?
   objectStorageClasses;
 
+  @internal
   Map<String, Object?> encode() => {
     if (bucketTypes != null)
       'bucket_types': [for (final e in bucketTypes!) e.toTfJson()],
@@ -1866,6 +1932,7 @@ final class DataLossPreventionDiscoveryConfigDataSourceType {
 
   final TfArg<String>? dataSource;
 
+  @internal
   Map<String, Object?> encode() => {'data_source': ?dataSource?.toTfJson()};
 }
 
@@ -1885,6 +1952,7 @@ final class DataLossPreventionDiscoveryConfigOtherCloudTargetFilter {
 
   final DataLossPreventionDiscoveryConfigSingleResource? singleResource;
 
+  @internal
   Map<String, Object?> encode() => {
     'collection': ?collection?.encode(),
     'others': ?others?.encode(),
@@ -1903,6 +1971,7 @@ final class DataLossPreventionDiscoveryConfigOtherCloudTargetCollection {
   final DataLossPreventionDiscoveryConfigOtherCloudTargetIncludeRegexes?
   includeRegexes;
 
+  @internal
   Map<String, Object?> encode() => {
     'include_regexes': ?includeRegexes?.encode(),
   };
@@ -1919,6 +1988,7 @@ final class DataLossPreventionDiscoveryConfigOtherCloudTargetIncludeRegexes {
   final List<DataLossPreventionDiscoveryConfigOtherCloudTargetPatterns>?
   patterns;
 
+  @internal
   Map<String, Object?> encode() => {
     if (patterns != null) 'patterns': [for (final e in patterns!) e.encode()],
   };
@@ -1935,6 +2005,7 @@ final class DataLossPreventionDiscoveryConfigOtherCloudTargetPatterns {
   final DataLossPreventionDiscoveryConfigAmazonS3BucketRegex?
   amazonS3BucketRegex;
 
+  @internal
   Map<String, Object?> encode() => {
     'amazon_s3_bucket_regex': ?amazonS3BucketRegex?.encode(),
   };
@@ -1953,6 +2024,7 @@ final class DataLossPreventionDiscoveryConfigAmazonS3BucketRegex {
 
   final DataLossPreventionDiscoveryConfigAwsAccountRegex? awsAccountRegex;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_name_regex': ?bucketNameRegex?.toTfJson(),
     'aws_account_regex': ?awsAccountRegex?.encode(),
@@ -1967,6 +2039,7 @@ final class DataLossPreventionDiscoveryConfigAwsAccountRegex {
 
   final TfArg<String>? accountIdRegex;
 
+  @internal
   Map<String, Object?> encode() => {
     'account_id_regex': ?accountIdRegex?.toTfJson(),
   };
@@ -1980,6 +2053,7 @@ final class DataLossPreventionDiscoveryConfigSingleResource {
 
   final DataLossPreventionDiscoveryConfigAmazonS3Bucket? amazonS3Bucket;
 
+  @internal
   Map<String, Object?> encode() => {
     'amazon_s3_bucket': ?amazonS3Bucket?.encode(),
   };
@@ -1998,6 +2072,7 @@ final class DataLossPreventionDiscoveryConfigAmazonS3Bucket {
 
   final DataLossPreventionDiscoveryConfigAwsAccount? awsAccount;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_name': ?bucketName?.toTfJson(),
     'aws_account': ?awsAccount?.encode(),
@@ -2012,6 +2087,7 @@ final class DataLossPreventionDiscoveryConfigAwsAccount {
 
   final TfArg<String>? accountId;
 
+  @internal
   Map<String, Object?> encode() => {'account_id': ?accountId?.toTfJson()};
 }
 
@@ -2021,6 +2097,7 @@ final class DataLossPreventionDiscoveryConfigAwsAccount {
 final class DataLossPreventionDiscoveryConfigSecretsTarget {
   const DataLossPreventionDiscoveryConfigSecretsTarget();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 

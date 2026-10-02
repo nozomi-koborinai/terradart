@@ -20,6 +20,7 @@ final class CloudbuildBitbucketServerConfigConnectedRepositories {
 
   final TfArg<String> repoSlug;
 
+  @internal
   Map<String, Object?> encode() => {
     'project_key': projectKey.toTfJson(),
     'repo_slug': repoSlug.toTfJson(),
@@ -42,6 +43,7 @@ final class CloudbuildBitbucketServerConfigSecrets {
 
   final TfArg<String> webhookSecretVersionName;
 
+  @internal
   Map<String, Object?> encode() => {
     'admin_access_token_version_name': adminAccessTokenVersionName.toTfJson(),
     'read_access_token_version_name': readAccessTokenVersionName.toTfJson(),

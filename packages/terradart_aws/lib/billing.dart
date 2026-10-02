@@ -3,6 +3,7 @@
 /// AWS Billing views.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/billing/aws_billing_view.dart'
     show
         AwsBillingView,
@@ -11,3 +12,6 @@ export 'src/billing/aws_billing_view.dart'
         BillingViewDimensions,
         BillingViewKey,
         BillingViewTimeRange;
+export 'src/data/aws_billing_service_account.dart'
+    show DataAwsBillingServiceAccount;
+export 'src/data/aws_billing_views.dart' show DataAwsBillingViews;

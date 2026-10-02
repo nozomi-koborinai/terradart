@@ -46,12 +46,15 @@ sealed class ColabScheduleRequest {
   ) = ColabScheduleCreatePipelineJobRequestChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -65,15 +68,18 @@ final class ColabScheduleCreateNotebookExecutionJobRequestChoice
   final ColabScheduleCreateNotebookExecutionJobRequest
   createNotebookExecutionJobRequest;
 
+  @internal
   @override
   String get blockKey => 'create_notebook_execution_job_request';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'create_notebook_execution_job_request': createNotebookExecutionJobRequest
         .encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'create_notebook_execution_job_request': TfArg.literal(
@@ -91,14 +97,17 @@ final class ColabScheduleCreatePipelineJobRequestChoice
 
   final ColabScheduleCreatePipelineJobRequest createPipelineJobRequest;
 
+  @internal
   @override
   String get blockKey => 'create_pipeline_job_request';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'create_pipeline_job_request': createPipelineJobRequest.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'create_pipeline_job_request': TfArg.literal(
@@ -120,6 +129,7 @@ final class ColabScheduleCreateNotebookExecutionJobRequest {
 
   final ColabScheduleNotebookExecutionJob notebookExecutionJob;
 
+  @internal
   Map<String, Object?> encode() => {
     'parent': ?parent?.toTfJson(),
     'notebook_execution_job': notebookExecutionJob.encode(),
@@ -163,6 +173,7 @@ final class ColabScheduleNotebookExecutionJob {
 
   final ColabScheduleWorkbenchRuntime? workbenchRuntime;
 
+  @internal
   Map<String, Object?> encode() => {
     'display_name': displayName.toTfJson(),
     'execution_timeout': ?executionTimeout?.toTfJson(),
@@ -195,8 +206,10 @@ sealed class ColabScheduleSource {
   ) = ColabScheduleGcsNotebookSourceChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -209,9 +222,11 @@ final class ColabScheduleDataformRepositorySourceChoice
 
   final ColabScheduleDataformRepositorySource dataformRepositorySource;
 
+  @internal
   @override
   String get blockKey => 'dataform_repository_source';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'dataform_repository_source': dataformRepositorySource.encode(),
@@ -224,9 +239,11 @@ final class ColabScheduleGcsNotebookSourceChoice extends ColabScheduleSource {
 
   final ColabScheduleGcsNotebookSource gcsNotebookSource;
 
+  @internal
   @override
   String get blockKey => 'gcs_notebook_source';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'gcs_notebook_source': gcsNotebookSource.encode(),
@@ -251,8 +268,10 @@ sealed class ColabScheduleCompute {
   ) = ColabScheduleComputeCustomEnvironmentSpec;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -265,9 +284,11 @@ final class ColabScheduleComputeNotebookRuntimeTemplateResourceName
 
   final TfArg<String> notebookRuntimeTemplateResourceName;
 
+  @internal
   @override
   String get blockKey => 'notebook_runtime_template_resource_name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'notebook_runtime_template_resource_name':
@@ -282,9 +303,11 @@ final class ColabScheduleComputeCustomEnvironmentSpec
 
   final ColabScheduleCustomEnvironmentSpec customEnvironmentSpec;
 
+  @internal
   @override
   String get blockKey => 'custom_environment_spec';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'custom_environment_spec': customEnvironmentSpec.encode(),
@@ -309,8 +332,10 @@ sealed class ColabScheduleIdentity {
   ) = ColabScheduleIdentityServiceAccount;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -320,9 +345,11 @@ final class ColabScheduleIdentityExecutionUser extends ColabScheduleIdentity {
 
   final TfArg<String> executionUser;
 
+  @internal
   @override
   String get blockKey => 'execution_user';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'execution_user': executionUser.toTfJson()};
 }
@@ -333,9 +360,11 @@ final class ColabScheduleIdentityServiceAccount extends ColabScheduleIdentity {
 
   final RefTo<GoogleServiceAccount> serviceAccount;
 
+  @internal
   @override
   String get blockKey => 'service_account';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'service_account': serviceAccount.encodeAs('email').toTfJson(),
@@ -358,6 +387,7 @@ final class ColabScheduleCustomEnvironmentSpec {
 
   final ColabSchedulePersistentDiskSpec? persistentDiskSpec;
 
+  @internal
   Map<String, Object?> encode() => {
     'machine_spec': ?machineSpec?.encode(),
     'network_spec': ?networkSpec?.encode(),
@@ -390,6 +420,7 @@ final class ColabScheduleMachineSpec {
 
   final ColabScheduleReservationAffinity? reservationAffinity;
 
+  @internal
   Map<String, Object?> encode() => {
     'accelerator_count': ?acceleratorCount?.toTfJson(),
     'accelerator_type': ?acceleratorType?.toTfJson(),
@@ -419,6 +450,7 @@ final class ColabScheduleReservationAffinity {
 
   final TfArg<List<String>>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
     'reservation_affinity_type': reservationAffinityType.toTfJson(),
@@ -443,6 +475,7 @@ final class ColabScheduleNetworkSpec {
 
   final RefTo<GoogleComputeSubnetwork>? subnetwork;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_internet_access': ?enableInternetAccess?.toTfJson(),
     'network': ?network?.encodeAs('id').toTfJson(),
@@ -460,6 +493,7 @@ final class ColabSchedulePersistentDiskSpec {
 
   final TfArg<String>? diskType;
 
+  @internal
   Map<String, Object?> encode() => {
     'disk_size_gb': ?diskSizeGb?.toTfJson(),
     'disk_type': ?diskType?.toTfJson(),
@@ -479,6 +513,7 @@ final class ColabScheduleDataformRepositorySource {
 
   final TfArg<String> dataformRepositoryResourceName;
 
+  @internal
   Map<String, Object?> encode() => {
     'commit_sha': ?commitSha?.toTfJson(),
     'dataform_repository_resource_name': dataformRepositoryResourceName
@@ -495,6 +530,7 @@ final class ColabScheduleEncryptionSpec {
 
   final RefTo<GoogleKmsCryptoKey> kmsKeyName;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_name': kmsKeyName.encodeAs('id').toTfJson(),
   };
@@ -510,6 +546,7 @@ final class ColabScheduleGcsNotebookSource {
 
   final TfArg<String> uri;
 
+  @internal
   Map<String, Object?> encode() => {
     'generation': ?generation?.toTfJson(),
     'uri': uri.toTfJson(),
@@ -522,6 +559,7 @@ final class ColabScheduleGcsNotebookSource {
 final class ColabScheduleWorkbenchRuntime {
   const ColabScheduleWorkbenchRuntime();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -538,6 +576,7 @@ final class ColabScheduleCreatePipelineJobRequest {
 
   final ColabSchedulePipelineJob pipelineJob;
 
+  @internal
   Map<String, Object?> encode() => {
     'parent': ?parent?.toTfJson(),
     'pipeline_job': pipelineJob.encode(),
@@ -584,6 +623,7 @@ final class ColabSchedulePipelineJob {
 
   final ColabScheduleRuntimeConfig? runtimeConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'display_name': ?displayName?.toTfJson(),
     'labels': ?labels?.toTfJson(),
@@ -612,6 +652,7 @@ final class ColabSchedulePscInterfaceConfig {
 
   final List<ColabScheduleDnsPeeringConfigs>? dnsPeeringConfigs;
 
+  @internal
   Map<String, Object?> encode() => {
     'network_attachment': ?networkAttachment?.toTfJson(),
     if (dnsPeeringConfigs != null)
@@ -635,6 +676,7 @@ final class ColabScheduleDnsPeeringConfigs {
 
   final TfArg<String> targetProject;
 
+  @internal
   Map<String, Object?> encode() => {
     'domain': domain.toTfJson(),
     'target_network': targetNetwork.toTfJson(),
@@ -658,6 +700,7 @@ final class ColabScheduleRuntimeConfig {
 
   final TfArg<Map<String, String>>? parameterValues;
 
+  @internal
   Map<String, Object?> encode() => {
     'failure_policy': ?failurePolicy?.toTfJson(),
     'gcs_output_directory': gcsOutputDirectory.toTfJson(),

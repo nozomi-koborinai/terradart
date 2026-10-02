@@ -42,6 +42,7 @@ final class ComputeInstanceFromMachineImageAdvancedMachineFeatures {
 
   final TfArg<num>? visibleCoreCount;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_nested_virtualization': ?enableNestedVirtualization?.toTfJson(),
     'enable_uefi_networking': ?enableUefiNetworking?.toTfJson(),
@@ -65,6 +66,7 @@ final class ComputeInstanceFromMachineImageConfidentialInstanceConfig {
 
   final TfArg<bool>? enableConfidentialCompute;
 
+  @internal
   Map<String, Object?> encode() => {
     'confidential_instance_type': ?confidentialInstanceType?.toTfJson(),
     'enable_confidential_compute': ?enableConfidentialCompute?.toTfJson(),
@@ -84,6 +86,7 @@ final class ComputeInstanceFromMachineImageGuestAccelerator {
 
   final TfArg<String> type;
 
+  @internal
   Map<String, Object?> encode() => {
     'count': count.toTfJson(),
     'type': type.toTfJson(),
@@ -103,6 +106,7 @@ final class ComputeInstanceFromMachineImageInstanceEncryptionKey {
 
   final TfArg<String>? kmsKeyServiceAccount;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_self_link': ?kmsKeySelfLink?.encodeAs('id').toTfJson(),
     'kms_key_service_account': ?kmsKeyServiceAccount?.toTfJson(),
@@ -167,6 +171,7 @@ final class ComputeInstanceFromMachineImageNetworkInterface {
 
   final List<ComputeInstanceFromMachineImageIpv6AccessConfig>? ipv6AccessConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'igmp_query': ?igmpQuery?.toTfJson(),
     'internal_ipv6_prefix_length': ?internalIpv6PrefixLength?.toTfJson(),
@@ -243,6 +248,7 @@ final class ComputeInstanceFromMachineImageAccessConfig {
 
   final TfArg<String>? publicPtrDomainName;
 
+  @internal
   Map<String, Object?> encode() => {
     'nat_ip': ?natIp?.toTfJson(),
     'network_tier': ?networkTier?.toTfJson(),
@@ -263,6 +269,7 @@ final class ComputeInstanceFromMachineImageAliasIpRange {
 
   final TfArg<String>? subnetworkRangeName;
 
+  @internal
   Map<String, Object?> encode() => {
     'ip_cidr_range': ipCidrRange.toTfJson(),
     'subnetwork_range_name': ?subnetworkRangeName?.toTfJson(),
@@ -282,6 +289,7 @@ final class ComputeInstanceFromMachineImageAliasIpv6Range {
 
   final TfArg<String>? subnetworkRangeName;
 
+  @internal
   Map<String, Object?> encode() => {
     'ip_cidr_range': ipCidrRange.toTfJson(),
     'subnetwork_range_name': ?subnetworkRangeName?.toTfJson(),
@@ -310,6 +318,7 @@ final class ComputeInstanceFromMachineImageIpv6AccessConfig {
 
   final TfArg<String>? publicPtrDomainName;
 
+  @internal
   Map<String, Object?> encode() => {
     'external_ipv6': ?externalIpv6?.toTfJson(),
     'external_ipv6_prefix_length': ?externalIpv6PrefixLength?.toTfJson(),
@@ -330,6 +339,7 @@ final class ComputeInstanceFromMachineImageNetworkPerformanceConfig {
   final ComputeInstanceFromMachineImageTotalEgressBandwidthTier
   totalEgressBandwidthTier;
 
+  @internal
   Map<String, Object?> encode() => {
     'total_egress_bandwidth_tier': totalEgressBandwidthTier.toTfJson(),
   };
@@ -369,6 +379,7 @@ final class ComputeInstanceFromMachineImageParams {
 
   final TfArg<Map<String, String>>? resourceManagerTags;
 
+  @internal
   Map<String, Object?> encode() => {
     'resource_manager_tags': ?resourceManagerTags?.toTfJson(),
   };
@@ -387,6 +398,7 @@ final class ComputeInstanceFromMachineImageReservationAffinity {
 
   final ComputeInstanceFromMachineImageSpecificReservation? specificReservation;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
     'specific_reservation': ?specificReservation?.encode(),
@@ -406,6 +418,7 @@ final class ComputeInstanceFromMachineImageSpecificReservation {
 
   final TfArg<List<String>> values;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'values': values.toTfJson(),
@@ -473,6 +486,7 @@ final class ComputeInstanceFromMachineImageScheduling {
   final ComputeInstanceFromMachineImagePreemptionNoticeDuration?
   preemptionNoticeDuration;
 
+  @internal
   Map<String, Object?> encode() => {
     'automatic_restart': ?automaticRestart?.toTfJson(),
     'availability_domain': ?availabilityDomain?.toTfJson(),
@@ -508,6 +522,7 @@ final class ComputeInstanceFromMachineImageGracefulShutdown {
 
   final ComputeInstanceFromMachineImageMaxDuration? maxDuration;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'max_duration': ?maxDuration?.encode(),
@@ -527,6 +542,7 @@ final class ComputeInstanceFromMachineImageMaxDuration {
 
   final TfArg<num> seconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'nanos': ?nanos?.toTfJson(),
     'seconds': seconds.toTfJson(),
@@ -546,6 +562,7 @@ final class ComputeInstanceFromMachineImageLocalSsdRecoveryTimeout {
 
   final TfArg<num> seconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'nanos': ?nanos?.toTfJson(),
     'seconds': seconds.toTfJson(),
@@ -565,6 +582,7 @@ final class ComputeInstanceFromMachineImageMaxRunDuration {
 
   final TfArg<num> seconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'nanos': ?nanos?.toTfJson(),
     'seconds': seconds.toTfJson(),
@@ -587,6 +605,7 @@ final class ComputeInstanceFromMachineImageNodeAffinities {
 
   final TfArg<List<String>> values;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'operator': operator.toTfJson(),
@@ -604,6 +623,7 @@ final class ComputeInstanceFromMachineImageOnInstanceStopAction {
 
   final TfArg<bool>? discardLocalSsd;
 
+  @internal
   Map<String, Object?> encode() => {
     'discard_local_ssd': ?discardLocalSsd?.toTfJson(),
   };
@@ -622,6 +642,7 @@ final class ComputeInstanceFromMachineImagePreemptionNoticeDuration {
 
   final TfArg<num> seconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'nanos': ?nanos?.toTfJson(),
     'seconds': seconds.toTfJson(),
@@ -641,6 +662,7 @@ final class ComputeInstanceFromMachineImageServiceAccount {
 
   final TfArg<List<String>> scopes;
 
+  @internal
   Map<String, Object?> encode() => {
     'email': ?email?.encodeAs('email').toTfJson(),
     'scopes': scopes.toTfJson(),
@@ -663,6 +685,7 @@ final class ComputeInstanceFromMachineImageShieldedInstanceConfig {
 
   final TfArg<bool>? enableVtpm;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_integrity_monitoring': ?enableIntegrityMonitoring?.toTfJson(),
     'enable_secure_boot': ?enableSecureBoot?.toTfJson(),
@@ -689,6 +712,7 @@ final class ComputeInstanceFromMachineImageSourceMachineImageEncryptionKey {
 
   final Sensitive<String>? rsaEncryptedKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_name': ?kmsKeyName?.encodeAs('id').toTfJson(),
     'kms_key_service_account': ?kmsKeyServiceAccount?.toTfJson(),
@@ -710,6 +734,7 @@ final class ComputeInstanceFromMachineImageWorkloadIdentityConfig {
 
   final TfArg<bool>? identityCertificateEnabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'identity': ?identity?.toTfJson(),
     'identity_certificate_enabled': ?identityCertificateEnabled?.toTfJson(),

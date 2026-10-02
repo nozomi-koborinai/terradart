@@ -58,7 +58,7 @@ void main() {
       final src = CatalogMetadataEmitter().emit([
         CatalogEntryData(
           tfType: 'google_project',
-          className: 'GoogleProject',
+          className: 'DataGoogleProject',
           barrel: 'data',
           kind: 'dataSource',
           summary: 'Retrieve project metadata.',

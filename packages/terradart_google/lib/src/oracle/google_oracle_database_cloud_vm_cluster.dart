@@ -104,6 +104,7 @@ final class OracleDatabaseCloudVmClusterProperties {
 
   final OracleDatabaseCloudVmClusterTimeZone? timeZone;
 
+  @internal
   Map<String, Object?> encode() => {
     'cluster_name': ?clusterName?.toTfJson(),
     'cpu_core_count': cpuCoreCount.toTfJson(),
@@ -142,6 +143,7 @@ final class OracleDatabaseCloudVmClusterDiagnosticsDataCollectionOptions {
 
   final TfArg<bool>? incidentLogsEnabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'diagnostics_events_enabled': ?diagnosticsEventsEnabled?.toTfJson(),
     'health_monitoring_enabled': ?healthMonitoringEnabled?.toTfJson(),
@@ -159,6 +161,7 @@ final class OracleDatabaseCloudVmClusterTimeZone {
 
   final TfArg<String>? version;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': ?id?.toTfJson(),
     'version': ?version?.toTfJson(),

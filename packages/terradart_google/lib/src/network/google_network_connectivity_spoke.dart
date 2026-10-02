@@ -51,12 +51,15 @@ sealed class NetworkConnectivitySpokeAttachment {
   ) = NetworkConnectivitySpokeAttachmentLinkedVpnTunnels;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -67,12 +70,15 @@ final class NetworkConnectivitySpokeAttachmentGateway
 
   final NetworkConnectivitySpokeGateway gateway;
 
+  @internal
   @override
   String get blockKey => 'gateway';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'gateway': gateway.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'gateway': TfArg.literal(gateway.encode()),
@@ -89,14 +95,17 @@ final class NetworkConnectivitySpokeAttachmentLinkedInterconnectAttachments
   final NetworkConnectivitySpokeLinkedInterconnectAttachments
   linkedInterconnectAttachments;
 
+  @internal
   @override
   String get blockKey => 'linked_interconnect_attachments';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'linked_interconnect_attachments': linkedInterconnectAttachments.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'linked_interconnect_attachments': TfArg.literal(
@@ -115,14 +124,17 @@ final class NetworkConnectivitySpokeAttachmentLinkedProducerVpcNetwork
   final NetworkConnectivitySpokeLinkedProducerVpcNetwork
   linkedProducerVpcNetwork;
 
+  @internal
   @override
   String get blockKey => 'linked_producer_vpc_network';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'linked_producer_vpc_network': linkedProducerVpcNetwork.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'linked_producer_vpc_network': TfArg.literal(
@@ -141,15 +153,18 @@ final class NetworkConnectivitySpokeAttachmentLinkedRouterApplianceInstances
   final NetworkConnectivitySpokeLinkedRouterApplianceInstances
   linkedRouterApplianceInstances;
 
+  @internal
   @override
   String get blockKey => 'linked_router_appliance_instances';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'linked_router_appliance_instances': linkedRouterApplianceInstances
         .encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'linked_router_appliance_instances': TfArg.literal(
@@ -167,14 +182,17 @@ final class NetworkConnectivitySpokeAttachmentLinkedVpcNetwork
 
   final NetworkConnectivitySpokeLinkedVpcNetwork linkedVpcNetwork;
 
+  @internal
   @override
   String get blockKey => 'linked_vpc_network';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'linked_vpc_network': linkedVpcNetwork.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'linked_vpc_network': TfArg.literal(linkedVpcNetwork.encode()),
@@ -190,14 +208,17 @@ final class NetworkConnectivitySpokeAttachmentLinkedVpnTunnels
 
   final NetworkConnectivitySpokeLinkedVpnTunnels linkedVpnTunnels;
 
+  @internal
   @override
   String get blockKey => 'linked_vpn_tunnels';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'linked_vpn_tunnels': linkedVpnTunnels.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'linked_vpn_tunnels': TfArg.literal(linkedVpnTunnels.encode()),
@@ -217,6 +238,7 @@ final class NetworkConnectivitySpokeGateway {
 
   final List<NetworkConnectivitySpokeIpRangeReservations> ipRangeReservations;
 
+  @internal
   Map<String, Object?> encode() => {
     'capacity': capacity.toTfJson(),
     'ip_range_reservations': [for (final e in ipRangeReservations) e.encode()],
@@ -257,6 +279,7 @@ final class NetworkConnectivitySpokeIpRangeReservations {
 
   final TfArg<String> ipRange;
 
+  @internal
   Map<String, Object?> encode() => {'ip_range': ipRange.toTfJson()};
 }
 
@@ -285,6 +308,7 @@ final class NetworkConnectivitySpokeLinkedInterconnectAttachments {
 
   final TfArg<List<String>> uris;
 
+  @internal
   Map<String, Object?> encode() => {
     'exclude_export_ranges': ?excludeExportRanges?.toTfJson(),
     'exclude_import_ranges': ?excludeImportRanges?.toTfJson(),
@@ -314,6 +338,7 @@ final class NetworkConnectivitySpokeLinkedProducerVpcNetwork {
 
   final TfArg<String> peering;
 
+  @internal
   Map<String, Object?> encode() => {
     'exclude_export_ranges': ?excludeExportRanges?.toTfJson(),
     'include_export_ranges': ?includeExportRanges?.toTfJson(),
@@ -347,6 +372,7 @@ final class NetworkConnectivitySpokeLinkedRouterApplianceInstances {
 
   final List<NetworkConnectivitySpokeInstances> instances;
 
+  @internal
   Map<String, Object?> encode() => {
     'exclude_export_ranges': ?excludeExportRanges?.toTfJson(),
     'exclude_import_ranges': ?excludeImportRanges?.toTfJson(),
@@ -370,6 +396,7 @@ final class NetworkConnectivitySpokeInstances {
 
   final TfArg<String> virtualMachine;
 
+  @internal
   Map<String, Object?> encode() => {
     'ip_address': ipAddress.toTfJson(),
     'virtual_machine': virtualMachine.toTfJson(),
@@ -392,6 +419,7 @@ final class NetworkConnectivitySpokeLinkedVpcNetwork {
 
   final RefTo<GoogleComputeNetwork> uri;
 
+  @internal
   Map<String, Object?> encode() => {
     'exclude_export_ranges': ?excludeExportRanges?.toTfJson(),
     'include_export_ranges': ?includeExportRanges?.toTfJson(),
@@ -424,6 +452,7 @@ final class NetworkConnectivitySpokeLinkedVpnTunnels {
 
   final TfArg<List<String>> uris;
 
+  @internal
   Map<String, Object?> encode() => {
     'exclude_export_ranges': ?excludeExportRanges?.toTfJson(),
     'exclude_import_ranges': ?excludeImportRanges?.toTfJson(),

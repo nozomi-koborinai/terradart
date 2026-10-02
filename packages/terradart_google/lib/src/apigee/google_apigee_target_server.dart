@@ -72,6 +72,7 @@ final class ApigeeTargetServerSSlInfo {
 
   final ApigeeTargetServerCommonName? commonName;
 
+  @internal
   Map<String, Object?> encode() => {
     'ciphers': ?ciphers?.toTfJson(),
     'client_auth_enabled': ?clientAuthEnabled?.toTfJson(),
@@ -96,6 +97,7 @@ final class ApigeeTargetServerCommonName {
 
   final TfArg<bool>? wildcardMatch;
 
+  @internal
   Map<String, Object?> encode() => {
     'value': ?value?.toTfJson(),
     'wildcard_match': ?wildcardMatch?.toTfJson(),

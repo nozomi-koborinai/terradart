@@ -39,6 +39,7 @@ final class NetworkConnectivityGroupAutoAccept {
 
   final TfArg<List<String>> autoAcceptProjects;
 
+  @internal
   Map<String, Object?> encode() => {
     'auto_accept_projects': autoAcceptProjects.toTfJson(),
   };

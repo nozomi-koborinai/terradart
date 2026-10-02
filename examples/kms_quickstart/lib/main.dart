@@ -19,7 +19,6 @@
 /// "Before you apply").
 library;
 
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/kms.dart';
 import 'package:terradart_google/contact.dart';

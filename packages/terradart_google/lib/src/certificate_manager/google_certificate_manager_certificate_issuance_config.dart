@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../privateca/google_privateca_ca_pool.dart' show GooglePrivatecaCaPool;
@@ -43,6 +44,7 @@ final class CertificateManagerCertificateIssuanceConfigCertificateAuthorityServi
 
   final RefTo<GooglePrivatecaCaPool> caPool;
 
+  @internal
   Map<String, Object?> encode() => {
     'ca_pool': caPool.encodeAs('id').toTfJson(),
   };
@@ -57,6 +59,7 @@ final class CertificateManagerCertificateIssuanceConfigCertificateAuthorityConfi
   final CertificateManagerCertificateIssuanceConfigCertificateAuthorityServiceConfig
   certificateAuthorityServiceConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'certificate_authority_service_config': certificateAuthorityServiceConfig
         .encode(),

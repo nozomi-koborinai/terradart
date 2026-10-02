@@ -24,6 +24,7 @@ final class TimestreamwriteTableMagneticStoreWriteProperties {
   final TimestreamwriteTableMagneticStoreRejectedDataLocation?
   magneticStoreRejectedDataLocation;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_magnetic_store_writes': ?enableMagneticStoreWrites?.toTfJson(),
     'magnetic_store_rejected_data_location': ?magneticStoreRejectedDataLocation
@@ -41,6 +42,7 @@ final class TimestreamwriteTableMagneticStoreRejectedDataLocation {
 
   final TimestreamwriteTableS3Configuration? s3Configuration;
 
+  @internal
   Map<String, Object?> encode() => {
     's3_configuration': ?s3Configuration?.encode(),
   };
@@ -65,6 +67,7 @@ final class TimestreamwriteTableS3Configuration {
 
   final TfArg<String>? objectKeyPrefix;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_name': ?bucketName?.encodeAs('id').toTfJson(),
     'encryption_option': ?encryptionOption?.toTfJson(),
@@ -109,6 +112,7 @@ final class TimestreamwriteTableRetentionProperties {
 
   final TfArg<num> memoryStoreRetentionPeriodInHours;
 
+  @internal
   Map<String, Object?> encode() => {
     'magnetic_store_retention_period_in_days':
         magneticStoreRetentionPeriodInDays.toTfJson(),
@@ -125,6 +129,7 @@ final class TimestreamwriteTableSchema {
 
   final TimestreamwriteTableCompositePartitionKey? compositePartitionKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'composite_partition_key': ?compositePartitionKey?.encode(),
   };
@@ -146,6 +151,7 @@ final class TimestreamwriteTableCompositePartitionKey {
 
   final TimestreamwriteTableType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'enforcement_in_record': ?enforcementInRecord?.toTfJson(),
     'name': ?name?.toTfJson(),

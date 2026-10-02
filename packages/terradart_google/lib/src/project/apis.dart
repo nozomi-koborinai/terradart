@@ -19,7 +19,7 @@ abstract final class Apis {
   /// need the raw service list (custom wiring, partial registration, tests).
   ///
   /// IAM-only adjuncts (`*_iam_member`, `*_iam_binding`) and the
-  /// [GoogleProject] data source do not contribute APIs. The `project` barrel
+  /// [DataGoogleProject] data source do not contribute APIs. The `project` barrel
   /// only contains [GoogleProjectService] itself.
   static List<GoogleProjectService> required({
     required Iterable<Barrels> barrels,

@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../kms/aws_kms_key.dart' show AwsKmsKey;
@@ -62,12 +63,15 @@ sealed class RedshiftserverlessNamespaceAdminPassword {
   ) = RedshiftserverlessNamespaceManageAdminPassword;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -80,14 +84,17 @@ final class RedshiftserverlessNamespaceAdminPasswordAdminUserPassword
 
   final Sensitive<String> adminUserPassword;
 
+  @internal
   @override
   String get blockKey => 'admin_user_password';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'admin_user_password': adminUserPassword.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'admin_user_password': adminUserPassword,
@@ -103,14 +110,17 @@ final class RedshiftserverlessNamespaceAdminPasswordAdminUserPasswordWo
 
   final TfArg<String> adminUserPasswordWo;
 
+  @internal
   @override
   String get blockKey => 'admin_user_password_wo';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'admin_user_password_wo': adminUserPasswordWo.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'admin_user_password_wo': adminUserPasswordWo,
@@ -126,14 +136,17 @@ final class RedshiftserverlessNamespaceManageAdminPassword
 
   final TfArg<bool> manageAdminPassword;
 
+  @internal
   @override
   String get blockKey => 'manage_admin_password';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'manage_admin_password': manageAdminPassword.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'manage_admin_password': manageAdminPassword,

@@ -3,6 +3,7 @@
 /// AWS OpenSearch Ingestion.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/osis/aws_osis_pipeline.dart'
     show
         AwsOsisPipeline,

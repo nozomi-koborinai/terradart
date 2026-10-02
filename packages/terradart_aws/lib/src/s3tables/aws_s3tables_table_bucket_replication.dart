@@ -17,6 +17,7 @@ final class S3tablesTableBucketReplicationRule {
 
   final List<S3tablesTableBucketReplicationDestination>? destination;
 
+  @internal
   Map<String, Object?> encode() => {
     if (destination != null)
       'destination': [for (final e in destination!) e.encode()],
@@ -33,6 +34,7 @@ final class S3tablesTableBucketReplicationDestination {
 
   final TfArg<String> destinationTableBucketArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'destination_table_bucket_arn': destinationTableBucketArn.toTfJson(),
   };

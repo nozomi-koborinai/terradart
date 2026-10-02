@@ -54,12 +54,15 @@ sealed class LaunchTemplateDefaultVersion {
   ) = LaunchTemplateUpdateDefaultVersion;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -70,14 +73,17 @@ final class LaunchTemplateDefaultVersionChoice
 
   final TfArg<num> defaultVersion;
 
+  @internal
   @override
   String get blockKey => 'default_version';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'default_version': defaultVersion.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'default_version': defaultVersion};
 }
@@ -89,14 +95,17 @@ final class LaunchTemplateUpdateDefaultVersion
 
   final TfArg<bool> updateDefaultVersion;
 
+  @internal
   @override
   String get blockKey => 'update_default_version';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'update_default_version': updateDefaultVersion.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'update_default_version': updateDefaultVersion,
@@ -122,12 +131,15 @@ sealed class LaunchTemplateInstance {
   ) = LaunchTemplateInstanceType;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -138,14 +150,17 @@ final class LaunchTemplateInstanceRequirementsChoice
 
   final LaunchTemplateInstanceRequirements instanceRequirements;
 
+  @internal
   @override
   String get blockKey => 'instance_requirements';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'instance_requirements': instanceRequirements.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'instance_requirements': TfArg.literal(instanceRequirements.encode()),
@@ -158,12 +173,15 @@ final class LaunchTemplateInstanceType extends LaunchTemplateInstance {
 
   final TfArg<String> instanceType;
 
+  @internal
   @override
   String get blockKey => 'instance_type';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'instance_type': instanceType.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'instance_type': instanceType};
 }
@@ -185,12 +203,15 @@ sealed class LaunchTemplateName {
       LaunchTemplateNamePrefix;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -200,12 +221,15 @@ final class LaunchTemplateNameChoice extends LaunchTemplateName {
 
   final TfArg<String> name;
 
+  @internal
   @override
   String get blockKey => 'name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
@@ -216,12 +240,15 @@ final class LaunchTemplateNamePrefix extends LaunchTemplateName {
 
   final TfArg<String> namePrefix;
 
+  @internal
   @override
   String get blockKey => 'name_prefix';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'name_prefix': namePrefix.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'name_prefix': namePrefix};
 }
@@ -245,12 +272,15 @@ sealed class LaunchTemplateSecurityGroups {
   ) = LaunchTemplateSecurityGroupsVpcSecurityGroupIds;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -261,14 +291,17 @@ final class LaunchTemplateSecurityGroupsSecurityGroupNames
 
   final TfArg<List<String>> securityGroupNames;
 
+  @internal
   @override
   String get blockKey => 'security_group_names';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'security_group_names': securityGroupNames.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'security_group_names': securityGroupNames,
@@ -284,14 +317,17 @@ final class LaunchTemplateSecurityGroupsVpcSecurityGroupIds
 
   final TfArg<List<RefTo<AwsSecurityGroup>>> vpcSecurityGroupIds;
 
+  @internal
   @override
   String get blockKey => 'vpc_security_group_ids';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'vpc_security_group_ids': vpcSecurityGroupIds.encodeAs('id').toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'vpc_security_group_ids': vpcSecurityGroupIds.encodeAs('id'),
@@ -317,6 +353,7 @@ final class LaunchTemplateBlockDeviceMappings {
 
   final LaunchTemplateEbs? ebs;
 
+  @internal
   Map<String, Object?> encode() => {
     'device_name': ?deviceName?.toTfJson(),
     'no_device': ?noDevice?.toTfJson(),
@@ -359,6 +396,7 @@ final class LaunchTemplateEbs {
 
   final LaunchTemplateVolumeType? volumeType;
 
+  @internal
   Map<String, Object?> encode() => {
     'delete_on_termination': ?deleteOnTermination?.toTfJson(),
     'encrypted': ?encrypted?.toTfJson(),
@@ -413,6 +451,7 @@ final class LaunchTemplateCapacityReservationSpecification {
 
   final LaunchTemplateCapacityReservationTarget? capacityReservationTarget;
 
+  @internal
   Map<String, Object?> encode() => {
     'capacity_reservation_preference': ?capacityReservationPreference
         ?.toTfJson(),
@@ -468,8 +507,10 @@ sealed class LaunchTemplateCapacityReservationTarget {
   ) = LaunchTemplateCapacityReservationTargetCapacityReservationResourceGroupArn;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -482,9 +523,11 @@ final class LaunchTemplateCapacityReservationTargetCapacityReservationId
 
   final TfArg<String> capacityReservationId;
 
+  @internal
   @override
   String get blockKey => 'capacity_reservation_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'capacity_reservation_id': capacityReservationId.toTfJson(),
@@ -500,9 +543,11 @@ final class LaunchTemplateCapacityReservationTargetCapacityReservationResourceGr
 
   final TfArg<String> capacityReservationResourceGroupArn;
 
+  @internal
   @override
   String get blockKey => 'capacity_reservation_resource_group_arn';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'capacity_reservation_resource_group_arn':
@@ -529,6 +574,7 @@ final class LaunchTemplateCpuOptions {
 
   final TfArg<num>? threadsPerCore;
 
+  @internal
   Map<String, Object?> encode() => {
     'amd_sev_snp': ?amdSevSnp?.toTfJson(),
     'core_count': ?coreCount?.toTfJson(),
@@ -581,6 +627,7 @@ final class LaunchTemplateCreditSpecification {
 
   final LaunchTemplateCpuCredits? cpuCredits;
 
+  @internal
   Map<String, Object?> encode() => {'cpu_credits': ?cpuCredits?.toTfJson()};
 }
 
@@ -608,6 +655,7 @@ final class LaunchTemplateEnclaveOptions {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
@@ -619,6 +667,7 @@ final class LaunchTemplateHibernationOptions {
 
   final TfArg<bool> configured;
 
+  @internal
   Map<String, Object?> encode() => {'configured': configured.toTfJson()};
 }
 
@@ -639,8 +688,10 @@ sealed class LaunchTemplateIamInstanceProfile {
       LaunchTemplateIamInstanceProfileName;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -651,9 +702,11 @@ final class LaunchTemplateIamInstanceProfileArn
 
   final TfArg<String> arn;
 
+  @internal
   @override
   String get blockKey => 'arn';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'arn': arn.toTfJson()};
 }
@@ -665,9 +718,11 @@ final class LaunchTemplateIamInstanceProfileName
 
   final TfArg<String> name;
 
+  @internal
   @override
   String get blockKey => 'name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
@@ -685,6 +740,7 @@ final class LaunchTemplateInstanceMarketOptions {
 
   final LaunchTemplateSpotOptions? spotOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'market_type': ?marketType?.toTfJson(),
     'spot_options': ?spotOptions?.encode(),
@@ -739,6 +795,7 @@ final class LaunchTemplateSpotOptions {
 
   final TfArg<String>? validUntil;
 
+  @internal
   Map<String, Object?> encode() => {
     'block_duration_minutes': ?blockDurationMinutes?.toTfJson(),
     'instance_interruption_behavior': ?instanceInterruptionBehavior?.toTfJson(),
@@ -871,6 +928,7 @@ final class LaunchTemplateInstanceRequirements {
 
   final LaunchTemplateVcpuCount vcpuCount;
 
+  @internal
   Map<String, Object?> encode() => {
     if (acceleratorManufacturers != null)
       'accelerator_manufacturers': [
@@ -927,8 +985,10 @@ sealed class LaunchTemplateInstanceTypes {
   ) = LaunchTemplateExcludedInstanceTypes;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -939,9 +999,11 @@ final class LaunchTemplateAllowedInstanceTypes
 
   final TfArg<List<String>> allowedInstanceTypes;
 
+  @internal
   @override
   String get blockKey => 'allowed_instance_types';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'allowed_instance_types': allowedInstanceTypes.toTfJson(),
@@ -955,9 +1017,11 @@ final class LaunchTemplateExcludedInstanceTypes
 
   final TfArg<List<String>> excludedInstanceTypes;
 
+  @internal
   @override
   String get blockKey => 'excluded_instance_types';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'excluded_instance_types': excludedInstanceTypes.toTfJson(),
@@ -983,8 +1047,10 @@ sealed class LaunchTemplatePrice {
   ) = LaunchTemplateSpotMaxPricePercentageOverLowestPrice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -997,10 +1063,12 @@ final class LaunchTemplateMaxSpotPriceAsPercentageOfOptimalOnDemandPrice
 
   final TfArg<num> maxSpotPriceAsPercentageOfOptimalOnDemandPrice;
 
+  @internal
   @override
   String get blockKey =>
       'max_spot_price_as_percentage_of_optimal_on_demand_price';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'max_spot_price_as_percentage_of_optimal_on_demand_price':
@@ -1017,9 +1085,11 @@ final class LaunchTemplateSpotMaxPricePercentageOverLowestPrice
 
   final TfArg<num> spotMaxPricePercentageOverLowestPrice;
 
+  @internal
   @override
   String get blockKey => 'spot_max_price_percentage_over_lowest_price';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'spot_max_price_percentage_over_lowest_price':
@@ -1292,6 +1362,7 @@ final class LaunchTemplateAcceleratorCount {
 
   final TfArg<num>? min;
 
+  @internal
   Map<String, Object?> encode() => {
     'max': ?max?.toTfJson(),
     'min': ?min?.toTfJson(),
@@ -1308,6 +1379,7 @@ final class LaunchTemplateAcceleratorTotalMemoryMib {
 
   final TfArg<num>? min;
 
+  @internal
   Map<String, Object?> encode() => {
     'max': ?max?.toTfJson(),
     'min': ?min?.toTfJson(),
@@ -1324,6 +1396,7 @@ final class LaunchTemplateBaselineEbsBandwidthMbps {
 
   final TfArg<num>? min;
 
+  @internal
   Map<String, Object?> encode() => {
     'max': ?max?.toTfJson(),
     'min': ?min?.toTfJson(),
@@ -1340,6 +1413,7 @@ final class LaunchTemplateMemoryGibPerVcpu {
 
   final TfArg<num>? min;
 
+  @internal
   Map<String, Object?> encode() => {
     'max': ?max?.toTfJson(),
     'min': ?min?.toTfJson(),
@@ -1356,6 +1430,7 @@ final class LaunchTemplateMemoryMib {
 
   final TfArg<num> min;
 
+  @internal
   Map<String, Object?> encode() => {
     'max': ?max?.toTfJson(),
     'min': min.toTfJson(),
@@ -1372,6 +1447,7 @@ final class LaunchTemplateNetworkBandwidthGbps {
 
   final TfArg<num>? min;
 
+  @internal
   Map<String, Object?> encode() => {
     'max': ?max?.toTfJson(),
     'min': ?min?.toTfJson(),
@@ -1388,6 +1464,7 @@ final class LaunchTemplateNetworkInterfaceCount {
 
   final TfArg<num>? min;
 
+  @internal
   Map<String, Object?> encode() => {
     'max': ?max?.toTfJson(),
     'min': ?min?.toTfJson(),
@@ -1404,6 +1481,7 @@ final class LaunchTemplateTotalLocalStorageGb {
 
   final TfArg<num>? min;
 
+  @internal
   Map<String, Object?> encode() => {
     'max': ?max?.toTfJson(),
     'min': ?min?.toTfJson(),
@@ -1420,6 +1498,7 @@ final class LaunchTemplateVcpuCount {
 
   final TfArg<num> min;
 
+  @internal
   Map<String, Object?> encode() => {
     'max': ?max?.toTfJson(),
     'min': min.toTfJson(),
@@ -1436,6 +1515,7 @@ final class LaunchTemplateLicenseSpecification {
 
   final TfArg<String> licenseConfigurationArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'license_configuration_arn': licenseConfigurationArn.toTfJson(),
   };
@@ -1449,6 +1529,7 @@ final class LaunchTemplateMaintenanceOptions {
 
   final LaunchTemplateAutoRecovery? autoRecovery;
 
+  @internal
   Map<String, Object?> encode() => {'auto_recovery': ?autoRecovery?.toTfJson()};
 }
 
@@ -1496,6 +1577,7 @@ final class LaunchTemplateMetadataOptions {
 
   final LaunchTemplateInstanceMetadataTags? instanceMetadataTags;
 
+  @internal
   Map<String, Object?> encode() => {
     'http_endpoint': ?httpEndpoint?.toTfJson(),
     'http_protocol_ipv6': ?httpProtocolIpv6?.toTfJson(),
@@ -1588,6 +1670,7 @@ final class LaunchTemplateMonitoring {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
@@ -1668,6 +1751,7 @@ final class LaunchTemplateNetworkInterfaces {
 
   final LaunchTemplateEnaSrdSpecification? enaSrdSpecification;
 
+  @internal
   Map<String, Object?> encode() => {
     'associate_carrier_ip_address': ?associateCarrierIpAddress?.toTfJson(),
     'associate_public_ip_address': ?associatePublicIpAddress?.toTfJson(),
@@ -1740,6 +1824,7 @@ final class LaunchTemplateConnectionTrackingSpecification {
 
   final TfArg<num>? udpTimeout;
 
+  @internal
   Map<String, Object?> encode() => {
     'tcp_established_timeout': ?tcpEstablishedTimeout?.toTfJson(),
     'udp_stream_timeout': ?udpStreamTimeout?.toTfJson(),
@@ -1760,6 +1845,7 @@ final class LaunchTemplateEnaSrdSpecification {
 
   final LaunchTemplateEnaSrdUdpSpecification? enaSrdUdpSpecification;
 
+  @internal
   Map<String, Object?> encode() => {
     'ena_srd_enabled': ?enaSrdEnabled?.toTfJson(),
     'ena_srd_udp_specification': ?enaSrdUdpSpecification?.encode(),
@@ -1774,6 +1860,7 @@ final class LaunchTemplateEnaSrdUdpSpecification {
 
   final TfArg<bool>? enaSrdUdpEnabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'ena_srd_udp_enabled': ?enaSrdUdpEnabled?.toTfJson(),
   };
@@ -1787,6 +1874,7 @@ final class LaunchTemplateNetworkPerformanceOptions {
 
   final LaunchTemplateBandwidthWeighting? bandwidthWeighting;
 
+  @internal
   Map<String, Object?> encode() => {
     'bandwidth_weighting': ?bandwidthWeighting?.toTfJson(),
   };
@@ -1842,6 +1930,7 @@ final class LaunchTemplatePlacement {
 
   final LaunchTemplateTenancy? tenancy;
 
+  @internal
   Map<String, Object?> encode() => {
     'affinity': ?affinity?.toTfJson(),
     'availability_zone': ?availabilityZone?.toTfJson(),
@@ -1870,8 +1959,10 @@ sealed class LaunchTemplateGroup {
       LaunchTemplateGroupName;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -1881,9 +1972,11 @@ final class LaunchTemplateGroupId extends LaunchTemplateGroup {
 
   final TfArg<String> groupId;
 
+  @internal
   @override
   String get blockKey => 'group_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'group_id': groupId.toTfJson()};
 }
@@ -1894,9 +1987,11 @@ final class LaunchTemplateGroupName extends LaunchTemplateGroup {
 
   final TfArg<String> groupName;
 
+  @internal
   @override
   String get blockKey => 'group_name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'group_name': groupName.toTfJson()};
 }
@@ -1919,8 +2014,10 @@ sealed class LaunchTemplateHost {
   ) = LaunchTemplateHostResourceGroupArn;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -1930,9 +2027,11 @@ final class LaunchTemplateHostId extends LaunchTemplateHost {
 
   final TfArg<String> hostId;
 
+  @internal
   @override
   String get blockKey => 'host_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'host_id': hostId.toTfJson()};
 }
@@ -1943,9 +2042,11 @@ final class LaunchTemplateHostResourceGroupArn extends LaunchTemplateHost {
 
   final TfArg<String> hostResourceGroupArn;
 
+  @internal
   @override
   String get blockKey => 'host_resource_group_arn';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'host_resource_group_arn': hostResourceGroupArn.toTfJson(),
@@ -1987,6 +2088,7 @@ final class LaunchTemplatePrivateDnsNameOptions {
 
   final LaunchTemplateHostnameType? hostnameType;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_resource_name_dns_a_record': ?enableResourceNameDnsARecord
         ?.toTfJson(),
@@ -2041,6 +2143,7 @@ final class LaunchTemplateSecondaryInterfaces {
 
   final TfArg<String>? secondarySubnetId;
 
+  @internal
   Map<String, Object?> encode() => {
     'delete_on_termination': ?deleteOnTermination?.toTfJson(),
     'device_index': ?deviceIndex?.toTfJson(),
@@ -2082,6 +2185,7 @@ final class LaunchTemplateTagSpecifications {
 
   final TfArg<Map<String, String>>? tags;
 
+  @internal
   Map<String, Object?> encode() => {
     'resource_type': ?resourceType?.toTfJson(),
     'tags': ?tags?.toTfJson(),

@@ -30,8 +30,10 @@ sealed class RedshiftScheduledActionTargetAction {
   ) = RedshiftScheduledActionTargetActionResumeCluster;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -42,9 +44,11 @@ final class RedshiftScheduledActionTargetActionPauseCluster
 
   final RedshiftScheduledActionPauseCluster pauseCluster;
 
+  @internal
   @override
   String get blockKey => 'pause_cluster';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'pause_cluster': pauseCluster.encode()};
 }
@@ -56,9 +60,11 @@ final class RedshiftScheduledActionTargetActionResizeCluster
 
   final RedshiftScheduledActionResizeCluster resizeCluster;
 
+  @internal
   @override
   String get blockKey => 'resize_cluster';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'resize_cluster': resizeCluster.encode()};
 }
@@ -70,9 +76,11 @@ final class RedshiftScheduledActionTargetActionResumeCluster
 
   final RedshiftScheduledActionResumeCluster resumeCluster;
 
+  @internal
   @override
   String get blockKey => 'resume_cluster';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'resume_cluster': resumeCluster.encode()};
 }
@@ -85,6 +93,7 @@ final class RedshiftScheduledActionPauseCluster {
 
   final TfArg<String> clusterIdentifier;
 
+  @internal
   Map<String, Object?> encode() => {
     'cluster_identifier': clusterIdentifier.toTfJson(),
   };
@@ -112,6 +121,7 @@ final class RedshiftScheduledActionResizeCluster {
 
   final TfArg<num>? numberOfNodes;
 
+  @internal
   Map<String, Object?> encode() => {
     'classic': ?classic?.toTfJson(),
     'cluster_identifier': clusterIdentifier.toTfJson(),
@@ -129,6 +139,7 @@ final class RedshiftScheduledActionResumeCluster {
 
   final TfArg<String> clusterIdentifier;
 
+  @internal
   Map<String, Object?> encode() => {
     'cluster_identifier': clusterIdentifier.toTfJson(),
   };

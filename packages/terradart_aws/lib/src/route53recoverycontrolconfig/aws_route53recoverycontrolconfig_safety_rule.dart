@@ -26,12 +26,15 @@ sealed class Route53recoverycontrolconfigSafetyRuleControls {
   ) = Route53recoverycontrolconfigSafetyRuleGatingControls;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -44,14 +47,17 @@ final class Route53recoverycontrolconfigSafetyRuleAssertedControls
 
   final TfArg<List<String>> assertedControls;
 
+  @internal
   @override
   String get blockKey => 'asserted_controls';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'asserted_controls': assertedControls.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'asserted_controls': assertedControls,
@@ -67,14 +73,17 @@ final class Route53recoverycontrolconfigSafetyRuleGatingControls
 
   final TfArg<List<String>> gatingControls;
 
+  @internal
   @override
   String get blockKey => 'gating_controls';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'gating_controls': gatingControls.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'gating_controls': gatingControls};
 }
@@ -95,6 +104,7 @@ final class Route53recoverycontrolconfigSafetyRuleConfig {
 
   final Route53recoverycontrolconfigSafetyRuleType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'inverted': inverted.toTfJson(),
     'threshold': threshold.toTfJson(),

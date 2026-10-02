@@ -3,6 +3,14 @@
 /// Cloud DNS managed zones (public, private, peering, forwarding).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/google_dns_keys.dart' show DataGoogleDnsKeys;
+export 'src/data/google_dns_managed_zone.dart' show DataGoogleDnsManagedZone;
+export 'src/data/google_dns_managed_zone_iam_policy.dart'
+    show DataGoogleDnsManagedZoneIamPolicy;
+export 'src/data/google_dns_managed_zones.dart' show DataGoogleDnsManagedZones;
+export 'src/data/google_dns_record_set.dart' show DataGoogleDnsRecordSet;
+export 'src/data/google_dns_record_sets.dart' show DataGoogleDnsRecordSets;
 export 'src/dns/google_dns_managed_zone.dart'
     show
         DnsManagedZoneCloudLoggingConfig,

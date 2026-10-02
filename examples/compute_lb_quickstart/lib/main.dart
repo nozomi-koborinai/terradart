@@ -41,7 +41,6 @@
 /// variables (synth rejects literals on sensitive fields).
 library;
 
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/certificate_manager.dart';
 import 'package:terradart_google/compute.dart';
 import 'package:terradart_google/iap.dart';

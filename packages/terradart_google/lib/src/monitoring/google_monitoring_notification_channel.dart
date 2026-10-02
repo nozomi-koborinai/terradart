@@ -30,6 +30,7 @@ final class MonitoringNotificationChannelSensitiveLabels {
 
   final TfArg<String>? serviceKeyWoVersion;
 
+  @internal
   Map<String, Object?> encode() => {
     ...credential.encode(),
     'auth_token_wo_version': ?authTokenWoVersion?.toTfJson(),
@@ -76,8 +77,10 @@ sealed class MonitoringNotificationChannelCredential {
   ) = MonitoringNotificationChannelCredentialServiceKeyWo;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -88,9 +91,11 @@ final class MonitoringNotificationChannelCredentialAuthToken
 
   final Sensitive<String> authToken;
 
+  @internal
   @override
   String get blockKey => 'auth_token';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'auth_token': authToken.toTfJson()};
 }
@@ -102,9 +107,11 @@ final class MonitoringNotificationChannelCredentialAuthTokenWo
 
   final TfArg<String> authTokenWo;
 
+  @internal
   @override
   String get blockKey => 'auth_token_wo';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'auth_token_wo': authTokenWo.toTfJson()};
 }
@@ -116,9 +123,11 @@ final class MonitoringNotificationChannelCredentialPassword
 
   final Sensitive<String> password;
 
+  @internal
   @override
   String get blockKey => 'password';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'password': password.toTfJson()};
 }
@@ -130,9 +139,11 @@ final class MonitoringNotificationChannelCredentialPasswordWo
 
   final TfArg<String> passwordWo;
 
+  @internal
   @override
   String get blockKey => 'password_wo';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'password_wo': passwordWo.toTfJson()};
 }
@@ -144,9 +155,11 @@ final class MonitoringNotificationChannelCredentialServiceKey
 
   final Sensitive<String> serviceKey;
 
+  @internal
   @override
   String get blockKey => 'service_key';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'service_key': serviceKey.toTfJson()};
 }
@@ -158,9 +171,11 @@ final class MonitoringNotificationChannelCredentialServiceKeyWo
 
   final TfArg<String> serviceKeyWo;
 
+  @internal
   @override
   String get blockKey => 'service_key_wo';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'service_key_wo': serviceKeyWo.toTfJson()};
 }

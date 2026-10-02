@@ -39,6 +39,7 @@ final class S3BucketObjectLockConfigurationRule {
 
   final S3BucketObjectLockConfigurationDefaultRetention defaultRetention;
 
+  @internal
   Map<String, Object?> encode() => {
     'default_retention': defaultRetention.encode(),
   };
@@ -57,6 +58,7 @@ final class S3BucketObjectLockConfigurationDefaultRetention {
 
   final S3BucketObjectLockConfigurationMode? mode;
 
+  @internal
   Map<String, Object?> encode() => {
     ...?period?.encode(),
     'mode': ?mode?.toTfJson(),
@@ -80,8 +82,10 @@ sealed class S3BucketObjectLockConfigurationPeriod {
       S3BucketObjectLockConfigurationPeriodYears;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -92,9 +96,11 @@ final class S3BucketObjectLockConfigurationPeriodDays
 
   final TfArg<num> days;
 
+  @internal
   @override
   String get blockKey => 'days';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'days': days.toTfJson()};
 }
@@ -106,9 +112,11 @@ final class S3BucketObjectLockConfigurationPeriodYears
 
   final TfArg<num> years;
 
+  @internal
   @override
   String get blockKey => 'years';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'years': years.toTfJson()};
 }

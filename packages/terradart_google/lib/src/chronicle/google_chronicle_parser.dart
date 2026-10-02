@@ -17,6 +17,7 @@ final class ChronicleParserLowCode {
 
   final ChronicleParserFieldExtractors? fieldExtractors;
 
+  @internal
   Map<String, Object?> encode() => {
     'log': ?log?.toTfJson(),
     'field_extractors': ?fieldExtractors?.encode(),
@@ -42,6 +43,7 @@ final class ChronicleParserFieldExtractors {
 
   final ChronicleParserPreprocessConfig? preprocessConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'append_repeated_fields': ?appendRepeatedFields?.toTfJson(),
     'log_format': ?logFormat?.toTfJson(),
@@ -76,6 +78,7 @@ final class ChronicleParserExtractors {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'destination_path': ?destinationPath?.toTfJson(),
     'field_path': ?fieldPath?.toTfJson(),
@@ -96,6 +99,7 @@ final class ChronicleParserPreprocessConfig {
 
   final TfArg<String>? target;
 
+  @internal
   Map<String, Object?> encode() => {
     'grok_regex': ?grokRegex?.toTfJson(),
     'target': ?target?.toTfJson(),
@@ -110,6 +114,7 @@ final class ChronicleParserVersionInfo {
 
   final TfArg<bool> autoUpgradeDisabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'auto_upgrade_disabled': autoUpgradeDisabled.toTfJson(),
   };

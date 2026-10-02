@@ -19,6 +19,7 @@ final class MemorystoreInstanceDesiredUserCreatedEndpoints {
   final List<MemorystoreInstanceDesiredUserCreatedEndpointsConnections>?
   connections;
 
+  @internal
   Map<String, Object?> encode() => {
     if (connections != null)
       'connections': [for (final e in connections!) e.encode()],
@@ -36,6 +37,7 @@ final class MemorystoreInstanceDesiredUserCreatedEndpointsConnections {
   final MemorystoreInstanceDesiredUserCreatedEndpointsPscConnection?
   pscConnection;
 
+  @internal
   Map<String, Object?> encode() => {'psc_connection': ?pscConnection?.encode()};
 }
 
@@ -64,6 +66,7 @@ final class MemorystoreInstanceDesiredUserCreatedEndpointsPscConnection {
 
   final TfArg<String> serviceAttachment;
 
+  @internal
   Map<String, Object?> encode() => {
     'forwarding_rule': forwardingRule.toTfJson(),
     'ip_address': ipAddress.toTfJson(),

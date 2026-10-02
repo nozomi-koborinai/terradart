@@ -25,6 +25,7 @@ final class KeyspacesTableCapacitySpecification {
 
   final TfArg<num>? writeCapacityUnits;
 
+  @internal
   Map<String, Object?> encode() => {
     'read_capacity_units': ?readCapacityUnits?.toTfJson(),
     'throughput_mode': ?throughputMode?.toTfJson(),
@@ -62,6 +63,7 @@ final class KeyspacesTableClientSideTimestamps {
 
   final KeyspacesTableClientSideTimestampsStatus status;
 
+  @internal
   Map<String, Object?> encode() => {'status': status.toTfJson()};
 }
 
@@ -92,6 +94,7 @@ final class KeyspacesTableComment {
 
   final TfArg<String>? message;
 
+  @internal
   Map<String, Object?> encode() => {'message': ?message?.toTfJson()};
 }
 
@@ -108,6 +111,7 @@ final class KeyspacesTableEncryptionSpecification {
 
   final KeyspacesTableType? type;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_identifier': ?kmsKeyIdentifier?.encodeAs('arn').toTfJson(),
     'type': ?type?.toTfJson(),
@@ -143,6 +147,7 @@ final class KeyspacesTablePointInTimeRecovery {
 
   final KeyspacesTablePointInTimeRecoveryStatus? status;
 
+  @internal
   Map<String, Object?> encode() => {'status': ?status?.toTfJson()};
 }
 
@@ -188,6 +193,7 @@ final class KeyspacesTableSchemaDefinition {
 
   final List<KeyspacesTableStaticColumn>? staticColumn;
 
+  @internal
   Map<String, Object?> encode() => {
     if (clusteringKey != null)
       'clustering_key': [for (final e in clusteringKey!) e.encode()],
@@ -211,6 +217,7 @@ final class KeyspacesTableClusteringKey {
 
   final KeyspacesTableOrderBy orderBy;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'order_by': orderBy.toTfJson(),
@@ -241,6 +248,7 @@ final class KeyspacesTableColumn {
 
   final TfArg<String> type;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'type': type.toTfJson(),
@@ -255,6 +263,7 @@ final class KeyspacesTablePartitionKey {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 
@@ -266,6 +275,7 @@ final class KeyspacesTableStaticColumn {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 
@@ -277,6 +287,7 @@ final class KeyspacesTableTtl {
 
   final KeyspacesTableClientSideTimestampsStatus status;
 
+  @internal
   Map<String, Object?> encode() => {'status': status.toTfJson()};
 }
 

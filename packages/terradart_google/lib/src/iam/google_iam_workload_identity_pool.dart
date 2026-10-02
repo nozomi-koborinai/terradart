@@ -56,6 +56,7 @@ final class IamWorkloadIdentityPoolAttestationRules {
 
   final TfArg<String> googleCloudResource;
 
+  @internal
   Map<String, Object?> encode() => {
     'google_cloud_resource': googleCloudResource.toTfJson(),
   };
@@ -80,6 +81,7 @@ final class IamWorkloadIdentityPoolInlineCertificateIssuanceConfig {
 
   final TfArg<num>? rotationWindowPercentage;
 
+  @internal
   Map<String, Object?> encode() => {
     ...ca.encode(),
     'key_algorithm': ?keyAlgorithm?.toTfJson(),
@@ -106,8 +108,10 @@ sealed class IamWorkloadIdentityPoolCa {
   ) = IamWorkloadIdentityPoolUseDefaultSharedCa;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -117,9 +121,11 @@ final class IamWorkloadIdentityPoolCaPools extends IamWorkloadIdentityPoolCa {
 
   final TfArg<Map<String, String>> caPools;
 
+  @internal
   @override
   String get blockKey => 'ca_pools';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'ca_pools': caPools.toTfJson()};
 }
@@ -131,9 +137,11 @@ final class IamWorkloadIdentityPoolUseDefaultSharedCa
 
   final TfArg<bool> useDefaultSharedCa;
 
+  @internal
   @override
   String get blockKey => 'use_default_shared_ca';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'use_default_shared_ca': useDefaultSharedCa.toTfJson(),
@@ -184,6 +192,7 @@ final class IamWorkloadIdentityPoolInlineTrustConfig {
   final List<IamWorkloadIdentityPoolAdditionalTrustBundles>?
   additionalTrustBundles;
 
+  @internal
   Map<String, Object?> encode() => {
     if (additionalTrustBundles != null)
       'additional_trust_bundles': [
@@ -208,6 +217,7 @@ final class IamWorkloadIdentityPoolAdditionalTrustBundles {
 
   final List<IamWorkloadIdentityPoolTrustAnchors> trustAnchors;
 
+  @internal
   Map<String, Object?> encode() => {
     'trust_default_shared_ca': ?trustDefaultSharedCa?.toTfJson(),
     'trust_domain': trustDomain.toTfJson(),
@@ -223,6 +233,7 @@ final class IamWorkloadIdentityPoolTrustAnchors {
 
   final TfArg<String> pemCertificate;
 
+  @internal
   Map<String, Object?> encode() => {
     'pem_certificate': pemCertificate.toTfJson(),
   };

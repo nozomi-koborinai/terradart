@@ -38,6 +38,7 @@ final class DataformRepositoryReleaseConfigCodeCompilationConfig {
 
   final TfArg<Map<String, String>>? vars;
 
+  @internal
   Map<String, Object?> encode() => {
     'assertion_schema': ?assertionSchema?.toTfJson(),
     'database_suffix': ?databaseSuffix?.toTfJson(),

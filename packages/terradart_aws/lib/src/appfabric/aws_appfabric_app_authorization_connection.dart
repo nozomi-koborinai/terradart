@@ -20,6 +20,7 @@ final class AppfabricAppAuthorizationConnectionAuthRequest {
 
   final TfArg<String> redirectUri;
 
+  @internal
   Map<String, Object?> encode() => {
     'code': code.toTfJson(),
     'redirect_uri': redirectUri.toTfJson(),

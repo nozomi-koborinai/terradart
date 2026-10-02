@@ -25,6 +25,7 @@ final class AppintegrationsDataIntegrationScheduleConfig {
 
   final TfArg<String> scheduleExpression;
 
+  @internal
   Map<String, Object?> encode() => {
     'first_execution_from': firstExecutionFrom.toTfJson(),
     'object': object.toTfJson(),

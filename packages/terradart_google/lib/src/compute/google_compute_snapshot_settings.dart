@@ -20,6 +20,7 @@ final class ComputeSnapshotSettingsStorageLocation {
 
   final List<ComputeSnapshotSettingsLocations>? locations;
 
+  @internal
   Map<String, Object?> encode() => {
     'policy': policy.toTfJson(),
     if (locations != null)
@@ -66,6 +67,7 @@ final class ComputeSnapshotSettingsLocations {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {
     'location': location.toTfJson(),
     'name': name.toTfJson(),

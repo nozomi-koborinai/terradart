@@ -17,6 +17,7 @@ final class SsmcontactsPlanStage {
 
   final List<SsmcontactsPlanTarget>? target;
 
+  @internal
   Map<String, Object?> encode() => {
     'duration_in_minutes': durationInMinutes.toTfJson(),
     if (target != null) 'target': [for (final e in target!) e.encode()],
@@ -33,6 +34,7 @@ final class SsmcontactsPlanTarget {
 
   final SsmcontactsPlanContactTargetInfo? contactTargetInfo;
 
+  @internal
   Map<String, Object?> encode() => {
     'channel_target_info': ?channelTargetInfo?.encode(),
     'contact_target_info': ?contactTargetInfo?.encode(),
@@ -52,6 +54,7 @@ final class SsmcontactsPlanChannelTargetInfo {
 
   final TfArg<num>? retryIntervalInMinutes;
 
+  @internal
   Map<String, Object?> encode() => {
     'contact_channel_id': contactChannelId.toTfJson(),
     'retry_interval_in_minutes': ?retryIntervalInMinutes?.toTfJson(),
@@ -71,6 +74,7 @@ final class SsmcontactsPlanContactTargetInfo {
 
   final TfArg<bool> isEssential;
 
+  @internal
   Map<String, Object?> encode() => {
     'contact_id': ?contactId?.toTfJson(),
     'is_essential': isEssential.toTfJson(),

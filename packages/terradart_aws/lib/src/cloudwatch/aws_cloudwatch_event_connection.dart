@@ -65,6 +65,7 @@ final class CloudwatchEventConnectionAuthParameters {
   final CloudwatchEventConnectionInvocationHttpParameters?
   invocationHttpParameters;
 
+  @internal
   Map<String, Object?> encode() => {
     ...auth.encode(),
     'connectivity_parameters': ?connectivityParameters?.encode(),
@@ -95,8 +96,10 @@ sealed class CloudwatchEventConnectionAuth {
   ) = CloudwatchEventConnectionAuthOauth;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -107,9 +110,11 @@ final class CloudwatchEventConnectionAuthApiKey
 
   final CloudwatchEventConnectionApiKey apiKey;
 
+  @internal
   @override
   String get blockKey => 'api_key';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'api_key': apiKey.encode()};
 }
@@ -121,9 +126,11 @@ final class CloudwatchEventConnectionAuthBasic
 
   final CloudwatchEventConnectionBasic basic;
 
+  @internal
   @override
   String get blockKey => 'basic';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'basic': basic.encode()};
 }
@@ -135,9 +142,11 @@ final class CloudwatchEventConnectionAuthOauth
 
   final CloudwatchEventConnectionOauth oauth;
 
+  @internal
   @override
   String get blockKey => 'oauth';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'oauth': oauth.encode()};
 }
@@ -155,6 +164,7 @@ final class CloudwatchEventConnectionApiKey {
 
   final Sensitive<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'value': value.toTfJson(),
@@ -174,6 +184,7 @@ final class CloudwatchEventConnectionBasic {
 
   final TfArg<String> username;
 
+  @internal
   Map<String, Object?> encode() => {
     'password': password.toTfJson(),
     'username': username.toTfJson(),
@@ -190,6 +201,7 @@ final class CloudwatchEventConnectionConnectivityParameters {
 
   final CloudwatchEventConnectionResourceParameters resourceParameters;
 
+  @internal
   Map<String, Object?> encode() => {
     'resource_parameters': resourceParameters.encode(),
   };
@@ -206,6 +218,7 @@ final class CloudwatchEventConnectionResourceParameters {
 
   final TfArg<String> resourceConfigurationArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'resource_configuration_arn': resourceConfigurationArn.toTfJson(),
   };
@@ -227,6 +240,7 @@ final class CloudwatchEventConnectionInvocationHttpParameters {
 
   final List<CloudwatchEventConnectionQueryString>? queryString;
 
+  @internal
   Map<String, Object?> encode() => {
     if (body != null) 'body': [for (final e in body!) e.encode()],
     if (header != null) 'header': [for (final e in header!) e.encode()],
@@ -252,6 +266,7 @@ final class CloudwatchEventConnectionBody {
 
   final Sensitive<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'is_value_secret': ?isValueSecret?.toTfJson(),
     'key': ?key?.toTfJson(),
@@ -276,6 +291,7 @@ final class CloudwatchEventConnectionHeader {
 
   final Sensitive<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'is_value_secret': ?isValueSecret?.toTfJson(),
     'key': ?key?.toTfJson(),
@@ -300,6 +316,7 @@ final class CloudwatchEventConnectionQueryString {
 
   final Sensitive<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'is_value_secret': ?isValueSecret?.toTfJson(),
     'key': ?key?.toTfJson(),
@@ -326,6 +343,7 @@ final class CloudwatchEventConnectionOauth {
 
   final CloudwatchEventConnectionOauthHttpParameters oauthHttpParameters;
 
+  @internal
   Map<String, Object?> encode() => {
     'authorization_endpoint': authorizationEndpoint.toTfJson(),
     'http_method': httpMethod.toTfJson(),
@@ -370,6 +388,7 @@ final class CloudwatchEventConnectionClientParameters {
 
   final Sensitive<String> clientSecret;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_id': clientId.toTfJson(),
     'client_secret': clientSecret.toTfJson(),
@@ -392,6 +411,7 @@ final class CloudwatchEventConnectionOauthHttpParameters {
 
   final List<CloudwatchEventConnectionQueryString>? queryString;
 
+  @internal
   Map<String, Object?> encode() => {
     if (body != null) 'body': [for (final e in body!) e.encode()],
     if (header != null) 'header': [for (final e in header!) e.encode()],
@@ -410,6 +430,7 @@ final class CloudwatchEventConnectionInvocationConnectivityParameters {
 
   final CloudwatchEventConnectionResourceParameters resourceParameters;
 
+  @internal
   Map<String, Object?> encode() => {
     'resource_parameters': resourceParameters.encode(),
   };

@@ -25,8 +25,10 @@ sealed class MailmanagerRelayAuthentication {
   ) = MailmanagerRelayAuthenticationSecretArn;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -37,9 +39,11 @@ final class MailmanagerRelayNoAuthenticationChoice
 
   final List<MailmanagerRelayNoAuthentication> noAuthentication;
 
+  @internal
   @override
   String get blockKey => 'no_authentication';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'no_authentication': [for (final e in noAuthentication) e.encode()],
@@ -53,9 +57,11 @@ final class MailmanagerRelayAuthenticationSecretArn
 
   final TfArg<String> secretArn;
 
+  @internal
   @override
   String get blockKey => 'secret_arn';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'secret_arn': secretArn.toTfJson()};
 }
@@ -66,6 +72,7 @@ final class MailmanagerRelayAuthenticationSecretArn
 final class MailmanagerRelayNoAuthentication {
   const MailmanagerRelayNoAuthentication();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 

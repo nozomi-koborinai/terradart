@@ -20,6 +20,7 @@ final class NetworkServicesTlsRouteRules {
 
   final List<NetworkServicesTlsRouteMatches> matches;
 
+  @internal
   Map<String, Object?> encode() => {
     'action': action.encode(),
     'matches': [for (final e in matches) e.encode()],
@@ -34,6 +35,7 @@ final class NetworkServicesTlsRouteAction {
 
   final List<NetworkServicesTlsRouteDestinations>? destinations;
 
+  @internal
   Map<String, Object?> encode() => {
     if (destinations != null)
       'destinations': [for (final e in destinations!) e.encode()],
@@ -50,6 +52,7 @@ final class NetworkServicesTlsRouteDestinations {
 
   final TfArg<num>? weight;
 
+  @internal
   Map<String, Object?> encode() => {
     'service_name': ?serviceName?.toTfJson(),
     'weight': ?weight?.toTfJson(),
@@ -66,6 +69,7 @@ final class NetworkServicesTlsRouteMatches {
 
   final TfArg<List<String>>? sniHost;
 
+  @internal
   Map<String, Object?> encode() => {
     'alpn': ?alpn?.toTfJson(),
     'sni_host': ?sniHost?.toTfJson(),

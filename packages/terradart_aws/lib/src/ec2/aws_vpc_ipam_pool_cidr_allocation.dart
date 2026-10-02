@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `aws_vpc_ipam_pool_cidr_allocation`.
@@ -24,12 +25,15 @@ sealed class VpcIpamPoolCidrAllocationCidr {
   ) = VpcIpamPoolCidrAllocationCidrNetmaskLength;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -40,12 +44,15 @@ final class VpcIpamPoolCidrAllocationCidrChoice
 
   final TfArg<String> cidr;
 
+  @internal
   @override
   String get blockKey => 'cidr';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'cidr': cidr.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'cidr': cidr};
 }
@@ -57,12 +64,15 @@ final class VpcIpamPoolCidrAllocationCidrNetmaskLength
 
   final TfArg<num> netmaskLength;
 
+  @internal
   @override
   String get blockKey => 'netmask_length';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'netmask_length': netmaskLength.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'netmask_length': netmaskLength};
 }

@@ -71,6 +71,7 @@ final class MigrationCenterAssetsExportJobCondition {
 
   final TfArg<String>? filter;
 
+  @internal
   Map<String, Object?> encode() => {'filter': ?filter?.toTfJson()};
 }
 
@@ -82,6 +83,7 @@ final class MigrationCenterAssetsExportJobPerformanceData {
 
   final TfArg<num>? maxDays;
 
+  @internal
   Map<String, Object?> encode() => {'max_days': ?maxDays?.toTfJson()};
 }
 
@@ -95,6 +97,7 @@ final class MigrationCenterAssetsExportJobSignedUriDestination {
 
   final MigrationCenterAssetsExportJobFileFormat fileFormat;
 
+  @internal
   Map<String, Object?> encode() => {'file_format': fileFormat.toTfJson()};
 }
 

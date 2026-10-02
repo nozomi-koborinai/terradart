@@ -28,12 +28,15 @@ sealed class FirestoreChangeStreamScope {
   ) = FirestoreChangeStreamCollectionGroupScopeChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -44,12 +47,15 @@ final class FirestoreChangeStreamDatabaseScopeChoice
 
   final FirestoreChangeStreamDatabaseScope databaseScope;
 
+  @internal
   @override
   String get blockKey => 'database_scope';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'database_scope': databaseScope.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'database_scope': TfArg.literal(databaseScope.encode()),
@@ -65,14 +71,17 @@ final class FirestoreChangeStreamCollectionGroupScopeChoice
 
   final FirestoreChangeStreamCollectionGroupScope collectionGroupScope;
 
+  @internal
   @override
   String get blockKey => 'collection_group_scope';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'collection_group_scope': collectionGroupScope.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'collection_group_scope': TfArg.literal(collectionGroupScope.encode()),
@@ -89,6 +98,7 @@ final class FirestoreChangeStreamCollectionGroupScope {
 
   final TfArg<String> collectionGroupId;
 
+  @internal
   Map<String, Object?> encode() => {
     'collection_group_id': collectionGroupId.toTfJson(),
   };
@@ -100,6 +110,7 @@ final class FirestoreChangeStreamCollectionGroupScope {
 final class FirestoreChangeStreamDatabaseScope {
   const FirestoreChangeStreamDatabaseScope();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 

@@ -39,6 +39,7 @@ final class ComputePreviewFeatureRolloutOperation {
 
   final ComputePreviewFeatureRolloutInput? rolloutInput;
 
+  @internal
   Map<String, Object?> encode() => {'rollout_input': ?rolloutInput?.encode()};
 }
 
@@ -52,6 +53,7 @@ final class ComputePreviewFeatureRolloutInput {
 
   final TfArg<String> predefinedRolloutPlan;
 
+  @internal
   Map<String, Object?> encode() => {
     'predefined_rollout_plan': predefinedRolloutPlan.toTfJson(),
   };

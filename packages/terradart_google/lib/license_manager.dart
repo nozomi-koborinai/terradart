@@ -3,6 +3,7 @@
 /// License Manager: third-party software license configurations for Compute Engine.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/license_manager/google_license_manager_configuration.dart'
     show
         GoogleLicenseManagerConfiguration,

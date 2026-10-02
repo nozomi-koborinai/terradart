@@ -26,6 +26,7 @@ final class WafRuleGroupActivatedRule {
 
   final WafRuleGroupAction action;
 
+  @internal
   Map<String, Object?> encode() => {
     'priority': priority.toTfJson(),
     'rule_id': ruleId.toTfJson(),
@@ -42,6 +43,7 @@ final class WafRuleGroupAction {
 
   final TfArg<String> type;
 
+  @internal
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 

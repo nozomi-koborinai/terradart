@@ -15,6 +15,7 @@ final class OrganizationParent {
 
   final TfArg<String> id;
 
+  @internal
   Map<String, Object?> encode() => {'id': id.toTfJson()};
 }
 
@@ -40,6 +41,7 @@ final class OrganizationProfile {
 
   final TfArg<String> externalMetadata;
 
+  @internal
   Map<String, Object?> encode() => {
     'business_address': businessAddress.toTfJson(),
     'business_email': businessEmail.toTfJson(),

@@ -16,6 +16,7 @@ final class CloudfrontFieldLevelEncryptionProfileEncryptionEntities {
 
   final List<CloudfrontFieldLevelEncryptionProfileItems>? items;
 
+  @internal
   Map<String, Object?> encode() => {
     if (items != null) 'items': [for (final e in items!) e.encode()],
   };
@@ -37,6 +38,7 @@ final class CloudfrontFieldLevelEncryptionProfileItems {
 
   final CloudfrontFieldLevelEncryptionProfileFieldPatterns fieldPatterns;
 
+  @internal
   Map<String, Object?> encode() => {
     'provider_id': providerId.toTfJson(),
     'public_key_id': publicKeyId.toTfJson(),
@@ -52,6 +54,7 @@ final class CloudfrontFieldLevelEncryptionProfileFieldPatterns {
 
   final TfArg<List<String>>? items;
 
+  @internal
   Map<String, Object?> encode() => {'items': ?items?.toTfJson()};
 }
 

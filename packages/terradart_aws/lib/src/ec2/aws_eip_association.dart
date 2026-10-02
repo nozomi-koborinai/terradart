@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `aws_eip_association`.
@@ -23,12 +24,15 @@ sealed class EipAssociationTarget {
   ) = EipAssociationTargetNetworkInterfaceId;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -38,12 +42,15 @@ final class EipAssociationTargetInstanceId extends EipAssociationTarget {
 
   final TfArg<String> instanceId;
 
+  @internal
   @override
   String get blockKey => 'instance_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'instance_id': instanceId.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'instance_id': instanceId};
 }
@@ -55,14 +62,17 @@ final class EipAssociationTargetNetworkInterfaceId
 
   final TfArg<String> networkInterfaceId;
 
+  @internal
   @override
   String get blockKey => 'network_interface_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'network_interface_id': networkInterfaceId.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'network_interface_id': networkInterfaceId,

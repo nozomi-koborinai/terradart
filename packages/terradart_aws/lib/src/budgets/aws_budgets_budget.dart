@@ -123,12 +123,15 @@ sealed class BudgetsBudgetScope {
   ) = BudgetsBudgetScopeFilterExpression;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -138,14 +141,17 @@ final class BudgetsBudgetScopeCostFilter extends BudgetsBudgetScope {
 
   final List<BudgetsBudgetCostFilter> costFilter;
 
+  @internal
   @override
   String get blockKey => 'cost_filter';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'cost_filter': [for (final e in costFilter) e.encode()],
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'cost_filter': TfArg.literal([for (final e in costFilter) e.encode()]),
@@ -158,14 +164,17 @@ final class BudgetsBudgetScopeFilterExpression extends BudgetsBudgetScope {
 
   final BudgetsBudgetFilterExpression filterExpression;
 
+  @internal
   @override
   String get blockKey => 'filter_expression';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'filter_expression': filterExpression.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'filter_expression': TfArg.literal(filterExpression.encode()),
@@ -191,12 +200,15 @@ sealed class BudgetsBudgetMeasure {
   ) = BudgetsBudgetMeasureMetrics;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -206,12 +218,15 @@ final class BudgetsBudgetMeasureCostTypes extends BudgetsBudgetMeasure {
 
   final BudgetsBudgetCostTypes costTypes;
 
+  @internal
   @override
   String get blockKey => 'cost_types';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'cost_types': costTypes.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'cost_types': TfArg.literal(costTypes.encode()),
@@ -224,14 +239,17 @@ final class BudgetsBudgetMeasureMetrics extends BudgetsBudgetMeasure {
 
   final List<BudgetsBudgetMetrics> metrics;
 
+  @internal
   @override
   String get blockKey => 'metrics';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'metrics': [for (final e in metrics) e.toTfJson()],
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'metrics': TfArg.literal([for (final e in metrics) e.toTfJson()]),
@@ -255,12 +273,15 @@ sealed class BudgetsBudgetName {
       BudgetsBudgetNamePrefix;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -270,12 +291,15 @@ final class BudgetsBudgetNameChoice extends BudgetsBudgetName {
 
   final TfArg<String> name;
 
+  @internal
   @override
   String get blockKey => 'name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
@@ -286,12 +310,15 @@ final class BudgetsBudgetNamePrefix extends BudgetsBudgetName {
 
   final TfArg<String> namePrefix;
 
+  @internal
   @override
   String get blockKey => 'name_prefix';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'name_prefix': namePrefix.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'name_prefix': namePrefix};
 }
@@ -309,6 +336,7 @@ final class BudgetsBudgetAutoAdjustData {
 
   final BudgetsBudgetHistoricalOptions? historicalOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'auto_adjust_type': autoAdjustType.toTfJson(),
     'historical_options': ?historicalOptions?.encode(),
@@ -345,6 +373,7 @@ final class BudgetsBudgetHistoricalOptions {
 
   final TfArg<num> budgetAdjustmentPeriod;
 
+  @internal
   Map<String, Object?> encode() => {
     'budget_adjustment_period': budgetAdjustmentPeriod.toTfJson(),
   };
@@ -360,6 +389,7 @@ final class BudgetsBudgetCostFilter {
 
   final TfArg<List<String>> values;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'values': values.toTfJson(),
@@ -406,6 +436,7 @@ final class BudgetsBudgetCostTypes {
 
   final TfArg<bool>? useBlended;
 
+  @internal
   Map<String, Object?> encode() => {
     'include_credit': ?includeCredit?.toTfJson(),
     'include_discount': ?includeDiscount?.toTfJson(),
@@ -446,6 +477,7 @@ final class BudgetsBudgetFilterExpression {
 
   final BudgetsBudgetFilterExpressionTags? tags;
 
+  @internal
   Map<String, Object?> encode() => {
     if (and != null) 'and': [for (final e in and!) e.encode()],
     'cost_categories': ?costCategories?.encode(),
@@ -481,6 +513,7 @@ final class BudgetsBudgetAnd {
 
   final BudgetsBudgetAndTags? tags;
 
+  @internal
   Map<String, Object?> encode() => {
     if (and != null) 'and': [for (final e in and!) e.encode()],
     'cost_categories': ?costCategories?.encode(),
@@ -504,6 +537,7 @@ final class BudgetsBudgetAndAnd {
 
   final BudgetsBudgetAndTags? tags;
 
+  @internal
   Map<String, Object?> encode() => {
     'cost_categories': ?costCategories?.encode(),
     'dimensions': ?dimensions?.encode(),
@@ -528,6 +562,7 @@ final class BudgetsBudgetAndCostCategories {
 
   final TfArg<List<String>>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
     'match_options': ?matchOptions?.toTfJson(),
@@ -552,6 +587,7 @@ final class BudgetsBudgetAndDimensions {
 
   final TfArg<List<String>> values;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'match_options': ?matchOptions?.toTfJson(),
@@ -572,6 +608,7 @@ final class BudgetsBudgetAndTags {
 
   final TfArg<List<String>>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
     'match_options': ?matchOptions?.toTfJson(),
@@ -592,6 +629,7 @@ final class BudgetsBudgetAndNot {
 
   final BudgetsBudgetAndTags? tags;
 
+  @internal
   Map<String, Object?> encode() => {
     'cost_categories': ?costCategories?.encode(),
     'dimensions': ?dimensions?.encode(),
@@ -612,6 +650,7 @@ final class BudgetsBudgetAndOr {
 
   final BudgetsBudgetAndTags? tags;
 
+  @internal
   Map<String, Object?> encode() => {
     'cost_categories': ?costCategories?.encode(),
     'dimensions': ?dimensions?.encode(),
@@ -631,6 +670,7 @@ final class BudgetsBudgetCostCategories {
 
   final TfArg<List<String>>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
     if (matchOptions != null)
@@ -695,6 +735,7 @@ final class BudgetsBudgetDimensions {
 
   final TfArg<List<String>> values;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     if (matchOptions != null)
@@ -843,6 +884,7 @@ final class BudgetsBudgetNot {
 
   final BudgetsBudgetAndTags? tags;
 
+  @internal
   Map<String, Object?> encode() => {
     if (and != null) 'and': [for (final e in and!) e.encode()],
     'cost_categories': ?costCategories?.encode(),
@@ -878,6 +920,7 @@ final class BudgetsBudgetOr {
 
   final BudgetsBudgetAndTags? tags;
 
+  @internal
   Map<String, Object?> encode() => {
     if (and != null) 'and': [for (final e in and!) e.encode()],
     'cost_categories': ?costCategories?.encode(),
@@ -904,6 +947,7 @@ final class BudgetsBudgetFilterExpressionTags {
 
   final TfArg<List<String>>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
     if (matchOptions != null)
@@ -937,6 +981,7 @@ final class BudgetsBudgetNotification {
 
   final BudgetsBudgetThresholdType thresholdType;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison_operator': comparisonOperator.toTfJson(),
     'notification_type': notificationType.toTfJson(),
@@ -1031,6 +1076,7 @@ final class BudgetsBudgetPlannedLimit {
 
   final TfArg<String> unit;
 
+  @internal
   Map<String, Object?> encode() => {
     'amount': amount.toTfJson(),
     'start_time': startTime.toTfJson(),

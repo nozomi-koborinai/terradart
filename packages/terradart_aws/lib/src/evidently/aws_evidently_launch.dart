@@ -26,6 +26,7 @@ final class EvidentlyLaunchGroups {
 
   final TfArg<String> variation;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'feature': feature.toTfJson(),
@@ -42,6 +43,7 @@ final class EvidentlyLaunchMetricMonitors {
 
   final EvidentlyLaunchMetricDefinition metricDefinition;
 
+  @internal
   Map<String, Object?> encode() => {
     'metric_definition': metricDefinition.encode(),
   };
@@ -69,6 +71,7 @@ final class EvidentlyLaunchMetricDefinition {
 
   final TfArg<String> valueKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'entity_id_key': entityIdKey.toTfJson(),
     'event_pattern': ?eventPattern?.toTfJson(),
@@ -86,6 +89,7 @@ final class EvidentlyLaunchScheduledSplitsConfig {
 
   final List<EvidentlyLaunchSteps> steps;
 
+  @internal
   Map<String, Object?> encode() => {
     'steps': [for (final e in steps) e.encode()],
   };
@@ -107,6 +111,7 @@ final class EvidentlyLaunchSteps {
 
   final List<EvidentlyLaunchSegmentOverrides>? segmentOverrides;
 
+  @internal
   Map<String, Object?> encode() => {
     'group_weights': groupWeights.toTfJson(),
     'start_time': startTime.toTfJson(),
@@ -131,6 +136,7 @@ final class EvidentlyLaunchSegmentOverrides {
 
   final TfArg<Map<String, num>> weights;
 
+  @internal
   Map<String, Object?> encode() => {
     'evaluation_order': evaluationOrder.toTfJson(),
     'segment': segment.toTfJson(),

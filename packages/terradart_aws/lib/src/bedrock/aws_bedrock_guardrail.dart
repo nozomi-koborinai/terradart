@@ -22,6 +22,7 @@ final class BedrockGuardrailContentPolicyConfig {
 
   final List<BedrockGuardrailContentPolicyConfigFiltersConfig>? filtersConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'tier_config': ?tierConfig?.toTfJson(),
     if (filtersConfig != null)
@@ -63,6 +64,7 @@ final class BedrockGuardrailContentPolicyConfigFiltersConfig {
 
   final BedrockGuardrailContentPolicyConfigType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'input_action': ?inputAction?.toTfJson(),
     'input_enabled': ?inputEnabled?.toTfJson(),
@@ -251,6 +253,7 @@ final class BedrockGuardrailContextualGroundingPolicyConfig {
   final List<BedrockGuardrailContextualGroundingPolicyConfigFiltersConfig>?
   filtersConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     if (filtersConfig != null)
       'filters_config': [for (final e in filtersConfig!) e.encode()],
@@ -270,6 +273,7 @@ final class BedrockGuardrailContextualGroundingPolicyConfigFiltersConfig {
 
   final BedrockGuardrailContextualGroundingPolicyConfigType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'threshold': threshold.toTfJson(),
     'type': type.toTfJson(),
@@ -312,6 +316,7 @@ final class BedrockGuardrailCrossRegionConfig {
 
   final TfArg<String> guardrailProfileIdentifier;
 
+  @internal
   Map<String, Object?> encode() => {
     'guardrail_profile_identifier': guardrailProfileIdentifier.toTfJson(),
   };
@@ -330,6 +335,7 @@ final class BedrockGuardrailSensitiveInformationPolicyConfig {
 
   final List<BedrockGuardrailRegexesConfig>? regexesConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     if (piiEntitiesConfig != null)
       'pii_entities_config': [for (final e in piiEntitiesConfig!) e.encode()],
@@ -363,6 +369,7 @@ final class BedrockGuardrailPiiEntitiesConfig {
 
   final BedrockGuardrailPiiEntitiesConfigType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
     'input_action': ?inputAction?.toTfJson(),
@@ -621,6 +628,7 @@ final class BedrockGuardrailRegexesConfig {
 
   final TfArg<String> pattern;
 
+  @internal
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
     'description': ?description?.toTfJson(),
@@ -643,6 +651,7 @@ final class BedrockGuardrailTopicPolicyConfig {
 
   final List<BedrockGuardrailTopicsConfig>? topicsConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'tier_config': ?tierConfig?.toTfJson(),
     if (topicsConfig != null)
@@ -669,6 +678,7 @@ final class BedrockGuardrailTopicsConfig {
 
   final BedrockGuardrailTopicsConfigType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'definition': definition.toTfJson(),
     'examples': ?examples?.toTfJson(),
@@ -704,6 +714,7 @@ final class BedrockGuardrailWordPolicyConfig {
 
   final List<BedrockGuardrailWordsConfig>? wordsConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     if (managedWordListsConfig != null)
       'managed_word_lists_config': [
@@ -736,6 +747,7 @@ final class BedrockGuardrailManagedWordListsConfig {
 
   final BedrockGuardrailManagedWordListsConfigType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'input_action': ?inputAction?.toTfJson(),
     'input_enabled': ?inputEnabled?.toTfJson(),
@@ -787,6 +799,7 @@ final class BedrockGuardrailWordsConfig {
 
   final TfArg<String> text;
 
+  @internal
   Map<String, Object?> encode() => {
     'input_action': ?inputAction?.toTfJson(),
     'input_enabled': ?inputEnabled?.toTfJson(),

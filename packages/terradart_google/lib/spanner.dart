@@ -4,6 +4,13 @@
 /// user-managed instance configurations.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/google_spanner_database.dart' show DataGoogleSpannerDatabase;
+export 'src/data/google_spanner_database_iam_policy.dart'
+    show DataGoogleSpannerDatabaseIamPolicy;
+export 'src/data/google_spanner_instance.dart' show DataGoogleSpannerInstance;
+export 'src/data/google_spanner_instance_iam_policy.dart'
+    show DataGoogleSpannerInstanceIamPolicy;
 export 'src/spanner/google_spanner_backup_schedule.dart'
     show
         GoogleSpannerBackupSchedule,

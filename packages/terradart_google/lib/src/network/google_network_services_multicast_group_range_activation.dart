@@ -16,6 +16,7 @@ final class NetworkServicesMulticastGroupRangeActivationLogConfig {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 

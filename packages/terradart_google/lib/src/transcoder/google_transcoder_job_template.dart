@@ -46,6 +46,7 @@ final class TranscoderJobTemplateConfig {
 
   final TranscoderJobTemplatePubsubDestination? pubsubDestination;
 
+  @internal
   Map<String, Object?> encode() => {
     if (adBreaks != null) 'ad_breaks': [for (final e in adBreaks!) e.encode()],
     if (editList != null) 'edit_list': [for (final e in editList!) e.encode()],
@@ -72,6 +73,7 @@ final class TranscoderJobTemplateAdBreaks {
 
   final TfArg<String>? startTimeOffset;
 
+  @internal
   Map<String, Object?> encode() => {
     'start_time_offset': ?startTimeOffset?.toTfJson(),
   };
@@ -93,6 +95,7 @@ final class TranscoderJobTemplateEditList {
 
   final TfArg<String>? startTimeOffset;
 
+  @internal
   Map<String, Object?> encode() => {
     'inputs': ?inputs?.toTfJson(),
     'key': ?key?.toTfJson(),
@@ -116,6 +119,7 @@ final class TranscoderJobTemplateElementaryStreams {
 
   final TranscoderJobTemplateVideoStream? videoStream;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
     'audio_stream': ?audioStream?.encode(),
@@ -145,6 +149,7 @@ final class TranscoderJobTemplateAudioStream {
 
   final TfArg<num>? sampleRateHertz;
 
+  @internal
   Map<String, Object?> encode() => {
     'bitrate_bps': bitrateBps.toTfJson(),
     'channel_count': ?channelCount?.toTfJson(),
@@ -162,6 +167,7 @@ final class TranscoderJobTemplateVideoStream {
 
   final TranscoderJobTemplateH264? h264;
 
+  @internal
   Map<String, Object?> encode() => {'h264': ?h264?.encode()};
 }
 
@@ -217,6 +223,7 @@ final class TranscoderJobTemplateH264 {
 
   final TranscoderJobTemplateSdr? sdr;
 
+  @internal
   Map<String, Object?> encode() => {
     'bitrate_bps': bitrateBps.toTfJson(),
     'crf_level': ?crfLevel?.toTfJson(),
@@ -242,6 +249,7 @@ final class TranscoderJobTemplateH264 {
 final class TranscoderJobTemplateHlg {
   const TranscoderJobTemplateHlg();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -251,6 +259,7 @@ final class TranscoderJobTemplateHlg {
 final class TranscoderJobTemplateSdr {
   const TranscoderJobTemplateSdr();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -279,6 +288,7 @@ final class TranscoderJobTemplateEncryptions {
 
   final TranscoderJobTemplateSecretManagerKeySource? secretManagerKeySource;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
     'aes128': ?aes128?.encode(),
@@ -295,6 +305,7 @@ final class TranscoderJobTemplateEncryptions {
 final class TranscoderJobTemplateAes128 {
   const TranscoderJobTemplateAes128();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -317,6 +328,7 @@ final class TranscoderJobTemplateDrmSystems {
 
   final TranscoderJobTemplateWidevine? widevine;
 
+  @internal
   Map<String, Object?> encode() => {
     'clearkey': ?clearkey?.encode(),
     'fairplay': ?fairplay?.encode(),
@@ -331,6 +343,7 @@ final class TranscoderJobTemplateDrmSystems {
 final class TranscoderJobTemplateClearkey {
   const TranscoderJobTemplateClearkey();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -340,6 +353,7 @@ final class TranscoderJobTemplateClearkey {
 final class TranscoderJobTemplateFairplay {
   const TranscoderJobTemplateFairplay();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -349,6 +363,7 @@ final class TranscoderJobTemplateFairplay {
 final class TranscoderJobTemplatePlayready {
   const TranscoderJobTemplatePlayready();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -358,6 +373,7 @@ final class TranscoderJobTemplatePlayready {
 final class TranscoderJobTemplateWidevine {
   const TranscoderJobTemplateWidevine();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -369,6 +385,7 @@ final class TranscoderJobTemplateMpegCenc {
 
   final TfArg<String> scheme;
 
+  @internal
   Map<String, Object?> encode() => {'scheme': scheme.toTfJson()};
 }
 
@@ -378,6 +395,7 @@ final class TranscoderJobTemplateMpegCenc {
 final class TranscoderJobTemplateSampleAes {
   const TranscoderJobTemplateSampleAes();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -391,6 +409,7 @@ final class TranscoderJobTemplateSecretManagerKeySource {
 
   final TfArg<String> secretVersion;
 
+  @internal
   Map<String, Object?> encode() => {'secret_version': secretVersion.toTfJson()};
 }
 
@@ -404,6 +423,7 @@ final class TranscoderJobTemplateInputs {
 
   final TfArg<String>? uri;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
     'uri': ?uri?.toTfJson(),
@@ -426,6 +446,7 @@ final class TranscoderJobTemplateManifests {
 
   final TranscoderJobTemplateType? type;
 
+  @internal
   Map<String, Object?> encode() => {
     'file_name': ?fileName?.toTfJson(),
     'mux_streams': ?muxStreams?.toTfJson(),
@@ -480,6 +501,7 @@ final class TranscoderJobTemplateMuxStreams {
 
   final TranscoderJobTemplateSegmentSettings? segmentSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'container': ?container?.toTfJson(),
     'elementary_streams': ?elementaryStreams?.toTfJson(),
@@ -498,6 +520,7 @@ final class TranscoderJobTemplateSegmentSettings {
 
   final TfArg<String>? segmentDuration;
 
+  @internal
   Map<String, Object?> encode() => {
     'segment_duration': ?segmentDuration?.toTfJson(),
   };
@@ -511,6 +534,7 @@ final class TranscoderJobTemplateOutput {
 
   final TfArg<String>? uri;
 
+  @internal
   Map<String, Object?> encode() => {'uri': ?uri?.toTfJson()};
 }
 
@@ -524,6 +548,7 @@ final class TranscoderJobTemplateOverlays {
 
   final TranscoderJobTemplateImage? image;
 
+  @internal
   Map<String, Object?> encode() => {
     if (animations != null)
       'animations': [for (final e in animations!) e.encode()],
@@ -539,6 +564,7 @@ final class TranscoderJobTemplateAnimations {
 
   final TranscoderJobTemplateAnimationFade? animationFade;
 
+  @internal
   Map<String, Object?> encode() => {'animation_fade': ?animationFade?.encode()};
 }
 
@@ -561,6 +587,7 @@ final class TranscoderJobTemplateAnimationFade {
 
   final TranscoderJobTemplateXy? xy;
 
+  @internal
   Map<String, Object?> encode() => {
     'end_time_offset': ?endTimeOffset?.toTfJson(),
     'fade_type': fadeType.toTfJson(),
@@ -605,6 +632,7 @@ final class TranscoderJobTemplateXy {
 
   final TfArg<num>? y;
 
+  @internal
   Map<String, Object?> encode() => {'x': ?x?.toTfJson(), 'y': ?y?.toTfJson()};
 }
 
@@ -616,6 +644,7 @@ final class TranscoderJobTemplateImage {
 
   final TfArg<String> uri;
 
+  @internal
   Map<String, Object?> encode() => {'uri': uri.toTfJson()};
 }
 
@@ -627,6 +656,7 @@ final class TranscoderJobTemplatePubsubDestination {
 
   final RefTo<GooglePubsubTopic>? topic;
 
+  @internal
   Map<String, Object?> encode() => {'topic': ?topic?.encodeAs('id').toTfJson()};
 }
 

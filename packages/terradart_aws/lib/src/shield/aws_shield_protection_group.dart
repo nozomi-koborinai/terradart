@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `aws_shield_protection_group`.
@@ -103,12 +104,15 @@ sealed class ShieldProtectionGroupScope {
   ) = ShieldProtectionGroupScopeResourceType;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -119,12 +123,15 @@ final class ShieldProtectionGroupScopeMembers
 
   final TfArg<List<String>> members;
 
+  @internal
   @override
   String get blockKey => 'members';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'members': members.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'members': members};
 }
@@ -136,12 +143,15 @@ final class ShieldProtectionGroupScopeResourceType
 
   final ShieldProtectionGroupResourceType resourceType;
 
+  @internal
   @override
   String get blockKey => 'resource_type';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'resource_type': resourceType.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'resource_type': resourceType};
 }

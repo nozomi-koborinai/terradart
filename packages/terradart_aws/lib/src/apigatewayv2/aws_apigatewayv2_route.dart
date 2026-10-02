@@ -48,6 +48,7 @@ final class Apigatewayv2RouteRequestParameter {
 
   final TfArg<bool> required;
 
+  @internal
   Map<String, Object?> encode() => {
     'request_parameter_key': requestParameterKey.toTfJson(),
     'required': required.toTfJson(),

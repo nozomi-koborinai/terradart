@@ -4,6 +4,7 @@
 /// policy, SAC, service LB policies).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/network/google_network_security_authorization_policy.dart'
     show
         GoogleNetworkSecurityAuthorizationPolicy,

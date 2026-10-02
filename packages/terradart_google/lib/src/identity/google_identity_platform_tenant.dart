@@ -42,6 +42,7 @@ final class IdentityPlatformTenantClient {
 
   final IdentityPlatformTenantPermissions? permissions;
 
+  @internal
   Map<String, Object?> encode() => {'permissions': ?permissions?.encode()};
 }
 
@@ -58,6 +59,7 @@ final class IdentityPlatformTenantPermissions {
 
   final TfArg<bool>? disabledUserSignup;
 
+  @internal
   Map<String, Object?> encode() => {
     'disabled_user_deletion': ?disabledUserDeletion?.toTfJson(),
     'disabled_user_signup': ?disabledUserSignup?.toTfJson(),

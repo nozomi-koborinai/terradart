@@ -3,6 +3,9 @@
 /// AWS Storage Gateway.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_storagegateway_local_disk.dart'
+    show DataAwsStoragegatewayLocalDisk;
 export 'src/storagegateway/aws_storagegateway_cache.dart'
     show AwsStoragegatewayCache;
 export 'src/storagegateway/aws_storagegateway_cached_iscsi_volume.dart'

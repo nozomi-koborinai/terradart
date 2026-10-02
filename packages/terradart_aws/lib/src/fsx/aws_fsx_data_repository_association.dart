@@ -20,6 +20,7 @@ final class FsxDataRepositoryAssociationS3 {
 
   final FsxDataRepositoryAssociationAutoImportPolicy? autoImportPolicy;
 
+  @internal
   Map<String, Object?> encode() => {
     'auto_export_policy': ?autoExportPolicy?.encode(),
     'auto_import_policy': ?autoImportPolicy?.encode(),
@@ -34,6 +35,7 @@ final class FsxDataRepositoryAssociationAutoExportPolicy {
 
   final List<FsxDataRepositoryAssociationEvents>? events;
 
+  @internal
   Map<String, Object?> encode() => {
     if (events != null) 'events': [for (final e in events!) e.toTfJson()],
   };
@@ -73,6 +75,7 @@ final class FsxDataRepositoryAssociationAutoImportPolicy {
 
   final List<FsxDataRepositoryAssociationEvents>? events;
 
+  @internal
   Map<String, Object?> encode() => {
     if (events != null) 'events': [for (final e in events!) e.toTfJson()],
   };

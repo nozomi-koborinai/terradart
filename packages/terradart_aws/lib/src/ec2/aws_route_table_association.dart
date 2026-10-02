@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../ec2/aws_subnet.dart' show AwsSubnet;
@@ -25,12 +26,15 @@ sealed class RouteTableAssociationTarget {
   ) = RouteTableAssociationTargetSubnetId;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -41,12 +45,15 @@ final class RouteTableAssociationTargetGatewayId
 
   final TfArg<String> gatewayId;
 
+  @internal
   @override
   String get blockKey => 'gateway_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'gateway_id': gatewayId.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'gateway_id': gatewayId};
 }
@@ -58,14 +65,17 @@ final class RouteTableAssociationTargetSubnetId
 
   final RefTo<AwsSubnet> subnetId;
 
+  @internal
   @override
   String get blockKey => 'subnet_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'subnet_id': subnetId.encodeAs('id').toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'subnet_id': subnetId.encodeAs('id'),

@@ -30,12 +30,15 @@ sealed class LakeformationResourceLfTagsResource {
   ) = LakeformationResourceLfTagsResourceTableWithColumns;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -46,12 +49,15 @@ final class LakeformationResourceLfTagsResourceDatabase
 
   final LakeformationResourceLfTagsDatabase database;
 
+  @internal
   @override
   String get blockKey => 'database';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'database': database.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'database': TfArg.literal(database.encode()),
@@ -65,12 +71,15 @@ final class LakeformationResourceLfTagsResourceTable
 
   final LakeformationResourceLfTagsTable table;
 
+  @internal
   @override
   String get blockKey => 'table';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'table': table.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'table': TfArg.literal(table.encode()),
@@ -86,14 +95,17 @@ final class LakeformationResourceLfTagsResourceTableWithColumns
 
   final LakeformationResourceLfTagsTableWithColumns tableWithColumns;
 
+  @internal
   @override
   String get blockKey => 'table_with_columns';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'table_with_columns': tableWithColumns.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'table_with_columns': TfArg.literal(tableWithColumns.encode()),
@@ -113,6 +125,7 @@ final class LakeformationResourceLfTagsDatabase {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {
     'catalog_id': ?catalogId?.toTfJson(),
     'name': name.toTfJson(),
@@ -135,6 +148,7 @@ final class LakeformationResourceLfTagsLfTag {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'catalog_id': ?catalogId?.toTfJson(),
     'key': key.toTfJson(),
@@ -161,6 +175,7 @@ final class LakeformationResourceLfTagsTable {
 
   final TfArg<bool>? wildcard;
 
+  @internal
   Map<String, Object?> encode() => {
     'catalog_id': ?catalogId?.toTfJson(),
     'database_name': databaseName.toTfJson(),
@@ -194,6 +209,7 @@ final class LakeformationResourceLfTagsTableWithColumns {
 
   final TfArg<bool>? wildcard;
 
+  @internal
   Map<String, Object?> encode() => {
     'catalog_id': ?catalogId?.toTfJson(),
     'column_names': ?columnNames?.toTfJson(),

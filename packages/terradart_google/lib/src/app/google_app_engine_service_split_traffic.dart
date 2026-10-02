@@ -20,6 +20,7 @@ final class AppEngineServiceSplitTrafficSplit {
 
   final AppEngineServiceSplitTrafficShardBy? shardBy;
 
+  @internal
   Map<String, Object?> encode() => {
     'allocations': allocations.toTfJson(),
     'shard_by': ?shardBy?.toTfJson(),

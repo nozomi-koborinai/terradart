@@ -24,6 +24,7 @@ final class VpclatticeServiceNetworkVpcAssociationDnsOptions {
 
   final TfArg<List<String>>? privateDnsSpecifiedDomains;
 
+  @internal
   Map<String, Object?> encode() => {
     'private_dns_preference': ?privateDnsPreference?.toTfJson(),
     'private_dns_specified_domains': ?privateDnsSpecifiedDomains?.toTfJson(),

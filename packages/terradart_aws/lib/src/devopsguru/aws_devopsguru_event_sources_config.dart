@@ -16,6 +16,7 @@ final class DevopsguruEventSourcesConfigEventSources {
   final List<DevopsguruEventSourcesConfigAmazonCodeGuruProfiler>?
   amazonCodeGuruProfiler;
 
+  @internal
   Map<String, Object?> encode() => {
     if (amazonCodeGuruProfiler != null)
       'amazon_code_guru_profiler': [
@@ -34,6 +35,7 @@ final class DevopsguruEventSourcesConfigAmazonCodeGuruProfiler {
 
   final DevopsguruEventSourcesConfigStatus status;
 
+  @internal
   Map<String, Object?> encode() => {'status': status.toTfJson()};
 }
 

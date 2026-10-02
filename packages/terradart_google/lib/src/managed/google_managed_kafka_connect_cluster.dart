@@ -20,6 +20,7 @@ final class ManagedKafkaConnectClusterCapacityConfig {
 
   final TfArg<String> vcpuCount;
 
+  @internal
   Map<String, Object?> encode() => {
     'memory_bytes': memoryBytes.toTfJson(),
     'vcpu_count': vcpuCount.toTfJson(),
@@ -34,6 +35,7 @@ final class ManagedKafkaConnectClusterGcpConfig {
 
   final ManagedKafkaConnectClusterAccessConfig accessConfig;
 
+  @internal
   Map<String, Object?> encode() => {'access_config': accessConfig.encode()};
 }
 
@@ -45,6 +47,7 @@ final class ManagedKafkaConnectClusterAccessConfig {
 
   final List<ManagedKafkaConnectClusterNetworkConfigs> networkConfigs;
 
+  @internal
   Map<String, Object?> encode() => {
     'network_configs': [for (final e in networkConfigs) e.encode()],
   };
@@ -66,6 +69,7 @@ final class ManagedKafkaConnectClusterNetworkConfigs {
 
   final TfArg<String> primarySubnet;
 
+  @internal
   Map<String, Object?> encode() => {
     'additional_subnets': ?additionalSubnets?.toTfJson(),
     'dns_domain_names': ?dnsDomainNames?.toTfJson(),

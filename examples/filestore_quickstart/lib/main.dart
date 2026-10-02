@@ -6,7 +6,6 @@
 /// backup path).
 library;
 
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/compute.dart';
 import 'package:terradart_google/filestore.dart';
 import 'package:terradart_google/project.dart';

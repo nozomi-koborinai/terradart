@@ -323,12 +323,15 @@ sealed class Cloudbuildv2ConnectionHost {
   ) = Cloudbuildv2ConnectionHostBitbucketDataCenterConfig;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -339,14 +342,17 @@ final class Cloudbuildv2ConnectionHostGithubConfig
 
   final Cloudbuildv2ConnectionGithubConfig githubConfig;
 
+  @internal
   @override
   String get blockKey => 'github_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'github_config': [githubConfig.toArgMap()],
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'github_config': TfArg.literal([githubConfig.toArgMap()]),
@@ -362,14 +368,17 @@ final class Cloudbuildv2ConnectionHostGithubEnterpriseConfig
 
   final Cloudbuildv2ConnectionGithubEnterpriseConfig githubEnterpriseConfig;
 
+  @internal
   @override
   String get blockKey => 'github_enterprise_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'github_enterprise_config': [githubEnterpriseConfig.toArgMap()],
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'github_enterprise_config': TfArg.literal([
@@ -385,14 +394,17 @@ final class Cloudbuildv2ConnectionHostGitlabConfig
 
   final Cloudbuildv2ConnectionGitlabConfig gitlabConfig;
 
+  @internal
   @override
   String get blockKey => 'gitlab_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'gitlab_config': [gitlabConfig.toArgMap()],
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'gitlab_config': TfArg.literal([gitlabConfig.toArgMap()]),
@@ -408,14 +420,17 @@ final class Cloudbuildv2ConnectionHostBitbucketCloudConfig
 
   final Cloudbuildv2ConnectionBitbucketCloudConfig bitbucketCloudConfig;
 
+  @internal
   @override
   String get blockKey => 'bitbucket_cloud_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'bitbucket_cloud_config': [bitbucketCloudConfig.toArgMap()],
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'bitbucket_cloud_config': TfArg.literal([bitbucketCloudConfig.toArgMap()]),
@@ -432,14 +447,17 @@ final class Cloudbuildv2ConnectionHostBitbucketDataCenterConfig
   final Cloudbuildv2ConnectionBitbucketDataCenterConfig
   bitbucketDataCenterConfig;
 
+  @internal
   @override
   String get blockKey => 'bitbucket_data_center_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'bitbucket_data_center_config': [bitbucketDataCenterConfig.toArgMap()],
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'bitbucket_data_center_config': TfArg.literal([

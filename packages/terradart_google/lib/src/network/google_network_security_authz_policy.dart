@@ -66,6 +66,7 @@ final class NetworkSecurityAuthzPolicyCustomProvider {
 
   final NetworkSecurityAuthzPolicyCloudIap? cloudIap;
 
+  @internal
   Map<String, Object?> encode() => {
     'authz_extension': ?authzExtension?.encode(),
     'cloud_iap': ?cloudIap?.encode(),
@@ -80,6 +81,7 @@ final class NetworkSecurityAuthzPolicyAuthzExtension {
 
   final TfArg<List<String>> resources;
 
+  @internal
   Map<String, Object?> encode() => {'resources': resources.toTfJson()};
 }
 
@@ -91,6 +93,7 @@ final class NetworkSecurityAuthzPolicyCloudIap {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 
@@ -106,6 +109,7 @@ final class NetworkSecurityAuthzPolicyHttpRules {
 
   final NetworkSecurityAuthzPolicyHttpRulesTo? to;
 
+  @internal
   Map<String, Object?> encode() => {
     'when': ?when?.toTfJson(),
     'from': ?from?.encode(),
@@ -126,6 +130,7 @@ final class NetworkSecurityAuthzPolicyHttpRulesFrom {
 
   final List<NetworkSecurityAuthzPolicyHttpRulesSources>? sources;
 
+  @internal
   Map<String, Object?> encode() => {
     if (notSources != null)
       'not_sources': [for (final e in notSources!) e.encode()],
@@ -149,6 +154,7 @@ final class NetworkSecurityAuthzPolicyHttpRulesNotSources {
 
   final List<NetworkSecurityAuthzPolicyResources>? resources;
 
+  @internal
   Map<String, Object?> encode() => {
     if (ipBlocks != null) 'ip_blocks': [for (final e in ipBlocks!) e.encode()],
     if (principals != null)
@@ -172,6 +178,7 @@ final class NetworkSecurityAuthzPolicyIpBlocks {
 
   final TfArg<String> prefix;
 
+  @internal
   Map<String, Object?> encode() => {
     'length': length.toTfJson(),
     'prefix': prefix.toTfJson(),
@@ -207,6 +214,7 @@ final class NetworkSecurityAuthzPolicyHttpRulesPrincipals {
 
   final NetworkSecurityAuthzPolicyHttpRulesPrincipal? principal;
 
+  @internal
   Map<String, Object?> encode() => {
     'contains': ?contains?.toTfJson(),
     'exact': ?exact?.toTfJson(),
@@ -276,6 +284,7 @@ final class NetworkSecurityAuthzPolicyHttpRulesPrincipal {
 
   final TfArg<String>? suffix;
 
+  @internal
   Map<String, Object?> encode() => {
     'contains': ?contains?.toTfJson(),
     'exact': ?exact?.toTfJson(),
@@ -299,6 +308,7 @@ final class NetworkSecurityAuthzPolicyResources {
 
   final NetworkSecurityAuthzPolicyTagValueIdSet? tagValueIdSet;
 
+  @internal
   Map<String, Object?> encode() => {
     'iam_service_account': ?iamServiceAccount?.encode(),
     'tag_value_id_set': ?tagValueIdSet?.encode(),
@@ -328,6 +338,7 @@ final class NetworkSecurityAuthzPolicyIamServiceAccount {
 
   final TfArg<String>? suffix;
 
+  @internal
   Map<String, Object?> encode() => {
     'contains': ?contains?.toTfJson(),
     'exact': ?exact?.toTfJson(),
@@ -346,6 +357,7 @@ final class NetworkSecurityAuthzPolicyTagValueIdSet {
 
   final TfArg<List<String>>? ids;
 
+  @internal
   Map<String, Object?> encode() => {'ids': ?ids?.toTfJson()};
 }
 
@@ -365,6 +377,7 @@ final class NetworkSecurityAuthzPolicyHttpRulesSources {
 
   final List<NetworkSecurityAuthzPolicyResources>? resources;
 
+  @internal
   Map<String, Object?> encode() => {
     if (ipBlocks != null) 'ip_blocks': [for (final e in ipBlocks!) e.encode()],
     if (principals != null)
@@ -387,6 +400,7 @@ final class NetworkSecurityAuthzPolicyHttpRulesTo {
 
   final List<NetworkSecurityAuthzPolicyHttpRulesOperations>? operations;
 
+  @internal
   Map<String, Object?> encode() => {
     if (notOperations != null)
       'not_operations': [for (final e in notOperations!) e.encode()],
@@ -414,6 +428,7 @@ final class NetworkSecurityAuthzPolicyNotOperations {
 
   final List<NetworkSecurityAuthzPolicyPaths>? paths;
 
+  @internal
   Map<String, Object?> encode() => {
     'methods': ?methods?.toTfJson(),
     'header_set': ?headerSet?.encode(),
@@ -431,6 +446,7 @@ final class NetworkSecurityAuthzPolicyHeaderSet {
 
   final List<NetworkSecurityAuthzPolicyHeaders>? headers;
 
+  @internal
   Map<String, Object?> encode() => {
     if (headers != null) 'headers': [for (final e in headers!) e.encode()],
   };
@@ -447,6 +463,7 @@ final class NetworkSecurityAuthzPolicyHeaders {
 
   final NetworkSecurityAuthzPolicyValue? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'value': ?value?.encode(),
@@ -476,6 +493,7 @@ final class NetworkSecurityAuthzPolicyValue {
 
   final TfArg<String>? suffix;
 
+  @internal
   Map<String, Object?> encode() => {
     'contains': ?contains?.toTfJson(),
     'exact': ?exact?.toTfJson(),
@@ -508,6 +526,7 @@ final class NetworkSecurityAuthzPolicyHosts {
 
   final TfArg<String>? suffix;
 
+  @internal
   Map<String, Object?> encode() => {
     'contains': ?contains?.toTfJson(),
     'exact': ?exact?.toTfJson(),
@@ -540,6 +559,7 @@ final class NetworkSecurityAuthzPolicyPaths {
 
   final TfArg<String>? suffix;
 
+  @internal
   Map<String, Object?> encode() => {
     'contains': ?contains?.toTfJson(),
     'exact': ?exact?.toTfJson(),
@@ -571,6 +591,7 @@ final class NetworkSecurityAuthzPolicyHttpRulesOperations {
 
   final List<NetworkSecurityAuthzPolicyPaths>? paths;
 
+  @internal
   Map<String, Object?> encode() => {
     'methods': ?methods?.toTfJson(),
     'header_set': ?headerSet?.encode(),
@@ -594,6 +615,7 @@ final class NetworkSecurityAuthzPolicyMcp {
 
   final List<NetworkSecurityAuthzPolicyMethods>? methods;
 
+  @internal
   Map<String, Object?> encode() => {
     'base_protocol_methods_option': ?baseProtocolMethodsOption?.toTfJson(),
     if (methods != null) 'methods': [for (final e in methods!) e.encode()],
@@ -636,6 +658,7 @@ final class NetworkSecurityAuthzPolicyMethods {
 
   final List<NetworkSecurityAuthzPolicyParams>? params;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     if (params != null) 'params': [for (final e in params!) e.encode()],
@@ -664,6 +687,7 @@ final class NetworkSecurityAuthzPolicyParams {
 
   final TfArg<String>? suffix;
 
+  @internal
   Map<String, Object?> encode() => {
     'contains': ?contains?.toTfJson(),
     'exact': ?exact?.toTfJson(),
@@ -683,6 +707,7 @@ final class NetworkSecurityAuthzPolicyNetworkRules {
 
   final NetworkSecurityAuthzPolicyNetworkRulesTo? to;
 
+  @internal
   Map<String, Object?> encode() => {
     'from': ?from?.encode(),
     'to': ?to?.encode(),
@@ -702,6 +727,7 @@ final class NetworkSecurityAuthzPolicyNetworkRulesFrom {
 
   final List<NetworkSecurityAuthzPolicyNetworkRulesSources>? sources;
 
+  @internal
   Map<String, Object?> encode() => {
     if (notSources != null)
       'not_sources': [for (final e in notSources!) e.encode()],
@@ -722,6 +748,7 @@ final class NetworkSecurityAuthzPolicyNetworkRulesNotSources {
 
   final List<NetworkSecurityAuthzPolicyNetworkRulesPrincipals>? principals;
 
+  @internal
   Map<String, Object?> encode() => {
     if (ipBlocks != null) 'ip_blocks': [for (final e in ipBlocks!) e.encode()],
     if (principals != null)
@@ -743,6 +770,7 @@ final class NetworkSecurityAuthzPolicyNetworkRulesPrincipals {
 
   final NetworkSecurityAuthzPolicyNetworkRulesPrincipal? principal;
 
+  @internal
   Map<String, Object?> encode() => {
     'principal_selector': ?principalSelector?.toTfJson(),
     'principal': ?principal?.encode(),
@@ -758,6 +786,7 @@ final class NetworkSecurityAuthzPolicyNetworkRulesPrincipal {
 
   final TfArg<String>? exact;
 
+  @internal
   Map<String, Object?> encode() => {'exact': ?exact?.toTfJson()};
 }
 
@@ -774,6 +803,7 @@ final class NetworkSecurityAuthzPolicyNetworkRulesSources {
 
   final List<NetworkSecurityAuthzPolicyNetworkRulesPrincipals>? principals;
 
+  @internal
   Map<String, Object?> encode() => {
     if (ipBlocks != null) 'ip_blocks': [for (final e in ipBlocks!) e.encode()],
     if (principals != null)
@@ -789,6 +819,7 @@ final class NetworkSecurityAuthzPolicyNetworkRulesTo {
 
   final List<NetworkSecurityAuthzPolicyNetworkRulesOperations>? operations;
 
+  @internal
   Map<String, Object?> encode() => {
     if (operations != null)
       'operations': [for (final e in operations!) e.encode()],
@@ -803,6 +834,7 @@ final class NetworkSecurityAuthzPolicyNetworkRulesOperations {
 
   final List<NetworkSecurityAuthzPolicySnis>? snis;
 
+  @internal
   Map<String, Object?> encode() => {
     if (snis != null) 'snis': [for (final e in snis!) e.encode()],
   };
@@ -816,6 +848,7 @@ final class NetworkSecurityAuthzPolicySnis {
 
   final TfArg<String>? exact;
 
+  @internal
   Map<String, Object?> encode() => {'exact': ?exact?.toTfJson()};
 }
 
@@ -832,6 +865,7 @@ final class NetworkSecurityAuthzPolicyTarget {
 
   final TfArg<List<String>>? resources;
 
+  @internal
   Map<String, Object?> encode() => {
     'load_balancing_scheme': ?loadBalancingScheme?.toTfJson(),
     'resources': ?resources?.toTfJson(),

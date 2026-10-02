@@ -19,6 +19,7 @@ final class S3BucketVersioningConfiguration {
 
   final TfArg<String> status;
 
+  @internal
   Map<String, Object?> encode() => {
     'mfa_delete': ?mfaDelete?.toTfJson(),
     'status': status.toTfJson(),

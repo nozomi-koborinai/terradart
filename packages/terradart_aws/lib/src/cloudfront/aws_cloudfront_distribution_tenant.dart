@@ -23,6 +23,7 @@ final class CloudfrontDistributionTenantCustomizations {
 
   final List<CloudfrontDistributionTenantWebAcl>? webAcl;
 
+  @internal
   Map<String, Object?> encode() => {
     if (certificate != null)
       'certificate': [for (final e in certificate!) e.encode()],
@@ -40,6 +41,7 @@ final class CloudfrontDistributionTenantCertificate {
 
   final TfArg<String>? arn;
 
+  @internal
   Map<String, Object?> encode() => {'arn': ?arn?.toTfJson()};
 }
 
@@ -56,6 +58,7 @@ final class CloudfrontDistributionTenantGeoRestriction {
 
   final CloudfrontDistributionTenantRestrictionType? restrictionType;
 
+  @internal
   Map<String, Object?> encode() => {
     'locations': ?locations?.toTfJson(),
     'restriction_type': ?restrictionType?.toTfJson(),
@@ -100,6 +103,7 @@ final class CloudfrontDistributionTenantWebAcl {
 
   final TfArg<String>? arn;
 
+  @internal
   Map<String, Object?> encode() => {
     'action': ?action?.toTfJson(),
     'arn': ?arn?.toTfJson(),
@@ -136,6 +140,7 @@ final class CloudfrontDistributionTenantDomain {
 
   final TfArg<String> domain;
 
+  @internal
   Map<String, Object?> encode() => {'domain': domain.toTfJson()};
 }
 
@@ -156,6 +161,7 @@ final class CloudfrontDistributionTenantManagedCertificateRequest {
 
   final CloudfrontDistributionTenantValidationTokenHost? validationTokenHost;
 
+  @internal
   Map<String, Object?> encode() => {
     'certificate_transparency_logging_preference':
         ?certificateTransparencyLoggingPreference?.toTfJson(),
@@ -230,6 +236,7 @@ final class CloudfrontDistributionTenantParameter {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'value': value.toTfJson(),

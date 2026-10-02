@@ -23,12 +23,15 @@ sealed class RumAppMonitorDomain {
       RumAppMonitorDomainList;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -38,12 +41,15 @@ final class RumAppMonitorDomainChoice extends RumAppMonitorDomain {
 
   final TfArg<String> domain;
 
+  @internal
   @override
   String get blockKey => 'domain';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'domain': domain.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'domain': domain};
 }
@@ -54,12 +60,15 @@ final class RumAppMonitorDomainList extends RumAppMonitorDomain {
 
   final TfArg<List<String>> domainList;
 
+  @internal
   @override
   String get blockKey => 'domain_list';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'domain_list': domainList.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'domain_list': domainList};
 }
@@ -98,6 +107,7 @@ final class RumAppMonitorConfiguration {
 
   final List<RumAppMonitorTelemetries>? telemetries;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_cookies': ?allowCookies?.toTfJson(),
     'enable_xray': ?enableXray?.toTfJson(),
@@ -141,6 +151,7 @@ final class RumAppMonitorCustomEvents {
 
   final RumAppMonitorStatus? status;
 
+  @internal
   Map<String, Object?> encode() => {'status': ?status?.toTfJson()};
 }
 

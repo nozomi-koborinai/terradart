@@ -6,7 +6,6 @@
 /// orchestrator for a single GCP project.
 library;
 
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/binary_authorization.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/os_config.dart';

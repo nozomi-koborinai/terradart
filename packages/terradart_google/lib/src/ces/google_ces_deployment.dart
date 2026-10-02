@@ -42,6 +42,7 @@ final class CesDeploymentChannelProfile {
 
   final CesDeploymentWhatsappConfig? whatsappConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'channel_type': ?channelType?.toTfJson(),
     'disable_barge_in_control': ?disableBargeInControl?.toTfJson(),
@@ -61,6 +62,7 @@ final class CesDeploymentPersonaProperty {
 
   final TfArg<String>? persona;
 
+  @internal
   Map<String, Object?> encode() => {'persona': ?persona?.toTfJson()};
 }
 
@@ -83,6 +85,7 @@ final class CesDeploymentWebWidgetConfig {
 
   final CesDeploymentSecuritySettings? securitySettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'modality': ?modality?.toTfJson(),
     'theme': ?theme?.toTfJson(),
@@ -110,6 +113,7 @@ final class CesDeploymentSecuritySettings {
 
   final TfArg<bool>? enableRecaptcha;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed_origins': ?allowedOrigins?.toTfJson(),
     'enable_origin_check': ?enableOriginCheck?.toTfJson(),
@@ -134,6 +138,7 @@ final class CesDeploymentWhatsappConfig {
 
   final TfArg<String> wabaId;
 
+  @internal
   Map<String, Object?> encode() => {
     'phone_number': ?phoneNumber?.toTfJson(),
     'phone_number_id': phoneNumberId.toTfJson(),
@@ -157,6 +162,7 @@ final class CesDeploymentInstagramCredentials {
 
   final TfArg<String>? conversationProfileId;
 
+  @internal
   Map<String, Object?> encode() => {
     ...authCode.encode(),
     'auth_code_wo_version': ?authCodeWoVersion?.toTfJson(),
@@ -182,8 +188,10 @@ sealed class CesDeploymentInstagramCredentialsAuthCode {
   ) = CesDeploymentInstagramCredentialsAuthCodeWo;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -194,9 +202,11 @@ final class CesDeploymentInstagramCredentialsAuthCodeChoice
 
   final Sensitive<String> authCode;
 
+  @internal
   @override
   String get blockKey => 'auth_code';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'auth_code': authCode.toTfJson()};
 }
@@ -208,9 +218,11 @@ final class CesDeploymentInstagramCredentialsAuthCodeWo
 
   final TfArg<String> authCodeWo;
 
+  @internal
   @override
   String get blockKey => 'auth_code_wo';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'auth_code_wo': authCodeWo.toTfJson()};
 }
@@ -246,6 +258,7 @@ final class CesDeploymentWhatsappCredentials {
 
   final TfArg<String> wabaId;
 
+  @internal
   Map<String, Object?> encode() => {
     ...authCode.encode(),
     'auth_code_wo_version': ?authCodeWoVersion?.toTfJson(),
@@ -276,8 +289,10 @@ sealed class CesDeploymentWhatsappCredentialsAuthCode {
   ) = CesDeploymentWhatsappCredentialsAuthCodeWo;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -288,9 +303,11 @@ final class CesDeploymentWhatsappCredentialsAuthCodeChoice
 
   final Sensitive<String> authCode;
 
+  @internal
   @override
   String get blockKey => 'auth_code';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'auth_code': authCode.toTfJson()};
 }
@@ -302,9 +319,11 @@ final class CesDeploymentWhatsappCredentialsAuthCodeWo
 
   final TfArg<String> authCodeWo;
 
+  @internal
   @override
   String get blockKey => 'auth_code_wo';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'auth_code_wo': authCodeWo.toTfJson()};
 }
@@ -325,8 +344,10 @@ sealed class CesDeploymentPin {
       CesDeploymentPinWo;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -336,9 +357,11 @@ final class CesDeploymentPinChoice extends CesDeploymentPin {
 
   final Sensitive<String> pin;
 
+  @internal
   @override
   String get blockKey => 'pin';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'pin': pin.toTfJson()};
 }
@@ -349,9 +372,11 @@ final class CesDeploymentPinWo extends CesDeploymentPin {
 
   final TfArg<String> pinWo;
 
+  @internal
   @override
   String get blockKey => 'pin_wo';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'pin_wo': pinWo.toTfJson()};
 }

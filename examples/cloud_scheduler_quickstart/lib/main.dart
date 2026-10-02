@@ -8,7 +8,6 @@
 /// that publishes to it every night at 03:00 JST.
 library;
 
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/cloud_scheduler.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';

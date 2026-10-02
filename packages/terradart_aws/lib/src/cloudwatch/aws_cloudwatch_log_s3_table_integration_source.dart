@@ -21,6 +21,7 @@ final class CloudwatchLogS3TableIntegrationSourceDataSource {
 
   final TfArg<String> type;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'type': type.toTfJson(),

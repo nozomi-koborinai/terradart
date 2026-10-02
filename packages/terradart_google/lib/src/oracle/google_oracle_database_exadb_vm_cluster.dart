@@ -93,6 +93,7 @@ final class OracleDatabaseExadbVmClusterProperties {
 
   final OracleDatabaseExadbVmClusterVmFileSystemStorage vmFileSystemStorage;
 
+  @internal
   Map<String, Object?> encode() => {
     'additional_ecpu_count_per_node': ?additionalEcpuCountPerNode?.toTfJson(),
     'cluster_name': ?clusterName?.toTfJson(),
@@ -129,6 +130,7 @@ final class OracleDatabaseExadbVmClusterDataCollectionOptions {
 
   final TfArg<bool>? isIncidentLogsEnabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'is_diagnostics_events_enabled': ?isDiagnosticsEventsEnabled?.toTfJson(),
     'is_health_monitoring_enabled': ?isHealthMonitoringEnabled?.toTfJson(),
@@ -146,6 +148,7 @@ final class OracleDatabaseExadbVmClusterTimeZone {
 
   final TfArg<String>? version;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': ?id?.toTfJson(),
     'version': ?version?.toTfJson(),
@@ -162,6 +165,7 @@ final class OracleDatabaseExadbVmClusterVmFileSystemStorage {
 
   final TfArg<num> sizeInGbsPerNode;
 
+  @internal
   Map<String, Object?> encode() => {
     'size_in_gbs_per_node': sizeInGbsPerNode.toTfJson(),
   };

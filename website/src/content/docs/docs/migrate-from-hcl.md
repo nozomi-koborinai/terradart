@@ -147,7 +147,6 @@ The migrator infers the role of each directory:
 
 ```dart
 // lib/app_stack.dart
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/storage.dart';
 

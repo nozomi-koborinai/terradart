@@ -15,6 +15,7 @@ final class SesConfigurationSetDeliveryOptions {
 
   final SesConfigurationSetTlsPolicy? tlsPolicy;
 
+  @internal
   Map<String, Object?> encode() => {'tls_policy': ?tlsPolicy?.toTfJson()};
 }
 
@@ -45,6 +46,7 @@ final class SesConfigurationSetTrackingOptions {
 
   final TfArg<String>? customRedirectDomain;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_redirect_domain': ?customRedirectDomain?.toTfJson(),
   };

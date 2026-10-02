@@ -17,6 +17,7 @@ final class DataAiGatewayFilter {
 
   final TfArg<String>? search;
 
+  @internal
   Map<String, Object?> encode() => {'search': ?search?.toTfJson()};
 }
 

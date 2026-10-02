@@ -24,12 +24,15 @@ sealed class PinpointAppName {
       PinpointAppNamePrefix;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -39,12 +42,15 @@ final class PinpointAppNameChoice extends PinpointAppName {
 
   final TfArg<String> name;
 
+  @internal
   @override
   String get blockKey => 'name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
@@ -55,12 +61,15 @@ final class PinpointAppNamePrefix extends PinpointAppName {
 
   final TfArg<String> namePrefix;
 
+  @internal
   @override
   String get blockKey => 'name_prefix';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'name_prefix': namePrefix.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'name_prefix': namePrefix};
 }
@@ -81,6 +90,7 @@ final class PinpointAppCampaignHook {
 
   final TfArg<String>? webUrl;
 
+  @internal
   Map<String, Object?> encode() => {
     'lambda_function_name': ?lambdaFunctionName?.toTfJson(),
     'mode': ?mode?.toTfJson(),
@@ -121,6 +131,7 @@ final class PinpointAppLimits {
 
   final TfArg<num>? total;
 
+  @internal
   Map<String, Object?> encode() => {
     'daily': ?daily?.toTfJson(),
     'maximum_duration': ?maximumDuration?.toTfJson(),
@@ -139,6 +150,7 @@ final class PinpointAppQuietTime {
 
   final TfArg<String>? start;
 
+  @internal
   Map<String, Object?> encode() => {
     'end': ?end?.toTfJson(),
     'start': ?start?.toTfJson(),

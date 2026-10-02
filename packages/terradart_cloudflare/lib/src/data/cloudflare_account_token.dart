@@ -19,6 +19,7 @@ final class DataAccountTokenFilter {
 
   final TfArg<bool>? includeExpired;
 
+  @internal
   Map<String, Object?> encode() => {
     'direction': ?direction?.toTfJson(),
     'include_expired': ?includeExpired?.toTfJson(),

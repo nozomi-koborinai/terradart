@@ -128,6 +128,7 @@ final class IotDomainConfigurationAuthorizerConfig {
 
   final TfArg<String>? defaultAuthorizerName;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_authorizer_override': ?allowAuthorizerOverride?.toTfJson(),
     'default_authorizer_name': ?defaultAuthorizerName?.toTfJson(),
@@ -142,6 +143,7 @@ final class IotDomainConfigurationTlsConfig {
 
   final TfArg<String>? securityPolicy;
 
+  @internal
   Map<String, Object?> encode() => {
     'security_policy': ?securityPolicy?.toTfJson(),
   };

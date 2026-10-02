@@ -90,6 +90,7 @@ final class SpectrumApplicationDns {
 
   final SpectrumApplicationDnsType? type;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'type': ?type?.toTfJson(),
@@ -123,6 +124,7 @@ final class SpectrumApplicationEdgeIps {
 
   final SpectrumApplicationEdgeIpsType? type;
 
+  @internal
   Map<String, Object?> encode() => {
     'connectivity': ?connectivity?.toTfJson(),
     'ips': ?ips?.toTfJson(),
@@ -177,6 +179,7 @@ final class SpectrumApplicationOriginDns {
 
   final SpectrumApplicationOriginDnsType? type;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'ttl': ?ttl?.toTfJson(),

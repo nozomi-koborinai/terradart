@@ -23,6 +23,7 @@ final class CloudwatchCompositeAlarmActionsSuppressor {
 
   final TfArg<num> waitPeriod;
 
+  @internal
   Map<String, Object?> encode() => {
     'alarm': alarm.toTfJson(),
     'extension_period': extensionPeriod.toTfJson(),

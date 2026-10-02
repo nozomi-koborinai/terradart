@@ -18,6 +18,7 @@ final class WorkstationsWorkstationClusterDomainConfig {
 
   final TfArg<String> domain;
 
+  @internal
   Map<String, Object?> encode() => {'domain': domain.toTfJson()};
 }
 
@@ -34,6 +35,7 @@ final class WorkstationsWorkstationClusterPrivateClusterConfig {
 
   final TfArg<bool> enablePrivateEndpoint;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed_projects': ?allowedProjects?.toTfJson(),
     'enable_private_endpoint': enablePrivateEndpoint.toTfJson(),

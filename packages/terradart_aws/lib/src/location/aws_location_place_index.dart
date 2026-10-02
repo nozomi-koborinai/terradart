@@ -15,6 +15,7 @@ final class LocationPlaceIndexDataSourceConfiguration {
 
   final LocationPlaceIndexIntendedUse? intendedUse;
 
+  @internal
   Map<String, Object?> encode() => {'intended_use': ?intendedUse?.toTfJson()};
 }
 

@@ -58,6 +58,7 @@ final class VpclatticeTargetGroupConfig {
 
   final VpclatticeTargetGroupHealthCheck? healthCheck;
 
+  @internal
   Map<String, Object?> encode() => {
     'ip_address_type': ?ipAddressType?.toTfJson(),
     'lambda_event_structure_version': ?lambdaEventStructureVersion?.toTfJson(),
@@ -192,6 +193,7 @@ final class VpclatticeTargetGroupHealthCheck {
 
   final VpclatticeTargetGroupMatcher? matcher;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'health_check_interval_seconds': ?healthCheckIntervalSeconds?.toTfJson(),
@@ -238,6 +240,7 @@ final class VpclatticeTargetGroupMatcher {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {'value': ?value?.toTfJson()};
 }
 

@@ -10,7 +10,6 @@
 ///   for `folder` / `org_id` — apply needs real hierarchy permissions).
 library;
 
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/bigquery.dart';
 import 'package:terradart_google/logging.dart';
 import 'package:terradart_google/project.dart';

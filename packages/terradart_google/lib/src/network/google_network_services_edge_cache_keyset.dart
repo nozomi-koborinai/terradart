@@ -25,6 +25,7 @@ final class NetworkServicesEdgeCacheKeysetPublicKey {
 
   final Sensitive<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
     'managed': ?managed?.toTfJson(),
@@ -42,6 +43,7 @@ final class NetworkServicesEdgeCacheKeysetValidationSharedKeys {
 
   final TfArg<String> secretVersion;
 
+  @internal
   Map<String, Object?> encode() => {'secret_version': secretVersion.toTfJson()};
 }
 

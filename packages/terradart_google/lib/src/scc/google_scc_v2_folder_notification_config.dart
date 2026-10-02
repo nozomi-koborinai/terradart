@@ -17,6 +17,7 @@ final class SccV2FolderNotificationConfigStreamingConfig {
 
   final TfArg<String> filter;
 
+  @internal
   Map<String, Object?> encode() => {'filter': filter.toTfJson()};
 }
 

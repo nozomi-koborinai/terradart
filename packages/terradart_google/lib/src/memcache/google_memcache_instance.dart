@@ -122,6 +122,7 @@ final class MemcacheInstanceMemcacheParameters {
 
   final TfArg<Map<String, String>>? params;
 
+  @internal
   Map<String, Object?> encode() => {'params': ?params?.toTfJson()};
 }
 

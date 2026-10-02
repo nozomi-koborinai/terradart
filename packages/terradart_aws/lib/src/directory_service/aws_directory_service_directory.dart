@@ -100,6 +100,7 @@ final class DirectoryServiceDirectoryConnectSettings {
 
   final RefTo<AwsVpc> vpcId;
 
+  @internal
   Map<String, Object?> encode() => {
     'customer_dns_ips': customerDnsIps.toTfJson(),
     'customer_username': customerUsername.toTfJson(),
@@ -121,6 +122,7 @@ final class DirectoryServiceDirectoryVpcSettings {
 
   final RefTo<AwsVpc> vpcId;
 
+  @internal
   Map<String, Object?> encode() => {
     'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
     'vpc_id': vpcId.encodeAs('id').toTfJson(),

@@ -60,6 +60,7 @@ final class ApigeeApiProductAttributes {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'value': ?value?.toTfJson(),
@@ -80,6 +81,7 @@ final class ApigeeApiProductGraphqlOperationGroup {
   final List<ApigeeApiProductGraphqlOperationGroupOperationConfigs>?
   operationConfigs;
 
+  @internal
   Map<String, Object?> encode() => {
     'operation_config_type': ?operationConfigType?.toTfJson(),
     if (operationConfigs != null)
@@ -129,6 +131,7 @@ final class ApigeeApiProductGraphqlOperationGroupOperationConfigs {
 
   final ApigeeApiProductOperationConfigsQuota? quota;
 
+  @internal
   Map<String, Object?> encode() => {
     'api_source': ?apiSource?.toTfJson(),
     if (attributes != null)
@@ -152,6 +155,7 @@ final class ApigeeApiProductGraphqlOperationGroupOperations {
 
   final TfArg<List<String>>? operationTypes;
 
+  @internal
   Map<String, Object?> encode() => {
     'operation': ?operation?.toTfJson(),
     'operation_types': ?operationTypes?.toTfJson(),
@@ -175,6 +179,7 @@ final class ApigeeApiProductOperationConfigsQuota {
 
   final TfArg<String>? timeUnit;
 
+  @internal
   Map<String, Object?> encode() => {
     'interval': ?interval?.toTfJson(),
     'limit': ?limit?.toTfJson(),
@@ -191,6 +196,7 @@ final class ApigeeApiProductGrpcOperationGroup {
   final List<ApigeeApiProductGrpcOperationGroupOperationConfigs>?
   operationConfigs;
 
+  @internal
   Map<String, Object?> encode() => {
     if (operationConfigs != null)
       'operation_configs': [for (final e in operationConfigs!) e.encode()],
@@ -219,6 +225,7 @@ final class ApigeeApiProductGrpcOperationGroupOperationConfigs {
 
   final ApigeeApiProductOperationConfigsQuota? quota;
 
+  @internal
   Map<String, Object?> encode() => {
     'api_source': ?apiSource?.toTfJson(),
     'methods': ?methods?.toTfJson(),
@@ -242,6 +249,7 @@ final class ApigeeApiProductOperationGroup {
 
   final List<ApigeeApiProductOperationGroupOperationConfigs>? operationConfigs;
 
+  @internal
   Map<String, Object?> encode() => {
     'operation_config_type': ?operationConfigType?.toTfJson(),
     if (operationConfigs != null)
@@ -268,6 +276,7 @@ final class ApigeeApiProductOperationGroupOperationConfigs {
 
   final ApigeeApiProductOperationConfigsQuota? quota;
 
+  @internal
   Map<String, Object?> encode() => {
     'api_source': ?apiSource?.toTfJson(),
     if (attributes != null)
@@ -288,6 +297,7 @@ final class ApigeeApiProductOperationGroupOperations {
 
   final TfArg<String>? resource;
 
+  @internal
   Map<String, Object?> encode() => {
     'methods': ?methods?.toTfJson(),
     'resource': ?resource?.toTfJson(),

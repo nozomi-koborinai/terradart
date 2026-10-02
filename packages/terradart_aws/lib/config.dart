@@ -3,6 +3,7 @@
 /// AWS Config.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/config/aws_config_aggregate_authorization.dart'
     show
         AwsConfigAggregateAuthorization,

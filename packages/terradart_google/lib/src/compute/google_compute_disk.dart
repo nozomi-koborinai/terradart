@@ -97,6 +97,7 @@ final class ComputeDiskAsyncPrimaryDisk {
 
   final TfArg<String> disk;
 
+  @internal
   Map<String, Object?> encode() => {'disk': disk.toTfJson()};
 }
 
@@ -119,6 +120,7 @@ final class ComputeDiskEncryptionKey {
 
   final Sensitive<String>? rsaEncryptedKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_self_link': ?kmsKeySelfLink?.encodeAs('id').toTfJson(),
     'kms_key_service_account': ?kmsKeyServiceAccount?.toTfJson(),
@@ -135,6 +137,7 @@ final class ComputeDiskParams {
 
   final TfArg<Map<String, String>>? resourceManagerTags;
 
+  @internal
   Map<String, Object?> encode() => {
     'resource_manager_tags': ?resourceManagerTags?.toTfJson(),
   };
@@ -156,6 +159,7 @@ final class ComputeDiskSourceImageEncryptionKey {
 
   final Sensitive<String>? rawKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_self_link': ?kmsKeySelfLink?.encodeAs('id').toTfJson(),
     'kms_key_service_account': ?kmsKeyServiceAccount?.toTfJson(),
@@ -179,6 +183,7 @@ final class ComputeDiskSourceSnapshotEncryptionKey {
 
   final Sensitive<String>? rawKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_self_link': ?kmsKeySelfLink?.encodeAs('id').toTfJson(),
     'kms_key_service_account': ?kmsKeyServiceAccount?.toTfJson(),

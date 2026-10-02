@@ -3,6 +3,7 @@
 /// AWS Verified Access.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/verifiedaccess/aws_verifiedaccess_endpoint.dart'
     show
         AwsVerifiedaccessEndpoint,

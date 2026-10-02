@@ -17,6 +17,7 @@ final class MailmanagerArchiveRetention {
 
   final MailmanagerArchiveRetentionPeriod retentionPeriod;
 
+  @internal
   Map<String, Object?> encode() => {
     'retention_period': retentionPeriod.toTfJson(),
   };

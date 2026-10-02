@@ -136,6 +136,7 @@ final class DiscoveryEngineLicenseConfigEndDate {
 
   final TfArg<num>? year;
 
+  @internal
   Map<String, Object?> encode() => {
     'day': ?day?.toTfJson(),
     'month': ?month?.toTfJson(),
@@ -159,6 +160,7 @@ final class DiscoveryEngineLicenseConfigStartDate {
 
   final TfArg<num>? year;
 
+  @internal
   Map<String, Object?> encode() => {
     'day': ?day?.toTfJson(),
     'month': ?month?.toTfJson(),

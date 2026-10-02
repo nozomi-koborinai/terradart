@@ -22,6 +22,7 @@ final class VmwareengineDatastoreNfsDatastore {
 
   final VmwareengineDatastoreThirdPartyFileService? thirdPartyFileService;
 
+  @internal
   Map<String, Object?> encode() => {
     'google_file_service': ?googleFileService?.encode(),
     'third_party_file_service': ?thirdPartyFileService?.encode(),
@@ -41,6 +42,7 @@ final class VmwareengineDatastoreGoogleFileService {
 
   final TfArg<String>? netappVolume;
 
+  @internal
   Map<String, Object?> encode() => {
     'filestore_instance': ?filestoreInstance?.toTfJson(),
     'netapp_volume': ?netappVolume?.toTfJson(),
@@ -63,6 +65,7 @@ final class VmwareengineDatastoreThirdPartyFileService {
 
   final TfArg<List<String>> servers;
 
+  @internal
   Map<String, Object?> encode() => {
     'file_share': fileShare.toTfJson(),
     'network': network.encodeAs('id').toTfJson(),

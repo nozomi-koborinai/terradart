@@ -10,6 +10,7 @@
 /// [GoogleCloudbuildTrigger] remain supported for existing setups.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/cloud_build/google_cloudbuild_bitbucket_server_config.dart'
     show
         CloudbuildBitbucketServerConfigConnectedRepositories,
@@ -115,3 +116,9 @@ export 'src/cloud_build/google_cloudbuildv2_connection_iam_policy.dart'
     show GoogleCloudbuildv2ConnectionIamPolicy;
 export 'src/cloud_build/google_cloudbuildv2_repository.dart'
     show GoogleCloudbuildv2Repository;
+export 'src/data/google_cloudbuild_trigger.dart'
+    show DataGoogleCloudbuildTrigger;
+export 'src/data/google_cloudbuild_worker_pool.dart'
+    show DataGoogleCloudbuildWorkerPool;
+export 'src/data/google_cloudbuildv2_connection_iam_policy.dart'
+    show DataGoogleCloudbuildv2ConnectionIamPolicy;

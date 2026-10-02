@@ -32,6 +32,7 @@ final class Ec2ManagedPrefixListEntry {
 
   final TfArg<String>? description;
 
+  @internal
   Map<String, Object?> encode() => {
     'cidr': cidr.toTfJson(),
     'description': ?description?.toTfJson(),

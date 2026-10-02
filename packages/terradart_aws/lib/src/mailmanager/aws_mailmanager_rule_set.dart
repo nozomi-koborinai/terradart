@@ -31,6 +31,7 @@ final class MailmanagerRuleSetRule {
 
   final List<MailmanagerRuleSetUnless>? unless;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     if (action != null) 'action': [for (final e in action!) e.encode()],
@@ -83,6 +84,7 @@ final class MailmanagerRuleSetAction {
 
   final List<MailmanagerRuleSetWriteToS3>? writeToS3;
 
+  @internal
   Map<String, Object?> encode() => {
     if (addHeader != null)
       'add_header': [for (final e in addHeader!) e.encode()],
@@ -121,6 +123,7 @@ final class MailmanagerRuleSetAddHeader {
 
   final TfArg<String> headerValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'header_name': headerName.toTfJson(),
     'header_value': headerValue.toTfJson(),
@@ -140,6 +143,7 @@ final class MailmanagerRuleSetArchive {
 
   final TfArg<String> targetArchive;
 
+  @internal
   Map<String, Object?> encode() => {
     'action_failure_policy': ?actionFailurePolicy?.toTfJson(),
     'target_archive': targetArchive.toTfJson(),
@@ -197,6 +201,7 @@ final class MailmanagerRuleSetBounce {
 
   final TfArg<String> statusCode;
 
+  @internal
   Map<String, Object?> encode() => {
     'action_failure_policy': ?actionFailurePolicy?.toTfJson(),
     'diagnostic_message': diagnosticMessage.toTfJson(),
@@ -224,6 +229,7 @@ final class MailmanagerRuleSetDeliverToMailbox {
 
   final RefTo<AwsIamRole> roleArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'action_failure_policy': ?actionFailurePolicy?.toTfJson(),
     'mailbox_arn': mailboxArn.toTfJson(),
@@ -250,6 +256,7 @@ final class MailmanagerRuleSetDeliverToQBusiness {
 
   final RefTo<AwsIamRole> roleArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'action_failure_policy': ?actionFailurePolicy?.toTfJson(),
     'application_id': applicationId.toTfJson(),
@@ -264,6 +271,7 @@ final class MailmanagerRuleSetDeliverToQBusiness {
 final class MailmanagerRuleSetDrop {
   const MailmanagerRuleSetDrop();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -289,6 +297,7 @@ final class MailmanagerRuleSetInvokeLambda {
 
   final RefTo<AwsIamRole> roleArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'action_failure_policy': ?actionFailurePolicy?.toTfJson(),
     'function_arn': functionArn.encodeAs('arn').toTfJson(),
@@ -342,6 +351,7 @@ final class MailmanagerRuleSetPublishToSns {
 
   final RefTo<AwsSnsTopic> topicArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'action_failure_policy': ?actionFailurePolicy?.toTfJson(),
     'encoding': ?encoding?.toTfJson(),
@@ -401,6 +411,7 @@ final class MailmanagerRuleSetRelay {
 
   final TfArg<String> relay;
 
+  @internal
   Map<String, Object?> encode() => {
     'action_failure_policy': ?actionFailurePolicy?.toTfJson(),
     'mail_from': ?mailFrom?.toTfJson(),
@@ -433,6 +444,7 @@ final class MailmanagerRuleSetReplaceRecipient {
 
   final TfArg<List<String>>? replaceWith;
 
+  @internal
   Map<String, Object?> encode() => {'replace_with': ?replaceWith?.toTfJson()};
 }
 
@@ -449,6 +461,7 @@ final class MailmanagerRuleSetSend {
 
   final RefTo<AwsIamRole> roleArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'action_failure_policy': ?actionFailurePolicy?.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
@@ -477,6 +490,7 @@ final class MailmanagerRuleSetWriteToS3 {
 
   final TfArg<String>? s3SseKmsKeyId;
 
+  @internal
   Map<String, Object?> encode() => {
     'action_failure_policy': ?actionFailurePolicy?.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
@@ -511,6 +525,7 @@ final class MailmanagerRuleSetCondition {
 
   final List<MailmanagerRuleSetVerdictExpression>? verdictExpression;
 
+  @internal
   Map<String, Object?> encode() => {
     if (booleanExpression != null)
       'boolean_expression': [for (final e in booleanExpression!) e.encode()],
@@ -541,6 +556,7 @@ final class MailmanagerRuleSetBooleanExpression {
 
   final List<MailmanagerRuleSetBooleanExpressionEvaluate>? evaluate;
 
+  @internal
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
     if (evaluate != null) 'evaluate': [for (final e in evaluate!) e.encode()],
@@ -594,8 +610,10 @@ sealed class MailmanagerRuleSetBooleanExpressionEvaluate {
   ) = MailmanagerRuleSetBooleanExpressionEvaluateIsInAddressList;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -606,9 +624,11 @@ final class MailmanagerRuleSetBooleanExpressionEvaluateAnalysis
 
   final List<MailmanagerRuleSetAnalysis> analysis;
 
+  @internal
   @override
   String get blockKey => 'analysis';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'analysis': [for (final e in analysis) e.encode()],
@@ -622,9 +642,11 @@ final class MailmanagerRuleSetBooleanExpressionEvaluateAttribute
 
   final MailmanagerRuleSetBooleanExpressionAttribute attribute;
 
+  @internal
   @override
   String get blockKey => 'attribute';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'attribute': attribute.toTfJson()};
 }
@@ -638,9 +660,11 @@ final class MailmanagerRuleSetBooleanExpressionEvaluateIsInAddressList
 
   final List<MailmanagerRuleSetIsInAddressList> isInAddressList;
 
+  @internal
   @override
   String get blockKey => 'is_in_address_list';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'is_in_address_list': [for (final e in isInAddressList) e.encode()],
@@ -690,6 +714,7 @@ final class MailmanagerRuleSetAnalysis {
 
   final TfArg<String> resultField;
 
+  @internal
   Map<String, Object?> encode() => {
     'analyzer': analyzer.toTfJson(),
     'result_field': resultField.toTfJson(),
@@ -710,6 +735,7 @@ final class MailmanagerRuleSetIsInAddressList {
 
   final MailmanagerRuleSetIsInAddressListAttribute attribute;
 
+  @internal
   Map<String, Object?> encode() => {
     'address_lists': addressLists.toTfJson(),
     'attribute': attribute.toTfJson(),
@@ -770,6 +796,7 @@ final class MailmanagerRuleSetDmarcExpression {
 
   final List<MailmanagerRuleSetDmarcExpressionValues> values;
 
+  @internal
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
     'values': [for (final e in values) e.toTfJson()],
@@ -844,6 +871,7 @@ final class MailmanagerRuleSetIpExpression {
 
   final List<MailmanagerRuleSetIpExpressionEvaluate>? evaluate;
 
+  @internal
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
     'values': values.toTfJson(),
@@ -883,6 +911,7 @@ final class MailmanagerRuleSetIpExpressionEvaluate {
 
   final MailmanagerRuleSetIpExpressionAttribute attribute;
 
+  @internal
   Map<String, Object?> encode() => {'attribute': attribute.toTfJson()};
 }
 
@@ -922,6 +951,7 @@ final class MailmanagerRuleSetNumberExpression {
 
   final List<MailmanagerRuleSetNumberExpressionEvaluate>? evaluate;
 
+  @internal
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
     'value': value.toTfJson(),
@@ -979,6 +1009,7 @@ final class MailmanagerRuleSetNumberExpressionEvaluate {
 
   final MailmanagerRuleSetNumberExpressionAttribute attribute;
 
+  @internal
   Map<String, Object?> encode() => {'attribute': attribute.toTfJson()};
 }
 
@@ -1019,6 +1050,7 @@ final class MailmanagerRuleSetStringExpression {
 
   final List<MailmanagerRuleSetStringExpressionEvaluate>? evaluate;
 
+  @internal
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
     'values': values.toTfJson(),
@@ -1090,8 +1122,10 @@ sealed class MailmanagerRuleSetStringExpressionEvaluate {
   ) = MailmanagerRuleSetStringExpressionEvaluateMimeHeaderAttribute;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -1102,9 +1136,11 @@ final class MailmanagerRuleSetStringExpressionEvaluateAnalysis
 
   final List<MailmanagerRuleSetAnalysis> analysis;
 
+  @internal
   @override
   String get blockKey => 'analysis';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'analysis': [for (final e in analysis) e.encode()],
@@ -1118,9 +1154,11 @@ final class MailmanagerRuleSetStringExpressionEvaluateAttribute
 
   final MailmanagerRuleSetStringExpressionAttribute attribute;
 
+  @internal
   @override
   String get blockKey => 'attribute';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'attribute': attribute.toTfJson()};
 }
@@ -1134,9 +1172,11 @@ final class MailmanagerRuleSetStringExpressionEvaluateClientCertificateAttribute
 
   final MailmanagerRuleSetClientCertificateAttribute clientCertificateAttribute;
 
+  @internal
   @override
   String get blockKey => 'client_certificate_attribute';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'client_certificate_attribute': clientCertificateAttribute.toTfJson(),
@@ -1152,9 +1192,11 @@ final class MailmanagerRuleSetStringExpressionEvaluateMimeHeaderAttribute
 
   final TfArg<String> mimeHeaderAttribute;
 
+  @internal
   @override
   String get blockKey => 'mime_header_attribute';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'mime_header_attribute': mimeHeaderAttribute.toTfJson(),
@@ -1276,6 +1318,7 @@ final class MailmanagerRuleSetVerdictExpression {
 
   final List<MailmanagerRuleSetVerdictExpressionEvaluate>? evaluate;
 
+  @internal
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
     'values': [for (final e in values) e.toTfJson()],
@@ -1333,8 +1376,10 @@ sealed class MailmanagerRuleSetVerdictExpressionEvaluate {
   ) = MailmanagerRuleSetVerdictExpressionEvaluateAttribute;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -1345,9 +1390,11 @@ final class MailmanagerRuleSetVerdictExpressionEvaluateAnalysis
 
   final List<MailmanagerRuleSetAnalysis> analysis;
 
+  @internal
   @override
   String get blockKey => 'analysis';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'analysis': [for (final e in analysis) e.encode()],
@@ -1361,9 +1408,11 @@ final class MailmanagerRuleSetVerdictExpressionEvaluateAttribute
 
   final MailmanagerRuleSetVerdictExpressionAttribute attribute;
 
+  @internal
   @override
   String get blockKey => 'attribute';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'attribute': attribute.toTfJson()};
 }
@@ -1417,6 +1466,7 @@ final class MailmanagerRuleSetUnless {
 
   final List<MailmanagerRuleSetVerdictExpression>? verdictExpression;
 
+  @internal
   Map<String, Object?> encode() => {
     if (booleanExpression != null)
       'boolean_expression': [for (final e in booleanExpression!) e.encode()],

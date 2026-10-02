@@ -5,6 +5,27 @@
 /// Folder and organization configs are apply-excluded.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/google_storage_control_folder_intelligence_config.dart'
+    show DataGoogleStorageControlFolderIntelligenceConfig;
+export 'src/data/google_storage_control_folder_intelligence_findings_summary.dart'
+    show DataGoogleStorageControlFolderIntelligenceFindingsSummary;
+export 'src/data/google_storage_control_organization_intelligence_config.dart'
+    show DataGoogleStorageControlOrganizationIntelligenceConfig;
+export 'src/data/google_storage_control_organization_intelligence_findings_summary.dart'
+    show DataGoogleStorageControlOrganizationIntelligenceFindingsSummary;
+export 'src/data/google_storage_control_project_intelligence_config.dart'
+    show DataGoogleStorageControlProjectIntelligenceConfig;
+export 'src/data/google_storage_control_project_intelligence_finding.dart'
+    show DataGoogleStorageControlProjectIntelligenceFinding;
+export 'src/data/google_storage_control_project_intelligence_finding_revision.dart'
+    show DataGoogleStorageControlProjectIntelligenceFindingRevision;
+export 'src/data/google_storage_control_project_intelligence_finding_revisions.dart'
+    show DataGoogleStorageControlProjectIntelligenceFindingRevisions;
+export 'src/data/google_storage_control_project_intelligence_findings.dart'
+    show DataGoogleStorageControlProjectIntelligenceFindings;
+export 'src/data/google_storage_control_project_intelligence_findings_summary.dart'
+    show DataGoogleStorageControlProjectIntelligenceFindingsSummary;
 export 'src/storage_control/google_storage_control_folder_intelligence_config.dart'
     show
         GoogleStorageControlFolderIntelligenceConfig,

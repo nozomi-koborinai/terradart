@@ -3,6 +3,23 @@
 /// AWS RDS clusters, proxies, and Aurora.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_rds_certificate.dart' show DataAwsRdsCertificate;
+export 'src/data/aws_rds_cluster.dart' show DataAwsRdsCluster;
+export 'src/data/aws_rds_cluster_parameter_group.dart'
+    show DataAwsRdsClusterParameterGroup;
+export 'src/data/aws_rds_clusters.dart'
+    show DataAwsRdsClusters, DataRdsClustersFilter;
+export 'src/data/aws_rds_engine_version.dart'
+    show DataAwsRdsEngineVersion, DataRdsEngineVersionFilter;
+export 'src/data/aws_rds_events.dart' show DataAwsRdsEvents;
+export 'src/data/aws_rds_global_cluster.dart' show DataAwsRdsGlobalCluster;
+export 'src/data/aws_rds_orderable_db_instance.dart'
+    show DataAwsRdsOrderableDbInstance;
+export 'src/data/aws_rds_reserved_instance_offering.dart'
+    show DataAwsRdsReservedInstanceOffering;
+export 'src/data/aws_rds_snapshots.dart'
+    show DataAwsRdsSnapshots, DataRdsSnapshotsFilter;
 export 'src/rds/aws_rds_certificate.dart' show AwsRdsCertificate;
 export 'src/rds/aws_rds_cluster.dart'
     show

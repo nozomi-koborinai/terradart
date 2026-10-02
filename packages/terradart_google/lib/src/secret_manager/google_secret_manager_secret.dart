@@ -27,8 +27,10 @@ sealed class SecretManagerSecretReplication {
   ) = SecretManagerSecretReplicationAuto;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -39,9 +41,11 @@ final class SecretManagerSecretReplicationUserManaged
 
   final SecretManagerSecretUserManaged userManaged;
 
+  @internal
   @override
   String get blockKey => 'user_managed';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'user_managed': userManaged.encode()};
 }
@@ -53,9 +57,11 @@ final class SecretManagerSecretReplicationAuto
 
   final SecretManagerSecretAuto auto;
 
+  @internal
   @override
   String get blockKey => 'auto';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'auto': auto.encode()};
 }
@@ -68,6 +74,7 @@ final class SecretManagerSecretAuto {
 
   final SecretManagerSecretCustomerManagedEncryption? customerManagedEncryption;
 
+  @internal
   Map<String, Object?> encode() => {
     'customer_managed_encryption': ?customerManagedEncryption?.encode(),
   };
@@ -84,6 +91,7 @@ final class SecretManagerSecretCustomerManagedEncryption {
 
   final RefTo<GoogleKmsCryptoKey> kmsKeyName;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_name': kmsKeyName.encodeAs('id').toTfJson(),
   };
@@ -97,6 +105,7 @@ final class SecretManagerSecretUserManaged {
 
   final List<SecretManagerSecretReplicas> replicas;
 
+  @internal
   Map<String, Object?> encode() => {
     'replicas': [for (final e in replicas) e.encode()],
   };
@@ -115,6 +124,7 @@ final class SecretManagerSecretReplicas {
 
   final SecretManagerSecretCustomerManagedEncryption? customerManagedEncryption;
 
+  @internal
   Map<String, Object?> encode() => {
     'location': location.toTfJson(),
     'customer_managed_encryption': ?customerManagedEncryption?.encode(),
@@ -134,6 +144,7 @@ final class SecretManagerSecretRotation {
 
   final TfArg<String>? rotationPeriod;
 
+  @internal
   Map<String, Object?> encode() => {
     'next_rotation_time': ?nextRotationTime?.toTfJson(),
     'rotation_period': ?rotationPeriod?.toTfJson(),
@@ -148,6 +159,7 @@ final class SecretManagerSecretTopics {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 

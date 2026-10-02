@@ -17,6 +17,7 @@ final class VerifiedpermissionsPolicyDefinition {
 
   final List<VerifiedpermissionsPolicyTemplateLinked>? templateLinked;
 
+  @internal
   Map<String, Object?> encode() => {
     if (static != null) 'static': [for (final e in static!) e.encode()],
     if (templateLinked != null)
@@ -37,6 +38,7 @@ final class VerifiedpermissionsPolicyStatic {
 
   final TfArg<String> statement;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'statement': statement.toTfJson(),
@@ -59,6 +61,7 @@ final class VerifiedpermissionsPolicyTemplateLinked {
 
   final List<VerifiedpermissionsPolicyResource>? resource;
 
+  @internal
   Map<String, Object?> encode() => {
     'policy_template_id': policyTemplateId.toTfJson(),
     if (principal != null)
@@ -80,6 +83,7 @@ final class VerifiedpermissionsPolicyPrincipal {
 
   final TfArg<String> entityType;
 
+  @internal
   Map<String, Object?> encode() => {
     'entity_id': entityId.toTfJson(),
     'entity_type': entityType.toTfJson(),
@@ -99,6 +103,7 @@ final class VerifiedpermissionsPolicyResource {
 
   final TfArg<String> entityType;
 
+  @internal
   Map<String, Object?> encode() => {
     'entity_id': entityId.toTfJson(),
     'entity_type': entityType.toTfJson(),

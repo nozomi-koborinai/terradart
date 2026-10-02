@@ -20,6 +20,7 @@ final class EmrBlockPublicAccessConfigurationPermittedPublicSecurityGroupRuleRan
 
   final TfArg<num> minRange;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_range': maxRange.toTfJson(),
     'min_range': minRange.toTfJson(),

@@ -258,6 +258,7 @@ final class MonitoringAlertPolicyAlertStrategy {
 
   final MonitoringAlertPolicyNotificationRateLimit? notificationRateLimit;
 
+  @internal
   Map<String, Object?> encode() => {
     'auto_close': ?autoClose?.toTfJson(),
     if (notificationPrompts != null)
@@ -313,6 +314,7 @@ final class MonitoringAlertPolicyNotificationChannelStrategy {
 
   final TfArg<String>? renotifyInterval;
 
+  @internal
   Map<String, Object?> encode() => {
     'notification_channel_names': ?notificationChannelNames?.toTfJson(),
     'renotify_interval': ?renotifyInterval?.toTfJson(),
@@ -327,6 +329,7 @@ final class MonitoringAlertPolicyNotificationRateLimit {
 
   final TfArg<String>? period;
 
+  @internal
   Map<String, Object?> encode() => {'period': ?period?.toTfJson()};
 }
 
@@ -360,6 +363,7 @@ final class MonitoringAlertPolicyConditions {
 
   final MonitoringAlertPolicyConditionThreshold? conditionThreshold;
 
+  @internal
   Map<String, Object?> encode() => {
     'display_name': displayName.toTfJson(),
     'condition_absent': ?conditionAbsent?.encode(),
@@ -392,6 +396,7 @@ final class MonitoringAlertPolicyConditionAbsent {
 
   final MonitoringAlertPolicyTrigger? trigger;
 
+  @internal
   Map<String, Object?> encode() => {
     'duration': duration.toTfJson(),
     'filter': ?filter?.toTfJson(),
@@ -421,6 +426,7 @@ final class MonitoringAlertPolicyAggregations {
 
   final Aligner? perSeriesAligner;
 
+  @internal
   Map<String, Object?> encode() => {
     'alignment_period': ?alignmentPeriod?.toTfJson(),
     'cross_series_reducer': ?crossSeriesReducer?.toTfJson(),
@@ -440,6 +446,7 @@ final class MonitoringAlertPolicyTrigger {
 
   final TfArg<num>? percent;
 
+  @internal
   Map<String, Object?> encode() => {
     'count': ?count?.toTfJson(),
     'percent': ?percent?.toTfJson(),
@@ -459,6 +466,7 @@ final class MonitoringAlertPolicyConditionMatchedLog {
 
   final TfArg<Map<String, String>>? labelExtractors;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter': filter.toTfJson(),
     'label_extractors': ?labelExtractors?.toTfJson(),
@@ -484,6 +492,7 @@ final class MonitoringAlertPolicyConditionMonitoringQueryLanguage {
 
   final MonitoringAlertPolicyTrigger? trigger;
 
+  @internal
   Map<String, Object?> encode() => {
     'duration': duration.toTfJson(),
     'evaluation_missing_data': ?evaluationMissingData?.toTfJson(),
@@ -520,6 +529,7 @@ final class MonitoringAlertPolicyConditionPrometheusQueryLanguage {
 
   final TfArg<String>? ruleGroup;
 
+  @internal
   Map<String, Object?> encode() => {
     'alert_rule': ?alertRule?.toTfJson(),
     'disable_metric_validation': ?disableMetricValidation?.toTfJson(),
@@ -547,6 +557,7 @@ final class MonitoringAlertPolicyConditionSql {
 
   final MonitoringAlertPolicySchedule schedule;
 
+  @internal
   Map<String, Object?> encode() => {
     'query': query.toTfJson(),
     ...test.encode(),
@@ -577,8 +588,10 @@ sealed class MonitoringAlertPolicySchedule {
   ) = MonitoringAlertPolicyScheduleDaily;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -589,9 +602,11 @@ final class MonitoringAlertPolicyScheduleMinutes
 
   final MonitoringAlertPolicyMinutes minutes;
 
+  @internal
   @override
   String get blockKey => 'minutes';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'minutes': minutes.encode()};
 }
@@ -603,9 +618,11 @@ final class MonitoringAlertPolicyScheduleHourly
 
   final MonitoringAlertPolicyHourly hourly;
 
+  @internal
   @override
   String get blockKey => 'hourly';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'hourly': hourly.encode()};
 }
@@ -617,9 +634,11 @@ final class MonitoringAlertPolicyScheduleDaily
 
   final MonitoringAlertPolicyDaily daily;
 
+  @internal
   @override
   String get blockKey => 'daily';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'daily': daily.encode()};
 }
@@ -642,8 +661,10 @@ sealed class MonitoringAlertPolicyTest {
   ) = MonitoringAlertPolicyBooleanTestChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -654,9 +675,11 @@ final class MonitoringAlertPolicyRowCountTestChoice
 
   final MonitoringAlertPolicyRowCountTest rowCountTest;
 
+  @internal
   @override
   String get blockKey => 'row_count_test';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'row_count_test': rowCountTest.encode()};
 }
@@ -668,9 +691,11 @@ final class MonitoringAlertPolicyBooleanTestChoice
 
   final MonitoringAlertPolicyBooleanTest booleanTest;
 
+  @internal
   @override
   String get blockKey => 'boolean_test';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'boolean_test': booleanTest.encode()};
 }
@@ -683,6 +708,7 @@ final class MonitoringAlertPolicyBooleanTest {
 
   final TfArg<String> column;
 
+  @internal
   Map<String, Object?> encode() => {'column': column.toTfJson()};
 }
 
@@ -699,6 +725,7 @@ final class MonitoringAlertPolicyDaily {
 
   final MonitoringAlertPolicyExecutionTime? executionTime;
 
+  @internal
   Map<String, Object?> encode() => {
     'periodicity': periodicity.toTfJson(),
     'execution_time': ?executionTime?.encode(),
@@ -724,6 +751,7 @@ final class MonitoringAlertPolicyExecutionTime {
 
   final TfArg<num>? seconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'hours': ?hours?.toTfJson(),
     'minutes': ?minutes?.toTfJson(),
@@ -745,6 +773,7 @@ final class MonitoringAlertPolicyHourly {
 
   final TfArg<num> periodicity;
 
+  @internal
   Map<String, Object?> encode() => {
     'minute_offset': ?minuteOffset?.toTfJson(),
     'periodicity': periodicity.toTfJson(),
@@ -759,6 +788,7 @@ final class MonitoringAlertPolicyMinutes {
 
   final TfArg<num> periodicity;
 
+  @internal
   Map<String, Object?> encode() => {'periodicity': periodicity.toTfJson()};
 }
 
@@ -775,6 +805,7 @@ final class MonitoringAlertPolicyRowCountTest {
 
   final TfArg<num> threshold;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'threshold': threshold.toTfJson(),
@@ -819,6 +850,7 @@ final class MonitoringAlertPolicyConditionThreshold {
 
   final MonitoringAlertPolicyTrigger? trigger;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'denominator_filter': ?denominatorFilter?.toTfJson(),
@@ -856,6 +888,7 @@ final class MonitoringAlertPolicyDenominatorAggregations {
 
   final Aligner? perSeriesAligner;
 
+  @internal
   Map<String, Object?> encode() => {
     'alignment_period': ?alignmentPeriod?.toTfJson(),
     'cross_series_reducer': ?crossSeriesReducer?.toTfJson(),
@@ -872,6 +905,7 @@ final class MonitoringAlertPolicyForecastOptions {
 
   final TfArg<String> forecastHorizon;
 
+  @internal
   Map<String, Object?> encode() => {
     'forecast_horizon': forecastHorizon.toTfJson(),
   };
@@ -896,6 +930,7 @@ final class MonitoringAlertPolicyDocumentation {
 
   final List<MonitoringAlertPolicyLinks>? links;
 
+  @internal
   Map<String, Object?> encode() => {
     'content': ?content?.toTfJson(),
     'mime_type': ?mimeType?.toTfJson(),
@@ -914,6 +949,7 @@ final class MonitoringAlertPolicyLinks {
 
   final TfArg<String>? url;
 
+  @internal
   Map<String, Object?> encode() => {
     'display_name': ?displayName?.toTfJson(),
     'url': ?url?.toTfJson(),

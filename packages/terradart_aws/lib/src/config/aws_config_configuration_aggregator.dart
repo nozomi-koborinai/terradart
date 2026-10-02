@@ -30,12 +30,15 @@ sealed class ConfigConfigurationAggregatorAggregationSource {
   ) = ConfigConfigurationAggregatorOrganizationAggregationSourceChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -49,14 +52,17 @@ final class ConfigConfigurationAggregatorAccountAggregationSourceChoice
   final ConfigConfigurationAggregatorAccountAggregationSource
   accountAggregationSource;
 
+  @internal
   @override
   String get blockKey => 'account_aggregation_source';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'account_aggregation_source': accountAggregationSource.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'account_aggregation_source': TfArg.literal(
@@ -75,14 +81,17 @@ final class ConfigConfigurationAggregatorOrganizationAggregationSourceChoice
   final ConfigConfigurationAggregatorOrganizationAggregationSource
   organizationAggregationSource;
 
+  @internal
   @override
   String get blockKey => 'organization_aggregation_source';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'organization_aggregation_source': organizationAggregationSource.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'organization_aggregation_source': TfArg.literal(
@@ -107,6 +116,7 @@ final class ConfigConfigurationAggregatorAccountAggregationSource {
 
   final TfArg<List<String>>? regions;
 
+  @internal
   Map<String, Object?> encode() => {
     'account_ids': accountIds.toTfJson(),
     'all_regions': ?allRegions?.toTfJson(),
@@ -130,6 +140,7 @@ final class ConfigConfigurationAggregatorOrganizationAggregationSource {
 
   final RefTo<AwsIamRole> roleArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'all_regions': ?allRegions?.toTfJson(),
     'regions': ?regions?.toTfJson(),

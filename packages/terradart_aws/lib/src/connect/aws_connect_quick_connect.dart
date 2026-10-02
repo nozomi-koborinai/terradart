@@ -26,6 +26,7 @@ final class ConnectQuickConnectConfig {
 
   final List<ConnectQuickConnectUserConfig>? userConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'quick_connect_type': quickConnectType.toTfJson(),
     if (phoneConfig != null)
@@ -68,6 +69,7 @@ final class ConnectQuickConnectPhoneConfig {
 
   final TfArg<String> phoneNumber;
 
+  @internal
   Map<String, Object?> encode() => {'phone_number': phoneNumber.toTfJson()};
 }
 
@@ -84,6 +86,7 @@ final class ConnectQuickConnectQueueConfig {
 
   final TfArg<String> queueId;
 
+  @internal
   Map<String, Object?> encode() => {
     'contact_flow_id': contactFlowId.toTfJson(),
     'queue_id': queueId.toTfJson(),
@@ -103,6 +106,7 @@ final class ConnectQuickConnectUserConfig {
 
   final TfArg<String> userId;
 
+  @internal
   Map<String, Object?> encode() => {
     'contact_flow_id': contactFlowId.toTfJson(),
     'user_id': userId.toTfJson(),

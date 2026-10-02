@@ -15,6 +15,7 @@ final class PrometheusAnomalyDetectorConfiguration {
 
   final List<PrometheusAnomalyDetectorRandomCutForest>? randomCutForest;
 
+  @internal
   Map<String, Object?> encode() => {
     if (randomCutForest != null)
       'random_cut_forest': [for (final e in randomCutForest!) e.encode()],
@@ -45,6 +46,7 @@ final class PrometheusAnomalyDetectorRandomCutForest {
   final List<PrometheusAnomalyDetectorIgnoreNearExpectedFromBelow>?
   ignoreNearExpectedFromBelow;
 
+  @internal
   Map<String, Object?> encode() => {
     'query': query.toTfJson(),
     'sample_size': ?sampleSize?.toTfJson(),
@@ -78,8 +80,10 @@ sealed class PrometheusAnomalyDetectorIgnoreNearExpectedFromAbove {
   ) = PrometheusAnomalyDetectorIgnoreNearExpectedFromAboveRatio;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -90,9 +94,11 @@ final class PrometheusAnomalyDetectorIgnoreNearExpectedFromAboveAmount
 
   final TfArg<num> amount;
 
+  @internal
   @override
   String get blockKey => 'amount';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'amount': amount.toTfJson()};
 }
@@ -104,9 +110,11 @@ final class PrometheusAnomalyDetectorIgnoreNearExpectedFromAboveRatio
 
   final TfArg<num> ratio;
 
+  @internal
   @override
   String get blockKey => 'ratio';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'ratio': ratio.toTfJson()};
 }
@@ -129,8 +137,10 @@ sealed class PrometheusAnomalyDetectorIgnoreNearExpectedFromBelow {
   ) = PrometheusAnomalyDetectorIgnoreNearExpectedFromBelowRatio;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -141,9 +151,11 @@ final class PrometheusAnomalyDetectorIgnoreNearExpectedFromBelowAmount
 
   final TfArg<num> amount;
 
+  @internal
   @override
   String get blockKey => 'amount';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'amount': amount.toTfJson()};
 }
@@ -155,9 +167,11 @@ final class PrometheusAnomalyDetectorIgnoreNearExpectedFromBelowRatio
 
   final TfArg<num> ratio;
 
+  @internal
   @override
   String get blockKey => 'ratio';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'ratio': ratio.toTfJson()};
 }
@@ -180,8 +194,10 @@ sealed class PrometheusAnomalyDetectorMissingDataAction {
   ) = PrometheusAnomalyDetectorMissingDataActionSkip;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -194,9 +210,11 @@ final class PrometheusAnomalyDetectorMissingDataActionMarkAsAnomaly
 
   final TfArg<bool> markAsAnomaly;
 
+  @internal
   @override
   String get blockKey => 'mark_as_anomaly';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'mark_as_anomaly': markAsAnomaly.toTfJson(),
@@ -210,9 +228,11 @@ final class PrometheusAnomalyDetectorMissingDataActionSkip
 
   final TfArg<bool> skip;
 
+  @internal
   @override
   String get blockKey => 'skip';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'skip': skip.toTfJson()};
 }

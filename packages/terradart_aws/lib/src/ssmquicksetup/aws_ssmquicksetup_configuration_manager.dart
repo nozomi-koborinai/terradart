@@ -29,6 +29,7 @@ final class SsmquicksetupConfigurationManagerConfigurationDefinition {
 
   final TfArg<String>? typeVersion;
 
+  @internal
   Map<String, Object?> encode() => {
     'local_deployment_administration_role_arn':
         ?localDeploymentAdministrationRoleArn?.toTfJson(),

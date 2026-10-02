@@ -41,6 +41,7 @@ final class ComputePacketMirroringCollectorIlb {
 
   final RefTo<GoogleComputeForwardingRule> url;
 
+  @internal
   Map<String, Object?> encode() => {
     'url': url.encodeAs('self_link').toTfJson(),
   };
@@ -62,6 +63,7 @@ final class ComputePacketMirroringFilter {
 
   final TfArg<List<String>>? ipProtocols;
 
+  @internal
   Map<String, Object?> encode() => {
     'cidr_ranges': ?cidrRanges?.toTfJson(),
     'direction': ?direction?.toTfJson(),
@@ -109,6 +111,7 @@ final class ComputePacketMirroringMirroredResources {
 
   final List<ComputePacketMirroringSubnetworks>? subnetworks;
 
+  @internal
   Map<String, Object?> encode() => {
     'tags': ?tags?.toTfJson(),
     if (instances != null)
@@ -126,6 +129,7 @@ final class ComputePacketMirroringInstances {
 
   final RefTo<GoogleComputeInstance> url;
 
+  @internal
   Map<String, Object?> encode() => {
     'url': url.encodeAs('self_link').toTfJson(),
   };
@@ -139,6 +143,7 @@ final class ComputePacketMirroringSubnetworks {
 
   final RefTo<GoogleComputeSubnetwork> url;
 
+  @internal
   Map<String, Object?> encode() => {
     'url': url.encodeAs('self_link').toTfJson(),
   };
@@ -152,6 +157,7 @@ final class ComputePacketMirroringNetwork {
 
   final RefTo<GoogleComputeNetwork> url;
 
+  @internal
   Map<String, Object?> encode() => {
     'url': url.encodeAs('self_link').toTfJson(),
   };

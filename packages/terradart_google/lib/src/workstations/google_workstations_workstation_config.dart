@@ -20,6 +20,7 @@ final class WorkstationsWorkstationConfigAllowedPorts {
 
   final TfArg<num>? last;
 
+  @internal
   Map<String, Object?> encode() => {
     'first': ?first?.toTfJson(),
     'last': ?last?.toTfJson(),
@@ -51,6 +52,7 @@ final class WorkstationsWorkstationConfigContainer {
 
   final TfArg<String>? workingDir;
 
+  @internal
   Map<String, Object?> encode() => {
     'args': ?args?.toTfJson(),
     'command': ?command?.toTfJson(),
@@ -74,6 +76,7 @@ final class WorkstationsWorkstationConfigEncryptionKey {
 
   final TfArg<String> kmsKeyServiceAccount;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key': kmsKey.encodeAs('id').toTfJson(),
     'kms_key_service_account': kmsKeyServiceAccount.toTfJson(),
@@ -93,6 +96,7 @@ final class WorkstationsWorkstationConfigEphemeralDirectories {
 
   final WorkstationsWorkstationConfigEphemeralDirectoriesGcePd? gcePd;
 
+  @internal
   Map<String, Object?> encode() => {
     'mount_path': ?mountPath?.toTfJson(),
     'gce_pd': ?gcePd?.encode(),
@@ -118,6 +122,7 @@ final class WorkstationsWorkstationConfigEphemeralDirectoriesGcePd {
 
   final TfArg<String>? sourceSnapshot;
 
+  @internal
   Map<String, Object?> encode() => {
     'disk_type': ?diskType?.toTfJson(),
     'read_only': ?readOnly?.toTfJson(),
@@ -134,6 +139,7 @@ final class WorkstationsWorkstationConfigHost {
 
   final WorkstationsWorkstationConfigGceInstance? gceInstance;
 
+  @internal
   Map<String, Object?> encode() => {'gce_instance': ?gceInstance?.encode()};
 }
 
@@ -191,6 +197,7 @@ final class WorkstationsWorkstationConfigGceInstance {
   final WorkstationsWorkstationConfigShieldedInstanceConfig?
   shieldedInstanceConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'boot_disk_size_gb': ?bootDiskSizeGb?.toTfJson(),
     'disable_public_ip_addresses': ?disablePublicIpAddresses?.toTfJson(),
@@ -226,6 +233,7 @@ final class WorkstationsWorkstationConfigAccelerators {
 
   final TfArg<String> type;
 
+  @internal
   Map<String, Object?> encode() => {
     'count': count.toTfJson(),
     'type': type.toTfJson(),
@@ -257,6 +265,7 @@ final class WorkstationsWorkstationConfigBoostConfigs {
 
   final List<WorkstationsWorkstationConfigAccelerators>? accelerators;
 
+  @internal
   Map<String, Object?> encode() => {
     'boot_disk_size_gb': ?bootDiskSizeGb?.toTfJson(),
     'enable_nested_virtualization': ?enableNestedVirtualization?.toTfJson(),
@@ -278,6 +287,7 @@ final class WorkstationsWorkstationConfigConfidentialInstanceConfig {
 
   final TfArg<bool>? enableConfidentialCompute;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_confidential_compute': ?enableConfidentialCompute?.toTfJson(),
   };
@@ -299,6 +309,7 @@ final class WorkstationsWorkstationConfigShieldedInstanceConfig {
 
   final TfArg<bool>? enableVtpm;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_integrity_monitoring': ?enableIntegrityMonitoring?.toTfJson(),
     'enable_secure_boot': ?enableSecureBoot?.toTfJson(),
@@ -322,6 +333,7 @@ final class WorkstationsWorkstationConfigPersistentDirectories {
 
   final WorkstationsWorkstationConfigPersistentDirectoriesGcePd? gcePd;
 
+  @internal
   Map<String, Object?> encode() => {
     'mount_path': ?mountPath?.toTfJson(),
     'gce_hd': ?gceHd?.encode(),
@@ -348,6 +360,7 @@ final class WorkstationsWorkstationConfigGceHd {
 
   final TfArg<String>? sourceSnapshot;
 
+  @internal
   Map<String, Object?> encode() => {
     'archive_timeout': ?archiveTimeout?.toTfJson(),
     'reclaim_policy': ?reclaimPolicy?.toTfJson(),
@@ -402,6 +415,7 @@ final class WorkstationsWorkstationConfigPersistentDirectoriesGcePd {
 
   final TfArg<String>? sourceSnapshot;
 
+  @internal
   Map<String, Object?> encode() => {
     'disk_type': ?diskType?.toTfJson(),
     'fs_type': ?fsType?.toTfJson(),
@@ -424,6 +438,7 @@ final class WorkstationsWorkstationConfigReadinessChecks {
 
   final TfArg<num> port;
 
+  @internal
   Map<String, Object?> encode() => {
     'path': path.toTfJson(),
     'port': port.toTfJson(),

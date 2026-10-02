@@ -32,6 +32,7 @@ final class DataCeTagsFilter {
 
   final DataCeTagsFilterTags? tags;
 
+  @internal
   Map<String, Object?> encode() => {
     if (and != null) 'and': [for (final e in and!) e.encode()],
     'cost_category': ?costCategory?.encode(),
@@ -54,6 +55,7 @@ final class DataCeTagsAnd {
 
   final DataCeTagsFilterTags? tags;
 
+  @internal
   Map<String, Object?> encode() => {
     'cost_category': ?costCategory?.encode(),
     'dimension': ?dimension?.encode(),
@@ -74,6 +76,7 @@ final class DataCeTagsCostCategory {
 
   final TfArg<List<String>>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
     'match_options': ?matchOptions?.toTfJson(),
@@ -94,6 +97,7 @@ final class DataCeTagsDimension {
 
   final TfArg<List<String>>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
     'match_options': ?matchOptions?.toTfJson(),
@@ -114,6 +118,7 @@ final class DataCeTagsFilterTags {
 
   final TfArg<List<String>>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
     'match_options': ?matchOptions?.toTfJson(),
@@ -133,6 +138,7 @@ final class DataCeTagsNot {
 
   final DataCeTagsFilterTags? tags;
 
+  @internal
   Map<String, Object?> encode() => {
     'cost_category': ?costCategory?.encode(),
     'dimension': ?dimension?.encode(),
@@ -152,6 +158,7 @@ final class DataCeTagsOr {
 
   final DataCeTagsFilterTags? tags;
 
+  @internal
   Map<String, Object?> encode() => {
     'cost_category': ?costCategory?.encode(),
     'dimension': ?dimension?.encode(),
@@ -169,6 +176,7 @@ final class DataCeTagsSortBy {
 
   final TfArg<String>? sortOrder;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
     'sort_order': ?sortOrder?.toTfJson(),
@@ -185,6 +193,7 @@ final class DataCeTagsTimePeriod {
 
   final TfArg<String> start;
 
+  @internal
   Map<String, Object?> encode() => {
     'end': end.toTfJson(),
     'start': start.toTfJson(),

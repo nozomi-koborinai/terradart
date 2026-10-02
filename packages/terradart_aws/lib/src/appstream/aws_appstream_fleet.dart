@@ -53,6 +53,7 @@ final class AppstreamFleetComputeCapacity {
 
   final TfArg<num>? desiredSessions;
 
+  @internal
   Map<String, Object?> encode() => {
     'desired_instances': ?desiredInstances?.toTfJson(),
     'desired_sessions': ?desiredSessions?.toTfJson(),
@@ -72,6 +73,7 @@ final class AppstreamFleetDomainJoinInfo {
 
   final TfArg<String>? organizationalUnitDistinguishedName;
 
+  @internal
   Map<String, Object?> encode() => {
     'directory_name': ?directoryName?.toTfJson(),
     'organizational_unit_distinguished_name':
@@ -89,6 +91,7 @@ final class AppstreamFleetVpcConfig {
 
   final TfArg<List<RefTo<AwsSubnet>>>? subnetIds;
 
+  @internal
   Map<String, Object?> encode() => {
     'security_group_ids': ?securityGroupIds?.encodeAs('id').toTfJson(),
     'subnet_ids': ?subnetIds?.encodeAs('id').toTfJson(),

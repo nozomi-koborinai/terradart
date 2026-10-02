@@ -34,6 +34,7 @@ final class DatazoneGlossaryTermRelations {
 
   final TfArg<List<String>>? isA;
 
+  @internal
   Map<String, Object?> encode() => {
     'classifies': ?classifies?.toTfJson(),
     'is_a': ?isA?.toTfJson(),

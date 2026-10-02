@@ -20,6 +20,7 @@ final class PubsubLiteSubscriptionDeliveryConfig {
 
   final PubsubLiteSubscriptionDeliveryRequirement deliveryRequirement;
 
+  @internal
   Map<String, Object?> encode() => {
     'delivery_requirement': deliveryRequirement.toTfJson(),
   };

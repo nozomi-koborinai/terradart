@@ -8,7 +8,6 @@
 /// creating or deleting" at apply time (monthly sweep 2026-08-01).
 library;
 
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/bigtable.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/project.dart';

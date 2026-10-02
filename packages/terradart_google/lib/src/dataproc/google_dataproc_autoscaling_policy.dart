@@ -20,6 +20,7 @@ final class DataprocAutoscalingPolicyBasicAlgorithm {
 
   final DataprocAutoscalingPolicyYarnConfig yarnConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'cooldown_period': ?cooldownPeriod?.toTfJson(),
     'yarn_config': yarnConfig.encode(),
@@ -48,6 +49,7 @@ final class DataprocAutoscalingPolicyYarnConfig {
 
   final TfArg<num>? scaleUpMinWorkerFraction;
 
+  @internal
   Map<String, Object?> encode() => {
     'graceful_decommission_timeout': gracefulDecommissionTimeout.toTfJson(),
     'scale_down_factor': scaleDownFactor.toTfJson(),
@@ -73,6 +75,7 @@ final class DataprocAutoscalingPolicySecondaryWorkerConfig {
 
   final TfArg<num>? weight;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_instances': ?maxInstances?.toTfJson(),
     'min_instances': ?minInstances?.toTfJson(),
@@ -96,6 +99,7 @@ final class DataprocAutoscalingPolicyWorkerConfig {
 
   final TfArg<num>? weight;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_instances': maxInstances.toTfJson(),
     'min_instances': ?minInstances?.toTfJson(),

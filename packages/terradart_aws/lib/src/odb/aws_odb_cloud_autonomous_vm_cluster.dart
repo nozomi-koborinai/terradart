@@ -32,6 +32,7 @@ final class OdbCloudAutonomousVmClusterMaintenanceWindow {
 
   final TfArg<List<num>>? weeksOfMonth;
 
+  @internal
   Map<String, Object?> encode() => {
     'days_of_week': ?daysOfWeek?.toTfJson(),
     'hours_of_day': ?hoursOfDay?.toTfJson(),

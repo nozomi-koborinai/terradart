@@ -26,6 +26,7 @@ final class VectorSearchDataObjectVectors {
 
   final VectorSearchDataObjectSparse? sparse;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_name': fieldName.toTfJson(),
     'dense': ?dense?.encode(),
@@ -41,6 +42,7 @@ final class VectorSearchDataObjectDense {
 
   final TfArg<List<num>> values;
 
+  @internal
   Map<String, Object?> encode() => {'values': values.toTfJson()};
 }
 
@@ -57,6 +59,7 @@ final class VectorSearchDataObjectSparse {
 
   final TfArg<List<num>> values;
 
+  @internal
   Map<String, Object?> encode() => {
     'indices': indices.toTfJson(),
     'values': values.toTfJson(),

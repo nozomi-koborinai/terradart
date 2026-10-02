@@ -33,6 +33,7 @@ final class WorkersDeploymentAnnotations {
 
   final TfArg<String>? workersMessage;
 
+  @internal
   Map<String, Object?> encode() => {
     'workers_message': ?workersMessage?.toTfJson(),
   };
@@ -51,6 +52,7 @@ final class WorkersDeploymentVersions {
 
   final TfArg<String> versionId;
 
+  @internal
   Map<String, Object?> encode() => {
     'percentage': percentage.toTfJson(),
     'version_id': versionId.toTfJson(),

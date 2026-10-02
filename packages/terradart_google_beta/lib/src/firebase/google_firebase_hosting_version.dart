@@ -23,6 +23,7 @@ final class FirebaseHostingVersionConfig {
 
   final List<FirebaseHostingVersionRewrites>? rewrites;
 
+  @internal
   Map<String, Object?> encode() => {
     if (headers != null) 'headers': [for (final e in headers!) e.encode()],
     if (redirects != null)
@@ -47,6 +48,7 @@ final class FirebaseHostingVersionHeaders {
 
   final TfArg<String>? regex;
 
+  @internal
   Map<String, Object?> encode() => {
     'glob': ?glob?.toTfJson(),
     'headers': headers.toTfJson(),
@@ -73,6 +75,7 @@ final class FirebaseHostingVersionRedirects {
 
   final TfArg<num> statusCode;
 
+  @internal
   Map<String, Object?> encode() => {
     'glob': ?glob?.toTfJson(),
     'location': location.toTfJson(),
@@ -103,6 +106,7 @@ final class FirebaseHostingVersionRewrites {
 
   final FirebaseHostingVersionRun? run;
 
+  @internal
   Map<String, Object?> encode() => {
     'function': ?function?.toTfJson(),
     'glob': ?glob?.toTfJson(),
@@ -122,6 +126,7 @@ final class FirebaseHostingVersionRun {
 
   final TfArg<String> serviceId;
 
+  @internal
   Map<String, Object?> encode() => {
     'region': ?region?.toTfJson(),
     'service_id': serviceId.toTfJson(),

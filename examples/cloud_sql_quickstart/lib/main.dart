@@ -20,7 +20,6 @@
 /// and an application user.
 library;
 
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/alloydb.dart';
 import 'package:terradart_google/cloud_sql.dart';
 import 'package:terradart_google/compute.dart';

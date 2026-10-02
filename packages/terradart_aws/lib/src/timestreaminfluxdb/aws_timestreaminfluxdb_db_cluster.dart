@@ -168,6 +168,7 @@ final class TimestreaminfluxdbDbClusterLogDeliveryConfiguration {
 
   final List<TimestreaminfluxdbDbClusterS3Configuration>? s3Configuration;
 
+  @internal
   Map<String, Object?> encode() => {
     if (s3Configuration != null)
       's3_configuration': [for (final e in s3Configuration!) e.encode()],
@@ -187,6 +188,7 @@ final class TimestreaminfluxdbDbClusterS3Configuration {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('id').toTfJson(),
     'enabled': enabled.toTfJson(),
@@ -206,6 +208,7 @@ final class TimestreaminfluxdbDbClusterMaintenanceSchedule {
 
   final TfArg<String> timezone;
 
+  @internal
   Map<String, Object?> encode() => {
     'preferred_maintenance_window': preferredMaintenanceWindow.toTfJson(),
     'timezone': timezone.toTfJson(),

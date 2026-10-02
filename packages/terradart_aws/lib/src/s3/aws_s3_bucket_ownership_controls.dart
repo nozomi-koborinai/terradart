@@ -17,6 +17,7 @@ final class S3BucketOwnershipControlsRule {
 
   final S3BucketOwnershipControlsObjectOwnership objectOwnership;
 
+  @internal
   Map<String, Object?> encode() => {
     'object_ownership': objectOwnership.toTfJson(),
   };

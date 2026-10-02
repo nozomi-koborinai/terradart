@@ -141,6 +141,7 @@ final class ComputeSecurityPolicyRuleHeaderAction {
   final List<ComputeSecurityPolicyRuleRequestHeadersToAdds>?
   requestHeadersToAdds;
 
+  @internal
   Map<String, Object?> encode() => {
     if (requestHeadersToAdds != null)
       'request_headers_to_adds': [
@@ -162,6 +163,7 @@ final class ComputeSecurityPolicyRuleRequestHeadersToAdds {
 
   final TfArg<String>? headerValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'header_name': ?headerName?.toTfJson(),
     'header_value': ?headerValue?.toTfJson(),
@@ -178,6 +180,7 @@ final class ComputeSecurityPolicyRuleRedirectOptions {
 
   final TfArg<String>? type;
 
+  @internal
   Map<String, Object?> encode() => {
     'target': ?target?.toTfJson(),
     'type': ?type?.toTfJson(),

@@ -41,6 +41,7 @@ final class DmsReplicationInstanceKerberosAuthenticationSettings {
 
   final TfArg<String> krb5FileContents;
 
+  @internal
   Map<String, Object?> encode() => {
     'key_cache_secret_iam_arn': keyCacheSecretIamArn.toTfJson(),
     'key_cache_secret_id': keyCacheSecretId.toTfJson(),

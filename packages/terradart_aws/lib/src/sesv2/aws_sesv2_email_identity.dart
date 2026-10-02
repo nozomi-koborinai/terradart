@@ -25,6 +25,7 @@ final class Sesv2EmailIdentityDkimSigningAttributes {
 
   final Sesv2EmailIdentityNextSigningKeyLength? nextSigningKeyLength;
 
+  @internal
   Map<String, Object?> encode() => {
     'domain_signing_private_key': ?domainSigningPrivateKey?.toTfJson(),
     'domain_signing_selector': ?domainSigningSelector?.toTfJson(),

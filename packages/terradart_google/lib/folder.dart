@@ -5,6 +5,13 @@
 /// folder organization-policy factory (apply-excluded).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/google_active_folder.dart' show DataGoogleActiveFolder;
+export 'src/data/google_folder.dart' show DataGoogleFolder;
+export 'src/data/google_folder_iam_policy.dart' show DataGoogleFolderIamPolicy;
+export 'src/data/google_folder_organization_policy.dart'
+    show DataGoogleFolderOrganizationPolicy;
+export 'src/data/google_folders.dart' show DataGoogleFolders;
 export 'src/folder/google_folder.dart' show GoogleFolder;
 export 'src/folder/google_folder_access_approval_settings.dart'
     show

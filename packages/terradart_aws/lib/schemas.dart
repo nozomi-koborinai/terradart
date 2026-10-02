@@ -3,6 +3,7 @@
 /// AWS EventBridge Schemas.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/schemas/aws_schemas_discoverer.dart' show AwsSchemasDiscoverer;
 export 'src/schemas/aws_schemas_registry.dart' show AwsSchemasRegistry;
 export 'src/schemas/aws_schemas_registry_policy.dart'

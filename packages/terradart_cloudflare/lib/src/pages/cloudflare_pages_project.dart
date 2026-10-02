@@ -42,6 +42,7 @@ final class PagesProjectBuildConfig {
 
   final Sensitive<String>? webAnalyticsToken;
 
+  @internal
   Map<String, Object?> encode() => {
     'build_caching': ?buildCaching?.toTfJson(),
     'build_command': ?buildCommand?.toTfJson(),
@@ -62,6 +63,7 @@ final class PagesProjectDeploymentConfigs {
 
   final PagesProjectProduction? production;
 
+  @internal
   Map<String, Object?> encode() => {
     'preview': ?preview?.encode(),
     'production': ?production?.encode(),
@@ -143,6 +145,7 @@ final class PagesProjectPreview {
 
   final Map<String, PagesProjectVectorizeBindings>? vectorizeBindings;
 
+  @internal
   Map<String, Object?> encode() => {
     'always_use_latest_compatibility_date': ?alwaysUseLatestCompatibilityDate
         ?.toTfJson(),
@@ -233,6 +236,7 @@ final class PagesProjectAiBindings {
 
   final TfArg<String> projectId;
 
+  @internal
   Map<String, Object?> encode() => {'project_id': projectId.toTfJson()};
 }
 
@@ -245,6 +249,7 @@ final class PagesProjectAnalyticsEngineDatasets {
 
   final TfArg<String> dataset;
 
+  @internal
   Map<String, Object?> encode() => {'dataset': dataset.toTfJson()};
 }
 
@@ -255,6 +260,7 @@ final class PagesProjectAnalyticsEngineDatasets {
 final class PagesProjectBrowsers {
   const PagesProjectBrowsers();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -267,6 +273,7 @@ final class PagesProjectD1Databases {
 
   final TfArg<String> id;
 
+  @internal
   Map<String, Object?> encode() => {'id': id.toTfJson()};
 }
 
@@ -279,6 +286,7 @@ final class PagesProjectDurableObjectNamespaces {
 
   final TfArg<String> namespaceId;
 
+  @internal
   Map<String, Object?> encode() => {'namespace_id': namespaceId.toTfJson()};
 }
 
@@ -293,6 +301,7 @@ final class PagesProjectEnvVars {
 
   final Sensitive<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
     'value': value.toTfJson(),
@@ -326,6 +335,7 @@ final class PagesProjectHyperdriveBindings {
 
   final TfArg<String> id;
 
+  @internal
   Map<String, Object?> encode() => {'id': id.toTfJson()};
 }
 
@@ -338,6 +348,7 @@ final class PagesProjectKvNamespaces {
 
   final TfArg<String> namespaceId;
 
+  @internal
   Map<String, Object?> encode() => {'namespace_id': namespaceId.toTfJson()};
 }
 
@@ -350,6 +361,7 @@ final class PagesProjectLimits {
 
   final TfArg<num> cpuMs;
 
+  @internal
   Map<String, Object?> encode() => {'cpu_ms': cpuMs.toTfJson()};
 }
 
@@ -362,6 +374,7 @@ final class PagesProjectMtlsCertificates {
 
   final TfArg<String> certificateId;
 
+  @internal
   Map<String, Object?> encode() => {'certificate_id': certificateId.toTfJson()};
 }
 
@@ -374,6 +387,7 @@ final class PagesProjectPlacement {
 
   final TfArg<String>? mode;
 
+  @internal
   Map<String, Object?> encode() => {'mode': ?mode?.toTfJson()};
 }
 
@@ -386,6 +400,7 @@ final class PagesProjectQueueProducers {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 
@@ -400,6 +415,7 @@ final class PagesProjectR2Buckets {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {
     'jurisdiction': ?jurisdiction?.toTfJson(),
     'name': name.toTfJson(),
@@ -423,6 +439,7 @@ final class PagesProjectServices {
 
   final TfArg<String> service;
 
+  @internal
   Map<String, Object?> encode() => {
     'entrypoint': ?entrypoint?.toTfJson(),
     'environment': ?environment?.toTfJson(),
@@ -439,6 +456,7 @@ final class PagesProjectVectorizeBindings {
 
   final TfArg<String> indexName;
 
+  @internal
   Map<String, Object?> encode() => {'index_name': indexName.toTfJson()};
 }
 
@@ -517,6 +535,7 @@ final class PagesProjectProduction {
 
   final Map<String, PagesProjectVectorizeBindings>? vectorizeBindings;
 
+  @internal
   Map<String, Object?> encode() => {
     'always_use_latest_compatibility_date': ?alwaysUseLatestCompatibilityDate
         ?.toTfJson(),
@@ -589,6 +608,7 @@ final class PagesProjectSource {
 
   final PagesProjectConfig config;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
     'config': config.encode(),
@@ -655,6 +675,7 @@ final class PagesProjectConfig {
 
   final TfArg<String>? repoName;
 
+  @internal
   Map<String, Object?> encode() => {
     'deployments_enabled': ?deploymentsEnabled?.toTfJson(),
     'owner': ?owner?.toTfJson(),

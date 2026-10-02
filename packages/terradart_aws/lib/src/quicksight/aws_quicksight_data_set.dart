@@ -45,6 +45,7 @@ final class QuicksightDataSetColumnGroups {
 
   final QuicksightDataSetGeoSpatialColumnGroup? geoSpatialColumnGroup;
 
+  @internal
   Map<String, Object?> encode() => {
     'geo_spatial_column_group': ?geoSpatialColumnGroup?.encode(),
   };
@@ -66,6 +67,7 @@ final class QuicksightDataSetGeoSpatialColumnGroup {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {
     'columns': columns.toTfJson(),
     'country_code': countryCode.toTfJson(),
@@ -86,6 +88,7 @@ final class QuicksightDataSetColumnLevelPermissionRules {
 
   final TfArg<List<String>>? principals;
 
+  @internal
   Map<String, Object?> encode() => {
     'column_names': ?columnNames?.toTfJson(),
     'principals': ?principals?.toTfJson(),
@@ -105,6 +108,7 @@ final class QuicksightDataSetUsageConfiguration {
 
   final TfArg<bool>? disableUseAsImportedSource;
 
+  @internal
   Map<String, Object?> encode() => {
     'disable_use_as_direct_query_source': ?disableUseAsDirectQuerySource
         ?.toTfJson(),
@@ -128,6 +132,7 @@ final class QuicksightDataSetFieldFolders {
 
   final TfArg<String> fieldFoldersId;
 
+  @internal
   Map<String, Object?> encode() => {
     'columns': ?columns?.toTfJson(),
     'description': ?description?.toTfJson(),
@@ -154,6 +159,7 @@ final class QuicksightDataSetLogicalTableMap {
 
   final QuicksightDataSetSource source;
 
+  @internal
   Map<String, Object?> encode() => {
     'alias': alias.toTfJson(),
     'logical_table_map_id': logicalTableMapId.toTfJson(),
@@ -191,6 +197,7 @@ final class QuicksightDataSetDataTransforms {
 
   final QuicksightDataSetUntagColumnOperation? untagColumnOperation;
 
+  @internal
   Map<String, Object?> encode() => {
     'cast_column_type_operation': ?castColumnTypeOperation?.encode(),
     'create_columns_operation': ?createColumnsOperation?.encode(),
@@ -218,6 +225,7 @@ final class QuicksightDataSetCastColumnTypeOperation {
 
   final TfArg<String> newColumnType;
 
+  @internal
   Map<String, Object?> encode() => {
     'column_name': columnName.toTfJson(),
     'format': ?format?.toTfJson(),
@@ -233,6 +241,7 @@ final class QuicksightDataSetCreateColumnsOperation {
 
   final List<QuicksightDataSetCreateColumnsOperationColumns> columns;
 
+  @internal
   Map<String, Object?> encode() => {
     'columns': [for (final e in columns) e.encode()],
   };
@@ -254,6 +263,7 @@ final class QuicksightDataSetCreateColumnsOperationColumns {
 
   final TfArg<String> expression;
 
+  @internal
   Map<String, Object?> encode() => {
     'column_id': columnId.toTfJson(),
     'column_name': columnName.toTfJson(),
@@ -269,6 +279,7 @@ final class QuicksightDataSetFilterOperation {
 
   final TfArg<String> conditionExpression;
 
+  @internal
   Map<String, Object?> encode() => {
     'condition_expression': conditionExpression.toTfJson(),
   };
@@ -282,6 +293,7 @@ final class QuicksightDataSetProjectOperation {
 
   final TfArg<List<String>> projectedColumns;
 
+  @internal
   Map<String, Object?> encode() => {
     'projected_columns': projectedColumns.toTfJson(),
   };
@@ -300,6 +312,7 @@ final class QuicksightDataSetRenameColumnOperation {
 
   final TfArg<String> newColumnName;
 
+  @internal
   Map<String, Object?> encode() => {
     'column_name': columnName.toTfJson(),
     'new_column_name': newColumnName.toTfJson(),
@@ -319,6 +332,7 @@ final class QuicksightDataSetTagColumnOperation {
 
   final List<QuicksightDataSetTagColumnOperationTags> tags;
 
+  @internal
   Map<String, Object?> encode() => {
     'column_name': columnName.toTfJson(),
     'tags': [for (final e in tags) e.encode()],
@@ -338,6 +352,7 @@ final class QuicksightDataSetTagColumnOperationTags {
 
   final QuicksightDataSetColumnDescription? columnDescription;
 
+  @internal
   Map<String, Object?> encode() => {
     'column_geographic_role': ?columnGeographicRole?.toTfJson(),
     'column_description': ?columnDescription?.encode(),
@@ -352,6 +367,7 @@ final class QuicksightDataSetColumnDescription {
 
   final TfArg<String>? text;
 
+  @internal
   Map<String, Object?> encode() => {'text': ?text?.toTfJson()};
 }
 
@@ -368,6 +384,7 @@ final class QuicksightDataSetUntagColumnOperation {
 
   final TfArg<List<String>> tagNames;
 
+  @internal
   Map<String, Object?> encode() => {
     'column_name': columnName.toTfJson(),
     'tag_names': tagNames.toTfJson(),
@@ -390,6 +407,7 @@ final class QuicksightDataSetSource {
 
   final QuicksightDataSetJoinInstruction? joinInstruction;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_set_arn': ?dataSetArn?.toTfJson(),
     'physical_table_id': ?physicalTableId?.toTfJson(),
@@ -422,6 +440,7 @@ final class QuicksightDataSetJoinInstruction {
 
   final QuicksightDataSetRightJoinKeyProperties? rightJoinKeyProperties;
 
+  @internal
   Map<String, Object?> encode() => {
     'left_operand': leftOperand.toTfJson(),
     'on_clause': onClause.toTfJson(),
@@ -440,6 +459,7 @@ final class QuicksightDataSetLeftJoinKeyProperties {
 
   final TfArg<bool>? uniqueKey;
 
+  @internal
   Map<String, Object?> encode() => {'unique_key': ?uniqueKey?.toTfJson()};
 }
 
@@ -451,6 +471,7 @@ final class QuicksightDataSetRightJoinKeyProperties {
 
   final TfArg<bool>? uniqueKey;
 
+  @internal
   Map<String, Object?> encode() => {'unique_key': ?uniqueKey?.toTfJson()};
 }
 
@@ -467,6 +488,7 @@ final class QuicksightDataSetPermissions {
 
   final TfArg<String> principal;
 
+  @internal
   Map<String, Object?> encode() => {
     'actions': actions.toTfJson(),
     'principal': principal.toTfJson(),
@@ -492,6 +514,7 @@ final class QuicksightDataSetPhysicalTableMap {
 
   final QuicksightDataSetS3Source? s3Source;
 
+  @internal
   Map<String, Object?> encode() => {
     'physical_table_map_id': physicalTableMapId.toTfJson(),
     'custom_sql': ?customSql?.encode(),
@@ -519,6 +542,7 @@ final class QuicksightDataSetCustomSql {
 
   final List<QuicksightDataSetColumns>? columns;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_source_arn': dataSourceArn.toTfJson(),
     'name': name.toTfJson(),
@@ -537,6 +561,7 @@ final class QuicksightDataSetColumns {
 
   final TfArg<String> type;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'type': type.toTfJson(),
@@ -565,6 +590,7 @@ final class QuicksightDataSetRelationalTable {
 
   final List<QuicksightDataSetInputColumns> inputColumns;
 
+  @internal
   Map<String, Object?> encode() => {
     'catalog': ?catalog?.toTfJson(),
     'data_source_arn': dataSourceArn.toTfJson(),
@@ -585,6 +611,7 @@ final class QuicksightDataSetInputColumns {
 
   final TfArg<String> type;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'type': type.toTfJson(),
@@ -607,6 +634,7 @@ final class QuicksightDataSetS3Source {
 
   final QuicksightDataSetUploadSettings uploadSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_source_arn': dataSourceArn.toTfJson(),
     'input_columns': [for (final e in inputColumns) e.encode()],
@@ -636,6 +664,7 @@ final class QuicksightDataSetUploadSettings {
 
   final TfArg<String>? textQualifier;
 
+  @internal
   Map<String, Object?> encode() => {
     'contains_header': ?containsHeader?.toTfJson(),
     'delimiter': ?delimiter?.toTfJson(),
@@ -655,6 +684,7 @@ final class QuicksightDataSetRefreshProperties {
 
   final QuicksightDataSetRefreshConfiguration refreshConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'refresh_configuration': refreshConfiguration.encode(),
   };
@@ -670,6 +700,7 @@ final class QuicksightDataSetRefreshConfiguration {
 
   final QuicksightDataSetIncrementalRefresh incrementalRefresh;
 
+  @internal
   Map<String, Object?> encode() => {
     'incremental_refresh': incrementalRefresh.encode(),
   };
@@ -683,6 +714,7 @@ final class QuicksightDataSetIncrementalRefresh {
 
   final QuicksightDataSetLookbackWindow lookbackWindow;
 
+  @internal
   Map<String, Object?> encode() => {'lookback_window': lookbackWindow.encode()};
 }
 
@@ -702,6 +734,7 @@ final class QuicksightDataSetLookbackWindow {
 
   final TfArg<String> sizeUnit;
 
+  @internal
   Map<String, Object?> encode() => {
     'column_name': columnName.toTfJson(),
     'size': size.toTfJson(),
@@ -731,6 +764,7 @@ final class QuicksightDataSetRowLevelPermissionDataSet {
 
   final TfArg<String>? status;
 
+  @internal
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
     'format_version': ?formatVersion?.toTfJson(),
@@ -753,6 +787,7 @@ final class QuicksightDataSetRowLevelPermissionTagConfiguration {
 
   final List<QuicksightDataSetTagRules> tagRules;
 
+  @internal
   Map<String, Object?> encode() => {
     'status': ?status?.toTfJson(),
     'tag_rules': [for (final e in tagRules) e.encode()],
@@ -778,6 +813,7 @@ final class QuicksightDataSetTagRules {
 
   final TfArg<String>? tagMultiValueDelimiter;
 
+  @internal
   Map<String, Object?> encode() => {
     'column_name': columnName.toTfJson(),
     'match_all_value': ?matchAllValue?.toTfJson(),

@@ -34,8 +34,10 @@ sealed class AgentIdentityAuthProviderTypeParams {
   ) = AgentIdentityAuthProviderTypeParamsTwoLeggedOauth;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -46,9 +48,11 @@ final class AgentIdentityAuthProviderTypeParamsApiKey
 
   final AgentIdentityAuthProviderApiKey apiKey;
 
+  @internal
   @override
   String get blockKey => 'api_key';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'api_key': apiKey.encode()};
 }
@@ -62,9 +66,11 @@ final class AgentIdentityAuthProviderTypeParamsThreeLeggedOauth
 
   final AgentIdentityAuthProviderThreeLeggedOauth threeLeggedOauth;
 
+  @internal
   @override
   String get blockKey => 'three_legged_oauth';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'three_legged_oauth': threeLeggedOauth.encode(),
@@ -78,9 +84,11 @@ final class AgentIdentityAuthProviderTypeParamsTwoLeggedOauth
 
   final AgentIdentityAuthProviderTwoLeggedOauth twoLeggedOauth;
 
+  @internal
   @override
   String get blockKey => 'two_legged_oauth';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'two_legged_oauth': twoLeggedOauth.encode(),
@@ -95,6 +103,7 @@ final class AgentIdentityAuthProviderApiKey {
 
   final Sensitive<String>? apiKey;
 
+  @internal
   Map<String, Object?> encode() => {'api_key': ?apiKey?.toTfJson()};
 }
 
@@ -126,6 +135,7 @@ final class AgentIdentityAuthProviderThreeLeggedOauth {
 
   final TfArg<String>? tokenUrl;
 
+  @internal
   Map<String, Object?> encode() => {
     'authorization_url': ?authorizationUrl?.toTfJson(),
     'client_id': ?clientId?.toTfJson(),
@@ -156,8 +166,10 @@ sealed class AgentIdentityAuthProviderThreeLeggedOauthClientSecret {
   ) = AgentIdentityAuthProviderThreeLeggedOauthClientSecretWo;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -170,9 +182,11 @@ final class AgentIdentityAuthProviderThreeLeggedOauthClientSecretChoice
 
   final Sensitive<String> clientSecret;
 
+  @internal
   @override
   String get blockKey => 'client_secret';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'client_secret': clientSecret.toTfJson()};
 }
@@ -186,9 +200,11 @@ final class AgentIdentityAuthProviderThreeLeggedOauthClientSecretWo
 
   final TfArg<String> clientSecretWo;
 
+  @internal
   @override
   String get blockKey => 'client_secret_wo';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'client_secret_wo': clientSecretWo.toTfJson(),
@@ -214,6 +230,7 @@ final class AgentIdentityAuthProviderTwoLeggedOauth {
 
   final TfArg<String>? tokenUrl;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_id': ?clientId?.toTfJson(),
     ...?clientSecret?.encode(),
@@ -241,8 +258,10 @@ sealed class AgentIdentityAuthProviderTwoLeggedOauthClientSecret {
   ) = AgentIdentityAuthProviderTwoLeggedOauthClientSecretWo;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -255,9 +274,11 @@ final class AgentIdentityAuthProviderTwoLeggedOauthClientSecretChoice
 
   final Sensitive<String> clientSecret;
 
+  @internal
   @override
   String get blockKey => 'client_secret';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'client_secret': clientSecret.toTfJson()};
 }
@@ -271,9 +292,11 @@ final class AgentIdentityAuthProviderTwoLeggedOauthClientSecretWo
 
   final TfArg<String> clientSecretWo;
 
+  @internal
   @override
   String get blockKey => 'client_secret_wo';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'client_secret_wo': clientSecretWo.toTfJson(),

@@ -22,6 +22,7 @@ final class VerifiedaccessGroupSseConfiguration {
 
   final RefTo<AwsKmsKey>? kmsKeyArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'customer_managed_key_enabled': ?customerManagedKeyEnabled?.toTfJson(),
     'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),

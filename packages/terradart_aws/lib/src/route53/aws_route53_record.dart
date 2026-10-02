@@ -72,12 +72,15 @@ sealed class Route53RecordTarget {
       Route53RecordTargetRecords;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -87,12 +90,15 @@ final class Route53RecordTargetAlias extends Route53RecordTarget {
 
   final Route53RecordAlias alias;
 
+  @internal
   @override
   String get blockKey => 'alias';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'alias': alias.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'alias': TfArg.literal(alias.encode()),
@@ -105,12 +111,15 @@ final class Route53RecordTargetRecords extends Route53RecordTarget {
 
   final TfArg<List<String>> records;
 
+  @internal
   @override
   String get blockKey => 'records';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'records': records.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'records': records};
 }
@@ -159,12 +168,15 @@ sealed class Route53RecordRoutingPolicy {
   ) = Route53RecordWeightedRoutingPolicyChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -175,14 +187,17 @@ final class Route53RecordCidrRoutingPolicyChoice
 
   final Route53RecordCidrRoutingPolicy cidrRoutingPolicy;
 
+  @internal
   @override
   String get blockKey => 'cidr_routing_policy';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'cidr_routing_policy': cidrRoutingPolicy.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'cidr_routing_policy': TfArg.literal(cidrRoutingPolicy.encode()),
@@ -196,14 +211,17 @@ final class Route53RecordFailoverRoutingPolicyChoice
 
   final Route53RecordFailoverRoutingPolicy failoverRoutingPolicy;
 
+  @internal
   @override
   String get blockKey => 'failover_routing_policy';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'failover_routing_policy': failoverRoutingPolicy.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'failover_routing_policy': TfArg.literal(failoverRoutingPolicy.encode()),
@@ -219,14 +237,17 @@ final class Route53RecordGeolocationRoutingPolicyChoice
 
   final Route53RecordGeolocationRoutingPolicy geolocationRoutingPolicy;
 
+  @internal
   @override
   String get blockKey => 'geolocation_routing_policy';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'geolocation_routing_policy': geolocationRoutingPolicy.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'geolocation_routing_policy': TfArg.literal(
@@ -244,14 +265,17 @@ final class Route53RecordGeoproximityRoutingPolicyChoice
 
   final Route53RecordGeoproximityRoutingPolicy geoproximityRoutingPolicy;
 
+  @internal
   @override
   String get blockKey => 'geoproximity_routing_policy';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'geoproximity_routing_policy': geoproximityRoutingPolicy.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'geoproximity_routing_policy': TfArg.literal(
@@ -267,14 +291,17 @@ final class Route53RecordLatencyRoutingPolicyChoice
 
   final Route53RecordLatencyRoutingPolicy latencyRoutingPolicy;
 
+  @internal
   @override
   String get blockKey => 'latency_routing_policy';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'latency_routing_policy': latencyRoutingPolicy.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'latency_routing_policy': TfArg.literal(latencyRoutingPolicy.encode()),
@@ -290,15 +317,18 @@ final class Route53RecordMultivalueAnswerRoutingPolicy
 
   final TfArg<bool> multivalueAnswerRoutingPolicy;
 
+  @internal
   @override
   String get blockKey => 'multivalue_answer_routing_policy';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'multivalue_answer_routing_policy': multivalueAnswerRoutingPolicy
         .toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'multivalue_answer_routing_policy': multivalueAnswerRoutingPolicy,
@@ -312,14 +342,17 @@ final class Route53RecordWeightedRoutingPolicyChoice
 
   final Route53RecordWeightedRoutingPolicy weightedRoutingPolicy;
 
+  @internal
   @override
   String get blockKey => 'weighted_routing_policy';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'weighted_routing_policy': weightedRoutingPolicy.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'weighted_routing_policy': TfArg.literal(weightedRoutingPolicy.encode()),
@@ -342,6 +375,7 @@ final class Route53RecordAlias {
 
   final TfArg<String> zoneId;
 
+  @internal
   Map<String, Object?> encode() => {
     'evaluate_target_health': evaluateTargetHealth.toTfJson(),
     'name': name.toTfJson(),
@@ -362,6 +396,7 @@ final class Route53RecordCidrRoutingPolicy {
 
   final TfArg<String> locationName;
 
+  @internal
   Map<String, Object?> encode() => {
     'collection_id': collectionId.toTfJson(),
     'location_name': locationName.toTfJson(),
@@ -376,6 +411,7 @@ final class Route53RecordFailoverRoutingPolicy {
 
   final Route53RecordFailoverRoutingPolicyType type;
 
+  @internal
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 
@@ -418,6 +454,7 @@ final class Route53RecordGeolocationRoutingPolicy {
 
   final TfArg<String>? subdivision;
 
+  @internal
   Map<String, Object?> encode() => {
     'continent': ?continent?.toTfJson(),
     'country': ?country?.toTfJson(),
@@ -444,6 +481,7 @@ final class Route53RecordGeoproximityRoutingPolicy {
 
   final List<Route53RecordCoordinates>? coordinates;
 
+  @internal
   Map<String, Object?> encode() => {
     'aws_region': ?awsRegion?.toTfJson(),
     'bias': ?bias?.toTfJson(),
@@ -466,6 +504,7 @@ final class Route53RecordCoordinates {
 
   final TfArg<String> longitude;
 
+  @internal
   Map<String, Object?> encode() => {
     'latitude': latitude.toTfJson(),
     'longitude': longitude.toTfJson(),
@@ -480,6 +519,7 @@ final class Route53RecordLatencyRoutingPolicy {
 
   final Route53RecordRegion region;
 
+  @internal
   Map<String, Object?> encode() => {'region': region.toTfJson()};
 }
 
@@ -610,6 +650,7 @@ final class Route53RecordWeightedRoutingPolicy {
 
   final TfArg<num> weight;
 
+  @internal
   Map<String, Object?> encode() => {'weight': weight.toTfJson()};
 }
 

@@ -51,6 +51,7 @@ final class OracleDatabaseExascaleDbStorageVaultProperties {
 
   final OracleDatabaseExascaleDbStorageVaultTimeZone? timeZone;
 
+  @internal
   Map<String, Object?> encode() => {
     'additional_flash_cache_percent': ?additionalFlashCachePercent?.toTfJson(),
     'exascale_db_storage_details': exascaleDbStorageDetails.encode(),
@@ -68,6 +69,7 @@ final class OracleDatabaseExascaleDbStorageVaultExascaleDbStorageDetails {
 
   final TfArg<num> totalSizeGbs;
 
+  @internal
   Map<String, Object?> encode() => {'total_size_gbs': totalSizeGbs.toTfJson()};
 }
 
@@ -81,6 +83,7 @@ final class OracleDatabaseExascaleDbStorageVaultTimeZone {
 
   final TfArg<String>? version;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': ?id?.toTfJson(),
     'version': ?version?.toTfJson(),

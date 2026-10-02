@@ -52,12 +52,15 @@ sealed class EcsTaskSetCompute {
       EcsTaskSetComputeLaunchType;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -70,9 +73,11 @@ final class EcsTaskSetComputeCapacityProviderStrategy
 
   final List<EcsTaskSetCapacityProviderStrategy> capacityProviderStrategy;
 
+  @internal
   @override
   String get blockKey => 'capacity_provider_strategy';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'capacity_provider_strategy': [
@@ -80,6 +85,7 @@ final class EcsTaskSetComputeCapacityProviderStrategy
     ],
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'capacity_provider_strategy': TfArg.literal([
@@ -94,12 +100,15 @@ final class EcsTaskSetComputeLaunchType extends EcsTaskSetCompute {
 
   final EcsTaskSetLaunchType launchType;
 
+  @internal
   @override
   String get blockKey => 'launch_type';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'launch_type': launchType.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'launch_type': launchType};
 }
@@ -120,6 +129,7 @@ final class EcsTaskSetCapacityProviderStrategy {
 
   final TfArg<num> weight;
 
+  @internal
   Map<String, Object?> encode() => {
     'base': ?base?.toTfJson(),
     'capacity_provider': capacityProvider.toTfJson(),
@@ -146,6 +156,7 @@ final class EcsTaskSetLoadBalancer {
 
   final TfArg<String>? targetGroupArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'container_name': containerName.toTfJson(),
     'container_port': ?containerPort?.toTfJson(),
@@ -170,6 +181,7 @@ final class EcsTaskSetNetworkConfiguration {
 
   final TfArg<List<RefTo<AwsSubnet>>> subnets;
 
+  @internal
   Map<String, Object?> encode() => {
     'assign_public_ip': ?assignPublicIp?.toTfJson(),
     'security_groups': ?securityGroups?.encodeAs('id').toTfJson(),
@@ -187,6 +199,7 @@ final class EcsTaskSetScale {
 
   final TfArg<num>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'unit': ?unit?.toTfJson(),
     'value': ?value?.toTfJson(),
@@ -225,6 +238,7 @@ final class EcsTaskSetServiceRegistries {
 
   final TfArg<String> registryArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'container_name': ?containerName?.toTfJson(),
     'container_port': ?containerPort?.toTfJson(),

@@ -26,7 +26,7 @@ const Set<String> _googleWorkloadIdentityServiceAgentSensitive = <String>{};
 ///
 /// Enable `workloadidentity.googleapis.com` via
 /// [GoogleProjectService] before apply. Resolve the project
-/// *number* with [GoogleProject] `.number`.
+/// *number* with [DataGoogleProject] `.number`.
 ///
 /// Example:
 /// ```dart

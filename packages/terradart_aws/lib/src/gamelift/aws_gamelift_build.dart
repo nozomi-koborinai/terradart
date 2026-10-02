@@ -67,6 +67,7 @@ final class GameliftBuildStorageLocation {
 
   final RefTo<AwsIamRole> roleArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('id').toTfJson(),
     'key': key.toTfJson(),

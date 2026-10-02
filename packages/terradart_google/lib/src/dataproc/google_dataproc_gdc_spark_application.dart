@@ -37,12 +37,15 @@ sealed class DataprocGdcSparkApplicationWorkload {
   ) = DataprocGdcSparkApplicationWorkloadSparkRApplicationConfig;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -56,14 +59,17 @@ final class DataprocGdcSparkApplicationWorkloadPysparkApplicationConfig
   final DataprocGdcSparkApplicationPysparkApplicationConfig
   pysparkApplicationConfig;
 
+  @internal
   @override
   String get blockKey => 'pyspark_application_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'pyspark_application_config': pysparkApplicationConfig.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'pyspark_application_config': TfArg.literal(
@@ -81,14 +87,17 @@ final class DataprocGdcSparkApplicationWorkloadSparkApplicationConfig
 
   final DataprocGdcSparkApplicationConfig sparkApplicationConfig;
 
+  @internal
   @override
   String get blockKey => 'spark_application_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'spark_application_config': sparkApplicationConfig.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'spark_application_config': TfArg.literal(sparkApplicationConfig.encode()),
@@ -105,14 +114,17 @@ final class DataprocGdcSparkApplicationWorkloadSparkSqlApplicationConfig
   final DataprocGdcSparkApplicationSparkSqlApplicationConfig
   sparkSqlApplicationConfig;
 
+  @internal
   @override
   String get blockKey => 'spark_sql_application_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'spark_sql_application_config': sparkSqlApplicationConfig.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'spark_sql_application_config': TfArg.literal(
@@ -131,14 +143,17 @@ final class DataprocGdcSparkApplicationWorkloadSparkRApplicationConfig
   final DataprocGdcSparkApplicationSparkRApplicationConfig
   sparkRApplicationConfig;
 
+  @internal
   @override
   String get blockKey => 'spark_r_application_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'spark_r_application_config': sparkRApplicationConfig.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'spark_r_application_config': TfArg.literal(
@@ -172,6 +187,7 @@ final class DataprocGdcSparkApplicationPysparkApplicationConfig {
 
   final TfArg<List<String>>? pythonFileUris;
 
+  @internal
   Map<String, Object?> encode() => {
     'archive_uris': ?archiveUris?.toTfJson(),
     'args': ?args?.toTfJson(),
@@ -207,6 +223,7 @@ final class DataprocGdcSparkApplicationConfig {
 
   final TfArg<String>? mainJarFileUri;
 
+  @internal
   Map<String, Object?> encode() => {
     'archive_uris': ?archiveUris?.toTfJson(),
     'args': ?args?.toTfJson(),
@@ -236,6 +253,7 @@ final class DataprocGdcSparkApplicationSparkRApplicationConfig {
 
   final TfArg<String> mainRFileUri;
 
+  @internal
   Map<String, Object?> encode() => {
     'archive_uris': ?archiveUris?.toTfJson(),
     'args': ?args?.toTfJson(),
@@ -263,6 +281,7 @@ final class DataprocGdcSparkApplicationSparkSqlApplicationConfig {
 
   final DataprocGdcSparkApplicationQueryList? queryList;
 
+  @internal
   Map<String, Object?> encode() => {
     'jar_file_uris': ?jarFileUris?.toTfJson(),
     'query_file_uri': ?queryFileUri?.toTfJson(),
@@ -279,6 +298,7 @@ final class DataprocGdcSparkApplicationQueryList {
 
   final TfArg<List<String>> queries;
 
+  @internal
   Map<String, Object?> encode() => {'queries': queries.toTfJson()};
 }
 

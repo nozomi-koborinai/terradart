@@ -32,6 +32,7 @@ final class MskconnectCustomPluginLocation {
 
   final MskconnectCustomPluginS3 s3;
 
+  @internal
   Map<String, Object?> encode() => {'s3': s3.encode()};
 }
 
@@ -51,6 +52,7 @@ final class MskconnectCustomPluginS3 {
 
   final TfArg<String>? objectVersion;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
     'file_key': fileKey.toTfJson(),

@@ -24,7 +24,6 @@ dependencies:
 
 ```dart
 // lib/appwrite_infra_stack.dart
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_appwrite/provider.dart';
 import 'package:terradart_appwrite/storage.dart';
 

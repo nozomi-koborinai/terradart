@@ -33,10 +33,12 @@ sealed class FirestoreBackupScheduleBackupRecurrence {
 
   /// argMap key under which this recurrence is emitted
   /// (`daily_recurrence` or `weekly_recurrence`).
+  @internal
   String get blockKey;
 
   /// JSON fragment for the block value (always a single-element list
   /// because both blocks are `nesting_mode: list, max_items: 1`).
+  @internal
   List<Map<String, Object?>> encode();
 }
 
@@ -49,9 +51,11 @@ final class FirestoreBackupScheduleDailyRecurrence
   const FirestoreBackupScheduleDailyRecurrence();
 
   @override
+  @internal
   String get blockKey => 'daily_recurrence';
 
   @override
+  @internal
   List<Map<String, Object?>> encode() => const [<String, Object?>{}];
 }
 
@@ -70,9 +74,11 @@ final class FirestoreBackupScheduleWeeklyRecurrence
   final BackupDayOfWeek? day;
 
   @override
+  @internal
   String get blockKey => 'weekly_recurrence';
 
   @override
+  @internal
   List<Map<String, Object?>> encode() => [
     {if (day != null) 'day': day!.toTfJson()},
   ];

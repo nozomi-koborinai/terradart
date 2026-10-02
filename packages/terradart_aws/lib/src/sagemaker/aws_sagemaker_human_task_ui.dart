@@ -15,6 +15,7 @@ final class SagemakerHumanTaskUiTemplate {
 
   final TfArg<String>? content;
 
+  @internal
   Map<String, Object?> encode() => {'content': ?content?.toTfJson()};
 }
 

@@ -83,12 +83,15 @@ sealed class WorkersScriptContent {
       WorkersScriptContentFile;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -98,12 +101,15 @@ final class WorkersScriptContentChoice extends WorkersScriptContent {
 
   final TfArg<String> content;
 
+  @internal
   @override
   String get blockKey => 'content';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'content': content.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'content': content};
 }
@@ -114,12 +120,15 @@ final class WorkersScriptContentFile extends WorkersScriptContent {
 
   final TfArg<String> contentFile;
 
+  @internal
   @override
   String get blockKey => 'content_file';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'content_file': contentFile.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'content_file': contentFile};
 }
@@ -134,6 +143,7 @@ final class WorkersScriptAnnotations {
 
   final TfArg<String>? workersTag;
 
+  @internal
   Map<String, Object?> encode() => {
     'workers_message': ?workersMessage?.toTfJson(),
     'workers_tag': ?workersTag?.toTfJson(),
@@ -150,6 +160,7 @@ final class WorkersScriptAssets {
 
   final WorkersScriptConfig? config;
 
+  @internal
   Map<String, Object?> encode() => {
     ...?source?.encode(),
     'config': ?config?.encode(),
@@ -173,8 +184,10 @@ sealed class WorkersScriptSource {
       WorkersScriptSourceJwt;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -184,9 +197,11 @@ final class WorkersScriptSourceDirectory extends WorkersScriptSource {
 
   final TfArg<String> directory;
 
+  @internal
   @override
   String get blockKey => 'directory';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'directory': directory.toTfJson()};
 }
@@ -197,9 +212,11 @@ final class WorkersScriptSourceJwt extends WorkersScriptSource {
 
   final Sensitive<String> jwt;
 
+  @internal
   @override
   String get blockKey => 'jwt';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'jwt': jwt.toTfJson()};
 }
@@ -232,6 +249,7 @@ final class WorkersScriptConfig {
 
   final TfArg<bool>? serveDirectly;
 
+  @internal
   Map<String, Object?> encode() => {
     'base_path': ?basePath?.toTfJson(),
     'headers': ?headers?.toTfJson(),
@@ -431,6 +449,7 @@ final class WorkersScriptBindings {
 
   final WorkersScriptSimple? simple;
 
+  @internal
   Map<String, Object?> encode() => {
     'algorithm': ?algorithm?.toTfJson(),
     'allowed_destination_addresses': ?allowedDestinationAddresses?.toTfJson(),
@@ -654,6 +673,7 @@ final class WorkersScriptOutbound {
 
   final WorkersScriptWorker? worker;
 
+  @internal
   Map<String, Object?> encode() => {
     'params': ?params?.toTfJson(),
     'worker': ?worker?.encode(),
@@ -670,6 +690,7 @@ final class WorkersScriptWorker {
 
   final TfArg<String>? service;
 
+  @internal
   Map<String, Object?> encode() => {
     'environment': ?environment?.toTfJson(),
     'service': ?service?.toTfJson(),
@@ -692,6 +713,7 @@ final class WorkersScriptSimple {
 
   final TfArg<num> period;
 
+  @internal
   Map<String, Object?> encode() => {
     'limit': limit.toTfJson(),
     'mitigation_timeout': ?mitigationTimeout?.toTfJson(),
@@ -709,6 +731,7 @@ final class WorkersScriptCacheOptions {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'cross_version_cache': ?crossVersionCache?.toTfJson(),
     'enabled': ?enabled?.toTfJson(),
@@ -725,6 +748,7 @@ final class WorkersScriptExports {
 
   final WorkersScriptCache? cache;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
     'cache': ?cache?.encode(),
@@ -739,6 +763,7 @@ final class WorkersScriptCache {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 
@@ -752,6 +777,7 @@ final class WorkersScriptFiles {
 
   final TfArg<String> contentType;
 
+  @internal
   Map<String, Object?> encode() => {
     ...content.encode(),
     'content_type': contentType.toTfJson(),
@@ -776,8 +802,10 @@ sealed class WorkersScriptFilesContent {
   ) = WorkersScriptFilesContentFile;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -787,9 +815,11 @@ final class WorkersScriptFilesContentBase64 extends WorkersScriptFilesContent {
 
   final TfArg<String> contentBase64;
 
+  @internal
   @override
   String get blockKey => 'content_base64';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'content_base64': contentBase64.toTfJson()};
 }
@@ -800,9 +830,11 @@ final class WorkersScriptFilesContentFile extends WorkersScriptFilesContent {
 
   final TfArg<String> contentFile;
 
+  @internal
   @override
   String get blockKey => 'content_file';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'content_file': contentFile.toTfJson()};
 }
@@ -817,6 +849,7 @@ final class WorkersScriptLimits {
 
   final TfArg<num>? subrequests;
 
+  @internal
   Map<String, Object?> encode() => {
     'cpu_ms': ?cpuMs?.toTfJson(),
     'subrequests': ?subrequests?.toTfJson(),
@@ -854,6 +887,7 @@ final class WorkersScriptMigrations {
 
   final List<WorkersScriptTransferredClasses>? transferredClasses;
 
+  @internal
   Map<String, Object?> encode() => {
     'deleted_classes': ?deletedClasses?.toTfJson(),
     'new_classes': ?newClasses?.toTfJson(),
@@ -879,6 +913,7 @@ final class WorkersScriptRenamedClasses {
 
   final TfArg<String>? to;
 
+  @internal
   Map<String, Object?> encode() => {
     'from': ?from?.toTfJson(),
     'to': ?to?.toTfJson(),
@@ -907,6 +942,7 @@ final class WorkersScriptSteps {
 
   final List<WorkersScriptTransferredClasses>? transferredClasses;
 
+  @internal
   Map<String, Object?> encode() => {
     'deleted_classes': ?deletedClasses?.toTfJson(),
     'new_classes': ?newClasses?.toTfJson(),
@@ -931,6 +967,7 @@ final class WorkersScriptTransferredClasses {
 
   final TfArg<String>? to;
 
+  @internal
   Map<String, Object?> encode() => {
     'from': ?from?.toTfJson(),
     'from_script': ?fromScript?.toTfJson(),
@@ -960,6 +997,7 @@ final class WorkersScriptObservability {
 
   final WorkersScriptTraces? traces;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'head_sampling_rate': ?headSamplingRate?.toTfJson(),
@@ -977,6 +1015,7 @@ final class WorkersScriptIssues {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
@@ -1002,6 +1041,7 @@ final class WorkersScriptLogs {
 
   final TfArg<bool>? persist;
 
+  @internal
   Map<String, Object?> encode() => {
     'destinations': ?destinations?.toTfJson(),
     'enabled': enabled.toTfJson(),
@@ -1033,6 +1073,7 @@ final class WorkersScriptTraces {
 
   final WorkersScriptPropagationPolicy? propagationPolicy;
 
+  @internal
   Map<String, Object?> encode() => {
     'destinations': ?destinations?.toTfJson(),
     'enabled': ?enabled?.toTfJson(),
@@ -1080,6 +1121,7 @@ final class WorkersScriptPackageDependencies {
 
   final TfArg<String> packageJsonVersion;
 
+  @internal
   Map<String, Object?> encode() => {
     'installed_version': installedVersion.toTfJson(),
     'name': name.toTfJson(),
@@ -1095,6 +1137,7 @@ final class WorkersScriptPlacement {
 
   final WorkersScriptMode? mode;
 
+  @internal
   Map<String, Object?> encode() => {'mode': ?mode?.toTfJson()};
 }
 
@@ -1128,6 +1171,7 @@ final class WorkersScriptTailConsumers {
 
   final TfArg<String> service;
 
+  @internal
   Map<String, Object?> encode() => {
     'environment': ?environment?.toTfJson(),
     'namespace': ?namespace?.toTfJson(),

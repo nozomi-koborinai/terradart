@@ -17,6 +17,7 @@ final class DataEmailRoutingRuleFilter {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 

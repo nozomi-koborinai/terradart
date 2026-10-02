@@ -28,6 +28,7 @@ final class ModelArmorTemplateFilterConfig {
 
   final ModelArmorTemplateSdpSettings? sdpSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'malicious_uri_filter_settings': ?maliciousUriFilterSettings?.encode(),
     'pi_and_jailbreak_filter_settings': ?piAndJailbreakFilterSettings?.encode(),
@@ -44,6 +45,7 @@ final class ModelArmorTemplateMaliciousUriFilterSettings {
 
   final TfArg<String>? filterEnforcement;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter_enforcement': ?filterEnforcement?.toTfJson(),
   };
@@ -62,6 +64,7 @@ final class ModelArmorTemplatePiAndJailbreakFilterSettings {
 
   final TfArg<String>? filterEnforcement;
 
+  @internal
   Map<String, Object?> encode() => {
     'confidence_level': ?confidenceLevel?.toTfJson(),
     'filter_enforcement': ?filterEnforcement?.toTfJson(),
@@ -76,6 +79,7 @@ final class ModelArmorTemplateRaiSettings {
 
   final List<ModelArmorTemplateRaiFilters> raiFilters;
 
+  @internal
   Map<String, Object?> encode() => {
     'rai_filters': [for (final e in raiFilters) e.encode()],
   };
@@ -94,6 +98,7 @@ final class ModelArmorTemplateRaiFilters {
 
   final TfArg<String> filterType;
 
+  @internal
   Map<String, Object?> encode() => {
     'confidence_level': ?confidenceLevel?.toTfJson(),
     'filter_type': filterType.toTfJson(),
@@ -119,8 +124,10 @@ sealed class ModelArmorTemplateSdpSettings {
   ) = ModelArmorTemplateSdpSettingsBasicConfig;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -131,9 +138,11 @@ final class ModelArmorTemplateSdpSettingsAdvancedConfig
 
   final ModelArmorTemplateAdvancedConfig advancedConfig;
 
+  @internal
   @override
   String get blockKey => 'advanced_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'advanced_config': advancedConfig.encode()};
 }
@@ -145,9 +154,11 @@ final class ModelArmorTemplateSdpSettingsBasicConfig
 
   final ModelArmorTemplateBasicConfig basicConfig;
 
+  @internal
   @override
   String get blockKey => 'basic_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'basic_config': basicConfig.encode()};
 }
@@ -165,6 +176,7 @@ final class ModelArmorTemplateAdvancedConfig {
 
   final TfArg<String>? inspectTemplate;
 
+  @internal
   Map<String, Object?> encode() => {
     'deidentify_template': ?deidentifyTemplate?.toTfJson(),
     'inspect_template': ?inspectTemplate?.toTfJson(),
@@ -179,6 +191,7 @@ final class ModelArmorTemplateBasicConfig {
 
   final TfArg<String>? filterEnforcement;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter_enforcement': ?filterEnforcement?.toTfJson(),
   };
@@ -221,6 +234,7 @@ final class ModelArmorTemplateMetadata {
 
   final ModelArmorTemplateMultiLanguageDetection? multiLanguageDetection;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_llm_response_safety_error_code': ?customLlmResponseSafetyErrorCode
         ?.toTfJson(),
@@ -258,8 +272,10 @@ sealed class ModelArmorTemplateFilterVersionSelector {
   ) = ModelArmorTemplateFilterVersionSelectorVersion;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -270,9 +286,11 @@ final class ModelArmorTemplateFilterVersionSelectorAlias
 
   final TfArg<String> alias;
 
+  @internal
   @override
   String get blockKey => 'alias';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'alias': alias.toTfJson()};
 }
@@ -284,9 +302,11 @@ final class ModelArmorTemplateFilterVersionSelectorVersion
 
   final TfArg<String> version;
 
+  @internal
   @override
   String get blockKey => 'version';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'version': version.toTfJson()};
 }
@@ -301,6 +321,7 @@ final class ModelArmorTemplateMultiLanguageDetection {
 
   final TfArg<bool> enableMultiLanguageDetection;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_multi_language_detection': enableMultiLanguageDetection.toTfJson(),
   };

@@ -32,6 +32,7 @@ final class SsmcontactsRotationRecurrence {
 
   final List<SsmcontactsRotationWeeklySettings>? weeklySettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'number_of_on_calls': numberOfOnCalls.toTfJson(),
     'recurrence_multiplier': recurrenceMultiplier.toTfJson(),
@@ -59,6 +60,7 @@ final class SsmcontactsRotationDailySettings {
 
   final TfArg<num> minuteOfHour;
 
+  @internal
   Map<String, Object?> encode() => {
     'hour_of_day': hourOfDay.toTfJson(),
     'minute_of_hour': minuteOfHour.toTfJson(),
@@ -78,6 +80,7 @@ final class SsmcontactsRotationMonthlySettings {
 
   final List<SsmcontactsRotationHandOffTime>? handOffTime;
 
+  @internal
   Map<String, Object?> encode() => {
     'day_of_month': dayOfMonth.toTfJson(),
     if (handOffTime != null)
@@ -99,6 +102,7 @@ final class SsmcontactsRotationHandOffTime {
 
   final TfArg<num> minuteOfHour;
 
+  @internal
   Map<String, Object?> encode() => {
     'hour_of_day': hourOfDay.toTfJson(),
     'minute_of_hour': minuteOfHour.toTfJson(),
@@ -118,6 +122,7 @@ final class SsmcontactsRotationShiftCoverages {
 
   final List<SsmcontactsRotationCoverageTimes>? coverageTimes;
 
+  @internal
   Map<String, Object?> encode() => {
     'map_block_key': mapBlockKey.toTfJson(),
     if (coverageTimes != null)
@@ -163,6 +168,7 @@ final class SsmcontactsRotationCoverageTimes {
 
   final List<SsmcontactsRotationStart>? start;
 
+  @internal
   Map<String, Object?> encode() => {
     if (end != null) 'end': [for (final e in end!) e.encode()],
     if (start != null) 'start': [for (final e in start!) e.encode()],
@@ -182,6 +188,7 @@ final class SsmcontactsRotationEnd {
 
   final TfArg<num> minuteOfHour;
 
+  @internal
   Map<String, Object?> encode() => {
     'hour_of_day': hourOfDay.toTfJson(),
     'minute_of_hour': minuteOfHour.toTfJson(),
@@ -201,6 +208,7 @@ final class SsmcontactsRotationStart {
 
   final TfArg<num> minuteOfHour;
 
+  @internal
   Map<String, Object?> encode() => {
     'hour_of_day': hourOfDay.toTfJson(),
     'minute_of_hour': minuteOfHour.toTfJson(),
@@ -220,6 +228,7 @@ final class SsmcontactsRotationWeeklySettings {
 
   final List<SsmcontactsRotationHandOffTime>? handOffTime;
 
+  @internal
   Map<String, Object?> encode() => {
     'day_of_week': dayOfWeek.toTfJson(),
     if (handOffTime != null)

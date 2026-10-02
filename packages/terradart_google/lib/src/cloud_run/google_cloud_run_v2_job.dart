@@ -160,12 +160,15 @@ sealed class CloudRunV2JobExecutionToken {
   ) = CloudRunV2JobRunExecutionToken;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -176,14 +179,17 @@ final class CloudRunV2JobStartExecutionToken
 
   final TfArg<String> startExecutionToken;
 
+  @internal
   @override
   String get blockKey => 'start_execution_token';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'start_execution_token': startExecutionToken.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'start_execution_token': startExecutionToken,
@@ -196,14 +202,17 @@ final class CloudRunV2JobRunExecutionToken extends CloudRunV2JobExecutionToken {
 
   final TfArg<String> runExecutionToken;
 
+  @internal
   @override
   String get blockKey => 'run_execution_token';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'run_execution_token': runExecutionToken.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'run_execution_token': runExecutionToken,
@@ -223,6 +232,7 @@ final class CloudRunV2JobBinaryAuthorization {
 
   final CloudRunV2JobPolicy? policy;
 
+  @internal
   Map<String, Object?> encode() => {
     'breakglass_justification': ?breakglassJustification?.toTfJson(),
     ...?policy?.encode(),
@@ -246,8 +256,10 @@ sealed class CloudRunV2JobPolicy {
       CloudRunV2JobPolicyChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -257,9 +269,11 @@ final class CloudRunV2JobPolicyUseDefault extends CloudRunV2JobPolicy {
 
   final TfArg<bool> useDefault;
 
+  @internal
   @override
   String get blockKey => 'use_default';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'use_default': useDefault.toTfJson()};
 }
@@ -270,9 +284,11 @@ final class CloudRunV2JobPolicyChoice extends CloudRunV2JobPolicy {
 
   final TfArg<String> policy;
 
+  @internal
   @override
   String get blockKey => 'policy';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'policy': policy.toTfJson()};
 }
@@ -302,6 +318,7 @@ final class CloudRunV2JobTemplate {
 
   final CloudRunV2JobTemplateTemplate template;
 
+  @internal
   Map<String, Object?> encode() => {
     'annotations': ?annotations?.toTfJson(),
     'delay_execution': ?delayExecution?.toTfJson(),
@@ -349,6 +366,7 @@ final class CloudRunV2JobTemplateTemplate {
 
   final CloudRunV2JobVpcAccess? vpcAccess;
 
+  @internal
   Map<String, Object?> encode() => {
     'encryption_key': ?encryptionKey?.toTfJson(),
     'execution_environment': ?executionEnvironment?.toTfJson(),
@@ -407,6 +425,7 @@ final class CloudRunV2JobContainers {
 
   final List<CloudRunV2JobVolumeMounts>? volumeMounts;
 
+  @internal
   Map<String, Object?> encode() => {
     'args': ?args?.toTfJson(),
     'command': ?command?.toTfJson(),
@@ -434,6 +453,7 @@ final class CloudRunV2JobEnv {
 
   final CloudRunV2JobEnvSource source;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     ...source.encode(),
@@ -457,8 +477,10 @@ sealed class CloudRunV2JobEnvSource {
   ) = CloudRunV2JobEnvValueSource;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -468,9 +490,11 @@ final class CloudRunV2JobEnvSourceValue extends CloudRunV2JobEnvSource {
 
   final TfArg<String> value;
 
+  @internal
   @override
   String get blockKey => 'value';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'value': value.toTfJson()};
 }
@@ -481,9 +505,11 @@ final class CloudRunV2JobEnvValueSource extends CloudRunV2JobEnvSource {
 
   final CloudRunV2JobValueSource valueSource;
 
+  @internal
   @override
   String get blockKey => 'value_source';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'value_source': valueSource.encode()};
 }
@@ -496,6 +522,7 @@ final class CloudRunV2JobValueSource {
 
   final CloudRunV2JobSecretKeyRef? secretKeyRef;
 
+  @internal
   Map<String, Object?> encode() => {'secret_key_ref': ?secretKeyRef?.encode()};
 }
 
@@ -512,6 +539,7 @@ final class CloudRunV2JobSecretKeyRef {
 
   final TfArg<String> version;
 
+  @internal
   Map<String, Object?> encode() => {
     'secret': secret.encodeAs('id').toTfJson(),
     'version': version.toTfJson(),
@@ -528,6 +556,7 @@ final class CloudRunV2JobPorts {
 
   final TfArg<String>? name;
 
+  @internal
   Map<String, Object?> encode() => {
     'container_port': ?containerPort?.toTfJson(),
     'name': ?name?.toTfJson(),
@@ -542,6 +571,7 @@ final class CloudRunV2JobResources {
 
   final TfArg<Map<String, String>>? limits;
 
+  @internal
   Map<String, Object?> encode() => {'limits': ?limits?.toTfJson()};
 }
 
@@ -573,6 +603,7 @@ final class CloudRunV2JobStartupProbe {
 
   final CloudRunV2JobTcpSocket? tcpSocket;
 
+  @internal
   Map<String, Object?> encode() => {
     'failure_threshold': ?failureThreshold?.toTfJson(),
     'initial_delay_seconds': ?initialDelaySeconds?.toTfJson(),
@@ -594,6 +625,7 @@ final class CloudRunV2JobGrpc {
 
   final TfArg<String>? service;
 
+  @internal
   Map<String, Object?> encode() => {
     'port': ?port?.toTfJson(),
     'service': ?service?.toTfJson(),
@@ -612,6 +644,7 @@ final class CloudRunV2JobHttpGet {
 
   final List<CloudRunV2JobHttpHeaders>? httpHeaders;
 
+  @internal
   Map<String, Object?> encode() => {
     'path': ?path?.toTfJson(),
     'port': ?port?.toTfJson(),
@@ -630,6 +663,7 @@ final class CloudRunV2JobHttpHeaders {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'value': ?value?.toTfJson(),
@@ -644,6 +678,7 @@ final class CloudRunV2JobTcpSocket {
 
   final TfArg<num>? port;
 
+  @internal
   Map<String, Object?> encode() => {'port': ?port?.toTfJson()};
 }
 
@@ -663,6 +698,7 @@ final class CloudRunV2JobVolumeMounts {
 
   final TfArg<String>? subPath;
 
+  @internal
   Map<String, Object?> encode() => {
     'mount_path': mountPath.toTfJson(),
     'name': name.toTfJson(),
@@ -678,6 +714,7 @@ final class CloudRunV2JobNodeSelector {
 
   final TfArg<String> accelerator;
 
+  @internal
   Map<String, Object?> encode() => {'accelerator': accelerator.toTfJson()};
 }
 
@@ -691,6 +728,7 @@ final class CloudRunV2JobVolumes {
 
   final CloudRunV2JobSource source;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     ...source.encode(),
@@ -726,8 +764,10 @@ sealed class CloudRunV2JobSource {
       CloudRunV2JobSourceSecret;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -737,9 +777,11 @@ final class CloudRunV2JobSourceCloudSqlInstance extends CloudRunV2JobSource {
 
   final CloudRunV2JobCloudSqlInstance cloudSqlInstance;
 
+  @internal
   @override
   String get blockKey => 'cloud_sql_instance';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'cloud_sql_instance': cloudSqlInstance.encode(),
@@ -752,9 +794,11 @@ final class CloudRunV2JobSourceEmptyDir extends CloudRunV2JobSource {
 
   final CloudRunV2JobEmptyDir emptyDir;
 
+  @internal
   @override
   String get blockKey => 'empty_dir';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'empty_dir': emptyDir.encode()};
 }
@@ -765,9 +809,11 @@ final class CloudRunV2JobSourceGcs extends CloudRunV2JobSource {
 
   final CloudRunV2JobGcs gcs;
 
+  @internal
   @override
   String get blockKey => 'gcs';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'gcs': gcs.encode()};
 }
@@ -778,9 +824,11 @@ final class CloudRunV2JobSourceNfs extends CloudRunV2JobSource {
 
   final CloudRunV2JobNfs nfs;
 
+  @internal
   @override
   String get blockKey => 'nfs';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'nfs': nfs.encode()};
 }
@@ -791,9 +839,11 @@ final class CloudRunV2JobSourceSecret extends CloudRunV2JobSource {
 
   final CloudRunV2JobSecret secret;
 
+  @internal
   @override
   String get blockKey => 'secret';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'secret': secret.encode()};
 }
@@ -806,6 +856,7 @@ final class CloudRunV2JobCloudSqlInstance {
 
   final TfArg<List<String>>? instances;
 
+  @internal
   Map<String, Object?> encode() => {'instances': ?instances?.toTfJson()};
 }
 
@@ -819,6 +870,7 @@ final class CloudRunV2JobEmptyDir {
 
   final TfArg<String>? sizeLimit;
 
+  @internal
   Map<String, Object?> encode() => {
     'medium': ?medium?.toTfJson(),
     'size_limit': ?sizeLimit?.toTfJson(),
@@ -841,6 +893,7 @@ final class CloudRunV2JobGcs {
 
   final TfArg<bool>? readOnly;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('name').toTfJson(),
     'mount_options': ?mountOptions?.toTfJson(),
@@ -860,6 +913,7 @@ final class CloudRunV2JobNfs {
 
   final TfArg<String> server;
 
+  @internal
   Map<String, Object?> encode() => {
     'path': ?path?.toTfJson(),
     'read_only': ?readOnly?.toTfJson(),
@@ -883,6 +937,7 @@ final class CloudRunV2JobSecret {
 
   final List<CloudRunV2JobItems>? items;
 
+  @internal
   Map<String, Object?> encode() => {
     'default_mode': ?defaultMode?.toTfJson(),
     'secret': secret.encodeAs('id').toTfJson(),
@@ -906,6 +961,7 @@ final class CloudRunV2JobItems {
 
   final TfArg<String> version;
 
+  @internal
   Map<String, Object?> encode() => {
     'mode': ?mode?.toTfJson(),
     'path': path.toTfJson(),
@@ -929,6 +985,7 @@ final class CloudRunV2JobVpcAccess {
 
   final List<CloudRunV2JobNetworkInterfaces>? networkInterfaces;
 
+  @internal
   Map<String, Object?> encode() => {
     'connector': ?connector?.toTfJson(),
     'egress': ?egress?.toTfJson(),
@@ -953,6 +1010,7 @@ final class CloudRunV2JobNetworkInterfaces {
 
   final TfArg<List<String>>? tags;
 
+  @internal
   Map<String, Object?> encode() => {
     'network': ?network?.encodeAs('id').toTfJson(),
     'subnetwork': ?subnetwork?.encodeAs('id').toTfJson(),

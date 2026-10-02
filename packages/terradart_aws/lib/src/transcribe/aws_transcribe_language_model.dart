@@ -529,6 +529,7 @@ final class TranscribeLanguageModelInputDataConfig {
 
   final TfArg<String>? tuningDataS3Uri;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_access_role_arn': dataAccessRoleArn.toTfJson(),
     's3_uri': s3Uri.toTfJson(),

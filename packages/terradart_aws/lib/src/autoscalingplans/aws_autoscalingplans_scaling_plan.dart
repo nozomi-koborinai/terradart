@@ -15,6 +15,7 @@ final class AutoscalingplansScalingPlanApplicationSource {
 
   final AutoscalingplansScalingPlanApplicationSourceSelector? selector;
 
+  @internal
   Map<String, Object?> encode() => {...?selector?.encode()};
 }
 
@@ -37,8 +38,10 @@ sealed class AutoscalingplansScalingPlanApplicationSourceSelector {
   ) = AutoscalingplansScalingPlanApplicationSourceSelectorTagFilter;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -51,9 +54,11 @@ final class AutoscalingplansScalingPlanApplicationSourceSelectorCloudformationSt
 
   final TfArg<String> cloudformationStackArn;
 
+  @internal
   @override
   String get blockKey => 'cloudformation_stack_arn';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'cloudformation_stack_arn': cloudformationStackArn.toTfJson(),
@@ -69,9 +74,11 @@ final class AutoscalingplansScalingPlanApplicationSourceSelectorTagFilter
 
   final List<AutoscalingplansScalingPlanTagFilter> tagFilter;
 
+  @internal
   @override
   String get blockKey => 'tag_filter';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'tag_filter': [for (final e in tagFilter) e.encode()],
@@ -88,6 +95,7 @@ final class AutoscalingplansScalingPlanTagFilter {
 
   final TfArg<List<String>>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'values': ?values?.toTfJson(),
@@ -148,6 +156,7 @@ final class AutoscalingplansScalingPlanScalingInstruction {
   final List<AutoscalingplansScalingPlanTargetTrackingConfiguration>
   targetTrackingConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'disable_dynamic_scaling': ?disableDynamicScaling?.toTfJson(),
     'max_capacity': maxCapacity.toTfJson(),
@@ -375,6 +384,7 @@ final class AutoscalingplansScalingPlanCustomizedLoadMetricSpecification {
 
   final TfArg<String>? unit;
 
+  @internal
   Map<String, Object?> encode() => {
     'dimensions': ?dimensions?.toTfJson(),
     'metric_name': metricName.toTfJson(),
@@ -415,6 +425,7 @@ final class AutoscalingplansScalingPlanPredefinedLoadMetricSpecification {
 
   final TfArg<String>? resourceLabel;
 
+  @internal
   Map<String, Object?> encode() => {
     'predefined_load_metric_type': predefinedLoadMetricType.toTfJson(),
     'resource_label': ?resourceLabel?.toTfJson(),
@@ -490,6 +501,7 @@ final class AutoscalingplansScalingPlanTargetTrackingConfiguration {
   final AutoscalingplansScalingPlanPredefinedScalingMetricSpecification?
   predefinedScalingMetricSpecification;
 
+  @internal
   Map<String, Object?> encode() => {
     'disable_scale_in': ?disableScaleIn?.toTfJson(),
     'estimated_instance_warmup': ?estimatedInstanceWarmup?.toTfJson(),
@@ -526,6 +538,7 @@ final class AutoscalingplansScalingPlanCustomizedScalingMetricSpecification {
 
   final TfArg<String>? unit;
 
+  @internal
   Map<String, Object?> encode() => {
     'dimensions': ?dimensions?.toTfJson(),
     'metric_name': metricName.toTfJson(),
@@ -590,6 +603,7 @@ final class AutoscalingplansScalingPlanPredefinedScalingMetricSpecification {
 
   final TfArg<String>? resourceLabel;
 
+  @internal
   Map<String, Object?> encode() => {
     'predefined_scaling_metric_type': predefinedScalingMetricType.toTfJson(),
     'resource_label': ?resourceLabel?.toTfJson(),

@@ -28,6 +28,7 @@ final class WaitingRoomRules {
 
   final TfArg<String> expression;
 
+  @internal
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
     'description': ?description?.toTfJson(),

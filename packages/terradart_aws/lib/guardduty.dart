@@ -3,6 +3,10 @@
 /// AWS GuardDuty.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_guardduty_detector.dart' show DataAwsGuarddutyDetector;
+export 'src/data/aws_guardduty_finding_ids.dart'
+    show DataAwsGuarddutyFindingIds;
 export 'src/guardduty/aws_guardduty_detector.dart'
     show
         AwsGuarddutyDetector,

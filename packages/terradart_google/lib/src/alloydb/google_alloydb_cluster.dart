@@ -84,12 +84,15 @@ sealed class AlloydbClusterRestore {
   ) = AlloydbClusterRestoreBackupdrPitrSourceChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -100,14 +103,17 @@ final class AlloydbClusterRestoreBackupSourceChoice
 
   final AlloydbClusterRestoreBackupSource restoreBackupSource;
 
+  @internal
   @override
   String get blockKey => 'restore_backup_source';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'restore_backup_source': restoreBackupSource.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'restore_backup_source': TfArg.literal(restoreBackupSource.encode()),
@@ -124,14 +130,17 @@ final class AlloydbClusterRestoreContinuousBackupSourceChoice
   final AlloydbClusterRestoreContinuousBackupSource
   restoreContinuousBackupSource;
 
+  @internal
   @override
   String get blockKey => 'restore_continuous_backup_source';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'restore_continuous_backup_source': restoreContinuousBackupSource.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'restore_continuous_backup_source': TfArg.literal(
@@ -149,14 +158,17 @@ final class AlloydbClusterRestoreBackupdrBackupSourceChoice
 
   final AlloydbClusterRestoreBackupdrBackupSource restoreBackupdrBackupSource;
 
+  @internal
   @override
   String get blockKey => 'restore_backupdr_backup_source';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'restore_backupdr_backup_source': restoreBackupdrBackupSource.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'restore_backupdr_backup_source': TfArg.literal(
@@ -174,14 +186,17 @@ final class AlloydbClusterRestoreBackupdrPitrSourceChoice
 
   final AlloydbClusterRestoreBackupdrPitrSource restoreBackupdrPitrSource;
 
+  @internal
   @override
   String get blockKey => 'restore_backupdr_pitr_source';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'restore_backupdr_pitr_source': restoreBackupdrPitrSource.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'restore_backupdr_pitr_source': TfArg.literal(
@@ -218,6 +233,7 @@ final class AlloydbClusterAutomatedBackupPolicy {
 
   final AlloydbClusterWeeklySchedule? weeklySchedule;
 
+  @internal
   Map<String, Object?> encode() => {
     'backup_window': ?backupWindow?.toTfJson(),
     'enabled': ?enabled?.toTfJson(),
@@ -248,8 +264,10 @@ sealed class AlloydbClusterRetention {
   ) = AlloydbClusterQuantityBasedRetentionChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -260,9 +278,11 @@ final class AlloydbClusterTimeBasedRetentionChoice
 
   final AlloydbClusterTimeBasedRetention timeBasedRetention;
 
+  @internal
   @override
   String get blockKey => 'time_based_retention';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'time_based_retention': timeBasedRetention.encode(),
@@ -276,9 +296,11 @@ final class AlloydbClusterQuantityBasedRetentionChoice
 
   final AlloydbClusterQuantityBasedRetention quantityBasedRetention;
 
+  @internal
   @override
   String get blockKey => 'quantity_based_retention';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'quantity_based_retention': quantityBasedRetention.encode(),
@@ -294,6 +316,7 @@ final class AlloydbClusterEncryptionConfig {
 
   final RefTo<GoogleKmsCryptoKey>? kmsKeyName;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_name': ?kmsKeyName?.encodeAs('id').toTfJson(),
   };
@@ -307,6 +330,7 @@ final class AlloydbClusterQuantityBasedRetention {
 
   final TfArg<num>? count;
 
+  @internal
   Map<String, Object?> encode() => {'count': ?count?.toTfJson()};
 }
 
@@ -318,6 +342,7 @@ final class AlloydbClusterTimeBasedRetention {
 
   final TfArg<String>? retentionPeriod;
 
+  @internal
   Map<String, Object?> encode() => {
     'retention_period': ?retentionPeriod?.toTfJson(),
   };
@@ -336,6 +361,7 @@ final class AlloydbClusterWeeklySchedule {
 
   final List<AlloydbClusterStartTimes> startTimes;
 
+  @internal
   Map<String, Object?> encode() => {
     if (daysOfWeek != null)
       'days_of_week': [for (final e in daysOfWeek!) e.toTfJson()],
@@ -391,6 +417,7 @@ final class AlloydbClusterStartTimes {
 
   final TfArg<num>? seconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'hours': ?hours?.toTfJson(),
     'minutes': ?minutes?.toTfJson(),
@@ -415,6 +442,7 @@ final class AlloydbClusterContinuousBackupConfig {
 
   final AlloydbClusterEncryptionConfig? encryptionConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'recovery_window_days': ?recoveryWindowDays?.toTfJson(),
@@ -430,6 +458,7 @@ final class AlloydbClusterDataplexConfig {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 
@@ -449,6 +478,7 @@ final class AlloydbClusterInitialUser {
 
   final TfArg<String>? user;
 
+  @internal
   Map<String, Object?> encode() => {
     ...?password?.encode(),
     'password_wo_version': ?passwordWoVersion?.toTfJson(),
@@ -473,8 +503,10 @@ sealed class AlloydbClusterPassword {
       AlloydbClusterPasswordWo;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -484,9 +516,11 @@ final class AlloydbClusterPasswordChoice extends AlloydbClusterPassword {
 
   final Sensitive<String> password;
 
+  @internal
   @override
   String get blockKey => 'password';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'password': password.toTfJson()};
 }
@@ -497,9 +531,11 @@ final class AlloydbClusterPasswordWo extends AlloydbClusterPassword {
 
   final TfArg<String> passwordWo;
 
+  @internal
   @override
   String get blockKey => 'password_wo';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'password_wo': passwordWo.toTfJson()};
 }
@@ -512,6 +548,7 @@ final class AlloydbClusterMaintenanceUpdatePolicy {
 
   final List<AlloydbClusterMaintenanceWindows>? maintenanceWindows;
 
+  @internal
   Map<String, Object?> encode() => {
     if (maintenanceWindows != null)
       'maintenance_windows': [for (final e in maintenanceWindows!) e.encode()],
@@ -531,6 +568,7 @@ final class AlloydbClusterMaintenanceWindows {
 
   final AlloydbClusterStartTime startTime;
 
+  @internal
   Map<String, Object?> encode() => {
     'day': day.toTfJson(),
     'start_time': startTime.encode(),
@@ -556,6 +594,7 @@ final class AlloydbClusterStartTime {
 
   final TfArg<num>? seconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'hours': hours.toTfJson(),
     'minutes': ?minutes?.toTfJson(),
@@ -574,6 +613,7 @@ final class AlloydbClusterNetworkConfig {
 
   final RefTo<GoogleComputeNetwork>? network;
 
+  @internal
   Map<String, Object?> encode() => {
     'allocated_ip_range': ?allocatedIpRange?.encodeAs('name').toTfJson(),
     'network': ?network?.encodeAs('id').toTfJson(),
@@ -588,6 +628,7 @@ final class AlloydbClusterPscConfig {
 
   final TfArg<bool>? pscEnabled;
 
+  @internal
   Map<String, Object?> encode() => {'psc_enabled': ?pscEnabled?.toTfJson()};
 }
 
@@ -599,6 +640,7 @@ final class AlloydbClusterRestoreBackupSource {
 
   final TfArg<String> backupName;
 
+  @internal
   Map<String, Object?> encode() => {'backup_name': backupName.toTfJson()};
 }
 
@@ -610,6 +652,7 @@ final class AlloydbClusterRestoreBackupdrBackupSource {
 
   final TfArg<String> backup;
 
+  @internal
   Map<String, Object?> encode() => {'backup': backup.toTfJson()};
 }
 
@@ -626,6 +669,7 @@ final class AlloydbClusterRestoreBackupdrPitrSource {
 
   final TfArg<String> pointInTime;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_source': dataSource.toTfJson(),
     'point_in_time': pointInTime.toTfJson(),
@@ -645,6 +689,7 @@ final class AlloydbClusterRestoreContinuousBackupSource {
 
   final TfArg<String> pointInTime;
 
+  @internal
   Map<String, Object?> encode() => {
     'cluster': cluster.toTfJson(),
     'point_in_time': pointInTime.toTfJson(),
@@ -659,6 +704,7 @@ final class AlloydbClusterSecondaryConfig {
 
   final TfArg<String> primaryClusterName;
 
+  @internal
   Map<String, Object?> encode() => {
     'primary_cluster_name': primaryClusterName.toTfJson(),
   };

@@ -15,6 +15,7 @@ final class ComputeInterconnectGroupIntent {
 
   final ComputeInterconnectGroupTopologyCapability? topologyCapability;
 
+  @internal
   Map<String, Object?> encode() => {
     'topology_capability': ?topologyCapability?.toTfJson(),
   };
@@ -68,6 +69,7 @@ final class ComputeInterconnectGroupInterconnects {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {
     'interconnect': ?interconnect?.toTfJson(),
     'name': name.toTfJson(),

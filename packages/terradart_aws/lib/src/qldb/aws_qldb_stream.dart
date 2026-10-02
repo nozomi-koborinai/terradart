@@ -22,6 +22,7 @@ final class QldbStreamKinesisConfiguration {
 
   final TfArg<String> streamArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'aggregation_enabled': ?aggregationEnabled?.toTfJson(),
     'stream_arn': streamArn.toTfJson(),

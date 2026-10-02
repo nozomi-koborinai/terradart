@@ -5,6 +5,7 @@
 /// are never_apply (MM exclude_delete); siblings ship debt-only.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/apihub/google_apihub_api_hub_instance.dart'
     show ApihubApiHubInstanceConfig, GoogleApihubApiHubInstance;
 export 'src/apihub/google_apihub_curation.dart'

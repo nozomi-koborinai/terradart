@@ -10,6 +10,13 @@ Per-package changelogs live alongside each package and are the system of record 
 
 ### Changed
 
+- **Fewer imports** (every provider package, `terradart_core`,
+  `terradart_codegen`, `terradart_migrate`) — every barrel re-exports
+  `terradart_core`, and a data source is also exported from the service
+  barrel that matches its name. The GA `google_project` data source is
+  `DataGoogleProject`. `TfJsonEncoder`, `hasTemplateSequence` and
+  `templateVariableNames` move to `package:terradart_core/internal.dart`,
+  and helper `encode()` / `blockKey` are `@internal`.
 - **Enums are arguments** (every provider package, `terradart_core`,
   `terradart_codegen`, `terradart_migrate`) — a generated enum is an
   extension type implementing `TfArg<String>`, so an enum slot takes a

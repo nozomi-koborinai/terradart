@@ -40,12 +40,15 @@ sealed class AccountMemberAccess {
   ) = AccountMemberAccessPolicies;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -55,12 +58,15 @@ final class AccountMemberAccessRoles extends AccountMemberAccess {
 
   final TfArg<List<String>> roles;
 
+  @internal
   @override
   String get blockKey => 'roles';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'roles': roles.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'roles': roles};
 }
@@ -71,14 +77,17 @@ final class AccountMemberAccessPolicies extends AccountMemberAccess {
 
   final List<AccountMemberPolicies> policies;
 
+  @internal
   @override
   String get blockKey => 'policies';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'policies': [for (final e in policies) e.encode()],
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'policies': TfArg.literal([for (final e in policies) e.encode()]),
@@ -101,6 +110,7 @@ final class AccountMemberPolicies {
 
   final List<AccountMemberResourceGroups> resourceGroups;
 
+  @internal
   Map<String, Object?> encode() => {
     'access': access.toTfJson(),
     'permission_groups': [for (final e in permissionGroups) e.encode()],
@@ -131,6 +141,7 @@ final class AccountMemberPermissionGroups {
 
   final TfArg<String> id;
 
+  @internal
   Map<String, Object?> encode() => {'id': id.toTfJson()};
 }
 
@@ -142,6 +153,7 @@ final class AccountMemberResourceGroups {
 
   final TfArg<String> id;
 
+  @internal
   Map<String, Object?> encode() => {'id': id.toTfJson()};
 }
 

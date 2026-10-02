@@ -34,6 +34,7 @@ final class QuicksightFolderPermissions {
 
   final TfArg<String> principal;
 
+  @internal
   Map<String, Object?> encode() => {
     'actions': actions.toTfJson(),
     'principal': principal.toTfJson(),

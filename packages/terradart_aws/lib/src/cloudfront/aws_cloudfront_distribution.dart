@@ -81,6 +81,7 @@ final class CloudfrontDistributionCacheTagConfig {
 
   final TfArg<String> headerName;
 
+  @internal
   Map<String, Object?> encode() => {'header_name': headerName.toTfJson()};
 }
 
@@ -92,6 +93,7 @@ final class CloudfrontDistributionConnectionFunctionAssociation {
 
   final TfArg<String> id;
 
+  @internal
   Map<String, Object?> encode() => {'id': id.toTfJson()};
 }
 
@@ -114,6 +116,7 @@ final class CloudfrontDistributionCustomErrorResponse {
 
   final TfArg<String>? responsePagePath;
 
+  @internal
   Map<String, Object?> encode() => {
     'error_caching_min_ttl': ?errorCachingMinTtl?.toTfJson(),
     'error_code': errorCode.toTfJson(),
@@ -190,6 +193,7 @@ final class CloudfrontDistributionDefaultCacheBehavior {
   final List<CloudfrontDistributionLambdaFunctionAssociation>?
   lambdaFunctionAssociation;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed_methods': allowedMethods.toTfJson(),
     'cache_policy_id': ?cachePolicyId?.encodeAs('id').toTfJson(),
@@ -268,6 +272,7 @@ final class CloudfrontDistributionForwardedValues {
 
   final CloudfrontDistributionCookies cookies;
 
+  @internal
   Map<String, Object?> encode() => {
     'headers': ?headers?.toTfJson(),
     'query_string': queryString.toTfJson(),
@@ -290,6 +295,7 @@ final class CloudfrontDistributionCookies {
 
   final TfArg<List<String>>? whitelistedNames;
 
+  @internal
   Map<String, Object?> encode() => {
     'forward': forward.toTfJson(),
     'whitelisted_names': ?whitelistedNames?.toTfJson(),
@@ -332,6 +338,7 @@ final class CloudfrontDistributionFunctionAssociation {
 
   final TfArg<String> functionArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'event_type': eventType.toTfJson(),
     'function_arn': functionArn.toTfJson(),
@@ -377,6 +384,7 @@ final class CloudfrontDistributionGrpcConfig {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
@@ -397,6 +405,7 @@ final class CloudfrontDistributionLambdaFunctionAssociation {
 
   final RefTo<AwsLambdaFunction> lambdaArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'event_type': eventType.toTfJson(),
     'include_body': ?includeBody?.toTfJson(),
@@ -420,6 +429,7 @@ final class CloudfrontDistributionLoggingConfig {
 
   final TfArg<String>? prefix;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': ?bucket?.encodeAs('bucket_domain_name').toTfJson(),
     'include_cookies': ?includeCookies?.toTfJson(),
@@ -498,6 +508,7 @@ final class CloudfrontDistributionOrderedCacheBehavior {
   final List<CloudfrontDistributionLambdaFunctionAssociation>?
   lambdaFunctionAssociation;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed_methods': allowedMethods.toTfJson(),
     'cache_policy_id': ?cachePolicyId?.encodeAs('id').toTfJson(),
@@ -572,6 +583,7 @@ final class CloudfrontDistributionOrigin {
 
   final CloudfrontDistributionVpcOriginConfig? vpcOriginConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'connection_attempts': ?connectionAttempts?.toTfJson(),
     'connection_timeout': ?connectionTimeout?.toTfJson(),
@@ -604,6 +616,7 @@ final class CloudfrontDistributionCustomHeader {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'value': value.toTfJson(),
@@ -641,6 +654,7 @@ final class CloudfrontDistributionCustomOriginConfig {
 
   final CloudfrontDistributionOriginMtlsConfig? originMtlsConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'http_port': httpPort.toTfJson(),
     'https_port': httpsPort.toTfJson(),
@@ -749,6 +763,7 @@ final class CloudfrontDistributionOriginMtlsConfig {
 
   final TfArg<String> clientCertificateArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_certificate_arn': clientCertificateArn.toTfJson(),
   };
@@ -767,6 +782,7 @@ final class CloudfrontDistributionOriginShield {
 
   final TfArg<String>? originShieldRegion;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'origin_shield_region': ?originShieldRegion?.toTfJson(),
@@ -783,6 +799,7 @@ final class CloudfrontDistributionS3OriginConfig {
 
   final TfArg<String> originAccessIdentity;
 
+  @internal
   Map<String, Object?> encode() => {
     'origin_access_identity': originAccessIdentity.toTfJson(),
   };
@@ -807,6 +824,7 @@ final class CloudfrontDistributionVpcOriginConfig {
 
   final TfArg<String> vpcOriginId;
 
+  @internal
   Map<String, Object?> encode() => {
     'origin_keepalive_timeout': ?originKeepaliveTimeout?.toTfJson(),
     'origin_read_timeout': ?originReadTimeout?.toTfJson(),
@@ -831,6 +849,7 @@ final class CloudfrontDistributionOriginGroup {
 
   final List<CloudfrontDistributionMember> member;
 
+  @internal
   Map<String, Object?> encode() => {
     'origin_id': originId.toTfJson(),
     'failover_criteria': failoverCriteria.encode(),
@@ -846,6 +865,7 @@ final class CloudfrontDistributionFailoverCriteria {
 
   final TfArg<List<num>> statusCodes;
 
+  @internal
   Map<String, Object?> encode() => {'status_codes': statusCodes.toTfJson()};
 }
 
@@ -857,6 +877,7 @@ final class CloudfrontDistributionMember {
 
   final TfArg<String> originId;
 
+  @internal
   Map<String, Object?> encode() => {'origin_id': originId.toTfJson()};
 }
 
@@ -868,6 +889,7 @@ final class CloudfrontDistributionRestrictions {
 
   final CloudfrontDistributionGeoRestriction geoRestriction;
 
+  @internal
   Map<String, Object?> encode() => {'geo_restriction': geoRestriction.encode()};
 }
 
@@ -884,6 +906,7 @@ final class CloudfrontDistributionGeoRestriction {
 
   final CloudfrontDistributionRestrictionType restrictionType;
 
+  @internal
   Map<String, Object?> encode() => {
     'locations': ?locations?.toTfJson(),
     'restriction_type': restrictionType.toTfJson(),
@@ -939,6 +962,7 @@ final class CloudfrontDistributionViewerCertificate {
 
   final CloudfrontDistributionSslSupportMethod? sslSupportMethod;
 
+  @internal
   Map<String, Object?> encode() => {
     'acm_certificate_arn': ?acmCertificateArn?.encodeAs('arn').toTfJson(),
     'cloudfront_default_certificate': ?cloudfrontDefaultCertificate?.toTfJson(),
@@ -1040,6 +1064,7 @@ final class CloudfrontDistributionViewerMtlsConfig {
 
   final CloudfrontDistributionTrustStoreConfig? trustStoreConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'mode': ?mode?.toTfJson(),
     'trust_store_config': ?trustStoreConfig?.encode(),
@@ -1088,6 +1113,7 @@ final class CloudfrontDistributionTrustStoreConfig {
 
   final TfArg<String> trustStoreId;
 
+  @internal
   Map<String, Object?> encode() => {
     'advertise_trust_store_ca_names': ?advertiseTrustStoreCaNames?.toTfJson(),
     'ignore_certificate_expiry': ?ignoreCertificateExpiry?.toTfJson(),

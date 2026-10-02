@@ -26,12 +26,15 @@ sealed class ConfigOrganizationConformancePackTemplate {
   ) = ConfigOrganizationConformancePackTemplateS3Uri;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -42,12 +45,15 @@ final class ConfigOrganizationConformancePackTemplateBody
 
   final TfArg<String> templateBody;
 
+  @internal
   @override
   String get blockKey => 'template_body';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'template_body': templateBody.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'template_body': templateBody};
 }
@@ -59,14 +65,17 @@ final class ConfigOrganizationConformancePackTemplateS3Uri
 
   final TfArg<String> templateS3Uri;
 
+  @internal
   @override
   String get blockKey => 'template_s3_uri';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'template_s3_uri': templateS3Uri.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'template_s3_uri': templateS3Uri};
 }
@@ -84,6 +93,7 @@ final class ConfigOrganizationConformancePackInputParameter {
 
   final TfArg<String> parameterValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'parameter_name': parameterName.toTfJson(),
     'parameter_value': parameterValue.toTfJson(),

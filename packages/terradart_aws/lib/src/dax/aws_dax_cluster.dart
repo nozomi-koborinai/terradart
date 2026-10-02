@@ -33,6 +33,7 @@ final class DaxClusterServerSideEncryption {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 

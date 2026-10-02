@@ -52,6 +52,7 @@ final class ComputeServiceAttachmentConsumerAcceptLists {
 
   final TfArg<String>? projectIdOrNum;
 
+  @internal
   Map<String, Object?> encode() => {
     'connection_limit': connectionLimit.toTfJson(),
     'endpoint_url': ?endpointUrl?.toTfJson(),

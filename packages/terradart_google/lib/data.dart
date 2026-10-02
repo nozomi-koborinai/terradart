@@ -2,11 +2,12 @@
 // Run `terradart wrap` to regenerate.
 /// Read-only data sources (no `terraform apply` side effects).
 ///
-/// ```dart
-/// import 'package:terradart_google/data.dart' show GoogleProject;
-/// ```
+/// Every data source is also exported from its service barrel
+/// (`DataGoogleProject` from `project.dart`); import this one for data
+/// sources of several services, or of none.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/data/google_access_approval_folder_service_account.dart'
     show DataGoogleAccessApprovalFolderServiceAccount;
 export 'src/data/google_access_approval_organization_service_account.dart'
@@ -692,7 +693,7 @@ export 'src/data/google_privateca_certificate_template_iam_policy.dart'
     show DataGooglePrivatecaCertificateTemplateIamPolicy;
 export 'src/data/google_privileged_access_manager_entitlement.dart'
     show DataGooglePrivilegedAccessManagerEntitlement;
-export 'src/data/google_project.dart' show GoogleProject;
+export 'src/data/google_project.dart' show DataGoogleProject;
 export 'src/data/google_project_ancestry.dart' show DataGoogleProjectAncestry;
 export 'src/data/google_project_iam_custom_role.dart'
     show DataGoogleProjectIamCustomRole;

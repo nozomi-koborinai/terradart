@@ -42,6 +42,7 @@ final class IotCaCertificateRegistrationConfig {
 
   final TfArg<String>? templateName;
 
+  @internal
   Map<String, Object?> encode() => {
     'role_arn': ?roleArn?.encodeAs('arn').toTfJson(),
     'template_body': ?templateBody?.toTfJson(),

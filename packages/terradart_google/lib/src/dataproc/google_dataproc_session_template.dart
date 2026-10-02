@@ -24,6 +24,7 @@ final class DataprocSessionTemplateEnvironmentConfig {
 
   final DataprocSessionTemplatePeripheralsConfig? peripheralsConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'execution_config': ?executionConfig?.encode(),
     'peripherals_config': ?peripheralsConfig?.encode(),
@@ -61,6 +62,7 @@ final class DataprocSessionTemplateExecutionConfig {
 
   final DataprocSessionTemplateAuthenticationConfig? authenticationConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'idle_ttl': ?idleTtl?.toTfJson(),
     'kms_key': ?kmsKey?.encodeAs('id').toTfJson(),
@@ -84,6 +86,7 @@ final class DataprocSessionTemplateAuthenticationConfig {
   final DataprocSessionTemplateUserWorkloadAuthenticationType?
   userWorkloadAuthenticationType;
 
+  @internal
   Map<String, Object?> encode() => {
     'user_workload_authentication_type': ?userWorkloadAuthenticationType
         ?.toTfJson(),
@@ -130,6 +133,7 @@ final class DataprocSessionTemplatePeripheralsConfig {
   final DataprocSessionTemplateSparkHistoryServerConfig?
   sparkHistoryServerConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'metastore_service': ?metastoreService?.toTfJson(),
     'spark_history_server_config': ?sparkHistoryServerConfig?.encode(),
@@ -144,6 +148,7 @@ final class DataprocSessionTemplateSparkHistoryServerConfig {
 
   final TfArg<String>? dataprocCluster;
 
+  @internal
   Map<String, Object?> encode() => {
     'dataproc_cluster': ?dataprocCluster?.toTfJson(),
   };
@@ -159,6 +164,7 @@ final class DataprocSessionTemplateJupyterSession {
 
   final DataprocSessionTemplateKernel? kernel;
 
+  @internal
   Map<String, Object?> encode() => {
     'display_name': ?displayName?.toTfJson(),
     'kernel': ?kernel?.toTfJson(),
@@ -196,6 +202,7 @@ final class DataprocSessionTemplateRuntimeConfig {
 
   final TfArg<String>? version;
 
+  @internal
   Map<String, Object?> encode() => {
     'container_image': ?containerImage?.toTfJson(),
     'properties': ?properties?.toTfJson(),
@@ -209,6 +216,7 @@ final class DataprocSessionTemplateRuntimeConfig {
 final class DataprocSessionTemplateSparkConnectSession {
   const DataprocSessionTemplateSparkConnectSession();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 

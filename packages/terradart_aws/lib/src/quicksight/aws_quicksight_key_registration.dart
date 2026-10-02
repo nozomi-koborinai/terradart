@@ -19,6 +19,7 @@ final class QuicksightKeyRegistration {
 
   final RefTo<AwsKmsKey> keyArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'default_key': ?defaultKey?.toTfJson(),
     'key_arn': keyArn.encodeAs('arn').toTfJson(),

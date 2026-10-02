@@ -3,6 +3,7 @@
 /// AWS Cognito.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/cognito/aws_cognito_identity_pool.dart'
     show AwsCognitoIdentityPool, CognitoIdentityPoolCognitoIdentityProviders;
 export 'src/cognito/aws_cognito_identity_pool_provider_principal_tag.dart'
@@ -146,3 +147,15 @@ export 'src/cognito/aws_cognito_user_pool_domain.dart'
     show AwsCognitoUserPoolDomain;
 export 'src/cognito/aws_cognito_user_pool_ui_customization.dart'
     show AwsCognitoUserPoolUiCustomization;
+export 'src/data/aws_cognito_identity_pool.dart'
+    show DataAwsCognitoIdentityPool;
+export 'src/data/aws_cognito_user_group.dart' show DataAwsCognitoUserGroup;
+export 'src/data/aws_cognito_user_groups.dart' show DataAwsCognitoUserGroups;
+export 'src/data/aws_cognito_user_pool.dart' show DataAwsCognitoUserPool;
+export 'src/data/aws_cognito_user_pool_client.dart'
+    show DataAwsCognitoUserPoolClient;
+export 'src/data/aws_cognito_user_pool_clients.dart'
+    show DataAwsCognitoUserPoolClients;
+export 'src/data/aws_cognito_user_pool_signing_certificate.dart'
+    show DataAwsCognitoUserPoolSigningCertificate;
+export 'src/data/aws_cognito_user_pools.dart' show DataAwsCognitoUserPools;

@@ -48,6 +48,7 @@ final class SecurityhubAutomationRuleV2Action {
   final List<SecurityhubAutomationRuleV2FindingFieldsUpdate>?
   findingFieldsUpdate;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
     if (externalIntegrationConfiguration != null)
@@ -93,6 +94,7 @@ final class SecurityhubAutomationRuleV2ExternalIntegrationConfiguration {
 
   final TfArg<String> connectorArn;
 
+  @internal
   Map<String, Object?> encode() => {'connector_arn': connectorArn.toTfJson()};
 }
 
@@ -112,6 +114,7 @@ final class SecurityhubAutomationRuleV2FindingFieldsUpdate {
 
   final TfArg<num>? statusId;
 
+  @internal
   Map<String, Object?> encode() => {
     'comment': ?comment?.toTfJson(),
     'severity_id': ?severityId?.toTfJson(),
@@ -129,6 +132,7 @@ final class SecurityhubAutomationRuleV2Criteria {
 
   final TfArg<String> ocsfFindingCriteriaJson;
 
+  @internal
   Map<String, Object?> encode() => {
     'ocsf_finding_criteria_json': ocsfFindingCriteriaJson.toTfJson(),
   };

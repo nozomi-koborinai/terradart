@@ -45,6 +45,7 @@ final class PubsubSubscriptionBigqueryConfig {
 
   final TfArg<bool>? writeMetadata;
 
+  @internal
   Map<String, Object?> encode() => {
     'drop_unknown_fields': ?dropUnknownFields?.toTfJson(),
     'service_account_email': ?serviceAccountEmail?.toTfJson(),
@@ -92,6 +93,7 @@ final class PubsubSubscriptionCloudStorageConfig {
 
   final PubsubSubscriptionTextConfig? textConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': bucket.toTfJson(),
     'filename_datetime_format': ?filenameDatetimeFormat?.toTfJson(),
@@ -116,6 +118,7 @@ final class PubsubSubscriptionAvroConfig {
 
   final TfArg<bool>? writeMetadata;
 
+  @internal
   Map<String, Object?> encode() => {
     'use_topic_schema': ?useTopicSchema?.toTfJson(),
     'write_metadata': ?writeMetadata?.toTfJson(),
@@ -128,6 +131,7 @@ final class PubsubSubscriptionAvroConfig {
 final class PubsubSubscriptionTextConfig {
   const PubsubSubscriptionTextConfig();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -144,6 +148,7 @@ final class PubsubSubscriptionDeadLetterPolicy {
 
   final TfArg<num>? maxDeliveryAttempts;
 
+  @internal
   Map<String, Object?> encode() => {
     'dead_letter_topic': ?deadLetterTopic?.toTfJson(),
     'max_delivery_attempts': ?maxDeliveryAttempts?.toTfJson(),
@@ -158,6 +163,7 @@ final class PubsubSubscriptionExpirationPolicy {
 
   final TfArg<String> ttl;
 
+  @internal
   Map<String, Object?> encode() => {'ttl': ttl.toTfJson()};
 }
 
@@ -177,6 +183,7 @@ final class PubsubSubscriptionMessageTransforms {
 
   final PubsubSubscriptionJavascriptUdf? javascriptUdf;
 
+  @internal
   Map<String, Object?> encode() => {
     'disabled': ?disabled?.toTfJson(),
     'ai_inference': ?aiInference?.encode(),
@@ -200,6 +207,7 @@ final class PubsubSubscriptionAiInference {
 
   final PubsubSubscriptionUnstructuredInference? unstructuredInference;
 
+  @internal
   Map<String, Object?> encode() => {
     'endpoint': endpoint.toTfJson(),
     'service_account_email': ?serviceAccountEmail?.toTfJson(),
@@ -215,6 +223,7 @@ final class PubsubSubscriptionUnstructuredInference {
 
   final TfArg<Map<String, String>>? parameters;
 
+  @internal
   Map<String, Object?> encode() => {'parameters': ?parameters?.toTfJson()};
 }
 
@@ -231,6 +240,7 @@ final class PubsubSubscriptionJavascriptUdf {
 
   final TfArg<String> functionName;
 
+  @internal
   Map<String, Object?> encode() => {
     'code': code.toTfJson(),
     'function_name': functionName.toTfJson(),
@@ -256,6 +266,7 @@ final class PubsubSubscriptionPushConfig {
 
   final PubsubSubscriptionOidcToken? oidcToken;
 
+  @internal
   Map<String, Object?> encode() => {
     'attributes': ?attributes?.toTfJson(),
     'push_endpoint': pushEndpoint.toTfJson(),
@@ -272,6 +283,7 @@ final class PubsubSubscriptionNoWrapper {
 
   final TfArg<bool> writeMetadata;
 
+  @internal
   Map<String, Object?> encode() => {'write_metadata': writeMetadata.toTfJson()};
 }
 
@@ -288,6 +300,7 @@ final class PubsubSubscriptionOidcToken {
 
   final TfArg<String> serviceAccountEmail;
 
+  @internal
   Map<String, Object?> encode() => {
     'audience': ?audience?.toTfJson(),
     'service_account_email': serviceAccountEmail.toTfJson(),
@@ -307,6 +320,7 @@ final class PubsubSubscriptionRetryPolicy {
 
   final TfArg<String>? minimumBackoff;
 
+  @internal
   Map<String, Object?> encode() => {
     'maximum_backoff': ?maximumBackoff?.toTfJson(),
     'minimum_backoff': ?minimumBackoff?.toTfJson(),

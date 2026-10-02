@@ -22,6 +22,7 @@ final class BedrockagentcoreTokenVaultCmkKmsConfiguration {
 
   final RefTo<AwsKmsKey>? kmsKeyArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'key_type': keyType.toTfJson(),
     'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),

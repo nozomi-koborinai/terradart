@@ -29,6 +29,7 @@ final class DiscoveryEngineWidgetConfigAccessSettings {
 
   final TfArg<String>? workforceIdentityPoolProvider;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_public_access': ?allowPublicAccess?.toTfJson(),
     'allowlisted_domains': ?allowlistedDomains?.toTfJson(),
@@ -47,6 +48,7 @@ final class DiscoveryEngineWidgetConfigHomepageSetting {
 
   final List<DiscoveryEngineWidgetConfigShortcuts>? shortcuts;
 
+  @internal
   Map<String, Object?> encode() => {
     if (shortcuts != null)
       'shortcuts': [for (final e in shortcuts!) e.encode()],
@@ -69,6 +71,7 @@ final class DiscoveryEngineWidgetConfigShortcuts {
 
   final DiscoveryEngineWidgetConfigIcon? icon;
 
+  @internal
   Map<String, Object?> encode() => {
     'destination_uri': ?destinationUri?.toTfJson(),
     'title': ?title?.toTfJson(),
@@ -84,6 +87,7 @@ final class DiscoveryEngineWidgetConfigIcon {
 
   final TfArg<String>? url;
 
+  @internal
   Map<String, Object?> encode() => {'url': ?url?.toTfJson()};
 }
 
@@ -95,6 +99,7 @@ final class DiscoveryEngineWidgetConfigUiBranding {
 
   final DiscoveryEngineWidgetConfigLogo? logo;
 
+  @internal
   Map<String, Object?> encode() => {'logo': ?logo?.encode()};
 }
 
@@ -106,6 +111,7 @@ final class DiscoveryEngineWidgetConfigLogo {
 
   final TfArg<String>? url;
 
+  @internal
   Map<String, Object?> encode() => {'url': ?url?.toTfJson()};
 }
 
@@ -162,6 +168,7 @@ final class DiscoveryEngineWidgetConfigUiSettings {
 
   final DiscoveryEngineWidgetConfigSearchAddonSpec? searchAddonSpec;
 
+  @internal
   Map<String, Object?> encode() => {
     'default_search_request_order_by': ?defaultSearchRequestOrderBy?.toTfJson(),
     'disable_user_events_collection': ?disableUserEventsCollection?.toTfJson(),
@@ -256,6 +263,7 @@ final class DiscoveryEngineWidgetConfigDataStoreUiConfigs {
   final List<DiscoveryEngineWidgetConfigFieldsUiComponentsMap>?
   fieldsUiComponentsMap;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     if (facetField != null)
@@ -280,6 +288,7 @@ final class DiscoveryEngineWidgetConfigFacetField {
 
   final TfArg<String> field;
 
+  @internal
   Map<String, Object?> encode() => {
     'display_name': ?displayName?.toTfJson(),
     'field': field.toTfJson(),
@@ -305,6 +314,7 @@ final class DiscoveryEngineWidgetConfigFieldsUiComponentsMap {
 
   final TfArg<String> uiComponent;
 
+  @internal
   Map<String, Object?> encode() => {
     if (deviceVisibility != null)
       'device_visibility': [for (final e in deviceVisibility!) e.toTfJson()],
@@ -375,6 +385,7 @@ final class DiscoveryEngineWidgetConfigGenerativeAnswerConfig {
 
   final TfArg<num>? resultCount;
 
+  @internal
   Map<String, Object?> encode() => {
     'disable_related_questions': ?disableRelatedQuestions?.toTfJson(),
     'ignore_adversarial_query': ?ignoreAdversarialQuery?.toTfJson(),
@@ -432,6 +443,7 @@ final class DiscoveryEngineWidgetConfigSearchAddonSpec {
 
   final TfArg<bool>? semanticAddOnDisabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'generative_answer_add_on_disabled': ?generativeAnswerAddOnDisabled
         ?.toTfJson(),

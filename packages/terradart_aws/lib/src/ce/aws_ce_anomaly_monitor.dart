@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `aws_ce_anomaly_monitor`.
@@ -67,12 +68,15 @@ sealed class CeAnomalyMonitorScope {
   ) = CeAnomalyMonitorScopeMonitorSpecification;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -83,14 +87,17 @@ final class CeAnomalyMonitorScopeMonitorDimension
 
   final CeAnomalyMonitorDimension monitorDimension;
 
+  @internal
   @override
   String get blockKey => 'monitor_dimension';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'monitor_dimension': monitorDimension.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'monitor_dimension': monitorDimension,
@@ -104,14 +111,17 @@ final class CeAnomalyMonitorScopeMonitorSpecification
 
   final TfArg<String> monitorSpecification;
 
+  @internal
   @override
   String get blockKey => 'monitor_specification';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'monitor_specification': monitorSpecification.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'monitor_specification': monitorSpecification,

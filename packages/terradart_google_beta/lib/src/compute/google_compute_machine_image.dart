@@ -28,6 +28,7 @@ final class ComputeMachineImageEncryptionKey {
 
   final Sensitive<String>? rawKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_name': ?kmsKeyName?.encodeAs('id').toTfJson(),
     'kms_key_service_account': ?kmsKeyServiceAccount?.toTfJson(),
@@ -43,6 +44,7 @@ final class ComputeMachineImageParams {
 
   final TfArg<Map<String, String>>? resourceManagerTags;
 
+  @internal
   Map<String, Object?> encode() => {
     'resource_manager_tags': ?resourceManagerTags?.toTfJson(),
   };

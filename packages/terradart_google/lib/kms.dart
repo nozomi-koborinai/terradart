@@ -3,6 +3,32 @@
 /// Cloud KMS key rings and crypto keys.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/google_kms_autokey_config.dart'
+    show DataGoogleKmsAutokeyConfig;
+export 'src/data/google_kms_crypto_key.dart' show DataGoogleKmsCryptoKey;
+export 'src/data/google_kms_crypto_key_iam_policy.dart'
+    show DataGoogleKmsCryptoKeyIamPolicy;
+export 'src/data/google_kms_crypto_key_latest_version.dart'
+    show DataGoogleKmsCryptoKeyLatestVersion;
+export 'src/data/google_kms_crypto_key_version.dart'
+    show DataGoogleKmsCryptoKeyVersion;
+export 'src/data/google_kms_crypto_key_versions.dart'
+    show DataGoogleKmsCryptoKeyVersions;
+export 'src/data/google_kms_crypto_keys.dart' show DataGoogleKmsCryptoKeys;
+export 'src/data/google_kms_ekm_connection_iam_policy.dart'
+    show DataGoogleKmsEkmConnectionIamPolicy;
+export 'src/data/google_kms_key_handle.dart' show DataGoogleKmsKeyHandle;
+export 'src/data/google_kms_key_handles.dart' show DataGoogleKmsKeyHandles;
+export 'src/data/google_kms_key_ring.dart' show DataGoogleKmsKeyRing;
+export 'src/data/google_kms_key_ring_iam_policy.dart'
+    show DataGoogleKmsKeyRingIamPolicy;
+export 'src/data/google_kms_key_rings.dart' show DataGoogleKmsKeyRings;
+export 'src/data/google_kms_secret.dart' show DataGoogleKmsSecret;
+export 'src/data/google_kms_secret_asymmetric.dart'
+    show DataGoogleKmsSecretAsymmetric;
+export 'src/data/google_kms_secret_ciphertext.dart'
+    show DataGoogleKmsSecretCiphertext;
 export 'src/kms/google_kms_autokey_config.dart'
     show GoogleKmsAutokeyConfig, KmsAutokeyConfigKeyProjectResolutionMode;
 export 'src/kms/google_kms_crypto_key.dart'

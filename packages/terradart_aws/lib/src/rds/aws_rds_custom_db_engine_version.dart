@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../kms/aws_kms_key.dart' show AwsKmsKey;
@@ -53,12 +54,15 @@ sealed class RdsCustomDbEngineVersionManifest {
   ) = RdsCustomDbEngineVersionManifestChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -69,12 +73,15 @@ final class RdsCustomDbEngineVersionManifestFilename
 
   final TfArg<String> filename;
 
+  @internal
   @override
   String get blockKey => 'filename';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'filename': filename.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'filename': filename};
 }
@@ -86,12 +93,15 @@ final class RdsCustomDbEngineVersionManifestChoice
 
   final TfArg<String> manifest;
 
+  @internal
   @override
   String get blockKey => 'manifest';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'manifest': manifest.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'manifest': manifest};
 }

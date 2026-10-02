@@ -48,6 +48,7 @@ final class CodecatalystDevEnvironmentIdes {
 
   final TfArg<String>? runtime;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'runtime': ?runtime?.toTfJson(),
@@ -62,6 +63,7 @@ final class CodecatalystDevEnvironmentPersistentStorage {
 
   final TfArg<num> size;
 
+  @internal
   Map<String, Object?> encode() => {'size': size.toTfJson()};
 }
 
@@ -78,6 +80,7 @@ final class CodecatalystDevEnvironmentRepositories {
 
   final TfArg<String> repositoryName;
 
+  @internal
   Map<String, Object?> encode() => {
     'branch_name': ?branchName?.toTfJson(),
     'repository_name': repositoryName.toTfJson(),

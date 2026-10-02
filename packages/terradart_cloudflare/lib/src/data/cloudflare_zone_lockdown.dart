@@ -43,6 +43,7 @@ final class DataZoneLockdownFilter {
 
   final TfArg<String>? uriSearch;
 
+  @internal
   Map<String, Object?> encode() => {
     'created_on': ?createdOn?.toTfJson(),
     'description': ?description?.toTfJson(),

@@ -54,6 +54,7 @@ final class ComputeNetworkFirewallPolicyPacketMirroringRuleMatch {
   final List<ComputeNetworkFirewallPolicyPacketMirroringRuleLayer4Configs>
   layer4Configs;
 
+  @internal
   Map<String, Object?> encode() => {
     'dest_ip_ranges': ?destIpRanges?.toTfJson(),
     'src_ip_ranges': ?srcIpRanges?.toTfJson(),
@@ -74,6 +75,7 @@ final class ComputeNetworkFirewallPolicyPacketMirroringRuleLayer4Configs {
 
   final TfArg<List<String>>? ports;
 
+  @internal
   Map<String, Object?> encode() => {
     'ip_protocol': ipProtocol.toTfJson(),
     'ports': ?ports?.toTfJson(),
@@ -90,6 +92,7 @@ final class ComputeNetworkFirewallPolicyPacketMirroringRuleTargetSecureTags {
 
   final TfArg<String>? name;
 
+  @internal
   Map<String, Object?> encode() => {'name': ?name?.toTfJson()};
 }
 

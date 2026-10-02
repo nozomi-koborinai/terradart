@@ -3,6 +3,8 @@
 /// AWS Elasticsearch Service (legacy).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_elasticsearch_domain.dart' show DataAwsElasticsearchDomain;
 export 'src/elasticsearch/aws_elasticsearch_domain.dart'
     show
         AwsElasticsearchDomain,

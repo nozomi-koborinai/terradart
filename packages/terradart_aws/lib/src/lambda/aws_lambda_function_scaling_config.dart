@@ -22,6 +22,7 @@ final class LambdaFunctionScalingConfig {
 
   final TfArg<num>? minExecutionEnvironments;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_execution_environments': ?maxExecutionEnvironments?.toTfJson(),
     'min_execution_environments': ?minExecutionEnvironments?.toTfJson(),

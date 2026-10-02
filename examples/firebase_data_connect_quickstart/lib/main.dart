@@ -16,7 +16,6 @@
 /// cross-reference getter.
 library;
 
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/firebase_data_connect.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';

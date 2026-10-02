@@ -29,6 +29,7 @@ final class DatazoneFormTypeModel {
 
   final TfArg<String> smithy;
 
+  @internal
   Map<String, Object?> encode() => {'smithy': smithy.toTfJson()};
 }
 

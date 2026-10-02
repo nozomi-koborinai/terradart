@@ -34,6 +34,7 @@ final class UserGroupMembers {
 
   final RefTo<CloudflareAccountMember> id;
 
+  @internal
   Map<String, Object?> encode() => {'id': id.encodeAs('id').toTfJson()};
 }
 

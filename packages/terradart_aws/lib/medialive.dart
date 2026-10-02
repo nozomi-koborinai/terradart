@@ -3,6 +3,8 @@
 /// AWS Elemental MediaLive.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_medialive_input.dart' show DataAwsMedialiveInput;
 export 'src/medialive/aws_medialive_channel.dart'
     show
         AwsMedialiveChannel,

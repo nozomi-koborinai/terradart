@@ -26,6 +26,7 @@ final class WafregionalByteMatchSetByteMatchTuples {
 
   final WafregionalByteMatchSetFieldToMatch fieldToMatch;
 
+  @internal
   Map<String, Object?> encode() => {
     'positional_constraint': positionalConstraint.toTfJson(),
     'target_string': ?targetString?.toTfJson(),
@@ -44,6 +45,7 @@ final class WafregionalByteMatchSetFieldToMatch {
 
   final TfArg<String> type;
 
+  @internal
   Map<String, Object?> encode() => {
     'data': ?data?.toTfJson(),
     'type': type.toTfJson(),

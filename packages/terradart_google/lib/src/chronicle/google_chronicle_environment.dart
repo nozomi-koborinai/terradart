@@ -20,6 +20,7 @@ final class ChronicleEnvironmentDynamicParameters {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'dynamic_parameter_id': dynamicParameterId.toTfJson(),
     'value': value.toTfJson(),

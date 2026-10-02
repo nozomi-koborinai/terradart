@@ -20,6 +20,7 @@ final class ContainerAzureNodePoolAutoscaling {
 
   final TfArg<num> minNodeCount;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_node_count': maxNodeCount.toTfJson(),
     'min_node_count': minNodeCount.toTfJson(),
@@ -51,6 +52,7 @@ final class ContainerAzureNodePoolConfig {
 
   final ContainerAzureNodePoolSshConfig sshConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'labels': ?labels?.toTfJson(),
     'tags': ?tags?.toTfJson(),
@@ -74,6 +76,7 @@ final class ContainerAzureNodePoolProxyConfig {
 
   final TfArg<String> secretId;
 
+  @internal
   Map<String, Object?> encode() => {
     'resource_group_id': resourceGroupId.toTfJson(),
     'secret_id': secretId.toTfJson(),
@@ -88,6 +91,7 @@ final class ContainerAzureNodePoolRootVolume {
 
   final TfArg<num>? sizeGib;
 
+  @internal
   Map<String, Object?> encode() => {'size_gib': ?sizeGib?.toTfJson()};
 }
 
@@ -99,6 +103,7 @@ final class ContainerAzureNodePoolSshConfig {
 
   final TfArg<String> authorizedKey;
 
+  @internal
   Map<String, Object?> encode() => {'authorized_key': authorizedKey.toTfJson()};
 }
 
@@ -110,6 +115,7 @@ final class ContainerAzureNodePoolManagement {
 
   final TfArg<bool>? autoRepair;
 
+  @internal
   Map<String, Object?> encode() => {'auto_repair': ?autoRepair?.toTfJson()};
 }
 
@@ -121,6 +127,7 @@ final class ContainerAzureNodePoolMaxPodsConstraint {
 
   final TfArg<num> maxPodsPerNode;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_pods_per_node': maxPodsPerNode.toTfJson(),
   };

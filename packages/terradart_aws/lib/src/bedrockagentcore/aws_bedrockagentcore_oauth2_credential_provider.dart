@@ -234,6 +234,7 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfig {
   final List<BedrockagentcoreOauth2CredentialProviderSlackOauth2ProviderConfig>?
   slackOauth2ProviderConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     if (atlassianOauth2ProviderConfig != null)
       'atlassian_oauth2_provider_config': [
@@ -303,6 +304,7 @@ final class BedrockagentcoreOauth2CredentialProviderAtlassianOauth2ProviderConfi
   final List<BedrockagentcoreOauth2CredentialProviderClientSecretConfig>?
   clientSecretConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_credentials_wo_version': ?clientCredentialsWoVersion?.toTfJson(),
     'client_id': ?clientId?.toTfJson(),
@@ -329,6 +331,7 @@ final class BedrockagentcoreOauth2CredentialProviderClientSecretConfig {
 
   final TfArg<String> secretId;
 
+  @internal
   Map<String, Object?> encode() => {
     'json_key': jsonKey.toTfJson(),
     'secret_id': secretId.toTfJson(),
@@ -390,6 +393,7 @@ final class BedrockagentcoreOauth2CredentialProviderCustomOauth2ProviderConfig {
   final List<BedrockagentcoreOauth2CredentialProviderPrivateKeyJwtConfig>?
   privateKeyJwtConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_authentication_method': ?clientAuthenticationMethod?.toTfJson(),
     'client_credentials_wo_version': ?clientCredentialsWoVersion?.toTfJson(),
@@ -477,6 +481,7 @@ final class BedrockagentcoreOauth2CredentialProviderOauthDiscovery {
   >?
   authorizationServerMetadata;
 
+  @internal
   Map<String, Object?> encode() => {
     'discovery_url': ?discoveryUrl?.toTfJson(),
     if (authorizationServerMetadata != null)
@@ -508,6 +513,7 @@ final class BedrockagentcoreOauth2CredentialProviderAuthorizationServerMetadata 
 
   final TfArg<List<String>>? tokenEndpointAuthMethods;
 
+  @internal
   Map<String, Object?> encode() => {
     'authorization_endpoint': authorizationEndpoint.toTfJson(),
     'issuer': issuer.toTfJson(),
@@ -533,6 +539,7 @@ final class BedrockagentcoreOauth2CredentialProviderOnBehalfOfTokenExchangeConfi
   >?
   tokenExchangeGrantTypeConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'grant_type': grantType.toTfJson(),
     if (tokenExchangeGrantTypeConfig != null)
@@ -580,6 +587,7 @@ final class BedrockagentcoreOauth2CredentialProviderTokenExchangeGrantTypeConfig
 
   final TfArg<List<String>>? actorTokenScopes;
 
+  @internal
   Map<String, Object?> encode() => {
     'actor_token_content': actorTokenContent.toTfJson(),
     'actor_token_scopes': ?actorTokenScopes?.toTfJson(),
@@ -635,6 +643,7 @@ final class BedrockagentcoreOauth2CredentialProviderPrivateEndpoint {
   >?
   selfManagedLatticeResource;
 
+  @internal
   Map<String, Object?> encode() => {
     if (managedVpcResource != null)
       'managed_vpc_resource': [for (final e in managedVpcResource!) e.encode()],
@@ -672,6 +681,7 @@ final class BedrockagentcoreOauth2CredentialProviderManagedVpcResource {
 
   final TfArg<String> vpcIdentifier;
 
+  @internal
   Map<String, Object?> encode() => {
     'endpoint_ip_address_type': endpointIpAddressType.toTfJson(),
     'routing_domain': ?routingDomain?.toTfJson(),
@@ -722,6 +732,7 @@ final class BedrockagentcoreOauth2CredentialProviderSelfManagedLatticeResource {
 
   final TfArg<String>? resourceConfigurationIdentifier;
 
+  @internal
   Map<String, Object?> encode() => {
     'resource_configuration_identifier': ?resourceConfigurationIdentifier
         ?.toTfJson(),
@@ -742,6 +753,7 @@ final class BedrockagentcoreOauth2CredentialProviderPrivateEndpointOverride {
   final List<BedrockagentcoreOauth2CredentialProviderPrivateEndpoint>?
   privateEndpoint;
 
+  @internal
   Map<String, Object?> encode() => {
     'domain': domain.toTfJson(),
     if (privateEndpoint != null)
@@ -770,6 +782,7 @@ final class BedrockagentcoreOauth2CredentialProviderPrivateKeyJwtConfig {
   final List<BedrockagentcoreOauth2CredentialProviderPrivateKeySource>?
   privateKeySource;
 
+  @internal
   Map<String, Object?> encode() => {
     'additional_header_claims': ?additionalHeaderClaims?.toTfJson(),
     'additional_payload_claims': ?additionalPayloadClaims?.toTfJson(),
@@ -820,6 +833,7 @@ final class BedrockagentcoreOauth2CredentialProviderPrivateKeySource {
   final List<BedrockagentcoreOauth2CredentialProviderKmsKeySource>?
   kmsKeySource;
 
+  @internal
   Map<String, Object?> encode() => {
     if (kmsKeySource != null)
       'kms_key_source': [for (final e in kmsKeySource!) e.encode()],
@@ -836,6 +850,7 @@ final class BedrockagentcoreOauth2CredentialProviderKmsKeySource {
 
   final RefTo<AwsKmsKey> kmsKeyArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_arn': kmsKeyArn.encodeAs('arn').toTfJson(),
   };
@@ -870,6 +885,7 @@ final class BedrockagentcoreOauth2CredentialProviderGithubOauth2ProviderConfig {
   final List<BedrockagentcoreOauth2CredentialProviderClientSecretConfig>?
   clientSecretConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_credentials_wo_version': ?clientCredentialsWoVersion?.toTfJson(),
     'client_id': ?clientId?.toTfJson(),
@@ -911,6 +927,7 @@ final class BedrockagentcoreOauth2CredentialProviderGoogleOauth2ProviderConfig {
   final List<BedrockagentcoreOauth2CredentialProviderClientSecretConfig>?
   clientSecretConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_credentials_wo_version': ?clientCredentialsWoVersion?.toTfJson(),
     'client_id': ?clientId?.toTfJson(),
@@ -961,6 +978,7 @@ final class BedrockagentcoreOauth2CredentialProviderIncludedOauth2ProviderConfig
   final List<BedrockagentcoreOauth2CredentialProviderClientSecretConfig>?
   clientSecretConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'authorization_endpoint': ?authorizationEndpoint?.toTfJson(),
     'client_credentials_wo_version': ?clientCredentialsWoVersion?.toTfJson(),
@@ -1005,6 +1023,7 @@ final class BedrockagentcoreOauth2CredentialProviderLinkedinOauth2ProviderConfig
   final List<BedrockagentcoreOauth2CredentialProviderClientSecretConfig>?
   clientSecretConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_credentials_wo_version': ?clientCredentialsWoVersion?.toTfJson(),
     'client_id': ?clientId?.toTfJson(),
@@ -1052,6 +1071,7 @@ final class BedrockagentcoreOauth2CredentialProviderMicrosoftOauth2ProviderConfi
   final List<BedrockagentcoreOauth2CredentialProviderClientSecretConfig>?
   clientSecretConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_credentials_wo_version': ?clientCredentialsWoVersion?.toTfJson(),
     'client_id': ?clientId?.toTfJson(),
@@ -1085,8 +1105,10 @@ sealed class BedrockagentcoreOauth2CredentialProviderTenantId {
   ) = BedrockagentcoreOauth2CredentialProviderTenantIdWo;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -1097,9 +1119,11 @@ final class BedrockagentcoreOauth2CredentialProviderTenantIdChoice
 
   final Sensitive<String> tenantId;
 
+  @internal
   @override
   String get blockKey => 'tenant_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'tenant_id': tenantId.toTfJson()};
 }
@@ -1111,9 +1135,11 @@ final class BedrockagentcoreOauth2CredentialProviderTenantIdWo
 
   final Sensitive<String> tenantIdWo;
 
+  @internal
   @override
   String get blockKey => 'tenant_id_wo';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'tenant_id_wo': tenantIdWo.toTfJson()};
 }
@@ -1147,6 +1173,7 @@ final class BedrockagentcoreOauth2CredentialProviderSalesforceOauth2ProviderConf
   final List<BedrockagentcoreOauth2CredentialProviderClientSecretConfig>?
   clientSecretConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_credentials_wo_version': ?clientCredentialsWoVersion?.toTfJson(),
     'client_id': ?clientId?.toTfJson(),
@@ -1188,6 +1215,7 @@ final class BedrockagentcoreOauth2CredentialProviderSlackOauth2ProviderConfig {
   final List<BedrockagentcoreOauth2CredentialProviderClientSecretConfig>?
   clientSecretConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_credentials_wo_version': ?clientCredentialsWoVersion?.toTfJson(),
     'client_id': ?clientId?.toTfJson(),

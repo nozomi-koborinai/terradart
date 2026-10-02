@@ -3,6 +3,7 @@
 /// AWS Comprehend.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/comprehend/aws_comprehend_document_classifier.dart'
     show
         AwsComprehendDocumentClassifier,

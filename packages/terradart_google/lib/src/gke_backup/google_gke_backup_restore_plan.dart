@@ -46,6 +46,7 @@ final class GkeBackupRestorePlanRestoreConfig {
   final List<GkeBackupRestorePlanVolumeDataRestorePolicyBindings>?
   volumeDataRestorePolicyBindings;
 
+  @internal
   Map<String, Object?> encode() => {
     ...namespaces.encode(),
     'cluster_resource_conflict_policy': ?clusterResourceConflictPolicy
@@ -99,8 +100,10 @@ sealed class GkeBackupRestorePlanNamespaces {
   ) = GkeBackupRestorePlanNoNamespaces;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -111,9 +114,11 @@ final class GkeBackupRestorePlanAllNamespaces
 
   final TfArg<bool> allNamespaces;
 
+  @internal
   @override
   String get blockKey => 'all_namespaces';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'all_namespaces': allNamespaces.toTfJson()};
 }
@@ -125,9 +130,11 @@ final class GkeBackupRestorePlanExcludedNamespacesChoice
 
   final GkeBackupRestorePlanExcludedNamespaces excludedNamespaces;
 
+  @internal
   @override
   String get blockKey => 'excluded_namespaces';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'excluded_namespaces': excludedNamespaces.encode(),
@@ -141,9 +148,11 @@ final class GkeBackupRestorePlanSelectedNamespacesChoice
 
   final GkeBackupRestorePlanSelectedNamespaces selectedNamespaces;
 
+  @internal
   @override
   String get blockKey => 'selected_namespaces';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'selected_namespaces': selectedNamespaces.encode(),
@@ -159,9 +168,11 @@ final class GkeBackupRestorePlanNamespacesSelectedApplications
 
   final GkeBackupRestorePlanSelectedApplications selectedApplications;
 
+  @internal
   @override
   String get blockKey => 'selected_applications';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'selected_applications': selectedApplications.encode(),
@@ -175,9 +186,11 @@ final class GkeBackupRestorePlanNoNamespaces
 
   final TfArg<bool> noNamespaces;
 
+  @internal
   @override
   String get blockKey => 'no_namespaces';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'no_namespaces': noNamespaces.toTfJson()};
 }
@@ -307,8 +320,10 @@ sealed class GkeBackupRestorePlanClusterResourceRestoreScope {
   ) = GkeBackupRestorePlanClusterResourceRestoreScopeNoGroupKinds;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -321,9 +336,11 @@ final class GkeBackupRestorePlanClusterResourceRestoreScopeAllGroupKinds
 
   final TfArg<bool> allGroupKinds;
 
+  @internal
   @override
   String get blockKey => 'all_group_kinds';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'all_group_kinds': allGroupKinds.toTfJson(),
@@ -339,9 +356,11 @@ final class GkeBackupRestorePlanClusterResourceRestoreScopeExcludedGroupKinds
 
   final List<GkeBackupRestorePlanExcludedGroupKinds> excludedGroupKinds;
 
+  @internal
   @override
   String get blockKey => 'excluded_group_kinds';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'excluded_group_kinds': [for (final e in excludedGroupKinds) e.encode()],
@@ -357,9 +376,11 @@ final class GkeBackupRestorePlanClusterResourceRestoreScopeSelectedGroupKinds
 
   final List<GkeBackupRestorePlanSelectedGroupKinds> selectedGroupKinds;
 
+  @internal
   @override
   String get blockKey => 'selected_group_kinds';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'selected_group_kinds': [for (final e in selectedGroupKinds) e.encode()],
@@ -375,9 +396,11 @@ final class GkeBackupRestorePlanClusterResourceRestoreScopeNoGroupKinds
 
   final TfArg<bool> noGroupKinds;
 
+  @internal
   @override
   String get blockKey => 'no_group_kinds';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'no_group_kinds': noGroupKinds.toTfJson()};
 }
@@ -395,6 +418,7 @@ final class GkeBackupRestorePlanExcludedGroupKinds {
 
   final TfArg<String>? resourceKind;
 
+  @internal
   Map<String, Object?> encode() => {
     'resource_group': ?resourceGroup?.toTfJson(),
     'resource_kind': ?resourceKind?.toTfJson(),
@@ -414,6 +438,7 @@ final class GkeBackupRestorePlanSelectedGroupKinds {
 
   final TfArg<String>? resourceKind;
 
+  @internal
   Map<String, Object?> encode() => {
     'resource_group': ?resourceGroup?.toTfJson(),
     'resource_kind': ?resourceKind?.toTfJson(),
@@ -428,6 +453,7 @@ final class GkeBackupRestorePlanExcludedNamespaces {
 
   final TfArg<List<String>> namespaces;
 
+  @internal
   Map<String, Object?> encode() => {'namespaces': namespaces.toTfJson()};
 }
 
@@ -439,6 +465,7 @@ final class GkeBackupRestorePlanRestoreOrder {
 
   final List<GkeBackupRestorePlanGroupKindDependencies> groupKindDependencies;
 
+  @internal
   Map<String, Object?> encode() => {
     'group_kind_dependencies': [
       for (final e in groupKindDependencies) e.encode(),
@@ -459,6 +486,7 @@ final class GkeBackupRestorePlanGroupKindDependencies {
 
   final GkeBackupRestorePlanSatisfying satisfying;
 
+  @internal
   Map<String, Object?> encode() => {
     'requiring': requiring.encode(),
     'satisfying': satisfying.encode(),
@@ -475,6 +503,7 @@ final class GkeBackupRestorePlanRequiring {
 
   final TfArg<String>? resourceKind;
 
+  @internal
   Map<String, Object?> encode() => {
     'resource_group': ?resourceGroup?.toTfJson(),
     'resource_kind': ?resourceKind?.toTfJson(),
@@ -491,6 +520,7 @@ final class GkeBackupRestorePlanSatisfying {
 
   final TfArg<String>? resourceKind;
 
+  @internal
   Map<String, Object?> encode() => {
     'resource_group': ?resourceGroup?.toTfJson(),
     'resource_kind': ?resourceKind?.toTfJson(),
@@ -507,6 +537,7 @@ final class GkeBackupRestorePlanSelectedApplications {
 
   final List<GkeBackupRestorePlanNamespacedNames> namespacedNames;
 
+  @internal
   Map<String, Object?> encode() => {
     'namespaced_names': [for (final e in namespacedNames) e.encode()],
   };
@@ -525,6 +556,7 @@ final class GkeBackupRestorePlanNamespacedNames {
 
   final TfArg<String> namespace;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'namespace': namespace.toTfJson(),
@@ -539,6 +571,7 @@ final class GkeBackupRestorePlanSelectedNamespaces {
 
   final TfArg<List<String>> namespaces;
 
+  @internal
   Map<String, Object?> encode() => {'namespaces': namespaces.toTfJson()};
 }
 
@@ -558,6 +591,7 @@ final class GkeBackupRestorePlanTransformationRules {
 
   final GkeBackupRestorePlanResourceFilter? resourceFilter;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'field_actions': [for (final e in fieldActions) e.encode()],
@@ -584,6 +618,7 @@ final class GkeBackupRestorePlanFieldActions {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'from_path': ?fromPath?.toTfJson(),
     'op': op.toTfJson(),
@@ -633,6 +668,7 @@ final class GkeBackupRestorePlanResourceFilter {
 
   final List<GkeBackupRestorePlanGroupKinds>? groupKinds;
 
+  @internal
   Map<String, Object?> encode() => {
     'json_path': ?jsonPath?.toTfJson(),
     'namespaces': ?namespaces?.toTfJson(),
@@ -651,6 +687,7 @@ final class GkeBackupRestorePlanGroupKinds {
 
   final TfArg<String>? resourceKind;
 
+  @internal
   Map<String, Object?> encode() => {
     'resource_group': ?resourceGroup?.toTfJson(),
     'resource_kind': ?resourceKind?.toTfJson(),
@@ -670,6 +707,7 @@ final class GkeBackupRestorePlanVolumeDataRestorePolicyBindings {
 
   final TfArg<String> volumeType;
 
+  @internal
   Map<String, Object?> encode() => {
     'policy': policy.toTfJson(),
     'volume_type': volumeType.toTfJson(),

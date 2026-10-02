@@ -39,6 +39,7 @@ final class EcsExpressGatewayServicePrimaryContainer {
 
   final List<EcsExpressGatewayServiceSecret>? secret;
 
+  @internal
   Map<String, Object?> encode() => {
     'aws_logs_configuration': ?awsLogsConfiguration?.toTfJson(),
     'command': ?command?.toTfJson(),
@@ -67,6 +68,7 @@ final class EcsExpressGatewayServiceEnvironment {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'value': value.toTfJson(),
@@ -83,6 +85,7 @@ final class EcsExpressGatewayServiceRepositoryCredentials {
 
   final TfArg<String> credentialsParameter;
 
+  @internal
   Map<String, Object?> encode() => {
     'credentials_parameter': credentialsParameter.toTfJson(),
   };
@@ -101,6 +104,7 @@ final class EcsExpressGatewayServiceSecret {
 
   final TfArg<String> valueFrom;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'value_from': valueFrom.toTfJson(),

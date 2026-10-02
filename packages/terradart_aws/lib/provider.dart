@@ -8,6 +8,7 @@
 /// ```
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/aws_provider.dart'
     show
         AwsAssumeRole,

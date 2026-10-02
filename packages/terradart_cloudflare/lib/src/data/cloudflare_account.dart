@@ -18,6 +18,7 @@ final class DataAccountFilter {
 
   final TfArg<String>? name;
 
+  @internal
   Map<String, Object?> encode() => {
     'direction': ?direction?.toTfJson(),
     'name': ?name?.toTfJson(),

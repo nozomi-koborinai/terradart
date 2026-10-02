@@ -6,6 +6,7 @@
 /// on terradart-validate).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/agent/google_agent_identity_auth_provider.dart'
     show
         AgentIdentityAuthProviderApiKey,
@@ -40,3 +41,9 @@ export 'src/agent/google_agent_registry_service.dart'
         AgentRegistryServiceMcpServerSpecType,
         AgentRegistryServiceSpec,
         GoogleAgentRegistryService;
+export 'src/data/google_agent_registry_agent.dart'
+    show DataGoogleAgentRegistryAgent;
+export 'src/data/google_agent_registry_endpoint.dart'
+    show DataGoogleAgentRegistryEndpoint;
+export 'src/data/google_agent_registry_mcp_server.dart'
+    show DataGoogleAgentRegistryMcpServer;

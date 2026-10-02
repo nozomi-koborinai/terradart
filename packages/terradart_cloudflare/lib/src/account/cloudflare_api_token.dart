@@ -30,6 +30,7 @@ final class ApiTokenCondition {
 
   final ApiTokenRequestIp? requestIp;
 
+  @internal
   Map<String, Object?> encode() => {'request_ip': ?requestIp?.encode()};
 }
 
@@ -43,6 +44,7 @@ final class ApiTokenRequestIp {
 
   final TfArg<List<String>>? notIn;
 
+  @internal
   Map<String, Object?> encode() => {
     'in': ?inCase?.toTfJson(),
     'not_in': ?notIn?.toTfJson(),
@@ -65,6 +67,7 @@ final class ApiTokenPolicies {
 
   final List<ApiTokenPermissionGroups> permissionGroups;
 
+  @internal
   Map<String, Object?> encode() => {
     'effect': effect.toTfJson(),
     'resources': resources.toTfJson(),
@@ -94,6 +97,7 @@ final class ApiTokenPermissionGroups {
 
   final TfArg<String> id;
 
+  @internal
   Map<String, Object?> encode() => {'id': id.toTfJson()};
 }
 

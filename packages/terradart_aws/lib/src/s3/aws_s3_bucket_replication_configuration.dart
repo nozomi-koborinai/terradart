@@ -49,6 +49,7 @@ final class S3BucketReplicationConfigurationRule {
   final S3BucketReplicationConfigurationSourceSelectionCriteria?
   sourceSelectionCriteria;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': ?id?.toTfJson(),
     'prefix': ?prefix?.toTfJson(),
@@ -95,6 +96,7 @@ final class S3BucketReplicationConfigurationDeleteMarkerReplication {
 
   final S3BucketReplicationConfigurationStatus status;
 
+  @internal
   Map<String, Object?> encode() => {'status': status.toTfJson()};
 }
 
@@ -128,6 +130,7 @@ final class S3BucketReplicationConfigurationDestination {
 
   final S3BucketReplicationConfigurationReplicationTime? replicationTime;
 
+  @internal
   Map<String, Object?> encode() => {
     'account': ?account?.toTfJson(),
     'bucket': bucket.encodeAs('arn').toTfJson(),
@@ -228,6 +231,7 @@ final class S3BucketReplicationConfigurationAccessControlTranslation {
 
   final S3BucketReplicationConfigurationOwner owner;
 
+  @internal
   Map<String, Object?> encode() => {'owner': owner.toTfJson()};
 }
 
@@ -260,6 +264,7 @@ final class S3BucketReplicationConfigurationEncryptionConfiguration {
 
   final TfArg<String> replicaKmsKeyId;
 
+  @internal
   Map<String, Object?> encode() => {
     'replica_kms_key_id': replicaKmsKeyId.toTfJson(),
   };
@@ -278,6 +283,7 @@ final class S3BucketReplicationConfigurationMetrics {
 
   final S3BucketReplicationConfigurationEventThreshold? eventThreshold;
 
+  @internal
   Map<String, Object?> encode() => {
     'status': status.toTfJson(),
     'event_threshold': ?eventThreshold?.encode(),
@@ -292,6 +298,7 @@ final class S3BucketReplicationConfigurationEventThreshold {
 
   final TfArg<num> minutes;
 
+  @internal
   Map<String, Object?> encode() => {'minutes': minutes.toTfJson()};
 }
 
@@ -308,6 +315,7 @@ final class S3BucketReplicationConfigurationReplicationTime {
 
   final S3BucketReplicationConfigurationTime time;
 
+  @internal
   Map<String, Object?> encode() => {
     'status': status.toTfJson(),
     'time': time.encode(),
@@ -322,6 +330,7 @@ final class S3BucketReplicationConfigurationTime {
 
   final TfArg<num> minutes;
 
+  @internal
   Map<String, Object?> encode() => {'minutes': minutes.toTfJson()};
 }
 
@@ -335,6 +344,7 @@ final class S3BucketReplicationConfigurationExistingObjectReplication {
 
   final S3BucketReplicationConfigurationStatus status;
 
+  @internal
   Map<String, Object?> encode() => {'status': status.toTfJson()};
 }
 
@@ -354,6 +364,7 @@ final class S3BucketReplicationConfigurationFilter {
 
   final S3BucketReplicationConfigurationTag? tag;
 
+  @internal
   Map<String, Object?> encode() => {
     'prefix': ?prefix?.toTfJson(),
     'and': ?and?.encode(),
@@ -371,6 +382,7 @@ final class S3BucketReplicationConfigurationAnd {
 
   final TfArg<Map<String, String>>? tags;
 
+  @internal
   Map<String, Object?> encode() => {
     'prefix': ?prefix?.toTfJson(),
     'tags': ?tags?.toTfJson(),
@@ -390,6 +402,7 @@ final class S3BucketReplicationConfigurationTag {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'value': value.toTfJson(),
@@ -411,6 +424,7 @@ final class S3BucketReplicationConfigurationSourceSelectionCriteria {
   final S3BucketReplicationConfigurationSseKmsEncryptedObjects?
   sseKmsEncryptedObjects;
 
+  @internal
   Map<String, Object?> encode() => {
     'replica_modifications': ?replicaModifications?.encode(),
     'sse_kms_encrypted_objects': ?sseKmsEncryptedObjects?.encode(),
@@ -427,6 +441,7 @@ final class S3BucketReplicationConfigurationReplicaModifications {
 
   final S3BucketReplicationConfigurationStatus status;
 
+  @internal
   Map<String, Object?> encode() => {'status': status.toTfJson()};
 }
 
@@ -440,6 +455,7 @@ final class S3BucketReplicationConfigurationSseKmsEncryptedObjects {
 
   final S3BucketReplicationConfigurationStatus status;
 
+  @internal
   Map<String, Object?> encode() => {'status': status.toTfJson()};
 }
 

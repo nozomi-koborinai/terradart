@@ -31,6 +31,7 @@ final class AppflowFlowDestinationFlowConfig {
   final AppflowFlowDestinationConnectorProperties
   destinationConnectorProperties;
 
+  @internal
   Map<String, Object?> encode() => {
     'api_version': ?apiVersion?.toTfJson(),
     'connector_profile_name': ?connectorProfileName?.toTfJson(),
@@ -173,6 +174,7 @@ final class AppflowFlowDestinationConnectorProperties {
 
   final AppflowFlowDestinationConnectorPropertiesZendesk? zendesk;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_connector': ?customConnector?.encode(),
     'customer_profiles': ?customerProfiles?.encode(),
@@ -212,6 +214,7 @@ final class AppflowFlowDestinationConnectorPropertiesCustomConnector {
 
   final AppflowFlowErrorHandlingConfig? errorHandlingConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_properties': ?customProperties?.toTfJson(),
     'entity_name': entityName.toTfJson(),
@@ -260,6 +263,7 @@ final class AppflowFlowErrorHandlingConfig {
 
   final TfArg<bool>? failOnFirstDestinationError;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_name': ?bucketName?.encodeAs('id').toTfJson(),
     'bucket_prefix': ?bucketPrefix?.toTfJson(),
@@ -280,6 +284,7 @@ final class AppflowFlowCustomerProfiles {
 
   final TfArg<String>? objectTypeName;
 
+  @internal
   Map<String, Object?> encode() => {
     'domain_name': domainName.toTfJson(),
     'object_type_name': ?objectTypeName?.toTfJson(),
@@ -299,6 +304,7 @@ final class AppflowFlowEventBridge {
 
   final AppflowFlowErrorHandlingConfig? errorHandlingConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'object': object.toTfJson(),
     'error_handling_config': ?errorHandlingConfig?.encode(),
@@ -315,6 +321,7 @@ final class AppflowFlowHoneycode {
 
   final AppflowFlowErrorHandlingConfig? errorHandlingConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'object': object.toTfJson(),
     'error_handling_config': ?errorHandlingConfig?.encode(),
@@ -327,6 +334,7 @@ final class AppflowFlowHoneycode {
 final class AppflowFlowLookoutMetrics {
   const AppflowFlowLookoutMetrics();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -343,6 +351,7 @@ final class AppflowFlowDestinationConnectorPropertiesMarketo {
 
   final AppflowFlowErrorHandlingConfig? errorHandlingConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'object': object.toTfJson(),
     'error_handling_config': ?errorHandlingConfig?.encode(),
@@ -368,6 +377,7 @@ final class AppflowFlowRedshift {
 
   final AppflowFlowErrorHandlingConfig? errorHandlingConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_prefix': ?bucketPrefix?.toTfJson(),
     'intermediate_bucket_name': intermediateBucketName.toTfJson(),
@@ -393,6 +403,7 @@ final class AppflowFlowDestinationConnectorPropertiesS3 {
   final AppflowFlowDestinationConnectorPropertiesS3OutputFormatConfig?
   s3OutputFormatConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('id').toTfJson(),
     'bucket_prefix': ?bucketPrefix?.toTfJson(),
@@ -419,6 +430,7 @@ final class AppflowFlowDestinationConnectorPropertiesS3OutputFormatConfig {
 
   final AppflowFlowS3PrefixConfig? prefixConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'file_type': ?fileType?.toTfJson(),
     'preserve_source_data_typing': ?preserveSourceDataTyping?.toTfJson(),
@@ -455,6 +467,7 @@ final class AppflowFlowS3AggregationConfig {
 
   final TfArg<num>? targetFileSize;
 
+  @internal
   Map<String, Object?> encode() => {
     'aggregation_type': ?aggregationType?.toTfJson(),
     'target_file_size': ?targetFileSize?.toTfJson(),
@@ -494,6 +507,7 @@ final class AppflowFlowS3PrefixConfig {
 
   final AppflowFlowPrefixType? prefixType;
 
+  @internal
   Map<String, Object?> encode() => {
     'prefix_format': ?prefixFormat?.toTfJson(),
     if (prefixHierarchy != null)
@@ -590,6 +604,7 @@ final class AppflowFlowDestinationConnectorPropertiesSalesforce {
 
   final AppflowFlowErrorHandlingConfig? errorHandlingConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_transfer_api': ?dataTransferApi?.toTfJson(),
     'id_field_names': ?idFieldNames?.toTfJson(),
@@ -645,6 +660,7 @@ final class AppflowFlowDestinationConnectorPropertiesSapoData {
 
   final AppflowFlowSuccessResponseHandlingConfig? successResponseHandlingConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'id_field_names': ?idFieldNames?.toTfJson(),
     'object_path': objectPath.toTfJson(),
@@ -668,6 +684,7 @@ final class AppflowFlowSuccessResponseHandlingConfig {
 
   final TfArg<String>? bucketPrefix;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_name': ?bucketName?.encodeAs('id').toTfJson(),
     'bucket_prefix': ?bucketPrefix?.toTfJson(),
@@ -693,6 +710,7 @@ final class AppflowFlowSnowflake {
 
   final AppflowFlowErrorHandlingConfig? errorHandlingConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_prefix': ?bucketPrefix?.toTfJson(),
     'intermediate_bucket_name': intermediateBucketName.toTfJson(),
@@ -717,6 +735,7 @@ final class AppflowFlowUpsolver {
 
   final AppflowFlowUpsolverS3OutputFormatConfig s3OutputFormatConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('id').toTfJson(),
     'bucket_prefix': ?bucketPrefix?.toTfJson(),
@@ -740,6 +759,7 @@ final class AppflowFlowUpsolverS3OutputFormatConfig {
 
   final AppflowFlowUpsolverPrefixConfig prefixConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'file_type': ?fileType?.toTfJson(),
     'aggregation_config': ?aggregationConfig?.encode(),
@@ -755,6 +775,7 @@ final class AppflowFlowUpsolverAggregationConfig {
 
   final AppflowFlowAggregationType? aggregationType;
 
+  @internal
   Map<String, Object?> encode() => {
     'aggregation_type': ?aggregationType?.toTfJson(),
   };
@@ -776,6 +797,7 @@ final class AppflowFlowUpsolverPrefixConfig {
 
   final AppflowFlowPrefixType prefixType;
 
+  @internal
   Map<String, Object?> encode() => {
     'prefix_format': ?prefixFormat?.toTfJson(),
     if (prefixHierarchy != null)
@@ -803,6 +825,7 @@ final class AppflowFlowDestinationConnectorPropertiesZendesk {
 
   final AppflowFlowErrorHandlingConfig? errorHandlingConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'id_field_names': ?idFieldNames?.toTfJson(),
     'object': object.toTfJson(),
@@ -819,6 +842,7 @@ final class AppflowFlowMetadataCatalogConfig {
 
   final AppflowFlowGlueDataCatalog? glueDataCatalog;
 
+  @internal
   Map<String, Object?> encode() => {
     'glue_data_catalog': ?glueDataCatalog?.encode(),
   };
@@ -840,6 +864,7 @@ final class AppflowFlowGlueDataCatalog {
 
   final TfArg<String> tablePrefix;
 
+  @internal
   Map<String, Object?> encode() => {
     'database_name': databaseName.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
@@ -869,6 +894,7 @@ final class AppflowFlowSourceFlowConfig {
 
   final AppflowFlowSourceConnectorProperties sourceConnectorProperties;
 
+  @internal
   Map<String, Object?> encode() => {
     'api_version': ?apiVersion?.toTfJson(),
     'connector_profile_name': ?connectorProfileName?.toTfJson(),
@@ -886,6 +912,7 @@ final class AppflowFlowIncrementalPullConfig {
 
   final TfArg<String>? datetimeTypeFieldName;
 
+  @internal
   Map<String, Object?> encode() => {
     'datetime_type_field_name': ?datetimeTypeFieldName?.toTfJson(),
   };
@@ -946,6 +973,7 @@ final class AppflowFlowSourceConnectorProperties {
 
   final AppflowFlowSourceConnectorPropertiesZendesk? zendesk;
 
+  @internal
   Map<String, Object?> encode() => {
     'amplitude': ?amplitude?.encode(),
     'custom_connector': ?customConnector?.encode(),
@@ -974,6 +1002,7 @@ final class AppflowFlowSourceConnectorPropertiesAmplitude {
 
   final TfArg<String> object;
 
+  @internal
   Map<String, Object?> encode() => {'object': object.toTfJson()};
 }
 
@@ -990,6 +1019,7 @@ final class AppflowFlowSourceConnectorPropertiesCustomConnector {
 
   final TfArg<String> entityName;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_properties': ?customProperties?.toTfJson(),
     'entity_name': entityName.toTfJson(),
@@ -1004,6 +1034,7 @@ final class AppflowFlowSourceConnectorPropertiesDatadog {
 
   final TfArg<String> object;
 
+  @internal
   Map<String, Object?> encode() => {'object': object.toTfJson()};
 }
 
@@ -1015,6 +1046,7 @@ final class AppflowFlowSourceConnectorPropertiesDynatrace {
 
   final TfArg<String> object;
 
+  @internal
   Map<String, Object?> encode() => {'object': object.toTfJson()};
 }
 
@@ -1028,6 +1060,7 @@ final class AppflowFlowSourceConnectorPropertiesGoogleAnalytics {
 
   final TfArg<String> object;
 
+  @internal
   Map<String, Object?> encode() => {'object': object.toTfJson()};
 }
 
@@ -1039,6 +1072,7 @@ final class AppflowFlowSourceConnectorPropertiesInforNexus {
 
   final TfArg<String> object;
 
+  @internal
   Map<String, Object?> encode() => {'object': object.toTfJson()};
 }
 
@@ -1050,6 +1084,7 @@ final class AppflowFlowSourceConnectorPropertiesMarketo {
 
   final TfArg<String> object;
 
+  @internal
   Map<String, Object?> encode() => {'object': object.toTfJson()};
 }
 
@@ -1069,6 +1104,7 @@ final class AppflowFlowSourceConnectorPropertiesS3 {
 
   final AppflowFlowS3InputFormatConfig? s3InputFormatConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('id').toTfJson(),
     'bucket_prefix': bucketPrefix.toTfJson(),
@@ -1084,6 +1120,7 @@ final class AppflowFlowS3InputFormatConfig {
 
   final AppflowFlowS3InputFileType? s3InputFileType;
 
+  @internal
   Map<String, Object?> encode() => {
     's3_input_file_type': ?s3InputFileType?.toTfJson(),
   };
@@ -1123,6 +1160,7 @@ final class AppflowFlowSourceConnectorPropertiesSalesforce {
 
   final TfArg<String> object;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_transfer_api': ?dataTransferApi?.toTfJson(),
     'enable_dynamic_field_update': ?enableDynamicFieldUpdate?.toTfJson(),
@@ -1147,6 +1185,7 @@ final class AppflowFlowSourceConnectorPropertiesSapoData {
 
   final AppflowFlowParallelismConfig? parallelismConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'object_path': objectPath.toTfJson(),
     'pagination_config': ?paginationConfig?.encode(),
@@ -1162,6 +1201,7 @@ final class AppflowFlowPaginationConfig {
 
   final TfArg<num> maxPageSize;
 
+  @internal
   Map<String, Object?> encode() => {'max_page_size': maxPageSize.toTfJson()};
 }
 
@@ -1173,6 +1213,7 @@ final class AppflowFlowParallelismConfig {
 
   final TfArg<num> maxPageSize;
 
+  @internal
   Map<String, Object?> encode() => {'max_page_size': maxPageSize.toTfJson()};
 }
 
@@ -1184,6 +1225,7 @@ final class AppflowFlowSourceConnectorPropertiesServiceNow {
 
   final TfArg<String> object;
 
+  @internal
   Map<String, Object?> encode() => {'object': object.toTfJson()};
 }
 
@@ -1195,6 +1237,7 @@ final class AppflowFlowSourceConnectorPropertiesSingular {
 
   final TfArg<String> object;
 
+  @internal
   Map<String, Object?> encode() => {'object': object.toTfJson()};
 }
 
@@ -1206,6 +1249,7 @@ final class AppflowFlowSourceConnectorPropertiesSlack {
 
   final TfArg<String> object;
 
+  @internal
   Map<String, Object?> encode() => {'object': object.toTfJson()};
 }
 
@@ -1217,6 +1261,7 @@ final class AppflowFlowSourceConnectorPropertiesTrendmicro {
 
   final TfArg<String> object;
 
+  @internal
   Map<String, Object?> encode() => {'object': object.toTfJson()};
 }
 
@@ -1242,6 +1287,7 @@ final class AppflowFlowSourceConnectorPropertiesVeeva {
 
   final TfArg<String> object;
 
+  @internal
   Map<String, Object?> encode() => {
     'document_type': ?documentType?.toTfJson(),
     'include_all_versions': ?includeAllVersions?.toTfJson(),
@@ -1259,6 +1305,7 @@ final class AppflowFlowSourceConnectorPropertiesZendesk {
 
   final TfArg<String> object;
 
+  @internal
   Map<String, Object?> encode() => {'object': object.toTfJson()};
 }
 
@@ -1284,6 +1331,7 @@ final class AppflowFlowTask {
 
   final List<AppflowFlowConnectorOperator>? connectorOperator;
 
+  @internal
   Map<String, Object?> encode() => {
     'destination_field': ?destinationField?.toTfJson(),
     'source_fields': ?sourceFields?.toTfJson(),
@@ -1382,6 +1430,7 @@ final class AppflowFlowConnectorOperator {
 
   final AppflowFlowConnectorOperatorZendesk? zendesk;
 
+  @internal
   Map<String, Object?> encode() => {
     'amplitude': ?amplitude?.toTfJson(),
     'custom_connector': ?customConnector?.toTfJson(),
@@ -2653,6 +2702,7 @@ final class AppflowFlowTriggerConfig {
 
   final AppflowFlowTriggerProperties? triggerProperties;
 
+  @internal
   Map<String, Object?> encode() => {
     'trigger_type': triggerType.toTfJson(),
     'trigger_properties': ?triggerProperties?.encode(),
@@ -2686,6 +2736,7 @@ final class AppflowFlowTriggerProperties {
 
   final AppflowFlowScheduled? scheduled;
 
+  @internal
   Map<String, Object?> encode() => {'scheduled': ?scheduled?.encode()};
 }
 
@@ -2717,6 +2768,7 @@ final class AppflowFlowScheduled {
 
   final TfArg<String>? timezone;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_pull_mode': ?dataPullMode?.toTfJson(),
     'first_execution_from': ?firstExecutionFrom?.toTfJson(),

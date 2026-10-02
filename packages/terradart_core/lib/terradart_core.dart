@@ -19,7 +19,6 @@ export 'src/module_call.dart' show DuplicateModuleError, ModuleCall;
 export 'src/ref_to.dart' show RefTo, RefToList;
 export 'src/resource.dart' show Resource, ResourceKind;
 export 'src/stack.dart' show Stack, StackBackend, StackProvider;
-export 'src/synth/json_encoder.dart' show TfJsonEncoder;
 export 'src/synth/stack_synth.dart' show SynthResult;
 export 'src/synth/synth_issue.dart'
     show
@@ -48,7 +47,6 @@ export 'src/tf_arg.dart'
         TfArgLiteral,
         TfArgVariable,
         TfRef;
-export 'src/tf_template.dart' show hasTemplateSequence, templateVariableNames;
 export 'src/tf_moved.dart' show TfMoved;
 export 'src/tf_output.dart' show TfOutput;
 export 'src/tf_variable.dart'

@@ -45,6 +45,7 @@ final class ChimesdkvoiceSipRuleTargetApplications {
 
   final TfArg<String> sipMediaApplicationId;
 
+  @internal
   Map<String, Object?> encode() => {
     'aws_region': awsRegion.toTfJson(),
     'priority': priority.toTfJson(),

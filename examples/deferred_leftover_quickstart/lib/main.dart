@@ -4,7 +4,6 @@
 /// Never apply.
 library;
 
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/active_directory.dart';
 import 'package:terradart_google/apigee.dart';

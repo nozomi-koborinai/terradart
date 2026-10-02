@@ -3,6 +3,7 @@
 /// Looker (Google Cloud core) — managed BI instances (platform fee while provisioned).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/looker/google_looker_instance.dart'
     show
         GoogleLookerInstance,

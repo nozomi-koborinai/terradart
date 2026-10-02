@@ -46,6 +46,7 @@ final class KeylessCertificateTunnel {
 
   final TfArg<String> vnetId;
 
+  @internal
   Map<String, Object?> encode() => {
     'private_ip': privateIp.toTfJson(),
     'vnet_id': vnetId.toTfJson(),

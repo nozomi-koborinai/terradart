@@ -21,6 +21,7 @@ final class FirewallRuleAction {
 
   final FirewallRuleResponse? response;
 
+  @internal
   Map<String, Object?> encode() => {
     'mode': ?mode?.toTfJson(),
     'timeout': ?timeout?.toTfJson(),
@@ -63,6 +64,7 @@ final class FirewallRuleResponse {
 
   final TfArg<String>? contentType;
 
+  @internal
   Map<String, Object?> encode() => {
     'body': ?body?.toTfJson(),
     'content_type': ?contentType?.toTfJson(),
@@ -88,6 +90,7 @@ final class FirewallRuleFilter {
 
   final TfArg<String>? ref;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'expression': ?expression?.toTfJson(),

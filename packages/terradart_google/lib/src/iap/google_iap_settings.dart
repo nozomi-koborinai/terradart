@@ -38,6 +38,7 @@ final class IapSettingsAccessSettings {
 
   final IapSettingsWorkforceIdentitySettings? workforceIdentitySettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'identity_sources': ?identitySources?.toTfJson(),
     'allowed_domains_settings': ?allowedDomainsSettings?.encode(),
@@ -59,6 +60,7 @@ final class IapSettingsAllowedDomainsSettings {
 
   final TfArg<bool>? enable;
 
+  @internal
   Map<String, Object?> encode() => {
     'domains': ?domains?.toTfJson(),
     'enable': ?enable?.toTfJson(),
@@ -73,6 +75,7 @@ final class IapSettingsCorsSettings {
 
   final TfArg<bool>? allowHttpOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_http_options': ?allowHttpOptions?.toTfJson(),
   };
@@ -88,6 +91,7 @@ final class IapSettingsGcipSettings {
 
   final TfArg<List<String>>? tenantIds;
 
+  @internal
   Map<String, Object?> encode() => {
     'login_page_uri': ?loginPageUri?.toTfJson(),
     'tenant_ids': ?tenantIds?.toTfJson(),
@@ -113,6 +117,7 @@ final class IapSettingsOauthSettings {
 
   final TfArg<List<String>>? programmaticClients;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_id': ?clientId?.toTfJson(),
     'client_secret': ?clientSecret?.toTfJson(),
@@ -137,6 +142,7 @@ final class IapSettingsReauthSettings {
 
   final IapSettingsPolicyType policyType;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_age': maxAge.toTfJson(),
     'method': method.toTfJson(),
@@ -192,6 +198,7 @@ final class IapSettingsWorkforceIdentitySettings {
 
   final IapSettingsOauth2? oauth2;
 
+  @internal
   Map<String, Object?> encode() => {
     'workforce_pools': ?workforcePools?.toTfJson(),
     'oauth2': ?oauth2?.encode(),
@@ -208,6 +215,7 @@ final class IapSettingsOauth2 {
 
   final Sensitive<String>? clientSecret;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_id': ?clientId?.toTfJson(),
     'client_secret': ?clientSecret?.toTfJson(),
@@ -233,6 +241,7 @@ final class IapSettingsApplicationSettings {
 
   final IapSettingsCsmSettings? csmSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'cookie_domain': ?cookieDomain?.toTfJson(),
     'access_denied_page_settings': ?accessDeniedPageSettings?.encode(),
@@ -257,6 +266,7 @@ final class IapSettingsAccessDeniedPageSettings {
 
   final TfArg<bool>? remediationTokenGenerationEnabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_denied_page_uri': ?accessDeniedPageUri?.toTfJson(),
     'generate_troubleshooting_uri': ?generateTroubleshootingUri?.toTfJson(),
@@ -281,6 +291,7 @@ final class IapSettingsAttributePropagationSettings {
 
   final List<IapSettingsOutputCredentials>? outputCredentials;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable': ?enable?.toTfJson(),
     'expression': ?expression?.toTfJson(),
@@ -319,6 +330,7 @@ final class IapSettingsCsmSettings {
 
   final TfArg<String>? rctokenAud;
 
+  @internal
   Map<String, Object?> encode() => {'rctoken_aud': ?rctokenAud?.toTfJson()};
 }
 

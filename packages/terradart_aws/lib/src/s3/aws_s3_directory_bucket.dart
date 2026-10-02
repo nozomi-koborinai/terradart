@@ -17,6 +17,7 @@ final class S3DirectoryBucketLocation {
 
   final TfArg<String>? type;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'type': ?type?.toTfJson(),

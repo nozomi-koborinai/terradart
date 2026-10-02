@@ -28,6 +28,7 @@ final class AiGatewayDynamicRoutingElements {
 
   final AiGatewayDynamicRoutingProperties? properties;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
     'type': type.toTfJson(),
@@ -91,6 +92,7 @@ final class AiGatewayDynamicRoutingOutputs {
 
   final AiGatewayDynamicRoutingTrue? trueCase;
 
+  @internal
   Map<String, Object?> encode() => {
     'element_id': ?elementId?.toTfJson(),
     'fallback': ?fallback?.encode(),
@@ -109,6 +111,7 @@ final class AiGatewayDynamicRoutingFallback {
 
   final TfArg<String> elementId;
 
+  @internal
   Map<String, Object?> encode() => {'element_id': elementId.toTfJson()};
 }
 
@@ -120,6 +123,7 @@ final class AiGatewayDynamicRoutingFalse {
 
   final TfArg<String> elementId;
 
+  @internal
   Map<String, Object?> encode() => {'element_id': elementId.toTfJson()};
 }
 
@@ -131,6 +135,7 @@ final class AiGatewayDynamicRoutingNext {
 
   final TfArg<String> elementId;
 
+  @internal
   Map<String, Object?> encode() => {'element_id': elementId.toTfJson()};
 }
 
@@ -142,6 +147,7 @@ final class AiGatewayDynamicRoutingOutputsSuccess {
 
   final TfArg<String> elementId;
 
+  @internal
   Map<String, Object?> encode() => {'element_id': elementId.toTfJson()};
 }
 
@@ -153,6 +159,7 @@ final class AiGatewayDynamicRoutingTrue {
 
   final TfArg<String> elementId;
 
+  @internal
   Map<String, Object?> encode() => {'element_id': elementId.toTfJson()};
 }
 
@@ -190,6 +197,7 @@ final class AiGatewayDynamicRoutingProperties {
 
   final TfArg<num>? window;
 
+  @internal
   Map<String, Object?> encode() => {
     'ai_gateway_dynamic_routing_provider': ?aiGatewayDynamicRoutingProvider
         ?.toTfJson(),

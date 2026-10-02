@@ -23,6 +23,7 @@ final class CloudSecurityComplianceFrameworkCloudControlDetails {
 
   final List<CloudSecurityComplianceFrameworkParameters>? parameters;
 
+  @internal
   Map<String, Object?> encode() => {
     'major_revision_id': majorRevisionId.toTfJson(),
     'name': name.toTfJson(),
@@ -44,6 +45,7 @@ final class CloudSecurityComplianceFrameworkParameters {
 
   final CloudSecurityComplianceFrameworkParameterValue parameterValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'parameter_value': parameterValue.encode(),
@@ -72,6 +74,7 @@ final class CloudSecurityComplianceFrameworkParameterValue {
 
   final CloudSecurityComplianceFrameworkStringListValue? stringListValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'bool_value': ?boolValue?.toTfJson(),
     'number_value': ?numberValue?.toTfJson(),
@@ -95,6 +98,7 @@ final class CloudSecurityComplianceFrameworkOneofValue {
   final CloudSecurityComplianceFrameworkOneofValueParameterValue?
   parameterValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'parameter_value': ?parameterValue?.encode(),
@@ -120,6 +124,7 @@ final class CloudSecurityComplianceFrameworkOneofValueParameterValue {
 
   final CloudSecurityComplianceFrameworkStringListValue? stringListValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'bool_value': ?boolValue?.toTfJson(),
     'number_value': ?numberValue?.toTfJson(),
@@ -137,6 +142,7 @@ final class CloudSecurityComplianceFrameworkStringListValue {
 
   final TfArg<List<String>> values;
 
+  @internal
   Map<String, Object?> encode() => {'values': values.toTfJson()};
 }
 

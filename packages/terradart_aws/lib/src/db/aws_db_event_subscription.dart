@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../sns/aws_sns_topic.dart' show AwsSnsTopic;
@@ -83,12 +84,15 @@ sealed class DbEventSubscriptionName {
       DbEventSubscriptionNamePrefix;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -98,12 +102,15 @@ final class DbEventSubscriptionNameChoice extends DbEventSubscriptionName {
 
   final TfArg<String> name;
 
+  @internal
   @override
   String get blockKey => 'name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
@@ -114,12 +121,15 @@ final class DbEventSubscriptionNamePrefix extends DbEventSubscriptionName {
 
   final TfArg<String> namePrefix;
 
+  @internal
   @override
   String get blockKey => 'name_prefix';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'name_prefix': namePrefix.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'name_prefix': namePrefix};
 }

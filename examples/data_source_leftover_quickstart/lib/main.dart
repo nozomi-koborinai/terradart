@@ -4,7 +4,6 @@
 /// Never apply.
 library;
 
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/data.dart';
 import 'package:terradart_google/provider.dart';
 
@@ -2444,7 +2443,7 @@ final class DataSourceLeftoverStack extends Stack {
       ),
     );
 
-    add(GoogleProject('project'));
+    add(DataGoogleProject('project'));
 
     add(DataGoogleProjectAncestry('project_ancestry'));
 

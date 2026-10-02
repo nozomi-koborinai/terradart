@@ -18,6 +18,7 @@ final class TpuV2QueuedResourceTpu {
 
   final List<TpuV2QueuedResourceNodeSpec>? nodeSpec;
 
+  @internal
   Map<String, Object?> encode() => {
     if (nodeSpec != null) 'node_spec': [for (final e in nodeSpec!) e.encode()],
   };
@@ -39,6 +40,7 @@ final class TpuV2QueuedResourceNodeSpec {
 
   final TpuV2QueuedResourceNode node;
 
+  @internal
   Map<String, Object?> encode() => {
     'node_id': ?nodeId?.toTfJson(),
     'parent': parent.toTfJson(),
@@ -65,6 +67,7 @@ final class TpuV2QueuedResourceNode {
 
   final TpuV2QueuedResourceNetworkConfig? networkConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'accelerator_type': ?acceleratorType?.toTfJson(),
     'description': ?description?.toTfJson(),
@@ -95,6 +98,7 @@ final class TpuV2QueuedResourceNetworkConfig {
 
   final RefTo<GoogleComputeSubnetwork>? subnetwork;
 
+  @internal
   Map<String, Object?> encode() => {
     'can_ip_forward': ?canIpForward?.toTfJson(),
     'enable_external_ips': ?enableExternalIps?.toTfJson(),

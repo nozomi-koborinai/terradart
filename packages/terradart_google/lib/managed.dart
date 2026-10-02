@@ -4,6 +4,7 @@
 /// clusters, and connectors. Clusters bill Data Compute Units hourly.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/managed/google_managed_kafka_acl.dart'
     show GoogleManagedKafkaAcl, ManagedKafkaAclEntries;
 export 'src/managed/google_managed_kafka_cluster.dart'

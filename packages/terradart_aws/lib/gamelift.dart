@@ -3,6 +3,7 @@
 /// AWS GameLift.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/gamelift/aws_gamelift_alias.dart'
     show AwsGameliftAlias, GameliftAliasRoutingStrategy, GameliftAliasType;
 export 'src/gamelift/aws_gamelift_build.dart'

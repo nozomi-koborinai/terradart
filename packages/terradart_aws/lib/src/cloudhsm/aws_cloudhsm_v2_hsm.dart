@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../ec2/aws_subnet.dart' show AwsSubnet;
@@ -25,12 +26,15 @@ sealed class CloudhsmV2HsmPlacement {
       CloudhsmV2HsmPlacementSubnetId;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -41,14 +45,17 @@ final class CloudhsmV2HsmPlacementAvailabilityZone
 
   final TfArg<String> availabilityZone;
 
+  @internal
   @override
   String get blockKey => 'availability_zone';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'availability_zone': availabilityZone.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'availability_zone': availabilityZone,
@@ -61,14 +68,17 @@ final class CloudhsmV2HsmPlacementSubnetId extends CloudhsmV2HsmPlacement {
 
   final RefTo<AwsSubnet> subnetId;
 
+  @internal
   @override
   String get blockKey => 'subnet_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'subnet_id': subnetId.encodeAs('id').toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'subnet_id': subnetId.encodeAs('id'),

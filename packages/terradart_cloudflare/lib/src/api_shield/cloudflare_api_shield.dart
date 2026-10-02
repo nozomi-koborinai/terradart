@@ -22,6 +22,7 @@ final class ApiShieldAuthIdCharacteristics {
 
   final ApiShieldType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'type': type.toTfJson(),

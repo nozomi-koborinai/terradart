@@ -20,6 +20,7 @@ final class CognitoRiskConfigurationAccountTakeoverRiskConfiguration {
 
   final CognitoRiskConfigurationNotifyConfiguration? notifyConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'actions': actions.encode(),
     'notify_configuration': ?notifyConfiguration?.encode(),
@@ -42,6 +43,7 @@ final class CognitoRiskConfigurationAccountTakeoverRiskConfigurationActions {
 
   final CognitoRiskConfigurationMediumAction? mediumAction;
 
+  @internal
   Map<String, Object?> encode() => {
     'high_action': ?highAction?.encode(),
     'low_action': ?lowAction?.encode(),
@@ -62,6 +64,7 @@ final class CognitoRiskConfigurationHighAction {
 
   final TfArg<bool> notify;
 
+  @internal
   Map<String, Object?> encode() => {
     'event_action': eventAction.toTfJson(),
     'notify': notify.toTfJson(),
@@ -114,6 +117,7 @@ final class CognitoRiskConfigurationLowAction {
 
   final TfArg<bool> notify;
 
+  @internal
   Map<String, Object?> encode() => {
     'event_action': eventAction.toTfJson(),
     'notify': notify.toTfJson(),
@@ -133,6 +137,7 @@ final class CognitoRiskConfigurationMediumAction {
 
   final TfArg<bool> notify;
 
+  @internal
   Map<String, Object?> encode() => {
     'event_action': eventAction.toTfJson(),
     'notify': notify.toTfJson(),
@@ -164,6 +169,7 @@ final class CognitoRiskConfigurationNotifyConfiguration {
 
   final CognitoRiskConfigurationNoActionEmail? noActionEmail;
 
+  @internal
   Map<String, Object?> encode() => {
     'from': ?from?.toTfJson(),
     'reply_to': ?replyTo?.toTfJson(),
@@ -190,6 +196,7 @@ final class CognitoRiskConfigurationBlockEmail {
 
   final TfArg<String> textBody;
 
+  @internal
   Map<String, Object?> encode() => {
     'html_body': htmlBody.toTfJson(),
     'subject': subject.toTfJson(),
@@ -213,6 +220,7 @@ final class CognitoRiskConfigurationMfaEmail {
 
   final TfArg<String> textBody;
 
+  @internal
   Map<String, Object?> encode() => {
     'html_body': htmlBody.toTfJson(),
     'subject': subject.toTfJson(),
@@ -236,6 +244,7 @@ final class CognitoRiskConfigurationNoActionEmail {
 
   final TfArg<String> textBody;
 
+  @internal
   Map<String, Object?> encode() => {
     'html_body': htmlBody.toTfJson(),
     'subject': subject.toTfJson(),
@@ -257,6 +266,7 @@ final class CognitoRiskConfigurationCompromisedCredentialsRiskConfiguration {
   final CognitoRiskConfigurationCompromisedCredentialsRiskConfigurationActions
   actions;
 
+  @internal
   Map<String, Object?> encode() => {
     if (eventFilter != null)
       'event_filter': [for (final e in eventFilter!) e.toTfJson()],
@@ -301,6 +311,7 @@ final class CognitoRiskConfigurationCompromisedCredentialsRiskConfigurationActio
 
   final CognitoRiskConfigurationEventAction eventAction;
 
+  @internal
   Map<String, Object?> encode() => {'event_action': eventAction.toTfJson()};
 }
 
@@ -340,6 +351,7 @@ final class CognitoRiskConfigurationRiskExceptionConfiguration {
 
   final TfArg<List<String>>? skippedIpRangeList;
 
+  @internal
   Map<String, Object?> encode() => {
     'blocked_ip_range_list': ?blockedIpRangeList?.toTfJson(),
     'skipped_ip_range_list': ?skippedIpRangeList?.toTfJson(),

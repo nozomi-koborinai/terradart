@@ -75,6 +75,7 @@ final class AppsyncDatasourceDynamodbConfig {
 
   final AppsyncDatasourceDeltaSyncConfig? deltaSyncConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'region': ?region?.toTfJson(),
     'table_name': tableName.toTfJson(),
@@ -100,6 +101,7 @@ final class AppsyncDatasourceDeltaSyncConfig {
 
   final TfArg<num>? deltaSyncTableTtl;
 
+  @internal
   Map<String, Object?> encode() => {
     'base_table_ttl': ?baseTableTtl?.toTfJson(),
     'delta_sync_table_name': deltaSyncTableName.toTfJson(),
@@ -120,6 +122,7 @@ final class AppsyncDatasourceElasticsearchConfig {
 
   final TfArg<String>? region;
 
+  @internal
   Map<String, Object?> encode() => {
     'endpoint': endpoint.toTfJson(),
     'region': ?region?.toTfJson(),
@@ -134,6 +137,7 @@ final class AppsyncDatasourceEventBridgeConfig {
 
   final TfArg<String> eventBusArn;
 
+  @internal
   Map<String, Object?> encode() => {'event_bus_arn': eventBusArn.toTfJson()};
 }
 
@@ -150,6 +154,7 @@ final class AppsyncDatasourceHttpConfig {
 
   final AppsyncDatasourceAuthorizationConfig? authorizationConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'endpoint': endpoint.toTfJson(),
     'authorization_config': ?authorizationConfig?.encode(),
@@ -169,6 +174,7 @@ final class AppsyncDatasourceAuthorizationConfig {
 
   final AppsyncDatasourceAwsIamConfig? awsIamConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'authorization_type': ?authorizationType?.toTfJson(),
     'aws_iam_config': ?awsIamConfig?.encode(),
@@ -204,6 +210,7 @@ final class AppsyncDatasourceAwsIamConfig {
 
   final TfArg<String>? signingServiceName;
 
+  @internal
   Map<String, Object?> encode() => {
     'signing_region': ?signingRegion?.toTfJson(),
     'signing_service_name': ?signingServiceName?.toTfJson(),
@@ -218,6 +225,7 @@ final class AppsyncDatasourceLambdaConfig {
 
   final RefTo<AwsLambdaFunction> functionArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'function_arn': functionArn.encodeAs('arn').toTfJson(),
   };
@@ -236,6 +244,7 @@ final class AppsyncDatasourceOpensearchserviceConfig {
 
   final TfArg<String>? region;
 
+  @internal
   Map<String, Object?> encode() => {
     'endpoint': endpoint.toTfJson(),
     'region': ?region?.toTfJson(),
@@ -255,6 +264,7 @@ final class AppsyncDatasourceRelationalDatabaseConfig {
 
   final AppsyncDatasourceHttpEndpointConfig? httpEndpointConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'source_type': ?sourceType?.toTfJson(),
     'http_endpoint_config': ?httpEndpointConfig?.encode(),
@@ -299,6 +309,7 @@ final class AppsyncDatasourceHttpEndpointConfig {
 
   final TfArg<String>? schema;
 
+  @internal
   Map<String, Object?> encode() => {
     'aws_secret_store_arn': awsSecretStoreArn.toTfJson(),
     'database_name': ?databaseName?.toTfJson(),

@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../kms/aws_kms_key.dart' show AwsKmsKey;
@@ -28,12 +29,15 @@ sealed class KmsCiphertextPlaintext {
   ) = KmsCiphertextPlaintextWo;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -43,12 +47,15 @@ final class KmsCiphertextPlaintextChoice extends KmsCiphertextPlaintext {
 
   final Sensitive<String> plaintext;
 
+  @internal
   @override
   String get blockKey => 'plaintext';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'plaintext': plaintext.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'plaintext': plaintext};
 }
@@ -59,12 +66,15 @@ final class KmsCiphertextPlaintextWo extends KmsCiphertextPlaintext {
 
   final Sensitive<String> plaintextWo;
 
+  @internal
   @override
   String get blockKey => 'plaintext_wo';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'plaintext_wo': plaintextWo.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'plaintext_wo': plaintextWo};
 }

@@ -23,6 +23,7 @@ final class OdbCloudVmClusterDataCollectionOptions {
 
   final TfArg<bool> isIncidentLogsEnabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'is_diagnostics_events_enabled': isDiagnosticsEventsEnabled.toTfJson(),
     'is_health_monitoring_enabled': isHealthMonitoringEnabled.toTfJson(),

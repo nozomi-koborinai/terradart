@@ -69,6 +69,7 @@ final class IntegrationConnectorsConnectionAuthConfig {
 
   final IntegrationConnectorsConnectionUserPassword? userPassword;
 
+  @internal
   Map<String, Object?> encode() => {
     'auth_key': ?authKey?.toTfJson(),
     'auth_type': authType.toTfJson(),
@@ -147,6 +148,7 @@ final class IntegrationConnectorsConnectionAuthConfigAdditionalVariable {
 
   final IntegrationConnectorsConnectionSecretValue? secretValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'boolean_value': ?booleanValue?.toTfJson(),
     'integer_value': ?integerValue?.toTfJson(),
@@ -171,6 +173,7 @@ final class IntegrationConnectorsConnectionEncryptionKeyValue {
 
   final IntegrationConnectorsConnectionEncryptionKeyValueType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_name': ?kmsKeyName?.encodeAs('id').toTfJson(),
     'type': type.toTfJson(),
@@ -214,6 +217,7 @@ final class IntegrationConnectorsConnectionSecretValue {
 
   final TfArg<String> secretVersion;
 
+  @internal
   Map<String, Object?> encode() => {'secret_version': secretVersion.toTfJson()};
 }
 
@@ -239,6 +243,7 @@ final class IntegrationConnectorsConnectionOauth2AuthCodeFlow {
 
   final IntegrationConnectorsConnectionClientSecret? clientSecret;
 
+  @internal
   Map<String, Object?> encode() => {
     'auth_uri': ?authUri?.toTfJson(),
     'client_id': ?clientId?.toTfJson(),
@@ -259,6 +264,7 @@ final class IntegrationConnectorsConnectionClientSecret {
 
   final TfArg<String> secretVersion;
 
+  @internal
   Map<String, Object?> encode() => {'secret_version': secretVersion.toTfJson()};
 }
 
@@ -275,6 +281,7 @@ final class IntegrationConnectorsConnectionOauth2ClientCredentials {
 
   final IntegrationConnectorsConnectionClientSecret? clientSecret;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_id': clientId.toTfJson(),
     'client_secret': ?clientSecret?.encode(),
@@ -294,6 +301,7 @@ final class IntegrationConnectorsConnectionOauth2JwtBearer {
 
   final IntegrationConnectorsConnectionJwtClaims? jwtClaims;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_key': ?clientKey?.encode(),
     'jwt_claims': ?jwtClaims?.encode(),
@@ -308,6 +316,7 @@ final class IntegrationConnectorsConnectionClientKey {
 
   final TfArg<String> secretVersion;
 
+  @internal
   Map<String, Object?> encode() => {'secret_version': secretVersion.toTfJson()};
 }
 
@@ -327,6 +336,7 @@ final class IntegrationConnectorsConnectionJwtClaims {
 
   final TfArg<String>? subject;
 
+  @internal
   Map<String, Object?> encode() => {
     'audience': ?audience?.toTfJson(),
     'issuer': ?issuer?.toTfJson(),
@@ -353,6 +363,7 @@ final class IntegrationConnectorsConnectionSshPublicKey {
 
   final IntegrationConnectorsConnectionSshClientCertPass? sshClientCertPass;
 
+  @internal
   Map<String, Object?> encode() => {
     'cert_type': ?certType?.toTfJson(),
     'username': username.toTfJson(),
@@ -371,6 +382,7 @@ final class IntegrationConnectorsConnectionSshClientCert {
 
   final TfArg<String> secretVersion;
 
+  @internal
   Map<String, Object?> encode() => {'secret_version': secretVersion.toTfJson()};
 }
 
@@ -384,6 +396,7 @@ final class IntegrationConnectorsConnectionSshClientCertPass {
 
   final TfArg<String> secretVersion;
 
+  @internal
   Map<String, Object?> encode() => {'secret_version': secretVersion.toTfJson()};
 }
 
@@ -400,6 +413,7 @@ final class IntegrationConnectorsConnectionUserPassword {
 
   final IntegrationConnectorsConnectionPassword? password;
 
+  @internal
   Map<String, Object?> encode() => {
     'username': username.toTfJson(),
     'password': ?password?.encode(),
@@ -415,6 +429,7 @@ final class IntegrationConnectorsConnectionPassword {
 
   final TfArg<String> secretVersion;
 
+  @internal
   Map<String, Object?> encode() => {'secret_version': secretVersion.toTfJson()};
 }
 
@@ -443,6 +458,7 @@ final class IntegrationConnectorsConnectionConfigVariable {
 
   final IntegrationConnectorsConnectionSecretValue? secretValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'boolean_value': ?booleanValue?.toTfJson(),
     'integer_value': ?integerValue?.toTfJson(),
@@ -466,6 +482,7 @@ final class IntegrationConnectorsConnectionDestinationConfig {
 
   final List<IntegrationConnectorsConnectionDestination>? destination;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     if (destination != null)
@@ -490,6 +507,7 @@ final class IntegrationConnectorsConnectionDestination {
 
   final TfArg<String>? serviceAttachment;
 
+  @internal
   Map<String, Object?> encode() => {
     'host': ?host?.toTfJson(),
     'port': ?port?.toTfJson(),
@@ -518,6 +536,7 @@ final class IntegrationConnectorsConnectionEventingConfig {
   final IntegrationConnectorsConnectionRegistrationDestinationConfig
   registrationDestinationConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'enrichment_enabled': ?enrichmentEnabled?.toTfJson(),
     if (additionalVariable != null)
@@ -554,6 +573,7 @@ final class IntegrationConnectorsConnectionEventingConfigAdditionalVariable {
 
   final IntegrationConnectorsConnectionSecretValue? secretValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'boolean_value': ?booleanValue?.toTfJson(),
     'integer_value': ?integerValue?.toTfJson(),
@@ -578,6 +598,7 @@ final class IntegrationConnectorsConnectionAdditionalVariableEncryptionKeyValue 
 
   final IntegrationConnectorsConnectionEncryptionKeyValueType? type;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_name': ?kmsKeyName?.encodeAs('id').toTfJson(),
     'type': ?type?.toTfJson(),
@@ -604,6 +625,7 @@ final class IntegrationConnectorsConnectionEventingConfigAuthConfig {
 
   final IntegrationConnectorsConnectionAuthConfigUserPassword userPassword;
 
+  @internal
   Map<String, Object?> encode() => {
     'auth_key': ?authKey?.toTfJson(),
     'auth_type': authType.toTfJson(),
@@ -626,6 +648,7 @@ final class IntegrationConnectorsConnectionAuthConfigUserPassword {
 
   final IntegrationConnectorsConnectionPassword? password;
 
+  @internal
   Map<String, Object?> encode() => {
     'username': ?username?.toTfJson(),
     'password': ?password?.encode(),
@@ -645,6 +668,7 @@ final class IntegrationConnectorsConnectionRegistrationDestinationConfig {
 
   final List<IntegrationConnectorsConnectionDestination>? destination;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
     if (destination != null)
@@ -665,6 +689,7 @@ final class IntegrationConnectorsConnectionLockConfig {
 
   final TfArg<String>? reason;
 
+  @internal
   Map<String, Object?> encode() => {
     'locked': locked.toTfJson(),
     'reason': ?reason?.toTfJson(),
@@ -684,6 +709,7 @@ final class IntegrationConnectorsConnectionLogConfig {
 
   final IntegrationConnectorsConnectionLevel? level;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'level': ?level?.toTfJson(),
@@ -734,6 +760,7 @@ final class IntegrationConnectorsConnectionNodeConfig {
 
   final TfArg<num>? minNodeCount;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_node_count': ?maxNodeCount?.toTfJson(),
     'min_node_count': ?minNodeCount?.toTfJson(),
@@ -780,6 +807,7 @@ final class IntegrationConnectorsConnectionSslConfig {
   final IntegrationConnectorsConnectionPrivateServerCertificate?
   privateServerCertificate;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_cert_type': ?clientCertType?.toTfJson(),
     'server_cert_type': ?serverCertType?.toTfJson(),
@@ -851,6 +879,7 @@ final class IntegrationConnectorsConnectionClientCertificate {
 
   final TfArg<String> secretVersion;
 
+  @internal
   Map<String, Object?> encode() => {'secret_version': secretVersion.toTfJson()};
 }
 
@@ -864,6 +893,7 @@ final class IntegrationConnectorsConnectionClientPrivateKey {
 
   final TfArg<String> secretVersion;
 
+  @internal
   Map<String, Object?> encode() => {'secret_version': secretVersion.toTfJson()};
 }
 
@@ -877,6 +907,7 @@ final class IntegrationConnectorsConnectionClientPrivateKeyPass {
 
   final TfArg<String> secretVersion;
 
+  @internal
   Map<String, Object?> encode() => {'secret_version': secretVersion.toTfJson()};
 }
 
@@ -890,6 +921,7 @@ final class IntegrationConnectorsConnectionPrivateServerCertificate {
 
   final TfArg<String> secretVersion;
 
+  @internal
   Map<String, Object?> encode() => {'secret_version': secretVersion.toTfJson()};
 }
 

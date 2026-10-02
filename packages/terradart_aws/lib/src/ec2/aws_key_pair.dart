@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `aws_key_pair`.
@@ -23,12 +24,15 @@ sealed class KeyPairKeyName {
       KeyPairKeyNamePrefix;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -38,12 +42,15 @@ final class KeyPairKeyNameChoice extends KeyPairKeyName {
 
   final TfArg<String> keyName;
 
+  @internal
   @override
   String get blockKey => 'key_name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'key_name': keyName.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'key_name': keyName};
 }
@@ -54,14 +61,17 @@ final class KeyPairKeyNamePrefix extends KeyPairKeyName {
 
   final TfArg<String> keyNamePrefix;
 
+  @internal
   @override
   String get blockKey => 'key_name_prefix';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'key_name_prefix': keyNamePrefix.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'key_name_prefix': keyNamePrefix};
 }

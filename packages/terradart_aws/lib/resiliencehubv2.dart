@@ -3,6 +3,13 @@
 /// AWS Resilience Hub (`resiliencehubv2` systems and policies).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_resiliencehubv2_policy.dart'
+    show DataAwsResiliencehubv2Policy;
+export 'src/data/aws_resiliencehubv2_service.dart'
+    show DataAwsResiliencehubv2Service;
+export 'src/data/aws_resiliencehubv2_system.dart'
+    show DataAwsResiliencehubv2System;
 export 'src/resiliencehubv2/aws_resiliencehubv2_assertion.dart'
     show AwsResiliencehubv2Assertion;
 export 'src/resiliencehubv2/aws_resiliencehubv2_input_source.dart'

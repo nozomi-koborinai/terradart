@@ -36,6 +36,7 @@ final class DataAccountDnsSettingsInternalViewFilter {
 
   final DataAccountDnsSettingsInternalViewFilterName? name;
 
+  @internal
   Map<String, Object?> encode() => {
     'direction': ?direction?.toTfJson(),
     'match': ?match?.toTfJson(),
@@ -139,6 +140,7 @@ final class DataAccountDnsSettingsInternalViewFilterName {
 
   final TfArg<String>? startswith;
 
+  @internal
   Map<String, Object?> encode() => {
     'contains': ?contains?.toTfJson(),
     'endswith': ?endswith?.toTfJson(),

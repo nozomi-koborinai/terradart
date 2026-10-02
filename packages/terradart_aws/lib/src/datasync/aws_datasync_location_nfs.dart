@@ -15,6 +15,7 @@ final class DatasyncLocationNfsMountOptions {
 
   final DatasyncLocationNfsVersion? version;
 
+  @internal
   Map<String, Object?> encode() => {'version': ?version?.toTfJson()};
 }
 
@@ -50,6 +51,7 @@ final class DatasyncLocationNfsOnPremConfig {
 
   final TfArg<List<String>> agentArns;
 
+  @internal
   Map<String, Object?> encode() => {'agent_arns': agentArns.toTfJson()};
 }
 

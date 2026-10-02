@@ -32,6 +32,7 @@ final class EcsCapacityProviderAutoScalingGroupProvider {
 
   final EcsCapacityProviderManagedScaling? managedScaling;
 
+  @internal
   Map<String, Object?> encode() => {
     'auto_scaling_group_arn': autoScalingGroupArn.toTfJson(),
     'managed_draining': ?managedDraining?.toTfJson(),
@@ -108,6 +109,7 @@ final class EcsCapacityProviderManagedScaling {
 
   final TfArg<num>? targetCapacity;
 
+  @internal
   Map<String, Object?> encode() => {
     'instance_warmup_period': ?instanceWarmupPeriod?.toTfJson(),
     'maximum_scaling_step_size': ?maximumScalingStepSize?.toTfJson(),
@@ -155,6 +157,7 @@ final class EcsCapacityProviderManagedInstancesProvider {
 
   final EcsCapacityProviderInstanceLaunchTemplate instanceLaunchTemplate;
 
+  @internal
   Map<String, Object?> encode() => {
     'infrastructure_role_arn': infrastructureRoleArn.encodeAs('arn').toTfJson(),
     'propagate_tags': ?propagateTags?.toTfJson(),
@@ -192,6 +195,7 @@ final class EcsCapacityProviderAutoRepairConfiguration {
 
   final EcsCapacityProviderActionsStatus? actionsStatus;
 
+  @internal
   Map<String, Object?> encode() => {
     'actions_status': ?actionsStatus?.toTfJson(),
   };
@@ -227,6 +231,7 @@ final class EcsCapacityProviderInfrastructureOptimization {
 
   final TfArg<num>? scaleInAfter;
 
+  @internal
   Map<String, Object?> encode() => {
     'scale_in_after': ?scaleInAfter?.toTfJson(),
   };
@@ -263,6 +268,7 @@ final class EcsCapacityProviderInstanceLaunchTemplate {
 
   final EcsCapacityProviderStorageConfiguration? storageConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'capacity_option_type': ?capacityOptionType?.toTfJson(),
     'ec2_instance_profile_arn': ec2InstanceProfileArn.toTfJson(),
@@ -332,6 +338,7 @@ final class EcsCapacityProviderCapacityReservations {
 
   final EcsCapacityProviderReservationPreference? reservationPreference;
 
+  @internal
   Map<String, Object?> encode() => {
     'reservation_group_arn': ?reservationGroupArn?.toTfJson(),
     'reservation_preference': ?reservationPreference?.toTfJson(),
@@ -446,6 +453,7 @@ final class EcsCapacityProviderInstanceRequirements {
 
   final EcsCapacityProviderVcpuCount vcpuCount;
 
+  @internal
   Map<String, Object?> encode() => {
     if (acceleratorManufacturers != null)
       'accelerator_manufacturers': [
@@ -761,6 +769,7 @@ final class EcsCapacityProviderAcceleratorCount {
 
   final TfArg<num>? min;
 
+  @internal
   Map<String, Object?> encode() => {
     'max': ?max?.toTfJson(),
     'min': ?min?.toTfJson(),
@@ -777,6 +786,7 @@ final class EcsCapacityProviderAcceleratorTotalMemoryMib {
 
   final TfArg<num>? min;
 
+  @internal
   Map<String, Object?> encode() => {
     'max': ?max?.toTfJson(),
     'min': ?min?.toTfJson(),
@@ -793,6 +803,7 @@ final class EcsCapacityProviderBaselineEbsBandwidthMbps {
 
   final TfArg<num>? min;
 
+  @internal
   Map<String, Object?> encode() => {
     'max': ?max?.toTfJson(),
     'min': ?min?.toTfJson(),
@@ -809,6 +820,7 @@ final class EcsCapacityProviderMemoryGibPerVcpu {
 
   final TfArg<num>? min;
 
+  @internal
   Map<String, Object?> encode() => {
     'max': ?max?.toTfJson(),
     'min': ?min?.toTfJson(),
@@ -825,6 +837,7 @@ final class EcsCapacityProviderMemoryMib {
 
   final TfArg<num> min;
 
+  @internal
   Map<String, Object?> encode() => {
     'max': ?max?.toTfJson(),
     'min': min.toTfJson(),
@@ -841,6 +854,7 @@ final class EcsCapacityProviderNetworkBandwidthGbps {
 
   final TfArg<num>? min;
 
+  @internal
   Map<String, Object?> encode() => {
     'max': ?max?.toTfJson(),
     'min': ?min?.toTfJson(),
@@ -857,6 +871,7 @@ final class EcsCapacityProviderNetworkInterfaceCount {
 
   final TfArg<num>? min;
 
+  @internal
   Map<String, Object?> encode() => {
     'max': ?max?.toTfJson(),
     'min': ?min?.toTfJson(),
@@ -873,6 +888,7 @@ final class EcsCapacityProviderTotalLocalStorageGb {
 
   final TfArg<num>? min;
 
+  @internal
   Map<String, Object?> encode() => {
     'max': ?max?.toTfJson(),
     'min': ?min?.toTfJson(),
@@ -889,6 +905,7 @@ final class EcsCapacityProviderVcpuCount {
 
   final TfArg<num> min;
 
+  @internal
   Map<String, Object?> encode() => {
     'max': ?max?.toTfJson(),
     'min': min.toTfJson(),
@@ -903,6 +920,7 @@ final class EcsCapacityProviderLocalStorageConfiguration {
 
   final TfArg<bool>? useLocalStorage;
 
+  @internal
   Map<String, Object?> encode() => {
     'use_local_storage': ?useLocalStorage?.toTfJson(),
   };
@@ -921,6 +939,7 @@ final class EcsCapacityProviderNetworkConfiguration {
 
   final TfArg<List<RefTo<AwsSubnet>>> subnets;
 
+  @internal
   Map<String, Object?> encode() => {
     'security_groups': ?securityGroups?.encodeAs('id').toTfJson(),
     'subnets': subnets.encodeAs('id').toTfJson(),
@@ -935,6 +954,7 @@ final class EcsCapacityProviderStorageConfiguration {
 
   final TfArg<num> storageSizeGib;
 
+  @internal
   Map<String, Object?> encode() => {
     'storage_size_gib': storageSizeGib.toTfJson(),
   };

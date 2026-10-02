@@ -23,6 +23,7 @@ final class WafRegexMatchSetRegexMatchTuple {
 
   final WafRegexMatchSetFieldToMatch fieldToMatch;
 
+  @internal
   Map<String, Object?> encode() => {
     'regex_pattern_set_id': regexPatternSetId.toTfJson(),
     'text_transformation': textTransformation.toTfJson(),
@@ -40,6 +41,7 @@ final class WafRegexMatchSetFieldToMatch {
 
   final TfArg<String> type;
 
+  @internal
   Map<String, Object?> encode() => {
     'data': ?data?.toTfJson(),
     'type': type.toTfJson(),

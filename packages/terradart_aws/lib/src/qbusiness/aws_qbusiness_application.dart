@@ -20,6 +20,7 @@ final class QbusinessApplicationAttachmentsConfiguration {
 
   final QbusinessApplicationAttachmentsControlMode attachmentsControlMode;
 
+  @internal
   Map<String, Object?> encode() => {
     'attachments_control_mode': attachmentsControlMode.toTfJson(),
   };
@@ -57,6 +58,7 @@ final class QbusinessApplicationEncryptionConfiguration {
 
   final RefTo<AwsKmsKey> kmsKeyId;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_id': kmsKeyId.encodeAs('arn').toTfJson(),
   };

@@ -66,6 +66,7 @@ final class MigrationCenterPreferenceSetVirtualMachinePreferences {
   final MigrationCenterPreferenceSetVmwareEnginePreferences?
   vmwareEnginePreferences;
 
+  @internal
   Map<String, Object?> encode() => {
     'commitment_plan': ?commitmentPlan?.toTfJson(),
     'sizing_optimization_strategy': ?sizingOptimizationStrategy?.toTfJson(),
@@ -93,6 +94,7 @@ final class MigrationCenterPreferenceSetComputeEnginePreferences {
 
   final MigrationCenterPreferenceSetMachinePreferences? machinePreferences;
 
+  @internal
   Map<String, Object?> encode() => {
     'license_type': ?licenseType?.toTfJson(),
     'persistent_disk_type': ?persistentDiskType?.toTfJson(),
@@ -142,6 +144,7 @@ final class MigrationCenterPreferenceSetMachinePreferences {
   final List<MigrationCenterPreferenceSetAllowedMachineSeries>?
   allowedMachineSeries;
 
+  @internal
   Map<String, Object?> encode() => {
     if (allowedMachineSeries != null)
       'allowed_machine_series': [
@@ -158,6 +161,7 @@ final class MigrationCenterPreferenceSetAllowedMachineSeries {
 
   final TfArg<String>? code;
 
+  @internal
   Map<String, Object?> encode() => {'code': ?code?.toTfJson()};
 }
 
@@ -169,6 +173,7 @@ final class MigrationCenterPreferenceSetRegionPreferences {
 
   final TfArg<List<String>>? preferredRegions;
 
+  @internal
   Map<String, Object?> encode() => {
     'preferred_regions': ?preferredRegions?.toTfJson(),
   };
@@ -193,6 +198,7 @@ final class MigrationCenterPreferenceSetSoleTenancyPreferences {
 
   final List<MigrationCenterPreferenceSetNodeTypes>? nodeTypes;
 
+  @internal
   Map<String, Object?> encode() => {
     'commitment_plan': ?commitmentPlan?.toTfJson(),
     'cpu_overcommit_ratio': ?cpuOvercommitRatio?.toTfJson(),
@@ -210,6 +216,7 @@ final class MigrationCenterPreferenceSetNodeTypes {
 
   final TfArg<String>? nodeName;
 
+  @internal
   Map<String, Object?> encode() => {'node_name': ?nodeName?.toTfJson()};
 }
 
@@ -232,6 +239,7 @@ final class MigrationCenterPreferenceSetVmwareEnginePreferences {
 
   final TfArg<num>? storageDeduplicationCompressionRatio;
 
+  @internal
   Map<String, Object?> encode() => {
     'commitment_plan': ?commitmentPlan?.toTfJson(),
     'cpu_overcommit_ratio': ?cpuOvercommitRatio?.toTfJson(),

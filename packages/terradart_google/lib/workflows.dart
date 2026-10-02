@@ -4,6 +4,7 @@
 /// inline YAML/JSON source.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/workflows/google_workflows_workflow.dart'
     show
         GoogleWorkflowsWorkflow,

@@ -28,6 +28,7 @@ final class ApihubPluginActionsConfig {
 
   final TfArg<String> triggerMode;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': description.toTfJson(),
     'display_name': displayName.toTfJson(),
@@ -49,6 +50,7 @@ final class ApihubPluginConfigTemplate {
 
   final ApihubPluginAuthConfigTemplate? authConfigTemplate;
 
+  @internal
   Map<String, Object?> encode() => {
     if (additionalConfigTemplate != null)
       'additional_config_template': [
@@ -86,6 +88,7 @@ final class ApihubPluginAdditionalConfigTemplate {
 
   final List<ApihubPluginMultiSelectOptions>? multiSelectOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'id': id.toTfJson(),
@@ -115,6 +118,7 @@ final class ApihubPluginEnumOptions {
 
   final TfArg<String> id;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'display_name': displayName.toTfJson(),
@@ -138,6 +142,7 @@ final class ApihubPluginMultiSelectOptions {
 
   final TfArg<String> id;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'display_name': displayName.toTfJson(),
@@ -158,6 +163,7 @@ final class ApihubPluginAuthConfigTemplate {
 
   final ApihubPluginServiceAccount? serviceAccount;
 
+  @internal
   Map<String, Object?> encode() => {
     'supported_auth_types': supportedAuthTypes.toTfJson(),
     'service_account': ?serviceAccount?.encode(),
@@ -172,6 +178,7 @@ final class ApihubPluginServiceAccount {
 
   final RefTo<GoogleServiceAccount> serviceAccount;
 
+  @internal
   Map<String, Object?> encode() => {
     'service_account': serviceAccount.encodeAs('email').toTfJson(),
   };
@@ -185,6 +192,7 @@ final class ApihubPluginDocumentation {
 
   final TfArg<String>? externalUri;
 
+  @internal
   Map<String, Object?> encode() => {'external_uri': ?externalUri?.toTfJson()};
 }
 
@@ -196,6 +204,7 @@ final class ApihubPluginHostingService {
 
   final TfArg<String>? serviceUri;
 
+  @internal
   Map<String, Object?> encode() => {'service_uri': ?serviceUri?.toTfJson()};
 }
 

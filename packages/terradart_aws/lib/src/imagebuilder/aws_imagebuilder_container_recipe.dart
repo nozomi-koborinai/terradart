@@ -68,12 +68,15 @@ sealed class ImagebuilderContainerRecipeDockerfileTemplate {
   ) = ImagebuilderContainerRecipeDockerfileTemplateUri;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -86,14 +89,17 @@ final class ImagebuilderContainerRecipeDockerfileTemplateData
 
   final TfArg<String> dockerfileTemplateData;
 
+  @internal
   @override
   String get blockKey => 'dockerfile_template_data';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'dockerfile_template_data': dockerfileTemplateData.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'dockerfile_template_data': dockerfileTemplateData,
@@ -109,14 +115,17 @@ final class ImagebuilderContainerRecipeDockerfileTemplateUri
 
   final TfArg<String> dockerfileTemplateUri;
 
+  @internal
   @override
   String get blockKey => 'dockerfile_template_uri';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'dockerfile_template_uri': dockerfileTemplateUri.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'dockerfile_template_uri': dockerfileTemplateUri,
@@ -136,6 +145,7 @@ final class ImagebuilderContainerRecipeComponent {
 
   final List<ImagebuilderContainerRecipeParameter>? parameter;
 
+  @internal
   Map<String, Object?> encode() => {
     'component_arn': componentArn.toTfJson(),
     if (parameter != null)
@@ -156,6 +166,7 @@ final class ImagebuilderContainerRecipeParameter {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'value': value.toTfJson(),
@@ -175,6 +186,7 @@ final class ImagebuilderContainerRecipeInstanceConfiguration {
 
   final List<ImagebuilderContainerRecipeBlockDeviceMapping>? blockDeviceMapping;
 
+  @internal
   Map<String, Object?> encode() => {
     'image': ?image?.toTfJson(),
     if (blockDeviceMapping != null)
@@ -201,6 +213,7 @@ final class ImagebuilderContainerRecipeBlockDeviceMapping {
 
   final ImagebuilderContainerRecipeEbs? ebs;
 
+  @internal
   Map<String, Object?> encode() => {
     'device_name': ?deviceName?.toTfJson(),
     'no_device': ?noDevice?.toTfJson(),
@@ -240,6 +253,7 @@ final class ImagebuilderContainerRecipeEbs {
 
   final ImagebuilderContainerRecipeVolumeType? volumeType;
 
+  @internal
   Map<String, Object?> encode() => {
     'delete_on_termination': ?deleteOnTermination?.toTfJson(),
     'encrypted': ?encrypted?.toTfJson(),
@@ -308,6 +322,7 @@ final class ImagebuilderContainerRecipeTargetRepository {
 
   final ImagebuilderContainerRecipeService service;
 
+  @internal
   Map<String, Object?> encode() => {
     'repository_name': repositoryName.toTfJson(),
     'service': service.toTfJson(),

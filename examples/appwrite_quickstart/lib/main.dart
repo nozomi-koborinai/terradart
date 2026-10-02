@@ -30,7 +30,6 @@ import 'package:terradart_appwrite/sites.dart';
 import 'package:terradart_appwrite/storage.dart';
 import 'package:terradart_appwrite/tablesdb.dart';
 import 'package:terradart_appwrite/webhooks.dart';
-import 'package:terradart_core/terradart_core.dart';
 
 /// Appwrite demo stack covering the full curated catalog at this pin.
 final class AppwriteDemoStack extends Stack {

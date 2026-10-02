@@ -20,6 +20,7 @@ final class NetworkConnectivityDestinationEndpoints {
 
   final TfArg<String> csp;
 
+  @internal
   Map<String, Object?> encode() => {
     'asn': asn.toTfJson(),
     'csp': csp.toTfJson(),

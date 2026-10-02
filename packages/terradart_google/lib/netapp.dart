@@ -5,6 +5,7 @@
 /// capacity while they exist (never_apply for apply-smoke).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/netapp/google_netapp_active_directory.dart'
     show GoogleNetappActiveDirectory;
 export 'src/netapp/google_netapp_backup.dart'

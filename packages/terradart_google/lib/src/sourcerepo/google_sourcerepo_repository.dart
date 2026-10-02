@@ -26,6 +26,7 @@ final class SourcerepoRepositoryPubsubConfigs {
 
   final RefTo<GooglePubsubTopic> topic;
 
+  @internal
   Map<String, Object?> encode() => {
     'message_format': messageFormat.toTfJson(),
     'service_account_email': ?serviceAccountEmail?.encodeAs('email').toTfJson(),

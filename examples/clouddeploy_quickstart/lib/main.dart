@@ -20,9 +20,7 @@
 /// Run `bin/infra.dart` to synth into `tf-out/`.
 library;
 
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/clouddeploy.dart';
-import 'package:terradart_google/data.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
@@ -35,7 +33,7 @@ final class DeployStack extends Stack {
         providers: [GoogleProvider(project: projectId, region: 'us-central1')],
         appExports: AppExports('lib/generated/deploy_stack.app.dart'),
       ) {
-    final current = add(GoogleProject('current'));
+    final current = add(DataGoogleProject('current'));
 
     final apiClouddeploy = add(
       GoogleProjectService(

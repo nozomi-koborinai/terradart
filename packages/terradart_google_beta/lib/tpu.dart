@@ -3,6 +3,7 @@
 /// Cloud TPU v2 VMs and queued resources (beta-only).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/tpu/google_tpu_v2_queued_resource.dart'
     show
         GoogleTpuV2QueuedResource,

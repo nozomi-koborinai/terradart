@@ -28,8 +28,10 @@ sealed class FirebaseAppHostingBuildSource {
   ) = FirebaseAppHostingBuildSourceCodebase;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -40,9 +42,11 @@ final class FirebaseAppHostingBuildSourceContainer
 
   final FirebaseAppHostingBuildContainer container;
 
+  @internal
   @override
   String get blockKey => 'container';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'container': container.encode()};
 }
@@ -54,9 +58,11 @@ final class FirebaseAppHostingBuildSourceCodebase
 
   final FirebaseAppHostingBuildCodebase codebase;
 
+  @internal
   @override
   String get blockKey => 'codebase';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'codebase': codebase.encode()};
 }
@@ -71,6 +77,7 @@ final class FirebaseAppHostingBuildCodebase {
 
   final TfArg<String>? commit;
 
+  @internal
   Map<String, Object?> encode() => {
     'branch': ?branch?.toTfJson(),
     'commit': ?commit?.toTfJson(),
@@ -85,6 +92,7 @@ final class FirebaseAppHostingBuildContainer {
 
   final TfArg<String> image;
 
+  @internal
   Map<String, Object?> encode() => {'image': image.toTfJson()};
 }
 

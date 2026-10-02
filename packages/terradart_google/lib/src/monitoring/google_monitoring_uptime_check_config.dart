@@ -347,12 +347,15 @@ sealed class MonitoringUptimeCheckConfigTarget {
   ) = MonitoringUptimeCheckConfigTargetSyntheticMonitor;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -365,14 +368,17 @@ final class MonitoringUptimeCheckConfigTargetMonitoredResource
 
   final MonitoringUptimeCheckConfigMonitoredResource monitoredResource;
 
+  @internal
   @override
   String get blockKey => 'monitored_resource';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'monitored_resource': monitoredResource.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'monitored_resource': TfArg.literal(monitoredResource.encode()),
@@ -386,12 +392,15 @@ final class MonitoringUptimeCheckConfigTargetResourceGroup
 
   final MonitoringUptimeCheckConfigResourceGroup resourceGroup;
 
+  @internal
   @override
   String get blockKey => 'resource_group';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'resource_group': resourceGroup.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'resource_group': TfArg.literal(resourceGroup.encode()),
@@ -407,14 +416,17 @@ final class MonitoringUptimeCheckConfigTargetSyntheticMonitor
 
   final MonitoringUptimeCheckConfigSyntheticMonitor syntheticMonitor;
 
+  @internal
   @override
   String get blockKey => 'synthetic_monitor';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'synthetic_monitor': syntheticMonitor.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'synthetic_monitor': TfArg.literal(syntheticMonitor.encode()),
@@ -437,6 +449,7 @@ final class MonitoringUptimeCheckConfigContentMatchers {
 
   final MonitoringUptimeCheckConfigJsonPathMatcher? jsonPathMatcher;
 
+  @internal
   Map<String, Object?> encode() => {
     'content': content.toTfJson(),
     'matcher': ?matcher?.toTfJson(),
@@ -457,6 +470,7 @@ final class MonitoringUptimeCheckConfigJsonPathMatcher {
 
   final TfArg<String> jsonPath;
 
+  @internal
   Map<String, Object?> encode() => {
     'json_matcher': ?jsonMatcher?.toTfJson(),
     'json_path': jsonPath.toTfJson(),
@@ -514,6 +528,7 @@ final class MonitoringUptimeCheckConfigHttpCheck {
   final MonitoringUptimeCheckConfigServiceAgentAuthentication?
   serviceAgentAuthentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'body': ?body?.toTfJson(),
     'content_type': ?contentType?.toTfJson(),
@@ -548,6 +563,7 @@ final class MonitoringUptimeCheckConfigAcceptedResponseStatusCodes {
 
   final TfArg<num>? statusValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'status_class': ?statusClass?.toTfJson(),
     'status_value': ?statusValue?.toTfJson(),
@@ -570,6 +586,7 @@ final class MonitoringUptimeCheckConfigAuthInfo {
 
   final TfArg<String> username;
 
+  @internal
   Map<String, Object?> encode() => {
     ...password.encode(),
     'password_wo_version': ?passwordWoVersion?.toTfJson(),
@@ -595,8 +612,10 @@ sealed class MonitoringUptimeCheckConfigPassword {
   ) = MonitoringUptimeCheckConfigPasswordWo;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -607,9 +626,11 @@ final class MonitoringUptimeCheckConfigPasswordChoice
 
   final Sensitive<String> password;
 
+  @internal
   @override
   String get blockKey => 'password';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'password': password.toTfJson()};
 }
@@ -621,9 +642,11 @@ final class MonitoringUptimeCheckConfigPasswordWo
 
   final TfArg<String> passwordWo;
 
+  @internal
   @override
   String get blockKey => 'password_wo';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'password_wo': passwordWo.toTfJson()};
 }
@@ -637,6 +660,7 @@ final class MonitoringUptimeCheckConfigPingConfig {
 
   final TfArg<num> pingsCount;
 
+  @internal
   Map<String, Object?> encode() => {'pings_count': pingsCount.toTfJson()};
 }
 
@@ -648,6 +672,7 @@ final class MonitoringUptimeCheckConfigServiceAgentAuthentication {
 
   final MonitoringUptimeCheckServiceAgentAuthType? type;
 
+  @internal
   Map<String, Object?> encode() => {'type': ?type?.toTfJson()};
 }
 
@@ -664,6 +689,7 @@ final class MonitoringUptimeCheckConfigMonitoredResource {
 
   final TfArg<String> type;
 
+  @internal
   Map<String, Object?> encode() => {
     'labels': labels.toTfJson(),
     'type': type.toTfJson(),
@@ -683,6 +709,7 @@ final class MonitoringUptimeCheckConfigResourceGroup {
 
   final MonitoringUptimeCheckResourceType? resourceType;
 
+  @internal
   Map<String, Object?> encode() => {
     'group_id': ?groupId?.encodeAs('name').toTfJson(),
     'resource_type': ?resourceType?.toTfJson(),
@@ -699,6 +726,7 @@ final class MonitoringUptimeCheckConfigSyntheticMonitor {
 
   final MonitoringUptimeCheckConfigCloudFunctionV2 cloudFunctionV2;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloud_function_v2': cloudFunctionV2.encode(),
   };
@@ -712,6 +740,7 @@ final class MonitoringUptimeCheckConfigCloudFunctionV2 {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 
@@ -728,6 +757,7 @@ final class MonitoringUptimeCheckConfigTcpCheck {
 
   final MonitoringUptimeCheckConfigPingConfig? pingConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'port': port.toTfJson(),
     'ping_config': ?pingConfig?.encode(),

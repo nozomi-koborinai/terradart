@@ -26,6 +26,7 @@ final class DialogflowCxFlowAdvancedSettings {
 
   final DialogflowCxFlowSpeechSettings? speechSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'audio_export_gcs_destination': ?audioExportGcsDestination?.encode(),
     'dtmf_settings': ?dtmfSettings?.encode(),
@@ -42,6 +43,7 @@ final class DialogflowCxFlowAudioExportGcsDestination {
 
   final TfArg<String>? uri;
 
+  @internal
   Map<String, Object?> encode() => {'uri': ?uri?.toTfJson()};
 }
 
@@ -61,6 +63,7 @@ final class DialogflowCxFlowDtmfSettings {
 
   final TfArg<num>? maxDigits;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'finish_digit': ?finishDigit?.toTfJson(),
@@ -85,6 +88,7 @@ final class DialogflowCxFlowLoggingSettings {
 
   final TfArg<bool>? enableStackdriverLogging;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_consent_based_redaction': ?enableConsentBasedRedaction?.toTfJson(),
     'enable_interaction_logging': ?enableInteractionLogging?.toTfJson(),
@@ -112,6 +116,7 @@ final class DialogflowCxFlowSpeechSettings {
 
   final TfArg<bool>? useTimeoutBasedEndpointing;
 
+  @internal
   Map<String, Object?> encode() => {
     'endpointer_sensitivity': ?endpointerSensitivity?.toTfJson(),
     'models': ?models?.toTfJson(),
@@ -139,6 +144,7 @@ final class DialogflowCxFlowEventHandlers {
 
   final DialogflowCxFlowEventHandlersTriggerFulfillment? triggerFulfillment;
 
+  @internal
   Map<String, Object?> encode() => {
     'event': ?event?.toTfJson(),
     'target_flow': ?targetFlow?.toTfJson(),
@@ -175,6 +181,7 @@ final class DialogflowCxFlowEventHandlersTriggerFulfillment {
 
   final List<DialogflowCxFlowSetParameterActions>? setParameterActions;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_generative_fallback': ?enableGenerativeFallback?.toTfJson(),
     'return_partial_responses': ?returnPartialResponses?.toTfJson(),
@@ -199,6 +206,7 @@ final class DialogflowCxFlowConditionalCases {
 
   final TfArg<String>? cases;
 
+  @internal
   Map<String, Object?> encode() => {'cases': ?cases?.toTfJson()};
 }
 
@@ -234,6 +242,7 @@ final class DialogflowCxFlowEventHandlersMessages {
 
   final DialogflowCxFlowText? text;
 
+  @internal
   Map<String, Object?> encode() => {
     'channel': ?channel?.toTfJson(),
     'payload': ?payload?.toTfJson(),
@@ -255,6 +264,7 @@ final class DialogflowCxFlowConversationSuccess {
 
   final TfArg<String>? metadata;
 
+  @internal
   Map<String, Object?> encode() => {'metadata': ?metadata?.toTfJson()};
 }
 
@@ -267,6 +277,7 @@ final class DialogflowCxFlowLiveAgentHandoff {
 
   final TfArg<String>? metadata;
 
+  @internal
   Map<String, Object?> encode() => {'metadata': ?metadata?.toTfJson()};
 }
 
@@ -281,6 +292,7 @@ final class DialogflowCxFlowOutputAudioText {
 
   final TfArg<String>? text;
 
+  @internal
   Map<String, Object?> encode() => {
     'ssml': ?ssml?.toTfJson(),
     'text': ?text?.toTfJson(),
@@ -296,6 +308,7 @@ final class DialogflowCxFlowPlayAudio {
 
   final TfArg<String> audioUri;
 
+  @internal
   Map<String, Object?> encode() => {'audio_uri': audioUri.toTfJson()};
 }
 
@@ -308,6 +321,7 @@ final class DialogflowCxFlowTelephonyTransferCall {
 
   final TfArg<String> phoneNumber;
 
+  @internal
   Map<String, Object?> encode() => {'phone_number': phoneNumber.toTfJson()};
 }
 
@@ -320,6 +334,7 @@ final class DialogflowCxFlowText {
 
   final TfArg<List<String>>? text;
 
+  @internal
   Map<String, Object?> encode() => {'text': ?text?.toTfJson()};
 }
 
@@ -334,6 +349,7 @@ final class DialogflowCxFlowSetParameterActions {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'parameter': ?parameter?.toTfJson(),
     'value': ?value?.toTfJson(),
@@ -363,6 +379,7 @@ final class DialogflowCxFlowKnowledgeConnectorSettings {
   final DialogflowCxFlowKnowledgeConnectorSettingsTriggerFulfillment?
   triggerFulfillment;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'target_flow': ?targetFlow?.toTfJson(),
@@ -391,6 +408,7 @@ final class DialogflowCxFlowDataStoreConnections {
 
   final DialogflowCxFlowDocumentProcessingMode? documentProcessingMode;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_store': ?dataStore?.toTfJson(),
     'data_store_type': ?dataStoreType?.toTfJson(),
@@ -478,6 +496,7 @@ final class DialogflowCxFlowKnowledgeConnectorSettingsTriggerFulfillment {
 
   final List<DialogflowCxFlowSetParameterActions>? setParameterActions;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_generative_fallback': ?enableGenerativeFallback?.toTfJson(),
     'return_partial_responses': ?returnPartialResponses?.toTfJson(),
@@ -510,6 +529,7 @@ final class DialogflowCxFlowTriggerFulfillmentAdvancedSettings {
 
   final DialogflowCxFlowSpeechSettings? speechSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'dtmf_settings': ?dtmfSettings?.encode(),
     'logging_settings': ?loggingSettings?.encode(),
@@ -539,6 +559,7 @@ final class DialogflowCxFlowAdvancedSettingsDtmfSettings {
 
   final TfArg<num>? maxDigits;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'endpointing_timeout_duration': ?endpointingTimeoutDuration?.toTfJson(),
@@ -582,6 +603,7 @@ final class DialogflowCxFlowKnowledgeConnectorSettingsMessages {
 
   final DialogflowCxFlowText? text;
 
+  @internal
   Map<String, Object?> encode() => {
     'channel': ?channel?.toTfJson(),
     'payload': ?payload?.toTfJson(),
@@ -601,6 +623,7 @@ final class DialogflowCxFlowKnowledgeConnectorSettingsMessages {
 final class DialogflowCxFlowKnowledgeInfoCard {
   const DialogflowCxFlowKnowledgeInfoCard();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -620,6 +643,7 @@ final class DialogflowCxFlowNluSettings {
 
   final DialogflowCxFlowModelType? modelType;
 
+  @internal
   Map<String, Object?> encode() => {
     'classification_threshold': ?classificationThreshold?.toTfJson(),
     'model_training_mode': ?modelTrainingMode?.toTfJson(),
@@ -693,6 +717,7 @@ final class DialogflowCxFlowTransitionRoutes {
 
   final DialogflowCxFlowTransitionRoutesTriggerFulfillment? triggerFulfillment;
 
+  @internal
   Map<String, Object?> encode() => {
     'condition': ?condition?.toTfJson(),
     'intent': ?intent?.toTfJson(),
@@ -727,6 +752,7 @@ final class DialogflowCxFlowTransitionRoutesTriggerFulfillment {
 
   final List<DialogflowCxFlowSetParameterActions>? setParameterActions;
 
+  @internal
   Map<String, Object?> encode() => {
     'return_partial_responses': ?returnPartialResponses?.toTfJson(),
     'tag': ?tag?.toTfJson(),

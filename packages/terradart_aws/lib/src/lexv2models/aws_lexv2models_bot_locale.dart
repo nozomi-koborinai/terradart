@@ -17,6 +17,7 @@ final class Lexv2modelsBotLocaleVoiceSettings {
 
   final TfArg<String> voiceId;
 
+  @internal
   Map<String, Object?> encode() => {
     'engine': ?engine?.toTfJson(),
     'voice_id': voiceId.toTfJson(),

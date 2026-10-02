@@ -3,6 +3,7 @@
 /// AWS X-Ray.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/xray/aws_xray_encryption_config.dart'
     show AwsXrayEncryptionConfig, XrayEncryptionConfigType;
 export 'src/xray/aws_xray_group.dart'

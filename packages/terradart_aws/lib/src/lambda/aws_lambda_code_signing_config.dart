@@ -17,6 +17,7 @@ final class LambdaCodeSigningConfigAllowedPublishers {
 
   final TfArg<List<String>> signingProfileVersionArns;
 
+  @internal
   Map<String, Object?> encode() => {
     'signing_profile_version_arns': signingProfileVersionArns.toTfJson(),
   };
@@ -33,6 +34,7 @@ final class LambdaCodeSigningConfigPolicies {
   final LambdaCodeSigningConfigUntrustedArtifactOnDeployment
   untrustedArtifactOnDeployment;
 
+  @internal
   Map<String, Object?> encode() => {
     'untrusted_artifact_on_deployment': untrustedArtifactOnDeployment
         .toTfJson(),

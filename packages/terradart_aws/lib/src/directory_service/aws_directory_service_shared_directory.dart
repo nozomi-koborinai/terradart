@@ -42,6 +42,7 @@ final class DirectoryServiceSharedDirectoryTarget {
 
   final DirectoryServiceSharedDirectoryType? type;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
     'type': ?type?.toTfJson(),

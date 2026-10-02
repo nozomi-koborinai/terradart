@@ -3,6 +3,7 @@
 /// `lambdamicrovms` images and microVMs.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/lambdamicrovms/aws_lambdamicrovms_image.dart'
     show
         AwsLambdamicrovmsImage,

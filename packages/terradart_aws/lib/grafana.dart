@@ -3,6 +3,8 @@
 /// AWS Managed Grafana.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_grafana_workspace.dart' show DataAwsGrafanaWorkspace;
 export 'src/grafana/aws_grafana_license_association.dart'
     show AwsGrafanaLicenseAssociation, GrafanaLicenseAssociationLicenseType;
 export 'src/grafana/aws_grafana_role_association.dart'

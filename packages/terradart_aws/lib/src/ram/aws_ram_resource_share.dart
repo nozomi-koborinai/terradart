@@ -17,6 +17,7 @@ final class RamResourceShareConfiguration {
 
   final TfArg<bool>? retainSharingOnAccountLeaveOrganization;
 
+  @internal
   Map<String, Object?> encode() => {
     'retain_sharing_on_account_leave_organization':
         ?retainSharingOnAccountLeaveOrganization?.toTfJson(),

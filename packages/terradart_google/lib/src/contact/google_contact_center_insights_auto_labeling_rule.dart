@@ -45,6 +45,7 @@ final class ContactCenterInsightsAutoLabelingRuleConditions {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'condition': ?condition?.toTfJson(),
     'value': ?value?.toTfJson(),

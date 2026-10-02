@@ -33,6 +33,7 @@ class DnsPolicyAlternativeNameServerConfig {
 
   final List<DnsPolicyAlternativeNameServerTargetNameServer> targetNameServers;
 
+  @internal
   Map<String, Object?> encode() => {
     'target_name_servers': targetNameServers.map((s) => s.toArgMap()).toList(),
   };
@@ -46,6 +47,7 @@ final class DnsPolicyDns64Config {
 
   final DnsPolicyScope scope;
 
+  @internal
   Map<String, Object?> encode() => {'scope': scope.encode()};
 }
 
@@ -57,6 +59,7 @@ final class DnsPolicyScope {
 
   final TfArg<bool>? allQueries;
 
+  @internal
   Map<String, Object?> encode() => {'all_queries': ?allQueries?.toTfJson()};
 }
 
@@ -68,6 +71,7 @@ final class DnsPolicyNetworks {
 
   final RefTo<GoogleComputeNetwork> networkUrl;
 
+  @internal
   Map<String, Object?> encode() => {
     'network_url': networkUrl.encodeAs('id').toTfJson(),
   };

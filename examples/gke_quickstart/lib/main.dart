@@ -16,7 +16,6 @@
 /// apply in a single standalone project (the API rejects source==dest).
 library;
 
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/compute.dart';
 import 'package:terradart_google/container.dart';
 import 'package:terradart_google/gke_backup.dart';

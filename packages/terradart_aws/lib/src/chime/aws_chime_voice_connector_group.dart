@@ -20,6 +20,7 @@ final class ChimeVoiceConnectorGroupConnector {
 
   final TfArg<String> voiceConnectorId;
 
+  @internal
   Map<String, Object?> encode() => {
     'priority': priority.toTfJson(),
     'voice_connector_id': voiceConnectorId.toTfJson(),

@@ -7,6 +7,7 @@
 /// binding does not send sessions.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/ces/google_ces_agent.dart'
     show
         CesAgentAfterAgentCallbacks,

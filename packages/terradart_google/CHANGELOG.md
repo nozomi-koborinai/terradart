@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **Breaking:** the `google_project` data source is `DataGoogleProject`. Every barrel re-exports `terradart_core`, and a data source is also exported from its service barrel (`DataGoogleComputeNetwork` from `compute.dart`). Helper `encode()` / `blockKey` are `@internal`. See [MIGRATING.md](../../MIGRATING.md#fewer-imports).
 - **Breaking:** `provider:` on every factory and data source takes the registered `StackProvider` (`provider: eu`, from `final eu = addProvider(GoogleProvider(alias: 'eu'))`) instead of `'google.eu'`; `GoogleProjectServiceIdentity` overrides `defaultProvider` and takes `provider:` too. See [MIGRATING.md](../../MIGRATING.md#providers-are-instances).
 - **Breaking:** an argument the provider schema marks sensitive is `Sensitive<T>` — a variable, an expression or an attribute getter, never `.literal(...)` (`GoogleSqlUser(password: dbPassword)`). See [MIGRATING.md](../../MIGRATING.md#sensitive-arguments-take-no-literal).
 - **Breaking:** every generated enum is an extension type implementing `TfArg<String>`, so an enum slot takes a member bare — `routingMode: .regional` instead of `.literal(.regional)`, and a list-of-enum slot is a `List<E>` of members. `.variable(...)`, `.expression(...)` and `.arg(...)` cover values not known at synth time; `switch`, `.name`, `.index` and `.terraformValue` are gone. Synth output is unchanged. See [MIGRATING.md](../../MIGRATING.md#enums-are-arguments).

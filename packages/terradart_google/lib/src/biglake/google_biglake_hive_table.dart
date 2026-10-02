@@ -23,6 +23,7 @@ final class BiglakeHiveTablePartitionKeys {
 
   final TfArg<String> type;
 
+  @internal
   Map<String, Object?> encode() => {
     'comment': ?comment?.toTfJson(),
     'name': name.toTfJson(),
@@ -73,6 +74,7 @@ final class BiglakeHiveTableStorageDescriptor {
 
   final List<BiglakeHiveTableSortCols>? sortCols;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_cols': ?bucketCols?.toTfJson(),
     'compressed': ?compressed?.toTfJson(),
@@ -105,6 +107,7 @@ final class BiglakeHiveTableColumns {
 
   final TfArg<String> type;
 
+  @internal
   Map<String, Object?> encode() => {
     'comment': ?comment?.toTfJson(),
     'name': name.toTfJson(),
@@ -140,6 +143,7 @@ final class BiglakeHiveTableSerdeInfo {
 
   final TfArg<String>? serializerClass;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'deserializer_class': ?deserializerClass?.toTfJson(),
@@ -191,6 +195,7 @@ final class BiglakeHiveTableSkewedInfo {
 
   final List<BiglakeHiveTableSkewedKeyValuesLocations> skewedKeyValuesLocations;
 
+  @internal
   Map<String, Object?> encode() => {
     'skewed_col_names': skewedColNames.toTfJson(),
     'skewed_col_values': [for (final e in skewedColValues) e.encode()],
@@ -208,6 +213,7 @@ final class BiglakeHiveTableSkewedColValues {
 
   final TfArg<List<String>> values;
 
+  @internal
   Map<String, Object?> encode() => {'values': values.toTfJson()};
 }
 
@@ -224,6 +230,7 @@ final class BiglakeHiveTableSkewedKeyValuesLocations {
 
   final TfArg<List<String>> values;
 
+  @internal
   Map<String, Object?> encode() => {
     'location': location.toTfJson(),
     'values': values.toTfJson(),
@@ -240,6 +247,7 @@ final class BiglakeHiveTableSortCols {
 
   final TfArg<num> order;
 
+  @internal
   Map<String, Object?> encode() => {
     'col': col.toTfJson(),
     'order': order.toTfJson(),

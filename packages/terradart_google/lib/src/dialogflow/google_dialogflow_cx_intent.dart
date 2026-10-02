@@ -26,6 +26,7 @@ final class DialogflowCxIntentParameters {
 
   final TfArg<bool>? redact;
 
+  @internal
   Map<String, Object?> encode() => {
     'entity_type': entityType.toTfJson(),
     'id': id.toTfJson(),
@@ -47,6 +48,7 @@ final class DialogflowCxIntentTrainingPhrases {
 
   final List<DialogflowCxIntentParts> parts;
 
+  @internal
   Map<String, Object?> encode() => {
     'repeat_count': ?repeatCount?.toTfJson(),
     'parts': [for (final e in parts) e.encode()],
@@ -63,6 +65,7 @@ final class DialogflowCxIntentParts {
 
   final TfArg<String> text;
 
+  @internal
   Map<String, Object?> encode() => {
     'parameter_id': ?parameterId?.toTfJson(),
     'text': text.toTfJson(),

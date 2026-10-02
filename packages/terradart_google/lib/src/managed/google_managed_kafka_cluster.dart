@@ -18,6 +18,7 @@ final class ManagedKafkaClusterBrokerCapacityConfig {
 
   final TfArg<String>? diskSizeGib;
 
+  @internal
   Map<String, Object?> encode() => {'disk_size_gib': ?diskSizeGib?.toTfJson()};
 }
 
@@ -34,6 +35,7 @@ final class ManagedKafkaClusterCapacityConfig {
 
   final TfArg<String> vcpuCount;
 
+  @internal
   Map<String, Object?> encode() => {
     'memory_bytes': memoryBytes.toTfJson(),
     'vcpu_count': vcpuCount.toTfJson(),
@@ -50,6 +52,7 @@ final class ManagedKafkaClusterGcpConfig {
 
   final ManagedKafkaClusterAccessConfig accessConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key': ?kmsKey?.encodeAs('id').toTfJson(),
     'access_config': accessConfig.encode(),
@@ -69,6 +72,7 @@ final class ManagedKafkaClusterAccessConfig {
 
   final ManagedKafkaClusterPublicClusterConfig? publicClusterConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'network_configs': [for (final e in networkConfigs) e.encode()],
     'public_cluster_config': ?publicClusterConfig?.encode(),
@@ -83,6 +87,7 @@ final class ManagedKafkaClusterNetworkConfigs {
 
   final RefTo<GoogleComputeSubnetwork> subnet;
 
+  @internal
   Map<String, Object?> encode() => {'subnet': subnet.encodeAs('id').toTfJson()};
 }
 
@@ -96,6 +101,7 @@ final class ManagedKafkaClusterPublicClusterConfig {
 
   final TfArg<List<String>> allowedSourceIpRanges;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed_source_ip_ranges': allowedSourceIpRanges.toTfJson(),
   };
@@ -109,6 +115,7 @@ final class ManagedKafkaClusterRebalanceConfig {
 
   final TfArg<String>? mode;
 
+  @internal
   Map<String, Object?> encode() => {'mode': ?mode?.toTfJson()};
 }
 
@@ -125,6 +132,7 @@ final class ManagedKafkaClusterTlsConfig {
 
   final ManagedKafkaClusterTrustConfig? trustConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'ssl_principal_mapping_rules': ?sslPrincipalMappingRules?.toTfJson(),
     'trust_config': ?trustConfig?.encode(),
@@ -139,6 +147,7 @@ final class ManagedKafkaClusterTrustConfig {
 
   final List<ManagedKafkaClusterCasConfigs>? casConfigs;
 
+  @internal
   Map<String, Object?> encode() => {
     if (casConfigs != null)
       'cas_configs': [for (final e in casConfigs!) e.encode()],
@@ -153,6 +162,7 @@ final class ManagedKafkaClusterCasConfigs {
 
   final TfArg<String> caPool;
 
+  @internal
   Map<String, Object?> encode() => {'ca_pool': caPool.toTfJson()};
 }
 

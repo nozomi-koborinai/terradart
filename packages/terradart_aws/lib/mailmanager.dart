@@ -3,6 +3,7 @@
 /// AWS SES Mail Manager.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/mailmanager/aws_mailmanager_archive.dart'
     show
         AwsMailmanagerArchive,

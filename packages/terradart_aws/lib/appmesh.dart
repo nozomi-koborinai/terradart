@@ -3,6 +3,7 @@
 /// AWS App Mesh.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/appmesh/aws_appmesh_gateway_route.dart'
     show
         AppmeshGatewayRouteGrpcRoute,
@@ -183,3 +184,14 @@ export 'src/appmesh/aws_appmesh_virtual_service.dart'
         AppmeshVirtualServiceVirtualNode,
         AppmeshVirtualServiceVirtualRouter,
         AwsAppmeshVirtualService;
+export 'src/data/aws_appmesh_gateway_route.dart'
+    show DataAwsAppmeshGatewayRoute;
+export 'src/data/aws_appmesh_mesh.dart' show DataAwsAppmeshMesh;
+export 'src/data/aws_appmesh_route.dart' show DataAwsAppmeshRoute;
+export 'src/data/aws_appmesh_virtual_gateway.dart'
+    show DataAwsAppmeshVirtualGateway;
+export 'src/data/aws_appmesh_virtual_node.dart' show DataAwsAppmeshVirtualNode;
+export 'src/data/aws_appmesh_virtual_router.dart'
+    show DataAwsAppmeshVirtualRouter;
+export 'src/data/aws_appmesh_virtual_service.dart'
+    show DataAwsAppmeshVirtualService;

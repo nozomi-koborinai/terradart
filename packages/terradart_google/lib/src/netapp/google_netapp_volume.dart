@@ -38,6 +38,7 @@ final class NetappVolumeBackupConfig {
 
   final TfArg<bool>? scheduledBackupEnabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'backup_policies': ?backupPolicies?.toTfJson(),
     'backup_vault': ?backupVault?.toTfJson(),
@@ -61,6 +62,7 @@ final class NetappVolumeBlockDevices {
 
   final NetappVolumeOsType osType;
 
+  @internal
   Map<String, Object?> encode() => {
     'host_groups': ?hostGroups?.toTfJson(),
     'name': ?name?.toTfJson(),
@@ -111,6 +113,7 @@ final class NetappVolumeCacheParameters {
 
   final NetappVolumeCacheConfig? cacheConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_global_file_lock': ?enableGlobalFileLock?.toTfJson(),
     'peer_cluster_name': ?peerClusterName?.toTfJson(),
@@ -130,6 +133,7 @@ final class NetappVolumeCacheConfig {
 
   final TfArg<bool>? cifsChangeNotifyEnabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'cifs_change_notify_enabled': ?cifsChangeNotifyEnabled?.toTfJson(),
   };
@@ -143,6 +147,7 @@ final class NetappVolumeExportPolicy {
 
   final List<NetappVolumeRules> rules;
 
+  @internal
   Map<String, Object?> encode() => {
     'rules': [for (final e in rules) e.encode()],
   };
@@ -194,6 +199,7 @@ final class NetappVolumeRules {
 
   final NetappVolumeSquashMode? squashMode;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_type': ?accessType?.toTfJson(),
     'allowed_clients': ?allowedClients?.toTfJson(),
@@ -297,6 +303,7 @@ final class NetappVolumeHybridReplicationParameters {
 
   final NetappVolumeReplicationSchedule? replicationSchedule;
 
+  @internal
   Map<String, Object?> encode() => {
     'cluster_location': ?clusterLocation?.toTfJson(),
     'description': ?description?.toTfJson(),
@@ -374,6 +381,7 @@ final class NetappVolumeLargeCapacityConfig {
 
   final TfArg<num>? constituentCount;
 
+  @internal
   Map<String, Object?> encode() => {
     'constituent_count': ?constituentCount?.toTfJson(),
   };
@@ -397,8 +405,10 @@ sealed class NetappVolumeRestoreParameters {
   ) = NetappVolumeRestoreParametersSourceSnapshot;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -409,9 +419,11 @@ final class NetappVolumeRestoreParametersSourceBackup
 
   final TfArg<String> sourceBackup;
 
+  @internal
   @override
   String get blockKey => 'source_backup';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'source_backup': sourceBackup.toTfJson()};
 }
@@ -423,9 +435,11 @@ final class NetappVolumeRestoreParametersSourceSnapshot
 
   final TfArg<String> sourceSnapshot;
 
+  @internal
   @override
   String get blockKey => 'source_snapshot';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'source_snapshot': sourceSnapshot.toTfJson(),
@@ -454,6 +468,7 @@ final class NetappVolumeSnapshotPolicy {
 
   final NetappVolumeWeeklySchedule? weeklySchedule;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'daily_schedule': ?dailySchedule?.encode(),
@@ -479,6 +494,7 @@ final class NetappVolumeDailySchedule {
 
   final TfArg<num> snapshotsToKeep;
 
+  @internal
   Map<String, Object?> encode() => {
     'hour': ?hour?.toTfJson(),
     'minute': ?minute?.toTfJson(),
@@ -499,6 +515,7 @@ final class NetappVolumeHourlySchedule {
 
   final TfArg<num> snapshotsToKeep;
 
+  @internal
   Map<String, Object?> encode() => {
     'minute': ?minute?.toTfJson(),
     'snapshots_to_keep': snapshotsToKeep.toTfJson(),
@@ -524,6 +541,7 @@ final class NetappVolumeMonthlySchedule {
 
   final TfArg<num> snapshotsToKeep;
 
+  @internal
   Map<String, Object?> encode() => {
     'days_of_month': ?daysOfMonth?.toTfJson(),
     'hour': ?hour?.toTfJson(),
@@ -551,6 +569,7 @@ final class NetappVolumeWeeklySchedule {
 
   final TfArg<num> snapshotsToKeep;
 
+  @internal
   Map<String, Object?> encode() => {
     'day': ?day?.toTfJson(),
     'hour': ?hour?.toTfJson(),
@@ -575,6 +594,7 @@ final class NetappVolumeTieringPolicy {
 
   final NetappVolumeTierAction? tierAction;
 
+  @internal
   Map<String, Object?> encode() => {
     'cooling_threshold_days': ?coolingThresholdDays?.toTfJson(),
     'hot_tier_bypass_mode_enabled': ?hotTierBypassModeEnabled?.toTfJson(),

@@ -3,6 +3,7 @@
 /// AWS Clean Rooms.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/cleanrooms/aws_cleanrooms_collaboration.dart'
     show
         AwsCleanroomsCollaboration,

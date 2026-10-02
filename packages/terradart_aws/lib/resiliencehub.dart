@@ -3,6 +3,7 @@
 /// AWS Resilience Hub.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/resiliencehub/aws_resiliencehub_resiliency_policy.dart'
     show
         AwsResiliencehubResiliencyPolicy,

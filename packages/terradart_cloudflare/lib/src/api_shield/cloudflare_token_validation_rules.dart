@@ -36,6 +36,7 @@ final class TokenValidationRulesPosition {
 
   final TfArg<num>? index;
 
+  @internal
   Map<String, Object?> encode() => {
     'after': ?after?.toTfJson(),
     'before': ?before?.toTfJson(),
@@ -53,6 +54,7 @@ final class TokenValidationRulesSelector {
 
   final List<TokenValidationRulesInclude>? include;
 
+  @internal
   Map<String, Object?> encode() => {
     if (exclude != null) 'exclude': [for (final e in exclude!) e.encode()],
     if (include != null) 'include': [for (final e in include!) e.encode()],
@@ -67,6 +69,7 @@ final class TokenValidationRulesExclude {
 
   final TfArg<List<String>>? operationIds;
 
+  @internal
   Map<String, Object?> encode() => {'operation_ids': ?operationIds?.toTfJson()};
 }
 
@@ -78,6 +81,7 @@ final class TokenValidationRulesInclude {
 
   final TfArg<List<String>>? host;
 
+  @internal
   Map<String, Object?> encode() => {'host': ?host?.toTfJson()};
 }
 

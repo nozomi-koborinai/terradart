@@ -3,6 +3,7 @@
 /// Web Security Scanner scan config (beta-only).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/security_scanner/google_security_scanner_scan_config.dart'
     show
         GoogleSecurityScannerScanConfig,

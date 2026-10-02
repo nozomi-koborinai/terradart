@@ -30,6 +30,7 @@ final class SecuritylakeDataLakeConfiguration {
   final List<SecuritylakeDataLakeReplicationConfiguration>?
   replicationConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'encryption_configuration': ?encryptionConfiguration?.toTfJson(),
     'region': region.toTfJson(),
@@ -57,6 +58,7 @@ final class SecuritylakeDataLakeLifecycleConfiguration {
 
   final List<SecuritylakeDataLakeTransition>? transition;
 
+  @internal
   Map<String, Object?> encode() => {
     if (expiration != null)
       'expiration': [for (final e in expiration!) e.encode()],
@@ -73,6 +75,7 @@ final class SecuritylakeDataLakeExpiration {
 
   final TfArg<num>? days;
 
+  @internal
   Map<String, Object?> encode() => {'days': ?days?.toTfJson()};
 }
 
@@ -86,6 +89,7 @@ final class SecuritylakeDataLakeTransition {
 
   final TfArg<String>? storageClass;
 
+  @internal
   Map<String, Object?> encode() => {
     'days': ?days?.toTfJson(),
     'storage_class': ?storageClass?.toTfJson(),
@@ -105,6 +109,7 @@ final class SecuritylakeDataLakeReplicationConfiguration {
 
   final RefTo<AwsIamRole>? roleArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'regions': ?regions?.toTfJson(),
     'role_arn': ?roleArn?.encodeAs('arn').toTfJson(),

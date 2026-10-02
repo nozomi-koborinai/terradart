@@ -34,6 +34,7 @@ final class DataApiShieldOperationFilter {
 
   final DataApiShieldOperationOrder? order;
 
+  @internal
   Map<String, Object?> encode() => {
     'direction': ?direction?.toTfJson(),
     'endpoint': ?endpoint?.toTfJson(),

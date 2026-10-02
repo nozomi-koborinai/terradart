@@ -20,6 +20,7 @@ final class ContainerAwsClusterAuthorization {
 
   final List<ContainerAwsClusterAdminUsers> adminUsers;
 
+  @internal
   Map<String, Object?> encode() => {
     if (adminGroups != null)
       'admin_groups': [for (final e in adminGroups!) e.encode()],
@@ -35,6 +36,7 @@ final class ContainerAwsClusterAdminGroups {
 
   final TfArg<String> group;
 
+  @internal
   Map<String, Object?> encode() => {'group': group.toTfJson()};
 }
 
@@ -46,6 +48,7 @@ final class ContainerAwsClusterAdminUsers {
 
   final TfArg<String> username;
 
+  @internal
   Map<String, Object?> encode() => {'username': username.toTfJson()};
 }
 
@@ -57,6 +60,7 @@ final class ContainerAwsClusterBinaryAuthorization {
 
   final ContainerAwsClusterEvaluationMode? evaluationMode;
 
+  @internal
   Map<String, Object?> encode() => {
     'evaluation_mode': ?evaluationMode?.toTfJson(),
   };
@@ -131,6 +135,7 @@ final class ContainerAwsClusterControlPlane {
 
   final ContainerAwsClusterSshConfig? sshConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'iam_instance_profile': iamInstanceProfile.toTfJson(),
     'instance_type': ?instanceType?.toTfJson(),
@@ -161,6 +166,7 @@ final class ContainerAwsClusterAwsServicesAuthentication {
 
   final TfArg<String>? roleSessionName;
 
+  @internal
   Map<String, Object?> encode() => {
     'role_arn': roleArn.toTfJson(),
     'role_session_name': ?roleSessionName?.toTfJson(),
@@ -175,6 +181,7 @@ final class ContainerAwsClusterConfigEncryption {
 
   final TfArg<String> kmsKeyArn;
 
+  @internal
   Map<String, Object?> encode() => {'kms_key_arn': kmsKeyArn.toTfJson()};
 }
 
@@ -186,6 +193,7 @@ final class ContainerAwsClusterDatabaseEncryption {
 
   final TfArg<String> kmsKeyArn;
 
+  @internal
   Map<String, Object?> encode() => {'kms_key_arn': kmsKeyArn.toTfJson()};
 }
 
@@ -211,6 +219,7 @@ final class ContainerAwsClusterMainVolume {
 
   final ContainerAwsClusterVolumeType? volumeType;
 
+  @internal
   Map<String, Object?> encode() => {
     'iops': ?iops?.toTfJson(),
     'kms_key_arn': ?kmsKeyArn?.toTfJson(),
@@ -255,6 +264,7 @@ final class ContainerAwsClusterProxyConfig {
 
   final TfArg<String> secretVersion;
 
+  @internal
   Map<String, Object?> encode() => {
     'secret_arn': secretArn.toTfJson(),
     'secret_version': secretVersion.toTfJson(),
@@ -283,6 +293,7 @@ final class ContainerAwsClusterRootVolume {
 
   final ContainerAwsClusterVolumeType? volumeType;
 
+  @internal
   Map<String, Object?> encode() => {
     'iops': ?iops?.toTfJson(),
     'kms_key_arn': ?kmsKeyArn?.toTfJson(),
@@ -300,6 +311,7 @@ final class ContainerAwsClusterSshConfig {
 
   final TfArg<String> ec2KeyPair;
 
+  @internal
   Map<String, Object?> encode() => {'ec2_key_pair': ec2KeyPair.toTfJson()};
 }
 
@@ -311,6 +323,7 @@ final class ContainerAwsClusterFleet {
 
   final TfArg<String>? project;
 
+  @internal
   Map<String, Object?> encode() => {'project': ?project?.toTfJson()};
 }
 
@@ -333,6 +346,7 @@ final class ContainerAwsClusterNetworking {
 
   final TfArg<String> vpcId;
 
+  @internal
   Map<String, Object?> encode() => {
     'per_node_pool_sg_rules_disabled': ?perNodePoolSgRulesDisabled?.toTfJson(),
     'pod_address_cidr_blocks': podAddressCidrBlocks.toTfJson(),

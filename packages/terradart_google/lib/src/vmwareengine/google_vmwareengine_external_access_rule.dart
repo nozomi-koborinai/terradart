@@ -43,6 +43,7 @@ final class VmwareengineExternalAccessRuleDestinationIpRanges {
 
   final TfArg<String>? ipAddressRange;
 
+  @internal
   Map<String, Object?> encode() => {
     'external_address': ?externalAddress?.toTfJson(),
     'ip_address_range': ?ipAddressRange?.toTfJson(),
@@ -62,6 +63,7 @@ final class VmwareengineExternalAccessRuleSourceIpRanges {
 
   final TfArg<String>? ipAddressRange;
 
+  @internal
   Map<String, Object?> encode() => {
     'ip_address': ?ipAddress?.toTfJson(),
     'ip_address_range': ?ipAddressRange?.toTfJson(),

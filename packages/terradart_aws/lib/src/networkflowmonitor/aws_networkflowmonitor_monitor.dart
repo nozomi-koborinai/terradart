@@ -20,6 +20,7 @@ final class NetworkflowmonitorMonitorLocalResource {
 
   final NetworkflowmonitorMonitorLocalResourceType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'identifier': identifier.toTfJson(),
     'type': type.toTfJson(),
@@ -76,6 +77,7 @@ final class NetworkflowmonitorMonitorRemoteResource {
 
   final NetworkflowmonitorMonitorRemoteResourceType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'identifier': identifier.toTfJson(),
     'type': type.toTfJson(),

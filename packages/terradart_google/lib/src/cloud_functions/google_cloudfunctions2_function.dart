@@ -154,6 +154,7 @@ final class Cloudfunctions2FunctionBuildConfig {
 
   final Cloudfunctions2FunctionSource? source;
 
+  @internal
   Map<String, Object?> encode() => {
     'docker_repository': ?dockerRepository?.toTfJson(),
     'entry_point': ?entryPoint?.toTfJson(),
@@ -184,8 +185,10 @@ sealed class Cloudfunctions2FunctionUpdatePolicy {
   ) = Cloudfunctions2FunctionOnDeployUpdatePolicyChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -198,9 +201,11 @@ final class Cloudfunctions2FunctionAutomaticUpdatePolicyChoice
 
   final Cloudfunctions2FunctionAutomaticUpdatePolicy automaticUpdatePolicy;
 
+  @internal
   @override
   String get blockKey => 'automatic_update_policy';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'automatic_update_policy': automaticUpdatePolicy.encode(),
@@ -216,9 +221,11 @@ final class Cloudfunctions2FunctionOnDeployUpdatePolicyChoice
 
   final Cloudfunctions2FunctionOnDeployUpdatePolicy onDeployUpdatePolicy;
 
+  @internal
   @override
   String get blockKey => 'on_deploy_update_policy';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'on_deploy_update_policy': onDeployUpdatePolicy.encode(),
@@ -231,6 +238,7 @@ final class Cloudfunctions2FunctionOnDeployUpdatePolicyChoice
 final class Cloudfunctions2FunctionAutomaticUpdatePolicy {
   const Cloudfunctions2FunctionAutomaticUpdatePolicy();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -240,6 +248,7 @@ final class Cloudfunctions2FunctionAutomaticUpdatePolicy {
 final class Cloudfunctions2FunctionOnDeployUpdatePolicy {
   const Cloudfunctions2FunctionOnDeployUpdatePolicy();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -261,8 +270,10 @@ sealed class Cloudfunctions2FunctionSource {
   ) = Cloudfunctions2FunctionRepoSourceChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -273,9 +284,11 @@ final class Cloudfunctions2FunctionStorageSourceChoice
 
   final Cloudfunctions2FunctionStorageSource storageSource;
 
+  @internal
   @override
   String get blockKey => 'storage_source';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'storage_source': storageSource.encode()};
 }
@@ -287,9 +300,11 @@ final class Cloudfunctions2FunctionRepoSourceChoice
 
   final Cloudfunctions2FunctionRepoSource repoSource;
 
+  @internal
   @override
   String get blockKey => 'repo_source';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'repo_source': repoSource.encode()};
 }
@@ -316,6 +331,7 @@ final class Cloudfunctions2FunctionRepoSource {
 
   final TfArg<String>? repoName;
 
+  @internal
   Map<String, Object?> encode() => {
     ...revision.encode(),
     'dir': ?dir?.toTfJson(),
@@ -347,8 +363,10 @@ sealed class Cloudfunctions2FunctionRevision {
   ) = Cloudfunctions2FunctionRevisionCommitSha;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -359,9 +377,11 @@ final class Cloudfunctions2FunctionRevisionBranchName
 
   final TfArg<String> branchName;
 
+  @internal
   @override
   String get blockKey => 'branch_name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'branch_name': branchName.toTfJson()};
 }
@@ -373,9 +393,11 @@ final class Cloudfunctions2FunctionRevisionTagName
 
   final TfArg<String> tagName;
 
+  @internal
   @override
   String get blockKey => 'tag_name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'tag_name': tagName.toTfJson()};
 }
@@ -387,9 +409,11 @@ final class Cloudfunctions2FunctionRevisionCommitSha
 
   final TfArg<String> commitSha;
 
+  @internal
   @override
   String get blockKey => 'commit_sha';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'commit_sha': commitSha.toTfJson()};
 }
@@ -410,6 +434,7 @@ final class Cloudfunctions2FunctionStorageSource {
 
   final RefTo<GoogleStorageBucketObject>? object;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': ?bucket?.encodeAs('name').toTfJson(),
     'generation': ?generation?.toTfJson(),
@@ -442,6 +467,7 @@ final class Cloudfunctions2FunctionEventTrigger {
 
   final List<Cloudfunctions2FunctionEventFilters>? eventFilters;
 
+  @internal
   Map<String, Object?> encode() => {
     'event_type': eventType.toTfJson(),
     'pubsub_topic': ?pubsubTopic?.encodeAs('id').toTfJson(),
@@ -469,6 +495,7 @@ final class Cloudfunctions2FunctionEventFilters {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'attribute': attribute.toTfJson(),
     'operator': ?operator?.toTfJson(),
@@ -532,6 +559,7 @@ final class Cloudfunctions2FunctionServiceConfig {
 
   final List<Cloudfunctions2FunctionSecretVolumes>? secretVolumes;
 
+  @internal
   Map<String, Object?> encode() => {
     'all_traffic_on_latest_revision': ?allTrafficOnLatestRevision?.toTfJson(),
     'available_cpu': ?availableCpu?.toTfJson(),
@@ -577,8 +605,10 @@ sealed class Cloudfunctions2FunctionConnection {
   ) = Cloudfunctions2FunctionConnectionDirectVpcNetworkInterface;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -589,9 +619,11 @@ final class Cloudfunctions2FunctionConnectionVpcConnector
 
   final TfArg<String> vpcConnector;
 
+  @internal
   @override
   String get blockKey => 'vpc_connector';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'vpc_connector': vpcConnector.toTfJson()};
 }
@@ -606,9 +638,11 @@ final class Cloudfunctions2FunctionConnectionDirectVpcNetworkInterface
   final List<Cloudfunctions2FunctionDirectVpcNetworkInterface>
   directVpcNetworkInterface;
 
+  @internal
   @override
   String get blockKey => 'direct_vpc_network_interface';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'direct_vpc_network_interface': [
@@ -633,6 +667,7 @@ final class Cloudfunctions2FunctionDirectVpcNetworkInterface {
 
   final TfArg<List<String>>? tags;
 
+  @internal
   Map<String, Object?> encode() => {
     'network': ?network?.encodeAs('name').toTfJson(),
     'subnetwork': ?subnetwork?.encodeAs('name').toTfJson(),
@@ -659,6 +694,7 @@ final class Cloudfunctions2FunctionSecretEnvironmentVariables {
 
   final TfArg<String> version;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'project_id': projectId.toTfJson(),
@@ -686,6 +722,7 @@ final class Cloudfunctions2FunctionSecretVolumes {
 
   final List<Cloudfunctions2FunctionVersions>? versions;
 
+  @internal
   Map<String, Object?> encode() => {
     'mount_path': mountPath.toTfJson(),
     'project_id': projectId.toTfJson(),
@@ -707,6 +744,7 @@ final class Cloudfunctions2FunctionVersions {
 
   final TfArg<String> version;
 
+  @internal
   Map<String, Object?> encode() => {
     'path': path.toTfJson(),
     'version': version.toTfJson(),

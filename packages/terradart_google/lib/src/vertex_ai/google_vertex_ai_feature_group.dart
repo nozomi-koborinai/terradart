@@ -20,6 +20,7 @@ final class VertexAiFeatureGroupBigQuery {
 
   final VertexAiFeatureGroupBigQuerySource bigQuerySource;
 
+  @internal
   Map<String, Object?> encode() => {
     'entity_id_columns': ?entityIdColumns?.toTfJson(),
     'big_query_source': bigQuerySource.encode(),
@@ -34,6 +35,7 @@ final class VertexAiFeatureGroupBigQuerySource {
 
   final TfArg<String> inputUri;
 
+  @internal
   Map<String, Object?> encode() => {'input_uri': inputUri.toTfJson()};
 }
 

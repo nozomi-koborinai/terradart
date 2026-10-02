@@ -20,6 +20,7 @@ final class NetworkServicesEdgeCacheServiceLogConfig {
 
   final TfArg<num>? sampleRate;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable': ?enable?.toTfJson(),
     'sample_rate': ?sampleRate?.toTfJson(),
@@ -39,6 +40,7 @@ final class NetworkServicesEdgeCacheServiceRouting {
 
   final List<NetworkServicesEdgeCacheServicePathMatcher> pathMatcher;
 
+  @internal
   Map<String, Object?> encode() => {
     'host_rule': [for (final e in hostRule) e.encode()],
     'path_matcher': [for (final e in pathMatcher) e.encode()],
@@ -61,6 +63,7 @@ final class NetworkServicesEdgeCacheServiceHostRule {
 
   final TfArg<String> pathMatcher;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'hosts': hosts.toTfJson(),
@@ -84,6 +87,7 @@ final class NetworkServicesEdgeCacheServicePathMatcher {
 
   final List<NetworkServicesEdgeCacheServiceRouteRule> routeRule;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'name': name.toTfJson(),
@@ -122,6 +126,7 @@ final class NetworkServicesEdgeCacheServiceRouteRule {
 
   final NetworkServicesEdgeCacheServiceUrlRedirect? urlRedirect;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'origin': ?origin?.toTfJson(),
@@ -157,6 +162,7 @@ final class NetworkServicesEdgeCacheServiceHeaderAction {
   final List<NetworkServicesEdgeCacheServiceResponseHeaderToRemove>?
   responseHeaderToRemove;
 
+  @internal
   Map<String, Object?> encode() => {
     if (requestHeaderToAdd != null)
       'request_header_to_add': [
@@ -193,6 +199,7 @@ final class NetworkServicesEdgeCacheServiceRequestHeaderToAdd {
 
   final TfArg<bool>? replace;
 
+  @internal
   Map<String, Object?> encode() => {
     'header_name': headerName.toTfJson(),
     'header_value': headerValue.toTfJson(),
@@ -210,6 +217,7 @@ final class NetworkServicesEdgeCacheServiceRequestHeaderToRemove {
 
   final TfArg<String> headerName;
 
+  @internal
   Map<String, Object?> encode() => {'header_name': headerName.toTfJson()};
 }
 
@@ -229,6 +237,7 @@ final class NetworkServicesEdgeCacheServiceResponseHeaderToAdd {
 
   final TfArg<bool>? replace;
 
+  @internal
   Map<String, Object?> encode() => {
     'header_name': headerName.toTfJson(),
     'header_value': headerValue.toTfJson(),
@@ -246,6 +255,7 @@ final class NetworkServicesEdgeCacheServiceResponseHeaderToRemove {
 
   final TfArg<String> headerName;
 
+  @internal
   Map<String, Object?> encode() => {'header_name': headerName.toTfJson()};
 }
 
@@ -275,6 +285,7 @@ final class NetworkServicesEdgeCacheServiceMatchRule {
   final List<NetworkServicesEdgeCacheServiceQueryParameterMatch>?
   queryParameterMatch;
 
+  @internal
   Map<String, Object?> encode() => {
     'full_path_match': ?fullPathMatch?.toTfJson(),
     'ignore_case': ?ignoreCase?.toTfJson(),
@@ -314,6 +325,7 @@ final class NetworkServicesEdgeCacheServiceHeaderMatch {
 
   final TfArg<String>? suffixMatch;
 
+  @internal
   Map<String, Object?> encode() => {
     'exact_match': ?exactMatch?.toTfJson(),
     'header_name': headerName.toTfJson(),
@@ -340,6 +352,7 @@ final class NetworkServicesEdgeCacheServiceQueryParameterMatch {
 
   final TfArg<bool>? presentMatch;
 
+  @internal
   Map<String, Object?> encode() => {
     'exact_match': ?exactMatch?.toTfJson(),
     'name': name.toTfJson(),
@@ -366,6 +379,7 @@ final class NetworkServicesEdgeCacheServiceRouteAction {
 
   final NetworkServicesEdgeCacheServiceUrlRewrite? urlRewrite;
 
+  @internal
   Map<String, Object?> encode() => {
     'compression_mode': ?compressionMode?.toTfJson(),
     'cdn_policy': ?cdnPolicy?.encode(),
@@ -441,6 +455,7 @@ final class NetworkServicesEdgeCacheServiceCdnPolicy {
 
   final NetworkServicesEdgeCacheServiceSignedTokenOptions? signedTokenOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'cache_mode': ?cacheMode?.toTfJson(),
     'client_ttl': ?clientTtl?.toTfJson(),
@@ -541,6 +556,7 @@ final class NetworkServicesEdgeCacheServiceAddSignatures {
 
   final TfArg<String>? tokenTtl;
 
+  @internal
   Map<String, Object?> encode() => {
     'actions': [for (final e in actions) e.toTfJson()],
     'copied_parameters': ?copiedParameters?.toTfJson(),
@@ -607,6 +623,7 @@ final class NetworkServicesEdgeCacheServiceCacheKeyPolicy {
 
   final TfArg<List<String>>? includedQueryParameters;
 
+  @internal
   Map<String, Object?> encode() => {
     'exclude_host': ?excludeHost?.toTfJson(),
     'exclude_query_string': ?excludeQueryString?.toTfJson(),
@@ -632,6 +649,7 @@ final class NetworkServicesEdgeCacheServiceSignedTokenOptions {
 
   final TfArg<String>? tokenQueryParameter;
 
+  @internal
   Map<String, Object?> encode() => {
     if (allowedSignatureAlgorithms != null)
       'allowed_signature_algorithms': [
@@ -700,6 +718,7 @@ final class NetworkServicesEdgeCacheServiceCorsPolicy {
 
   final TfArg<String> maxAge;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_credentials': ?allowCredentials?.toTfJson(),
     'allow_headers': ?allowHeaders?.toTfJson(),
@@ -727,6 +746,7 @@ final class NetworkServicesEdgeCacheServiceUrlRewrite {
 
   final TfArg<String>? pathTemplateRewrite;
 
+  @internal
   Map<String, Object?> encode() => {
     'host_rewrite': ?hostRewrite?.toTfJson(),
     'path_prefix_rewrite': ?pathPrefixRewrite?.toTfJson(),
@@ -742,6 +762,7 @@ final class NetworkServicesEdgeCacheServiceRouteMethods {
 
   final TfArg<List<String>>? allowedMethods;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed_methods': ?allowedMethods?.toTfJson(),
   };
@@ -773,6 +794,7 @@ final class NetworkServicesEdgeCacheServiceUrlRedirect {
 
   final TfArg<bool>? stripQuery;
 
+  @internal
   Map<String, Object?> encode() => {
     'host_redirect': ?hostRedirect?.toTfJson(),
     'https_redirect': ?httpsRedirect?.toTfJson(),

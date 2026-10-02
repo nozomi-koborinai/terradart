@@ -25,12 +25,15 @@ sealed class S3BucketAclPolicy {
   const factory S3BucketAclPolicy.acl(TfArg<String> acl) = S3BucketAclPolicyAcl;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -40,14 +43,17 @@ final class S3BucketAclAccessControlPolicyChoice extends S3BucketAclPolicy {
 
   final S3BucketAclAccessControlPolicy accessControlPolicy;
 
+  @internal
   @override
   String get blockKey => 'access_control_policy';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'access_control_policy': accessControlPolicy.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'access_control_policy': TfArg.literal(accessControlPolicy.encode()),
@@ -60,12 +66,15 @@ final class S3BucketAclPolicyAcl extends S3BucketAclPolicy {
 
   final TfArg<String> acl;
 
+  @internal
   @override
   String get blockKey => 'acl';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'acl': acl.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'acl': acl};
 }
@@ -80,6 +89,7 @@ final class S3BucketAclAccessControlPolicy {
 
   final S3BucketAclOwner owner;
 
+  @internal
   Map<String, Object?> encode() => {
     if (grant != null) 'grant': [for (final e in grant!) e.encode()],
     'owner': owner.encode(),
@@ -96,6 +106,7 @@ final class S3BucketAclGrant {
 
   final S3BucketAclGrantee? grantee;
 
+  @internal
   Map<String, Object?> encode() => {
     'permission': permission.toTfJson(),
     'grantee': ?grantee?.encode(),
@@ -146,6 +157,7 @@ final class S3BucketAclGrantee {
 
   final TfArg<String>? uri;
 
+  @internal
   Map<String, Object?> encode() => {
     'email_address': ?emailAddress?.toTfJson(),
     'id': ?id?.toTfJson(),
@@ -185,6 +197,7 @@ final class S3BucketAclOwner {
 
   final TfArg<String> id;
 
+  @internal
   Map<String, Object?> encode() => {
     'display_name': ?displayName?.toTfJson(),
     'id': id.toTfJson(),

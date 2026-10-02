@@ -3,6 +3,7 @@
 /// AWS Timestream for InfluxDB.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/timestreaminfluxdb/aws_timestreaminfluxdb_db_cluster.dart'
     show
         AwsTimestreaminfluxdbDbCluster,

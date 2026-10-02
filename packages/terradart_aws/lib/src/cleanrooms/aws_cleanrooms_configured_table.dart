@@ -20,6 +20,7 @@ final class CleanroomsConfiguredTableReference {
 
   final TfArg<String> tableName;
 
+  @internal
   Map<String, Object?> encode() => {
     'database_name': databaseName.toTfJson(),
     'table_name': tableName.toTfJson(),

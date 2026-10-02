@@ -75,6 +75,7 @@ final class LambdaFunctionUrlCors {
 
   final TfArg<num>? maxAge;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_credentials': ?allowCredentials?.toTfJson(),
     'allow_headers': ?allowHeaders?.toTfJson(),

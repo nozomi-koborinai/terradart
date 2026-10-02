@@ -26,6 +26,7 @@ final class CeCostCategoryRule {
 
   final CeCostCategoryRuleRule? rule;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': ?type?.toTfJson(),
     'value': ?value?.toTfJson(),
@@ -60,6 +61,7 @@ final class CeCostCategoryInheritedValue {
 
   final CeCostCategoryDimensionName? dimensionName;
 
+  @internal
   Map<String, Object?> encode() => {
     'dimension_key': ?dimensionKey?.toTfJson(),
     'dimension_name': ?dimensionName?.toTfJson(),
@@ -111,6 +113,7 @@ final class CeCostCategoryRuleRule {
 
   final CeCostCategoryRuleTags? tags;
 
+  @internal
   Map<String, Object?> encode() => {
     if (and != null) 'and': [for (final e in and!) e.encode()],
     'cost_category': ?costCategory?.encode(),
@@ -146,6 +149,7 @@ final class CeCostCategoryAnd {
 
   final CeCostCategoryAndTags? tags;
 
+  @internal
   Map<String, Object?> encode() => {
     if (and != null) 'and': [for (final e in and!) e.encode()],
     'cost_category': ?costCategory?.encode(),
@@ -169,6 +173,7 @@ final class CeCostCategoryAndAnd {
 
   final CeCostCategoryAndTags? tags;
 
+  @internal
   Map<String, Object?> encode() => {
     'cost_category': ?costCategory?.encode(),
     'dimension': ?dimension?.encode(),
@@ -193,6 +198,7 @@ final class CeCostCategoryAndCostCategory {
 
   final TfArg<List<String>>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
     'match_options': ?matchOptions?.toTfJson(),
@@ -213,6 +219,7 @@ final class CeCostCategoryAndDimension {
 
   final TfArg<List<String>>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
     'match_options': ?matchOptions?.toTfJson(),
@@ -233,6 +240,7 @@ final class CeCostCategoryAndTags {
 
   final TfArg<List<String>>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
     'match_options': ?matchOptions?.toTfJson(),
@@ -253,6 +261,7 @@ final class CeCostCategoryAndNot {
 
   final CeCostCategoryAndTags? tags;
 
+  @internal
   Map<String, Object?> encode() => {
     'cost_category': ?costCategory?.encode(),
     'dimension': ?dimension?.encode(),
@@ -273,6 +282,7 @@ final class CeCostCategoryAndOr {
 
   final CeCostCategoryAndTags? tags;
 
+  @internal
   Map<String, Object?> encode() => {
     'cost_category': ?costCategory?.encode(),
     'dimension': ?dimension?.encode(),
@@ -292,6 +302,7 @@ final class CeCostCategory {
 
   final TfArg<List<String>>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
     if (matchOptions != null)
@@ -354,6 +365,7 @@ final class CeCostCategoryDimension {
 
   final TfArg<List<String>>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
     if (matchOptions != null)
@@ -516,6 +528,7 @@ final class CeCostCategoryNot {
 
   final CeCostCategoryAndTags? tags;
 
+  @internal
   Map<String, Object?> encode() => {
     if (and != null) 'and': [for (final e in and!) e.encode()],
     'cost_category': ?costCategory?.encode(),
@@ -551,6 +564,7 @@ final class CeCostCategoryOr {
 
   final CeCostCategoryAndTags? tags;
 
+  @internal
   Map<String, Object?> encode() => {
     if (and != null) 'and': [for (final e in and!) e.encode()],
     'cost_category': ?costCategory?.encode(),
@@ -573,6 +587,7 @@ final class CeCostCategoryRuleTags {
 
   final TfArg<List<String>>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
     if (matchOptions != null)
@@ -600,6 +615,7 @@ final class CeCostCategorySplitChargeRule {
 
   final List<CeCostCategoryParameter>? parameter;
 
+  @internal
   Map<String, Object?> encode() => {
     'method': method.toTfJson(),
     'source': source.toTfJson(),
@@ -636,6 +652,7 @@ final class CeCostCategoryParameter {
 
   final TfArg<List<String>>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': ?type?.toTfJson(),
     'values': ?values?.toTfJson(),

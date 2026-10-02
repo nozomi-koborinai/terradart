@@ -26,6 +26,7 @@ final class CesToolsetConnectorToolset {
 
   final List<CesToolsetConnectorActions> connectorActions;
 
+  @internal
   Map<String, Object?> encode() => {
     'connection': connection.toTfJson(),
     'auth_config': ?authConfig?.encode(),
@@ -46,6 +47,7 @@ final class CesToolsetAuthConfig {
 
   final CesToolsetOauth2JwtBearerConfig? oauth2JwtBearerConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'oauth2_auth_code_config': ?oauth2AuthCodeConfig?.encode(),
     'oauth2_jwt_bearer_config': ?oauth2JwtBearerConfig?.encode(),
@@ -60,6 +62,7 @@ final class CesToolsetOauth2AuthCodeConfig {
 
   final TfArg<String> oauthToken;
 
+  @internal
   Map<String, Object?> encode() => {'oauth_token': oauthToken.toTfJson()};
 }
 
@@ -79,6 +82,7 @@ final class CesToolsetOauth2JwtBearerConfig {
 
   final TfArg<String> subject;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_key': clientKey.toTfJson(),
     'issuer': issuer.toTfJson(),
@@ -105,6 +109,7 @@ final class CesToolsetConnectorActions {
 
   final CesToolsetEntityOperation? entityOperation;
 
+  @internal
   Map<String, Object?> encode() => {
     'connection_action_id': ?connectionActionId?.toTfJson(),
     'input_fields': ?inputFields?.toTfJson(),
@@ -126,6 +131,7 @@ final class CesToolsetEntityOperation {
 
   final TfArg<String> operation;
 
+  @internal
   Map<String, Object?> encode() => {
     'entity_id': entityId.toTfJson(),
     'operation': operation.toTfJson(),
@@ -157,6 +163,7 @@ final class CesToolsetMcpToolset {
 
   final List<CesToolsetToolOverrides>? toolOverrides;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_headers': ?customHeaders?.toTfJson(),
     'server_address': serverAddress.toTfJson(),
@@ -191,6 +198,7 @@ final class CesToolsetApiAuthentication {
 
   final CesToolsetServiceAgentIdTokenAuthConfig? serviceAgentIdTokenAuthConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'api_key_config': ?apiKeyConfig?.encode(),
     'bearer_token_config': ?bearerTokenConfig?.encode(),
@@ -218,6 +226,7 @@ final class CesToolsetApiKeyConfig {
 
   final TfArg<String> requestLocation;
 
+  @internal
   Map<String, Object?> encode() => {
     'api_key_secret_version': apiKeySecretVersion.toTfJson(),
     'key_name': keyName.toTfJson(),
@@ -234,6 +243,7 @@ final class CesToolsetBearerTokenConfig {
 
   final TfArg<String>? token;
 
+  @internal
   Map<String, Object?> encode() => {'token': ?token?.toTfJson()};
 }
 
@@ -260,6 +270,7 @@ final class CesToolsetOauthConfig {
 
   final TfArg<String> tokenEndpoint;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_id': clientId.toTfJson(),
     'client_secret_version': clientSecretVersion.toTfJson(),
@@ -283,6 +294,7 @@ final class CesToolsetServiceAccountAuthConfig {
 
   final RefTo<GoogleServiceAccount> serviceAccount;
 
+  @internal
   Map<String, Object?> encode() => {
     'scopes': ?scopes?.toTfJson(),
     'service_account': serviceAccount.encodeAs('email').toTfJson(),
@@ -296,6 +308,7 @@ final class CesToolsetServiceAccountAuthConfig {
 final class CesToolsetServiceAgentIdTokenAuthConfig {
   const CesToolsetServiceAgentIdTokenAuthConfig();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -308,6 +321,7 @@ final class CesToolsetServiceDirectoryConfig {
 
   final TfArg<String> service;
 
+  @internal
   Map<String, Object?> encode() => {'service': service.toTfJson()};
 }
 
@@ -320,6 +334,7 @@ final class CesToolsetTlsConfig {
 
   final List<CesToolsetCaCerts> caCerts;
 
+  @internal
   Map<String, Object?> encode() => {
     'ca_certs': [for (final e in caCerts) e.encode()],
   };
@@ -336,6 +351,7 @@ final class CesToolsetCaCerts {
 
   final TfArg<String> displayName;
 
+  @internal
   Map<String, Object?> encode() => {
     'cert': cert.toTfJson(),
     'display_name': displayName.toTfJson(),
@@ -358,6 +374,7 @@ final class CesToolsetToolOverrides {
 
   final TfArg<String> tool;
 
+  @internal
   Map<String, Object?> encode() => {
     'description_override': ?descriptionOverride?.toTfJson(),
     'name_override': ?nameOverride?.toTfJson(),
@@ -387,6 +404,7 @@ final class CesToolsetOpenApiToolset {
 
   final CesToolsetTlsConfig? tlsConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'ignore_unknown_fields': ?ignoreUnknownFields?.toTfJson(),
     'open_api_schema': openApiSchema.toTfJson(),
@@ -406,6 +424,7 @@ final class CesToolsetToolFakeConfig {
 
   final CesToolsetCodeBlock? codeBlock;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_fake_mode': ?enableFakeMode?.toTfJson(),
     'code_block': ?codeBlock?.encode(),
@@ -420,6 +439,7 @@ final class CesToolsetCodeBlock {
 
   final TfArg<String> pythonCode;
 
+  @internal
   Map<String, Object?> encode() => {'python_code': pythonCode.toTfJson()};
 }
 

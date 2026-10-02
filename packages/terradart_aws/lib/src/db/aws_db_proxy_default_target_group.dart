@@ -30,6 +30,7 @@ final class DbProxyDefaultTargetGroupConnectionPoolConfig {
   final List<DbProxyDefaultTargetGroupSessionPinningFilters>?
   sessionPinningFilters;
 
+  @internal
   Map<String, Object?> encode() => {
     'connection_borrow_timeout': ?connectionBorrowTimeout?.toTfJson(),
     'init_query': ?initQuery?.toTfJson(),

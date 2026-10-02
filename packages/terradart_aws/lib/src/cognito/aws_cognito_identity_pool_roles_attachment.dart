@@ -29,6 +29,7 @@ final class CognitoIdentityPoolRolesAttachmentRoleMapping {
 
   final List<CognitoIdentityPoolRolesAttachmentMappingRule>? mappingRule;
 
+  @internal
   Map<String, Object?> encode() => {
     'ambiguous_role_resolution': ?ambiguousRoleResolution?.toTfJson(),
     'identity_provider': identityProvider.toTfJson(),
@@ -107,6 +108,7 @@ final class CognitoIdentityPoolRolesAttachmentMappingRule {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'claim': claim.toTfJson(),
     'match_type': matchType.toTfJson(),

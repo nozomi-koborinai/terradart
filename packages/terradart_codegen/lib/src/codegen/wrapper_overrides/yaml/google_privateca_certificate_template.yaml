@@ -66,6 +66,7 @@ prelude: |
     final TfArg<String>? location;
     final TfArg<String>? title;
 
+    @internal
     Map<String, Object?> encode() => {
       if (description != null) 'description': description,
       if (expression != null) 'expression': expression,
@@ -86,6 +87,7 @@ prelude: |
     final TfArg<bool> allowSubjectPassthrough;
     final PrivatecaCertificateTemplateCelExpression? celExpression;
 
+    @internal
     Map<String, Object?> encode() => {
       'allow_subject_alt_names_passthrough': allowSubjectAltNamesPassthrough,
       'allow_subject_passthrough': allowSubjectPassthrough,

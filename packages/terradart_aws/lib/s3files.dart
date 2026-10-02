@@ -3,6 +3,17 @@
 /// `s3files` file systems, access points, and mount targets.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_s3files_access_point.dart'
+    show
+        DataAwsS3filesAccessPoint,
+        DataS3filesAccessPointCreationPermissions,
+        DataS3filesAccessPointPosixUser,
+        DataS3filesAccessPointRootDirectory;
+export 'src/data/aws_s3files_file_system.dart' show DataAwsS3filesFileSystem;
+export 'src/data/aws_s3files_file_systems.dart'
+    show DataAwsS3filesFileSystems, DataS3filesFileSystems;
+export 'src/data/aws_s3files_mount_target.dart' show DataAwsS3filesMountTarget;
 export 'src/s3files/aws_s3files_access_point.dart'
     show
         AwsS3filesAccessPoint,

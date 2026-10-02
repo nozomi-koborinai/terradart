@@ -30,6 +30,7 @@ final class EbsSnapshotImportClientData {
 
   final TfArg<String>? uploadStart;
 
+  @internal
   Map<String, Object?> encode() => {
     'comment': ?comment?.toTfJson(),
     'upload_end': ?uploadEnd?.toTfJson(),
@@ -54,6 +55,7 @@ final class EbsSnapshotImportDiskContainer {
 
   final EbsSnapshotImportSource source;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'format': format.toTfJson(),
@@ -78,8 +80,10 @@ sealed class EbsSnapshotImportSource {
   ) = EbsSnapshotImportSourceUserBucket;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -89,9 +93,11 @@ final class EbsSnapshotImportSourceUrl extends EbsSnapshotImportSource {
 
   final TfArg<String> url;
 
+  @internal
   @override
   String get blockKey => 'url';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'url': url.toTfJson()};
 }
@@ -102,9 +108,11 @@ final class EbsSnapshotImportSourceUserBucket extends EbsSnapshotImportSource {
 
   final EbsSnapshotImportUserBucket userBucket;
 
+  @internal
   @override
   String get blockKey => 'user_bucket';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'user_bucket': userBucket.encode()};
 }
@@ -137,6 +145,7 @@ final class EbsSnapshotImportUserBucket {
 
   final TfArg<String> s3Key;
 
+  @internal
   Map<String, Object?> encode() => {
     's3_bucket': s3Bucket.encodeAs('id').toTfJson(),
     's3_key': s3Key.toTfJson(),

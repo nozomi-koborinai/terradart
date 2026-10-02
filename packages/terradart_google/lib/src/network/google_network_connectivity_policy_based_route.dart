@@ -50,12 +50,14 @@ sealed class NetworkConnectivityPolicyBasedRouteNextHop {
   ) = NetworkConnectivityPolicyBasedRouteNextHopOtherRoutesChoice;
 
   /// argMap key (`next_hop_ilb_ip` or `next_hop_other_routes`).
+  @internal
   String get blockKey;
 
   /// Value emitted under [blockKey] (string VIP or enum / string route).
   TfArg<dynamic> get value;
 
   /// Flat `{blockKey: value}` payload for Gate 6 encode round-trip.
+  @internal
   Map<String, Object?> encode() => {blockKey: value.toTfJson()};
 }
 
@@ -70,6 +72,7 @@ final class NetworkConnectivityPolicyBasedRouteNextHopIlbIp
   final TfArg<dynamic> value;
 
   @override
+  @internal
   String get blockKey => 'next_hop_ilb_ip';
 }
 
@@ -85,6 +88,7 @@ final class NetworkConnectivityPolicyBasedRouteNextHopOtherRoutesChoice
   final TfArg<dynamic> value;
 
   @override
+  @internal
   String get blockKey => 'next_hop_other_routes';
 }
 
@@ -108,12 +112,15 @@ sealed class NetworkConnectivityPolicyBasedRouteScope {
   ) = NetworkConnectivityPolicyBasedRouteScopeInterconnectAttachment;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -126,12 +133,15 @@ final class NetworkConnectivityPolicyBasedRouteScopeVirtualMachine
 
   final NetworkConnectivityPolicyBasedRouteVirtualMachine virtualMachine;
 
+  @internal
   @override
   String get blockKey => 'virtual_machine';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'virtual_machine': virtualMachine.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'virtual_machine': TfArg.literal(virtualMachine.encode()),
@@ -148,14 +158,17 @@ final class NetworkConnectivityPolicyBasedRouteScopeInterconnectAttachment
   final NetworkConnectivityPolicyBasedRouteInterconnectAttachment
   interconnectAttachment;
 
+  @internal
   @override
   String get blockKey => 'interconnect_attachment';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'interconnect_attachment': interconnectAttachment.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'interconnect_attachment': TfArg.literal(interconnectAttachment.encode()),
@@ -181,6 +194,7 @@ final class NetworkConnectivityPolicyBasedRouteFilter {
 
   final TfArg<String>? srcRange;
 
+  @internal
   Map<String, Object?> encode() => {
     'dest_range': ?destRange?.toTfJson(),
     'ip_protocol': ?ipProtocol?.toTfJson(),
@@ -222,6 +236,7 @@ final class NetworkConnectivityPolicyBasedRouteInterconnectAttachment {
 
   final TfArg<String> region;
 
+  @internal
   Map<String, Object?> encode() => {'region': region.toTfJson()};
 }
 
@@ -233,6 +248,7 @@ final class NetworkConnectivityPolicyBasedRouteVirtualMachine {
 
   final TfArg<List<String>> tags;
 
+  @internal
   Map<String, Object?> encode() => {'tags': tags.toTfJson()};
 }
 

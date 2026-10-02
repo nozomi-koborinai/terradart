@@ -79,6 +79,7 @@ class BigqueryDatasetAccessAuthDatasetReference {
   final RefTo<GoogleBigqueryDataset> datasetId;
   final TfArg<String> projectId;
 
+  @internal
   Map<String, Object?> encode() => {
     'dataset_id': datasetId.encodeAs('dataset_id').toTfJson(),
     'project_id': projectId.toTfJson(),
@@ -101,6 +102,7 @@ class BigqueryDatasetAccessAuthorizedDataset {
   /// [BigqueryDatasetAccessDatasetTargetType.views]).
   final List<BigqueryDatasetAccessDatasetTargetType> targetTypes;
 
+  @internal
   Map<String, Object?> encode() => {
     'dataset': dataset.encode(),
     'target_types': targetTypes.map((t) => t.toTfJson()).toList(),
@@ -120,6 +122,7 @@ class BigqueryDatasetAccessAuthorizedView {
   final TfArg<String> projectId;
   final TfArg<String> tableId;
 
+  @internal
   Map<String, Object?> encode() => {
     'dataset_id': datasetId.encodeAs('dataset_id').toTfJson(),
     'project_id': projectId.toTfJson(),
@@ -141,6 +144,7 @@ class BigqueryDatasetAccessAuthorizedRoutine {
   final TfArg<String> projectId;
   final TfArg<String> routineId;
 
+  @internal
   Map<String, Object?> encode() => {
     'dataset_id': datasetId.encodeAs('dataset_id').toTfJson(),
     'project_id': projectId.toTfJson(),
@@ -195,12 +199,15 @@ sealed class BigqueryDatasetAccessGrantee {
   ) = BigqueryDatasetAccessGranteeRoutine;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -211,12 +218,15 @@ final class BigqueryDatasetAccessGranteeUserByEmail
 
   final TfArg<String> userByEmail;
 
+  @internal
   @override
   String get blockKey => 'user_by_email';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'user_by_email': userByEmail.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'user_by_email': userByEmail};
 }
@@ -228,12 +238,15 @@ final class BigqueryDatasetAccessGranteeGroupByEmail
 
   final TfArg<String> groupByEmail;
 
+  @internal
   @override
   String get blockKey => 'group_by_email';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'group_by_email': groupByEmail.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'group_by_email': groupByEmail};
 }
@@ -245,12 +258,15 @@ final class BigqueryDatasetAccessGranteeDomain
 
   final TfArg<String> domain;
 
+  @internal
   @override
   String get blockKey => 'domain';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'domain': domain.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'domain': domain};
 }
@@ -262,12 +278,15 @@ final class BigqueryDatasetAccessGranteeSpecialGroup
 
   final BigqueryDatasetAccessPredefinedGroup specialGroup;
 
+  @internal
   @override
   String get blockKey => 'special_group';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'special_group': specialGroup.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'special_group': specialGroup};
 }
@@ -279,12 +298,15 @@ final class BigqueryDatasetAccessGranteeIamMember
 
   final TfArg<String> iamMember;
 
+  @internal
   @override
   String get blockKey => 'iam_member';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'iam_member': iamMember.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'iam_member': iamMember};
 }
@@ -296,12 +318,15 @@ final class BigqueryDatasetAccessGranteeView
 
   final BigqueryDatasetAccessAuthorizedView view;
 
+  @internal
   @override
   String get blockKey => 'view';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'view': view.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'view': TfArg.literal(view.encode()),
@@ -315,12 +340,15 @@ final class BigqueryDatasetAccessGranteeDataset
 
   final BigqueryDatasetAccessAuthorizedDataset authorizedDataset;
 
+  @internal
   @override
   String get blockKey => 'dataset';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'dataset': authorizedDataset.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'dataset': TfArg.literal(authorizedDataset.encode()),
@@ -334,12 +362,15 @@ final class BigqueryDatasetAccessGranteeRoutine
 
   final BigqueryDatasetAccessAuthorizedRoutine routine;
 
+  @internal
   @override
   String get blockKey => 'routine';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'routine': routine.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'routine': TfArg.literal(routine.encode()),

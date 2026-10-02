@@ -60,12 +60,15 @@ sealed class CertificateManagerCertificateProvisioning {
   ) = CertificateManagerCertificateProvisioningManaged;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -76,12 +79,15 @@ final class CertificateManagerCertificateProvisioningSelfManaged
 
   final CertificateManagerCertificateSelfManaged selfManaged;
 
+  @internal
   @override
   String get blockKey => 'self_managed';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'self_managed': selfManaged.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'self_managed': TfArg.literal(selfManaged.encode()),
@@ -95,12 +101,15 @@ final class CertificateManagerCertificateProvisioningManaged
 
   final CertificateManagerCertificateManaged managed;
 
+  @internal
   @override
   String get blockKey => 'managed';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'managed': managed.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'managed': TfArg.literal(managed.encode()),
@@ -123,6 +132,7 @@ final class CertificateManagerCertificateManaged {
 
   final TfArg<String>? issuanceConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'dns_authorizations': ?dnsAuthorizations?.toTfJson(),
     'domains': ?domains?.toTfJson(),
@@ -146,6 +156,7 @@ final class CertificateManagerCertificateSelfManaged {
 
   final TfArg<String>? pemPrivateKeyWoVersion;
 
+  @internal
   Map<String, Object?> encode() => {
     ...certificate.encode(),
     ...privateKey.encode(),
@@ -171,8 +182,10 @@ sealed class CertificateManagerCertificateSelfManagedCertificate {
   ) = CertificateManagerCertificateSelfManagedPemCertificate;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -185,9 +198,11 @@ final class CertificateManagerCertificateSelfManagedCertificatePem
 
   final Sensitive<String> certificatePem;
 
+  @internal
   @override
   String get blockKey => 'certificate_pem';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'certificate_pem': certificatePem.toTfJson(),
@@ -203,9 +218,11 @@ final class CertificateManagerCertificateSelfManagedPemCertificate
 
   final TfArg<String> pemCertificate;
 
+  @internal
   @override
   String get blockKey => 'pem_certificate';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'pem_certificate': pemCertificate.toTfJson(),
@@ -235,8 +252,10 @@ sealed class CertificateManagerCertificatePrivateKey {
   ) = CertificateManagerCertificatePrivateKeyPemPrivateKeyWo;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -247,9 +266,11 @@ final class CertificateManagerCertificatePrivateKeyPem
 
   final Sensitive<String> privateKeyPem;
 
+  @internal
   @override
   String get blockKey => 'private_key_pem';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'private_key_pem': privateKeyPem.toTfJson(),
@@ -263,9 +284,11 @@ final class CertificateManagerCertificatePemPrivateKey
 
   final Sensitive<String> pemPrivateKey;
 
+  @internal
   @override
   String get blockKey => 'pem_private_key';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'pem_private_key': pemPrivateKey.toTfJson(),
@@ -281,9 +304,11 @@ final class CertificateManagerCertificatePrivateKeyPemPrivateKeyWo
 
   final TfArg<String> pemPrivateKeyWo;
 
+  @internal
   @override
   String get blockKey => 'pem_private_key_wo';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'pem_private_key_wo': pemPrivateKeyWo.toTfJson(),

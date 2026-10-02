@@ -30,6 +30,7 @@ final class LightsailContainerServiceDeploymentVersionContainer {
 
   final TfArg<Map<String, String>>? ports;
 
+  @internal
   Map<String, Object?> encode() => {
     'command': ?command?.toTfJson(),
     'container_name': containerName.toTfJson(),
@@ -55,6 +56,7 @@ final class LightsailContainerServiceDeploymentVersionPublicEndpoint {
 
   final LightsailContainerServiceDeploymentVersionHealthCheck healthCheck;
 
+  @internal
   Map<String, Object?> encode() => {
     'container_name': containerName.toTfJson(),
     'container_port': containerPort.toTfJson(),
@@ -87,6 +89,7 @@ final class LightsailContainerServiceDeploymentVersionHealthCheck {
 
   final TfArg<num>? unhealthyThreshold;
 
+  @internal
   Map<String, Object?> encode() => {
     'healthy_threshold': ?healthyThreshold?.toTfJson(),
     'interval_seconds': ?intervalSeconds?.toTfJson(),

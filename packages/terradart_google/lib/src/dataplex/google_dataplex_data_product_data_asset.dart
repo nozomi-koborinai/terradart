@@ -23,6 +23,7 @@ final class DataplexDataProductDataAssetAccessGroupConfigs {
 
   final TfArg<List<String>>? iamRoles;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_group': accessGroup.toTfJson(),
     'iam_roles': ?iamRoles?.toTfJson(),

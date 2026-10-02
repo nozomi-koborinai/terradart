@@ -19,6 +19,7 @@ final class S3BucketAnalyticsConfigurationFilter {
 
   final TfArg<Map<String, String>>? tags;
 
+  @internal
   Map<String, Object?> encode() => {
     'prefix': ?prefix?.toTfJson(),
     'tags': ?tags?.toTfJson(),
@@ -35,6 +36,7 @@ final class S3BucketAnalyticsConfigurationStorageClassAnalysis {
 
   final S3BucketAnalyticsConfigurationDataExport dataExport;
 
+  @internal
   Map<String, Object?> encode() => {'data_export': dataExport.encode()};
 }
 
@@ -51,6 +53,7 @@ final class S3BucketAnalyticsConfigurationDataExport {
 
   final S3BucketAnalyticsConfigurationDestination destination;
 
+  @internal
   Map<String, Object?> encode() => {
     'output_schema_version': ?outputSchemaVersion?.toTfJson(),
     'destination': destination.encode(),
@@ -86,6 +89,7 @@ final class S3BucketAnalyticsConfigurationDestination {
 
   final S3BucketAnalyticsConfigurationS3BucketDestination s3BucketDestination;
 
+  @internal
   Map<String, Object?> encode() => {
     's3_bucket_destination': s3BucketDestination.encode(),
   };
@@ -110,6 +114,7 @@ final class S3BucketAnalyticsConfigurationS3BucketDestination {
 
   final TfArg<String>? prefix;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_account_id': ?bucketAccountId?.toTfJson(),
     'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),

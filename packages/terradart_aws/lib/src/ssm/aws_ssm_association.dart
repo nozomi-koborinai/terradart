@@ -74,6 +74,7 @@ final class SsmAssociationOutputLocation {
 
   final TfArg<String>? s3Region;
 
+  @internal
   Map<String, Object?> encode() => {
     's3_bucket_name': s3BucketName.encodeAs('id').toTfJson(),
     's3_key_prefix': ?s3KeyPrefix?.toTfJson(),
@@ -91,6 +92,7 @@ final class SsmAssociationTargets {
 
   final TfArg<List<String>> values;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'values': values.toTfJson(),

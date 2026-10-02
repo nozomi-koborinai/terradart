@@ -29,6 +29,7 @@ final class DataAccountDnsSettingsInternalViewsName {
 
   final TfArg<String>? startswith;
 
+  @internal
   Map<String, Object?> encode() => {
     'contains': ?contains?.toTfJson(),
     'endswith': ?endswith?.toTfJson(),

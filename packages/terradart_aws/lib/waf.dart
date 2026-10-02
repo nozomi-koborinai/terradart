@@ -3,6 +3,13 @@
 /// AWS WAF Classic.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_waf_ipset.dart' show DataAwsWafIpset;
+export 'src/data/aws_waf_rate_based_rule.dart' show DataAwsWafRateBasedRule;
+export 'src/data/aws_waf_rule.dart' show DataAwsWafRule;
+export 'src/data/aws_waf_subscribed_rule_group.dart'
+    show DataAwsWafSubscribedRuleGroup;
+export 'src/data/aws_waf_web_acl.dart' show DataAwsWafWebAcl;
 export 'src/waf/aws_waf_byte_match_set.dart'
     show
         AwsWafByteMatchSet,

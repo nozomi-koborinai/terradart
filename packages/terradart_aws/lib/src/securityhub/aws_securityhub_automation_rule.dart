@@ -39,6 +39,7 @@ final class SecurityhubAutomationRuleActions {
 
   final List<SecurityhubAutomationRuleFindingFieldsUpdate>? findingFieldsUpdate;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': ?type?.toTfJson(),
     if (findingFieldsUpdate != null)
@@ -102,6 +103,7 @@ final class SecurityhubAutomationRuleFindingFieldsUpdate {
 
   final List<SecurityhubAutomationRuleWorkflow>? workflow;
 
+  @internal
   Map<String, Object?> encode() => {
     'confidence': ?confidence?.toTfJson(),
     'criticality': ?criticality?.toTfJson(),
@@ -166,6 +168,7 @@ final class SecurityhubAutomationRuleNote {
 
   final TfArg<String> updatedBy;
 
+  @internal
   Map<String, Object?> encode() => {
     'text': text.toTfJson(),
     'updated_by': updatedBy.toTfJson(),
@@ -185,6 +188,7 @@ final class SecurityhubAutomationRuleRelatedFindings {
 
   final TfArg<String> productArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
     'product_arn': productArn.toTfJson(),
@@ -201,6 +205,7 @@ final class SecurityhubAutomationRuleSeverity {
 
   final TfArg<num>? product;
 
+  @internal
   Map<String, Object?> encode() => {
     'label': ?label?.toTfJson(),
     'product': ?product?.toTfJson(),
@@ -245,6 +250,7 @@ final class SecurityhubAutomationRuleWorkflow {
 
   final SecurityhubAutomationRuleFindingFieldsUpdateStatus? status;
 
+  @internal
   Map<String, Object?> encode() => {'status': ?status?.toTfJson()};
 }
 
@@ -405,6 +411,7 @@ final class SecurityhubAutomationRuleCriteria {
 
   final List<SecurityhubAutomationRuleWorkflowStatus>? workflowStatus;
 
+  @internal
   Map<String, Object?> encode() => {
     if (awsAccountId != null)
       'aws_account_id': [for (final e in awsAccountId!) e.encode()],
@@ -506,6 +513,7 @@ final class SecurityhubAutomationRuleAwsAccountId {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -570,6 +578,7 @@ final class SecurityhubAutomationRuleAwsAccountName {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -589,6 +598,7 @@ final class SecurityhubAutomationRuleCompanyName {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -608,6 +618,7 @@ final class SecurityhubAutomationRuleComplianceAssociatedStandardsId {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -627,6 +638,7 @@ final class SecurityhubAutomationRuleComplianceSecurityControlId {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -646,6 +658,7 @@ final class SecurityhubAutomationRuleComplianceStatus {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -674,6 +687,7 @@ final class SecurityhubAutomationRuleConfidence {
 
   final TfArg<num>? lte;
 
+  @internal
   Map<String, Object?> encode() => {
     'eq': ?eq?.toTfJson(),
     'gt': ?gt?.toTfJson(),
@@ -699,6 +713,7 @@ final class SecurityhubAutomationRuleCreatedAt {
 
   final List<SecurityhubAutomationRuleDateRange>? dateRange;
 
+  @internal
   Map<String, Object?> encode() => {
     'end': ?end?.toTfJson(),
     'start': ?start?.toTfJson(),
@@ -721,6 +736,7 @@ final class SecurityhubAutomationRuleDateRange {
 
   final TfArg<num> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'unit': unit.toTfJson(),
     'value': value.toTfJson(),
@@ -763,6 +779,7 @@ final class SecurityhubAutomationRuleCriticality {
 
   final TfArg<num>? lte;
 
+  @internal
   Map<String, Object?> encode() => {
     'eq': ?eq?.toTfJson(),
     'gt': ?gt?.toTfJson(),
@@ -785,6 +802,7 @@ final class SecurityhubAutomationRuleCriteriaDescription {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -807,6 +825,7 @@ final class SecurityhubAutomationRuleFirstObservedAt {
 
   final List<SecurityhubAutomationRuleDateRange>? dateRange;
 
+  @internal
   Map<String, Object?> encode() => {
     'end': ?end?.toTfJson(),
     'start': ?start?.toTfJson(),
@@ -828,6 +847,7 @@ final class SecurityhubAutomationRuleGeneratorId {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -847,6 +867,7 @@ final class SecurityhubAutomationRuleCriteriaId {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -869,6 +890,7 @@ final class SecurityhubAutomationRuleLastObservedAt {
 
   final List<SecurityhubAutomationRuleDateRange>? dateRange;
 
+  @internal
   Map<String, Object?> encode() => {
     'end': ?end?.toTfJson(),
     'start': ?start?.toTfJson(),
@@ -890,6 +912,7 @@ final class SecurityhubAutomationRuleNoteText {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -912,6 +935,7 @@ final class SecurityhubAutomationRuleNoteUpdatedAt {
 
   final List<SecurityhubAutomationRuleDateRange>? dateRange;
 
+  @internal
   Map<String, Object?> encode() => {
     'end': ?end?.toTfJson(),
     'start': ?start?.toTfJson(),
@@ -933,6 +957,7 @@ final class SecurityhubAutomationRuleNoteUpdatedBy {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -952,6 +977,7 @@ final class SecurityhubAutomationRuleProductArn {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -971,6 +997,7 @@ final class SecurityhubAutomationRuleProductName {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -990,6 +1017,7 @@ final class SecurityhubAutomationRuleRecordState {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1009,6 +1037,7 @@ final class SecurityhubAutomationRuleRelatedFindingsId {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1028,6 +1057,7 @@ final class SecurityhubAutomationRuleRelatedFindingsProductArn {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1047,6 +1077,7 @@ final class SecurityhubAutomationRuleResourceApplicationArn {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1066,6 +1097,7 @@ final class SecurityhubAutomationRuleResourceApplicationName {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1088,6 +1120,7 @@ final class SecurityhubAutomationRuleResourceDetailsOther {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'key': key.toTfJson(),
@@ -1142,6 +1175,7 @@ final class SecurityhubAutomationRuleResourceId {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1161,6 +1195,7 @@ final class SecurityhubAutomationRuleResourcePartition {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1180,6 +1215,7 @@ final class SecurityhubAutomationRuleResourceRegion {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1202,6 +1238,7 @@ final class SecurityhubAutomationRuleResourceTags {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'key': key.toTfJson(),
@@ -1222,6 +1259,7 @@ final class SecurityhubAutomationRuleResourceType {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1241,6 +1279,7 @@ final class SecurityhubAutomationRuleSeverityLabel {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1260,6 +1299,7 @@ final class SecurityhubAutomationRuleSourceUrl {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1279,6 +1319,7 @@ final class SecurityhubAutomationRuleTitle {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1298,6 +1339,7 @@ final class SecurityhubAutomationRuleCriteriaType {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1320,6 +1362,7 @@ final class SecurityhubAutomationRuleUpdatedAt {
 
   final List<SecurityhubAutomationRuleDateRange>? dateRange;
 
+  @internal
   Map<String, Object?> encode() => {
     'end': ?end?.toTfJson(),
     'start': ?start?.toTfJson(),
@@ -1344,6 +1387,7 @@ final class SecurityhubAutomationRuleUserDefinedFields {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'key': key.toTfJson(),
@@ -1364,6 +1408,7 @@ final class SecurityhubAutomationRuleVerificationState {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
@@ -1383,6 +1428,7 @@ final class SecurityhubAutomationRuleWorkflowStatus {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),

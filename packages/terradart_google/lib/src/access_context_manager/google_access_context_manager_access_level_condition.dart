@@ -41,6 +41,7 @@ final class AccessContextManagerAccessLevelConditionDevicePolicy {
   final List<AccessContextManagerAccessLevelConditionOsConstraints>?
   osConstraints;
 
+  @internal
   Map<String, Object?> encode() => {
     if (allowedDeviceManagementLevels != null)
       'allowed_device_management_levels': [
@@ -150,6 +151,7 @@ final class AccessContextManagerAccessLevelConditionOsConstraints {
 
   final AccessContextManagerAccessLevelConditionOsType osType;
 
+  @internal
   Map<String, Object?> encode() => {
     'minimum_version': ?minimumVersion?.toTfJson(),
     'os_type': osType.toTfJson(),
@@ -212,6 +214,7 @@ final class AccessContextManagerAccessLevelConditionVpcNetworkSources {
 
   final AccessContextManagerAccessLevelConditionVpcSubnetwork? vpcSubnetwork;
 
+  @internal
   Map<String, Object?> encode() => {'vpc_subnetwork': ?vpcSubnetwork?.encode()};
 }
 
@@ -228,6 +231,7 @@ final class AccessContextManagerAccessLevelConditionVpcSubnetwork {
 
   final TfArg<List<String>>? vpcIpSubnetworks;
 
+  @internal
   Map<String, Object?> encode() => {
     'network': network.toTfJson(),
     'vpc_ip_subnetworks': ?vpcIpSubnetworks?.toTfJson(),

@@ -20,6 +20,7 @@ final class SecretsmanagerSecretRotationExternalSecretRotationMetadata {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'value': value.toTfJson(),
@@ -39,6 +40,7 @@ final class SecretsmanagerSecretRotationRules {
 
   final TfArg<String>? duration;
 
+  @internal
   Map<String, Object?> encode() => {
     ...schedule.encode(),
     'duration': ?duration?.toTfJson(),
@@ -63,8 +65,10 @@ sealed class SecretsmanagerSecretRotationSchedule {
   ) = SecretsmanagerSecretRotationScheduleExpression;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -77,9 +81,11 @@ final class SecretsmanagerSecretRotationScheduleAutomaticallyAfterDays
 
   final TfArg<num> automaticallyAfterDays;
 
+  @internal
   @override
   String get blockKey => 'automatically_after_days';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'automatically_after_days': automaticallyAfterDays.toTfJson(),
@@ -93,9 +99,11 @@ final class SecretsmanagerSecretRotationScheduleExpression
 
   final TfArg<String> scheduleExpression;
 
+  @internal
   @override
   String get blockKey => 'schedule_expression';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'schedule_expression': scheduleExpression.toTfJson(),

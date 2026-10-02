@@ -50,6 +50,7 @@ prelude: |
 
     final TfArg<String>? pemCertificate;
 
+    @internal
     Map<String, Object?> encode() => {
       if (pemCertificate != null) 'pem_certificate': pemCertificate,
     };
@@ -61,6 +62,7 @@ prelude: |
 
     final TfArg<String>? pemCertificate;
 
+    @internal
     Map<String, Object?> encode() => {
       if (pemCertificate != null) 'pem_certificate': pemCertificate,
     };
@@ -76,6 +78,7 @@ prelude: |
     final List<CertificateManagerTrustConfigTrustAnchor>? trustAnchors;
     final List<CertificateManagerTrustConfigIntermediateCa>? intermediateCas;
 
+    @internal
     Map<String, Object?> encode() => {
       if (trustAnchors != null)
         'trust_anchors': trustAnchors!.map((a) => a.encode()).toList(),
@@ -92,6 +95,7 @@ prelude: |
 
     final TfArg<String> pemCertificate;
 
+    @internal
     Map<String, Object?> encode() => {'pem_certificate': pemCertificate};
   }
 

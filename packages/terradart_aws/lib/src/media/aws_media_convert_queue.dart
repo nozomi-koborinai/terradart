@@ -56,6 +56,7 @@ final class MediaConvertQueueReservationPlanSettings {
 
   final TfArg<num> reservedSlots;
 
+  @internal
   Map<String, Object?> encode() => {
     'commitment': commitment.toTfJson(),
     'renewal_type': renewalType.toTfJson(),

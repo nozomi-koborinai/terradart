@@ -4,6 +4,17 @@
 /// dataset `*_iam_member` adjunct.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/google_healthcare_consent_store_iam_policy.dart'
+    show DataGoogleHealthcareConsentStoreIamPolicy;
+export 'src/data/google_healthcare_dataset_iam_policy.dart'
+    show DataGoogleHealthcareDatasetIamPolicy;
+export 'src/data/google_healthcare_dicom_store_iam_policy.dart'
+    show DataGoogleHealthcareDicomStoreIamPolicy;
+export 'src/data/google_healthcare_fhir_store_iam_policy.dart'
+    show DataGoogleHealthcareFhirStoreIamPolicy;
+export 'src/data/google_healthcare_hl7_v2_store_iam_policy.dart'
+    show DataGoogleHealthcareHl7V2StoreIamPolicy;
 export 'src/healthcare/google_healthcare_consent_store.dart'
     show GoogleHealthcareConsentStore;
 export 'src/healthcare/google_healthcare_consent_store_iam_binding.dart'

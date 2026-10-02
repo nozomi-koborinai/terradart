@@ -15,7 +15,7 @@ This guide matches the [README quickstart](https://github.com/nozomi-koborinai/t
 
 ## 1. Add dependencies
 
-`terradart_core` plus the package for each provider your Stack uses (all on [pub.dev](https://pub.dev/packages/terradart_core)):
+`terradart_core` plus the package for each provider your Stack uses (all on [pub.dev](https://pub.dev/packages/terradart_core)). Every provider barrel re-exports `terradart_core`, so the Stack itself imports only the barrels:
 
 <Tabs syncKey="provider">
 <TabItem label="Google Cloud">
@@ -88,7 +88,6 @@ A Stack is one Terraform root module. `add` registers a resource; `addConstant` 
 
 ```dart
 // lib/orders_stack.dart
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/pubsub.dart';
 
@@ -115,7 +114,6 @@ final class OrdersStack extends Stack {
 // lib/queue_stack.dart
 import 'package:terradart_aws/provider.dart';
 import 'package:terradart_aws/sqs.dart';
-import 'package:terradart_core/terradart_core.dart';
 
 final class QueueStack extends Stack {
   QueueStack()
@@ -143,7 +141,6 @@ More on AWS — Lambda, ECS Express Mode, S3 + CloudFront: [Dart apps on AWS](/d
 import 'package:terradart_cloudflare/dns.dart';
 import 'package:terradart_cloudflare/provider.dart';
 import 'package:terradart_cloudflare/zone.dart';
-import 'package:terradart_core/terradart_core.dart';
 
 final class EdgeStack extends Stack {
   EdgeStack({required String accountId})
@@ -180,7 +177,6 @@ Runnable: [`examples/cloudflare_dns_quickstart`](https://github.com/nozomi-kobor
 // lib/uploads_stack.dart
 import 'package:terradart_appwrite/provider.dart';
 import 'package:terradart_appwrite/storage.dart';
-import 'package:terradart_core/terradart_core.dart';
 
 final class UploadsStack extends Stack {
   UploadsStack()

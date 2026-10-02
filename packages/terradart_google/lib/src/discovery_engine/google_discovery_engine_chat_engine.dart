@@ -40,6 +40,7 @@ final class DiscoveryEngineChatEngineConfig {
 
   final DiscoveryEngineChatEngineAgent agent;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_cross_region': ?allowCrossRegion?.toTfJson(),
     ...agent.encode(),
@@ -64,8 +65,10 @@ sealed class DiscoveryEngineChatEngineAgent {
   ) = DiscoveryEngineChatEngineAgentDialogflowAgentToLink;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -78,9 +81,11 @@ final class DiscoveryEngineChatEngineAgentCreationConfigChoice
 
   final DiscoveryEngineChatEngineAgentCreationConfig agentCreationConfig;
 
+  @internal
   @override
   String get blockKey => 'agent_creation_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'agent_creation_config': agentCreationConfig.encode(),
@@ -96,9 +101,11 @@ final class DiscoveryEngineChatEngineAgentDialogflowAgentToLink
 
   final TfArg<String> dialogflowAgentToLink;
 
+  @internal
   @override
   String get blockKey => 'dialogflow_agent_to_link';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'dialogflow_agent_to_link': dialogflowAgentToLink.toTfJson(),
@@ -124,6 +131,7 @@ final class DiscoveryEngineChatEngineAgentCreationConfig {
 
   final TfArg<String> timeZone;
 
+  @internal
   Map<String, Object?> encode() => {
     'business': ?business?.toTfJson(),
     'default_language_code': defaultLanguageCode.toTfJson(),
@@ -140,6 +148,7 @@ final class DiscoveryEngineChatEngineCommonConfig {
 
   final TfArg<String>? companyName;
 
+  @internal
   Map<String, Object?> encode() => {'company_name': ?companyName?.toTfJson()};
 }
 

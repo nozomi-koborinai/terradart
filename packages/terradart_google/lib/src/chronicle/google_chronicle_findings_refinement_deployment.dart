@@ -24,6 +24,7 @@ final class ChronicleFindingsRefinementDeploymentDetectionExclusionApplication {
 
   final TfArg<List<String>>? rules;
 
+  @internal
   Map<String, Object?> encode() => {
     'curated_rule_sets': ?curatedRuleSets?.toTfJson(),
     'curated_rules': ?curatedRules?.toTfJson(),

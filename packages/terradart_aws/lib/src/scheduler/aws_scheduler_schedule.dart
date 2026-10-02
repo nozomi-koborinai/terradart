@@ -66,12 +66,15 @@ sealed class SchedulerScheduleName {
       SchedulerScheduleNamePrefix;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -81,12 +84,15 @@ final class SchedulerScheduleNameChoice extends SchedulerScheduleName {
 
   final TfArg<String> name;
 
+  @internal
   @override
   String get blockKey => 'name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
@@ -97,12 +103,15 @@ final class SchedulerScheduleNamePrefix extends SchedulerScheduleName {
 
   final TfArg<String> namePrefix;
 
+  @internal
   @override
   String get blockKey => 'name_prefix';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'name_prefix': namePrefix.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'name_prefix': namePrefix};
 }
@@ -120,6 +129,7 @@ final class SchedulerScheduleFlexibleTimeWindow {
 
   final SchedulerScheduleMode mode;
 
+  @internal
   Map<String, Object?> encode() => {
     'maximum_window_in_minutes': ?maximumWindowInMinutes?.toTfJson(),
     'mode': mode.toTfJson(),
@@ -178,6 +188,7 @@ final class SchedulerScheduleTarget {
 
   final SchedulerScheduleSqsParameters? sqsParameters;
 
+  @internal
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
     'input': ?input?.toTfJson(),
@@ -200,6 +211,7 @@ final class SchedulerScheduleDeadLetterConfig {
 
   final TfArg<String> arn;
 
+  @internal
   Map<String, Object?> encode() => {'arn': arn.toTfJson()};
 }
 
@@ -253,6 +265,7 @@ final class SchedulerScheduleEcsParameters {
 
   final List<SchedulerSchedulePlacementStrategy>? placementStrategy;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_ecs_managed_tags': ?enableEcsManagedTags?.toTfJson(),
     'enable_execute_command': ?enableExecuteCommand?.toTfJson(),
@@ -332,6 +345,7 @@ final class SchedulerScheduleCapacityProviderStrategy {
 
   final TfArg<num>? weight;
 
+  @internal
   Map<String, Object?> encode() => {
     'base': ?base?.toTfJson(),
     'capacity_provider': capacityProvider.toTfJson(),
@@ -355,6 +369,7 @@ final class SchedulerScheduleNetworkConfiguration {
 
   final TfArg<List<RefTo<AwsSubnet>>> subnets;
 
+  @internal
   Map<String, Object?> encode() => {
     'assign_public_ip': ?assignPublicIp?.toTfJson(),
     'security_groups': ?securityGroups?.encodeAs('id').toTfJson(),
@@ -375,6 +390,7 @@ final class SchedulerSchedulePlacementConstraints {
 
   final SchedulerSchedulePlacementConstraintsType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'expression': ?expression?.toTfJson(),
     'type': type.toTfJson(),
@@ -415,6 +431,7 @@ final class SchedulerSchedulePlacementStrategy {
 
   final SchedulerSchedulePlacementStrategyType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'field': ?field?.toTfJson(),
     'type': type.toTfJson(),
@@ -461,6 +478,7 @@ final class SchedulerScheduleEventbridgeParameters {
 
   final TfArg<String> source;
 
+  @internal
   Map<String, Object?> encode() => {
     'detail_type': detailType.toTfJson(),
     'source': source.toTfJson(),
@@ -475,6 +493,7 @@ final class SchedulerScheduleKinesisParameters {
 
   final TfArg<String> partitionKey;
 
+  @internal
   Map<String, Object?> encode() => {'partition_key': partitionKey.toTfJson()};
 }
 
@@ -491,6 +510,7 @@ final class SchedulerScheduleRetryPolicy {
 
   final TfArg<num>? maximumRetryAttempts;
 
+  @internal
   Map<String, Object?> encode() => {
     'maximum_event_age_in_seconds': ?maximumEventAgeInSeconds?.toTfJson(),
     'maximum_retry_attempts': ?maximumRetryAttempts?.toTfJson(),
@@ -505,6 +525,7 @@ final class SchedulerScheduleSagemakerPipelineParameters {
 
   final List<SchedulerSchedulePipelineParameter>? pipelineParameter;
 
+  @internal
   Map<String, Object?> encode() => {
     if (pipelineParameter != null)
       'pipeline_parameter': [for (final e in pipelineParameter!) e.encode()],
@@ -524,6 +545,7 @@ final class SchedulerSchedulePipelineParameter {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'value': value.toTfJson(),
@@ -538,6 +560,7 @@ final class SchedulerScheduleSqsParameters {
 
   final TfArg<String>? messageGroupId;
 
+  @internal
   Map<String, Object?> encode() => {
     'message_group_id': ?messageGroupId?.toTfJson(),
   };

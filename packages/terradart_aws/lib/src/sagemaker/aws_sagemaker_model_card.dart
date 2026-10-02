@@ -40,6 +40,7 @@ final class SagemakerModelCardSecurityConfig {
 
   final RefTo<AwsKmsKey> kmsKeyId;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_id': kmsKeyId.encodeAs('arn').toTfJson(),
   };

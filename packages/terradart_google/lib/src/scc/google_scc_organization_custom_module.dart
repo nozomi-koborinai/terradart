@@ -56,6 +56,7 @@ final class SccOrganizationCustomModuleCustomConfig {
 
   final SccOrganizationCustomModuleResourceSelector resourceSelector;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'recommendation': recommendation.toTfJson(),
@@ -103,6 +104,7 @@ final class SccOrganizationCustomModuleCustomOutput {
 
   final List<SccOrganizationCustomModuleProperties>? properties;
 
+  @internal
   Map<String, Object?> encode() => {
     if (properties != null)
       'properties': [for (final e in properties!) e.encode()],
@@ -122,6 +124,7 @@ final class SccOrganizationCustomModuleProperties {
 
   final SccOrganizationCustomModuleValueExpression? valueExpression;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'value_expression': ?valueExpression?.encode(),
@@ -147,6 +150,7 @@ final class SccOrganizationCustomModuleValueExpression {
 
   final TfArg<String>? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'expression': expression.toTfJson(),
@@ -174,6 +178,7 @@ final class SccOrganizationCustomModulePredicate {
 
   final TfArg<String>? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'expression': expression.toTfJson(),
@@ -192,6 +197,7 @@ final class SccOrganizationCustomModuleResourceSelector {
 
   final TfArg<List<String>> resourceTypes;
 
+  @internal
   Map<String, Object?> encode() => {'resource_types': resourceTypes.toTfJson()};
 }
 

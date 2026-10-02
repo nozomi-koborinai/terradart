@@ -20,6 +20,7 @@ final class AppsyncChannelNamespaceHandlerConfigs {
 
   final List<AppsyncChannelNamespaceOnSubscribe>? onSubscribe;
 
+  @internal
   Map<String, Object?> encode() => {
     if (onPublish != null)
       'on_publish': [for (final e in onPublish!) e.encode()],
@@ -41,6 +42,7 @@ final class AppsyncChannelNamespaceOnPublish {
 
   final List<AppsyncChannelNamespaceIntegration>? integration;
 
+  @internal
   Map<String, Object?> encode() => {
     'behavior': behavior.toTfJson(),
     if (integration != null)
@@ -79,6 +81,7 @@ final class AppsyncChannelNamespaceIntegration {
 
   final List<AppsyncChannelNamespaceLambdaConfig>? lambdaConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_source_name': dataSourceName.toTfJson(),
     if (lambdaConfig != null)
@@ -95,6 +98,7 @@ final class AppsyncChannelNamespaceLambdaConfig {
 
   final AppsyncChannelNamespaceInvokeType? invokeType;
 
+  @internal
   Map<String, Object?> encode() => {'invoke_type': ?invokeType?.toTfJson()};
 }
 
@@ -133,6 +137,7 @@ final class AppsyncChannelNamespaceOnSubscribe {
 
   final List<AppsyncChannelNamespaceIntegration>? integration;
 
+  @internal
   Map<String, Object?> encode() => {
     'behavior': behavior.toTfJson(),
     if (integration != null)
@@ -148,6 +153,7 @@ final class AppsyncChannelNamespacePublishAuthMode {
 
   final AppsyncChannelNamespaceAuthType authType;
 
+  @internal
   Map<String, Object?> encode() => {'auth_type': authType.toTfJson()};
 }
 
@@ -193,6 +199,7 @@ final class AppsyncChannelNamespaceSubscribeAuthMode {
 
   final AppsyncChannelNamespaceAuthType authType;
 
+  @internal
   Map<String, Object?> encode() => {'auth_type': authType.toTfJson()};
 }
 

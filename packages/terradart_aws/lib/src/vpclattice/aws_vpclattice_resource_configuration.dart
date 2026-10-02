@@ -42,12 +42,15 @@ sealed class VpclatticeResourceConfigurationParent {
   ) = VpclatticeResourceConfigurationParentResourceGatewayIdentifier;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -60,14 +63,17 @@ final class VpclatticeResourceConfigurationParentResourceConfigurationGroupId
 
   final TfArg<String> resourceConfigurationGroupId;
 
+  @internal
   @override
   String get blockKey => 'resource_configuration_group_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'resource_configuration_group_id': resourceConfigurationGroupId.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'resource_configuration_group_id': resourceConfigurationGroupId,
@@ -83,14 +89,17 @@ final class VpclatticeResourceConfigurationParentResourceGatewayIdentifier
 
   final TfArg<String> resourceGatewayIdentifier;
 
+  @internal
   @override
   String get blockKey => 'resource_gateway_identifier';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'resource_gateway_identifier': resourceGatewayIdentifier.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'resource_gateway_identifier': resourceGatewayIdentifier,
@@ -120,8 +129,10 @@ sealed class VpclatticeResourceConfigurationDefinition {
   ) = VpclatticeResourceConfigurationDefinitionIpResource;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -132,9 +143,11 @@ final class VpclatticeResourceConfigurationDefinitionArnResource
 
   final List<VpclatticeResourceConfigurationArnResource> arnResource;
 
+  @internal
   @override
   String get blockKey => 'arn_resource';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'arn_resource': [for (final e in arnResource) e.encode()],
@@ -148,9 +161,11 @@ final class VpclatticeResourceConfigurationDefinitionDnsResource
 
   final List<VpclatticeResourceConfigurationDnsResource> dnsResource;
 
+  @internal
   @override
   String get blockKey => 'dns_resource';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'dns_resource': [for (final e in dnsResource) e.encode()],
@@ -164,9 +179,11 @@ final class VpclatticeResourceConfigurationDefinitionIpResource
 
   final List<VpclatticeResourceConfigurationIpResource> ipResource;
 
+  @internal
   @override
   String get blockKey => 'ip_resource';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'ip_resource': [for (final e in ipResource) e.encode()],
@@ -181,6 +198,7 @@ final class VpclatticeResourceConfigurationArnResource {
 
   final TfArg<String> arn;
 
+  @internal
   Map<String, Object?> encode() => {'arn': arn.toTfJson()};
 }
 
@@ -197,6 +215,7 @@ final class VpclatticeResourceConfigurationDnsResource {
 
   final VpclatticeResourceConfigurationIpAddressType ipAddressType;
 
+  @internal
   Map<String, Object?> encode() => {
     'domain_name': domainName.toTfJson(),
     'ip_address_type': ipAddressType.toTfJson(),
@@ -235,6 +254,7 @@ final class VpclatticeResourceConfigurationIpResource {
 
   final TfArg<String> ipAddress;
 
+  @internal
   Map<String, Object?> encode() => {'ip_address': ipAddress.toTfJson()};
 }
 

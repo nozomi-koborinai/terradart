@@ -4,6 +4,7 @@
 /// Hosting. Backends, build artifacts, custom domains, traffic split.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/firebase_app_hosting/google_firebase_app_hosting_backend.dart'
     show
         AppHostingServingLocality,

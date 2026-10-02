@@ -53,6 +53,7 @@ final class ApigeeOrganizationProperties {
 
   final List<ApigeeOrganizationProperty>? property;
 
+  @internal
   Map<String, Object?> encode() => {
     if (property != null) 'property': [for (final e in property!) e.encode()],
   };
@@ -68,6 +69,7 @@ final class ApigeeOrganizationProperty {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'value': ?value?.toTfJson(),

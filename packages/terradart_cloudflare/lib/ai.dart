@@ -3,6 +3,7 @@
 /// Cloudflare AI Gateway and AI Search.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/ai/cloudflare_ai_gateway.dart'
     show
         AiGatewayAction,
@@ -97,3 +98,24 @@ export 'src/ai/cloudflare_ai_search_namespace.dart'
         AiSearchNamespaceTechnique,
         CloudflareAiSearchNamespace;
 export 'src/ai/cloudflare_ai_search_token.dart' show CloudflareAiSearchToken;
+export 'src/data/cloudflare_ai_gateway.dart'
+    show DataAiGatewayFilter, DataCloudflareAiGateway;
+export 'src/data/cloudflare_ai_gateway_dynamic_routing.dart'
+    show DataCloudflareAiGatewayDynamicRouting;
+export 'src/data/cloudflare_ai_gateways.dart' show DataCloudflareAiGateways;
+export 'src/data/cloudflare_ai_search_instance.dart'
+    show
+        DataAiSearchInstanceFilter,
+        DataAiSearchInstanceOrderBy,
+        DataAiSearchInstanceOrderByDirection,
+        DataCloudflareAiSearchInstance;
+export 'src/data/cloudflare_ai_search_instances.dart'
+    show DataCloudflareAiSearchInstances;
+export 'src/data/cloudflare_ai_search_namespace.dart'
+    show DataCloudflareAiSearchNamespace;
+export 'src/data/cloudflare_ai_search_namespaces.dart'
+    show DataCloudflareAiSearchNamespaces;
+export 'src/data/cloudflare_ai_search_token.dart'
+    show DataAiSearchTokenFilter, DataCloudflareAiSearchToken;
+export 'src/data/cloudflare_ai_search_tokens.dart'
+    show DataCloudflareAiSearchTokens;

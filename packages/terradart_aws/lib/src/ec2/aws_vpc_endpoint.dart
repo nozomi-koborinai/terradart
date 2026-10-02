@@ -78,12 +78,15 @@ sealed class VpcEndpointService {
   ) = VpcEndpointServiceNetworkArn;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -96,14 +99,17 @@ final class VpcEndpointServiceResourceConfigurationArn
 
   final TfArg<String> resourceConfigurationArn;
 
+  @internal
   @override
   String get blockKey => 'resource_configuration_arn';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'resource_configuration_arn': resourceConfigurationArn.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'resource_configuration_arn': resourceConfigurationArn,
@@ -116,12 +122,15 @@ final class VpcEndpointServiceName extends VpcEndpointService {
 
   final TfArg<String> serviceName;
 
+  @internal
   @override
   String get blockKey => 'service_name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'service_name': serviceName.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'service_name': serviceName};
 }
@@ -132,14 +141,17 @@ final class VpcEndpointServiceNetworkArn extends VpcEndpointService {
 
   final TfArg<String> serviceNetworkArn;
 
+  @internal
   @override
   String get blockKey => 'service_network_arn';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'service_network_arn': serviceNetworkArn.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'service_network_arn': serviceNetworkArn,
@@ -165,6 +177,7 @@ final class VpcEndpointDnsOptions {
 
   final TfArg<List<String>>? privateDnsSpecifiedDomains;
 
+  @internal
   Map<String, Object?> encode() => {
     'dns_record_ip_type': ?dnsRecordIpType?.toTfJson(),
     'private_dns_only_for_inbound_resolver_endpoint':
@@ -243,6 +256,7 @@ final class VpcEndpointSubnetConfiguration {
 
   final RefTo<AwsSubnet>? subnetId;
 
+  @internal
   Map<String, Object?> encode() => {
     'ipv4': ?ipv4?.toTfJson(),
     'ipv6': ?ipv6?.toTfJson(),

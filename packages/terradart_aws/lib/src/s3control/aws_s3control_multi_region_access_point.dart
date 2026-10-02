@@ -25,6 +25,7 @@ final class S3controlMultiRegionAccessPointDetails {
 
   final List<S3controlMultiRegionAccessPointDetailsRegion> region;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'public_access_block': ?publicAccessBlock?.encode(),
@@ -51,6 +52,7 @@ final class S3controlMultiRegionAccessPointPublicAccessBlock {
 
   final TfArg<bool>? restrictPublicBuckets;
 
+  @internal
   Map<String, Object?> encode() => {
     'block_public_acls': ?blockPublicAcls?.toTfJson(),
     'block_public_policy': ?blockPublicPolicy?.toTfJson(),
@@ -72,6 +74,7 @@ final class S3controlMultiRegionAccessPointDetailsRegion {
 
   final TfArg<String>? bucketAccountId;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('id').toTfJson(),
     'bucket_account_id': ?bucketAccountId?.toTfJson(),

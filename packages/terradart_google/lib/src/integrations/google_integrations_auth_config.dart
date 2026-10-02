@@ -135,6 +135,7 @@ final class IntegrationsAuthConfigClientCertificate {
 
   final TfArg<String> sslCertificate;
 
+  @internal
   Map<String, Object?> encode() => {
     'encrypted_private_key': encryptedPrivateKey.toTfJson(),
     'passphrase': ?passphrase?.toTfJson(),
@@ -155,6 +156,7 @@ final class IntegrationsAuthConfigDecryptedCredential {
 
   final IntegrationsAuthConfigSecret? secret;
 
+  @internal
   Map<String, Object?> encode() => {
     'credential_type': credentialType.encodeAs('credential_type').toTfJson(),
     ...?secret?.encode(),
@@ -205,8 +207,10 @@ sealed class IntegrationsAuthConfigSecret {
   ) = IntegrationsAuthConfigSecretOidcToken;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -219,9 +223,11 @@ final class IntegrationsAuthConfigSecretUsernameAndPassword
 
   final IntegrationsAuthConfigUsernameAndPassword usernameAndPassword;
 
+  @internal
   @override
   String get blockKey => 'username_and_password';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'username_and_password': usernameAndPassword.encode(),
@@ -237,9 +243,11 @@ final class IntegrationsAuthConfigSecretOauth2AuthorizationCode
 
   final IntegrationsAuthConfigOauth2AuthorizationCode oauth2AuthorizationCode;
 
+  @internal
   @override
   String get blockKey => 'oauth2_authorization_code';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'oauth2_authorization_code': oauth2AuthorizationCode.encode(),
@@ -255,9 +263,11 @@ final class IntegrationsAuthConfigSecretOauth2ClientCredentials
 
   final IntegrationsAuthConfigOauth2ClientCredentials oauth2ClientCredentials;
 
+  @internal
   @override
   String get blockKey => 'oauth2_client_credentials';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'oauth2_client_credentials': oauth2ClientCredentials.encode(),
@@ -271,9 +281,11 @@ final class IntegrationsAuthConfigSecretJwt
 
   final IntegrationsAuthConfigJwt jwt;
 
+  @internal
   @override
   String get blockKey => 'jwt';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'jwt': jwt.encode()};
 }
@@ -285,9 +297,11 @@ final class IntegrationsAuthConfigSecretAuthToken
 
   final IntegrationsAuthConfigAuthToken authToken;
 
+  @internal
   @override
   String get blockKey => 'auth_token';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'auth_token': authToken.encode()};
 }
@@ -302,9 +316,11 @@ final class IntegrationsAuthConfigSecretServiceAccountCredentials
   final IntegrationsAuthConfigServiceAccountCredentials
   serviceAccountCredentials;
 
+  @internal
   @override
   String get blockKey => 'service_account_credentials';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'service_account_credentials': serviceAccountCredentials.encode(),
@@ -318,9 +334,11 @@ final class IntegrationsAuthConfigSecretOidcToken
 
   final IntegrationsAuthConfigOidcToken oidcToken;
 
+  @internal
   @override
   String get blockKey => 'oidc_token';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'oidc_token': oidcToken.encode()};
 }
@@ -335,6 +353,7 @@ final class IntegrationsAuthConfigAuthToken {
 
   final TfArg<String>? type;
 
+  @internal
   Map<String, Object?> encode() => {
     'token': ?token?.toTfJson(),
     'type': ?type?.toTfJson(),
@@ -357,6 +376,7 @@ final class IntegrationsAuthConfigJwt {
 
   final TfArg<String>? secret;
 
+  @internal
   Map<String, Object?> encode() => {
     'jwt_header': ?jwtHeader?.toTfJson(),
     'jwt_payload': ?jwtPayload?.toTfJson(),
@@ -386,6 +406,7 @@ final class IntegrationsAuthConfigOauth2AuthorizationCode {
 
   final TfArg<String>? tokenEndpoint;
 
+  @internal
   Map<String, Object?> encode() => {
     'auth_endpoint': ?authEndpoint?.toTfJson(),
     'client_id': ?clientId?.toTfJson(),
@@ -420,6 +441,7 @@ final class IntegrationsAuthConfigOauth2ClientCredentials {
 
   final IntegrationsAuthConfigTokenParams? tokenParams;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_id': ?clientId?.toTfJson(),
     'client_secret': ?clientSecret?.toTfJson(),
@@ -468,6 +490,7 @@ final class IntegrationsAuthConfigTokenParams {
 
   final List<IntegrationsAuthConfigEntries>? entries;
 
+  @internal
   Map<String, Object?> encode() => {
     if (entries != null) 'entries': [for (final e in entries!) e.encode()],
   };
@@ -483,6 +506,7 @@ final class IntegrationsAuthConfigEntries {
 
   final IntegrationsAuthConfigValue? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': ?key?.encode(),
     'value': ?value?.encode(),
@@ -497,6 +521,7 @@ final class IntegrationsAuthConfigKey {
 
   final IntegrationsAuthConfigLiteralValue? literalValue;
 
+  @internal
   Map<String, Object?> encode() => {'literal_value': ?literalValue?.encode()};
 }
 
@@ -509,6 +534,7 @@ final class IntegrationsAuthConfigLiteralValue {
 
   final TfArg<String>? stringValue;
 
+  @internal
   Map<String, Object?> encode() => {'string_value': ?stringValue?.toTfJson()};
 }
 
@@ -520,6 +546,7 @@ final class IntegrationsAuthConfigValue {
 
   final IntegrationsAuthConfigLiteralValue? literalValue;
 
+  @internal
   Map<String, Object?> encode() => {'literal_value': ?literalValue?.encode()};
 }
 
@@ -536,6 +563,7 @@ final class IntegrationsAuthConfigOidcToken {
 
   final RefTo<GoogleServiceAccount>? serviceAccountEmail;
 
+  @internal
   Map<String, Object?> encode() => {
     'audience': ?audience?.toTfJson(),
     'service_account_email': ?serviceAccountEmail?.encodeAs('email').toTfJson(),
@@ -555,6 +583,7 @@ final class IntegrationsAuthConfigServiceAccountCredentials {
 
   final RefTo<GoogleServiceAccount>? serviceAccount;
 
+  @internal
   Map<String, Object?> encode() => {
     'scope': ?scope?.toTfJson(),
     'service_account': ?serviceAccount?.encodeAs('email').toTfJson(),
@@ -574,6 +603,7 @@ final class IntegrationsAuthConfigUsernameAndPassword {
 
   final TfArg<String>? username;
 
+  @internal
   Map<String, Object?> encode() => {
     'password': ?password?.toTfJson(),
     'username': ?username?.toTfJson(),

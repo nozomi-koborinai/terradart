@@ -6,6 +6,7 @@
 /// automation rules, policy selectors) are passed as structured maps.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/clouddeploy/google_clouddeploy_automation.dart'
     show
         ClouddeployAutomationAdvanceRolloutRule,
@@ -135,3 +136,9 @@ export 'src/clouddeploy/google_clouddeploy_target_iam_member.dart'
     show ClouddeployTargetIamMemberCondition, GoogleClouddeployTargetIamMember;
 export 'src/clouddeploy/google_clouddeploy_target_iam_policy.dart'
     show GoogleClouddeployTargetIamPolicy;
+export 'src/data/google_clouddeploy_custom_target_type_iam_policy.dart'
+    show DataGoogleClouddeployCustomTargetTypeIamPolicy;
+export 'src/data/google_clouddeploy_delivery_pipeline_iam_policy.dart'
+    show DataGoogleClouddeployDeliveryPipelineIamPolicy;
+export 'src/data/google_clouddeploy_target_iam_policy.dart'
+    show DataGoogleClouddeployTargetIamPolicy;

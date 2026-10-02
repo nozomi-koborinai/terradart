@@ -22,6 +22,7 @@ final class LambdaFunctionEventInvokeConfigDestinationConfig {
 
   final LambdaFunctionEventInvokeConfigOnSuccess? onSuccess;
 
+  @internal
   Map<String, Object?> encode() => {
     'on_failure': ?onFailure?.encode(),
     'on_success': ?onSuccess?.encode(),
@@ -36,6 +37,7 @@ final class LambdaFunctionEventInvokeConfigOnFailure {
 
   final TfArg<String> destination;
 
+  @internal
   Map<String, Object?> encode() => {'destination': destination.toTfJson()};
 }
 
@@ -47,6 +49,7 @@ final class LambdaFunctionEventInvokeConfigOnSuccess {
 
   final TfArg<String> destination;
 
+  @internal
   Map<String, Object?> encode() => {'destination': destination.toTfJson()};
 }
 

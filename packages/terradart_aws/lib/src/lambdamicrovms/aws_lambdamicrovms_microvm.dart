@@ -26,6 +26,7 @@ final class LambdamicrovmsMicrovmIdlePolicy {
 
   final TfArg<num> suspendedDurationSeconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'auto_resume_enabled': autoResumeEnabled.toTfJson(),
     'max_idle_duration_seconds': maxIdleDurationSeconds.toTfJson(),
@@ -43,6 +44,7 @@ final class LambdamicrovmsMicrovmLogging {
 
   final List<LambdamicrovmsMicrovmDisabled>? disabled;
 
+  @internal
   Map<String, Object?> encode() => {
     if (cloudwatch != null)
       'cloudwatch': [for (final e in cloudwatch!) e.encode()],
@@ -60,6 +62,7 @@ final class LambdamicrovmsMicrovmCloudwatch {
 
   final TfArg<String>? logStream;
 
+  @internal
   Map<String, Object?> encode() => {
     'log_group': ?logGroup?.encodeAs('name').toTfJson(),
     'log_stream': ?logStream?.toTfJson(),
@@ -72,6 +75,7 @@ final class LambdamicrovmsMicrovmCloudwatch {
 final class LambdamicrovmsMicrovmDisabled {
   const LambdamicrovmsMicrovmDisabled();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 

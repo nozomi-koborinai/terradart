@@ -19,6 +19,7 @@ final class AgentregistryRegistryApprovalConfiguration {
 
   final List<AgentregistryRegistryAutoApprovalRules>? autoApprovalRules;
 
+  @internal
   Map<String, Object?> encode() => {
     if (autoApprovalRules != null)
       'auto_approval_rules': [for (final e in autoApprovalRules!) e.toTfJson()],
@@ -57,6 +58,7 @@ final class AgentregistryRegistryAutoDetectionConfiguration {
 
   final AgentregistryRegistryScope scope;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'scope': scope.toTfJson(),
@@ -93,6 +95,7 @@ final class AgentregistryRegistryDiscoveryConfiguration {
   final List<AgentregistryRegistryAuthorizerConfiguration>?
   authorizerConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'authorizer_type': authorizerType.toTfJson(),
     if (authorizerConfiguration != null)
@@ -135,6 +138,7 @@ final class AgentregistryRegistryAuthorizerConfiguration {
 
   final List<AgentregistryRegistryCustomJwtAuthorizer>? customJwtAuthorizer;
 
+  @internal
   Map<String, Object?> encode() => {
     if (customJwtAuthorizer != null)
       'custom_jwt_authorizer': [
@@ -172,6 +176,7 @@ final class AgentregistryRegistryCustomJwtAuthorizer {
   final List<AgentregistryRegistryPrivateEndpointOverride>?
   privateEndpointOverride;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed_audience': ?allowedAudience?.toTfJson(),
     'allowed_clients': ?allowedClients?.toTfJson(),
@@ -206,6 +211,7 @@ final class AgentregistryRegistryCustomClaim {
   final List<AgentregistryRegistryAuthorizingClaimMatchValue>?
   authorizingClaimMatchValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'inbound_token_claim_name': inboundTokenClaimName.toTfJson(),
     'inbound_token_claim_value_type': inboundTokenClaimValueType.toTfJson(),
@@ -253,6 +259,7 @@ final class AgentregistryRegistryAuthorizingClaimMatchValue {
 
   final List<AgentregistryRegistryClaimMatchValue>? claimMatchValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'claim_match_operator': claimMatchOperator.toTfJson(),
     if (claimMatchValue != null)
@@ -300,6 +307,7 @@ final class AgentregistryRegistryClaimMatchValue {
 
   final TfArg<List<String>>? matchValueStringList;
 
+  @internal
   Map<String, Object?> encode() => {
     'match_value_string': ?matchValueString?.toTfJson(),
     'match_value_string_list': ?matchValueStringList?.toTfJson(),
@@ -321,6 +329,7 @@ final class AgentregistryRegistryPrivateEndpoint {
   final List<AgentregistryRegistrySelfManagedLatticeResource>?
   selfManagedLatticeResource;
 
+  @internal
   Map<String, Object?> encode() => {
     if (managedVpcResource != null)
       'managed_vpc_resource': [for (final e in managedVpcResource!) e.encode()],
@@ -357,6 +366,7 @@ final class AgentregistryRegistryManagedVpcResource {
 
   final TfArg<String> vpcIdentifier;
 
+  @internal
   Map<String, Object?> encode() => {
     'endpoint_ip_address_type': endpointIpAddressType.toTfJson(),
     'routing_domain': ?routingDomain?.toTfJson(),
@@ -402,6 +412,7 @@ final class AgentregistryRegistrySelfManagedLatticeResource {
 
   final TfArg<String>? resourceConfigurationIdentifier;
 
+  @internal
   Map<String, Object?> encode() => {
     'resource_configuration_identifier': ?resourceConfigurationIdentifier
         ?.toTfJson(),
@@ -421,6 +432,7 @@ final class AgentregistryRegistryPrivateEndpointOverride {
 
   final List<AgentregistryRegistryPrivateEndpoint>? privateEndpoint;
 
+  @internal
   Map<String, Object?> encode() => {
     'domain': domain.toTfJson(),
     if (privateEndpoint != null)
@@ -436,6 +448,7 @@ final class AgentregistryRegistryEncryptionConfiguration {
 
   final RefTo<AwsKmsKey> kmsKeyArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_arn': kmsKeyArn.encodeAs('arn').toTfJson(),
   };

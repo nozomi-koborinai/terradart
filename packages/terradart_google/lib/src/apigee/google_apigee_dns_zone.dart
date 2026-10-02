@@ -20,6 +20,7 @@ final class ApigeeDnsZonePeeringConfig {
 
   final TfArg<String> targetProjectId;
 
+  @internal
   Map<String, Object?> encode() => {
     'target_network_id': targetNetworkId.toTfJson(),
     'target_project_id': targetProjectId.toTfJson(),

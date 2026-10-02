@@ -23,7 +23,6 @@ dependencies:
 import 'package:terradart_cloudflare/dns.dart';
 import 'package:terradart_cloudflare/provider.dart';
 import 'package:terradart_cloudflare/zone.dart';
-import 'package:terradart_core/terradart_core.dart';
 
 final class EdgeStack extends Stack {
   EdgeStack({required String accountId})

@@ -37,6 +37,7 @@ final class OpensearchOutboundConnectionProperties {
 
   final OpensearchOutboundConnectionCrossClusterSearch? crossClusterSearch;
 
+  @internal
   Map<String, Object?> encode() => {
     'cross_cluster_search': ?crossClusterSearch?.encode(),
   };
@@ -50,6 +51,7 @@ final class OpensearchOutboundConnectionCrossClusterSearch {
 
   final TfArg<String>? skipUnavailable;
 
+  @internal
   Map<String, Object?> encode() => {
     'skip_unavailable': ?skipUnavailable?.toTfJson(),
   };
@@ -71,6 +73,7 @@ final class OpensearchOutboundConnectionLocalDomainInfo {
 
   final TfArg<String> region;
 
+  @internal
   Map<String, Object?> encode() => {
     'domain_name': domainName.toTfJson(),
     'owner_id': ownerId.toTfJson(),
@@ -94,6 +97,7 @@ final class OpensearchOutboundConnectionRemoteDomainInfo {
 
   final TfArg<String> region;
 
+  @internal
   Map<String, Object?> encode() => {
     'domain_name': domainName.toTfJson(),
     'owner_id': ownerId.toTfJson(),

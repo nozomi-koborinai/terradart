@@ -31,12 +31,15 @@ sealed class SagemakerWorkforceIdentityProvider {
   ) = SagemakerWorkforceIdentityProviderOidcConfig;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -47,12 +50,15 @@ final class SagemakerWorkforceIdentityProviderCognitoConfig
 
   final SagemakerWorkforceCognitoConfig cognitoConfig;
 
+  @internal
   @override
   String get blockKey => 'cognito_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'cognito_config': cognitoConfig.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'cognito_config': TfArg.literal(cognitoConfig.encode()),
@@ -66,12 +72,15 @@ final class SagemakerWorkforceIdentityProviderOidcConfig
 
   final SagemakerWorkforceOidcConfig oidcConfig;
 
+  @internal
   @override
   String get blockKey => 'oidc_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'oidc_config': oidcConfig.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'oidc_config': TfArg.literal(oidcConfig.encode()),
@@ -91,6 +100,7 @@ final class SagemakerWorkforceCognitoConfig {
 
   final TfArg<String> userPool;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_id': clientId.toTfJson(),
     'user_pool': userPool.toTfJson(),
@@ -134,6 +144,7 @@ final class SagemakerWorkforceOidcConfig {
 
   final TfArg<String> userInfoEndpoint;
 
+  @internal
   Map<String, Object?> encode() => {
     'authentication_request_extra_params': ?authenticationRequestExtraParams
         ?.toTfJson(),
@@ -157,6 +168,7 @@ final class SagemakerWorkforceSourceIpConfig {
 
   final TfArg<List<String>> cidrs;
 
+  @internal
   Map<String, Object?> encode() => {'cidrs': cidrs.toTfJson()};
 }
 
@@ -176,6 +188,7 @@ final class SagemakerWorkforceVpcConfig {
 
   final RefTo<AwsVpc>? vpcId;
 
+  @internal
   Map<String, Object?> encode() => {
     'security_group_ids': ?securityGroupIds?.encodeAs('id').toTfJson(),
     'subnets': ?subnets?.encodeAs('id').toTfJson(),

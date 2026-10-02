@@ -26,6 +26,7 @@ final class DataCustomHostnamesHostname {
 
   final TfArg<String>? startsWith;
 
+  @internal
   Map<String, Object?> encode() => {
     'contain': ?contain?.toTfJson(),
     'exact': ?exact?.toTfJson(),

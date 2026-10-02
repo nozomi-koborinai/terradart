@@ -3,6 +3,11 @@
 /// AWS WorkSpaces.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_workspaces_bundle.dart' show DataAwsWorkspacesBundle;
+export 'src/data/aws_workspaces_directory.dart' show DataAwsWorkspacesDirectory;
+export 'src/data/aws_workspaces_image.dart' show DataAwsWorkspacesImage;
+export 'src/data/aws_workspaces_workspace.dart' show DataAwsWorkspacesWorkspace;
 export 'src/workspaces/aws_workspaces_connection_alias.dart'
     show AwsWorkspacesConnectionAlias;
 export 'src/workspaces/aws_workspaces_directory.dart'

@@ -31,6 +31,7 @@ final class ZoneTracingRules {
 
   final ZoneTracingRulesActionParameters actionParameters;
 
+  @internal
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
     'description': description.toTfJson(),
@@ -63,6 +64,7 @@ final class ZoneTracingRulesActionParameters {
 
   final TfArg<num> samplingRatio;
 
+  @internal
   Map<String, Object?> encode() => {'sampling_ratio': samplingRatio.toTfJson()};
 }
 

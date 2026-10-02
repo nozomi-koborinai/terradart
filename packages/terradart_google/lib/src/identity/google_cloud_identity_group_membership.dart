@@ -23,6 +23,7 @@ final class CloudIdentityGroupMembershipPreferredMemberKey {
 
   final TfArg<String>? namespace;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
     'namespace': ?namespace?.toTfJson(),
@@ -42,6 +43,7 @@ final class CloudIdentityGroupMembershipRoles {
 
   final CloudIdentityGroupMembershipExpiryDetail? expiryDetail;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'expiry_detail': ?expiryDetail?.encode(),
@@ -83,6 +85,7 @@ final class CloudIdentityGroupMembershipExpiryDetail {
 
   final TfArg<String> expireTime;
 
+  @internal
   Map<String, Object?> encode() => {'expire_time': expireTime.toTfJson()};
 }
 

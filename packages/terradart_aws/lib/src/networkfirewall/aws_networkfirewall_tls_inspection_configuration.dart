@@ -21,6 +21,7 @@ final class NetworkfirewallTlsInspectionConfiguration {
   >?
   serverCertificateConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     if (serverCertificateConfiguration != null)
       'server_certificate_configuration': [
@@ -52,6 +53,7 @@ final class NetworkfirewallTlsInspectionConfigurationServerCertificateConfigurat
   final List<NetworkfirewallTlsInspectionConfigurationServerCertificate>?
   serverCertificate;
 
+  @internal
   Map<String, Object?> encode() => {
     'certificate_authority_arn': ?certificateAuthorityArn?.toTfJson(),
     if (checkCertificateRevocationStatus != null)
@@ -79,6 +81,7 @@ final class NetworkfirewallTlsInspectionConfigurationCheckCertificateRevocationS
   final NetworkfirewallTlsInspectionConfigurationUnknownStatusAction?
   unknownStatusAction;
 
+  @internal
   Map<String, Object?> encode() => {
     'revoked_status_action': ?revokedStatusAction?.toTfJson(),
     'unknown_status_action': ?unknownStatusAction?.toTfJson(),
@@ -174,6 +177,7 @@ final class NetworkfirewallTlsInspectionConfigurationScope {
 
   final List<NetworkfirewallTlsInspectionConfigurationSourcePorts>? sourcePorts;
 
+  @internal
   Map<String, Object?> encode() => {
     'protocols': protocols.toTfJson(),
     if (destination != null)
@@ -196,6 +200,7 @@ final class NetworkfirewallTlsInspectionConfigurationDestination {
 
   final TfArg<String> addressDefinition;
 
+  @internal
   Map<String, Object?> encode() => {
     'address_definition': addressDefinition.toTfJson(),
   };
@@ -214,6 +219,7 @@ final class NetworkfirewallTlsInspectionConfigurationDestinationPorts {
 
   final TfArg<num> toPort;
 
+  @internal
   Map<String, Object?> encode() => {
     'from_port': fromPort.toTfJson(),
     'to_port': toPort.toTfJson(),
@@ -230,6 +236,7 @@ final class NetworkfirewallTlsInspectionConfigurationSource {
 
   final TfArg<String> addressDefinition;
 
+  @internal
   Map<String, Object?> encode() => {
     'address_definition': addressDefinition.toTfJson(),
   };
@@ -248,6 +255,7 @@ final class NetworkfirewallTlsInspectionConfigurationSourcePorts {
 
   final TfArg<num> toPort;
 
+  @internal
   Map<String, Object?> encode() => {
     'from_port': fromPort.toTfJson(),
     'to_port': toPort.toTfJson(),
@@ -264,6 +272,7 @@ final class NetworkfirewallTlsInspectionConfigurationServerCertificate {
 
   final TfArg<String>? resourceArn;
 
+  @internal
   Map<String, Object?> encode() => {'resource_arn': ?resourceArn?.toTfJson()};
 }
 

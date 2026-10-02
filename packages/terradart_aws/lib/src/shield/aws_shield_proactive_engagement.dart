@@ -23,6 +23,7 @@ final class ShieldProactiveEngagementEmergencyContact {
 
   final TfArg<String>? phoneNumber;
 
+  @internal
   Map<String, Object?> encode() => {
     'contact_notes': ?contactNotes?.toTfJson(),
     'email_address': emailAddress.toTfJson(),

@@ -20,6 +20,7 @@ final class LakeformationDataLakeSettingsCreateDatabaseDefaultPermissions {
 
   final TfArg<String>? principal;
 
+  @internal
   Map<String, Object?> encode() => {
     if (permissions != null)
       'permissions': [for (final e in permissions!) e.toTfJson()],
@@ -121,6 +122,7 @@ final class LakeformationDataLakeSettingsCreateTableDefaultPermissions {
 
   final TfArg<String>? principal;
 
+  @internal
   Map<String, Object?> encode() => {
     if (permissions != null)
       'permissions': [for (final e in permissions!) e.toTfJson()],

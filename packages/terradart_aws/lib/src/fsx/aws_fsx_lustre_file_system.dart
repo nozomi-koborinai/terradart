@@ -145,6 +145,7 @@ final class FsxLustreFileSystemDataReadCacheConfiguration {
 
   final FsxLustreFileSystemSizingMode sizingMode;
 
+  @internal
   Map<String, Object?> encode() => {
     'size': ?size?.toTfJson(),
     'sizing_mode': sizingMode.toTfJson(),
@@ -188,6 +189,7 @@ final class FsxLustreFileSystemLogConfiguration {
 
   final FsxLustreFileSystemLevel? level;
 
+  @internal
   Map<String, Object?> encode() => {
     'destination': ?destination?.toTfJson(),
     'level': ?level?.toTfJson(),
@@ -229,6 +231,7 @@ final class FsxLustreFileSystemMetadataConfiguration {
 
   final FsxLustreFileSystemMode? mode;
 
+  @internal
   Map<String, Object?> encode() => {
     'iops': ?iops?.toTfJson(),
     'mode': ?mode?.toTfJson(),
@@ -267,6 +270,7 @@ final class FsxLustreFileSystemRootSquashConfiguration {
 
   final TfArg<String>? rootSquash;
 
+  @internal
   Map<String, Object?> encode() => {
     'no_squash_nids': ?noSquashNids?.toTfJson(),
     'root_squash': ?rootSquash?.toTfJson(),

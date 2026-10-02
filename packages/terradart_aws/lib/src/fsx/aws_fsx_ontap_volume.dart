@@ -82,12 +82,15 @@ sealed class FsxOntapVolumeSize {
       FsxOntapVolumeSizeInMegabytes;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -97,12 +100,15 @@ final class FsxOntapVolumeSizeInBytes extends FsxOntapVolumeSize {
 
   final TfArg<String> sizeInBytes;
 
+  @internal
   @override
   String get blockKey => 'size_in_bytes';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'size_in_bytes': sizeInBytes.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'size_in_bytes': sizeInBytes};
 }
@@ -113,14 +119,17 @@ final class FsxOntapVolumeSizeInMegabytes extends FsxOntapVolumeSize {
 
   final TfArg<num> sizeInMegabytes;
 
+  @internal
   @override
   String get blockKey => 'size_in_megabytes';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'size_in_megabytes': sizeInMegabytes.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'size_in_megabytes': sizeInMegabytes,
@@ -140,6 +149,7 @@ final class FsxOntapVolumeAggregateConfiguration {
 
   final TfArg<num>? constituentsPerAggregate;
 
+  @internal
   Map<String, Object?> encode() => {
     'aggregates': ?aggregates?.toTfJson(),
     'constituents_per_aggregate': ?constituentsPerAggregate?.toTfJson(),
@@ -171,6 +181,7 @@ final class FsxOntapVolumeSnaplockConfiguration {
 
   final FsxOntapVolumeRetentionPeriod? retentionPeriod;
 
+  @internal
   Map<String, Object?> encode() => {
     'audit_log_volume': ?auditLogVolume?.toTfJson(),
     'privileged_delete': ?privilegedDelete?.toTfJson(),
@@ -239,6 +250,7 @@ final class FsxOntapVolumeAutocommitPeriod {
 
   final TfArg<num>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': ?type?.toTfJson(),
     'value': ?value?.toTfJson(),
@@ -299,6 +311,7 @@ final class FsxOntapVolumeRetentionPeriod {
 
   final FsxOntapVolumeMinimumRetention? minimumRetention;
 
+  @internal
   Map<String, Object?> encode() => {
     'default_retention': ?defaultRetention?.encode(),
     'maximum_retention': ?maximumRetention?.encode(),
@@ -316,6 +329,7 @@ final class FsxOntapVolumeDefaultRetention {
 
   final TfArg<num>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': ?type?.toTfJson(),
     'value': ?value?.toTfJson(),
@@ -378,6 +392,7 @@ final class FsxOntapVolumeMaximumRetention {
 
   final TfArg<num>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': ?type?.toTfJson(),
     'value': ?value?.toTfJson(),
@@ -394,6 +409,7 @@ final class FsxOntapVolumeMinimumRetention {
 
   final TfArg<num>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': ?type?.toTfJson(),
     'value': ?value?.toTfJson(),
@@ -410,6 +426,7 @@ final class FsxOntapVolumeTieringPolicy {
 
   final FsxOntapVolumeTieringPolicyName? name;
 
+  @internal
   Map<String, Object?> encode() => {
     'cooling_period': ?coolingPeriod?.toTfJson(),
     'name': ?name?.toTfJson(),

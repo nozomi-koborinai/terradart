@@ -3,6 +3,24 @@
 /// AWS S3.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_s3_access_point.dart' show DataAwsS3AccessPoint;
+export 'src/data/aws_s3_account_public_access_block.dart'
+    show DataAwsS3AccountPublicAccessBlock;
+export 'src/data/aws_s3_bucket.dart' show DataAwsS3Bucket;
+export 'src/data/aws_s3_bucket_notification.dart'
+    show DataAwsS3BucketNotification;
+export 'src/data/aws_s3_bucket_object.dart' show DataAwsS3BucketObject;
+export 'src/data/aws_s3_bucket_object_lock_configuration.dart'
+    show DataAwsS3BucketObjectLockConfiguration;
+export 'src/data/aws_s3_bucket_objects.dart' show DataAwsS3BucketObjects;
+export 'src/data/aws_s3_bucket_policy.dart' show DataAwsS3BucketPolicy;
+export 'src/data/aws_s3_bucket_replication_configuration.dart'
+    show DataAwsS3BucketReplicationConfiguration;
+export 'src/data/aws_s3_buckets.dart' show DataAwsS3Buckets;
+export 'src/data/aws_s3_directory_buckets.dart' show DataAwsS3DirectoryBuckets;
+export 'src/data/aws_s3_object.dart' show DataAwsS3Object;
+export 'src/data/aws_s3_objects.dart' show DataAwsS3Objects;
 export 'src/s3/aws_s3_access_point.dart'
     show
         AwsS3AccessPoint,

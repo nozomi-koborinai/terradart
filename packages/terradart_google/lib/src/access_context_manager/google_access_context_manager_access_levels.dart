@@ -29,6 +29,7 @@ final class AccessContextManagerAccessLevels {
 
   final AccessContextManagerAccessLevelsCustom? custom;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'name': name.toTfJson(),
@@ -51,6 +52,7 @@ final class AccessContextManagerAccessLevelsBasic {
 
   final List<AccessContextManagerAccessLevelsConditions> conditions;
 
+  @internal
   Map<String, Object?> encode() => {
     'combining_function': ?combiningFunction?.toTfJson(),
     'conditions': [for (final e in conditions) e.encode()],
@@ -108,6 +110,7 @@ final class AccessContextManagerAccessLevelsConditions {
   final List<AccessContextManagerAccessLevelsVpcNetworkSources>?
   vpcNetworkSources;
 
+  @internal
   Map<String, Object?> encode() => {
     'ip_subnetworks': ?ipSubnetworks?.toTfJson(),
     'members': ?members?.toTfJson(),
@@ -147,6 +150,7 @@ final class AccessContextManagerAccessLevelsDevicePolicy {
 
   final List<AccessContextManagerAccessLevelsOsConstraints>? osConstraints;
 
+  @internal
   Map<String, Object?> encode() => {
     if (allowedDeviceManagementLevels != null)
       'allowed_device_management_levels': [
@@ -254,6 +258,7 @@ final class AccessContextManagerAccessLevelsOsConstraints {
 
   final AccessContextManagerAccessLevelsOsType osType;
 
+  @internal
   Map<String, Object?> encode() => {
     'minimum_version': ?minimumVersion?.toTfJson(),
     'os_type': osType.toTfJson(),
@@ -311,6 +316,7 @@ final class AccessContextManagerAccessLevelsVpcNetworkSources {
 
   final AccessContextManagerAccessLevelsVpcSubnetwork? vpcSubnetwork;
 
+  @internal
   Map<String, Object?> encode() => {'vpc_subnetwork': ?vpcSubnetwork?.encode()};
 }
 
@@ -327,6 +333,7 @@ final class AccessContextManagerAccessLevelsVpcSubnetwork {
 
   final TfArg<List<String>>? vpcIpSubnetworks;
 
+  @internal
   Map<String, Object?> encode() => {
     'network': network.toTfJson(),
     'vpc_ip_subnetworks': ?vpcIpSubnetworks?.toTfJson(),
@@ -341,6 +348,7 @@ final class AccessContextManagerAccessLevelsCustom {
 
   final AccessContextManagerAccessLevelsExpr expr;
 
+  @internal
   Map<String, Object?> encode() => {'expr': expr.encode()};
 }
 
@@ -363,6 +371,7 @@ final class AccessContextManagerAccessLevelsExpr {
 
   final TfArg<String>? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'expression': expression.toTfJson(),

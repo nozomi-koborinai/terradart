@@ -3,6 +3,7 @@
 /// reCAPTCHA Enterprise keys for web, Android, and iOS clients.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/recaptcha/google_recaptcha_enterprise_key.dart'
     show
         GoogleRecaptchaEnterpriseKey,

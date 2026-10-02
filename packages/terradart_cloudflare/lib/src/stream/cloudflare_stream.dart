@@ -28,6 +28,7 @@ final class StreamPublicDetails {
 
   final TfArg<String>? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'channel_link': ?channelLink?.toTfJson(),
     'logo': ?logo?.toTfJson(),

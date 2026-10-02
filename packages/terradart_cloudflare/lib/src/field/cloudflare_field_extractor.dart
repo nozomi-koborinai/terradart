@@ -25,6 +25,7 @@ final class FieldExtractorRules {
 
   final List<FieldExtractorFields> fields;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'ref': ref.toTfJson(),
@@ -42,6 +43,7 @@ final class FieldExtractorFields {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {
     'expression': expression.toTfJson(),
     'name': name.toTfJson(),

@@ -17,6 +17,7 @@ final class LightsailContainerServicePrivateRegistryAccess {
 
   final LightsailContainerServiceEcrImagePullerRole? ecrImagePullerRole;
 
+  @internal
   Map<String, Object?> encode() => {
     'ecr_image_puller_role': ?ecrImagePullerRole?.encode(),
   };
@@ -30,6 +31,7 @@ final class LightsailContainerServiceEcrImagePullerRole {
 
   final TfArg<bool>? isActive;
 
+  @internal
   Map<String, Object?> encode() => {'is_active': ?isActive?.toTfJson()};
 }
 
@@ -41,6 +43,7 @@ final class LightsailContainerServicePublicDomainNames {
 
   final List<LightsailContainerServiceCertificate> certificate;
 
+  @internal
   Map<String, Object?> encode() => {
     'certificate': [for (final e in certificate) e.encode()],
   };
@@ -59,6 +62,7 @@ final class LightsailContainerServiceCertificate {
 
   final TfArg<List<String>> domainNames;
 
+  @internal
   Map<String, Object?> encode() => {
     'certificate_name': certificateName.toTfJson(),
     'domain_names': domainNames.toTfJson(),

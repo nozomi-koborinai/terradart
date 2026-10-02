@@ -22,6 +22,7 @@ final class ListItemHostname {
 
   final TfArg<String> urlHostname;
 
+  @internal
   Map<String, Object?> encode() => {
     'exclude_exact_hostname': ?excludeExactHostname?.toTfJson(),
     'url_hostname': urlHostname.toTfJson(),
@@ -56,6 +57,7 @@ final class ListItemRedirect {
 
   final TfArg<String> targetUrl;
 
+  @internal
   Map<String, Object?> encode() => {
     'include_subdomains': ?includeSubdomains?.toTfJson(),
     'preserve_path_suffix': ?preservePathSuffix?.toTfJson(),

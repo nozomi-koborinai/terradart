@@ -6,6 +6,33 @@
 /// clusters; not applyable on a standalone smoke project.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/google_vmwareengine_announcements.dart'
+    show DataGoogleVmwareengineAnnouncements;
+export 'src/data/google_vmwareengine_cluster.dart'
+    show DataGoogleVmwareengineCluster;
+export 'src/data/google_vmwareengine_datastore.dart'
+    show DataGoogleVmwareengineDatastore;
+export 'src/data/google_vmwareengine_external_access_rule.dart'
+    show DataGoogleVmwareengineExternalAccessRule;
+export 'src/data/google_vmwareengine_external_address.dart'
+    show DataGoogleVmwareengineExternalAddress;
+export 'src/data/google_vmwareengine_network.dart'
+    show DataGoogleVmwareengineNetwork;
+export 'src/data/google_vmwareengine_network_peering.dart'
+    show DataGoogleVmwareengineNetworkPeering;
+export 'src/data/google_vmwareengine_network_policy.dart'
+    show DataGoogleVmwareengineNetworkPolicy;
+export 'src/data/google_vmwareengine_nsx_credentials.dart'
+    show DataGoogleVmwareengineNsxCredentials;
+export 'src/data/google_vmwareengine_private_cloud.dart'
+    show DataGoogleVmwareenginePrivateCloud;
+export 'src/data/google_vmwareengine_subnet.dart'
+    show DataGoogleVmwareengineSubnet;
+export 'src/data/google_vmwareengine_upgrades.dart'
+    show DataGoogleVmwareengineUpgrades;
+export 'src/data/google_vmwareengine_vcenter_credentials.dart'
+    show DataGoogleVmwareengineVcenterCredentials;
 export 'src/vmwareengine/google_vmwareengine_cluster.dart'
     show
         GoogleVmwareengineCluster,

@@ -31,6 +31,7 @@ final class MagicWanIpsecTunnelBgp {
 
   final TfArg<String>? md5Key;
 
+  @internal
   Map<String, Object?> encode() => {
     'customer_asn': customerAsn.toTfJson(),
     'export_filter_id': ?exportFilterId?.toTfJson(),
@@ -48,6 +49,7 @@ final class MagicWanIpsecTunnelCustomRemoteIdentities {
 
   final TfArg<String>? fqdnId;
 
+  @internal
   Map<String, Object?> encode() => {'fqdn_id': ?fqdnId?.toTfJson()};
 }
 
@@ -73,6 +75,7 @@ final class MagicWanIpsecTunnelHealthCheck {
 
   final MagicWanIpsecTunnelTarget? target;
 
+  @internal
   Map<String, Object?> encode() => {
     'direction': ?direction?.toTfJson(),
     'enabled': ?enabled?.toTfJson(),
@@ -141,6 +144,7 @@ final class MagicWanIpsecTunnelTarget {
 
   final TfArg<String>? saved;
 
+  @internal
   Map<String, Object?> encode() => {'saved': ?saved?.toTfJson()};
 }
 

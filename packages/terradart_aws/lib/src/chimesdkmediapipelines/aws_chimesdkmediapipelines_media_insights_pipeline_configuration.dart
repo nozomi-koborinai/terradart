@@ -51,6 +51,7 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElements {
   final ChimesdkmediapipelinesMediaInsightsPipelineConfigurationVoiceAnalyticsProcessorConfiguration?
   voiceAnalyticsProcessorConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
     'amazon_transcribe_call_analytics_processor_configuration':
@@ -188,6 +189,7 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationAmazonTransc
   final ChimesdkmediapipelinesMediaInsightsPipelineConfigurationPostCallAnalyticsSettings?
   postCallAnalyticsSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'call_analytics_stream_categories': ?callAnalyticsStreamCategories
         ?.toTfJson(),
@@ -400,6 +402,7 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationPostCallAnal
 
   final TfArg<String> outputLocation;
 
+  @internal
   Map<String, Object?> encode() => {
     'content_redaction_output': ?contentRedactionOutput?.toTfJson(),
     'data_access_role_arn': dataAccessRoleArn.toTfJson(),
@@ -485,6 +488,7 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationAmazonTransc
 
   final TfArg<String>? vocabularyName;
 
+  @internal
   Map<String, Object?> encode() => {
     'content_identification_type': ?contentIdentificationType?.toTfJson(),
     'content_redaction_type': ?contentRedactionType?.toTfJson(),
@@ -512,6 +516,7 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationKinesisDataS
 
   final TfArg<String> insightsTarget;
 
+  @internal
   Map<String, Object?> encode() => {
     'insights_target': insightsTarget.toTfJson(),
   };
@@ -527,6 +532,7 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationLambdaFuncti
 
   final TfArg<String> insightsTarget;
 
+  @internal
   Map<String, Object?> encode() => {
     'insights_target': insightsTarget.toTfJson(),
   };
@@ -542,6 +548,7 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationS3RecordingS
 
   final TfArg<String>? destination;
 
+  @internal
   Map<String, Object?> encode() => {'destination': ?destination?.toTfJson()};
 }
 
@@ -555,6 +562,7 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationSnsTopicSink
 
   final TfArg<String> insightsTarget;
 
+  @internal
   Map<String, Object?> encode() => {
     'insights_target': insightsTarget.toTfJson(),
   };
@@ -570,6 +578,7 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationSqsQueueSink
 
   final TfArg<String> insightsTarget;
 
+  @internal
   Map<String, Object?> encode() => {
     'insights_target': insightsTarget.toTfJson(),
   };
@@ -590,6 +599,7 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationVoiceAnalyti
   final ChimesdkmediapipelinesMediaInsightsPipelineConfigurationVoiceToneAnalysisStatus
   voiceToneAnalysisStatus;
 
+  @internal
   Map<String, Object?> encode() => {
     'speaker_search_status': speakerSearchStatus.toTfJson(),
     'voice_tone_analysis_status': voiceToneAnalysisStatus.toTfJson(),
@@ -668,6 +678,7 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAler
   final List<ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRules>
   rules;
 
+  @internal
   Map<String, Object?> encode() => {
     'disabled': ?disabled?.toTfJson(),
     'rules': [for (final e in rules) e.encode()],
@@ -696,6 +707,7 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRules {
   final ChimesdkmediapipelinesMediaInsightsPipelineConfigurationSentimentConfiguration?
   sentimentConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
     'issue_detection_configuration': ?issueDetectionConfiguration?.encode(),
@@ -747,6 +759,7 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationIssueDetecti
 
   final TfArg<String> ruleName;
 
+  @internal
   Map<String, Object?> encode() => {'rule_name': ruleName.toTfJson()};
 }
 
@@ -766,6 +779,7 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationKeywordMatch
 
   final TfArg<String> ruleName;
 
+  @internal
   Map<String, Object?> encode() => {
     'keywords': keywords.toTfJson(),
     'negate': ?negate?.toTfJson(),
@@ -790,6 +804,7 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationSentimentCon
 
   final TfArg<num> timePeriod;
 
+  @internal
   Map<String, Object?> encode() => {
     'rule_name': ruleName.toTfJson(),
     'sentiment_type': sentimentType.toTfJson(),

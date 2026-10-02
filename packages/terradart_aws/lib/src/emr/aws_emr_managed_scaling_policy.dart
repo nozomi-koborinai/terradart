@@ -52,6 +52,7 @@ final class EmrManagedScalingPolicyComputeLimits {
 
   final EmrManagedScalingPolicyUnitType unitType;
 
+  @internal
   Map<String, Object?> encode() => {
     'maximum_capacity_units': maximumCapacityUnits.toTfJson(),
     'maximum_core_capacity_units': ?maximumCoreCapacityUnits?.toTfJson(),

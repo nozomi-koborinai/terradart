@@ -23,6 +23,7 @@ final class LightsailInstanceAddOn {
 
   final TfArg<String> type;
 
+  @internal
   Map<String, Object?> encode() => {
     'snapshot_time': snapshotTime.toTfJson(),
     'status': status.toTfJson(),

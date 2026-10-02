@@ -29,6 +29,7 @@ final class S3controlObjectLambdaAccessPointConfiguration {
   final List<S3controlObjectLambdaAccessPointTransformationConfiguration>
   transformationConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     if (allowedFeatures != null)
       'allowed_features': [for (final e in allowedFeatures!) e.toTfJson()],
@@ -90,6 +91,7 @@ final class S3controlObjectLambdaAccessPointTransformationConfiguration {
   final S3controlObjectLambdaAccessPointContentTransformation
   contentTransformation;
 
+  @internal
   Map<String, Object?> encode() => {
     'actions': [for (final e in actions) e.toTfJson()],
     'content_transformation': contentTransformation.encode(),
@@ -137,6 +139,7 @@ final class S3controlObjectLambdaAccessPointContentTransformation {
 
   final S3controlObjectLambdaAccessPointAwsLambda awsLambda;
 
+  @internal
   Map<String, Object?> encode() => {'aws_lambda': awsLambda.encode()};
 }
 
@@ -153,6 +156,7 @@ final class S3controlObjectLambdaAccessPointAwsLambda {
 
   final TfArg<String>? functionPayload;
 
+  @internal
   Map<String, Object?> encode() => {
     'function_arn': functionArn.encodeAs('arn').toTfJson(),
     'function_payload': ?functionPayload?.toTfJson(),

@@ -33,6 +33,7 @@ final class ListItems {
 
   final TfArg<String>? comment;
 
+  @internal
   Map<String, Object?> encode() => {
     ...?value?.encode(),
     'comment': ?comment?.toTfJson(),
@@ -60,8 +61,10 @@ sealed class ListValue {
   const factory ListValue.redirect(ListRedirect redirect) = ListValueRedirect;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -71,9 +74,11 @@ final class ListValueAsn extends ListValue {
 
   final TfArg<num> asn;
 
+  @internal
   @override
   String get blockKey => 'asn';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'asn': asn.toTfJson()};
 }
@@ -84,9 +89,11 @@ final class ListValueIp extends ListValue {
 
   final TfArg<String> ip;
 
+  @internal
   @override
   String get blockKey => 'ip';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'ip': ip.toTfJson()};
 }
@@ -97,9 +104,11 @@ final class ListValueHostname extends ListValue {
 
   final ListHostname hostname;
 
+  @internal
   @override
   String get blockKey => 'hostname';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'hostname': hostname.encode()};
 }
@@ -110,9 +119,11 @@ final class ListValueRedirect extends ListValue {
 
   final ListRedirect redirect;
 
+  @internal
   @override
   String get blockKey => 'redirect';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'redirect': redirect.encode()};
 }
@@ -127,6 +138,7 @@ final class ListHostname {
 
   final TfArg<String> urlHostname;
 
+  @internal
   Map<String, Object?> encode() => {
     'exclude_exact_hostname': ?excludeExactHostname?.toTfJson(),
     'url_hostname': urlHostname.toTfJson(),
@@ -161,6 +173,7 @@ final class ListRedirect {
 
   final TfArg<String> targetUrl;
 
+  @internal
   Map<String, Object?> encode() => {
     'include_subdomains': ?includeSubdomains?.toTfJson(),
     'preserve_path_suffix': ?preservePathSuffix?.toTfJson(),

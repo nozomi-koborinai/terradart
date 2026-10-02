@@ -3,6 +3,15 @@
 /// AWS Lambda.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_lambda_alias.dart' show DataAwsLambdaAlias;
+export 'src/data/aws_lambda_code_signing_config.dart'
+    show DataAwsLambdaCodeSigningConfig;
+export 'src/data/aws_lambda_function.dart' show DataAwsLambdaFunction;
+export 'src/data/aws_lambda_function_url.dart' show DataAwsLambdaFunctionUrl;
+export 'src/data/aws_lambda_functions.dart' show DataAwsLambdaFunctions;
+export 'src/data/aws_lambda_invocation.dart' show DataAwsLambdaInvocation;
+export 'src/data/aws_lambda_layer_version.dart' show DataAwsLambdaLayerVersion;
 export 'src/lambda/aws_lambda_alias.dart'
     show AwsLambdaAlias, LambdaAliasRoutingConfig;
 export 'src/lambda/aws_lambda_capacity_provider.dart'

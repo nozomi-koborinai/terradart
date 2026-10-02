@@ -15,6 +15,7 @@ final class SaasRuntimeReleaseBlueprint {
 
   final TfArg<String>? package;
 
+  @internal
   Map<String, Object?> encode() => {'package': ?package?.toTfJson()};
 }
 
@@ -34,6 +35,7 @@ final class SaasRuntimeReleaseInputVariableDefaults {
 
   final TfArg<String> variable;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': ?type?.toTfJson(),
     'value': ?value?.toTfJson(),
@@ -72,6 +74,7 @@ final class SaasRuntimeReleaseRequirements {
 
   final TfArg<List<String>>? upgradeableFromReleases;
 
+  @internal
   Map<String, Object?> encode() => {
     'upgradeable_from_releases': ?upgradeableFromReleases?.toTfJson(),
   };

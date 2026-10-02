@@ -3,6 +3,12 @@
 /// AWS Kinesis (Data Streams, Firehose, and Video Streams).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_kinesis_firehose_delivery_stream.dart'
+    show DataAwsKinesisFirehoseDeliveryStream;
+export 'src/data/aws_kinesis_stream.dart' show DataAwsKinesisStream;
+export 'src/data/aws_kinesis_stream_consumer.dart'
+    show DataAwsKinesisStreamConsumer;
 export 'src/kinesis/aws_kinesis_account_settings.dart'
     show
         AwsKinesisAccountSettings,

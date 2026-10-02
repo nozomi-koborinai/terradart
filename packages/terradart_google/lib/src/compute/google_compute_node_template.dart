@@ -48,12 +48,15 @@ sealed class ComputeNodeTemplateNodeType {
   ) = ComputeNodeTemplateNodeTypeFlexibilityChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -64,12 +67,15 @@ final class ComputeNodeTemplateNodeTypeChoice
 
   final TfArg<String> nodeType;
 
+  @internal
   @override
   String get blockKey => 'node_type';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'node_type': nodeType.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'node_type': nodeType};
 }
@@ -81,14 +87,17 @@ final class ComputeNodeTemplateNodeTypeFlexibilityChoice
 
   final ComputeNodeTemplateNodeTypeFlexibility nodeTypeFlexibility;
 
+  @internal
   @override
   String get blockKey => 'node_type_flexibility';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'node_type_flexibility': nodeTypeFlexibility.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'node_type_flexibility': TfArg.literal(nodeTypeFlexibility.encode()),
@@ -108,6 +117,7 @@ final class ComputeNodeTemplateAccelerators {
 
   final TfArg<String>? acceleratorType;
 
+  @internal
   Map<String, Object?> encode() => {
     'accelerator_count': ?acceleratorCount?.toTfJson(),
     'accelerator_type': ?acceleratorType?.toTfJson(),
@@ -130,6 +140,7 @@ final class ComputeNodeTemplateDisks {
 
   final TfArg<String>? diskType;
 
+  @internal
   Map<String, Object?> encode() => {
     'disk_count': ?diskCount?.toTfJson(),
     'disk_size_gb': ?diskSizeGb?.toTfJson(),
@@ -147,6 +158,7 @@ final class ComputeNodeTemplateNodeTypeFlexibility {
 
   final TfArg<String>? memory;
 
+  @internal
   Map<String, Object?> encode() => {
     'cpus': ?cpus?.toTfJson(),
     'memory': ?memory?.toTfJson(),
@@ -161,6 +173,7 @@ final class ComputeNodeTemplateServerBinding {
 
   final ComputeNodeTemplateType type;
 
+  @internal
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 

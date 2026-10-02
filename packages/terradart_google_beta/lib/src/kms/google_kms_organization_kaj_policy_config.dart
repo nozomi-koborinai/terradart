@@ -18,6 +18,7 @@ final class KmsOrganizationKajPolicyConfigDefaultKeyAccessJustificationPolicy {
   final List<KmsOrganizationKajPolicyConfigAllowedAccessReasons>?
   allowedAccessReasons;
 
+  @internal
   Map<String, Object?> encode() => {
     if (allowedAccessReasons != null)
       'allowed_access_reasons': [

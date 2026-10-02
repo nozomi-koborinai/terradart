@@ -20,6 +20,7 @@ final class CloudfrontOriginRequestPolicyCookiesConfig {
 
   final CloudfrontOriginRequestPolicyCookies? cookies;
 
+  @internal
   Map<String, Object?> encode() => {
     'cookie_behavior': cookieBehavior.toTfJson(),
     'cookies': ?cookies?.encode(),
@@ -66,6 +67,7 @@ final class CloudfrontOriginRequestPolicyCookies {
 
   final TfArg<List<String>>? items;
 
+  @internal
   Map<String, Object?> encode() => {'items': ?items?.toTfJson()};
 }
 
@@ -82,6 +84,7 @@ final class CloudfrontOriginRequestPolicyHeadersConfig {
 
   final CloudfrontOriginRequestPolicyHeaders? headers;
 
+  @internal
   Map<String, Object?> encode() => {
     'header_behavior': ?headerBehavior?.toTfJson(),
     'headers': ?headers?.encode(),
@@ -133,6 +136,7 @@ final class CloudfrontOriginRequestPolicyHeaders {
 
   final TfArg<List<String>>? items;
 
+  @internal
   Map<String, Object?> encode() => {'items': ?items?.toTfJson()};
 }
 
@@ -149,6 +153,7 @@ final class CloudfrontOriginRequestPolicyQueryStringsConfig {
 
   final CloudfrontOriginRequestPolicyQueryStrings? queryStrings;
 
+  @internal
   Map<String, Object?> encode() => {
     'query_string_behavior': queryStringBehavior.toTfJson(),
     'query_strings': ?queryStrings?.encode(),
@@ -195,6 +200,7 @@ final class CloudfrontOriginRequestPolicyQueryStrings {
 
   final TfArg<List<String>>? items;
 
+  @internal
   Map<String, Object?> encode() => {'items': ?items?.toTfJson()};
 }
 

@@ -17,6 +17,7 @@ final class VertexAiIndexEncryptionSpec {
 
   final RefTo<GoogleKmsCryptoKey> kmsKeyName;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_name': kmsKeyName.encodeAs('id').toTfJson(),
   };
@@ -38,6 +39,7 @@ final class VertexAiIndexMetadata {
 
   final VertexAiIndexConfig config;
 
+  @internal
   Map<String, Object?> encode() => {
     'contents_delta_uri': ?contentsDeltaUri?.toTfJson(),
     'is_complete_overwrite': ?isCompleteOverwrite?.toTfJson(),
@@ -70,6 +72,7 @@ final class VertexAiIndexConfig {
 
   final VertexAiIndexAlgorithmConfig? algorithmConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'approximate_neighbors_count': ?approximateNeighborsCount?.toTfJson(),
     'dimensions': dimensions.toTfJson(),
@@ -98,8 +101,10 @@ sealed class VertexAiIndexAlgorithmConfig {
   ) = VertexAiIndexAlgorithmConfigBruteForceConfig;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -110,9 +115,11 @@ final class VertexAiIndexAlgorithmConfigTreeAhConfig
 
   final VertexAiIndexTreeAhConfig treeAhConfig;
 
+  @internal
   @override
   String get blockKey => 'tree_ah_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'tree_ah_config': treeAhConfig.encode()};
 }
@@ -124,9 +131,11 @@ final class VertexAiIndexAlgorithmConfigBruteForceConfig
 
   final VertexAiIndexBruteForceConfig bruteForceConfig;
 
+  @internal
   @override
   String get blockKey => 'brute_force_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'brute_force_config': bruteForceConfig.encode(),
@@ -139,6 +148,7 @@ final class VertexAiIndexAlgorithmConfigBruteForceConfig
 final class VertexAiIndexBruteForceConfig {
   const VertexAiIndexBruteForceConfig();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -155,6 +165,7 @@ final class VertexAiIndexTreeAhConfig {
 
   final TfArg<num>? leafNodesToSearchPercent;
 
+  @internal
   Map<String, Object?> encode() => {
     'leaf_node_embedding_count': ?leafNodeEmbeddingCount?.toTfJson(),
     'leaf_nodes_to_search_percent': ?leafNodesToSearchPercent?.toTfJson(),

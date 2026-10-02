@@ -18,6 +18,7 @@ final class VertexAiPersistentResourceEncryptionSpec {
 
   final RefTo<GoogleKmsCryptoKey> kmsKeyName;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_name': kmsKeyName.encodeAs('id').toTfJson(),
   };
@@ -36,6 +37,7 @@ final class VertexAiPersistentResourcePscInterfaceConfig {
 
   final List<VertexAiPersistentResourceDnsPeeringConfigs>? dnsPeeringConfigs;
 
+  @internal
   Map<String, Object?> encode() => {
     'network_attachment': ?networkAttachment?.toTfJson(),
     if (dnsPeeringConfigs != null)
@@ -59,6 +61,7 @@ final class VertexAiPersistentResourceDnsPeeringConfigs {
 
   final TfArg<String> targetProject;
 
+  @internal
   Map<String, Object?> encode() => {
     'domain': domain.toTfJson(),
     'target_network': targetNetwork.toTfJson(),
@@ -88,6 +91,7 @@ final class VertexAiPersistentResourcePools {
 
   final VertexAiPersistentResourceMachineSpec machineSpec;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': ?id?.toTfJson(),
     'replica_count': ?replicaCount?.toTfJson(),
@@ -110,6 +114,7 @@ final class VertexAiPersistentResourceAutoscalingSpec {
 
   final TfArg<String>? minReplicaCount;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_replica_count': ?maxReplicaCount?.toTfJson(),
     'min_replica_count': ?minReplicaCount?.toTfJson(),
@@ -129,6 +134,7 @@ final class VertexAiPersistentResourceDiskSpec {
 
   final TfArg<String>? bootDiskType;
 
+  @internal
   Map<String, Object?> encode() => {
     'boot_disk_size_gb': ?bootDiskSizeGb?.toTfJson(),
     'boot_disk_type': ?bootDiskType?.toTfJson(),
@@ -151,6 +157,7 @@ final class VertexAiPersistentResourceMachineSpec {
 
   final TfArg<String>? machineType;
 
+  @internal
   Map<String, Object?> encode() => {
     'accelerator_count': ?acceleratorCount?.toTfJson(),
     'accelerator_type': ?acceleratorType?.toTfJson(),
@@ -166,6 +173,7 @@ final class VertexAiPersistentResourceRuntimeSpec {
 
   final VertexAiPersistentResourceServiceAccountSpec? serviceAccountSpec;
 
+  @internal
   Map<String, Object?> encode() => {
     'service_account_spec': ?serviceAccountSpec?.encode(),
   };
@@ -181,6 +189,7 @@ final class VertexAiPersistentResourceServiceAccountSpec {
 
   final TfArg<bool> enableCustomServiceAccount;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_custom_service_account': enableCustomServiceAccount.toTfJson(),
   };

@@ -57,6 +57,7 @@ final class EksClusterAccessConfig {
 
   final TfArg<bool>? bootstrapClusterCreatorAdminPermissions;
 
+  @internal
   Map<String, Object?> encode() => {
     'authentication_mode': ?authenticationMode?.toTfJson(),
     'bootstrap_cluster_creator_admin_permissions':
@@ -104,6 +105,7 @@ final class EksClusterComputeConfig {
 
   final TfArg<String>? nodeRoleArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     if (nodePools != null)
@@ -136,6 +138,7 @@ final class EksClusterControlPlaneScalingConfig {
 
   final EksClusterTier? tier;
 
+  @internal
   Map<String, Object?> encode() => {'tier': ?tier?.toTfJson()};
 }
 
@@ -175,6 +178,7 @@ final class EksClusterEncryptionConfig {
 
   final EksClusterProvider provider;
 
+  @internal
   Map<String, Object?> encode() => {
     'resources': [for (final e in resources) e.toTfJson()],
     'provider': provider.encode(),
@@ -202,6 +206,7 @@ final class EksClusterProvider {
 
   final RefTo<AwsKmsKey> keyArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'key_arn': keyArn.encodeAs('arn').toTfJson(),
   };
@@ -220,6 +225,7 @@ final class EksClusterKubeApiServerConfig {
 
   final EksClusterServiceNodePortRange? serviceNodePortRange;
 
+  @internal
   Map<String, Object?> encode() => {
     'event_ttl': ?eventTtl?.toTfJson(),
     'service_node_port_range': ?serviceNodePortRange?.encode(),
@@ -236,6 +242,7 @@ final class EksClusterServiceNodePortRange {
 
   final TfArg<num>? minPort;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_port': ?maxPort?.toTfJson(),
     'min_port': ?minPort?.toTfJson(),
@@ -256,6 +263,7 @@ final class EksClusterKubeControllerManagerConfig {
 
   final EksClusterPodGcControllerConfig? podGcControllerConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'horizontal_pod_autoscaler_controller_config':
         ?horizontalPodAutoscalerControllerConfig?.encode(),
@@ -273,6 +281,7 @@ final class EksClusterHorizontalPodAutoscalerControllerConfig {
 
   final TfArg<String>? horizontalPodAutoscalerSyncPeriod;
 
+  @internal
   Map<String, Object?> encode() => {
     'horizontal_pod_autoscaler_sync_period': ?horizontalPodAutoscalerSyncPeriod
         ?.toTfJson(),
@@ -287,6 +296,7 @@ final class EksClusterPodGcControllerConfig {
 
   final TfArg<num>? terminatedPodGcThreshold;
 
+  @internal
   Map<String, Object?> encode() => {
     'terminated_pod_gc_threshold': ?terminatedPodGcThreshold?.toTfJson(),
   };
@@ -300,6 +310,7 @@ final class EksClusterKubeSchedulerConfig {
 
   final EksClusterNodeResourcesFit? nodeResourcesFit;
 
+  @internal
   Map<String, Object?> encode() => {
     'node_resources_fit': ?nodeResourcesFit?.encode(),
   };
@@ -313,6 +324,7 @@ final class EksClusterNodeResourcesFit {
 
   final EksClusterScoringStrategy? scoringStrategy;
 
+  @internal
   Map<String, Object?> encode() => {
     'scoring_strategy': ?scoringStrategy?.encode(),
   };
@@ -328,6 +340,7 @@ final class EksClusterScoringStrategy {
 
   final List<EksClusterResource>? resource;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': ?type?.toTfJson(),
     if (resource != null) 'resource': [for (final e in resource!) e.encode()],
@@ -360,6 +373,7 @@ final class EksClusterResource {
 
   final TfArg<num>? weight;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'weight': ?weight?.toTfJson(),
@@ -382,6 +396,7 @@ final class EksClusterKubernetesNetworkConfig {
 
   final EksClusterElasticLoadBalancing? elasticLoadBalancing;
 
+  @internal
   Map<String, Object?> encode() => {
     'ip_family': ?ipFamily?.toTfJson(),
     'service_ipv4_cidr': ?serviceIpv4Cidr?.toTfJson(),
@@ -411,6 +426,7 @@ final class EksClusterElasticLoadBalancing {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
@@ -436,6 +452,7 @@ final class EksClusterOutpostConfig {
 
   final EksClusterEtcdPlacement? etcdPlacement;
 
+  @internal
   Map<String, Object?> encode() => {
     'control_plane_instance_type': controlPlaneInstanceType.toTfJson(),
     'etcd_instance_type': ?etcdInstanceType?.toTfJson(),
@@ -455,6 +472,7 @@ final class EksClusterControlPlanePlacement {
 
   final EksClusterSpreadLevel? spreadLevel;
 
+  @internal
   Map<String, Object?> encode() => {
     'group_name': ?groupName?.toTfJson(),
     'spread_level': ?spreadLevel?.toTfJson(),
@@ -483,6 +501,7 @@ final class EksClusterEtcdPlacement {
 
   final EksClusterSpreadLevel? spreadLevel;
 
+  @internal
   Map<String, Object?> encode() => {'spread_level': ?spreadLevel?.toTfJson()};
 }
 
@@ -499,6 +518,7 @@ final class EksClusterRemoteNetworkConfig {
 
   final EksClusterRemotePodNetworks? remotePodNetworks;
 
+  @internal
   Map<String, Object?> encode() => {
     'remote_node_networks': ?remoteNodeNetworks?.encode(),
     'remote_pod_networks': ?remotePodNetworks?.encode(),
@@ -513,6 +533,7 @@ final class EksClusterRemoteNodeNetworks {
 
   final TfArg<List<String>>? cidrs;
 
+  @internal
   Map<String, Object?> encode() => {'cidrs': ?cidrs?.toTfJson()};
 }
 
@@ -524,6 +545,7 @@ final class EksClusterRemotePodNetworks {
 
   final TfArg<List<String>>? cidrs;
 
+  @internal
   Map<String, Object?> encode() => {'cidrs': ?cidrs?.toTfJson()};
 }
 
@@ -535,6 +557,7 @@ final class EksClusterStorageConfig {
 
   final EksClusterBlockStorage? blockStorage;
 
+  @internal
   Map<String, Object?> encode() => {'block_storage': ?blockStorage?.encode()};
 }
 
@@ -546,6 +569,7 @@ final class EksClusterBlockStorage {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
@@ -557,6 +581,7 @@ final class EksClusterUpgradePolicy {
 
   final EksClusterSupportType? supportType;
 
+  @internal
   Map<String, Object?> encode() => {'support_type': ?supportType?.toTfJson()};
 }
 
@@ -599,6 +624,7 @@ final class EksClusterVpcConfig {
 
   final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
+  @internal
   Map<String, Object?> encode() => {
     'control_plane_egress_mode': ?controlPlaneEgressMode?.toTfJson(),
     'endpoint_private_access': ?endpointPrivateAccess?.toTfJson(),
@@ -643,6 +669,7 @@ final class EksClusterZonalShiftConfig {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 

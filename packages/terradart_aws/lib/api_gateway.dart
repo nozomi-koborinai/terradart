@@ -3,6 +3,7 @@
 /// AWS API Gateway (REST APIs).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/api_gateway/aws_api_gateway_account.dart' show AwsApiGatewayAccount;
 export 'src/api_gateway/aws_api_gateway_api_key.dart' show AwsApiGatewayApiKey;
 export 'src/api_gateway/aws_api_gateway_authorizer.dart'
@@ -89,3 +90,16 @@ export 'src/api_gateway/aws_api_gateway_usage_plan_key.dart'
     show AwsApiGatewayUsagePlanKey;
 export 'src/api_gateway/aws_api_gateway_vpc_link.dart'
     show AwsApiGatewayVpcLink;
+export 'src/data/aws_api_gateway_api_key.dart' show DataAwsApiGatewayApiKey;
+export 'src/data/aws_api_gateway_api_keys.dart' show DataAwsApiGatewayApiKeys;
+export 'src/data/aws_api_gateway_authorizer.dart'
+    show DataAwsApiGatewayAuthorizer;
+export 'src/data/aws_api_gateway_authorizers.dart'
+    show DataAwsApiGatewayAuthorizers;
+export 'src/data/aws_api_gateway_domain_name.dart'
+    show DataAwsApiGatewayDomainName;
+export 'src/data/aws_api_gateway_export.dart' show DataAwsApiGatewayExport;
+export 'src/data/aws_api_gateway_resource.dart' show DataAwsApiGatewayResource;
+export 'src/data/aws_api_gateway_rest_api.dart' show DataAwsApiGatewayRestApi;
+export 'src/data/aws_api_gateway_sdk.dart' show DataAwsApiGatewaySdk;
+export 'src/data/aws_api_gateway_vpc_link.dart' show DataAwsApiGatewayVpcLink;

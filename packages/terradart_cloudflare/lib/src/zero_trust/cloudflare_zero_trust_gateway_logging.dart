@@ -25,6 +25,7 @@ final class ZeroTrustGatewayLoggingSettingsByRuleType {
 
   final ZeroTrustGatewayLoggingL4? l4;
 
+  @internal
   Map<String, Object?> encode() => {
     'dns': ?dns?.encode(),
     'http': ?http?.encode(),
@@ -42,6 +43,7 @@ final class ZeroTrustGatewayLoggingDns {
 
   final TfArg<bool>? logBlocks;
 
+  @internal
   Map<String, Object?> encode() => {
     'log_all': ?logAll?.toTfJson(),
     'log_blocks': ?logBlocks?.toTfJson(),
@@ -58,6 +60,7 @@ final class ZeroTrustGatewayLoggingHttp {
 
   final TfArg<bool>? logBlocks;
 
+  @internal
   Map<String, Object?> encode() => {
     'log_all': ?logAll?.toTfJson(),
     'log_blocks': ?logBlocks?.toTfJson(),
@@ -74,6 +77,7 @@ final class ZeroTrustGatewayLoggingL4 {
 
   final TfArg<bool>? logBlocks;
 
+  @internal
   Map<String, Object?> encode() => {
     'log_all': ?logAll?.toTfJson(),
     'log_blocks': ?logBlocks?.toTfJson(),

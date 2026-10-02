@@ -3,6 +3,22 @@
 /// AWS Lake Formation.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_lakeformation_data_lake_settings.dart'
+    show DataAwsLakeformationDataLakeSettings;
+export 'src/data/aws_lakeformation_permissions.dart'
+    show
+        DataAwsLakeformationPermissions,
+        DataLakeformationPermissionsDataCellsFilter,
+        DataLakeformationPermissionsDataLocation,
+        DataLakeformationPermissionsDatabase,
+        DataLakeformationPermissionsExpression,
+        DataLakeformationPermissionsLfTag,
+        DataLakeformationPermissionsLfTagPolicy,
+        DataLakeformationPermissionsTable,
+        DataLakeformationPermissionsTableWithColumns;
+export 'src/data/aws_lakeformation_resource.dart'
+    show DataAwsLakeformationResource;
 export 'src/lakeformation/aws_lakeformation_data_cells_filter.dart'
     show
         AwsLakeformationDataCellsFilter,

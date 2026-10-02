@@ -49,6 +49,7 @@ final class R2BucketCorsRules {
 
   final R2BucketCorsAllowed allowed;
 
+  @internal
   Map<String, Object?> encode() => {
     'expose_headers': ?exposeHeaders?.toTfJson(),
     'id': ?id?.toTfJson(),
@@ -73,6 +74,7 @@ final class R2BucketCorsAllowed {
 
   final TfArg<List<String>> origins;
 
+  @internal
   Map<String, Object?> encode() => {
     'headers': ?headers?.toTfJson(),
     'methods': [for (final e in methods) e.toTfJson()],

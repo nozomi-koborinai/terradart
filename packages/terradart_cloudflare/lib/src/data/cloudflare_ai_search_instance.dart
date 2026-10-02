@@ -28,6 +28,7 @@ final class DataAiSearchInstanceFilter {
 
   final TfArg<String>? search;
 
+  @internal
   Map<String, Object?> encode() => {
     'namespace': ?namespace?.toTfJson(),
     'order_by': ?orderBy?.toTfJson(),

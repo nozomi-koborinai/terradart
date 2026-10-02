@@ -3,6 +3,7 @@
 /// AWS Systems Manager Quick Setup.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/ssmquicksetup/aws_ssmquicksetup_configuration_manager.dart'
     show
         AwsSsmquicksetupConfigurationManager,

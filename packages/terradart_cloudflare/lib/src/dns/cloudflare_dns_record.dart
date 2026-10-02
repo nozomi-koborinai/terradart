@@ -80,12 +80,15 @@ sealed class DnsRecordContent {
       DnsRecordContentData;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -95,12 +98,15 @@ final class DnsRecordContentChoice extends DnsRecordContent {
 
   final TfArg<String> content;
 
+  @internal
   @override
   String get blockKey => 'content';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'content': content.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'content': content};
 }
@@ -111,12 +117,15 @@ final class DnsRecordContentData extends DnsRecordContent {
 
   final DnsRecordData data;
 
+  @internal
   @override
   String get blockKey => 'data';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'data': data.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'data': TfArg.literal(data.encode()),
@@ -238,6 +247,7 @@ final class DnsRecordData {
 
   final TfArg<num>? weight;
 
+  @internal
   Map<String, Object?> encode() => {
     'algorithm': ?algorithm?.toTfJson(),
     'altitude': ?altitude?.toTfJson(),
@@ -318,6 +328,7 @@ final class DnsRecordSettings {
 
   final TfArg<bool>? ipv6Only;
 
+  @internal
   Map<String, Object?> encode() => {
     'flatten_cname': ?flattenCname?.toTfJson(),
     'ipv4_only': ?ipv4Only?.toTfJson(),

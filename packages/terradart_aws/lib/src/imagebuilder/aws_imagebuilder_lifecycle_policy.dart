@@ -46,6 +46,7 @@ final class ImagebuilderLifecyclePolicyDetail {
 
   final List<ImagebuilderLifecyclePolicyFilter>? filter;
 
+  @internal
   Map<String, Object?> encode() => {
     if (action != null) 'action': [for (final e in action!) e.encode()],
     if (exclusionRules != null)
@@ -67,6 +68,7 @@ final class ImagebuilderLifecyclePolicyAction {
 
   final List<ImagebuilderLifecyclePolicyIncludeResources>? includeResources;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
     if (includeResources != null)
@@ -117,6 +119,7 @@ final class ImagebuilderLifecyclePolicyIncludeResources {
 
   final TfArg<bool>? snapshots;
 
+  @internal
   Map<String, Object?> encode() => {
     'amis': ?amis?.toTfJson(),
     'containers': ?containers?.toTfJson(),
@@ -134,6 +137,7 @@ final class ImagebuilderLifecyclePolicyExclusionRules {
 
   final List<ImagebuilderLifecyclePolicyAmis>? amis;
 
+  @internal
   Map<String, Object?> encode() => {
     'tag_map': ?tagMap?.toTfJson(),
     if (amis != null) 'amis': [for (final e in amis!) e.encode()],
@@ -162,6 +166,7 @@ final class ImagebuilderLifecyclePolicyAmis {
 
   final List<ImagebuilderLifecyclePolicyLastLaunched>? lastLaunched;
 
+  @internal
   Map<String, Object?> encode() => {
     'is_public': ?isPublic?.toTfJson(),
     'regions': ?regions?.toTfJson(),
@@ -185,6 +190,7 @@ final class ImagebuilderLifecyclePolicyLastLaunched {
 
   final TfArg<num> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'unit': unit.toTfJson(),
     'value': value.toTfJson(),
@@ -234,6 +240,7 @@ final class ImagebuilderLifecyclePolicyFilter {
 
   final TfArg<num> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'retain_at_least': ?retainAtLeast?.toTfJson(),
     'type': type.toTfJson(),
@@ -278,6 +285,7 @@ final class ImagebuilderLifecyclePolicyResourceSelection {
 
   final List<ImagebuilderLifecyclePolicyRecipe>? recipe;
 
+  @internal
   Map<String, Object?> encode() => {
     'tag_map': ?tagMap?.toTfJson(),
     if (recipe != null) 'recipe': [for (final e in recipe!) e.encode()],
@@ -297,6 +305,7 @@ final class ImagebuilderLifecyclePolicyRecipe {
 
   final TfArg<String> semanticVersion;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'semantic_version': semanticVersion.toTfJson(),

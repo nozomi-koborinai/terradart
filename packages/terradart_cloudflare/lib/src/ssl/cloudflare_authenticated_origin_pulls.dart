@@ -27,6 +27,7 @@ final class AuthenticatedOriginPullsConfig {
 
   final TfArg<String>? hostname;
 
+  @internal
   Map<String, Object?> encode() => {
     'cert_id': ?certId?.toTfJson(),
     'enabled': ?enabled?.toTfJson(),

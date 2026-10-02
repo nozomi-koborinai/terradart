@@ -18,6 +18,7 @@ final class ApihubCurationEndpoint {
   final ApihubCurationApplicationIntegrationEndpointDetails
   applicationIntegrationEndpointDetails;
 
+  @internal
   Map<String, Object?> encode() => {
     'application_integration_endpoint_details':
         applicationIntegrationEndpointDetails.encode(),
@@ -37,6 +38,7 @@ final class ApihubCurationApplicationIntegrationEndpointDetails {
 
   final TfArg<String> uri;
 
+  @internal
   Map<String, Object?> encode() => {
     'trigger_id': triggerId.toTfJson(),
     'uri': uri.toTfJson(),

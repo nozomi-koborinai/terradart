@@ -28,12 +28,15 @@ sealed class SagemakerEndpointConfigurationName {
   ) = SagemakerEndpointConfigurationNamePrefix;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -44,12 +47,15 @@ final class SagemakerEndpointConfigurationNameChoice
 
   final TfArg<String> name;
 
+  @internal
   @override
   String get blockKey => 'name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
@@ -61,12 +67,15 @@ final class SagemakerEndpointConfigurationNamePrefix
 
   final TfArg<String> namePrefix;
 
+  @internal
   @override
   String get blockKey => 'name_prefix';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'name_prefix': namePrefix.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'name_prefix': namePrefix};
 }
@@ -84,6 +93,7 @@ final class SagemakerEndpointConfigurationAsyncInferenceConfig {
 
   final SagemakerEndpointConfigurationOutputConfig outputConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_config': ?clientConfig?.encode(),
     'output_config': outputConfig.encode(),
@@ -100,6 +110,7 @@ final class SagemakerEndpointConfigurationClientConfig {
 
   final TfArg<num>? maxConcurrentInvocationsPerInstance;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_concurrent_invocations_per_instance':
         ?maxConcurrentInvocationsPerInstance?.toTfJson(),
@@ -125,6 +136,7 @@ final class SagemakerEndpointConfigurationOutputConfig {
 
   final SagemakerEndpointConfigurationNotificationConfig? notificationConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
     's3_failure_path': ?s3FailurePath?.toTfJson(),
@@ -150,6 +162,7 @@ final class SagemakerEndpointConfigurationNotificationConfig {
 
   final TfArg<String>? successTopic;
 
+  @internal
   Map<String, Object?> encode() => {
     'error_topic': ?errorTopic?.toTfJson(),
     if (includeInferenceResponseIn != null)
@@ -212,6 +225,7 @@ final class SagemakerEndpointConfigurationDataCaptureConfig {
 
   final List<SagemakerEndpointConfigurationCaptureOptions> captureOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'destination_s3_uri': destinationS3Uri.toTfJson(),
     'enable_capture': ?enableCapture?.toTfJson(),
@@ -235,6 +249,7 @@ final class SagemakerEndpointConfigurationCaptureContentTypeHeader {
 
   final TfArg<List<String>>? jsonContentTypes;
 
+  @internal
   Map<String, Object?> encode() => {
     'csv_content_types': ?csvContentTypes?.toTfJson(),
     'json_content_types': ?jsonContentTypes?.toTfJson(),
@@ -251,6 +266,7 @@ final class SagemakerEndpointConfigurationCaptureOptions {
 
   final SagemakerEndpointConfigurationCaptureMode captureMode;
 
+  @internal
   Map<String, Object?> encode() => {'capture_mode': captureMode.toTfJson()};
 }
 
@@ -340,6 +356,7 @@ final class SagemakerEndpointConfigurationProductionVariants {
 
   final SagemakerEndpointConfigurationServerlessConfig? serverlessConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'accelerator_type': ?acceleratorType?.toTfJson(),
     'container_startup_health_check_timeout_in_seconds':
@@ -1585,6 +1602,7 @@ final class SagemakerEndpointConfigurationCapacityReservationConfig {
 
   final TfArg<String>? mlReservationArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'capacity_reservation_preference': ?capacityReservationPreference
         ?.toTfJson(),
@@ -1628,6 +1646,7 @@ final class SagemakerEndpointConfigurationProductionVariantsCoreDumpConfig {
 
   final RefTo<AwsKmsKey>? kmsKeyId;
 
+  @internal
   Map<String, Object?> encode() => {
     'destination_s3_uri': destinationS3Uri.toTfJson(),
     'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
@@ -1651,6 +1670,7 @@ final class SagemakerEndpointConfigurationManagedInstanceScaling {
 
   final SagemakerEndpointConfigurationStatus? status;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_instance_count': ?maxInstanceCount?.toTfJson(),
     'min_instance_count': ?minInstanceCount?.toTfJson(),
@@ -1692,6 +1712,7 @@ final class SagemakerEndpointConfigurationRoutingConfig {
 
   final SagemakerEndpointConfigurationRoutingStrategy routingStrategy;
 
+  @internal
   Map<String, Object?> encode() => {
     'routing_strategy': routingStrategy.toTfJson(),
   };
@@ -1743,6 +1764,7 @@ final class SagemakerEndpointConfigurationServerlessConfig {
 
   final TfArg<num>? provisionedConcurrency;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_concurrency': maxConcurrency.toTfJson(),
     'memory_size_in_mb': memorySizeInMb.toTfJson(),
@@ -1808,6 +1830,7 @@ final class SagemakerEndpointConfigurationShadowProductionVariants {
 
   final SagemakerEndpointConfigurationServerlessConfig? serverlessConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'accelerator_type': ?acceleratorType?.toTfJson(),
     'container_startup_health_check_timeout_in_seconds':
@@ -1844,6 +1867,7 @@ final class SagemakerEndpointConfigurationShadowProductionVariantsCoreDumpConfig
 
   final RefTo<AwsKmsKey> kmsKeyId;
 
+  @internal
   Map<String, Object?> encode() => {
     'destination_s3_uri': destinationS3Uri.toTfJson(),
     'kms_key_id': kmsKeyId.encodeAs('arn').toTfJson(),

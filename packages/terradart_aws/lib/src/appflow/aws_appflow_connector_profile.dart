@@ -180,6 +180,7 @@ final class AppflowConnectorProfileConfig {
 
   final AppflowConnectorProfileProperties connectorProfileProperties;
 
+  @internal
   Map<String, Object?> encode() => {
     'connector_profile_credentials': connectorProfileCredentials.encode(),
     'connector_profile_properties': connectorProfileProperties.encode(),
@@ -247,6 +248,7 @@ final class AppflowConnectorProfileCredentials {
 
   final AppflowConnectorProfileCredentialsZendesk? zendesk;
 
+  @internal
   Map<String, Object?> encode() => {
     'amplitude': ?amplitude?.encode(),
     'custom_connector': ?customConnector?.encode(),
@@ -282,6 +284,7 @@ final class AppflowConnectorProfileCredentialsAmplitude {
 
   final Sensitive<String> secretKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'api_key': apiKey.toTfJson(),
     'secret_key': secretKey.toTfJson(),
@@ -310,6 +313,7 @@ final class AppflowConnectorProfileCredentialsCustomConnector {
 
   final AppflowConnectorProfileOauth2? oauth2;
 
+  @internal
   Map<String, Object?> encode() => {
     'authentication_type': authenticationType.toTfJson(),
     'api_key': ?apiKey?.encode(),
@@ -364,6 +368,7 @@ final class AppflowConnectorProfileApiKey {
 
   final TfArg<String>? apiSecretKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'api_key': apiKey.toTfJson(),
     'api_secret_key': ?apiSecretKey?.toTfJson(),
@@ -383,6 +388,7 @@ final class AppflowConnectorProfileBasic {
 
   final TfArg<String> username;
 
+  @internal
   Map<String, Object?> encode() => {
     'password': password.toTfJson(),
     'username': username.toTfJson(),
@@ -402,6 +408,7 @@ final class AppflowConnectorProfileCustom {
 
   final TfArg<String> customAuthenticationType;
 
+  @internal
   Map<String, Object?> encode() => {
     'credentials_map': ?credentialsMap?.toTfJson(),
     'custom_authentication_type': customAuthenticationType.toTfJson(),
@@ -430,6 +437,7 @@ final class AppflowConnectorProfileOauth2 {
 
   final AppflowConnectorProfileOauthRequest? oauthRequest;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_token': ?accessToken?.toTfJson(),
     'client_id': ?clientId?.toTfJson(),
@@ -450,6 +458,7 @@ final class AppflowConnectorProfileOauthRequest {
 
   final TfArg<String>? redirectUri;
 
+  @internal
   Map<String, Object?> encode() => {
     'auth_code': ?authCode?.toTfJson(),
     'redirect_uri': ?redirectUri?.toTfJson(),
@@ -469,6 +478,7 @@ final class AppflowConnectorProfileCredentialsDatadog {
 
   final TfArg<String> applicationKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'api_key': apiKey.toTfJson(),
     'application_key': applicationKey.toTfJson(),
@@ -483,6 +493,7 @@ final class AppflowConnectorProfileCredentialsDynatrace {
 
   final TfArg<String> apiToken;
 
+  @internal
   Map<String, Object?> encode() => {'api_token': apiToken.toTfJson()};
 }
 
@@ -508,6 +519,7 @@ final class AppflowConnectorProfileCredentialsGoogleAnalytics {
 
   final AppflowConnectorProfileOauthRequest? oauthRequest;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_token': ?accessToken?.toTfJson(),
     'client_id': clientId.toTfJson(),
@@ -533,6 +545,7 @@ final class AppflowConnectorProfileCredentialsHoneycode {
 
   final AppflowConnectorProfileOauthRequest? oauthRequest;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_token': ?accessToken?.toTfJson(),
     'refresh_token': ?refreshToken?.toTfJson(),
@@ -559,6 +572,7 @@ final class AppflowConnectorProfileCredentialsInforNexus {
 
   final TfArg<String> userId;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_key_id': accessKeyId.toTfJson(),
     'datakey': datakey.toTfJson(),
@@ -586,6 +600,7 @@ final class AppflowConnectorProfileCredentialsMarketo {
 
   final AppflowConnectorProfileOauthRequest? oauthRequest;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_token': ?accessToken?.toTfJson(),
     'client_id': clientId.toTfJson(),
@@ -607,6 +622,7 @@ final class AppflowConnectorProfileCredentialsRedshift {
 
   final TfArg<String> username;
 
+  @internal
   Map<String, Object?> encode() => {
     'password': password.toTfJson(),
     'username': username.toTfJson(),
@@ -638,6 +654,7 @@ final class AppflowConnectorProfileCredentialsSalesforce {
 
   final AppflowConnectorProfileOauthRequest? oauthRequest;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_token': ?accessToken?.toTfJson(),
     'client_credentials_arn': ?clientCredentialsArn?.toTfJson(),
@@ -688,6 +705,7 @@ final class AppflowConnectorProfileCredentialsSapoData {
 
   final AppflowConnectorProfileOauthCredentials? oauthCredentials;
 
+  @internal
   Map<String, Object?> encode() => {
     'basic_auth_credentials': ?basicAuthCredentials?.encode(),
     'oauth_credentials': ?oauthCredentials?.encode(),
@@ -707,6 +725,7 @@ final class AppflowConnectorProfileBasicAuthCredentials {
 
   final TfArg<String> username;
 
+  @internal
   Map<String, Object?> encode() => {
     'password': password.toTfJson(),
     'username': username.toTfJson(),
@@ -735,6 +754,7 @@ final class AppflowConnectorProfileOauthCredentials {
 
   final AppflowConnectorProfileOauthRequest? oauthRequest;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_token': ?accessToken?.toTfJson(),
     'client_id': clientId.toTfJson(),
@@ -757,6 +777,7 @@ final class AppflowConnectorProfileCredentialsServiceNow {
 
   final TfArg<String> username;
 
+  @internal
   Map<String, Object?> encode() => {
     'password': password.toTfJson(),
     'username': username.toTfJson(),
@@ -771,6 +792,7 @@ final class AppflowConnectorProfileCredentialsSingular {
 
   final TfArg<String> apiKey;
 
+  @internal
   Map<String, Object?> encode() => {'api_key': apiKey.toTfJson()};
 }
 
@@ -793,6 +815,7 @@ final class AppflowConnectorProfileCredentialsSlack {
 
   final AppflowConnectorProfileOauthRequest? oauthRequest;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_token': ?accessToken?.toTfJson(),
     'client_id': clientId.toTfJson(),
@@ -814,6 +837,7 @@ final class AppflowConnectorProfileCredentialsSnowflake {
 
   final TfArg<String> username;
 
+  @internal
   Map<String, Object?> encode() => {
     'password': password.toTfJson(),
     'username': username.toTfJson(),
@@ -830,6 +854,7 @@ final class AppflowConnectorProfileCredentialsTrendmicro {
 
   final Sensitive<String> apiSecretKey;
 
+  @internal
   Map<String, Object?> encode() => {'api_secret_key': apiSecretKey.toTfJson()};
 }
 
@@ -846,6 +871,7 @@ final class AppflowConnectorProfileCredentialsVeeva {
 
   final TfArg<String> username;
 
+  @internal
   Map<String, Object?> encode() => {
     'password': password.toTfJson(),
     'username': username.toTfJson(),
@@ -871,6 +897,7 @@ final class AppflowConnectorProfileCredentialsZendesk {
 
   final AppflowConnectorProfileOauthRequest? oauthRequest;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_token': ?accessToken?.toTfJson(),
     'client_id': clientId.toTfJson(),
@@ -940,6 +967,7 @@ final class AppflowConnectorProfileProperties {
 
   final AppflowConnectorProfilePropertiesZendesk? zendesk;
 
+  @internal
   Map<String, Object?> encode() => {
     'amplitude': ?amplitude?.encode(),
     'custom_connector': ?customConnector?.encode(),
@@ -968,6 +996,7 @@ final class AppflowConnectorProfileProperties {
 final class AppflowConnectorProfilePropertiesAmplitude {
   const AppflowConnectorProfilePropertiesAmplitude();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -984,6 +1013,7 @@ final class AppflowConnectorProfilePropertiesCustomConnector {
 
   final AppflowConnectorProfileOauth2Properties? oauth2Properties;
 
+  @internal
   Map<String, Object?> encode() => {
     'profile_properties': ?profileProperties?.toTfJson(),
     'oauth2_properties': ?oauth2Properties?.encode(),
@@ -1006,6 +1036,7 @@ final class AppflowConnectorProfileOauth2Properties {
 
   final TfArg<Map<String, String>>? tokenUrlCustomProperties;
 
+  @internal
   Map<String, Object?> encode() => {
     'oauth2_grant_type': oauth2GrantType.toTfJson(),
     'token_url': tokenUrl.toTfJson(),
@@ -1021,6 +1052,7 @@ final class AppflowConnectorProfilePropertiesDatadog {
 
   final TfArg<String> instanceUrl;
 
+  @internal
   Map<String, Object?> encode() => {'instance_url': instanceUrl.toTfJson()};
 }
 
@@ -1032,6 +1064,7 @@ final class AppflowConnectorProfilePropertiesDynatrace {
 
   final TfArg<String> instanceUrl;
 
+  @internal
   Map<String, Object?> encode() => {'instance_url': instanceUrl.toTfJson()};
 }
 
@@ -1041,6 +1074,7 @@ final class AppflowConnectorProfilePropertiesDynatrace {
 final class AppflowConnectorProfilePropertiesGoogleAnalytics {
   const AppflowConnectorProfilePropertiesGoogleAnalytics();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -1050,6 +1084,7 @@ final class AppflowConnectorProfilePropertiesGoogleAnalytics {
 final class AppflowConnectorProfilePropertiesHoneycode {
   const AppflowConnectorProfilePropertiesHoneycode();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -1063,6 +1098,7 @@ final class AppflowConnectorProfilePropertiesInforNexus {
 
   final TfArg<String> instanceUrl;
 
+  @internal
   Map<String, Object?> encode() => {'instance_url': instanceUrl.toTfJson()};
 }
 
@@ -1074,6 +1110,7 @@ final class AppflowConnectorProfilePropertiesMarketo {
 
   final TfArg<String> instanceUrl;
 
+  @internal
   Map<String, Object?> encode() => {'instance_url': instanceUrl.toTfJson()};
 }
 
@@ -1105,6 +1142,7 @@ final class AppflowConnectorProfilePropertiesRedshift {
 
   final RefTo<AwsIamRole> roleArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('id').toTfJson(),
     'bucket_prefix': ?bucketPrefix?.toTfJson(),
@@ -1132,6 +1170,7 @@ final class AppflowConnectorProfilePropertiesSalesforce {
 
   final TfArg<bool>? usePrivatelinkForMetadataAndAuthorization;
 
+  @internal
   Map<String, Object?> encode() => {
     'instance_url': ?instanceUrl?.toTfJson(),
     'is_sandbox_environment': ?isSandboxEnvironment?.toTfJson(),
@@ -1168,6 +1207,7 @@ final class AppflowConnectorProfilePropertiesSapoData {
 
   final AppflowConnectorProfileOauthProperties? oauthProperties;
 
+  @internal
   Map<String, Object?> encode() => {
     'application_host_url': applicationHostUrl.toTfJson(),
     'application_service_path': applicationServicePath.toTfJson(),
@@ -1195,6 +1235,7 @@ final class AppflowConnectorProfileOauthProperties {
 
   final TfArg<String> tokenUrl;
 
+  @internal
   Map<String, Object?> encode() => {
     'auth_code_url': authCodeUrl.toTfJson(),
     'oauth_scopes': oauthScopes.toTfJson(),
@@ -1212,6 +1253,7 @@ final class AppflowConnectorProfilePropertiesServiceNow {
 
   final TfArg<String> instanceUrl;
 
+  @internal
   Map<String, Object?> encode() => {'instance_url': instanceUrl.toTfJson()};
 }
 
@@ -1221,6 +1263,7 @@ final class AppflowConnectorProfilePropertiesServiceNow {
 final class AppflowConnectorProfilePropertiesSingular {
   const AppflowConnectorProfilePropertiesSingular();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -1232,6 +1275,7 @@ final class AppflowConnectorProfilePropertiesSlack {
 
   final TfArg<String> instanceUrl;
 
+  @internal
   Map<String, Object?> encode() => {'instance_url': instanceUrl.toTfJson()};
 }
 
@@ -1263,6 +1307,7 @@ final class AppflowConnectorProfilePropertiesSnowflake {
 
   final TfArg<String> warehouse;
 
+  @internal
   Map<String, Object?> encode() => {
     'account_name': ?accountName?.toTfJson(),
     'bucket_name': bucketName.encodeAs('id').toTfJson(),
@@ -1280,6 +1325,7 @@ final class AppflowConnectorProfilePropertiesSnowflake {
 final class AppflowConnectorProfilePropertiesTrendmicro {
   const AppflowConnectorProfilePropertiesTrendmicro();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -1291,6 +1337,7 @@ final class AppflowConnectorProfilePropertiesVeeva {
 
   final TfArg<String> instanceUrl;
 
+  @internal
   Map<String, Object?> encode() => {'instance_url': instanceUrl.toTfJson()};
 }
 
@@ -1302,6 +1349,7 @@ final class AppflowConnectorProfilePropertiesZendesk {
 
   final TfArg<String> instanceUrl;
 
+  @internal
   Map<String, Object?> encode() => {'instance_url': instanceUrl.toTfJson()};
 }
 

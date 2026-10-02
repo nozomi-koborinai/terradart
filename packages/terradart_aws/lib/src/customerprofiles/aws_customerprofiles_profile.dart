@@ -44,6 +44,7 @@ final class CustomerprofilesProfileAddress {
 
   final TfArg<String>? state;
 
+  @internal
   Map<String, Object?> encode() => {
     'address_1': ?address1?.toTfJson(),
     'address_2': ?address2?.toTfJson(),
@@ -95,6 +96,7 @@ final class CustomerprofilesProfileBillingAddress {
 
   final TfArg<String>? state;
 
+  @internal
   Map<String, Object?> encode() => {
     'address_1': ?address1?.toTfJson(),
     'address_2': ?address2?.toTfJson(),
@@ -146,6 +148,7 @@ final class CustomerprofilesProfileMailingAddress {
 
   final TfArg<String>? state;
 
+  @internal
   Map<String, Object?> encode() => {
     'address_1': ?address1?.toTfJson(),
     'address_2': ?address2?.toTfJson(),
@@ -197,6 +200,7 @@ final class CustomerprofilesProfileShippingAddress {
 
   final TfArg<String>? state;
 
+  @internal
   Map<String, Object?> encode() => {
     'address_1': ?address1?.toTfJson(),
     'address_2': ?address2?.toTfJson(),

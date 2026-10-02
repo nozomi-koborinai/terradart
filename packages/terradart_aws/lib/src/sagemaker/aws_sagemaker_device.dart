@@ -23,6 +23,7 @@ final class SagemakerDevice {
 
   final TfArg<String>? iotThingName;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'device_name': deviceName.toTfJson(),

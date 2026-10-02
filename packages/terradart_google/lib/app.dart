@@ -5,6 +5,7 @@
 /// settings.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/app/google_app_engine_application.dart'
     show
         AppEngineApplicationFeatureSettings,
@@ -91,3 +92,5 @@ export 'src/app/google_app_engine_standard_app_version.dart'
         AppEngineStandardAppVersionVpcAccessConnector,
         AppEngineStandardAppVersionZip,
         GoogleAppEngineStandardAppVersion;
+export 'src/data/google_app_engine_default_service_account.dart'
+    show DataGoogleAppEngineDefaultServiceAccount;

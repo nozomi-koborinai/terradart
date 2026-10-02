@@ -29,6 +29,7 @@ final class ChimeVoiceConnectorOriginationRoute {
 
   final TfArg<num> weight;
 
+  @internal
   Map<String, Object?> encode() => {
     'host': host.toTfJson(),
     'port': ?port?.toTfJson(),

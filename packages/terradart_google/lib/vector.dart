@@ -4,6 +4,7 @@
 /// indexes over a collection field (ScaNN / dedicated infrastructure).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/vector/google_vector_search_collection.dart'
     show
         GoogleVectorSearchCollection,

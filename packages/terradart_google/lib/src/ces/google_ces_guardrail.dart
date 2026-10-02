@@ -25,6 +25,7 @@ final class CesGuardrailAction {
 
   final CesGuardrailTransferAgent? transferAgent;
 
+  @internal
   Map<String, Object?> encode() => {
     'generative_answer': ?generativeAnswer?.encode(),
     'respond_immediately': ?respondImmediately?.encode(),
@@ -40,6 +41,7 @@ final class CesGuardrailGenerativeAnswer {
 
   final TfArg<String> prompt;
 
+  @internal
   Map<String, Object?> encode() => {'prompt': prompt.toTfJson()};
 }
 
@@ -51,6 +53,7 @@ final class CesGuardrailRespondImmediately {
 
   final List<CesGuardrailResponses> responses;
 
+  @internal
   Map<String, Object?> encode() => {
     'responses': [for (final e in responses) e.encode()],
   };
@@ -66,6 +69,7 @@ final class CesGuardrailResponses {
 
   final TfArg<String> text;
 
+  @internal
   Map<String, Object?> encode() => {
     'disabled': ?disabled?.toTfJson(),
     'text': text.toTfJson(),
@@ -80,6 +84,7 @@ final class CesGuardrailTransferAgent {
 
   final TfArg<String> agent;
 
+  @internal
   Map<String, Object?> encode() => {'agent': agent.toTfJson()};
 }
 
@@ -102,6 +107,7 @@ final class CesGuardrailCodeCallback {
 
   final CesGuardrailBeforeModelCallback? beforeModelCallback;
 
+  @internal
   Map<String, Object?> encode() => {
     'after_agent_callback': ?afterAgentCallback?.encode(),
     'after_model_callback': ?afterModelCallback?.encode(),
@@ -129,6 +135,7 @@ final class CesGuardrailAfterAgentCallback {
 
   final TfArg<String> pythonCode;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'disabled': ?disabled?.toTfJson(),
@@ -156,6 +163,7 @@ final class CesGuardrailAfterModelCallback {
 
   final TfArg<String> pythonCode;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'disabled': ?disabled?.toTfJson(),
@@ -183,6 +191,7 @@ final class CesGuardrailBeforeAgentCallback {
 
   final TfArg<String> pythonCode;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'disabled': ?disabled?.toTfJson(),
@@ -210,6 +219,7 @@ final class CesGuardrailBeforeModelCallback {
 
   final TfArg<String> pythonCode;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'disabled': ?disabled?.toTfJson(),
@@ -240,6 +250,7 @@ final class CesGuardrailContentFilter {
 
   final TfArg<String> matchType;
 
+  @internal
   Map<String, Object?> encode() => {
     'banned_contents': ?bannedContents?.toTfJson(),
     'banned_contents_in_agent_response': ?bannedContentsInAgentResponse
@@ -275,6 +286,7 @@ final class CesGuardrailLlmPolicy {
 
   final CesGuardrailModelSettings? modelSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_short_utterance': ?allowShortUtterance?.toTfJson(),
     'fail_open': ?failOpen?.toTfJson(),
@@ -321,6 +333,7 @@ final class CesGuardrailModelSettings {
 
   final TfArg<num>? temperature;
 
+  @internal
   Map<String, Object?> encode() => {
     'model': ?model?.toTfJson(),
     'temperature': ?temperature?.toTfJson(),
@@ -343,6 +356,7 @@ final class CesGuardrailLlmPromptSecurity {
 
   final CesGuardrailDefaultSettings? defaultSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'fail_open': ?failOpen?.toTfJson(),
     'custom_policy': ?customPolicy?.encode(),
@@ -375,6 +389,7 @@ final class CesGuardrailCustomPolicy {
 
   final CesGuardrailModelSettings? modelSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_short_utterance': ?allowShortUtterance?.toTfJson(),
     'fail_open': ?failOpen?.toTfJson(),
@@ -391,6 +406,7 @@ final class CesGuardrailCustomPolicy {
 final class CesGuardrailDefaultSettings {
   const CesGuardrailDefaultSettings();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -402,6 +418,7 @@ final class CesGuardrailModelSafety {
 
   final List<CesGuardrailSafetySettings> safetySettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'safety_settings': [for (final e in safetySettings) e.encode()],
   };
@@ -420,6 +437,7 @@ final class CesGuardrailSafetySettings {
 
   final CesGuardrailThreshold threshold;
 
+  @internal
   Map<String, Object?> encode() => {
     'category': category.toTfJson(),
     'threshold': threshold.toTfJson(),

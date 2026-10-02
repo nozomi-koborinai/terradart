@@ -177,6 +177,7 @@ final class OracleDatabaseGoldengateConnectionProperties {
   final OracleDatabaseGoldengateConnectionSnowflakeConnectionProperties?
   snowflakeConnectionProperties;
 
+  @internal
   Map<String, Object?> encode() => {
     'connection_type': connectionType.toTfJson(),
     'description': ?description?.toTfJson(),
@@ -254,6 +255,7 @@ final class OracleDatabaseGoldengateConnectionAmazonKinesisConnectionProperties 
 
   final TfArg<String>? technologyType;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_key_id': ?accessKeyId?.toTfJson(),
     'aws_region': ?awsRegion?.toTfJson(),
@@ -285,6 +287,7 @@ final class OracleDatabaseGoldengateConnectionAmazonRedshiftConnectionProperties
 
   final TfArg<String>? username;
 
+  @internal
   Map<String, Object?> encode() => {
     'connection_url': ?connectionUrl?.toTfJson(),
     'password': ?password?.toTfJson(),
@@ -316,6 +319,7 @@ final class OracleDatabaseGoldengateConnectionAmazonS3ConnectionProperties {
 
   final TfArg<String>? technologyType;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_key_id': ?accessKeyId?.toTfJson(),
     'endpoint': ?endpoint?.toTfJson(),
@@ -362,6 +366,7 @@ final class OracleDatabaseGoldengateConnectionAzureDataLakeStorageConnectionProp
 
   final TfArg<String>? technologyType;
 
+  @internal
   Map<String, Object?> encode() => {
     'account': ?account?.toTfJson(),
     'account_key_secret': ?accountKeySecret?.toTfJson(),
@@ -398,6 +403,7 @@ final class OracleDatabaseGoldengateConnectionAzureSynapseAnalyticsConnectionPro
 
   final TfArg<String>? username;
 
+  @internal
   Map<String, Object?> encode() => {
     'connection_string': ?connectionString?.toTfJson(),
     'password': ?password?.toTfJson(),
@@ -438,6 +444,7 @@ final class OracleDatabaseGoldengateConnectionDatabricksConnectionProperties {
 
   final TfArg<String>? technologyType;
 
+  @internal
   Map<String, Object?> encode() => {
     'authentication_type': ?authenticationType?.toTfJson(),
     'client_id': ?clientId?.toTfJson(),
@@ -494,6 +501,7 @@ final class OracleDatabaseGoldengateConnectionDb2ConnectionProperties {
   final List<OracleDatabaseGoldengateConnectionAdditionalAttributes>?
   additionalAttributes;
 
+  @internal
   Map<String, Object?> encode() => {
     'database': ?database?.toTfJson(),
     'host': ?host?.toTfJson(),
@@ -527,6 +535,7 @@ final class OracleDatabaseGoldengateConnectionAdditionalAttributes {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'value': value.toTfJson(),
@@ -564,6 +573,7 @@ final class OracleDatabaseGoldengateConnectionElasticsearchConnectionProperties 
 
   final TfArg<String>? username;
 
+  @internal
   Map<String, Object?> encode() => {
     'authentication_type': ?authenticationType?.toTfJson(),
     'fingerprint': ?fingerprint?.toTfJson(),
@@ -589,6 +599,7 @@ final class OracleDatabaseGoldengateConnectionGenericConnectionProperties {
 
   final TfArg<String>? technologyType;
 
+  @internal
   Map<String, Object?> encode() => {
     'host': ?host?.toTfJson(),
     'technology_type': ?technologyType?.toTfJson(),
@@ -623,6 +634,7 @@ final class OracleDatabaseGoldengateConnectionGoldengateConnectionProperties {
 
   final TfArg<String>? username;
 
+  @internal
   Map<String, Object?> encode() => {
     'goldengate_deployment_id': ?goldengateDeploymentId?.toTfJson(),
     'host': ?host?.toTfJson(),
@@ -647,6 +659,7 @@ final class OracleDatabaseGoldengateConnectionGoogleBigQueryConnectionProperties
 
   final TfArg<String>? technologyType;
 
+  @internal
   Map<String, Object?> encode() => {
     'service_account_key_file': ?serviceAccountKeyFile?.toTfJson(),
     'technology_type': ?technologyType?.toTfJson(),
@@ -666,6 +679,7 @@ final class OracleDatabaseGoldengateConnectionGoogleCloudStorageConnectionProper
 
   final TfArg<String>? technologyType;
 
+  @internal
   Map<String, Object?> encode() => {
     'service_account_key_file': ?serviceAccountKeyFile?.toTfJson(),
     'technology_type': ?technologyType?.toTfJson(),
@@ -685,6 +699,7 @@ final class OracleDatabaseGoldengateConnectionGooglePubsubConnectionProperties {
 
   final TfArg<String>? technologyType;
 
+  @internal
   Map<String, Object?> encode() => {
     'service_account_key_file': ?serviceAccountKeyFile?.toTfJson(),
     'technology_type': ?technologyType?.toTfJson(),
@@ -704,6 +719,7 @@ final class OracleDatabaseGoldengateConnectionHdfsConnectionProperties {
 
   final TfArg<String>? technologyType;
 
+  @internal
   Map<String, Object?> encode() => {
     'core_site_xml': ?coreSiteXml?.toTfJson(),
     'technology_type': ?technologyType?.toTfJson(),
@@ -726,6 +742,7 @@ final class OracleDatabaseGoldengateConnectionIcebergConnectionProperties {
 
   final OracleDatabaseGoldengateConnectionStorage storage;
 
+  @internal
   Map<String, Object?> encode() => {
     'technology_type': technologyType.toTfJson(),
     'catalog': catalog.encode(),
@@ -759,6 +776,7 @@ final class OracleDatabaseGoldengateConnectionCatalog {
   final OracleDatabaseGoldengateConnectionRestIcebergCatalog?
   restIcebergCatalog;
 
+  @internal
   Map<String, Object?> encode() => {
     'catalog_type': catalogType.toTfJson(),
     'glue_iceberg_catalog': ?glueIcebergCatalog?.encode(),
@@ -778,6 +796,7 @@ final class OracleDatabaseGoldengateConnectionGlueIcebergCatalog {
 
   final TfArg<String> glueId;
 
+  @internal
   Map<String, Object?> encode() => {'glue_id': glueId.toTfJson()};
 }
 
@@ -794,6 +813,7 @@ final class OracleDatabaseGoldengateConnectionNessieIcebergCatalog {
 
   final TfArg<String> uri;
 
+  @internal
   Map<String, Object?> encode() => {
     'branch': branch.toTfJson(),
     'uri': uri.toTfJson(),
@@ -822,6 +842,7 @@ final class OracleDatabaseGoldengateConnectionPolarisIcebergCatalog {
 
   final TfArg<String> uri;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_id': clientId.toTfJson(),
     'client_secret': ?clientSecret?.toTfJson(),
@@ -844,6 +865,7 @@ final class OracleDatabaseGoldengateConnectionRestIcebergCatalog {
 
   final TfArg<String> uri;
 
+  @internal
   Map<String, Object?> encode() => {
     'properties': ?properties?.toTfJson(),
     'uri': uri.toTfJson(),
@@ -872,6 +894,7 @@ final class OracleDatabaseGoldengateConnectionStorage {
   final OracleDatabaseGoldengateConnectionGoogleCloudStorageIcebergStorage?
   googleCloudStorageIcebergStorage;
 
+  @internal
   Map<String, Object?> encode() => {
     'storage_type': storageType.toTfJson(),
     'amazon_s3_iceberg_storage': ?amazonS3IcebergStorage?.encode(),
@@ -907,6 +930,7 @@ final class OracleDatabaseGoldengateConnectionAmazonS3IcebergStorage {
 
   final TfArg<String>? secretAccessKeySecret;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_key_id': accessKeyId.toTfJson(),
     'bucket': bucket.toTfJson(),
@@ -936,6 +960,7 @@ final class OracleDatabaseGoldengateConnectionAzureDataLakeStorageIcebergStorage
 
   final TfArg<String>? endpoint;
 
+  @internal
   Map<String, Object?> encode() => {
     'account_key_secret': ?accountKeySecret?.toTfJson(),
     'azure_account': azureAccount.toTfJson(),
@@ -960,6 +985,7 @@ final class OracleDatabaseGoldengateConnectionGoogleCloudStorageIcebergStorage {
 
   final TfArg<String>? serviceAccountKeyFile;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('name').toTfJson(),
     'project_id': projectId.toTfJson(),
@@ -1040,6 +1066,7 @@ final class OracleDatabaseGoldengateConnectionJavaMessageServiceConnectionProper
 
   final TfArg<String>? username;
 
+  @internal
   Map<String, Object?> encode() => {
     'authentication_type': ?authenticationType?.toTfJson(),
     'connection_factory': ?connectionFactory?.toTfJson(),
@@ -1134,6 +1161,7 @@ final class OracleDatabaseGoldengateConnectionKafkaConnectionProperties {
   final List<OracleDatabaseGoldengateConnectionBootstrapServers>?
   bootstrapServers;
 
+  @internal
   Map<String, Object?> encode() => {
     'cluster_id': ?clusterId?.toTfJson(),
     'consumer_properties_file': ?consumerPropertiesFile?.toTfJson(),
@@ -1176,6 +1204,7 @@ final class OracleDatabaseGoldengateConnectionBootstrapServers {
 
   final TfArg<String>? privateIpAddress;
 
+  @internal
   Map<String, Object?> encode() => {
     'host': host.toTfJson(),
     'port': ?port?.toTfJson(),
@@ -1232,6 +1261,7 @@ final class OracleDatabaseGoldengateConnectionKafkaSchemaRegistryConnectionPrope
 
   final TfArg<String>? username;
 
+  @internal
   Map<String, Object?> encode() => {
     'authentication_type': ?authenticationType?.toTfJson(),
     'key_store_file': ?keyStoreFile?.toTfJson(),
@@ -1274,6 +1304,7 @@ final class OracleDatabaseGoldengateConnectionMicrosoftFabricConnectionPropertie
 
   final TfArg<String>? tenantId;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_id': ?clientId?.toTfJson(),
     'client_secret': ?clientSecret?.toTfJson(),
@@ -1324,6 +1355,7 @@ final class OracleDatabaseGoldengateConnectionMicrosoftSqlserverConnectionProper
   final List<OracleDatabaseGoldengateConnectionAdditionalAttributes>?
   additionalAttributes;
 
+  @internal
   Map<String, Object?> encode() => {
     'database': ?database?.toTfJson(),
     'host': ?host?.toTfJson(),
@@ -1383,6 +1415,7 @@ final class OracleDatabaseGoldengateConnectionMongodbConnectionProperties {
 
   final TfArg<String>? username;
 
+  @internal
   Map<String, Object?> encode() => {
     'connection_string': ?connectionString?.toTfJson(),
     'database_id': ?databaseId?.toTfJson(),
@@ -1453,6 +1486,7 @@ final class OracleDatabaseGoldengateConnectionMysqlConnectionProperties {
   final List<OracleDatabaseGoldengateConnectionAdditionalAttributes>?
   additionalAttributes;
 
+  @internal
   Map<String, Object?> encode() => {
     'database': ?database?.toTfJson(),
     'db_system_id': ?dbSystemId?.toTfJson(),
@@ -1506,6 +1540,7 @@ final class OracleDatabaseGoldengateConnectionOciObjectStorageConnectionProperti
 
   final TfArg<String>? userId;
 
+  @internal
   Map<String, Object?> encode() => {
     'private_key_file': ?privateKeyFile?.toTfJson(),
     'private_key_passphrase_secret': ?privateKeyPassphraseSecret?.toTfJson(),
@@ -1552,6 +1587,7 @@ final class OracleDatabaseGoldengateConnectionOracleAiDataPlatformConnectionProp
 
   final TfArg<String>? userId;
 
+  @internal
   Map<String, Object?> encode() => {
     'connection_url': ?connectionUrl?.toTfJson(),
     'private_key_file': ?privateKeyFile?.toTfJson(),
@@ -1599,6 +1635,7 @@ final class OracleDatabaseGoldengateConnectionOracleConnectionProperties {
 
   final TfArg<String>? walletFile;
 
+  @internal
   Map<String, Object?> encode() => {
     'authentication_mode': ?authenticationMode?.toTfJson(),
     'connection_string': ?connectionString?.toTfJson(),
@@ -1643,6 +1680,7 @@ final class OracleDatabaseGoldengateConnectionOracleNosqlConnectionProperties {
 
   final TfArg<String>? userId;
 
+  @internal
   Map<String, Object?> encode() => {
     'private_key_file': ?privateKeyFile?.toTfJson(),
     'private_key_passphrase_secret': ?privateKeyPassphraseSecret?.toTfJson(),
@@ -1708,6 +1746,7 @@ final class OracleDatabaseGoldengateConnectionPostgresqlConnectionProperties {
   final List<OracleDatabaseGoldengateConnectionAdditionalAttributes>?
   additionalAttributes;
 
+  @internal
   Map<String, Object?> encode() => {
     'database': ?database?.toTfJson(),
     'db_system_id': ?dbSystemId?.toTfJson(),
@@ -1779,6 +1818,7 @@ final class OracleDatabaseGoldengateConnectionRedisConnectionProperties {
 
   final TfArg<String>? username;
 
+  @internal
   Map<String, Object?> encode() => {
     'authentication_type': ?authenticationType?.toTfJson(),
     'key_store_file': ?keyStoreFile?.toTfJson(),
@@ -1830,6 +1870,7 @@ final class OracleDatabaseGoldengateConnectionSnowflakeConnectionProperties {
 
   final TfArg<String>? username;
 
+  @internal
   Map<String, Object?> encode() => {
     'authentication_type': ?authenticationType?.toTfJson(),
     'connection_url': ?connectionUrl?.toTfJson(),

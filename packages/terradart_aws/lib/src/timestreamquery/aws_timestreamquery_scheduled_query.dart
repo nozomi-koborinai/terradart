@@ -22,6 +22,7 @@ final class TimestreamqueryScheduledQueryErrorReportConfiguration {
 
   final List<TimestreamqueryScheduledQueryS3Configuration>? s3Configuration;
 
+  @internal
   Map<String, Object?> encode() => {
     if (s3Configuration != null)
       's3_configuration': [for (final e in s3Configuration!) e.encode()],
@@ -44,6 +45,7 @@ final class TimestreamqueryScheduledQueryS3Configuration {
 
   final TfArg<String>? objectKeyPrefix;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('id').toTfJson(),
     'encryption_option': ?encryptionOption?.toTfJson(),
@@ -93,6 +95,7 @@ final class TimestreamqueryScheduledQueryLastRunSummary {
   final List<TimestreamqueryScheduledQueryInsightsResponse>?
   queryInsightsResponse;
 
+  @internal
   Map<String, Object?> encode() => {
     if (errorReportLocation != null)
       'error_report_location': [
@@ -118,6 +121,7 @@ final class TimestreamqueryScheduledQueryErrorReportLocation {
 
   final List<TimestreamqueryScheduledQueryS3ReportLocation>? s3ReportLocation;
 
+  @internal
   Map<String, Object?> encode() => {
     if (s3ReportLocation != null)
       's3_report_location': [for (final e in s3ReportLocation!) e.encode()],
@@ -131,6 +135,7 @@ final class TimestreamqueryScheduledQueryErrorReportLocation {
 final class TimestreamqueryScheduledQueryS3ReportLocation {
   const TimestreamqueryScheduledQueryS3ReportLocation();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -141,6 +146,7 @@ final class TimestreamqueryScheduledQueryS3ReportLocation {
 final class TimestreamqueryScheduledQueryExecutionStats {
   const TimestreamqueryScheduledQueryExecutionStats();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -159,6 +165,7 @@ final class TimestreamqueryScheduledQueryInsightsResponse {
 
   final List<TimestreamqueryScheduledQueryTemporalRange>? queryTemporalRange;
 
+  @internal
   Map<String, Object?> encode() => {
     if (querySpatialCoverage != null)
       'query_spatial_coverage': [
@@ -178,6 +185,7 @@ final class TimestreamqueryScheduledQuerySpatialCoverage {
 
   final List<TimestreamqueryScheduledQueryMax>? max;
 
+  @internal
   Map<String, Object?> encode() => {
     if (max != null) 'max': [for (final e in max!) e.encode()],
   };
@@ -190,6 +198,7 @@ final class TimestreamqueryScheduledQuerySpatialCoverage {
 final class TimestreamqueryScheduledQueryMax {
   const TimestreamqueryScheduledQueryMax();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -202,6 +211,7 @@ final class TimestreamqueryScheduledQueryTemporalRange {
 
   final List<TimestreamqueryScheduledQueryMax>? max;
 
+  @internal
   Map<String, Object?> encode() => {
     if (max != null) 'max': [for (final e in max!) e.encode()],
   };
@@ -217,6 +227,7 @@ final class TimestreamqueryScheduledQueryNotificationConfiguration {
 
   final List<TimestreamqueryScheduledQuerySnsConfiguration>? snsConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     if (snsConfiguration != null)
       'sns_configuration': [for (final e in snsConfiguration!) e.encode()],
@@ -231,6 +242,7 @@ final class TimestreamqueryScheduledQuerySnsConfiguration {
 
   final RefTo<AwsSnsTopic> topicArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'topic_arn': topicArn.encodeAs('arn').toTfJson(),
   };
@@ -254,6 +266,7 @@ final class TimestreamqueryScheduledQueryRecentlyFailedRuns {
   final List<TimestreamqueryScheduledQueryInsightsResponse>?
   queryInsightsResponse;
 
+  @internal
   Map<String, Object?> encode() => {
     if (errorReportLocation != null)
       'error_report_location': [
@@ -278,6 +291,7 @@ final class TimestreamqueryScheduledQueryScheduleConfiguration {
 
   final TfArg<String> scheduleExpression;
 
+  @internal
   Map<String, Object?> encode() => {
     'schedule_expression': scheduleExpression.toTfJson(),
   };
@@ -294,6 +308,7 @@ final class TimestreamqueryScheduledQueryTargetConfiguration {
   final List<TimestreamqueryScheduledQueryTimestreamConfiguration>?
   timestreamConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     if (timestreamConfiguration != null)
       'timestream_configuration': [
@@ -332,6 +347,7 @@ final class TimestreamqueryScheduledQueryTimestreamConfiguration {
   final List<TimestreamqueryScheduledQueryMultiMeasureMappings>?
   multiMeasureMappings;
 
+  @internal
   Map<String, Object?> encode() => {
     'database_name': databaseName.toTfJson(),
     'measure_name_column': ?measureNameColumn?.toTfJson(),
@@ -363,6 +379,7 @@ final class TimestreamqueryScheduledQueryDimensionMapping {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {
     'dimension_value_type': dimensionValueType.toTfJson(),
     'name': name.toTfJson(),
@@ -412,6 +429,7 @@ final class TimestreamqueryScheduledQueryMixedMeasureMapping {
   final List<TimestreamqueryScheduledQueryMultiMeasureAttributeMapping>?
   multiMeasureAttributeMapping;
 
+  @internal
   Map<String, Object?> encode() => {
     'measure_name': ?measureName?.toTfJson(),
     'measure_value_type': measureValueType.toTfJson(),
@@ -478,6 +496,7 @@ final class TimestreamqueryScheduledQueryMultiMeasureAttributeMapping {
 
   final TfArg<String>? targetMultiMeasureAttributeName;
 
+  @internal
   Map<String, Object?> encode() => {
     'measure_value_type': measureValueType.toTfJson(),
     'source_column': sourceColumn.toTfJson(),
@@ -541,6 +560,7 @@ final class TimestreamqueryScheduledQueryMultiMeasureMappings {
   final List<TimestreamqueryScheduledQueryMultiMeasureAttributeMapping>?
   multiMeasureAttributeMapping;
 
+  @internal
   Map<String, Object?> encode() => {
     'target_multi_measure_name': ?targetMultiMeasureName?.toTfJson(),
     if (multiMeasureAttributeMapping != null)

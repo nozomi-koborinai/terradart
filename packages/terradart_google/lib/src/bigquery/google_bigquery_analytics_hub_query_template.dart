@@ -21,6 +21,7 @@ final class BigqueryAnalyticsHubQueryTemplateRoutine {
 
   final TfArg<String>? routineType;
 
+  @internal
   Map<String, Object?> encode() => {
     'definition_body': ?definitionBody?.toTfJson(),
     'routine_type': ?routineType?.toTfJson(),

@@ -28,6 +28,7 @@ final class HyperdriveConfigCaching {
 
   final TfArg<num>? staleWhileRevalidate;
 
+  @internal
   Map<String, Object?> encode() => {
     'disabled': ?disabled?.toTfJson(),
     'max_age': ?maxAge?.toTfJson(),
@@ -51,6 +52,7 @@ final class HyperdriveConfigMtls {
 
   final TfArg<String>? sslmode;
 
+  @internal
   Map<String, Object?> encode() => {
     'ca_certificate_id': ?caCertificateId?.toTfJson(),
     'mtls_certificate_id': ?mtlsCertificateId?.toTfJson(),
@@ -92,6 +94,7 @@ final class HyperdriveConfigOrigin {
 
   final TfArg<String> user;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_client_id': ?accessClientId?.toTfJson(),
     'access_client_secret': ?accessClientSecret?.toTfJson(),

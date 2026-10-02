@@ -139,12 +139,15 @@ sealed class RulesetScope {
       RulesetScopeZoneId;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -154,14 +157,17 @@ final class RulesetScopeAccountId extends RulesetScope {
 
   final RefTo<CloudflareAccount> accountId;
 
+  @internal
   @override
   String get blockKey => 'account_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'account_id': accountId.encodeAs('id').toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'account_id': accountId.encodeAs('id'),
@@ -174,14 +180,17 @@ final class RulesetScopeZoneId extends RulesetScope {
 
   final RefTo<CloudflareZone> zoneId;
 
+  @internal
   @override
   String get blockKey => 'zone_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'zone_id': zoneId.encodeAs('id').toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'zone_id': zoneId.encodeAs('id')};
 }
@@ -220,6 +229,7 @@ final class RulesetRules {
 
   final RulesetRatelimit? ratelimit;
 
+  @internal
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
     'description': ?description?.toTfJson(),
@@ -535,6 +545,7 @@ final class RulesetActionParameters {
 
   final RulesetVary? vary;
 
+  @internal
   Map<String, Object?> encode() => {
     'additional_cacheable_ports': ?additionalCacheablePorts?.toTfJson(),
     ...?body?.encode(),
@@ -641,8 +652,10 @@ sealed class RulesetBody {
   const factory RulesetBody.content(TfArg<String> content) = RulesetBodyContent;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -652,9 +665,11 @@ final class RulesetBodyAssetName extends RulesetBody {
 
   final TfArg<String> assetName;
 
+  @internal
   @override
   String get blockKey => 'asset_name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'asset_name': assetName.toTfJson()};
 }
@@ -665,9 +680,11 @@ final class RulesetBodyContent extends RulesetBody {
 
   final TfArg<String> content;
 
+  @internal
   @override
   String get blockKey => 'content';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'content': content.toTfJson()};
 }
@@ -689,8 +706,10 @@ sealed class RulesetSource {
       RulesetSourceFromValue;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -700,9 +719,11 @@ final class RulesetSourceFromList extends RulesetSource {
 
   final RulesetFromList fromList;
 
+  @internal
   @override
   String get blockKey => 'from_list';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'from_list': fromList.encode()};
 }
@@ -713,9 +734,11 @@ final class RulesetSourceFromValue extends RulesetSource {
 
   final RulesetFromValue fromValue;
 
+  @internal
   @override
   String get blockKey => 'from_value';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'from_value': fromValue.encode()};
 }
@@ -737,8 +760,10 @@ sealed class RulesetValue {
       RulesetValueExpression;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -748,9 +773,11 @@ final class RulesetValueValues extends RulesetValue {
 
   final TfArg<List<String>> values;
 
+  @internal
   @override
   String get blockKey => 'values';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'values': values.toTfJson()};
 }
@@ -761,9 +788,11 @@ final class RulesetValueExpression extends RulesetValue {
 
   final TfArg<String> expression;
 
+  @internal
   @override
   String get blockKey => 'expression';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'expression': expression.toTfJson()};
 }
@@ -1056,6 +1085,7 @@ final class RulesetAlgorithms {
 
   final RulesetAlgorithmsName? name;
 
+  @internal
   Map<String, Object?> encode() => {'name': ?name?.toTfJson()};
 }
 
@@ -1096,6 +1126,7 @@ final class RulesetAutominify {
 
   final TfArg<bool>? js;
 
+  @internal
   Map<String, Object?> encode() => {
     'css': ?css?.toTfJson(),
     'html': ?html?.toTfJson(),
@@ -1113,6 +1144,7 @@ final class RulesetBrowserTtl {
 
   final RulesetBrowserTtlMode mode;
 
+  @internal
   Map<String, Object?> encode() => {
     'default': ?defaultCase?.toTfJson(),
     'mode': mode.toTfJson(),
@@ -1165,6 +1197,7 @@ final class RulesetCacheKey {
 
   final RulesetCustomKey? customKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'cache_by_device_type': ?cacheByDeviceType?.toTfJson(),
     'cache_deception_armor': ?cacheDeceptionArmor?.toTfJson(),
@@ -1195,6 +1228,7 @@ final class RulesetCustomKey {
 
   final RulesetUser? user;
 
+  @internal
   Map<String, Object?> encode() => {
     'cookie': ?cookie?.encode(),
     'header': ?header?.encode(),
@@ -1214,6 +1248,7 @@ final class RulesetCookie {
 
   final TfArg<List<String>>? include;
 
+  @internal
   Map<String, Object?> encode() => {
     'check_presence': ?checkPresence?.toTfJson(),
     'include': ?include?.toTfJson(),
@@ -1239,6 +1274,7 @@ final class RulesetHeader {
 
   final TfArg<List<String>>? include;
 
+  @internal
   Map<String, Object?> encode() => {
     'check_presence': ?checkPresence?.toTfJson(),
     'contains': ?contains?.toTfJson(),
@@ -1255,6 +1291,7 @@ final class RulesetHost {
 
   final TfArg<bool>? resolved;
 
+  @internal
   Map<String, Object?> encode() => {'resolved': ?resolved?.toTfJson()};
 }
 
@@ -1275,8 +1312,10 @@ sealed class RulesetQueryString {
       RulesetQueryStringExclude;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -1286,9 +1325,11 @@ final class RulesetQueryStringInclude extends RulesetQueryString {
 
   final RulesetInclude include;
 
+  @internal
   @override
   String get blockKey => 'include';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'include': include.encode()};
 }
@@ -1299,9 +1340,11 @@ final class RulesetQueryStringExclude extends RulesetQueryString {
 
   final RulesetExclude exclude;
 
+  @internal
   @override
   String get blockKey => 'exclude';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'exclude': exclude.encode()};
 }
@@ -1321,8 +1364,10 @@ sealed class RulesetExclude {
   const factory RulesetExclude.all(TfArg<bool> all) = RulesetExcludeAll;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -1332,9 +1377,11 @@ final class RulesetExcludeList extends RulesetExclude {
 
   final TfArg<List<String>> list;
 
+  @internal
   @override
   String get blockKey => 'list';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'list': list.toTfJson()};
 }
@@ -1345,9 +1392,11 @@ final class RulesetExcludeAll extends RulesetExclude {
 
   final TfArg<bool> all;
 
+  @internal
   @override
   String get blockKey => 'all';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'all': all.toTfJson()};
 }
@@ -1367,8 +1416,10 @@ sealed class RulesetInclude {
   const factory RulesetInclude.all(TfArg<bool> all) = RulesetIncludeAll;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -1378,9 +1429,11 @@ final class RulesetIncludeList extends RulesetInclude {
 
   final TfArg<List<String>> list;
 
+  @internal
   @override
   String get blockKey => 'list';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'list': list.toTfJson()};
 }
@@ -1391,9 +1444,11 @@ final class RulesetIncludeAll extends RulesetInclude {
 
   final TfArg<bool> all;
 
+  @internal
   @override
   String get blockKey => 'all';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'all': all.toTfJson()};
 }
@@ -1410,6 +1465,7 @@ final class RulesetUser {
 
   final TfArg<bool>? lang;
 
+  @internal
   Map<String, Object?> encode() => {
     'device_type': ?deviceType?.toTfJson(),
     'geo': ?geo?.toTfJson(),
@@ -1427,6 +1483,7 @@ final class RulesetCacheReserve {
 
   final TfArg<num>? minimumFileSize;
 
+  @internal
   Map<String, Object?> encode() => {
     'eligible': eligible.toTfJson(),
     'minimum_file_size': ?minimumFileSize?.toTfJson(),
@@ -1441,6 +1498,7 @@ final class RulesetCookieFields {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 
@@ -1460,6 +1518,7 @@ final class RulesetEdgeTtl {
 
   final List<RulesetStatusCodeTtl>? statusCodeTtl;
 
+  @internal
   Map<String, Object?> encode() => {
     'default': ?defaultCase?.toTfJson(),
     'mode': mode.toTfJson(),
@@ -1503,6 +1562,7 @@ final class RulesetStatusCodeTtl {
 
   final TfArg<num> value;
 
+  @internal
   Map<String, Object?> encode() => {
     ...match.encode(),
     'value': value.toTfJson(),
@@ -1526,8 +1586,10 @@ sealed class RulesetMatch {
       RulesetMatchStatusCode;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -1537,9 +1599,11 @@ final class RulesetMatchStatusCodeRange extends RulesetMatch {
 
   final RulesetStatusCodeRange statusCodeRange;
 
+  @internal
   @override
   String get blockKey => 'status_code_range';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'status_code_range': statusCodeRange.encode(),
@@ -1552,9 +1616,11 @@ final class RulesetMatchStatusCode extends RulesetMatch {
 
   final TfArg<num> statusCode;
 
+  @internal
   @override
   String get blockKey => 'status_code';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'status_code': statusCode.toTfJson()};
 }
@@ -1569,6 +1635,7 @@ final class RulesetStatusCodeRange {
 
   final TfArg<num>? to;
 
+  @internal
   Map<String, Object?> encode() => {
     'from': ?from?.toTfJson(),
     'to': ?to?.toTfJson(),
@@ -1585,6 +1652,7 @@ final class RulesetFromList {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'name': name.toTfJson(),
@@ -1607,6 +1675,7 @@ final class RulesetFromValue {
 
   final RulesetTargetUrl targetUrl;
 
+  @internal
   Map<String, Object?> encode() => {
     'preserve_query_string': ?preserveQueryString?.toTfJson(),
     'status_code': ?statusCode?.toTfJson(),
@@ -1630,8 +1699,10 @@ sealed class RulesetTargetUrl {
       RulesetTargetUrlExpression;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -1641,9 +1712,11 @@ final class RulesetTargetUrlValue extends RulesetTargetUrl {
 
   final TfArg<String> value;
 
+  @internal
   @override
   String get blockKey => 'value';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'value': value.toTfJson()};
 }
@@ -1654,9 +1727,11 @@ final class RulesetTargetUrlExpression extends RulesetTargetUrl {
 
   final TfArg<String> expression;
 
+  @internal
   @override
   String get blockKey => 'expression';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'expression': expression.toTfJson()};
 }
@@ -1671,6 +1746,7 @@ final class RulesetHeaders {
 
   final RulesetHeadersOperation operation;
 
+  @internal
   Map<String, Object?> encode() => {
     ...?value?.encode(),
     'operation': operation.toTfJson(),
@@ -1694,8 +1770,10 @@ sealed class RulesetHeadersValue {
       RulesetHeadersValueExpression;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -1705,9 +1783,11 @@ final class RulesetHeadersValueChoice extends RulesetHeadersValue {
 
   final TfArg<String> value;
 
+  @internal
   @override
   String get blockKey => 'value';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'value': value.toTfJson()};
 }
@@ -1718,9 +1798,11 @@ final class RulesetHeadersValueExpression extends RulesetHeadersValue {
 
   final TfArg<String> expression;
 
+  @internal
   @override
   String get blockKey => 'expression';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'expression': expression.toTfJson()};
 }
@@ -1750,6 +1832,7 @@ final class RulesetImmutable {
 
   final RulesetImmutableOperation operation;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloudflare_only': ?cloudflareOnly?.toTfJson(),
     'operation': operation.toTfJson(),
@@ -1779,6 +1862,7 @@ final class RulesetMatchedData {
 
   final TfArg<String> publicKey;
 
+  @internal
   Map<String, Object?> encode() => {'public_key': publicKey.toTfJson()};
 }
 
@@ -1798,6 +1882,7 @@ final class RulesetMaxAge {
 
   final TfArg<num>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloudflare_only': ?cloudflareOnly?.toTfJson(),
     'operation': operation.toTfJson(),
@@ -1815,6 +1900,7 @@ final class RulesetMustRevalidate {
 
   final RulesetImmutableOperation operation;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloudflare_only': ?cloudflareOnly?.toTfJson(),
     'operation': operation.toTfJson(),
@@ -1831,6 +1917,7 @@ final class RulesetMustUnderstand {
 
   final RulesetImmutableOperation operation;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloudflare_only': ?cloudflareOnly?.toTfJson(),
     'operation': operation.toTfJson(),
@@ -1853,6 +1940,7 @@ final class RulesetNoCache {
 
   final TfArg<List<String>>? qualifiers;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloudflare_only': ?cloudflareOnly?.toTfJson(),
     'operation': operation.toTfJson(),
@@ -1870,6 +1958,7 @@ final class RulesetNoStore {
 
   final RulesetImmutableOperation operation;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloudflare_only': ?cloudflareOnly?.toTfJson(),
     'operation': operation.toTfJson(),
@@ -1886,6 +1975,7 @@ final class RulesetNoTransform {
 
   final RulesetImmutableOperation operation;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloudflare_only': ?cloudflareOnly?.toTfJson(),
     'operation': operation.toTfJson(),
@@ -1902,6 +1992,7 @@ final class RulesetOrigin {
 
   final TfArg<num>? port;
 
+  @internal
   Map<String, Object?> encode() => {
     'host': ?host?.toTfJson(),
     'port': ?port?.toTfJson(),
@@ -1916,6 +2007,7 @@ final class RulesetOriginRangeRequests {
 
   final RulesetOriginRangeRequestsMode mode;
 
+  @internal
   Map<String, Object?> encode() => {'mode': mode.toTfJson()};
 }
 
@@ -1963,6 +2055,7 @@ final class RulesetOverrides {
 
   final List<RulesetOverridesRules>? rules;
 
+  @internal
   Map<String, Object?> encode() => {
     'action': ?action?.toTfJson(),
     'enabled': ?enabled?.toTfJson(),
@@ -2013,6 +2106,7 @@ final class RulesetCategories {
 
   final RulesetSensitivityLevel? sensitivityLevel;
 
+  @internal
   Map<String, Object?> encode() => {
     'action': ?action?.toTfJson(),
     'category': category.toTfJson(),
@@ -2043,6 +2137,7 @@ final class RulesetOverridesRules {
 
   final RulesetSensitivityLevel? sensitivityLevel;
 
+  @internal
   Map<String, Object?> encode() => {
     'action': ?action?.toTfJson(),
     'enabled': ?enabled?.toTfJson(),
@@ -2068,6 +2163,7 @@ final class RulesetPrivate {
 
   final TfArg<List<String>>? qualifiers;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloudflare_only': ?cloudflareOnly?.toTfJson(),
     'operation': operation.toTfJson(),
@@ -2085,6 +2181,7 @@ final class RulesetProxyRevalidate {
 
   final RulesetImmutableOperation operation;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloudflare_only': ?cloudflareOnly?.toTfJson(),
     'operation': operation.toTfJson(),
@@ -2101,6 +2198,7 @@ final class RulesetPublic {
 
   final RulesetImmutableOperation operation;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloudflare_only': ?cloudflareOnly?.toTfJson(),
     'operation': operation.toTfJson(),
@@ -2117,6 +2215,7 @@ final class RulesetRawResponseFields {
 
   final TfArg<bool>? preserveDuplicates;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'preserve_duplicates': ?preserveDuplicates?.toTfJson(),
@@ -2131,6 +2230,7 @@ final class RulesetRequestFields {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 
@@ -2150,6 +2250,7 @@ final class RulesetResponse {
 
   final TfArg<num> statusCode;
 
+  @internal
   Map<String, Object?> encode() => {
     'content': content.toTfJson(),
     'content_type': contentType.toTfJson(),
@@ -2167,6 +2268,7 @@ final class RulesetResponseFields {
 
   final TfArg<bool>? preserveDuplicates;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'preserve_duplicates': ?preserveDuplicates?.toTfJson(),
@@ -2189,6 +2291,7 @@ final class RulesetSMaxage {
 
   final TfArg<num>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloudflare_only': ?cloudflareOnly?.toTfJson(),
     'operation': operation.toTfJson(),
@@ -2204,6 +2307,7 @@ final class RulesetServeStale {
 
   final TfArg<bool>? disableStaleWhileUpdating;
 
+  @internal
   Map<String, Object?> encode() => {
     'disable_stale_while_updating': ?disableStaleWhileUpdating?.toTfJson(),
   };
@@ -2217,6 +2321,7 @@ final class RulesetSni {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {'value': value.toTfJson()};
 }
 
@@ -2236,6 +2341,7 @@ final class RulesetStaleIfError {
 
   final TfArg<num>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloudflare_only': ?cloudflareOnly?.toTfJson(),
     'operation': operation.toTfJson(),
@@ -2259,6 +2365,7 @@ final class RulesetStaleWhileRevalidate {
 
   final TfArg<num>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloudflare_only': ?cloudflareOnly?.toTfJson(),
     'operation': operation.toTfJson(),
@@ -2274,6 +2381,7 @@ final class RulesetTransformedRequestFields {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 
@@ -2287,6 +2395,7 @@ final class RulesetUri {
 
   final RulesetQuery? query;
 
+  @internal
   Map<String, Object?> encode() => {
     'path': ?path?.encode(),
     'query': ?query?.encode(),
@@ -2308,8 +2417,10 @@ sealed class RulesetPath {
       RulesetPathExpression;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -2319,9 +2430,11 @@ final class RulesetPathValue extends RulesetPath {
 
   final TfArg<String> value;
 
+  @internal
   @override
   String get blockKey => 'value';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'value': value.toTfJson()};
 }
@@ -2332,9 +2445,11 @@ final class RulesetPathExpression extends RulesetPath {
 
   final TfArg<String> expression;
 
+  @internal
   @override
   String get blockKey => 'expression';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'expression': expression.toTfJson()};
 }
@@ -2354,8 +2469,10 @@ sealed class RulesetQuery {
       RulesetQueryExpression;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -2365,9 +2482,11 @@ final class RulesetQueryValue extends RulesetQuery {
 
   final TfArg<String> value;
 
+  @internal
   @override
   String get blockKey => 'value';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'value': value.toTfJson()};
 }
@@ -2378,9 +2497,11 @@ final class RulesetQueryExpression extends RulesetQuery {
 
   final TfArg<String> expression;
 
+  @internal
   @override
   String get blockKey => 'expression';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'expression': expression.toTfJson()};
 }
@@ -2395,6 +2516,7 @@ final class RulesetVary {
 
   final Map<String, RulesetVaryHeaders>? headers;
 
+  @internal
   Map<String, Object?> encode() => {
     'default': defaultCase.encode(),
     if (headers != null)
@@ -2410,6 +2532,7 @@ final class RulesetDefault {
 
   final RulesetDefaultAction action;
 
+  @internal
   Map<String, Object?> encode() => {'action': action.toTfJson()};
 }
 
@@ -2450,6 +2573,7 @@ final class RulesetVaryHeaders {
 
   final TfArg<List<String>>? mediaTypes;
 
+  @internal
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
     'languages': ?languages?.toTfJson(),
@@ -2470,6 +2594,7 @@ final class RulesetExposedCredentialCheck {
 
   final TfArg<String> usernameExpression;
 
+  @internal
   Map<String, Object?> encode() => {
     'password_expression': passwordExpression.toTfJson(),
     'username_expression': usernameExpression.toTfJson(),
@@ -2484,6 +2609,7 @@ final class RulesetLogging {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
@@ -2518,6 +2644,7 @@ final class RulesetRatelimit {
 
   final TfArg<String>? scoreResponseHeaderName;
 
+  @internal
   Map<String, Object?> encode() => {
     'characteristics': characteristics.toTfJson(),
     'counting_expression': ?countingExpression?.toTfJson(),

@@ -22,6 +22,7 @@ final class FirebaseAiLogicConfigGenerativeLanguageConfig {
 
   final TfArg<String>? apiKeyWoVersion;
 
+  @internal
   Map<String, Object?> encode() => {
     ...?apiKey?.encode(),
     'api_key_wo_version': ?apiKeyWoVersion?.toTfJson(),
@@ -45,8 +46,10 @@ sealed class FirebaseAiLogicConfigApiKey {
       FirebaseAiLogicConfigApiKeyWo;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -57,9 +60,11 @@ final class FirebaseAiLogicConfigApiKeyChoice
 
   final Sensitive<String> apiKey;
 
+  @internal
   @override
   String get blockKey => 'api_key';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'api_key': apiKey.toTfJson()};
 }
@@ -70,9 +75,11 @@ final class FirebaseAiLogicConfigApiKeyWo extends FirebaseAiLogicConfigApiKey {
 
   final TfArg<String> apiKeyWo;
 
+  @internal
   @override
   String get blockKey => 'api_key_wo';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'api_key_wo': apiKeyWo.toTfJson()};
 }
@@ -87,6 +94,7 @@ final class FirebaseAiLogicConfigTelemetryConfig {
 
   final TfArg<num>? samplingRate;
 
+  @internal
   Map<String, Object?> encode() => {
     'mode': ?mode?.toTfJson(),
     'sampling_rate': ?samplingRate?.toTfJson(),
@@ -101,6 +109,7 @@ final class FirebaseAiLogicConfigTrafficFilter {
 
   final TfArg<bool>? templateOnly;
 
+  @internal
   Map<String, Object?> encode() => {'template_only': ?templateOnly?.toTfJson()};
 }
 

@@ -46,6 +46,7 @@ final class Resiliencehubv2ServiceAssociatedSystem {
 
   final TfArg<List<String>>? userJourneyIds;
 
+  @internal
   Map<String, Object?> encode() => {
     'system_arn': systemArn.toTfJson(),
     'user_journey_ids': ?userJourneyIds?.toTfJson(),
@@ -65,6 +66,7 @@ final class Resiliencehubv2ServicePermissionModel {
 
   final List<Resiliencehubv2ServiceCrossAccountRole>? crossAccountRole;
 
+  @internal
   Map<String, Object?> encode() => {
     'invoker_role_name': invokerRoleName.toTfJson(),
     if (crossAccountRole != null)
@@ -85,6 +87,7 @@ final class Resiliencehubv2ServiceCrossAccountRole {
 
   final TfArg<String>? externalId;
 
+  @internal
   Map<String, Object?> encode() => {
     'cross_account_role_arn': crossAccountRoleArn.toTfJson(),
     'external_id': ?externalId?.toTfJson(),

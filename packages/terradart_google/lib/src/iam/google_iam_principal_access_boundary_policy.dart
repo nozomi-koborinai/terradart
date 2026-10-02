@@ -20,6 +20,7 @@ final class IamPrincipalAccessBoundaryPolicyDetails {
 
   final List<IamPrincipalAccessBoundaryPolicyRules> rules;
 
+  @internal
   Map<String, Object?> encode() => {
     'enforcement_version': ?enforcementVersion?.toTfJson(),
     'rules': [for (final e in rules) e.encode()],
@@ -42,6 +43,7 @@ final class IamPrincipalAccessBoundaryPolicyRules {
 
   final TfArg<List<String>> resources;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'effect': effect.toTfJson(),

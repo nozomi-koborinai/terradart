@@ -3,6 +3,7 @@
 /// SaaS Runtime units, tenants, releases, and rollouts (beta-only).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/saas_runtime/google_saas_runtime_release.dart'
     show
         GoogleSaasRuntimeRelease,

@@ -3,6 +3,12 @@
 /// AWS MQ.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_mq_broker.dart' show DataAwsMqBroker;
+export 'src/data/aws_mq_broker_engine_types.dart'
+    show DataAwsMqBrokerEngineTypes;
+export 'src/data/aws_mq_broker_instance_type_offerings.dart'
+    show DataAwsMqBrokerInstanceTypeOfferings;
 export 'src/mq/aws_mq_broker.dart'
     show
         AwsMqBroker,

@@ -83,6 +83,7 @@ final class EcrRepositoryCreationTemplateEncryptionConfiguration {
 
   final RefTo<AwsKmsKey>? kmsKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'encryption_type': ?encryptionType?.toTfJson(),
     'kms_key': ?kmsKey?.encodeAs('arn').toTfJson(),
@@ -130,6 +131,7 @@ final class EcrRepositoryCreationTemplateImageTagMutabilityExclusionFilter {
 
   final EcrRepositoryCreationTemplateFilterType filterType;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter': filter.toTfJson(),
     'filter_type': filterType.toTfJson(),

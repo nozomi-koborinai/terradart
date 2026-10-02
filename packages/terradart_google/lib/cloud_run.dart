@@ -4,6 +4,7 @@
 /// (`google_cloud_run_service`). Prefer v2 for new stacks.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/cloud_run/google_cloud_run_domain_mapping.dart'
     show
         CloudRunDomainMappingCertificateMode,
@@ -238,3 +239,19 @@ export 'src/cloud_run/google_cloud_run_v2_worker_pool_iam_member.dart'
         GoogleCloudRunV2WorkerPoolIamMember;
 export 'src/cloud_run/google_cloud_run_v2_worker_pool_iam_policy.dart'
     show GoogleCloudRunV2WorkerPoolIamPolicy;
+export 'src/data/google_cloud_run_locations.dart'
+    show DataGoogleCloudRunLocations;
+export 'src/data/google_cloud_run_service.dart' show DataGoogleCloudRunService;
+export 'src/data/google_cloud_run_service_iam_policy.dart'
+    show DataGoogleCloudRunServiceIamPolicy;
+export 'src/data/google_cloud_run_v2_job.dart' show DataGoogleCloudRunV2Job;
+export 'src/data/google_cloud_run_v2_job_iam_policy.dart'
+    show DataGoogleCloudRunV2JobIamPolicy;
+export 'src/data/google_cloud_run_v2_service.dart'
+    show DataGoogleCloudRunV2Service;
+export 'src/data/google_cloud_run_v2_service_iam_policy.dart'
+    show DataGoogleCloudRunV2ServiceIamPolicy;
+export 'src/data/google_cloud_run_v2_worker_pool.dart'
+    show DataGoogleCloudRunV2WorkerPool;
+export 'src/data/google_cloud_run_v2_worker_pool_iam_policy.dart'
+    show DataGoogleCloudRunV2WorkerPoolIamPolicy;

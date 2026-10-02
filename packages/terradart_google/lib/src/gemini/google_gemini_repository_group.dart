@@ -23,6 +23,7 @@ final class GeminiRepositoryGroupRepositories {
 
   final TfArg<String> resource;
 
+  @internal
   Map<String, Object?> encode() => {
     'branch_pattern': branchPattern.toTfJson(),
     'resource': resource.toTfJson(),

@@ -95,6 +95,7 @@ final class ZeroTrustAccessGroupExclude {
 
   final ZeroTrustAccessGroupUserRiskScore? userRiskScore;
 
+  @internal
   Map<String, Object?> encode() => {
     'any_valid_service_token': ?anyValidServiceToken?.encode(),
     'auth_context': ?authContext?.encode(),
@@ -132,6 +133,7 @@ final class ZeroTrustAccessGroupExclude {
 final class ZeroTrustAccessGroupAnyValidServiceToken {
   const ZeroTrustAccessGroupAnyValidServiceToken();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -152,6 +154,7 @@ final class ZeroTrustAccessGroupAuthContext {
 
   final TfArg<String> identityProviderId;
 
+  @internal
   Map<String, Object?> encode() => {
     'ac_id': acId.toTfJson(),
     'id': id.toTfJson(),
@@ -168,6 +171,7 @@ final class ZeroTrustAccessGroupAuthMethod {
 
   final TfArg<String> authMethod;
 
+  @internal
   Map<String, Object?> encode() => {'auth_method': authMethod.toTfJson()};
 }
 
@@ -185,6 +189,7 @@ final class ZeroTrustAccessGroupAzureAd {
 
   final TfArg<String> identityProviderId;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
     'identity_provider_id': identityProviderId.toTfJson(),
@@ -198,6 +203,7 @@ final class ZeroTrustAccessGroupAzureAd {
 final class ZeroTrustAccessGroupCertificate {
   const ZeroTrustAccessGroupCertificate();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -210,6 +216,7 @@ final class ZeroTrustAccessGroupCloudflareAccountMember {
 
   final RefTo<CloudflareAccount>? accountId;
 
+  @internal
   Map<String, Object?> encode() => {
     'account_id': ?accountId?.encodeAs('id').toTfJson(),
   };
@@ -224,6 +231,7 @@ final class ZeroTrustAccessGroupCommonName {
 
   final TfArg<String> commonName;
 
+  @internal
   Map<String, Object?> encode() => {'common_name': commonName.toTfJson()};
 }
 
@@ -241,6 +249,7 @@ final class ZeroTrustAccessGroupDevicePosture {
 
   final TfArg<String> integrationUid;
 
+  @internal
   Map<String, Object?> encode() => {
     'account_id': ?accountId?.encodeAs('id').toTfJson(),
     'integration_uid': integrationUid.toTfJson(),
@@ -256,6 +265,7 @@ final class ZeroTrustAccessGroupEmail {
 
   final TfArg<String> email;
 
+  @internal
   Map<String, Object?> encode() => {'email': email.toTfJson()};
 }
 
@@ -268,6 +278,7 @@ final class ZeroTrustAccessGroupEmailDomain {
 
   final TfArg<String> domain;
 
+  @internal
   Map<String, Object?> encode() => {'domain': domain.toTfJson()};
 }
 
@@ -280,6 +291,7 @@ final class ZeroTrustAccessGroupEmailList {
 
   final TfArg<String> id;
 
+  @internal
   Map<String, Object?> encode() => {'id': id.toTfJson()};
 }
 
@@ -290,6 +302,7 @@ final class ZeroTrustAccessGroupEmailList {
 final class ZeroTrustAccessGroupEveryone {
   const ZeroTrustAccessGroupEveryone();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -307,6 +320,7 @@ final class ZeroTrustAccessGroupExternalEvaluation {
 
   final TfArg<String> keysUrl;
 
+  @internal
   Map<String, Object?> encode() => {
     'evaluate_url': evaluateUrl.toTfJson(),
     'keys_url': keysUrl.toTfJson(),
@@ -322,6 +336,7 @@ final class ZeroTrustAccessGroupGeo {
 
   final TfArg<String> countryCode;
 
+  @internal
   Map<String, Object?> encode() => {'country_code': countryCode.toTfJson()};
 }
 
@@ -342,6 +357,7 @@ final class ZeroTrustAccessGroupGithubOrganization {
 
   final TfArg<String>? team;
 
+  @internal
   Map<String, Object?> encode() => {
     'identity_provider_id': identityProviderId.toTfJson(),
     'name': name.toTfJson(),
@@ -358,6 +374,7 @@ final class ZeroTrustAccessGroup {
 
   final TfArg<String> id;
 
+  @internal
   Map<String, Object?> encode() => {'id': id.toTfJson()};
 }
 
@@ -375,6 +392,7 @@ final class ZeroTrustAccessGroupGsuite {
 
   final TfArg<String> identityProviderId;
 
+  @internal
   Map<String, Object?> encode() => {
     'email': email.toTfJson(),
     'identity_provider_id': identityProviderId.toTfJson(),
@@ -390,6 +408,7 @@ final class ZeroTrustAccessGroupIp {
 
   final TfArg<String> ip;
 
+  @internal
   Map<String, Object?> encode() => {'ip': ip.toTfJson()};
 }
 
@@ -402,6 +421,7 @@ final class ZeroTrustAccessGroupIpList {
 
   final TfArg<String> id;
 
+  @internal
   Map<String, Object?> encode() => {'id': id.toTfJson()};
 }
 
@@ -414,6 +434,7 @@ final class ZeroTrustAccessGroupLinkedAppToken {
 
   final TfArg<String> appUid;
 
+  @internal
   Map<String, Object?> encode() => {'app_uid': appUid.toTfJson()};
 }
 
@@ -426,6 +447,7 @@ final class ZeroTrustAccessGroupLoginMethod {
 
   final TfArg<String> id;
 
+  @internal
   Map<String, Object?> encode() => {'id': id.toTfJson()};
 }
 
@@ -446,6 +468,7 @@ final class ZeroTrustAccessGroupOidc {
 
   final TfArg<String> identityProviderId;
 
+  @internal
   Map<String, Object?> encode() => {
     'claim_name': claimName.toTfJson(),
     'claim_value': claimValue.toTfJson(),
@@ -467,6 +490,7 @@ final class ZeroTrustAccessGroupOkta {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {
     'identity_provider_id': identityProviderId.toTfJson(),
     'name': name.toTfJson(),
@@ -490,6 +514,7 @@ final class ZeroTrustAccessGroupSaml {
 
   final TfArg<String> identityProviderId;
 
+  @internal
   Map<String, Object?> encode() => {
     'attribute_name': attributeName.toTfJson(),
     'attribute_value': attributeValue.toTfJson(),
@@ -506,6 +531,7 @@ final class ZeroTrustAccessGroupServiceToken {
 
   final TfArg<String> tokenId;
 
+  @internal
   Map<String, Object?> encode() => {'token_id': tokenId.toTfJson()};
 }
 
@@ -518,6 +544,7 @@ final class ZeroTrustAccessGroupUserRiskScore {
 
   final List<ZeroTrustAccessGroupUserRiskScoreUserRiskScore> userRiskScore;
 
+  @internal
   Map<String, Object?> encode() => {
     'user_risk_score': [for (final e in userRiskScore) e.toTfJson()],
   };
@@ -640,6 +667,7 @@ final class ZeroTrustAccessGroupInclude {
 
   final ZeroTrustAccessGroupUserRiskScore? userRiskScore;
 
+  @internal
   Map<String, Object?> encode() => {
     'any_valid_service_token': ?anyValidServiceToken?.encode(),
     'auth_context': ?authContext?.encode(),
@@ -755,6 +783,7 @@ final class ZeroTrustAccessGroupRequire {
 
   final ZeroTrustAccessGroupUserRiskScore? userRiskScore;
 
+  @internal
   Map<String, Object?> encode() => {
     'any_valid_service_token': ?anyValidServiceToken?.encode(),
     'auth_context': ?authContext?.encode(),

@@ -50,6 +50,7 @@ final class NetworkServicesAgentConnectivityTemplateEgressNetworkConfig {
   final NetworkServicesAgentConnectivityTemplateDnsPeeringConfig?
   dnsPeeringConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'network_attachment': ?networkAttachment?.toTfJson(),
     'vpc_egress': ?vpcEgress?.toTfJson(),
@@ -93,6 +94,7 @@ final class NetworkServicesAgentConnectivityTemplateDnsPeeringConfig {
 
   final TfArg<String> targetNetwork;
 
+  @internal
   Map<String, Object?> encode() => {
     'domain': domain.toTfJson(),
     'target_network': targetNetwork.toTfJson(),

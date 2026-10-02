@@ -250,7 +250,7 @@ resource "aws_s3_bucket" "logs" {
           r"r'serviceAccount:service-${data.google_project.current.number}@gcp-sa-pubsub.iam.gserviceaccount.com'",
         ),
       );
-      expect(src, contains("add(GoogleProject('current'))"));
+      expect(src, contains("add(DataGoogleProject('current'))"));
       expect(src, contains("addOutput('ORDERS_TOPIC_ID', orders.id);"));
       expect(src, isNot(contains('appExports')));
       // Locals only where referenced.
@@ -1702,10 +1702,42 @@ output "count" {
       final src = r.stackSource;
       expect(
         src,
-        contains("add(GoogleProject('p_0', projectId: .literal('proj-0')))"),
+        contains(
+          "add(DataGoogleProject('p_0', projectId: .literal('proj-0')))",
+        ),
       );
       expect(src, contains('project: p1.projectId'));
       expect(src, isNot(contains('addMoved')));
+    });
+
+    test('a data source comes from its service barrel unless data.dart is '
+        'imported anyway', () {
+      Map<String, Object?> module({required bool clientConfig}) => {
+        'terraform': _google,
+        'data': {
+          'google_project': {
+            'p': {'project_id': 'proj'},
+          },
+          if (clientConfig)
+            'google_client_config': {'current': <String, Object?>{}},
+        },
+        'resource': {
+          'google_pubsub_topic': {
+            't': {'name': 't'},
+          },
+        },
+      };
+      final service = _migrateJson(module(clientConfig: false)).stackSource;
+      expect(
+        service,
+        contains("import 'package:terradart_google/project.dart';"),
+      );
+      expect(service, isNot(contains('terradart_google/data.dart')));
+
+      final data = _migrateJson(module(clientConfig: true)).stackSource;
+      expect(data, contains("import 'package:terradart_google/data.dart';"));
+      expect(data, contains("import 'package:terradart_google/pubsub.dart';"));
+      expect(data, isNot(contains('terradart_google/project.dart')));
     });
 
     test("the module's own moved blocks follow their targets", () {
@@ -2196,7 +2228,9 @@ resource "google_pubsub_topic" "x" {
       expect(r.report.isComplete, isTrue, reason: r.report.renderText());
       expect(
         r.stackSource,
-        contains("add(GoogleProject('current', provider: googleEuProvider))"),
+        contains(
+          "add(DataGoogleProject('current', provider: googleEuProvider))",
+        ),
       );
       expect(
         r.stackSource,

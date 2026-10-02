@@ -12,7 +12,6 @@
 /// cross-reference, and the custom domain helper pattern.
 library;
 
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/firebase_app_hosting.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/provider.dart';

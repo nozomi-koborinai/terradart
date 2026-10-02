@@ -15,6 +15,7 @@ final class DialogflowCxEnvironmentVersionConfigs {
 
   final TfArg<String> version;
 
+  @internal
   Map<String, Object?> encode() => {'version': version.toTfJson()};
 }
 

@@ -97,6 +97,7 @@ final class DlmLifecyclePolicyDetails {
 
   final List<DlmLifecyclePolicySchedule>? schedule;
 
+  @internal
   Map<String, Object?> encode() => {
     'copy_tags': ?copyTags?.toTfJson(),
     'create_interval': ?createInterval?.toTfJson(),
@@ -243,6 +244,7 @@ final class DlmLifecyclePolicyAction {
 
   final List<DlmLifecyclePolicyCrossRegionCopy> crossRegionCopy;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'cross_region_copy': [for (final e in crossRegionCopy) e.encode()],
@@ -265,6 +267,7 @@ final class DlmLifecyclePolicyCrossRegionCopy {
 
   final DlmLifecyclePolicyCrossRegionCopyRetainRule? retainRule;
 
+  @internal
   Map<String, Object?> encode() => {
     'target': target.toTfJson(),
     'encryption_configuration': encryptionConfiguration.encode(),
@@ -285,6 +288,7 @@ final class DlmLifecyclePolicyEncryptionConfiguration {
 
   final TfArg<bool>? encrypted;
 
+  @internal
   Map<String, Object?> encode() => {
     'cmk_arn': ?cmkArn?.toTfJson(),
     'encrypted': ?encrypted?.toTfJson(),
@@ -305,6 +309,7 @@ final class DlmLifecyclePolicyCrossRegionCopyRetainRule {
 
   final DlmLifecyclePolicyDeprecateRuleIntervalUnit intervalUnit;
 
+  @internal
   Map<String, Object?> encode() => {
     'interval': interval.toTfJson(),
     'interval_unit': intervalUnit.toTfJson(),
@@ -356,6 +361,7 @@ final class DlmLifecyclePolicyEventSource {
 
   final DlmLifecyclePolicyEventSourceParameters parameters;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
     'parameters': parameters.encode(),
@@ -394,6 +400,7 @@ final class DlmLifecyclePolicyEventSourceParameters {
 
   final TfArg<List<String>> snapshotOwner;
 
+  @internal
   Map<String, Object?> encode() => {
     'description_regex': descriptionRegex.toTfJson(),
     'event_type': eventType.toTfJson(),
@@ -433,6 +440,7 @@ final class DlmLifecyclePolicyExclusions {
 
   final TfArg<List<String>>? excludeVolumeTypes;
 
+  @internal
   Map<String, Object?> encode() => {
     'exclude_boot_volumes': ?excludeBootVolumes?.toTfJson(),
     'exclude_tags': ?excludeTags?.toTfJson(),
@@ -456,6 +464,7 @@ final class DlmLifecyclePolicyParameters {
 
   final TfArg<bool>? noReboot;
 
+  @internal
   Map<String, Object?> encode() => {
     'exclude_boot_volume': ?excludeBootVolume?.toTfJson(),
     'exclude_data_volume_tags': ?excludeDataVolumeTags?.toTfJson(),
@@ -503,6 +512,7 @@ final class DlmLifecyclePolicySchedule {
 
   final DlmLifecyclePolicyShareRule? shareRule;
 
+  @internal
   Map<String, Object?> encode() => {
     'copy_tags': ?copyTags?.toTfJson(),
     'name': name.toTfJson(),
@@ -529,6 +539,7 @@ final class DlmLifecyclePolicyArchiveRule {
 
   final DlmLifecyclePolicyArchiveRetainRule archiveRetainRule;
 
+  @internal
   Map<String, Object?> encode() => {
     'archive_retain_rule': archiveRetainRule.encode(),
   };
@@ -544,6 +555,7 @@ final class DlmLifecyclePolicyArchiveRetainRule {
 
   final DlmLifecyclePolicyRetentionArchiveTier retentionArchiveTier;
 
+  @internal
   Map<String, Object?> encode() => {
     'retention_archive_tier': retentionArchiveTier.encode(),
   };
@@ -565,6 +577,7 @@ final class DlmLifecyclePolicyRetentionArchiveTier {
 
   final DlmLifecyclePolicyDeprecateRuleIntervalUnit? intervalUnit;
 
+  @internal
   Map<String, Object?> encode() => {
     'count': ?count?.toTfJson(),
     'interval': ?interval?.toTfJson(),
@@ -597,6 +610,7 @@ final class DlmLifecyclePolicyCreateRule {
 
   final DlmLifecyclePolicyScripts? scripts;
 
+  @internal
   Map<String, Object?> encode() => {
     'cron_expression': ?cronExpression?.toTfJson(),
     'interval': ?interval?.toTfJson(),
@@ -673,6 +687,7 @@ final class DlmLifecyclePolicyScripts {
 
   final List<DlmLifecyclePolicyStages>? stages;
 
+  @internal
   Map<String, Object?> encode() => {
     'execute_operation_on_script_failure': ?executeOperationOnScriptFailure
         ?.toTfJson(),
@@ -746,6 +761,7 @@ final class DlmLifecyclePolicyCrossRegionCopyRule {
 
   final DlmLifecyclePolicyCrossRegionCopyRetainRule? retainRule;
 
+  @internal
   Map<String, Object?> encode() => {
     'cmk_arn': ?cmkArn?.toTfJson(),
     'copy_tags': ?copyTags?.toTfJson(),
@@ -770,6 +786,7 @@ final class DlmLifecyclePolicyCrossRegionCopyRuleDeprecateRule {
 
   final DlmLifecyclePolicyDeprecateRuleIntervalUnit intervalUnit;
 
+  @internal
   Map<String, Object?> encode() => {
     'interval': interval.toTfJson(),
     'interval_unit': intervalUnit.toTfJson(),
@@ -792,6 +809,7 @@ final class DlmLifecyclePolicyDeprecateRule {
 
   final DlmLifecyclePolicyDeprecateRuleIntervalUnit? intervalUnit;
 
+  @internal
   Map<String, Object?> encode() => {
     'count': ?count?.toTfJson(),
     'interval': ?interval?.toTfJson(),
@@ -818,6 +836,7 @@ final class DlmLifecyclePolicyFastRestoreRule {
 
   final DlmLifecyclePolicyDeprecateRuleIntervalUnit? intervalUnit;
 
+  @internal
   Map<String, Object?> encode() => {
     'availability_zones': availabilityZones.toTfJson(),
     'count': ?count?.toTfJson(),
@@ -842,6 +861,7 @@ final class DlmLifecyclePolicyRetainRule {
 
   final DlmLifecyclePolicyDeprecateRuleIntervalUnit? intervalUnit;
 
+  @internal
   Map<String, Object?> encode() => {
     'count': ?count?.toTfJson(),
     'interval': ?interval?.toTfJson(),
@@ -865,6 +885,7 @@ final class DlmLifecyclePolicyShareRule {
 
   final DlmLifecyclePolicyUnshareIntervalUnit? unshareIntervalUnit;
 
+  @internal
   Map<String, Object?> encode() => {
     'target_accounts': targetAccounts.toTfJson(),
     'unshare_interval': ?unshareInterval?.toTfJson(),

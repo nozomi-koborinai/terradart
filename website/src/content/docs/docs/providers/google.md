@@ -27,7 +27,6 @@ A fresh project has most APIs off. `Apis.enable` registers a `google_project_ser
 
 ```dart
 // lib/events_stack.dart
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/pubsub.dart';
@@ -110,7 +109,6 @@ dependencies:
 ```
 
 ```dart
-import 'package:terradart_core/terradart_core.dart';
 // GA: Google Cloud backend infrastructure
 import 'package:terradart_google/cloud_run.dart';
 import 'package:terradart_google/firestore.dart';

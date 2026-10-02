@@ -19,6 +19,7 @@ final class DataCustomSslFilter {
 
   final DataCustomSslFilterStatus? status;
 
+  @internal
   Map<String, Object?> encode() => {
     'match': ?match?.toTfJson(),
     'status': ?status?.toTfJson(),

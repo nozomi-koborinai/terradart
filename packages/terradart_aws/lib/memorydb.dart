@@ -3,6 +3,15 @@
 /// AWS MemoryDB.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_memorydb_acl.dart' show DataAwsMemorydbAcl;
+export 'src/data/aws_memorydb_cluster.dart' show DataAwsMemorydbCluster;
+export 'src/data/aws_memorydb_parameter_group.dart'
+    show DataAwsMemorydbParameterGroup;
+export 'src/data/aws_memorydb_snapshot.dart' show DataAwsMemorydbSnapshot;
+export 'src/data/aws_memorydb_subnet_group.dart'
+    show DataAwsMemorydbSubnetGroup;
+export 'src/data/aws_memorydb_user.dart' show DataAwsMemorydbUser;
 export 'src/memorydb/aws_memorydb_acl.dart'
     show
         AwsMemorydbAcl,

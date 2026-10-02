@@ -43,6 +43,7 @@ final class BedrockagentcoreRegistryAuthorizerConfiguration {
 
   final List<BedrockagentcoreRegistryCustomJwtAuthorizer>? customJwtAuthorizer;
 
+  @internal
   Map<String, Object?> encode() => {
     if (customJwtAuthorizer != null)
       'custom_jwt_authorizer': [
@@ -84,6 +85,7 @@ final class BedrockagentcoreRegistryCustomJwtAuthorizer {
   final List<BedrockagentcoreRegistryPrivateEndpointOverrides>?
   privateEndpointOverrides;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed_audience': ?allowedAudience?.toTfJson(),
     'allowed_clients': ?allowedClients?.toTfJson(),
@@ -117,6 +119,7 @@ final class BedrockagentcoreRegistryAllowedWorkloadConfiguration {
 
   final List<BedrockagentcoreRegistryHostingEnvironment>? hostingEnvironment;
 
+  @internal
   Map<String, Object?> encode() => {
     'workload_identities': ?workloadIdentities?.toTfJson(),
     if (hostingEnvironment != null)
@@ -132,6 +135,7 @@ final class BedrockagentcoreRegistryHostingEnvironment {
 
   final TfArg<String> arn;
 
+  @internal
   Map<String, Object?> encode() => {'arn': arn.toTfJson()};
 }
 
@@ -153,6 +157,7 @@ final class BedrockagentcoreRegistryCustomClaim {
   final List<BedrockagentcoreRegistryAuthorizingClaimMatchValue>?
   authorizingClaimMatchValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'inbound_token_claim_name': inboundTokenClaimName.toTfJson(),
     'inbound_token_claim_value_type': inboundTokenClaimValueType.toTfJson(),
@@ -200,6 +205,7 @@ final class BedrockagentcoreRegistryAuthorizingClaimMatchValue {
 
   final List<BedrockagentcoreRegistryClaimMatchValue>? claimMatchValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'claim_match_operator': claimMatchOperator.toTfJson(),
     if (claimMatchValue != null)
@@ -248,6 +254,7 @@ final class BedrockagentcoreRegistryClaimMatchValue {
 
   final TfArg<List<String>>? matchValueStringList;
 
+  @internal
   Map<String, Object?> encode() => {
     'match_value_string': ?matchValueString?.toTfJson(),
     'match_value_string_list': ?matchValueStringList?.toTfJson(),
@@ -269,6 +276,7 @@ final class BedrockagentcoreRegistryPrivateEndpoint {
   final List<BedrockagentcoreRegistrySelfManagedLatticeResource>?
   selfManagedLatticeResource;
 
+  @internal
   Map<String, Object?> encode() => {
     if (managedVpcResource != null)
       'managed_vpc_resource': [for (final e in managedVpcResource!) e.encode()],
@@ -305,6 +313,7 @@ final class BedrockagentcoreRegistryManagedVpcResource {
 
   final TfArg<String> vpcIdentifier;
 
+  @internal
   Map<String, Object?> encode() => {
     'endpoint_ip_address_type': endpointIpAddressType.toTfJson(),
     'routing_domain': ?routingDomain?.toTfJson(),
@@ -350,6 +359,7 @@ final class BedrockagentcoreRegistrySelfManagedLatticeResource {
 
   final TfArg<String>? resourceConfigurationIdentifier;
 
+  @internal
   Map<String, Object?> encode() => {
     'resource_configuration_identifier': ?resourceConfigurationIdentifier
         ?.toTfJson(),
@@ -369,6 +379,7 @@ final class BedrockagentcoreRegistryPrivateEndpointOverrides {
 
   final List<BedrockagentcoreRegistryPrivateEndpoint>? privateEndpoint;
 
+  @internal
   Map<String, Object?> encode() => {
     'domain': domain.toTfJson(),
     if (privateEndpoint != null)

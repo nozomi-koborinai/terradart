@@ -66,6 +66,7 @@ final class BedrockagentDataSourceConfiguration {
 
   final List<BedrockagentDataSourceWebConfiguration>? webConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
     if (confluenceConfiguration != null)
@@ -146,6 +147,7 @@ final class BedrockagentDataSourceConfluenceConfiguration {
   final List<BedrockagentDataSourceConfluenceConfigurationSourceConfiguration>?
   sourceConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     if (crawlerConfiguration != null)
       'crawler_configuration': [
@@ -169,6 +171,7 @@ final class BedrockagentDataSourceConfluenceConfigurationCrawlerConfiguration {
 
   final List<BedrockagentDataSourceFilterConfiguration>? filterConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     if (filterConfiguration != null)
       'filter_configuration': [
@@ -191,6 +194,7 @@ final class BedrockagentDataSourceFilterConfiguration {
 
   final List<BedrockagentDataSourcePatternObjectFilter>? patternObjectFilter;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
     if (patternObjectFilter != null)
@@ -209,6 +213,7 @@ final class BedrockagentDataSourcePatternObjectFilter {
 
   final List<BedrockagentDataSourceFilters>? filters;
 
+  @internal
   Map<String, Object?> encode() => {
     if (filters != null) 'filters': [for (final e in filters!) e.encode()],
   };
@@ -231,6 +236,7 @@ final class BedrockagentDataSourceFilters {
 
   final TfArg<String> objectType;
 
+  @internal
   Map<String, Object?> encode() => {
     'exclusion_filters': ?exclusionFilters?.toTfJson(),
     'inclusion_filters': ?inclusionFilters?.toTfJson(),
@@ -257,6 +263,7 @@ final class BedrockagentDataSourceConfluenceConfigurationSourceConfiguration {
 
   final TfArg<String> hostUrl;
 
+  @internal
   Map<String, Object?> encode() => {
     'auth_type': authType.toTfJson(),
     'credentials_secret_arn': credentialsSecretArn.toTfJson(),
@@ -329,6 +336,7 @@ final class BedrockagentDataSourceManagedKnowledgeBaseConnectorConfiguration {
   final List<BedrockagentDataSourceMediaExtractionConfiguration>?
   mediaExtractionConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'connector_parameters': ?connectorParameters?.toTfJson(),
     if (deletionProtectionConfiguration != null)
@@ -355,6 +363,7 @@ final class BedrockagentDataSourceDeletionProtectionConfiguration {
 
   final TfArg<num>? deletionProtectionThreshold;
 
+  @internal
   Map<String, Object?> encode() => {
     'deletion_protection_status': deletionProtectionStatus.toTfJson(),
     'deletion_protection_threshold': ?deletionProtectionThreshold?.toTfJson(),
@@ -404,6 +413,7 @@ final class BedrockagentDataSourceMediaExtractionConfiguration {
   final List<BedrockagentDataSourceVideoExtractionConfiguration>?
   videoExtractionConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     if (audioExtractionConfiguration != null)
       'audio_extraction_configuration': [
@@ -430,6 +440,7 @@ final class BedrockagentDataSourceAudioExtractionConfiguration {
 
   final BedrockagentDataSourceAudioExtractionStatus audioExtractionStatus;
 
+  @internal
   Map<String, Object?> encode() => {
     'audio_extraction_status': audioExtractionStatus.toTfJson(),
   };
@@ -469,6 +480,7 @@ final class BedrockagentDataSourceImageExtractionConfiguration {
 
   final BedrockagentDataSourceImageExtractionStatus imageExtractionStatus;
 
+  @internal
   Map<String, Object?> encode() => {
     'image_extraction_status': imageExtractionStatus.toTfJson(),
   };
@@ -508,6 +520,7 @@ final class BedrockagentDataSourceVideoExtractionConfiguration {
 
   final BedrockagentDataSourceVideoExtractionStatus videoExtractionStatus;
 
+  @internal
   Map<String, Object?> encode() => {
     'video_extraction_status': videoExtractionStatus.toTfJson(),
   };
@@ -553,6 +566,7 @@ final class BedrockagentDataSourceS3Configuration {
 
   final TfArg<List<String>>? inclusionPrefixes;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
     'bucket_owner_account_id': ?bucketOwnerAccountId?.toTfJson(),
@@ -575,6 +589,7 @@ final class BedrockagentDataSourceSalesforceConfiguration {
   final List<BedrockagentDataSourceSalesforceConfigurationSourceConfiguration>?
   sourceConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     if (crawlerConfiguration != null)
       'crawler_configuration': [
@@ -603,6 +618,7 @@ final class BedrockagentDataSourceSalesforceConfigurationSourceConfiguration {
 
   final TfArg<String> hostUrl;
 
+  @internal
   Map<String, Object?> encode() => {
     'auth_type': authType.toTfJson(),
     'credentials_secret_arn': credentialsSecretArn.toTfJson(),
@@ -647,6 +663,7 @@ final class BedrockagentDataSourceSharePointConfiguration {
   final List<BedrockagentDataSourceSharePointConfigurationSourceConfiguration>?
   sourceConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     if (crawlerConfiguration != null)
       'crawler_configuration': [
@@ -684,6 +701,7 @@ final class BedrockagentDataSourceSharePointConfigurationSourceConfiguration {
 
   final TfArg<String>? tenantId;
 
+  @internal
   Map<String, Object?> encode() => {
     'auth_type': authType.toTfJson(),
     'credentials_secret_arn': credentialsSecretArn.toTfJson(),
@@ -756,6 +774,7 @@ final class BedrockagentDataSourceWebConfiguration {
   final List<BedrockagentDataSourceWebConfigurationSourceConfiguration>?
   sourceConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     if (crawlerConfiguration != null)
       'crawler_configuration': [
@@ -790,6 +809,7 @@ final class BedrockagentDataSourceWebConfigurationCrawlerConfiguration {
 
   final List<BedrockagentDataSourceCrawlerLimits>? crawlerLimits;
 
+  @internal
   Map<String, Object?> encode() => {
     'exclusion_filters': ?exclusionFilters?.toTfJson(),
     'inclusion_filters': ?inclusionFilters?.toTfJson(),
@@ -832,6 +852,7 @@ final class BedrockagentDataSourceCrawlerLimits {
 
   final TfArg<num>? rateLimit;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_pages': ?maxPages?.toTfJson(),
     'rate_limit': ?rateLimit?.toTfJson(),
@@ -848,6 +869,7 @@ final class BedrockagentDataSourceWebConfigurationSourceConfiguration {
 
   final List<BedrockagentDataSourceUrlConfiguration>? urlConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     if (urlConfiguration != null)
       'url_configuration': [for (final e in urlConfiguration!) e.encode()],
@@ -862,6 +884,7 @@ final class BedrockagentDataSourceUrlConfiguration {
 
   final List<BedrockagentDataSourceSeedUrls>? seedUrls;
 
+  @internal
   Map<String, Object?> encode() => {
     if (seedUrls != null) 'seed_urls': [for (final e in seedUrls!) e.encode()],
   };
@@ -875,6 +898,7 @@ final class BedrockagentDataSourceSeedUrls {
 
   final TfArg<String>? url;
 
+  @internal
   Map<String, Object?> encode() => {'url': ?url?.toTfJson()};
 }
 
@@ -888,6 +912,7 @@ final class BedrockagentDataSourceServerSideEncryptionConfiguration {
 
   final RefTo<AwsKmsKey>? kmsKeyArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
   };
@@ -911,6 +936,7 @@ final class BedrockagentDataSourceVectorIngestionConfiguration {
 
   final List<BedrockagentDataSourceParsingConfiguration>? parsingConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     if (chunkingConfiguration != null)
       'chunking_configuration': [
@@ -940,6 +966,7 @@ final class BedrockagentDataSourceChunkingConfiguration {
 
   final BedrockagentDataSourceStrategy? strategy;
 
+  @internal
   Map<String, Object?> encode() => {
     'chunking_strategy': chunkingStrategy.toTfJson(),
     ...?strategy?.encode(),
@@ -973,8 +1000,10 @@ sealed class BedrockagentDataSourceStrategy {
   ) = BedrockagentDataSourceStrategySemanticChunkingConfiguration;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -988,9 +1017,11 @@ final class BedrockagentDataSourceStrategyFixedSizeChunkingConfiguration
   final List<BedrockagentDataSourceFixedSizeChunkingConfiguration>
   fixedSizeChunkingConfiguration;
 
+  @internal
   @override
   String get blockKey => 'fixed_size_chunking_configuration';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'fixed_size_chunking_configuration': [
@@ -1009,9 +1040,11 @@ final class BedrockagentDataSourceStrategyHierarchicalChunkingConfiguration
   final List<BedrockagentDataSourceHierarchicalChunkingConfiguration>
   hierarchicalChunkingConfiguration;
 
+  @internal
   @override
   String get blockKey => 'hierarchical_chunking_configuration';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'hierarchical_chunking_configuration': [
@@ -1030,9 +1063,11 @@ final class BedrockagentDataSourceStrategySemanticChunkingConfiguration
   final List<BedrockagentDataSourceSemanticChunkingConfiguration>
   semanticChunkingConfiguration;
 
+  @internal
   @override
   String get blockKey => 'semantic_chunking_configuration';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'semantic_chunking_configuration': [
@@ -1085,6 +1120,7 @@ final class BedrockagentDataSourceFixedSizeChunkingConfiguration {
 
   final TfArg<num> overlapPercentage;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_tokens': maxTokens.toTfJson(),
     'overlap_percentage': overlapPercentage.toTfJson(),
@@ -1104,6 +1140,7 @@ final class BedrockagentDataSourceHierarchicalChunkingConfiguration {
 
   final List<BedrockagentDataSourceLevelConfiguration>? levelConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'overlap_tokens': overlapTokens.toTfJson(),
     if (levelConfiguration != null)
@@ -1119,6 +1156,7 @@ final class BedrockagentDataSourceLevelConfiguration {
 
   final TfArg<num> maxTokens;
 
+  @internal
   Map<String, Object?> encode() => {'max_tokens': maxTokens.toTfJson()};
 }
 
@@ -1138,6 +1176,7 @@ final class BedrockagentDataSourceSemanticChunkingConfiguration {
 
   final TfArg<num> maxToken;
 
+  @internal
   Map<String, Object?> encode() => {
     'breakpoint_percentile_threshold': breakpointPercentileThreshold.toTfJson(),
     'buffer_size': bufferSize.toTfJson(),
@@ -1158,6 +1197,7 @@ final class BedrockagentDataSourceCustomTransformationConfiguration {
 
   final List<BedrockagentDataSourceTransformation>? transformation;
 
+  @internal
   Map<String, Object?> encode() => {
     if (intermediateStorage != null)
       'intermediate_storage': [
@@ -1176,6 +1216,7 @@ final class BedrockagentDataSourceIntermediateStorage {
 
   final List<BedrockagentDataSourceS3Location>? s3Location;
 
+  @internal
   Map<String, Object?> encode() => {
     if (s3Location != null)
       's3_location': [for (final e in s3Location!) e.encode()],
@@ -1190,6 +1231,7 @@ final class BedrockagentDataSourceS3Location {
 
   final TfArg<String> uri;
 
+  @internal
   Map<String, Object?> encode() => {'uri': uri.toTfJson()};
 }
 
@@ -1207,6 +1249,7 @@ final class BedrockagentDataSourceTransformation {
   final List<BedrockagentDataSourceTransformationFunction>?
   transformationFunction;
 
+  @internal
   Map<String, Object?> encode() => {
     'step_to_apply': stepToApply.toTfJson(),
     if (transformationFunction != null)
@@ -1243,6 +1286,7 @@ final class BedrockagentDataSourceTransformationFunction {
   final List<BedrockagentDataSourceTransformationLambdaConfiguration>?
   transformationLambdaConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     if (transformationLambdaConfiguration != null)
       'transformation_lambda_configuration': [
@@ -1261,6 +1305,7 @@ final class BedrockagentDataSourceTransformationLambdaConfiguration {
 
   final RefTo<AwsLambdaFunction> lambdaArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'lambda_arn': lambdaArn.encodeAs('arn').toTfJson(),
   };
@@ -1284,6 +1329,7 @@ final class BedrockagentDataSourceParsingConfiguration {
   final List<BedrockagentDataSourceBedrockFoundationModelConfiguration>?
   bedrockFoundationModelConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'parsing_strategy': parsingStrategy.toTfJson(),
     if (bedrockDataAutomationConfiguration != null)
@@ -1338,6 +1384,7 @@ final class BedrockagentDataSourceBedrockDataAutomationConfiguration {
 
   final BedrockagentDataSourceParsingModality? parsingModality;
 
+  @internal
   Map<String, Object?> encode() => {
     'parsing_modality': ?parsingModality?.toTfJson(),
   };
@@ -1378,6 +1425,7 @@ final class BedrockagentDataSourceBedrockFoundationModelConfiguration {
 
   final List<BedrockagentDataSourceParsingPrompt>? parsingPrompt;
 
+  @internal
   Map<String, Object?> encode() => {
     'model_arn': modelArn.toTfJson(),
     'parsing_modality': ?parsingModality?.toTfJson(),
@@ -1396,6 +1444,7 @@ final class BedrockagentDataSourceParsingPrompt {
 
   final TfArg<String> parsingPromptString;
 
+  @internal
   Map<String, Object?> encode() => {
     'parsing_prompt_string': parsingPromptString.toTfJson(),
   };

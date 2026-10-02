@@ -23,6 +23,7 @@ final class GameliftAliasRoutingStrategy {
 
   final GameliftAliasType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'fleet_id': ?fleetId?.toTfJson(),
     'message': ?message?.toTfJson(),

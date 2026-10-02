@@ -39,6 +39,7 @@ final class EventarcPipelineDestinations {
 
   final EventarcPipelineOutputPayloadFormat? outputPayloadFormat;
 
+  @internal
   Map<String, Object?> encode() => {
     'message_bus': ?messageBus?.toTfJson(),
     'topic': ?topic?.encodeAs('id').toTfJson(),
@@ -63,6 +64,7 @@ final class EventarcPipelineAuthenticationConfig {
 
   final EventarcPipelineOauthToken? oauthToken;
 
+  @internal
   Map<String, Object?> encode() => {
     'google_oidc': ?googleOidc?.encode(),
     'oauth_token': ?oauthToken?.encode(),
@@ -82,6 +84,7 @@ final class EventarcPipelineGoogleOidc {
 
   final RefTo<GoogleServiceAccount> serviceAccount;
 
+  @internal
   Map<String, Object?> encode() => {
     'audience': ?audience?.toTfJson(),
     'service_account': serviceAccount.encodeAs('email').toTfJson(),
@@ -98,6 +101,7 @@ final class EventarcPipelineOauthToken {
 
   final RefTo<GoogleServiceAccount> serviceAccount;
 
+  @internal
   Map<String, Object?> encode() => {
     'scope': ?scope?.toTfJson(),
     'service_account': serviceAccount.encodeAs('email').toTfJson(),
@@ -117,6 +121,7 @@ final class EventarcPipelineHttpEndpoint {
 
   final TfArg<String> uri;
 
+  @internal
   Map<String, Object?> encode() => {
     'message_binding_template': ?messageBindingTemplate?.toTfJson(),
     'uri': uri.toTfJson(),
@@ -131,6 +136,7 @@ final class EventarcPipelineNetworkConfig {
 
   final TfArg<String>? networkAttachment;
 
+  @internal
   Map<String, Object?> encode() => {
     'network_attachment': ?networkAttachment?.toTfJson(),
   };
@@ -152,6 +158,7 @@ final class EventarcPipelineOutputPayloadFormat {
 
   final EventarcPipelineProtobuf? protobuf;
 
+  @internal
   Map<String, Object?> encode() => {
     'avro': ?avro?.encode(),
     'json': ?json?.encode(),
@@ -168,6 +175,7 @@ final class EventarcPipelineAvro {
 
   final TfArg<String>? schemaDefinition;
 
+  @internal
   Map<String, Object?> encode() => {
     'schema_definition': ?schemaDefinition?.toTfJson(),
   };
@@ -180,6 +188,7 @@ final class EventarcPipelineAvro {
 final class EventarcPipelineJson {
   const EventarcPipelineJson();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -192,6 +201,7 @@ final class EventarcPipelineProtobuf {
 
   final TfArg<String>? schemaDefinition;
 
+  @internal
   Map<String, Object?> encode() => {
     'schema_definition': ?schemaDefinition?.toTfJson(),
   };
@@ -213,6 +223,7 @@ final class EventarcPipelineInputPayloadFormat {
 
   final EventarcPipelineProtobuf? protobuf;
 
+  @internal
   Map<String, Object?> encode() => {
     'avro': ?avro?.encode(),
     'json': ?json?.encode(),
@@ -228,6 +239,7 @@ final class EventarcPipelineLoggingConfig {
 
   final EventarcPipelineLogSeverity? logSeverity;
 
+  @internal
   Map<String, Object?> encode() => {'log_severity': ?logSeverity?.toTfJson()};
 }
 
@@ -275,6 +287,7 @@ final class EventarcPipelineMediations {
 
   final EventarcPipelineTransformation? transformation;
 
+  @internal
   Map<String, Object?> encode() => {
     'transformation': ?transformation?.encode(),
   };
@@ -288,6 +301,7 @@ final class EventarcPipelineTransformation {
 
   final TfArg<String>? transformationTemplate;
 
+  @internal
   Map<String, Object?> encode() => {
     'transformation_template': ?transformationTemplate?.toTfJson(),
   };
@@ -309,6 +323,7 @@ final class EventarcPipelineRetryPolicy {
 
   final TfArg<String>? minRetryDelay;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_attempts': ?maxAttempts?.toTfJson(),
     'max_retry_delay': ?maxRetryDelay?.toTfJson(),

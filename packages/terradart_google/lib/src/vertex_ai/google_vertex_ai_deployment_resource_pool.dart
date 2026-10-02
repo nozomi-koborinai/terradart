@@ -27,6 +27,7 @@ final class VertexAiDeploymentResourcePoolDedicatedResources {
 
   final VertexAiDeploymentResourcePoolMachineSpec machineSpec;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_replica_count': ?maxReplicaCount?.toTfJson(),
     'min_replica_count': minReplicaCount.toTfJson(),
@@ -51,6 +52,7 @@ final class VertexAiDeploymentResourcePoolAutoscalingMetricSpecs {
 
   final TfArg<num>? target;
 
+  @internal
   Map<String, Object?> encode() => {
     'metric_name': metricName.toTfJson(),
     'target': ?target?.toTfJson(),
@@ -73,6 +75,7 @@ final class VertexAiDeploymentResourcePoolMachineSpec {
 
   final TfArg<String>? machineType;
 
+  @internal
   Map<String, Object?> encode() => {
     'accelerator_count': ?acceleratorCount?.toTfJson(),
     'accelerator_type': ?acceleratorType?.toTfJson(),

@@ -41,6 +41,7 @@ final class DataIamPolicyDocumentStatement {
 
   final List<DataIamPolicyDocumentPrincipals>? principals;
 
+  @internal
   Map<String, Object?> encode() => {
     'actions': ?actions?.toTfJson(),
     'effect': ?effect?.toTfJson(),
@@ -73,6 +74,7 @@ final class DataIamPolicyDocumentCondition {
 
   final TfArg<String> variable;
 
+  @internal
   Map<String, Object?> encode() => {
     'test': test.toTfJson(),
     'values': values.toTfJson(),
@@ -93,6 +95,7 @@ final class DataIamPolicyDocumentNotPrincipals {
 
   final TfArg<String> type;
 
+  @internal
   Map<String, Object?> encode() => {
     'identifiers': identifiers.toTfJson(),
     'type': type.toTfJson(),
@@ -112,6 +115,7 @@ final class DataIamPolicyDocumentPrincipals {
 
   final TfArg<String> type;
 
+  @internal
   Map<String, Object?> encode() => {
     'identifiers': identifiers.toTfJson(),
     'type': type.toTfJson(),

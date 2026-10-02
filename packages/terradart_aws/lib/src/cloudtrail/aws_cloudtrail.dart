@@ -29,12 +29,15 @@ sealed class CloudtrailSelectors {
   ) = CloudtrailSelectorsEventSelector;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -45,9 +48,11 @@ final class CloudtrailSelectorsAdvancedEventSelector
 
   final List<CloudtrailAdvancedEventSelector> advancedEventSelector;
 
+  @internal
   @override
   String get blockKey => 'advanced_event_selector';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'advanced_event_selector': [
@@ -55,6 +60,7 @@ final class CloudtrailSelectorsAdvancedEventSelector
     ],
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'advanced_event_selector': TfArg.literal([
@@ -69,14 +75,17 @@ final class CloudtrailSelectorsEventSelector extends CloudtrailSelectors {
 
   final List<CloudtrailEventSelector> eventSelector;
 
+  @internal
   @override
   String get blockKey => 'event_selector';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'event_selector': [for (final e in eventSelector) e.encode()],
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'event_selector': TfArg.literal([
@@ -98,6 +107,7 @@ final class CloudtrailAdvancedEventSelector {
 
   final List<CloudtrailFieldSelector> fieldSelector;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'field_selector': [for (final e in fieldSelector) e.encode()],
@@ -132,6 +142,7 @@ final class CloudtrailFieldSelector {
 
   final TfArg<List<String>>? startsWith;
 
+  @internal
   Map<String, Object?> encode() => {
     'ends_with': ?endsWith?.toTfJson(),
     'equals': ?equals?.toTfJson(),
@@ -203,6 +214,7 @@ final class CloudtrailEventSelector {
 
   final List<CloudtrailDataResource>? dataResource;
 
+  @internal
   Map<String, Object?> encode() => {
     'exclude_management_event_sources': ?excludeManagementEventSources
         ?.toTfJson(),
@@ -242,6 +254,7 @@ final class CloudtrailDataResource {
 
   final TfArg<List<String>> values;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
     'values': values.toTfJson(),
@@ -279,6 +292,7 @@ final class CloudtrailInsightSelector {
 
   final CloudtrailInsightType insightType;
 
+  @internal
   Map<String, Object?> encode() => {'insight_type': insightType.toTfJson()};
 }
 

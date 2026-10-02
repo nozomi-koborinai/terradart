@@ -3,6 +3,23 @@
 /// AWS Elastic Container Registry (ECR).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_ecr_authorization_token.dart'
+    show DataAwsEcrAuthorizationToken;
+export 'src/data/aws_ecr_image.dart' show DataAwsEcrImage;
+export 'src/data/aws_ecr_images.dart' show DataAwsEcrImages;
+export 'src/data/aws_ecr_lifecycle_policy_document.dart'
+    show
+        DataAwsEcrLifecyclePolicyDocument,
+        DataEcrLifecyclePolicyDocumentAction,
+        DataEcrLifecyclePolicyDocumentRule,
+        DataEcrLifecyclePolicyDocumentSelection;
+export 'src/data/aws_ecr_pull_through_cache_rule.dart'
+    show DataAwsEcrPullThroughCacheRule;
+export 'src/data/aws_ecr_repositories.dart' show DataAwsEcrRepositories;
+export 'src/data/aws_ecr_repository.dart' show DataAwsEcrRepository;
+export 'src/data/aws_ecr_repository_creation_template.dart'
+    show DataAwsEcrRepositoryCreationTemplate;
 export 'src/ecr/aws_ecr_account_setting.dart'
     show AwsEcrAccountSetting, EcrAccountSettingName, EcrAccountSettingValue;
 export 'src/ecr/aws_ecr_lifecycle_policy.dart' show AwsEcrLifecyclePolicy;

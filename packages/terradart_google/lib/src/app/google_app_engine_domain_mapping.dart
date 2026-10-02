@@ -43,6 +43,7 @@ final class AppEngineDomainMappingSslSettings {
 
   final AppEngineDomainMappingSslManagementType sslManagementType;
 
+  @internal
   Map<String, Object?> encode() => {
     'certificate_id': ?certificateId?.toTfJson(),
     'ssl_management_type': sslManagementType.toTfJson(),

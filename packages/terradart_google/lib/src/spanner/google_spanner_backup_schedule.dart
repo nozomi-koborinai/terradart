@@ -24,10 +24,12 @@ sealed class SpannerBackupScheduleBackupSpec {
       SpannerBackupScheduleIncrementalBackupSpec;
 
   /// argMap key (`full_backup_spec` or `incremental_backup_spec`).
+  @internal
   String get blockKey;
 
   /// JSON fragment for the block value (single empty map in a list —
   /// both blocks are `nesting_mode: list, max_items: 1` with no fields).
+  @internal
   List<Map<String, Object?>> encode();
 }
 
@@ -38,9 +40,11 @@ final class SpannerBackupScheduleFullBackupSpec
   const SpannerBackupScheduleFullBackupSpec();
 
   @override
+  @internal
   String get blockKey => 'full_backup_spec';
 
   @override
+  @internal
   List<Map<String, Object?>> encode() => const [<String, Object?>{}];
 }
 
@@ -51,9 +55,11 @@ final class SpannerBackupScheduleIncrementalBackupSpec
   const SpannerBackupScheduleIncrementalBackupSpec();
 
   @override
+  @internal
   String get blockKey => 'incremental_backup_spec';
 
   @override
+  @internal
   List<Map<String, Object?>> encode() => const [<String, Object?>{}];
 }
 
@@ -70,6 +76,7 @@ final class SpannerBackupScheduleEncryptionConfig {
 
   final SpannerBackupScheduleKmsKeyName? kmsKeyName;
 
+  @internal
   Map<String, Object?> encode() => {
     'encryption_type': encryptionType.toTfJson(),
     ...?kmsKeyName?.encode(),
@@ -95,8 +102,10 @@ sealed class SpannerBackupScheduleKmsKeyName {
   ) = SpannerBackupScheduleKmsKeyNameKmsKeyNames;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -107,9 +116,11 @@ final class SpannerBackupScheduleKmsKeyNameChoice
 
   final RefTo<GoogleKmsCryptoKey> kmsKeyName;
 
+  @internal
   @override
   String get blockKey => 'kms_key_name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'kms_key_name': kmsKeyName.encodeAs('id').toTfJson(),
@@ -123,9 +134,11 @@ final class SpannerBackupScheduleKmsKeyNameKmsKeyNames
 
   final TfArg<List<String>> kmsKeyNames;
 
+  @internal
   @override
   String get blockKey => 'kms_key_names';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'kms_key_names': kmsKeyNames.toTfJson()};
 }
@@ -166,6 +179,7 @@ final class SpannerBackupScheduleSpec {
 
   final SpannerBackupScheduleCronSpec? cronSpec;
 
+  @internal
   Map<String, Object?> encode() => {'cron_spec': ?cronSpec?.encode()};
 }
 
@@ -177,6 +191,7 @@ final class SpannerBackupScheduleCronSpec {
 
   final TfArg<String>? text;
 
+  @internal
   Map<String, Object?> encode() => {'text': ?text?.toTfJson()};
 }
 

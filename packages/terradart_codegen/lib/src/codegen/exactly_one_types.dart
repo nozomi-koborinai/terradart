@@ -499,8 +499,10 @@ String renderExactlyOneTypes({
   buf
     ..writeln()
     ..writeln('  /// The Terraform argument this choice sets.')
+    ..writeln('  @internal')
     ..writeln('  String get blockKey;')
     ..writeln()
+    ..writeln('  @internal')
     ..writeln('  Map<String, Object?> encode();');
   if (topLevel) {
     buf
@@ -509,6 +511,7 @@ String renderExactlyOneTypes({
         '  /// The resource arguments behind [encode], as the caller\'s',
       )
       ..writeln('  /// [TfArg]s.')
+      ..writeln('  @internal')
       ..writeln('  Map<String, TfArg<Object?>> get argMap;');
   }
   buf.writeln('}');
@@ -526,9 +529,11 @@ String renderExactlyOneTypes({
       ..writeln()
       ..writeln('  final ${v.fieldType} ${v.ident};')
       ..writeln()
+      ..writeln('  @internal')
       ..writeln('  @override')
       ..writeln("  String get blockKey => '${v.tfName}';")
       ..writeln()
+      ..writeln('  @internal')
       ..writeln('  @override')
       ..writeln(
         "  Map<String, Object?> encode() => {'${v.tfName}': ${v.encodeExpr}};",
@@ -536,6 +541,7 @@ String renderExactlyOneTypes({
     if (topLevel) {
       buf
         ..writeln()
+        ..writeln('  @internal')
         ..writeln('  @override')
         ..writeln('  Map<String, TfArg<Object?>> get argMap =>')
         ..writeln("      {'${v.tfName}': ${v.argMapExpr}};");

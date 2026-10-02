@@ -273,6 +273,7 @@ final class WaitingRoomAdditionalRoutes {
 
   final TfArg<String>? path;
 
+  @internal
   Map<String, Object?> encode() => {
     'host': ?host?.toTfJson(),
     'path': ?path?.toTfJson(),
@@ -289,6 +290,7 @@ final class WaitingRoomCookieAttributes {
 
   final WaitingRoomSecure? secure;
 
+  @internal
   Map<String, Object?> encode() => {
     'samesite': ?samesite?.toTfJson(),
     'secure': ?secure?.toTfJson(),

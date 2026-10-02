@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../kms/aws_kms_key.dart' show AwsKmsKey;
@@ -202,12 +203,15 @@ sealed class S3BucketObjectBody {
       S3BucketObjectBodySource;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -217,12 +221,15 @@ final class S3BucketObjectBodyContent extends S3BucketObjectBody {
 
   final TfArg<String> content;
 
+  @internal
   @override
   String get blockKey => 'content';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'content': content.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'content': content};
 }
@@ -233,12 +240,15 @@ final class S3BucketObjectBodyContentBase64 extends S3BucketObjectBody {
 
   final TfArg<String> contentBase64;
 
+  @internal
   @override
   String get blockKey => 'content_base64';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'content_base64': contentBase64.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'content_base64': contentBase64};
 }
@@ -249,12 +259,15 @@ final class S3BucketObjectBodySource extends S3BucketObjectBody {
 
   final TfArg<String> source;
 
+  @internal
   @override
   String get blockKey => 'source';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'source': source.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'source': source};
 }
@@ -276,12 +289,15 @@ sealed class S3BucketObjectIntegrity {
       S3BucketObjectIntegrityKmsKeyId;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -291,12 +307,15 @@ final class S3BucketObjectIntegrityEtag extends S3BucketObjectIntegrity {
 
   final TfArg<String> etag;
 
+  @internal
   @override
   String get blockKey => 'etag';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'etag': etag.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'etag': etag};
 }
@@ -307,14 +326,17 @@ final class S3BucketObjectIntegrityKmsKeyId extends S3BucketObjectIntegrity {
 
   final RefTo<AwsKmsKey> kmsKeyId;
 
+  @internal
   @override
   String get blockKey => 'kms_key_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'kms_key_id': kmsKeyId.encodeAs('arn').toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'kms_key_id': kmsKeyId.encodeAs('arn'),

@@ -3,6 +3,7 @@
 /// AWS Device Farm.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/devicefarm/aws_devicefarm_device_pool.dart'
     show
         AwsDevicefarmDevicePool,

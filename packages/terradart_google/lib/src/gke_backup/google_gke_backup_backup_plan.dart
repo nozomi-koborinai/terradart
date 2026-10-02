@@ -86,6 +86,7 @@ class GkeBackupBackupPlanBackupSchedule {
   final TfArg<String>? cronSchedule;
   final GkeBackupBackupPlanRpoConfig? rpoConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     if (cronSchedule != null) 'cron_schedule': cronSchedule!.toTfJson(),
     if (rpoConfig != null) 'rpo_config': [rpoConfig!.toArgMap()],
@@ -114,6 +115,7 @@ final class GkeBackupBackupPlanBackupConfig {
 
   final GkeBackupBackupPlanEncryptionKey? encryptionKey;
 
+  @internal
   Map<String, Object?> encode() => {
     ...scope.encode(),
     'include_secrets': ?includeSecrets?.toTfJson(),
@@ -151,8 +153,10 @@ sealed class GkeBackupBackupPlanScope {
   ) = GkeBackupBackupPlanScopeSelectedNamespaceLabels;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -163,9 +167,11 @@ final class GkeBackupBackupPlanScopeAllNamespaces
 
   final TfArg<bool> allNamespaces;
 
+  @internal
   @override
   String get blockKey => 'all_namespaces';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'all_namespaces': allNamespaces.toTfJson()};
 }
@@ -177,9 +183,11 @@ final class GkeBackupBackupPlanScopeSelectedNamespaces
 
   final GkeBackupBackupPlanSelectedNamespaces selectedNamespaces;
 
+  @internal
   @override
   String get blockKey => 'selected_namespaces';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'selected_namespaces': selectedNamespaces.encode(),
@@ -193,9 +201,11 @@ final class GkeBackupBackupPlanScopeSelectedApplications
 
   final GkeBackupBackupPlanSelectedApplications selectedApplications;
 
+  @internal
   @override
   String get blockKey => 'selected_applications';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'selected_applications': selectedApplications.encode(),
@@ -211,9 +221,11 @@ final class GkeBackupBackupPlanScopeSelectedNamespaceLabels
 
   final GkeBackupBackupPlanSelectedNamespaceLabels selectedNamespaceLabels;
 
+  @internal
   @override
   String get blockKey => 'selected_namespace_labels';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'selected_namespace_labels': selectedNamespaceLabels.encode(),
@@ -228,6 +240,7 @@ final class GkeBackupBackupPlanEncryptionKey {
 
   final TfArg<String> gcpKmsEncryptionKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'gcp_kms_encryption_key': gcpKmsEncryptionKey.toTfJson(),
   };
@@ -243,6 +256,7 @@ final class GkeBackupBackupPlanSelectedApplications {
 
   final List<GkeBackupBackupPlanNamespacedNames> namespacedNames;
 
+  @internal
   Map<String, Object?> encode() => {
     'namespaced_names': [for (final e in namespacedNames) e.encode()],
   };
@@ -261,6 +275,7 @@ final class GkeBackupBackupPlanNamespacedNames {
 
   final TfArg<String> namespace;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'namespace': namespace.toTfJson(),
@@ -277,6 +292,7 @@ final class GkeBackupBackupPlanSelectedNamespaceLabels {
 
   final List<GkeBackupBackupPlanResourceLabels> resourceLabels;
 
+  @internal
   Map<String, Object?> encode() => {
     'resource_labels': [for (final e in resourceLabels) e.encode()],
   };
@@ -295,6 +311,7 @@ final class GkeBackupBackupPlanResourceLabels {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'value': value.toTfJson(),
@@ -309,6 +326,7 @@ final class GkeBackupBackupPlanSelectedNamespaces {
 
   final TfArg<List<String>> namespaces;
 
+  @internal
   Map<String, Object?> encode() => {'namespaces': namespaces.toTfJson()};
 }
 
@@ -328,6 +346,7 @@ final class GkeBackupBackupPlanRetentionPolicy {
 
   final TfArg<bool>? locked;
 
+  @internal
   Map<String, Object?> encode() => {
     'backup_delete_lock_days': ?backupDeleteLockDays?.toTfJson(),
     'backup_retain_days': ?backupRetainDays?.toTfJson(),

@@ -13,6 +13,7 @@ const Set<String> _awsLakeformationOptInSensitive = <String>{};
 final class LakeformationOptInCondition {
   const LakeformationOptInCondition();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -26,6 +27,7 @@ final class LakeformationOptInPrincipal {
 
   final TfArg<String> dataLakePrincipalIdentifier;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_lake_principal_identifier': dataLakePrincipalIdentifier.toTfJson(),
   };
@@ -84,8 +86,10 @@ sealed class LakeformationOptInResourceData {
   ) = LakeformationOptInResourceDataTableWithColumns;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -96,9 +100,11 @@ final class LakeformationOptInResourceDataCatalog
 
   final List<LakeformationOptInCatalog> catalog;
 
+  @internal
   @override
   String get blockKey => 'catalog';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'catalog': [for (final e in catalog) e.encode()],
@@ -112,9 +118,11 @@ final class LakeformationOptInResourceDataCellsFilter
 
   final List<LakeformationOptInDataCellsFilter> dataCellsFilter;
 
+  @internal
   @override
   String get blockKey => 'data_cells_filter';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'data_cells_filter': [for (final e in dataCellsFilter) e.encode()],
@@ -128,9 +136,11 @@ final class LakeformationOptInResourceDataLocation
 
   final List<LakeformationOptInDataLocation> dataLocation;
 
+  @internal
   @override
   String get blockKey => 'data_location';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'data_location': [for (final e in dataLocation) e.encode()],
@@ -144,9 +154,11 @@ final class LakeformationOptInResourceDataDatabase
 
   final List<LakeformationOptInDatabase> database;
 
+  @internal
   @override
   String get blockKey => 'database';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'database': [for (final e in database) e.encode()],
@@ -160,9 +172,11 @@ final class LakeformationOptInResourceDataLfTag
 
   final List<LakeformationOptInLfTag> lfTag;
 
+  @internal
   @override
   String get blockKey => 'lf_tag';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'lf_tag': [for (final e in lfTag) e.encode()],
@@ -176,9 +190,11 @@ final class LakeformationOptInResourceDataLfTagExpression
 
   final List<LakeformationOptInLfTagExpression> lfTagExpression;
 
+  @internal
   @override
   String get blockKey => 'lf_tag_expression';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'lf_tag_expression': [for (final e in lfTagExpression) e.encode()],
@@ -192,9 +208,11 @@ final class LakeformationOptInResourceDataLfTagPolicy
 
   final List<LakeformationOptInLfTagPolicy> lfTagPolicy;
 
+  @internal
   @override
   String get blockKey => 'lf_tag_policy';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'lf_tag_policy': [for (final e in lfTagPolicy) e.encode()],
@@ -208,9 +226,11 @@ final class LakeformationOptInResourceDataTable
 
   final List<LakeformationOptInTable> table;
 
+  @internal
   @override
   String get blockKey => 'table';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'table': [for (final e in table) e.encode()],
@@ -224,9 +244,11 @@ final class LakeformationOptInResourceDataTableWithColumns
 
   final List<LakeformationOptInTableWithColumns> tableWithColumns;
 
+  @internal
   @override
   String get blockKey => 'table_with_columns';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'table_with_columns': [for (final e in tableWithColumns) e.encode()],
@@ -241,6 +263,7 @@ final class LakeformationOptInCatalog {
 
   final TfArg<String>? id;
 
+  @internal
   Map<String, Object?> encode() => {'id': ?id?.toTfJson()};
 }
 
@@ -263,6 +286,7 @@ final class LakeformationOptInDataCellsFilter {
 
   final TfArg<String>? tableName;
 
+  @internal
   Map<String, Object?> encode() => {
     'database_name': ?databaseName?.toTfJson(),
     'name': ?name?.toTfJson(),
@@ -284,6 +308,7 @@ final class LakeformationOptInDataLocation {
 
   final TfArg<String> resourceArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'catalog_id': ?catalogId?.toTfJson(),
     'resource_arn': resourceArn.toTfJson(),
@@ -300,6 +325,7 @@ final class LakeformationOptInDatabase {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {
     'catalog_id': ?catalogId?.toTfJson(),
     'name': name.toTfJson(),
@@ -322,6 +348,7 @@ final class LakeformationOptInLfTag {
 
   final TfArg<List<String>> values;
 
+  @internal
   Map<String, Object?> encode() => {
     'catalog_id': ?catalogId?.toTfJson(),
     'key': key.toTfJson(),
@@ -339,6 +366,7 @@ final class LakeformationOptInLfTagExpression {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {
     'catalog_id': ?catalogId?.toTfJson(),
     'name': name.toTfJson(),
@@ -364,6 +392,7 @@ final class LakeformationOptInLfTagPolicy {
 
   final TfArg<String> resourceType;
 
+  @internal
   Map<String, Object?> encode() => {
     'catalog_id': ?catalogId?.toTfJson(),
     'expression': ?expression?.toTfJson(),
@@ -391,6 +420,7 @@ final class LakeformationOptInTable {
 
   final TfArg<bool>? wildcard;
 
+  @internal
   Map<String, Object?> encode() => {
     'catalog_id': ?catalogId?.toTfJson(),
     'database_name': databaseName.toTfJson(),
@@ -421,6 +451,7 @@ final class LakeformationOptInTableWithColumns {
 
   final List<LakeformationOptInColumnWildcard>? columnWildcard;
 
+  @internal
   Map<String, Object?> encode() => {
     'catalog_id': ?catalogId?.toTfJson(),
     'column_names': ?columnNames?.toTfJson(),
@@ -439,6 +470,7 @@ final class LakeformationOptInColumnWildcard {
 
   final TfArg<List<String>>? excludedColumnNames;
 
+  @internal
   Map<String, Object?> encode() => {
     'excluded_column_names': ?excludedColumnNames?.toTfJson(),
   };

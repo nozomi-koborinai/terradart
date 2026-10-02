@@ -22,6 +22,7 @@ final class DnsFirewallAttackMitigation {
 
   final TfArg<bool>? onlyWhenUpstreamUnhealthy;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'only_when_upstream_unhealthy': ?onlyWhenUpstreamUnhealthy?.toTfJson(),

@@ -24,12 +24,15 @@ sealed class VpcIpamPoolCidrRange {
       VpcIpamPoolCidrRangeNetmaskLength;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -39,12 +42,15 @@ final class VpcIpamPoolCidrRangeCidr extends VpcIpamPoolCidrRange {
 
   final TfArg<String> cidr;
 
+  @internal
   @override
   String get blockKey => 'cidr';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'cidr': cidr.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'cidr': cidr};
 }
@@ -55,12 +61,15 @@ final class VpcIpamPoolCidrRangeNetmaskLength extends VpcIpamPoolCidrRange {
 
   final TfArg<num> netmaskLength;
 
+  @internal
   @override
   String get blockKey => 'netmask_length';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'netmask_length': netmaskLength.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'netmask_length': netmaskLength};
 }
@@ -75,6 +84,7 @@ final class VpcIpamPoolCidrAuthorizationContext {
 
   final TfArg<String>? signature;
 
+  @internal
   Map<String, Object?> encode() => {
     'message': ?message?.toTfJson(),
     'signature': ?signature?.toTfJson(),

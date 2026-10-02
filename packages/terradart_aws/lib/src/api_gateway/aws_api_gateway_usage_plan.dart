@@ -23,6 +23,7 @@ final class ApiGatewayUsagePlanApiStages {
 
   final List<ApiGatewayUsagePlanThrottle>? throttle;
 
+  @internal
   Map<String, Object?> encode() => {
     'api_id': apiId.toTfJson(),
     'stage': stage.toTfJson(),
@@ -46,6 +47,7 @@ final class ApiGatewayUsagePlanThrottle {
 
   final TfArg<num>? rateLimit;
 
+  @internal
   Map<String, Object?> encode() => {
     'burst_limit': ?burstLimit?.toTfJson(),
     'path': path.toTfJson(),
@@ -69,6 +71,7 @@ final class ApiGatewayUsagePlanQuotaSettings {
 
   final ApiGatewayUsagePlanPeriod period;
 
+  @internal
   Map<String, Object?> encode() => {
     'limit': limit.toTfJson(),
     'offset': ?offset?.toTfJson(),
@@ -102,6 +105,7 @@ final class ApiGatewayUsagePlanThrottleSettings {
 
   final TfArg<num>? rateLimit;
 
+  @internal
   Map<String, Object?> encode() => {
     'burst_limit': ?burstLimit?.toTfJson(),
     'rate_limit': ?rateLimit?.toTfJson(),

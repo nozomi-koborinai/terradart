@@ -217,6 +217,7 @@ final class ComputeInterconnectAttachmentL2Forwarding {
 
   final ComputeInterconnectAttachmentGeneveHeader? geneveHeader;
 
+  @internal
   Map<String, Object?> encode() => {
     'default_appliance_ip_address': ?defaultApplianceIpAddress?.toTfJson(),
     'network': ?network?.encodeAs('id').toTfJson(),
@@ -247,6 +248,7 @@ final class ComputeInterconnectAttachmentApplianceMappings {
   final List<ComputeInterconnectAttachmentInnerVlanToApplianceMappings>?
   innerVlanToApplianceMappings;
 
+  @internal
   Map<String, Object?> encode() => {
     'appliance_ip_address': ?applianceIpAddress?.toTfJson(),
     'name': ?name?.toTfJson(),
@@ -271,6 +273,7 @@ final class ComputeInterconnectAttachmentInnerVlanToApplianceMappings {
 
   final TfArg<List<String>>? innerVlanTags;
 
+  @internal
   Map<String, Object?> encode() => {
     'inner_appliance_ip_address': ?innerApplianceIpAddress?.toTfJson(),
     'inner_vlan_tags': ?innerVlanTags?.toTfJson(),
@@ -285,6 +288,7 @@ final class ComputeInterconnectAttachmentGeneveHeader {
 
   final TfArg<num>? vni;
 
+  @internal
   Map<String, Object?> encode() => {'vni': ?vni?.toTfJson()};
 }
 
@@ -296,6 +300,7 @@ final class ComputeInterconnectAttachmentParams {
 
   final TfArg<Map<String, String>>? resourceManagerTags;
 
+  @internal
   Map<String, Object?> encode() => {
     'resource_manager_tags': ?resourceManagerTags?.toTfJson(),
   };

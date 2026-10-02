@@ -84,6 +84,7 @@ prelude: |
         allocationStrategy;
     final TfArg<int>? firstAvailableRangesLookupSize;
 
+    @internal
     Map<String, Object?> encode() => {
           if (allocationStrategy != null)
             'allocation_strategy': allocationStrategy!.toTfJson(),

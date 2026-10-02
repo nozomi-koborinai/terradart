@@ -15,6 +15,7 @@ final class EcrReplicationConfiguration {
 
   final List<EcrReplicationConfigurationRule> rule;
 
+  @internal
   Map<String, Object?> encode() => {
     'rule': [for (final e in rule) e.encode()],
   };
@@ -33,6 +34,7 @@ final class EcrReplicationConfigurationRule {
 
   final List<EcrReplicationConfigurationRepositoryFilter>? repositoryFilter;
 
+  @internal
   Map<String, Object?> encode() => {
     'destination': [for (final e in destination) e.encode()],
     if (repositoryFilter != null)
@@ -53,6 +55,7 @@ final class EcrReplicationConfigurationDestination {
 
   final TfArg<String> registryId;
 
+  @internal
   Map<String, Object?> encode() => {
     'region': region.toTfJson(),
     'registry_id': registryId.toTfJson(),
@@ -72,6 +75,7 @@ final class EcrReplicationConfigurationRepositoryFilter {
 
   final EcrReplicationConfigurationFilterType filterType;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter': filter.toTfJson(),
     'filter_type': filterType.toTfJson(),

@@ -17,6 +17,7 @@ final class DataZonesAccount {
 
   final TfArg<String>? name;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': ?id?.toTfJson(),
     'name': ?name?.toTfJson(),

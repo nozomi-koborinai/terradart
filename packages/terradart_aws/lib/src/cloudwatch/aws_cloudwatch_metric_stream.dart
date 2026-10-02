@@ -54,12 +54,15 @@ sealed class CloudwatchMetricStreamFilter {
   ) = CloudwatchMetricStreamIncludeFilterChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -70,14 +73,17 @@ final class CloudwatchMetricStreamExcludeFilterChoice
 
   final List<CloudwatchMetricStreamExcludeFilter> excludeFilter;
 
+  @internal
   @override
   String get blockKey => 'exclude_filter';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'exclude_filter': [for (final e in excludeFilter) e.encode()],
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'exclude_filter': TfArg.literal([
@@ -93,14 +99,17 @@ final class CloudwatchMetricStreamIncludeFilterChoice
 
   final List<CloudwatchMetricStreamIncludeFilter> includeFilter;
 
+  @internal
   @override
   String get blockKey => 'include_filter';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'include_filter': [for (final e in includeFilter) e.encode()],
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'include_filter': TfArg.literal([
@@ -127,12 +136,15 @@ sealed class CloudwatchMetricStreamName {
   ) = CloudwatchMetricStreamNamePrefix;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -143,12 +155,15 @@ final class CloudwatchMetricStreamNameChoice
 
   final TfArg<String> name;
 
+  @internal
   @override
   String get blockKey => 'name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
@@ -160,12 +175,15 @@ final class CloudwatchMetricStreamNamePrefix
 
   final TfArg<String> namePrefix;
 
+  @internal
   @override
   String get blockKey => 'name_prefix';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'name_prefix': namePrefix.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'name_prefix': namePrefix};
 }
@@ -183,6 +201,7 @@ final class CloudwatchMetricStreamExcludeFilter {
 
   final TfArg<String> namespace;
 
+  @internal
   Map<String, Object?> encode() => {
     'metric_names': ?metricNames?.toTfJson(),
     'namespace': namespace.toTfJson(),
@@ -202,6 +221,7 @@ final class CloudwatchMetricStreamIncludeFilter {
 
   final TfArg<String> namespace;
 
+  @internal
   Map<String, Object?> encode() => {
     'metric_names': ?metricNames?.toTfJson(),
     'namespace': namespace.toTfJson(),
@@ -221,6 +241,7 @@ final class CloudwatchMetricStreamStatisticsConfiguration {
 
   final List<CloudwatchMetricStreamIncludeMetric> includeMetric;
 
+  @internal
   Map<String, Object?> encode() => {
     'additional_statistics': additionalStatistics.toTfJson(),
     'include_metric': [for (final e in includeMetric) e.encode()],
@@ -240,6 +261,7 @@ final class CloudwatchMetricStreamIncludeMetric {
 
   final TfArg<String> namespace;
 
+  @internal
   Map<String, Object?> encode() => {
     'metric_name': metricName.toTfJson(),
     'namespace': namespace.toTfJson(),

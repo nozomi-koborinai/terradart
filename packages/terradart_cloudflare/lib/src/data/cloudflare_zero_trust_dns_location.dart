@@ -28,6 +28,7 @@ final class DataZeroTrustDnsLocationFilter {
 
   final TfArg<String>? search;
 
+  @internal
   Map<String, Object?> encode() => {
     'direction': ?direction?.toTfJson(),
     'filter': ?filter?.toTfJson(),

@@ -76,12 +76,15 @@ sealed class SesEventDestinationTarget {
   ) = SesEventDestinationTargetSnsDestination;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -94,9 +97,11 @@ final class SesEventDestinationTargetCloudwatchDestination
 
   final List<SesEventDestinationCloudwatchDestination> cloudwatchDestination;
 
+  @internal
   @override
   String get blockKey => 'cloudwatch_destination';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'cloudwatch_destination': [
@@ -104,6 +109,7 @@ final class SesEventDestinationTargetCloudwatchDestination
     ],
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'cloudwatch_destination': TfArg.literal([
@@ -119,14 +125,17 @@ final class SesEventDestinationTargetKinesisDestination
 
   final SesEventDestinationKinesisDestination kinesisDestination;
 
+  @internal
   @override
   String get blockKey => 'kinesis_destination';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'kinesis_destination': kinesisDestination.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'kinesis_destination': TfArg.literal(kinesisDestination.encode()),
@@ -140,12 +149,15 @@ final class SesEventDestinationTargetSnsDestination
 
   final SesEventDestinationSnsDestination snsDestination;
 
+  @internal
   @override
   String get blockKey => 'sns_destination';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'sns_destination': snsDestination.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'sns_destination': TfArg.literal(snsDestination.encode()),
@@ -168,6 +180,7 @@ final class SesEventDestinationCloudwatchDestination {
 
   final SesEventDestinationValueSource valueSource;
 
+  @internal
   Map<String, Object?> encode() => {
     'default_value': defaultValue.toTfJson(),
     'dimension_name': dimensionName.toTfJson(),
@@ -214,6 +227,7 @@ final class SesEventDestinationKinesisDestination {
 
   final TfArg<String> streamArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
     'stream_arn': streamArn.toTfJson(),
@@ -228,6 +242,7 @@ final class SesEventDestinationSnsDestination {
 
   final RefTo<AwsSnsTopic> topicArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'topic_arn': topicArn.encodeAs('arn').toTfJson(),
   };

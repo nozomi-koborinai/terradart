@@ -28,6 +28,7 @@ final class EfsReplicationConfigurationDestination {
 
   final TfArg<String>? region;
 
+  @internal
   Map<String, Object?> encode() => {
     'availability_zone_name': ?availabilityZoneName?.toTfJson(),
     'file_system_id': ?fileSystemId?.toTfJson(),

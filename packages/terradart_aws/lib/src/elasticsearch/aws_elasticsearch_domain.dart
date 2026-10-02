@@ -31,6 +31,7 @@ final class ElasticsearchDomainAdvancedSecurityOptions {
 
   final ElasticsearchDomainMasterUserOptions? masterUserOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'internal_user_database_enabled': ?internalUserDatabaseEnabled?.toTfJson(),
@@ -54,6 +55,7 @@ final class ElasticsearchDomainMasterUserOptions {
 
   final Sensitive<String>? masterUserPassword;
 
+  @internal
   Map<String, Object?> encode() => {
     'master_user_arn': ?masterUserArn?.toTfJson(),
     'master_user_name': ?masterUserName?.toTfJson(),
@@ -77,6 +79,7 @@ final class ElasticsearchDomainAutoTuneOptions {
 
   final List<ElasticsearchDomainMaintenanceSchedule>? maintenanceSchedule;
 
+  @internal
   Map<String, Object?> encode() => {
     'desired_state': desiredState.toTfJson(),
     'rollback_on_disable': ?rollbackOnDisable?.toTfJson(),
@@ -148,6 +151,7 @@ final class ElasticsearchDomainMaintenanceSchedule {
 
   final ElasticsearchDomainDuration duration;
 
+  @internal
   Map<String, Object?> encode() => {
     'cron_expression_for_recurrence': cronExpressionForRecurrence.toTfJson(),
     'start_at': startAt.toTfJson(),
@@ -165,6 +169,7 @@ final class ElasticsearchDomainDuration {
 
   final TfArg<num> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'unit': unit.toTfJson(),
     'value': value.toTfJson(),
@@ -224,6 +229,7 @@ final class ElasticsearchDomainClusterConfig {
 
   final ElasticsearchDomainZoneAwarenessConfig? zoneAwarenessConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'dedicated_master_count': ?dedicatedMasterCount?.toTfJson(),
     'dedicated_master_enabled': ?dedicatedMasterEnabled?.toTfJson(),
@@ -247,6 +253,7 @@ final class ElasticsearchDomainColdStorageOptions {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
@@ -258,6 +265,7 @@ final class ElasticsearchDomainZoneAwarenessConfig {
 
   final TfArg<num>? availabilityZoneCount;
 
+  @internal
   Map<String, Object?> encode() => {
     'availability_zone_count': ?availabilityZoneCount?.toTfJson(),
   };
@@ -282,6 +290,7 @@ final class ElasticsearchDomainCognitoOptions {
 
   final TfArg<String> userPoolId;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'identity_pool_id': identityPoolId.toTfJson(),
@@ -312,6 +321,7 @@ final class ElasticsearchDomainEndpointOptions {
 
   final ElasticsearchDomainTlsSecurityPolicy? tlsSecurityPolicy;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_endpoint': ?customEndpoint?.toTfJson(),
     'custom_endpoint_certificate_arn': ?customEndpointCertificateArn
@@ -376,6 +386,7 @@ final class ElasticsearchDomainEbsOptions {
 
   final ElasticsearchDomainVolumeType? volumeType;
 
+  @internal
   Map<String, Object?> encode() => {
     'ebs_enabled': ebsEnabled.toTfJson(),
     'iops': ?iops?.toTfJson(),
@@ -422,6 +433,7 @@ final class ElasticsearchDomainEncryptAtRest {
 
   final RefTo<AwsKmsKey>? kmsKeyId;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
@@ -444,6 +456,7 @@ final class ElasticsearchDomainLogPublishingOptions {
 
   final ElasticsearchDomainLogType logType;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloudwatch_log_group_arn': cloudwatchLogGroupArn
         .encodeAs('arn')
@@ -491,6 +504,7 @@ final class ElasticsearchDomainNodeToNodeEncryption {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 
@@ -504,6 +518,7 @@ final class ElasticsearchDomainSnapshotOptions {
 
   final TfArg<num> automatedSnapshotStartHour;
 
+  @internal
   Map<String, Object?> encode() => {
     'automated_snapshot_start_hour': automatedSnapshotStartHour.toTfJson(),
   };
@@ -519,6 +534,7 @@ final class ElasticsearchDomainVpcOptions {
 
   final TfArg<List<RefTo<AwsSubnet>>>? subnetIds;
 
+  @internal
   Map<String, Object?> encode() => {
     'security_group_ids': ?securityGroupIds?.encodeAs('id').toTfJson(),
     'subnet_ids': ?subnetIds?.encodeAs('id').toTfJson(),

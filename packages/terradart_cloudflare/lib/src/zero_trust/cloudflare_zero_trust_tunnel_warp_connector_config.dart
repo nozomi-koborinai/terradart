@@ -57,6 +57,7 @@ final class ZeroTrustTunnelWarpConnectorConfig {
 
   final List<ZeroTrustTunnelWarpConnectorConfigVipsPrevious>? vipsPrevious;
 
+  @internal
   Map<String, Object?> encode() => {
     'fnr_id': ?fnrId?.toTfJson(),
     if (vips != null) 'vips': [for (final e in vips!) e.encode()],
@@ -73,6 +74,7 @@ final class ZeroTrustTunnelWarpConnectorConfigVips {
 
   final TfArg<String> address;
 
+  @internal
   Map<String, Object?> encode() => {'address': address.toTfJson()};
 }
 
@@ -84,6 +86,7 @@ final class ZeroTrustTunnelWarpConnectorConfigVipsPrevious {
 
   final TfArg<String> address;
 
+  @internal
   Map<String, Object?> encode() => {'address': address.toTfJson()};
 }
 

@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `aws_docdb_global_cluster`.
@@ -37,12 +38,15 @@ sealed class DocdbGlobalClusterSource {
   ) = DocdbGlobalClusterSourceDbClusterIdentifier;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -52,12 +56,15 @@ final class DocdbGlobalClusterSourceEngine extends DocdbGlobalClusterSource {
 
   final DocdbGlobalClusterEngine engine;
 
+  @internal
   @override
   String get blockKey => 'engine';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'engine': engine.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'engine': engine};
 }
@@ -71,14 +78,17 @@ final class DocdbGlobalClusterSourceDbClusterIdentifier
 
   final TfArg<String> sourceDbClusterIdentifier;
 
+  @internal
   @override
   String get blockKey => 'source_db_cluster_identifier';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'source_db_cluster_identifier': sourceDbClusterIdentifier.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'source_db_cluster_identifier': sourceDbClusterIdentifier,

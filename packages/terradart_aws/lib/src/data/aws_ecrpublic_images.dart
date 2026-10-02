@@ -17,6 +17,7 @@ final class DataEcrpublicImagesImageIds {
 
   final TfArg<String>? imageTag;
 
+  @internal
   Map<String, Object?> encode() => {
     'image_digest': ?imageDigest?.toTfJson(),
     'image_tag': ?imageTag?.toTfJson(),

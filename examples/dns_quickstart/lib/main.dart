@@ -17,7 +17,6 @@ library;
 
 import 'dart:convert';
 
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/compute.dart';
 import 'package:terradart_google/dns.dart';
 import 'package:terradart_google/iam.dart';

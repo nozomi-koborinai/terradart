@@ -41,8 +41,10 @@ sealed class DataLossPreventionDeidentifyTemplateDeidentifyConfig {
   ) = DataLossPreventionDeidentifyTemplateDeidentifyConfigImageTransformations;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -56,9 +58,11 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigInfoTypeTransfor
   final DataLossPreventionDeidentifyTemplateInfoTypeTransformations
   infoTypeTransformations;
 
+  @internal
   @override
   String get blockKey => 'info_type_transformations';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'info_type_transformations': infoTypeTransformations.encode(),
@@ -75,9 +79,11 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigRecordTransforma
   final DataLossPreventionDeidentifyTemplateRecordTransformations
   recordTransformations;
 
+  @internal
   @override
   String get blockKey => 'record_transformations';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'record_transformations': recordTransformations.encode(),
@@ -94,9 +100,11 @@ final class DataLossPreventionDeidentifyTemplateDeidentifyConfigImageTransformat
   final DataLossPreventionDeidentifyTemplateImageTransformations
   imageTransformations;
 
+  @internal
   @override
   String get blockKey => 'image_transformations';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'image_transformations': imageTransformations.encode(),
@@ -113,6 +121,7 @@ final class DataLossPreventionDeidentifyTemplateImageTransformations {
 
   final List<DataLossPreventionDeidentifyTemplateTransforms> transforms;
 
+  @internal
   Map<String, Object?> encode() => {
     'transforms': [for (final e in transforms) e.encode()],
   };
@@ -138,6 +147,7 @@ final class DataLossPreventionDeidentifyTemplateTransforms {
   final DataLossPreventionDeidentifyTemplateSelectedInfoTypes?
   selectedInfoTypes;
 
+  @internal
   Map<String, Object?> encode() => {
     'all_info_types': ?allInfoTypes?.encode(),
     'all_text': ?allText?.encode(),
@@ -152,6 +162,7 @@ final class DataLossPreventionDeidentifyTemplateTransforms {
 final class DataLossPreventionDeidentifyTemplateAllInfoTypes {
   const DataLossPreventionDeidentifyTemplateAllInfoTypes();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -161,6 +172,7 @@ final class DataLossPreventionDeidentifyTemplateAllInfoTypes {
 final class DataLossPreventionDeidentifyTemplateAllText {
   const DataLossPreventionDeidentifyTemplateAllText();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -180,6 +192,7 @@ final class DataLossPreventionDeidentifyTemplateRedactionColor {
 
   final TfArg<num>? red;
 
+  @internal
   Map<String, Object?> encode() => {
     'blue': ?blue?.toTfJson(),
     'green': ?green?.toTfJson(),
@@ -197,6 +210,7 @@ final class DataLossPreventionDeidentifyTemplateSelectedInfoTypes {
 
   final List<DataLossPreventionDeidentifyTemplateInfoTypes> infoTypes;
 
+  @internal
   Map<String, Object?> encode() => {
     'info_types': [for (final e in infoTypes) e.encode()],
   };
@@ -219,6 +233,7 @@ final class DataLossPreventionDeidentifyTemplateInfoTypes {
 
   final DataLossPreventionDeidentifyTemplateSensitivityScore? sensitivityScore;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'version': ?version?.toTfJson(),
@@ -237,6 +252,7 @@ final class DataLossPreventionDeidentifyTemplateSensitivityScore {
 
   final DataLossPreventionDeidentifyTemplateScore score;
 
+  @internal
   Map<String, Object?> encode() => {'score': score.toTfJson()};
 }
 
@@ -280,6 +296,7 @@ final class DataLossPreventionDeidentifyTemplateInfoTypeTransformations {
   final List<DataLossPreventionDeidentifyTemplateTransformations>
   transformations;
 
+  @internal
   Map<String, Object?> encode() => {
     'transformations': [for (final e in transformations) e.encode()],
   };
@@ -299,6 +316,7 @@ final class DataLossPreventionDeidentifyTemplateTransformations {
   final DataLossPreventionDeidentifyTemplateTransformationsPrimitiveTransformation
   primitiveTransformation;
 
+  @internal
   Map<String, Object?> encode() => {
     if (infoTypes != null)
       'info_types': [for (final e in infoTypes!) e.encode()],
@@ -357,6 +375,7 @@ final class DataLossPreventionDeidentifyTemplateTransformationsPrimitiveTransfor
 
   final DataLossPreventionDeidentifyTemplateTimePartConfig? timePartConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'replace_with_info_type_config': ?replaceWithInfoTypeConfig?.toTfJson(),
     'bucketing_config': ?bucketingConfig?.encode(),
@@ -384,6 +403,7 @@ final class DataLossPreventionDeidentifyTemplateTransformationsBucketingConfig {
   final List<DataLossPreventionDeidentifyTemplateTransformationsBuckets>?
   buckets;
 
+  @internal
   Map<String, Object?> encode() => {
     if (buckets != null) 'buckets': [for (final e in buckets!) e.encode()],
   };
@@ -407,6 +427,7 @@ final class DataLossPreventionDeidentifyTemplateTransformationsBuckets {
   final DataLossPreventionDeidentifyTemplateTransformationsReplacementValue
   replacementValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'max': ?max?.encode(),
     'min': ?min?.encode(),
@@ -443,6 +464,7 @@ final class DataLossPreventionDeidentifyTemplateTransformationsMax {
 
   final DataLossPreventionDeidentifyTemplateTimeValue? timeValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'day_of_week_value': ?dayOfWeekValue?.toTfJson(),
     'float_value': ?floatValue?.toTfJson(),
@@ -509,6 +531,7 @@ final class DataLossPreventionDeidentifyTemplateDateValue {
 
   final TfArg<num>? year;
 
+  @internal
   Map<String, Object?> encode() => {
     'day': ?day?.toTfJson(),
     'month': ?month?.toTfJson(),
@@ -536,6 +559,7 @@ final class DataLossPreventionDeidentifyTemplateTimeValue {
 
   final TfArg<num>? seconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'hours': ?hours?.toTfJson(),
     'minutes': ?minutes?.toTfJson(),
@@ -573,6 +597,7 @@ final class DataLossPreventionDeidentifyTemplateTransformationsMin {
 
   final DataLossPreventionDeidentifyTemplateTimeValue? timeValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'day_of_week_value': ?dayOfWeekValue?.toTfJson(),
     'float_value': ?floatValue?.toTfJson(),
@@ -613,6 +638,7 @@ final class DataLossPreventionDeidentifyTemplateTransformationsReplacementValue 
 
   final DataLossPreventionDeidentifyTemplateTimeValue? timeValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'day_of_week_value': ?dayOfWeekValue?.toTfJson(),
     'float_value': ?floatValue?.toTfJson(),
@@ -645,6 +671,7 @@ final class DataLossPreventionDeidentifyTemplateCharacterMaskConfig {
   final List<DataLossPreventionDeidentifyTemplateCharactersToIgnore>?
   charactersToIgnore;
 
+  @internal
   Map<String, Object?> encode() => {
     'masking_character': ?maskingCharacter?.toTfJson(),
     'number_to_mask': ?numberToMask?.toTfJson(),
@@ -669,6 +696,7 @@ final class DataLossPreventionDeidentifyTemplateCharactersToIgnore {
   final DataLossPreventionDeidentifyTemplateCommonCharactersToIgnore?
   commonCharactersToIgnore;
 
+  @internal
   Map<String, Object?> encode() => {
     'characters_to_skip': ?charactersToSkip?.toTfJson(),
     'common_characters_to_ignore': ?commonCharactersToIgnore?.toTfJson(),
@@ -735,6 +763,7 @@ final class DataLossPreventionDeidentifyTemplateCryptoDeterministicConfig {
   final DataLossPreventionDeidentifyTemplateSurrogateInfoType?
   surrogateInfoType;
 
+  @internal
   Map<String, Object?> encode() => {
     'context': ?context?.encode(),
     'crypto_key': ?cryptoKey?.encode(),
@@ -753,6 +782,7 @@ final class DataLossPreventionDeidentifyTemplateCryptoDeterministicConfigContext
 
   final TfArg<String>? name;
 
+  @internal
   Map<String, Object?> encode() => {'name': ?name?.toTfJson()};
 }
 
@@ -773,6 +803,7 @@ final class DataLossPreventionDeidentifyTemplateCryptoKey {
 
   final DataLossPreventionDeidentifyTemplateUnwrapped? unwrapped;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_wrapped': ?kmsWrapped?.encode(),
     'transient': ?transient?.encode(),
@@ -794,6 +825,7 @@ final class DataLossPreventionDeidentifyTemplateKmsWrapped {
 
   final TfArg<String> wrappedKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'crypto_key_name': cryptoKeyName.encodeAs('id').toTfJson(),
     'wrapped_key': wrappedKey.toTfJson(),
@@ -809,6 +841,7 @@ final class DataLossPreventionDeidentifyTemplateTransient {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 
@@ -821,6 +854,7 @@ final class DataLossPreventionDeidentifyTemplateUnwrapped {
 
   final Sensitive<String> key;
 
+  @internal
   Map<String, Object?> encode() => {'key': key.toTfJson()};
 }
 
@@ -841,6 +875,7 @@ final class DataLossPreventionDeidentifyTemplateSurrogateInfoType {
 
   final DataLossPreventionDeidentifyTemplateSensitivityScore? sensitivityScore;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'version': ?version?.toTfJson(),
@@ -857,6 +892,7 @@ final class DataLossPreventionDeidentifyTemplateCryptoHashConfig {
 
   final DataLossPreventionDeidentifyTemplateCryptoKey? cryptoKey;
 
+  @internal
   Map<String, Object?> encode() => {'crypto_key': ?cryptoKey?.encode()};
 }
 
@@ -888,6 +924,7 @@ final class DataLossPreventionDeidentifyTemplateCryptoReplaceFfxFpeConfig {
   final DataLossPreventionDeidentifyTemplateSurrogateInfoType?
   surrogateInfoType;
 
+  @internal
   Map<String, Object?> encode() => {
     'common_alphabet': ?commonAlphabet?.toTfJson(),
     'custom_alphabet': ?customAlphabet?.toTfJson(),
@@ -960,6 +997,7 @@ final class DataLossPreventionDeidentifyTemplateTransformationsDateShiftConfig {
 
   final DataLossPreventionDeidentifyTemplateCryptoKey? cryptoKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'lower_bound_days': lowerBoundDays.toTfJson(),
     'upper_bound_days': upperBoundDays.toTfJson(),
@@ -979,6 +1017,7 @@ final class DataLossPreventionDeidentifyTemplateDateShiftConfigContext {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 
@@ -1001,6 +1040,7 @@ final class DataLossPreventionDeidentifyTemplateTransformationsFixedSizeBucketin
   final DataLossPreventionDeidentifyTemplateTransformationsUpperBound
   upperBound;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_size': bucketSize.toTfJson(),
     'lower_bound': lowerBound.encode(),
@@ -1022,6 +1062,7 @@ final class DataLossPreventionDeidentifyTemplateTransformationsLowerBound {
 
   final TfArg<String>? integerValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'float_value': ?floatValue?.toTfJson(),
     'integer_value': ?integerValue?.toTfJson(),
@@ -1042,6 +1083,7 @@ final class DataLossPreventionDeidentifyTemplateTransformationsUpperBound {
 
   final TfArg<String>? integerValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'float_value': ?floatValue?.toTfJson(),
     'integer_value': ?integerValue?.toTfJson(),
@@ -1055,6 +1097,7 @@ final class DataLossPreventionDeidentifyTemplateTransformationsUpperBound {
 final class DataLossPreventionDeidentifyTemplateRedactConfig {
   const DataLossPreventionDeidentifyTemplateRedactConfig();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -1068,6 +1111,7 @@ final class DataLossPreventionDeidentifyTemplateTransformationsReplaceConfig {
 
   final DataLossPreventionDeidentifyTemplateTransformationsNewValue newValue;
 
+  @internal
   Map<String, Object?> encode() => {'new_value': newValue.encode()};
 }
 
@@ -1102,6 +1146,7 @@ final class DataLossPreventionDeidentifyTemplateTransformationsNewValue {
 
   final DataLossPreventionDeidentifyTemplateTimeValue? timeValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'boolean_value': ?booleanValue?.toTfJson(),
     'day_of_week_value': ?dayOfWeekValue?.toTfJson(),
@@ -1125,6 +1170,7 @@ final class DataLossPreventionDeidentifyTemplateTransformationsReplaceDictionary
 
   final DataLossPreventionDeidentifyTemplateWordList wordList;
 
+  @internal
   Map<String, Object?> encode() => {'word_list': wordList.encode()};
 }
 
@@ -1137,6 +1183,7 @@ final class DataLossPreventionDeidentifyTemplateWordList {
 
   final TfArg<List<String>> words;
 
+  @internal
   Map<String, Object?> encode() => {'words': words.toTfJson()};
 }
 
@@ -1151,6 +1198,7 @@ final class DataLossPreventionDeidentifyTemplateTimePartConfig {
 
   final DataLossPreventionDeidentifyTemplatePartToExtract? partToExtract;
 
+  @internal
   Map<String, Object?> encode() => {
     'part_to_extract': ?partToExtract?.toTfJson(),
   };
@@ -1205,6 +1253,7 @@ final class DataLossPreventionDeidentifyTemplateRecordTransformations {
   final List<DataLossPreventionDeidentifyTemplateRecordSuppressions>?
   recordSuppressions;
 
+  @internal
   Map<String, Object?> encode() => {
     if (fieldTransformations != null)
       'field_transformations': [
@@ -1236,6 +1285,7 @@ final class DataLossPreventionDeidentifyTemplateFieldTransformations {
   final DataLossPreventionDeidentifyTemplateFieldTransformationsPrimitiveTransformation?
   primitiveTransformation;
 
+  @internal
   Map<String, Object?> encode() => {
     'condition': ?condition?.encode(),
     'fields': [for (final e in fields) e.encode()],
@@ -1253,6 +1303,7 @@ final class DataLossPreventionDeidentifyTemplateCondition {
 
   final DataLossPreventionDeidentifyTemplateExpressions? expressions;
 
+  @internal
   Map<String, Object?> encode() => {'expressions': ?expressions?.encode()};
 }
 
@@ -1270,6 +1321,7 @@ final class DataLossPreventionDeidentifyTemplateExpressions {
 
   final DataLossPreventionDeidentifyTemplateConditions? conditions;
 
+  @internal
   Map<String, Object?> encode() => {
     'logical_operator': ?logicalOperator?.toTfJson(),
     'conditions': ?conditions?.encode(),
@@ -1286,6 +1338,7 @@ final class DataLossPreventionDeidentifyTemplateConditions {
   final List<DataLossPreventionDeidentifyTemplateConditionsConditions>?
   conditions;
 
+  @internal
   Map<String, Object?> encode() => {
     if (conditions != null)
       'conditions': [for (final e in conditions!) e.encode()],
@@ -1309,6 +1362,7 @@ final class DataLossPreventionDeidentifyTemplateConditionsConditions {
 
   final DataLossPreventionDeidentifyTemplateValue? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
     'field': field.encode(),
@@ -1371,6 +1425,7 @@ final class DataLossPreventionDeidentifyTemplateField {
 
   final TfArg<String>? name;
 
+  @internal
   Map<String, Object?> encode() => {'name': ?name?.toTfJson()};
 }
 
@@ -1406,6 +1461,7 @@ final class DataLossPreventionDeidentifyTemplateValue {
 
   final DataLossPreventionDeidentifyTemplateTimeValue? timeValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'boolean_value': ?booleanValue?.toTfJson(),
     'day_of_week_value': ?dayOfWeekValue?.toTfJson(),
@@ -1426,6 +1482,7 @@ final class DataLossPreventionDeidentifyTemplateFields {
 
   final TfArg<String>? name;
 
+  @internal
   Map<String, Object?> encode() => {'name': ?name?.toTfJson()};
 }
 
@@ -1442,6 +1499,7 @@ final class DataLossPreventionDeidentifyTemplateFieldTransformationsInfoTypeTran
   >
   transformations;
 
+  @internal
   Map<String, Object?> encode() => {
     'transformations': [for (final e in transformations) e.encode()],
   };
@@ -1461,6 +1519,7 @@ final class DataLossPreventionDeidentifyTemplateInfoTypeTransformationsTransform
   final DataLossPreventionDeidentifyTemplateInfoTypeTransformationsPrimitiveTransformation
   primitiveTransformation;
 
+  @internal
   Map<String, Object?> encode() => {
     if (infoTypes != null)
       'info_types': [for (final e in infoTypes!) e.encode()],
@@ -1522,6 +1581,7 @@ final class DataLossPreventionDeidentifyTemplateInfoTypeTransformationsPrimitive
   final DataLossPreventionDeidentifyTemplatePrimitiveTransformationTimePartConfig?
   timePartConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucketing_config': ?bucketingConfig?.encode(),
     'character_mask_config': ?characterMaskConfig?.encode(),
@@ -1549,6 +1609,7 @@ final class DataLossPreventionDeidentifyTemplateInfoTypeTransformationsBucketing
   final List<DataLossPreventionDeidentifyTemplateTransformationsBuckets>
   buckets;
 
+  @internal
   Map<String, Object?> encode() => {
     'buckets': [for (final e in buckets) e.encode()],
   };
@@ -1571,6 +1632,7 @@ final class DataLossPreventionDeidentifyTemplatePrimitiveTransformationCryptoDet
   final DataLossPreventionDeidentifyTemplateCryptoDeterministicConfigSurrogateInfoType
   surrogateInfoType;
 
+  @internal
   Map<String, Object?> encode() => {
     'context': ?context?.encode(),
     'crypto_key': cryptoKey.encode(),
@@ -1595,6 +1657,7 @@ final class DataLossPreventionDeidentifyTemplateCryptoDeterministicConfigSurroga
 
   final DataLossPreventionDeidentifyTemplateSensitivityScore? sensitivityScore;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'version': ?version?.toTfJson(),
@@ -1612,6 +1675,7 @@ final class DataLossPreventionDeidentifyTemplatePrimitiveTransformationCryptoHas
 
   final DataLossPreventionDeidentifyTemplateCryptoKey cryptoKey;
 
+  @internal
   Map<String, Object?> encode() => {'crypto_key': cryptoKey.encode()};
 }
 
@@ -1642,6 +1706,7 @@ final class DataLossPreventionDeidentifyTemplatePrimitiveTransformationCryptoRep
   final DataLossPreventionDeidentifyTemplateCryptoDeterministicConfigSurrogateInfoType?
   surrogateInfoType;
 
+  @internal
   Map<String, Object?> encode() => {
     'common_alphabet': ?commonAlphabet?.toTfJson(),
     'custom_alphabet': ?customAlphabet?.toTfJson(),
@@ -1701,6 +1766,7 @@ final class DataLossPreventionDeidentifyTemplateFieldTransformationsReplaceConfi
   final DataLossPreventionDeidentifyTemplateFieldTransformationsNewValue
   newValue;
 
+  @internal
   Map<String, Object?> encode() => {'new_value': newValue.encode()};
 }
 
@@ -1736,6 +1802,7 @@ final class DataLossPreventionDeidentifyTemplateFieldTransformationsNewValue {
 
   final DataLossPreventionDeidentifyTemplateTimeValue? timeValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'boolean_value': ?booleanValue?.toTfJson(),
     'day_of_week_value': ?dayOfWeekValue?.toTfJson(),
@@ -1754,6 +1821,7 @@ final class DataLossPreventionDeidentifyTemplateFieldTransformationsNewValue {
 final class DataLossPreventionDeidentifyTemplateReplaceWithInfoTypeConfig {
   const DataLossPreventionDeidentifyTemplateReplaceWithInfoTypeConfig();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -1767,6 +1835,7 @@ final class DataLossPreventionDeidentifyTemplatePrimitiveTransformationTimePartC
 
   final DataLossPreventionDeidentifyTemplatePartToExtract partToExtract;
 
+  @internal
   Map<String, Object?> encode() => {
     'part_to_extract': partToExtract.toTfJson(),
   };
@@ -1820,6 +1889,7 @@ final class DataLossPreventionDeidentifyTemplateFieldTransformationsPrimitiveTra
 
   final DataLossPreventionDeidentifyTemplateTimePartConfig? timePartConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucketing_config': ?bucketingConfig?.encode(),
     'character_mask_config': ?characterMaskConfig?.encode(),
@@ -1846,6 +1916,7 @@ final class DataLossPreventionDeidentifyTemplateFieldTransformationsBucketingCon
   final List<DataLossPreventionDeidentifyTemplateFieldTransformationsBuckets>?
   buckets;
 
+  @internal
   Map<String, Object?> encode() => {
     if (buckets != null) 'buckets': [for (final e in buckets!) e.encode()],
   };
@@ -1868,6 +1939,7 @@ final class DataLossPreventionDeidentifyTemplateFieldTransformationsBuckets {
   final DataLossPreventionDeidentifyTemplateFieldTransformationsReplacementValue
   replacementValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'max': ?max?.encode(),
     'min': ?min?.encode(),
@@ -1906,6 +1978,7 @@ final class DataLossPreventionDeidentifyTemplateFieldTransformationsMax {
 
   final DataLossPreventionDeidentifyTemplateTimeValue? timeValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'boolean_value': ?booleanValue?.toTfJson(),
     'day_of_week_value': ?dayOfWeekValue?.toTfJson(),
@@ -1949,6 +2022,7 @@ final class DataLossPreventionDeidentifyTemplateFieldTransformationsMin {
 
   final DataLossPreventionDeidentifyTemplateTimeValue? timeValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'boolean_value': ?booleanValue?.toTfJson(),
     'day_of_week_value': ?dayOfWeekValue?.toTfJson(),
@@ -1992,6 +2066,7 @@ final class DataLossPreventionDeidentifyTemplateFieldTransformationsReplacementV
 
   final DataLossPreventionDeidentifyTemplateTimeValue? timeValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'boolean_value': ?booleanValue?.toTfJson(),
     'day_of_week_value': ?dayOfWeekValue?.toTfJson(),
@@ -2024,6 +2099,7 @@ final class DataLossPreventionDeidentifyTemplateFieldTransformationsDateShiftCon
 
   final DataLossPreventionDeidentifyTemplateCryptoKey? cryptoKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'lower_bound_days': lowerBoundDays.toTfJson(),
     'upper_bound_days': upperBoundDays.toTfJson(),
@@ -2050,6 +2126,7 @@ final class DataLossPreventionDeidentifyTemplateFieldTransformationsFixedSizeBuc
   final DataLossPreventionDeidentifyTemplateFieldTransformationsUpperBound
   upperBound;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_size': bucketSize.toTfJson(),
     'lower_bound': lowerBound.encode(),
@@ -2088,6 +2165,7 @@ final class DataLossPreventionDeidentifyTemplateFieldTransformationsLowerBound {
 
   final DataLossPreventionDeidentifyTemplateTimeValue? timeValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'boolean_value': ?booleanValue?.toTfJson(),
     'day_of_week_value': ?dayOfWeekValue?.toTfJson(),
@@ -2131,6 +2209,7 @@ final class DataLossPreventionDeidentifyTemplateFieldTransformationsUpperBound {
 
   final DataLossPreventionDeidentifyTemplateTimeValue? timeValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'boolean_value': ?booleanValue?.toTfJson(),
     'day_of_week_value': ?dayOfWeekValue?.toTfJson(),
@@ -2153,6 +2232,7 @@ final class DataLossPreventionDeidentifyTemplateFieldTransformationsReplaceDicti
 
   final DataLossPreventionDeidentifyTemplateWordList? wordList;
 
+  @internal
   Map<String, Object?> encode() => {'word_list': ?wordList?.encode()};
 }
 
@@ -2166,6 +2246,7 @@ final class DataLossPreventionDeidentifyTemplateRecordSuppressions {
 
   final DataLossPreventionDeidentifyTemplateCondition? condition;
 
+  @internal
   Map<String, Object?> encode() => {'condition': ?condition?.encode()};
 }
 

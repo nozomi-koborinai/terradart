@@ -15,6 +15,7 @@ final class MonitoringCustomServiceTelemetry {
 
   final TfArg<String>? resourceName;
 
+  @internal
   Map<String, Object?> encode() => {'resource_name': ?resourceName?.toTfJson()};
 }
 

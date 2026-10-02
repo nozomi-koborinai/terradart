@@ -3,6 +3,7 @@
 /// AlloyDB — Postgres-compatible managed database clusters and instances.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/alloydb/google_alloydb_backup.dart'
     show AlloydbBackupEncryptionConfig, GoogleAlloydbBackup;
 export 'src/alloydb/google_alloydb_cluster.dart'
@@ -64,3 +65,8 @@ export 'src/alloydb/google_alloydb_user.dart'
         AlloydbUserPasswordWo,
         AlloydbUserType,
         GoogleAlloydbUser;
+export 'src/data/google_alloydb_cluster.dart' show DataGoogleAlloydbCluster;
+export 'src/data/google_alloydb_instance.dart' show DataGoogleAlloydbInstance;
+export 'src/data/google_alloydb_locations.dart' show DataGoogleAlloydbLocations;
+export 'src/data/google_alloydb_supported_database_flags.dart'
+    show DataGoogleAlloydbSupportedDatabaseFlags;

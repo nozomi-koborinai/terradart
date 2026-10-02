@@ -76,12 +76,15 @@ sealed class LambdaEventSourceMappingEventSource {
   ) = LambdaEventSourceMappingSelfManagedEventSourceChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -92,14 +95,17 @@ final class LambdaEventSourceMappingEventSourceArn
 
   final TfArg<String> eventSourceArn;
 
+  @internal
   @override
   String get blockKey => 'event_source_arn';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'event_source_arn': eventSourceArn.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'event_source_arn': eventSourceArn,
@@ -115,14 +121,17 @@ final class LambdaEventSourceMappingSelfManagedEventSourceChoice
 
   final LambdaEventSourceMappingSelfManagedEventSource selfManagedEventSource;
 
+  @internal
   @override
   String get blockKey => 'self_managed_event_source';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'self_managed_event_source': selfManagedEventSource.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'self_managed_event_source': TfArg.literal(selfManagedEventSource.encode()),
@@ -150,12 +159,15 @@ sealed class LambdaEventSourceMappingManagedKafkaEventSourceConfig {
   ) = LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -169,15 +181,18 @@ final class LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigChoice
   final LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfig
   amazonManagedKafkaEventSourceConfig;
 
+  @internal
   @override
   String get blockKey => 'amazon_managed_kafka_event_source_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'amazon_managed_kafka_event_source_config':
         amazonManagedKafkaEventSourceConfig.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'amazon_managed_kafka_event_source_config': TfArg.literal(
@@ -196,15 +211,18 @@ final class LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigChoice
   final LambdaEventSourceMappingSelfManagedKafkaEventSourceConfig
   selfManagedKafkaEventSourceConfig;
 
+  @internal
   @override
   String get blockKey => 'self_managed_kafka_event_source_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'self_managed_kafka_event_source_config': selfManagedKafkaEventSourceConfig
         .encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'self_managed_kafka_event_source_config': TfArg.literal(
@@ -226,6 +244,7 @@ final class LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfig {
 
   final LambdaEventSourceMappingSchemaRegistryConfig? schemaRegistryConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'consumer_group_id': ?consumerGroupId?.toTfJson(),
     'schema_registry_config': ?schemaRegistryConfig?.encode(),
@@ -253,6 +272,7 @@ final class LambdaEventSourceMappingSchemaRegistryConfig {
   final List<LambdaEventSourceMappingSchemaValidationConfig>?
   schemaValidationConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'event_record_format': ?eventRecordFormat?.toTfJson(),
     'schema_registry_uri': ?schemaRegistryUri?.toTfJson(),
@@ -300,6 +320,7 @@ final class LambdaEventSourceMappingAccessConfig {
 
   final TfArg<String>? uri;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': ?type?.toTfJson(),
     'uri': ?uri?.toTfJson(),
@@ -344,6 +365,7 @@ final class LambdaEventSourceMappingSchemaValidationConfig {
 
   final LambdaEventSourceMappingAttribute? attribute;
 
+  @internal
   Map<String, Object?> encode() => {'attribute': ?attribute?.toTfJson()};
 }
 
@@ -372,6 +394,7 @@ final class LambdaEventSourceMappingDestinationConfig {
 
   final LambdaEventSourceMappingOnFailure? onFailure;
 
+  @internal
   Map<String, Object?> encode() => {'on_failure': ?onFailure?.encode()};
 }
 
@@ -383,6 +406,7 @@ final class LambdaEventSourceMappingOnFailure {
 
   final TfArg<String> destinationArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'destination_arn': destinationArn.toTfJson(),
   };
@@ -404,6 +428,7 @@ final class LambdaEventSourceMappingDocumentDbEventSourceConfig {
 
   final LambdaEventSourceMappingFullDocument? fullDocument;
 
+  @internal
   Map<String, Object?> encode() => {
     'collection_name': ?collectionName?.toTfJson(),
     'database_name': databaseName.toTfJson(),
@@ -442,6 +467,7 @@ final class LambdaEventSourceMappingFilterCriteria {
 
   final List<LambdaEventSourceMappingFilter>? filter;
 
+  @internal
   Map<String, Object?> encode() => {
     if (filter != null) 'filter': [for (final e in filter!) e.encode()],
   };
@@ -455,6 +481,7 @@ final class LambdaEventSourceMappingFilter {
 
   final TfArg<String>? pattern;
 
+  @internal
   Map<String, Object?> encode() => {'pattern': ?pattern?.toTfJson()};
 }
 
@@ -466,6 +493,7 @@ final class LambdaEventSourceMappingMetricsConfig {
 
   final List<LambdaEventSourceMappingMetrics> metrics;
 
+  @internal
   Map<String, Object?> encode() => {
     'metrics': [for (final e in metrics) e.toTfJson()],
   };
@@ -513,6 +541,7 @@ final class LambdaEventSourceMappingProvisionedPollerConfig {
 
   final TfArg<String>? pollerGroupName;
 
+  @internal
   Map<String, Object?> encode() => {
     'maximum_pollers': ?maximumPollers?.toTfJson(),
     'minimum_pollers': ?minimumPollers?.toTfJson(),
@@ -528,6 +557,7 @@ final class LambdaEventSourceMappingScalingConfig {
 
   final TfArg<num>? maximumConcurrency;
 
+  @internal
   Map<String, Object?> encode() => {
     'maximum_concurrency': ?maximumConcurrency?.toTfJson(),
   };
@@ -543,6 +573,7 @@ final class LambdaEventSourceMappingSelfManagedEventSource {
 
   final TfArg<Map<String, String>> endpoints;
 
+  @internal
   Map<String, Object?> encode() => {'endpoints': endpoints.toTfJson()};
 }
 
@@ -559,6 +590,7 @@ final class LambdaEventSourceMappingSelfManagedKafkaEventSourceConfig {
 
   final LambdaEventSourceMappingSchemaRegistryConfig? schemaRegistryConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'consumer_group_id': ?consumerGroupId?.toTfJson(),
     'schema_registry_config': ?schemaRegistryConfig?.encode(),
@@ -578,6 +610,7 @@ final class LambdaEventSourceMappingSourceAccessConfiguration {
 
   final TfArg<String> uri;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
     'uri': uri.toTfJson(),

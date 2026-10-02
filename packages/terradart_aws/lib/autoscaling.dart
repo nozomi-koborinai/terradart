@@ -3,6 +3,7 @@
 /// AWS EC2 Auto Scaling and launch configurations.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/autoscaling/aws_autoscaling_attachment.dart'
     show
         AutoscalingAttachmentTarget,
@@ -143,3 +144,7 @@ export 'src/autoscaling/aws_launch_configuration.dart'
         LaunchConfigurationUserData,
         LaunchConfigurationUserDataBase64,
         LaunchConfigurationUserDataChoice;
+export 'src/data/aws_autoscaling_group.dart' show DataAwsAutoscalingGroup;
+export 'src/data/aws_autoscaling_groups.dart'
+    show DataAutoscalingGroupsFilter, DataAwsAutoscalingGroups;
+export 'src/data/aws_launch_configuration.dart' show DataAwsLaunchConfiguration;

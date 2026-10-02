@@ -23,6 +23,7 @@ final class Ec2NetworkInsightsAccessScopeExcludePaths {
 
   final List<Ec2NetworkInsightsAccessScopeThroughResources>? throughResources;
 
+  @internal
   Map<String, Object?> encode() => {
     if (destination != null)
       'destination': [for (final e in destination!) e.encode()],
@@ -47,6 +48,7 @@ final class Ec2NetworkInsightsAccessScopeDestination {
 
   final List<Ec2NetworkInsightsAccessScopeResourceStatement>? resourceStatement;
 
+  @internal
   Map<String, Object?> encode() => {
     if (packetHeaderStatement != null)
       'packet_header_statement': [
@@ -86,6 +88,7 @@ final class Ec2NetworkInsightsAccessScopePacketHeaderStatement {
 
   final TfArg<List<String>>? sourcePrefixLists;
 
+  @internal
   Map<String, Object?> encode() => {
     'destination_addresses': ?destinationAddresses?.toTfJson(),
     'destination_ports': ?destinationPorts?.toTfJson(),
@@ -111,6 +114,7 @@ final class Ec2NetworkInsightsAccessScopeResourceStatement {
 
   final TfArg<List<String>>? resources;
 
+  @internal
   Map<String, Object?> encode() => {
     'resource_types': ?resourceTypes?.toTfJson(),
     'resources': ?resources?.toTfJson(),
@@ -132,6 +136,7 @@ final class Ec2NetworkInsightsAccessScopeSource {
 
   final List<Ec2NetworkInsightsAccessScopeResourceStatement>? resourceStatement;
 
+  @internal
   Map<String, Object?> encode() => {
     if (packetHeaderStatement != null)
       'packet_header_statement': [
@@ -150,6 +155,7 @@ final class Ec2NetworkInsightsAccessScopeThroughResources {
 
   final List<Ec2NetworkInsightsAccessScopeResourceStatement>? resourceStatement;
 
+  @internal
   Map<String, Object?> encode() => {
     if (resourceStatement != null)
       'resource_statement': [for (final e in resourceStatement!) e.encode()],
@@ -169,6 +175,7 @@ final class Ec2NetworkInsightsAccessScopeMatchPaths {
 
   final List<Ec2NetworkInsightsAccessScopeSource>? source;
 
+  @internal
   Map<String, Object?> encode() => {
     if (destination != null)
       'destination': [for (final e in destination!) e.encode()],

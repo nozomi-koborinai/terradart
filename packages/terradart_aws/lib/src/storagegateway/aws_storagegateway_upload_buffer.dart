@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `aws_storagegateway_upload_buffer`.
@@ -23,12 +24,15 @@ sealed class StoragegatewayUploadBufferDisk {
   ) = StoragegatewayUploadBufferDiskPath;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -39,12 +43,15 @@ final class StoragegatewayUploadBufferDiskId
 
   final TfArg<String> diskId;
 
+  @internal
   @override
   String get blockKey => 'disk_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'disk_id': diskId.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'disk_id': diskId};
 }
@@ -56,12 +63,15 @@ final class StoragegatewayUploadBufferDiskPath
 
   final TfArg<String> diskPath;
 
+  @internal
   @override
   String get blockKey => 'disk_path';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'disk_path': diskPath.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'disk_path': diskPath};
 }

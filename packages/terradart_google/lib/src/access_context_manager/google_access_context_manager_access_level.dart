@@ -26,12 +26,15 @@ sealed class AccessContextManagerAccessLevelDefinition {
   ) = AccessContextManagerAccessLevelDefinitionCustom;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -42,12 +45,15 @@ final class AccessContextManagerAccessLevelDefinitionBasic
 
   final AccessContextManagerAccessLevelBasic basic;
 
+  @internal
   @override
   String get blockKey => 'basic';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'basic': basic.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'basic': TfArg.literal(basic.encode()),
@@ -61,12 +67,15 @@ final class AccessContextManagerAccessLevelDefinitionCustom
 
   final AccessContextManagerAccessLevelCustom custom;
 
+  @internal
   @override
   String get blockKey => 'custom';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'custom': custom.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'custom': TfArg.literal(custom.encode()),
@@ -86,6 +95,7 @@ final class AccessContextManagerAccessLevelBasic {
 
   final List<AccessContextManagerAccessLevelConditions> conditions;
 
+  @internal
   Map<String, Object?> encode() => {
     'combining_function': ?combiningFunction?.toTfJson(),
     'conditions': [for (final e in conditions) e.encode()],
@@ -145,6 +155,7 @@ final class AccessContextManagerAccessLevelConditions {
   final List<AccessContextManagerAccessLevelVpcNetworkSources>?
   vpcNetworkSources;
 
+  @internal
   Map<String, Object?> encode() => {
     'ip_subnetworks': ?ipSubnetworks?.toTfJson(),
     'members': ?members?.toTfJson(),
@@ -184,6 +195,7 @@ final class AccessContextManagerAccessLevelDevicePolicy {
 
   final List<AccessContextManagerAccessLevelOsConstraints>? osConstraints;
 
+  @internal
   Map<String, Object?> encode() => {
     if (allowedDeviceManagementLevels != null)
       'allowed_device_management_levels': [
@@ -293,6 +305,7 @@ final class AccessContextManagerAccessLevelOsConstraints {
 
   final TfArg<bool>? requireVerifiedChromeOs;
 
+  @internal
   Map<String, Object?> encode() => {
     'minimum_version': ?minimumVersion?.toTfJson(),
     'os_type': osType.toTfJson(),
@@ -351,6 +364,7 @@ final class AccessContextManagerAccessLevelVpcNetworkSources {
 
   final AccessContextManagerAccessLevelVpcSubnetwork? vpcSubnetwork;
 
+  @internal
   Map<String, Object?> encode() => {'vpc_subnetwork': ?vpcSubnetwork?.encode()};
 }
 
@@ -367,6 +381,7 @@ final class AccessContextManagerAccessLevelVpcSubnetwork {
 
   final TfArg<List<String>>? vpcIpSubnetworks;
 
+  @internal
   Map<String, Object?> encode() => {
     'network': network.toTfJson(),
     'vpc_ip_subnetworks': ?vpcIpSubnetworks?.toTfJson(),
@@ -381,6 +396,7 @@ final class AccessContextManagerAccessLevelCustom {
 
   final AccessContextManagerAccessLevelExpr expr;
 
+  @internal
   Map<String, Object?> encode() => {'expr': expr.encode()};
 }
 
@@ -403,6 +419,7 @@ final class AccessContextManagerAccessLevelExpr {
 
   final TfArg<String>? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'expression': expression.toTfJson(),

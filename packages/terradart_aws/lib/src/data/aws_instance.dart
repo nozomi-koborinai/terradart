@@ -18,6 +18,7 @@ final class DataInstanceFilter {
 
   final TfArg<List<String>> values;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'values': values.toTfJson(),

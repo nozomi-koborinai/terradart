@@ -32,6 +32,7 @@ final class OsConfigGuestPoliciesAssignment {
 
   final List<OsConfigGuestPoliciesOsTypes>? osTypes;
 
+  @internal
   Map<String, Object?> encode() => {
     'instance_name_prefixes': ?instanceNamePrefixes?.toTfJson(),
     'instances': ?instances?.toTfJson(),
@@ -50,6 +51,7 @@ final class OsConfigGuestPoliciesGroupLabels {
 
   final TfArg<Map<String, String>> labels;
 
+  @internal
   Map<String, Object?> encode() => {'labels': labels.toTfJson()};
 }
 
@@ -69,6 +71,7 @@ final class OsConfigGuestPoliciesOsTypes {
 
   final TfArg<String>? osVersion;
 
+  @internal
   Map<String, Object?> encode() => {
     'os_architecture': ?osArchitecture?.toTfJson(),
     'os_short_name': ?osShortName?.toTfJson(),
@@ -95,6 +98,7 @@ final class OsConfigGuestPoliciesPackageRepositories {
 
   final OsConfigGuestPoliciesZypper? zypper;
 
+  @internal
   Map<String, Object?> encode() => {
     'apt': ?apt?.encode(),
     'goo': ?goo?.encode(),
@@ -125,6 +129,7 @@ final class OsConfigGuestPoliciesApt {
 
   final TfArg<String> uri;
 
+  @internal
   Map<String, Object?> encode() => {
     'archive_type': ?archiveType?.toTfJson(),
     'components': components.toTfJson(),
@@ -161,6 +166,7 @@ final class OsConfigGuestPoliciesGoo {
 
   final TfArg<String> url;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'url': url.toTfJson(),
@@ -186,6 +192,7 @@ final class OsConfigGuestPoliciesYum {
 
   final TfArg<String> id;
 
+  @internal
   Map<String, Object?> encode() => {
     'base_url': baseUrl.toTfJson(),
     'display_name': ?displayName?.toTfJson(),
@@ -213,6 +220,7 @@ final class OsConfigGuestPoliciesZypper {
 
   final TfArg<String> id;
 
+  @internal
   Map<String, Object?> encode() => {
     'base_url': baseUrl.toTfJson(),
     'display_name': ?displayName?.toTfJson(),
@@ -237,6 +245,7 @@ final class OsConfigGuestPoliciesPackages {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {
     'desired_state': ?desiredState?.toTfJson(),
     'manager': ?manager?.toTfJson(),
@@ -319,6 +328,7 @@ final class OsConfigGuestPoliciesRecipes {
 
   final List<OsConfigGuestPoliciesUpdateSteps>? updateSteps;
 
+  @internal
   Map<String, Object?> encode() => {
     'desired_state': ?desiredState?.toTfJson(),
     'name': name.toTfJson(),
@@ -351,6 +361,7 @@ final class OsConfigGuestPoliciesArtifacts {
 
   final OsConfigGuestPoliciesRemote? remote;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_insecure': ?allowInsecure?.toTfJson(),
     'id': id.toTfJson(),
@@ -371,6 +382,7 @@ final class OsConfigGuestPoliciesGcs {
 
   final TfArg<String>? object;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': ?bucket?.encodeAs('name').toTfJson(),
     'generation': ?generation?.toTfJson(),
@@ -388,6 +400,7 @@ final class OsConfigGuestPoliciesRemote {
 
   final TfArg<String>? uri;
 
+  @internal
   Map<String, Object?> encode() => {
     'check_sum': ?checkSum?.toTfJson(),
     'uri': ?uri?.toTfJson(),
@@ -422,6 +435,7 @@ final class OsConfigGuestPoliciesInstallSteps {
 
   final OsConfigGuestPoliciesScriptRun? scriptRun;
 
+  @internal
   Map<String, Object?> encode() => {
     'archive_extraction': ?archiveExtraction?.encode(),
     'dpkg_installation': ?dpkgInstallation?.encode(),
@@ -450,6 +464,7 @@ final class OsConfigGuestPoliciesArchiveExtraction {
 
   final OsConfigGuestPoliciesType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'artifact_id': artifactId.toTfJson(),
     'destination': ?destination?.toTfJson(),
@@ -492,6 +507,7 @@ final class OsConfigGuestPoliciesDpkgInstallation {
 
   final TfArg<String> artifactId;
 
+  @internal
   Map<String, Object?> encode() => {'artifact_id': artifactId.toTfJson()};
 }
 
@@ -515,6 +531,7 @@ final class OsConfigGuestPoliciesFileCopy {
 
   final TfArg<String>? permissions;
 
+  @internal
   Map<String, Object?> encode() => {
     'artifact_id': artifactId.toTfJson(),
     'destination': destination.toTfJson(),
@@ -542,6 +559,7 @@ final class OsConfigGuestPoliciesInstallStepsFileExec {
 
   final TfArg<String>? localPath;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed_exit_codes': ?allowedExitCodes?.toTfJson(),
     'args': ?args?.toTfJson(),
@@ -567,6 +585,7 @@ final class OsConfigGuestPoliciesMsiInstallation {
 
   final TfArg<List<String>>? flags;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed_exit_codes': ?allowedExitCodes?.toTfJson(),
     'artifact_id': artifactId.toTfJson(),
@@ -583,6 +602,7 @@ final class OsConfigGuestPoliciesRpmInstallation {
 
   final TfArg<String> artifactId;
 
+  @internal
   Map<String, Object?> encode() => {'artifact_id': artifactId.toTfJson()};
 }
 
@@ -603,6 +623,7 @@ final class OsConfigGuestPoliciesScriptRun {
 
   final TfArg<String> script;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed_exit_codes': ?allowedExitCodes?.toTfJson(),
     'interpreter': ?interpreter?.toTfJson(),
@@ -660,6 +681,7 @@ final class OsConfigGuestPoliciesUpdateSteps {
 
   final OsConfigGuestPoliciesScriptRun? scriptRun;
 
+  @internal
   Map<String, Object?> encode() => {
     'archive_extraction': ?archiveExtraction?.encode(),
     'dpkg_installation': ?dpkgInstallation?.encode(),
@@ -690,6 +712,7 @@ final class OsConfigGuestPoliciesUpdateStepsFileExec {
 
   final TfArg<String>? localPath;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed_exit_codes': ?allowedExitCodes?.toTfJson(),
     'args': ?args?.toTfJson(),

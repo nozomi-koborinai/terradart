@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../container/google_gke_hub_scope.dart' show GoogleGkeHubScope;
@@ -24,12 +25,15 @@ sealed class GkeHubScopeRbacRoleBindingPrincipal {
       GkeHubScopeRbacRoleBindingPrincipalGroup;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -40,12 +44,15 @@ final class GkeHubScopeRbacRoleBindingPrincipalUser
 
   final TfArg<String> user;
 
+  @internal
   @override
   String get blockKey => 'user';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'user': user.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'user': user};
 }
@@ -57,12 +64,15 @@ final class GkeHubScopeRbacRoleBindingPrincipalGroup
 
   final TfArg<String> group;
 
+  @internal
   @override
   String get blockKey => 'group';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'group': group.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'group': group};
 }
@@ -85,8 +95,10 @@ sealed class GkeHubScopeRbacRoleBindingRole {
   ) = GkeHubScopeRbacRoleBindingCustomRole;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -97,9 +109,11 @@ final class GkeHubScopeRbacRoleBindingPredefinedRoleChoice
 
   final GkeHubScopeRbacRoleBindingPredefinedRole predefinedRole;
 
+  @internal
   @override
   String get blockKey => 'predefined_role';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'predefined_role': predefinedRole.toTfJson(),
@@ -113,9 +127,11 @@ final class GkeHubScopeRbacRoleBindingCustomRole
 
   final TfArg<String> customRole;
 
+  @internal
   @override
   String get blockKey => 'custom_role';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'custom_role': customRole.toTfJson()};
 }

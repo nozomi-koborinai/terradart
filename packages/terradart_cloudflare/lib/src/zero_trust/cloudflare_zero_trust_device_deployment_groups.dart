@@ -23,6 +23,7 @@ final class ZeroTrustDeviceDeploymentGroupsVersionConfig {
 
   final TfArg<String> version;
 
+  @internal
   Map<String, Object?> encode() => {
     'target_environment': targetEnvironment.toTfJson(),
     'version': version.toTfJson(),

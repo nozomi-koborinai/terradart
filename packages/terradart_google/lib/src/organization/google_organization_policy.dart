@@ -15,6 +15,7 @@ final class OrganizationPolicyBooleanPolicy {
 
   final TfArg<bool> enforced;
 
+  @internal
   Map<String, Object?> encode() => {'enforced': enforced.toTfJson()};
 }
 
@@ -37,6 +38,7 @@ final class OrganizationPolicyListPolicy {
 
   final OrganizationPolicyDeny? deny;
 
+  @internal
   Map<String, Object?> encode() => {
     'inherit_from_parent': ?inheritFromParent?.toTfJson(),
     'suggested_value': ?suggestedValue?.toTfJson(),
@@ -55,6 +57,7 @@ final class OrganizationPolicyAllow {
 
   final TfArg<List<String>>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'all': ?all?.toTfJson(),
     'values': ?values?.toTfJson(),
@@ -71,6 +74,7 @@ final class OrganizationPolicyDeny {
 
   final TfArg<List<String>>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'all': ?all?.toTfJson(),
     'values': ?values?.toTfJson(),
@@ -85,6 +89,7 @@ final class OrganizationPolicyRestorePolicy {
 
   final TfArg<bool> defaultCase;
 
+  @internal
   Map<String, Object?> encode() => {'default': defaultCase.toTfJson()};
 }
 

@@ -20,6 +20,7 @@ final class ContainerAnalysisOccurrenceAttestation {
 
   final List<ContainerAnalysisOccurrenceSignatures> signatures;
 
+  @internal
   Map<String, Object?> encode() => {
     'serialized_payload': serializedPayload.toTfJson(),
     'signatures': [for (final e in signatures) e.encode()],
@@ -39,6 +40,7 @@ final class ContainerAnalysisOccurrenceSignatures {
 
   final TfArg<String>? signature;
 
+  @internal
   Map<String, Object?> encode() => {
     'public_key_id': publicKeyId.toTfJson(),
     'signature': ?signature?.toTfJson(),

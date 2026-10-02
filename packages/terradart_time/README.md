@@ -19,7 +19,6 @@ dependencies:
 ## Usage
 
 ```dart
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_time/terradart_time.dart';
 
 final class WaitStack extends Stack {

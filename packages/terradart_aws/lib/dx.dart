@@ -3,6 +3,13 @@
 /// AWS Direct Connect.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_dx_connection.dart' show DataAwsDxConnection;
+export 'src/data/aws_dx_gateway.dart' show DataAwsDxGateway;
+export 'src/data/aws_dx_location.dart' show DataAwsDxLocation;
+export 'src/data/aws_dx_locations.dart' show DataAwsDxLocations;
+export 'src/data/aws_dx_router_configuration.dart'
+    show DataAwsDxRouterConfiguration;
 export 'src/dx/aws_dx_bgp_peer.dart' show AwsDxBgpPeer, DxBgpPeerAddressFamily;
 export 'src/dx/aws_dx_connection.dart'
     show AwsDxConnection, DxConnectionEncryptionMode;

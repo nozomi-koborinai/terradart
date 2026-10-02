@@ -20,6 +20,7 @@ final class DataZeroTrustAccessServiceTokenFilter {
 
   final TfArg<String>? search;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'search': ?search?.toTfJson(),

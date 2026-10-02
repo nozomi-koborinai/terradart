@@ -4,6 +4,7 @@
 /// hours while provisioned; never_apply for apply-smoke).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/blockchain/google_blockchain_node_engine_blockchain_nodes.dart'
     show
         BlockchainNodeEngineBlockchainNodesBlockchainType,

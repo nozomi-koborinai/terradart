@@ -29,6 +29,7 @@ final class Inspector2OrganizationConfigurationAutoEnable {
 
   final TfArg<bool>? lambdaCode;
 
+  @internal
   Map<String, Object?> encode() => {
     'code_repository': ?codeRepository?.toTfJson(),
     'ec2': ec2.toTfJson(),

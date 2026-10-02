@@ -75,12 +75,15 @@ sealed class DiscoveryEngineControlAction {
   ) = DiscoveryEngineControlPromoteActionChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -91,12 +94,15 @@ final class DiscoveryEngineControlBoostActionChoice
 
   final DiscoveryEngineControlBoostAction boostAction;
 
+  @internal
   @override
   String get blockKey => 'boost_action';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'boost_action': boostAction.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'boost_action': TfArg.literal(boostAction.encode()),
@@ -110,12 +116,15 @@ final class DiscoveryEngineControlFilterActionChoice
 
   final DiscoveryEngineControlFilterAction filterAction;
 
+  @internal
   @override
   String get blockKey => 'filter_action';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'filter_action': filterAction.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'filter_action': TfArg.literal(filterAction.encode()),
@@ -129,12 +138,15 @@ final class DiscoveryEngineControlRedirectActionChoice
 
   final DiscoveryEngineControlRedirectAction redirectAction;
 
+  @internal
   @override
   String get blockKey => 'redirect_action';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'redirect_action': redirectAction.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'redirect_action': TfArg.literal(redirectAction.encode()),
@@ -148,12 +160,15 @@ final class DiscoveryEngineControlSynonymsActionChoice
 
   final DiscoveryEngineControlSynonymsAction synonymsAction;
 
+  @internal
   @override
   String get blockKey => 'synonyms_action';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'synonyms_action': synonymsAction.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'synonyms_action': TfArg.literal(synonymsAction.encode()),
@@ -167,12 +182,15 @@ final class DiscoveryEngineControlPromoteActionChoice
 
   final DiscoveryEngineControlPromoteAction promoteAction;
 
+  @internal
   @override
   String get blockKey => 'promote_action';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'promote_action': promoteAction.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'promote_action': TfArg.literal(promoteAction.encode()),
@@ -195,6 +213,7 @@ final class DiscoveryEngineControlBoostAction {
 
   final DiscoveryEngineControlBoost boost;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_store': dataStore.toTfJson(),
     'filter': filter.toTfJson(),
@@ -219,8 +238,10 @@ sealed class DiscoveryEngineControlBoost {
   ) = DiscoveryEngineControlBoostInterpolationBoostSpec;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -231,9 +252,11 @@ final class DiscoveryEngineControlFixedBoost
 
   final TfArg<num> fixedBoost;
 
+  @internal
   @override
   String get blockKey => 'fixed_boost';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'fixed_boost': fixedBoost.toTfJson()};
 }
@@ -247,9 +270,11 @@ final class DiscoveryEngineControlBoostInterpolationBoostSpec
 
   final DiscoveryEngineControlInterpolationBoostSpec interpolationBoostSpec;
 
+  @internal
   @override
   String get blockKey => 'interpolation_boost_spec';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'interpolation_boost_spec': interpolationBoostSpec.encode(),
@@ -275,6 +300,7 @@ final class DiscoveryEngineControlInterpolationBoostSpec {
 
   final DiscoveryEngineControlPoint? controlPoint;
 
+  @internal
   Map<String, Object?> encode() => {
     'attribute_type': ?attributeType?.toTfJson(),
     'field_name': ?fieldName?.toTfJson(),
@@ -316,6 +342,7 @@ final class DiscoveryEngineControlPoint {
 
   final TfArg<num>? boostAmount;
 
+  @internal
   Map<String, Object?> encode() => {
     'attribute_value': ?attributeValue?.toTfJson(),
     'boost_amount': ?boostAmount?.toTfJson(),
@@ -338,6 +365,7 @@ final class DiscoveryEngineControlConditions {
 
   final List<DiscoveryEngineControlQueryTerms>? queryTerms;
 
+  @internal
   Map<String, Object?> encode() => {
     'query_regex': ?queryRegex?.toTfJson(),
     if (activeTimeRange != null)
@@ -357,6 +385,7 @@ final class DiscoveryEngineControlActiveTimeRange {
 
   final TfArg<String>? startTime;
 
+  @internal
   Map<String, Object?> encode() => {
     'end_time': ?endTime?.toTfJson(),
     'start_time': ?startTime?.toTfJson(),
@@ -373,6 +402,7 @@ final class DiscoveryEngineControlQueryTerms {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'full_match': ?fullMatch?.toTfJson(),
     'value': ?value?.toTfJson(),
@@ -392,6 +422,7 @@ final class DiscoveryEngineControlFilterAction {
 
   final TfArg<String> filter;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_store': dataStore.toTfJson(),
     'filter': filter.toTfJson(),
@@ -411,6 +442,7 @@ final class DiscoveryEngineControlPromoteAction {
 
   final DiscoveryEngineControlSearchLinkPromotion searchLinkPromotion;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_store': dataStore.toTfJson(),
     'search_link_promotion': searchLinkPromotion.encode(),
@@ -442,6 +474,7 @@ final class DiscoveryEngineControlSearchLinkPromotion {
 
   final TfArg<String>? uri;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'document': ?document?.toTfJson(),
@@ -460,6 +493,7 @@ final class DiscoveryEngineControlRedirectAction {
 
   final TfArg<String> redirectUri;
 
+  @internal
   Map<String, Object?> encode() => {'redirect_uri': redirectUri.toTfJson()};
 }
 
@@ -471,6 +505,7 @@ final class DiscoveryEngineControlSynonymsAction {
 
   final TfArg<List<String>>? synonyms;
 
+  @internal
   Map<String, Object?> encode() => {'synonyms': ?synonyms?.toTfJson()};
 }
 

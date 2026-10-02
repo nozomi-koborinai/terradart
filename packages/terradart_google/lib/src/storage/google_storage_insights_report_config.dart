@@ -25,10 +25,12 @@ sealed class StorageInsightsReportConfigFormat {
   const factory StorageInsightsReportConfigFormat.parquet() =
       StorageInsightsReportConfigParquetFormat;
 
+  @internal
   String get blockKey;
 
   /// Single-element list (`nesting_mode: list, max_items: 1`). Parquet
   /// is an empty object (`allow_empty_object`).
+  @internal
   List<Map<String, Object?>> encode();
 }
 
@@ -47,9 +49,11 @@ final class StorageInsightsReportConfigCsvFormat
   final TfArg<String>? recordSeparator;
 
   @override
+  @internal
   String get blockKey => 'csv_options';
 
   @override
+  @internal
   List<Map<String, Object?>> encode() => [
     {
       if (delimiter != null) 'delimiter': delimiter!.toTfJson(),
@@ -67,9 +71,11 @@ final class StorageInsightsReportConfigParquetFormat
   const StorageInsightsReportConfigParquetFormat();
 
   @override
+  @internal
   String get blockKey => 'parquet_options';
 
   @override
+  @internal
   List<Map<String, Object?>> encode() => [{}];
 }
 
@@ -89,6 +95,7 @@ final class StorageInsightsReportConfigFrequencyOptions {
 
   final StorageInsightsReportConfigStartDate startDate;
 
+  @internal
   Map<String, Object?> encode() => {
     'frequency': frequency.toTfJson(),
     'end_date': endDate.encode(),
@@ -135,6 +142,7 @@ final class StorageInsightsReportConfigEndDate {
 
   final TfArg<num> year;
 
+  @internal
   Map<String, Object?> encode() => {
     'day': day.toTfJson(),
     'month': month.toTfJson(),
@@ -158,6 +166,7 @@ final class StorageInsightsReportConfigStartDate {
 
   final TfArg<num> year;
 
+  @internal
   Map<String, Object?> encode() => {
     'day': day.toTfJson(),
     'month': month.toTfJson(),
@@ -182,6 +191,7 @@ final class StorageInsightsReportConfigObjectMetadataReportOptions {
 
   final StorageInsightsReportConfigStorageFilters? storageFilters;
 
+  @internal
   Map<String, Object?> encode() => {
     'metadata_fields': metadataFields.toTfJson(),
     'storage_destination_options': storageDestinationOptions.encode(),
@@ -202,6 +212,7 @@ final class StorageInsightsReportConfigStorageDestinationOptions {
 
   final TfArg<String>? destinationPath;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('name').toTfJson(),
     'destination_path': ?destinationPath?.toTfJson(),
@@ -216,6 +227,7 @@ final class StorageInsightsReportConfigStorageFilters {
 
   final RefTo<GoogleStorageBucket>? bucket;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': ?bucket?.encodeAs('name').toTfJson(),
   };

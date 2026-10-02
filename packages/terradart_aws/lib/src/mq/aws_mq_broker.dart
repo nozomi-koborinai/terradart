@@ -116,6 +116,7 @@ final class MqBrokerConfiguration {
 
   final TfArg<num>? revision;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': ?id?.toTfJson(),
     'revision': ?revision?.toTfJson(),
@@ -132,6 +133,7 @@ final class MqBrokerEncryptionOptions {
 
   final TfArg<bool>? useAwsOwnedKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
     'use_aws_owned_key': ?useAwsOwnedKey?.toTfJson(),
@@ -178,6 +180,7 @@ final class MqBrokerLdapServerMetadata {
 
   final TfArg<bool>? userSearchSubtree;
 
+  @internal
   Map<String, Object?> encode() => {
     'hosts': ?hosts?.toTfJson(),
     'role_base': ?roleBase?.toTfJson(),
@@ -203,6 +206,7 @@ final class MqBrokerLogs {
 
   final TfArg<bool>? general;
 
+  @internal
   Map<String, Object?> encode() => {
     'audit': ?audit?.toTfJson(),
     'general': ?general?.toTfJson(),
@@ -225,6 +229,7 @@ final class MqBrokerMaintenanceWindowStartTime {
 
   final TfArg<String> timeZone;
 
+  @internal
   Map<String, Object?> encode() => {
     'day_of_week': dayOfWeek.toTfJson(),
     'time_of_day': timeOfDay.toTfJson(),
@@ -281,6 +286,7 @@ final class MqBrokerUser {
 
   final TfArg<String> username;
 
+  @internal
   Map<String, Object?> encode() => {
     'console_access': ?consoleAccess?.toTfJson(),
     'groups': ?groups?.toTfJson(),

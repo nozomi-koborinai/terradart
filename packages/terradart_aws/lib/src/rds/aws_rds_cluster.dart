@@ -188,12 +188,15 @@ sealed class RdsClusterIdentifier {
   ) = RdsClusterIdentifierPrefix;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -203,14 +206,17 @@ final class RdsClusterIdentifierChoice extends RdsClusterIdentifier {
 
   final TfArg<String> clusterIdentifier;
 
+  @internal
   @override
   String get blockKey => 'cluster_identifier';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'cluster_identifier': clusterIdentifier.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'cluster_identifier': clusterIdentifier,
@@ -223,14 +229,17 @@ final class RdsClusterIdentifierPrefix extends RdsClusterIdentifier {
 
   final TfArg<String> clusterIdentifierPrefix;
 
+  @internal
   @override
   String get blockKey => 'cluster_identifier_prefix';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'cluster_identifier_prefix': clusterIdentifierPrefix.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'cluster_identifier_prefix': clusterIdentifierPrefix,
@@ -261,12 +270,15 @@ sealed class RdsClusterMasterPassword {
   ) = RdsClusterMasterPasswordWo;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -279,14 +291,17 @@ final class RdsClusterMasterPasswordManageMasterUserPassword
 
   final TfArg<bool> manageMasterUserPassword;
 
+  @internal
   @override
   String get blockKey => 'manage_master_user_password';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'manage_master_user_password': manageMasterUserPassword.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'manage_master_user_password': manageMasterUserPassword,
@@ -299,14 +314,17 @@ final class RdsClusterMasterPasswordChoice extends RdsClusterMasterPassword {
 
   final Sensitive<String> masterPassword;
 
+  @internal
   @override
   String get blockKey => 'master_password';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'master_password': masterPassword.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'master_password': masterPassword};
 }
@@ -317,14 +335,17 @@ final class RdsClusterMasterPasswordWo extends RdsClusterMasterPassword {
 
   final Sensitive<String> masterPasswordWo;
 
+  @internal
   @override
   String get blockKey => 'master_password_wo';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'master_password_wo': masterPasswordWo.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'master_password_wo': masterPasswordWo,
@@ -347,6 +368,7 @@ final class RdsClusterRestoreToPointInTime {
 
   final RdsClusterSourceCluster sourceCluster;
 
+  @internal
   Map<String, Object?> encode() => {
     ...target.encode(),
     'restore_type': ?restoreType?.toTfJson(),
@@ -371,8 +393,10 @@ sealed class RdsClusterTarget {
   ) = RdsClusterTargetUseLatestRestorableTime;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -382,9 +406,11 @@ final class RdsClusterTargetRestoreToTime extends RdsClusterTarget {
 
   final TfArg<String> restoreToTime;
 
+  @internal
   @override
   String get blockKey => 'restore_to_time';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'restore_to_time': restoreToTime.toTfJson(),
@@ -397,9 +423,11 @@ final class RdsClusterTargetUseLatestRestorableTime extends RdsClusterTarget {
 
   final TfArg<bool> useLatestRestorableTime;
 
+  @internal
   @override
   String get blockKey => 'use_latest_restorable_time';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'use_latest_restorable_time': useLatestRestorableTime.toTfJson(),
@@ -424,8 +452,10 @@ sealed class RdsClusterSourceCluster {
   ) = RdsClusterSourceClusterResourceId;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -435,9 +465,11 @@ final class RdsClusterSourceClusterIdentifier extends RdsClusterSourceCluster {
 
   final TfArg<String> sourceClusterIdentifier;
 
+  @internal
   @override
   String get blockKey => 'source_cluster_identifier';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'source_cluster_identifier': sourceClusterIdentifier.toTfJson(),
@@ -450,9 +482,11 @@ final class RdsClusterSourceClusterResourceId extends RdsClusterSourceCluster {
 
   final TfArg<String> sourceClusterResourceId;
 
+  @internal
   @override
   String get blockKey => 'source_cluster_resource_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'source_cluster_resource_id': sourceClusterResourceId.toTfJson(),
@@ -497,6 +531,7 @@ final class RdsClusterS3Import {
 
   final TfArg<String> sourceEngineVersion;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('id').toTfJson(),
     'bucket_prefix': ?bucketPrefix?.toTfJson(),
@@ -531,6 +566,7 @@ final class RdsClusterScalingConfiguration {
 
   final RdsClusterTimeoutAction? timeoutAction;
 
+  @internal
   Map<String, Object?> encode() => {
     'auto_pause': ?autoPause?.toTfJson(),
     'max_capacity': ?maxCapacity?.toTfJson(),
@@ -578,6 +614,7 @@ final class RdsClusterServerlessv2ScalingConfiguration {
 
   final TfArg<num>? secondsUntilAutoPause;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_capacity': maxCapacity.toTfJson(),
     'min_capacity': minCapacity.toTfJson(),

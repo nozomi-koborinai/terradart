@@ -22,6 +22,7 @@ final class DialogflowConversationProfileAutomatedAgentConfig {
 
   final TfArg<String>? sessionTtl;
 
+  @internal
   Map<String, Object?> encode() => {
     'agent': agent.toTfJson(),
     'session_ttl': ?sessionTtl?.toTfJson(),
@@ -50,6 +51,7 @@ final class DialogflowConversationProfileHumanAgentAssistantConfig {
 
   final DialogflowConversationProfileNotificationConfig? notificationConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'end_user_suggestion_config': ?endUserSuggestionConfig?.encode(),
     'human_agent_suggestion_config': ?humanAgentSuggestionConfig?.encode(),
@@ -80,6 +82,7 @@ final class DialogflowConversationProfileEndUserSuggestionConfig {
   >?
   featureConfigs;
 
+  @internal
   Map<String, Object?> encode() => {
     'disable_high_latency_features_sync_delivery':
         ?disableHighLatencyFeaturesSyncDelivery?.toTfJson(),
@@ -131,6 +134,7 @@ final class DialogflowConversationProfileEndUserSuggestionConfigFeatureConfigs {
   final DialogflowConversationProfileSuggestionTriggerSettings?
   suggestionTriggerSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'disable_agent_query_logging': ?disableAgentQueryLogging?.toTfJson(),
     'enable_conversation_augmented_query': ?enableConversationAugmentedQuery
@@ -161,6 +165,7 @@ final class DialogflowConversationProfileConversationModelConfig {
 
   final TfArg<String>? model;
 
+  @internal
   Map<String, Object?> encode() => {
     'baseline_model_version': ?baselineModelVersion?.toTfJson(),
     'model': ?model?.toTfJson(),
@@ -178,6 +183,7 @@ final class DialogflowConversationProfileConversationProcessConfig {
 
   final TfArg<num>? recentSentencesCount;
 
+  @internal
   Map<String, Object?> encode() => {
     'recent_sentences_count': ?recentSentencesCount?.toTfJson(),
   };
@@ -214,6 +220,7 @@ final class DialogflowConversationProfileEndUserSuggestionConfigQueryConfig {
 
   final DialogflowConversationProfileSections? sections;
 
+  @internal
   Map<String, Object?> encode() => {
     'confidence_threshold': ?confidenceThreshold?.toTfJson(),
     'max_results': ?maxResults?.toTfJson(),
@@ -242,6 +249,7 @@ final class DialogflowConversationProfileContextFilterSettings {
 
   final TfArg<bool>? dropVirtualAgentMessages;
 
+  @internal
   Map<String, Object?> encode() => {
     'drop_handoff_messages': ?dropHandoffMessages?.toTfJson(),
     'drop_ivr_messages': ?dropIvrMessages?.toTfJson(),
@@ -263,6 +271,7 @@ final class DialogflowConversationProfileDialogflowQuerySource {
 
   final DialogflowConversationProfileHumanAgentSideConfig? humanAgentSideConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'agent': agent.toTfJson(),
     'human_agent_side_config': ?humanAgentSideConfig?.encode(),
@@ -278,6 +287,7 @@ final class DialogflowConversationProfileHumanAgentSideConfig {
 
   final TfArg<String>? agent;
 
+  @internal
   Map<String, Object?> encode() => {'agent': ?agent?.toTfJson()};
 }
 
@@ -291,6 +301,7 @@ final class DialogflowConversationProfileDocumentQuerySource {
 
   final TfArg<List<String>> documents;
 
+  @internal
   Map<String, Object?> encode() => {'documents': documents.toTfJson()};
 }
 
@@ -304,6 +315,7 @@ final class DialogflowConversationProfileKnowledgeBaseQuerySource {
 
   final TfArg<List<String>> knowledgeBases;
 
+  @internal
   Map<String, Object?> encode() => {
     'knowledge_bases': knowledgeBases.toTfJson(),
   };
@@ -318,6 +330,7 @@ final class DialogflowConversationProfileSections {
 
   final List<DialogflowConversationProfileSectionTypes>? sectionTypes;
 
+  @internal
   Map<String, Object?> encode() => {
     if (sectionTypes != null)
       'section_types': [for (final e in sectionTypes!) e.toTfJson()],
@@ -380,6 +393,7 @@ final class DialogflowConversationProfileSuggestionFeature {
 
   final TfArg<String>? type;
 
+  @internal
   Map<String, Object?> encode() => {'type': ?type?.toTfJson()};
 }
 
@@ -397,6 +411,7 @@ final class DialogflowConversationProfileSuggestionTriggerSettings {
 
   final TfArg<bool>? onlyEndUser;
 
+  @internal
   Map<String, Object?> encode() => {
     'no_small_talk': ?noSmallTalk?.toTfJson(),
     'only_end_user': ?onlyEndUser?.toTfJson(),
@@ -425,6 +440,7 @@ final class DialogflowConversationProfileHumanAgentSuggestionConfig {
   >?
   featureConfigs;
 
+  @internal
   Map<String, Object?> encode() => {
     'disable_high_latency_features_sync_delivery':
         ?disableHighLatencyFeaturesSyncDelivery?.toTfJson(),
@@ -476,6 +492,7 @@ final class DialogflowConversationProfileHumanAgentSuggestionConfigFeatureConfig
   final DialogflowConversationProfileSuggestionTriggerSettings?
   suggestionTriggerSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'disable_agent_query_logging': ?disableAgentQueryLogging?.toTfJson(),
     'enable_conversation_augmented_query': ?enableConversationAugmentedQuery
@@ -516,6 +533,7 @@ final class DialogflowConversationProfileHumanAgentSuggestionConfigQueryConfig {
 
   final DialogflowConversationProfileSections? sections;
 
+  @internal
   Map<String, Object?> encode() => {
     'confidence_threshold': ?confidenceThreshold?.toTfJson(),
     'max_results': ?maxResults?.toTfJson(),
@@ -538,6 +556,7 @@ final class DialogflowConversationProfileMessageAnalysisConfig {
 
   final TfArg<bool>? enableSentimentAnalysis;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_entity_extraction': ?enableEntityExtraction?.toTfJson(),
     'enable_sentiment_analysis': ?enableSentimentAnalysis?.toTfJson(),
@@ -558,6 +577,7 @@ final class DialogflowConversationProfileNotificationConfig {
 
   final RefTo<GooglePubsubTopic>? topic;
 
+  @internal
   Map<String, Object?> encode() => {
     'message_format': ?messageFormat?.toTfJson(),
     'topic': ?topic?.encodeAs('id').toTfJson(),
@@ -603,6 +623,7 @@ final class DialogflowConversationProfileHumanAgentHandoffConfig {
 
   final DialogflowConversationProfileLivePersonConfig? livePersonConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'live_person_config': ?livePersonConfig?.encode(),
   };
@@ -618,6 +639,7 @@ final class DialogflowConversationProfileLivePersonConfig {
 
   final TfArg<String> accountNumber;
 
+  @internal
   Map<String, Object?> encode() => {'account_number': accountNumber.toTfJson()};
 }
 
@@ -631,6 +653,7 @@ final class DialogflowConversationProfileLoggingConfig {
 
   final TfArg<bool>? enableStackdriverLogging;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_stackdriver_logging': ?enableStackdriverLogging?.toTfJson(),
   };
@@ -649,6 +672,7 @@ final class DialogflowConversationProfileNewMessageEventNotificationConfig {
 
   final RefTo<GooglePubsubTopic>? topic;
 
+  @internal
   Map<String, Object?> encode() => {
     'message_format': ?messageFormat?.toTfJson(),
     'topic': ?topic?.encodeAs('id').toTfJson(),
@@ -668,6 +692,7 @@ final class DialogflowConversationProfileNewRecognitionResultNotificationConfig 
 
   final RefTo<GooglePubsubTopic>? topic;
 
+  @internal
   Map<String, Object?> encode() => {
     'message_format': ?messageFormat?.toTfJson(),
     'topic': ?topic?.encodeAs('id').toTfJson(),
@@ -702,6 +727,7 @@ final class DialogflowConversationProfileSttConfig {
 
   final TfArg<bool>? useTimeoutBasedEndpointing;
 
+  @internal
   Map<String, Object?> encode() => {
     'audio_encoding': ?audioEncoding?.toTfJson(),
     'enable_word_info': ?enableWordInfo?.toTfJson(),
@@ -823,6 +849,7 @@ final class DialogflowConversationProfileTtsConfig {
 
   final DialogflowConversationProfileVoice? voice;
 
+  @internal
   Map<String, Object?> encode() => {
     'effects_profile_id': ?effectsProfileId?.toTfJson(),
     'pitch': ?pitch?.toTfJson(),
@@ -842,6 +869,7 @@ final class DialogflowConversationProfileVoice {
 
   final DialogflowConversationProfileSsmlGender? ssmlGender;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'ssml_gender': ?ssmlGender?.toTfJson(),

@@ -64,6 +64,7 @@ final class KmsCustomKeyStoreXksProxyAuthenticationCredential {
 
   final TfArg<String> rawSecretAccessKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_key_id': accessKeyId.toTfJson(),
     'raw_secret_access_key': rawSecretAccessKey.toTfJson(),

@@ -45,6 +45,7 @@ final class OutpostsCapacityTaskInstancePool {
 
   final TfArg<String> instanceType;
 
+  @internal
   Map<String, Object?> encode() => {
     'count': count.toTfJson(),
     'instance_type': instanceType.toTfJson(),
@@ -59,6 +60,7 @@ final class OutpostsCapacityTaskInstancesToExclude {
 
   final TfArg<List<String>> instances;
 
+  @internal
   Map<String, Object?> encode() => {'instances': instances.toTfJson()};
 }
 

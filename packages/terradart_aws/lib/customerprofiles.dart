@@ -3,6 +3,7 @@
 /// AWS Customer Profiles.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/customerprofiles/aws_customerprofiles_domain.dart'
     show
         AwsCustomerprofilesDomain,

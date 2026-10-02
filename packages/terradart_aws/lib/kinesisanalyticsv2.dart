@@ -3,6 +3,7 @@
 /// AWS Managed Service for Apache Flink.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/kinesisanalyticsv2/aws_kinesisanalyticsv2_application.dart'
     show
         AwsKinesisanalyticsv2Application,

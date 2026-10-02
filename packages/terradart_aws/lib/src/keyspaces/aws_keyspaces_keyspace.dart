@@ -20,6 +20,7 @@ final class KeyspacesKeyspaceReplicationSpecification {
 
   final KeyspacesKeyspaceReplicationStrategy? replicationStrategy;
 
+  @internal
   Map<String, Object?> encode() => {
     'region_list': ?regionList?.toTfJson(),
     'replication_strategy': ?replicationStrategy?.toTfJson(),

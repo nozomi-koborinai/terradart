@@ -28,6 +28,7 @@ final class SecretManagerRegionalSecretIamBindingCondition {
 
   final TfArg<String> title;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'expression': expression.toTfJson(),

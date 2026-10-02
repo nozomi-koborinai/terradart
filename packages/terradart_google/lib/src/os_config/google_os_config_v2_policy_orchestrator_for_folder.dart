@@ -24,6 +24,7 @@ final class OsConfigV2PolicyOrchestratorForFolderOrchestratedResource {
   final OsConfigV2PolicyOrchestratorForFolderOsPolicyAssignmentV1Payload?
   osPolicyAssignmentV1Payload;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': ?id?.toTfJson(),
     'os_policy_assignment_v1_payload': ?osPolicyAssignmentV1Payload?.encode(),
@@ -52,6 +53,7 @@ final class OsConfigV2PolicyOrchestratorForFolderOsPolicyAssignmentV1Payload {
 
   final OsConfigV2PolicyOrchestratorForFolderRollout rollout;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'name': ?name?.toTfJson(),
@@ -82,6 +84,7 @@ final class OsConfigV2PolicyOrchestratorForFolderInstanceFilter {
 
   final List<OsConfigV2PolicyOrchestratorForFolderInventories>? inventories;
 
+  @internal
   Map<String, Object?> encode() => {
     'all': ?all?.toTfJson(),
     if (exclusionLabels != null)
@@ -101,6 +104,7 @@ final class OsConfigV2PolicyOrchestratorForFolderExclusionLabels {
 
   final TfArg<Map<String, String>>? labels;
 
+  @internal
   Map<String, Object?> encode() => {'labels': ?labels?.toTfJson()};
 }
 
@@ -112,6 +116,7 @@ final class OsConfigV2PolicyOrchestratorForFolderInclusionLabels {
 
   final TfArg<Map<String, String>>? labels;
 
+  @internal
   Map<String, Object?> encode() => {'labels': ?labels?.toTfJson()};
 }
 
@@ -128,6 +133,7 @@ final class OsConfigV2PolicyOrchestratorForFolderInventories {
 
   final TfArg<String>? osVersion;
 
+  @internal
   Map<String, Object?> encode() => {
     'os_short_name': osShortName.toTfJson(),
     'os_version': ?osVersion?.toTfJson(),
@@ -157,6 +163,7 @@ final class OsConfigV2PolicyOrchestratorForFolderOsPolicies {
   final List<OsConfigV2PolicyOrchestratorForFolderResourceGroups>
   resourceGroups;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_no_resource_group_match': ?allowNoResourceGroupMatch?.toTfJson(),
     'description': ?description?.toTfJson(),
@@ -204,6 +211,7 @@ final class OsConfigV2PolicyOrchestratorForFolderResourceGroups {
 
   final List<OsConfigV2PolicyOrchestratorForFolderResources> resources;
 
+  @internal
   Map<String, Object?> encode() => {
     if (inventoryFilters != null)
       'inventory_filters': [for (final e in inventoryFilters!) e.encode()],
@@ -224,6 +232,7 @@ final class OsConfigV2PolicyOrchestratorForFolderInventoryFilters {
 
   final TfArg<String>? osVersion;
 
+  @internal
   Map<String, Object?> encode() => {
     'os_short_name': osShortName.toTfJson(),
     'os_version': ?osVersion?.toTfJson(),
@@ -252,6 +261,7 @@ final class OsConfigV2PolicyOrchestratorForFolderResources {
 
   final OsConfigV2PolicyOrchestratorForFolderRepository? repository;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
     'exec': ?exec?.encode(),
@@ -274,6 +284,7 @@ final class OsConfigV2PolicyOrchestratorForFolderExec {
 
   final OsConfigV2PolicyOrchestratorForFolderValidate validate;
 
+  @internal
   Map<String, Object?> encode() => {
     'enforce': ?enforce?.encode(),
     'validate': validate.encode(),
@@ -302,6 +313,7 @@ final class OsConfigV2PolicyOrchestratorForFolderEnforce {
 
   final OsConfigV2PolicyOrchestratorForFolderFileFile? file;
 
+  @internal
   Map<String, Object?> encode() => {
     'args': ?args?.toTfJson(),
     'interpreter': interpreter.toTfJson(),
@@ -359,6 +371,7 @@ final class OsConfigV2PolicyOrchestratorForFolderFileFile {
 
   final OsConfigV2PolicyOrchestratorForFolderRemote? remote;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_insecure': ?allowInsecure?.toTfJson(),
     'local_path': ?localPath?.toTfJson(),
@@ -384,6 +397,7 @@ final class OsConfigV2PolicyOrchestratorForFolderGcs {
 
   final TfArg<String> object;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('name').toTfJson(),
     'generation': ?generation?.toTfJson(),
@@ -405,6 +419,7 @@ final class OsConfigV2PolicyOrchestratorForFolderRemote {
 
   final TfArg<String> uri;
 
+  @internal
   Map<String, Object?> encode() => {
     'sha256_checksum': ?sha256Checksum?.toTfJson(),
     'uri': uri.toTfJson(),
@@ -433,6 +448,7 @@ final class OsConfigV2PolicyOrchestratorForFolderValidate {
 
   final OsConfigV2PolicyOrchestratorForFolderFileFile? file;
 
+  @internal
   Map<String, Object?> encode() => {
     'args': ?args?.toTfJson(),
     'interpreter': interpreter.toTfJson(),
@@ -464,6 +480,7 @@ final class OsConfigV2PolicyOrchestratorForFolderFile {
 
   final OsConfigV2PolicyOrchestratorForFolderFileFile? file;
 
+  @internal
   Map<String, Object?> encode() => {
     'content': ?content?.toTfJson(),
     'path': path.toTfJson(),
@@ -532,6 +549,7 @@ final class OsConfigV2PolicyOrchestratorForFolderPkg {
 
   final OsConfigV2PolicyOrchestratorForFolderPkgZypper? zypper;
 
+  @internal
   Map<String, Object?> encode() => {
     'desired_state': desiredState.toTfJson(),
     'apt': ?apt?.encode(),
@@ -574,6 +592,7 @@ final class OsConfigV2PolicyOrchestratorForFolderPkgApt {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 
@@ -590,6 +609,7 @@ final class OsConfigV2PolicyOrchestratorForFolderDeb {
 
   final OsConfigV2PolicyOrchestratorForFolderSource source;
 
+  @internal
   Map<String, Object?> encode() => {
     'pull_deps': ?pullDeps?.toTfJson(),
     'source': source.encode(),
@@ -616,6 +636,7 @@ final class OsConfigV2PolicyOrchestratorForFolderSource {
 
   final OsConfigV2PolicyOrchestratorForFolderRemote? remote;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_insecure': ?allowInsecure?.toTfJson(),
     'local_path': ?localPath?.toTfJson(),
@@ -632,6 +653,7 @@ final class OsConfigV2PolicyOrchestratorForFolderGooget {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 
@@ -648,6 +670,7 @@ final class OsConfigV2PolicyOrchestratorForFolderMsi {
 
   final OsConfigV2PolicyOrchestratorForFolderSource source;
 
+  @internal
   Map<String, Object?> encode() => {
     'properties': ?properties?.toTfJson(),
     'source': source.encode(),
@@ -667,6 +690,7 @@ final class OsConfigV2PolicyOrchestratorForFolderRpm {
 
   final OsConfigV2PolicyOrchestratorForFolderSource source;
 
+  @internal
   Map<String, Object?> encode() => {
     'pull_deps': ?pullDeps?.toTfJson(),
     'source': source.encode(),
@@ -681,6 +705,7 @@ final class OsConfigV2PolicyOrchestratorForFolderPkgYum {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 
@@ -692,6 +717,7 @@ final class OsConfigV2PolicyOrchestratorForFolderPkgZypper {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 
@@ -714,6 +740,7 @@ final class OsConfigV2PolicyOrchestratorForFolderRepository {
 
   final OsConfigV2PolicyOrchestratorForFolderRepositoryZypper? zypper;
 
+  @internal
   Map<String, Object?> encode() => {
     'apt': ?apt?.encode(),
     'goo': ?goo?.encode(),
@@ -744,6 +771,7 @@ final class OsConfigV2PolicyOrchestratorForFolderRepositoryApt {
 
   final TfArg<String> uri;
 
+  @internal
   Map<String, Object?> encode() => {
     'archive_type': archiveType.toTfJson(),
     'components': components.toTfJson(),
@@ -790,6 +818,7 @@ final class OsConfigV2PolicyOrchestratorForFolderGoo {
 
   final TfArg<String> url;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'url': url.toTfJson(),
@@ -815,6 +844,7 @@ final class OsConfigV2PolicyOrchestratorForFolderRepositoryYum {
 
   final TfArg<String> id;
 
+  @internal
   Map<String, Object?> encode() => {
     'base_url': baseUrl.toTfJson(),
     'display_name': ?displayName?.toTfJson(),
@@ -842,6 +872,7 @@ final class OsConfigV2PolicyOrchestratorForFolderRepositoryZypper {
 
   final TfArg<String> id;
 
+  @internal
   Map<String, Object?> encode() => {
     'base_url': baseUrl.toTfJson(),
     'display_name': ?displayName?.toTfJson(),
@@ -863,6 +894,7 @@ final class OsConfigV2PolicyOrchestratorForFolderRollout {
 
   final OsConfigV2PolicyOrchestratorForFolderDisruptionBudget disruptionBudget;
 
+  @internal
   Map<String, Object?> encode() => {
     'min_wait_duration': minWaitDuration.toTfJson(),
     'disruption_budget': disruptionBudget.encode(),
@@ -882,6 +914,7 @@ final class OsConfigV2PolicyOrchestratorForFolderDisruptionBudget {
 
   final TfArg<num>? percent;
 
+  @internal
   Map<String, Object?> encode() => {
     'fixed': ?fixed?.toTfJson(),
     'percent': ?percent?.toTfJson(),
@@ -898,6 +931,7 @@ final class OsConfigV2PolicyOrchestratorForFolderOrchestrationScope {
 
   final List<OsConfigV2PolicyOrchestratorForFolderSelectors>? selectors;
 
+  @internal
   Map<String, Object?> encode() => {
     if (selectors != null)
       'selectors': [for (final e in selectors!) e.encode()],
@@ -918,6 +952,7 @@ final class OsConfigV2PolicyOrchestratorForFolderSelectors {
   final OsConfigV2PolicyOrchestratorForFolderResourceHierarchySelector?
   resourceHierarchySelector;
 
+  @internal
   Map<String, Object?> encode() => {
     'location_selector': ?locationSelector?.encode(),
     'resource_hierarchy_selector': ?resourceHierarchySelector?.encode(),
@@ -934,6 +969,7 @@ final class OsConfigV2PolicyOrchestratorForFolderLocationSelector {
 
   final TfArg<List<String>>? includedLocations;
 
+  @internal
   Map<String, Object?> encode() => {
     'included_locations': ?includedLocations?.toTfJson(),
   };
@@ -952,6 +988,7 @@ final class OsConfigV2PolicyOrchestratorForFolderResourceHierarchySelector {
 
   final TfArg<List<String>>? includedProjects;
 
+  @internal
   Map<String, Object?> encode() => {
     'included_folders': ?includedFolders?.toTfJson(),
     'included_projects': ?includedProjects?.toTfJson(),

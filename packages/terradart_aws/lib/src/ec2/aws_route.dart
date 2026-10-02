@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `aws_route`.
@@ -25,12 +26,15 @@ sealed class RouteCarrierIpv6 {
   ) = RouteCarrierIpv6DestinationIpv6CidrBlock;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -40,14 +44,17 @@ final class RouteCarrierIpv6CarrierGatewayId extends RouteCarrierIpv6 {
 
   final TfArg<String> carrierGatewayId;
 
+  @internal
   @override
   String get blockKey => 'carrier_gateway_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'carrier_gateway_id': carrierGatewayId.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'carrier_gateway_id': carrierGatewayId,
@@ -60,14 +67,17 @@ final class RouteCarrierIpv6DestinationIpv6CidrBlock extends RouteCarrierIpv6 {
 
   final TfArg<String> destinationIpv6CidrBlock;
 
+  @internal
   @override
   String get blockKey => 'destination_ipv6_cidr_block';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'destination_ipv6_cidr_block': destinationIpv6CidrBlock.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'destination_ipv6_cidr_block': destinationIpv6CidrBlock,
@@ -93,12 +103,15 @@ sealed class RouteIpv4Egress {
   ) = RouteIpv4EgressOnlyGatewayId;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -108,14 +121,17 @@ final class RouteIpv4EgressDestinationCidrBlock extends RouteIpv4Egress {
 
   final TfArg<String> destinationCidrBlock;
 
+  @internal
   @override
   String get blockKey => 'destination_cidr_block';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'destination_cidr_block': destinationCidrBlock.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'destination_cidr_block': destinationCidrBlock,
@@ -128,14 +144,17 @@ final class RouteIpv4EgressOnlyGatewayId extends RouteIpv4Egress {
 
   final TfArg<String> egressOnlyGatewayId;
 
+  @internal
   @override
   String get blockKey => 'egress_only_gateway_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'egress_only_gateway_id': egressOnlyGatewayId.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'egress_only_gateway_id': egressOnlyGatewayId,
@@ -161,12 +180,15 @@ sealed class RoutePrefixListEndpoint {
   ) = RoutePrefixListEndpointVpcEndpointId;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -179,14 +201,17 @@ final class RoutePrefixListEndpointDestinationPrefixListId
 
   final TfArg<String> destinationPrefixListId;
 
+  @internal
   @override
   String get blockKey => 'destination_prefix_list_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'destination_prefix_list_id': destinationPrefixListId.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'destination_prefix_list_id': destinationPrefixListId,
@@ -200,14 +225,17 @@ final class RoutePrefixListEndpointVpcEndpointId
 
   final TfArg<String> vpcEndpointId;
 
+  @internal
   @override
   String get blockKey => 'vpc_endpoint_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'vpc_endpoint_id': vpcEndpointId.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'vpc_endpoint_id': vpcEndpointId};
 }

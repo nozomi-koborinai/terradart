@@ -5,6 +5,11 @@
 /// fee hourly while they exist.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/google_workstations_workstation_config_iam_policy.dart'
+    show DataGoogleWorkstationsWorkstationConfigIamPolicy;
+export 'src/data/google_workstations_workstation_iam_policy.dart'
+    show DataGoogleWorkstationsWorkstationIamPolicy;
 export 'src/workstations/google_workstations_workstation.dart'
     show GoogleWorkstationsWorkstation, WorkstationsWorkstationState;
 export 'src/workstations/google_workstations_workstation_cluster.dart'

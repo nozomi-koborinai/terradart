@@ -33,8 +33,10 @@ sealed class IvschatLoggingConfigurationDestinationConfiguration {
   ) = IvschatLoggingConfigurationDestinationConfigurationS3;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -47,9 +49,11 @@ final class IvschatLoggingConfigurationDestinationConfigurationCloudwatchLogs
 
   final IvschatLoggingConfigurationCloudwatchLogs cloudwatchLogs;
 
+  @internal
   @override
   String get blockKey => 'cloudwatch_logs';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'cloudwatch_logs': cloudwatchLogs.encode()};
 }
@@ -63,9 +67,11 @@ final class IvschatLoggingConfigurationDestinationConfigurationFirehose
 
   final IvschatLoggingConfigurationFirehose firehose;
 
+  @internal
   @override
   String get blockKey => 'firehose';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'firehose': firehose.encode()};
 }
@@ -77,9 +83,11 @@ final class IvschatLoggingConfigurationDestinationConfigurationS3
 
   final IvschatLoggingConfigurationS3 s3;
 
+  @internal
   @override
   String get blockKey => 's3';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'s3': s3.encode()};
 }
@@ -92,6 +100,7 @@ final class IvschatLoggingConfigurationCloudwatchLogs {
 
   final RefTo<AwsCloudwatchLogGroup> logGroupName;
 
+  @internal
   Map<String, Object?> encode() => {
     'log_group_name': logGroupName.encodeAs('name').toTfJson(),
   };
@@ -105,6 +114,7 @@ final class IvschatLoggingConfigurationFirehose {
 
   final TfArg<String> deliveryStreamName;
 
+  @internal
   Map<String, Object?> encode() => {
     'delivery_stream_name': deliveryStreamName.toTfJson(),
   };
@@ -118,6 +128,7 @@ final class IvschatLoggingConfigurationS3 {
 
   final RefTo<AwsS3Bucket> bucketName;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('id').toTfJson(),
   };

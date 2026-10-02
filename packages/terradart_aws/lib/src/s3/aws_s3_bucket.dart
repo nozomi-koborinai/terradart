@@ -74,12 +74,15 @@ sealed class S3BucketAccess {
       S3BucketAccessGrant;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -89,12 +92,15 @@ final class S3BucketAccessAcl extends S3BucketAccess {
 
   final TfArg<String> acl;
 
+  @internal
   @override
   String get blockKey => 'acl';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'acl': acl.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'acl': acl};
 }
@@ -105,14 +111,17 @@ final class S3BucketAccessGrant extends S3BucketAccess {
 
   final List<S3BucketGrant> grant;
 
+  @internal
   @override
   String get blockKey => 'grant';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'grant': [for (final e in grant) e.encode()],
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'grant': TfArg.literal([for (final e in grant) e.encode()]),
@@ -135,12 +144,15 @@ sealed class S3BucketName {
       S3BucketNameBucketPrefix;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -150,12 +162,15 @@ final class S3BucketNameBucket extends S3BucketName {
 
   final TfArg<String> bucket;
 
+  @internal
   @override
   String get blockKey => 'bucket';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'bucket': bucket.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'bucket': bucket};
 }
@@ -166,12 +181,15 @@ final class S3BucketNameBucketPrefix extends S3BucketName {
 
   final TfArg<String> bucketPrefix;
 
+  @internal
   @override
   String get blockKey => 'bucket_prefix';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'bucket_prefix': bucketPrefix.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'bucket_prefix': bucketPrefix};
 }
@@ -198,6 +216,7 @@ final class S3BucketCorsRule {
 
   final TfArg<num>? maxAgeSeconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed_headers': ?allowedHeaders?.toTfJson(),
     'allowed_methods': allowedMethods.toTfJson(),
@@ -226,6 +245,7 @@ final class S3BucketGrant {
 
   final TfArg<String>? uri;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': ?id?.toTfJson(),
     'permissions': [for (final e in permissions) e.toTfJson()],
@@ -305,6 +325,7 @@ final class S3BucketLifecycleRule {
 
   final List<S3BucketTransition>? transition;
 
+  @internal
   Map<String, Object?> encode() => {
     'abort_incomplete_multipart_upload_days':
         ?abortIncompleteMultipartUploadDays?.toTfJson(),
@@ -339,6 +360,7 @@ final class S3BucketExpiration {
 
   final TfArg<bool>? expiredObjectDeleteMarker;
 
+  @internal
   Map<String, Object?> encode() => {
     'date': ?date?.toTfJson(),
     'days': ?days?.toTfJson(),
@@ -354,6 +376,7 @@ final class S3BucketNoncurrentVersionExpiration {
 
   final TfArg<num>? days;
 
+  @internal
   Map<String, Object?> encode() => {'days': ?days?.toTfJson()};
 }
 
@@ -370,6 +393,7 @@ final class S3BucketNoncurrentVersionTransition {
 
   final S3BucketStorageClass storageClass;
 
+  @internal
   Map<String, Object?> encode() => {
     'days': ?days?.toTfJson(),
     'storage_class': storageClass.toTfJson(),
@@ -417,6 +441,7 @@ final class S3BucketTransition {
 
   final S3BucketStorageClass storageClass;
 
+  @internal
   Map<String, Object?> encode() => {
     'date': ?date?.toTfJson(),
     'days': ?days?.toTfJson(),
@@ -434,6 +459,7 @@ final class S3BucketLogging {
 
   final TfArg<String>? targetPrefix;
 
+  @internal
   Map<String, Object?> encode() => {
     'target_bucket': targetBucket.encodeAs('id').toTfJson(),
     'target_prefix': ?targetPrefix?.toTfJson(),
@@ -453,6 +479,7 @@ final class S3BucketReplicationConfiguration {
 
   final List<S3BucketRules> rules;
 
+  @internal
   Map<String, Object?> encode() => {
     'role': role.encodeAs('arn').toTfJson(),
     'rules': [for (final e in rules) e.encode()],
@@ -490,6 +517,7 @@ final class S3BucketRules {
 
   final S3BucketSourceSelectionCriteria? sourceSelectionCriteria;
 
+  @internal
   Map<String, Object?> encode() => {
     'delete_marker_replication_status': ?deleteMarkerReplicationStatus
         ?.toTfJson(),
@@ -562,6 +590,7 @@ final class S3BucketDestination {
 
   final S3BucketReplicationTime? replicationTime;
 
+  @internal
   Map<String, Object?> encode() => {
     'account_id': ?accountId?.toTfJson(),
     'bucket': bucket.encodeAs('arn').toTfJson(),
@@ -653,6 +682,7 @@ final class S3BucketAccessControlTranslation {
 
   final S3BucketOwner owner;
 
+  @internal
   Map<String, Object?> encode() => {'owner': owner.toTfJson()};
 }
 
@@ -678,6 +708,7 @@ final class S3BucketMetrics {
 
   final S3BucketStatus? status;
 
+  @internal
   Map<String, Object?> encode() => {
     'minutes': ?minutes?.toTfJson(),
     'status': ?status?.toTfJson(),
@@ -694,6 +725,7 @@ final class S3BucketReplicationTime {
 
   final S3BucketStatus? status;
 
+  @internal
   Map<String, Object?> encode() => {
     'minutes': ?minutes?.toTfJson(),
     'status': ?status?.toTfJson(),
@@ -710,6 +742,7 @@ final class S3BucketFilter {
 
   final TfArg<Map<String, String>>? tags;
 
+  @internal
   Map<String, Object?> encode() => {
     'prefix': ?prefix?.toTfJson(),
     'tags': ?tags?.toTfJson(),
@@ -724,6 +757,7 @@ final class S3BucketSourceSelectionCriteria {
 
   final S3BucketSseKmsEncryptedObjects? sseKmsEncryptedObjects;
 
+  @internal
   Map<String, Object?> encode() => {
     'sse_kms_encrypted_objects': ?sseKmsEncryptedObjects?.encode(),
   };
@@ -737,6 +771,7 @@ final class S3BucketSseKmsEncryptedObjects {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 
@@ -750,6 +785,7 @@ final class S3BucketVersioning {
 
   final TfArg<bool>? mfaDelete;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'mfa_delete': ?mfaDelete?.toTfJson(),
@@ -772,6 +808,7 @@ final class S3BucketWebsite {
 
   final TfArg<String>? routingRules;
 
+  @internal
   Map<String, Object?> encode() => {
     'error_document': ?errorDocument?.toTfJson(),
     ...mode.encode(),
@@ -796,8 +833,10 @@ sealed class S3BucketMode {
   ) = S3BucketModeRedirectAllRequestsTo;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -807,9 +846,11 @@ final class S3BucketModeIndexDocument extends S3BucketMode {
 
   final TfArg<String> indexDocument;
 
+  @internal
   @override
   String get blockKey => 'index_document';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'index_document': indexDocument.toTfJson()};
 }
@@ -820,9 +861,11 @@ final class S3BucketModeRedirectAllRequestsTo extends S3BucketMode {
 
   final TfArg<String> redirectAllRequestsTo;
 
+  @internal
   @override
   String get blockKey => 'redirect_all_requests_to';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'redirect_all_requests_to': redirectAllRequestsTo.toTfJson(),

@@ -4,6 +4,7 @@
 /// preferences. Both are never_apply (MM exclude_delete); debt-only.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/cloud_quotas/google_cloud_quotas_quota_adjuster_settings.dart'
     show
         CloudQuotasQuotaAdjusterSettingsEffectiveEnablement,
@@ -14,3 +15,7 @@ export 'src/cloud_quotas/google_cloud_quotas_quota_preference.dart'
         CloudQuotasQuotaPreferenceIgnoreSafetyChecks,
         CloudQuotasQuotaPreferenceQuotaConfig,
         GoogleCloudQuotasQuotaPreference;
+export 'src/data/google_cloud_quotas_quota_info.dart'
+    show DataGoogleCloudQuotasQuotaInfo;
+export 'src/data/google_cloud_quotas_quota_infos.dart'
+    show DataGoogleCloudQuotasQuotaInfos;

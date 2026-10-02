@@ -3,6 +3,7 @@
 /// AWS Cost Explorer (anomaly detection and cost categories).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/ce/aws_ce_anomaly_monitor.dart'
     show
         AwsCeAnomalyMonitor,
@@ -57,3 +58,16 @@ export 'src/ce/aws_ce_cost_category.dart'
         CeCostCategoryRuleTags,
         CeCostCategorySplitChargeRule,
         CeCostCategoryType;
+export 'src/data/aws_ce_cost_category.dart' show DataAwsCeCostCategory;
+export 'src/data/aws_ce_tags.dart'
+    show
+        DataAwsCeTags,
+        DataCeTagsAnd,
+        DataCeTagsCostCategory,
+        DataCeTagsDimension,
+        DataCeTagsFilter,
+        DataCeTagsFilterTags,
+        DataCeTagsNot,
+        DataCeTagsOr,
+        DataCeTagsSortBy,
+        DataCeTagsTimePeriod;

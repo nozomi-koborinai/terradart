@@ -23,6 +23,7 @@ final class ElastictranscoderPipelineContentConfig {
 
   final ElastictranscoderPipelineStorageClass? storageClass;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': ?bucket?.encodeAs('id').toTfJson(),
     'storage_class': ?storageClass?.toTfJson(),
@@ -68,6 +69,7 @@ final class ElastictranscoderPipelineContentConfigPermissions {
 
   final ElastictranscoderPipelineGranteeType? granteeType;
 
+  @internal
   Map<String, Object?> encode() => {
     if (access != null) 'access': [for (final e in access!) e.toTfJson()],
     'grantee': ?grantee?.toTfJson(),
@@ -149,6 +151,7 @@ final class ElastictranscoderPipelineNotifications {
 
   final TfArg<String>? warning;
 
+  @internal
   Map<String, Object?> encode() => {
     'completed': ?completed?.toTfJson(),
     'error': ?error?.toTfJson(),
@@ -170,6 +173,7 @@ final class ElastictranscoderPipelineThumbnailConfig {
 
   final ElastictranscoderPipelineStorageClass? storageClass;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': ?bucket?.encodeAs('id').toTfJson(),
     'storage_class': ?storageClass?.toTfJson(),
@@ -192,6 +196,7 @@ final class ElastictranscoderPipelineThumbnailConfigPermissions {
 
   final ElastictranscoderPipelineGranteeType? granteeType;
 
+  @internal
   Map<String, Object?> encode() => {
     if (access != null) 'access': [for (final e in access!) e.toTfJson()],
     'grantee': ?grantee?.toTfJson(),

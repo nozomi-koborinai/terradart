@@ -47,11 +47,13 @@ prelude: |
 
     /// Terraform attribute name (`source_disk`, `source_image`,
     /// `source_snapshot`, or `raw_disk`).
+    @internal
     String get blockKey;
 
     /// Value written under [blockKey].
     TfArg<Object?> get value;
 
+    @internal
     Map<String, Object?> encode() => {blockKey: value.toTfJson()};
   }
 
@@ -63,6 +65,7 @@ prelude: |
     final TfArg<String> sourceDisk;
 
     @override
+    @internal
     String get blockKey => 'source_disk';
 
     @override
@@ -77,6 +80,7 @@ prelude: |
     final TfArg<String> sourceImage;
 
     @override
+    @internal
     String get blockKey => 'source_image';
 
     @override
@@ -91,6 +95,7 @@ prelude: |
     final TfArg<String> sourceSnapshot;
 
     @override
+    @internal
     String get blockKey => 'source_snapshot';
 
     @override
@@ -105,6 +110,7 @@ prelude: |
     final ComputeImageRawDisk rawDisk;
 
     @override
+    @internal
     String get blockKey => 'raw_disk';
 
     @override

@@ -46,6 +46,7 @@ final class SaasRuntimeRolloutKindErrorBudget {
 
   final TfArg<num>? allowedPercentage;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed_count': ?allowedCount?.toTfJson(),
     'allowed_percentage': ?allowedPercentage?.toTfJson(),

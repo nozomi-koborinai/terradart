@@ -60,12 +60,15 @@ sealed class DatabaseMigrationServiceConnectionProfileEngine {
   ) = DatabaseMigrationServiceConnectionProfileEngineAlloydb;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -76,12 +79,15 @@ final class DatabaseMigrationServiceConnectionProfileEngineMysql
 
   final DatabaseMigrationServiceConnectionProfileMysql mysql;
 
+  @internal
   @override
   String get blockKey => 'mysql';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'mysql': mysql.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'mysql': TfArg.literal(mysql.encode()),
@@ -97,12 +103,15 @@ final class DatabaseMigrationServiceConnectionProfileEnginePostgresql
 
   final DatabaseMigrationServiceConnectionProfilePostgresql postgresql;
 
+  @internal
   @override
   String get blockKey => 'postgresql';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'postgresql': postgresql.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'postgresql': TfArg.literal(postgresql.encode()),
@@ -116,12 +125,15 @@ final class DatabaseMigrationServiceConnectionProfileEngineOracle
 
   final DatabaseMigrationServiceConnectionProfileOracle oracle;
 
+  @internal
   @override
   String get blockKey => 'oracle';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'oracle': oracle.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'oracle': TfArg.literal(oracle.encode()),
@@ -135,12 +147,15 @@ final class DatabaseMigrationServiceConnectionProfileEngineCloudsql
 
   final DatabaseMigrationServiceConnectionProfileCloudsql cloudsql;
 
+  @internal
   @override
   String get blockKey => 'cloudsql';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'cloudsql': cloudsql.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'cloudsql': TfArg.literal(cloudsql.encode()),
@@ -154,12 +169,15 @@ final class DatabaseMigrationServiceConnectionProfileEngineAlloydb
 
   final DatabaseMigrationServiceConnectionProfileAlloydb alloydb;
 
+  @internal
   @override
   String get blockKey => 'alloydb';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'alloydb': alloydb.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'alloydb': TfArg.literal(alloydb.encode()),
@@ -179,6 +197,7 @@ final class DatabaseMigrationServiceConnectionProfileAlloydb {
 
   final DatabaseMigrationServiceConnectionProfileAlloydbSettings? settings;
 
+  @internal
   Map<String, Object?> encode() => {
     'cluster_id': clusterId.toTfJson(),
     'settings': ?settings?.encode(),
@@ -205,6 +224,7 @@ final class DatabaseMigrationServiceConnectionProfileAlloydbSettings {
   final DatabaseMigrationServiceConnectionProfilePrimaryInstanceSettings?
   primaryInstanceSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'labels': ?labels?.toTfJson(),
     'vpc_network': vpcNetwork.encodeAs('id').toTfJson(),
@@ -226,6 +246,7 @@ final class DatabaseMigrationServiceConnectionProfileInitialUser {
 
   final TfArg<String> user;
 
+  @internal
   Map<String, Object?> encode() => {
     'password': password.toTfJson(),
     'user': user.toTfJson(),
@@ -251,6 +272,7 @@ final class DatabaseMigrationServiceConnectionProfilePrimaryInstanceSettings {
 
   final DatabaseMigrationServiceConnectionProfileMachineConfig machineConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'database_flags': ?databaseFlags?.toTfJson(),
     'id': id.toTfJson(),
@@ -269,6 +291,7 @@ final class DatabaseMigrationServiceConnectionProfileMachineConfig {
 
   final TfArg<num> cpuCount;
 
+  @internal
   Map<String, Object?> encode() => {'cpu_count': cpuCount.toTfJson()};
 }
 
@@ -280,6 +303,7 @@ final class DatabaseMigrationServiceConnectionProfileCloudsql {
 
   final DatabaseMigrationServiceConnectionProfileCloudsqlSettings? settings;
 
+  @internal
   Map<String, Object?> encode() => {'settings': ?settings?.encode()};
 }
 
@@ -339,6 +363,7 @@ final class DatabaseMigrationServiceConnectionProfileCloudsqlSettings {
 
   final DatabaseMigrationServiceConnectionProfileIpConfig? ipConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'activation_policy': ?activationPolicy?.toTfJson(),
     'auto_storage_increase': ?autoStorageIncrease?.toTfJson(),
@@ -455,6 +480,7 @@ final class DatabaseMigrationServiceConnectionProfileIpConfig {
   final List<DatabaseMigrationServiceConnectionProfileAuthorizedNetworks>?
   authorizedNetworks;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_ipv4': ?enableIpv4?.toTfJson(),
     'private_network': ?privateNetwork?.encodeAs('id').toTfJson(),
@@ -480,6 +506,7 @@ final class DatabaseMigrationServiceConnectionProfileAuthorizedNetworks {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     ...expiration.encode(),
     'label': ?label?.toTfJson(),
@@ -505,8 +532,10 @@ sealed class DatabaseMigrationServiceConnectionProfileExpiration {
   ) = DatabaseMigrationServiceConnectionProfileExpirationTtl;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -519,9 +548,11 @@ final class DatabaseMigrationServiceConnectionProfileExpirationExpireTime
 
   final TfArg<String> expireTime;
 
+  @internal
   @override
   String get blockKey => 'expire_time';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'expire_time': expireTime.toTfJson()};
 }
@@ -533,9 +564,11 @@ final class DatabaseMigrationServiceConnectionProfileExpirationTtl
 
   final TfArg<String> ttl;
 
+  @internal
   @override
   String get blockKey => 'ttl';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'ttl': ttl.toTfJson()};
 }
@@ -565,6 +598,7 @@ final class DatabaseMigrationServiceConnectionProfileMysql {
 
   final DatabaseMigrationServiceConnectionProfileMysqlSsl? ssl;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloud_sql_id': ?cloudSqlId?.toTfJson(),
     'host': ?host?.toTfJson(),
@@ -595,6 +629,7 @@ final class DatabaseMigrationServiceConnectionProfileMysqlSsl {
 
   final DatabaseMigrationServiceConnectionProfileType? type;
 
+  @internal
   Map<String, Object?> encode() => {
     'ca_certificate': ?caCertificate?.toTfJson(),
     'client_certificate': ?clientCertificate?.toTfJson(),
@@ -663,6 +698,7 @@ final class DatabaseMigrationServiceConnectionProfileOracle {
 
   final DatabaseMigrationServiceConnectionProfileOracleSsl? ssl;
 
+  @internal
   Map<String, Object?> encode() => {
     'database_service': databaseService.toTfJson(),
     'host': host.toTfJson(),
@@ -700,8 +736,10 @@ sealed class DatabaseMigrationServiceConnectionProfileConnectivity {
   ) = DatabaseMigrationServiceConnectionProfilePrivateConnectivityChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -715,9 +753,11 @@ final class DatabaseMigrationServiceConnectionProfileStaticServiceIpConnectivity
   final DatabaseMigrationServiceConnectionProfileStaticServiceIpConnectivity
   staticServiceIpConnectivity;
 
+  @internal
   @override
   String get blockKey => 'static_service_ip_connectivity';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'static_service_ip_connectivity': staticServiceIpConnectivity.encode(),
@@ -734,9 +774,11 @@ final class DatabaseMigrationServiceConnectionProfileForwardSshConnectivityChoic
   final DatabaseMigrationServiceConnectionProfileForwardSshConnectivity
   forwardSshConnectivity;
 
+  @internal
   @override
   String get blockKey => 'forward_ssh_connectivity';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'forward_ssh_connectivity': forwardSshConnectivity.encode(),
@@ -753,9 +795,11 @@ final class DatabaseMigrationServiceConnectionProfilePrivateConnectivityChoice
   final DatabaseMigrationServiceConnectionProfilePrivateConnectivity
   privateConnectivity;
 
+  @internal
   @override
   String get blockKey => 'private_connectivity';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'private_connectivity': privateConnectivity.encode(),
@@ -781,6 +825,7 @@ final class DatabaseMigrationServiceConnectionProfileForwardSshConnectivity {
 
   final TfArg<String> username;
 
+  @internal
   Map<String, Object?> encode() => {
     'hostname': hostname.toTfJson(),
     ...credential.encode(),
@@ -807,8 +852,10 @@ sealed class DatabaseMigrationServiceConnectionProfileCredential {
   ) = DatabaseMigrationServiceConnectionProfileCredentialPrivateKey;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -821,9 +868,11 @@ final class DatabaseMigrationServiceConnectionProfileCredentialPassword
 
   final Sensitive<String> password;
 
+  @internal
   @override
   String get blockKey => 'password';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'password': password.toTfJson()};
 }
@@ -837,9 +886,11 @@ final class DatabaseMigrationServiceConnectionProfileCredentialPrivateKey
 
   final Sensitive<String> privateKey;
 
+  @internal
   @override
   String get blockKey => 'private_key';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'private_key': privateKey.toTfJson()};
 }
@@ -855,6 +906,7 @@ final class DatabaseMigrationServiceConnectionProfilePrivateConnectivity {
 
   final TfArg<String> privateConnection;
 
+  @internal
   Map<String, Object?> encode() => {
     'private_connection': privateConnection.toTfJson(),
   };
@@ -876,6 +928,7 @@ final class DatabaseMigrationServiceConnectionProfileOracleSsl {
 
   final Sensitive<String>? clientKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'ca_certificate': ?caCertificate?.toTfJson(),
     'client_certificate': ?clientCertificate?.toTfJson(),
@@ -889,6 +942,7 @@ final class DatabaseMigrationServiceConnectionProfileOracleSsl {
 final class DatabaseMigrationServiceConnectionProfileStaticServiceIpConnectivity {
   const DatabaseMigrationServiceConnectionProfileStaticServiceIpConnectivity();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -927,6 +981,7 @@ final class DatabaseMigrationServiceConnectionProfilePostgresql {
 
   final DatabaseMigrationServiceConnectionProfileMysqlSsl? ssl;
 
+  @internal
   Map<String, Object?> encode() => {
     'alloydb_cluster_id': ?alloydbClusterId?.toTfJson(),
     'cloud_sql_id': ?cloudSqlId?.toTfJson(),

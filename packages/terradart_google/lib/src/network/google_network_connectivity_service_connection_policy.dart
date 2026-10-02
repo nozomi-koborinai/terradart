@@ -30,6 +30,7 @@ final class NetworkConnectivityServiceConnectionPolicyPscConfig {
 
   final TfArg<List<String>> subnetworks;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed_google_producers_resource_hierarchy_level':
         ?allowedGoogleProducersResourceHierarchyLevel?.toTfJson(),

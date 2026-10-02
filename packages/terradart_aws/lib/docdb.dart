@@ -3,6 +3,10 @@
 /// AWS DocumentDB.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_docdb_engine_version.dart' show DataAwsDocdbEngineVersion;
+export 'src/data/aws_docdb_orderable_db_instance.dart'
+    show DataAwsDocdbOrderableDbInstance;
 export 'src/docdb/aws_docdb_cluster.dart'
     show
         AwsDocdbCluster,

@@ -213,12 +213,15 @@ sealed class S3ObjectBody {
   const factory S3ObjectBody.source(TfArg<String> source) = S3ObjectBodySource;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -228,12 +231,15 @@ final class S3ObjectBodyContent extends S3ObjectBody {
 
   final TfArg<String> content;
 
+  @internal
   @override
   String get blockKey => 'content';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'content': content.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'content': content};
 }
@@ -244,12 +250,15 @@ final class S3ObjectBodyContentBase64 extends S3ObjectBody {
 
   final TfArg<String> contentBase64;
 
+  @internal
   @override
   String get blockKey => 'content_base64';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'content_base64': contentBase64.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'content_base64': contentBase64};
 }
@@ -260,12 +269,15 @@ final class S3ObjectBodySource extends S3ObjectBody {
 
   final TfArg<String> source;
 
+  @internal
   @override
   String get blockKey => 'source';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'source': source.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'source': source};
 }
@@ -287,12 +299,15 @@ sealed class S3ObjectIntegrity {
       S3ObjectIntegrityKmsKeyId;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -302,12 +317,15 @@ final class S3ObjectIntegrityEtag extends S3ObjectIntegrity {
 
   final TfArg<String> etag;
 
+  @internal
   @override
   String get blockKey => 'etag';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'etag': etag.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'etag': etag};
 }
@@ -318,14 +336,17 @@ final class S3ObjectIntegrityKmsKeyId extends S3ObjectIntegrity {
 
   final RefTo<AwsKmsKey> kmsKeyId;
 
+  @internal
   @override
   String get blockKey => 'kms_key_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'kms_key_id': kmsKeyId.encodeAs('arn').toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'kms_key_id': kmsKeyId.encodeAs('arn'),
@@ -340,6 +361,7 @@ final class S3ObjectOverrideProvider {
 
   final S3ObjectDefaultTags? defaultTags;
 
+  @internal
   Map<String, Object?> encode() => {'default_tags': ?defaultTags?.encode()};
 }
 
@@ -351,6 +373,7 @@ final class S3ObjectDefaultTags {
 
   final TfArg<Map<String, String>>? tags;
 
+  @internal
   Map<String, Object?> encode() => {'tags': ?tags?.toTfJson()};
 }
 

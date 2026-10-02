@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
@@ -78,12 +79,15 @@ sealed class MemorydbClusterName {
       MemorydbClusterNamePrefix;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -93,12 +97,15 @@ final class MemorydbClusterNameChoice extends MemorydbClusterName {
 
   final TfArg<String> name;
 
+  @internal
   @override
   String get blockKey => 'name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
@@ -109,12 +116,15 @@ final class MemorydbClusterNamePrefix extends MemorydbClusterName {
 
   final TfArg<String> namePrefix;
 
+  @internal
   @override
   String get blockKey => 'name_prefix';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'name_prefix': namePrefix.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'name_prefix': namePrefix};
 }
@@ -138,12 +148,15 @@ sealed class MemorydbClusterSnapshot {
   ) = MemorydbClusterSnapshotName;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -153,12 +166,15 @@ final class MemorydbClusterSnapshotArns extends MemorydbClusterSnapshot {
 
   final TfArg<List<String>> snapshotArns;
 
+  @internal
   @override
   String get blockKey => 'snapshot_arns';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'snapshot_arns': snapshotArns.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'snapshot_arns': snapshotArns};
 }
@@ -169,12 +185,15 @@ final class MemorydbClusterSnapshotName extends MemorydbClusterSnapshot {
 
   final TfArg<String> snapshotName;
 
+  @internal
   @override
   String get blockKey => 'snapshot_name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'snapshot_name': snapshotName.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'snapshot_name': snapshotName};
 }

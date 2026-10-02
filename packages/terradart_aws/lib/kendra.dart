@@ -3,6 +3,13 @@
 /// AWS Kendra.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_kendra_experience.dart' show DataAwsKendraExperience;
+export 'src/data/aws_kendra_faq.dart' show DataAwsKendraFaq;
+export 'src/data/aws_kendra_index.dart' show DataAwsKendraIndex;
+export 'src/data/aws_kendra_query_suggestions_block_list.dart'
+    show DataAwsKendraQuerySuggestionsBlockList;
+export 'src/data/aws_kendra_thesaurus.dart' show DataAwsKendraThesaurus;
 export 'src/kendra/aws_kendra_data_source.dart'
     show
         AwsKendraDataSource,

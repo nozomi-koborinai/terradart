@@ -4,6 +4,7 @@
 /// Apply-excluded leftover factory.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/deployment_manager/google_deployment_manager_deployment.dart'
     show
         DeploymentManagerDeploymentConfig,

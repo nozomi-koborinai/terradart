@@ -8,6 +8,23 @@
 /// start a cluster.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/google_dataproc_autoscaling_policy_iam_policy.dart'
+    show DataGoogleDataprocAutoscalingPolicyIamPolicy;
+export 'src/data/google_dataproc_cluster_iam_policy.dart'
+    show DataGoogleDataprocClusterIamPolicy;
+export 'src/data/google_dataproc_job_iam_policy.dart'
+    show DataGoogleDataprocJobIamPolicy;
+export 'src/data/google_dataproc_metastore_database_iam_policy.dart'
+    show DataGoogleDataprocMetastoreDatabaseIamPolicy;
+export 'src/data/google_dataproc_metastore_federation_iam_policy.dart'
+    show DataGoogleDataprocMetastoreFederationIamPolicy;
+export 'src/data/google_dataproc_metastore_service.dart'
+    show DataGoogleDataprocMetastoreService;
+export 'src/data/google_dataproc_metastore_service_iam_policy.dart'
+    show DataGoogleDataprocMetastoreServiceIamPolicy;
+export 'src/data/google_dataproc_metastore_table_iam_policy.dart'
+    show DataGoogleDataprocMetastoreTableIamPolicy;
 export 'src/dataproc/google_dataproc_autoscaling_policy.dart'
     show
         DataprocAutoscalingPolicyBasicAlgorithm,

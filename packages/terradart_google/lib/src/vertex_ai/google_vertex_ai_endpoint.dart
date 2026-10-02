@@ -18,6 +18,7 @@ final class VertexAiEndpointEncryptionSpec {
 
   final RefTo<GoogleKmsCryptoKey> kmsKeyName;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_name': kmsKeyName.encodeAs('id').toTfJson(),
   };
@@ -39,6 +40,7 @@ final class VertexAiEndpointPredictRequestResponseLoggingConfig {
 
   final VertexAiEndpointBigqueryDestination? bigqueryDestination;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'sampling_rate': ?samplingRate?.toTfJson(),
@@ -54,6 +56,7 @@ final class VertexAiEndpointBigqueryDestination {
 
   final TfArg<String>? outputUri;
 
+  @internal
   Map<String, Object?> encode() => {'output_uri': ?outputUri?.toTfJson()};
 }
 
@@ -73,6 +76,7 @@ final class VertexAiEndpointPrivateServiceConnectConfig {
 
   final List<VertexAiEndpointPscAutomationConfigs>? pscAutomationConfigs;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_private_service_connect': enablePrivateServiceConnect.toTfJson(),
     'project_allowlist': ?projectAllowlist?.toTfJson(),
@@ -96,6 +100,7 @@ final class VertexAiEndpointPscAutomationConfigs {
 
   final TfArg<String> projectId;
 
+  @internal
   Map<String, Object?> encode() => {
     'network': network.encodeAs('id').toTfJson(),
     'project_id': projectId.toTfJson(),

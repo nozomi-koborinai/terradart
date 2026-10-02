@@ -66,6 +66,7 @@ final class BedrockagentcoreMemoryStrategyConfiguration {
   final List<BedrockagentcoreMemoryStrategySelfManagedConfiguration>?
   selfManagedConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
     if (consolidation != null)
@@ -134,6 +135,7 @@ final class BedrockagentcoreMemoryStrategyConsolidation {
 
   final TfArg<String> modelId;
 
+  @internal
   Map<String, Object?> encode() => {
     'append_to_prompt': appendToPrompt.toTfJson(),
     'model_id': modelId.toTfJson(),
@@ -153,6 +155,7 @@ final class BedrockagentcoreMemoryStrategyExtraction {
 
   final TfArg<String> modelId;
 
+  @internal
   Map<String, Object?> encode() => {
     'append_to_prompt': appendToPrompt.toTfJson(),
     'model_id': modelId.toTfJson(),
@@ -175,6 +178,7 @@ final class BedrockagentcoreMemoryStrategyReflection {
 
   final TfArg<List<String>> namespaceTemplates;
 
+  @internal
   Map<String, Object?> encode() => {
     'append_to_prompt': appendToPrompt.toTfJson(),
     'model_id': modelId.toTfJson(),
@@ -200,6 +204,7 @@ final class BedrockagentcoreMemoryStrategySelfManagedConfiguration {
   final List<BedrockagentcoreMemoryStrategyTriggerConditions>?
   triggerConditions;
 
+  @internal
   Map<String, Object?> encode() => {
     'historical_context_window_size': ?historicalContextWindowSize?.toTfJson(),
     if (invocationConfiguration != null)
@@ -224,6 +229,7 @@ final class BedrockagentcoreMemoryStrategyInvocationConfiguration {
 
   final RefTo<AwsSnsTopic> topicArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'payload_delivery_bucket_name': payloadDeliveryBucketName.toTfJson(),
     'topic_arn': topicArn.encodeAs('arn').toTfJson(),
@@ -248,6 +254,7 @@ final class BedrockagentcoreMemoryStrategyTriggerConditions {
   final List<BedrockagentcoreMemoryStrategyTokenBasedTrigger>?
   tokenBasedTrigger;
 
+  @internal
   Map<String, Object?> encode() => {
     if (messageBasedTrigger != null)
       'message_based_trigger': [
@@ -270,6 +277,7 @@ final class BedrockagentcoreMemoryStrategyMessageBasedTrigger {
 
   final TfArg<num> messageCount;
 
+  @internal
   Map<String, Object?> encode() => {'message_count': messageCount.toTfJson()};
 }
 
@@ -283,6 +291,7 @@ final class BedrockagentcoreMemoryStrategyTimeBasedTrigger {
 
   final TfArg<num> idleSessionTimeout;
 
+  @internal
   Map<String, Object?> encode() => {
     'idle_session_timeout': idleSessionTimeout.toTfJson(),
   };
@@ -298,6 +307,7 @@ final class BedrockagentcoreMemoryStrategyTokenBasedTrigger {
 
   final TfArg<num> tokenCount;
 
+  @internal
   Map<String, Object?> encode() => {'token_count': tokenCount.toTfJson()};
 }
 
@@ -309,6 +319,7 @@ final class BedrockagentcoreMemoryStrategyMemoryRecordSchema {
 
   final List<BedrockagentcoreMemoryStrategyMetadataSchema>? metadataSchema;
 
+  @internal
   Map<String, Object?> encode() => {
     if (metadataSchema != null)
       'metadata_schema': [for (final e in metadataSchema!) e.encode()],
@@ -334,6 +345,7 @@ final class BedrockagentcoreMemoryStrategyMetadataSchema {
 
   final List<BedrockagentcoreMemoryStrategyExtractionConfig>? extractionConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'extraction_type': ?extractionType?.toTfJson(),
     'key': key.toTfJson(),
@@ -407,6 +419,7 @@ final class BedrockagentcoreMemoryStrategyExtractionConfig {
   final List<BedrockagentcoreMemoryStrategyLlmExtractionConfig>?
   llmExtractionConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     if (llmExtractionConfig != null)
       'llm_extraction_config': [
@@ -431,6 +444,7 @@ final class BedrockagentcoreMemoryStrategyLlmExtractionConfig {
 
   final List<BedrockagentcoreMemoryStrategyValidation>? validation;
 
+  @internal
   Map<String, Object?> encode() => {
     'definition': definition.toTfJson(),
     'llm_extraction_instruction': ?llmExtractionInstruction?.toTfJson(),
@@ -456,6 +470,7 @@ final class BedrockagentcoreMemoryStrategyValidation {
 
   final List<BedrockagentcoreMemoryStrategyStringValidation>? stringValidation;
 
+  @internal
   Map<String, Object?> encode() => {
     if (numberValidation != null)
       'number_validation': [for (final e in numberValidation!) e.encode()],
@@ -481,6 +496,7 @@ final class BedrockagentcoreMemoryStrategyNumberValidation {
 
   final TfArg<num>? minValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_value': ?maxValue?.toTfJson(),
     'min_value': ?minValue?.toTfJson(),
@@ -500,6 +516,7 @@ final class BedrockagentcoreMemoryStrategyStringListValidation {
 
   final TfArg<num>? maxItems;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed_values': ?allowedValues?.toTfJson(),
     'max_items': ?maxItems?.toTfJson(),
@@ -516,6 +533,7 @@ final class BedrockagentcoreMemoryStrategyStringValidation {
 
   final TfArg<List<String>> allowedValues;
 
+  @internal
   Map<String, Object?> encode() => {'allowed_values': allowedValues.toTfJson()};
 }
 
@@ -529,6 +547,7 @@ final class BedrockagentcoreMemoryStrategyReflectionConfiguration {
 
   final TfArg<List<String>> namespaceTemplates;
 
+  @internal
   Map<String, Object?> encode() => {
     'namespace_templates': namespaceTemplates.toTfJson(),
   };

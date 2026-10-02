@@ -17,6 +17,7 @@ final class DataplexDataProductAccessApprovalConfig {
 
   final TfArg<List<String>>? approverEmails;
 
+  @internal
   Map<String, Object?> encode() => {
     'approver_emails': ?approverEmails?.toTfJson(),
   };
@@ -44,6 +45,7 @@ final class DataplexDataProductAccessGroups {
 
   final DataplexDataProductPrincipal principal;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'display_name': displayName.toTfJson(),
@@ -63,6 +65,7 @@ final class DataplexDataProductPrincipal {
 
   final RefTo<GoogleServiceAccount>? serviceAccount;
 
+  @internal
   Map<String, Object?> encode() => {
     'google_group': ?googleGroup?.toTfJson(),
     'service_account': ?serviceAccount?.encodeAs('email').toTfJson(),

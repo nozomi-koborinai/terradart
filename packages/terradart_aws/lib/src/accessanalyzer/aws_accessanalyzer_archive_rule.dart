@@ -29,6 +29,7 @@ final class AccessanalyzerArchiveRuleFilter {
 
   final TfArg<List<String>>? neq;
 
+  @internal
   Map<String, Object?> encode() => {
     'contains': ?contains?.toTfJson(),
     'criteria': criteria.toTfJson(),

@@ -26,6 +26,7 @@ final class CesAgentAfterAgentCallbacks {
 
   final TfArg<String> pythonCode;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'disabled': ?disabled?.toTfJson(),
@@ -49,6 +50,7 @@ final class CesAgentAfterModelCallbacks {
 
   final TfArg<String> pythonCode;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'disabled': ?disabled?.toTfJson(),
@@ -72,6 +74,7 @@ final class CesAgentAfterToolCallbacks {
 
   final TfArg<String> pythonCode;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'disabled': ?disabled?.toTfJson(),
@@ -95,6 +98,7 @@ final class CesAgentBeforeAgentCallbacks {
 
   final TfArg<String> pythonCode;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'disabled': ?disabled?.toTfJson(),
@@ -118,6 +122,7 @@ final class CesAgentBeforeModelCallbacks {
 
   final TfArg<String> pythonCode;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'disabled': ?disabled?.toTfJson(),
@@ -141,6 +146,7 @@ final class CesAgentBeforeToolCallbacks {
 
   final TfArg<String> pythonCode;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'disabled': ?disabled?.toTfJson(),
@@ -154,6 +160,7 @@ final class CesAgentBeforeToolCallbacks {
 final class CesAgentLlmAgent {
   const CesAgentLlmAgent();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -167,6 +174,7 @@ final class CesAgentModelSettings {
 
   final TfArg<num>? temperature;
 
+  @internal
   Map<String, Object?> encode() => {
     'model': ?model?.toTfJson(),
     'temperature': ?temperature?.toTfJson(),
@@ -201,6 +209,7 @@ final class CesAgentRemoteDialogflowAgent {
 
   final TfArg<bool>? respectResponseInterruptionSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'agent': agent.toTfJson(),
     'environment_id': ?environmentId?.toTfJson(),
@@ -223,6 +232,7 @@ final class CesAgentToolsets {
 
   final RefTo<GoogleCesToolset> toolset;
 
+  @internal
   Map<String, Object?> encode() => {
     'tool_ids': ?toolIds?.toTfJson(),
     'toolset': toolset.encodeAs('name').toTfJson(),
@@ -248,6 +258,7 @@ final class CesAgentTransferRules {
 
   final CesAgentDisablePlannerTransfer? disablePlannerTransfer;
 
+  @internal
   Map<String, Object?> encode() => {
     'child_agent': childAgent.toTfJson(),
     'direction': direction.toTfJson(),
@@ -287,6 +298,7 @@ final class CesAgentDeterministicTransfer {
 
   final CesAgentPythonCodeCondition? pythonCodeCondition;
 
+  @internal
   Map<String, Object?> encode() => {
     'expression_condition': ?expressionCondition?.encode(),
     'python_code_condition': ?pythonCodeCondition?.encode(),
@@ -302,6 +314,7 @@ final class CesAgentExpressionCondition {
 
   final TfArg<String> expression;
 
+  @internal
   Map<String, Object?> encode() => {'expression': expression.toTfJson()};
 }
 
@@ -313,6 +326,7 @@ final class CesAgentPythonCodeCondition {
 
   final TfArg<String> pythonCode;
 
+  @internal
   Map<String, Object?> encode() => {'python_code': pythonCode.toTfJson()};
 }
 
@@ -324,6 +338,7 @@ final class CesAgentDisablePlannerTransfer {
 
   final CesAgentExpressionCondition expressionCondition;
 
+  @internal
   Map<String, Object?> encode() => {
     'expression_condition': expressionCondition.encode(),
   };

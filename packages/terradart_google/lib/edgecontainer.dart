@@ -4,6 +4,7 @@
 /// (requires physical GDCE machines; not applyable on a standalone project).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/edgecontainer/google_edgecontainer_cluster.dart'
     show
         EdgecontainerClusterAdminUsers,

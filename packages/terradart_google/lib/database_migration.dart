@@ -5,6 +5,7 @@
 /// (needs a reachable source database).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/database_migration/google_database_migration_service_connection_profile.dart'
     show
         DatabaseMigrationServiceConnectionProfileActivationPolicy,

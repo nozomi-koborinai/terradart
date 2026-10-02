@@ -58,6 +58,7 @@ final class SagemakerLabelingJobHumanTaskConfig {
 
   final List<SagemakerLabelingJobUiConfig>? uiConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_concurrent_task_count': ?maxConcurrentTaskCount?.toTfJson(),
     'number_of_human_workers_per_data_object': numberOfHumanWorkersPerDataObject
@@ -92,6 +93,7 @@ final class SagemakerLabelingJobAnnotationConsolidationConfig {
 
   final TfArg<String> annotationConsolidationLambdaArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'annotation_consolidation_lambda_arn': annotationConsolidationLambdaArn
         .toTfJson(),
@@ -106,6 +108,7 @@ final class SagemakerLabelingJobPublicWorkforceTaskPrice {
 
   final List<SagemakerLabelingJobAmountInUsd>? amountInUsd;
 
+  @internal
   Map<String, Object?> encode() => {
     if (amountInUsd != null)
       'amount_in_usd': [for (final e in amountInUsd!) e.encode()],
@@ -128,6 +131,7 @@ final class SagemakerLabelingJobAmountInUsd {
 
   final TfArg<num>? tenthFractionsOfACent;
 
+  @internal
   Map<String, Object?> encode() => {
     'cents': ?cents?.toTfJson(),
     'dollars': ?dollars?.toTfJson(),
@@ -148,6 +152,7 @@ final class SagemakerLabelingJobUiConfig {
 
   final TfArg<String>? uiTemplateS3Uri;
 
+  @internal
   Map<String, Object?> encode() => {
     'human_task_ui_arn': ?humanTaskUiArn?.toTfJson(),
     'ui_template_s3_uri': ?uiTemplateS3Uri?.toTfJson(),
@@ -164,6 +169,7 @@ final class SagemakerLabelingJobInputConfig {
 
   final List<SagemakerLabelingJobDataSource>? dataSource;
 
+  @internal
   Map<String, Object?> encode() => {
     if (dataAttributes != null)
       'data_attributes': [for (final e in dataAttributes!) e.encode()],
@@ -180,6 +186,7 @@ final class SagemakerLabelingJobDataAttributes {
 
   final List<SagemakerLabelingJobContentClassifiers>? contentClassifiers;
 
+  @internal
   Map<String, Object?> encode() => {
     if (contentClassifiers != null)
       'content_classifiers': [
@@ -222,6 +229,7 @@ final class SagemakerLabelingJobDataSource {
 
   final List<SagemakerLabelingJobSnsDataSource>? snsDataSource;
 
+  @internal
   Map<String, Object?> encode() => {
     if (s3DataSource != null)
       's3_data_source': [for (final e in s3DataSource!) e.encode()],
@@ -238,6 +246,7 @@ final class SagemakerLabelingJobS3DataSource {
 
   final TfArg<String> manifestS3Uri;
 
+  @internal
   Map<String, Object?> encode() => {
     'manifest_s3_uri': manifestS3Uri.toTfJson(),
   };
@@ -251,6 +260,7 @@ final class SagemakerLabelingJobSnsDataSource {
 
   final RefTo<AwsSnsTopic> snsTopicArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'sns_topic_arn': snsTopicArn.encodeAs('arn').toTfJson(),
   };
@@ -272,6 +282,7 @@ final class SagemakerLabelingJobAlgorithmsConfig {
 
   final List<SagemakerLabelingJobResourceConfig>? labelingJobResourceConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'initial_active_learning_model_arn': ?initialActiveLearningModelArn
         ?.toTfJson(),
@@ -297,6 +308,7 @@ final class SagemakerLabelingJobResourceConfig {
 
   final List<SagemakerLabelingJobVpcConfig>? vpcConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'volume_kms_key_id': ?volumeKmsKeyId?.toTfJson(),
     if (vpcConfig != null)
@@ -317,6 +329,7 @@ final class SagemakerLabelingJobVpcConfig {
 
   final TfArg<List<RefTo<AwsSubnet>>> subnets;
 
+  @internal
   Map<String, Object?> encode() => {
     'security_group_ids': securityGroupIds.encodeAs('id').toTfJson(),
     'subnets': subnets.encodeAs('id').toTfJson(),
@@ -339,6 +352,7 @@ final class SagemakerLabelingJobOutputConfig {
 
   final RefTo<AwsSnsTopic>? snsTopicArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
     's3_output_path': s3OutputPath.toTfJson(),

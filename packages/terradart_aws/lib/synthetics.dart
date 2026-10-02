@@ -3,6 +3,11 @@
 /// AWS CloudWatch Synthetics.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_synthetics_runtime_version.dart'
+    show DataAwsSyntheticsRuntimeVersion;
+export 'src/data/aws_synthetics_runtime_versions.dart'
+    show DataAwsSyntheticsRuntimeVersions;
 export 'src/synthetics/aws_synthetics_canary.dart'
     show
         AwsSyntheticsCanary,

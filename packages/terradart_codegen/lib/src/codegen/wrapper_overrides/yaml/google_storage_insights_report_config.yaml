@@ -96,10 +96,12 @@ prelude: |
     /// `parquet_options` — Parquet inventory reports (empty options object).
     const factory StorageInsightsReportConfigFormat.parquet() = StorageInsightsReportConfigParquetFormat;
 
+    @internal
     String get blockKey;
 
     /// Single-element list (`nesting_mode: list, max_items: 1`). Parquet
     /// is an empty object (`allow_empty_object`).
+    @internal
     List<Map<String, Object?>> encode();
   }
 
@@ -118,9 +120,11 @@ prelude: |
     final TfArg<String>? recordSeparator;
 
     @override
+    @internal
     String get blockKey => 'csv_options';
 
     @override
+    @internal
     List<Map<String, Object?>> encode() => [
           {
             if (delimiter != null) 'delimiter': delimiter!.toTfJson(),
@@ -139,9 +143,11 @@ prelude: |
     const StorageInsightsReportConfigParquetFormat();
 
     @override
+    @internal
     String get blockKey => 'parquet_options';
 
     @override
+    @internal
     List<Map<String, Object?>> encode() => [{}];
   }
 

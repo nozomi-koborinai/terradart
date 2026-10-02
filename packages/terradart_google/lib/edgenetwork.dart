@@ -5,6 +5,7 @@
 /// standalone project).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/edgenetwork/google_edgenetwork_interconnect_attachment.dart'
     show GoogleEdgenetworkInterconnectAttachment;
 export 'src/edgenetwork/google_edgenetwork_network.dart'

@@ -14,6 +14,7 @@ const Set<String> _awsOpensearchserverlessSecurityConfigSensitive = <String>{};
 final class DataOpensearchserverlessSecurityConfigIamFederationOptions {
   const DataOpensearchserverlessSecurityConfigIamFederationOptions();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -23,6 +24,7 @@ final class DataOpensearchserverlessSecurityConfigIamFederationOptions {
 final class DataOpensearchserverlessSecurityConfigIamIdentityCenterOptions {
   const DataOpensearchserverlessSecurityConfigIamIdentityCenterOptions();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -32,6 +34,7 @@ final class DataOpensearchserverlessSecurityConfigIamIdentityCenterOptions {
 final class DataOpensearchserverlessSecurityConfigSamlOptions {
   const DataOpensearchserverlessSecurityConfigSamlOptions();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 

@@ -59,12 +59,15 @@ sealed class OpensearchserverlessSecurityConfigOptions {
   ) = OpensearchserverlessSecurityConfigSamlOptionsChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -78,9 +81,11 @@ final class OpensearchserverlessSecurityConfigIamFederationOptionsChoice
   final List<OpensearchserverlessSecurityConfigIamFederationOptions>
   iamFederationOptions;
 
+  @internal
   @override
   String get blockKey => 'iam_federation_options';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'iam_federation_options': [
@@ -88,6 +93,7 @@ final class OpensearchserverlessSecurityConfigIamFederationOptionsChoice
     ],
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'iam_federation_options': TfArg.literal([
@@ -106,9 +112,11 @@ final class OpensearchserverlessSecurityConfigIamIdentityCenterOptionsChoice
   final List<OpensearchserverlessSecurityConfigIamIdentityCenterOptions>
   iamIdentityCenterOptions;
 
+  @internal
   @override
   String get blockKey => 'iam_identity_center_options';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'iam_identity_center_options': [
@@ -116,6 +124,7 @@ final class OpensearchserverlessSecurityConfigIamIdentityCenterOptionsChoice
     ],
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'iam_identity_center_options': TfArg.literal([
@@ -131,14 +140,17 @@ final class OpensearchserverlessSecurityConfigSamlOptionsChoice
 
   final List<OpensearchserverlessSecurityConfigSamlOptions> samlOptions;
 
+  @internal
   @override
   String get blockKey => 'saml_options';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'saml_options': [for (final e in samlOptions) e.encode()],
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'saml_options': TfArg.literal([for (final e in samlOptions) e.encode()]),
@@ -158,6 +170,7 @@ final class OpensearchserverlessSecurityConfigIamFederationOptions {
 
   final TfArg<String>? userAttribute;
 
+  @internal
   Map<String, Object?> encode() => {
     'group_attribute': ?groupAttribute?.toTfJson(),
     'user_attribute': ?userAttribute?.toTfJson(),
@@ -180,6 +193,7 @@ final class OpensearchserverlessSecurityConfigIamIdentityCenterOptions {
 
   final OpensearchserverlessSecurityConfigUserAttribute? userAttribute;
 
+  @internal
   Map<String, Object?> encode() => {
     'group_attribute': ?groupAttribute?.toTfJson(),
     'instance_arn': instanceArn.toTfJson(),
@@ -258,6 +272,7 @@ final class OpensearchserverlessSecurityConfigSamlOptions {
 
   final TfArg<String>? userAttribute;
 
+  @internal
   Map<String, Object?> encode() => {
     'group_attribute': ?groupAttribute?.toTfJson(),
     'metadata': metadata.toTfJson(),

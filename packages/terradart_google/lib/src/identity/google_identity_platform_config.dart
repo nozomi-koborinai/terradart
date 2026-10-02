@@ -23,6 +23,7 @@ final class IdentityPlatformConfigBlockingFunctions {
 
   final List<IdentityPlatformConfigTriggers> triggers;
 
+  @internal
   Map<String, Object?> encode() => {
     'forward_inbound_credentials': ?forwardInboundCredentials?.encode(),
     'triggers': [for (final e in triggers) e.encode()],
@@ -45,6 +46,7 @@ final class IdentityPlatformConfigForwardInboundCredentials {
 
   final TfArg<bool>? refreshToken;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_token': ?accessToken?.toTfJson(),
     'id_token': ?idToken?.toTfJson(),
@@ -65,6 +67,7 @@ final class IdentityPlatformConfigTriggers {
 
   final TfArg<String> functionUri;
 
+  @internal
   Map<String, Object?> encode() => {
     'event_type': eventType.toTfJson(),
     'function_uri': functionUri.toTfJson(),
@@ -79,6 +82,7 @@ final class IdentityPlatformConfigClient {
 
   final IdentityPlatformConfigPermissions? permissions;
 
+  @internal
   Map<String, Object?> encode() => {'permissions': ?permissions?.encode()};
 }
 
@@ -95,6 +99,7 @@ final class IdentityPlatformConfigPermissions {
 
   final TfArg<bool>? disabledUserSignup;
 
+  @internal
   Map<String, Object?> encode() => {
     'disabled_user_deletion': ?disabledUserDeletion?.toTfJson(),
     'disabled_user_signup': ?disabledUserSignup?.toTfJson(),
@@ -117,6 +122,7 @@ final class IdentityPlatformConfigMfa {
 
   final List<IdentityPlatformConfigProviderConfigs>? providerConfigs;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled_providers': ?enabledProviders?.toTfJson(),
     'state': ?state?.toTfJson(),
@@ -162,6 +168,7 @@ final class IdentityPlatformConfigProviderConfigs {
 
   final IdentityPlatformConfigTotpProviderConfig? totpProviderConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'state': ?state?.toTfJson(),
     'totp_provider_config': ?totpProviderConfig?.encode(),
@@ -176,6 +183,7 @@ final class IdentityPlatformConfigTotpProviderConfig {
 
   final TfArg<num>? adjacentIntervals;
 
+  @internal
   Map<String, Object?> encode() => {
     'adjacent_intervals': ?adjacentIntervals?.toTfJson(),
   };
@@ -189,6 +197,7 @@ final class IdentityPlatformConfigMonitoring {
 
   final IdentityPlatformConfigRequestLogging? requestLogging;
 
+  @internal
   Map<String, Object?> encode() => {
     'request_logging': ?requestLogging?.encode(),
   };
@@ -202,6 +211,7 @@ final class IdentityPlatformConfigRequestLogging {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
@@ -218,6 +228,7 @@ final class IdentityPlatformConfigMultiTenant {
 
   final TfArg<String>? defaultTenantLocation;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_tenants': ?allowTenants?.toTfJson(),
     'default_tenant_location': ?defaultTenantLocation?.toTfJson(),
@@ -232,6 +243,7 @@ final class IdentityPlatformConfigQuota {
 
   final IdentityPlatformConfigSignUpQuotaConfig? signUpQuotaConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'sign_up_quota_config': ?signUpQuotaConfig?.encode(),
   };
@@ -253,6 +265,7 @@ final class IdentityPlatformConfigSignUpQuotaConfig {
 
   final TfArg<String>? startTime;
 
+  @internal
   Map<String, Object?> encode() => {
     'quota': ?quota?.toTfJson(),
     'quota_duration': ?quotaDuration?.toTfJson(),
@@ -279,6 +292,7 @@ final class IdentityPlatformConfigSignIn {
 
   final IdentityPlatformConfigPhoneNumber? phoneNumber;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_duplicate_emails': ?allowDuplicateEmails?.toTfJson(),
     'anonymous': ?anonymous?.encode(),
@@ -295,6 +309,7 @@ final class IdentityPlatformConfigAnonymous {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 
@@ -311,6 +326,7 @@ final class IdentityPlatformConfigEmail {
 
   final TfArg<bool>? passwordRequired;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'password_required': ?passwordRequired?.toTfJson(),
@@ -330,6 +346,7 @@ final class IdentityPlatformConfigPhoneNumber {
 
   final TfArg<Map<String, String>>? testPhoneNumbers;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'test_phone_numbers': ?testPhoneNumbers?.toTfJson(),
@@ -354,8 +371,10 @@ sealed class IdentityPlatformConfigSmsRegionConfig {
   ) = IdentityPlatformConfigSmsRegionConfigAllowlistOnly;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -368,9 +387,11 @@ final class IdentityPlatformConfigSmsRegionConfigAllowByDefault
 
   final IdentityPlatformConfigAllowByDefault allowByDefault;
 
+  @internal
   @override
   String get blockKey => 'allow_by_default';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'allow_by_default': allowByDefault.encode(),
@@ -384,9 +405,11 @@ final class IdentityPlatformConfigSmsRegionConfigAllowlistOnly
 
   final IdentityPlatformConfigAllowlistOnly allowlistOnly;
 
+  @internal
   @override
   String get blockKey => 'allowlist_only';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'allowlist_only': allowlistOnly.encode()};
 }
@@ -399,6 +422,7 @@ final class IdentityPlatformConfigAllowByDefault {
 
   final TfArg<List<String>>? disallowedRegions;
 
+  @internal
   Map<String, Object?> encode() => {
     'disallowed_regions': ?disallowedRegions?.toTfJson(),
   };
@@ -412,6 +436,7 @@ final class IdentityPlatformConfigAllowlistOnly {
 
   final TfArg<List<String>>? allowedRegions;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed_regions': ?allowedRegions?.toTfJson(),
   };

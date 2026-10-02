@@ -3,6 +3,16 @@
 /// Pub/Sub topics, subscriptions, schemas, and per-resource IAM bindings.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/google_pubsub_schema_iam_policy.dart'
+    show DataGooglePubsubSchemaIamPolicy;
+export 'src/data/google_pubsub_subscription.dart'
+    show DataGooglePubsubSubscription;
+export 'src/data/google_pubsub_subscription_iam_policy.dart'
+    show DataGooglePubsubSubscriptionIamPolicy;
+export 'src/data/google_pubsub_topic.dart' show DataGooglePubsubTopic;
+export 'src/data/google_pubsub_topic_iam_policy.dart'
+    show DataGooglePubsubTopicIamPolicy;
 export 'src/pubsub/google_pubsub_schema.dart'
     show GooglePubsubSchema, PubsubSchemaType;
 export 'src/pubsub/google_pubsub_schema_iam_binding.dart'

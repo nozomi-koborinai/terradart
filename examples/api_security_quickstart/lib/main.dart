@@ -1,7 +1,6 @@
 /// API security quickstart — Wave 77 API Keys + reCAPTCHA + connectivity test.
 library;
 
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/apikeys.dart';
 import 'package:terradart_google/network.dart';
 import 'package:terradart_google/project.dart';

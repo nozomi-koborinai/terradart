@@ -33,6 +33,7 @@ final class EmrcontainersJobTemplateData {
 
   final EmrcontainersJobTemplateJobDriver jobDriver;
 
+  @internal
   Map<String, Object?> encode() => {
     'execution_role_arn': executionRoleArn.encodeAs('arn').toTfJson(),
     'job_tags': ?jobTags?.toTfJson(),
@@ -57,6 +58,7 @@ final class EmrcontainersJobTemplateConfigurationOverrides {
   final EmrcontainersJobTemplateMonitoringConfiguration?
   monitoringConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     if (applicationConfiguration != null)
       'application_configuration': [
@@ -82,6 +84,7 @@ final class EmrcontainersJobTemplateApplicationConfiguration {
 
   final List<EmrcontainersJobTemplateConfigurations>? configurations;
 
+  @internal
   Map<String, Object?> encode() => {
     'classification': classification.toTfJson(),
     'properties': ?properties?.toTfJson(),
@@ -103,6 +106,7 @@ final class EmrcontainersJobTemplateConfigurations {
 
   final TfArg<Map<String, String>>? properties;
 
+  @internal
   Map<String, Object?> encode() => {
     'classification': ?classification?.toTfJson(),
     'properties': ?properties?.toTfJson(),
@@ -127,6 +131,7 @@ final class EmrcontainersJobTemplateMonitoringConfiguration {
   final EmrcontainersJobTemplateS3MonitoringConfiguration?
   s3MonitoringConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'persistent_app_ui': ?persistentAppUi?.toTfJson(),
     'cloud_watch_monitoring_configuration': ?cloudWatchMonitoringConfiguration
@@ -171,6 +176,7 @@ final class EmrcontainersJobTemplateCloudWatchMonitoringConfiguration {
 
   final TfArg<String>? logStreamNamePrefix;
 
+  @internal
   Map<String, Object?> encode() => {
     'log_group_name': logGroupName.encodeAs('name').toTfJson(),
     'log_stream_name_prefix': ?logStreamNamePrefix?.toTfJson(),
@@ -187,6 +193,7 @@ final class EmrcontainersJobTemplateS3MonitoringConfiguration {
 
   final TfArg<String> logUri;
 
+  @internal
   Map<String, Object?> encode() => {'log_uri': logUri.toTfJson()};
 }
 
@@ -208,8 +215,10 @@ sealed class EmrcontainersJobTemplateJobDriver {
   ) = EmrcontainersJobTemplateSparkSubmitJobDriverChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -220,9 +229,11 @@ final class EmrcontainersJobTemplateSparkSqlJobDriverChoice
 
   final EmrcontainersJobTemplateSparkSqlJobDriver sparkSqlJobDriver;
 
+  @internal
   @override
   String get blockKey => 'spark_sql_job_driver';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'spark_sql_job_driver': sparkSqlJobDriver.encode(),
@@ -238,9 +249,11 @@ final class EmrcontainersJobTemplateSparkSubmitJobDriverChoice
 
   final EmrcontainersJobTemplateSparkSubmitJobDriver sparkSubmitJobDriver;
 
+  @internal
   @override
   String get blockKey => 'spark_submit_job_driver';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'spark_submit_job_driver': sparkSubmitJobDriver.encode(),
@@ -260,6 +273,7 @@ final class EmrcontainersJobTemplateSparkSqlJobDriver {
 
   final TfArg<String>? sparkSqlParameters;
 
+  @internal
   Map<String, Object?> encode() => {
     'entry_point': ?entryPoint?.toTfJson(),
     'spark_sql_parameters': ?sparkSqlParameters?.toTfJson(),
@@ -282,6 +296,7 @@ final class EmrcontainersJobTemplateSparkSubmitJobDriver {
 
   final TfArg<String>? sparkSubmitParameters;
 
+  @internal
   Map<String, Object?> encode() => {
     'entry_point': entryPoint.toTfJson(),
     'entry_point_arguments': ?entryPointArguments?.toTfJson(),

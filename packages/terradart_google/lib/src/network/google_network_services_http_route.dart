@@ -17,6 +17,7 @@ final class NetworkServicesHttpRouteRules {
 
   final List<NetworkServicesHttpRouteMatches>? matches;
 
+  @internal
   Map<String, Object?> encode() => {
     'action': ?action?.encode(),
     if (matches != null) 'matches': [for (final e in matches!) e.encode()],
@@ -60,6 +61,7 @@ final class NetworkServicesHttpRouteAction {
 
   final NetworkServicesHttpRouteUrlRewrite? urlRewrite;
 
+  @internal
   Map<String, Object?> encode() => {
     'timeout': ?timeout?.toTfJson(),
     'cors_policy': ?corsPolicy?.encode(),
@@ -106,6 +108,7 @@ final class NetworkServicesHttpRouteCorsPolicy {
 
   final TfArg<String>? maxAge;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_credentials': ?allowCredentials?.toTfJson(),
     'allow_headers': ?allowHeaders?.toTfJson(),
@@ -128,6 +131,7 @@ final class NetworkServicesHttpRouteDestinations {
 
   final TfArg<num>? weight;
 
+  @internal
   Map<String, Object?> encode() => {
     'service_name': ?serviceName?.toTfJson(),
     'weight': ?weight?.toTfJson(),
@@ -144,6 +148,7 @@ final class NetworkServicesHttpRouteFaultInjectionPolicy {
 
   final NetworkServicesHttpRouteDelay? delay;
 
+  @internal
   Map<String, Object?> encode() => {
     'abort': ?abort?.encode(),
     'delay': ?delay?.encode(),
@@ -160,6 +165,7 @@ final class NetworkServicesHttpRouteAbort {
 
   final TfArg<num>? percentage;
 
+  @internal
   Map<String, Object?> encode() => {
     'http_status': ?httpStatus?.toTfJson(),
     'percentage': ?percentage?.toTfJson(),
@@ -176,6 +182,7 @@ final class NetworkServicesHttpRouteDelay {
 
   final TfArg<num>? percentage;
 
+  @internal
   Map<String, Object?> encode() => {
     'fixed_delay': ?fixedDelay?.toTfJson(),
     'percentage': ?percentage?.toTfJson(),
@@ -210,6 +217,7 @@ final class NetworkServicesHttpRouteRedirect {
 
   final TfArg<bool>? stripQuery;
 
+  @internal
   Map<String, Object?> encode() => {
     'host_redirect': ?hostRedirect?.toTfJson(),
     'https_redirect': ?httpsRedirect?.toTfJson(),
@@ -237,6 +245,7 @@ final class NetworkServicesHttpRouteRequestHeaderModifier {
 
   final TfArg<Map<String, String>>? set;
 
+  @internal
   Map<String, Object?> encode() => {
     'add': ?add?.toTfJson(),
     'remove': ?remove?.toTfJson(),
@@ -252,6 +261,7 @@ final class NetworkServicesHttpRouteRequestMirrorPolicy {
 
   final NetworkServicesHttpRouteDestination? destination;
 
+  @internal
   Map<String, Object?> encode() => {'destination': ?destination?.encode()};
 }
 
@@ -265,6 +275,7 @@ final class NetworkServicesHttpRouteDestination {
 
   final TfArg<num>? weight;
 
+  @internal
   Map<String, Object?> encode() => {
     'service_name': ?serviceName?.toTfJson(),
     'weight': ?weight?.toTfJson(),
@@ -287,6 +298,7 @@ final class NetworkServicesHttpRouteResponseHeaderModifier {
 
   final TfArg<Map<String, String>>? set;
 
+  @internal
   Map<String, Object?> encode() => {
     'add': ?add?.toTfJson(),
     'remove': ?remove?.toTfJson(),
@@ -310,6 +322,7 @@ final class NetworkServicesHttpRouteRetryPolicy {
 
   final TfArg<List<String>>? retryConditions;
 
+  @internal
   Map<String, Object?> encode() => {
     'num_retries': ?numRetries?.toTfJson(),
     'per_try_timeout': ?perTryTimeout?.toTfJson(),
@@ -330,6 +343,7 @@ final class NetworkServicesHttpRouteUrlRewrite {
 
   final TfArg<String>? pathPrefixRewrite;
 
+  @internal
   Map<String, Object?> encode() => {
     'host_rewrite': ?hostRewrite?.toTfJson(),
     'path_prefix_rewrite': ?pathPrefixRewrite?.toTfJson(),
@@ -355,6 +369,7 @@ final class NetworkServicesHttpRouteMatches {
 
   final List<NetworkServicesHttpRouteQueryParameters>? queryParameters;
 
+  @internal
   Map<String, Object?> encode() => {
     ...match.encode(),
     'ignore_case': ?ignoreCase?.toTfJson(),
@@ -387,8 +402,10 @@ sealed class NetworkServicesHttpRouteMatch {
   ) = NetworkServicesHttpRouteRegexMatch;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -399,9 +416,11 @@ final class NetworkServicesHttpRouteFullPathMatch
 
   final TfArg<String> fullPathMatch;
 
+  @internal
   @override
   String get blockKey => 'full_path_match';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'full_path_match': fullPathMatch.toTfJson(),
@@ -415,9 +434,11 @@ final class NetworkServicesHttpRoutePrefixMatch
 
   final TfArg<String> prefixMatch;
 
+  @internal
   @override
   String get blockKey => 'prefix_match';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'prefix_match': prefixMatch.toTfJson()};
 }
@@ -429,9 +450,11 @@ final class NetworkServicesHttpRouteRegexMatch
 
   final TfArg<String> regexMatch;
 
+  @internal
   @override
   String get blockKey => 'regex_match';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'regex_match': regexMatch.toTfJson()};
 }
@@ -452,6 +475,7 @@ final class NetworkServicesHttpRouteHeaders {
 
   final TfArg<bool>? invertMatch;
 
+  @internal
   Map<String, Object?> encode() => {
     ...match.encode(),
     'header': ?header?.toTfJson(),
@@ -497,8 +521,10 @@ sealed class NetworkServicesHttpRouteHeadersMatch {
   ) = NetworkServicesHttpRouteHeadersRangeMatch;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -509,9 +535,11 @@ final class NetworkServicesHttpRouteHeadersExactMatch
 
   final TfArg<String> exactMatch;
 
+  @internal
   @override
   String get blockKey => 'exact_match';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'exact_match': exactMatch.toTfJson()};
 }
@@ -523,9 +551,11 @@ final class NetworkServicesHttpRouteHeadersRegexMatch
 
   final TfArg<String> regexMatch;
 
+  @internal
   @override
   String get blockKey => 'regex_match';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'regex_match': regexMatch.toTfJson()};
 }
@@ -537,9 +567,11 @@ final class NetworkServicesHttpRouteHeadersPrefixMatch
 
   final TfArg<String> prefixMatch;
 
+  @internal
   @override
   String get blockKey => 'prefix_match';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'prefix_match': prefixMatch.toTfJson()};
 }
@@ -551,9 +583,11 @@ final class NetworkServicesHttpRouteHeadersPresentMatch
 
   final TfArg<bool> presentMatch;
 
+  @internal
   @override
   String get blockKey => 'present_match';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'present_match': presentMatch.toTfJson()};
 }
@@ -565,9 +599,11 @@ final class NetworkServicesHttpRouteHeadersSuffixMatch
 
   final TfArg<String> suffixMatch;
 
+  @internal
   @override
   String get blockKey => 'suffix_match';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'suffix_match': suffixMatch.toTfJson()};
 }
@@ -579,9 +615,11 @@ final class NetworkServicesHttpRouteHeadersRangeMatch
 
   final NetworkServicesHttpRouteRangeMatch rangeMatch;
 
+  @internal
   @override
   String get blockKey => 'range_match';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'range_match': rangeMatch.encode()};
 }
@@ -599,6 +637,7 @@ final class NetworkServicesHttpRouteRangeMatch {
 
   final TfArg<num> start;
 
+  @internal
   Map<String, Object?> encode() => {
     'end': end.toTfJson(),
     'start': start.toTfJson(),
@@ -618,6 +657,7 @@ final class NetworkServicesHttpRouteQueryParameters {
 
   final TfArg<String>? queryParameter;
 
+  @internal
   Map<String, Object?> encode() => {
     ...match.encode(),
     'query_parameter': ?queryParameter?.toTfJson(),
@@ -647,8 +687,10 @@ sealed class NetworkServicesHttpRouteQueryParametersMatch {
   ) = NetworkServicesHttpRouteQueryParametersPresentMatch;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -659,9 +701,11 @@ final class NetworkServicesHttpRouteQueryParametersExactMatch
 
   final TfArg<String> exactMatch;
 
+  @internal
   @override
   String get blockKey => 'exact_match';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'exact_match': exactMatch.toTfJson()};
 }
@@ -673,9 +717,11 @@ final class NetworkServicesHttpRouteQueryParametersRegexMatch
 
   final TfArg<String> regexMatch;
 
+  @internal
   @override
   String get blockKey => 'regex_match';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'regex_match': regexMatch.toTfJson()};
 }
@@ -687,9 +733,11 @@ final class NetworkServicesHttpRouteQueryParametersPresentMatch
 
   final TfArg<bool> presentMatch;
 
+  @internal
   @override
   String get blockKey => 'present_match';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'present_match': presentMatch.toTfJson()};
 }

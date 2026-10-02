@@ -15,6 +15,7 @@ final class SsmcontactsContactChannelDeliveryAddress {
 
   final TfArg<String> simpleAddress;
 
+  @internal
   Map<String, Object?> encode() => {'simple_address': simpleAddress.toTfJson()};
 }
 

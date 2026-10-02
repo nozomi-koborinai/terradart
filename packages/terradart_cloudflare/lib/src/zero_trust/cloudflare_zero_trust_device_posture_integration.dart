@@ -92,6 +92,7 @@ final class ZeroTrustDevicePostureIntegrationConfig {
 
   final TfArg<String>? customerId;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_client_id': ?accessClientId?.toTfJson(),
     'access_client_secret': ?accessClientSecret?.toTfJson(),

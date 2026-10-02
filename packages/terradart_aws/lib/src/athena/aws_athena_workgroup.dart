@@ -73,6 +73,7 @@ final class AthenaWorkgroupConfiguration {
 
   final AthenaWorkgroupResultConfiguration? resultConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'bytes_scanned_cutoff_per_query': ?bytesScannedCutoffPerQuery?.toTfJson(),
     'enable_minimum_encryption_configuration':
@@ -104,6 +105,7 @@ final class AthenaWorkgroupCustomerContentEncryptionConfiguration {
 
   final RefTo<AwsKmsKey>? kmsKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key': ?kmsKey?.encodeAs('arn').toTfJson(),
   };
@@ -117,6 +119,7 @@ final class AthenaWorkgroupEngineVersion {
 
   final TfArg<String>? selectedEngineVersion;
 
+  @internal
   Map<String, Object?> encode() => {
     'selected_engine_version': ?selectedEngineVersion?.toTfJson(),
   };
@@ -135,6 +138,7 @@ final class AthenaWorkgroupIdentityCenterConfiguration {
 
   final TfArg<String>? identityCenterInstanceArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_identity_center': ?enableIdentityCenter?.toTfJson(),
     'identity_center_instance_arn': ?identityCenterInstanceArn?.toTfJson(),
@@ -155,6 +159,7 @@ final class AthenaWorkgroupManagedQueryResultsConfiguration {
   final AthenaWorkgroupManagedQueryResultsConfigurationEncryptionConfiguration?
   encryptionConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'encryption_configuration': ?encryptionConfiguration?.encode(),
@@ -171,6 +176,7 @@ final class AthenaWorkgroupManagedQueryResultsConfigurationEncryptionConfigurati
 
   final RefTo<AwsKmsKey>? kmsKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key': ?kmsKey?.encodeAs('arn').toTfJson(),
   };
@@ -193,6 +199,7 @@ final class AthenaWorkgroupMonitoringConfiguration {
 
   final AthenaWorkgroupS3LoggingConfiguration? s3LoggingConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloud_watch_logging_configuration': ?cloudWatchLoggingConfiguration
         ?.encode(),
@@ -220,6 +227,7 @@ final class AthenaWorkgroupCloudWatchLoggingConfiguration {
 
   final List<AthenaWorkgroupLogType>? logType;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'log_group': ?logGroup?.encodeAs('name').toTfJson(),
@@ -238,6 +246,7 @@ final class AthenaWorkgroupLogType {
 
   final TfArg<List<String>> values;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'values': values.toTfJson(),
@@ -257,6 +266,7 @@ final class AthenaWorkgroupManagedLoggingConfiguration {
 
   final RefTo<AwsKmsKey>? kmsKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'kms_key': ?kmsKey?.encodeAs('arn').toTfJson(),
@@ -279,6 +289,7 @@ final class AthenaWorkgroupS3LoggingConfiguration {
 
   final TfArg<String>? logLocation;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'kms_key': ?kmsKey?.encodeAs('arn').toTfJson(),
@@ -302,6 +313,7 @@ final class AthenaWorkgroupQueryResultsS3AccessGrantsConfiguration {
 
   final TfArg<bool> enableS3AccessGrants;
 
+  @internal
   Map<String, Object?> encode() => {
     'authentication_type': authenticationType.toTfJson(),
     'create_user_level_prefix': ?createUserLevelPrefix?.toTfJson(),
@@ -347,6 +359,7 @@ final class AthenaWorkgroupResultConfiguration {
   final AthenaWorkgroupResultConfigurationEncryptionConfiguration?
   encryptionConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'expected_bucket_owner': ?expectedBucketOwner?.toTfJson(),
     'output_location': ?outputLocation?.toTfJson(),
@@ -363,6 +376,7 @@ final class AthenaWorkgroupAclConfiguration {
 
   final AthenaWorkgroupS3AclOption s3AclOption;
 
+  @internal
   Map<String, Object?> encode() => {'s3_acl_option': s3AclOption.toTfJson()};
 }
 
@@ -397,6 +411,7 @@ final class AthenaWorkgroupResultConfigurationEncryptionConfiguration {
 
   final RefTo<AwsKmsKey>? kmsKeyArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'encryption_option': ?encryptionOption?.toTfJson(),
     'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),

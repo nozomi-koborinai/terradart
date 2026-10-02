@@ -20,6 +20,7 @@ final class ZeroTrustAccessInfrastructureTargetIp {
 
   final ZeroTrustAccessInfrastructureTargetIpv6? ipv6;
 
+  @internal
   Map<String, Object?> encode() => {
     'ipv4': ?ipv4?.encode(),
     'ipv6': ?ipv6?.encode(),
@@ -39,6 +40,7 @@ final class ZeroTrustAccessInfrastructureTargetIpv4 {
 
   final TfArg<String>? virtualNetworkId;
 
+  @internal
   Map<String, Object?> encode() => {
     'ip_addr': ?ipAddr?.toTfJson(),
     'virtual_network_id': ?virtualNetworkId?.toTfJson(),
@@ -58,6 +60,7 @@ final class ZeroTrustAccessInfrastructureTargetIpv6 {
 
   final TfArg<String>? virtualNetworkId;
 
+  @internal
   Map<String, Object?> encode() => {
     'ip_addr': ?ipAddr?.toTfJson(),
     'virtual_network_id': ?virtualNetworkId?.toTfJson(),

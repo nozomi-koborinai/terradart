@@ -46,6 +46,7 @@ final class ComputeInstanceFromTemplateAdvancedMachineFeatures {
 
   final TfArg<num>? visibleCoreCount;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_nested_virtualization': ?enableNestedVirtualization?.toTfJson(),
     'enable_uefi_networking': ?enableUefiNetworking?.toTfJson(),
@@ -87,6 +88,7 @@ final class ComputeInstanceFromTemplateAttachedDisk {
 
   final TfArg<String> source;
 
+  @internal
   Map<String, Object?> encode() => {
     'device_name': ?deviceName?.toTfJson(),
     'disk_encryption_key_raw': ?diskEncryptionKeyRaw?.toTfJson(),
@@ -143,6 +145,7 @@ final class ComputeInstanceFromTemplateBootDisk {
 
   final ComputeInstanceFromTemplateInitializeParams? initializeParams;
 
+  @internal
   Map<String, Object?> encode() => {
     'auto_delete': ?autoDelete?.toTfJson(),
     'device_name': ?deviceName?.toTfJson(),
@@ -214,6 +217,7 @@ final class ComputeInstanceFromTemplateInitializeParams {
   final ComputeInstanceFromTemplateSourceSnapshotEncryptionKey?
   sourceSnapshotEncryptionKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'architecture': ?architecture?.toTfJson(),
     'enable_confidential_compute': ?enableConfidentialCompute?.toTfJson(),
@@ -252,6 +256,7 @@ final class ComputeInstanceFromTemplateSourceImageEncryptionKey {
 
   final Sensitive<String>? rsaEncryptedKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_self_link': ?kmsKeySelfLink?.encodeAs('id').toTfJson(),
     'kms_key_service_account': ?kmsKeyServiceAccount?.toTfJson(),
@@ -279,6 +284,7 @@ final class ComputeInstanceFromTemplateSourceSnapshotEncryptionKey {
 
   final Sensitive<String>? rsaEncryptedKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_self_link': ?kmsKeySelfLink?.encodeAs('id').toTfJson(),
     'kms_key_service_account': ?kmsKeyServiceAccount?.toTfJson(),
@@ -300,6 +306,7 @@ final class ComputeInstanceFromTemplateConfidentialInstanceConfig {
 
   final TfArg<bool>? enableConfidentialCompute;
 
+  @internal
   Map<String, Object?> encode() => {
     'confidential_instance_type': ?confidentialInstanceType?.toTfJson(),
     'enable_confidential_compute': ?enableConfidentialCompute?.toTfJson(),
@@ -319,6 +326,7 @@ final class ComputeInstanceFromTemplateGuestAccelerator {
 
   final TfArg<String> type;
 
+  @internal
   Map<String, Object?> encode() => {
     'count': count.toTfJson(),
     'type': type.toTfJson(),
@@ -338,6 +346,7 @@ final class ComputeInstanceFromTemplateInstanceEncryptionKey {
 
   final TfArg<String>? kmsKeyServiceAccount;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_self_link': ?kmsKeySelfLink?.encodeAs('id').toTfJson(),
     'kms_key_service_account': ?kmsKeyServiceAccount?.toTfJson(),
@@ -396,6 +405,7 @@ final class ComputeInstanceFromTemplateNetworkInterface {
 
   final List<ComputeInstanceFromTemplateIpv6AccessConfig>? ipv6AccessConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'igmp_query': ?igmpQuery?.toTfJson(),
     'internal_ipv6_prefix_length': ?internalIpv6PrefixLength?.toTfJson(),
@@ -468,6 +478,7 @@ final class ComputeInstanceFromTemplateAccessConfig {
 
   final TfArg<String>? publicPtrDomainName;
 
+  @internal
   Map<String, Object?> encode() => {
     'nat_ip': ?natIp?.toTfJson(),
     'network_tier': ?networkTier?.toTfJson(),
@@ -488,6 +499,7 @@ final class ComputeInstanceFromTemplateAliasIpRange {
 
   final TfArg<String>? subnetworkRangeName;
 
+  @internal
   Map<String, Object?> encode() => {
     'ip_cidr_range': ipCidrRange.toTfJson(),
     'subnetwork_range_name': ?subnetworkRangeName?.toTfJson(),
@@ -516,6 +528,7 @@ final class ComputeInstanceFromTemplateIpv6AccessConfig {
 
   final TfArg<String>? publicPtrDomainName;
 
+  @internal
   Map<String, Object?> encode() => {
     'external_ipv6': ?externalIpv6?.toTfJson(),
     'external_ipv6_prefix_length': ?externalIpv6PrefixLength?.toTfJson(),
@@ -536,6 +549,7 @@ final class ComputeInstanceFromTemplateNetworkPerformanceConfig {
   final ComputeInstanceFromTemplateTotalEgressBandwidthTier
   totalEgressBandwidthTier;
 
+  @internal
   Map<String, Object?> encode() => {
     'total_egress_bandwidth_tier': totalEgressBandwidthTier.toTfJson(),
   };
@@ -574,6 +588,7 @@ final class ComputeInstanceFromTemplateParams {
 
   final TfArg<Map<String, String>>? resourceManagerTags;
 
+  @internal
   Map<String, Object?> encode() => {
     'resource_manager_tags': ?resourceManagerTags?.toTfJson(),
   };
@@ -592,6 +607,7 @@ final class ComputeInstanceFromTemplateReservationAffinity {
 
   final ComputeInstanceFromTemplateSpecificReservation? specificReservation;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
     'specific_reservation': ?specificReservation?.encode(),
@@ -611,6 +627,7 @@ final class ComputeInstanceFromTemplateSpecificReservation {
 
   final TfArg<List<String>> values;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'values': values.toTfJson(),
@@ -664,6 +681,7 @@ final class ComputeInstanceFromTemplateScheduling {
 
   final ComputeInstanceFromTemplateOnInstanceStopAction? onInstanceStopAction;
 
+  @internal
   Map<String, Object?> encode() => {
     'automatic_restart': ?automaticRestart?.toTfJson(),
     'availability_domain': ?availabilityDomain?.toTfJson(),
@@ -695,6 +713,7 @@ final class ComputeInstanceFromTemplateLocalSsdRecoveryTimeout {
 
   final TfArg<num> seconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'nanos': ?nanos?.toTfJson(),
     'seconds': seconds.toTfJson(),
@@ -714,6 +733,7 @@ final class ComputeInstanceFromTemplateMaxRunDuration {
 
   final TfArg<num> seconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'nanos': ?nanos?.toTfJson(),
     'seconds': seconds.toTfJson(),
@@ -736,6 +756,7 @@ final class ComputeInstanceFromTemplateNodeAffinities {
 
   final TfArg<List<String>> values;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'operator': operator.toTfJson(),
@@ -751,6 +772,7 @@ final class ComputeInstanceFromTemplateOnInstanceStopAction {
 
   final TfArg<bool>? discardLocalSsd;
 
+  @internal
   Map<String, Object?> encode() => {
     'discard_local_ssd': ?discardLocalSsd?.toTfJson(),
   };
@@ -772,6 +794,7 @@ final class ComputeInstanceFromTemplateScratchDisk {
 
   final TfArg<num>? size;
 
+  @internal
   Map<String, Object?> encode() => {
     'device_name': ?deviceName?.toTfJson(),
     'interface': interface.toTfJson(),
@@ -792,6 +815,7 @@ final class ComputeInstanceFromTemplateServiceAccount {
 
   final TfArg<List<String>> scopes;
 
+  @internal
   Map<String, Object?> encode() => {
     'email': ?email?.encodeAs('email').toTfJson(),
     'scopes': scopes.toTfJson(),
@@ -814,6 +838,7 @@ final class ComputeInstanceFromTemplateShieldedInstanceConfig {
 
   final TfArg<bool>? enableVtpm;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_integrity_monitoring': ?enableIntegrityMonitoring?.toTfJson(),
     'enable_secure_boot': ?enableSecureBoot?.toTfJson(),
@@ -834,6 +859,7 @@ final class ComputeInstanceFromTemplateWorkloadIdentityConfig {
 
   final TfArg<bool>? identityCertificateEnabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'identity': ?identity?.toTfJson(),
     'identity_certificate_enabled': ?identityCertificateEnabled?.toTfJson(),

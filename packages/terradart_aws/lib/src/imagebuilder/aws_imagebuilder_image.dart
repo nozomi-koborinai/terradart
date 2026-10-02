@@ -27,12 +27,15 @@ sealed class ImagebuilderImageRecipeArn {
   ) = ImagebuilderImageRecipeArnChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -43,14 +46,17 @@ final class ImagebuilderImageContainerRecipeArn
 
   final TfArg<String> containerRecipeArn;
 
+  @internal
   @override
   String get blockKey => 'container_recipe_arn';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'container_recipe_arn': containerRecipeArn.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'container_recipe_arn': containerRecipeArn,
@@ -64,14 +70,17 @@ final class ImagebuilderImageRecipeArnChoice
 
   final TfArg<String> imageRecipeArn;
 
+  @internal
   @override
   String get blockKey => 'image_recipe_arn';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'image_recipe_arn': imageRecipeArn.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'image_recipe_arn': imageRecipeArn,
@@ -91,6 +100,7 @@ final class ImagebuilderImageScanningConfiguration {
 
   final ImagebuilderImageEcrConfiguration? ecrConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'image_scanning_enabled': ?imageScanningEnabled?.toTfJson(),
     'ecr_configuration': ?ecrConfiguration?.encode(),
@@ -110,6 +120,7 @@ final class ImagebuilderImageEcrConfiguration {
 
   final TfArg<String>? repositoryName;
 
+  @internal
   Map<String, Object?> encode() => {
     'container_tags': ?containerTags?.toTfJson(),
     'repository_name': ?repositoryName?.toTfJson(),
@@ -129,6 +140,7 @@ final class ImagebuilderImageTestsConfiguration {
 
   final TfArg<num>? timeoutMinutes;
 
+  @internal
   Map<String, Object?> encode() => {
     'image_tests_enabled': ?imageTestsEnabled?.toTfJson(),
     'timeout_minutes': ?timeoutMinutes?.toTfJson(),
@@ -143,6 +155,7 @@ final class ImagebuilderImageLoggingConfiguration {
 
   final RefTo<AwsCloudwatchLogGroup> logGroupName;
 
+  @internal
   Map<String, Object?> encode() => {
     'log_group_name': logGroupName.encodeAs('name').toTfJson(),
   };
@@ -167,6 +180,7 @@ final class ImagebuilderImageWorkflow {
 
   final List<ImagebuilderImageParameter>? parameter;
 
+  @internal
   Map<String, Object?> encode() => {
     'on_failure': ?onFailure?.toTfJson(),
     'parallel_group': ?parallelGroup?.toTfJson(),
@@ -203,6 +217,7 @@ final class ImagebuilderImageParameter {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'value': value.toTfJson(),

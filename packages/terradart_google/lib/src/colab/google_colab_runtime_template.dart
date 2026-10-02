@@ -24,6 +24,7 @@ final class ColabRuntimeTemplateDataPersistentDiskSpec {
 
   final TfArg<String>? diskType;
 
+  @internal
   Map<String, Object?> encode() => {
     'disk_size_gb': ?diskSizeGb?.toTfJson(),
     'disk_type': ?diskType?.toTfJson(),
@@ -38,6 +39,7 @@ final class ColabRuntimeTemplateEncryptionSpec {
 
   final RefTo<GoogleKmsCryptoKey>? kmsKeyName;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_name': ?kmsKeyName?.encodeAs('id').toTfJson(),
   };
@@ -51,6 +53,7 @@ final class ColabRuntimeTemplateEucConfig {
 
   final TfArg<bool>? eucDisabled;
 
+  @internal
   Map<String, Object?> encode() => {'euc_disabled': ?eucDisabled?.toTfJson()};
 }
 
@@ -62,6 +65,7 @@ final class ColabRuntimeTemplateIdleShutdownConfig {
 
   final TfArg<String>? idleTimeout;
 
+  @internal
   Map<String, Object?> encode() => {'idle_timeout': ?idleTimeout?.toTfJson()};
 }
 
@@ -81,6 +85,7 @@ final class ColabRuntimeTemplateMachineSpec {
 
   final TfArg<String>? machineType;
 
+  @internal
   Map<String, Object?> encode() => {
     'accelerator_count': ?acceleratorCount?.toTfJson(),
     'accelerator_type': ?acceleratorType?.toTfJson(),
@@ -104,6 +109,7 @@ final class ColabRuntimeTemplateNetworkSpec {
 
   final RefTo<GoogleComputeSubnetwork>? subnetwork;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_internet_access': ?enableInternetAccess?.toTfJson(),
     'network': ?network?.encodeAs('id').toTfJson(),
@@ -119,6 +125,7 @@ final class ColabRuntimeTemplateShieldedVmConfig {
 
   final TfArg<bool>? enableSecureBoot;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_secure_boot': ?enableSecureBoot?.toTfJson(),
   };
@@ -140,6 +147,7 @@ final class ColabRuntimeTemplateSoftwareConfig {
 
   final ColabRuntimeTemplatePostStartupScriptConfig? postStartupScriptConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'colab_image': ?colabImage?.encode(),
     if (env != null) 'env': [for (final e in env!) e.encode()],
@@ -155,6 +163,7 @@ final class ColabRuntimeTemplateColabImage {
 
   final TfArg<String>? releaseName;
 
+  @internal
   Map<String, Object?> encode() => {'release_name': ?releaseName?.toTfJson()};
 }
 
@@ -168,6 +177,7 @@ final class ColabRuntimeTemplateEnv {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'value': ?value?.toTfJson(),
@@ -191,6 +201,7 @@ final class ColabRuntimeTemplatePostStartupScriptConfig {
 
   final TfArg<String>? postStartupScriptUrl;
 
+  @internal
   Map<String, Object?> encode() => {
     'post_startup_script': ?postStartupScript?.toTfJson(),
     'post_startup_script_behavior': ?postStartupScriptBehavior?.toTfJson(),

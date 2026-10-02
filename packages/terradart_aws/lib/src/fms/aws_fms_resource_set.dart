@@ -29,6 +29,7 @@ final class FmsResourceSet {
 
   final TfArg<String>? updateToken;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'name': name.toTfJson(),

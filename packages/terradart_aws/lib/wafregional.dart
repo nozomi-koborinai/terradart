@@ -3,6 +3,14 @@
 /// AWS WAF Classic Regional.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_wafregional_ipset.dart' show DataAwsWafregionalIpset;
+export 'src/data/aws_wafregional_rate_based_rule.dart'
+    show DataAwsWafregionalRateBasedRule;
+export 'src/data/aws_wafregional_rule.dart' show DataAwsWafregionalRule;
+export 'src/data/aws_wafregional_subscribed_rule_group.dart'
+    show DataAwsWafregionalSubscribedRuleGroup;
+export 'src/data/aws_wafregional_web_acl.dart' show DataAwsWafregionalWebAcl;
 export 'src/wafregional/aws_wafregional_byte_match_set.dart'
     show
         AwsWafregionalByteMatchSet,

@@ -4,6 +4,19 @@
 /// dashboards, custom metric descriptors, and SLO service objects.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/google_monitoring_app_engine_service.dart'
+    show DataGoogleMonitoringAppEngineService;
+export 'src/data/google_monitoring_cluster_istio_service.dart'
+    show DataGoogleMonitoringClusterIstioService;
+export 'src/data/google_monitoring_istio_canonical_service.dart'
+    show DataGoogleMonitoringIstioCanonicalService;
+export 'src/data/google_monitoring_mesh_istio_service.dart'
+    show DataGoogleMonitoringMeshIstioService;
+export 'src/data/google_monitoring_notification_channel.dart'
+    show DataGoogleMonitoringNotificationChannel;
+export 'src/data/google_monitoring_uptime_check_ips.dart'
+    show DataGoogleMonitoringUptimeCheckIps;
 export 'src/monitoring/google_monitoring_alert_policy.dart'
     show
         AlertCombiner,

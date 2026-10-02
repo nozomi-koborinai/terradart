@@ -4,7 +4,7 @@
 /// - a Pub/Sub topic (`orders-prod`),
 /// - a push subscription pointed at an HTTPS endpoint,
 /// - a `roles/pubsub.publisher` grant for the Pub/Sub service agent (project
-///   number from the `GoogleProject` data source),
+///   number from the `DataGoogleProject` data source),
 /// - authoritative topic IAM binding + policy for a demo publisher SA,
 ///
 /// and hands the topic name to application code as a typed Dart constant
@@ -13,7 +13,6 @@ library;
 
 import 'dart:convert';
 
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/data.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/provider.dart';
@@ -42,7 +41,7 @@ final class OrdersStack extends Stack {
         providers: [GoogleProvider(project: projectId, region: 'us-central1')],
         appExports: AppExports('lib/generated/orders_stack.app.dart'),
       ) {
-    final current = add(GoogleProject('current'));
+    final current = add(DataGoogleProject('current'));
 
     final ordersSchema = add(
       GooglePubsubSchema(

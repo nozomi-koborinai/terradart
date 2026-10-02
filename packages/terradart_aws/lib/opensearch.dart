@@ -3,6 +3,8 @@
 /// AWS OpenSearch Service.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_opensearch_domain.dart' show DataAwsOpensearchDomain;
 export 'src/opensearch/aws_opensearch_application.dart'
     show
         AwsOpensearchApplication,

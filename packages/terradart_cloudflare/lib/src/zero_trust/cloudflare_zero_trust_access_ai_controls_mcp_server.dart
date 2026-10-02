@@ -57,6 +57,7 @@ final class ZeroTrustAccessAiControlsMcpServerUpdatedPrompts {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {
     'alias': ?alias?.toTfJson(),
     'description': ?description?.toTfJson(),
@@ -84,6 +85,7 @@ final class ZeroTrustAccessAiControlsMcpServerUpdatedTools {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {
     'alias': ?alias?.toTfJson(),
     'description': ?description?.toTfJson(),

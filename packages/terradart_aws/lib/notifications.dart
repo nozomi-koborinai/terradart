@@ -3,6 +3,7 @@
 /// AWS User Notifications.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/notifications/aws_notifications_channel_association.dart'
     show AwsNotificationsChannelAssociation;
 export 'src/notifications/aws_notifications_event_rule.dart'

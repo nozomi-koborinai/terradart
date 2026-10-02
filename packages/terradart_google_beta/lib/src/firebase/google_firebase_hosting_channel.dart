@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_firebase_hosting_channel`.
@@ -24,12 +25,15 @@ sealed class FirebaseHostingChannelExpiration {
       FirebaseHostingChannelExpirationTtl;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -40,12 +44,15 @@ final class FirebaseHostingChannelExpirationExpireTime
 
   final TfArg<String> expireTime;
 
+  @internal
   @override
   String get blockKey => 'expire_time';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'expire_time': expireTime.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'expire_time': expireTime};
 }
@@ -57,12 +64,15 @@ final class FirebaseHostingChannelExpirationTtl
 
   final TfArg<String> ttl;
 
+  @internal
   @override
   String get blockKey => 'ttl';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'ttl': ttl.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'ttl': ttl};
 }

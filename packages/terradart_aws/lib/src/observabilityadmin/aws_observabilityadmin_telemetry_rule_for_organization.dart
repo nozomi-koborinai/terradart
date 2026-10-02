@@ -50,6 +50,7 @@ final class ObservabilityadminTelemetryRuleForOrganizationRule {
   >?
   destinationConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'all_regions': ?allRegions?.toTfJson(),
     'allow_field_updates': ?allowFieldUpdates?.toTfJson(),
@@ -335,6 +336,7 @@ final class ObservabilityadminTelemetryRuleForOrganizationDestinationConfigurati
   >?
   wafLoggingParameters;
 
+  @internal
   Map<String, Object?> encode() => {
     'destination_pattern': ?destinationPattern?.toTfJson(),
     'destination_type': ?destinationType?.toTfJson(),
@@ -404,6 +406,7 @@ final class ObservabilityadminTelemetryRuleForOrganizationCloudtrailParameters {
   >?
   advancedEventSelectors;
 
+  @internal
   Map<String, Object?> encode() => {
     if (advancedEventSelectors != null)
       'advanced_event_selectors': [
@@ -426,6 +429,7 @@ final class ObservabilityadminTelemetryRuleForOrganizationAdvancedEventSelectors
   final List<ObservabilityadminTelemetryRuleForOrganizationFieldSelectors>?
   fieldSelectors;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     if (fieldSelectors != null)
@@ -461,6 +465,7 @@ final class ObservabilityadminTelemetryRuleForOrganizationFieldSelectors {
 
   final TfArg<List<String>>? startsWith;
 
+  @internal
   Map<String, Object?> encode() => {
     'ends_with': ?endsWith?.toTfJson(),
     'equals': ?equals?.toTfJson(),
@@ -486,6 +491,7 @@ final class ObservabilityadminTelemetryRuleForOrganizationElbLoadBalancerLogging
   final ObservabilityadminTelemetryRuleForOrganizationOutputFormat?
   outputFormat;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_delimiter': ?fieldDelimiter?.toTfJson(),
     'output_format': ?outputFormat?.toTfJson(),
@@ -529,6 +535,7 @@ final class ObservabilityadminTelemetryRuleForOrganizationLogDeliveryParameters 
 
   final List<ObservabilityadminTelemetryRuleForOrganizationLogTypes>? logTypes;
 
+  @internal
   Map<String, Object?> encode() => {
     if (logTypes != null)
       'log_types': [for (final e in logTypes!) e.toTfJson()],
@@ -610,6 +617,7 @@ final class ObservabilityadminTelemetryRuleForOrganizationMskMonitoringParameter
   final ObservabilityadminTelemetryRuleForOrganizationEnhancedMonitoring?
   enhancedMonitoring;
 
+  @internal
   Map<String, Object?> encode() => {
     'enhanced_monitoring': ?enhancedMonitoring?.toTfJson(),
   };
@@ -668,6 +676,7 @@ final class ObservabilityadminTelemetryRuleForOrganizationVpcFlowLogParameters {
 
   final TfArg<String>? trafficType;
 
+  @internal
   Map<String, Object?> encode() => {
     'log_format': ?logFormat?.toTfJson(),
     'max_aggregation_interval': ?maxAggregationInterval?.toTfJson(),
@@ -693,6 +702,7 @@ final class ObservabilityadminTelemetryRuleForOrganizationWafLoggingParameters {
   final List<ObservabilityadminTelemetryRuleForOrganizationRedactedFields>?
   redactedFields;
 
+  @internal
   Map<String, Object?> encode() => {
     'log_type': ?logType?.toTfJson(),
     if (loggingFilter != null)
@@ -738,6 +748,7 @@ final class ObservabilityadminTelemetryRuleForOrganizationLoggingFilter {
 
   final List<ObservabilityadminTelemetryRuleForOrganizationFilters>? filters;
 
+  @internal
   Map<String, Object?> encode() => {
     'default_behavior': ?defaultBehavior?.toTfJson(),
     if (filters != null) 'filters': [for (final e in filters!) e.encode()],
@@ -790,6 +801,7 @@ final class ObservabilityadminTelemetryRuleForOrganizationFilters {
   final List<ObservabilityadminTelemetryRuleForOrganizationConditions>?
   conditions;
 
+  @internal
   Map<String, Object?> encode() => {
     'behavior': ?behavior?.toTfJson(),
     'requirement': ?requirement?.toTfJson(),
@@ -864,6 +876,7 @@ final class ObservabilityadminTelemetryRuleForOrganizationConditions {
   final List<ObservabilityadminTelemetryRuleForOrganizationLabelNameCondition>?
   labelNameCondition;
 
+  @internal
   Map<String, Object?> encode() => {
     if (actionCondition != null)
       'action_condition': [for (final e in actionCondition!) e.encode()],
@@ -882,6 +895,7 @@ final class ObservabilityadminTelemetryRuleForOrganizationActionCondition {
 
   final ObservabilityadminTelemetryRuleForOrganizationAction action;
 
+  @internal
   Map<String, Object?> encode() => {'action': action.toTfJson()};
 }
 
@@ -933,6 +947,7 @@ final class ObservabilityadminTelemetryRuleForOrganizationLabelNameCondition {
 
   final TfArg<String>? labelName;
 
+  @internal
   Map<String, Object?> encode() => {'label_name': ?labelName?.toTfJson()};
 }
 
@@ -956,6 +971,7 @@ final class ObservabilityadminTelemetryRuleForOrganizationRedactedFields {
   final List<ObservabilityadminTelemetryRuleForOrganizationSingleHeader>?
   singleHeader;
 
+  @internal
   Map<String, Object?> encode() => {
     'method': ?method?.toTfJson(),
     'query_string': ?queryString?.toTfJson(),
@@ -975,6 +991,7 @@ final class ObservabilityadminTelemetryRuleForOrganizationSingleHeader {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 

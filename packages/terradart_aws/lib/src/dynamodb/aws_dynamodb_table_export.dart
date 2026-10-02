@@ -80,6 +80,7 @@ final class DynamodbTableExportIncrementalExportSpecification {
 
   final DynamodbTableExportViewType? exportViewType;
 
+  @internal
   Map<String, Object?> encode() => {
     'export_from_time': ?exportFromTime?.toTfJson(),
     'export_to_time': ?exportToTime?.toTfJson(),

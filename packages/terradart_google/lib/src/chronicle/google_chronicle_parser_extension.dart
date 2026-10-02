@@ -31,12 +31,15 @@ sealed class ChronicleParserExtensionDefinition {
   ) = ChronicleParserExtensionDefinitionDynamicParsing;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -47,12 +50,15 @@ final class ChronicleParserExtensionDefinitionCbnSnippet
 
   final TfArg<String> cbnSnippet;
 
+  @internal
   @override
   String get blockKey => 'cbn_snippet';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'cbn_snippet': cbnSnippet.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'cbn_snippet': cbnSnippet};
 }
@@ -64,14 +70,17 @@ final class ChronicleParserExtensionDefinitionFieldExtractors
 
   final ChronicleParserExtensionFieldExtractors fieldExtractors;
 
+  @internal
   @override
   String get blockKey => 'field_extractors';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'field_extractors': fieldExtractors.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'field_extractors': TfArg.literal(fieldExtractors.encode()),
@@ -85,12 +94,15 @@ final class ChronicleParserExtensionDefinitionDynamicParsing
 
   final ChronicleParserExtensionDynamicParsing dynamicParsing;
 
+  @internal
   @override
   String get blockKey => 'dynamic_parsing';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'dynamic_parsing': dynamicParsing.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'dynamic_parsing': TfArg.literal(dynamicParsing.encode()),
@@ -105,6 +117,7 @@ final class ChronicleParserExtensionDynamicParsing {
 
   final List<ChronicleParserExtensionOptedFields>? optedFields;
 
+  @internal
   Map<String, Object?> encode() => {
     if (optedFields != null)
       'opted_fields': [for (final e in optedFields!) e.encode()],
@@ -121,6 +134,7 @@ final class ChronicleParserExtensionOptedFields {
 
   final TfArg<String>? sampleValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'path': ?path?.toTfJson(),
     'sample_value': ?sampleValue?.toTfJson(),
@@ -146,6 +160,7 @@ final class ChronicleParserExtensionFieldExtractors {
 
   final ChronicleParserExtensionPreprocessConfig? preprocessConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'append_repeated_fields': ?appendRepeatedFields?.toTfJson(),
     'log_format': ?logFormat?.toTfJson(),
@@ -180,6 +195,7 @@ final class ChronicleParserExtensionExtractors {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'destination_path': ?destinationPath?.toTfJson(),
     'field_path': ?fieldPath?.toTfJson(),
@@ -200,6 +216,7 @@ final class ChronicleParserExtensionPreprocessConfig {
 
   final TfArg<String>? target;
 
+  @internal
   Map<String, Object?> encode() => {
     'grok_regex': ?grokRegex?.toTfJson(),
     'target': ?target?.toTfJson(),

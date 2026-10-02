@@ -23,6 +23,7 @@ final class EmrcontainersVirtualClusterContainerProvider {
 
   final EmrcontainersVirtualClusterInfo info;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
     'type': type.toTfJson(),
@@ -52,6 +53,7 @@ final class EmrcontainersVirtualClusterInfo {
 
   final EmrcontainersVirtualClusterEksInfo eksInfo;
 
+  @internal
   Map<String, Object?> encode() => {'eks_info': eksInfo.encode()};
 }
 
@@ -63,6 +65,7 @@ final class EmrcontainersVirtualClusterEksInfo {
 
   final TfArg<String>? namespace;
 
+  @internal
   Map<String, Object?> encode() => {'namespace': ?namespace?.toTfJson()};
 }
 

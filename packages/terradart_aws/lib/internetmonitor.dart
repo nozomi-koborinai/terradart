@@ -3,6 +3,7 @@
 /// AWS CloudWatch Internet Monitor.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/internetmonitor/aws_internetmonitor_monitor.dart'
     show
         AwsInternetmonitorMonitor,

@@ -3,6 +3,7 @@
 /// AWS Chime SDK media pipelines.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/chimesdkmediapipelines/aws_chimesdkmediapipelines_media_insights_pipeline_configuration.dart'
     show
         AwsChimesdkmediapipelinesMediaInsightsPipelineConfiguration,

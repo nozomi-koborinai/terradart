@@ -25,6 +25,7 @@ final class SfnActivityEncryptionConfiguration {
 
   final SfnActivityType? type;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_data_key_reuse_period_seconds': ?kmsDataKeyReusePeriodSeconds
         ?.toTfJson(),

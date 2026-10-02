@@ -55,6 +55,7 @@ sealed class DataCatalogTagTemplateFieldType {
   const factory DataCatalogTagTemplateFieldType.enumType({
     required List<DataCatalogTagTemplateEnumAllowedValue> allowedValues,
   }) = DataCatalogTagTemplateEnumFieldType;
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -66,6 +67,7 @@ final class DataCatalogTagTemplatePrimitiveFieldType
   final DataCatalogTagTemplatePrimitiveType primitiveType;
 
   @override
+  @internal
   Map<String, Object?> encode() => {'primitive_type': primitiveType.toTfJson()};
 }
 
@@ -75,6 +77,7 @@ final class DataCatalogTagTemplateEnumAllowedValue {
   const DataCatalogTagTemplateEnumAllowedValue({required this.displayName});
   final TfArg<String> displayName;
 
+  @internal
   Map<String, Object?> encode() => {'display_name': displayName.toTfJson()};
 }
 
@@ -86,6 +89,7 @@ final class DataCatalogTagTemplateEnumFieldType
   final List<DataCatalogTagTemplateEnumAllowedValue> allowedValues;
 
   @override
+  @internal
   Map<String, Object?> encode() => {
     'enum_type': [
       {
@@ -114,6 +118,7 @@ final class DataCatalogTagTemplateField {
   final TfArg<bool>? isRequired;
   final TfArg<num>? order;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_id': fieldId.toTfJson(),
     'type': [type.encode()],

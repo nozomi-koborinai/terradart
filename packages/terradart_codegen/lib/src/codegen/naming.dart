@@ -21,18 +21,11 @@ String snakeToPascal(String s) {
 
 /// Dart class name for a curated data-source factory.
 ///
-/// New data sources use a `Data` prefix (`google_compute_network` →
-/// `DataGoogleComputeNetwork`) so they never collide with the resource
-/// factory of the same Terraform type when both barrels are imported.
-///
-/// `google_project` is the pre-existing public API (`GoogleProject`) and
-/// stays unprefixed — the resource twin is not curated.
-String dataSourceClassName(String terraformType) {
-  if (terraformType == 'google_project') {
-    return snakeToPascal(terraformType);
-  }
-  return 'Data${snakeToPascal(terraformType)}';
-}
+/// A `Data` prefix (`google_compute_network` → `DataGoogleComputeNetwork`)
+/// keeps it apart from the resource factory of the same Terraform type,
+/// which the same service barrel exports.
+String dataSourceClassName(String terraformType) =>
+    'Data${snakeToPascal(terraformType)}';
 
 /// `$GooglePubsubTopic` for `google_pubsub_topic`.
 String terraformAbstractClassName(String terraformType) =>

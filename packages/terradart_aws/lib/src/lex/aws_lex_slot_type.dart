@@ -39,6 +39,7 @@ final class LexSlotTypeEnumerationValue {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'synonyms': ?synonyms?.toTfJson(),
     'value': value.toTfJson(),

@@ -19,6 +19,7 @@ final class OpensearchApplicationAppConfig {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
     'value': ?value?.toTfJson(),
@@ -61,6 +62,7 @@ final class OpensearchApplicationDataSource {
 
   final TfArg<String>? dataSourceDescription;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_source_arn': ?dataSourceArn?.toTfJson(),
     'data_source_description': ?dataSourceDescription?.toTfJson(),
@@ -83,6 +85,7 @@ final class OpensearchApplicationIamIdentityCenterOptions {
 
   final TfArg<String>? iamRoleForIdentityCenterApplicationArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'iam_identity_center_instance_arn': ?iamIdentityCenterInstanceArn

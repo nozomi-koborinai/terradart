@@ -20,6 +20,7 @@ final class ZeroTrustOrganizationCustomPages {
 
   final TfArg<String>? identityDenied;
 
+  @internal
   Map<String, Object?> encode() => {
     'forbidden': ?forbidden?.toTfJson(),
     'identity_denied': ?identityDenied?.toTfJson(),
@@ -48,6 +49,7 @@ final class ZeroTrustOrganizationLoginDesign {
 
   final TfArg<String>? textColor;
 
+  @internal
   Map<String, Object?> encode() => {
     'background_color': ?backgroundColor?.toTfJson(),
     'footer_text': ?footerText?.toTfJson(),
@@ -76,6 +78,7 @@ final class ZeroTrustOrganizationMfaConfig {
 
   final TfArg<String>? sessionDuration;
 
+  @internal
   Map<String, Object?> encode() => {
     if (allowedAuthenticators != null)
       'allowed_authenticators': [
@@ -145,6 +148,7 @@ final class ZeroTrustOrganizationMfaSshPivKeyRequirements {
 
   final ZeroTrustOrganizationTouchPolicy? touchPolicy;
 
+  @internal
   Map<String, Object?> encode() => {
     'pin_policy': ?pinPolicy?.toTfJson(),
     'require_fips_device': ?requireFipsDevice?.toTfJson(),
@@ -241,6 +245,7 @@ final class ZeroTrustOrganizationServiceTokenInactivity {
 
   final TfArg<num> inactivityThresholdDays;
 
+  @internal
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
     'enabled': enabled.toTfJson(),

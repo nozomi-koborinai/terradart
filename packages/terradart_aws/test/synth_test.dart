@@ -2,11 +2,9 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:terradart_aws/catalog.dart';
-import 'package:terradart_aws/data.dart';
 import 'package:terradart_aws/iam.dart';
 import 'package:terradart_aws/lambda.dart';
 import 'package:terradart_aws/provider.dart';
-import 'package:terradart_core/terradart_core.dart';
 import 'package:test/test.dart';
 
 /// Provider arguments that carry credentials. The AWS provider schema does

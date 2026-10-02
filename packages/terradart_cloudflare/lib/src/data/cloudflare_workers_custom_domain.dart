@@ -32,6 +32,7 @@ final class DataWorkersCustomDomainFilter {
 
   final TfArg<String>? zoneName;
 
+  @internal
   Map<String, Object?> encode() => {
     'environment': ?environment?.toTfJson(),
     'hostname': ?hostname?.toTfJson(),

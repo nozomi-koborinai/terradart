@@ -39,12 +39,15 @@ sealed class Macie2FindingsFilterName {
       Macie2FindingsFilterNamePrefix;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -54,12 +57,15 @@ final class Macie2FindingsFilterNameChoice extends Macie2FindingsFilterName {
 
   final TfArg<String> name;
 
+  @internal
   @override
   String get blockKey => 'name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
@@ -70,12 +76,15 @@ final class Macie2FindingsFilterNamePrefix extends Macie2FindingsFilterName {
 
   final TfArg<String> namePrefix;
 
+  @internal
   @override
   String get blockKey => 'name_prefix';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'name_prefix': namePrefix.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'name_prefix': namePrefix};
 }
@@ -88,6 +97,7 @@ final class Macie2FindingsFilterFindingCriteria {
 
   final List<Macie2FindingsFilterCriterion>? criterion;
 
+  @internal
   Map<String, Object?> encode() => {
     if (criterion != null)
       'criterion': [for (final e in criterion!) e.encode()],
@@ -125,6 +135,7 @@ final class Macie2FindingsFilterCriterion {
 
   final TfArg<List<String>>? neq;
 
+  @internal
   Map<String, Object?> encode() => {
     'eq': ?eq?.toTfJson(),
     'eq_exact_match': ?eqExactMatch?.toTfJson(),

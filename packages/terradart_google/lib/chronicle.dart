@@ -4,6 +4,7 @@
 /// dashboards, and environments (enterprise ingestion / never_apply).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/chronicle/google_chronicle_big_query_export.dart'
     show
         ChronicleBigQueryExportEntityGraphSettings,

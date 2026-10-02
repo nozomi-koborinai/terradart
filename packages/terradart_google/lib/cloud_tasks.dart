@@ -3,6 +3,7 @@
 /// Cloud Tasks queues + per-queue IAM bindings.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/cloud_tasks/google_cloud_tasks_queue.dart'
     show
         CloudTasksQueueAppEngineRoutingOverride,
@@ -31,3 +32,5 @@ export 'src/cloud_tasks/google_cloud_tasks_queue_iam_member.dart'
     show CloudTasksQueueIamMemberCondition, GoogleCloudTasksQueueIamMember;
 export 'src/cloud_tasks/google_cloud_tasks_queue_iam_policy.dart'
     show GoogleCloudTasksQueueIamPolicy;
+export 'src/data/google_cloud_tasks_queue_iam_policy.dart'
+    show DataGoogleCloudTasksQueueIamPolicy;

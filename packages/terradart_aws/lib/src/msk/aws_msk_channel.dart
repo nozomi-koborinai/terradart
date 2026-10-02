@@ -29,12 +29,15 @@ sealed class MskChannelDestination {
   ) = MskChannelS3DestinationChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -44,14 +47,17 @@ final class MskChannelIcebergDestinationChoice extends MskChannelDestination {
 
   final List<MskChannelIcebergDestination> icebergDestination;
 
+  @internal
   @override
   String get blockKey => 'iceberg_destination';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'iceberg_destination': [for (final e in icebergDestination) e.encode()],
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'iceberg_destination': TfArg.literal([
@@ -66,14 +72,17 @@ final class MskChannelS3DestinationChoice extends MskChannelDestination {
 
   final List<MskChannelS3Destination> s3Destination;
 
+  @internal
   @override
   String get blockKey => 's3_destination';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     's3_destination': [for (final e in s3Destination) e.encode()],
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     's3_destination': TfArg.literal([
@@ -90,6 +99,7 @@ final class MskChannelEncryptionConfiguration {
 
   final RefTo<AwsKmsKey> kmsKeyArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_arn': kmsKeyArn.encodeAs('arn').toTfJson(),
   };
@@ -129,6 +139,7 @@ final class MskChannelIcebergDestination {
 
   final List<MskChannelTableCreation>? tableCreation;
 
+  @internal
   Map<String, Object?> encode() => {
     'append_only': appendOnly.toTfJson(),
     'compression_type': ?compressionType?.toTfJson(),
@@ -171,6 +182,7 @@ final class MskChannelCatalog {
 
   final TfArg<String>? warehouseLocation;
 
+  @internal
   Map<String, Object?> encode() => {
     'catalog_arn': ?catalogArn?.toTfJson(),
     'warehouse_location': ?warehouseLocation?.toTfJson(),
@@ -194,6 +206,7 @@ final class MskChannelDeadLetterQueueS3 {
 
   final TfArg<String>? expectedBucketOwner;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
     'error_output_prefix': ?errorOutputPrefix?.toTfJson(),
@@ -217,6 +230,7 @@ final class MskChannelDestinationTable {
 
   final List<MskChannelPartitionSpec>? partitionSpec;
 
+  @internal
   Map<String, Object?> encode() => {
     'destination_database_name': ?destinationDatabaseName?.toTfJson(),
     'destination_table_name': ?destinationTableName?.toTfJson(),
@@ -235,6 +249,7 @@ final class MskChannelPartitionSpec {
 
   final List<MskChannelSource>? source;
 
+  @internal
   Map<String, Object?> encode() => {
     'partition_strategy': partitionStrategy.toTfJson(),
     if (source != null) 'source': [for (final e in source!) e.encode()],
@@ -265,6 +280,7 @@ final class MskChannelSource {
 
   final TfArg<String>? sourceName;
 
+  @internal
   Map<String, Object?> encode() => {'source_name': ?sourceName?.toTfJson()};
 }
 
@@ -276,6 +292,7 @@ final class MskChannelSchemaEvolution {
 
   final TfArg<bool>? enableSchemaEvolution;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_schema_evolution': ?enableSchemaEvolution?.toTfJson(),
   };
@@ -289,6 +306,7 @@ final class MskChannelTableCreation {
 
   final TfArg<bool>? enableTableCreation;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_table_creation': ?enableTableCreation?.toTfJson(),
   };
@@ -306,6 +324,7 @@ final class MskChannelLoggingInfo {
 
   final List<MskChannelS3>? s3;
 
+  @internal
   Map<String, Object?> encode() => {
     if (cloudwatchLogs != null)
       'cloudwatch_logs': [for (final e in cloudwatchLogs!) e.encode()],
@@ -324,6 +343,7 @@ final class MskChannelCloudwatchLogs {
 
   final RefTo<AwsCloudwatchLogGroup>? logGroup;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'log_group': ?logGroup?.encodeAs('name').toTfJson(),
@@ -340,6 +360,7 @@ final class MskChannelFirehose {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'delivery_stream': ?deliveryStream?.toTfJson(),
     'enabled': enabled.toTfJson(),
@@ -358,6 +379,7 @@ final class MskChannelS3 {
 
   final TfArg<String>? prefix;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': ?bucket?.encodeAs('id').toTfJson(),
     'enabled': enabled.toTfJson(),
@@ -384,6 +406,7 @@ final class MskChannelS3Destination {
 
   final List<MskChannelStorage>? storage;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_freshness_in_seconds': ?dataFreshnessInSeconds?.toTfJson(),
     'service_execution_role_arn': serviceExecutionRoleArn.toTfJson(),
@@ -418,6 +441,7 @@ final class MskChannelStorage {
 
   final MskChannelStorageClass storageClass;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
     'compression_type': compressionType.toTfJson(),
@@ -485,6 +509,7 @@ final class MskChannelTopicConfiguration {
 
   final List<MskChannelRecordSchema>? recordSchema;
 
+  @internal
   Map<String, Object?> encode() => {
     'topic_arn': topicArn.toTfJson(),
     if (recordConverter != null)
@@ -502,6 +527,7 @@ final class MskChannelRecordConverter {
 
   final MskChannelValueConverter valueConverter;
 
+  @internal
   Map<String, Object?> encode() => {
     'value_converter': valueConverter.toTfJson(),
   };
@@ -540,6 +566,7 @@ final class MskChannelRecordSchema {
 
   final TfArg<String> gsrArn;
 
+  @internal
   Map<String, Object?> encode() => {'gsr_arn': gsrArn.toTfJson()};
 }
 

@@ -5,6 +5,11 @@
 /// App Engine egress into a consumer VPC.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/google_service_networking_peered_dns_domain.dart'
+    show DataGoogleServiceNetworkingPeeredDnsDomain;
+export 'src/data/google_vpc_access_connector.dart'
+    show DataGoogleVpcAccessConnector;
 export 'src/service_networking/google_service_networking_connection.dart'
     show GoogleServiceNetworkingConnection;
 export 'src/service_networking/google_service_networking_peered_dns_domain.dart'

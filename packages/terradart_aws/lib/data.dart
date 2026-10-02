@@ -1,8 +1,13 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 /// AWS data sources (read-only lookups).
+///
+/// Every data source is also exported from its service barrel
+/// (`DataAwsAmi` from `ec2.dart`); import this one for data sources of
+/// several services, or of none.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/data/aws_account_primary_contact.dart'
     show DataAwsAccountPrimaryContact;
 export 'src/data/aws_account_regions.dart' show DataAwsAccountRegions;

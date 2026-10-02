@@ -1,7 +1,6 @@
 /// Network Security ULL mirroring quickstart — engine, collector, and rule.
 library;
 
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/network.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';

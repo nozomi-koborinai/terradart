@@ -24,6 +24,7 @@ final class HealthcareDicomStoreNotificationConfig {
 
   final TfArg<bool>? sendForBulkImport;
 
+  @internal
   Map<String, Object?> encode() => {
     'pubsub_topic': pubsubTopic.encodeAs('id').toTfJson(),
     'send_for_bulk_import': ?sendForBulkImport?.toTfJson(),

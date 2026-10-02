@@ -22,6 +22,7 @@ final class S3BucketLoggingTargetGrant {
 
   final S3BucketLoggingGrantee grantee;
 
+  @internal
   Map<String, Object?> encode() => {
     'permission': permission.toTfJson(),
     'grantee': grantee.encode(),
@@ -69,6 +70,7 @@ final class S3BucketLoggingGrantee {
 
   final TfArg<String>? uri;
 
+  @internal
   Map<String, Object?> encode() => {
     'email_address': ?emailAddress?.toTfJson(),
     'id': ?id?.toTfJson(),
@@ -118,8 +120,10 @@ sealed class S3BucketLoggingTargetObjectKeyFormat {
   ) = S3BucketLoggingTargetObjectKeyFormatSimplePrefix;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -132,9 +136,11 @@ final class S3BucketLoggingTargetObjectKeyFormatPartitionedPrefix
 
   final S3BucketLoggingPartitionedPrefix partitionedPrefix;
 
+  @internal
   @override
   String get blockKey => 'partitioned_prefix';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'partitioned_prefix': partitionedPrefix.encode(),
@@ -148,9 +154,11 @@ final class S3BucketLoggingTargetObjectKeyFormatSimplePrefix
 
   final S3BucketLoggingSimplePrefix simplePrefix;
 
+  @internal
   @override
   String get blockKey => 'simple_prefix';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'simple_prefix': simplePrefix.encode()};
 }
@@ -163,6 +171,7 @@ final class S3BucketLoggingPartitionedPrefix {
 
   final S3BucketLoggingPartitionDateSource partitionDateSource;
 
+  @internal
   Map<String, Object?> encode() => {
     'partition_date_source': partitionDateSource.toTfJson(),
   };
@@ -196,6 +205,7 @@ extension type const S3BucketLoggingPartitionDateSource._(TfArg<String> _)
 final class S3BucketLoggingSimplePrefix {
   const S3BucketLoggingSimplePrefix();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 

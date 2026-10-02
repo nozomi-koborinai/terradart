@@ -47,6 +47,7 @@ final class ComputeRouterRoutePolicyTerms {
 
   final ComputeRouterRoutePolicyMatch match;
 
+  @internal
   Map<String, Object?> encode() => {
     'priority': priority.toTfJson(),
     if (actions != null) 'actions': [for (final e in actions!) e.encode()],
@@ -73,6 +74,7 @@ final class ComputeRouterRoutePolicyActions {
 
   final TfArg<String>? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'expression': expression.toTfJson(),
@@ -100,6 +102,7 @@ final class ComputeRouterRoutePolicyMatch {
 
   final TfArg<String>? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'expression': expression.toTfJson(),

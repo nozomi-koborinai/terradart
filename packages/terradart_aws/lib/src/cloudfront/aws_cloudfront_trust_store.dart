@@ -20,6 +20,7 @@ final class CloudfrontTrustStoreCaCertificatesBundleSource {
   final List<CloudfrontTrustStoreCaCertificatesBundleS3Location>?
   caCertificatesBundleS3Location;
 
+  @internal
   Map<String, Object?> encode() => {
     if (caCertificatesBundleS3Location != null)
       'ca_certificates_bundle_s3_location': [
@@ -47,6 +48,7 @@ final class CloudfrontTrustStoreCaCertificatesBundleS3Location {
 
   final TfArg<String>? version;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('id').toTfJson(),
     'key': key.toTfJson(),

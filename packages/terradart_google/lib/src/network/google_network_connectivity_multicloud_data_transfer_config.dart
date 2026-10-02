@@ -18,6 +18,7 @@ final class NetworkConnectivityMulticloudDataTransferConfigServices {
 
   final TfArg<String> serviceName;
 
+  @internal
   Map<String, Object?> encode() => {'service_name': serviceName.toTfJson()};
 }
 

@@ -21,6 +21,7 @@ final class SyntheticsCanaryArtifactConfig {
 
   final SyntheticsCanaryS3Encryption? s3Encryption;
 
+  @internal
   Map<String, Object?> encode() => {'s3_encryption': ?s3Encryption?.encode()};
 }
 
@@ -34,6 +35,7 @@ final class SyntheticsCanaryS3Encryption {
 
   final RefTo<AwsKmsKey>? kmsKeyArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'encryption_mode': ?encryptionMode?.toTfJson(),
     'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
@@ -79,6 +81,7 @@ final class SyntheticsCanaryRunConfig {
 
   final TfArg<num>? timeoutInSeconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'active_tracing': ?activeTracing?.toTfJson(),
     'environment_variables': ?environmentVariables?.toTfJson(),
@@ -104,6 +107,7 @@ final class SyntheticsCanarySchedule {
 
   final SyntheticsCanaryRetryConfig? retryConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'duration_in_seconds': ?durationInSeconds?.toTfJson(),
     'expression': expression.toTfJson(),
@@ -119,6 +123,7 @@ final class SyntheticsCanaryRetryConfig {
 
   final TfArg<num> maxRetries;
 
+  @internal
   Map<String, Object?> encode() => {'max_retries': maxRetries.toTfJson()};
 }
 
@@ -138,6 +143,7 @@ final class SyntheticsCanaryVpcConfig {
 
   final TfArg<List<RefTo<AwsSubnet>>>? subnetIds;
 
+  @internal
   Map<String, Object?> encode() => {
     'ipv6_allowed_for_dual_stack': ?ipv6AllowedForDualStack?.toTfJson(),
     'security_group_ids': ?securityGroupIds?.encodeAs('id').toTfJson(),

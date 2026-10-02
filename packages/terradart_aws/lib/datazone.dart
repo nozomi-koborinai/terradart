@@ -3,6 +3,10 @@
 /// AWS DataZone.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_datazone_domain.dart' show DataAwsDatazoneDomain;
+export 'src/data/aws_datazone_environment_blueprint.dart'
+    show DataAwsDatazoneEnvironmentBlueprint;
 export 'src/datazone/aws_datazone_asset_type.dart'
     show AwsDatazoneAssetType, DatazoneAssetTypeFormsInput;
 export 'src/datazone/aws_datazone_domain.dart'

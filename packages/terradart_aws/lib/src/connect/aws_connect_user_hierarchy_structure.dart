@@ -29,6 +29,7 @@ final class ConnectUserHierarchyStructure {
 
   final ConnectUserHierarchyStructureLevelTwo? levelTwo;
 
+  @internal
   Map<String, Object?> encode() => {
     'level_five': ?levelFive?.encode(),
     'level_four': ?levelFour?.encode(),
@@ -46,6 +47,7 @@ final class ConnectUserHierarchyStructureLevelFive {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 
@@ -57,6 +59,7 @@ final class ConnectUserHierarchyStructureLevelFour {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 
@@ -68,6 +71,7 @@ final class ConnectUserHierarchyStructureLevelOne {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 
@@ -79,6 +83,7 @@ final class ConnectUserHierarchyStructureLevelThree {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 
@@ -90,6 +95,7 @@ final class ConnectUserHierarchyStructureLevelTwo {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 

@@ -17,6 +17,7 @@ final class AppfabricIngestionDestinationConfiguration {
 
   final List<AppfabricIngestionDestinationConfigurationAuditLog>? auditLog;
 
+  @internal
   Map<String, Object?> encode() => {
     if (auditLog != null) 'audit_log': [for (final e in auditLog!) e.encode()],
   };
@@ -30,6 +31,7 @@ final class AppfabricIngestionDestinationConfigurationAuditLog {
 
   final List<AppfabricIngestionDestination>? destination;
 
+  @internal
   Map<String, Object?> encode() => {
     if (destination != null)
       'destination': [for (final e in destination!) e.encode()],
@@ -46,6 +48,7 @@ final class AppfabricIngestionDestination {
 
   final List<AppfabricIngestionDestinationS3Bucket>? s3Bucket;
 
+  @internal
   Map<String, Object?> encode() => {
     if (firehoseStream != null)
       'firehose_stream': [for (final e in firehoseStream!) e.encode()],
@@ -61,6 +64,7 @@ final class AppfabricIngestionDestinationFirehoseStream {
 
   final TfArg<String> streamName;
 
+  @internal
   Map<String, Object?> encode() => {'stream_name': streamName.toTfJson()};
 }
 
@@ -77,6 +81,7 @@ final class AppfabricIngestionDestinationS3Bucket {
 
   final TfArg<String>? prefix;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('id').toTfJson(),
     'prefix': ?prefix?.toTfJson(),
@@ -92,6 +97,7 @@ final class AppfabricIngestionDestinationProcessingConfiguration {
   final List<AppfabricIngestionDestinationProcessingConfigurationAuditLog>?
   auditLog;
 
+  @internal
   Map<String, Object?> encode() => {
     if (auditLog != null) 'audit_log': [for (final e in auditLog!) e.encode()],
   };
@@ -110,6 +116,7 @@ final class AppfabricIngestionDestinationProcessingConfigurationAuditLog {
 
   final AppfabricIngestionDestinationSchema schema;
 
+  @internal
   Map<String, Object?> encode() => {
     'format': format.toTfJson(),
     'schema': schema.toTfJson(),

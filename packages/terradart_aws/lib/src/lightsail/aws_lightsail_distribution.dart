@@ -20,6 +20,7 @@ final class LightsailDistributionCacheBehavior {
 
   final TfArg<String> path;
 
+  @internal
   Map<String, Object?> encode() => {
     'behavior': behavior.toTfJson(),
     'path': path.toTfJson(),
@@ -57,6 +58,7 @@ final class LightsailDistributionCacheBehaviorSettings {
 
   final LightsailDistributionForwardedQueryStrings? forwardedQueryStrings;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed_http_methods': ?allowedHttpMethods?.toTfJson(),
     'cached_http_methods': ?cachedHttpMethods?.toTfJson(),
@@ -82,6 +84,7 @@ final class LightsailDistributionForwardedCookies {
 
   final TfArg<String>? option;
 
+  @internal
   Map<String, Object?> encode() => {
     'cookies_allow_list': ?cookiesAllowList?.toTfJson(),
     'option': ?option?.toTfJson(),
@@ -101,6 +104,7 @@ final class LightsailDistributionForwardedHeaders {
 
   final LightsailDistributionOption? option;
 
+  @internal
   Map<String, Object?> encode() => {
     'headers_allow_list': ?headersAllowList?.toTfJson(),
     'option': ?option?.toTfJson(),
@@ -144,6 +148,7 @@ final class LightsailDistributionForwardedQueryStrings {
 
   final TfArg<List<String>>? queryStringsAllowedList;
 
+  @internal
   Map<String, Object?> encode() => {
     'option': ?option?.toTfJson(),
     'query_strings_allowed_list': ?queryStringsAllowedList?.toTfJson(),
@@ -158,6 +163,7 @@ final class LightsailDistributionDefaultCacheBehavior {
 
   final TfArg<String> behavior;
 
+  @internal
   Map<String, Object?> encode() => {'behavior': behavior.toTfJson()};
 }
 
@@ -177,6 +183,7 @@ final class LightsailDistributionOrigin {
 
   final TfArg<String> regionName;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'protocol_policy': ?protocolPolicy?.toTfJson(),

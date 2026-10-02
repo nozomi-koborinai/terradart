@@ -75,6 +75,7 @@ final class S3BucketLifecycleConfigurationRule {
 
   final List<S3BucketLifecycleConfigurationTransition>? transition;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
     'prefix': ?prefix?.toTfJson(),
@@ -132,6 +133,7 @@ final class S3BucketLifecycleConfigurationAbortIncompleteMultipartUpload {
 
   final TfArg<num>? daysAfterInitiation;
 
+  @internal
   Map<String, Object?> encode() => {
     'days_after_initiation': ?daysAfterInitiation?.toTfJson(),
   };
@@ -153,6 +155,7 @@ final class S3BucketLifecycleConfigurationExpiration {
 
   final TfArg<bool>? expiredObjectDeleteMarker;
 
+  @internal
   Map<String, Object?> encode() => {
     'date': ?date?.toTfJson(),
     'days': ?days?.toTfJson(),
@@ -182,6 +185,7 @@ final class S3BucketLifecycleConfigurationFilter {
 
   final List<S3BucketLifecycleConfigurationTag>? tag;
 
+  @internal
   Map<String, Object?> encode() => {
     'object_size_greater_than': ?objectSizeGreaterThan?.toTfJson(),
     'object_size_less_than': ?objectSizeLessThan?.toTfJson(),
@@ -210,6 +214,7 @@ final class S3BucketLifecycleConfigurationAnd {
 
   final TfArg<Map<String, String>>? tags;
 
+  @internal
   Map<String, Object?> encode() => {
     'object_size_greater_than': ?objectSizeGreaterThan?.toTfJson(),
     'object_size_less_than': ?objectSizeLessThan?.toTfJson(),
@@ -231,6 +236,7 @@ final class S3BucketLifecycleConfigurationTag {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'value': value.toTfJson(),
@@ -250,6 +256,7 @@ final class S3BucketLifecycleConfigurationNoncurrentVersionExpiration {
 
   final TfArg<num> noncurrentDays;
 
+  @internal
   Map<String, Object?> encode() => {
     'newer_noncurrent_versions': ?newerNoncurrentVersions?.toTfJson(),
     'noncurrent_days': noncurrentDays.toTfJson(),
@@ -272,6 +279,7 @@ final class S3BucketLifecycleConfigurationNoncurrentVersionTransition {
 
   final S3BucketLifecycleConfigurationStorageClass storageClass;
 
+  @internal
   Map<String, Object?> encode() => {
     'newer_noncurrent_versions': ?newerNoncurrentVersions?.toTfJson(),
     'noncurrent_days': noncurrentDays.toTfJson(),
@@ -336,6 +344,7 @@ final class S3BucketLifecycleConfigurationTransition {
 
   final S3BucketLifecycleConfigurationStorageClass storageClass;
 
+  @internal
   Map<String, Object?> encode() => {
     'date': ?date?.toTfJson(),
     'days': ?days?.toTfJson(),

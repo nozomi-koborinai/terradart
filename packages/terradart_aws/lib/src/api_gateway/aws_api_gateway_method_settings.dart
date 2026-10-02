@@ -45,6 +45,7 @@ final class ApiGatewayMethodSettings {
   final ApiGatewayMethodSettingsUnauthorizedCacheControlHeaderStrategy?
   unauthorizedCacheControlHeaderStrategy;
 
+  @internal
   Map<String, Object?> encode() => {
     'cache_data_encrypted': ?cacheDataEncrypted?.toTfJson(),
     'cache_ttl_in_seconds': ?cacheTtlInSeconds?.toTfJson(),

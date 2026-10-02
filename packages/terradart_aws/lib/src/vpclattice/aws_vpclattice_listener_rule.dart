@@ -25,8 +25,10 @@ sealed class VpclatticeListenerRuleAction {
   ) = VpclatticeListenerRuleActionForward;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -37,9 +39,11 @@ final class VpclatticeListenerRuleActionFixedResponse
 
   final VpclatticeListenerRuleFixedResponse fixedResponse;
 
+  @internal
   @override
   String get blockKey => 'fixed_response';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'fixed_response': fixedResponse.encode()};
 }
@@ -51,9 +55,11 @@ final class VpclatticeListenerRuleActionForward
 
   final VpclatticeListenerRuleForward forward;
 
+  @internal
   @override
   String get blockKey => 'forward';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'forward': forward.encode()};
 }
@@ -66,6 +72,7 @@ final class VpclatticeListenerRuleFixedResponse {
 
   final TfArg<num> statusCode;
 
+  @internal
   Map<String, Object?> encode() => {'status_code': statusCode.toTfJson()};
 }
 
@@ -77,6 +84,7 @@ final class VpclatticeListenerRuleForward {
 
   final List<VpclatticeListenerRuleTargetGroups> targetGroups;
 
+  @internal
   Map<String, Object?> encode() => {
     'target_groups': [for (final e in targetGroups) e.encode()],
   };
@@ -95,6 +103,7 @@ final class VpclatticeListenerRuleTargetGroups {
 
   final TfArg<num>? weight;
 
+  @internal
   Map<String, Object?> encode() => {
     'target_group_identifier': targetGroupIdentifier.toTfJson(),
     'weight': ?weight?.toTfJson(),
@@ -109,6 +118,7 @@ final class VpclatticeListenerRuleMatch {
 
   final VpclatticeListenerRuleHttpMatch httpMatch;
 
+  @internal
   Map<String, Object?> encode() => {'http_match': httpMatch.encode()};
 }
 
@@ -128,6 +138,7 @@ final class VpclatticeListenerRuleHttpMatch {
 
   final VpclatticeListenerRulePathMatch? pathMatch;
 
+  @internal
   Map<String, Object?> encode() => {
     'method': ?method?.toTfJson(),
     if (headerMatches != null)
@@ -152,6 +163,7 @@ final class VpclatticeListenerRuleHeaderMatches {
 
   final VpclatticeListenerRuleHeaderMatchesMatch match;
 
+  @internal
   Map<String, Object?> encode() => {
     'case_sensitive': ?caseSensitive?.toTfJson(),
     'name': name.toTfJson(),
@@ -175,6 +187,7 @@ final class VpclatticeListenerRuleHeaderMatchesMatch {
 
   final TfArg<String>? prefix;
 
+  @internal
   Map<String, Object?> encode() => {
     'contains': ?contains?.toTfJson(),
     'exact': ?exact?.toTfJson(),
@@ -195,6 +208,7 @@ final class VpclatticeListenerRulePathMatch {
 
   final VpclatticeListenerRulePathMatchMatch match;
 
+  @internal
   Map<String, Object?> encode() => {
     'case_sensitive': ?caseSensitive?.toTfJson(),
     'match': match.encode(),
@@ -211,6 +225,7 @@ final class VpclatticeListenerRulePathMatchMatch {
 
   final TfArg<String>? prefix;
 
+  @internal
   Map<String, Object?> encode() => {
     'exact': ?exact?.toTfJson(),
     'prefix': ?prefix?.toTfJson(),

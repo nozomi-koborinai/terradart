@@ -174,6 +174,7 @@ final class CodebuildFleetComputeConfiguration {
 
   final TfArg<num>? vcpu;
 
+  @internal
   Map<String, Object?> encode() => {
     'disk': ?disk?.toTfJson(),
     'instance_type': ?instanceType?.toTfJson(),
@@ -215,6 +216,7 @@ final class CodebuildFleetScalingConfiguration {
   final List<CodebuildFleetTargetTrackingScalingConfigs>?
   targetTrackingScalingConfigs;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_capacity': ?maxCapacity?.toTfJson(),
     'scaling_type': ?scalingType?.toTfJson(),
@@ -254,6 +256,7 @@ final class CodebuildFleetTargetTrackingScalingConfigs {
 
   final TfArg<num>? targetValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'metric_type': ?metricType?.toTfJson(),
     'target_value': ?targetValue?.toTfJson(),
@@ -291,6 +294,7 @@ final class CodebuildFleetVpcConfig {
 
   final RefTo<AwsVpc> vpcId;
 
+  @internal
   Map<String, Object?> encode() => {
     'security_group_ids': securityGroupIds.encodeAs('id').toTfJson(),
     'subnets': subnets.encodeAs('id').toTfJson(),

@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `aws_autoscaling_attachment`.
@@ -23,12 +24,15 @@ sealed class AutoscalingAttachmentTarget {
   ) = AutoscalingAttachmentTargetLbTargetGroupArn;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -38,12 +42,15 @@ final class AutoscalingAttachmentTargetElb extends AutoscalingAttachmentTarget {
 
   final TfArg<String> elb;
 
+  @internal
   @override
   String get blockKey => 'elb';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'elb': elb.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'elb': elb};
 }
@@ -55,14 +62,17 @@ final class AutoscalingAttachmentTargetLbTargetGroupArn
 
   final TfArg<String> lbTargetGroupArn;
 
+  @internal
   @override
   String get blockKey => 'lb_target_group_arn';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'lb_target_group_arn': lbTargetGroupArn.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'lb_target_group_arn': lbTargetGroupArn,

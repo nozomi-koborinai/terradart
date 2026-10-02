@@ -29,6 +29,7 @@ final class S3BucketServerSideEncryptionConfigurationRule {
   final S3BucketServerSideEncryptionConfigurationApplyServerSideEncryptionByDefault?
   applyServerSideEncryptionByDefault;
 
+  @internal
   Map<String, Object?> encode() => {
     if (blockedEncryptionTypes != null)
       'blocked_encryption_types': [
@@ -82,6 +83,7 @@ final class S3BucketServerSideEncryptionConfigurationApplyServerSideEncryptionBy
 
   final S3BucketServerSideEncryptionConfigurationSseAlgorithm sseAlgorithm;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_master_key_id': ?kmsMasterKeyId?.encodeAs('arn').toTfJson(),
     'sse_algorithm': sseAlgorithm.toTfJson(),

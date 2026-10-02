@@ -17,6 +17,7 @@ final class IvsRecordingConfigurationDestinationConfiguration {
 
   final IvsRecordingConfigurationS3 s3;
 
+  @internal
   Map<String, Object?> encode() => {'s3': s3.encode()};
 }
 
@@ -28,6 +29,7 @@ final class IvsRecordingConfigurationS3 {
 
   final RefTo<AwsS3Bucket> bucketName;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('id').toTfJson(),
   };
@@ -46,6 +48,7 @@ final class IvsRecordingConfigurationThumbnailConfiguration {
 
   final TfArg<num>? targetIntervalSeconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'recording_mode': ?recordingMode?.toTfJson(),
     'target_interval_seconds': ?targetIntervalSeconds?.toTfJson(),

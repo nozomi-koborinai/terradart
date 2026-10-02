@@ -23,6 +23,7 @@ final class DataOrganizationsContaining {
 
   final TfArg<String>? user;
 
+  @internal
   Map<String, Object?> encode() => {
     'account': ?account?.toTfJson(),
     'organization': ?organization?.toTfJson(),
@@ -42,6 +43,7 @@ final class DataOrganizationsName {
 
   final TfArg<String>? startsWith;
 
+  @internal
   Map<String, Object?> encode() => {
     'contains': ?contains?.toTfJson(),
     'ends_with': ?endsWith?.toTfJson(),
@@ -55,6 +57,7 @@ final class DataOrganizationsName {
 final class DataOrganizationsParent {
   const DataOrganizationsParent();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 

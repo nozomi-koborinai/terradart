@@ -15,6 +15,7 @@ final class IotBillingGroupProperties {
 
   final TfArg<String>? description;
 
+  @internal
   Map<String, Object?> encode() => {'description': ?description?.toTfJson()};
 }
 

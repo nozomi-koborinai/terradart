@@ -218,6 +218,7 @@ final class CloudRunV2ServiceBinaryAuthorization {
 
   final CloudRunV2ServicePolicy? policy;
 
+  @internal
   Map<String, Object?> encode() => {
     'breakglass_justification': ?breakglassJustification?.toTfJson(),
     ...?policy?.encode(),
@@ -241,8 +242,10 @@ sealed class CloudRunV2ServicePolicy {
       CloudRunV2ServicePolicyChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -252,9 +255,11 @@ final class CloudRunV2ServicePolicyUseDefault extends CloudRunV2ServicePolicy {
 
   final TfArg<bool> useDefault;
 
+  @internal
   @override
   String get blockKey => 'use_default';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'use_default': useDefault.toTfJson()};
 }
@@ -265,9 +270,11 @@ final class CloudRunV2ServicePolicyChoice extends CloudRunV2ServicePolicy {
 
   final TfArg<String> policy;
 
+  @internal
   @override
   String get blockKey => 'policy';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'policy': policy.toTfJson()};
 }
@@ -303,6 +310,7 @@ final class CloudRunV2ServiceBuildConfig {
 
   final TfArg<String>? workerPool;
 
+  @internal
   Map<String, Object?> encode() => {
     'base_image': ?baseImage?.toTfJson(),
     'enable_automatic_updates': ?enableAutomaticUpdates?.toTfJson(),
@@ -323,6 +331,7 @@ final class CloudRunV2ServiceMultiRegionSettings {
 
   final TfArg<List<String>>? regions;
 
+  @internal
   Map<String, Object?> encode() => {'regions': ?regions?.toTfJson()};
 }
 
@@ -345,6 +354,7 @@ final class CloudRunV2ServiceScaling {
 
   final ScalingMode? scalingMode;
 
+  @internal
   Map<String, Object?> encode() => {
     'manual_instance_count': ?manualInstanceCount?.toTfJson(),
     'max_instance_count': ?maxInstanceCount?.toTfJson(),
@@ -414,6 +424,7 @@ final class CloudRunV2ServiceTemplate {
 
   final CloudRunV2ServiceWorkloadIdentityConfig? workloadIdentityConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'annotations': ?annotations?.toTfJson(),
     'encryption_key': ?encryptionKey?.toTfJson(),
@@ -490,6 +501,7 @@ final class CloudRunV2ServiceContainers {
 
   final List<CloudRunV2ServiceVolumeMounts>? volumeMounts;
 
+  @internal
   Map<String, Object?> encode() => {
     'args': ?args?.toTfJson(),
     'base_image_uri': ?baseImageUri?.toTfJson(),
@@ -520,6 +532,7 @@ final class CloudRunV2ServiceEnv {
 
   final CloudRunV2ServiceEnvSource source;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     ...source.encode(),
@@ -543,8 +556,10 @@ sealed class CloudRunV2ServiceEnvSource {
   ) = CloudRunV2ServiceEnvValueSource;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -554,9 +569,11 @@ final class CloudRunV2ServiceEnvSourceValue extends CloudRunV2ServiceEnvSource {
 
   final TfArg<String> value;
 
+  @internal
   @override
   String get blockKey => 'value';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'value': value.toTfJson()};
 }
@@ -567,9 +584,11 @@ final class CloudRunV2ServiceEnvValueSource extends CloudRunV2ServiceEnvSource {
 
   final CloudRunV2ServiceValueSource valueSource;
 
+  @internal
   @override
   String get blockKey => 'value_source';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'value_source': valueSource.encode()};
 }
@@ -582,6 +601,7 @@ final class CloudRunV2ServiceValueSource {
 
   final CloudRunV2ServiceSecretKeyRef? secretKeyRef;
 
+  @internal
   Map<String, Object?> encode() => {'secret_key_ref': ?secretKeyRef?.encode()};
 }
 
@@ -595,6 +615,7 @@ final class CloudRunV2ServiceSecretKeyRef {
 
   final TfArg<String>? version;
 
+  @internal
   Map<String, Object?> encode() => {
     'secret': secret.encodeAs('id').toTfJson(),
     'version': ?version?.toTfJson(),
@@ -629,6 +650,7 @@ final class CloudRunV2ServiceLivenessProbe {
 
   final CloudRunV2ServiceLivenessProbeTcpSocket? tcpSocket;
 
+  @internal
   Map<String, Object?> encode() => {
     'failure_threshold': ?failureThreshold?.toTfJson(),
     'initial_delay_seconds': ?initialDelaySeconds?.toTfJson(),
@@ -651,6 +673,7 @@ final class CloudRunV2ServiceGrpc {
 
   final TfArg<String>? service;
 
+  @internal
   Map<String, Object?> encode() => {
     'port': ?port?.toTfJson(),
     'service': ?service?.toTfJson(),
@@ -674,6 +697,7 @@ final class CloudRunV2ServiceLivenessProbeHttpGet {
 
   final List<CloudRunV2ServiceHttpHeaders>? httpHeaders;
 
+  @internal
   Map<String, Object?> encode() => {
     'path': ?path?.toTfJson(),
     'port': ?port?.toTfJson(),
@@ -693,6 +717,7 @@ final class CloudRunV2ServiceHttpHeaders {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'value': ?value?.toTfJson(),
@@ -707,6 +732,7 @@ final class CloudRunV2ServiceLivenessProbeTcpSocket {
 
   final TfArg<num> port;
 
+  @internal
   Map<String, Object?> encode() => {'port': port.toTfJson()};
 }
 
@@ -720,6 +746,7 @@ final class CloudRunV2ServicePorts {
 
   final TfArg<String>? name;
 
+  @internal
   Map<String, Object?> encode() => {
     'container_port': ?containerPort?.toTfJson(),
     'name': ?name?.toTfJson(),
@@ -751,6 +778,7 @@ final class CloudRunV2ServiceReadinessProbe {
 
   final CloudRunV2ServiceReadinessProbeHttpGet? httpGet;
 
+  @internal
   Map<String, Object?> encode() => {
     'failure_threshold': ?failureThreshold?.toTfJson(),
     'period_seconds': ?periodSeconds?.toTfJson(),
@@ -771,6 +799,7 @@ final class CloudRunV2ServiceReadinessProbeHttpGet {
 
   final TfArg<num>? port;
 
+  @internal
   Map<String, Object?> encode() => {
     'path': ?path?.toTfJson(),
     'port': ?port?.toTfJson(),
@@ -793,6 +822,7 @@ final class CloudRunV2ServiceResources {
 
   final TfArg<bool>? startupCpuBoost;
 
+  @internal
   Map<String, Object?> encode() => {
     'cpu_idle': ?cpuIdle?.toTfJson(),
     'limits': ?limits?.toTfJson(),
@@ -828,6 +858,7 @@ final class CloudRunV2ServiceStartupProbe {
 
   final CloudRunV2ServiceStartupProbeTcpSocket? tcpSocket;
 
+  @internal
   Map<String, Object?> encode() => {
     'failure_threshold': ?failureThreshold?.toTfJson(),
     'initial_delay_seconds': ?initialDelaySeconds?.toTfJson(),
@@ -847,6 +878,7 @@ final class CloudRunV2ServiceStartupProbeTcpSocket {
 
   final TfArg<num>? port;
 
+  @internal
   Map<String, Object?> encode() => {'port': ?port?.toTfJson()};
 }
 
@@ -867,6 +899,7 @@ final class CloudRunV2ServiceVolumeMounts {
 
   final TfArg<String>? subPath;
 
+  @internal
   Map<String, Object?> encode() => {
     'mount_path': mountPath.toTfJson(),
     'name': name.toTfJson(),
@@ -882,6 +915,7 @@ final class CloudRunV2ServiceNodeSelector {
 
   final TfArg<String> accelerator;
 
+  @internal
   Map<String, Object?> encode() => {'accelerator': accelerator.toTfJson()};
 }
 
@@ -893,6 +927,7 @@ final class CloudRunV2ServiceSandboxes {
 
   final List<CloudRunV2ServiceTemplates>? templates;
 
+  @internal
   Map<String, Object?> encode() => {
     if (templates != null)
       'templates': [for (final e in templates!) e.encode()],
@@ -927,6 +962,7 @@ final class CloudRunV2ServiceTemplates {
 
   final List<CloudRunV2ServiceVolumeMounts>? volumeMounts;
 
+  @internal
   Map<String, Object?> encode() => {
     'args': ?args?.toTfJson(),
     'command': ?command?.toTfJson(),
@@ -949,6 +985,7 @@ final class CloudRunV2ServiceTemplatesEnv {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'value': ?value?.toTfJson(),
@@ -968,6 +1005,7 @@ final class CloudRunV2ServiceTemplateScaling {
 
   final TfArg<num>? minInstanceCount;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_instance_count': ?maxInstanceCount?.toTfJson(),
     'min_instance_count': ?minInstanceCount?.toTfJson(),
@@ -984,6 +1022,7 @@ final class CloudRunV2ServiceVolumes {
 
   final CloudRunV2ServiceSource source;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     ...source.encode(),
@@ -1020,8 +1059,10 @@ sealed class CloudRunV2ServiceSource {
       CloudRunV2ServiceSourceSecret;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -1032,9 +1073,11 @@ final class CloudRunV2ServiceSourceCloudSqlInstance
 
   final CloudRunV2ServiceCloudSqlInstance cloudSqlInstance;
 
+  @internal
   @override
   String get blockKey => 'cloud_sql_instance';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'cloud_sql_instance': cloudSqlInstance.encode(),
@@ -1047,9 +1090,11 @@ final class CloudRunV2ServiceSourceEmptyDir extends CloudRunV2ServiceSource {
 
   final CloudRunV2ServiceEmptyDir emptyDir;
 
+  @internal
   @override
   String get blockKey => 'empty_dir';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'empty_dir': emptyDir.encode()};
 }
@@ -1060,9 +1105,11 @@ final class CloudRunV2ServiceSourceGcs extends CloudRunV2ServiceSource {
 
   final CloudRunV2ServiceGcs gcs;
 
+  @internal
   @override
   String get blockKey => 'gcs';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'gcs': gcs.encode()};
 }
@@ -1073,9 +1120,11 @@ final class CloudRunV2ServiceSourceNfs extends CloudRunV2ServiceSource {
 
   final CloudRunV2ServiceNfs nfs;
 
+  @internal
   @override
   String get blockKey => 'nfs';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'nfs': nfs.encode()};
 }
@@ -1086,9 +1135,11 @@ final class CloudRunV2ServiceSourceSecret extends CloudRunV2ServiceSource {
 
   final CloudRunV2ServiceSecret secret;
 
+  @internal
   @override
   String get blockKey => 'secret';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'secret': secret.encode()};
 }
@@ -1101,6 +1152,7 @@ final class CloudRunV2ServiceCloudSqlInstance {
 
   final TfArg<List<String>>? instances;
 
+  @internal
   Map<String, Object?> encode() => {'instances': ?instances?.toTfJson()};
 }
 
@@ -1114,6 +1166,7 @@ final class CloudRunV2ServiceEmptyDir {
 
   final TfArg<String>? sizeLimit;
 
+  @internal
   Map<String, Object?> encode() => {
     'medium': ?medium?.toTfJson(),
     'size_limit': ?sizeLimit?.toTfJson(),
@@ -1136,6 +1189,7 @@ final class CloudRunV2ServiceGcs {
 
   final TfArg<bool>? readOnly;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('name').toTfJson(),
     'mount_options': ?mountOptions?.toTfJson(),
@@ -1159,6 +1213,7 @@ final class CloudRunV2ServiceNfs {
 
   final TfArg<String> server;
 
+  @internal
   Map<String, Object?> encode() => {
     'path': path.toTfJson(),
     'read_only': ?readOnly?.toTfJson(),
@@ -1182,6 +1237,7 @@ final class CloudRunV2ServiceSecret {
 
   final List<CloudRunV2ServiceItems>? items;
 
+  @internal
   Map<String, Object?> encode() => {
     'default_mode': ?defaultMode?.toTfJson(),
     'secret': secret.encodeAs('id').toTfJson(),
@@ -1201,6 +1257,7 @@ final class CloudRunV2ServiceItems {
 
   final TfArg<String>? version;
 
+  @internal
   Map<String, Object?> encode() => {
     'mode': ?mode?.toTfJson(),
     'path': path.toTfJson(),
@@ -1218,6 +1275,7 @@ final class CloudRunV2ServiceVpcAccess {
 
   final VpcAccessEgress? egress;
 
+  @internal
   Map<String, Object?> encode() => {
     ...?connection?.encode(),
     'egress': ?egress?.toTfJson(),
@@ -1242,8 +1300,10 @@ sealed class CloudRunV2ServiceConnection {
   ) = CloudRunV2ServiceConnectionNetworkInterfaces;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -1254,9 +1314,11 @@ final class CloudRunV2ServiceConnectionConnector
 
   final TfArg<String> connector;
 
+  @internal
   @override
   String get blockKey => 'connector';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'connector': connector.toTfJson()};
 }
@@ -1268,9 +1330,11 @@ final class CloudRunV2ServiceConnectionNetworkInterfaces
 
   final List<CloudRunV2ServiceNetworkInterfaces> networkInterfaces;
 
+  @internal
   @override
   String get blockKey => 'network_interfaces';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'network_interfaces': [for (final e in networkInterfaces) e.encode()],
@@ -1293,6 +1357,7 @@ final class CloudRunV2ServiceNetworkInterfaces {
 
   final TfArg<List<String>>? tags;
 
+  @internal
   Map<String, Object?> encode() => {
     'network': ?network?.encodeAs('id').toTfJson(),
     'subnetwork': ?subnetwork?.encodeAs('id').toTfJson(),
@@ -1316,6 +1381,7 @@ final class CloudRunV2ServiceWorkloadIdentityConfig {
 
   final CloudRunV2ServiceWorkloadIdentityType? identityType;
 
+  @internal
   Map<String, Object?> encode() => {
     'identity': ?identity?.toTfJson(),
     'identity_certificate_enabled': ?identityCertificateEnabled?.toTfJson(),
@@ -1342,6 +1408,7 @@ final class CloudRunV2ServiceTraffic {
 
   final TrafficTargetAllocationType? type;
 
+  @internal
   Map<String, Object?> encode() => {
     'percent': ?percent?.toTfJson(),
     'revision': ?revision?.toTfJson(),

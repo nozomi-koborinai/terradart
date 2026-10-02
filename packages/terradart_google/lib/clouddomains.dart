@@ -4,6 +4,7 @@
 /// existence-billed; apply-excluded leftover factory (do not apply).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/clouddomains/google_clouddomains_registration.dart'
     show
         ClouddomainsRegistrationAdminContact,

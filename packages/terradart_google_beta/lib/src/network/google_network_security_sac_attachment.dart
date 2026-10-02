@@ -50,6 +50,7 @@ final class NetworkSecuritySacAttachmentSymantecOptions {
 
   final TfArg<String>? symantecSite;
 
+  @internal
   Map<String, Object?> encode() => {
     'symantec_location_name': ?symantecLocationName?.toTfJson(),
     'symantec_site': ?symantecSite?.toTfJson(),

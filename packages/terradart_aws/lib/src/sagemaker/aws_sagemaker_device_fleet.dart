@@ -23,6 +23,7 @@ final class SagemakerDeviceFleetOutputConfig {
 
   final TfArg<String> s3OutputLocation;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
     's3_output_location': s3OutputLocation.toTfJson(),

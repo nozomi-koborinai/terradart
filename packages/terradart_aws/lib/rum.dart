@@ -3,6 +3,7 @@
 /// AWS CloudWatch RUM.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/rum/aws_rum_app_monitor.dart'
     show
         AwsRumAppMonitor,

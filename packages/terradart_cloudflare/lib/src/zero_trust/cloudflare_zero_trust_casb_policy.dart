@@ -22,6 +22,7 @@ final class ZeroTrustCasbPolicyActions {
 
   final List<ZeroTrustCasbPolicyWebhookConfigs>? webhookConfigs;
 
+  @internal
   Map<String, Object?> encode() => {
     if (remediationTypes != null)
       'remediation_types': [for (final e in remediationTypes!) e.encode()],
@@ -38,6 +39,7 @@ final class ZeroTrustCasbPolicyRemediationTypes {
 
   final TfArg<String> remediationTypeId;
 
+  @internal
   Map<String, Object?> encode() => {
     'remediation_type_id': remediationTypeId.toTfJson(),
   };
@@ -51,6 +53,7 @@ final class ZeroTrustCasbPolicyWebhookConfigs {
 
   final TfArg<String> webhookConfigId;
 
+  @internal
   Map<String, Object?> encode() => {
     'webhook_config_id': webhookConfigId.toTfJson(),
   };

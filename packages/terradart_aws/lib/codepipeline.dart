@@ -3,6 +3,7 @@
 /// AWS CodePipeline.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/codepipeline/aws_codepipeline.dart'
     show
         AwsCodepipeline,

@@ -19,6 +19,7 @@ final class AddressMapMemberships {
 
   final AddressMapKind? kind;
 
+  @internal
   Map<String, Object?> encode() => {
     'identifier': ?identifier?.toTfJson(),
     'kind': ?kind?.toTfJson(),

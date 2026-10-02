@@ -34,6 +34,7 @@ prelude: |
 
     final List<DnsPolicyAlternativeNameServerTargetNameServer> targetNameServers;
 
+    @internal
     Map<String, Object?> encode() => {
       'target_name_servers':
           targetNameServers.map((s) => s.toArgMap()).toList(),

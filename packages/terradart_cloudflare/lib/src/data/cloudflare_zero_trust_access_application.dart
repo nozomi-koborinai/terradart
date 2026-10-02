@@ -36,6 +36,7 @@ final class DataZeroTrustAccessApplicationFilter {
 
   final TfArg<String>? search;
 
+  @internal
   Map<String, Object?> encode() => {
     'aud': ?aud?.toTfJson(),
     'domain': ?domain?.toTfJson(),

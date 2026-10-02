@@ -26,6 +26,7 @@ final class MedialiveMultiplexSettings {
 
   final TfArg<num>? transportStreamReservedBitrate;
 
+  @internal
   Map<String, Object?> encode() => {
     'maximum_video_buffer_delay_milliseconds':
         ?maximumVideoBufferDelayMilliseconds?.toTfJson(),

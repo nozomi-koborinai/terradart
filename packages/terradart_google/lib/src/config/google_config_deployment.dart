@@ -70,6 +70,7 @@ final class ConfigDeploymentTerraformBlueprint {
 
   final List<ConfigDeploymentInputValues>? inputValues;
 
+  @internal
   Map<String, Object?> encode() => {
     ...source.encode(),
     if (inputValues != null)
@@ -94,8 +95,10 @@ sealed class ConfigDeploymentSource {
   ) = ConfigDeploymentGitSourceChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -105,9 +108,11 @@ final class ConfigDeploymentGcsSource extends ConfigDeploymentSource {
 
   final TfArg<String> gcsSource;
 
+  @internal
   @override
   String get blockKey => 'gcs_source';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'gcs_source': gcsSource.toTfJson()};
 }
@@ -118,9 +123,11 @@ final class ConfigDeploymentGitSourceChoice extends ConfigDeploymentSource {
 
   final ConfigDeploymentGitSource gitSource;
 
+  @internal
   @override
   String get blockKey => 'git_source';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'git_source': gitSource.encode()};
 }
@@ -141,6 +148,7 @@ final class ConfigDeploymentGitSource {
 
   final TfArg<String> repo;
 
+  @internal
   Map<String, Object?> encode() => {
     'directory': ?directory?.toTfJson(),
     'ref': ?ref?.toTfJson(),
@@ -161,6 +169,7 @@ final class ConfigDeploymentInputValues {
 
   final TfArg<String> variableName;
 
+  @internal
   Map<String, Object?> encode() => {
     'input_value': inputValue.toTfJson(),
     'variable_name': variableName.toTfJson(),

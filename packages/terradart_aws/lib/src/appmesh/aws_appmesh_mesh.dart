@@ -17,6 +17,7 @@ final class AppmeshMeshSpec {
 
   final AppmeshMeshServiceDiscovery? serviceDiscovery;
 
+  @internal
   Map<String, Object?> encode() => {
     'egress_filter': ?egressFilter?.encode(),
     'service_discovery': ?serviceDiscovery?.encode(),
@@ -31,6 +32,7 @@ final class AppmeshMeshEgressFilter {
 
   final AppmeshMeshType? type;
 
+  @internal
   Map<String, Object?> encode() => {'type': ?type?.toTfJson()};
 }
 
@@ -56,6 +58,7 @@ final class AppmeshMeshServiceDiscovery {
 
   final AppmeshMeshIpPreference? ipPreference;
 
+  @internal
   Map<String, Object?> encode() => {'ip_preference': ?ipPreference?.toTfJson()};
 }
 

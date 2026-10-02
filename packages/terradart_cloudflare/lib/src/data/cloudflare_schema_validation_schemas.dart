@@ -17,6 +17,7 @@ final class DataSchemaValidationSchemasFilter {
 
   final TfArg<bool>? validationEnabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'validation_enabled': ?validationEnabled?.toTfJson(),
   };

@@ -20,6 +20,7 @@ final class ChronicleRuleDeploymentScheduleCustomizations {
 
   final TfArg<String>? lateArrivingDataAdjustment;
 
+  @internal
   Map<String, Object?> encode() => {
     'ensure_enrichment_completeness': ?ensureEnrichmentCompleteness?.toTfJson(),
     'late_arriving_data_adjustment': ?lateArrivingDataAdjustment?.toTfJson(),

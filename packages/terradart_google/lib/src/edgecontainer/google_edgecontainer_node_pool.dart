@@ -17,6 +17,7 @@ final class EdgecontainerNodePoolLocalDiskEncryption {
 
   final RefTo<GoogleKmsCryptoKey>? kmsKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key': ?kmsKey?.encodeAs('id').toTfJson(),
   };
@@ -30,6 +31,7 @@ final class EdgecontainerNodePoolNodeConfig {
 
   final TfArg<Map<String, String>>? labels;
 
+  @internal
   Map<String, Object?> encode() => {'labels': ?labels?.toTfJson()};
 }
 

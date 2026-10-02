@@ -3,6 +3,7 @@
 /// Cloud Identity policy (beta-only).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/identity/google_cloud_identity_policy.dart'
     show
         CloudIdentityPolicyQuery,

@@ -2179,12 +2179,15 @@ sealed class GameliftFleetArtifact {
       GameliftFleetArtifactScriptId;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -2194,12 +2197,15 @@ final class GameliftFleetArtifactBuildId extends GameliftFleetArtifact {
 
   final TfArg<String> buildId;
 
+  @internal
   @override
   String get blockKey => 'build_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'build_id': buildId.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'build_id': buildId};
 }
@@ -2210,12 +2216,15 @@ final class GameliftFleetArtifactScriptId extends GameliftFleetArtifact {
 
   final TfArg<String> scriptId;
 
+  @internal
   @override
   String get blockKey => 'script_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'script_id': scriptId.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'script_id': scriptId};
 }
@@ -2228,6 +2237,7 @@ final class GameliftFleetCertificateConfiguration {
 
   final GameliftFleetCertificateType? certificateType;
 
+  @internal
   Map<String, Object?> encode() => {
     'certificate_type': ?certificateType?.toTfJson(),
   };
@@ -2274,6 +2284,7 @@ final class GameliftFleetEc2InboundPermission {
 
   final TfArg<num> toPort;
 
+  @internal
   Map<String, Object?> encode() => {
     'from_port': fromPort.toTfJson(),
     'ip_range': ipRange.toTfJson(),
@@ -2309,6 +2320,7 @@ final class GameliftFleetResourceCreationLimitPolicy {
 
   final TfArg<num>? policyPeriodInMinutes;
 
+  @internal
   Map<String, Object?> encode() => {
     'new_game_sessions_per_creator': ?newGameSessionsPerCreator?.toTfJson(),
     'policy_period_in_minutes': ?policyPeriodInMinutes?.toTfJson(),
@@ -2331,6 +2343,7 @@ final class GameliftFleetRuntimeConfiguration {
 
   final List<GameliftFleetServerProcess>? serverProcess;
 
+  @internal
   Map<String, Object?> encode() => {
     'game_session_activation_timeout_seconds':
         ?gameSessionActivationTimeoutSeconds?.toTfJson(),
@@ -2357,6 +2370,7 @@ final class GameliftFleetServerProcess {
 
   final TfArg<String>? parameters;
 
+  @internal
   Map<String, Object?> encode() => {
     'concurrent_executions': concurrentExecutions.toTfJson(),
     'launch_path': launchPath.toTfJson(),

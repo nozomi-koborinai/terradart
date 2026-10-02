@@ -15,6 +15,7 @@ final class Resourceexplorer2ViewFilters {
 
   final TfArg<String> filterString;
 
+  @internal
   Map<String, Object?> encode() => {'filter_string': filterString.toTfJson()};
 }
 
@@ -26,6 +27,7 @@ final class Resourceexplorer2ViewIncludedProperty {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 

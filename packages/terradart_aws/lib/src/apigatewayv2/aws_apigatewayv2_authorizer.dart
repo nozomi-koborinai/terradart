@@ -56,6 +56,7 @@ final class Apigatewayv2AuthorizerJwtConfiguration {
 
   final TfArg<String>? issuer;
 
+  @internal
   Map<String, Object?> encode() => {
     'audience': ?audience?.toTfJson(),
     'issuer': ?issuer?.toTfJson(),

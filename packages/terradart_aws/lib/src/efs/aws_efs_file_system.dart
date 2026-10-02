@@ -70,6 +70,7 @@ final class EfsFileSystemLifecyclePolicy {
   final EfsFileSystemTransitionToPrimaryStorageClass?
   transitionToPrimaryStorageClass;
 
+  @internal
   Map<String, Object?> encode() => {
     'transition_to_archive': ?transitionToArchive?.toTfJson(),
     'transition_to_ia': ?transitionToIa?.toTfJson(),
@@ -206,6 +207,7 @@ final class EfsFileSystemProtection {
 
   final EfsFileSystemReplicationOverwrite? replicationOverwrite;
 
+  @internal
   Map<String, Object?> encode() => {
     'replication_overwrite': ?replicationOverwrite?.toTfJson(),
   };

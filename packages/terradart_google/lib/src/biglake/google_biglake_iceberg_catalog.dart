@@ -79,6 +79,7 @@ final class BiglakeIcebergCatalogFederatedCatalogOptions {
 
   final BiglakeIcebergCatalogUnityCatalogInfo? unityCatalogInfo;
 
+  @internal
   Map<String, Object?> encode() => {
     'secret_name': ?secretName?.toTfJson(),
     'service_directory_name': ?serviceDirectoryName?.toTfJson(),
@@ -104,6 +105,7 @@ final class BiglakeIcebergCatalogGlueCatalogInfo {
 
   final TfArg<String> warehouse;
 
+  @internal
   Map<String, Object?> encode() => {
     'aws_region': awsRegion.toTfJson(),
     'aws_role_arn': awsRoleArn.toTfJson(),
@@ -124,6 +126,7 @@ final class BiglakeIcebergCatalogRefreshOptions {
 
   final BiglakeIcebergCatalogRefreshScope? refreshScope;
 
+  @internal
   Map<String, Object?> encode() => {
     'refresh_schedule': ?refreshSchedule?.encode(),
     'refresh_scope': ?refreshScope?.encode(),
@@ -138,6 +141,7 @@ final class BiglakeIcebergCatalogRefreshSchedule {
 
   final TfArg<String>? refreshInterval;
 
+  @internal
   Map<String, Object?> encode() => {
     'refresh_interval': ?refreshInterval?.toTfJson(),
   };
@@ -151,6 +155,7 @@ final class BiglakeIcebergCatalogRefreshScope {
 
   final TfArg<List<String>>? namespaceFilters;
 
+  @internal
   Map<String, Object?> encode() => {
     'namespace_filters': ?namespaceFilters?.toTfJson(),
   };
@@ -172,6 +177,7 @@ final class BiglakeIcebergCatalogUnityCatalogInfo {
 
   final TfArg<String>? servicePrincipalApplicationId;
 
+  @internal
   Map<String, Object?> encode() => {
     'catalog_name': catalogName.toTfJson(),
     'instance_name': instanceName.toTfJson(),
@@ -190,6 +196,7 @@ final class BiglakeIcebergCatalogRestrictedLocationsConfig {
 
   final TfArg<List<String>>? restrictedLocations;
 
+  @internal
   Map<String, Object?> encode() => {
     'restricted_locations': ?restrictedLocations?.toTfJson(),
   };

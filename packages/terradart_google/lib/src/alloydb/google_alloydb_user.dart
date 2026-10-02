@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../alloydb/google_alloydb_cluster.dart' show GoogleAlloydbCluster;
@@ -43,12 +44,15 @@ sealed class AlloydbUserPassword {
       AlloydbUserPasswordWo;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -58,12 +62,15 @@ final class AlloydbUserPasswordChoice extends AlloydbUserPassword {
 
   final Sensitive<String> password;
 
+  @internal
   @override
   String get blockKey => 'password';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'password': password.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'password': password};
 }
@@ -74,12 +81,15 @@ final class AlloydbUserPasswordWo extends AlloydbUserPassword {
 
   final TfArg<String> passwordWo;
 
+  @internal
   @override
   String get blockKey => 'password_wo';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'password_wo': passwordWo.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'password_wo': passwordWo};
 }

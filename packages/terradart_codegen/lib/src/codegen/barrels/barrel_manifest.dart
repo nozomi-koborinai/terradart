@@ -19,6 +19,7 @@ class BarrelManifest {
     required this.umbrellaExtraExports,
     required this.barrels,
     this.umbrellaFile = 'terradart_google',
+    this.dataSourceBarrels = const {},
   });
 
   /// Umbrella file stem under `lib/` (e.g. `terradart_google_beta` for the
@@ -35,6 +36,11 @@ class BarrelManifest {
 
   /// Barrel key (== catalog `barrel` / override `outputDir`) → spec.
   final Map<String, BarrelSpec> barrels;
+
+  /// Data source type → the service barrel that exports it beside `data`,
+  /// where [dataSourceBarrelFor] derives none or the wrong one. The value
+  /// `data` keeps the type in the `data` barrel only.
+  final Map<String, String> dataSourceBarrels;
 }
 
 class BarrelSpec {
@@ -75,6 +81,7 @@ BarrelManifest loadBarrelManifest(String path) {
     'umbrellaDoc',
     'umbrellaExtraExports',
     'barrels',
+    'dataSourceBarrels',
   };
   for (final key in yaml.keys) {
     if (!allowedTop.contains(key)) {
@@ -129,8 +136,21 @@ BarrelManifest loadBarrelManifest(String path) {
       extraExports: _stringList(node['extraExports'], path, 'barrels.$key'),
     );
   }
+  final dataSourceNode = yaml['dataSourceBarrels'];
+  if (dataSourceNode != null &&
+      (dataSourceNode is! YamlMap ||
+          dataSourceNode.values.any((v) => v is! String))) {
+    throw FormatException(
+      '$path: dataSourceBarrels must map a data source type to a barrel key',
+    );
+  }
   return BarrelManifest(
     umbrellaDoc: umbrellaDoc.trimRight(),
+    dataSourceBarrels: {
+      if (dataSourceNode is YamlMap)
+        for (final e in dataSourceNode.entries)
+          e.key.toString(): e.value as String,
+    },
     umbrellaExtraExports: umbrellaExtra,
     barrels: barrels,
     umbrellaFile: umbrellaFileNode is String

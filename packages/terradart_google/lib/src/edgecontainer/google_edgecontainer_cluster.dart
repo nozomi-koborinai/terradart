@@ -45,6 +45,7 @@ final class EdgecontainerClusterAuthorization {
 
   final EdgecontainerClusterAdminUsers adminUsers;
 
+  @internal
   Map<String, Object?> encode() => {'admin_users': adminUsers.encode()};
 }
 
@@ -56,6 +57,7 @@ final class EdgecontainerClusterAdminUsers {
 
   final TfArg<String> username;
 
+  @internal
   Map<String, Object?> encode() => {'username': username.toTfJson()};
 }
 
@@ -77,8 +79,10 @@ sealed class EdgecontainerClusterControlPlane {
   ) = EdgecontainerClusterControlPlaneLocal;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -89,9 +93,11 @@ final class EdgecontainerClusterControlPlaneRemote
 
   final EdgecontainerClusterRemote remote;
 
+  @internal
   @override
   String get blockKey => 'remote';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'remote': remote.encode()};
 }
@@ -103,9 +109,11 @@ final class EdgecontainerClusterControlPlaneLocal
 
   final EdgecontainerClusterLocal local;
 
+  @internal
   @override
   String get blockKey => 'local';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'local': local.encode()};
 }
@@ -129,6 +137,7 @@ final class EdgecontainerClusterLocal {
 
   final EdgecontainerClusterSharedDeploymentPolicy? sharedDeploymentPolicy;
 
+  @internal
   Map<String, Object?> encode() => {
     'machine_filter': ?machineFilter?.toTfJson(),
     'node_count': ?nodeCount?.toTfJson(),
@@ -174,6 +183,7 @@ final class EdgecontainerClusterRemote {
 
   final TfArg<String>? nodeLocation;
 
+  @internal
   Map<String, Object?> encode() => {'node_location': ?nodeLocation?.toTfJson()};
 }
 
@@ -185,6 +195,7 @@ final class EdgecontainerClusterControlPlaneEncryption {
 
   final RefTo<GoogleKmsCryptoKey>? kmsKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key': ?kmsKey?.encodeAs('id').toTfJson(),
   };
@@ -198,6 +209,7 @@ final class EdgecontainerClusterFleet {
 
   final TfArg<String> project;
 
+  @internal
   Map<String, Object?> encode() => {'project': project.toTfJson()};
 }
 
@@ -214,6 +226,7 @@ final class EdgecontainerClusterMaintenancePolicy {
 
   final EdgecontainerClusterWindow window;
 
+  @internal
   Map<String, Object?> encode() => {
     if (maintenanceExclusions != null)
       'maintenance_exclusions': [
@@ -233,6 +246,7 @@ final class EdgecontainerClusterMaintenanceExclusions {
 
   final EdgecontainerClusterMaintenanceExclusionsWindow? window;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': ?id?.toTfJson(),
     'window': ?window?.encode(),
@@ -253,6 +267,7 @@ final class EdgecontainerClusterMaintenanceExclusionsWindow {
 
   final TfArg<String>? startTime;
 
+  @internal
   Map<String, Object?> encode() => {
     'end_time': ?endTime?.toTfJson(),
     'start_time': ?startTime?.toTfJson(),
@@ -267,6 +282,7 @@ final class EdgecontainerClusterWindow {
 
   final EdgecontainerClusterRecurringWindow recurringWindow;
 
+  @internal
   Map<String, Object?> encode() => {
     'recurring_window': recurringWindow.encode(),
   };
@@ -282,6 +298,7 @@ final class EdgecontainerClusterRecurringWindow {
 
   final EdgecontainerClusterMaintenanceExclusionsWindow? window;
 
+  @internal
   Map<String, Object?> encode() => {
     'recurrence': ?recurrence?.toTfJson(),
     'window': ?window?.encode(),
@@ -307,6 +324,7 @@ final class EdgecontainerClusterNetworking {
 
   final TfArg<List<String>>? servicesIpv6CidrBlocks;
 
+  @internal
   Map<String, Object?> encode() => {
     'cluster_ipv4_cidr_blocks': clusterIpv4CidrBlocks.toTfJson(),
     'cluster_ipv6_cidr_blocks': ?clusterIpv6CidrBlocks?.toTfJson(),
@@ -323,6 +341,7 @@ final class EdgecontainerClusterSystemAddonsConfig {
 
   final EdgecontainerClusterIngress? ingress;
 
+  @internal
   Map<String, Object?> encode() => {'ingress': ?ingress?.encode()};
 }
 
@@ -336,6 +355,7 @@ final class EdgecontainerClusterIngress {
 
   final TfArg<String>? ipv4Vip;
 
+  @internal
   Map<String, Object?> encode() => {
     'disabled': ?disabled?.toTfJson(),
     'ipv4_vip': ?ipv4Vip?.toTfJson(),

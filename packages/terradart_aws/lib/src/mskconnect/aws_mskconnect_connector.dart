@@ -30,8 +30,10 @@ sealed class MskconnectConnectorCapacity {
   ) = MskconnectConnectorProvisionedCapacityChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -42,9 +44,11 @@ final class MskconnectConnectorCapacityAutoscaling
 
   final MskconnectConnectorAutoscaling autoscaling;
 
+  @internal
   @override
   String get blockKey => 'autoscaling';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'autoscaling': autoscaling.encode()};
 }
@@ -56,9 +60,11 @@ final class MskconnectConnectorProvisionedCapacityChoice
 
   final MskconnectConnectorProvisionedCapacity provisionedCapacity;
 
+  @internal
   @override
   String get blockKey => 'provisioned_capacity';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'provisioned_capacity': provisionedCapacity.encode(),
@@ -87,6 +93,7 @@ final class MskconnectConnectorAutoscaling {
 
   final MskconnectConnectorScaleOutPolicy? scaleOutPolicy;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_worker_count': maxWorkerCount.toTfJson(),
     'mcu_count': ?mcuCount?.toTfJson(),
@@ -104,6 +111,7 @@ final class MskconnectConnectorScaleInPolicy {
 
   final TfArg<num>? cpuUtilizationPercentage;
 
+  @internal
   Map<String, Object?> encode() => {
     'cpu_utilization_percentage': ?cpuUtilizationPercentage?.toTfJson(),
   };
@@ -117,6 +125,7 @@ final class MskconnectConnectorScaleOutPolicy {
 
   final TfArg<num>? cpuUtilizationPercentage;
 
+  @internal
   Map<String, Object?> encode() => {
     'cpu_utilization_percentage': ?cpuUtilizationPercentage?.toTfJson(),
   };
@@ -135,6 +144,7 @@ final class MskconnectConnectorProvisionedCapacity {
 
   final TfArg<num> workerCount;
 
+  @internal
   Map<String, Object?> encode() => {
     'mcu_count': ?mcuCount?.toTfJson(),
     'worker_count': workerCount.toTfJson(),
@@ -149,6 +159,7 @@ final class MskconnectConnectorKafkaCluster {
 
   final MskconnectConnectorApacheKafkaCluster apacheKafkaCluster;
 
+  @internal
   Map<String, Object?> encode() => {
     'apache_kafka_cluster': apacheKafkaCluster.encode(),
   };
@@ -167,6 +178,7 @@ final class MskconnectConnectorApacheKafkaCluster {
 
   final MskconnectConnectorVpc vpc;
 
+  @internal
   Map<String, Object?> encode() => {
     'bootstrap_servers': bootstrapServers.toTfJson(),
     'vpc': vpc.encode(),
@@ -186,6 +198,7 @@ final class MskconnectConnectorVpc {
 
   final TfArg<List<RefTo<AwsSubnet>>> subnets;
 
+  @internal
   Map<String, Object?> encode() => {
     'security_groups': securityGroups.encodeAs('id').toTfJson(),
     'subnets': subnets.encodeAs('id').toTfJson(),
@@ -202,6 +215,7 @@ final class MskconnectConnectorKafkaClusterClientAuthentication {
 
   final MskconnectConnectorAuthenticationType? authenticationType;
 
+  @internal
   Map<String, Object?> encode() => {
     'authentication_type': ?authenticationType?.toTfJson(),
   };
@@ -237,6 +251,7 @@ final class MskconnectConnectorKafkaClusterEncryptionInTransit {
 
   final MskconnectConnectorEncryptionType? encryptionType;
 
+  @internal
   Map<String, Object?> encode() => {
     'encryption_type': ?encryptionType?.toTfJson(),
   };
@@ -270,6 +285,7 @@ final class MskconnectConnectorLogDelivery {
 
   final MskconnectConnectorWorkerLogDelivery workerLogDelivery;
 
+  @internal
   Map<String, Object?> encode() => {
     'worker_log_delivery': workerLogDelivery.encode(),
   };
@@ -291,6 +307,7 @@ final class MskconnectConnectorWorkerLogDelivery {
 
   final MskconnectConnectorS3? s3;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloudwatch_logs': ?cloudwatchLogs?.encode(),
     'firehose': ?firehose?.encode(),
@@ -311,6 +328,7 @@ final class MskconnectConnectorCloudwatchLogs {
 
   final RefTo<AwsCloudwatchLogGroup>? logGroup;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'log_group': ?logGroup?.encodeAs('name').toTfJson(),
@@ -330,6 +348,7 @@ final class MskconnectConnectorFirehose {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'delivery_stream': ?deliveryStream?.toTfJson(),
     'enabled': enabled.toTfJson(),
@@ -352,6 +371,7 @@ final class MskconnectConnectorS3 {
 
   final TfArg<String>? prefix;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': ?bucket?.encodeAs('id').toTfJson(),
     'enabled': enabled.toTfJson(),
@@ -367,6 +387,7 @@ final class MskconnectConnectorPlugin {
 
   final MskconnectConnectorCustomPlugin customPlugin;
 
+  @internal
   Map<String, Object?> encode() => {'custom_plugin': customPlugin.encode()};
 }
 
@@ -383,6 +404,7 @@ final class MskconnectConnectorCustomPlugin {
 
   final TfArg<num> revision;
 
+  @internal
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
     'revision': revision.toTfJson(),
@@ -402,6 +424,7 @@ final class MskconnectConnectorWorkerConfiguration {
 
   final TfArg<num> revision;
 
+  @internal
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
     'revision': revision.toTfJson(),

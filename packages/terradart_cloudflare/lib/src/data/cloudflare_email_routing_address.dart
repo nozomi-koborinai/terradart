@@ -19,6 +19,7 @@ final class DataEmailRoutingAddressFilter {
 
   final TfArg<bool>? verified;
 
+  @internal
   Map<String, Object?> encode() => {
     'direction': ?direction?.toTfJson(),
     'verified': ?verified?.toTfJson(),

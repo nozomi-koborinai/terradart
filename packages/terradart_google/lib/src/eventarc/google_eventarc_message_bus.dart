@@ -56,6 +56,7 @@ class EventarcMessageBusLoggingConfig {
 
   final EventarcMessageBusLogSeverity? logSeverity;
 
+  @internal
   Map<String, Object?> encode() => {
     if (logSeverity != null) 'log_severity': logSeverity!.toTfJson(),
   };

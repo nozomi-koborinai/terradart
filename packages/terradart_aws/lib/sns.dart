@@ -3,6 +3,8 @@
 /// AWS SNS.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_sns_topic.dart' show DataAwsSnsTopic;
 export 'src/sns/aws_sns_platform_application.dart'
     show AwsSnsPlatformApplication;
 export 'src/sns/aws_sns_sms_preferences.dart' show AwsSnsSmsPreferences;

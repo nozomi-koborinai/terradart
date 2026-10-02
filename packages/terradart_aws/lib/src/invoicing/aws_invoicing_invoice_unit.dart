@@ -15,6 +15,7 @@ final class InvoicingInvoiceUnitRule {
 
   final TfArg<List<String>> linkedAccounts;
 
+  @internal
   Map<String, Object?> encode() => {
     'linked_accounts': linkedAccounts.toTfJson(),
   };

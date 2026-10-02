@@ -28,6 +28,7 @@ final class DataUserGroupFilter {
 
   final TfArg<String>? name;
 
+  @internal
   Map<String, Object?> encode() => {
     'direction': ?direction?.toTfJson(),
     'fuzzy_name': ?fuzzyName?.toTfJson(),

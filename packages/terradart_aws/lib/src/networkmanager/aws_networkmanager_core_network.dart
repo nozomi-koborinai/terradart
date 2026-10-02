@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `aws_networkmanager_core_network`.
@@ -25,12 +26,15 @@ sealed class NetworkmanagerCoreNetworkBasePolicy {
   ) = NetworkmanagerCoreNetworkBasePolicyRegions;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -41,14 +45,17 @@ final class NetworkmanagerCoreNetworkBasePolicyDocument
 
   final TfArg<String> basePolicyDocument;
 
+  @internal
   @override
   String get blockKey => 'base_policy_document';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'base_policy_document': basePolicyDocument.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'base_policy_document': basePolicyDocument,
@@ -62,14 +69,17 @@ final class NetworkmanagerCoreNetworkBasePolicyRegions
 
   final TfArg<List<String>> basePolicyRegions;
 
+  @internal
   @override
   String get blockKey => 'base_policy_regions';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'base_policy_regions': basePolicyRegions.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'base_policy_regions': basePolicyRegions,

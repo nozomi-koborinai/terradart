@@ -20,6 +20,7 @@ final class RekognitionStreamProcessorDataSharingPreference {
 
   final TfArg<bool> optIn;
 
+  @internal
   Map<String, Object?> encode() => {'opt_in': optIn.toTfJson()};
 }
 
@@ -31,6 +32,7 @@ final class RekognitionStreamProcessorInput {
 
   final List<RekognitionStreamProcessorKinesisVideoStream>? kinesisVideoStream;
 
+  @internal
   Map<String, Object?> encode() => {
     if (kinesisVideoStream != null)
       'kinesis_video_stream': [for (final e in kinesisVideoStream!) e.encode()],
@@ -45,6 +47,7 @@ final class RekognitionStreamProcessorKinesisVideoStream {
 
   final TfArg<String> arn;
 
+  @internal
   Map<String, Object?> encode() => {'arn': arn.toTfJson()};
 }
 
@@ -56,6 +59,7 @@ final class RekognitionStreamProcessorNotificationChannel {
 
   final RefTo<AwsSnsTopic>? snsTopicArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'sns_topic_arn': ?snsTopicArn?.encodeAs('arn').toTfJson(),
   };
@@ -80,8 +84,10 @@ sealed class RekognitionStreamProcessorOutput {
   ) = RekognitionStreamProcessorOutputS3Destination;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -94,9 +100,11 @@ final class RekognitionStreamProcessorOutputKinesisDataStream
 
   final List<RekognitionStreamProcessorKinesisDataStream> kinesisDataStream;
 
+  @internal
   @override
   String get blockKey => 'kinesis_data_stream';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'kinesis_data_stream': [for (final e in kinesisDataStream) e.encode()],
@@ -110,9 +118,11 @@ final class RekognitionStreamProcessorOutputS3Destination
 
   final List<RekognitionStreamProcessorS3Destination> s3Destination;
 
+  @internal
   @override
   String get blockKey => 's3_destination';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     's3_destination': [for (final e in s3Destination) e.encode()],
@@ -127,6 +137,7 @@ final class RekognitionStreamProcessorKinesisDataStream {
 
   final TfArg<String>? arn;
 
+  @internal
   Map<String, Object?> encode() => {'arn': ?arn?.toTfJson()};
 }
 
@@ -140,6 +151,7 @@ final class RekognitionStreamProcessorS3Destination {
 
   final TfArg<String>? keyPrefix;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': ?bucket?.encodeAs('id').toTfJson(),
     'key_prefix': ?keyPrefix?.toTfJson(),
@@ -165,8 +177,10 @@ sealed class RekognitionStreamProcessorRegionsOfInterest {
   ) = RekognitionStreamProcessorRegionsOfInterestPolygon;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -179,9 +193,11 @@ final class RekognitionStreamProcessorRegionsOfInterestBoundingBox
 
   final List<RekognitionStreamProcessorBoundingBox> boundingBox;
 
+  @internal
   @override
   String get blockKey => 'bounding_box';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'bounding_box': [for (final e in boundingBox) e.encode()],
@@ -195,9 +211,11 @@ final class RekognitionStreamProcessorRegionsOfInterestPolygon
 
   final List<RekognitionStreamProcessorPolygon> polygon;
 
+  @internal
   @override
   String get blockKey => 'polygon';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'polygon': [for (final e in polygon) e.encode()],
@@ -223,6 +241,7 @@ final class RekognitionStreamProcessorBoundingBox {
 
   final TfArg<num>? width;
 
+  @internal
   Map<String, Object?> encode() => {
     'height': ?height?.toTfJson(),
     'left': ?left?.toTfJson(),
@@ -241,6 +260,7 @@ final class RekognitionStreamProcessorPolygon {
 
   final TfArg<num>? y;
 
+  @internal
   Map<String, Object?> encode() => {'x': ?x?.toTfJson(), 'y': ?y?.toTfJson()};
 }
 
@@ -263,8 +283,10 @@ sealed class RekognitionStreamProcessorSettings {
   ) = RekognitionStreamProcessorSettingsFaceSearch;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -275,9 +297,11 @@ final class RekognitionStreamProcessorSettingsConnectedHome
 
   final List<RekognitionStreamProcessorConnectedHome> connectedHome;
 
+  @internal
   @override
   String get blockKey => 'connected_home';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'connected_home': [for (final e in connectedHome) e.encode()],
@@ -291,9 +315,11 @@ final class RekognitionStreamProcessorSettingsFaceSearch
 
   final List<RekognitionStreamProcessorFaceSearch> faceSearch;
 
+  @internal
   @override
   String get blockKey => 'face_search';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'face_search': [for (final e in faceSearch) e.encode()],
@@ -313,6 +339,7 @@ final class RekognitionStreamProcessorConnectedHome {
 
   final TfArg<num>? minConfidence;
 
+  @internal
   Map<String, Object?> encode() => {
     if (labels != null) 'labels': [for (final e in labels!) e.toTfJson()],
     'min_confidence': ?minConfidence?.toTfJson(),
@@ -358,6 +385,7 @@ final class RekognitionStreamProcessorFaceSearch {
 
   final TfArg<num>? faceMatchThreshold;
 
+  @internal
   Map<String, Object?> encode() => {
     'collection_id': collectionId.toTfJson(),
     'face_match_threshold': ?faceMatchThreshold?.toTfJson(),

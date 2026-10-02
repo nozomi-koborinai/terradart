@@ -117,6 +117,7 @@ final class ApiGatewayIntegrationTlsConfig {
 
   final TfArg<bool>? insecureSkipVerification;
 
+  @internal
   Map<String, Object?> encode() => {
     'insecure_skip_verification': ?insecureSkipVerification?.toTfJson(),
   };

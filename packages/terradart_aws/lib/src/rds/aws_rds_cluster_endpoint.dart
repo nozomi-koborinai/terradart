@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `aws_rds_cluster_endpoint`.
@@ -48,12 +49,15 @@ sealed class RdsClusterEndpointMembers {
   ) = RdsClusterEndpointStaticMembers;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -64,14 +68,17 @@ final class RdsClusterEndpointExcludedMembers
 
   final TfArg<List<String>> excludedMembers;
 
+  @internal
   @override
   String get blockKey => 'excluded_members';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'excluded_members': excludedMembers.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'excluded_members': excludedMembers,
@@ -84,12 +91,15 @@ final class RdsClusterEndpointStaticMembers extends RdsClusterEndpointMembers {
 
   final TfArg<List<String>> staticMembers;
 
+  @internal
   @override
   String get blockKey => 'static_members';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'static_members': staticMembers.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'static_members': staticMembers};
 }

@@ -16,6 +16,7 @@ const Set<String> _googleCloudfunctionsFunctionSensitive = <String>{};
 final class CloudfunctionsFunctionAutomaticUpdatePolicy {
   const CloudfunctionsFunctionAutomaticUpdatePolicy();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -35,6 +36,7 @@ final class CloudfunctionsFunctionEventTrigger {
 
   final CloudfunctionsFunctionFailurePolicy? failurePolicy;
 
+  @internal
   Map<String, Object?> encode() => {
     'event_type': eventType.toTfJson(),
     'resource': resource.toTfJson(),
@@ -50,6 +52,7 @@ final class CloudfunctionsFunctionFailurePolicy {
 
   final TfArg<bool> retry;
 
+  @internal
   Map<String, Object?> encode() => {'retry': retry.toTfJson()};
 }
 
@@ -59,6 +62,7 @@ final class CloudfunctionsFunctionFailurePolicy {
 final class CloudfunctionsFunctionOnDeployUpdatePolicy {
   const CloudfunctionsFunctionOnDeployUpdatePolicy();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -81,6 +85,7 @@ final class CloudfunctionsFunctionSecretEnvironmentVariables {
 
   final TfArg<String> version;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'project_id': ?projectId?.toTfJson(),
@@ -108,6 +113,7 @@ final class CloudfunctionsFunctionSecretVolumes {
 
   final List<CloudfunctionsFunctionVersions>? versions;
 
+  @internal
   Map<String, Object?> encode() => {
     'mount_path': mountPath.toTfJson(),
     'project_id': ?projectId?.toTfJson(),
@@ -129,6 +135,7 @@ final class CloudfunctionsFunctionVersions {
 
   final TfArg<String> version;
 
+  @internal
   Map<String, Object?> encode() => {
     'path': path.toTfJson(),
     'version': version.toTfJson(),
@@ -143,6 +150,7 @@ final class CloudfunctionsFunctionSourceRepository {
 
   final TfArg<String> url;
 
+  @internal
   Map<String, Object?> encode() => {'url': url.toTfJson()};
 }
 

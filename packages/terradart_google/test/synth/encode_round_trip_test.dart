@@ -25,7 +25,6 @@ import 'dart:io';
 
 import 'package:path/path.dart' as p;
 import 'package:terradart_codegen/src/codegen/universal_invariants/sealed_class_extractor.dart';
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/agent.dart';
 import 'package:terradart_google/app.dart';
 import 'package:terradart_google/bigquery.dart';

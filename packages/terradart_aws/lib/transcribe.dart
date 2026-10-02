@@ -3,6 +3,7 @@
 /// AWS Transcribe.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/transcribe/aws_transcribe_language_model.dart'
     show
         AwsTranscribeLanguageModel,

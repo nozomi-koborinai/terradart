@@ -26,6 +26,7 @@ final class EmrInstanceGroupEbsConfig {
 
   final TfArg<num>? volumesPerInstance;
 
+  @internal
   Map<String, Object?> encode() => {
     'iops': ?iops?.toTfJson(),
     'size': size.toTfJson(),

@@ -72,6 +72,7 @@ final class StorageBucketAutoclass {
 
   final TfArg<String>? terminalStorageClass;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'terminal_storage_class': ?terminalStorageClass?.toTfJson(),
@@ -97,6 +98,7 @@ final class StorageBucketCors {
 
   final TfArg<List<String>>? responseHeader;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_age_seconds': ?maxAgeSeconds?.toTfJson(),
     'method': ?method?.toTfJson(),
@@ -113,6 +115,7 @@ final class StorageBucketCustomPlacementConfig {
 
   final TfArg<List<String>> dataLocations;
 
+  @internal
   Map<String, Object?> encode() => {'data_locations': dataLocations.toTfJson()};
 }
 
@@ -138,6 +141,7 @@ final class StorageBucketEncryption {
   final StorageBucketGoogleManagedEncryptionEnforcementConfig?
   googleManagedEncryptionEnforcementConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'default_kms_key_name': ?defaultKmsKeyName?.toTfJson(),
     'customer_managed_encryption_enforcement_config':
@@ -159,6 +163,7 @@ final class StorageBucketCustomerManagedEncryptionEnforcementConfig {
 
   final TfArg<String> restrictionMode;
 
+  @internal
   Map<String, Object?> encode() => {
     'restriction_mode': restrictionMode.toTfJson(),
   };
@@ -174,6 +179,7 @@ final class StorageBucketCustomerSuppliedEncryptionEnforcementConfig {
 
   final TfArg<String> restrictionMode;
 
+  @internal
   Map<String, Object?> encode() => {
     'restriction_mode': restrictionMode.toTfJson(),
   };
@@ -189,6 +195,7 @@ final class StorageBucketGoogleManagedEncryptionEnforcementConfig {
 
   final TfArg<String> restrictionMode;
 
+  @internal
   Map<String, Object?> encode() => {
     'restriction_mode': restrictionMode.toTfJson(),
   };
@@ -202,6 +209,7 @@ final class StorageBucketHierarchicalNamespace {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 
@@ -227,6 +235,7 @@ final class StorageBucketIpFilter {
 
   final List<StorageBucketVpcNetworkSources>? vpcNetworkSources;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_all_service_agent_access': ?allowAllServiceAgentAccess?.toTfJson(),
     'allow_cross_org_vpcs': ?allowCrossOrgVpcs?.toTfJson(),
@@ -245,6 +254,7 @@ final class StorageBucketPublicNetworkSource {
 
   final TfArg<List<String>> allowedIpCidrRanges;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed_ip_cidr_ranges': allowedIpCidrRanges.toTfJson(),
   };
@@ -263,6 +273,7 @@ final class StorageBucketVpcNetworkSources {
 
   final RefTo<GoogleComputeNetwork> network;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed_ip_cidr_ranges': allowedIpCidrRanges.toTfJson(),
     'network': network.encodeAs('id').toTfJson(),
@@ -282,6 +293,7 @@ final class StorageBucketLifecycleRule {
 
   final StorageBucketCondition condition;
 
+  @internal
   Map<String, Object?> encode() => {
     'action': action.encode(),
     'condition': condition.encode(),
@@ -298,6 +310,7 @@ final class StorageBucketAction {
 
   final LifecycleActionType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'storage_class': ?storageClass?.toTfJson(),
     'type': type.toTfJson(),
@@ -362,6 +375,7 @@ final class StorageBucketCondition {
 
   final TfArg<String>? withState;
 
+  @internal
   Map<String, Object?> encode() => {
     'age': ?age?.toTfJson(),
     'created_before': ?createdBefore?.toTfJson(),
@@ -395,6 +409,7 @@ final class StorageBucketLogging {
 
   final TfArg<String>? logObjectPrefix;
 
+  @internal
   Map<String, Object?> encode() => {
     'log_bucket': logBucket.toTfJson(),
     'log_object_prefix': ?logObjectPrefix?.toTfJson(),
@@ -414,6 +429,7 @@ final class StorageBucketRetentionPolicy {
 
   final TfArg<String> retentionPeriod;
 
+  @internal
   Map<String, Object?> encode() => {
     'is_locked': ?isLocked?.toTfJson(),
     'retention_period': retentionPeriod.toTfJson(),
@@ -428,6 +444,7 @@ final class StorageBucketSoftDeletePolicy {
 
   final TfArg<num>? retentionDurationSeconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'retention_duration_seconds': ?retentionDurationSeconds?.toTfJson(),
   };
@@ -441,6 +458,7 @@ final class StorageBucketVersioning {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 
@@ -454,6 +472,7 @@ final class StorageBucketWebsite {
 
   final TfArg<String>? notFoundPage;
 
+  @internal
   Map<String, Object?> encode() => {
     'main_page_suffix': ?mainPageSuffix?.toTfJson(),
     'not_found_page': ?notFoundPage?.toTfJson(),

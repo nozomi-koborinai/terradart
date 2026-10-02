@@ -25,6 +25,7 @@ final class BackupReportPlanReportDeliveryChannel {
 
   final TfArg<String>? s3KeyPrefix;
 
+  @internal
   Map<String, Object?> encode() => {
     if (formats != null) 'formats': [for (final e in formats!) e.toTfJson()],
     's3_bucket_name': s3BucketName.encodeAs('id').toTfJson(),
@@ -71,6 +72,7 @@ final class BackupReportPlanReportSetting {
 
   final BackupReportPlanReportTemplate reportTemplate;
 
+  @internal
   Map<String, Object?> encode() => {
     'accounts': ?accounts?.toTfJson(),
     'framework_arns': ?frameworkArns?.toTfJson(),

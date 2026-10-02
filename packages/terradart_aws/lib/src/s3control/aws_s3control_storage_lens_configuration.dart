@@ -41,6 +41,7 @@ final class S3controlStorageLensConfiguration {
 
   final S3controlStorageLensConfigurationInclude? include;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'prefix_delimiter': ?prefixDelimiter?.toTfJson(),
@@ -82,6 +83,7 @@ final class S3controlStorageLensConfigurationAccountLevel {
   final S3controlStorageLensConfigurationDetailedStatusCodeMetrics?
   detailedStatusCodeMetrics;
 
+  @internal
   Map<String, Object?> encode() => {
     'activity_metrics': ?activityMetrics?.encode(),
     'advanced_cost_optimization_metrics': ?advancedCostOptimizationMetrics
@@ -103,6 +105,7 @@ final class S3controlStorageLensConfigurationActivityMetrics {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
@@ -117,6 +120,7 @@ final class S3controlStorageLensConfigurationAdvancedCostOptimizationMetrics {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
@@ -131,6 +135,7 @@ final class S3controlStorageLensConfigurationAdvancedDataProtectionMetrics {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
@@ -145,6 +150,7 @@ final class S3controlStorageLensConfigurationAdvancedPerformanceMetrics {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
@@ -177,6 +183,7 @@ final class S3controlStorageLensConfigurationBucketLevel {
 
   final S3controlStorageLensConfigurationPrefixLevel? prefixLevel;
 
+  @internal
   Map<String, Object?> encode() => {
     'activity_metrics': ?activityMetrics?.encode(),
     'advanced_cost_optimization_metrics': ?advancedCostOptimizationMetrics
@@ -200,6 +207,7 @@ final class S3controlStorageLensConfigurationDetailedStatusCodeMetrics {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
@@ -213,6 +221,7 @@ final class S3controlStorageLensConfigurationPrefixLevel {
 
   final S3controlStorageLensConfigurationStorageMetrics storageMetrics;
 
+  @internal
   Map<String, Object?> encode() => {'storage_metrics': storageMetrics.encode()};
 }
 
@@ -229,6 +238,7 @@ final class S3controlStorageLensConfigurationStorageMetrics {
 
   final S3controlStorageLensConfigurationSelectionCriteria? selectionCriteria;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'selection_criteria': ?selectionCriteria?.encode(),
@@ -251,6 +261,7 @@ final class S3controlStorageLensConfigurationSelectionCriteria {
 
   final TfArg<num>? minStorageBytesPercentage;
 
+  @internal
   Map<String, Object?> encode() => {
     'delimiter': ?delimiter?.toTfJson(),
     'max_depth': ?maxDepth?.toTfJson(),
@@ -266,6 +277,7 @@ final class S3controlStorageLensConfigurationAwsOrg {
 
   final TfArg<String> arn;
 
+  @internal
   Map<String, Object?> encode() => {'arn': arn.toTfJson()};
 }
 
@@ -287,6 +299,7 @@ final class S3controlStorageLensConfigurationDataExport {
   final S3controlStorageLensConfigurationStorageLensTableDestination?
   storageLensTableDestination;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloud_watch_metrics': ?cloudWatchMetrics?.encode(),
     's3_bucket_destination': ?s3BucketDestination?.encode(),
@@ -304,6 +317,7 @@ final class S3controlStorageLensConfigurationCloudWatchMetrics {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 
@@ -333,6 +347,7 @@ final class S3controlStorageLensConfigurationS3BucketDestination {
 
   final S3controlStorageLensConfigurationEncryption? encryption;
 
+  @internal
   Map<String, Object?> encode() => {
     'account_id': accountId.toTfJson(),
     'arn': arn.toTfJson(),
@@ -354,6 +369,7 @@ final class S3controlStorageLensConfigurationEncryption {
 
   final List<S3controlStorageLensConfigurationSseS3>? sseS3;
 
+  @internal
   Map<String, Object?> encode() => {
     'sse_kms': ?sseKms?.encode(),
     if (sseS3 != null) 'sse_s3': [for (final e in sseS3!) e.encode()],
@@ -369,6 +385,7 @@ final class S3controlStorageLensConfigurationSseKms {
 
   final RefTo<AwsKmsKey> keyId;
 
+  @internal
   Map<String, Object?> encode() => {'key_id': keyId.encodeAs('arn').toTfJson()};
 }
 
@@ -379,6 +396,7 @@ final class S3controlStorageLensConfigurationSseKms {
 final class S3controlStorageLensConfigurationSseS3 {
   const S3controlStorageLensConfigurationSseS3();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -396,6 +414,7 @@ final class S3controlStorageLensConfigurationStorageLensTableDestination {
 
   final S3controlStorageLensConfigurationEncryption? encryption;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'encryption': ?encryption?.encode(),
@@ -412,6 +431,7 @@ final class S3controlStorageLensConfigurationExclude {
 
   final TfArg<List<String>>? regions;
 
+  @internal
   Map<String, Object?> encode() => {
     'buckets': ?buckets?.toTfJson(),
     'regions': ?regions?.toTfJson(),
@@ -433,6 +453,7 @@ final class S3controlStorageLensConfigurationExpandedPrefixesDataExport {
   final S3controlStorageLensConfigurationStorageLensTableDestination?
   storageLensTableDestination;
 
+  @internal
   Map<String, Object?> encode() => {
     's3_bucket_destination': ?s3BucketDestination?.encode(),
     'storage_lens_table_destination': ?storageLensTableDestination?.encode(),
@@ -449,6 +470,7 @@ final class S3controlStorageLensConfigurationInclude {
 
   final TfArg<List<String>>? regions;
 
+  @internal
   Map<String, Object?> encode() => {
     'buckets': ?buckets?.toTfJson(),
     'regions': ?regions?.toTfJson(),

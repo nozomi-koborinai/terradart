@@ -4,6 +4,7 @@
 /// deployments. Org/folder scoped; apply-excluded leftover factories.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/cloud_security_compliance/google_cloud_security_compliance_cloud_control.dart'
     show
         CloudSecurityComplianceCloudControlAllowedValues,

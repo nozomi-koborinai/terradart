@@ -132,6 +132,7 @@ final class PageRuleActions {
 
   final PageRuleForwardingUrl? forwardingUrl;
 
+  @internal
   Map<String, Object?> encode() => {
     'always_use_https': ?alwaysUseHttps?.toTfJson(),
     'automatic_https_rewrites': ?automaticHttpsRewrites?.toTfJson(),
@@ -514,6 +515,7 @@ final class PageRuleCacheKeyFields {
 
   final PageRuleUser? user;
 
+  @internal
   Map<String, Object?> encode() => {
     'cookie': ?cookie?.encode(),
     'header': ?header?.encode(),
@@ -533,6 +535,7 @@ final class PageRuleCookie {
 
   final TfArg<List<String>>? include;
 
+  @internal
   Map<String, Object?> encode() => {
     'check_presence': ?checkPresence?.toTfJson(),
     'include': ?include?.toTfJson(),
@@ -551,6 +554,7 @@ final class PageRuleHeader {
 
   final TfArg<List<String>>? include;
 
+  @internal
   Map<String, Object?> encode() => {
     'check_presence': ?checkPresence?.toTfJson(),
     'exclude': ?exclude?.toTfJson(),
@@ -566,6 +570,7 @@ final class PageRuleHost {
 
   final TfArg<bool>? resolved;
 
+  @internal
   Map<String, Object?> encode() => {'resolved': ?resolved?.toTfJson()};
 }
 
@@ -579,6 +584,7 @@ final class PageRuleQueryString {
 
   final TfArg<List<String>>? include;
 
+  @internal
   Map<String, Object?> encode() => {
     'exclude': ?exclude?.toTfJson(),
     'include': ?include?.toTfJson(),
@@ -597,6 +603,7 @@ final class PageRuleUser {
 
   final TfArg<bool>? lang;
 
+  @internal
   Map<String, Object?> encode() => {
     'device_type': ?deviceType?.toTfJson(),
     'geo': ?geo?.toTfJson(),
@@ -614,6 +621,7 @@ final class PageRuleForwardingUrl {
 
   final TfArg<String> url;
 
+  @internal
   Map<String, Object?> encode() => {
     'status_code': statusCode.toTfJson(),
     'url': url.toTfJson(),

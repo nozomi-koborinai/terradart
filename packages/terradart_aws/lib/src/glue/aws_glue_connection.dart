@@ -47,6 +47,7 @@ final class GlueConnectionAuthenticationConfiguration {
 
   final GlueConnectionOauth2Properties? oauth2Properties;
 
+  @internal
   Map<String, Object?> encode() => {
     'authentication_type': authenticationType.toTfJson(),
     'custom_authentication_credentials': ?customAuthenticationCredentials
@@ -72,6 +73,7 @@ final class GlueConnectionBasicAuthenticationCredentials {
 
   final TfArg<String> username;
 
+  @internal
   Map<String, Object?> encode() => {
     'password': password.toTfJson(),
     'username': username.toTfJson(),
@@ -103,6 +105,7 @@ final class GlueConnectionOauth2Properties {
 
   final GlueConnectionOauth2Credentials? oauth2Credentials;
 
+  @internal
   Map<String, Object?> encode() => {
     'oauth2_grant_type': ?oauth2GrantType?.toTfJson(),
     'token_url': ?tokenUrl?.toTfJson(),
@@ -126,6 +129,7 @@ final class GlueConnectionAuthorizationCodeProperties {
 
   final TfArg<String> redirectUri;
 
+  @internal
   Map<String, Object?> encode() => {
     'authorization_code': authorizationCode.toTfJson(),
     'redirect_uri': redirectUri.toTfJson(),
@@ -145,6 +149,7 @@ final class GlueConnectionOauth2ClientApplication {
 
   final TfArg<String>? userManagedClientApplicationClientId;
 
+  @internal
   Map<String, Object?> encode() => {
     'aws_managed_client_application_reference':
         ?awsManagedClientApplicationReference?.toTfJson(),
@@ -172,6 +177,7 @@ final class GlueConnectionOauth2Credentials {
 
   final Sensitive<String>? userManagedClientApplicationClientSecret;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_token': ?accessToken?.toTfJson(),
     'jwt_token': ?jwtToken?.toTfJson(),
@@ -197,6 +203,7 @@ final class GlueConnectionPhysicalConnectionRequirements {
 
   final RefTo<AwsSubnet>? subnetId;
 
+  @internal
   Map<String, Object?> encode() => {
     'availability_zone': ?availabilityZone?.toTfJson(),
     'security_group_id_list': ?securityGroupIdList?.toTfJson(),

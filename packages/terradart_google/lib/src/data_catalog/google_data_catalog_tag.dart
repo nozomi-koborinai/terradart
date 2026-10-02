@@ -35,6 +35,7 @@ sealed class DataCatalogTagFieldValue {
   /// `enum_value` variant — display name of an allowed template enum.
   const factory DataCatalogTagFieldValue.enumValue(TfArg<String> enumValue) =
       DataCatalogTagEnumValue;
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -45,6 +46,7 @@ final class DataCatalogTagStringValue extends DataCatalogTagFieldValue {
   final TfArg<String> stringValue;
 
   @override
+  @internal
   Map<String, Object?> encode() => {'string_value': stringValue.toTfJson()};
 }
 
@@ -55,6 +57,7 @@ final class DataCatalogTagBoolValue extends DataCatalogTagFieldValue {
   final TfArg<bool> boolValue;
 
   @override
+  @internal
   Map<String, Object?> encode() => {'bool_value': boolValue.toTfJson()};
 }
 
@@ -65,6 +68,7 @@ final class DataCatalogTagDoubleValue extends DataCatalogTagFieldValue {
   final TfArg<num> doubleValue;
 
   @override
+  @internal
   Map<String, Object?> encode() => {'double_value': doubleValue.toTfJson()};
 }
 
@@ -75,6 +79,7 @@ final class DataCatalogTagTimestampValue extends DataCatalogTagFieldValue {
   final TfArg<String> timestampValue;
 
   @override
+  @internal
   Map<String, Object?> encode() => {
     'timestamp_value': timestampValue.toTfJson(),
   };
@@ -87,6 +92,7 @@ final class DataCatalogTagEnumValue extends DataCatalogTagFieldValue {
   final TfArg<String> enumValue;
 
   @override
+  @internal
   Map<String, Object?> encode() => {'enum_value': enumValue.toTfJson()};
 }
 
@@ -98,6 +104,7 @@ final class DataCatalogTagField {
   final TfArg<String> fieldName;
   final DataCatalogTagFieldValue value;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_name': fieldName.toTfJson(),
     ...value.encode(),

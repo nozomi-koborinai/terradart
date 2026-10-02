@@ -64,6 +64,7 @@ final class ZeroTrustAccessAiControlsMcpPortalServers {
 
   final List<ZeroTrustAccessAiControlsMcpPortalUpdatedTools>? updatedTools;
 
+  @internal
   Map<String, Object?> encode() => {
     'default_disabled': ?defaultDisabled?.toTfJson(),
     'on_behalf': ?onBehalf?.toTfJson(),
@@ -94,6 +95,7 @@ final class ZeroTrustAccessAiControlsMcpPortalUpdatedPrompts {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {
     'alias': ?alias?.toTfJson(),
     'description': ?description?.toTfJson(),
@@ -121,6 +123,7 @@ final class ZeroTrustAccessAiControlsMcpPortalUpdatedTools {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {
     'alias': ?alias?.toTfJson(),
     'description': ?description?.toTfJson(),

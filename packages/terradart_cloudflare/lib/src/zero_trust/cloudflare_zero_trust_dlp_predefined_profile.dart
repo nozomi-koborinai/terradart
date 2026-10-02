@@ -23,6 +23,7 @@ final class ZeroTrustDlpPredefinedProfileEntries {
 
   final TfArg<String> id;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'id': id.toTfJson(),

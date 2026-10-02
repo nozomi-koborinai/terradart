@@ -94,6 +94,7 @@ final class ResiliencehubResiliencyPolicy {
 
   final List<ResiliencehubResiliencyPolicySoftware>? software;
 
+  @internal
   Map<String, Object?> encode() => {
     if (az != null) 'az': [for (final e in az!) e.encode()],
     if (hardware != null) 'hardware': [for (final e in hardware!) e.encode()],
@@ -112,6 +113,7 @@ final class ResiliencehubResiliencyPolicyAz {
 
   final TfArg<String> rto;
 
+  @internal
   Map<String, Object?> encode() => {
     'rpo': rpo.toTfJson(),
     'rto': rto.toTfJson(),
@@ -131,6 +133,7 @@ final class ResiliencehubResiliencyPolicyHardware {
 
   final TfArg<String> rto;
 
+  @internal
   Map<String, Object?> encode() => {
     'rpo': rpo.toTfJson(),
     'rto': rto.toTfJson(),
@@ -147,6 +150,7 @@ final class ResiliencehubResiliencyPolicyPolicyRegion {
 
   final TfArg<String>? rto;
 
+  @internal
   Map<String, Object?> encode() => {
     'rpo': ?rpo?.toTfJson(),
     'rto': ?rto?.toTfJson(),
@@ -166,6 +170,7 @@ final class ResiliencehubResiliencyPolicySoftware {
 
   final TfArg<String> rto;
 
+  @internal
   Map<String, Object?> encode() => {
     'rpo': rpo.toTfJson(),
     'rto': rto.toTfJson(),

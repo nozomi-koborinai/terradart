@@ -22,6 +22,7 @@ final class VerifiedpermissionsIdentitySourceConfiguration {
   final List<VerifiedpermissionsIdentitySourceOpenIdConnectConfiguration>?
   openIdConnectConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     if (cognitoUserPoolConfiguration != null)
       'cognito_user_pool_configuration': [
@@ -53,6 +54,7 @@ final class VerifiedpermissionsIdentitySourceCognitoUserPoolConfiguration {
   >?
   groupConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_ids': ?clientIds?.toTfJson(),
     'user_pool_arn': userPoolArn.toTfJson(),
@@ -71,6 +73,7 @@ final class VerifiedpermissionsIdentitySourceCognitoUserPoolConfigurationGroupCo
 
   final TfArg<String> groupEntityType;
 
+  @internal
   Map<String, Object?> encode() => {
     'group_entity_type': groupEntityType.toTfJson(),
   };
@@ -98,6 +101,7 @@ final class VerifiedpermissionsIdentitySourceOpenIdConnectConfiguration {
 
   final List<VerifiedpermissionsIdentitySourceTokenSelection>? tokenSelection;
 
+  @internal
   Map<String, Object?> encode() => {
     'entity_id_prefix': ?entityIdPrefix?.toTfJson(),
     'issuer': issuer.toTfJson(),
@@ -121,6 +125,7 @@ final class VerifiedpermissionsIdentitySourceOpenIdConnectConfigurationGroupConf
 
   final TfArg<String> groupEntityType;
 
+  @internal
   Map<String, Object?> encode() => {
     'group_claim': groupClaim.toTfJson(),
     'group_entity_type': groupEntityType.toTfJson(),
@@ -141,6 +146,7 @@ final class VerifiedpermissionsIdentitySourceTokenSelection {
   final List<VerifiedpermissionsIdentitySourceIdentityTokenOnly>?
   identityTokenOnly;
 
+  @internal
   Map<String, Object?> encode() => {
     if (accessTokenOnly != null)
       'access_token_only': [for (final e in accessTokenOnly!) e.encode()],
@@ -162,6 +168,7 @@ final class VerifiedpermissionsIdentitySourceAccessTokenOnly {
 
   final TfArg<String>? principalIdClaim;
 
+  @internal
   Map<String, Object?> encode() => {
     'audiences': ?audiences?.toTfJson(),
     'principal_id_claim': ?principalIdClaim?.toTfJson(),
@@ -181,6 +188,7 @@ final class VerifiedpermissionsIdentitySourceIdentityTokenOnly {
 
   final TfArg<String>? principalIdClaim;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_ids': ?clientIds?.toTfJson(),
     'principal_id_claim': ?principalIdClaim?.toTfJson(),

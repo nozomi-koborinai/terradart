@@ -63,6 +63,7 @@ final class DeploymentManagerDeploymentLabels {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
     'value': ?value?.toTfJson(),
@@ -79,6 +80,7 @@ final class DeploymentManagerDeploymentTarget {
 
   final List<DeploymentManagerDeploymentImports>? imports;
 
+  @internal
   Map<String, Object?> encode() => {
     'config': config.encode(),
     if (imports != null) 'imports': [for (final e in imports!) e.encode()],
@@ -93,6 +95,7 @@ final class DeploymentManagerDeploymentConfig {
 
   final TfArg<String> content;
 
+  @internal
   Map<String, Object?> encode() => {'content': content.toTfJson()};
 }
 
@@ -106,6 +109,7 @@ final class DeploymentManagerDeploymentImports {
 
   final TfArg<String>? name;
 
+  @internal
   Map<String, Object?> encode() => {
     'content': ?content?.toTfJson(),
     'name': ?name?.toTfJson(),

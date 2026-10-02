@@ -78,6 +78,7 @@ final class DatasyncLocationAzureBlobSasConfiguration {
 
   final TfArg<String> token;
 
+  @internal
   Map<String, Object?> encode() => {'token': token.toTfJson()};
 }
 

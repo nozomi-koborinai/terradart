@@ -48,12 +48,15 @@ sealed class MonitoringSloPeriod {
   ) = MonitoringSloCalendarPeriodChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -63,14 +66,17 @@ final class MonitoringSloPeriodRollingPeriodDays extends MonitoringSloPeriod {
 
   final TfArg<num> rollingPeriodDays;
 
+  @internal
   @override
   String get blockKey => 'rolling_period_days';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'rolling_period_days': rollingPeriodDays.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'rolling_period_days': rollingPeriodDays,
@@ -83,14 +89,17 @@ final class MonitoringSloCalendarPeriodChoice extends MonitoringSloPeriod {
 
   final MonitoringSloCalendarPeriod calendarPeriod;
 
+  @internal
   @override
   String get blockKey => 'calendar_period';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'calendar_period': calendarPeriod.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'calendar_period': calendarPeriod};
 }
@@ -117,12 +126,15 @@ sealed class MonitoringSloSli {
   ) = MonitoringSloWindowsBasedSliChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -132,12 +144,15 @@ final class MonitoringSloBasicSliChoice extends MonitoringSloSli {
 
   final MonitoringSloBasicSli basicSli;
 
+  @internal
   @override
   String get blockKey => 'basic_sli';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'basic_sli': basicSli.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'basic_sli': TfArg.literal(basicSli.encode()),
@@ -150,14 +165,17 @@ final class MonitoringSloRequestBasedSliChoice extends MonitoringSloSli {
 
   final MonitoringSloRequestBasedSli requestBasedSli;
 
+  @internal
   @override
   String get blockKey => 'request_based_sli';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'request_based_sli': requestBasedSli.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'request_based_sli': TfArg.literal(requestBasedSli.encode()),
@@ -170,14 +188,17 @@ final class MonitoringSloWindowsBasedSliChoice extends MonitoringSloSli {
 
   final MonitoringSloWindowsBasedSli windowsBasedSli;
 
+  @internal
   @override
   String get blockKey => 'windows_based_sli';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'windows_based_sli': windowsBasedSli.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'windows_based_sli': TfArg.literal(windowsBasedSli.encode()),
@@ -203,6 +224,7 @@ final class MonitoringSloBasicSli {
 
   final MonitoringSloObjective objective;
 
+  @internal
   Map<String, Object?> encode() => {
     'location': ?location?.toTfJson(),
     'method': ?method?.toTfJson(),
@@ -228,8 +250,10 @@ sealed class MonitoringSloObjective {
   ) = MonitoringSloObjectiveAvailability;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -239,9 +263,11 @@ final class MonitoringSloObjectiveLatency extends MonitoringSloObjective {
 
   final MonitoringSloLatency latency;
 
+  @internal
   @override
   String get blockKey => 'latency';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'latency': latency.encode()};
 }
@@ -252,9 +278,11 @@ final class MonitoringSloObjectiveAvailability extends MonitoringSloObjective {
 
   final MonitoringSloAvailability availability;
 
+  @internal
   @override
   String get blockKey => 'availability';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'availability': availability.encode()};
 }
@@ -268,6 +296,7 @@ final class MonitoringSloAvailability {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
@@ -280,6 +309,7 @@ final class MonitoringSloLatency {
 
   final TfArg<String> threshold;
 
+  @internal
   Map<String, Object?> encode() => {'threshold': threshold.toTfJson()};
 }
 
@@ -301,8 +331,10 @@ sealed class MonitoringSloRequestBasedSli {
   ) = MonitoringSloRequestBasedSliDistributionCut;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -313,9 +345,11 @@ final class MonitoringSloRequestBasedSliGoodTotalRatio
 
   final MonitoringSloGoodTotalRatio goodTotalRatio;
 
+  @internal
   @override
   String get blockKey => 'good_total_ratio';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'good_total_ratio': goodTotalRatio.encode(),
@@ -329,9 +363,11 @@ final class MonitoringSloRequestBasedSliDistributionCut
 
   final MonitoringSloDistributionCut distributionCut;
 
+  @internal
   @override
   String get blockKey => 'distribution_cut';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'distribution_cut': distributionCut.encode(),
@@ -352,6 +388,7 @@ final class MonitoringSloDistributionCut {
 
   final MonitoringSloRange range;
 
+  @internal
   Map<String, Object?> encode() => {
     'distribution_filter': distributionFilter.toTfJson(),
     'range': range.encode(),
@@ -369,6 +406,7 @@ final class MonitoringSloRange {
 
   final TfArg<num>? min;
 
+  @internal
   Map<String, Object?> encode() => {
     'max': ?max?.toTfJson(),
     'min': ?min?.toTfJson(),
@@ -392,6 +430,7 @@ final class MonitoringSloGoodTotalRatio {
 
   final TfArg<String>? totalServiceFilter;
 
+  @internal
   Map<String, Object?> encode() => {
     'bad_service_filter': ?badServiceFilter?.toTfJson(),
     'good_service_filter': ?goodServiceFilter?.toTfJson(),
@@ -412,6 +451,7 @@ final class MonitoringSloWindowsBasedSli {
 
   final TfArg<String>? windowPeriod;
 
+  @internal
   Map<String, Object?> encode() => {
     ...criterion.encode(),
     'window_period': ?windowPeriod?.toTfJson(),
@@ -446,8 +486,10 @@ sealed class MonitoringSloCriterion {
   ) = MonitoringSloCriterionMetricSumInRange;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -458,9 +500,11 @@ final class MonitoringSloCriterionGoodBadMetricFilter
 
   final TfArg<String> goodBadMetricFilter;
 
+  @internal
   @override
   String get blockKey => 'good_bad_metric_filter';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'good_bad_metric_filter': goodBadMetricFilter.toTfJson(),
@@ -476,9 +520,11 @@ final class MonitoringSloCriterionGoodTotalRatioThreshold
 
   final MonitoringSloGoodTotalRatioThreshold goodTotalRatioThreshold;
 
+  @internal
   @override
   String get blockKey => 'good_total_ratio_threshold';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'good_total_ratio_threshold': goodTotalRatioThreshold.encode(),
@@ -492,9 +538,11 @@ final class MonitoringSloCriterionMetricMeanInRange
 
   final MonitoringSloMetricMeanInRange metricMeanInRange;
 
+  @internal
   @override
   String get blockKey => 'metric_mean_in_range';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'metric_mean_in_range': metricMeanInRange.encode(),
@@ -508,9 +556,11 @@ final class MonitoringSloCriterionMetricSumInRange
 
   final MonitoringSloMetricSumInRange metricSumInRange;
 
+  @internal
   @override
   String get blockKey => 'metric_sum_in_range';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'metric_sum_in_range': metricSumInRange.encode(),
@@ -530,6 +580,7 @@ final class MonitoringSloGoodTotalRatioThreshold {
 
   final MonitoringSloMeasure measure;
 
+  @internal
   Map<String, Object?> encode() => {
     'threshold': ?threshold?.toTfJson(),
     ...measure.encode(),
@@ -554,8 +605,10 @@ sealed class MonitoringSloMeasure {
   ) = MonitoringSloMeasureBasicSliPerformance;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -565,9 +618,11 @@ final class MonitoringSloMeasurePerformance extends MonitoringSloMeasure {
 
   final MonitoringSloPerformance performance;
 
+  @internal
   @override
   String get blockKey => 'performance';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'performance': performance.encode()};
 }
@@ -579,9 +634,11 @@ final class MonitoringSloMeasureBasicSliPerformance
 
   final MonitoringSloBasicSliPerformance basicSliPerformance;
 
+  @internal
   @override
   String get blockKey => 'basic_sli_performance';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'basic_sli_performance': basicSliPerformance.encode(),
@@ -607,6 +664,7 @@ final class MonitoringSloBasicSliPerformance {
 
   final MonitoringSloBasicSliPerformanceObjective objective;
 
+  @internal
   Map<String, Object?> encode() => {
     'location': ?location?.toTfJson(),
     'method': ?method?.toTfJson(),
@@ -633,8 +691,10 @@ sealed class MonitoringSloBasicSliPerformanceObjective {
   ) = MonitoringSloBasicSliPerformanceObjectiveAvailability;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -645,9 +705,11 @@ final class MonitoringSloBasicSliPerformanceObjectiveLatency
 
   final MonitoringSloLatency latency;
 
+  @internal
   @override
   String get blockKey => 'latency';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'latency': latency.encode()};
 }
@@ -661,9 +723,11 @@ final class MonitoringSloBasicSliPerformanceObjectiveAvailability
 
   final MonitoringSloAvailability availability;
 
+  @internal
   @override
   String get blockKey => 'availability';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'availability': availability.encode()};
 }
@@ -686,8 +750,10 @@ sealed class MonitoringSloPerformance {
   ) = MonitoringSloPerformanceDistributionCut;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -698,9 +764,11 @@ final class MonitoringSloPerformanceGoodTotalRatio
 
   final MonitoringSloGoodTotalRatio goodTotalRatio;
 
+  @internal
   @override
   String get blockKey => 'good_total_ratio';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'good_total_ratio': goodTotalRatio.encode(),
@@ -714,9 +782,11 @@ final class MonitoringSloPerformanceDistributionCut
 
   final MonitoringSloDistributionCut distributionCut;
 
+  @internal
   @override
   String get blockKey => 'distribution_cut';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'distribution_cut': distributionCut.encode(),
@@ -736,6 +806,7 @@ final class MonitoringSloMetricMeanInRange {
 
   final MonitoringSloRange range;
 
+  @internal
   Map<String, Object?> encode() => {
     'time_series': timeSeries.toTfJson(),
     'range': range.encode(),
@@ -755,6 +826,7 @@ final class MonitoringSloMetricSumInRange {
 
   final MonitoringSloRange range;
 
+  @internal
   Map<String, Object?> encode() => {
     'time_series': timeSeries.toTfJson(),
     'range': range.encode(),

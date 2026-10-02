@@ -28,6 +28,7 @@ final class Sesv2ConfigurationSetEventDestination {
 
   final Sesv2ConfigurationSetEventDestinationTarget target;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'matching_event_types': [for (final e in matchingEventTypes) e.toTfJson()],
@@ -72,8 +73,10 @@ sealed class Sesv2ConfigurationSetEventDestinationTarget {
   ) = Sesv2ConfigurationSetEventDestinationTargetSnsDestination;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -87,9 +90,11 @@ final class Sesv2ConfigurationSetEventDestinationTargetCloudWatchDestination
   final Sesv2ConfigurationSetEventDestinationCloudWatchDestination
   cloudWatchDestination;
 
+  @internal
   @override
   String get blockKey => 'cloud_watch_destination';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'cloud_watch_destination': cloudWatchDestination.encode(),
@@ -106,9 +111,11 @@ final class Sesv2ConfigurationSetEventDestinationTargetEventBridgeDestination
   final Sesv2ConfigurationSetEventDestinationEventBridgeDestination
   eventBridgeDestination;
 
+  @internal
   @override
   String get blockKey => 'event_bridge_destination';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'event_bridge_destination': eventBridgeDestination.encode(),
@@ -125,9 +132,11 @@ final class Sesv2ConfigurationSetEventDestinationTargetKinesisFirehoseDestinatio
   final Sesv2ConfigurationSetEventDestinationKinesisFirehoseDestination
   kinesisFirehoseDestination;
 
+  @internal
   @override
   String get blockKey => 'kinesis_firehose_destination';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'kinesis_firehose_destination': kinesisFirehoseDestination.encode(),
@@ -144,9 +153,11 @@ final class Sesv2ConfigurationSetEventDestinationTargetPinpointDestination
   final Sesv2ConfigurationSetEventDestinationPinpointDestination
   pinpointDestination;
 
+  @internal
   @override
   String get blockKey => 'pinpoint_destination';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'pinpoint_destination': pinpointDestination.encode(),
@@ -162,9 +173,11 @@ final class Sesv2ConfigurationSetEventDestinationTargetSnsDestination
 
   final Sesv2ConfigurationSetEventDestinationSnsDestination snsDestination;
 
+  @internal
   @override
   String get blockKey => 'sns_destination';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'sns_destination': snsDestination.encode()};
 }
@@ -247,6 +260,7 @@ final class Sesv2ConfigurationSetEventDestinationCloudWatchDestination {
   final List<Sesv2ConfigurationSetEventDestinationDimensionConfiguration>
   dimensionConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'dimension_configuration': [
       for (final e in dimensionConfiguration) e.encode(),
@@ -271,6 +285,7 @@ final class Sesv2ConfigurationSetEventDestinationDimensionConfiguration {
   final Sesv2ConfigurationSetEventDestinationDimensionValueSource
   dimensionValueSource;
 
+  @internal
   Map<String, Object?> encode() => {
     'default_dimension_value': defaultDimensionValue.toTfJson(),
     'dimension_name': dimensionName.toTfJson(),
@@ -319,6 +334,7 @@ final class Sesv2ConfigurationSetEventDestinationEventBridgeDestination {
 
   final TfArg<String> eventBusArn;
 
+  @internal
   Map<String, Object?> encode() => {'event_bus_arn': eventBusArn.toTfJson()};
 }
 
@@ -335,6 +351,7 @@ final class Sesv2ConfigurationSetEventDestinationKinesisFirehoseDestination {
 
   final RefTo<AwsIamRole> iamRoleArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'delivery_stream_arn': deliveryStreamArn.toTfJson(),
     'iam_role_arn': iamRoleArn.encodeAs('arn').toTfJson(),
@@ -351,6 +368,7 @@ final class Sesv2ConfigurationSetEventDestinationPinpointDestination {
 
   final TfArg<String> applicationArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'application_arn': applicationArn.toTfJson(),
   };
@@ -366,6 +384,7 @@ final class Sesv2ConfigurationSetEventDestinationSnsDestination {
 
   final RefTo<AwsSnsTopic> topicArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'topic_arn': topicArn.encodeAs('arn').toTfJson(),
   };

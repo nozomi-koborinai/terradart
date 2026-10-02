@@ -85,6 +85,7 @@ final class BedrockagentcoreGatewayAuthorizerConfiguration {
 
   final List<BedrockagentcoreGatewayCustomJwtAuthorizer>? customJwtAuthorizer;
 
+  @internal
   Map<String, Object?> encode() => {
     if (customJwtAuthorizer != null)
       'custom_jwt_authorizer': [
@@ -126,6 +127,7 @@ final class BedrockagentcoreGatewayCustomJwtAuthorizer {
   final List<BedrockagentcoreGatewayPrivateEndpointOverrides>?
   privateEndpointOverrides;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed_audience': ?allowedAudience?.toTfJson(),
     'allowed_clients': ?allowedClients?.toTfJson(),
@@ -159,6 +161,7 @@ final class BedrockagentcoreGatewayAllowedWorkloadConfiguration {
 
   final List<BedrockagentcoreGatewayHostingEnvironment>? hostingEnvironment;
 
+  @internal
   Map<String, Object?> encode() => {
     'workload_identities': ?workloadIdentities?.toTfJson(),
     if (hostingEnvironment != null)
@@ -174,6 +177,7 @@ final class BedrockagentcoreGatewayHostingEnvironment {
 
   final TfArg<String> arn;
 
+  @internal
   Map<String, Object?> encode() => {'arn': arn.toTfJson()};
 }
 
@@ -195,6 +199,7 @@ final class BedrockagentcoreGatewayCustomClaim {
   final List<BedrockagentcoreGatewayAuthorizingClaimMatchValue>?
   authorizingClaimMatchValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'inbound_token_claim_name': inboundTokenClaimName.toTfJson(),
     'inbound_token_claim_value_type': inboundTokenClaimValueType.toTfJson(),
@@ -241,6 +246,7 @@ final class BedrockagentcoreGatewayAuthorizingClaimMatchValue {
 
   final List<BedrockagentcoreGatewayClaimMatchValue>? claimMatchValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'claim_match_operator': claimMatchOperator.toTfJson(),
     if (claimMatchValue != null)
@@ -289,6 +295,7 @@ final class BedrockagentcoreGatewayClaimMatchValue {
 
   final TfArg<List<String>>? matchValueStringList;
 
+  @internal
   Map<String, Object?> encode() => {
     'match_value_string': ?matchValueString?.toTfJson(),
     'match_value_string_list': ?matchValueStringList?.toTfJson(),
@@ -310,6 +317,7 @@ final class BedrockagentcoreGatewayPrivateEndpoint {
   final List<BedrockagentcoreGatewaySelfManagedLatticeResource>?
   selfManagedLatticeResource;
 
+  @internal
   Map<String, Object?> encode() => {
     if (managedVpcResource != null)
       'managed_vpc_resource': [for (final e in managedVpcResource!) e.encode()],
@@ -346,6 +354,7 @@ final class BedrockagentcoreGatewayManagedVpcResource {
 
   final TfArg<String> vpcIdentifier;
 
+  @internal
   Map<String, Object?> encode() => {
     'endpoint_ip_address_type': endpointIpAddressType.toTfJson(),
     'routing_domain': ?routingDomain?.toTfJson(),
@@ -391,6 +400,7 @@ final class BedrockagentcoreGatewaySelfManagedLatticeResource {
 
   final TfArg<String>? resourceConfigurationIdentifier;
 
+  @internal
   Map<String, Object?> encode() => {
     'resource_configuration_identifier': ?resourceConfigurationIdentifier
         ?.toTfJson(),
@@ -410,6 +420,7 @@ final class BedrockagentcoreGatewayPrivateEndpointOverrides {
 
   final List<BedrockagentcoreGatewayPrivateEndpoint>? privateEndpoint;
 
+  @internal
   Map<String, Object?> encode() => {
     'domain': domain.toTfJson(),
     if (privateEndpoint != null)
@@ -433,6 +444,7 @@ final class BedrockagentcoreGatewayInterceptorConfiguration {
 
   final List<BedrockagentcoreGatewayInterceptor>? interceptor;
 
+  @internal
   Map<String, Object?> encode() => {
     'interception_points': [for (final e in interceptionPoints) e.toTfJson()],
     if (inputConfiguration != null)
@@ -476,6 +488,7 @@ final class BedrockagentcoreGatewayInputConfiguration {
 
   final TfArg<bool> passRequestHeaders;
 
+  @internal
   Map<String, Object?> encode() => {
     'pass_request_headers': passRequestHeaders.toTfJson(),
   };
@@ -489,6 +502,7 @@ final class BedrockagentcoreGatewayInterceptor {
 
   final List<BedrockagentcoreGatewayLambda>? lambda;
 
+  @internal
   Map<String, Object?> encode() => {
     if (lambda != null) 'lambda': [for (final e in lambda!) e.encode()],
   };
@@ -502,6 +516,7 @@ final class BedrockagentcoreGatewayLambda {
 
   final TfArg<String> arn;
 
+  @internal
   Map<String, Object?> encode() => {'arn': arn.toTfJson()};
 }
 
@@ -518,6 +533,7 @@ final class BedrockagentcoreGatewayPolicyEngineConfiguration {
 
   final BedrockagentcoreGatewayMode mode;
 
+  @internal
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
     'mode': mode.toTfJson(),
@@ -549,6 +565,7 @@ final class BedrockagentcoreGatewayProtocolConfiguration {
 
   final List<BedrockagentcoreGatewayMcp>? mcp;
 
+  @internal
   Map<String, Object?> encode() => {
     if (mcp != null) 'mcp': [for (final e in mcp!) e.encode()],
   };
@@ -577,6 +594,7 @@ final class BedrockagentcoreGatewayMcp {
   final List<BedrockagentcoreGatewayStreamingConfiguration>?
   streamingConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'instructions': ?instructions?.toTfJson(),
     'search_type': ?searchType?.toTfJson(),
@@ -618,6 +636,7 @@ final class BedrockagentcoreGatewaySessionConfiguration {
 
   final TfArg<num>? sessionTimeoutInSeconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'session_timeout_in_seconds': ?sessionTimeoutInSeconds?.toTfJson(),
   };
@@ -633,6 +652,7 @@ final class BedrockagentcoreGatewayStreamingConfiguration {
 
   final TfArg<bool>? enableResponseStreaming;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_response_streaming': ?enableResponseStreaming?.toTfJson(),
   };

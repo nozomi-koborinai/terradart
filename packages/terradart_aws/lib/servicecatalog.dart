@@ -3,6 +3,19 @@
 /// AWS Service Catalog.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_servicecatalog_constraint.dart'
+    show DataAwsServicecatalogConstraint;
+export 'src/data/aws_servicecatalog_launch_paths.dart'
+    show DataAwsServicecatalogLaunchPaths;
+export 'src/data/aws_servicecatalog_portfolio.dart'
+    show DataAwsServicecatalogPortfolio;
+export 'src/data/aws_servicecatalog_portfolio_constraints.dart'
+    show DataAwsServicecatalogPortfolioConstraints;
+export 'src/data/aws_servicecatalog_product.dart'
+    show DataAwsServicecatalogProduct;
+export 'src/data/aws_servicecatalog_provisioning_artifacts.dart'
+    show DataAwsServicecatalogProvisioningArtifacts;
 export 'src/servicecatalog/aws_servicecatalog_budget_resource_association.dart'
     show AwsServicecatalogBudgetResourceAssociation;
 export 'src/servicecatalog/aws_servicecatalog_constraint.dart'

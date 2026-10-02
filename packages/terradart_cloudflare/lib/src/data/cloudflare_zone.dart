@@ -36,6 +36,7 @@ final class DataZoneFilter {
 
   final DataZoneAccount? account;
 
+  @internal
   Map<String, Object?> encode() => {
     'direction': ?direction?.toTfJson(),
     'match': ?match?.toTfJson(),
@@ -129,6 +130,7 @@ final class DataZoneAccount {
 
   final TfArg<String>? name;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': ?id?.toTfJson(),
     'name': ?name?.toTfJson(),

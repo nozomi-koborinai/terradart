@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:terradart_core/terradart_core.dart';
 import 'package:test/test.dart';
 
@@ -29,7 +31,6 @@ void main() {
       TfOutput,
       GcsBackend,
       S3Backend,
-      TfJsonEncoder,
       SynthResult,
       DuplicateResourceError,
       TfVariable,
@@ -38,7 +39,18 @@ void main() {
       DuplicateModuleError,
       TfTimeouts,
     ];
-    expect(symbols, hasLength(32));
+    expect(symbols, hasLength(31));
+  });
+
+  test('generator building blocks stay out of the public library', () {
+    final source = File('lib/terradart_core.dart').readAsStringSync();
+    for (final name in [
+      'TfJsonEncoder',
+      'hasTemplateSequence',
+      'templateVariableNames',
+    ]) {
+      expect(source, isNot(contains(name)), reason: name);
+    }
   });
 
   test('TerraformDurationExt is accessible (extension method)', () {

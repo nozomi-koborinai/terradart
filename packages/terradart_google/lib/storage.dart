@@ -5,6 +5,29 @@
 /// fine-grained ACLs.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/google_storage_bucket.dart' show DataGoogleStorageBucket;
+export 'src/data/google_storage_bucket_iam_policy.dart'
+    show DataGoogleStorageBucketIamPolicy;
+export 'src/data/google_storage_bucket_object.dart'
+    show DataGoogleStorageBucketObject;
+export 'src/data/google_storage_bucket_object_content.dart'
+    show DataGoogleStorageBucketObjectContent;
+export 'src/data/google_storage_bucket_object_contents.dart'
+    show DataGoogleStorageBucketObjectContents;
+export 'src/data/google_storage_bucket_objects.dart'
+    show DataGoogleStorageBucketObjects;
+export 'src/data/google_storage_buckets.dart' show DataGoogleStorageBuckets;
+export 'src/data/google_storage_insights_dataset_config.dart'
+    show DataGoogleStorageInsightsDatasetConfig;
+export 'src/data/google_storage_managed_folder_iam_policy.dart'
+    show DataGoogleStorageManagedFolderIamPolicy;
+export 'src/data/google_storage_object_signed_url.dart'
+    show DataGoogleStorageObjectSignedUrl;
+export 'src/data/google_storage_project_service_account.dart'
+    show DataGoogleStorageProjectServiceAccount;
+export 'src/data/google_storage_transfer_project_service_account.dart'
+    show DataGoogleStorageTransferProjectServiceAccount;
 export 'src/storage/google_storage_anywhere_cache.dart'
     show GoogleStorageAnywhereCache, StorageAnywhereCacheAdmissionPolicy;
 export 'src/storage/google_storage_batch_operations_job.dart'

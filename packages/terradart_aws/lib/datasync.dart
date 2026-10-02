@@ -3,6 +3,7 @@
 /// AWS DataSync.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/datasync/aws_datasync_agent.dart' show AwsDatasyncAgent;
 export 'src/datasync/aws_datasync_location_azure_blob.dart'
     show

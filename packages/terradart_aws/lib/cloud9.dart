@@ -3,6 +3,7 @@
 /// AWS Cloud9.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/cloud9/aws_cloud9_environment_ec2.dart'
     show
         AwsCloud9EnvironmentEc2,

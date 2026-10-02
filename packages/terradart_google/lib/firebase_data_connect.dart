@@ -3,5 +3,6 @@
 /// Firebase Data Connect — serverless GraphQL backend backed by Cloud SQL.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/firebase_data_connect/google_firebase_data_connect_service.dart'
     show DataConnectDeletionPolicy, GoogleFirebaseDataConnectService;

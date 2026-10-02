@@ -3,6 +3,40 @@
 /// AWS EC2 Image Builder.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_imagebuilder_component.dart'
+    show DataAwsImagebuilderComponent;
+export 'src/data/aws_imagebuilder_components.dart'
+    show DataAwsImagebuilderComponents, DataImagebuilderComponentsFilter;
+export 'src/data/aws_imagebuilder_container_recipe.dart'
+    show DataAwsImagebuilderContainerRecipe;
+export 'src/data/aws_imagebuilder_container_recipes.dart'
+    show
+        DataAwsImagebuilderContainerRecipes,
+        DataImagebuilderContainerRecipesFilter;
+export 'src/data/aws_imagebuilder_distribution_configuration.dart'
+    show DataAwsImagebuilderDistributionConfiguration;
+export 'src/data/aws_imagebuilder_distribution_configurations.dart'
+    show
+        DataAwsImagebuilderDistributionConfigurations,
+        DataImagebuilderDistributionConfigurationsFilter;
+export 'src/data/aws_imagebuilder_image.dart' show DataAwsImagebuilderImage;
+export 'src/data/aws_imagebuilder_image_pipeline.dart'
+    show DataAwsImagebuilderImagePipeline;
+export 'src/data/aws_imagebuilder_image_pipelines.dart'
+    show
+        DataAwsImagebuilderImagePipelines,
+        DataImagebuilderImagePipelinesFilter;
+export 'src/data/aws_imagebuilder_image_recipe.dart'
+    show DataAwsImagebuilderImageRecipe;
+export 'src/data/aws_imagebuilder_image_recipes.dart'
+    show DataAwsImagebuilderImageRecipes, DataImagebuilderImageRecipesFilter;
+export 'src/data/aws_imagebuilder_infrastructure_configuration.dart'
+    show DataAwsImagebuilderInfrastructureConfiguration;
+export 'src/data/aws_imagebuilder_infrastructure_configurations.dart'
+    show
+        DataAwsImagebuilderInfrastructureConfigurations,
+        DataImagebuilderInfrastructureConfigurationsFilter;
 export 'src/imagebuilder/aws_imagebuilder_component.dart'
     show
         AwsImagebuilderComponent,

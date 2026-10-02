@@ -4,6 +4,7 @@
 /// subaccount factories (billing-account scoped; apply-excluded).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/billing/google_billing_account_iam_binding.dart'
     show BillingAccountIamBindingCondition, GoogleBillingAccountIamBinding;
 export 'src/billing/google_billing_account_iam_member.dart'
@@ -31,3 +32,6 @@ export 'src/billing/google_billing_project_info.dart'
     show GoogleBillingProjectInfo;
 export 'src/billing/google_billing_subaccount.dart'
     show GoogleBillingSubaccount;
+export 'src/data/google_billing_account.dart' show DataGoogleBillingAccount;
+export 'src/data/google_billing_account_iam_policy.dart'
+    show DataGoogleBillingAccountIamPolicy;

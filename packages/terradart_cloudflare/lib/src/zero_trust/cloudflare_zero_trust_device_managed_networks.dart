@@ -37,6 +37,7 @@ final class ZeroTrustDeviceManagedNetworksConfig {
 
   final TfArg<String> tlsSockaddr;
 
+  @internal
   Map<String, Object?> encode() => {
     'sha256': ?sha256?.toTfJson(),
     'tls_sockaddr': tlsSockaddr.toTfJson(),

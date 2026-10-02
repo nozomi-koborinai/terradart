@@ -15,6 +15,7 @@ final class GkeHubMembershipRbacRoleBindingRole {
 
   final GkeHubMembershipRbacRoleBindingPredefinedRole predefinedRole;
 
+  @internal
   Map<String, Object?> encode() => {
     'predefined_role': predefinedRole.toTfJson(),
   };

@@ -73,6 +73,7 @@ final class SagemakerUserProfileUserSettings {
 
   final SagemakerUserProfileTensorBoardAppSettings? tensorBoardAppSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'auto_mount_home_efs': ?autoMountHomeEfs?.toTfJson(),
     'default_landing_uri': ?defaultLandingUri?.toTfJson(),
@@ -181,6 +182,7 @@ final class SagemakerUserProfileCanvasAppSettings {
 
   final SagemakerUserProfileWorkspaceSettings? workspaceSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'direct_deploy_settings': ?directDeploySettings?.encode(),
     'emr_serverless_settings': ?emrServerlessSettings?.encode(),
@@ -205,6 +207,7 @@ final class SagemakerUserProfileDirectDeploySettings {
 
   final SagemakerUserProfileStatus? status;
 
+  @internal
   Map<String, Object?> encode() => {'status': ?status?.toTfJson()};
 }
 
@@ -238,6 +241,7 @@ final class SagemakerUserProfileEmrServerlessSettings {
 
   final SagemakerUserProfileStatus? status;
 
+  @internal
   Map<String, Object?> encode() => {
     'execution_role_arn': ?executionRoleArn?.encodeAs('arn').toTfJson(),
     'status': ?status?.toTfJson(),
@@ -252,6 +256,7 @@ final class SagemakerUserProfileGenerativeAiSettings {
 
   final TfArg<String>? amazonBedrockRoleArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'amazon_bedrock_role_arn': ?amazonBedrockRoleArn?.toTfJson(),
   };
@@ -273,6 +278,7 @@ final class SagemakerUserProfileIdentityProviderOauthSettings {
 
   final SagemakerUserProfileStatus? status;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_source_name': ?dataSourceName?.toTfJson(),
     'secret_arn': secretArn.toTfJson(),
@@ -310,6 +316,7 @@ final class SagemakerUserProfileKendraSettings {
 
   final SagemakerUserProfileStatus? status;
 
+  @internal
   Map<String, Object?> encode() => {'status': ?status?.toTfJson()};
 }
 
@@ -326,6 +333,7 @@ final class SagemakerUserProfileModelRegisterSettings {
 
   final SagemakerUserProfileStatus? status;
 
+  @internal
   Map<String, Object?> encode() => {
     'cross_account_model_register_role_arn': ?crossAccountModelRegisterRoleArn
         ?.toTfJson(),
@@ -346,6 +354,7 @@ final class SagemakerUserProfileTimeSeriesForecastingSettings {
 
   final SagemakerUserProfileStatus? status;
 
+  @internal
   Map<String, Object?> encode() => {
     'amazon_forecast_role_arn': ?amazonForecastRoleArn?.toTfJson(),
     'status': ?status?.toTfJson(),
@@ -365,6 +374,7 @@ final class SagemakerUserProfileWorkspaceSettings {
 
   final TfArg<String>? s3KmsKeyId;
 
+  @internal
   Map<String, Object?> encode() => {
     's3_artifact_path': ?s3ArtifactPath?.toTfJson(),
     's3_kms_key_id': ?s3KmsKeyId?.toTfJson(),
@@ -393,6 +403,7 @@ final class SagemakerUserProfileCodeEditorAppSettings {
 
   final SagemakerUserProfileDefaultResourceSpec? defaultResourceSpec;
 
+  @internal
   Map<String, Object?> encode() => {
     'built_in_lifecycle_config_arn': ?builtInLifecycleConfigArn?.toTfJson(),
     'lifecycle_config_arns': ?lifecycleConfigArns?.toTfJson(),
@@ -412,6 +423,7 @@ final class SagemakerUserProfileAppLifecycleManagement {
 
   final SagemakerUserProfileIdleSettings? idleSettings;
 
+  @internal
   Map<String, Object?> encode() => {'idle_settings': ?idleSettings?.encode()};
 }
 
@@ -435,6 +447,7 @@ final class SagemakerUserProfileIdleSettings {
 
   final TfArg<num>? minIdleTimeoutInMinutes;
 
+  @internal
   Map<String, Object?> encode() => {
     'idle_timeout_in_minutes': ?idleTimeoutInMinutes?.toTfJson(),
     'lifecycle_management': ?lifecycleManagement?.toTfJson(),
@@ -483,6 +496,7 @@ final class SagemakerUserProfileCustomImage {
 
   final TfArg<num>? imageVersionNumber;
 
+  @internal
   Map<String, Object?> encode() => {
     'app_image_config_name': appImageConfigName.toTfJson(),
     'image_name': imageName.toTfJson(),
@@ -513,6 +527,7 @@ final class SagemakerUserProfileDefaultResourceSpec {
 
   final TfArg<String>? sagemakerImageVersionArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'instance_type': ?instanceType?.toTfJson(),
     'lifecycle_config_arn': ?lifecycleConfigArn?.toTfJson(),
@@ -1248,6 +1263,7 @@ final class SagemakerUserProfileCustomFileSystemConfig {
 
   final List<SagemakerUserProfileEfsFileSystemConfig>? efsFileSystemConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     if (efsFileSystemConfig != null)
       'efs_file_system_config': [
@@ -1269,6 +1285,7 @@ final class SagemakerUserProfileEfsFileSystemConfig {
 
   final TfArg<String>? fileSystemPath;
 
+  @internal
   Map<String, Object?> encode() => {
     'file_system_id': fileSystemId.toTfJson(),
     'file_system_path': ?fileSystemPath?.toTfJson(),
@@ -1288,6 +1305,7 @@ final class SagemakerUserProfileCustomPosixUserConfig {
 
   final TfArg<num> uid;
 
+  @internal
   Map<String, Object?> encode() => {
     'gid': gid.toTfJson(),
     'uid': uid.toTfJson(),
@@ -1322,6 +1340,7 @@ final class SagemakerUserProfileJupyterLabAppSettings {
 
   final SagemakerUserProfileEmrSettings? emrSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'built_in_lifecycle_config_arn': ?builtInLifecycleConfigArn?.toTfJson(),
     'lifecycle_config_arns': ?lifecycleConfigArns?.toTfJson(),
@@ -1344,6 +1363,7 @@ final class SagemakerUserProfileCodeRepository {
 
   final TfArg<String> repositoryUrl;
 
+  @internal
   Map<String, Object?> encode() => {'repository_url': repositoryUrl.toTfJson()};
 }
 
@@ -1360,6 +1380,7 @@ final class SagemakerUserProfileEmrSettings {
 
   final TfArg<List<String>>? executionRoleArns;
 
+  @internal
   Map<String, Object?> encode() => {
     'assumable_role_arns': ?assumableRoleArns?.toTfJson(),
     'execution_role_arns': ?executionRoleArns?.toTfJson(),
@@ -1382,6 +1403,7 @@ final class SagemakerUserProfileJupyterServerAppSettings {
 
   final SagemakerUserProfileDefaultResourceSpec? defaultResourceSpec;
 
+  @internal
   Map<String, Object?> encode() => {
     'lifecycle_config_arns': ?lifecycleConfigArns?.toTfJson(),
     if (codeRepository != null)
@@ -1406,6 +1428,7 @@ final class SagemakerUserProfileKernelGatewayAppSettings {
 
   final SagemakerUserProfileDefaultResourceSpec? defaultResourceSpec;
 
+  @internal
   Map<String, Object?> encode() => {
     'lifecycle_config_arns': ?lifecycleConfigArns?.toTfJson(),
     if (customImage != null)
@@ -1427,6 +1450,7 @@ final class SagemakerUserProfileRSessionAppSettings {
 
   final SagemakerUserProfileDefaultResourceSpec? defaultResourceSpec;
 
+  @internal
   Map<String, Object?> encode() => {
     if (customImage != null)
       'custom_image': [for (final e in customImage!) e.encode()],
@@ -1447,6 +1471,7 @@ final class SagemakerUserProfileRStudioServerProAppSettings {
 
   final SagemakerUserProfileUserGroup? userGroup;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_status': ?accessStatus?.toTfJson(),
     'user_group': ?userGroup?.toTfJson(),
@@ -1513,6 +1538,7 @@ final class SagemakerUserProfileSharingSettings {
 
   final TfArg<String>? s3OutputPath;
 
+  @internal
   Map<String, Object?> encode() => {
     'notebook_output_option': ?notebookOutputOption?.toTfJson(),
     's3_kms_key_id': ?s3KmsKeyId?.toTfJson(),
@@ -1554,6 +1580,7 @@ final class SagemakerUserProfileSpaceStorageSettings {
   final SagemakerUserProfileDefaultEbsStorageSettings?
   defaultEbsStorageSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'default_ebs_storage_settings': ?defaultEbsStorageSettings?.encode(),
   };
@@ -1572,6 +1599,7 @@ final class SagemakerUserProfileDefaultEbsStorageSettings {
 
   final TfArg<num> maximumEbsVolumeSizeInGb;
 
+  @internal
   Map<String, Object?> encode() => {
     'default_ebs_volume_size_in_gb': defaultEbsVolumeSizeInGb.toTfJson(),
     'maximum_ebs_volume_size_in_gb': maximumEbsVolumeSizeInGb.toTfJson(),
@@ -1594,6 +1622,7 @@ final class SagemakerUserProfileStudioWebPortalSettings {
 
   final List<SagemakerUserProfileHiddenMlTools>? hiddenMlTools;
 
+  @internal
   Map<String, Object?> encode() => {
     if (hiddenAppTypes != null)
       'hidden_app_types': [for (final e in hiddenAppTypes!) e.toTfJson()],
@@ -2490,6 +2519,7 @@ final class SagemakerUserProfileTensorBoardAppSettings {
 
   final SagemakerUserProfileDefaultResourceSpec? defaultResourceSpec;
 
+  @internal
   Map<String, Object?> encode() => {
     'default_resource_spec': ?defaultResourceSpec?.encode(),
   };

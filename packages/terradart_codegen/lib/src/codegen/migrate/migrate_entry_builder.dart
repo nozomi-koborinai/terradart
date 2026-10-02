@@ -103,9 +103,12 @@ final class MigrateEntryInput {
 /// file stem under `lib/` when they differ (`sql` → `cloud_sql`, from
 /// `barrels.yaml`); the manifest records the file stem so a migrated Stack
 /// can import `package:<package>/<barrel>.dart` directly.
+/// [dataSourceBarrels] maps a data source type to the service barrel key
+/// that also exports it, which the manifest records instead of `data`.
 List<MigrateEntryBuild> buildMigrateEntries(
   List<MigrateEntryInput> inputs, {
   Map<String, String> barrelFiles = const {},
+  Map<String, String> dataSourceBarrels = const {},
 }) {
   const helperExtractor = HelperClassExtractor();
   const enumExtractor = EnumExtractor();
@@ -140,9 +143,20 @@ List<MigrateEntryBuild> buildMigrateEntries(
         context: ctx,
         fileHelpers: perFileHelpers[i],
         fileEnums: perFileEnums[i],
-        barrelFile: barrelFiles[inputs[i].override.outputDir],
+        barrelFile: _barrelFile(inputs[i], barrelFiles, dataSourceBarrels),
       ),
   ];
+}
+
+String _barrelFile(
+  MigrateEntryInput input,
+  Map<String, String> barrelFiles,
+  Map<String, String> dataSourceBarrels,
+) {
+  final barrel =
+      (input.kind == 'dataSource' ? dataSourceBarrels[input.tfType] : null) ??
+      input.override.outputDir;
+  return barrelFiles[barrel] ?? barrel;
 }
 
 /// Builds one factory's recipe. [context] is the symbol table slot types

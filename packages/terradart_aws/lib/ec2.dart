@@ -3,6 +3,200 @@
 /// AWS EC2 and VPC (instances, networking, EBS, and transit gateways).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_ami.dart' show DataAmiFilter, DataAwsAmi;
+export 'src/data/aws_customer_gateway.dart'
+    show DataAwsCustomerGateway, DataCustomerGatewayFilter;
+export 'src/data/aws_ebs_default_kms_key.dart' show DataAwsEbsDefaultKmsKey;
+export 'src/data/aws_ebs_encryption_by_default.dart'
+    show DataAwsEbsEncryptionByDefault;
+export 'src/data/aws_ebs_snapshot.dart'
+    show DataAwsEbsSnapshot, DataEbsSnapshotFilter;
+export 'src/data/aws_ebs_snapshot_ids.dart'
+    show DataAwsEbsSnapshotIds, DataEbsSnapshotIdsFilter;
+export 'src/data/aws_ebs_volume.dart'
+    show DataAwsEbsVolume, DataEbsVolumeFilter;
+export 'src/data/aws_ec2_capacity_block_offering.dart'
+    show DataAwsEc2CapacityBlockOffering;
+export 'src/data/aws_ec2_capacity_block_reservation.dart'
+    show
+        DataAwsEc2CapacityBlockReservation,
+        DataEc2CapacityBlockReservationFilter;
+export 'src/data/aws_ec2_client_vpn_endpoint.dart'
+    show DataAwsEc2ClientVpnEndpoint, DataEc2ClientVpnEndpointFilter;
+export 'src/data/aws_ec2_coip_pool.dart'
+    show DataAwsEc2CoipPool, DataEc2CoipPoolFilter;
+export 'src/data/aws_ec2_coip_pools.dart'
+    show DataAwsEc2CoipPools, DataEc2CoipPoolsFilter;
+export 'src/data/aws_ec2_host.dart' show DataAwsEc2Host, DataEc2HostFilter;
+export 'src/data/aws_ec2_hosts.dart' show DataAwsEc2Hosts, DataEc2HostsFilter;
+export 'src/data/aws_ec2_instance_type.dart' show DataAwsEc2InstanceType;
+export 'src/data/aws_ec2_instance_type_offering.dart'
+    show DataAwsEc2InstanceTypeOffering, DataEc2InstanceTypeOfferingFilter;
+export 'src/data/aws_ec2_instance_type_offerings.dart'
+    show DataAwsEc2InstanceTypeOfferings, DataEc2InstanceTypeOfferingsFilter;
+export 'src/data/aws_ec2_instance_types.dart'
+    show DataAwsEc2InstanceTypes, DataEc2InstanceTypesFilter;
+export 'src/data/aws_ec2_local_gateway.dart'
+    show DataAwsEc2LocalGateway, DataEc2LocalGatewayFilter;
+export 'src/data/aws_ec2_local_gateway_route_table.dart'
+    show DataAwsEc2LocalGatewayRouteTable, DataEc2LocalGatewayRouteTableFilter;
+export 'src/data/aws_ec2_local_gateway_route_tables.dart'
+    show
+        DataAwsEc2LocalGatewayRouteTables,
+        DataEc2LocalGatewayRouteTablesFilter;
+export 'src/data/aws_ec2_local_gateway_virtual_interface.dart'
+    show
+        DataAwsEc2LocalGatewayVirtualInterface,
+        DataEc2LocalGatewayVirtualInterfaceFilter;
+export 'src/data/aws_ec2_local_gateway_virtual_interface_group.dart'
+    show
+        DataAwsEc2LocalGatewayVirtualInterfaceGroup,
+        DataEc2LocalGatewayVirtualInterfaceGroupFilter;
+export 'src/data/aws_ec2_local_gateway_virtual_interface_groups.dart'
+    show
+        DataAwsEc2LocalGatewayVirtualInterfaceGroups,
+        DataEc2LocalGatewayVirtualInterfaceGroupsFilter;
+export 'src/data/aws_ec2_local_gateways.dart'
+    show DataAwsEc2LocalGateways, DataEc2LocalGatewaysFilter;
+export 'src/data/aws_ec2_managed_prefix_list.dart'
+    show DataAwsEc2ManagedPrefixList, DataEc2ManagedPrefixListFilter;
+export 'src/data/aws_ec2_managed_prefix_lists.dart'
+    show DataAwsEc2ManagedPrefixLists, DataEc2ManagedPrefixListsFilter;
+export 'src/data/aws_ec2_network_insights_analysis.dart'
+    show
+        DataAwsEc2NetworkInsightsAnalysis,
+        DataEc2NetworkInsightsAnalysisFilter;
+export 'src/data/aws_ec2_network_insights_path.dart'
+    show DataAwsEc2NetworkInsightsPath, DataEc2NetworkInsightsPathFilter;
+export 'src/data/aws_ec2_public_ipv4_pool.dart' show DataAwsEc2PublicIpv4Pool;
+export 'src/data/aws_ec2_public_ipv4_pools.dart'
+    show DataAwsEc2PublicIpv4Pools, DataEc2PublicIpv4PoolsFilter;
+export 'src/data/aws_ec2_serial_console_access.dart'
+    show DataAwsEc2SerialConsoleAccess;
+export 'src/data/aws_ec2_service_link_virtual_interface.dart'
+    show
+        DataAwsEc2ServiceLinkVirtualInterface,
+        DataEc2ServiceLinkVirtualInterfaceFilter;
+export 'src/data/aws_ec2_service_link_virtual_interfaces.dart'
+    show
+        DataAwsEc2ServiceLinkVirtualInterfaces,
+        DataEc2ServiceLinkVirtualInterfacesFilter;
+export 'src/data/aws_ec2_spot_price.dart'
+    show DataAwsEc2SpotPrice, DataEc2SpotPriceFilter;
+export 'src/data/aws_ec2_transit_gateway.dart'
+    show DataAwsEc2TransitGateway, DataEc2TransitGatewayFilter;
+export 'src/data/aws_ec2_transit_gateway_attachment.dart'
+    show
+        DataAwsEc2TransitGatewayAttachment,
+        DataEc2TransitGatewayAttachmentFilter;
+export 'src/data/aws_ec2_transit_gateway_attachments.dart'
+    show
+        DataAwsEc2TransitGatewayAttachments,
+        DataEc2TransitGatewayAttachmentsFilter;
+export 'src/data/aws_ec2_transit_gateway_connect.dart'
+    show DataAwsEc2TransitGatewayConnect, DataEc2TransitGatewayConnectFilter;
+export 'src/data/aws_ec2_transit_gateway_connect_peer.dart'
+    show
+        DataAwsEc2TransitGatewayConnectPeer,
+        DataEc2TransitGatewayConnectPeerFilter;
+export 'src/data/aws_ec2_transit_gateway_dx_gateway_attachment.dart'
+    show
+        DataAwsEc2TransitGatewayDxGatewayAttachment,
+        DataEc2TransitGatewayDxGatewayAttachmentFilter;
+export 'src/data/aws_ec2_transit_gateway_multicast_domain.dart'
+    show
+        DataAwsEc2TransitGatewayMulticastDomain,
+        DataEc2TransitGatewayMulticastDomainFilter;
+export 'src/data/aws_ec2_transit_gateway_peering_attachment.dart'
+    show
+        DataAwsEc2TransitGatewayPeeringAttachment,
+        DataEc2TransitGatewayPeeringAttachmentFilter;
+export 'src/data/aws_ec2_transit_gateway_peering_attachments.dart'
+    show
+        DataAwsEc2TransitGatewayPeeringAttachments,
+        DataEc2TransitGatewayPeeringAttachmentsFilter;
+export 'src/data/aws_ec2_transit_gateway_route_table.dart'
+    show
+        DataAwsEc2TransitGatewayRouteTable,
+        DataEc2TransitGatewayRouteTableFilter;
+export 'src/data/aws_ec2_transit_gateway_route_table_associations.dart'
+    show
+        DataAwsEc2TransitGatewayRouteTableAssociations,
+        DataEc2TransitGatewayRouteTableAssociationsFilter;
+export 'src/data/aws_ec2_transit_gateway_route_table_propagations.dart'
+    show
+        DataAwsEc2TransitGatewayRouteTablePropagations,
+        DataEc2TransitGatewayRouteTablePropagationsFilter;
+export 'src/data/aws_ec2_transit_gateway_route_table_routes.dart'
+    show
+        DataAwsEc2TransitGatewayRouteTableRoutes,
+        DataEc2TransitGatewayRouteTableRoutesFilter;
+export 'src/data/aws_ec2_transit_gateway_route_tables.dart'
+    show
+        DataAwsEc2TransitGatewayRouteTables,
+        DataEc2TransitGatewayRouteTablesFilter;
+export 'src/data/aws_ec2_transit_gateway_vpc_attachment.dart'
+    show
+        DataAwsEc2TransitGatewayVpcAttachment,
+        DataEc2TransitGatewayVpcAttachmentFilter;
+export 'src/data/aws_ec2_transit_gateway_vpc_attachments.dart'
+    show
+        DataAwsEc2TransitGatewayVpcAttachments,
+        DataEc2TransitGatewayVpcAttachmentsFilter;
+export 'src/data/aws_ec2_transit_gateway_vpn_attachment.dart'
+    show
+        DataAwsEc2TransitGatewayVpnAttachment,
+        DataEc2TransitGatewayVpnAttachmentFilter;
+export 'src/data/aws_eip.dart' show DataAwsEip, DataEipFilter;
+export 'src/data/aws_instance.dart' show DataAwsInstance, DataInstanceFilter;
+export 'src/data/aws_internet_gateway.dart'
+    show DataAwsInternetGateway, DataInternetGatewayFilter;
+export 'src/data/aws_key_pair.dart' show DataAwsKeyPair, DataKeyPairFilter;
+export 'src/data/aws_launch_template.dart'
+    show DataAwsLaunchTemplate, DataLaunchTemplateFilter;
+export 'src/data/aws_nat_gateway.dart'
+    show DataAwsNatGateway, DataNatGatewayFilter;
+export 'src/data/aws_network_interface.dart'
+    show DataAwsNetworkInterface, DataNetworkInterfaceFilter;
+export 'src/data/aws_route.dart' show DataAwsRoute;
+export 'src/data/aws_route_table.dart'
+    show DataAwsRouteTable, DataRouteTableFilter;
+export 'src/data/aws_security_group.dart'
+    show DataAwsSecurityGroup, DataSecurityGroupFilter;
+export 'src/data/aws_spot_datafeed_subscription.dart'
+    show DataAwsSpotDatafeedSubscription;
+export 'src/data/aws_subnet.dart' show DataAwsSubnet, DataSubnetFilter;
+export 'src/data/aws_vpc.dart' show DataAwsVpc, DataVpcFilter;
+export 'src/data/aws_vpc_dhcp_options.dart'
+    show DataAwsVpcDhcpOptions, DataVpcDhcpOptionsFilter;
+export 'src/data/aws_vpc_endpoint.dart'
+    show DataAwsVpcEndpoint, DataVpcEndpointFilter;
+export 'src/data/aws_vpc_endpoint_associations.dart'
+    show DataAwsVpcEndpointAssociations;
+export 'src/data/aws_vpc_endpoint_service.dart'
+    show DataAwsVpcEndpointService, DataVpcEndpointServiceFilter;
+export 'src/data/aws_vpc_ipam.dart' show DataAwsVpcIpam;
+export 'src/data/aws_vpc_ipam_pool.dart'
+    show DataAwsVpcIpamPool, DataVpcIpamPoolFilter;
+export 'src/data/aws_vpc_ipam_pool_cidrs.dart'
+    show DataAwsVpcIpamPoolCidrs, DataVpcIpamPoolCidrsFilter;
+export 'src/data/aws_vpc_ipam_pools.dart'
+    show DataAwsVpcIpamPools, DataVpcIpamPoolsFilter;
+export 'src/data/aws_vpc_ipam_preview_next_cidr.dart'
+    show DataAwsVpcIpamPreviewNextCidr;
+export 'src/data/aws_vpc_peering_connection.dart'
+    show DataAwsVpcPeeringConnection, DataVpcPeeringConnectionFilter;
+export 'src/data/aws_vpc_peering_connections.dart'
+    show DataAwsVpcPeeringConnections, DataVpcPeeringConnectionsFilter;
+export 'src/data/aws_vpc_security_group_rule.dart'
+    show DataAwsVpcSecurityGroupRule, DataVpcSecurityGroupRuleFilter;
+export 'src/data/aws_vpc_security_group_rules.dart'
+    show DataAwsVpcSecurityGroupRules, DataVpcSecurityGroupRulesFilter;
+export 'src/data/aws_vpn_connection.dart'
+    show DataAwsVpnConnection, DataVpnConnectionFilter;
+export 'src/data/aws_vpn_gateway.dart'
+    show DataAwsVpnGateway, DataVpnGatewayFilter;
 export 'src/ec2/aws_ami.dart'
     show
         AmiArchitecture,

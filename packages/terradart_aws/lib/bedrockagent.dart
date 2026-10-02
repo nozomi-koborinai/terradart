@@ -3,6 +3,7 @@
 /// AWS Bedrock Agents and knowledge bases.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/bedrockagent/aws_bedrockagent_agent.dart'
     show AwsBedrockagentAgent, BedrockagentAgentCollaboration;
 export 'src/bedrockagent/aws_bedrockagent_agent_action_group.dart'
@@ -283,3 +284,8 @@ export 'src/bedrockagent/aws_bedrockagent_prompt.dart'
         BedrockagentPromptToolSpecChoice,
         BedrockagentPromptType,
         BedrockagentPromptVariant;
+export 'src/data/aws_bedrockagent_agent_versions.dart'
+    show
+        DataAwsBedrockagentAgentVersions,
+        DataBedrockagentAgentVersionsAgentVersionSummaries,
+        DataBedrockagentAgentVersionsGuardrailConfiguration;

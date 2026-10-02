@@ -20,6 +20,7 @@ final class IamWorkforcePoolAccessRestrictions {
 
   final List<IamWorkforcePoolAllowedServices>? allowedServices;
 
+  @internal
   Map<String, Object?> encode() => {
     'disable_programmatic_signin': ?disableProgrammaticSignin?.toTfJson(),
     if (allowedServices != null)
@@ -35,6 +36,7 @@ final class IamWorkforcePoolAllowedServices {
 
   final TfArg<String>? domain;
 
+  @internal
   Map<String, Object?> encode() => {'domain': ?domain?.toTfJson()};
 }
 

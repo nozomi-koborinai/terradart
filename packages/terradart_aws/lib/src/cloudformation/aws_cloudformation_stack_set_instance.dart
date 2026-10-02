@@ -49,12 +49,15 @@ sealed class CloudformationStackSetInstanceTarget {
   ) = CloudformationStackSetInstanceTargetDeploymentTargets;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -65,12 +68,15 @@ final class CloudformationStackSetInstanceTargetAccountId
 
   final TfArg<String> accountId;
 
+  @internal
   @override
   String get blockKey => 'account_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'account_id': accountId.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'account_id': accountId};
 }
@@ -84,14 +90,17 @@ final class CloudformationStackSetInstanceTargetDeploymentTargets
 
   final CloudformationStackSetInstanceDeploymentTargets deploymentTargets;
 
+  @internal
   @override
   String get blockKey => 'deployment_targets';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'deployment_targets': deploymentTargets.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'deployment_targets': TfArg.literal(deploymentTargets.encode()),
@@ -117,12 +126,15 @@ sealed class CloudformationStackSetInstanceTargetRegion {
   ) = CloudformationStackSetInstanceTargetRegionStackSetInstanceRegion;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -133,12 +145,15 @@ final class CloudformationStackSetInstanceTargetRegionChoice
 
   final TfArg<String> region;
 
+  @internal
   @override
   String get blockKey => 'region';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'region': region.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'region': region};
 }
@@ -152,14 +167,17 @@ final class CloudformationStackSetInstanceTargetRegionStackSetInstanceRegion
 
   final TfArg<String> stackSetInstanceRegion;
 
+  @internal
   @override
   String get blockKey => 'stack_set_instance_region';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'stack_set_instance_region': stackSetInstanceRegion.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'stack_set_instance_region': stackSetInstanceRegion,
@@ -185,6 +203,7 @@ final class CloudformationStackSetInstanceDeploymentTargets {
 
   final TfArg<List<String>>? organizationalUnitIds;
 
+  @internal
   Map<String, Object?> encode() => {
     'account_filter_type': ?accountFilterType?.toTfJson(),
     'accounts': ?accounts?.toTfJson(),
@@ -216,6 +235,7 @@ final class CloudformationStackSetInstanceOperationPreferences {
 
   final TfArg<List<String>>? regionOrder;
 
+  @internal
   Map<String, Object?> encode() => {
     'concurrency_mode': ?concurrencyMode?.toTfJson(),
     ...?failureTolerance?.encode(),
@@ -244,8 +264,10 @@ sealed class CloudformationStackSetInstanceFailureTolerance {
   ) = CloudformationStackSetInstanceFailureTolerancePercentage;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -258,9 +280,11 @@ final class CloudformationStackSetInstanceFailureToleranceCount
 
   final TfArg<num> failureToleranceCount;
 
+  @internal
   @override
   String get blockKey => 'failure_tolerance_count';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'failure_tolerance_count': failureToleranceCount.toTfJson(),
@@ -276,9 +300,11 @@ final class CloudformationStackSetInstanceFailureTolerancePercentage
 
   final TfArg<num> failureTolerancePercentage;
 
+  @internal
   @override
   String get blockKey => 'failure_tolerance_percentage';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'failure_tolerance_percentage': failureTolerancePercentage.toTfJson(),
@@ -304,8 +330,10 @@ sealed class CloudformationStackSetInstanceMaxConcurrent {
   ) = CloudformationStackSetInstanceMaxConcurrentPercentage;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -318,9 +346,11 @@ final class CloudformationStackSetInstanceMaxConcurrentCount
 
   final TfArg<num> maxConcurrentCount;
 
+  @internal
   @override
   String get blockKey => 'max_concurrent_count';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'max_concurrent_count': maxConcurrentCount.toTfJson(),
@@ -336,9 +366,11 @@ final class CloudformationStackSetInstanceMaxConcurrentPercentage
 
   final TfArg<num> maxConcurrentPercentage;
 
+  @internal
   @override
   String get blockKey => 'max_concurrent_percentage';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'max_concurrent_percentage': maxConcurrentPercentage.toTfJson(),

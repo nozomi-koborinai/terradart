@@ -31,6 +31,7 @@ final class ComputeOrganizationSecurityPolicyAdvancedOptionsConfig {
 
   final ComputeOrganizationSecurityPolicyJsonCustomConfig? jsonCustomConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'json_parsing': ?jsonParsing?.toTfJson(),
     'log_level': ?logLevel?.toTfJson(),
@@ -142,6 +143,7 @@ final class ComputeOrganizationSecurityPolicyJsonCustomConfig {
 
   final TfArg<List<String>> contentTypes;
 
+  @internal
   Map<String, Object?> encode() => {'content_types': contentTypes.toTfJson()};
 }
 

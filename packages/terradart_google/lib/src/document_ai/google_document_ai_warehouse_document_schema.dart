@@ -70,6 +70,7 @@ final class DocumentAiWarehouseDocumentSchemaPropertyDefinitions {
   final DocumentAiWarehouseDocumentSchemaTimestampTypeOptions?
   timestampTypeOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'display_name': ?displayName?.toTfJson(),
     'is_filterable': ?isFilterable?.toTfJson(),
@@ -135,6 +136,7 @@ extension type const DocumentAiWarehouseDocumentSchemaRetrievalImportance._(
 final class DocumentAiWarehouseDocumentSchemaDateTimeTypeOptions {
   const DocumentAiWarehouseDocumentSchemaDateTimeTypeOptions();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -152,6 +154,7 @@ final class DocumentAiWarehouseDocumentSchemaEnumTypeOptions {
 
   final TfArg<bool>? validationCheckDisabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'possible_values': possibleValues.toTfJson(),
     'validation_check_disabled': ?validationCheckDisabled?.toTfJson(),
@@ -165,6 +168,7 @@ final class DocumentAiWarehouseDocumentSchemaEnumTypeOptions {
 final class DocumentAiWarehouseDocumentSchemaFloatTypeOptions {
   const DocumentAiWarehouseDocumentSchemaFloatTypeOptions();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -175,6 +179,7 @@ final class DocumentAiWarehouseDocumentSchemaFloatTypeOptions {
 final class DocumentAiWarehouseDocumentSchemaIntegerTypeOptions {
   const DocumentAiWarehouseDocumentSchemaIntegerTypeOptions();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -185,6 +190,7 @@ final class DocumentAiWarehouseDocumentSchemaIntegerTypeOptions {
 final class DocumentAiWarehouseDocumentSchemaMapTypeOptions {
   const DocumentAiWarehouseDocumentSchemaMapTypeOptions();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -201,6 +207,7 @@ final class DocumentAiWarehouseDocumentSchemaPropertyTypeOptions {
   >
   propertyDefinitions;
 
+  @internal
   Map<String, Object?> encode() => {
     'property_definitions': [for (final e in propertyDefinitions) e.encode()],
   };
@@ -264,6 +271,7 @@ final class DocumentAiWarehouseDocumentSchemaPropertyTypeOptionsPropertyDefiniti
   final DocumentAiWarehouseDocumentSchemaTimestampTypeOptions?
   timestampTypeOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'display_name': ?displayName?.toTfJson(),
     'is_filterable': ?isFilterable?.toTfJson(),
@@ -299,6 +307,7 @@ final class DocumentAiWarehouseDocumentSchemaSources {
 
   final TfArg<String>? processorType;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'processor_type': ?processorType?.toTfJson(),
@@ -312,6 +321,7 @@ final class DocumentAiWarehouseDocumentSchemaSources {
 final class DocumentAiWarehouseDocumentSchemaTextTypeOptions {
   const DocumentAiWarehouseDocumentSchemaTextTypeOptions();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -322,6 +332,7 @@ final class DocumentAiWarehouseDocumentSchemaTextTypeOptions {
 final class DocumentAiWarehouseDocumentSchemaTimestampTypeOptions {
   const DocumentAiWarehouseDocumentSchemaTimestampTypeOptions();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 

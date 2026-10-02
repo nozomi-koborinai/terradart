@@ -19,6 +19,7 @@ final class MemorydbUserAuthenticationMode {
 
   final MemorydbUserType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'passwords': ?passwords?.toTfJson(),
     'type': type.toTfJson(),

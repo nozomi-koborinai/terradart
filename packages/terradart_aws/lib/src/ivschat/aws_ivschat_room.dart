@@ -17,6 +17,7 @@ final class IvschatRoomMessageReviewHandler {
 
   final TfArg<String>? uri;
 
+  @internal
   Map<String, Object?> encode() => {
     'fallback_result': ?fallbackResult?.toTfJson(),
     'uri': ?uri?.toTfJson(),

@@ -20,6 +20,7 @@ final class NetworkflowmonitorScopeTarget {
 
   final List<NetworkflowmonitorScopeTargetIdentifier>? targetIdentifier;
 
+  @internal
   Map<String, Object?> encode() => {
     'region': region.toTfJson(),
     if (targetIdentifier != null)
@@ -40,6 +41,7 @@ final class NetworkflowmonitorScopeTargetIdentifier {
 
   final List<NetworkflowmonitorScopeTargetId>? targetId;
 
+  @internal
   Map<String, Object?> encode() => {
     'target_type': targetType.toTfJson(),
     if (targetId != null) 'target_id': [for (final e in targetId!) e.encode()],
@@ -70,6 +72,7 @@ final class NetworkflowmonitorScopeTargetId {
 
   final TfArg<String> accountId;
 
+  @internal
   Map<String, Object?> encode() => {'account_id': accountId.toTfJson()};
 }
 

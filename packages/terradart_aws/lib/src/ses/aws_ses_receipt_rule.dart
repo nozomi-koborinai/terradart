@@ -43,6 +43,7 @@ final class SesReceiptRuleAddHeaderAction {
 
   final TfArg<num> position;
 
+  @internal
   Map<String, Object?> encode() => {
     'header_name': headerName.toTfJson(),
     'header_value': headerValue.toTfJson(),
@@ -75,6 +76,7 @@ final class SesReceiptRuleBounceAction {
 
   final RefTo<AwsSnsTopic>? topicArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'message': message.toTfJson(),
     'position': position.toTfJson(),
@@ -104,6 +106,7 @@ final class SesReceiptRuleLambdaAction {
 
   final RefTo<AwsSnsTopic>? topicArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'function_arn': functionArn.encodeAs('arn').toTfJson(),
     'invocation_type': ?invocationType?.toTfJson(),
@@ -157,6 +160,7 @@ final class SesReceiptRuleS3Action {
 
   final RefTo<AwsSnsTopic>? topicArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('id').toTfJson(),
     'iam_role_arn': ?iamRoleArn?.encodeAs('arn').toTfJson(),
@@ -183,6 +187,7 @@ final class SesReceiptRuleSnsAction {
 
   final RefTo<AwsSnsTopic> topicArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'encoding': ?encoding?.toTfJson(),
     'position': position.toTfJson(),
@@ -220,6 +225,7 @@ final class SesReceiptRuleStopAction {
 
   final RefTo<AwsSnsTopic>? topicArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'position': position.toTfJson(),
     'scope': scope.toTfJson(),
@@ -256,6 +262,7 @@ final class SesReceiptRuleWorkmailAction {
 
   final RefTo<AwsSnsTopic>? topicArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'organization_arn': organizationArn.toTfJson(),
     'position': position.toTfJson(),

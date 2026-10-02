@@ -23,6 +23,7 @@ final class ComputeZoneVmExtensionPolicyExtensionPolicies {
 
   final TfArg<String>? stringConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'extension_name': extensionName.toTfJson(),
     'pinned_version': ?pinnedVersion?.toTfJson(),
@@ -38,6 +39,7 @@ final class ComputeZoneVmExtensionPolicyInstanceSelectors {
 
   final ComputeZoneVmExtensionPolicyLabelSelector? labelSelector;
 
+  @internal
   Map<String, Object?> encode() => {'label_selector': ?labelSelector?.encode()};
 }
 
@@ -49,6 +51,7 @@ final class ComputeZoneVmExtensionPolicyLabelSelector {
 
   final TfArg<Map<String, String>>? inclusionLabels;
 
+  @internal
   Map<String, Object?> encode() => {
     'inclusion_labels': ?inclusionLabels?.toTfJson(),
   };

@@ -20,6 +20,7 @@ final class AutoscalingTrafficSourceAttachmentTrafficSource {
 
   final TfArg<String> type;
 
+  @internal
   Map<String, Object?> encode() => {
     'identifier': identifier.toTfJson(),
     'type': type.toTfJson(),

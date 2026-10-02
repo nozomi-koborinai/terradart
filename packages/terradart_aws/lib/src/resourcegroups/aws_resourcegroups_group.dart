@@ -17,6 +17,7 @@ final class ResourcegroupsGroupConfiguration {
 
   final List<ResourcegroupsGroupParameters>? parameters;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
     if (parameters != null)
@@ -37,6 +38,7 @@ final class ResourcegroupsGroupParameters {
 
   final TfArg<List<String>> values;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'values': values.toTfJson(),
@@ -53,6 +55,7 @@ final class ResourcegroupsGroupResourceQuery {
 
   final ResourcegroupsGroupType? type;
 
+  @internal
   Map<String, Object?> encode() => {
     'query': query.toTfJson(),
     'type': ?type?.toTfJson(),

@@ -29,12 +29,15 @@ sealed class AccessContextManagerGcpUserAccessBindingSubject {
   ) = AccessContextManagerGcpUserAccessBindingSubjectPrincipal;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -45,12 +48,15 @@ final class AccessContextManagerGcpUserAccessBindingSubjectGroupKey
 
   final TfArg<String> groupKey;
 
+  @internal
   @override
   String get blockKey => 'group_key';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'group_key': groupKey.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'group_key': groupKey};
 }
@@ -64,12 +70,15 @@ final class AccessContextManagerGcpUserAccessBindingSubjectPrincipal
 
   final AccessContextManagerGcpUserAccessBindingPrincipal principal;
 
+  @internal
   @override
   String get blockKey => 'principal';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'principal': principal.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'principal': TfArg.literal(principal.encode()),
@@ -89,6 +98,7 @@ final class AccessContextManagerGcpUserAccessBindingPrincipal {
 
   final TfArg<String>? serviceAccountProjectNumber;
 
+  @internal
   Map<String, Object?> encode() => {
     'service_account': ?serviceAccount?.encodeAs('email').toTfJson(),
     'service_account_project_number': ?serviceAccountProjectNumber?.toTfJson(),
@@ -111,6 +121,7 @@ final class AccessContextManagerGcpUserAccessBindingScopedAccessSettings {
 
   final AccessContextManagerGcpUserAccessBindingScope? scope;
 
+  @internal
   Map<String, Object?> encode() => {
     'active_settings': ?activeSettings?.encode(),
     'dry_run_settings': ?dryRunSettings?.encode(),
@@ -132,6 +143,7 @@ final class AccessContextManagerGcpUserAccessBindingActiveSettings {
   final AccessContextManagerGcpUserAccessBindingSessionSettings?
   sessionSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_levels': ?accessLevels?.toTfJson(),
     'session_settings': ?sessionSettings?.encode(),
@@ -162,6 +174,7 @@ final class AccessContextManagerGcpUserAccessBindingSessionSettings {
 
   final TfArg<bool>? useOidcMaxAge;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_inactivity': ?maxInactivity?.toTfJson(),
     'session_length': ?sessionLength?.toTfJson(),
@@ -212,6 +225,7 @@ final class AccessContextManagerGcpUserAccessBindingDryRunSettings {
 
   final TfArg<List<String>>? accessLevels;
 
+  @internal
   Map<String, Object?> encode() => {'access_levels': ?accessLevels?.toTfJson()};
 }
 
@@ -223,6 +237,7 @@ final class AccessContextManagerGcpUserAccessBindingScope {
 
   final AccessContextManagerGcpUserAccessBindingClientScope? clientScope;
 
+  @internal
   Map<String, Object?> encode() => {'client_scope': ?clientScope?.encode()};
 }
 
@@ -237,6 +252,7 @@ final class AccessContextManagerGcpUserAccessBindingClientScope {
   final AccessContextManagerGcpUserAccessBindingRestrictedClientApplication?
   restrictedClientApplication;
 
+  @internal
   Map<String, Object?> encode() => {
     'restricted_client_application': ?restrictedClientApplication?.encode(),
   };
@@ -255,6 +271,7 @@ final class AccessContextManagerGcpUserAccessBindingRestrictedClientApplication 
 
   final TfArg<String>? name;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_id': ?clientId?.toTfJson(),
     'name': ?name?.toTfJson(),

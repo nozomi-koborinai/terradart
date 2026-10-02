@@ -26,6 +26,7 @@ final class Lexv2modelsIntentClosingSetting {
 
   final List<Lexv2modelsIntentNextStep>? nextStep;
 
+  @internal
   Map<String, Object?> encode() => {
     'active': ?active?.toTfJson(),
     if (closingResponse != null)
@@ -49,6 +50,7 @@ final class Lexv2modelsIntentClosingResponse {
 
   final List<Lexv2modelsIntentMessageGroup>? messageGroup;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_interrupt': ?allowInterrupt?.toTfJson(),
     if (messageGroup != null)
@@ -67,6 +69,7 @@ final class Lexv2modelsIntentMessageGroup {
 
   final List<Lexv2modelsIntentVariation>? variation;
 
+  @internal
   Map<String, Object?> encode() => {
     if (message != null) 'message': [for (final e in message!) e.encode()],
     if (variation != null)
@@ -94,6 +97,7 @@ final class Lexv2modelsIntentMessage {
 
   final List<Lexv2modelsIntentSsmlMessage>? ssmlMessage;
 
+  @internal
   Map<String, Object?> encode() => {
     if (customPayload != null)
       'custom_payload': [for (final e in customPayload!) e.encode()],
@@ -115,6 +119,7 @@ final class Lexv2modelsIntentCustomPayload {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {'value': value.toTfJson()};
 }
 
@@ -138,6 +143,7 @@ final class Lexv2modelsIntentImageResponseCard {
 
   final List<Lexv2modelsIntentButton>? button;
 
+  @internal
   Map<String, Object?> encode() => {
     'image_url': ?imageUrl?.toTfJson(),
     'subtitle': ?subtitle?.toTfJson(),
@@ -157,6 +163,7 @@ final class Lexv2modelsIntentButton {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'text': text.toTfJson(),
     'value': value.toTfJson(),
@@ -172,6 +179,7 @@ final class Lexv2modelsIntentPlainTextMessage {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {'value': value.toTfJson()};
 }
 
@@ -184,6 +192,7 @@ final class Lexv2modelsIntentSsmlMessage {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {'value': value.toTfJson()};
 }
 
@@ -207,6 +216,7 @@ final class Lexv2modelsIntentVariation {
 
   final List<Lexv2modelsIntentSsmlMessage>? ssmlMessage;
 
+  @internal
   Map<String, Object?> encode() => {
     if (customPayload != null)
       'custom_payload': [for (final e in customPayload!) e.encode()],
@@ -236,6 +246,7 @@ final class Lexv2modelsIntentConditional {
 
   final List<Lexv2modelsIntentDefaultBranch>? defaultBranch;
 
+  @internal
   Map<String, Object?> encode() => {
     'active': active.toTfJson(),
     if (conditionalBranch != null)
@@ -265,6 +276,7 @@ final class Lexv2modelsIntentConditionalBranch {
 
   final List<Lexv2modelsIntentResponse>? response;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     if (condition != null)
@@ -283,6 +295,7 @@ final class Lexv2modelsIntentCondition {
 
   final TfArg<String> expressionString;
 
+  @internal
   Map<String, Object?> encode() => {
     'expression_string': expressionString.toTfJson(),
   };
@@ -305,6 +318,7 @@ final class Lexv2modelsIntentNextStep {
 
   final List<Lexv2modelsIntent>? intent;
 
+  @internal
   Map<String, Object?> encode() => {
     'session_attributes': ?sessionAttributes?.toTfJson(),
     if (dialogAction != null)
@@ -330,6 +344,7 @@ final class Lexv2modelsIntentDialogAction {
 
   final TfArg<String> type;
 
+  @internal
   Map<String, Object?> encode() => {
     'slot_to_elicit': ?slotToElicit?.toTfJson(),
     'suppress_next_message': ?suppressNextMessage?.toTfJson(),
@@ -348,6 +363,7 @@ final class Lexv2modelsIntent {
 
   final List<Lexv2modelsIntentSlot>? slot;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     if (slot != null) 'slot': [for (final e in slot!) e.encode()],
@@ -371,6 +387,7 @@ final class Lexv2modelsIntentSlot {
 
   final List<Lexv2modelsIntentValue>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'map_block_key': mapBlockKey.toTfJson(),
     'shape': ?shape?.toTfJson(),
@@ -387,6 +404,7 @@ final class Lexv2modelsIntentValue {
 
   final TfArg<String>? interpretedValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'interpreted_value': ?interpretedValue?.toTfJson(),
   };
@@ -403,6 +421,7 @@ final class Lexv2modelsIntentResponse {
 
   final List<Lexv2modelsIntentMessageGroup>? messageGroup;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_interrupt': ?allowInterrupt?.toTfJson(),
     if (messageGroup != null)
@@ -421,6 +440,7 @@ final class Lexv2modelsIntentDefaultBranch {
 
   final List<Lexv2modelsIntentResponse>? response;
 
+  @internal
   Map<String, Object?> encode() => {
     if (nextStep != null) 'next_step': [for (final e in nextStep!) e.encode()],
     if (response != null) 'response': [for (final e in response!) e.encode()],
@@ -473,6 +493,7 @@ final class Lexv2modelsIntentConfirmationSetting {
 
   final List<Lexv2modelsIntentPromptSpecification>? promptSpecification;
 
+  @internal
   Map<String, Object?> encode() => {
     'active': ?active?.toTfJson(),
     if (codeHook != null) 'code_hook': [for (final e in codeHook!) e.encode()],
@@ -538,6 +559,7 @@ final class Lexv2modelsIntentCodeHook {
   final List<Lexv2modelsIntentPostCodeHookSpecification>?
   postCodeHookSpecification;
 
+  @internal
   Map<String, Object?> encode() => {
     'active': active.toTfJson(),
     'enable_code_hook_invocation': enableCodeHookInvocation.toTfJson(),
@@ -584,6 +606,7 @@ final class Lexv2modelsIntentPostCodeHookSpecification {
 
   final List<Lexv2modelsIntentTimeoutResponse>? timeoutResponse;
 
+  @internal
   Map<String, Object?> encode() => {
     if (failureConditional != null)
       'failure_conditional': [for (final e in failureConditional!) e.encode()],
@@ -623,6 +646,7 @@ final class Lexv2modelsIntentFailureConditional {
 
   final List<Lexv2modelsIntentDefaultBranch>? defaultBranch;
 
+  @internal
   Map<String, Object?> encode() => {
     'active': active.toTfJson(),
     if (conditionalBranch != null)
@@ -649,6 +673,7 @@ final class Lexv2modelsIntentFailureNextStep {
 
   final List<Lexv2modelsIntent>? intent;
 
+  @internal
   Map<String, Object?> encode() => {
     'session_attributes': ?sessionAttributes?.toTfJson(),
     if (dialogAction != null)
@@ -671,6 +696,7 @@ final class Lexv2modelsIntentFailureResponse {
 
   final List<Lexv2modelsIntentMessageGroup>? messageGroup;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_interrupt': ?allowInterrupt?.toTfJson(),
     if (messageGroup != null)
@@ -695,6 +721,7 @@ final class Lexv2modelsIntentSuccessConditional {
 
   final List<Lexv2modelsIntentDefaultBranch>? defaultBranch;
 
+  @internal
   Map<String, Object?> encode() => {
     'active': active.toTfJson(),
     if (conditionalBranch != null)
@@ -721,6 +748,7 @@ final class Lexv2modelsIntentSuccessNextStep {
 
   final List<Lexv2modelsIntent>? intent;
 
+  @internal
   Map<String, Object?> encode() => {
     'session_attributes': ?sessionAttributes?.toTfJson(),
     if (dialogAction != null)
@@ -743,6 +771,7 @@ final class Lexv2modelsIntentSuccessResponse {
 
   final List<Lexv2modelsIntentMessageGroup>? messageGroup;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_interrupt': ?allowInterrupt?.toTfJson(),
     if (messageGroup != null)
@@ -767,6 +796,7 @@ final class Lexv2modelsIntentTimeoutConditional {
 
   final List<Lexv2modelsIntentDefaultBranch>? defaultBranch;
 
+  @internal
   Map<String, Object?> encode() => {
     'active': active.toTfJson(),
     if (conditionalBranch != null)
@@ -793,6 +823,7 @@ final class Lexv2modelsIntentTimeoutNextStep {
 
   final List<Lexv2modelsIntent>? intent;
 
+  @internal
   Map<String, Object?> encode() => {
     'session_attributes': ?sessionAttributes?.toTfJson(),
     if (dialogAction != null)
@@ -815,6 +846,7 @@ final class Lexv2modelsIntentTimeoutResponse {
 
   final List<Lexv2modelsIntentMessageGroup>? messageGroup;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_interrupt': ?allowInterrupt?.toTfJson(),
     if (messageGroup != null)
@@ -838,6 +870,7 @@ final class Lexv2modelsIntentConfirmationConditional {
 
   final List<Lexv2modelsIntentDefaultBranch>? defaultBranch;
 
+  @internal
   Map<String, Object?> encode() => {
     'active': active.toTfJson(),
     if (conditionalBranch != null)
@@ -863,6 +896,7 @@ final class Lexv2modelsIntentConfirmationNextStep {
 
   final List<Lexv2modelsIntent>? intent;
 
+  @internal
   Map<String, Object?> encode() => {
     'session_attributes': ?sessionAttributes?.toTfJson(),
     if (dialogAction != null)
@@ -884,6 +918,7 @@ final class Lexv2modelsIntentConfirmationResponse {
 
   final List<Lexv2modelsIntentMessageGroup>? messageGroup;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_interrupt': ?allowInterrupt?.toTfJson(),
     if (messageGroup != null)
@@ -907,6 +942,7 @@ final class Lexv2modelsIntentDeclinationConditional {
 
   final List<Lexv2modelsIntentDefaultBranch>? defaultBranch;
 
+  @internal
   Map<String, Object?> encode() => {
     'active': active.toTfJson(),
     if (conditionalBranch != null)
@@ -932,6 +968,7 @@ final class Lexv2modelsIntentDeclinationNextStep {
 
   final List<Lexv2modelsIntent>? intent;
 
+  @internal
   Map<String, Object?> encode() => {
     'session_attributes': ?sessionAttributes?.toTfJson(),
     if (dialogAction != null)
@@ -953,6 +990,7 @@ final class Lexv2modelsIntentDeclinationResponse {
 
   final List<Lexv2modelsIntentMessageGroup>? messageGroup;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_interrupt': ?allowInterrupt?.toTfJson(),
     if (messageGroup != null)
@@ -973,6 +1011,7 @@ final class Lexv2modelsIntentElicitationCodeHook {
 
   final TfArg<String>? invocationLabel;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_code_hook_invocation': ?enableCodeHookInvocation?.toTfJson(),
     'invocation_label': ?invocationLabel?.toTfJson(),
@@ -1002,6 +1041,7 @@ final class Lexv2modelsIntentPromptSpecification {
   final List<Lexv2modelsIntentPromptAttemptsSpecification>?
   promptAttemptsSpecification;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_interrupt': ?allowInterrupt?.toTfJson(),
     'max_retries': maxRetries.toTfJson(),
@@ -1038,6 +1078,7 @@ final class Lexv2modelsIntentPromptAttemptsSpecification {
 
   final List<Lexv2modelsIntentTextInputSpecification>? textInputSpecification;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_interrupt': ?allowInterrupt?.toTfJson(),
     'map_block_key': mapBlockKey.toTfJson(),
@@ -1067,6 +1108,7 @@ final class Lexv2modelsIntentAllowedInputTypes {
 
   final TfArg<bool> allowDtmfInput;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_audio_input': allowAudioInput.toTfJson(),
     'allow_dtmf_input': allowDtmfInput.toTfJson(),
@@ -1089,6 +1131,7 @@ final class Lexv2modelsIntentAudioAndDtmfInputSpecification {
 
   final List<Lexv2modelsIntentDtmfSpecification>? dtmfSpecification;
 
+  @internal
   Map<String, Object?> encode() => {
     'start_timeout_ms': startTimeoutMs.toTfJson(),
     if (audioSpecification != null)
@@ -1111,6 +1154,7 @@ final class Lexv2modelsIntentAudioSpecification {
 
   final TfArg<num> maxLengthMs;
 
+  @internal
   Map<String, Object?> encode() => {
     'end_timeout_ms': endTimeoutMs.toTfJson(),
     'max_length_ms': maxLengthMs.toTfJson(),
@@ -1136,6 +1180,7 @@ final class Lexv2modelsIntentDtmfSpecification {
 
   final TfArg<num> maxLength;
 
+  @internal
   Map<String, Object?> encode() => {
     'deletion_character': deletionCharacter.toTfJson(),
     'end_character': endCharacter.toTfJson(),
@@ -1152,6 +1197,7 @@ final class Lexv2modelsIntentTextInputSpecification {
 
   final TfArg<num> startTimeoutMs;
 
+  @internal
   Map<String, Object?> encode() => {
     'start_timeout_ms': startTimeoutMs.toTfJson(),
   };
@@ -1165,6 +1211,7 @@ final class Lexv2modelsIntentDialogCodeHook {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 
@@ -1189,6 +1236,7 @@ final class Lexv2modelsIntentFulfillmentCodeHook {
   final List<Lexv2modelsIntentPostFulfillmentStatusSpecification>?
   postFulfillmentStatusSpecification;
 
+  @internal
   Map<String, Object?> encode() => {
     'active': ?active?.toTfJson(),
     'enabled': enabled.toTfJson(),
@@ -1222,6 +1270,7 @@ final class Lexv2modelsIntentFulfillmentUpdatesSpecification {
 
   final List<Lexv2modelsIntentUpdateResponse>? updateResponse;
 
+  @internal
   Map<String, Object?> encode() => {
     'active': active.toTfJson(),
     'timeout_in_seconds': ?timeoutInSeconds?.toTfJson(),
@@ -1248,6 +1297,7 @@ final class Lexv2modelsIntentStartResponse {
 
   final List<Lexv2modelsIntentMessageGroup>? messageGroup;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_interrupt': ?allowInterrupt?.toTfJson(),
     'delay_in_seconds': ?delayInSeconds?.toTfJson(),
@@ -1272,6 +1322,7 @@ final class Lexv2modelsIntentUpdateResponse {
 
   final List<Lexv2modelsIntentMessageGroup>? messageGroup;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_interrupt': ?allowInterrupt?.toTfJson(),
     'frequency_in_seconds': frequencyInSeconds.toTfJson(),
@@ -1314,6 +1365,7 @@ final class Lexv2modelsIntentPostFulfillmentStatusSpecification {
 
   final List<Lexv2modelsIntentTimeoutResponse>? timeoutResponse;
 
+  @internal
   Map<String, Object?> encode() => {
     if (failureConditional != null)
       'failure_conditional': [for (final e in failureConditional!) e.encode()],
@@ -1355,6 +1407,7 @@ final class Lexv2modelsIntentInitialResponseSetting {
 
   final List<Lexv2modelsIntentNextStep>? nextStep;
 
+  @internal
   Map<String, Object?> encode() => {
     if (codeHook != null) 'code_hook': [for (final e in codeHook!) e.encode()],
     if (conditional != null)
@@ -1378,6 +1431,7 @@ final class Lexv2modelsIntentInitialResponse {
 
   final List<Lexv2modelsIntentMessageGroup>? messageGroup;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_interrupt': ?allowInterrupt?.toTfJson(),
     if (messageGroup != null)
@@ -1393,6 +1447,7 @@ final class Lexv2modelsIntentInputContext {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 
@@ -1412,6 +1467,7 @@ final class Lexv2modelsIntentKendraConfiguration {
 
   final TfArg<bool>? queryFilterStringEnabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'kendra_index': kendraIndex.toTfJson(),
     'query_filter_string': ?queryFilterString?.toTfJson(),
@@ -1435,6 +1491,7 @@ final class Lexv2modelsIntentOutputContext {
 
   final TfArg<num> turnsToLive;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'time_to_live_in_seconds': timeToLiveInSeconds.toTfJson(),
@@ -1456,6 +1513,7 @@ final class Lexv2modelsIntentQnaIntentConfiguration {
 
   final List<Lexv2modelsIntentDataSourceConfiguration>? dataSourceConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     if (bedrockModelConfiguration != null)
       'bedrock_model_configuration': [
@@ -1487,6 +1545,7 @@ final class Lexv2modelsIntentBedrockModelConfiguration {
 
   final List<Lexv2modelsIntentGuardrail>? guardrail;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_prompt': ?customPrompt?.toTfJson(),
     'model_arn': modelArn.toTfJson(),
@@ -1509,6 +1568,7 @@ final class Lexv2modelsIntentGuardrail {
 
   final TfArg<String> version;
 
+  @internal
   Map<String, Object?> encode() => {
     'identifier': identifier.toTfJson(),
     'version': version.toTfJson(),
@@ -1533,6 +1593,7 @@ final class Lexv2modelsIntentDataSourceConfiguration {
 
   final List<Lexv2modelsIntentOpensearchConfiguration>? opensearchConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     if (bedrockKnowledgeStoreConfiguration != null)
       'bedrock_knowledge_store_configuration': [
@@ -1568,6 +1629,7 @@ final class Lexv2modelsIntentBedrockKnowledgeStoreConfiguration {
   >?
   exactResponseFields;
 
+  @internal
   Map<String, Object?> encode() => {
     'bedrock_knowledge_base_arn': bedrockKnowledgeBaseArn.toTfJson(),
     'exact_response': ?exactResponse?.toTfJson(),
@@ -1588,6 +1650,7 @@ final class Lexv2modelsIntentBedrockKnowledgeStoreConfigurationExactResponseFiel
 
   final TfArg<String>? answerField;
 
+  @internal
   Map<String, Object?> encode() => {'answer_field': ?answerField?.toTfJson()};
 }
 
@@ -1610,6 +1673,7 @@ final class Lexv2modelsIntentDataSourceConfigurationKendraConfiguration {
 
   final TfArg<bool>? queryFilterStringEnabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'exact_response': ?exactResponse?.toTfJson(),
     'kendra_index': kendraIndex.toTfJson(),
@@ -1641,6 +1705,7 @@ final class Lexv2modelsIntentOpensearchConfiguration {
   final List<Lexv2modelsIntentOpensearchConfigurationExactResponseFields>?
   exactResponseFields;
 
+  @internal
   Map<String, Object?> encode() => {
     'domain_endpoint': domainEndpoint.toTfJson(),
     'exact_response': ?exactResponse?.toTfJson(),
@@ -1666,6 +1731,7 @@ final class Lexv2modelsIntentOpensearchConfigurationExactResponseFields {
 
   final TfArg<String> questionField;
 
+  @internal
   Map<String, Object?> encode() => {
     'answer_field': answerField.toTfJson(),
     'question_field': questionField.toTfJson(),
@@ -1680,6 +1746,7 @@ final class Lexv2modelsIntentSampleUtterance {
 
   final TfArg<String> utterance;
 
+  @internal
   Map<String, Object?> encode() => {'utterance': utterance.toTfJson()};
 }
 
@@ -1696,6 +1763,7 @@ final class Lexv2modelsIntentSlotPriority {
 
   final TfArg<String> slotId;
 
+  @internal
   Map<String, Object?> encode() => {
     'priority': priority.toTfJson(),
     'slot_id': slotId.toTfJson(),

@@ -26,6 +26,7 @@ final class ComputeNodeGroupAutoscalingPolicy {
 
   final ComputeNodeGroupMode? mode;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_nodes': ?maxNodes?.toTfJson(),
     'min_nodes': ?minNodes?.toTfJson(),
@@ -58,6 +59,7 @@ final class ComputeNodeGroupMaintenanceWindow {
 
   final TfArg<String> startTime;
 
+  @internal
   Map<String, Object?> encode() => {'start_time': startTime.toTfJson()};
 }
 
@@ -74,6 +76,7 @@ final class ComputeNodeGroupShareSettings {
 
   final List<ComputeNodeGroupProjectMap>? projectMap;
 
+  @internal
   Map<String, Object?> encode() => {
     'share_type': shareType.toTfJson(),
     if (projectMap != null)
@@ -115,6 +118,7 @@ final class ComputeNodeGroupProjectMap {
 
   final TfArg<String> projectId;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
     'project_id': projectId.toTfJson(),

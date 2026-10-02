@@ -85,7 +85,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_access_rule',
       className: 'DataCloudflareAccessRule',
-      barrel: 'data',
+      barrel: 'access',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -159,7 +159,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_access_rules',
       className: 'DataCloudflareAccessRules',
-      barrel: 'data',
+      barrel: 'access',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -327,7 +327,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_account',
       className: 'DataCloudflareAccount',
-      barrel: 'data',
+      barrel: 'account',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -365,7 +365,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_account_api_token_permission_groups',
       className: 'DataCloudflareAccountApiTokenPermissionGroups',
-      barrel: 'data',
+      barrel: 'account',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -404,7 +404,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_account_api_token_permission_groups_list',
       className: 'DataCloudflareAccountApiTokenPermissionGroupsList',
-      barrel: 'data',
+      barrel: 'account',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -498,7 +498,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_account_dns_settings',
       className: 'DataCloudflareAccountDnsSettings',
-      barrel: 'data',
+      barrel: 'account',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -580,7 +580,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_account_dns_settings_internal_view',
       className: 'DataCloudflareAccountDnsSettingsInternalView',
-      barrel: 'data',
+      barrel: 'account',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -640,7 +640,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_account_dns_settings_internal_views',
       className: 'DataCloudflareAccountDnsSettingsInternalViews',
-      barrel: 'data',
+      barrel: 'account',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -793,7 +793,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_account_member',
       className: 'DataCloudflareAccountMember',
-      barrel: 'data',
+      barrel: 'account',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -839,7 +839,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_account_members',
       className: 'DataCloudflareAccountMembers',
-      barrel: 'data',
+      barrel: 'account',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -902,7 +902,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_account_permission_group',
       className: 'DataCloudflareAccountPermissionGroup',
-      barrel: 'data',
+      barrel: 'account',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -939,7 +939,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_account_permission_groups',
       className: 'DataCloudflareAccountPermissionGroups',
-      barrel: 'data',
+      barrel: 'account',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -991,7 +991,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_account_role',
       className: 'DataCloudflareAccountRole',
-      barrel: 'data',
+      barrel: 'account',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -1033,7 +1033,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_account_roles',
       className: 'DataCloudflareAccountRoles',
-      barrel: 'data',
+      barrel: 'account',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -1129,7 +1129,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_account_subscription',
       className: 'DataCloudflareAccountSubscription',
-      barrel: 'data',
+      barrel: 'account',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -1285,7 +1285,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_account_token',
       className: 'DataCloudflareAccountToken',
-      barrel: 'data',
+      barrel: 'account',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -1356,7 +1356,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_account_tokens',
       className: 'DataCloudflareAccountTokens',
-      barrel: 'data',
+      barrel: 'account',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -1550,7 +1550,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_address_map',
       className: 'DataCloudflareAddressMap',
-      barrel: 'data',
+      barrel: 'address_map',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -1959,7 +1959,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_ai_gateway',
       className: 'DataCloudflareAiGateway',
-      barrel: 'data',
+      barrel: 'ai',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -2157,7 +2157,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_ai_gateway_dynamic_routing',
       className: 'DataCloudflareAiGatewayDynamicRouting',
-      barrel: 'data',
+      barrel: 'ai',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -2211,7 +2211,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_ai_gateways',
       className: 'DataCloudflareAiGateways',
-      barrel: 'data',
+      barrel: 'ai',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -2688,7 +2688,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_ai_search_instance',
       className: 'DataCloudflareAiSearchInstance',
-      barrel: 'data',
+      barrel: 'ai',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -2851,7 +2851,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_ai_search_instances',
       className: 'DataCloudflareAiSearchInstances',
-      barrel: 'data',
+      barrel: 'ai',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -2991,7 +2991,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_ai_search_namespace',
       className: 'DataCloudflareAiSearchNamespace',
-      barrel: 'data',
+      barrel: 'ai',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -3037,7 +3037,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_ai_search_namespaces',
       className: 'DataCloudflareAiSearchNamespaces',
-      barrel: 'data',
+      barrel: 'ai',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -3165,7 +3165,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_ai_search_token',
       className: 'DataCloudflareAiSearchToken',
-      barrel: 'data',
+      barrel: 'ai',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -3225,7 +3225,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_ai_search_tokens',
       className: 'DataCloudflareAiSearchTokens',
-      barrel: 'data',
+      barrel: 'ai',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -3313,7 +3313,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_api_shield',
       className: 'DataCloudflareApiShield',
-      barrel: 'data',
+      barrel: 'api_shield',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -3393,7 +3393,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_api_shield_discovery_operations',
       className: 'DataCloudflareApiShieldDiscoveryOperations',
-      barrel: 'data',
+      barrel: 'api_shield',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -3595,7 +3595,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_api_shield_operation',
       className: 'DataCloudflareApiShieldOperation',
-      barrel: 'data',
+      barrel: 'api_shield',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -3724,7 +3724,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_api_shield_operation_schema_validation_settings',
       className: 'DataCloudflareApiShieldOperationSchemaValidationSettings',
-      barrel: 'data',
+      barrel: 'api_shield',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -3764,7 +3764,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_api_shield_operations',
       className: 'DataCloudflareApiShieldOperations',
-      barrel: 'data',
+      barrel: 'api_shield',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -3956,7 +3956,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_api_shield_schema',
       className: 'DataCloudflareApiShieldSchema',
-      barrel: 'data',
+      barrel: 'api_shield',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -4066,7 +4066,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_api_shield_schema_validation_settings',
       className: 'DataCloudflareApiShieldSchemaValidationSettings',
-      barrel: 'data',
+      barrel: 'api_shield',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -4100,7 +4100,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_api_shield_schemas',
       className: 'DataCloudflareApiShieldSchemas',
-      barrel: 'data',
+      barrel: 'api_shield',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -4243,7 +4243,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_api_token',
       className: 'DataCloudflareApiToken',
-      barrel: 'data',
+      barrel: 'account',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -4301,7 +4301,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_api_token_permission_groups_list',
       className: 'DataCloudflareApiTokenPermissionGroupsList',
-      barrel: 'data',
+      barrel: 'account',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -4427,7 +4427,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_argo_smart_routing',
       className: 'DataCloudflareArgoSmartRouting',
-      barrel: 'data',
+      barrel: 'argo',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -4504,7 +4504,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_argo_tiered_caching',
       className: 'DataCloudflareArgoTieredCaching',
-      barrel: 'data',
+      barrel: 'argo',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -4635,7 +4635,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_authenticated_origin_pulls',
       className: 'DataCloudflareAuthenticatedOriginPulls',
-      barrel: 'data',
+      barrel: 'ssl',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -4799,7 +4799,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_authenticated_origin_pulls_certificate',
       className: 'DataCloudflareAuthenticatedOriginPullsCertificate',
-      barrel: 'data',
+      barrel: 'ssl',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -4862,7 +4862,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_authenticated_origin_pulls_certificates',
       className: 'DataCloudflareAuthenticatedOriginPullsCertificates',
-      barrel: 'data',
+      barrel: 'ssl',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -4967,7 +4967,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_authenticated_origin_pulls_hostname_certificate',
       className: 'DataCloudflareAuthenticatedOriginPullsHostnameCertificate',
-      barrel: 'data',
+      barrel: 'ssl',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -5030,7 +5030,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_authenticated_origin_pulls_hostname_certificates',
       className: 'DataCloudflareAuthenticatedOriginPullsHostnameCertificates',
-      barrel: 'data',
+      barrel: 'ssl',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -5097,7 +5097,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_authenticated_origin_pulls_settings',
       className: 'DataCloudflareAuthenticatedOriginPullsSettings',
-      barrel: 'data',
+      barrel: 'ssl',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -5403,7 +5403,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_bot_management',
       className: 'DataCloudflareBotManagement',
-      barrel: 'data',
+      barrel: 'security',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -5692,7 +5692,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_byo_ip_prefix',
       className: 'DataCloudflareByoIpPrefix',
-      barrel: 'data',
+      barrel: 'byo_ip',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -5800,7 +5800,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_byo_ip_prefixes',
       className: 'DataCloudflareByoIpPrefixes',
-      barrel: 'data',
+      barrel: 'byo_ip',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -5886,7 +5886,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_calls_sfu_app',
       className: 'DataCloudflareCallsSfuApp',
-      barrel: 'data',
+      barrel: 'calls',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -5929,7 +5929,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_calls_sfu_apps',
       className: 'DataCloudflareCallsSfuApps',
-      barrel: 'data',
+      barrel: 'calls',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -6015,7 +6015,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_calls_turn_app',
       className: 'DataCloudflareCallsTurnApp',
-      barrel: 'data',
+      barrel: 'calls',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -6058,7 +6058,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_calls_turn_apps',
       className: 'DataCloudflareCallsTurnApps',
-      barrel: 'data',
+      barrel: 'calls',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -6141,7 +6141,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_certificate_authorities_hostname_associations',
       className: 'DataCloudflareCertificateAuthoritiesHostnameAssociations',
-      barrel: 'data',
+      barrel: 'ssl',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -6280,7 +6280,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_certificate_pack',
       className: 'DataCloudflareCertificatePack',
-      barrel: 'data',
+      barrel: 'ssl',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -6521,7 +6521,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_client_certificate',
       className: 'DataCloudflareClientCertificate',
-      barrel: 'data',
+      barrel: 'ssl',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -6721,7 +6721,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_cloud_connector_rules',
       className: 'DataCloudflareCloudConnectorRules',
-      barrel: 'data',
+      barrel: 'cloud_connector',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -6873,7 +6873,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_cloudforce_one_request',
       className: 'DataCloudflareCloudforceOneRequest',
-      barrel: 'data',
+      barrel: 'cloudforce_one',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -7041,7 +7041,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_cloudforce_one_request_asset',
       className: 'DataCloudflareCloudforceOneRequestAsset',
-      barrel: 'data',
+      barrel: 'cloudforce_one',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -7169,7 +7169,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_cloudforce_one_request_message',
       className: 'DataCloudflareCloudforceOneRequestMessage',
-      barrel: 'data',
+      barrel: 'cloudforce_one',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -7392,7 +7392,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_cloudforce_one_request_priority',
       className: 'DataCloudflareCloudforceOneRequestPriority',
-      barrel: 'data',
+      barrel: 'cloudforce_one',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -7476,7 +7476,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_cloudforce_one_requests',
       className: 'DataCloudflareCloudforceOneRequests',
-      barrel: 'data',
+      barrel: 'cloudforce_one',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -7734,7 +7734,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_connectivity_directory_service',
       className: 'DataCloudflareConnectivityDirectoryService',
-      barrel: 'data',
+      barrel: 'connectivity',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -7806,7 +7806,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_connectivity_directory_services',
       className: 'DataCloudflareConnectivityDirectoryServices',
-      barrel: 'data',
+      barrel: 'connectivity',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -7885,7 +7885,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_content_scanning',
       className: 'DataCloudflareContentScanning',
-      barrel: 'data',
+      barrel: 'security',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -7959,7 +7959,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_content_scanning_expressions',
       className: 'DataCloudflareContentScanningExpressions',
-      barrel: 'data',
+      barrel: 'security',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -8038,7 +8038,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_ct_alerting',
       className: 'DataCloudflareCtAlerting',
-      barrel: 'data',
+      barrel: 'ct',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -8228,7 +8228,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_custom_csr',
       className: 'DataCloudflareCustomCsr',
-      barrel: 'data',
+      barrel: 'ssl',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -8477,7 +8477,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_custom_hostname',
       className: 'DataCloudflareCustomHostname',
-      barrel: 'data',
+      barrel: 'custom_hostname',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -8600,7 +8600,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_custom_hostname_fallback_origin',
       className: 'DataCloudflareCustomHostnameFallbackOrigin',
-      barrel: 'data',
+      barrel: 'custom_hostname',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -8831,7 +8831,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_custom_origin_trust_store',
       className: 'DataCloudflareCustomOriginTrustStore',
-      barrel: 'data',
+      barrel: 'ssl',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -8902,7 +8902,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_custom_origin_trust_stores',
       className: 'DataCloudflareCustomOriginTrustStores',
-      barrel: 'data',
+      barrel: 'ssl',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -9028,7 +9028,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_custom_page_asset',
       className: 'DataCloudflareCustomPageAsset',
-      barrel: 'data',
+      barrel: 'pages',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -9094,7 +9094,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_custom_page_assets',
       className: 'DataCloudflareCustomPageAssets',
-      barrel: 'data',
+      barrel: 'pages',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -9232,7 +9232,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_custom_pages',
       className: 'DataCloudflareCustomPages',
-      barrel: 'data',
+      barrel: 'pages',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -9308,7 +9308,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_custom_pages_list',
       className: 'DataCloudflareCustomPagesList',
-      barrel: 'data',
+      barrel: 'pages',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -9497,7 +9497,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_custom_ssl',
       className: 'DataCloudflareCustomSsl',
-      barrel: 'data',
+      barrel: 'ssl',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -9737,7 +9737,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_d1_database',
       className: 'DataCloudflareD1Database',
-      barrel: 'data',
+      barrel: 'd1',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -9820,7 +9820,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_d1_databases',
       className: 'DataCloudflareD1Databases',
-      barrel: 'data',
+      barrel: 'd1',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -9943,7 +9943,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_dls_prefix_binding',
       className: 'DataCloudflareDlsPrefixBinding',
-      barrel: 'data',
+      barrel: 'dls',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -9990,7 +9990,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_dls_prefix_bindings',
       className: 'DataCloudflareDlsPrefixBindings',
-      barrel: 'data',
+      barrel: 'dls',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -10179,7 +10179,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_dns_firewall',
       className: 'DataCloudflareDnsFirewall',
-      barrel: 'data',
+      barrel: 'dns',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -10262,7 +10262,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_dns_firewalls',
       className: 'DataCloudflareDnsFirewalls',
-      barrel: 'data',
+      barrel: 'dns',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -10457,7 +10457,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_dns_record',
       className: 'DataCloudflareDnsRecord',
-      barrel: 'data',
+      barrel: 'dns',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -10567,7 +10567,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_dns_records',
       className: 'DataCloudflareDnsRecords',
-      barrel: 'data',
+      barrel: 'dns',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -10778,7 +10778,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_dns_zone_transfers_acl',
       className: 'DataCloudflareDnsZoneTransfersAcl',
-      barrel: 'data',
+      barrel: 'dns',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -10816,7 +10816,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_dns_zone_transfers_acls',
       className: 'DataCloudflareDnsZoneTransfersAcls',
-      barrel: 'data',
+      barrel: 'dns',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -10927,7 +10927,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_dns_zone_transfers_incoming',
       className: 'DataCloudflareDnsZoneTransfersIncoming',
-      barrel: 'data',
+      barrel: 'dns',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -11046,7 +11046,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_dns_zone_transfers_outgoing',
       className: 'DataCloudflareDnsZoneTransfersOutgoing',
-      barrel: 'data',
+      barrel: 'dns',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -11168,7 +11168,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_dns_zone_transfers_peer',
       className: 'DataCloudflareDnsZoneTransfersPeer',
-      barrel: 'data',
+      barrel: 'dns',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -11217,7 +11217,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_dns_zone_transfers_peers',
       className: 'DataCloudflareDnsZoneTransfersPeers',
-      barrel: 'data',
+      barrel: 'dns',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -11300,7 +11300,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_dns_zone_transfers_tsig',
       className: 'DataCloudflareDnsZoneTransfersTsig',
-      barrel: 'data',
+      barrel: 'dns',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -11339,7 +11339,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_dns_zone_transfers_tsigs',
       className: 'DataCloudflareDnsZoneTransfersTsigs',
-      barrel: 'data',
+      barrel: 'dns',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -11430,7 +11430,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_email_routing_address',
       className: 'DataCloudflareEmailRoutingAddress',
-      barrel: 'data',
+      barrel: 'email',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -11491,7 +11491,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_email_routing_addresses',
       className: 'DataCloudflareEmailRoutingAddresses',
-      barrel: 'data',
+      barrel: 'email',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -11629,7 +11629,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_email_routing_catch_all',
       className: 'DataCloudflareEmailRoutingCatchAll',
-      barrel: 'data',
+      barrel: 'email',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -11724,7 +11724,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_email_routing_dns',
       className: 'DataCloudflareEmailRoutingDns',
-      barrel: 'data',
+      barrel: 'email',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -11851,7 +11851,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_email_routing_rule',
       className: 'DataCloudflareEmailRoutingRule',
-      barrel: 'data',
+      barrel: 'email',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -11904,7 +11904,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_email_routing_rules',
       className: 'DataCloudflareEmailRoutingRules',
-      barrel: 'data',
+      barrel: 'email',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -12002,7 +12002,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_email_routing_settings',
       className: 'DataCloudflareEmailRoutingSettings',
-      barrel: 'data',
+      barrel: 'email',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -12045,7 +12045,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_email_security_allow_policies',
       className: 'DataCloudflareEmailSecurityAllowPolicies',
-      barrel: 'data',
+      barrel: 'email',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -12330,7 +12330,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_email_security_allow_policy',
       className: 'DataCloudflareEmailSecurityAllowPolicy',
-      barrel: 'data',
+      barrel: 'email',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -12531,7 +12531,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_email_security_block_sender',
       className: 'DataCloudflareEmailSecurityBlockSender',
-      barrel: 'data',
+      barrel: 'email',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -12610,7 +12610,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_email_security_block_senders',
       className: 'DataCloudflareEmailSecurityBlockSenders',
-      barrel: 'data',
+      barrel: 'email',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -12881,7 +12881,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_email_security_domain',
       className: 'DataCloudflareEmailSecurityDomain',
-      barrel: 'data',
+      barrel: 'email',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -13008,7 +13008,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_email_security_domains',
       className: 'DataCloudflareEmailSecurityDomains',
-      barrel: 'data',
+      barrel: 'email',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -13127,7 +13127,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_email_security_impersonation_registries',
       className: 'DataCloudflareEmailSecurityImpersonationRegistries',
-      barrel: 'data',
+      barrel: 'email',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -13329,7 +13329,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_email_security_impersonation_registry',
       className: 'DataCloudflareEmailSecurityImpersonationRegistry',
-      barrel: 'data',
+      barrel: 'email',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -13519,7 +13519,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_email_security_trusted_domains',
       className: 'DataCloudflareEmailSecurityTrustedDomains',
-      barrel: 'data',
+      barrel: 'email',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -13603,7 +13603,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_email_security_trusted_domains_list',
       className: 'DataCloudflareEmailSecurityTrustedDomainsList',
-      barrel: 'data',
+      barrel: 'email',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -13780,7 +13780,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_email_sending_subdomain',
       className: 'DataCloudflareEmailSendingSubdomain',
-      barrel: 'data',
+      barrel: 'email',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -13849,7 +13849,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_email_sending_subdomains',
       className: 'DataCloudflareEmailSendingSubdomains',
-      barrel: 'data',
+      barrel: 'email',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -13929,7 +13929,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_field_extractor',
       className: 'DataCloudflareFieldExtractor',
-      barrel: 'data',
+      barrel: 'field',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -14037,7 +14037,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_filter',
       className: 'DataCloudflareFilter',
-      barrel: 'data',
+      barrel: 'rules',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -14226,7 +14226,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_firewall_rule',
       className: 'DataCloudflareFirewallRule',
-      barrel: 'data',
+      barrel: 'security',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -14391,7 +14391,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_flagship_app',
       className: 'DataCloudflareFlagshipApp',
-      barrel: 'data',
+      barrel: 'flagship',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -14439,7 +14439,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_flagship_apps',
       className: 'DataCloudflareFlagshipApps',
-      barrel: 'data',
+      barrel: 'flagship',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -14585,7 +14585,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_flagship_flag',
       className: 'DataCloudflareFlagshipFlag',
-      barrel: 'data',
+      barrel: 'flagship',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -14665,7 +14665,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_flagship_flags',
       className: 'DataCloudflareFlagshipFlags',
-      barrel: 'data',
+      barrel: 'flagship',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -14796,7 +14796,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_google_tag_gateway',
       className: 'DataCloudflareGoogleTagGateway',
-      barrel: 'data',
+      barrel: 'google_tag',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -15014,7 +15014,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_healthcheck',
       className: 'DataCloudflareHealthcheck',
-      barrel: 'data',
+      barrel: 'healthcheck',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -15207,7 +15207,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_hostname_tls_setting',
       className: 'DataCloudflareHostnameTlsSetting',
-      barrel: 'data',
+      barrel: 'ssl',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -15266,7 +15266,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_hostname_tls_settings',
       className: 'DataCloudflareHostnameTlsSettings',
-      barrel: 'data',
+      barrel: 'ssl',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -15408,7 +15408,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_hyperdrive_config',
       className: 'DataCloudflareHyperdriveConfig',
-      barrel: 'data',
+      barrel: 'hyperdrive',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -15465,7 +15465,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_hyperdrive_configs',
       className: 'DataCloudflareHyperdriveConfigs',
-      barrel: 'data',
+      barrel: 'hyperdrive',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -15599,7 +15599,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_image',
       className: 'DataCloudflareImage',
-      barrel: 'data',
+      barrel: 'image',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -15712,7 +15712,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_image_variant',
       className: 'DataCloudflareImageVariant',
-      barrel: 'data',
+      barrel: 'image',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -15937,7 +15937,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_keyless_certificate',
       className: 'DataCloudflareKeylessCertificate',
-      barrel: 'data',
+      barrel: 'ssl',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -16059,7 +16059,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_leaked_credential_check',
       className: 'DataCloudflareLeakedCredentialCheck',
-      barrel: 'data',
+      barrel: 'security',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -16131,7 +16131,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_leaked_credential_check_rule',
       className: 'DataCloudflareLeakedCredentialCheckRule',
-      barrel: 'data',
+      barrel: 'security',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -16177,7 +16177,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_leaked_credential_check_rules',
       className: 'DataCloudflareLeakedCredentialCheckRules',
-      barrel: 'data',
+      barrel: 'security',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -16293,7 +16293,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_list',
       className: 'DataCloudflareList',
-      barrel: 'data',
+      barrel: 'rules',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -16459,7 +16459,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_list_item',
       className: 'DataCloudflareListItem',
-      barrel: 'data',
+      barrel: 'rules',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -16854,7 +16854,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_load_balancer',
       className: 'DataCloudflareLoadBalancer',
-      barrel: 'data',
+      barrel: 'load_balancer',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -17170,7 +17170,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_load_balancer_monitor',
       className: 'DataCloudflareLoadBalancerMonitor',
-      barrel: 'data',
+      barrel: 'load_balancer',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -17327,7 +17327,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_load_balancer_monitor_group',
       className: 'DataCloudflareLoadBalancerMonitorGroup',
-      barrel: 'data',
+      barrel: 'load_balancer',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -17378,7 +17378,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_load_balancer_monitor_groups',
       className: 'DataCloudflareLoadBalancerMonitorGroups',
-      barrel: 'data',
+      barrel: 'load_balancer',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -17413,7 +17413,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_load_balancer_monitors',
       className: 'DataCloudflareLoadBalancerMonitors',
-      barrel: 'data',
+      barrel: 'load_balancer',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -17651,7 +17651,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_load_balancer_pool',
       className: 'DataCloudflareLoadBalancerPool',
-      barrel: 'data',
+      barrel: 'load_balancer',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -17762,7 +17762,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_load_balancer_pools',
       className: 'DataCloudflareLoadBalancerPools',
-      barrel: 'data',
+      barrel: 'load_balancer',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -17876,7 +17876,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_logpull_retention',
       className: 'DataCloudflareLogpullRetention',
-      barrel: 'data',
+      barrel: 'logs',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -18261,7 +18261,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_logpush_job',
       className: 'DataCloudflareLogpushJob',
-      barrel: 'data',
+      barrel: 'logs',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -18535,7 +18535,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_magic_network_monitoring_configuration',
       className: 'DataCloudflareMagicNetworkMonitoringConfiguration',
-      barrel: 'data',
+      barrel: 'magic',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -18705,7 +18705,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_magic_network_monitoring_rule',
       className: 'DataCloudflareMagicNetworkMonitoringRule',
-      barrel: 'data',
+      barrel: 'magic',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -18783,7 +18783,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_magic_network_monitoring_rules',
       className: 'DataCloudflareMagicNetworkMonitoringRules',
-      barrel: 'data',
+      barrel: 'magic',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -18889,7 +18889,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_magic_transit_cf1_site',
       className: 'DataCloudflareMagicTransitCf1Site',
-      barrel: 'data',
+      barrel: 'magic',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -18941,7 +18941,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_magic_transit_cf1_sites',
       className: 'DataCloudflareMagicTransitCf1Sites',
-      barrel: 'data',
+      barrel: 'magic',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -19069,7 +19069,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_magic_transit_connector',
       className: 'DataCloudflareMagicTransitConnector',
-      barrel: 'data',
+      barrel: 'magic',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -19164,7 +19164,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_magic_transit_connectors',
       className: 'DataCloudflareMagicTransitConnectors',
-      barrel: 'data',
+      barrel: 'magic',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -19295,7 +19295,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_magic_transit_site',
       className: 'DataCloudflareMagicTransitSite',
-      barrel: 'data',
+      barrel: 'magic',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -19465,7 +19465,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_magic_transit_site_acl',
       className: 'DataCloudflareMagicTransitSiteAcl',
-      barrel: 'data',
+      barrel: 'magic',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -19530,7 +19530,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_magic_transit_site_acls',
       className: 'DataCloudflareMagicTransitSiteAcls',
-      barrel: 'data',
+      barrel: 'magic',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -19706,7 +19706,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_magic_transit_site_lan',
       className: 'DataCloudflareMagicTransitSiteLan',
-      barrel: 'data',
+      barrel: 'magic',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -19769,7 +19769,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_magic_transit_site_lans',
       className: 'DataCloudflareMagicTransitSiteLans',
-      barrel: 'data',
+      barrel: 'magic',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -19905,7 +19905,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_magic_transit_site_wan',
       className: 'DataCloudflareMagicTransitSiteWan',
-      barrel: 'data',
+      barrel: 'magic',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -19966,7 +19966,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_magic_transit_site_wans',
       className: 'DataCloudflareMagicTransitSiteWans',
-      barrel: 'data',
+      barrel: 'magic',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -20013,7 +20013,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_magic_transit_sites',
       className: 'DataCloudflareMagicTransitSites',
-      barrel: 'data',
+      barrel: 'magic',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -20138,7 +20138,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_magic_wan_bgp_filter_profile',
       className: 'DataCloudflareMagicWanBgpFilterProfile',
-      barrel: 'data',
+      barrel: 'magic',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -20200,7 +20200,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_magic_wan_bgp_filter_profiles',
       className: 'DataCloudflareMagicWanBgpFilterProfiles',
-      barrel: 'data',
+      barrel: 'magic',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -20381,7 +20381,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_magic_wan_gre_tunnel',
       className: 'DataCloudflareMagicWanGreTunnel',
-      barrel: 'data',
+      barrel: 'magic',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -20580,7 +20580,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_magic_wan_ipsec_tunnel',
       className: 'DataCloudflareMagicWanIpsecTunnel',
-      barrel: 'data',
+      barrel: 'magic',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -20710,7 +20710,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_magic_wan_static_route',
       className: 'DataCloudflareMagicWanStaticRoute',
-      barrel: 'data',
+      barrel: 'magic',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -20788,7 +20788,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_managed_transforms',
       className: 'DataCloudflareManagedTransforms',
-      barrel: 'data',
+      barrel: 'transforms',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -20874,7 +20874,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_moq_relay',
       className: 'DataCloudflareMoqRelay',
-      barrel: 'data',
+      barrel: 'moq',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -20931,7 +20931,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_moq_relays',
       className: 'DataCloudflareMoqRelays',
-      barrel: 'data',
+      barrel: 'moq',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -21096,7 +21096,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_mtls_certificate',
       className: 'DataCloudflareMtlsCertificate',
-      barrel: 'data',
+      barrel: 'ssl',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -21160,7 +21160,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_mtls_certificate_associations',
       className: 'DataCloudflareMtlsCertificateAssociations',
-      barrel: 'data',
+      barrel: 'ssl',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -21278,7 +21278,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_nel_setting',
       className: 'DataCloudflareNelSetting',
-      barrel: 'data',
+      barrel: 'nel',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -21449,7 +21449,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_notification_policy',
       className: 'DataCloudflareNotificationPolicy',
-      barrel: 'data',
+      barrel: 'notifications',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -21576,7 +21576,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_notification_policy_webhooks',
       className: 'DataCloudflareNotificationPolicyWebhooks',
-      barrel: 'data',
+      barrel: 'notifications',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -21631,7 +21631,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_notification_policy_webhooks_list',
       className: 'DataCloudflareNotificationPolicyWebhooksList',
-      barrel: 'data',
+      barrel: 'notifications',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -21901,7 +21901,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_oauth_client',
       className: 'DataCloudflareOauthClient',
-      barrel: 'data',
+      barrel: 'account',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -22140,7 +22140,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_observatory_scheduled_test',
       className: 'DataCloudflareObservatoryScheduledTest',
-      barrel: 'data',
+      barrel: 'observatory',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -22224,7 +22224,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_organization',
       className: 'DataCloudflareOrganization',
-      barrel: 'data',
+      barrel: 'account',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -22343,7 +22343,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_organization_profile',
       className: 'DataCloudflareOrganizationProfile',
-      barrel: 'data',
+      barrel: 'account',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -22526,7 +22526,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_origin_ca_certificate',
       className: 'DataCloudflareOriginCaCertificate',
-      barrel: 'data',
+      barrel: 'ssl',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -22583,7 +22583,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_origin_ca_certificates',
       className: 'DataCloudflareOriginCaCertificates',
-      barrel: 'data',
+      barrel: 'origin',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -22691,7 +22691,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_origin_cloud_region',
       className: 'DataCloudflareOriginCloudRegion',
-      barrel: 'data',
+      barrel: 'origin',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -22734,7 +22734,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_origin_cloud_regions',
       className: 'DataCloudflareOriginCloudRegions',
-      barrel: 'data',
+      barrel: 'origin',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -22815,7 +22815,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_origin_tls_compliance_modes',
       className: 'DataCloudflareOriginTlsComplianceModes',
-      barrel: 'data',
+      barrel: 'ssl',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -22924,7 +22924,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_page_rule',
       className: 'DataCloudflarePageRule',
-      barrel: 'data',
+      barrel: 'rules',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -22976,7 +22976,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_page_shield_connections',
       className: 'DataCloudflarePageShieldConnections',
-      barrel: 'data',
+      barrel: 'security',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -23064,7 +23064,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_page_shield_connections_list',
       className: 'DataCloudflarePageShieldConnectionsList',
-      barrel: 'data',
+      barrel: 'security',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -23219,7 +23219,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_page_shield_cookies',
       className: 'DataCloudflarePageShieldCookies',
-      barrel: 'data',
+      barrel: 'security',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -23308,7 +23308,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_page_shield_cookies_list',
       className: 'DataCloudflarePageShieldCookiesList',
-      barrel: 'data',
+      barrel: 'security',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -23475,7 +23475,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_page_shield_policies',
       className: 'DataCloudflarePageShieldPolicies',
-      barrel: 'data',
+      barrel: 'security',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -23582,7 +23582,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_page_shield_policy',
       className: 'DataCloudflarePageShieldPolicy',
-      barrel: 'data',
+      barrel: 'security',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -23631,7 +23631,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_page_shield_scripts',
       className: 'DataCloudflarePageShieldScripts',
-      barrel: 'data',
+      barrel: 'security',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -23755,7 +23755,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_page_shield_scripts_list',
       className: 'DataCloudflarePageShieldScriptsList',
-      barrel: 'data',
+      barrel: 'security',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -23987,7 +23987,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_pages_domain',
       className: 'DataCloudflarePagesDomain',
-      barrel: 'data',
+      barrel: 'pages',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -24057,7 +24057,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_pages_domains',
       className: 'DataCloudflarePagesDomains',
-      barrel: 'data',
+      barrel: 'pages',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -24212,7 +24212,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_pages_project',
       className: 'DataCloudflarePagesProject',
-      barrel: 'data',
+      barrel: 'pages',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -24294,7 +24294,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_pages_projects',
       className: 'DataCloudflarePagesProjects',
-      barrel: 'data',
+      barrel: 'pages',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -24385,7 +24385,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_pipeline',
       className: 'DataCloudflarePipeline',
-      barrel: 'data',
+      barrel: 'pipeline',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -24513,7 +24513,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_pipeline_sink',
       className: 'DataCloudflarePipelineSink',
-      barrel: 'data',
+      barrel: 'pipeline',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -24569,7 +24569,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_pipeline_sinks',
       className: 'DataCloudflarePipelineSinks',
-      barrel: 'data',
+      barrel: 'pipeline',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -24704,7 +24704,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_pipeline_stream',
       className: 'DataCloudflarePipelineStream',
-      barrel: 'data',
+      barrel: 'pipeline',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -24765,7 +24765,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_pipeline_streams',
       className: 'DataCloudflarePipelineStreams',
-      barrel: 'data',
+      barrel: 'pipeline',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -24865,7 +24865,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_precursor',
       className: 'DataCloudflarePrecursor',
-      barrel: 'data',
+      barrel: 'precursor',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -24975,7 +24975,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_queue',
       className: 'DataCloudflareQueue',
-      barrel: 'data',
+      barrel: 'queues',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -25131,7 +25131,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_queue_consumer',
       className: 'DataCloudflareQueueConsumer',
-      barrel: 'data',
+      barrel: 'queues',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -25239,7 +25239,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_queues',
       className: 'DataCloudflareQueues',
-      barrel: 'data',
+      barrel: 'queues',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -25347,7 +25347,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_r2_bucket',
       className: 'DataCloudflareR2Bucket',
-      barrel: 'data',
+      barrel: 'r2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -25460,7 +25460,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_r2_bucket_cors',
       className: 'DataCloudflareR2BucketCors',
-      barrel: 'data',
+      barrel: 'r2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -25568,7 +25568,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_r2_bucket_event_notification',
       className: 'DataCloudflareR2BucketEventNotification',
-      barrel: 'data',
+      barrel: 'r2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -25676,7 +25676,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_r2_bucket_lifecycle',
       className: 'DataCloudflareR2BucketLifecycle',
-      barrel: 'data',
+      barrel: 'r2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -25767,7 +25767,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_r2_bucket_lock',
       className: 'DataCloudflareR2BucketLock',
-      barrel: 'data',
+      barrel: 'r2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -25866,7 +25866,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_r2_bucket_sippy',
       className: 'DataCloudflareR2BucketSippy',
-      barrel: 'data',
+      barrel: 'r2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -26007,7 +26007,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_r2_custom_domain',
       className: 'DataCloudflareR2CustomDomain',
-      barrel: 'data',
+      barrel: 'r2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -26115,7 +26115,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_r2_data_catalog',
       className: 'DataCloudflareR2DataCatalog',
-      barrel: 'data',
+      barrel: 'r2',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -26291,7 +26291,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_rate_limit',
       className: 'DataCloudflareRateLimit',
-      barrel: 'data',
+      barrel: 'security',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -26408,7 +26408,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_regional_hostname',
       className: 'DataCloudflareRegionalHostname',
-      barrel: 'data',
+      barrel: 'regional',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -26459,7 +26459,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_regional_hostnames',
       className: 'DataCloudflareRegionalHostnames',
-      barrel: 'data',
+      barrel: 'regional',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -26536,7 +26536,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_regional_tiered_cache',
       className: 'DataCloudflareRegionalTieredCache',
-      barrel: 'data',
+      barrel: 'cache',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -26634,7 +26634,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_registrar_domain',
       className: 'DataCloudflareRegistrarDomain',
-      barrel: 'data',
+      barrel: 'registrar',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -26669,7 +26669,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_registrar_domains',
       className: 'DataCloudflareRegistrarDomains',
-      barrel: 'data',
+      barrel: 'registrar',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -26873,7 +26873,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_ruleset',
       className: 'DataCloudflareRuleset',
-      barrel: 'data',
+      barrel: 'rules',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -27035,7 +27035,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_schema_validation_operation_settings',
       className: 'DataCloudflareSchemaValidationOperationSettings',
-      barrel: 'data',
+      barrel: 'api_shield',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -27075,7 +27075,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_schema_validation_operation_settings_list',
       className: 'DataCloudflareSchemaValidationOperationSettingsList',
-      barrel: 'data',
+      barrel: 'api_shield',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -27192,7 +27192,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_schema_validation_schemas',
       className: 'DataCloudflareSchemaValidationSchemas',
-      barrel: 'data',
+      barrel: 'api_shield',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -27261,7 +27261,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_schema_validation_schemas_list',
       className: 'DataCloudflareSchemaValidationSchemasList',
-      barrel: 'data',
+      barrel: 'api_shield',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -27368,7 +27368,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_schema_validation_settings',
       className: 'DataCloudflareSchemaValidationSettings',
-      barrel: 'data',
+      barrel: 'api_shield',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -27451,7 +27451,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_secrets_store',
       className: 'DataCloudflareSecretsStore',
-      barrel: 'data',
+      barrel: 'secrets',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -27593,7 +27593,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_secrets_store_secret',
       className: 'DataCloudflareSecretsStoreSecret',
-      barrel: 'data',
+      barrel: 'secrets',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -27671,7 +27671,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_secrets_store_secrets',
       className: 'DataCloudflareSecretsStoreSecrets',
-      barrel: 'data',
+      barrel: 'secrets',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -27758,7 +27758,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_secrets_stores',
       className: 'DataCloudflareSecretsStores',
-      barrel: 'data',
+      barrel: 'secrets',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -27934,7 +27934,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_share',
       className: 'DataCloudflareShare',
-      barrel: 'data',
+      barrel: 'share',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -28137,7 +28137,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_share_recipient',
       className: 'DataCloudflareShareRecipient',
-      barrel: 'data',
+      barrel: 'share',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -28212,7 +28212,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_share_recipients',
       className: 'DataCloudflareShareRecipients',
-      barrel: 'data',
+      barrel: 'share',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -28367,7 +28367,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_share_resource',
       className: 'DataCloudflareShareResource',
-      barrel: 'data',
+      barrel: 'share',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -28455,7 +28455,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_share_resources',
       className: 'DataCloudflareShareResources',
-      barrel: 'data',
+      barrel: 'share',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -28715,7 +28715,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_snippet',
       className: 'DataCloudflareSnippet',
-      barrel: 'data',
+      barrel: 'snippet',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -28761,7 +28761,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_snippet_list',
       className: 'DataCloudflareSnippetList',
-      barrel: 'data',
+      barrel: 'snippet',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -28829,7 +28829,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_snippet_rules',
       className: 'DataCloudflareSnippetRules',
-      barrel: 'data',
+      barrel: 'snippet',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -28853,7 +28853,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_snippet_rules_list',
       className: 'DataCloudflareSnippetRulesList',
-      barrel: 'data',
+      barrel: 'snippet',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -28953,7 +28953,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_snippets',
       className: 'DataCloudflareSnippets',
-      barrel: 'data',
+      barrel: 'snippet',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -29207,7 +29207,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_spectrum_application',
       className: 'DataCloudflareSpectrumApplication',
-      barrel: 'data',
+      barrel: 'spectrum',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -29303,7 +29303,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_spectrum_applications',
       className: 'DataCloudflareSpectrumApplications',
-      barrel: 'data',
+      barrel: 'spectrum',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -29358,7 +29358,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_spectrum_protocols',
       className: 'DataCloudflareSpectrumProtocols',
-      barrel: 'data',
+      barrel: 'spectrum',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -29471,7 +29471,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_sso_connector',
       className: 'DataCloudflareSsoConnector',
-      barrel: 'data',
+      barrel: 'account',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -29774,7 +29774,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_stream',
       className: 'DataCloudflareStream',
-      barrel: 'data',
+      barrel: 'stream',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -29971,7 +29971,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_stream_audio_track',
       className: 'DataCloudflareStreamAudioTrack',
-      barrel: 'data',
+      barrel: 'stream',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -30068,7 +30068,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_stream_caption_language',
       className: 'DataCloudflareStreamCaptionLanguage',
-      barrel: 'data',
+      barrel: 'stream',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -30157,7 +30157,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_stream_download',
       className: 'DataCloudflareStreamDownload',
-      barrel: 'data',
+      barrel: 'stream',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -30224,7 +30224,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_stream_key',
       className: 'DataCloudflareStreamKey',
-      barrel: 'data',
+      barrel: 'stream',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -30366,7 +30366,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_stream_live_input',
       className: 'DataCloudflareStreamLiveInput',
-      barrel: 'data',
+      barrel: 'stream',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -30531,7 +30531,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_stream_watermark',
       className: 'DataCloudflareStreamWatermark',
-      barrel: 'data',
+      barrel: 'stream',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -30589,7 +30589,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_stream_watermarks',
       className: 'DataCloudflareStreamWatermarks',
-      barrel: 'data',
+      barrel: 'stream',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -30665,7 +30665,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_stream_webhook',
       className: 'DataCloudflareStreamWebhook',
-      barrel: 'data',
+      barrel: 'stream',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -30905,7 +30905,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_tiered_cache',
       className: 'DataCloudflareTieredCache',
-      barrel: 'data',
+      barrel: 'cache',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -31026,7 +31026,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_token_validation_config',
       className: 'DataCloudflareTokenValidationConfig',
-      barrel: 'data',
+      barrel: 'api_shield',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -31088,7 +31088,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_token_validation_configs',
       className: 'DataCloudflareTokenValidationConfigs',
-      barrel: 'data',
+      barrel: 'api_shield',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -31221,7 +31221,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_token_validation_rules',
       className: 'DataCloudflareTokenValidationRules',
-      barrel: 'data',
+      barrel: 'api_shield',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -31288,7 +31288,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_token_validation_rules_list',
       className: 'DataCloudflareTokenValidationRulesList',
-      barrel: 'data',
+      barrel: 'api_shield',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -31433,7 +31433,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_total_tls',
       className: 'DataCloudflareTotalTls',
-      barrel: 'data',
+      barrel: 'ssl',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -31646,7 +31646,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_turnstile_widget',
       className: 'DataCloudflareTurnstileWidget',
-      barrel: 'data',
+      barrel: 'turnstile',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -31739,7 +31739,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_turnstile_widgets',
       className: 'DataCloudflareTurnstileWidgets',
-      barrel: 'data',
+      barrel: 'turnstile',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -31834,7 +31834,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_universal_ssl_setting',
       className: 'DataCloudflareUniversalSslSetting',
-      barrel: 'data',
+      barrel: 'ssl',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -31899,7 +31899,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_url_normalization_settings',
       className: 'DataCloudflareUrlNormalizationSettings',
-      barrel: 'data',
+      barrel: 'rules',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -32032,7 +32032,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_user',
       className: 'DataCloudflareUser',
-      barrel: 'data',
+      barrel: 'user',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[],
       getters: <MigrateGetter>[
@@ -32163,7 +32163,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_user_agent_blocking_rule',
       className: 'DataCloudflareUserAgentBlockingRule',
-      barrel: 'data',
+      barrel: 'security',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -32214,7 +32214,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_user_agent_blocking_rules',
       className: 'DataCloudflareUserAgentBlockingRules',
-      barrel: 'data',
+      barrel: 'user',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -32332,7 +32332,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_user_group',
       className: 'DataCloudflareUserGroup',
-      barrel: 'data',
+      barrel: 'user',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -32473,7 +32473,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_user_group_members',
       className: 'DataCloudflareUserGroupMembers',
-      barrel: 'data',
+      barrel: 'user',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -32534,7 +32534,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_user_groups',
       className: 'DataCloudflareUserGroups',
-      barrel: 'data',
+      barrel: 'user',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -32678,7 +32678,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_vulnerability_scanner_credential',
       className: 'DataCloudflareVulnerabilityScannerCredential',
-      barrel: 'data',
+      barrel: 'security',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -32769,7 +32769,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_vulnerability_scanner_credential_set',
       className: 'DataCloudflareVulnerabilityScannerCredentialSet',
-      barrel: 'data',
+      barrel: 'security',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -32806,7 +32806,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_vulnerability_scanner_credential_sets',
       className: 'DataCloudflareVulnerabilityScannerCredentialSets',
-      barrel: 'data',
+      barrel: 'security',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -32841,7 +32841,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_vulnerability_scanner_credentials',
       className: 'DataCloudflareVulnerabilityScannerCredentials',
-      barrel: 'data',
+      barrel: 'security',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -32940,7 +32940,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_vulnerability_scanner_target_environment',
       className: 'DataCloudflareVulnerabilityScannerTargetEnvironment',
-      barrel: 'data',
+      barrel: 'security',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -32982,7 +32982,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_vulnerability_scanner_target_environments',
       className: 'DataCloudflareVulnerabilityScannerTargetEnvironments',
-      barrel: 'data',
+      barrel: 'security',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -33295,7 +33295,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_waiting_room',
       className: 'DataCloudflareWaitingRoom',
-      barrel: 'data',
+      barrel: 'waiting_room',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -33656,7 +33656,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_waiting_room_event',
       className: 'DataCloudflareWaitingRoomEvent',
-      barrel: 'data',
+      barrel: 'waiting_room',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -33785,7 +33785,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_waiting_room_events',
       className: 'DataCloudflareWaitingRoomEvents',
-      barrel: 'data',
+      barrel: 'waiting_room',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -33877,7 +33877,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_waiting_room_rules',
       className: 'DataCloudflareWaitingRoomRules',
-      barrel: 'data',
+      barrel: 'waiting_room',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -33971,7 +33971,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_waiting_room_settings',
       className: 'DataCloudflareWaitingRoomSettings',
-      barrel: 'data',
+      barrel: 'waiting_room',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -34123,7 +34123,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_web3_hostname',
       className: 'DataCloudflareWeb3Hostname',
-      barrel: 'data',
+      barrel: 'web3',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -34182,7 +34182,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_web3_hostnames',
       className: 'DataCloudflareWeb3Hostnames',
-      barrel: 'data',
+      barrel: 'web3',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -34399,7 +34399,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_web_analytics_site',
       className: 'DataCloudflareWebAnalyticsSite',
-      barrel: 'data',
+      barrel: 'web_analytics',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -34468,7 +34468,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_web_analytics_sites',
       className: 'DataCloudflareWebAnalyticsSites',
-      barrel: 'data',
+      barrel: 'web_analytics',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -34623,7 +34623,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_worker',
       className: 'DataCloudflareWorker',
-      barrel: 'data',
+      barrel: 'workers',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -34923,7 +34923,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_worker_version',
       className: 'DataCloudflareWorkerVersion',
-      barrel: 'data',
+      barrel: 'workers',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -35087,7 +35087,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_workers',
       className: 'DataCloudflareWorkers',
-      barrel: 'data',
+      barrel: 'workers',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -35187,7 +35187,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_workers_cron_trigger',
       className: 'DataCloudflareWorkersCronTrigger',
-      barrel: 'data',
+      barrel: 'workers',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -35313,7 +35313,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_workers_custom_domain',
       className: 'DataCloudflareWorkersCustomDomain',
-      barrel: 'data',
+      barrel: 'workers',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -35387,7 +35387,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_workers_custom_domains',
       className: 'DataCloudflareWorkersCustomDomains',
-      barrel: 'data',
+      barrel: 'workers',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -35567,7 +35567,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_workers_deployment',
       className: 'DataCloudflareWorkersDeployment',
-      barrel: 'data',
+      barrel: 'workers',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -35631,7 +35631,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_workers_deployments',
       className: 'DataCloudflareWorkersDeployments',
-      barrel: 'data',
+      barrel: 'workers',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -35766,7 +35766,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_workers_for_platforms_dispatch_namespace',
       className: 'DataCloudflareWorkersForPlatformsDispatchNamespace',
-      barrel: 'data',
+      barrel: 'workers',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -35842,7 +35842,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_workers_for_platforms_dispatch_namespaces',
       className: 'DataCloudflareWorkersForPlatformsDispatchNamespaces',
-      barrel: 'data',
+      barrel: 'workers',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -35969,7 +35969,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_workers_kv',
       className: 'DataCloudflareWorkersKv',
-      barrel: 'data',
+      barrel: 'workers',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -36067,7 +36067,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_workers_kv_namespace',
       className: 'DataCloudflareWorkersKvNamespace',
-      barrel: 'data',
+      barrel: 'workers',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -36122,7 +36122,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_workers_kv_namespaces',
       className: 'DataCloudflareWorkersKvNamespaces',
-      barrel: 'data',
+      barrel: 'workers',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -36221,7 +36221,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_workers_route',
       className: 'DataCloudflareWorkersRoute',
-      barrel: 'data',
+      barrel: 'workers',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -36263,7 +36263,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_workers_routes',
       className: 'DataCloudflareWorkersRoutes',
-      barrel: 'data',
+      barrel: 'workers',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -36632,7 +36632,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_workers_script',
       className: 'DataCloudflareWorkersScript',
-      barrel: 'data',
+      barrel: 'workers',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -36733,7 +36733,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_workers_script_subdomain',
       className: 'DataCloudflareWorkersScriptSubdomain',
-      barrel: 'data',
+      barrel: 'workers',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -36774,7 +36774,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_workers_scripts',
       className: 'DataCloudflareWorkersScripts',
-      barrel: 'data',
+      barrel: 'workers',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -36951,7 +36951,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_workflow',
       className: 'DataCloudflareWorkflow',
-      barrel: 'data',
+      barrel: 'workflow',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -37202,7 +37202,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_access_ai_controls_mcp_portal',
       className: 'DataCloudflareZeroTrustAccessAiControlsMcpPortal',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -37280,7 +37280,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_access_ai_controls_mcp_portals',
       className: 'DataCloudflareZeroTrustAccessAiControlsMcpPortals',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -37511,7 +37511,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_access_ai_controls_mcp_server',
       className: 'DataCloudflareZeroTrustAccessAiControlsMcpServer',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -37616,7 +37616,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_access_ai_controls_mcp_servers',
       className: 'DataCloudflareZeroTrustAccessAiControlsMcpServers',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -38102,7 +38102,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_access_application',
       className: 'DataCloudflareZeroTrustAccessApplication',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -38284,7 +38284,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_access_applications',
       className: 'DataCloudflareZeroTrustAccessApplications',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -38437,7 +38437,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_access_custom_page',
       className: 'DataCloudflareZeroTrustAccessCustomPage',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -38486,7 +38486,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_access_custom_pages',
       className: 'DataCloudflareZeroTrustAccessCustomPages',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -38605,7 +38605,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_access_group',
       className: 'DataCloudflareZeroTrustAccessGroup',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -38663,7 +38663,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_access_groups',
       className: 'DataCloudflareZeroTrustAccessGroups',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -38820,7 +38820,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_access_identity_provider',
       className: 'DataCloudflareZeroTrustAccessIdentityProvider',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -38889,7 +38889,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_access_identity_providers',
       className: 'DataCloudflareZeroTrustAccessIdentityProviders',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -39015,7 +39015,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_access_infrastructure_target',
       className: 'DataCloudflareZeroTrustAccessInfrastructureTarget',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -39079,7 +39079,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_access_infrastructure_targets',
       className: 'DataCloudflareZeroTrustAccessInfrastructureTargets',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -39368,7 +39368,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_access_key_configuration',
       className: 'DataCloudflareZeroTrustAccessKeyConfiguration',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -39486,7 +39486,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_access_mtls_certificate',
       className: 'DataCloudflareZeroTrustAccessMtlsCertificate',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -39551,7 +39551,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_access_mtls_certificates',
       className: 'DataCloudflareZeroTrustAccessMtlsCertificates',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -39659,7 +39659,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_access_mtls_hostname_settings',
       className: 'DataCloudflareZeroTrustAccessMtlsHostnameSettings',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -39710,7 +39710,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_access_policies',
       className: 'DataCloudflareZeroTrustAccessPolicies',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -39921,7 +39921,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_access_policy',
       className: 'DataCloudflareZeroTrustAccessPolicy',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -40112,7 +40112,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_access_service_token',
       className: 'DataCloudflareZeroTrustAccessServiceToken',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -40186,7 +40186,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_access_service_tokens',
       className: 'DataCloudflareZeroTrustAccessServiceTokens',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -40301,7 +40301,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_access_short_lived_certificate',
       className: 'DataCloudflareZeroTrustAccessShortLivedCertificate',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -40352,7 +40352,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_access_short_lived_certificates',
       className: 'DataCloudflareZeroTrustAccessShortLivedCertificates',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -40432,7 +40432,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_access_tag',
       className: 'DataCloudflareZeroTrustAccessTag',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -40469,7 +40469,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_access_tags',
       className: 'DataCloudflareZeroTrustAccessTags',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -40504,7 +40504,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_casb_policies',
       className: 'DataCloudflareZeroTrustCasbPolicies',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -40659,7 +40659,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_casb_policy',
       className: 'DataCloudflareZeroTrustCasbPolicy',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -40837,7 +40837,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_casb_webhook',
       className: 'DataCloudflareZeroTrustCasbWebhook',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -40896,7 +40896,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_casb_webhooks',
       className: 'DataCloudflareZeroTrustCasbWebhooks',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -40979,7 +40979,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_connectivity_settings',
       className: 'DataCloudflareZeroTrustConnectivitySettings',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -41345,7 +41345,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_device_custom_profile',
       className: 'DataCloudflareZeroTrustDeviceCustomProfile',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -41540,7 +41540,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           'cloudflare_zero_trust_device_custom_profile_local_domain_fallback',
       className:
           'DataCloudflareZeroTrustDeviceCustomProfileLocalDomainFallback',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -41587,7 +41587,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_device_custom_profiles',
       className: 'DataCloudflareZeroTrustDeviceCustomProfiles',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -41904,7 +41904,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_device_default_profile',
       className: 'DataCloudflareZeroTrustDeviceDefaultProfile',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -42045,7 +42045,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_device_default_profile_certificates',
       className: 'DataCloudflareZeroTrustDeviceDefaultProfileCertificates',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -42105,7 +42105,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           'cloudflare_zero_trust_device_default_profile_local_domain_fallback',
       className:
           'DataCloudflareZeroTrustDeviceDefaultProfileLocalDomainFallback',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -42203,7 +42203,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_device_deployment_groups',
       className: 'DataCloudflareZeroTrustDeviceDeploymentGroups',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -42255,7 +42255,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_device_deployment_groups_list',
       className: 'DataCloudflareZeroTrustDeviceDeploymentGroupsList',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -42384,7 +42384,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_device_ip_profile',
       className: 'DataCloudflareZeroTrustDeviceIpProfile',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -42456,7 +42456,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_device_ip_profiles',
       className: 'DataCloudflareZeroTrustDeviceIpProfiles',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -42552,7 +42552,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_device_managed_networks',
       className: 'DataCloudflareZeroTrustDeviceManagedNetworks',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -42590,7 +42590,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_device_managed_networks_list',
       className: 'DataCloudflareZeroTrustDeviceManagedNetworksList',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -42685,7 +42685,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_device_posture_integration',
       className: 'DataCloudflareZeroTrustDevicePostureIntegration',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -42728,7 +42728,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_device_posture_integrations',
       className: 'DataCloudflareZeroTrustDevicePostureIntegrations',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -42857,7 +42857,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_device_posture_rule',
       className: 'DataCloudflareZeroTrustDevicePostureRule',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -42911,7 +42911,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_device_posture_rules',
       className: 'DataCloudflareZeroTrustDevicePostureRules',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -43077,7 +43077,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_device_settings',
       className: 'DataCloudflareZeroTrustDeviceSettings',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -43228,7 +43228,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_device_subnet',
       className: 'DataCloudflareZeroTrustDeviceSubnet',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -43357,7 +43357,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_dex_rule',
       className: 'DataCloudflareZeroTrustDexRule',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -43410,7 +43410,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_dex_rules',
       className: 'DataCloudflareZeroTrustDexRules',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -43568,7 +43568,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_dex_test',
       className: 'DataCloudflareZeroTrustDexTest',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -43653,7 +43653,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_dex_tests',
       className: 'DataCloudflareZeroTrustDexTests',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -43708,7 +43708,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_dlp_custom_entries',
       className: 'DataCloudflareZeroTrustDlpCustomEntries',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -43847,7 +43847,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_dlp_custom_entry',
       className: 'DataCloudflareZeroTrustDlpCustomEntry',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -44099,7 +44099,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_dlp_custom_profile',
       className: 'DataCloudflareZeroTrustDlpCustomProfile',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -44192,7 +44192,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_dlp_custom_prompt_topic',
       className: 'DataCloudflareZeroTrustDlpCustomPromptTopic',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -44251,7 +44251,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_dlp_custom_prompt_topics',
       className: 'DataCloudflareZeroTrustDlpCustomPromptTopics',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -44373,7 +44373,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_dlp_data_class',
       className: 'DataCloudflareZeroTrustDlpDataClass',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -44435,7 +44435,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_dlp_data_classes',
       className: 'DataCloudflareZeroTrustDlpDataClasses',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -44536,7 +44536,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_dlp_data_tag',
       className: 'DataCloudflareZeroTrustDlpDataTag',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -44596,7 +44596,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_dlp_data_tag_categories',
       className: 'DataCloudflareZeroTrustDlpDataTagCategories',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -44690,7 +44690,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_dlp_data_tag_category',
       className: 'DataCloudflareZeroTrustDlpDataTagCategory',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -44747,7 +44747,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_dlp_data_tags',
       className: 'DataCloudflareZeroTrustDlpDataTags',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -44904,7 +44904,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_dlp_dataset',
       className: 'DataCloudflareZeroTrustDlpDataset',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -44973,7 +44973,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_dlp_datasets',
       className: 'DataCloudflareZeroTrustDlpDatasets',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -45008,7 +45008,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_dlp_entries',
       className: 'DataCloudflareZeroTrustDlpEntries',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -45154,7 +45154,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_dlp_entry',
       className: 'DataCloudflareZeroTrustDlpEntry',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -45234,7 +45234,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_dlp_integration_entries',
       className: 'DataCloudflareZeroTrustDlpIntegrationEntries',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -45363,7 +45363,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_dlp_integration_entry',
       className: 'DataCloudflareZeroTrustDlpIntegrationEntry',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -45443,7 +45443,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_dlp_predefined_entries',
       className: 'DataCloudflareZeroTrustDlpPredefinedEntries',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -45572,7 +45572,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_dlp_predefined_entry',
       className: 'DataCloudflareZeroTrustDlpPredefinedEntry',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -45763,7 +45763,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_dlp_predefined_profile',
       className: 'DataCloudflareZeroTrustDlpPredefinedProfile',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -45889,7 +45889,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_dlp_sensitivity_group',
       className: 'DataCloudflareZeroTrustDlpSensitivityGroup',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -45946,7 +45946,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_dlp_sensitivity_groups',
       className: 'DataCloudflareZeroTrustDlpSensitivityGroups',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -46047,7 +46047,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_dlp_sensitivity_level',
       className: 'DataCloudflareZeroTrustDlpSensitivityLevel',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -46159,7 +46159,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_dlp_sensitivity_level_order',
       className: 'DataCloudflareZeroTrustDlpSensitivityLevelOrder',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -46200,7 +46200,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_dlp_sensitivity_levels',
       className: 'DataCloudflareZeroTrustDlpSensitivityLevels',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -46299,7 +46299,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_dlp_settings',
       className: 'DataCloudflareZeroTrustDlpSettings',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -46453,7 +46453,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_dns_location',
       className: 'DataCloudflareZeroTrustDnsLocation',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -46544,7 +46544,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_dns_locations',
       className: 'DataCloudflareZeroTrustDnsLocations',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -46623,7 +46623,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_gateway_app_types_list',
       className: 'DataCloudflareZeroTrustGatewayAppTypesList',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -46658,7 +46658,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_gateway_categories_list',
       className: 'DataCloudflareZeroTrustGatewayCategoriesList',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -46788,7 +46788,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_gateway_certificate',
       className: 'DataCloudflareZeroTrustGatewayCertificate',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -46871,7 +46871,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_gateway_certificates',
       className: 'DataCloudflareZeroTrustGatewayCertificates',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -46950,7 +46950,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_gateway_logging',
       className: 'DataCloudflareZeroTrustGatewayLogging',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -47054,7 +47054,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_gateway_pacfile',
       className: 'DataCloudflareZeroTrustGatewayPacfile',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -47113,7 +47113,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_gateway_pacfiles',
       className: 'DataCloudflareZeroTrustGatewayPacfiles',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -47148,7 +47148,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_gateway_policies',
       className: 'DataCloudflareZeroTrustGatewayPolicies',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -47408,7 +47408,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_gateway_policy',
       className: 'DataCloudflareZeroTrustGatewayPolicy',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -47584,7 +47584,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_gateway_proxy_endpoint',
       className: 'DataCloudflareZeroTrustGatewayProxyEndpoint',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -47646,7 +47646,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_gateway_proxy_endpoints',
       className: 'DataCloudflareZeroTrustGatewayProxyEndpoints',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -47767,7 +47767,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_gateway_settings',
       className: 'DataCloudflareZeroTrustGatewaySettings',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -47877,7 +47877,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_list',
       className: 'DataCloudflareZeroTrustList',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -47943,7 +47943,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_lists',
       className: 'DataCloudflareZeroTrustLists',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -48110,7 +48110,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_network_hostname_route',
       className: 'DataCloudflareZeroTrustNetworkHostnameRoute',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -48189,7 +48189,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_network_hostname_routes',
       className: 'DataCloudflareZeroTrustNetworkHostnameRoutes',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -48530,7 +48530,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_organization',
       className: 'DataCloudflareZeroTrustOrganization',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -48786,7 +48786,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_resource_library_application',
       className: 'DataCloudflareZeroTrustResourceLibraryApplication',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -48899,7 +48899,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_resource_library_applications',
       className: 'DataCloudflareZeroTrustResourceLibraryApplications',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -48986,7 +48986,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_resource_library_categories',
       className: 'DataCloudflareZeroTrustResourceLibraryCategories',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -49037,7 +49037,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_resource_library_category',
       className: 'DataCloudflareZeroTrustResourceLibraryCategory',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -49111,7 +49111,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_risk_behavior',
       className: 'DataCloudflareZeroTrustRiskBehavior',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -49217,7 +49217,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_risk_scoring_integration',
       className: 'DataCloudflareZeroTrustRiskScoringIntegration',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -49284,7 +49284,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_risk_scoring_integrations',
       className: 'DataCloudflareZeroTrustRiskScoringIntegrations',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -49416,7 +49416,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_tunnel_cloudflared',
       className: 'DataCloudflareZeroTrustTunnelCloudflared',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -49565,7 +49565,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_tunnel_cloudflared_config',
       className: 'DataCloudflareZeroTrustTunnelCloudflaredConfig',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -49689,7 +49689,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_tunnel_cloudflared_route',
       className: 'DataCloudflareZeroTrustTunnelCloudflaredRoute',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -49763,7 +49763,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_tunnel_cloudflared_routes',
       className: 'DataCloudflareZeroTrustTunnelCloudflaredRoutes',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -49906,7 +49906,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_tunnel_cloudflared_token',
       className: 'DataCloudflareZeroTrustTunnelCloudflaredToken',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -50020,7 +50020,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_tunnel_cloudflared_virtual_network',
       className: 'DataCloudflareZeroTrustTunnelCloudflaredVirtualNetwork',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -50085,7 +50085,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_tunnel_cloudflared_virtual_networks',
       className: 'DataCloudflareZeroTrustTunnelCloudflaredVirtualNetworks',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -50165,7 +50165,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_tunnel_cloudflareds',
       className: 'DataCloudflareZeroTrustTunnelCloudflareds',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -50384,7 +50384,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_tunnel_warp_connector',
       className: 'DataCloudflareZeroTrustTunnelWarpConnector',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -50536,7 +50536,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_tunnel_warp_connector_config',
       className: 'DataCloudflareZeroTrustTunnelWarpConnectorConfig',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -50591,7 +50591,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_tunnel_warp_connector_token',
       className: 'DataCloudflareZeroTrustTunnelWarpConnectorToken',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -50627,7 +50627,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_tunnel_warp_connectors',
       className: 'DataCloudflareZeroTrustTunnelWarpConnectors',
-      barrel: 'data',
+      barrel: 'zero_trust',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -50869,7 +50869,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zone',
       className: 'DataCloudflareZone',
-      barrel: 'data',
+      barrel: 'zone',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -51001,7 +51001,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zone_auto_origin_tls_kex',
       className: 'DataCloudflareZoneAutoOriginTlsKex',
-      barrel: 'data',
+      barrel: 'zone',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -51073,7 +51073,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zone_cache_reserve',
       className: 'DataCloudflareZoneCacheReserve',
-      barrel: 'data',
+      barrel: 'zone',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -51150,7 +51150,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zone_cache_variants',
       className: 'DataCloudflareZoneCacheVariants',
-      barrel: 'data',
+      barrel: 'zone',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -51299,7 +51299,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zone_dns_settings',
       className: 'DataCloudflareZoneDnsSettings',
-      barrel: 'data',
+      barrel: 'zone',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -51450,7 +51450,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zone_dnssec',
       className: 'DataCloudflareZoneDnssec',
-      barrel: 'data',
+      barrel: 'zone',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -51573,7 +51573,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zone_hold',
       className: 'DataCloudflareZoneHold',
-      barrel: 'data',
+      barrel: 'zone',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -51695,7 +51695,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zone_lockdown',
       className: 'DataCloudflareZoneLockdown',
-      barrel: 'data',
+      barrel: 'zone',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -51760,7 +51760,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zone_lockdowns',
       className: 'DataCloudflareZoneLockdowns',
-      barrel: 'data',
+      barrel: 'zone',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -51966,7 +51966,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zone_setting',
       className: 'DataCloudflareZoneSetting',
-      barrel: 'data',
+      barrel: 'zone',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -52080,7 +52080,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zone_subscription',
       className: 'DataCloudflareZoneSubscription',
-      barrel: 'data',
+      barrel: 'zone',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -52214,7 +52214,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zone_tracing',
       className: 'DataCloudflareZoneTracing',
-      barrel: 'data',
+      barrel: 'zone',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -52293,7 +52293,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'cloudflare_zone_tracing_rules',
       className: 'DataCloudflareZoneTracingRules',
-      barrel: 'data',
+      barrel: 'zone',
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(

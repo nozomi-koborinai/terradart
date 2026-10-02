@@ -49,6 +49,7 @@ final class DialogflowEnvironmentFulfillment {
 
   final DialogflowEnvironmentGenericWebService? genericWebService;
 
+  @internal
   Map<String, Object?> encode() => {
     'display_name': ?displayName?.toTfJson(),
     'name': ?name?.toTfJson(),
@@ -65,6 +66,7 @@ final class DialogflowEnvironmentFeatures {
 
   final DialogflowEnvironmentType type;
 
+  @internal
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 
@@ -109,6 +111,7 @@ final class DialogflowEnvironmentGenericWebService {
 
   final TfArg<String>? username;
 
+  @internal
   Map<String, Object?> encode() => {
     'password': ?password?.toTfJson(),
     'request_headers': ?requestHeaders?.toTfJson(),
@@ -137,6 +140,7 @@ final class DialogflowEnvironmentTextToSpeechSettings {
   final List<DialogflowEnvironmentSynthesizeSpeechConfigs>?
   synthesizeSpeechConfigs;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_text_to_speech': ?enableTextToSpeech?.toTfJson(),
     'output_audio_encoding': ?outputAudioEncoding?.toTfJson(),
@@ -223,6 +227,7 @@ final class DialogflowEnvironmentSynthesizeSpeechConfigs {
 
   final DialogflowEnvironmentVoice? voice;
 
+  @internal
   Map<String, Object?> encode() => {
     'effects_profile_id': ?effectsProfileId?.toTfJson(),
     'language': language.toTfJson(),
@@ -243,6 +248,7 @@ final class DialogflowEnvironmentVoice {
 
   final DialogflowEnvironmentSsmlGender? ssmlGender;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'ssml_gender': ?ssmlGender?.toTfJson(),

@@ -61,6 +61,7 @@ final class Route53RecordsExclusiveResourceRecordSet {
 
   final List<Route53RecordsExclusiveResourceRecords>? resourceRecords;
 
+  @internal
   Map<String, Object?> encode() => {
     'failover': ?failover?.toTfJson(),
     'health_check_id': ?healthCheckId?.toTfJson(),
@@ -343,6 +344,7 @@ final class Route53RecordsExclusiveAliasTarget {
 
   final TfArg<String> hostedZoneId;
 
+  @internal
   Map<String, Object?> encode() => {
     'dns_name': dnsName.toTfJson(),
     'evaluate_target_health': evaluateTargetHealth.toTfJson(),
@@ -363,6 +365,7 @@ final class Route53RecordsExclusiveCidrRoutingConfig {
 
   final TfArg<String> locationName;
 
+  @internal
   Map<String, Object?> encode() => {
     'collection_id': collectionId.toTfJson(),
     'location_name': locationName.toTfJson(),
@@ -385,6 +388,7 @@ final class Route53RecordsExclusiveGeolocation {
 
   final TfArg<String>? subdivisionCode;
 
+  @internal
   Map<String, Object?> encode() => {
     'continent_code': ?continentCode?.toTfJson(),
     'country_code': ?countryCode?.toTfJson(),
@@ -411,6 +415,7 @@ final class Route53RecordsExclusiveGeoproximityLocation {
 
   final List<Route53RecordsExclusiveCoordinates>? coordinates;
 
+  @internal
   Map<String, Object?> encode() => {
     'aws_region': ?awsRegion?.toTfJson(),
     'bias': ?bias?.toTfJson(),
@@ -433,6 +438,7 @@ final class Route53RecordsExclusiveCoordinates {
 
   final TfArg<String> longitude;
 
+  @internal
   Map<String, Object?> encode() => {
     'latitude': latitude.toTfJson(),
     'longitude': longitude.toTfJson(),
@@ -447,6 +453,7 @@ final class Route53RecordsExclusiveResourceRecords {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {'value': value.toTfJson()};
 }
 

@@ -195,6 +195,7 @@ final class SqlDatabaseInstanceClone {
 
   final TfArg<String>? sourceProject;
 
+  @internal
   Map<String, Object?> encode() => {
     'allocated_ip_range': ?allocatedIpRange?.toTfJson(),
     'database_names': ?databaseNames?.toTfJson(),
@@ -231,6 +232,7 @@ final class SqlDatabaseInstancePointInTimeRestoreContext {
 
   final TfArg<String>? targetInstance;
 
+  @internal
   Map<String, Object?> encode() => {
     'allocated_ip_range': ?allocatedIpRange?.toTfJson(),
     'datasource': datasource.toTfJson(),
@@ -284,6 +286,7 @@ final class SqlDatabaseInstanceReplicaConfiguration {
 
   final TfArg<bool>? verifyServerCertificate;
 
+  @internal
   Map<String, Object?> encode() => {
     'ca_certificate': ?caCertificate?.toTfJson(),
     'cascadable_replica': ?cascadableReplica?.toTfJson(),
@@ -313,6 +316,7 @@ final class SqlDatabaseInstanceReplicationCluster {
 
   final TfArg<String>? psaWriteEndpoint;
 
+  @internal
   Map<String, Object?> encode() => {
     'failover_dr_replica_name': ?failoverDrReplicaName?.toTfJson(),
     'psa_write_endpoint': ?psaWriteEndpoint?.toTfJson(),
@@ -335,6 +339,7 @@ final class SqlDatabaseInstanceRestoreBackupContext {
 
   final TfArg<String>? project;
 
+  @internal
   Map<String, Object?> encode() => {
     'backup_run_id': backupRunId.toTfJson(),
     'instance_id': ?instanceId?.toTfJson(),
@@ -463,6 +468,7 @@ final class SqlDatabaseInstanceSettings {
 
   final SqlDatabaseInstanceSqlServerAuditConfig? sqlServerAuditConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'activation_policy': ?activationPolicy?.toTfJson(),
     'auto_upgrade_enabled': ?autoUpgradeEnabled?.toTfJson(),
@@ -532,6 +538,7 @@ final class SqlDatabaseInstanceActiveDirectoryConfig {
 
   final TfArg<String>? organizationalUnit;
 
+  @internal
   Map<String, Object?> encode() => {
     'admin_credential_secret_name': ?adminCredentialSecretName?.toTfJson(),
     'dns_servers': ?dnsServers?.toTfJson(),
@@ -549,6 +556,7 @@ final class SqlDatabaseInstanceAdvancedMachineFeatures {
 
   final TfArg<num>? threadsPerCore;
 
+  @internal
   Map<String, Object?> encode() => {
     'threads_per_core': ?threadsPerCore?.toTfJson(),
   };
@@ -582,6 +590,7 @@ final class SqlDatabaseInstanceBackupConfiguration {
 
   final SqlDatabaseInstanceBackupRetentionSettings? backupRetentionSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'binary_log_enabled': ?binaryLogEnabled?.toTfJson(),
     'enabled': ?enabled?.toTfJson(),
@@ -606,6 +615,7 @@ final class SqlDatabaseInstanceBackupRetentionSettings {
 
   final TfArg<String>? retentionUnit;
 
+  @internal
   Map<String, Object?> encode() => {
     'retained_backups': retainedBackups.toTfJson(),
     'retention_unit': ?retentionUnit?.toTfJson(),
@@ -625,6 +635,7 @@ final class SqlDatabaseInstanceConnectionPoolConfig {
 
   final List<SqlDatabaseInstanceFlags>? flags;
 
+  @internal
   Map<String, Object?> encode() => {
     'connection_pooling_enabled': ?connectionPoolingEnabled?.toTfJson(),
     if (flags != null) 'flags': [for (final e in flags!) e.encode()],
@@ -641,6 +652,7 @@ final class SqlDatabaseInstanceFlags {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'value': value.toTfJson(),
@@ -655,6 +667,7 @@ final class SqlDatabaseInstanceDataCacheConfig {
 
   final TfArg<bool>? dataCacheEnabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_cache_enabled': ?dataCacheEnabled?.toTfJson(),
   };
@@ -673,6 +686,7 @@ final class SqlDatabaseInstanceDatabaseFlags {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'value': value.toTfJson(),
@@ -695,6 +709,7 @@ final class SqlDatabaseInstanceDenyMaintenancePeriod {
 
   final TfArg<String> time;
 
+  @internal
   Map<String, Object?> encode() => {
     'end_date': endDate.toTfJson(),
     'start_date': startDate.toTfJson(),
@@ -712,6 +727,7 @@ final class SqlDatabaseInstanceEntraidConfig {
 
   final TfArg<String>? tenantId;
 
+  @internal
   Map<String, Object?> encode() => {
     'application_id': ?applicationId?.toTfJson(),
     'tenant_id': ?tenantId?.toTfJson(),
@@ -731,6 +747,7 @@ final class SqlDatabaseInstanceFinalBackupConfig {
 
   final TfArg<num>? retentionDays;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'retention_days': ?retentionDays?.toTfJson(),
@@ -762,6 +779,7 @@ final class SqlDatabaseInstanceInsightsConfig {
 
   final TfArg<bool>? recordClientAddress;
 
+  @internal
   Map<String, Object?> encode() => {
     'enhanced_query_insights_enabled': ?enhancedQueryInsightsEnabled
         ?.toTfJson(),
@@ -813,6 +831,7 @@ final class SqlDatabaseInstanceIpConfiguration {
 
   final List<SqlDatabaseInstancePscConfig>? pscConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'allocated_ip_range': ?allocatedIpRange?.encodeAs('name').toTfJson(),
     'custom_subject_alternative_names': ?customSubjectAlternativeNames
@@ -849,6 +868,7 @@ final class SqlDatabaseInstanceAuthorizedNetworks {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'expiration_time': ?expirationTime?.toTfJson(),
     'name': ?name?.toTfJson(),
@@ -884,6 +904,7 @@ final class SqlDatabaseInstancePscConfig {
 
   final List<SqlDatabaseInstancePscAutoConnections>? pscAutoConnections;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed_consumer_projects': ?allowedConsumerProjects?.toTfJson(),
     'network_attachment_uri': ?networkAttachmentUri?.toTfJson(),
@@ -910,6 +931,7 @@ final class SqlDatabaseInstancePscAutoConnections {
 
   final TfArg<String>? consumerServiceProjectId;
 
+  @internal
   Map<String, Object?> encode() => {
     'consumer_network': consumerNetwork.encodeAs('id').toTfJson(),
     'consumer_service_project_id': ?consumerServiceProjectId?.toTfJson(),
@@ -932,6 +954,7 @@ final class SqlDatabaseInstanceLocationPreference {
 
   final TfArg<String>? zone;
 
+  @internal
   Map<String, Object?> encode() => {
     'follow_gae_application': ?followGaeApplication?.toTfJson(),
     'secondary_zone': ?secondaryZone?.toTfJson(),
@@ -955,6 +978,7 @@ final class SqlDatabaseInstanceMaintenanceWindow {
 
   final TfArg<String>? updateTrack;
 
+  @internal
   Map<String, Object?> encode() => {
     'day': ?day?.toTfJson(),
     'hour': ?hour?.toTfJson(),
@@ -987,6 +1011,7 @@ final class SqlDatabaseInstancePasswordValidationPolicy {
 
   final TfArg<num>? reuseInterval;
 
+  @internal
   Map<String, Object?> encode() => {
     'complexity': ?complexity?.toTfJson(),
     'disallow_username_substring': ?disallowUsernameSubstring?.toTfJson(),
@@ -1025,6 +1050,7 @@ final class SqlDatabaseInstanceReadPoolAutoScaleConfig {
 
   final List<SqlDatabaseInstanceTargetMetrics>? targetMetrics;
 
+  @internal
   Map<String, Object?> encode() => {
     'disable_scale_in': ?disableScaleIn?.toTfJson(),
     'enabled': ?enabled?.toTfJson(),
@@ -1047,6 +1073,7 @@ final class SqlDatabaseInstanceTargetMetrics {
 
   final TfArg<num>? targetValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'metric': ?metric?.toTfJson(),
     'target_value': ?targetValue?.toTfJson(),
@@ -1069,6 +1096,7 @@ final class SqlDatabaseInstanceSqlServerAuditConfig {
 
   final TfArg<String>? uploadInterval;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': ?bucket?.toTfJson(),
     'retention_interval': ?retentionInterval?.toTfJson(),

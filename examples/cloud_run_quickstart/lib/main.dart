@@ -31,7 +31,6 @@
 /// into the service env (`REDIS_HOST`).
 library;
 
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/cloud_run.dart';
 import 'package:terradart_google/compute.dart';
 import 'package:terradart_google/iam.dart';

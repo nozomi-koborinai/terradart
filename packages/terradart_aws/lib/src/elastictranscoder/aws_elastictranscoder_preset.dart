@@ -86,6 +86,7 @@ final class ElastictranscoderPresetAudio {
 
   final ElastictranscoderPresetSampleRate? sampleRate;
 
+  @internal
   Map<String, Object?> encode() => {
     'audio_packing_mode': ?audioPackingMode?.toTfJson(),
     'bit_rate': ?bitRate?.toTfJson(),
@@ -228,6 +229,7 @@ final class ElastictranscoderPresetAudioCodecOptions {
 
   final ElastictranscoderPresetSigned? signed;
 
+  @internal
   Map<String, Object?> encode() => {
     'bit_depth': ?bitDepth?.toTfJson(),
     'bit_order': ?bitOrder?.toTfJson(),
@@ -346,6 +348,7 @@ final class ElastictranscoderPresetThumbnails {
 
   final ElastictranscoderPresetThumbnailsSizingPolicy? sizingPolicy;
 
+  @internal
   Map<String, Object?> encode() => {
     'aspect_ratio': ?aspectRatio?.toTfJson(),
     'format': ?format?.toTfJson(),
@@ -507,6 +510,7 @@ final class ElastictranscoderPresetVideo {
 
   final ElastictranscoderPresetThumbnailsSizingPolicy? sizingPolicy;
 
+  @internal
   Map<String, Object?> encode() => {
     'aspect_ratio': ?aspectRatio?.toTfJson(),
     'bit_rate': ?bitRate?.toTfJson(),
@@ -722,6 +726,7 @@ final class ElastictranscoderPresetVideoWatermarks {
 
   final TfArg<String>? verticalOffset;
 
+  @internal
   Map<String, Object?> encode() => {
     'horizontal_align': ?horizontalAlign?.toTfJson(),
     'horizontal_offset': ?horizontalOffset?.toTfJson(),

@@ -45,6 +45,7 @@ final class DeveloperConnectAccountConnectorCustomOauthConfig {
   final DeveloperConnectAccountConnectorServiceDirectoryConfig?
   serviceDirectoryConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'auth_uri': authUri.toTfJson(),
     'client_id': clientId.toTfJson(),
@@ -69,6 +70,7 @@ final class DeveloperConnectAccountConnectorServiceDirectoryConfig {
 
   final TfArg<String> service;
 
+  @internal
   Map<String, Object?> encode() => {'service': service.toTfJson()};
 }
 
@@ -85,6 +87,7 @@ final class DeveloperConnectAccountConnectorProviderOauthConfig {
 
   final TfArg<String>? systemProviderId;
 
+  @internal
   Map<String, Object?> encode() => {
     'scopes': scopes.toTfJson(),
     'system_provider_id': ?systemProviderId?.toTfJson(),
@@ -99,6 +102,7 @@ final class DeveloperConnectAccountConnectorProxyConfig {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 

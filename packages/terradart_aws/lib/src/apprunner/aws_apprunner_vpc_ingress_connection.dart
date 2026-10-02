@@ -22,6 +22,7 @@ final class ApprunnerVpcIngressConnectionIngressVpcConfiguration {
 
   final RefTo<AwsVpc>? vpcId;
 
+  @internal
   Map<String, Object?> encode() => {
     'vpc_endpoint_id': ?vpcEndpointId?.toTfJson(),
     'vpc_id': ?vpcId?.encodeAs('id').toTfJson(),

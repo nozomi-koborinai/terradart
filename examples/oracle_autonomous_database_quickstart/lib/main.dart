@@ -1,7 +1,6 @@
 /// Oracle Autonomous Database quickstart — VPC, ODB network, subnet, ADB.
 library;
 
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/compute.dart';
 import 'package:terradart_google/oracle.dart';
 import 'package:terradart_google/project.dart';

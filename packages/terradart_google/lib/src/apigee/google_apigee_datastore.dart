@@ -63,6 +63,7 @@ final class ApigeeDatastoreConfig {
 
   final TfArg<String>? tablePrefix;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_name': ?bucketName?.encodeAs('name').toTfJson(),
     'dataset_name': ?datasetName?.toTfJson(),

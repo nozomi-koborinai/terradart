@@ -15,6 +15,7 @@ final class BedrockInferenceProfileModelSource {
 
   final TfArg<String> copyFrom;
 
+  @internal
   Map<String, Object?> encode() => {'copy_from': copyFrom.toTfJson()};
 }
 

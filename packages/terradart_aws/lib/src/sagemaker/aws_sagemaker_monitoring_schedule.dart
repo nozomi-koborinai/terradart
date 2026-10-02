@@ -32,6 +32,7 @@ final class SagemakerMonitoringScheduleConfig {
 
   final SagemakerMonitoringScheduleScheduleConfig? scheduleConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'monitoring_job_definition_name': ?monitoringJobDefinitionName?.toTfJson(),
     'monitoring_type': monitoringType.toTfJson(),
@@ -109,6 +110,7 @@ final class SagemakerMonitoringScheduleMonitoringJobDefinition {
 
   final List<SagemakerMonitoringScheduleStoppingCondition>? stoppingCondition;
 
+  @internal
   Map<String, Object?> encode() => {
     'environment': ?environment?.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
@@ -139,6 +141,7 @@ final class SagemakerMonitoringScheduleBaseline {
 
   final SagemakerMonitoringScheduleStatisticsResource? statisticsResource;
 
+  @internal
   Map<String, Object?> encode() => {
     'baselining_job_name': ?baseliningJobName?.toTfJson(),
     'constraints_resource': ?constraintsResource?.encode(),
@@ -154,6 +157,7 @@ final class SagemakerMonitoringScheduleConstraintsResource {
 
   final TfArg<String>? s3Uri;
 
+  @internal
   Map<String, Object?> encode() => {'s3_uri': ?s3Uri?.toTfJson()};
 }
 
@@ -165,6 +169,7 @@ final class SagemakerMonitoringScheduleStatisticsResource {
 
   final TfArg<String>? s3Uri;
 
+  @internal
   Map<String, Object?> encode() => {'s3_uri': ?s3Uri?.toTfJson()};
 }
 
@@ -190,6 +195,7 @@ final class SagemakerMonitoringScheduleMonitoringAppSpecification {
 
   final TfArg<String>? recordPreprocessorSourceUri;
 
+  @internal
   Map<String, Object?> encode() => {
     'container_arguments': ?containerArguments?.toTfJson(),
     'container_entrypoint': ?containerEntrypoint?.toTfJson(),
@@ -213,6 +219,7 @@ final class SagemakerMonitoringScheduleMonitoringInputs {
 
   final SagemakerMonitoringScheduleEndpointInput? endpointInput;
 
+  @internal
   Map<String, Object?> encode() => {
     'batch_transform_input': ?batchTransformInput?.encode(),
     'endpoint_input': ?endpointInput?.encode(),
@@ -263,6 +270,7 @@ final class SagemakerMonitoringScheduleBatchTransformInput {
 
   final SagemakerMonitoringScheduleDatasetFormat datasetFormat;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_captured_destination_s3_uri': dataCapturedDestinationS3Uri.toTfJson(),
     'end_time_offset': ?endTimeOffset?.toTfJson(),
@@ -337,6 +345,7 @@ final class SagemakerMonitoringScheduleDatasetFormat {
 
   final SagemakerMonitoringScheduleJson? json;
 
+  @internal
   Map<String, Object?> encode() => {
     'csv': ?csv?.encode(),
     'json': ?json?.encode(),
@@ -351,6 +360,7 @@ final class SagemakerMonitoringScheduleCsv {
 
   final TfArg<bool>? header;
 
+  @internal
   Map<String, Object?> encode() => {'header': ?header?.toTfJson()};
 }
 
@@ -362,6 +372,7 @@ final class SagemakerMonitoringScheduleJson {
 
   final TfArg<bool>? line;
 
+  @internal
   Map<String, Object?> encode() => {'line': ?line?.toTfJson()};
 }
 
@@ -406,6 +417,7 @@ final class SagemakerMonitoringScheduleEndpointInput {
 
   final TfArg<String>? startTimeOffset;
 
+  @internal
   Map<String, Object?> encode() => {
     'end_time_offset': ?endTimeOffset?.toTfJson(),
     'endpoint_name': endpointName.toTfJson(),
@@ -435,6 +447,7 @@ final class SagemakerMonitoringScheduleMonitoringOutputConfig {
 
   final SagemakerMonitoringScheduleMonitoringOutputs monitoringOutputs;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
     'monitoring_outputs': monitoringOutputs.encode(),
@@ -449,6 +462,7 @@ final class SagemakerMonitoringScheduleMonitoringOutputs {
 
   final SagemakerMonitoringScheduleS3Output s3Output;
 
+  @internal
   Map<String, Object?> encode() => {'s3_output': s3Output.encode()};
 }
 
@@ -468,6 +482,7 @@ final class SagemakerMonitoringScheduleS3Output {
 
   final TfArg<String> s3Uri;
 
+  @internal
   Map<String, Object?> encode() => {
     'local_path': localPath.toTfJson(),
     's3_upload_mode': ?s3UploadMode?.toTfJson(),
@@ -508,6 +523,7 @@ final class SagemakerMonitoringScheduleMonitoringResources {
 
   final SagemakerMonitoringScheduleClusterConfig clusterConfig;
 
+  @internal
   Map<String, Object?> encode() => {'cluster_config': clusterConfig.encode()};
 }
 
@@ -530,6 +546,7 @@ final class SagemakerMonitoringScheduleClusterConfig {
 
   final TfArg<num> volumeSizeInGb;
 
+  @internal
   Map<String, Object?> encode() => {
     'instance_count': instanceCount.toTfJson(),
     'instance_type': instanceType.toTfJson(),
@@ -554,6 +571,7 @@ final class SagemakerMonitoringScheduleNetworkConfig {
 
   final SagemakerMonitoringScheduleVpcConfig? vpcConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_inter_container_traffic_encryption':
         ?enableInterContainerTrafficEncryption?.toTfJson(),
@@ -575,6 +593,7 @@ final class SagemakerMonitoringScheduleVpcConfig {
 
   final TfArg<List<RefTo<AwsSubnet>>> subnets;
 
+  @internal
   Map<String, Object?> encode() => {
     'security_group_ids': securityGroupIds.encodeAs('id').toTfJson(),
     'subnets': subnets.encodeAs('id').toTfJson(),
@@ -591,6 +610,7 @@ final class SagemakerMonitoringScheduleStoppingCondition {
 
   final TfArg<num>? maxRuntimeInSeconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_runtime_in_seconds': ?maxRuntimeInSeconds?.toTfJson(),
   };
@@ -606,6 +626,7 @@ final class SagemakerMonitoringScheduleScheduleConfig {
 
   final TfArg<String> scheduleExpression;
 
+  @internal
   Map<String, Object?> encode() => {
     'schedule_expression': scheduleExpression.toTfJson(),
   };

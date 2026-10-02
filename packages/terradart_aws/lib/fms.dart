@@ -3,6 +3,7 @@
 /// AWS Firewall Manager.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/fms/aws_fms_admin_account.dart' show AwsFmsAdminAccount;
 export 'src/fms/aws_fms_policy.dart'
     show

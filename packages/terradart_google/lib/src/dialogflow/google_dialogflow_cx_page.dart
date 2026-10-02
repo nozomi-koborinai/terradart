@@ -16,6 +16,7 @@ final class DialogflowCxPageAdvancedSettings {
 
   final DialogflowCxPageDtmfSettings? dtmfSettings;
 
+  @internal
   Map<String, Object?> encode() => {'dtmf_settings': ?dtmfSettings?.encode()};
 }
 
@@ -36,6 +37,7 @@ final class DialogflowCxPageDtmfSettings {
 
   final TfArg<num>? maxDigits;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'finish_digit': ?finishDigit?.toTfJson(),
@@ -68,6 +70,7 @@ final class DialogflowCxPageEntryFulfillment {
 
   final List<DialogflowCxPageSetParameterActions>? setParameterActions;
 
+  @internal
   Map<String, Object?> encode() => {
     'return_partial_responses': ?returnPartialResponses?.toTfJson(),
     'tag': ?tag?.toTfJson(),
@@ -91,6 +94,7 @@ final class DialogflowCxPageConditionalCases {
 
   final TfArg<String>? cases;
 
+  @internal
   Map<String, Object?> encode() => {'cases': ?cases?.toTfJson()};
 }
 
@@ -126,6 +130,7 @@ final class DialogflowCxPageMessages {
 
   final DialogflowCxPageText? text;
 
+  @internal
   Map<String, Object?> encode() => {
     'channel': ?channel?.toTfJson(),
     'payload': ?payload?.toTfJson(),
@@ -147,6 +152,7 @@ final class DialogflowCxPageConversationSuccess {
 
   final TfArg<String>? metadata;
 
+  @internal
   Map<String, Object?> encode() => {'metadata': ?metadata?.toTfJson()};
 }
 
@@ -159,6 +165,7 @@ final class DialogflowCxPageLiveAgentHandoff {
 
   final TfArg<String>? metadata;
 
+  @internal
   Map<String, Object?> encode() => {'metadata': ?metadata?.toTfJson()};
 }
 
@@ -173,6 +180,7 @@ final class DialogflowCxPageOutputAudioText {
 
   final TfArg<String>? text;
 
+  @internal
   Map<String, Object?> encode() => {
     'ssml': ?ssml?.toTfJson(),
     'text': ?text?.toTfJson(),
@@ -188,6 +196,7 @@ final class DialogflowCxPagePlayAudio {
 
   final TfArg<String> audioUri;
 
+  @internal
   Map<String, Object?> encode() => {'audio_uri': audioUri.toTfJson()};
 }
 
@@ -200,6 +209,7 @@ final class DialogflowCxPageTelephonyTransferCall {
 
   final TfArg<String> phoneNumber;
 
+  @internal
   Map<String, Object?> encode() => {'phone_number': phoneNumber.toTfJson()};
 }
 
@@ -212,6 +222,7 @@ final class DialogflowCxPageText {
 
   final TfArg<List<String>>? text;
 
+  @internal
   Map<String, Object?> encode() => {'text': ?text?.toTfJson()};
 }
 
@@ -226,6 +237,7 @@ final class DialogflowCxPageSetParameterActions {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'parameter': ?parameter?.toTfJson(),
     'value': ?value?.toTfJson(),
@@ -251,6 +263,7 @@ final class DialogflowCxPageEventHandlers {
 
   final DialogflowCxPageEventHandlersTriggerFulfillment? triggerFulfillment;
 
+  @internal
   Map<String, Object?> encode() => {
     'event': ?event?.toTfJson(),
     'target_flow': ?targetFlow?.toTfJson(),
@@ -285,6 +298,7 @@ final class DialogflowCxPageEventHandlersTriggerFulfillment {
 
   final List<DialogflowCxPageSetParameterActions>? setParameterActions;
 
+  @internal
   Map<String, Object?> encode() => {
     'return_partial_responses': ?returnPartialResponses?.toTfJson(),
     'tag': ?tag?.toTfJson(),
@@ -307,6 +321,7 @@ final class DialogflowCxPageForm {
 
   final List<DialogflowCxPageParameters>? parameters;
 
+  @internal
   Map<String, Object?> encode() => {
     if (parameters != null)
       'parameters': [for (final e in parameters!) e.encode()],
@@ -344,6 +359,7 @@ final class DialogflowCxPageParameters {
 
   final DialogflowCxPageFillBehavior? fillBehavior;
 
+  @internal
   Map<String, Object?> encode() => {
     'default_value': ?defaultValue?.toTfJson(),
     'display_name': ?displayName?.toTfJson(),
@@ -369,6 +385,7 @@ final class DialogflowCxPageFillBehavior {
 
   final List<DialogflowCxPageRepromptEventHandlers>? repromptEventHandlers;
 
+  @internal
   Map<String, Object?> encode() => {
     'initial_prompt_fulfillment': ?initialPromptFulfillment?.encode(),
     if (repromptEventHandlers != null)
@@ -403,6 +420,7 @@ final class DialogflowCxPageInitialPromptFulfillment {
 
   final List<DialogflowCxPageSetParameterActions>? setParameterActions;
 
+  @internal
   Map<String, Object?> encode() => {
     'return_partial_responses': ?returnPartialResponses?.toTfJson(),
     'tag': ?tag?.toTfJson(),
@@ -436,6 +454,7 @@ final class DialogflowCxPageRepromptEventHandlers {
 
   final DialogflowCxPageEventHandlersTriggerFulfillment? triggerFulfillment;
 
+  @internal
   Map<String, Object?> encode() => {
     'event': ?event?.toTfJson(),
     'target_flow': ?targetFlow?.toTfJson(),
@@ -467,6 +486,7 @@ final class DialogflowCxPageKnowledgeConnectorSettings {
   final DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillment?
   triggerFulfillment;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'target_flow': ?targetFlow?.toTfJson(),
@@ -495,6 +515,7 @@ final class DialogflowCxPageDataStoreConnections {
 
   final DialogflowCxPageDocumentProcessingMode? documentProcessingMode;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_store': ?dataStore?.toTfJson(),
     'data_store_type': ?dataStoreType?.toTfJson(),
@@ -582,6 +603,7 @@ final class DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillment {
 
   final List<DialogflowCxPageSetParameterActions>? setParameterActions;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_generative_fallback': ?enableGenerativeFallback?.toTfJson(),
     'return_partial_responses': ?returnPartialResponses?.toTfJson(),
@@ -614,6 +636,7 @@ final class DialogflowCxPageTriggerFulfillmentAdvancedSettings {
 
   final DialogflowCxPageSpeechSettings? speechSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'dtmf_settings': ?dtmfSettings?.encode(),
     'logging_settings': ?loggingSettings?.encode(),
@@ -643,6 +666,7 @@ final class DialogflowCxPageAdvancedSettingsDtmfSettings {
 
   final TfArg<num>? maxDigits;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'endpointing_timeout_duration': ?endpointingTimeoutDuration?.toTfJson(),
@@ -668,6 +692,7 @@ final class DialogflowCxPageLoggingSettings {
 
   final TfArg<bool>? enableStackdriverLogging;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_consent_based_redaction': ?enableConsentBasedRedaction?.toTfJson(),
     'enable_interaction_logging': ?enableInteractionLogging?.toTfJson(),
@@ -694,6 +719,7 @@ final class DialogflowCxPageSpeechSettings {
 
   final TfArg<bool>? useTimeoutBasedEndpointing;
 
+  @internal
   Map<String, Object?> encode() => {
     'endpointer_sensitivity': ?endpointerSensitivity?.toTfJson(),
     'models': ?models?.toTfJson(),
@@ -736,6 +762,7 @@ final class DialogflowCxPageTriggerFulfillmentMessages {
 
   final DialogflowCxPageText? text;
 
+  @internal
   Map<String, Object?> encode() => {
     'channel': ?channel?.toTfJson(),
     'payload': ?payload?.toTfJson(),
@@ -755,6 +782,7 @@ final class DialogflowCxPageTriggerFulfillmentMessages {
 final class DialogflowCxPageKnowledgeInfoCard {
   const DialogflowCxPageKnowledgeInfoCard();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -780,6 +808,7 @@ final class DialogflowCxPageTransitionRoutes {
 
   final DialogflowCxPageEventHandlersTriggerFulfillment? triggerFulfillment;
 
+  @internal
   Map<String, Object?> encode() => {
     'condition': ?condition?.toTfJson(),
     'intent': ?intent?.toTfJson(),

@@ -38,6 +38,7 @@ final class BedrockagentcorePolicyDefinition {
 
   final List<BedrockagentcorePolicyCedar>? cedar;
 
+  @internal
   Map<String, Object?> encode() => {
     if (cedar != null) 'cedar': [for (final e in cedar!) e.encode()],
   };
@@ -51,6 +52,7 @@ final class BedrockagentcorePolicyCedar {
 
   final TfArg<String> statement;
 
+  @internal
   Map<String, Object?> encode() => {'statement': statement.toTfJson()};
 }
 

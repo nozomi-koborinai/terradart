@@ -417,6 +417,25 @@ class Holder {
         'cloud_thing',
       );
     });
+
+    test('a data source records the service barrel that exports it', () {
+      const input = MigrateEntryInput(
+        tfType: 'google_thing',
+        override: WrapperOverride(outputDir: 'data'),
+        def: def,
+        kind: 'dataSource',
+        emittedSource: emitted,
+      );
+      expect(buildMigrateEntries([input]).single.entry.barrel, 'data');
+      expect(
+        buildMigrateEntries(
+          [input],
+          barrelFiles: const {'thing': 'cloud_thing'},
+          dataSourceBarrels: const {'google_thing': 'thing'},
+        ).single.entry.barrel,
+        'cloud_thing',
+      );
+    });
   });
 
   group('buildMigrateEntry (committed google registry)', () {
@@ -541,7 +560,7 @@ class Holder {
       // `google_project` is the one data source without the `Data` prefix
       // (see `dataSourceClassName`); the manifest follows the emitter.
       final project = fixture.build('google_project', dataSource: true);
-      expect(project.entry.className, 'GoogleProject');
+      expect(project.entry.className, 'DataGoogleProject');
       expect(project.entry.kind, 'dataSource');
     });
   });

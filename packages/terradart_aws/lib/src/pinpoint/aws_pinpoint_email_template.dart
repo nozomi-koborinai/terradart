@@ -35,6 +35,7 @@ final class PinpointEmailTemplate {
 
   final List<PinpointEmailTemplateHeader>? header;
 
+  @internal
   Map<String, Object?> encode() => {
     'default_substitutions': ?defaultSubstitutions?.toTfJson(),
     'description': ?description?.toTfJson(),
@@ -56,6 +57,7 @@ final class PinpointEmailTemplateHeader {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'value': ?value?.toTfJson(),

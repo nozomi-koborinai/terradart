@@ -214,12 +214,15 @@ sealed class LambdaFunctionCode {
       LambdaFunctionCodeS3Bucket;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -229,12 +232,15 @@ final class LambdaFunctionCodeFilename extends LambdaFunctionCode {
 
   final TfArg<String> filename;
 
+  @internal
   @override
   String get blockKey => 'filename';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'filename': filename.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'filename': filename};
 }
@@ -245,12 +251,15 @@ final class LambdaFunctionCodeImageUri extends LambdaFunctionCode {
 
   final TfArg<String> imageUri;
 
+  @internal
   @override
   String get blockKey => 'image_uri';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'image_uri': imageUri.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'image_uri': imageUri};
 }
@@ -261,14 +270,17 @@ final class LambdaFunctionCodeS3Bucket extends LambdaFunctionCode {
 
   final RefTo<AwsS3Bucket> s3Bucket;
 
+  @internal
   @override
   String get blockKey => 's3_bucket';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     's3_bucket': s3Bucket.encodeAs('id').toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     's3_bucket': s3Bucket.encodeAs('id'),
@@ -286,6 +298,7 @@ final class LambdaFunctionCapacityProviderConfig {
   final LambdaFunctionLambdaManagedInstancesCapacityProviderConfig
   lambdaManagedInstancesCapacityProviderConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'lambda_managed_instances_capacity_provider_config':
         lambdaManagedInstancesCapacityProviderConfig.encode(),
@@ -308,6 +321,7 @@ final class LambdaFunctionLambdaManagedInstancesCapacityProviderConfig {
 
   final TfArg<num>? perExecutionEnvironmentMaxConcurrency;
 
+  @internal
   Map<String, Object?> encode() => {
     'capacity_provider_arn': capacityProviderArn.toTfJson(),
     'execution_environment_memory_gib_per_vcpu':
@@ -325,6 +339,7 @@ final class LambdaFunctionDeadLetterConfig {
 
   final TfArg<String> targetArn;
 
+  @internal
   Map<String, Object?> encode() => {'target_arn': targetArn.toTfJson()};
 }
 
@@ -341,6 +356,7 @@ final class LambdaFunctionDurableConfig {
 
   final TfArg<num>? retentionPeriod;
 
+  @internal
   Map<String, Object?> encode() => {
     'execution_timeout': executionTimeout.toTfJson(),
     'retention_period': ?retentionPeriod?.toTfJson(),
@@ -355,6 +371,7 @@ final class LambdaFunctionEnvironment {
 
   final TfArg<Map<String, String>>? variables;
 
+  @internal
   Map<String, Object?> encode() => {'variables': ?variables?.toTfJson()};
 }
 
@@ -366,6 +383,7 @@ final class LambdaFunctionEphemeralStorage {
 
   final TfArg<num>? size;
 
+  @internal
   Map<String, Object?> encode() => {'size': ?size?.toTfJson()};
 }
 
@@ -382,6 +400,7 @@ final class LambdaFunctionFileSystemConfig {
 
   final TfArg<String> localMountPath;
 
+  @internal
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
     'local_mount_path': localMountPath.toTfJson(),
@@ -404,6 +423,7 @@ final class LambdaFunctionImageConfig {
 
   final TfArg<String>? workingDirectory;
 
+  @internal
   Map<String, Object?> encode() => {
     'command': ?command?.toTfJson(),
     'entry_point': ?entryPoint?.toTfJson(),
@@ -430,6 +450,7 @@ final class LambdaFunctionLoggingConfig {
 
   final LambdaFunctionSystemLogLevel? systemLogLevel;
 
+  @internal
   Map<String, Object?> encode() => {
     'application_log_level': ?applicationLogLevel?.toTfJson(),
     'log_format': logFormat.toTfJson(),
@@ -510,6 +531,7 @@ final class LambdaFunctionSnapStart {
 
   final LambdaFunctionApplyOn applyOn;
 
+  @internal
   Map<String, Object?> encode() => {'apply_on': applyOn.toTfJson()};
 }
 
@@ -537,6 +559,7 @@ final class LambdaFunctionTenancyConfig {
 
   final LambdaFunctionTenantIsolationMode tenantIsolationMode;
 
+  @internal
   Map<String, Object?> encode() => {
     'tenant_isolation_mode': tenantIsolationMode.toTfJson(),
   };
@@ -566,6 +589,7 @@ final class LambdaFunctionTracingConfig {
 
   final LambdaFunctionMode mode;
 
+  @internal
   Map<String, Object?> encode() => {'mode': mode.toTfJson()};
 }
 
@@ -599,6 +623,7 @@ final class LambdaFunctionVpcConfig {
 
   final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
+  @internal
   Map<String, Object?> encode() => {
     'ipv6_allowed_for_dual_stack': ?ipv6AllowedForDualStack?.toTfJson(),
     'security_group_ids': securityGroupIds.encodeAs('id').toTfJson(),

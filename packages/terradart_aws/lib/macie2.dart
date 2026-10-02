@@ -3,6 +3,7 @@
 /// AWS Macie.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/macie2/aws_macie2_account.dart'
     show
         AwsMacie2Account,

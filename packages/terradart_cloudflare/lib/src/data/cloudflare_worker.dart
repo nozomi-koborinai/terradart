@@ -19,6 +19,7 @@ final class DataWorkerFilter {
 
   final DataWorkerOrderBy? orderBy;
 
+  @internal
   Map<String, Object?> encode() => {
     'order': ?order?.toTfJson(),
     'order_by': ?orderBy?.toTfJson(),

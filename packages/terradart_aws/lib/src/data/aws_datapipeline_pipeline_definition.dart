@@ -14,6 +14,7 @@ const Set<String> _awsDatapipelinePipelineDefinitionSensitive = <String>{};
 final class DataDatapipelinePipelineDefinitionParameterValue {
   const DataDatapipelinePipelineDefinitionParameterValue();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 

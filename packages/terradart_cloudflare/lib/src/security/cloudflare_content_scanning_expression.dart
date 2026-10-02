@@ -17,6 +17,7 @@ final class ContentScanningExpressionBody {
 
   final TfArg<String> payload;
 
+  @internal
   Map<String, Object?> encode() => {'payload': payload.toTfJson()};
 }
 

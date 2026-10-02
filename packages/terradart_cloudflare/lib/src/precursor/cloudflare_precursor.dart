@@ -51,6 +51,7 @@ final class PrecursorEnforcementRules {
 
   final PrecursorMode mode;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'enabled': ?enabled?.toTfJson(),

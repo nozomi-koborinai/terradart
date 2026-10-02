@@ -8,8 +8,8 @@ import 'package:terradart_appwrite/provider.dart'
 import 'package:terradart_aws/provider.dart' show kAwsProviderVersionConstraint;
 import 'package:terradart_cloudflare/provider.dart'
     show kCloudflareProviderVersionConstraint;
-import 'package:terradart_core/terradart_core.dart'
-    show ModuleCall, TfTimeouts, templateVariableNames;
+import 'package:terradart_core/internal.dart' show templateVariableNames;
+import 'package:terradart_core/terradart_core.dart' show ModuleCall, TfTimeouts;
 import 'package:terradart_google/provider.dart' show kProviderVersionConstraint;
 import 'package:terradart_google_beta/provider.dart'
     show kBetaProviderVersionConstraint;
@@ -285,6 +285,7 @@ final class _Emitted {
     this.providerName,
     this.providerLabel,
     this.isModule = false,
+    this.isData = false,
     this.moduleProviders = const [],
     this.wrapperFile,
   });
@@ -296,6 +297,9 @@ final class _Emitted {
   /// True for an `addModule(...)` statement: [package] / [barrel] are empty
   /// and the type prefix implies no provider.
   final bool isModule;
+
+  /// True for a data source, which [barrel] and `data` both export.
+  final bool isData;
 
   /// Provider configurations a module call's `providers = { ... }` map
   /// selects (`google`, `google.eu`), which the Stack must register.
@@ -552,6 +556,7 @@ final class StackEmitter {
     final usedVariables = <String>{};
     final usedHandles = <String>{};
     _moduleWrappers.clear();
+    final dataBarrels = <String, Set<String>>{};
     for (final e in emitted.values) {
       referenced.addAll(e.usedTargets);
       usedVariables.addAll(e.usedVariables);
@@ -561,7 +566,18 @@ final class StackEmitter {
         if (wrapper != null) _moduleWrappers.add(wrapper);
         continue;
       }
-      ctx.import(e.package, e.barrel);
+      if (e.isData) {
+        dataBarrels.putIfAbsent(e.package, () => {}).add(e.barrel);
+      } else {
+        ctx.import(e.package, e.barrel);
+      }
+    }
+    // `data.dart` exports every data source of its package, so once one
+    // data source needs it, the others come from it too.
+    for (final MapEntry(key: package, value: barrels) in dataBarrels.entries) {
+      for (final barrel in barrels.contains('data') ? {'data'} : barrels) {
+        ctx.import(package, barrel);
+      }
     }
 
     final body = <StackStatement>[];
@@ -911,7 +927,9 @@ final class StackEmitter {
         ? const <String>[]
         : (_moduleWrappers.toList()..sort());
     final imports = <String>[
-      "import 'package:terradart_core/terradart_core.dart';",
+      // Every provider barrel re-exports terradart_core.
+      if (packages.isEmpty)
+        "import 'package:terradart_core/terradart_core.dart';",
       for (final p in packages)
         for (final barrel in (ctx.imports[p]!.toList()..sort()))
           "import 'package:$p/$barrel.dart';",
@@ -1293,6 +1311,7 @@ final class StackEmitter {
       usedHandles: emitter.usedHandles,
       package: manifest.package,
       barrel: entry.barrel,
+      isData: b.isData,
       providerName: providerName,
       providerLabel: providerLabel,
     );

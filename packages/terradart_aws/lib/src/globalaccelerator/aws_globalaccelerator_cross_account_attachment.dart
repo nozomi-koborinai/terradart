@@ -24,6 +24,7 @@ final class GlobalacceleratorCrossAccountAttachmentResource {
 
   final TfArg<String>? region;
 
+  @internal
   Map<String, Object?> encode() => {
     'cidr_block': ?cidrBlock?.toTfJson(),
     'endpoint_id': ?endpointId?.toTfJson(),

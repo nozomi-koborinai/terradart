@@ -60,6 +60,7 @@ final class ComputeHaVpnGatewayParams {
 
   final TfArg<Map<String, String>>? resourceManagerTags;
 
+  @internal
   Map<String, Object?> encode() => {
     'resource_manager_tags': ?resourceManagerTags?.toTfJson(),
   };
@@ -78,6 +79,7 @@ final class ComputeHaVpnGatewayVpnInterfaces {
 
   final RefTo<GoogleComputeInterconnectAttachment>? interconnectAttachment;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': ?id?.toTfJson(),
     'interconnect_attachment': ?interconnectAttachment

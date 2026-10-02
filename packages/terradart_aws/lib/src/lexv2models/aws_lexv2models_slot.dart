@@ -15,6 +15,7 @@ final class Lexv2modelsSlotMultipleValuesSetting {
 
   final TfArg<bool>? allowMultipleValues;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_multiple_values': ?allowMultipleValues?.toTfJson(),
   };
@@ -30,6 +31,7 @@ final class Lexv2modelsSlotObfuscationSetting {
 
   final TfArg<String> obfuscationSettingType;
 
+  @internal
   Map<String, Object?> encode() => {
     'obfuscation_setting_type': obfuscationSettingType.toTfJson(),
   };
@@ -48,6 +50,7 @@ final class Lexv2modelsSlotSubSlotSetting {
 
   final List<Lexv2modelsSlotSpecification>? slotSpecification;
 
+  @internal
   Map<String, Object?> encode() => {
     'expression': ?expression?.toTfJson(),
     if (slotSpecification != null)
@@ -72,6 +75,7 @@ final class Lexv2modelsSlotSpecification {
   final List<Lexv2modelsSlotSpecificationValueElicitationSetting>?
   valueElicitationSetting;
 
+  @internal
   Map<String, Object?> encode() => {
     'map_block_key': mapBlockKey.toTfJson(),
     'slot_type_id': slotTypeId.toTfJson(),
@@ -103,6 +107,7 @@ final class Lexv2modelsSlotSpecificationValueElicitationSetting {
   final List<Lexv2modelsSlotWaitAndContinueSpecification>?
   waitAndContinueSpecification;
 
+  @internal
   Map<String, Object?> encode() => {
     if (defaultValueSpecification != null)
       'default_value_specification': [
@@ -130,6 +135,7 @@ final class Lexv2modelsSlotDefaultValueSpecification {
 
   final List<Lexv2modelsSlotDefaultValueList>? defaultValueList;
 
+  @internal
   Map<String, Object?> encode() => {
     if (defaultValueList != null)
       'default_value_list': [for (final e in defaultValueList!) e.encode()],
@@ -145,6 +151,7 @@ final class Lexv2modelsSlotDefaultValueList {
 
   final TfArg<String> defaultValue;
 
+  @internal
   Map<String, Object?> encode() => {'default_value': defaultValue.toTfJson()};
 }
 
@@ -172,6 +179,7 @@ final class Lexv2modelsSlotPromptSpecification {
   final List<Lexv2modelsSlotPromptAttemptsSpecification>?
   promptAttemptsSpecification;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_interrupt': ?allowInterrupt?.toTfJson(),
     'max_retries': maxRetries.toTfJson(),
@@ -196,6 +204,7 @@ final class Lexv2modelsSlotMessageGroup {
 
   final List<Lexv2modelsSlotVariation>? variation;
 
+  @internal
   Map<String, Object?> encode() => {
     if (message != null) 'message': [for (final e in message!) e.encode()],
     if (variation != null)
@@ -223,6 +232,7 @@ final class Lexv2modelsSlotMessage {
 
   final List<Lexv2modelsSlotSsmlMessage>? ssmlMessage;
 
+  @internal
   Map<String, Object?> encode() => {
     if (customPayload != null)
       'custom_payload': [for (final e in customPayload!) e.encode()],
@@ -244,6 +254,7 @@ final class Lexv2modelsSlotCustomPayload {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {'value': value.toTfJson()};
 }
 
@@ -267,6 +278,7 @@ final class Lexv2modelsSlotImageResponseCard {
 
   final List<Lexv2modelsSlotButton>? button;
 
+  @internal
   Map<String, Object?> encode() => {
     'image_url': ?imageUrl?.toTfJson(),
     'subtitle': ?subtitle?.toTfJson(),
@@ -286,6 +298,7 @@ final class Lexv2modelsSlotButton {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'text': text.toTfJson(),
     'value': value.toTfJson(),
@@ -301,6 +314,7 @@ final class Lexv2modelsSlotPlainTextMessage {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {'value': value.toTfJson()};
 }
 
@@ -313,6 +327,7 @@ final class Lexv2modelsSlotSsmlMessage {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {'value': value.toTfJson()};
 }
 
@@ -336,6 +351,7 @@ final class Lexv2modelsSlotVariation {
 
   final List<Lexv2modelsSlotSsmlMessage>? ssmlMessage;
 
+  @internal
   Map<String, Object?> encode() => {
     if (customPayload != null)
       'custom_payload': [for (final e in customPayload!) e.encode()],
@@ -372,6 +388,7 @@ final class Lexv2modelsSlotPromptAttemptsSpecification {
 
   final List<Lexv2modelsSlotTextInputSpecification>? textInputSpecification;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_interrupt': ?allowInterrupt?.toTfJson(),
     'map_block_key': mapBlockKey.toTfJson(),
@@ -402,6 +419,7 @@ final class Lexv2modelsSlotAllowedInputTypes {
 
   final TfArg<bool> allowDtmfInput;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_audio_input': allowAudioInput.toTfJson(),
     'allow_dtmf_input': allowDtmfInput.toTfJson(),
@@ -425,6 +443,7 @@ final class Lexv2modelsSlotAudioAndDtmfInputSpecification {
 
   final List<Lexv2modelsSlotDtmfSpecification>? dtmfSpecification;
 
+  @internal
   Map<String, Object?> encode() => {
     'start_timeout_ms': startTimeoutMs.toTfJson(),
     if (audioSpecification != null)
@@ -448,6 +467,7 @@ final class Lexv2modelsSlotAudioSpecification {
 
   final TfArg<num> maxLengthMs;
 
+  @internal
   Map<String, Object?> encode() => {
     'end_timeout_ms': endTimeoutMs.toTfJson(),
     'max_length_ms': maxLengthMs.toTfJson(),
@@ -474,6 +494,7 @@ final class Lexv2modelsSlotDtmfSpecification {
 
   final TfArg<num> maxLength;
 
+  @internal
   Map<String, Object?> encode() => {
     'deletion_character': deletionCharacter.toTfJson(),
     'end_character': endCharacter.toTfJson(),
@@ -491,6 +512,7 @@ final class Lexv2modelsSlotTextInputSpecification {
 
   final TfArg<num> startTimeoutMs;
 
+  @internal
   Map<String, Object?> encode() => {
     'start_timeout_ms': startTimeoutMs.toTfJson(),
   };
@@ -505,6 +527,7 @@ final class Lexv2modelsSlotSampleUtterance {
 
   final TfArg<String> utterance;
 
+  @internal
   Map<String, Object?> encode() => {'utterance': utterance.toTfJson()};
 }
 
@@ -528,6 +551,7 @@ final class Lexv2modelsSlotWaitAndContinueSpecification {
 
   final List<Lexv2modelsSlotWaitingResponse>? waitingResponse;
 
+  @internal
   Map<String, Object?> encode() => {
     'active': ?active?.toTfJson(),
     if (continueResponse != null)
@@ -555,6 +579,7 @@ final class Lexv2modelsSlotContinueResponse {
 
   final List<Lexv2modelsSlotMessageGroup>? messageGroup;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_interrupt': ?allowInterrupt?.toTfJson(),
     if (messageGroup != null)
@@ -582,6 +607,7 @@ final class Lexv2modelsSlotStillWaitingResponse {
 
   final List<Lexv2modelsSlotMessageGroup>? messageGroup;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_interrupt': ?allowInterrupt?.toTfJson(),
     'frequency_in_seconds': frequencyInSeconds.toTfJson(),
@@ -605,6 +631,7 @@ final class Lexv2modelsSlotWaitingResponse {
 
   final List<Lexv2modelsSlotMessageGroup>? messageGroup;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_interrupt': ?allowInterrupt?.toTfJson(),
     if (messageGroup != null)
@@ -639,6 +666,7 @@ final class Lexv2modelsSlotValueElicitationSetting {
   final List<Lexv2modelsSlotWaitAndContinueSpecification>?
   waitAndContinueSpecification;
 
+  @internal
   Map<String, Object?> encode() => {
     'slot_constraint': slotConstraint.toTfJson(),
     if (defaultValueSpecification != null)
@@ -672,6 +700,7 @@ final class Lexv2modelsSlotResolutionSetting {
 
   final TfArg<String> slotResolutionStrategy;
 
+  @internal
   Map<String, Object?> encode() => {
     'slot_resolution_strategy': slotResolutionStrategy.toTfJson(),
   };

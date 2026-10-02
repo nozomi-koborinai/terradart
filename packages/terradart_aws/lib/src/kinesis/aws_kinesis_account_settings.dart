@@ -17,6 +17,7 @@ final class KinesisAccountSettingsMinimumThroughputBillingCommitment {
 
   final KinesisAccountSettingsStatus status;
 
+  @internal
   Map<String, Object?> encode() => {'status': status.toTfJson()};
 }
 

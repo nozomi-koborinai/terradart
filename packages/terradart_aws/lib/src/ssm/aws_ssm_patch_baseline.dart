@@ -188,6 +188,7 @@ final class SsmPatchBaselineApprovalRule {
 
   final List<SsmPatchBaselinePatchFilter> patchFilter;
 
+  @internal
   Map<String, Object?> encode() => {
     'approve_after_days': ?approveAfterDays?.toTfJson(),
     'approve_until_date': ?approveUntilDate?.toTfJson(),
@@ -241,6 +242,7 @@ final class SsmPatchBaselinePatchFilter {
 
   final TfArg<List<String>> values;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'values': values.toTfJson(),
@@ -314,6 +316,7 @@ final class SsmPatchBaselineGlobalFilter {
 
   final TfArg<List<String>> values;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'values': values.toTfJson(),
@@ -336,6 +339,7 @@ final class SsmPatchBaselineSource {
 
   final TfArg<List<String>> products;
 
+  @internal
   Map<String, Object?> encode() => {
     'configuration': configuration.toTfJson(),
     'name': name.toTfJson(),

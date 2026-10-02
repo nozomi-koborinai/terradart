@@ -22,6 +22,7 @@ final class ZeroTrustRiskBehaviorBehaviors {
 
   final ZeroTrustRiskBehaviorRiskLevel riskLevel;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'risk_level': riskLevel.toTfJson(),

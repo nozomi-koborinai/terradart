@@ -3,6 +3,7 @@
 /// AWS Route 53 Domains.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/route53domains/aws_route53domains_delegation_signer_record.dart'
     show
         AwsRoute53domainsDelegationSignerRecord,

@@ -7,6 +7,7 @@
 /// usage, not persona create.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/agentic/google_agentic_applications_analyst_agent_persona.dart'
     show
         AgenticApplicationsAnalystAgentPersonaAirQuality,

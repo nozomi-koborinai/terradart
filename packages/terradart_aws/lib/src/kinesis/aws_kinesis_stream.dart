@@ -88,12 +88,15 @@ sealed class KinesisStreamCapacity {
   ) = KinesisStreamCapacityWarmThroughputMibPs;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -103,12 +106,15 @@ final class KinesisStreamCapacityShardCount extends KinesisStreamCapacity {
 
   final TfArg<num> shardCount;
 
+  @internal
   @override
   String get blockKey => 'shard_count';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'shard_count': shardCount.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'shard_count': shardCount};
 }
@@ -120,14 +126,17 @@ final class KinesisStreamCapacityWarmThroughputMibPs
 
   final TfArg<num> warmThroughputMibPs;
 
+  @internal
   @override
   String get blockKey => 'warm_throughput_mib_ps';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'warm_throughput_mib_ps': warmThroughputMibPs.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'warm_throughput_mib_ps': warmThroughputMibPs,
@@ -142,6 +151,7 @@ final class KinesisStreamModeDetails {
 
   final KinesisStreamMode streamMode;
 
+  @internal
   Map<String, Object?> encode() => {'stream_mode': streamMode.toTfJson()};
 }
 

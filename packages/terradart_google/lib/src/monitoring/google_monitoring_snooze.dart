@@ -17,6 +17,7 @@ final class MonitoringSnoozeCriteria {
 
   final TfArg<List<String>>? policies;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter': ?filter?.toTfJson(),
     'policies': ?policies?.toTfJson(),
@@ -33,6 +34,7 @@ final class MonitoringSnoozeInterval {
 
   final TfArg<String>? startTime;
 
+  @internal
   Map<String, Object?> encode() => {
     'end_time': endTime.toTfJson(),
     'start_time': ?startTime?.toTfJson(),

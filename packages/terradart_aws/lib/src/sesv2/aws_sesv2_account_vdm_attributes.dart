@@ -38,6 +38,7 @@ final class Sesv2AccountVdmAttributesDashboardAttributes {
 
   final Sesv2AccountVdmAttributesEngagementMetrics? engagementMetrics;
 
+  @internal
   Map<String, Object?> encode() => {
     'engagement_metrics': ?engagementMetrics?.toTfJson(),
   };
@@ -78,6 +79,7 @@ final class Sesv2AccountVdmAttributesGuardianAttributes {
   final Sesv2AccountVdmAttributesOptimizedSharedDelivery?
   optimizedSharedDelivery;
 
+  @internal
   Map<String, Object?> encode() => {
     'optimized_shared_delivery': ?optimizedSharedDelivery?.toTfJson(),
   };

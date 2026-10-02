@@ -37,6 +37,7 @@ final class ConnectQueueOutboundCallerConfig {
 
   final TfArg<String>? outboundFlowId;
 
+  @internal
   Map<String, Object?> encode() => {
     'outbound_caller_id_name': ?outboundCallerIdName?.toTfJson(),
     'outbound_caller_id_number_id': ?outboundCallerIdNumberId?.toTfJson(),

@@ -23,6 +23,7 @@ final class StorageControlOrganizationIntelligenceConfigFilter {
   final StorageControlOrganizationIntelligenceConfigCloudStorageLocations?
   cloudStorageLocations;
 
+  @internal
   Map<String, Object?> encode() => {
     ...?cloudStorageBuckets?.encode(),
     ...?cloudStorageLocations?.encode(),
@@ -50,8 +51,10 @@ sealed class StorageControlOrganizationIntelligenceConfigCloudStorageBuckets {
   ) = StorageControlOrganizationIntelligenceConfigIncludedCloudStorageBucketsChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -65,9 +68,11 @@ final class StorageControlOrganizationIntelligenceConfigExcludedCloudStorageBuck
   final StorageControlOrganizationIntelligenceConfigExcludedCloudStorageBuckets
   excludedCloudStorageBuckets;
 
+  @internal
   @override
   String get blockKey => 'excluded_cloud_storage_buckets';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'excluded_cloud_storage_buckets': excludedCloudStorageBuckets.encode(),
@@ -84,9 +89,11 @@ final class StorageControlOrganizationIntelligenceConfigIncludedCloudStorageBuck
   final StorageControlOrganizationIntelligenceConfigIncludedCloudStorageBuckets
   includedCloudStorageBuckets;
 
+  @internal
   @override
   String get blockKey => 'included_cloud_storage_buckets';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'included_cloud_storage_buckets': includedCloudStorageBuckets.encode(),
@@ -114,8 +121,10 @@ sealed class StorageControlOrganizationIntelligenceConfigCloudStorageLocations {
   ) = StorageControlOrganizationIntelligenceConfigIncludedCloudStorageLocationsChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -129,9 +138,11 @@ final class StorageControlOrganizationIntelligenceConfigExcludedCloudStorageLoca
   final StorageControlOrganizationIntelligenceConfigExcludedCloudStorageLocations
   excludedCloudStorageLocations;
 
+  @internal
   @override
   String get blockKey => 'excluded_cloud_storage_locations';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'excluded_cloud_storage_locations': excludedCloudStorageLocations.encode(),
@@ -148,9 +159,11 @@ final class StorageControlOrganizationIntelligenceConfigIncludedCloudStorageLoca
   final StorageControlOrganizationIntelligenceConfigIncludedCloudStorageLocations
   includedCloudStorageLocations;
 
+  @internal
   @override
   String get blockKey => 'included_cloud_storage_locations';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'included_cloud_storage_locations': includedCloudStorageLocations.encode(),
@@ -167,6 +180,7 @@ final class StorageControlOrganizationIntelligenceConfigExcludedCloudStorageBuck
 
   final TfArg<List<String>> bucketIdRegexes;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_id_regexes': bucketIdRegexes.toTfJson(),
   };
@@ -182,6 +196,7 @@ final class StorageControlOrganizationIntelligenceConfigExcludedCloudStorageLoca
 
   final TfArg<List<String>> locations;
 
+  @internal
   Map<String, Object?> encode() => {'locations': locations.toTfJson()};
 }
 
@@ -195,6 +210,7 @@ final class StorageControlOrganizationIntelligenceConfigIncludedCloudStorageBuck
 
   final TfArg<List<String>> bucketIdRegexes;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_id_regexes': bucketIdRegexes.toTfJson(),
   };
@@ -210,6 +226,7 @@ final class StorageControlOrganizationIntelligenceConfigIncludedCloudStorageLoca
 
   final TfArg<List<String>> locations;
 
+  @internal
   Map<String, Object?> encode() => {'locations': locations.toTfJson()};
 }
 

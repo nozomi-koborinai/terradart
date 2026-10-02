@@ -46,6 +46,7 @@ final class DataCloudforceOneRequestFilter {
 
   final DataCloudforceOneRequestFilterStatus? status;
 
+  @internal
   Map<String, Object?> encode() => {
     'completed_after': ?completedAfter?.toTfJson(),
     'completed_before': ?completedBefore?.toTfJson(),

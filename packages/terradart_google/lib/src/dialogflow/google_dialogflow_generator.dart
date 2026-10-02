@@ -49,6 +49,7 @@ final class DialogflowGeneratorSummarizationContext {
   final TfArg<String>? version;
   final TfArg<String>? outputLanguageCode;
 
+  @internal
   Map<String, Object?> encode() => {
     if (version != null) 'version': version!.toTfJson(),
     if (outputLanguageCode != null)
@@ -75,6 +76,7 @@ final class DialogflowGeneratorInferenceParameter {
 
   final TfArg<num>? topP;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_output_tokens': ?maxOutputTokens?.toTfJson(),
     'temperature': ?temperature?.toTfJson(),

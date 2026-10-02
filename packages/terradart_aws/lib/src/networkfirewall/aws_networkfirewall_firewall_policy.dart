@@ -22,6 +22,7 @@ final class NetworkfirewallFirewallPolicyEncryptionConfiguration {
 
   final NetworkfirewallFirewallPolicyType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'key_id': ?keyId?.encodeAs('arn').toTfJson(),
     'type': type.toTfJson(),
@@ -91,6 +92,7 @@ final class NetworkfirewallFirewallPolicy {
   final List<NetworkfirewallFirewallPolicyStatelessRuleGroupReference>?
   statelessRuleGroupReference;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_tls_session_holding': ?enableTlsSessionHolding?.toTfJson(),
     'stateful_default_actions': ?statefulDefaultActions?.toTfJson(),
@@ -124,6 +126,7 @@ final class NetworkfirewallFirewallPolicyVariables {
 
   final List<NetworkfirewallFirewallPolicyRuleVariables>? ruleVariables;
 
+  @internal
   Map<String, Object?> encode() => {
     if (ruleVariables != null)
       'rule_variables': [for (final e in ruleVariables!) e.encode()],
@@ -143,6 +146,7 @@ final class NetworkfirewallFirewallPolicyRuleVariables {
 
   final NetworkfirewallFirewallPolicyIpSet ipSet;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'ip_set': ipSet.encode(),
@@ -157,6 +161,7 @@ final class NetworkfirewallFirewallPolicyIpSet {
 
   final TfArg<List<String>> definition;
 
+  @internal
   Map<String, Object?> encode() => {'definition': definition.toTfJson()};
 }
 
@@ -177,6 +182,7 @@ final class NetworkfirewallFirewallPolicyStatefulEngineOptions {
 
   final NetworkfirewallFirewallPolicyFlowTimeouts? flowTimeouts;
 
+  @internal
   Map<String, Object?> encode() => {
     'rule_order': ?ruleOrder?.toTfJson(),
     'stream_exception_policy': ?streamExceptionPolicy?.toTfJson(),
@@ -242,6 +248,7 @@ final class NetworkfirewallFirewallPolicyFlowTimeouts {
 
   final TfArg<num>? tcpIdleTimeoutSeconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'tcp_idle_timeout_seconds': ?tcpIdleTimeoutSeconds?.toTfJson(),
   };
@@ -266,6 +273,7 @@ final class NetworkfirewallFirewallPolicyStatefulRuleGroupReference {
 
   final NetworkfirewallFirewallPolicyOverride? override;
 
+  @internal
   Map<String, Object?> encode() => {
     'deep_threat_inspection': ?deepThreatInspection?.toTfJson(),
     'priority': ?priority?.toTfJson(),
@@ -282,6 +290,7 @@ final class NetworkfirewallFirewallPolicyOverride {
 
   final NetworkfirewallFirewallPolicyAction? action;
 
+  @internal
   Map<String, Object?> encode() => {'action': ?action?.toTfJson()};
 }
 
@@ -315,6 +324,7 @@ final class NetworkfirewallFirewallPolicyStatelessCustomAction {
 
   final NetworkfirewallFirewallPolicyActionDefinition actionDefinition;
 
+  @internal
   Map<String, Object?> encode() => {
     'action_name': actionName.toTfJson(),
     'action_definition': actionDefinition.encode(),
@@ -331,6 +341,7 @@ final class NetworkfirewallFirewallPolicyActionDefinition {
 
   final NetworkfirewallFirewallPolicyPublishMetricAction publishMetricAction;
 
+  @internal
   Map<String, Object?> encode() => {
     'publish_metric_action': publishMetricAction.encode(),
   };
@@ -346,6 +357,7 @@ final class NetworkfirewallFirewallPolicyPublishMetricAction {
 
   final List<NetworkfirewallFirewallPolicyDimension> dimension;
 
+  @internal
   Map<String, Object?> encode() => {
     'dimension': [for (final e in dimension) e.encode()],
   };
@@ -359,6 +371,7 @@ final class NetworkfirewallFirewallPolicyDimension {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {'value': value.toTfJson()};
 }
 
@@ -375,6 +388,7 @@ final class NetworkfirewallFirewallPolicyStatelessRuleGroupReference {
 
   final TfArg<String> resourceArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'priority': priority.toTfJson(),
     'resource_arn': resourceArn.toTfJson(),

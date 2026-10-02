@@ -14,6 +14,7 @@ const Set<String> _awsCodecatalystDevEnvironmentSensitive = <String>{};
 final class DataCodecatalystDevEnvironmentRepositories {
   const DataCodecatalystDevEnvironmentRepositories();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 

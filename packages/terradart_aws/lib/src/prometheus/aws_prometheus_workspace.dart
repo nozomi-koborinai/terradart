@@ -18,6 +18,7 @@ final class PrometheusWorkspaceLoggingConfiguration {
 
   final RefTo<AwsCloudwatchLogGroup> logGroupArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'log_group_arn': logGroupArn.encodeAs('arn').toTfJson(),
   };

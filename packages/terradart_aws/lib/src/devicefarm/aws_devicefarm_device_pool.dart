@@ -19,6 +19,7 @@ final class DevicefarmDevicePoolRule {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'attribute': ?attribute?.toTfJson(),
     'operator': ?operator?.toTfJson(),

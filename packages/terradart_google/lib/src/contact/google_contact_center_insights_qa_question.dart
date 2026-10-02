@@ -32,6 +32,7 @@ final class ContactCenterInsightsQaQuestionAnswerChoices {
 
   final TfArg<String>? strValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'bool_value': ?boolValue?.toTfJson(),
     'key': ?key?.toTfJson(),
@@ -50,6 +51,7 @@ final class ContactCenterInsightsQaQuestionPredefinedQuestionConfig {
 
   final TfArg<String>? type;
 
+  @internal
   Map<String, Object?> encode() => {'type': ?type?.toTfJson()};
 }
 
@@ -64,6 +66,7 @@ final class ContactCenterInsightsQaQuestionDataOptions {
   final ContactCenterInsightsQaQuestionConversationDataOptions?
   conversationDataOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'conversation_data_options': ?conversationDataOptions?.encode(),
   };
@@ -79,6 +82,7 @@ final class ContactCenterInsightsQaQuestionConversationDataOptions {
 
   final TfArg<bool>? includeDialogflowInteractionData;
 
+  @internal
   Map<String, Object?> encode() => {
     'include_dialogflow_interaction_data': ?includeDialogflowInteractionData
         ?.toTfJson(),
@@ -101,6 +105,7 @@ final class ContactCenterInsightsQaQuestionTuningMetadata {
 
   final TfArg<String>? tuningError;
 
+  @internal
   Map<String, Object?> encode() => {
     'dataset_validation_warnings': ?datasetValidationWarnings?.toTfJson(),
     'total_valid_label_count': ?totalValidLabelCount?.toTfJson(),

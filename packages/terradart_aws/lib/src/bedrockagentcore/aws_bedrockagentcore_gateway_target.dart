@@ -34,6 +34,7 @@ final class BedrockagentcoreGatewayTargetCredentialProviderConfiguration {
 
   final List<BedrockagentcoreGatewayTargetOauth>? oauth;
 
+  @internal
   Map<String, Object?> encode() => {
     if (apiKey != null) 'api_key': [for (final e in apiKey!) e.encode()],
     if (callerIamCredentials != null)
@@ -67,6 +68,7 @@ final class BedrockagentcoreGatewayTargetApiKey {
 
   final TfArg<String> providerArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'credential_location': ?credentialLocation?.toTfJson(),
     'credential_parameter_name': ?credentialParameterName?.toTfJson(),
@@ -113,6 +115,7 @@ final class BedrockagentcoreGatewayTargetCallerIamCredentials {
 
   final TfArg<String> service;
 
+  @internal
   Map<String, Object?> encode() => {
     'region': ?region?.toTfJson(),
     'service': service.toTfJson(),
@@ -132,6 +135,7 @@ final class BedrockagentcoreGatewayTargetGatewayIamRole {
 
   final TfArg<String>? service;
 
+  @internal
   Map<String, Object?> encode() => {
     'region': ?region?.toTfJson(),
     'service': ?service?.toTfJson(),
@@ -144,6 +148,7 @@ final class BedrockagentcoreGatewayTargetGatewayIamRole {
 final class BedrockagentcoreGatewayTargetJwtPassthrough {
   const BedrockagentcoreGatewayTargetJwtPassthrough();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -169,6 +174,7 @@ final class BedrockagentcoreGatewayTargetOauth {
 
   final TfArg<List<String>> scopes;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_parameters': ?customParameters?.toTfJson(),
     'default_return_url': ?defaultReturnUrl?.toTfJson(),
@@ -221,6 +227,7 @@ final class BedrockagentcoreGatewayTargetMetadataConfiguration {
 
   final TfArg<List<String>>? allowedResponseHeaders;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed_query_parameters': ?allowedQueryParameters?.toTfJson(),
     'allowed_request_headers': ?allowedRequestHeaders?.toTfJson(),
@@ -243,6 +250,7 @@ final class BedrockagentcoreGatewayTargetPrivateEndpoint {
   final List<BedrockagentcoreGatewayTargetSelfManagedLatticeResource>?
   selfManagedLatticeResource;
 
+  @internal
   Map<String, Object?> encode() => {
     if (managedVpcResource != null)
       'managed_vpc_resource': [for (final e in managedVpcResource!) e.encode()],
@@ -279,6 +287,7 @@ final class BedrockagentcoreGatewayTargetManagedVpcResource {
 
   final TfArg<String> vpcIdentifier;
 
+  @internal
   Map<String, Object?> encode() => {
     'endpoint_ip_address_type': endpointIpAddressType.toTfJson(),
     'routing_domain': ?routingDomain?.toTfJson(),
@@ -322,6 +331,7 @@ final class BedrockagentcoreGatewayTargetSelfManagedLatticeResource {
 
   final TfArg<String>? resourceConfigurationIdentifier;
 
+  @internal
   Map<String, Object?> encode() => {
     'resource_configuration_identifier': ?resourceConfigurationIdentifier
         ?.toTfJson(),
@@ -344,6 +354,7 @@ final class BedrockagentcoreGatewayTargetConfiguration {
 
   final List<BedrockagentcoreGatewayTargetMcp>? mcp;
 
+  @internal
   Map<String, Object?> encode() => {
     if (http != null) 'http': [for (final e in http!) e.encode()],
     if (inference != null)
@@ -365,6 +376,7 @@ final class BedrockagentcoreGatewayTargetHttp {
 
   final List<BedrockagentcoreGatewayTargetPassthrough>? passthrough;
 
+  @internal
   Map<String, Object?> encode() => {
     if (agentcoreRuntime != null)
       'agentcore_runtime': [for (final e in agentcoreRuntime!) e.encode()],
@@ -389,6 +401,7 @@ final class BedrockagentcoreGatewayTargetAgentcoreRuntime {
 
   final List<BedrockagentcoreGatewayTargetSchema>? schema;
 
+  @internal
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
     'qualifier': ?qualifier?.toTfJson(),
@@ -405,6 +418,7 @@ final class BedrockagentcoreGatewayTargetSchema {
 
   final List<BedrockagentcoreGatewayTargetSchemaSource>? source;
 
+  @internal
   Map<String, Object?> encode() => {
     if (source != null) 'source': [for (final e in source!) e.encode()],
   };
@@ -424,6 +438,7 @@ final class BedrockagentcoreGatewayTargetSchemaSource {
 
   final List<BedrockagentcoreGatewayTargetS3>? s3;
 
+  @internal
   Map<String, Object?> encode() => {
     if (inlinePayload != null)
       'inline_payload': [for (final e in inlinePayload!) e.encode()],
@@ -440,6 +455,7 @@ final class BedrockagentcoreGatewayTargetInlinePayload {
 
   final TfArg<String> payload;
 
+  @internal
   Map<String, Object?> encode() => {'payload': payload.toTfJson()};
 }
 
@@ -454,6 +470,7 @@ final class BedrockagentcoreGatewayTargetS3 {
 
   final TfArg<String>? uri;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_owner_account_id': ?bucketOwnerAccountId?.toTfJson(),
     'uri': ?uri?.toTfJson(),
@@ -487,6 +504,7 @@ final class BedrockagentcoreGatewayTargetPassthrough {
   final List<BedrockagentcoreGatewayTargetStickinessConfiguration>?
   stickinessConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'endpoint': endpoint.toTfJson(),
     'protocol_type': protocolType.toTfJson(),
@@ -578,6 +596,7 @@ final class BedrockagentcoreGatewayTargetStickinessConfiguration {
 
   final TfArg<num>? timeout;
 
+  @internal
   Map<String, Object?> encode() => {
     'composite_identifier': ?compositeIdentifier?.toTfJson(),
     'identifier': identifier.toTfJson(),
@@ -595,6 +614,7 @@ final class BedrockagentcoreGatewayTargetInference {
 
   final List<BedrockagentcoreGatewayTargetProvider>? provider;
 
+  @internal
   Map<String, Object?> encode() => {
     if (connector != null)
       'connector': [for (final e in connector!) e.encode()],
@@ -610,6 +630,7 @@ final class BedrockagentcoreGatewayTargetInferenceConnector {
 
   final List<BedrockagentcoreGatewayTargetInferenceSource>? source;
 
+  @internal
   Map<String, Object?> encode() => {
     if (source != null) 'source': [for (final e in source!) e.encode()],
   };
@@ -625,6 +646,7 @@ final class BedrockagentcoreGatewayTargetInferenceSource {
 
   final TfArg<String> connectorId;
 
+  @internal
   Map<String, Object?> encode() => {'connector_id': connectorId.toTfJson()};
 }
 
@@ -644,6 +666,7 @@ final class BedrockagentcoreGatewayTargetProvider {
 
   final List<BedrockagentcoreGatewayTargetOperation>? operation;
 
+  @internal
   Map<String, Object?> encode() => {
     'endpoint': endpoint.toTfJson(),
     if (modelMapping != null)
@@ -661,6 +684,7 @@ final class BedrockagentcoreGatewayTargetModelMapping {
 
   final List<BedrockagentcoreGatewayTargetProviderPrefix>? providerPrefix;
 
+  @internal
   Map<String, Object?> encode() => {
     if (providerPrefix != null)
       'provider_prefix': [for (final e in providerPrefix!) e.encode()],
@@ -680,6 +704,7 @@ final class BedrockagentcoreGatewayTargetProviderPrefix {
 
   final TfArg<bool>? strip;
 
+  @internal
   Map<String, Object?> encode() => {
     'separator': ?separator?.toTfJson(),
     'strip': ?strip?.toTfJson(),
@@ -702,6 +727,7 @@ final class BedrockagentcoreGatewayTargetOperation {
 
   final List<BedrockagentcoreGatewayTargetModel>? model;
 
+  @internal
   Map<String, Object?> encode() => {
     'path': path.toTfJson(),
     'provider_path': ?providerPath?.toTfJson(),
@@ -717,6 +743,7 @@ final class BedrockagentcoreGatewayTargetModel {
 
   final TfArg<String> model;
 
+  @internal
   Map<String, Object?> encode() => {'model': model.toTfJson()};
 }
 
@@ -745,6 +772,7 @@ final class BedrockagentcoreGatewayTargetMcp {
 
   final List<BedrockagentcoreGatewayTargetSmithyModel>? smithyModel;
 
+  @internal
   Map<String, Object?> encode() => {
     if (apiGateway != null)
       'api_gateway': [for (final e in apiGateway!) e.encode()],
@@ -777,6 +805,7 @@ final class BedrockagentcoreGatewayTargetApiGateway {
   final List<BedrockagentcoreGatewayTargetApiGatewayToolConfiguration>?
   apiGatewayToolConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'rest_api_id': restApiId.toTfJson(),
     'stage': stage.toTfJson(),
@@ -800,6 +829,7 @@ final class BedrockagentcoreGatewayTargetApiGatewayToolConfiguration {
 
   final List<BedrockagentcoreGatewayTargetToolOverride>? toolOverride;
 
+  @internal
   Map<String, Object?> encode() => {
     if (toolFilter != null)
       'tool_filter': [for (final e in toolFilter!) e.encode()],
@@ -821,6 +851,7 @@ final class BedrockagentcoreGatewayTargetToolFilter {
 
   final List<BedrockagentcoreGatewayTargetMethods> methods;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter_path': filterPath.toTfJson(),
     'methods': [for (final e in methods) e.toTfJson()],
@@ -889,6 +920,7 @@ final class BedrockagentcoreGatewayTargetToolOverride {
 
   final TfArg<String> path;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'method': method.toTfJson(),
@@ -953,6 +985,7 @@ final class BedrockagentcoreGatewayTargetMcpConnector {
 
   final List<BedrockagentcoreGatewayTargetMcpSource>? source;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     if (configuration != null)
@@ -980,6 +1013,7 @@ final class BedrockagentcoreGatewayTargetConnectorConfiguration {
 
   final List<BedrockagentcoreGatewayTargetParameterOverride>? parameterOverride;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'name': name.toTfJson(),
@@ -1005,6 +1039,7 @@ final class BedrockagentcoreGatewayTargetParameterOverride {
 
   final TfArg<bool>? visible;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'path': path.toTfJson(),
@@ -1025,6 +1060,7 @@ final class BedrockagentcoreGatewayTargetMcpSource {
 
   final TfArg<String>? version;
 
+  @internal
   Map<String, Object?> encode() => {
     'connector_id': connectorId.toTfJson(),
     'version': ?version?.toTfJson(),
@@ -1044,6 +1080,7 @@ final class BedrockagentcoreGatewayTargetLambda {
 
   final List<BedrockagentcoreGatewayTargetToolSchema>? toolSchema;
 
+  @internal
   Map<String, Object?> encode() => {
     'lambda_arn': lambdaArn.encodeAs('arn').toTfJson(),
     if (toolSchema != null)
@@ -1062,6 +1099,7 @@ final class BedrockagentcoreGatewayTargetToolSchema {
 
   final List<BedrockagentcoreGatewayTargetS3>? s3;
 
+  @internal
   Map<String, Object?> encode() => {
     if (inlinePayload != null)
       'inline_payload': [for (final e in inlinePayload!) e.encode()],
@@ -1088,6 +1126,7 @@ final class BedrockagentcoreGatewayTargetToolSchemaInlinePayload {
 
   final List<BedrockagentcoreGatewayTargetOutputSchema>? outputSchema;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': description.toTfJson(),
     'name': name.toTfJson(),
@@ -1117,6 +1156,7 @@ final class BedrockagentcoreGatewayTargetInputSchema {
 
   final List<BedrockagentcoreGatewayTargetProperty>? property;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'type': type.toTfJson(),
@@ -1183,6 +1223,7 @@ final class BedrockagentcoreGatewayTargetItems {
 
   final List<BedrockagentcoreGatewayTargetItemsProperty>? property;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'type': type.toTfJson(),
@@ -1211,6 +1252,7 @@ final class BedrockagentcoreGatewayTargetItemsItems {
 
   final BedrockagentcoreGatewayTargetType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'items_json': ?itemsJson?.toTfJson(),
@@ -1245,6 +1287,7 @@ final class BedrockagentcoreGatewayTargetItemsProperty {
 
   final BedrockagentcoreGatewayTargetType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'items_json': ?itemsJson?.toTfJson(),
@@ -1281,6 +1324,7 @@ final class BedrockagentcoreGatewayTargetProperty {
 
   final List<BedrockagentcoreGatewayTargetItemsProperty>? property;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'name': name.toTfJson(),
@@ -1310,6 +1354,7 @@ final class BedrockagentcoreGatewayTargetOutputSchema {
 
   final List<BedrockagentcoreGatewayTargetProperty>? property;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'type': type.toTfJson(),
@@ -1337,6 +1382,7 @@ final class BedrockagentcoreGatewayTargetMcpServer {
 
   final List<BedrockagentcoreGatewayTargetMcpToolSchema>? mcpToolSchema;
 
+  @internal
   Map<String, Object?> encode() => {
     'endpoint': endpoint.toTfJson(),
     'listing_mode': ?listingMode?.toTfJson(),
@@ -1382,6 +1428,7 @@ final class BedrockagentcoreGatewayTargetMcpToolSchema {
 
   final List<BedrockagentcoreGatewayTargetMcpToolSchemaS3>? s3;
 
+  @internal
   Map<String, Object?> encode() => {
     if (inlinePayload != null)
       'inline_payload': [for (final e in inlinePayload!) e.encode()],
@@ -1402,6 +1449,7 @@ final class BedrockagentcoreGatewayTargetMcpToolSchemaS3 {
 
   final TfArg<String> uri;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_owner_account_id': ?bucketOwnerAccountId?.toTfJson(),
     'uri': uri.toTfJson(),
@@ -1421,6 +1469,7 @@ final class BedrockagentcoreGatewayTargetOpenApiSchema {
 
   final List<BedrockagentcoreGatewayTargetS3>? s3;
 
+  @internal
   Map<String, Object?> encode() => {
     if (inlinePayload != null)
       'inline_payload': [for (final e in inlinePayload!) e.encode()],
@@ -1438,6 +1487,7 @@ final class BedrockagentcoreGatewayTargetSmithyModel {
 
   final List<BedrockagentcoreGatewayTargetS3>? s3;
 
+  @internal
   Map<String, Object?> encode() => {
     if (inlinePayload != null)
       'inline_payload': [for (final e in inlinePayload!) e.encode()],

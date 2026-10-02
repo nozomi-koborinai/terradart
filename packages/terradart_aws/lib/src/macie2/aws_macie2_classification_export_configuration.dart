@@ -27,6 +27,7 @@ final class Macie2ClassificationExportConfigurationS3Destination {
 
   final RefTo<AwsKmsKey> kmsKeyArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('id').toTfJson(),
     'key_prefix': ?keyPrefix?.toTfJson(),

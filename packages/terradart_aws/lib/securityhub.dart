@@ -3,6 +3,13 @@
 /// AWS Security Hub.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_securityhub_enabled_standards.dart'
+    show DataAwsSecurityhubEnabledStandards;
+export 'src/data/aws_securityhub_security_controls.dart'
+    show DataAwsSecurityhubSecurityControls;
+export 'src/data/aws_securityhub_standards_control_associations.dart'
+    show DataAwsSecurityhubStandardsControlAssociations;
 export 'src/securityhub/aws_securityhub_account.dart'
     show AwsSecurityhubAccount, SecurityhubAccountControlFindingGenerator;
 export 'src/securityhub/aws_securityhub_account_v2.dart'

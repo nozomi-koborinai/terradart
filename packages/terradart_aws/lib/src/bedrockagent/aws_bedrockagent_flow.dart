@@ -21,6 +21,7 @@ final class BedrockagentFlowDefinition {
 
   final List<BedrockagentFlowNode>? node;
 
+  @internal
   Map<String, Object?> encode() => {
     if (connection != null)
       'connection': [for (final e in connection!) e.encode()],
@@ -50,6 +51,7 @@ final class BedrockagentFlowConnection {
 
   final List<BedrockagentFlowConnectionConfiguration>? configuration;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'source': source.toTfJson(),
@@ -98,8 +100,10 @@ sealed class BedrockagentFlowConnectionConfiguration {
   ) = BedrockagentFlowConnectionConfigurationData;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -110,9 +114,11 @@ final class BedrockagentFlowConnectionConfigurationConditional
 
   final List<BedrockagentFlowConditional> conditional;
 
+  @internal
   @override
   String get blockKey => 'conditional';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'conditional': [for (final e in conditional) e.encode()],
@@ -126,9 +132,11 @@ final class BedrockagentFlowConnectionConfigurationData
 
   final List<BedrockagentFlowData> data;
 
+  @internal
   @override
   String get blockKey => 'data';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'data': [for (final e in data) e.encode()],
@@ -143,6 +151,7 @@ final class BedrockagentFlowConditional {
 
   final TfArg<String> condition;
 
+  @internal
   Map<String, Object?> encode() => {'condition': condition.toTfJson()};
 }
 
@@ -159,6 +168,7 @@ final class BedrockagentFlowData {
 
   final TfArg<String> targetInput;
 
+  @internal
   Map<String, Object?> encode() => {
     'source_output': sourceOutput.toTfJson(),
     'target_input': targetInput.toTfJson(),
@@ -187,6 +197,7 @@ final class BedrockagentFlowNode {
 
   final List<BedrockagentFlowOutput>? output;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'type': type.toTfJson(),
@@ -331,8 +342,10 @@ sealed class BedrockagentFlowNodeConfiguration {
   ) = BedrockagentFlowNodeConfigurationStorage;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -343,9 +356,11 @@ final class BedrockagentFlowNodeConfigurationAgent
 
   final List<BedrockagentFlowAgent> agent;
 
+  @internal
   @override
   String get blockKey => 'agent';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'agent': [for (final e in agent) e.encode()],
@@ -359,9 +374,11 @@ final class BedrockagentFlowNodeConfigurationCollector
 
   final List<BedrockagentFlowCollector> collector;
 
+  @internal
   @override
   String get blockKey => 'collector';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'collector': [for (final e in collector) e.encode()],
@@ -375,9 +392,11 @@ final class BedrockagentFlowNodeConfigurationCondition
 
   final List<BedrockagentFlowCondition> condition;
 
+  @internal
   @override
   String get blockKey => 'condition';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'condition': [for (final e in condition) e.encode()],
@@ -391,9 +410,11 @@ final class BedrockagentFlowNodeConfigurationInlineCode
 
   final List<BedrockagentFlowInlineCode> inlineCode;
 
+  @internal
   @override
   String get blockKey => 'inline_code';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'inline_code': [for (final e in inlineCode) e.encode()],
@@ -407,9 +428,11 @@ final class BedrockagentFlowNodeConfigurationInput
 
   final List<BedrockagentFlowConfigurationInput> input;
 
+  @internal
   @override
   String get blockKey => 'input';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'input': [for (final e in input) e.encode()],
@@ -423,9 +446,11 @@ final class BedrockagentFlowNodeConfigurationIterator
 
   final List<BedrockagentFlowIterator> iterator;
 
+  @internal
   @override
   String get blockKey => 'iterator';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'iterator': [for (final e in iterator) e.encode()],
@@ -439,9 +464,11 @@ final class BedrockagentFlowNodeConfigurationKnowledgeBase
 
   final List<BedrockagentFlowKnowledgeBase> knowledgeBase;
 
+  @internal
   @override
   String get blockKey => 'knowledge_base';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'knowledge_base': [for (final e in knowledgeBase) e.encode()],
@@ -455,9 +482,11 @@ final class BedrockagentFlowNodeConfigurationLambdaFunction
 
   final List<BedrockagentFlowLambdaFunction> lambdaFunction;
 
+  @internal
   @override
   String get blockKey => 'lambda_function';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'lambda_function': [for (final e in lambdaFunction) e.encode()],
@@ -471,9 +500,11 @@ final class BedrockagentFlowNodeConfigurationLex
 
   final List<BedrockagentFlowLex> lex;
 
+  @internal
   @override
   String get blockKey => 'lex';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'lex': [for (final e in lex) e.encode()],
@@ -487,9 +518,11 @@ final class BedrockagentFlowNodeConfigurationOutput
 
   final List<BedrockagentFlowConfigurationOutput> output;
 
+  @internal
   @override
   String get blockKey => 'output';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'output': [for (final e in output) e.encode()],
@@ -503,9 +536,11 @@ final class BedrockagentFlowNodeConfigurationPrompt
 
   final List<BedrockagentFlowPrompt> prompt;
 
+  @internal
   @override
   String get blockKey => 'prompt';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'prompt': [for (final e in prompt) e.encode()],
@@ -519,9 +554,11 @@ final class BedrockagentFlowNodeConfigurationRetrieval
 
   final List<BedrockagentFlowRetrieval> retrieval;
 
+  @internal
   @override
   String get blockKey => 'retrieval';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'retrieval': [for (final e in retrieval) e.encode()],
@@ -535,9 +572,11 @@ final class BedrockagentFlowNodeConfigurationStorage
 
   final List<BedrockagentFlowStorage> storage;
 
+  @internal
   @override
   String get blockKey => 'storage';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'storage': [for (final e in storage) e.encode()],
@@ -552,6 +591,7 @@ final class BedrockagentFlowAgent {
 
   final TfArg<String> agentAliasArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'agent_alias_arn': agentAliasArn.toTfJson(),
   };
@@ -563,6 +603,7 @@ final class BedrockagentFlowAgent {
 final class BedrockagentFlowCollector {
   const BedrockagentFlowCollector();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -574,6 +615,7 @@ final class BedrockagentFlowCondition {
 
   final List<BedrockagentFlowConditionCondition>? condition;
 
+  @internal
   Map<String, Object?> encode() => {
     if (condition != null)
       'condition': [for (final e in condition!) e.encode()],
@@ -593,6 +635,7 @@ final class BedrockagentFlowConditionCondition {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {
     'expression': ?expression?.toTfJson(),
     'name': name.toTfJson(),
@@ -612,6 +655,7 @@ final class BedrockagentFlowInlineCode {
 
   final BedrockagentFlowLanguage language;
 
+  @internal
   Map<String, Object?> encode() => {
     'code': code.toTfJson(),
     'language': language.toTfJson(),
@@ -637,6 +681,7 @@ extension type const BedrockagentFlowLanguage._(TfArg<String> _)
 final class BedrockagentFlowConfigurationInput {
   const BedrockagentFlowConfigurationInput();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -646,6 +691,7 @@ final class BedrockagentFlowConfigurationInput {
 final class BedrockagentFlowIterator {
   const BedrockagentFlowIterator();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -671,6 +717,7 @@ final class BedrockagentFlowKnowledgeBase {
 
   final List<BedrockagentFlowInferenceConfiguration>? inferenceConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'knowledge_base_id': knowledgeBaseId.toTfJson(),
     'model_id': modelId.toTfJson(),
@@ -700,6 +747,7 @@ final class BedrockagentFlowGuardrailConfiguration {
 
   final TfArg<String> guardrailVersion;
 
+  @internal
   Map<String, Object?> encode() => {
     'guardrail_identifier': guardrailIdentifier.toTfJson(),
     'guardrail_version': guardrailVersion.toTfJson(),
@@ -715,6 +763,7 @@ final class BedrockagentFlowInferenceConfiguration {
 
   final List<BedrockagentFlowText>? text;
 
+  @internal
   Map<String, Object?> encode() => {
     if (text != null) 'text': [for (final e in text!) e.encode()],
   };
@@ -740,6 +789,7 @@ final class BedrockagentFlowText {
 
   final TfArg<num>? topP;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_tokens': ?maxTokens?.toTfJson(),
     'stop_sequences': ?stopSequences?.toTfJson(),
@@ -756,6 +806,7 @@ final class BedrockagentFlowLambdaFunction {
 
   final RefTo<AwsLambdaFunction> lambdaArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'lambda_arn': lambdaArn.encodeAs('arn').toTfJson(),
   };
@@ -774,6 +825,7 @@ final class BedrockagentFlowLex {
 
   final TfArg<String> localeId;
 
+  @internal
   Map<String, Object?> encode() => {
     'bot_alias_arn': botAliasArn.toTfJson(),
     'locale_id': localeId.toTfJson(),
@@ -786,6 +838,7 @@ final class BedrockagentFlowLex {
 final class BedrockagentFlowConfigurationOutput {
   const BedrockagentFlowConfigurationOutput();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -802,6 +855,7 @@ final class BedrockagentFlowPrompt {
 
   final List<BedrockagentFlowSourceConfiguration>? sourceConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     if (guardrailConfiguration != null)
       'guardrail_configuration': [
@@ -832,8 +886,10 @@ sealed class BedrockagentFlowSourceConfiguration {
   ) = BedrockagentFlowSourceConfigurationResource;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -844,9 +900,11 @@ final class BedrockagentFlowSourceConfigurationInline
 
   final List<BedrockagentFlowInline> inline;
 
+  @internal
   @override
   String get blockKey => 'inline';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'inline': [for (final e in inline) e.encode()],
@@ -860,9 +918,11 @@ final class BedrockagentFlowSourceConfigurationResource
 
   final List<BedrockagentFlowResource> resource;
 
+  @internal
   @override
   String get blockKey => 'resource';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'resource': [for (final e in resource) e.encode()],
@@ -891,6 +951,7 @@ final class BedrockagentFlowInline {
 
   final List<BedrockagentFlowTemplateConfiguration>? templateConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'additional_model_request_fields': ?additionalModelRequestFields
         ?.toTfJson(),
@@ -940,8 +1001,10 @@ sealed class BedrockagentFlowTemplateConfiguration {
   ) = BedrockagentFlowTemplateConfigurationTextChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -952,9 +1015,11 @@ final class BedrockagentFlowTemplateConfigurationChat
 
   final List<BedrockagentFlowChat> chat;
 
+  @internal
   @override
   String get blockKey => 'chat';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'chat': [for (final e in chat) e.encode()],
@@ -968,9 +1033,11 @@ final class BedrockagentFlowTemplateConfigurationTextChoice
 
   final List<BedrockagentFlowTemplateConfigurationText> text;
 
+  @internal
   @override
   String get blockKey => 'text';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'text': [for (final e in text) e.encode()],
@@ -996,6 +1063,7 @@ final class BedrockagentFlowChat {
 
   final List<BedrockagentFlowToolConfiguration>? toolConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     if (inputVariable != null)
       'input_variable': [for (final e in inputVariable!) e.encode()],
@@ -1015,6 +1083,7 @@ final class BedrockagentFlowInputVariable {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 
@@ -1028,6 +1097,7 @@ final class BedrockagentFlowMessage {
 
   final List<BedrockagentFlowContent>? content;
 
+  @internal
   Map<String, Object?> encode() => {
     'role': role.toTfJson(),
     if (content != null) 'content': [for (final e in content!) e.encode()],
@@ -1065,8 +1135,10 @@ sealed class BedrockagentFlowContent {
       BedrockagentFlowContentText;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -1076,9 +1148,11 @@ final class BedrockagentFlowContentCachePoint extends BedrockagentFlowContent {
 
   final List<BedrockagentFlowCachePoint> cachePoint;
 
+  @internal
   @override
   String get blockKey => 'cache_point';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'cache_point': [for (final e in cachePoint) e.encode()],
@@ -1091,9 +1165,11 @@ final class BedrockagentFlowContentText extends BedrockagentFlowContent {
 
   final TfArg<String> text;
 
+  @internal
   @override
   String get blockKey => 'text';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'text': text.toTfJson()};
 }
@@ -1107,6 +1183,7 @@ final class BedrockagentFlowCachePoint {
 
   final BedrockagentFlowCachePointType type;
 
+  @internal
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 
@@ -1143,8 +1220,10 @@ sealed class BedrockagentFlowSystem {
       BedrockagentFlowSystemText;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -1154,9 +1233,11 @@ final class BedrockagentFlowSystemCachePoint extends BedrockagentFlowSystem {
 
   final List<BedrockagentFlowCachePoint> cachePoint;
 
+  @internal
   @override
   String get blockKey => 'cache_point';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'cache_point': [for (final e in cachePoint) e.encode()],
@@ -1169,9 +1250,11 @@ final class BedrockagentFlowSystemText extends BedrockagentFlowSystem {
 
   final TfArg<String> text;
 
+  @internal
   @override
   String get blockKey => 'text';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'text': text.toTfJson()};
 }
@@ -1186,6 +1269,7 @@ final class BedrockagentFlowToolConfiguration {
 
   final List<BedrockagentFlowToolChoice>? toolChoice;
 
+  @internal
   Map<String, Object?> encode() => {
     if (tool != null) 'tool': [for (final e in tool!) e.encode()],
     if (toolChoice != null)
@@ -1211,8 +1295,10 @@ sealed class BedrockagentFlowTool {
   ) = BedrockagentFlowToolSpecChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -1222,9 +1308,11 @@ final class BedrockagentFlowToolCachePoint extends BedrockagentFlowTool {
 
   final List<BedrockagentFlowCachePoint> cachePoint;
 
+  @internal
   @override
   String get blockKey => 'cache_point';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'cache_point': [for (final e in cachePoint) e.encode()],
@@ -1237,9 +1325,11 @@ final class BedrockagentFlowToolSpecChoice extends BedrockagentFlowTool {
 
   final List<BedrockagentFlowToolSpec> toolSpec;
 
+  @internal
   @override
   String get blockKey => 'tool_spec';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'tool_spec': [for (final e in toolSpec) e.encode()],
@@ -1262,6 +1352,7 @@ final class BedrockagentFlowToolSpec {
 
   final List<BedrockagentFlowInputSchema>? inputSchema;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'name': name.toTfJson(),
@@ -1278,6 +1369,7 @@ final class BedrockagentFlowInputSchema {
 
   final TfArg<String>? json;
 
+  @internal
   Map<String, Object?> encode() => {'json': ?json?.toTfJson()};
 }
 
@@ -1303,8 +1395,10 @@ sealed class BedrockagentFlowToolChoice {
   ) = BedrockagentFlowToolChoiceToolOption;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -1314,9 +1408,11 @@ final class BedrockagentFlowToolChoiceAny extends BedrockagentFlowToolChoice {
 
   final List<BedrockagentFlowAny> any;
 
+  @internal
   @override
   String get blockKey => 'any';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'any': [for (final e in any) e.encode()],
@@ -1329,9 +1425,11 @@ final class BedrockagentFlowToolChoiceAuto extends BedrockagentFlowToolChoice {
 
   final List<BedrockagentFlowAuto> auto;
 
+  @internal
   @override
   String get blockKey => 'auto';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'auto': [for (final e in auto) e.encode()],
@@ -1345,9 +1443,11 @@ final class BedrockagentFlowToolChoiceToolOption
 
   final List<BedrockagentFlowToolChoiceTool> tool;
 
+  @internal
   @override
   String get blockKey => 'tool';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'tool': [for (final e in tool) e.encode()],
@@ -1360,6 +1460,7 @@ final class BedrockagentFlowToolChoiceToolOption
 final class BedrockagentFlowAny {
   const BedrockagentFlowAny();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -1369,6 +1470,7 @@ final class BedrockagentFlowAny {
 final class BedrockagentFlowAuto {
   const BedrockagentFlowAuto();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -1380,6 +1482,7 @@ final class BedrockagentFlowToolChoiceTool {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 
@@ -1399,6 +1502,7 @@ final class BedrockagentFlowTemplateConfigurationText {
 
   final List<BedrockagentFlowInputVariable>? inputVariable;
 
+  @internal
   Map<String, Object?> encode() => {
     'text': text.toTfJson(),
     if (cachePoint != null)
@@ -1416,6 +1520,7 @@ final class BedrockagentFlowResource {
 
   final TfArg<String> promptArn;
 
+  @internal
   Map<String, Object?> encode() => {'prompt_arn': promptArn.toTfJson()};
 }
 
@@ -1427,6 +1532,7 @@ final class BedrockagentFlowRetrieval {
 
   final List<BedrockagentFlowServiceConfiguration>? serviceConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     if (serviceConfiguration != null)
       'service_configuration': [
@@ -1444,6 +1550,7 @@ final class BedrockagentFlowServiceConfiguration {
 
   final List<BedrockagentFlowS3>? s3;
 
+  @internal
   Map<String, Object?> encode() => {
     if (s3 != null) 's3': [for (final e in s3!) e.encode()],
   };
@@ -1458,6 +1565,7 @@ final class BedrockagentFlowS3 {
 
   final RefTo<AwsS3Bucket> bucketName;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('id').toTfJson(),
   };
@@ -1471,6 +1579,7 @@ final class BedrockagentFlowStorage {
 
   final List<BedrockagentFlowServiceConfiguration>? serviceConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     if (serviceConfiguration != null)
       'service_configuration': [
@@ -1498,6 +1607,7 @@ final class BedrockagentFlowInput {
 
   final BedrockagentFlowInputType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'category': ?category?.toTfJson(),
     'expression': expression.toTfJson(),
@@ -1563,6 +1673,7 @@ final class BedrockagentFlowOutput {
 
   final BedrockagentFlowInputType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'type': type.toTfJson(),

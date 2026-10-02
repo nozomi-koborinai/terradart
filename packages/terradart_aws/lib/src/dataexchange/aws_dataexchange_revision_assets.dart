@@ -28,6 +28,7 @@ final class DataexchangeRevisionAssetsAsset {
   final List<DataexchangeRevisionAssetsImportAssetsFromSignedUrl>?
   importAssetsFromSignedUrl;
 
+  @internal
   Map<String, Object?> encode() => {
     if (createS3DataAccessFromS3Bucket != null)
       'create_s3_data_access_from_s3_bucket': [
@@ -57,6 +58,7 @@ final class DataexchangeRevisionAssetsCreateS3DataAccessFromS3Bucket {
   >?
   assetSource;
 
+  @internal
   Map<String, Object?> encode() => {
     if (assetSource != null)
       'asset_source': [for (final e in assetSource!) e.encode()],
@@ -82,6 +84,7 @@ final class DataexchangeRevisionAssetsCreateS3DataAccessFromS3BucketAssetSource 
 
   final List<DataexchangeRevisionAssetsKmsKeysToGrant>? kmsKeysToGrant;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('id').toTfJson(),
     'key_prefixes': ?keyPrefixes?.toTfJson(),
@@ -99,6 +102,7 @@ final class DataexchangeRevisionAssetsKmsKeysToGrant {
 
   final RefTo<AwsKmsKey> kmsKeyArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_arn': kmsKeyArn.encodeAs('arn').toTfJson(),
   };
@@ -113,6 +117,7 @@ final class DataexchangeRevisionAssetsImportAssetsFromS3 {
   final List<DataexchangeRevisionAssetsImportAssetsFromS3AssetSource>?
   assetSource;
 
+  @internal
   Map<String, Object?> encode() => {
     if (assetSource != null)
       'asset_source': [for (final e in assetSource!) e.encode()],
@@ -132,6 +137,7 @@ final class DataexchangeRevisionAssetsImportAssetsFromS3AssetSource {
 
   final TfArg<String> key;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('id').toTfJson(),
     'key': key.toTfJson(),
@@ -148,6 +154,7 @@ final class DataexchangeRevisionAssetsImportAssetsFromSignedUrl {
 
   final TfArg<String> filename;
 
+  @internal
   Map<String, Object?> encode() => {'filename': filename.toTfJson()};
 }
 

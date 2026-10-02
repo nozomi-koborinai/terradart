@@ -17,6 +17,7 @@ final class S3BucketAbacStatus {
 
   final TfArg<String> status;
 
+  @internal
   Map<String, Object?> encode() => {'status': status.toTfJson()};
 }
 

@@ -44,12 +44,15 @@ sealed class BigtableAppProfileRouting {
   ) = BigtableAppProfileRoutingMultiClusterRoutingUseAny;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -60,14 +63,17 @@ final class BigtableAppProfileSingleClusterRoutingChoice
 
   final BigtableAppProfileSingleClusterRouting singleClusterRouting;
 
+  @internal
   @override
   String get blockKey => 'single_cluster_routing';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'single_cluster_routing': singleClusterRouting.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'single_cluster_routing': TfArg.literal(singleClusterRouting.encode()),
@@ -83,14 +89,17 @@ final class BigtableAppProfileRoutingMultiClusterRoutingUseAny
 
   final TfArg<bool> multiClusterRoutingUseAny;
 
+  @internal
   @override
   String get blockKey => 'multi_cluster_routing_use_any';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'multi_cluster_routing_use_any': multiClusterRoutingUseAny.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'multi_cluster_routing_use_any': multiClusterRoutingUseAny,
@@ -116,12 +125,15 @@ sealed class BigtableAppProfileIsolation {
   ) = BigtableAppProfileIsolationDataBoostIsolationReadOnly;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -132,14 +144,17 @@ final class BigtableAppProfileStandardIsolationChoice
 
   final BigtableAppProfileStandardIsolation standardIsolation;
 
+  @internal
   @override
   String get blockKey => 'standard_isolation';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'standard_isolation': standardIsolation.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'standard_isolation': TfArg.literal(standardIsolation.encode()),
@@ -155,14 +170,17 @@ final class BigtableAppProfileIsolationDataBoostIsolationReadOnly
 
   final BigtableAppProfileDataBoostIsolationReadOnly dataBoostIsolationReadOnly;
 
+  @internal
   @override
   String get blockKey => 'data_boost_isolation_read_only';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'data_boost_isolation_read_only': dataBoostIsolationReadOnly.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'data_boost_isolation_read_only': TfArg.literal(
@@ -181,6 +199,7 @@ final class BigtableAppProfileDataBoostIsolationReadOnly {
 
   final BigtableAppProfileComputeBillingOwner computeBillingOwner;
 
+  @internal
   Map<String, Object?> encode() => {
     'compute_billing_owner': computeBillingOwner.toTfJson(),
   };
@@ -199,6 +218,7 @@ final class BigtableAppProfileSingleClusterRouting {
 
   final TfArg<String> clusterId;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_transactional_writes': ?allowTransactionalWrites?.toTfJson(),
     'cluster_id': clusterId.toTfJson(),
@@ -213,6 +233,7 @@ final class BigtableAppProfileStandardIsolation {
 
   final BigtableAppProfilePriority priority;
 
+  @internal
   Map<String, Object?> encode() => {'priority': priority.toTfJson()};
 }
 

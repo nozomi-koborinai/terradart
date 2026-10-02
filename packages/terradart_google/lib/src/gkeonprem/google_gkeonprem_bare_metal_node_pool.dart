@@ -69,6 +69,7 @@ final class GkeonpremBareMetalNodePoolConfig {
 
   final List<GkeonpremBareMetalNodePoolTaints>? taints;
 
+  @internal
   Map<String, Object?> encode() => {
     'labels': ?labels?.toTfJson(),
     'operating_system': ?operatingSystem?.toTfJson(),
@@ -87,6 +88,7 @@ final class GkeonpremBareMetalNodePoolNodeConfigs {
 
   final TfArg<String>? nodeIp;
 
+  @internal
   Map<String, Object?> encode() => {
     'labels': ?labels?.toTfJson(),
     'node_ip': ?nodeIp?.toTfJson(),
@@ -105,6 +107,7 @@ final class GkeonpremBareMetalNodePoolTaints {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'effect': ?effect?.toTfJson(),
     'key': ?key?.toTfJson(),

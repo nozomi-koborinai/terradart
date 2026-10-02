@@ -23,6 +23,7 @@ final class EfsAccessPointPosixUser {
 
   final TfArg<num> uid;
 
+  @internal
   Map<String, Object?> encode() => {
     'gid': gid.toTfJson(),
     'secondary_gids': ?secondaryGids?.toTfJson(),
@@ -40,6 +41,7 @@ final class EfsAccessPointRootDirectory {
 
   final EfsAccessPointCreationInfo? creationInfo;
 
+  @internal
   Map<String, Object?> encode() => {
     'path': ?path?.toTfJson(),
     'creation_info': ?creationInfo?.encode(),
@@ -62,6 +64,7 @@ final class EfsAccessPointCreationInfo {
 
   final TfArg<String> permissions;
 
+  @internal
   Map<String, Object?> encode() => {
     'owner_gid': ownerGid.toTfJson(),
     'owner_uid': ownerUid.toTfJson(),

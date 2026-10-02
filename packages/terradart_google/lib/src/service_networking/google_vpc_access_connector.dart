@@ -21,6 +21,7 @@ class VpcAccessConnectorSubnet {
   /// Host project when the subnet lives in a Shared VPC host project.
   final TfArg<String>? projectId;
 
+  @internal
   Map<String, Object?> encode() => {
     if (name != null) 'name': name!.toTfJson(),
     if (projectId != null) 'project_id': projectId!.toTfJson(),
@@ -46,12 +47,15 @@ sealed class VpcAccessConnectorMinCapacity {
   ) = VpcAccessConnectorMinCapacityMinInstances;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -62,12 +66,15 @@ final class VpcAccessConnectorMinCapacityMinThroughput
 
   final TfArg<num> minThroughput;
 
+  @internal
   @override
   String get blockKey => 'min_throughput';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'min_throughput': minThroughput.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'min_throughput': minThroughput};
 }
@@ -79,12 +86,15 @@ final class VpcAccessConnectorMinCapacityMinInstances
 
   final TfArg<num> minInstances;
 
+  @internal
   @override
   String get blockKey => 'min_instances';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'min_instances': minInstances.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'min_instances': minInstances};
 }
@@ -108,12 +118,15 @@ sealed class VpcAccessConnectorMaxCapacity {
   ) = VpcAccessConnectorMaxCapacityMaxThroughput;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -124,12 +137,15 @@ final class VpcAccessConnectorMaxCapacityMaxInstances
 
   final TfArg<num> maxInstances;
 
+  @internal
   @override
   String get blockKey => 'max_instances';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'max_instances': maxInstances.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'max_instances': maxInstances};
 }
@@ -141,12 +157,15 @@ final class VpcAccessConnectorMaxCapacityMaxThroughput
 
   final TfArg<num> maxThroughput;
 
+  @internal
   @override
   String get blockKey => 'max_throughput';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'max_throughput': maxThroughput.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'max_throughput': maxThroughput};
 }

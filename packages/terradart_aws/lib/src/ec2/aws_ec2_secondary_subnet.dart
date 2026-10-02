@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `aws_ec2_secondary_subnet`.
@@ -25,12 +26,15 @@ sealed class Ec2SecondarySubnetAvailabilityZone {
   ) = Ec2SecondarySubnetAvailabilityZoneId;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -41,14 +45,17 @@ final class Ec2SecondarySubnetAvailabilityZoneChoice
 
   final TfArg<String> availabilityZone;
 
+  @internal
   @override
   String get blockKey => 'availability_zone';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'availability_zone': availabilityZone.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'availability_zone': availabilityZone,
@@ -62,14 +69,17 @@ final class Ec2SecondarySubnetAvailabilityZoneId
 
   final TfArg<String> availabilityZoneId;
 
+  @internal
   @override
   String get blockKey => 'availability_zone_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'availability_zone_id': availabilityZoneId.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'availability_zone_id': availabilityZoneId,

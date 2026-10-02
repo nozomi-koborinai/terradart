@@ -27,8 +27,10 @@ sealed class SecurityhubConnectorV2ConnectorProvider {
   ) = SecurityhubConnectorV2ConnectorProviderServiceNow;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -39,9 +41,11 @@ final class SecurityhubConnectorV2ConnectorProviderJiraCloud
 
   final List<SecurityhubConnectorV2JiraCloud> jiraCloud;
 
+  @internal
   @override
   String get blockKey => 'jira_cloud';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'jira_cloud': [for (final e in jiraCloud) e.encode()],
@@ -55,9 +59,11 @@ final class SecurityhubConnectorV2ConnectorProviderServiceNow
 
   final List<SecurityhubConnectorV2ServiceNow> serviceNow;
 
+  @internal
   @override
   String get blockKey => 'service_now';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'service_now': [for (final e in serviceNow) e.encode()],
@@ -72,6 +78,7 @@ final class SecurityhubConnectorV2JiraCloud {
 
   final TfArg<String> projectKey;
 
+  @internal
   Map<String, Object?> encode() => {'project_key': projectKey.toTfJson()};
 }
 
@@ -88,6 +95,7 @@ final class SecurityhubConnectorV2ServiceNow {
 
   final TfArg<String> secretArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'instance_name': instanceName.toTfJson(),
     'secret_arn': secretArn.toTfJson(),

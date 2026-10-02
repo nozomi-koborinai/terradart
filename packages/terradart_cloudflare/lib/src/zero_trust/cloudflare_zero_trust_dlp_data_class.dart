@@ -22,6 +22,7 @@ final class ZeroTrustDlpDataClassSensitivityLevels {
 
   final TfArg<String> levelId;
 
+  @internal
   Map<String, Object?> encode() => {
     'group_id': groupId.toTfJson(),
     'level_id': levelId.toTfJson(),

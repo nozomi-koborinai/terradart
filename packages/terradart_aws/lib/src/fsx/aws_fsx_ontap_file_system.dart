@@ -98,12 +98,15 @@ sealed class FsxOntapFileSystemThroughputCapacity {
   ) = FsxOntapFileSystemThroughputCapacityPerHaPair;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -114,14 +117,17 @@ final class FsxOntapFileSystemThroughputCapacityChoice
 
   final TfArg<num> throughputCapacity;
 
+  @internal
   @override
   String get blockKey => 'throughput_capacity';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'throughput_capacity': throughputCapacity.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'throughput_capacity': throughputCapacity,
@@ -137,14 +143,17 @@ final class FsxOntapFileSystemThroughputCapacityPerHaPair
 
   final TfArg<num> throughputCapacityPerHaPair;
 
+  @internal
   @override
   String get blockKey => 'throughput_capacity_per_ha_pair';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'throughput_capacity_per_ha_pair': throughputCapacityPerHaPair.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'throughput_capacity_per_ha_pair': throughputCapacityPerHaPair,
@@ -161,6 +170,7 @@ final class FsxOntapFileSystemDiskIopsConfiguration {
 
   final FsxOntapFileSystemMode? mode;
 
+  @internal
   Map<String, Object?> encode() => {
     'iops': ?iops?.toTfJson(),
     'mode': ?mode?.toTfJson(),

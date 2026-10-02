@@ -5,6 +5,7 @@
 /// AWS account — not applyable on terradart-validate.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/container_aws/google_container_aws_cluster.dart'
     show
         ContainerAwsClusterAdminGroups,
@@ -42,3 +43,5 @@ export 'src/container_aws/google_container_aws_node_pool.dart'
         ContainerAwsNodePoolUpdateSettings,
         ContainerAwsNodePoolVolumeType,
         GoogleContainerAwsNodePool;
+export 'src/data/google_container_aws_versions.dart'
+    show DataGoogleContainerAwsVersions;

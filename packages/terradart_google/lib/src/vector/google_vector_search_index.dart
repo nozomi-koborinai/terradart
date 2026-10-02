@@ -45,6 +45,7 @@ final class VectorSearchIndexDedicatedInfrastructure {
 
   final VectorSearchIndexAutoscalingSpec? autoscalingSpec;
 
+  @internal
   Map<String, Object?> encode() => {
     'mode': ?mode?.toTfJson(),
     'autoscaling_spec': ?autoscalingSpec?.encode(),
@@ -89,6 +90,7 @@ final class VectorSearchIndexAutoscalingSpec {
 
   final TfArg<num>? minReplicaCount;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_replica_count': ?maxReplicaCount?.toTfJson(),
     'min_replica_count': ?minReplicaCount?.toTfJson(),
@@ -103,6 +105,7 @@ final class VectorSearchIndexDenseScann {
 
   final VectorSearchIndexFeatureNormType? featureNormType;
 
+  @internal
   Map<String, Object?> encode() => {
     'feature_norm_type': ?featureNormType?.toTfJson(),
   };

@@ -97,12 +97,15 @@ sealed class DataplexDatascanScanSpec {
   ) = DataplexDatascanScanSpecDataDocumentationSpec;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -113,14 +116,17 @@ final class DataplexDatascanScanSpecDataQualitySpec
 
   final DataplexDatascanDataQualitySpec dataQualitySpec;
 
+  @internal
   @override
   String get blockKey => 'data_quality_spec';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'data_quality_spec': dataQualitySpec.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'data_quality_spec': TfArg.literal(dataQualitySpec.encode()),
@@ -134,14 +140,17 @@ final class DataplexDatascanScanSpecDataProfileSpec
 
   final DataplexDatascanDataProfileSpec dataProfileSpec;
 
+  @internal
   @override
   String get blockKey => 'data_profile_spec';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'data_profile_spec': dataProfileSpec.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'data_profile_spec': TfArg.literal(dataProfileSpec.encode()),
@@ -155,14 +164,17 @@ final class DataplexDatascanScanSpecDataDiscoverySpec
 
   final DataplexDatascanDataDiscoverySpec dataDiscoverySpec;
 
+  @internal
   @override
   String get blockKey => 'data_discovery_spec';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'data_discovery_spec': dataDiscoverySpec.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'data_discovery_spec': TfArg.literal(dataDiscoverySpec.encode()),
@@ -178,14 +190,17 @@ final class DataplexDatascanScanSpecDataDocumentationSpec
 
   final DataplexDatascanDataDocumentationSpec dataDocumentationSpec;
 
+  @internal
   @override
   String get blockKey => 'data_documentation_spec';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'data_documentation_spec': dataDocumentationSpec.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'data_documentation_spec': TfArg.literal(dataDocumentationSpec.encode()),
@@ -208,8 +223,10 @@ sealed class DataplexDatascanData {
       DataplexDatascanDataResource;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -219,9 +236,11 @@ final class DataplexDatascanDataEntity extends DataplexDatascanData {
 
   final TfArg<String> entity;
 
+  @internal
   @override
   String get blockKey => 'entity';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'entity': entity.toTfJson()};
 }
@@ -232,9 +251,11 @@ final class DataplexDatascanDataResource extends DataplexDatascanData {
 
   final TfArg<String> resource;
 
+  @internal
   @override
   String get blockKey => 'resource';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'resource': resource.toTfJson()};
 }
@@ -252,6 +273,7 @@ final class DataplexDatascanDataDiscoverySpec {
 
   final DataplexDatascanStorageConfig? storageConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'bigquery_publishing_config': ?bigqueryPublishingConfig?.encode(),
     'storage_config': ?storageConfig?.encode(),
@@ -277,6 +299,7 @@ final class DataplexDatascanBigqueryPublishingConfig {
 
   final DataplexDatascanTableType? tableType;
 
+  @internal
   Map<String, Object?> encode() => {
     'connection': ?connection?.toTfJson(),
     'location': ?location?.toTfJson(),
@@ -326,6 +349,7 @@ final class DataplexDatascanStorageConfig {
 
   final DataplexDatascanJsonOptions? jsonOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'exclude_patterns': ?excludePatterns?.toTfJson(),
     'include_patterns': ?includePatterns?.toTfJson(),
@@ -356,6 +380,7 @@ final class DataplexDatascanCsvOptions {
 
   final TfArg<bool>? typeInferenceDisabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'delimiter': ?delimiter?.toTfJson(),
     'encoding': ?encoding?.toTfJson(),
@@ -378,6 +403,7 @@ final class DataplexDatascanJsonOptions {
 
   final TfArg<bool>? typeInferenceDisabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'encoding': ?encoding?.toTfJson(),
     'type_inference_disabled': ?typeInferenceDisabled?.toTfJson(),
@@ -397,6 +423,7 @@ final class DataplexDatascanDataDocumentationSpec {
 
   final DataplexDatascanSqlDialect? sqlDialect;
 
+  @internal
   Map<String, Object?> encode() => {
     'catalog_publishing_enabled': ?catalogPublishingEnabled?.toTfJson(),
     'sql_dialect': ?sqlDialect?.toTfJson(),
@@ -447,6 +474,7 @@ final class DataplexDatascanDataProfileSpec {
 
   final DataplexDatascanDataProfileSpecPostScanActions? postScanActions;
 
+  @internal
   Map<String, Object?> encode() => {
     'catalog_publishing_enabled': ?catalogPublishingEnabled?.toTfJson(),
     'row_filter': ?rowFilter?.toTfJson(),
@@ -465,6 +493,7 @@ final class DataplexDatascanExcludeFields {
 
   final TfArg<List<String>>? fieldNames;
 
+  @internal
   Map<String, Object?> encode() => {'field_names': ?fieldNames?.toTfJson()};
 }
 
@@ -476,6 +505,7 @@ final class DataplexDatascanIncludeFields {
 
   final TfArg<List<String>>? fieldNames;
 
+  @internal
   Map<String, Object?> encode() => {'field_names': ?fieldNames?.toTfJson()};
 }
 
@@ -487,6 +517,7 @@ final class DataplexDatascanDataProfileSpecPostScanActions {
 
   final DataplexDatascanBigqueryExport? bigqueryExport;
 
+  @internal
   Map<String, Object?> encode() => {
     'bigquery_export': ?bigqueryExport?.encode(),
   };
@@ -501,6 +532,7 @@ final class DataplexDatascanBigqueryExport {
 
   final TfArg<String>? resultsTable;
 
+  @internal
   Map<String, Object?> encode() => {'results_table': ?resultsTable?.toTfJson()};
 }
 
@@ -532,6 +564,7 @@ final class DataplexDatascanDataQualitySpec {
 
   final List<DataplexDatascanRules>? rules;
 
+  @internal
   Map<String, Object?> encode() => {
     'catalog_publishing_enabled': ?catalogPublishingEnabled?.toTfJson(),
     'enable_catalog_based_rules': ?enableCatalogBasedRules?.toTfJson(),
@@ -556,6 +589,7 @@ final class DataplexDatascanDataQualitySpecPostScanActions {
 
   final DataplexDatascanNotificationReport? notificationReport;
 
+  @internal
   Map<String, Object?> encode() => {
     'bigquery_export': ?bigqueryExport?.encode(),
     'notification_report': ?notificationReport?.encode(),
@@ -581,6 +615,7 @@ final class DataplexDatascanNotificationReport {
 
   final DataplexDatascanScoreThresholdTrigger? scoreThresholdTrigger;
 
+  @internal
   Map<String, Object?> encode() => {
     'job_end_trigger': ?jobEndTrigger?.encode(),
     'job_failure_trigger': ?jobFailureTrigger?.encode(),
@@ -595,6 +630,7 @@ final class DataplexDatascanNotificationReport {
 final class DataplexDatascanJobEndTrigger {
   const DataplexDatascanJobEndTrigger();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -604,6 +640,7 @@ final class DataplexDatascanJobEndTrigger {
 final class DataplexDatascanJobFailureTrigger {
   const DataplexDatascanJobFailureTrigger();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -615,6 +652,7 @@ final class DataplexDatascanRecipients {
 
   final TfArg<List<String>>? emails;
 
+  @internal
   Map<String, Object?> encode() => {'emails': ?emails?.toTfJson()};
 }
 
@@ -626,6 +664,7 @@ final class DataplexDatascanScoreThresholdTrigger {
 
   final TfArg<num>? scoreThreshold;
 
+  @internal
   Map<String, Object?> encode() => {
     'score_threshold': ?scoreThreshold?.toTfJson(),
   };
@@ -692,6 +731,7 @@ final class DataplexDatascanRules {
 
   final DataplexDatascanUniquenessExpectation? uniquenessExpectation;
 
+  @internal
   Map<String, Object?> encode() => {
     'attributes': ?attributes?.toTfJson(),
     'column': ?column?.toTfJson(),
@@ -720,6 +760,7 @@ final class DataplexDatascanRules {
 final class DataplexDatascanNonNullExpectation {
   const DataplexDatascanNonNullExpectation();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -742,6 +783,7 @@ final class DataplexDatascanRangeExpectation {
 
   final TfArg<bool>? strictMinEnabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_value': ?maxValue?.toTfJson(),
     'min_value': ?minValue?.toTfJson(),
@@ -758,6 +800,7 @@ final class DataplexDatascanRegexExpectation {
 
   final TfArg<String> regex;
 
+  @internal
   Map<String, Object?> encode() => {'regex': regex.toTfJson()};
 }
 
@@ -769,6 +812,7 @@ final class DataplexDatascanRowConditionExpectation {
 
   final TfArg<String> sqlExpression;
 
+  @internal
   Map<String, Object?> encode() => {'sql_expression': sqlExpression.toTfJson()};
 }
 
@@ -780,6 +824,7 @@ final class DataplexDatascanSetExpectation {
 
   final TfArg<List<String>> values;
 
+  @internal
   Map<String, Object?> encode() => {'values': values.toTfJson()};
 }
 
@@ -791,6 +836,7 @@ final class DataplexDatascanSqlAssertion {
 
   final TfArg<String> sqlStatement;
 
+  @internal
   Map<String, Object?> encode() => {'sql_statement': sqlStatement.toTfJson()};
 }
 
@@ -816,6 +862,7 @@ final class DataplexDatascanStatisticRangeExpectation {
 
   final TfArg<bool>? strictMinEnabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_value': ?maxValue?.toTfJson(),
     'min_value': ?minValue?.toTfJson(),
@@ -859,6 +906,7 @@ final class DataplexDatascanTableConditionExpectation {
 
   final TfArg<String> sqlExpression;
 
+  @internal
   Map<String, Object?> encode() => {'sql_expression': sqlExpression.toTfJson()};
 }
 
@@ -872,6 +920,7 @@ final class DataplexDatascanTemplateReference {
 
   final List<DataplexDatascanValues>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     if (values != null) 'values': [for (final e in values!) e.encode()],
@@ -888,6 +937,7 @@ final class DataplexDatascanValues {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'value': value.toTfJson(),
@@ -900,6 +950,7 @@ final class DataplexDatascanValues {
 final class DataplexDatascanUniquenessExpectation {
   const DataplexDatascanUniquenessExpectation();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -926,8 +977,10 @@ sealed class DataplexDatascanExecutionIdentity {
   ) = DataplexDatascanExecutionIdentityServiceAccount;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -940,9 +993,11 @@ final class DataplexDatascanExecutionIdentityDataplexServiceAgent
 
   final DataplexDatascanDataplexServiceAgent dataplexServiceAgent;
 
+  @internal
   @override
   String get blockKey => 'dataplex_service_agent';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'dataplex_service_agent': dataplexServiceAgent.encode(),
@@ -956,9 +1011,11 @@ final class DataplexDatascanExecutionIdentityUserCredential
 
   final DataplexDatascanUserCredential userCredential;
 
+  @internal
   @override
   String get blockKey => 'user_credential';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'user_credential': userCredential.encode()};
 }
@@ -970,9 +1027,11 @@ final class DataplexDatascanExecutionIdentityServiceAccount
 
   final DataplexDatascanServiceAccount serviceAccount;
 
+  @internal
   @override
   String get blockKey => 'service_account';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'service_account': serviceAccount.encode()};
 }
@@ -983,6 +1042,7 @@ final class DataplexDatascanExecutionIdentityServiceAccount
 final class DataplexDatascanDataplexServiceAgent {
   const DataplexDatascanDataplexServiceAgent();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -994,6 +1054,7 @@ final class DataplexDatascanServiceAccount {
 
   final RefTo<GoogleServiceAccount> email;
 
+  @internal
   Map<String, Object?> encode() => {
     'email': email.encodeAs('email').toTfJson(),
   };
@@ -1005,6 +1066,7 @@ final class DataplexDatascanServiceAccount {
 final class DataplexDatascanUserCredential {
   const DataplexDatascanUserCredential();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -1018,6 +1080,7 @@ final class DataplexDatascanExecutionSpec {
 
   final DataplexDatascanTrigger trigger;
 
+  @internal
   Map<String, Object?> encode() => {
     'field': ?field?.toTfJson(),
     'trigger': trigger.encode(),
@@ -1047,8 +1110,10 @@ sealed class DataplexDatascanTrigger {
   ) = DataplexDatascanTriggerOneTime;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -1058,9 +1123,11 @@ final class DataplexDatascanTriggerOnDemand extends DataplexDatascanTrigger {
 
   final DataplexDatascanOnDemand onDemand;
 
+  @internal
   @override
   String get blockKey => 'on_demand';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'on_demand': onDemand.encode()};
 }
@@ -1071,9 +1138,11 @@ final class DataplexDatascanTriggerSchedule extends DataplexDatascanTrigger {
 
   final DataplexDatascanSchedule schedule;
 
+  @internal
   @override
   String get blockKey => 'schedule';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'schedule': schedule.encode()};
 }
@@ -1084,9 +1153,11 @@ final class DataplexDatascanTriggerOneTime extends DataplexDatascanTrigger {
 
   final DataplexDatascanOneTime oneTime;
 
+  @internal
   @override
   String get blockKey => 'one_time';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'one_time': oneTime.encode()};
 }
@@ -1097,6 +1168,7 @@ final class DataplexDatascanTriggerOneTime extends DataplexDatascanTrigger {
 final class DataplexDatascanOnDemand {
   const DataplexDatascanOnDemand();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -1108,6 +1180,7 @@ final class DataplexDatascanOneTime {
 
   final TfArg<String>? ttlAfterScanCompletion;
 
+  @internal
   Map<String, Object?> encode() => {
     'ttl_after_scan_completion': ?ttlAfterScanCompletion?.toTfJson(),
   };
@@ -1121,6 +1194,7 @@ final class DataplexDatascanSchedule {
 
   final TfArg<String> cron;
 
+  @internal
   Map<String, Object?> encode() => {'cron': cron.toTfJson()};
 }
 

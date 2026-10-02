@@ -80,6 +80,7 @@ final class CloudwatchLogDeliveryDestinationConfiguration {
 
   final TfArg<String>? destinationResourceArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'destination_resource_arn': ?destinationResourceArn?.toTfJson(),
   };

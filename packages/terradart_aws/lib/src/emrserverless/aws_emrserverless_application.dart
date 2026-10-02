@@ -43,6 +43,7 @@ final class EmrserverlessApplicationAutoStartConfiguration {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
@@ -59,6 +60,7 @@ final class EmrserverlessApplicationAutoStopConfiguration {
 
   final TfArg<num>? idleTimeoutMinutes;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'idle_timeout_minutes': ?idleTimeoutMinutes?.toTfJson(),
@@ -73,6 +75,7 @@ final class EmrserverlessApplicationImageConfiguration {
 
   final TfArg<String> imageUri;
 
+  @internal
   Map<String, Object?> encode() => {'image_uri': imageUri.toTfJson()};
 }
 
@@ -89,6 +92,7 @@ final class EmrserverlessApplicationInitialCapacity {
 
   final EmrserverlessApplicationInitialCapacityConfig? initialCapacityConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'initial_capacity_type': initialCapacityType.toTfJson(),
     'initial_capacity_config': ?initialCapacityConfig?.encode(),
@@ -108,6 +112,7 @@ final class EmrserverlessApplicationInitialCapacityConfig {
 
   final EmrserverlessApplicationWorkerConfiguration? workerConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'worker_count': workerCount.toTfJson(),
     'worker_configuration': ?workerConfiguration?.encode(),
@@ -130,6 +135,7 @@ final class EmrserverlessApplicationWorkerConfiguration {
 
   final TfArg<String> memory;
 
+  @internal
   Map<String, Object?> encode() => {
     'cpu': cpu.toTfJson(),
     'disk': ?disk?.toTfJson(),
@@ -150,6 +156,7 @@ final class EmrserverlessApplicationInteractiveConfiguration {
 
   final TfArg<bool>? studioEnabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'livy_endpoint_enabled': ?livyEndpointEnabled?.toTfJson(),
     'studio_enabled': ?studioEnabled?.toTfJson(),
@@ -166,6 +173,7 @@ final class EmrserverlessApplicationJobLevelCostAllocationConfiguration {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
@@ -185,6 +193,7 @@ final class EmrserverlessApplicationMaximumCapacity {
 
   final TfArg<String> memory;
 
+  @internal
   Map<String, Object?> encode() => {
     'cpu': cpu.toTfJson(),
     'disk': ?disk?.toTfJson(),
@@ -215,6 +224,7 @@ final class EmrserverlessApplicationMonitoringConfiguration {
   final EmrserverlessApplicationS3MonitoringConfiguration?
   s3MonitoringConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloudwatch_logging_configuration': ?cloudwatchLoggingConfiguration
         ?.encode(),
@@ -248,6 +258,7 @@ final class EmrserverlessApplicationCloudwatchLoggingConfiguration {
 
   final List<EmrserverlessApplicationLogTypes>? logTypes;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'encryption_key_arn': ?encryptionKeyArn?.encodeAs('arn').toTfJson(),
@@ -270,6 +281,7 @@ final class EmrserverlessApplicationLogTypes {
 
   final TfArg<List<String>> values;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'values': values.toTfJson(),
@@ -289,6 +301,7 @@ final class EmrserverlessApplicationManagedPersistenceMonitoringConfiguration {
 
   final RefTo<AwsKmsKey>? encryptionKeyArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'encryption_key_arn': ?encryptionKeyArn?.encodeAs('arn').toTfJson(),
@@ -305,6 +318,7 @@ final class EmrserverlessApplicationPrometheusMonitoringConfiguration {
 
   final TfArg<String>? remoteWriteUrl;
 
+  @internal
   Map<String, Object?> encode() => {
     'remote_write_url': ?remoteWriteUrl?.toTfJson(),
   };
@@ -323,6 +337,7 @@ final class EmrserverlessApplicationS3MonitoringConfiguration {
 
   final TfArg<String>? logUri;
 
+  @internal
   Map<String, Object?> encode() => {
     'encryption_key_arn': ?encryptionKeyArn?.encodeAs('arn').toTfJson(),
     'log_uri': ?logUri?.toTfJson(),
@@ -342,6 +357,7 @@ final class EmrserverlessApplicationNetworkConfiguration {
 
   final TfArg<List<RefTo<AwsSubnet>>>? subnetIds;
 
+  @internal
   Map<String, Object?> encode() => {
     'security_group_ids': ?securityGroupIds?.encodeAs('id').toTfJson(),
     'subnet_ids': ?subnetIds?.encodeAs('id').toTfJson(),
@@ -361,6 +377,7 @@ final class EmrserverlessApplicationRuntimeConfiguration {
 
   final TfArg<Map<String, String>>? properties;
 
+  @internal
   Map<String, Object?> encode() => {
     'classification': classification.toTfJson(),
     'properties': ?properties?.toTfJson(),
@@ -380,6 +397,7 @@ final class EmrserverlessApplicationSchedulerConfiguration {
 
   final TfArg<num>? queueTimeoutMinutes;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_concurrent_runs': ?maxConcurrentRuns?.toTfJson(),
     'queue_timeout_minutes': ?queueTimeoutMinutes?.toTfJson(),

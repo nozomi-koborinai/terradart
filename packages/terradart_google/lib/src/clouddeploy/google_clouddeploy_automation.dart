@@ -39,8 +39,10 @@ sealed class ClouddeployAutomationRules {
   ) = ClouddeployAutomationRulesTimedPromoteReleaseRule;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -51,9 +53,11 @@ final class ClouddeployAutomationRulesPromoteReleaseRule
 
   final ClouddeployAutomationPromoteReleaseRule promoteReleaseRule;
 
+  @internal
   @override
   String get blockKey => 'promote_release_rule';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'promote_release_rule': promoteReleaseRule.encode(),
@@ -67,9 +71,11 @@ final class ClouddeployAutomationRulesAdvanceRolloutRule
 
   final ClouddeployAutomationAdvanceRolloutRule advanceRolloutRule;
 
+  @internal
   @override
   String get blockKey => 'advance_rollout_rule';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'advance_rollout_rule': advanceRolloutRule.encode(),
@@ -83,9 +89,11 @@ final class ClouddeployAutomationRulesRepairRolloutRule
 
   final ClouddeployAutomationRepairRolloutRule repairRolloutRule;
 
+  @internal
   @override
   String get blockKey => 'repair_rollout_rule';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'repair_rollout_rule': repairRolloutRule.encode(),
@@ -101,9 +109,11 @@ final class ClouddeployAutomationRulesTimedPromoteReleaseRule
 
   final ClouddeployAutomationTimedPromoteReleaseRule timedPromoteReleaseRule;
 
+  @internal
   @override
   String get blockKey => 'timed_promote_release_rule';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'timed_promote_release_rule': timedPromoteReleaseRule.encode(),
@@ -126,6 +136,7 @@ final class ClouddeployAutomationAdvanceRolloutRule {
 
   final TfArg<String>? wait;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
     'source_phases': ?sourcePhases?.toTfJson(),
@@ -152,6 +163,7 @@ final class ClouddeployAutomationPromoteReleaseRule {
 
   final TfArg<String>? wait;
 
+  @internal
   Map<String, Object?> encode() => {
     'destination_phase': ?destinationPhase?.toTfJson(),
     'destination_target_id': ?destinationTargetId?.toTfJson(),
@@ -179,6 +191,7 @@ final class ClouddeployAutomationRepairRolloutRule {
 
   final List<ClouddeployAutomationRepairPhases>? repairPhases;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
     'jobs': ?jobs?.toTfJson(),
@@ -206,8 +219,10 @@ sealed class ClouddeployAutomationRepairPhases {
   ) = ClouddeployAutomationRepairPhasesRollback;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -218,9 +233,11 @@ final class ClouddeployAutomationRepairPhasesRetry
 
   final ClouddeployAutomationRetry retry;
 
+  @internal
   @override
   String get blockKey => 'retry';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'retry': retry.encode()};
 }
@@ -232,9 +249,11 @@ final class ClouddeployAutomationRepairPhasesRollback
 
   final ClouddeployAutomationRollback rollback;
 
+  @internal
   @override
   String get blockKey => 'rollback';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'rollback': rollback.encode()};
 }
@@ -255,6 +274,7 @@ final class ClouddeployAutomationRetry {
 
   final TfArg<String>? wait;
 
+  @internal
   Map<String, Object?> encode() => {
     'attempts': attempts.toTfJson(),
     'backoff_mode': ?backoffMode?.toTfJson(),
@@ -301,6 +321,7 @@ final class ClouddeployAutomationRollback {
 
   final TfArg<bool>? disableRollbackIfRolloutPending;
 
+  @internal
   Map<String, Object?> encode() => {
     'destination_phase': ?destinationPhase?.toTfJson(),
     'disable_rollback_if_rollout_pending': ?disableRollbackIfRolloutPending
@@ -330,6 +351,7 @@ final class ClouddeployAutomationTimedPromoteReleaseRule {
 
   final TfArg<String> timeZone;
 
+  @internal
   Map<String, Object?> encode() => {
     'destination_phase': ?destinationPhase?.toTfJson(),
     'destination_target_id': ?destinationTargetId?.toTfJson(),
@@ -347,6 +369,7 @@ final class ClouddeployAutomationSelector {
 
   final List<ClouddeployAutomationTargets> targets;
 
+  @internal
   Map<String, Object?> encode() => {
     'targets': [for (final e in targets) e.encode()],
   };
@@ -362,6 +385,7 @@ final class ClouddeployAutomationTargets {
 
   final TfArg<Map<String, String>>? labels;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': ?id?.toTfJson(),
     'labels': ?labels?.toTfJson(),

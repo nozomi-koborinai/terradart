@@ -20,6 +20,7 @@ final class LbSslNegotiationPolicyAttribute {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'value': value.toTfJson(),

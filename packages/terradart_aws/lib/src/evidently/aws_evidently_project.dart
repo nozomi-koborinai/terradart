@@ -29,8 +29,10 @@ sealed class EvidentlyProjectDataDelivery {
   ) = EvidentlyProjectDataDeliveryS3Destination;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -41,9 +43,11 @@ final class EvidentlyProjectDataDeliveryCloudwatchLogs
 
   final EvidentlyProjectCloudwatchLogs cloudwatchLogs;
 
+  @internal
   @override
   String get blockKey => 'cloudwatch_logs';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'cloudwatch_logs': cloudwatchLogs.encode()};
 }
@@ -55,9 +59,11 @@ final class EvidentlyProjectDataDeliveryS3Destination
 
   final EvidentlyProjectS3Destination s3Destination;
 
+  @internal
   @override
   String get blockKey => 's3_destination';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'s3_destination': s3Destination.encode()};
 }
@@ -70,6 +76,7 @@ final class EvidentlyProjectCloudwatchLogs {
 
   final RefTo<AwsCloudwatchLogGroup>? logGroup;
 
+  @internal
   Map<String, Object?> encode() => {
     'log_group': ?logGroup?.encodeAs('name').toTfJson(),
   };
@@ -85,6 +92,7 @@ final class EvidentlyProjectS3Destination {
 
   final TfArg<String>? prefix;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': ?bucket?.encodeAs('id').toTfJson(),
     'prefix': ?prefix?.toTfJson(),

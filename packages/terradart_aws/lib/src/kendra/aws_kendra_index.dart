@@ -70,6 +70,7 @@ final class KendraIndexCapacityUnits {
 
   final TfArg<num>? storageCapacityUnits;
 
+  @internal
   Map<String, Object?> encode() => {
     'query_capacity_units': ?queryCapacityUnits?.toTfJson(),
     'storage_capacity_units': ?storageCapacityUnits?.toTfJson(),
@@ -95,6 +96,7 @@ final class KendraIndexDocumentMetadataConfigurationUpdates {
 
   final KendraIndexSearch? search;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'type': type.toTfJson(),
@@ -148,6 +150,7 @@ final class KendraIndexRelevance {
 
   final TfArg<Map<String, num>>? valuesImportanceMap;
 
+  @internal
   Map<String, Object?> encode() => {
     'duration': ?duration?.toTfJson(),
     'freshness': ?freshness?.toTfJson(),
@@ -190,6 +193,7 @@ final class KendraIndexSearch {
 
   final TfArg<bool>? sortable;
 
+  @internal
   Map<String, Object?> encode() => {
     'displayable': ?displayable?.toTfJson(),
     'facetable': ?facetable?.toTfJson(),
@@ -206,6 +210,7 @@ final class KendraIndexServerSideEncryptionConfiguration {
 
   final RefTo<AwsKmsKey>? kmsKeyId;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
   };
@@ -221,6 +226,7 @@ final class KendraIndexUserGroupResolutionConfiguration {
 
   final KendraIndexUserGroupResolutionMode userGroupResolutionMode;
 
+  @internal
   Map<String, Object?> encode() => {
     'user_group_resolution_mode': userGroupResolutionMode.toTfJson(),
   };
@@ -258,6 +264,7 @@ final class KendraIndexUserTokenConfigurations {
 
   final KendraIndexJwtTokenTypeConfiguration? jwtTokenTypeConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'json_token_type_configuration': ?jsonTokenTypeConfiguration?.encode(),
     'jwt_token_type_configuration': ?jwtTokenTypeConfiguration?.encode(),
@@ -277,6 +284,7 @@ final class KendraIndexJsonTokenTypeConfiguration {
 
   final TfArg<String> userNameAttributeField;
 
+  @internal
   Map<String, Object?> encode() => {
     'group_attribute_field': groupAttributeField.toTfJson(),
     'user_name_attribute_field': userNameAttributeField.toTfJson(),
@@ -311,6 +319,7 @@ final class KendraIndexJwtTokenTypeConfiguration {
 
   final TfArg<String>? userNameAttributeField;
 
+  @internal
   Map<String, Object?> encode() => {
     'claim_regex': ?claimRegex?.toTfJson(),
     'group_attribute_field': ?groupAttributeField?.toTfJson(),

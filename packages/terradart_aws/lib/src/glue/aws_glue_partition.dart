@@ -53,6 +53,7 @@ final class GluePartitionStorageDescriptor {
 
   final List<GluePartitionSortColumns>? sortColumns;
 
+  @internal
   Map<String, Object?> encode() => {
     'additional_locations': ?additionalLocations?.toTfJson(),
     'bucket_columns': ?bucketColumns?.toTfJson(),
@@ -83,6 +84,7 @@ final class GluePartitionColumns {
 
   final TfArg<String>? type;
 
+  @internal
   Map<String, Object?> encode() => {
     'comment': ?comment?.toTfJson(),
     'name': name.toTfJson(),
@@ -106,6 +108,7 @@ final class GluePartitionSerDeInfo {
 
   final TfArg<String>? serializationLibrary;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'parameters': ?parameters?.toTfJson(),
@@ -129,6 +132,7 @@ final class GluePartitionSkewedInfo {
 
   final TfArg<List<String>>? skewedColumnValues;
 
+  @internal
   Map<String, Object?> encode() => {
     'skewed_column_names': ?skewedColumnNames?.toTfJson(),
     'skewed_column_value_location_maps': ?skewedColumnValueLocationMaps
@@ -150,6 +154,7 @@ final class GluePartitionSortColumns {
 
   final TfArg<num> sortOrder;
 
+  @internal
   Map<String, Object?> encode() => {
     'column': column.toTfJson(),
     'sort_order': sortOrder.toTfJson(),

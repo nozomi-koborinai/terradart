@@ -17,6 +17,7 @@ final class DataLossPreventionContentPolicyDefaultAction {
 
   final DataLossPreventionContentPolicyReturnVerdict? returnVerdict;
 
+  @internal
   Map<String, Object?> encode() => {
     'return_verdict': ?returnVerdict?.toTfJson(),
   };
@@ -56,6 +57,7 @@ final class DataLossPreventionContentPolicyFailedToScanSupportedFileType {
 
   final DataLossPreventionContentPolicyReturnVerdict? returnVerdict;
 
+  @internal
   Map<String, Object?> encode() => {
     'return_verdict': ?returnVerdict?.toTfJson(),
   };
@@ -69,6 +71,7 @@ final class DataLossPreventionContentPolicyInputTooLarge {
 
   final DataLossPreventionContentPolicyReturnVerdict? returnVerdict;
 
+  @internal
   Map<String, Object?> encode() => {
     'return_verdict': ?returnVerdict?.toTfJson(),
   };
@@ -109,6 +112,7 @@ final class DataLossPreventionContentPolicyInspectConfig {
 
   final List<DataLossPreventionContentPolicyRuleSet>? ruleSet;
 
+  @internal
   Map<String, Object?> encode() => {
     if (contentOptions != null)
       'content_options': [for (final e in contentOptions!) e.toTfJson()],
@@ -219,6 +223,7 @@ final class DataLossPreventionContentPolicyCustomInfoTypes {
 
   final DataLossPreventionContentPolicySurrogateType? surrogateType;
 
+  @internal
   Map<String, Object?> encode() => {
     'exclusion_type': ?exclusionType?.toTfJson(),
     'likelihood': ?likelihood?.toTfJson(),
@@ -281,6 +286,7 @@ final class DataLossPreventionContentPolicyDictionary {
 
   final DataLossPreventionContentPolicyWordList? wordList;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloud_storage_path': ?cloudStoragePath?.encode(),
     'word_list': ?wordList?.encode(),
@@ -296,6 +302,7 @@ final class DataLossPreventionContentPolicyCloudStoragePath {
 
   final TfArg<String> path;
 
+  @internal
   Map<String, Object?> encode() => {'path': path.toTfJson()};
 }
 
@@ -308,6 +315,7 @@ final class DataLossPreventionContentPolicyWordList {
 
   final TfArg<List<String>> words;
 
+  @internal
   Map<String, Object?> encode() => {'words': words.toTfJson()};
 }
 
@@ -328,6 +336,7 @@ final class DataLossPreventionContentPolicyCustomInfoTypesInfoType {
 
   final DataLossPreventionContentPolicySensitivityScore? sensitivityScore;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'version': ?version?.toTfJson(),
@@ -344,6 +353,7 @@ final class DataLossPreventionContentPolicySensitivityScore {
 
   final DataLossPreventionContentPolicyScore score;
 
+  @internal
   Map<String, Object?> encode() => {'score': score.toTfJson()};
 }
 
@@ -388,6 +398,7 @@ final class DataLossPreventionContentPolicyRegex {
 
   final TfArg<String> pattern;
 
+  @internal
   Map<String, Object?> encode() => {
     'group_indexes': ?groupIndexes?.toTfJson(),
     'pattern': pattern.toTfJson(),
@@ -402,6 +413,7 @@ final class DataLossPreventionContentPolicyStoredType {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 
@@ -411,6 +423,7 @@ final class DataLossPreventionContentPolicyStoredType {
 final class DataLossPreventionContentPolicySurrogateType {
   const DataLossPreventionContentPolicySurrogateType();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -431,6 +444,7 @@ final class DataLossPreventionContentPolicyInfoTypes {
 
   final DataLossPreventionContentPolicySensitivityScore? sensitivityScore;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'version': ?version?.toTfJson(),
@@ -455,6 +469,7 @@ final class DataLossPreventionContentPolicyLimits {
   final List<DataLossPreventionContentPolicyMaxFindingsPerInfoType>?
   maxFindingsPerInfoType;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_findings_per_item': maxFindingsPerItem.toTfJson(),
     'max_findings_per_request': maxFindingsPerRequest.toTfJson(),
@@ -478,6 +493,7 @@ final class DataLossPreventionContentPolicyMaxFindingsPerInfoType {
 
   final DataLossPreventionContentPolicyCustomInfoTypesInfoType? infoType;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_findings': maxFindings.toTfJson(),
     'info_type': ?infoType?.encode(),
@@ -498,6 +514,7 @@ final class DataLossPreventionContentPolicyMinLikelihoodPerInfoType {
   final DataLossPreventionContentPolicyMinLikelihoodPerInfoTypeInfoType?
   infoType;
 
+  @internal
   Map<String, Object?> encode() => {
     'min_likelihood': minLikelihood.toTfJson(),
     'info_type': ?infoType?.encode(),
@@ -517,6 +534,7 @@ final class DataLossPreventionContentPolicyMinLikelihoodPerInfoTypeInfoType {
 
   final TfArg<String>? version;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'version': ?version?.toTfJson(),
@@ -536,6 +554,7 @@ final class DataLossPreventionContentPolicyRuleSet {
 
   final List<DataLossPreventionContentPolicyRuleSetRules> rules;
 
+  @internal
   Map<String, Object?> encode() => {
     'info_types': [for (final e in infoTypes) e.encode()],
     'rules': [for (final e in rules) e.encode()],
@@ -555,6 +574,7 @@ final class DataLossPreventionContentPolicyRuleSetRules {
 
   final DataLossPreventionContentPolicyHotwordRule? hotwordRule;
 
+  @internal
   Map<String, Object?> encode() => {
     'exclusion_rule': ?exclusionRule?.encode(),
     'hotword_rule': ?hotwordRule?.encode(),
@@ -583,6 +603,7 @@ final class DataLossPreventionContentPolicyExclusionRule {
 
   final DataLossPreventionContentPolicyRegex? regex;
 
+  @internal
   Map<String, Object?> encode() => {
     'matching_type': matchingType.toTfJson(),
     'dictionary': ?dictionary?.encode(),
@@ -636,6 +657,7 @@ final class DataLossPreventionContentPolicyExcludeByHotword {
 
   final DataLossPreventionContentPolicyProximity proximity;
 
+  @internal
   Map<String, Object?> encode() => {
     'hotword_regex': hotwordRegex.encode(),
     'proximity': proximity.encode(),
@@ -656,6 +678,7 @@ final class DataLossPreventionContentPolicyHotwordRegex {
 
   final TfArg<String> pattern;
 
+  @internal
   Map<String, Object?> encode() => {
     'group_indexes': ?groupIndexes?.toTfJson(),
     'pattern': pattern.toTfJson(),
@@ -676,6 +699,7 @@ final class DataLossPreventionContentPolicyProximity {
 
   final TfArg<num>? windowBefore;
 
+  @internal
   Map<String, Object?> encode() => {
     'window_after': ?windowAfter?.toTfJson(),
     'window_before': ?windowBefore?.toTfJson(),
@@ -692,6 +716,7 @@ final class DataLossPreventionContentPolicyExcludeInfoTypes {
 
   final List<DataLossPreventionContentPolicyInfoTypes> infoTypes;
 
+  @internal
   Map<String, Object?> encode() => {
     'info_types': [for (final e in infoTypes) e.encode()],
   };
@@ -714,6 +739,7 @@ final class DataLossPreventionContentPolicyHotwordRule {
 
   final DataLossPreventionContentPolicyProximity proximity;
 
+  @internal
   Map<String, Object?> encode() => {
     'hotword_regex': hotwordRegex.encode(),
     'likelihood_adjustment': likelihoodAdjustment.encode(),
@@ -734,6 +760,7 @@ final class DataLossPreventionContentPolicyLikelihoodAdjustment {
 
   final TfArg<num>? relativeLikelihood;
 
+  @internal
   Map<String, Object?> encode() => {
     'fixed_likelihood': ?fixedLikelihood?.toTfJson(),
     'relative_likelihood': ?relativeLikelihood?.toTfJson(),
@@ -784,6 +811,7 @@ final class DataLossPreventionContentPolicyLoggingConfigs {
 
   final DataLossPreventionContentPolicyLogToBigQuery? logToBigQuery;
 
+  @internal
   Map<String, Object?> encode() => {
     'log_to_big_query': ?logToBigQuery?.encode(),
   };
@@ -805,6 +833,7 @@ final class DataLossPreventionContentPolicyLogToBigQuery {
 
   final TfArg<String> tableId;
 
+  @internal
   Map<String, Object?> encode() => {
     'dataset_id': datasetId.encodeAs('dataset_id').toTfJson(),
     'project_id': projectId.toTfJson(),
@@ -825,6 +854,7 @@ final class DataLossPreventionContentPolicyRules {
 
   final List<DataLossPreventionContentPolicyConditions>? conditions;
 
+  @internal
   Map<String, Object?> encode() => {
     'action': action.encode(),
     if (conditions != null)
@@ -840,6 +870,7 @@ final class DataLossPreventionContentPolicyAction {
 
   final DataLossPreventionContentPolicyReturnVerdict? returnVerdict;
 
+  @internal
   Map<String, Object?> encode() => {
     'return_verdict': ?returnVerdict?.toTfJson(),
   };
@@ -853,6 +884,7 @@ final class DataLossPreventionContentPolicyConditions {
 
   final DataLossPreventionContentPolicyInfoTypeCondition? infoTypeCondition;
 
+  @internal
   Map<String, Object?> encode() => {
     'info_type_condition': ?infoTypeCondition?.encode(),
   };
@@ -874,6 +906,7 @@ final class DataLossPreventionContentPolicyInfoTypeCondition {
 
   final DataLossPreventionContentPolicyInfoTypeConditionInfoTypes? infoTypes;
 
+  @internal
   Map<String, Object?> encode() => {
     'min_count': ?minCount?.toTfJson(),
     'any_info_type': ?anyInfoType?.encode(),
@@ -887,6 +920,7 @@ final class DataLossPreventionContentPolicyInfoTypeCondition {
 final class DataLossPreventionContentPolicyAnyInfoType {
   const DataLossPreventionContentPolicyAnyInfoType();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -900,6 +934,7 @@ final class DataLossPreventionContentPolicyInfoTypeConditionInfoTypes {
 
   final TfArg<List<String>> infoTypeNames;
 
+  @internal
   Map<String, Object?> encode() => {
     'info_type_names': infoTypeNames.toTfJson(),
   };
@@ -915,6 +950,7 @@ final class DataLossPreventionContentPolicyUnsupportedFileType {
 
   final DataLossPreventionContentPolicyReturnVerdict? returnVerdict;
 
+  @internal
   Map<String, Object?> encode() => {
     'return_verdict': ?returnVerdict?.toTfJson(),
   };

@@ -43,6 +43,7 @@ final class MailmanagerTrafficPolicyStatement {
 
   final List<MailmanagerTrafficPolicyCondition>? condition;
 
+  @internal
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
     if (condition != null)
@@ -87,6 +88,7 @@ final class MailmanagerTrafficPolicyCondition {
 
   final List<MailmanagerTrafficPolicyTlsExpression>? tlsExpression;
 
+  @internal
   Map<String, Object?> encode() => {
     if (booleanExpression != null)
       'boolean_expression': [for (final e in booleanExpression!) e.encode()],
@@ -114,6 +116,7 @@ final class MailmanagerTrafficPolicyBooleanExpression {
 
   final List<MailmanagerTrafficPolicyBooleanExpressionEvaluate>? evaluate;
 
+  @internal
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
     if (evaluate != null) 'evaluate': [for (final e in evaluate!) e.encode()],
@@ -155,6 +158,7 @@ final class MailmanagerTrafficPolicyBooleanExpressionEvaluate {
 
   final List<MailmanagerTrafficPolicyIsInAddressList>? isInAddressList;
 
+  @internal
   Map<String, Object?> encode() => {
     if (analysis != null) 'analysis': [for (final e in analysis!) e.encode()],
     if (isInAddressList != null)
@@ -176,6 +180,7 @@ final class MailmanagerTrafficPolicyAnalysis {
 
   final TfArg<String> resultField;
 
+  @internal
   Map<String, Object?> encode() => {
     'analyzer': analyzer.toTfJson(),
     'result_field': resultField.toTfJson(),
@@ -195,6 +200,7 @@ final class MailmanagerTrafficPolicyIsInAddressList {
 
   final MailmanagerTrafficPolicyStringExpressionAttribute attribute;
 
+  @internal
   Map<String, Object?> encode() => {
     'address_lists': addressLists.toTfJson(),
     'attribute': attribute.toTfJson(),
@@ -236,6 +242,7 @@ final class MailmanagerTrafficPolicyIpExpression {
 
   final List<MailmanagerTrafficPolicyIpExpressionEvaluate>? evaluate;
 
+  @internal
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
     'values': values.toTfJson(),
@@ -275,6 +282,7 @@ final class MailmanagerTrafficPolicyIpExpressionEvaluate {
 
   final MailmanagerTrafficPolicyIpExpressionAttribute attribute;
 
+  @internal
   Map<String, Object?> encode() => {'attribute': attribute.toTfJson()};
 }
 
@@ -314,6 +322,7 @@ final class MailmanagerTrafficPolicyIpv6Expression {
 
   final List<MailmanagerTrafficPolicyIpv6ExpressionEvaluate>? evaluate;
 
+  @internal
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
     'values': values.toTfJson(),
@@ -331,6 +340,7 @@ final class MailmanagerTrafficPolicyIpv6ExpressionEvaluate {
 
   final MailmanagerTrafficPolicyIpv6ExpressionAttribute attribute;
 
+  @internal
   Map<String, Object?> encode() => {'attribute': attribute.toTfJson()};
 }
 
@@ -370,6 +380,7 @@ final class MailmanagerTrafficPolicyStringExpression {
 
   final List<MailmanagerTrafficPolicyStringExpressionEvaluate>? evaluate;
 
+  @internal
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
     'values': values.toTfJson(),
@@ -431,8 +442,10 @@ sealed class MailmanagerTrafficPolicyStringExpressionEvaluate {
   ) = MailmanagerTrafficPolicyStringExpressionEvaluateAttribute;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -443,9 +456,11 @@ final class MailmanagerTrafficPolicyStringExpressionEvaluateAnalysis
 
   final List<MailmanagerTrafficPolicyAnalysis> analysis;
 
+  @internal
   @override
   String get blockKey => 'analysis';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'analysis': [for (final e in analysis) e.encode()],
@@ -461,9 +476,11 @@ final class MailmanagerTrafficPolicyStringExpressionEvaluateAttribute
 
   final MailmanagerTrafficPolicyStringExpressionAttribute attribute;
 
+  @internal
   @override
   String get blockKey => 'attribute';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'attribute': attribute.toTfJson()};
 }
@@ -484,6 +501,7 @@ final class MailmanagerTrafficPolicyTlsExpression {
 
   final List<MailmanagerTrafficPolicyTlsExpressionEvaluate>? evaluate;
 
+  @internal
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
     'value': value.toTfJson(),
@@ -541,6 +559,7 @@ final class MailmanagerTrafficPolicyTlsExpressionEvaluate {
 
   final MailmanagerTrafficPolicyTlsExpressionAttribute attribute;
 
+  @internal
   Map<String, Object?> encode() => {'attribute': attribute.toTfJson()};
 }
 

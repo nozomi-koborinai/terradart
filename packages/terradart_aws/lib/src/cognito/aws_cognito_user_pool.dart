@@ -157,12 +157,15 @@ sealed class CognitoUserPoolSignInAttributes {
   ) = CognitoUserPoolSignInAttributesUsernameAttributes;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -173,14 +176,17 @@ final class CognitoUserPoolSignInAttributesAliasAttributes
 
   final List<CognitoUserPoolAliasAttributes> aliasAttributes;
 
+  @internal
   @override
   String get blockKey => 'alias_attributes';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'alias_attributes': [for (final e in aliasAttributes) e.toTfJson()],
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'alias_attributes': TfArg.literal([
@@ -198,14 +204,17 @@ final class CognitoUserPoolSignInAttributesUsernameAttributes
 
   final List<CognitoUserPoolUsernameAttributes> usernameAttributes;
 
+  @internal
   @override
   String get blockKey => 'username_attributes';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'username_attributes': [for (final e in usernameAttributes) e.toTfJson()],
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'username_attributes': TfArg.literal([
@@ -222,6 +231,7 @@ final class CognitoUserPoolAccountRecoverySetting {
 
   final List<CognitoUserPoolRecoveryMechanism>? recoveryMechanism;
 
+  @internal
   Map<String, Object?> encode() => {
     if (recoveryMechanism != null)
       'recovery_mechanism': [for (final e in recoveryMechanism!) e.encode()],
@@ -241,6 +251,7 @@ final class CognitoUserPoolRecoveryMechanism {
 
   final TfArg<num> priority;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'priority': priority.toTfJson(),
@@ -287,6 +298,7 @@ final class CognitoUserPoolAdminCreateUserConfig {
 
   final CognitoUserPoolInviteMessageTemplate? inviteMessageTemplate;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_admin_create_user_only': ?allowAdminCreateUserOnly?.toTfJson(),
     'invite_message_template': ?inviteMessageTemplate?.encode(),
@@ -309,6 +321,7 @@ final class CognitoUserPoolInviteMessageTemplate {
 
   final TfArg<String>? smsMessage;
 
+  @internal
   Map<String, Object?> encode() => {
     'email_message': ?emailMessage?.toTfJson(),
     'email_subject': ?emailSubject?.toTfJson(),
@@ -329,6 +342,7 @@ final class CognitoUserPoolDeviceConfiguration {
 
   final TfArg<bool>? deviceOnlyRememberedOnUserPrompt;
 
+  @internal
   Map<String, Object?> encode() => {
     'challenge_required_on_new_device': ?challengeRequiredOnNewDevice
         ?.toTfJson(),
@@ -359,6 +373,7 @@ final class CognitoUserPoolEmailConfiguration {
 
   final TfArg<String>? sourceArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'configuration_set': ?configurationSet?.toTfJson(),
     'email_sending_account': ?emailSendingAccount?.toTfJson(),
@@ -400,6 +415,7 @@ final class CognitoUserPoolEmailMfaConfiguration {
 
   final TfArg<String>? subject;
 
+  @internal
   Map<String, Object?> encode() => {
     'message': ?message?.toTfJson(),
     'subject': ?subject?.toTfJson(),
@@ -455,6 +471,7 @@ final class CognitoUserPoolLambdaConfig {
 
   final CognitoUserPoolPreTokenGenerationConfig? preTokenGenerationConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'create_auth_challenge': ?createAuthChallenge?.toTfJson(),
     'custom_message': ?customMessage?.toTfJson(),
@@ -486,6 +503,7 @@ final class CognitoUserPoolCustomEmailSender {
 
   final CognitoUserPoolCustomEmailSenderLambdaVersion lambdaVersion;
 
+  @internal
   Map<String, Object?> encode() => {
     'lambda_arn': lambdaArn.encodeAs('arn').toTfJson(),
     'lambda_version': lambdaVersion.toTfJson(),
@@ -525,6 +543,7 @@ final class CognitoUserPoolCustomSmsSender {
 
   final CognitoUserPoolCustomEmailSenderLambdaVersion lambdaVersion;
 
+  @internal
   Map<String, Object?> encode() => {
     'lambda_arn': lambdaArn.encodeAs('arn').toTfJson(),
     'lambda_version': lambdaVersion.toTfJson(),
@@ -544,6 +563,7 @@ final class CognitoUserPoolPreTokenGenerationConfig {
 
   final CognitoUserPoolPreTokenGenerationConfigLambdaVersion lambdaVersion;
 
+  @internal
   Map<String, Object?> encode() => {
     'lambda_arn': lambdaArn.encodeAs('arn').toTfJson(),
     'lambda_version': lambdaVersion.toTfJson(),
@@ -605,6 +625,7 @@ final class CognitoUserPoolPasswordPolicy {
 
   final TfArg<num>? temporaryPasswordValidityDays;
 
+  @internal
   Map<String, Object?> encode() => {
     'minimum_length': ?minimumLength?.toTfJson(),
     'password_history_size': ?passwordHistorySize?.toTfJson(),
@@ -645,6 +666,7 @@ final class CognitoUserPoolSchema {
 
   final CognitoUserPoolStringAttributeConstraints? stringAttributeConstraints;
 
+  @internal
   Map<String, Object?> encode() => {
     'attribute_data_type': attributeDataType.toTfJson(),
     'developer_only_attribute': ?developerOnlyAttribute?.toTfJson(),
@@ -699,6 +721,7 @@ final class CognitoUserPoolNumberAttributeConstraints {
 
   final TfArg<String>? minValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_value': ?maxValue?.toTfJson(),
     'min_value': ?minValue?.toTfJson(),
@@ -718,6 +741,7 @@ final class CognitoUserPoolStringAttributeConstraints {
 
   final TfArg<String>? minLength;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_length': ?maxLength?.toTfJson(),
     'min_length': ?minLength?.toTfJson(),
@@ -732,6 +756,7 @@ final class CognitoUserPoolSignInPolicy {
 
   final List<CognitoUserPoolAllowedFirstAuthFactors>? allowedFirstAuthFactors;
 
+  @internal
   Map<String, Object?> encode() => {
     if (allowedFirstAuthFactors != null)
       'allowed_first_auth_factors': [
@@ -791,6 +816,7 @@ final class CognitoUserPoolSmsConfiguration {
 
   final TfArg<String>? snsRegion;
 
+  @internal
   Map<String, Object?> encode() => {
     'external_id': externalId.toTfJson(),
     'sns_caller_arn': snsCallerArn.toTfJson(),
@@ -806,6 +832,7 @@ final class CognitoUserPoolSoftwareTokenMfaConfiguration {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 
@@ -820,6 +847,7 @@ final class CognitoUserPoolUserAttributeUpdateSettings {
   final List<CognitoUserPoolAttributesRequireVerificationBeforeUpdate>
   attributesRequireVerificationBeforeUpdate;
 
+  @internal
   Map<String, Object?> encode() => {
     'attributes_require_verification_before_update': [
       for (final e in attributesRequireVerificationBeforeUpdate) e.toTfJson(),
@@ -867,6 +895,7 @@ final class CognitoUserPoolAddOns {
   final CognitoUserPoolAdvancedSecurityAdditionalFlows?
   advancedSecurityAdditionalFlows;
 
+  @internal
   Map<String, Object?> encode() => {
     'advanced_security_mode': advancedSecurityMode.toTfJson(),
     'advanced_security_additional_flows': ?advancedSecurityAdditionalFlows
@@ -907,6 +936,7 @@ final class CognitoUserPoolAdvancedSecurityAdditionalFlows {
 
   final CognitoUserPoolCustomAuthMode? customAuthMode;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_auth_mode': ?customAuthMode?.toTfJson(),
   };
@@ -937,6 +967,7 @@ final class CognitoUserPoolUsernameConfiguration {
 
   final TfArg<bool>? caseSensitive;
 
+  @internal
   Map<String, Object?> encode() => {
     'case_sensitive': ?caseSensitive?.toTfJson(),
   };
@@ -967,6 +998,7 @@ final class CognitoUserPoolVerificationMessageTemplate {
 
   final TfArg<String>? smsMessage;
 
+  @internal
   Map<String, Object?> encode() => {
     'default_email_option': ?defaultEmailOption?.toTfJson(),
     'email_message': ?emailMessage?.toTfJson(),
@@ -1012,6 +1044,7 @@ final class CognitoUserPoolWebAuthnConfiguration {
 
   final CognitoUserPoolUserVerification? userVerification;
 
+  @internal
   Map<String, Object?> encode() => {
     'relying_party_id': ?relyingPartyId?.toTfJson(),
     'user_verification': ?userVerification?.toTfJson(),

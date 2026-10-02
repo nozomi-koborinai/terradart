@@ -167,6 +167,7 @@ final class ComputeRegionSecurityPolicyRuleNetworkMatch {
   final List<ComputeRegionSecurityPolicyRuleUserDefinedFields>?
   userDefinedFields;
 
+  @internal
   Map<String, Object?> encode() => {
     'dest_ip_ranges': ?destIpRanges?.toTfJson(),
     'dest_ports': ?destPorts?.toTfJson(),
@@ -193,6 +194,7 @@ final class ComputeRegionSecurityPolicyRuleUserDefinedFields {
 
   final TfArg<List<String>>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'values': ?values?.toTfJson(),

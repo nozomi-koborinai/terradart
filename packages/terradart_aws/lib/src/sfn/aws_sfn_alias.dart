@@ -20,6 +20,7 @@ final class SfnAliasRoutingConfiguration {
 
   final TfArg<num> weight;
 
+  @internal
   Map<String, Object?> encode() => {
     'state_machine_version_arn': stateMachineVersionArn.toTfJson(),
     'weight': weight.toTfJson(),

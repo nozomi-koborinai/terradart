@@ -60,6 +60,7 @@ final class GlueCatalogTableOptimizerConfiguration {
   final List<GlueCatalogTableOptimizerRetentionConfiguration>?
   retentionConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
@@ -91,6 +92,7 @@ final class GlueCatalogTableOptimizerCompactionConfiguration {
   >?
   icebergConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     if (icebergConfiguration != null)
       'iceberg_configuration': [
@@ -115,6 +117,7 @@ final class GlueCatalogTableOptimizerCompactionConfigurationIcebergConfiguration
 
   final GlueCatalogTableOptimizerStrategy? strategy;
 
+  @internal
   Map<String, Object?> encode() => {
     'delete_file_threshold': ?deleteFileThreshold?.toTfJson(),
     'min_input_files': ?minInputFiles?.toTfJson(),
@@ -159,6 +162,7 @@ final class GlueCatalogTableOptimizerOrphanFileDeletionConfiguration {
   >?
   icebergConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     if (icebergConfiguration != null)
       'iceberg_configuration': [
@@ -183,6 +187,7 @@ final class GlueCatalogTableOptimizerOrphanFileDeletionConfigurationIcebergConfi
 
   final TfArg<num>? runRateInHours;
 
+  @internal
   Map<String, Object?> encode() => {
     'location': ?location?.toTfJson(),
     'orphan_file_retention_period_in_days': ?orphanFileRetentionPeriodInDays
@@ -204,6 +209,7 @@ final class GlueCatalogTableOptimizerRetentionConfiguration {
   >?
   icebergConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     if (icebergConfiguration != null)
       'iceberg_configuration': [
@@ -231,6 +237,7 @@ final class GlueCatalogTableOptimizerRetentionConfigurationIcebergConfiguration 
 
   final TfArg<num>? snapshotRetentionPeriodInDays;
 
+  @internal
   Map<String, Object?> encode() => {
     'clean_expired_files': ?cleanExpiredFiles?.toTfJson(),
     'number_of_snapshots_to_retain': ?numberOfSnapshotsToRetain?.toTfJson(),

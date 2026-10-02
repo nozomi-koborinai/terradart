@@ -4,7 +4,6 @@
 /// Cloud Run + Cloud SQL + Agent Platform surface in Dart.
 library;
 
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_time/terradart_time.dart';
 

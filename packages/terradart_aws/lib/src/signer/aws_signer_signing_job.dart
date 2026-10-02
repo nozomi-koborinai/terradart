@@ -17,6 +17,7 @@ final class SignerSigningJobDestination {
 
   final SignerSigningJobDestinationS3 s3;
 
+  @internal
   Map<String, Object?> encode() => {'s3': s3.encode()};
 }
 
@@ -30,6 +31,7 @@ final class SignerSigningJobDestinationS3 {
 
   final TfArg<String>? prefix;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('id').toTfJson(),
     'prefix': ?prefix?.toTfJson(),
@@ -44,6 +46,7 @@ final class SignerSigningJobSource {
 
   final SignerSigningJobSourceS3 s3;
 
+  @internal
   Map<String, Object?> encode() => {'s3': s3.encode()};
 }
 
@@ -63,6 +66,7 @@ final class SignerSigningJobSourceS3 {
 
   final TfArg<String> version;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('id').toTfJson(),
     'key': key.toTfJson(),

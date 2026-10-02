@@ -5,6 +5,7 @@
 /// Hive catalogs, and their resource IAM.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/biglake/google_biglake_catalog.dart' show GoogleBiglakeCatalog;
 export 'src/biglake/google_biglake_database.dart'
     show BiglakeDatabaseHiveOptions, GoogleBiglakeDatabase;
@@ -109,3 +110,15 @@ export 'src/biglake/google_biglake_table.dart'
         BiglakeTableSerdeInfo,
         BiglakeTableStorageDescriptor,
         GoogleBiglakeTable;
+export 'src/data/google_biglake_hive_catalog_iam_policy.dart'
+    show DataGoogleBiglakeHiveCatalogIamPolicy;
+export 'src/data/google_biglake_hive_database_iam_policy.dart'
+    show DataGoogleBiglakeHiveDatabaseIamPolicy;
+export 'src/data/google_biglake_hive_table_iam_policy.dart'
+    show DataGoogleBiglakeHiveTableIamPolicy;
+export 'src/data/google_biglake_iceberg_catalog_iam_policy.dart'
+    show DataGoogleBiglakeIcebergCatalogIamPolicy;
+export 'src/data/google_biglake_iceberg_namespace_iam_policy.dart'
+    show DataGoogleBiglakeIcebergNamespaceIamPolicy;
+export 'src/data/google_biglake_iceberg_table_iam_policy.dart'
+    show DataGoogleBiglakeIcebergTableIamPolicy;

@@ -35,6 +35,7 @@ final class DataformRepositoryWorkflowConfigInvocationConfig {
 
   final List<DataformRepositoryWorkflowConfigIncludedTargets>? includedTargets;
 
+  @internal
   Map<String, Object?> encode() => {
     'fully_refresh_incremental_tables_enabled':
         ?fullyRefreshIncrementalTablesEnabled?.toTfJson(),
@@ -64,6 +65,7 @@ final class DataformRepositoryWorkflowConfigIncludedTargets {
 
   final TfArg<String>? schema;
 
+  @internal
   Map<String, Object?> encode() => {
     'database': ?database?.toTfJson(),
     'name': ?name?.toTfJson(),

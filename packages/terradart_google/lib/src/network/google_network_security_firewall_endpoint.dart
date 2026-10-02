@@ -15,6 +15,7 @@ final class NetworkSecurityFirewallEndpointSettings {
 
   final TfArg<bool>? jumboFramesEnabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'jumbo_frames_enabled': ?jumboFramesEnabled?.toTfJson(),
   };

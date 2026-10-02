@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `aws_db_proxy_target`.
@@ -24,12 +25,15 @@ sealed class DbProxyTargetDatabase {
   ) = DbProxyTargetDatabaseDbInstanceIdentifier;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -40,14 +44,17 @@ final class DbProxyTargetDatabaseDbClusterIdentifier
 
   final TfArg<String> dbClusterIdentifier;
 
+  @internal
   @override
   String get blockKey => 'db_cluster_identifier';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'db_cluster_identifier': dbClusterIdentifier.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'db_cluster_identifier': dbClusterIdentifier,
@@ -61,14 +68,17 @@ final class DbProxyTargetDatabaseDbInstanceIdentifier
 
   final TfArg<String> dbInstanceIdentifier;
 
+  @internal
   @override
   String get blockKey => 'db_instance_identifier';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'db_instance_identifier': dbInstanceIdentifier.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'db_instance_identifier': dbInstanceIdentifier,

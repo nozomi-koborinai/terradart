@@ -1,4 +1,4 @@
-/// End-to-end test: every curated factory + GoogleProject in one stack,
+/// End-to-end test: every curated factory + DataGoogleProject in one stack,
 /// synthed and matched against `test/golden/full_stack.tf.json`.
 ///
 /// `terraform validate` is intentionally NOT invoked here — that belongs in
@@ -9,7 +9,6 @@ library;
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/terradart_google.dart';
 import 'package:test/test.dart';
 
@@ -17,13 +16,13 @@ import '_helpers.dart';
 
 void main() {
   test(
-    'all 9 curated resources + GoogleProject synth into a single tf.json',
+    'all 9 curated resources + DataGoogleProject synth into a single tf.json',
     () async {
       final stack = TestStack(
         providers: const [GoogleProvider(project: 'demo')],
       );
 
-      stack.add(GoogleProject('current'));
+      stack.add(DataGoogleProject('current'));
 
       final ordersTopic = stack.add(
         GooglePubsubTopic(

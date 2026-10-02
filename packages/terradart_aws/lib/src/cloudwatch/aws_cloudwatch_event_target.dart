@@ -33,12 +33,15 @@ sealed class CloudwatchEventTargetInput {
   ) = CloudwatchEventTargetInputTransformerChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -49,12 +52,15 @@ final class CloudwatchEventTargetInputChoice
 
   final TfArg<String> input;
 
+  @internal
   @override
   String get blockKey => 'input';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'input': input.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'input': input};
 }
@@ -65,12 +71,15 @@ final class CloudwatchEventTargetInputPath extends CloudwatchEventTargetInput {
 
   final TfArg<String> inputPath;
 
+  @internal
   @override
   String get blockKey => 'input_path';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'input_path': inputPath.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'input_path': inputPath};
 }
@@ -82,14 +91,17 @@ final class CloudwatchEventTargetInputTransformerChoice
 
   final CloudwatchEventTargetInputTransformer inputTransformer;
 
+  @internal
   @override
   String get blockKey => 'input_transformer';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'input_transformer': inputTransformer.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'input_transformer': TfArg.literal(inputTransformer.encode()),
@@ -104,6 +116,7 @@ final class CloudwatchEventTargetAppsyncTarget {
 
   final TfArg<String>? graphqlOperation;
 
+  @internal
   Map<String, Object?> encode() => {
     'graphql_operation': ?graphqlOperation?.toTfJson(),
   };
@@ -128,6 +141,7 @@ final class CloudwatchEventTargetBatchTarget {
 
   final TfArg<String> jobName;
 
+  @internal
   Map<String, Object?> encode() => {
     'array_size': ?arraySize?.toTfJson(),
     'job_attempts': ?jobAttempts?.toTfJson(),
@@ -144,6 +158,7 @@ final class CloudwatchEventTargetDeadLetterConfig {
 
   final TfArg<String>? arn;
 
+  @internal
   Map<String, Object?> encode() => {'arn': ?arn?.toTfJson()};
 }
 
@@ -195,6 +210,7 @@ final class CloudwatchEventTargetEcsTarget {
 
   final List<CloudwatchEventTargetPlacementConstraint>? placementConstraint;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_ecs_managed_tags': ?enableEcsManagedTags?.toTfJson(),
     'enable_execute_command': ?enableExecuteCommand?.toTfJson(),
@@ -279,6 +295,7 @@ final class CloudwatchEventTargetCapacityProviderStrategy {
 
   final TfArg<num>? weight;
 
+  @internal
   Map<String, Object?> encode() => {
     'base': ?base?.toTfJson(),
     'capacity_provider': capacityProvider.toTfJson(),
@@ -302,6 +319,7 @@ final class CloudwatchEventTargetNetworkConfiguration {
 
   final TfArg<List<RefTo<AwsSubnet>>> subnets;
 
+  @internal
   Map<String, Object?> encode() => {
     'assign_public_ip': ?assignPublicIp?.toTfJson(),
     'security_groups': ?securityGroups?.encodeAs('id').toTfJson(),
@@ -322,6 +340,7 @@ final class CloudwatchEventTargetOrderedPlacementStrategy {
 
   final CloudwatchEventTargetOrderedPlacementStrategyType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'field': ?field?.toTfJson(),
     'type': type.toTfJson(),
@@ -366,6 +385,7 @@ final class CloudwatchEventTargetPlacementConstraint {
 
   final CloudwatchEventTargetPlacementConstraintType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'expression': ?expression?.toTfJson(),
     'type': type.toTfJson(),
@@ -413,6 +433,7 @@ final class CloudwatchEventTargetHttpTarget {
 
   final TfArg<Map<String, String>>? queryStringParameters;
 
+  @internal
   Map<String, Object?> encode() => {
     'header_parameters': ?headerParameters?.toTfJson(),
     'path_parameter_values': ?pathParameterValues?.toTfJson(),
@@ -433,6 +454,7 @@ final class CloudwatchEventTargetInputTransformer {
 
   final TfArg<String> inputTemplate;
 
+  @internal
   Map<String, Object?> encode() => {
     'input_paths': ?inputPaths?.toTfJson(),
     'input_template': inputTemplate.toTfJson(),
@@ -447,6 +469,7 @@ final class CloudwatchEventTargetKinesisTarget {
 
   final TfArg<String>? partitionKeyPath;
 
+  @internal
   Map<String, Object?> encode() => {
     'partition_key_path': ?partitionKeyPath?.toTfJson(),
   };
@@ -477,6 +500,7 @@ final class CloudwatchEventTargetRedshiftTarget {
 
   final TfArg<bool>? withEvent;
 
+  @internal
   Map<String, Object?> encode() => {
     'database': database.toTfJson(),
     'db_user': ?dbUser?.toTfJson(),
@@ -500,6 +524,7 @@ final class CloudwatchEventTargetRetryPolicy {
 
   final TfArg<num>? maximumRetryAttempts;
 
+  @internal
   Map<String, Object?> encode() => {
     'maximum_event_age_in_seconds': ?maximumEventAgeInSeconds?.toTfJson(),
     'maximum_retry_attempts': ?maximumRetryAttempts?.toTfJson(),
@@ -519,6 +544,7 @@ final class CloudwatchEventTargetRunCommandTargets {
 
   final TfArg<List<String>> values;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'values': values.toTfJson(),
@@ -535,6 +561,7 @@ final class CloudwatchEventTargetSagemakerPipelineTarget {
 
   final List<CloudwatchEventTargetPipelineParameterList>? pipelineParameterList;
 
+  @internal
   Map<String, Object?> encode() => {
     if (pipelineParameterList != null)
       'pipeline_parameter_list': [
@@ -556,6 +583,7 @@ final class CloudwatchEventTargetPipelineParameterList {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'value': value.toTfJson(),
@@ -570,6 +598,7 @@ final class CloudwatchEventTargetSqsTarget {
 
   final TfArg<String>? messageGroupId;
 
+  @internal
   Map<String, Object?> encode() => {
     'message_group_id': ?messageGroupId?.toTfJson(),
   };

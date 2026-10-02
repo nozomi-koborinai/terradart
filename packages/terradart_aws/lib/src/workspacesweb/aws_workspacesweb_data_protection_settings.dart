@@ -27,6 +27,7 @@ final class WorkspaceswebDataProtectionSettingsInlineRedactionConfiguration {
   final List<WorkspaceswebDataProtectionSettingsInlineRedactionPattern>?
   inlineRedactionPattern;
 
+  @internal
   Map<String, Object?> encode() => {
     'global_confidence_level': ?globalConfidenceLevel?.toTfJson(),
     'global_enforced_urls': ?globalEnforcedUrls?.toTfJson(),
@@ -64,6 +65,7 @@ final class WorkspaceswebDataProtectionSettingsInlineRedactionPattern {
   final List<WorkspaceswebDataProtectionSettingsRedactionPlaceHolder>?
   redactionPlaceHolder;
 
+  @internal
   Map<String, Object?> encode() => {
     'built_in_pattern_id': ?builtInPatternId?.toTfJson(),
     'confidence_level': ?confidenceLevel?.toTfJson(),
@@ -97,6 +99,7 @@ final class WorkspaceswebDataProtectionSettingsCustomPattern {
 
   final TfArg<String> patternRegex;
 
+  @internal
   Map<String, Object?> encode() => {
     'keyword_regex': ?keywordRegex?.toTfJson(),
     'pattern_description': ?patternDescription?.toTfJson(),
@@ -119,6 +122,7 @@ final class WorkspaceswebDataProtectionSettingsRedactionPlaceHolder {
   final WorkspaceswebDataProtectionSettingsRedactionPlaceHolderType
   redactionPlaceHolderType;
 
+  @internal
   Map<String, Object?> encode() => {
     'redaction_place_holder_text': ?redactionPlaceHolderText?.toTfJson(),
     'redaction_place_holder_type': redactionPlaceHolderType.toTfJson(),

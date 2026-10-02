@@ -90,12 +90,15 @@ sealed class ZeroTrustAccessApplicationTargets {
   ) = ZeroTrustAccessApplicationTargetsDestinations;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -108,14 +111,17 @@ final class ZeroTrustAccessApplicationTargetsSelfHostedDomains
 
   final TfArg<List<String>> selfHostedDomains;
 
+  @internal
   @override
   String get blockKey => 'self_hosted_domains';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'self_hosted_domains': selfHostedDomains.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'self_hosted_domains': selfHostedDomains,
@@ -129,14 +135,17 @@ final class ZeroTrustAccessApplicationTargetsDestinations
 
   final List<ZeroTrustAccessApplicationDestinations> destinations;
 
+  @internal
   @override
   String get blockKey => 'destinations';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'destinations': [for (final e in destinations) e.encode()],
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'destinations': TfArg.literal([for (final e in destinations) e.encode()]),
@@ -165,6 +174,7 @@ final class ZeroTrustAccessApplicationCorsHeaders {
 
   final TfArg<num>? maxAge;
 
+  @internal
   Map<String, Object?> encode() => {
     ...?requestHeaders?.encode(),
     ...methods.encode(),
@@ -192,8 +202,10 @@ sealed class ZeroTrustAccessApplicationMethods {
   ) = ZeroTrustAccessApplicationAllowedMethodsChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -204,9 +216,11 @@ final class ZeroTrustAccessApplicationAllowAllMethods
 
   final TfArg<bool> allowAllMethods;
 
+  @internal
   @override
   String get blockKey => 'allow_all_methods';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'allow_all_methods': allowAllMethods.toTfJson(),
@@ -220,9 +234,11 @@ final class ZeroTrustAccessApplicationAllowedMethodsChoice
 
   final List<ZeroTrustAccessApplicationAllowedMethods> allowedMethods;
 
+  @internal
   @override
   String get blockKey => 'allowed_methods';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'allowed_methods': [for (final e in allowedMethods) e.toTfJson()],
@@ -247,8 +263,10 @@ sealed class ZeroTrustAccessApplicationOrigins {
   ) = ZeroTrustAccessApplicationAllowedOrigins;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -259,9 +277,11 @@ final class ZeroTrustAccessApplicationAllowAllOrigins
 
   final TfArg<bool> allowAllOrigins;
 
+  @internal
   @override
   String get blockKey => 'allow_all_origins';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'allow_all_origins': allowAllOrigins.toTfJson(),
@@ -275,9 +295,11 @@ final class ZeroTrustAccessApplicationAllowedOrigins
 
   final TfArg<List<String>> allowedOrigins;
 
+  @internal
   @override
   String get blockKey => 'allowed_origins';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'allowed_origins': allowedOrigins.toTfJson(),
@@ -303,8 +325,10 @@ sealed class ZeroTrustAccessApplicationRequestHeaders {
   ) = ZeroTrustAccessApplicationRequestHeadersAllowedHeaders;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -317,9 +341,11 @@ final class ZeroTrustAccessApplicationRequestHeadersAllowAllHeaders
 
   final TfArg<bool> allowAllHeaders;
 
+  @internal
   @override
   String get blockKey => 'allow_all_headers';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'allow_all_headers': allowAllHeaders.toTfJson(),
@@ -335,9 +361,11 @@ final class ZeroTrustAccessApplicationRequestHeadersAllowedHeaders
 
   final TfArg<List<String>> allowedHeaders;
 
+  @internal
   @override
   String get blockKey => 'allowed_headers';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'allowed_headers': allowedHeaders.toTfJson(),
@@ -429,6 +457,7 @@ final class ZeroTrustAccessApplicationDestinations {
 
   final TfArg<String>? workerId;
 
+  @internal
   Map<String, Object?> encode() => {
     'cidr': ?cidr?.toTfJson(),
     'hostname': ?hostname?.toTfJson(),
@@ -520,6 +549,7 @@ final class ZeroTrustAccessApplicationFooterLinks {
 
   final TfArg<String> url;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'url': url.toTfJson(),
@@ -548,6 +578,7 @@ final class ZeroTrustAccessApplicationLandingPageDesign {
 
   final TfArg<String>? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'button_color': ?buttonColor?.toTfJson(),
     'button_text_color': ?buttonTextColor?.toTfJson(),
@@ -574,6 +605,7 @@ final class ZeroTrustAccessApplicationMfaConfig {
 
   final TfArg<String>? sessionDuration;
 
+  @internal
   Map<String, Object?> encode() => {
     if (allowedAuthenticators != null)
       'allowed_authenticators': [
@@ -629,6 +661,7 @@ final class ZeroTrustAccessApplicationOauthConfiguration {
 
   final ZeroTrustAccessApplicationGrant? grant;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'dynamic_client_registration': ?dynamicClientRegistration?.encode(),
@@ -655,6 +688,7 @@ final class ZeroTrustAccessApplicationDynamicClientRegistration {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_any_on_localhost': ?allowAnyOnLocalhost?.toTfJson(),
     'allow_any_on_loopback': ?allowAnyOnLoopback?.toTfJson(),
@@ -676,6 +710,7 @@ final class ZeroTrustAccessApplicationGrant {
 
   final TfArg<String>? sessionDuration;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_token_lifetime': ?accessTokenLifetime?.toTfJson(),
     'session_duration': ?sessionDuration?.toTfJson(),
@@ -713,6 +748,7 @@ final class ZeroTrustAccessApplicationPolicies {
 
   final List<ZeroTrustAccessApplicationRequire>? require;
 
+  @internal
   Map<String, Object?> encode() => {
     'decision': ?decision?.toTfJson(),
     ...policy.encode(),
@@ -742,8 +778,10 @@ sealed class ZeroTrustAccessApplicationPolicy {
   ) = ZeroTrustAccessApplicationPolicyInclude;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -754,9 +792,11 @@ final class ZeroTrustAccessApplicationPolicyId
 
   final TfArg<String> id;
 
+  @internal
   @override
   String get blockKey => 'id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'id': id.toTfJson()};
 }
@@ -768,9 +808,11 @@ final class ZeroTrustAccessApplicationPolicyInclude
 
   final List<ZeroTrustAccessApplicationInclude> include;
 
+  @internal
   @override
   String get blockKey => 'include';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'include': [for (final e in include) e.encode()],
@@ -817,6 +859,7 @@ final class ZeroTrustAccessApplicationConnectionRules {
 
   final ZeroTrustAccessApplicationSsh? ssh;
 
+  @internal
   Map<String, Object?> encode() => {
     'rdp': ?rdp?.encode(),
     'ssh': ?ssh?.encode(),
@@ -838,6 +881,7 @@ final class ZeroTrustAccessApplicationRdp {
   final List<ZeroTrustAccessApplicationAllowedClipboardRemoteToLocalFormats>?
   allowedClipboardRemoteToLocalFormats;
 
+  @internal
   Map<String, Object?> encode() => {
     if (allowedClipboardLocalToRemoteFormats != null)
       'allowed_clipboard_local_to_remote_formats': [
@@ -921,6 +965,7 @@ final class ZeroTrustAccessApplicationSsh {
 
   final TfArg<List<String>> usernames;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_email_alias': ?allowEmailAlias?.toTfJson(),
     'usernames': usernames.toTfJson(),
@@ -1006,6 +1051,7 @@ final class ZeroTrustAccessApplicationExclude {
 
   final ZeroTrustAccessApplicationServiceToken? serviceToken;
 
+  @internal
   Map<String, Object?> encode() => {
     'any_valid_service_token': ?anyValidServiceToken?.encode(),
     'auth_context': ?authContext?.encode(),
@@ -1041,6 +1087,7 @@ final class ZeroTrustAccessApplicationExclude {
 final class ZeroTrustAccessApplicationAnyValidServiceToken {
   const ZeroTrustAccessApplicationAnyValidServiceToken();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -1061,6 +1108,7 @@ final class ZeroTrustAccessApplicationAuthContext {
 
   final TfArg<String> identityProviderId;
 
+  @internal
   Map<String, Object?> encode() => {
     'ac_id': acId.toTfJson(),
     'id': id.toTfJson(),
@@ -1077,6 +1125,7 @@ final class ZeroTrustAccessApplicationAuthMethod {
 
   final TfArg<String> authMethod;
 
+  @internal
   Map<String, Object?> encode() => {'auth_method': authMethod.toTfJson()};
 }
 
@@ -1094,6 +1143,7 @@ final class ZeroTrustAccessApplicationAzureAd {
 
   final TfArg<String> identityProviderId;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
     'identity_provider_id': identityProviderId.toTfJson(),
@@ -1107,6 +1157,7 @@ final class ZeroTrustAccessApplicationAzureAd {
 final class ZeroTrustAccessApplicationCertificate {
   const ZeroTrustAccessApplicationCertificate();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -1119,6 +1170,7 @@ final class ZeroTrustAccessApplicationCommonName {
 
   final TfArg<String> commonName;
 
+  @internal
   Map<String, Object?> encode() => {'common_name': commonName.toTfJson()};
 }
 
@@ -1131,6 +1183,7 @@ final class ZeroTrustAccessApplicationDevicePosture {
 
   final TfArg<String> integrationUid;
 
+  @internal
   Map<String, Object?> encode() => {
     'integration_uid': integrationUid.toTfJson(),
   };
@@ -1145,6 +1198,7 @@ final class ZeroTrustAccessApplicationEmail {
 
   final TfArg<String> email;
 
+  @internal
   Map<String, Object?> encode() => {'email': email.toTfJson()};
 }
 
@@ -1157,6 +1211,7 @@ final class ZeroTrustAccessApplicationEmailDomain {
 
   final TfArg<String> domain;
 
+  @internal
   Map<String, Object?> encode() => {'domain': domain.toTfJson()};
 }
 
@@ -1169,6 +1224,7 @@ final class ZeroTrustAccessApplicationEmailList {
 
   final TfArg<String> id;
 
+  @internal
   Map<String, Object?> encode() => {'id': id.toTfJson()};
 }
 
@@ -1179,6 +1235,7 @@ final class ZeroTrustAccessApplicationEmailList {
 final class ZeroTrustAccessApplicationEveryone {
   const ZeroTrustAccessApplicationEveryone();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -1196,6 +1253,7 @@ final class ZeroTrustAccessApplicationExternalEvaluation {
 
   final TfArg<String> keysUrl;
 
+  @internal
   Map<String, Object?> encode() => {
     'evaluate_url': evaluateUrl.toTfJson(),
     'keys_url': keysUrl.toTfJson(),
@@ -1211,6 +1269,7 @@ final class ZeroTrustAccessApplicationGeo {
 
   final TfArg<String> countryCode;
 
+  @internal
   Map<String, Object?> encode() => {'country_code': countryCode.toTfJson()};
 }
 
@@ -1231,6 +1290,7 @@ final class ZeroTrustAccessApplicationGithubOrganization {
 
   final TfArg<String>? team;
 
+  @internal
   Map<String, Object?> encode() => {
     'identity_provider_id': identityProviderId.toTfJson(),
     'name': name.toTfJson(),
@@ -1247,6 +1307,7 @@ final class ZeroTrustAccessApplicationGroup {
 
   final TfArg<String> id;
 
+  @internal
   Map<String, Object?> encode() => {'id': id.toTfJson()};
 }
 
@@ -1264,6 +1325,7 @@ final class ZeroTrustAccessApplicationGsuite {
 
   final TfArg<String> identityProviderId;
 
+  @internal
   Map<String, Object?> encode() => {
     'email': email.toTfJson(),
     'identity_provider_id': identityProviderId.toTfJson(),
@@ -1279,6 +1341,7 @@ final class ZeroTrustAccessApplicationIp {
 
   final TfArg<String> ip;
 
+  @internal
   Map<String, Object?> encode() => {'ip': ip.toTfJson()};
 }
 
@@ -1291,6 +1354,7 @@ final class ZeroTrustAccessApplicationIpList {
 
   final TfArg<String> id;
 
+  @internal
   Map<String, Object?> encode() => {'id': id.toTfJson()};
 }
 
@@ -1303,6 +1367,7 @@ final class ZeroTrustAccessApplicationLinkedAppToken {
 
   final TfArg<String> appUid;
 
+  @internal
   Map<String, Object?> encode() => {'app_uid': appUid.toTfJson()};
 }
 
@@ -1315,6 +1380,7 @@ final class ZeroTrustAccessApplicationLoginMethod {
 
   final TfArg<String> id;
 
+  @internal
   Map<String, Object?> encode() => {'id': id.toTfJson()};
 }
 
@@ -1335,6 +1401,7 @@ final class ZeroTrustAccessApplicationOidc {
 
   final TfArg<String> identityProviderId;
 
+  @internal
   Map<String, Object?> encode() => {
     'claim_name': claimName.toTfJson(),
     'claim_value': claimValue.toTfJson(),
@@ -1356,6 +1423,7 @@ final class ZeroTrustAccessApplicationOkta {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {
     'identity_provider_id': identityProviderId.toTfJson(),
     'name': name.toTfJson(),
@@ -1379,6 +1447,7 @@ final class ZeroTrustAccessApplicationSaml {
 
   final TfArg<String> identityProviderId;
 
+  @internal
   Map<String, Object?> encode() => {
     'attribute_name': attributeName.toTfJson(),
     'attribute_value': attributeValue.toTfJson(),
@@ -1395,6 +1464,7 @@ final class ZeroTrustAccessApplicationServiceToken {
 
   final TfArg<String> tokenId;
 
+  @internal
   Map<String, Object?> encode() => {'token_id': tokenId.toTfJson()};
 }
 
@@ -1477,6 +1547,7 @@ final class ZeroTrustAccessApplicationInclude {
 
   final ZeroTrustAccessApplicationServiceToken? serviceToken;
 
+  @internal
   Map<String, Object?> encode() => {
     'any_valid_service_token': ?anyValidServiceToken?.encode(),
     'auth_context': ?authContext?.encode(),
@@ -1522,6 +1593,7 @@ final class ZeroTrustAccessApplicationPoliciesMfaConfig {
 
   final TfArg<String>? sessionDuration;
 
+  @internal
   Map<String, Object?> encode() => {
     if (allowedAuthenticators != null)
       'allowed_authenticators': [
@@ -1645,6 +1717,7 @@ final class ZeroTrustAccessApplicationRequire {
 
   final ZeroTrustAccessApplicationServiceToken? serviceToken;
 
+  @internal
   Map<String, Object?> encode() => {
     'any_valid_service_token': ?anyValidServiceToken?.encode(),
     'auth_context': ?authContext?.encode(),
@@ -1741,6 +1814,7 @@ final class ZeroTrustAccessApplicationSaasApp {
 
   final ZeroTrustAccessApplicationRefreshTokenOptions? refreshTokenOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_token_lifetime': ?accessTokenLifetime?.toTfJson(),
     'allow_pkce_without_client_secret': ?allowPkceWithoutClientSecret
@@ -1900,6 +1974,7 @@ final class ZeroTrustAccessApplicationCustomAttributes {
 
   final ZeroTrustAccessApplicationCustomAttributesSource? source;
 
+  @internal
   Map<String, Object?> encode() => {
     'friendly_name': ?friendlyName?.toTfJson(),
     'name': ?name?.toTfJson(),
@@ -1952,6 +2027,7 @@ final class ZeroTrustAccessApplicationCustomAttributesSource {
 
   final List<ZeroTrustAccessApplicationNameByIdp>? nameByIdp;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     if (nameByIdp != null)
@@ -1969,6 +2045,7 @@ final class ZeroTrustAccessApplicationNameByIdp {
 
   final TfArg<String>? sourceName;
 
+  @internal
   Map<String, Object?> encode() => {
     'idp_id': ?idpId?.toTfJson(),
     'source_name': ?sourceName?.toTfJson(),
@@ -1994,6 +2071,7 @@ final class ZeroTrustAccessApplicationCustomClaims {
 
   final ZeroTrustAccessApplicationCustomClaimsSource? source;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'required': ?required?.toTfJson(),
@@ -2043,6 +2121,7 @@ final class ZeroTrustAccessApplicationCustomClaimsSource {
 
   final TfArg<Map<String, String>>? nameByIdp;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'name_by_idp': ?nameByIdp?.toTfJson(),
@@ -2062,6 +2141,7 @@ final class ZeroTrustAccessApplicationHybridAndImplicitOptions {
 
   final TfArg<bool>? returnIdTokenFromAuthorizationEndpoint;
 
+  @internal
   Map<String, Object?> encode() => {
     'return_access_token_from_authorization_endpoint':
         ?returnAccessTokenFromAuthorizationEndpoint?.toTfJson(),
@@ -2078,6 +2158,7 @@ final class ZeroTrustAccessApplicationRefreshTokenOptions {
 
   final TfArg<String>? lifetime;
 
+  @internal
   Map<String, Object?> encode() => {'lifetime': ?lifetime?.toTfJson()};
 }
 
@@ -2106,6 +2187,7 @@ final class ZeroTrustAccessApplicationScimConfig {
 
   final List<ZeroTrustAccessApplicationMappings>? mappings;
 
+  @internal
   Map<String, Object?> encode() => {
     'deactivate_on_delete': ?deactivateOnDelete?.toTfJson(),
     'enabled': ?enabled?.toTfJson(),
@@ -2150,6 +2232,7 @@ final class ZeroTrustAccessApplicationAuthentication {
 
   final TfArg<String>? user;
 
+  @internal
   Map<String, Object?> encode() => {
     'authorization_url': ?authorizationUrl?.toTfJson(),
     'client_id': ?clientId?.toTfJson(),
@@ -2218,6 +2301,7 @@ final class ZeroTrustAccessApplicationMappings {
 
   final ZeroTrustAccessApplicationOperations? operations;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'filter': ?filter?.toTfJson(),
@@ -2267,6 +2351,7 @@ final class ZeroTrustAccessApplicationOperations {
 
   final TfArg<bool>? update;
 
+  @internal
   Map<String, Object?> encode() => {
     'create': ?create?.toTfJson(),
     'delete': ?delete?.toTfJson(),
@@ -2290,6 +2375,7 @@ final class ZeroTrustAccessApplicationTargetCriteria {
 
   final TfArg<Map<String, dynamic>> targetAttributes;
 
+  @internal
   Map<String, Object?> encode() => {
     'port': port.toTfJson(),
     'protocol': protocol.toTfJson(),

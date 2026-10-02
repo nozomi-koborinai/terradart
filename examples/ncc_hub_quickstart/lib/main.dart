@@ -14,7 +14,6 @@
 /// standalone project.
 library;
 
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/compute.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/network.dart';

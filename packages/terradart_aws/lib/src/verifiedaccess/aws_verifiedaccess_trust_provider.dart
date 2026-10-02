@@ -89,6 +89,7 @@ final class VerifiedaccessTrustProviderDeviceOptions {
 
   final TfArg<String>? tenantId;
 
+  @internal
   Map<String, Object?> encode() => {'tenant_id': ?tenantId?.toTfJson()};
 }
 
@@ -123,6 +124,7 @@ final class VerifiedaccessTrustProviderNativeApplicationOidcOptions {
 
   final TfArg<String>? userInfoEndpoint;
 
+  @internal
   Map<String, Object?> encode() => {
     'authorization_endpoint': ?authorizationEndpoint?.toTfJson(),
     'client_id': ?clientId?.toTfJson(),
@@ -163,6 +165,7 @@ final class VerifiedaccessTrustProviderOidcOptions {
 
   final TfArg<String>? userInfoEndpoint;
 
+  @internal
   Map<String, Object?> encode() => {
     'authorization_endpoint': ?authorizationEndpoint?.toTfJson(),
     'client_id': ?clientId?.toTfJson(),
@@ -187,6 +190,7 @@ final class VerifiedaccessTrustProviderSseSpecification {
 
   final RefTo<AwsKmsKey>? kmsKeyArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'customer_managed_key_enabled': ?customerManagedKeyEnabled?.toTfJson(),
     'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),

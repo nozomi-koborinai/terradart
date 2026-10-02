@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `aws_emr_studio_session_mapping`.
@@ -44,12 +45,15 @@ sealed class EmrStudioSessionMappingIdentity {
   ) = EmrStudioSessionMappingIdentityName;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -60,12 +64,15 @@ final class EmrStudioSessionMappingIdentityId
 
   final TfArg<String> identityId;
 
+  @internal
   @override
   String get blockKey => 'identity_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'identity_id': identityId.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'identity_id': identityId};
 }
@@ -77,12 +84,15 @@ final class EmrStudioSessionMappingIdentityName
 
   final TfArg<String> identityName;
 
+  @internal
   @override
   String get blockKey => 'identity_name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'identity_name': identityName.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'identity_name': identityName};
 }

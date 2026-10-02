@@ -259,7 +259,7 @@ class WrapperEmitter {
             resourceTerraformType: def.terraformType,
           );
     final needsMeta =
-        nestedTypes.contains('@immutable') &&
+        _metaAnnotation.hasMatch('$nestedTypes${override?.prelude ?? ''}') &&
         !extraImports.any((i) => i.contains('package:meta/meta.dart'));
     if (needsMeta) {
       buf.writeln("import 'package:meta/meta.dart';");
@@ -738,3 +738,5 @@ class WrapperEmitter {
     return raw;
   }
 }
+
+final RegExp _metaAnnotation = RegExp(r'@(?:immutable|internal)\b');

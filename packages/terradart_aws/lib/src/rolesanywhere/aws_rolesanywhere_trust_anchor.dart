@@ -26,6 +26,7 @@ final class RolesanywhereTrustAnchorNotificationSettings {
 
   final TfArg<num>? threshold;
 
+  @internal
   Map<String, Object?> encode() => {
     'channel': ?channel?.toTfJson(),
     'enabled': ?enabled?.toTfJson(),
@@ -83,6 +84,7 @@ final class RolesanywhereTrustAnchorSource {
 
   final RolesanywhereTrustAnchorSourceData sourceData;
 
+  @internal
   Map<String, Object?> encode() => {
     'source_type': sourceType.toTfJson(),
     'source_data': sourceData.encode(),
@@ -128,6 +130,7 @@ final class RolesanywhereTrustAnchorSourceData {
 
   final TfArg<String>? x509CertificateData;
 
+  @internal
   Map<String, Object?> encode() => {
     'acm_pca_arn': ?acmPcaArn?.toTfJson(),
     'x509_certificate_data': ?x509CertificateData?.toTfJson(),

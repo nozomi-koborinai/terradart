@@ -20,6 +20,7 @@ final class ConfigConformancePackInputParameter {
 
   final TfArg<String> parameterValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'parameter_name': parameterName.toTfJson(),
     'parameter_value': parameterValue.toTfJson(),

@@ -61,12 +61,15 @@ sealed class NatGatewaySecondaryPrivateIpAddress {
   ) = NatGatewaySecondaryPrivateIpAddressSecondaryPrivateIpAddresses;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -79,15 +82,18 @@ final class NatGatewaySecondaryPrivateIpAddressCount
 
   final TfArg<num> secondaryPrivateIpAddressCount;
 
+  @internal
   @override
   String get blockKey => 'secondary_private_ip_address_count';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'secondary_private_ip_address_count': secondaryPrivateIpAddressCount
         .toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'secondary_private_ip_address_count': secondaryPrivateIpAddressCount,
@@ -103,14 +109,17 @@ final class NatGatewaySecondaryPrivateIpAddressSecondaryPrivateIpAddresses
 
   final TfArg<List<String>> secondaryPrivateIpAddresses;
 
+  @internal
   @override
   String get blockKey => 'secondary_private_ip_addresses';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'secondary_private_ip_addresses': secondaryPrivateIpAddresses.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'secondary_private_ip_addresses': secondaryPrivateIpAddresses,
@@ -133,6 +142,7 @@ final class NatGatewayAvailabilityZoneAddress {
 
   final TfArg<String>? availabilityZoneId;
 
+  @internal
   Map<String, Object?> encode() => {
     'allocation_ids': ?allocationIds?.toTfJson(),
     'availability_zone': ?availabilityZone?.toTfJson(),

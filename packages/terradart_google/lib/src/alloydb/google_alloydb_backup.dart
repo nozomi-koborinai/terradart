@@ -18,6 +18,7 @@ final class AlloydbBackupEncryptionConfig {
 
   final RefTo<GoogleKmsCryptoKey>? kmsKeyName;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_name': ?kmsKeyName?.encodeAs('id').toTfJson(),
   };

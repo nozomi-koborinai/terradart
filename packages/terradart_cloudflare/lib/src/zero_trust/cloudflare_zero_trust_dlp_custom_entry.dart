@@ -19,6 +19,7 @@ final class ZeroTrustDlpCustomEntryPattern {
 
   final ZeroTrustDlpCustomEntryValidation? validation;
 
+  @internal
   Map<String, Object?> encode() => {
     'regex': regex.toTfJson(),
     'validation': ?validation?.toTfJson(),

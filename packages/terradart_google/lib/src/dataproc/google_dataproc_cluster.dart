@@ -76,6 +76,7 @@ final class DataprocClusterConfig {
 
   final DataprocClusterWorkerConfig? workerConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'cluster_tier': ?clusterTier?.toTfJson(),
     'cluster_type': ?clusterType?.toTfJson(),
@@ -113,6 +114,7 @@ final class DataprocClusterAutoscalingConfig {
 
   final TfArg<String> policyUri;
 
+  @internal
   Map<String, Object?> encode() => {'policy_uri': policyUri.toTfJson()};
 }
 
@@ -129,6 +131,7 @@ final class DataprocClusterAuxiliaryNodeGroups {
 
   final List<DataprocClusterNodeGroup> nodeGroup;
 
+  @internal
   Map<String, Object?> encode() => {
     'node_group_id': ?nodeGroupId?.toTfJson(),
     'node_group': [for (final e in nodeGroup) e.encode()],
@@ -145,6 +148,7 @@ final class DataprocClusterNodeGroup {
 
   final DataprocClusterNodeGroupConfig? nodeGroupConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'roles': roles.toTfJson(),
     'node_group_config': ?nodeGroupConfig?.encode(),
@@ -173,6 +177,7 @@ final class DataprocClusterNodeGroupConfig {
 
   final DataprocClusterNodeGroupConfigDiskConfig? diskConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'machine_type': ?machineType?.toTfJson(),
     'min_cpu_platform': ?minCpuPlatform?.toTfJson(),
@@ -197,6 +202,7 @@ final class DataprocClusterAccelerators {
 
   final TfArg<String> acceleratorType;
 
+  @internal
   Map<String, Object?> encode() => {
     'accelerator_count': acceleratorCount.toTfJson(),
     'accelerator_type': acceleratorType.toTfJson(),
@@ -228,6 +234,7 @@ final class DataprocClusterNodeGroupConfigDiskConfig {
 
   final TfArg<num>? numLocalSsds;
 
+  @internal
   Map<String, Object?> encode() => {
     'boot_disk_provisioned_iops': ?bootDiskProvisionedIops?.toTfJson(),
     'boot_disk_provisioned_throughput': ?bootDiskProvisionedThroughput
@@ -247,6 +254,7 @@ final class DataprocClusterDataprocMetricConfig {
 
   final List<DataprocClusterMetrics> metrics;
 
+  @internal
   Map<String, Object?> encode() => {
     'metrics': [for (final e in metrics) e.encode()],
   };
@@ -265,6 +273,7 @@ final class DataprocClusterMetrics {
 
   final TfArg<String> metricSource;
 
+  @internal
   Map<String, Object?> encode() => {
     'metric_overrides': ?metricOverrides?.toTfJson(),
     'metric_source': metricSource.toTfJson(),
@@ -279,6 +288,7 @@ final class DataprocClusterEncryptionConfig {
 
   final RefTo<GoogleKmsCryptoKey> kmsKeyName;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_name': kmsKeyName.encodeAs('id').toTfJson(),
   };
@@ -292,6 +302,7 @@ final class DataprocClusterEndpointConfig {
 
   final TfArg<bool> enableHttpPortAccess;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_http_port_access': enableHttpPortAccess.toTfJson(),
   };
@@ -343,6 +354,7 @@ final class DataprocClusterGceClusterConfig {
 
   final DataprocClusterShieldedInstanceConfig? shieldedInstanceConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'internal_ip_only': ?internalIpOnly?.toTfJson(),
     'metadata': ?metadata?.toTfJson(),
@@ -373,6 +385,7 @@ final class DataprocClusterConfidentialInstanceConfig {
 
   final TfArg<bool>? enableConfidentialCompute;
 
+  @internal
   Map<String, Object?> encode() => {
     'confidential_instance_type': ?confidentialInstanceType?.toTfJson(),
     'enable_confidential_compute': ?enableConfidentialCompute?.toTfJson(),
@@ -387,6 +400,7 @@ final class DataprocClusterNodeGroupAffinity {
 
   final TfArg<String> nodeGroupUri;
 
+  @internal
   Map<String, Object?> encode() => {'node_group_uri': nodeGroupUri.toTfJson()};
 }
 
@@ -406,6 +420,7 @@ final class DataprocClusterReservationAffinity {
 
   final TfArg<List<String>>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'consume_reservation_type': ?consumeReservationType?.toTfJson(),
     'key': ?key?.toTfJson(),
@@ -429,6 +444,7 @@ final class DataprocClusterShieldedInstanceConfig {
 
   final TfArg<bool>? enableVtpm;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_integrity_monitoring': ?enableIntegrityMonitoring?.toTfJson(),
     'enable_secure_boot': ?enableSecureBoot?.toTfJson(),
@@ -449,6 +465,7 @@ final class DataprocClusterInitializationAction {
 
   final TfArg<num>? timeoutSec;
 
+  @internal
   Map<String, Object?> encode() => {
     'script': script.toTfJson(),
     'timeout_sec': ?timeoutSec?.toTfJson(),
@@ -474,6 +491,7 @@ final class DataprocClusterLifecycleConfig {
 
   final TfArg<String>? idleStopTtl;
 
+  @internal
   Map<String, Object?> encode() => {
     'auto_delete_time': ?autoDeleteTime?.toTfJson(),
     'auto_stop_time': ?autoStopTime?.toTfJson(),
@@ -511,6 +529,7 @@ final class DataprocClusterMasterConfig {
   final DataprocClusterMasterConfigInstanceFlexibilityPolicy?
   instanceFlexibilityPolicy;
 
+  @internal
   Map<String, Object?> encode() => {
     'image_uri': ?imageUri?.toTfJson(),
     'machine_type': ?machineType?.toTfJson(),
@@ -552,6 +571,7 @@ final class DataprocClusterDiskConfig {
 
   final List<DataprocClusterAttachedDiskConfig>? attachedDiskConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'boot_disk_provisioned_iops': ?bootDiskProvisionedIops?.toTfJson(),
     'boot_disk_provisioned_throughput': ?bootDiskProvisionedThroughput
@@ -585,6 +605,7 @@ final class DataprocClusterAttachedDiskConfig {
 
   final TfArg<num>? provisionedThroughput;
 
+  @internal
   Map<String, Object?> encode() => {
     'disk_size_gb': ?diskSizeGb?.toTfJson(),
     'disk_type': ?diskType?.toTfJson(),
@@ -604,6 +625,7 @@ final class DataprocClusterMasterConfigInstanceFlexibilityPolicy {
 
   final List<DataprocClusterInstanceSelectionList>? instanceSelectionList;
 
+  @internal
   Map<String, Object?> encode() => {
     if (instanceSelectionList != null)
       'instance_selection_list': [
@@ -629,6 +651,7 @@ final class DataprocClusterInstanceSelectionList {
 
   final DataprocClusterDiskConfig? diskConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'machine_types': ?machineTypes?.toTfJson(),
     'rank': ?rank?.toTfJson(),
@@ -646,6 +669,7 @@ final class DataprocClusterMetastoreConfig {
 
   final TfArg<String> dataprocMetastoreService;
 
+  @internal
   Map<String, Object?> encode() => {
     'dataproc_metastore_service': dataprocMetastoreService.toTfJson(),
   };
@@ -671,6 +695,7 @@ final class DataprocClusterPreemptibleWorkerConfig {
   final DataprocClusterPreemptibleWorkerConfigInstanceFlexibilityPolicy?
   instanceFlexibilityPolicy;
 
+  @internal
   Map<String, Object?> encode() => {
     'num_instances': ?numInstances?.toTfJson(),
     'preemptibility': ?preemptibility?.toTfJson(),
@@ -692,6 +717,7 @@ final class DataprocClusterPreemptibleWorkerConfigInstanceFlexibilityPolicy {
 
   final DataprocClusterProvisioningModelMix? provisioningModelMix;
 
+  @internal
   Map<String, Object?> encode() => {
     if (instanceSelectionList != null)
       'instance_selection_list': [
@@ -714,6 +740,7 @@ final class DataprocClusterProvisioningModelMix {
 
   final TfArg<num>? standardCapacityPercentAboveBase;
 
+  @internal
   Map<String, Object?> encode() => {
     'standard_capacity_base': ?standardCapacityBase?.toTfJson(),
     'standard_capacity_percent_above_base': ?standardCapacityPercentAboveBase
@@ -734,6 +761,7 @@ final class DataprocClusterSecurityConfig {
 
   final DataprocClusterKerberosConfig? kerberosConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'identity_config': ?identityConfig?.encode(),
     'kerberos_config': ?kerberosConfig?.encode(),
@@ -750,6 +778,7 @@ final class DataprocClusterIdentityConfig {
 
   final TfArg<Map<String, String>> userServiceAccountMapping;
 
+  @internal
   Map<String, Object?> encode() => {
     'user_service_account_mapping': userServiceAccountMapping.toTfJson(),
   };
@@ -807,6 +836,7 @@ final class DataprocClusterKerberosConfig {
 
   final TfArg<String>? truststoreUri;
 
+  @internal
   Map<String, Object?> encode() => {
     'cross_realm_trust_admin_server': ?crossRealmTrustAdminServer?.toTfJson(),
     'cross_realm_trust_kdc': ?crossRealmTrustKdc?.toTfJson(),
@@ -843,6 +873,7 @@ final class DataprocClusterSoftwareConfig {
 
   final TfArg<Map<String, String>>? overrideProperties;
 
+  @internal
   Map<String, Object?> encode() => {
     'image_version': ?imageVersion?.toTfJson(),
     'optional_components': ?optionalComponents?.toTfJson(),
@@ -882,6 +913,7 @@ final class DataprocClusterWorkerConfig {
   final DataprocClusterMasterConfigInstanceFlexibilityPolicy?
   instanceFlexibilityPolicy;
 
+  @internal
   Map<String, Object?> encode() => {
     'image_uri': ?imageUri?.toTfJson(),
     'machine_type': ?machineType?.toTfJson(),
@@ -911,6 +943,7 @@ final class DataprocClusterVirtualClusterConfig {
 
   final DataprocClusterKubernetesClusterConfig? kubernetesClusterConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'staging_bucket': ?stagingBucket?.toTfJson(),
     'auxiliary_services_config': ?auxiliaryServicesConfig?.encode(),
@@ -931,6 +964,7 @@ final class DataprocClusterAuxiliaryServicesConfig {
 
   final DataprocClusterSparkHistoryServerConfig? sparkHistoryServerConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'metastore_config': ?metastoreConfig?.encode(),
     'spark_history_server_config': ?sparkHistoryServerConfig?.encode(),
@@ -947,6 +981,7 @@ final class DataprocClusterAuxiliaryServicesConfigMetastoreConfig {
 
   final TfArg<String>? dataprocMetastoreService;
 
+  @internal
   Map<String, Object?> encode() => {
     'dataproc_metastore_service': ?dataprocMetastoreService?.toTfJson(),
   };
@@ -960,6 +995,7 @@ final class DataprocClusterSparkHistoryServerConfig {
 
   final TfArg<String>? dataprocCluster;
 
+  @internal
   Map<String, Object?> encode() => {
     'dataproc_cluster': ?dataprocCluster?.toTfJson(),
   };
@@ -981,6 +1017,7 @@ final class DataprocClusterKubernetesClusterConfig {
 
   final DataprocClusterKubernetesSoftwareConfig kubernetesSoftwareConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'kubernetes_namespace': ?kubernetesNamespace?.toTfJson(),
     'gke_cluster_config': gkeClusterConfig.encode(),
@@ -1001,6 +1038,7 @@ final class DataprocClusterGkeClusterConfig {
 
   final List<DataprocClusterNodePoolTarget>? nodePoolTarget;
 
+  @internal
   Map<String, Object?> encode() => {
     'gke_cluster_target': ?gkeClusterTarget?.toTfJson(),
     if (nodePoolTarget != null)
@@ -1024,6 +1062,7 @@ final class DataprocClusterNodePoolTarget {
 
   final DataprocClusterNodePoolConfig? nodePoolConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'node_pool': nodePool.toTfJson(),
     'roles': roles.toTfJson(),
@@ -1047,6 +1086,7 @@ final class DataprocClusterNodePoolConfig {
 
   final DataprocClusterNodePoolConfigConfig? config;
 
+  @internal
   Map<String, Object?> encode() => {
     'locations': locations.toTfJson(),
     'autoscaling': ?autoscaling?.encode(),
@@ -1064,6 +1104,7 @@ final class DataprocClusterAutoscaling {
 
   final TfArg<num>? minNodeCount;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_node_count': ?maxNodeCount?.toTfJson(),
     'min_node_count': ?minNodeCount?.toTfJson(),
@@ -1092,6 +1133,7 @@ final class DataprocClusterNodePoolConfigConfig {
 
   final TfArg<bool>? spot;
 
+  @internal
   Map<String, Object?> encode() => {
     'local_ssd_count': ?localSsdCount?.toTfJson(),
     'machine_type': ?machineType?.toTfJson(),
@@ -1114,6 +1156,7 @@ final class DataprocClusterKubernetesSoftwareConfig {
 
   final TfArg<Map<String, String>>? properties;
 
+  @internal
   Map<String, Object?> encode() => {
     'component_version': componentVersion.toTfJson(),
     'properties': ?properties?.toTfJson(),

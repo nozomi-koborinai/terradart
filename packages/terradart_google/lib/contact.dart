@@ -3,6 +3,7 @@
 /// Contact Center AI Insights and related contact APIs.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/contact/google_contact_center_insights_analysis_rule.dart'
     show
         ContactCenterInsightsAnalysisRuleAnnotatorSelector,

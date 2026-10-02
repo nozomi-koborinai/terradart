@@ -51,6 +51,7 @@ final class DataplexZoneDiscoverySpec {
 
   final DataplexZoneJsonOptions? jsonOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'exclude_patterns': ?excludePatterns?.toTfJson(),
@@ -80,6 +81,7 @@ final class DataplexZoneCsvOptions {
 
   final TfArg<num>? headerRows;
 
+  @internal
   Map<String, Object?> encode() => {
     'delimiter': ?delimiter?.toTfJson(),
     'disable_type_inference': ?disableTypeInference?.toTfJson(),
@@ -98,6 +100,7 @@ final class DataplexZoneJsonOptions {
 
   final TfArg<String>? encoding;
 
+  @internal
   Map<String, Object?> encode() => {
     'disable_type_inference': ?disableTypeInference?.toTfJson(),
     'encoding': ?encoding?.toTfJson(),
@@ -112,6 +115,7 @@ final class DataplexZoneResourceSpec {
 
   final DataplexZoneLocationType locationType;
 
+  @internal
   Map<String, Object?> encode() => {'location_type': locationType.toTfJson()};
 }
 

@@ -17,6 +17,7 @@ final class DataEmrReleaseLabelsFilters {
 
   final TfArg<String>? prefix;
 
+  @internal
   Map<String, Object?> encode() => {
     'application': ?application?.toTfJson(),
     'prefix': ?prefix?.toTfJson(),

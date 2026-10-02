@@ -20,7 +20,7 @@ import 'sensitive_set_emitter.dart';
 import 'wrapper_overrides/wrapper_override.dart';
 
 /// Emits a Factory Wrapper class for **data source** entries
-/// (`final class GoogleProject extends Data`).
+/// (`final class DataGoogleProject extends Data`).
 ///
 /// Sibling of [WrapperEmitter] (`Resource` entries). The public API
 /// mirrors [WrapperEmitter] for symmetry: take a [ResourceDef] (the IR
@@ -197,7 +197,7 @@ class DataSourceWrapperEmitter {
             resourceTerraformType: def.terraformType,
           );
     final needsMeta =
-        nestedTypes.contains('@immutable') &&
+        _metaAnnotation.hasMatch('$nestedTypes${override.prelude ?? ''}') &&
         !extraImports.any((i) => i.contains('package:meta/meta.dart'));
     if (needsMeta) {
       buf.writeln("import 'package:meta/meta.dart';");
@@ -504,3 +504,5 @@ class DataSourceWrapperEmitter {
     return raw;
   }
 }
+
+final RegExp _metaAnnotation = RegExp(r'@(?:immutable|internal)\b');

@@ -5,5 +5,6 @@
 /// organization.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/essential_contacts/google_essential_contacts_contact.dart'
     show GoogleEssentialContactsContact;

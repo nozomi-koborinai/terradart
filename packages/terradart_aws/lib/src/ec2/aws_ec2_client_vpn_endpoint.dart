@@ -125,6 +125,7 @@ final class Ec2ClientVpnEndpointAuthenticationOptions {
 
   final Ec2ClientVpnEndpointType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'active_directory_id': ?activeDirectoryId?.toTfJson(),
     'root_certificate_chain_arn': ?rootCertificateChainArn?.toTfJson(),
@@ -172,6 +173,7 @@ final class Ec2ClientVpnEndpointClientConnectOptions {
 
   final RefTo<AwsLambdaFunction>? lambdaFunctionArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'lambda_function_arn': ?lambdaFunctionArn?.encodeAs('arn').toTfJson(),
@@ -191,6 +193,7 @@ final class Ec2ClientVpnEndpointClientLoginBannerOptions {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'banner_text': ?bannerText?.toTfJson(),
     'enabled': ?enabled?.toTfJson(),
@@ -205,6 +208,7 @@ final class Ec2ClientVpnEndpointClientRouteEnforcementOptions {
 
   final TfArg<bool>? enforced;
 
+  @internal
   Map<String, Object?> encode() => {'enforced': ?enforced?.toTfJson()};
 }
 
@@ -224,6 +228,7 @@ final class Ec2ClientVpnEndpointConnectionLogOptions {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloudwatch_log_group': ?cloudwatchLogGroup?.toTfJson(),
     'cloudwatch_log_stream': ?cloudwatchLogStream?.toTfJson(),
@@ -244,6 +249,7 @@ final class Ec2ClientVpnEndpointTransitGatewayConfiguration {
 
   final TfArg<String>? transitGatewayId;
 
+  @internal
   Map<String, Object?> encode() => {
     ...?availabilityZone?.encode(),
     'transit_gateway_id': ?transitGatewayId?.toTfJson(),
@@ -269,8 +275,10 @@ sealed class Ec2ClientVpnEndpointAvailabilityZone {
   ) = Ec2ClientVpnEndpointAvailabilityZoneAvailabilityZones;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -281,9 +289,11 @@ final class Ec2ClientVpnEndpointAvailabilityZoneIds
 
   final TfArg<List<String>> availabilityZoneIds;
 
+  @internal
   @override
   String get blockKey => 'availability_zone_ids';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'availability_zone_ids': availabilityZoneIds.toTfJson(),
@@ -299,9 +309,11 @@ final class Ec2ClientVpnEndpointAvailabilityZoneAvailabilityZones
 
   final TfArg<List<String>> availabilityZones;
 
+  @internal
   @override
   String get blockKey => 'availability_zones';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'availability_zones': availabilityZones.toTfJson(),

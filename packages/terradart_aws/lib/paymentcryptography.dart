@@ -3,6 +3,7 @@
 /// AWS Payment Cryptography.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/paymentcryptography/aws_paymentcryptography_key.dart'
     show
         AwsPaymentcryptographyKey,

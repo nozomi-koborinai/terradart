@@ -74,6 +74,7 @@ final class GameliftGameServerGroupAutoScalingPolicy {
   final GameliftGameServerGroupTargetTrackingConfiguration
   targetTrackingConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'estimated_instance_warmup': ?estimatedInstanceWarmup?.toTfJson(),
     'target_tracking_configuration': targetTrackingConfiguration.encode(),
@@ -90,6 +91,7 @@ final class GameliftGameServerGroupTargetTrackingConfiguration {
 
   final TfArg<num> targetValue;
 
+  @internal
   Map<String, Object?> encode() => {'target_value': targetValue.toTfJson()};
 }
 
@@ -106,6 +108,7 @@ final class GameliftGameServerGroupInstanceDefinition {
 
   final TfArg<String>? weightedCapacity;
 
+  @internal
   Map<String, Object?> encode() => {
     'instance_type': instanceType.toTfJson(),
     'weighted_capacity': ?weightedCapacity?.toTfJson(),
@@ -489,6 +492,7 @@ final class GameliftGameServerGroupLaunchTemplate {
 
   final TfArg<String>? version;
 
+  @internal
   Map<String, Object?> encode() => {
     ...?identifier?.encode(),
     'version': ?version?.toTfJson(),
@@ -512,8 +516,10 @@ sealed class GameliftGameServerGroupIdentifier {
       GameliftGameServerGroupIdentifierName;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -524,9 +530,11 @@ final class GameliftGameServerGroupIdentifierId
 
   final TfArg<String> id;
 
+  @internal
   @override
   String get blockKey => 'id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'id': id.toTfJson()};
 }
@@ -538,9 +546,11 @@ final class GameliftGameServerGroupIdentifierName
 
   final TfArg<String> name;
 
+  @internal
   @override
   String get blockKey => 'name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }

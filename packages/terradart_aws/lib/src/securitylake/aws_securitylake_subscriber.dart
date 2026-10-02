@@ -41,6 +41,7 @@ final class SecuritylakeSubscriberSource {
   final List<SecuritylakeSubscriberCustomLogSourceResource>?
   customLogSourceResource;
 
+  @internal
   Map<String, Object?> encode() => {
     if (awsLogSourceResource != null)
       'aws_log_source_resource': [
@@ -66,6 +67,7 @@ final class SecuritylakeSubscriberAwsLogSourceResource {
 
   final TfArg<String>? sourceVersion;
 
+  @internal
   Map<String, Object?> encode() => {
     'source_name': sourceName.toTfJson(),
     'source_version': ?sourceVersion?.toTfJson(),
@@ -129,6 +131,7 @@ final class SecuritylakeSubscriberCustomLogSourceResource {
 
   final TfArg<String>? sourceVersion;
 
+  @internal
   Map<String, Object?> encode() => {
     'source_name': sourceName.toTfJson(),
     'source_version': ?sourceVersion?.toTfJson(),
@@ -148,6 +151,7 @@ final class SecuritylakeSubscriberIdentity {
 
   final TfArg<String> principal;
 
+  @internal
   Map<String, Object?> encode() => {
     'external_id': externalId.toTfJson(),
     'principal': principal.toTfJson(),

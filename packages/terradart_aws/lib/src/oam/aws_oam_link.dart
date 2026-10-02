@@ -62,6 +62,7 @@ final class OamLinkConfiguration {
 
   final OamLinkMetricConfiguration? metricConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'log_group_configuration': ?logGroupConfiguration?.encode(),
     'metric_configuration': ?metricConfiguration?.encode(),
@@ -76,6 +77,7 @@ final class OamLinkLogGroupConfiguration {
 
   final TfArg<String> filter;
 
+  @internal
   Map<String, Object?> encode() => {'filter': filter.toTfJson()};
 }
 
@@ -87,6 +89,7 @@ final class OamLinkMetricConfiguration {
 
   final TfArg<String> filter;
 
+  @internal
   Map<String, Object?> encode() => {'filter': filter.toTfJson()};
 }
 

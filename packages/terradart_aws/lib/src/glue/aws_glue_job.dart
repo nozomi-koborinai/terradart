@@ -57,6 +57,7 @@ final class GlueJobCommand {
 
   final TfArg<String> scriptLocation;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'python_version': ?pythonVersion?.toTfJson(),
@@ -101,6 +102,7 @@ final class GlueJobExecutionProperty {
 
   final TfArg<num>? maxConcurrentRuns;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_concurrent_runs': ?maxConcurrentRuns?.toTfJson(),
   };
@@ -114,6 +116,7 @@ final class GlueJobNotificationProperty {
 
   final TfArg<num>? notifyDelayAfter;
 
+  @internal
   Map<String, Object?> encode() => {
     'notify_delay_after': ?notifyDelayAfter?.toTfJson(),
   };
@@ -150,6 +153,7 @@ final class GlueJobSourceControlDetails {
 
   final TfArg<String>? repository;
 
+  @internal
   Map<String, Object?> encode() => {
     'auth_strategy': ?authStrategy?.toTfJson(),
     'auth_token': ?authToken?.toTfJson(),

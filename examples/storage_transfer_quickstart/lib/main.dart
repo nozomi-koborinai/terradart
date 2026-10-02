@@ -11,8 +11,6 @@
 /// Run `bin/infra.dart` to synth into `tf-out/`.
 library;
 
-import 'package:terradart_core/terradart_core.dart';
-import 'package:terradart_google/data.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
@@ -34,7 +32,7 @@ final class StorageTransferStack extends Stack {
       propagationDelay: const Duration(seconds: 60),
     );
 
-    final current = add(GoogleProject('current'));
+    final current = add(DataGoogleProject('current'));
     final stsMember = IamPrincipal.serviceAccount(
       'project-${current.number.interpolation}@storage-transfer-service.iam.gserviceaccount.com',
     );

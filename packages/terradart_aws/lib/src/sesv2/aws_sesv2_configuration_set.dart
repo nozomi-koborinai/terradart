@@ -23,6 +23,7 @@ final class Sesv2ConfigurationSetDeliveryOptions {
 
   final Sesv2ConfigurationSetTlsPolicy? tlsPolicy;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_delivery_seconds': ?maxDeliverySeconds?.toTfJson(),
     'sending_pool_name': ?sendingPoolName?.toTfJson(),
@@ -60,6 +61,7 @@ final class Sesv2ConfigurationSetReputationOptions {
 
   final TfArg<bool>? reputationMetricsEnabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'reputation_metrics_enabled': ?reputationMetricsEnabled?.toTfJson(),
   };
@@ -73,6 +75,7 @@ final class Sesv2ConfigurationSetSendingOptions {
 
   final TfArg<bool>? sendingEnabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'sending_enabled': ?sendingEnabled?.toTfJson(),
   };
@@ -86,6 +89,7 @@ final class Sesv2ConfigurationSetSuppressionOptions {
 
   final List<Sesv2ConfigurationSetSuppressedReasons>? suppressedReasons;
 
+  @internal
   Map<String, Object?> encode() => {
     if (suppressedReasons != null)
       'suppressed_reasons': [for (final e in suppressedReasons!) e.toTfJson()],
@@ -128,6 +132,7 @@ final class Sesv2ConfigurationSetTrackingOptions {
 
   final Sesv2ConfigurationSetHttpsPolicy? httpsPolicy;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_redirect_domain': customRedirectDomain.toTfJson(),
     'https_policy': ?httpsPolicy?.toTfJson(),
@@ -173,6 +178,7 @@ final class Sesv2ConfigurationSetVdmOptions {
 
   final Sesv2ConfigurationSetGuardianOptions? guardianOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'dashboard_options': ?dashboardOptions?.encode(),
     'guardian_options': ?guardianOptions?.encode(),
@@ -187,6 +193,7 @@ final class Sesv2ConfigurationSetDashboardOptions {
 
   final Sesv2ConfigurationSetEngagementMetrics? engagementMetrics;
 
+  @internal
   Map<String, Object?> encode() => {
     'engagement_metrics': ?engagementMetrics?.toTfJson(),
   };
@@ -223,6 +230,7 @@ final class Sesv2ConfigurationSetGuardianOptions {
 
   final Sesv2ConfigurationSetOptimizedSharedDelivery? optimizedSharedDelivery;
 
+  @internal
   Map<String, Object?> encode() => {
     'optimized_shared_delivery': ?optimizedSharedDelivery?.toTfJson(),
   };

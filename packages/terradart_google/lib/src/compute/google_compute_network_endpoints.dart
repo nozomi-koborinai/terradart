@@ -23,6 +23,7 @@ final class ComputeNetworkEndpoints {
 
   final TfArg<num>? port;
 
+  @internal
   Map<String, Object?> encode() => {
     'instance': ?instance?.encodeAs('name').toTfJson(),
     'ip_address': ?ipAddress?.toTfJson(),

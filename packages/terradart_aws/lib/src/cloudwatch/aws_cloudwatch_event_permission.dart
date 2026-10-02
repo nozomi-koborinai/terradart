@@ -23,6 +23,7 @@ final class CloudwatchEventPermissionCondition {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'type': type.toTfJson(),

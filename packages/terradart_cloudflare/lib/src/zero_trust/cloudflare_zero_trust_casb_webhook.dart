@@ -74,6 +74,7 @@ final class ZeroTrustCasbWebhookHeaders {
 
   final Sensitive<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'value': ?value?.toTfJson(),

@@ -310,12 +310,15 @@ sealed class Pinpointsmsvoicev2EventDestinationTarget {
   ) = Pinpointsmsvoicev2EventDestinationTargetSnsDestination;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -329,9 +332,11 @@ final class Pinpointsmsvoicev2EventDestinationTargetCloudwatchLogsDestination
   final List<Pinpointsmsvoicev2EventDestinationCloudwatchLogsDestination>
   cloudwatchLogsDestination;
 
+  @internal
   @override
   String get blockKey => 'cloudwatch_logs_destination';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'cloudwatch_logs_destination': [
@@ -339,6 +344,7 @@ final class Pinpointsmsvoicev2EventDestinationTargetCloudwatchLogsDestination
     ],
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'cloudwatch_logs_destination': TfArg.literal([
@@ -357,9 +363,11 @@ final class Pinpointsmsvoicev2EventDestinationTargetKinesisFirehoseDestination
   final List<Pinpointsmsvoicev2EventDestinationKinesisFirehoseDestination>
   kinesisFirehoseDestination;
 
+  @internal
   @override
   String get blockKey => 'kinesis_firehose_destination';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'kinesis_firehose_destination': [
@@ -367,6 +375,7 @@ final class Pinpointsmsvoicev2EventDestinationTargetKinesisFirehoseDestination
     ],
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'kinesis_firehose_destination': TfArg.literal([
@@ -384,14 +393,17 @@ final class Pinpointsmsvoicev2EventDestinationTargetSnsDestination
 
   final List<Pinpointsmsvoicev2EventDestinationSnsDestination> snsDestination;
 
+  @internal
   @override
   String get blockKey => 'sns_destination';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'sns_destination': [for (final e in snsDestination) e.encode()],
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'sns_destination': TfArg.literal([
@@ -413,6 +425,7 @@ final class Pinpointsmsvoicev2EventDestinationCloudwatchLogsDestination {
 
   final RefTo<AwsCloudwatchLogGroup> logGroupArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'iam_role_arn': iamRoleArn.encodeAs('arn').toTfJson(),
     'log_group_arn': logGroupArn.encodeAs('arn').toTfJson(),
@@ -432,6 +445,7 @@ final class Pinpointsmsvoicev2EventDestinationKinesisFirehoseDestination {
 
   final RefTo<AwsIamRole> iamRoleArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'delivery_stream_arn': deliveryStreamArn.toTfJson(),
     'iam_role_arn': iamRoleArn.encodeAs('arn').toTfJson(),
@@ -448,6 +462,7 @@ final class Pinpointsmsvoicev2EventDestinationSnsDestination {
 
   final RefTo<AwsSnsTopic> topicArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'topic_arn': topicArn.encodeAs('arn').toTfJson(),
   };

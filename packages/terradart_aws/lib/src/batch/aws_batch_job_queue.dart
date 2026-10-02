@@ -20,6 +20,7 @@ final class BatchJobQueueComputeEnvironmentOrder {
 
   final TfArg<num> order;
 
+  @internal
   Map<String, Object?> encode() => {
     'compute_environment': computeEnvironment.toTfJson(),
     'order': order.toTfJson(),
@@ -45,6 +46,7 @@ final class BatchJobQueueJobStateTimeLimitAction {
 
   final TfArg<String> state;
 
+  @internal
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
     'max_time_seconds': maxTimeSeconds.toTfJson(),

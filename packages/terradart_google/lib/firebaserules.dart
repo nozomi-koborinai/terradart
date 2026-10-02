@@ -5,6 +5,7 @@
 /// activates a ruleset (apply-excluded; serving live rules).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/firebaserules/google_firebaserules_release.dart'
     show GoogleFirebaserulesRelease;
 export 'src/firebaserules/google_firebaserules_ruleset.dart'

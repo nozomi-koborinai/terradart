@@ -38,6 +38,7 @@ final class CodebuildReportGroupExportConfig {
 
   final CodebuildReportGroupS3Destination? s3Destination;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
     's3_destination': ?s3Destination?.encode(),
@@ -87,6 +88,7 @@ final class CodebuildReportGroupS3Destination {
 
   final TfArg<String>? path;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('id').toTfJson(),
     'encryption_disabled': ?encryptionDisabled?.toTfJson(),

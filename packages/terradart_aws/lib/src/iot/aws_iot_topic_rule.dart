@@ -32,6 +32,7 @@ final class IotTopicRuleCloudwatchAlarm {
 
   final TfArg<String> stateValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'alarm_name': alarmName.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
@@ -57,6 +58,7 @@ final class IotTopicRuleCloudwatchLogs {
 
   final RefTo<AwsIamRole> roleArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'batch_mode': ?batchMode?.toTfJson(),
     'log_group_name': logGroupName.encodeAs('name').toTfJson(),
@@ -90,6 +92,7 @@ final class IotTopicRuleCloudwatchMetric {
 
   final RefTo<AwsIamRole> roleArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'metric_name': metricName.toTfJson(),
     'metric_namespace': metricNamespace.toTfJson(),
@@ -138,6 +141,7 @@ final class IotTopicRuleDynamodb {
 
   final TfArg<String> tableName;
 
+  @internal
   Map<String, Object?> encode() => {
     'hash_key_field': hashKeyField.toTfJson(),
     'hash_key_type': ?hashKeyType?.toTfJson(),
@@ -178,6 +182,7 @@ final class IotTopicRuleDynamodbv2 {
 
   final IotTopicRulePutItem? putItem;
 
+  @internal
   Map<String, Object?> encode() => {
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
     'put_item': ?putItem?.encode(),
@@ -193,6 +198,7 @@ final class IotTopicRulePutItem {
 
   final TfArg<String> tableName;
 
+  @internal
   Map<String, Object?> encode() => {'table_name': tableName.toTfJson()};
 }
 
@@ -219,6 +225,7 @@ final class IotTopicRuleElasticsearch {
 
   final TfArg<String> type;
 
+  @internal
   Map<String, Object?> encode() => {
     'endpoint': endpoint.toTfJson(),
     'id': id.toTfJson(),
@@ -292,6 +299,7 @@ final class IotTopicRuleErrorAction {
 
   final IotTopicRuleTimestream? timestream;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloudwatch_alarm': ?cloudwatchAlarm?.encode(),
     'cloudwatch_logs': ?cloudwatchLogs?.encode(),
@@ -335,6 +343,7 @@ final class IotTopicRuleFirehose {
 
   final TfArg<String>? separator;
 
+  @internal
   Map<String, Object?> encode() => {
     'batch_mode': ?batchMode?.toTfJson(),
     'delivery_stream_name': deliveryStreamName.toTfJson(),
@@ -360,6 +369,7 @@ final class IotTopicRuleHttp {
 
   final List<IotTopicRuleHttpHeader>? httpHeader;
 
+  @internal
   Map<String, Object?> encode() => {
     'confirmation_url': ?confirmationUrl?.toTfJson(),
     'url': url.toTfJson(),
@@ -379,6 +389,7 @@ final class IotTopicRuleHttpHeader {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'value': value.toTfJson(),
@@ -402,6 +413,7 @@ final class IotTopicRuleIotAnalytics {
 
   final RefTo<AwsIamRole> roleArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'batch_mode': ?batchMode?.toTfJson(),
     'channel_name': channelName.toTfJson(),
@@ -429,6 +441,7 @@ final class IotTopicRuleIotEvents {
 
   final RefTo<AwsIamRole> roleArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'batch_mode': ?batchMode?.toTfJson(),
     'input_name': inputName.toTfJson(),
@@ -463,6 +476,7 @@ final class IotTopicRuleKafka {
 
   final List<IotTopicRuleHeader>? header;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_properties': clientProperties.toTfJson(),
     'destination_arn': destinationArn.toTfJson(),
@@ -484,6 +498,7 @@ final class IotTopicRuleHeader {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'value': value.toTfJson(),
@@ -507,6 +522,7 @@ final class IotTopicRuleKinesis {
 
   final TfArg<String> streamName;
 
+  @internal
   Map<String, Object?> encode() => {
     'partition_key': ?partitionKey?.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
@@ -523,6 +539,7 @@ final class IotTopicRuleLambda {
 
   final RefTo<AwsLambdaFunction> functionArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'function_arn': functionArn.encodeAs('arn').toTfJson(),
   };
@@ -545,6 +562,7 @@ final class IotTopicRuleRepublish {
 
   final TfArg<String> topic;
 
+  @internal
   Map<String, Object?> encode() => {
     'qos': ?qos?.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
@@ -572,6 +590,7 @@ final class IotTopicRuleS3 {
 
   final RefTo<AwsIamRole> roleArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('id').toTfJson(),
     'canned_acl': ?cannedAcl?.toTfJson(),
@@ -640,6 +659,7 @@ final class IotTopicRuleSns {
 
   final TfArg<String> targetArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'message_format': ?messageFormat?.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
@@ -664,6 +684,7 @@ final class IotTopicRuleSqs {
 
   final TfArg<bool> useBase64;
 
+  @internal
   Map<String, Object?> encode() => {
     'queue_url': queueUrl.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
@@ -688,6 +709,7 @@ final class IotTopicRuleStepFunctions {
 
   final TfArg<String> stateMachineName;
 
+  @internal
   Map<String, Object?> encode() => {
     'execution_name_prefix': ?executionNamePrefix?.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
@@ -718,6 +740,7 @@ final class IotTopicRuleTimestream {
 
   final IotTopicRuleTimestamp? timestamp;
 
+  @internal
   Map<String, Object?> encode() => {
     'database_name': databaseName.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
@@ -738,6 +761,7 @@ final class IotTopicRuleDimension {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'value': value.toTfJson(),
@@ -755,6 +779,7 @@ final class IotTopicRuleTimestamp {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'unit': unit.toTfJson(),
     'value': value.toTfJson(),

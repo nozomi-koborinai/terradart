@@ -46,6 +46,7 @@ final class QuicksightIamPolicyAssignmentIdentities {
 
   final TfArg<List<String>>? user;
 
+  @internal
   Map<String, Object?> encode() => {
     'group': ?group?.toTfJson(),
     'user': ?user?.toTfJson(),

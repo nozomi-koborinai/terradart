@@ -20,6 +20,7 @@ final class BackupPlanAdvancedBackupSetting {
 
   final BackupPlanResourceType resourceType;
 
+  @internal
   Map<String, Object?> encode() => {
     'backup_options': backupOptions.toTfJson(),
     'resource_type': resourceType.toTfJson(),
@@ -82,6 +83,7 @@ final class BackupPlanRule {
 
   final List<BackupPlanScanAction>? scanAction;
 
+  @internal
   Map<String, Object?> encode() => {
     'completion_window': ?completionWindow?.toTfJson(),
     'enable_continuous_backup': ?enableContinuousBackup?.toTfJson(),
@@ -114,6 +116,7 @@ final class BackupPlanCopyAction {
 
   final BackupPlanLifecycle? lifecycle;
 
+  @internal
   Map<String, Object?> encode() => {
     'destination_vault_arn': destinationVaultArn.toTfJson(),
     'lifecycle': ?lifecycle?.encode(),
@@ -137,6 +140,7 @@ final class BackupPlanLifecycle {
 
   final TfArg<bool>? optInToArchiveForSupportedResources;
 
+  @internal
   Map<String, Object?> encode() => {
     'cold_storage_after': ?coldStorageAfter?.toTfJson(),
     'delete_after': ?deleteAfter?.toTfJson(),
@@ -158,6 +162,7 @@ final class BackupPlanScanAction {
 
   final BackupPlanScanMode scanMode;
 
+  @internal
   Map<String, Object?> encode() => {
     'malware_scanner': malwareScanner.toTfJson(),
     'scan_mode': scanMode.toTfJson(),
@@ -211,6 +216,7 @@ final class BackupPlanScanSetting {
 
   final TfArg<String> scannerRoleArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'malware_scanner': malwareScanner.toTfJson(),
     'resource_types': resourceTypes.toTfJson(),

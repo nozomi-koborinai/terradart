@@ -33,12 +33,15 @@ sealed class CloudSchedulerJobTarget {
   ) = CloudSchedulerJobAppEngineHttpTargetChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -49,12 +52,15 @@ final class CloudSchedulerJobPubsubTargetChoice
 
   final CloudSchedulerJobPubsubTarget pubsubTarget;
 
+  @internal
   @override
   String get blockKey => 'pubsub_target';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'pubsub_target': pubsubTarget.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'pubsub_target': TfArg.literal(pubsubTarget.encode()),
@@ -67,12 +73,15 @@ final class CloudSchedulerJobHttpTargetChoice extends CloudSchedulerJobTarget {
 
   final CloudSchedulerJobHttpTarget httpTarget;
 
+  @internal
   @override
   String get blockKey => 'http_target';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'http_target': httpTarget.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'http_target': TfArg.literal(httpTarget.encode()),
@@ -86,14 +95,17 @@ final class CloudSchedulerJobAppEngineHttpTargetChoice
 
   final CloudSchedulerJobAppEngineHttpTarget appEngineHttpTarget;
 
+  @internal
   @override
   String get blockKey => 'app_engine_http_target';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'app_engine_http_target': appEngineHttpTarget.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'app_engine_http_target': TfArg.literal(appEngineHttpTarget.encode()),
@@ -122,6 +134,7 @@ final class CloudSchedulerJobAppEngineHttpTarget {
 
   final CloudSchedulerJobAppEngineRouting? appEngineRouting;
 
+  @internal
   Map<String, Object?> encode() => {
     'body': ?body?.toTfJson(),
     'headers': ?headers?.toTfJson(),
@@ -147,6 +160,7 @@ final class CloudSchedulerJobAppEngineRouting {
 
   final TfArg<String>? version;
 
+  @internal
   Map<String, Object?> encode() => {
     'instance': ?instance?.toTfJson(),
     'service': ?service?.toTfJson(),
@@ -179,6 +193,7 @@ final class CloudSchedulerJobHttpTarget {
 
   final CloudSchedulerJobOidcToken? oidcToken;
 
+  @internal
   Map<String, Object?> encode() => {
     'body': ?body?.toTfJson(),
     'headers': ?headers?.toTfJson(),
@@ -202,6 +217,7 @@ final class CloudSchedulerJobOauthToken {
 
   final RefTo<GoogleServiceAccount> serviceAccountEmail;
 
+  @internal
   Map<String, Object?> encode() => {
     'scope': ?scope?.toTfJson(),
     'service_account_email': serviceAccountEmail.encodeAs('email').toTfJson(),
@@ -221,6 +237,7 @@ final class CloudSchedulerJobOidcToken {
 
   final RefTo<GoogleServiceAccount> serviceAccountEmail;
 
+  @internal
   Map<String, Object?> encode() => {
     'audience': ?audience?.toTfJson(),
     'service_account_email': serviceAccountEmail.encodeAs('email').toTfJson(),
@@ -243,6 +260,7 @@ final class CloudSchedulerJobPubsubTarget {
 
   final RefTo<GooglePubsubTopic> topicName;
 
+  @internal
   Map<String, Object?> encode() => {
     'attributes': ?attributes?.toTfJson(),
     'data': ?data?.toTfJson(),
@@ -272,6 +290,7 @@ final class CloudSchedulerJobRetryConfig {
 
   final TfArg<num>? retryCount;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_backoff_duration': ?maxBackoffDuration?.toTfJson(),
     'max_doublings': ?maxDoublings?.toTfJson(),

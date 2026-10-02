@@ -62,6 +62,7 @@ final class BigqueryAnalyticsHubDataExchangeSubscriptionDestinationDataset {
   final BigqueryAnalyticsHubDataExchangeSubscriptionDatasetReference
   datasetReference;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'friendly_name': ?friendlyName?.toTfJson(),
@@ -84,6 +85,7 @@ final class BigqueryAnalyticsHubDataExchangeSubscriptionDatasetReference {
 
   final TfArg<String> projectId;
 
+  @internal
   Map<String, Object?> encode() => {
     'dataset_id': datasetId.toTfJson(),
     'project_id': projectId.toTfJson(),

@@ -62,6 +62,7 @@ final class HealthcareFhirStoreNotificationConfig {
 
   final RefTo<GooglePubsubTopic> pubsubTopic;
 
+  @internal
   Map<String, Object?> encode() => {
     'pubsub_topic': pubsubTopic.encodeAs('id').toTfJson(),
   };
@@ -83,6 +84,7 @@ final class HealthcareFhirStoreNotificationConfigs {
 
   final TfArg<bool>? sendPreviousResourceOnDelete;
 
+  @internal
   Map<String, Object?> encode() => {
     'pubsub_topic': pubsubTopic.encodeAs('id').toTfJson(),
     'send_full_resource': ?sendFullResource?.toTfJson(),
@@ -104,6 +106,7 @@ final class HealthcareFhirStoreStreamConfigs {
 
   final HealthcareFhirStoreBigqueryDestination bigqueryDestination;
 
+  @internal
   Map<String, Object?> encode() => {
     'resource_types': ?resourceTypes?.toTfJson(),
     'bigquery_destination': bigqueryDestination.encode(),
@@ -123,6 +126,7 @@ final class HealthcareFhirStoreBigqueryDestination {
 
   final HealthcareFhirStoreSchemaConfig schemaConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'dataset_uri': datasetUri.toTfJson(),
     'schema_config': schemaConfig.encode(),
@@ -146,6 +150,7 @@ final class HealthcareFhirStoreSchemaConfig {
   final HealthcareFhirStoreLastUpdatedPartitionConfig?
   lastUpdatedPartitionConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'recursive_structure_depth': recursiveStructureDepth.toTfJson(),
     'schema_type': ?schemaType?.toTfJson(),
@@ -192,6 +197,7 @@ final class HealthcareFhirStoreLastUpdatedPartitionConfig {
 
   final HealthcareFhirStoreType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'expiration_ms': ?expirationMs?.toTfJson(),
     'type': type.toTfJson(),
@@ -245,6 +251,7 @@ final class HealthcareFhirStoreValidationConfig {
 
   final TfArg<List<String>>? enabledImplementationGuides;
 
+  @internal
   Map<String, Object?> encode() => {
     'disable_fhirpath_validation': ?disableFhirpathValidation?.toTfJson(),
     'disable_profile_validation': ?disableProfileValidation?.toTfJson(),

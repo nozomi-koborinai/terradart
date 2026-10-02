@@ -48,6 +48,7 @@ final class KmsEkmConnectionServiceResolvers {
 
   final List<KmsEkmConnectionServerCertificates> serverCertificates;
 
+  @internal
   Map<String, Object?> encode() => {
     'endpoint_filter': ?endpointFilter?.toTfJson(),
     'hostname': hostname.toTfJson(),
@@ -69,6 +70,7 @@ final class KmsEkmConnectionServerCertificates {
 
   final TfArg<List<String>>? subjectAlternativeDnsNames;
 
+  @internal
   Map<String, Object?> encode() => {
     'raw_der': rawDer.toTfJson(),
     'subject_alternative_dns_names': ?subjectAlternativeDnsNames?.toTfJson(),

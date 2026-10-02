@@ -103,6 +103,7 @@ final class DbProxyAuth {
 
   final TfArg<String>? username;
 
+  @internal
   Map<String, Object?> encode() => {
     'auth_scheme': ?authScheme?.toTfJson(),
     'client_password_auth_type': ?clientPasswordAuthType?.toTfJson(),

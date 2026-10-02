@@ -3,6 +3,7 @@
 /// AWS AppIntegrations.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/appintegrations/aws_appintegrations_data_integration.dart'
     show
         AppintegrationsDataIntegrationScheduleConfig,
@@ -11,3 +12,5 @@ export 'src/appintegrations/aws_appintegrations_event_integration.dart'
     show
         AppintegrationsEventIntegrationEventFilter,
         AwsAppintegrationsEventIntegration;
+export 'src/data/aws_appintegrations_event_integration.dart'
+    show DataAwsAppintegrationsEventIntegration;

@@ -33,6 +33,7 @@ final class LambdamicrovmsImageCodeArtifact {
 
   final TfArg<String> uri;
 
+  @internal
   Map<String, Object?> encode() => {'uri': uri.toTfJson()};
 }
 
@@ -44,6 +45,7 @@ final class LambdamicrovmsImageCpuConfiguration {
 
   final LambdamicrovmsImageArchitecture architecture;
 
+  @internal
   Map<String, Object?> encode() => {'architecture': architecture.toTfJson()};
 }
 

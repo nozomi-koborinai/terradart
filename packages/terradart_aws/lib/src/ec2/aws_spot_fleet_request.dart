@@ -188,12 +188,15 @@ sealed class SpotFleetRequestLaunch {
   ) = SpotFleetRequestLaunchTemplateConfigChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -204,14 +207,17 @@ final class SpotFleetRequestLaunchSpecificationChoice
 
   final List<SpotFleetRequestLaunchSpecification> launchSpecification;
 
+  @internal
   @override
   String get blockKey => 'launch_specification';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'launch_specification': [for (final e in launchSpecification) e.encode()],
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'launch_specification': TfArg.literal([
@@ -227,9 +233,11 @@ final class SpotFleetRequestLaunchTemplateConfigChoice
 
   final List<SpotFleetRequestLaunchTemplateConfig> launchTemplateConfig;
 
+  @internal
   @override
   String get blockKey => 'launch_template_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'launch_template_config': [
@@ -237,6 +245,7 @@ final class SpotFleetRequestLaunchTemplateConfigChoice
     ],
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'launch_template_config': TfArg.literal([
@@ -312,6 +321,7 @@ final class SpotFleetRequestLaunchSpecification {
 
   final List<SpotFleetRequestRootBlockDevice>? rootBlockDevice;
 
+  @internal
   Map<String, Object?> encode() => {
     'ami': ami.toTfJson(),
     'associate_public_ip_address': ?associatePublicIpAddress?.toTfJson(),
@@ -399,6 +409,7 @@ final class SpotFleetRequestEbsBlockDevice {
 
   final SpotFleetRequestVolumeType? volumeType;
 
+  @internal
   Map<String, Object?> encode() => {
     'delete_on_termination': ?deleteOnTermination?.toTfJson(),
     'device_name': deviceName.toTfJson(),
@@ -455,6 +466,7 @@ final class SpotFleetRequestEphemeralBlockDevice {
 
   final TfArg<String> virtualName;
 
+  @internal
   Map<String, Object?> encode() => {
     'device_name': deviceName.toTfJson(),
     'virtual_name': virtualName.toTfJson(),
@@ -489,6 +501,7 @@ final class SpotFleetRequestRootBlockDevice {
 
   final SpotFleetRequestVolumeType? volumeType;
 
+  @internal
   Map<String, Object?> encode() => {
     'delete_on_termination': ?deleteOnTermination?.toTfJson(),
     'encrypted': ?encrypted?.toTfJson(),
@@ -513,6 +526,7 @@ final class SpotFleetRequestLaunchTemplateConfig {
 
   final List<SpotFleetRequestOverrides>? overrides;
 
+  @internal
   Map<String, Object?> encode() => {
     'launch_template_specification': launchTemplateSpecification.encode(),
     if (overrides != null)
@@ -536,6 +550,7 @@ final class SpotFleetRequestLaunchTemplateSpecification {
 
   final TfArg<String>? version;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': ?id?.toTfJson(),
     'name': ?name?.toTfJson(),
@@ -571,6 +586,7 @@ final class SpotFleetRequestOverrides {
 
   final SpotFleetRequestInstanceRequirements? instanceRequirements;
 
+  @internal
   Map<String, Object?> encode() => {
     'availability_zone': ?availabilityZone?.toTfJson(),
     'instance_type': ?instanceType?.toTfJson(),
@@ -659,6 +675,7 @@ final class SpotFleetRequestInstanceRequirements {
 
   final SpotFleetRequestVcpuCount? vcpuCount;
 
+  @internal
   Map<String, Object?> encode() => {
     if (acceleratorManufacturers != null)
       'accelerator_manufacturers': [
@@ -972,6 +989,7 @@ final class SpotFleetRequestAcceleratorCount {
 
   final TfArg<num>? min;
 
+  @internal
   Map<String, Object?> encode() => {
     'max': ?max?.toTfJson(),
     'min': ?min?.toTfJson(),
@@ -988,6 +1006,7 @@ final class SpotFleetRequestAcceleratorTotalMemoryMib {
 
   final TfArg<num>? min;
 
+  @internal
   Map<String, Object?> encode() => {
     'max': ?max?.toTfJson(),
     'min': ?min?.toTfJson(),
@@ -1004,6 +1023,7 @@ final class SpotFleetRequestBaselineEbsBandwidthMbps {
 
   final TfArg<num>? min;
 
+  @internal
   Map<String, Object?> encode() => {
     'max': ?max?.toTfJson(),
     'min': ?min?.toTfJson(),
@@ -1020,6 +1040,7 @@ final class SpotFleetRequestMemoryGibPerVcpu {
 
   final TfArg<num>? min;
 
+  @internal
   Map<String, Object?> encode() => {
     'max': ?max?.toTfJson(),
     'min': ?min?.toTfJson(),
@@ -1036,6 +1057,7 @@ final class SpotFleetRequestMemoryMib {
 
   final TfArg<num>? min;
 
+  @internal
   Map<String, Object?> encode() => {
     'max': ?max?.toTfJson(),
     'min': ?min?.toTfJson(),
@@ -1052,6 +1074,7 @@ final class SpotFleetRequestNetworkBandwidthGbps {
 
   final TfArg<num>? min;
 
+  @internal
   Map<String, Object?> encode() => {
     'max': ?max?.toTfJson(),
     'min': ?min?.toTfJson(),
@@ -1068,6 +1091,7 @@ final class SpotFleetRequestNetworkInterfaceCount {
 
   final TfArg<num>? min;
 
+  @internal
   Map<String, Object?> encode() => {
     'max': ?max?.toTfJson(),
     'min': ?min?.toTfJson(),
@@ -1084,6 +1108,7 @@ final class SpotFleetRequestTotalLocalStorageGb {
 
   final TfArg<num>? min;
 
+  @internal
   Map<String, Object?> encode() => {
     'max': ?max?.toTfJson(),
     'min': ?min?.toTfJson(),
@@ -1100,6 +1125,7 @@ final class SpotFleetRequestVcpuCount {
 
   final TfArg<num>? min;
 
+  @internal
   Map<String, Object?> encode() => {
     'max': ?max?.toTfJson(),
     'min': ?min?.toTfJson(),
@@ -1114,6 +1140,7 @@ final class SpotFleetRequestSpotMaintenanceStrategies {
 
   final SpotFleetRequestCapacityRebalance? capacityRebalance;
 
+  @internal
   Map<String, Object?> encode() => {
     'capacity_rebalance': ?capacityRebalance?.encode(),
   };
@@ -1127,6 +1154,7 @@ final class SpotFleetRequestCapacityRebalance {
 
   final SpotFleetRequestReplacementStrategy? replacementStrategy;
 
+  @internal
   Map<String, Object?> encode() => {
     'replacement_strategy': ?replacementStrategy?.toTfJson(),
   };

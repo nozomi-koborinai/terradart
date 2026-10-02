@@ -3,6 +3,7 @@
 /// AWS Resource Groups.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/resourcegroups/aws_resourcegroups_group.dart'
     show
         AwsResourcegroupsGroup,

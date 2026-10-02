@@ -20,6 +20,7 @@ final class ApigeeSecurityProfileV2ProfileAssessmentConfigs {
 
   final ApigeeSecurityProfileV2Weight weight;
 
+  @internal
   Map<String, Object?> encode() => {
     'assessment': assessment.toTfJson(),
     'weight': weight.toTfJson(),

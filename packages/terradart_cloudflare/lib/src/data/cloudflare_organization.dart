@@ -33,6 +33,7 @@ final class DataOrganizationFilter {
 
   final DataOrganizationParent? parent;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': ?id?.toTfJson(),
     'page_size': ?pageSize?.toTfJson(),
@@ -59,6 +60,7 @@ final class DataOrganizationContaining {
 
   final TfArg<String>? user;
 
+  @internal
   Map<String, Object?> encode() => {
     'account': ?account?.toTfJson(),
     'organization': ?organization?.toTfJson(),
@@ -82,6 +84,7 @@ final class DataOrganizationFilterName {
 
   final TfArg<String>? startsWith;
 
+  @internal
   Map<String, Object?> encode() => {
     'contains': ?contains?.toTfJson(),
     'ends_with': ?endsWith?.toTfJson(),
@@ -97,6 +100,7 @@ final class DataOrganizationParent {
 
   final TfArg<String>? id;
 
+  @internal
   Map<String, Object?> encode() => {'id': ?id?.toTfJson()};
 }
 

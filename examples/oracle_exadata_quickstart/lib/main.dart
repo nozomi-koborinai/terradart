@@ -1,7 +1,6 @@
 /// Oracle Exadata quickstart — ODB networking, Exascale vault, ExaDB and Exadata stacks.
 library;
 
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/compute.dart';
 import 'package:terradart_google/oracle.dart';
 import 'package:terradart_google/project.dart';

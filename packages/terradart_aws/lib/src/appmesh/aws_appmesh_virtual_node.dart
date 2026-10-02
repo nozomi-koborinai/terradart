@@ -29,6 +29,7 @@ final class AppmeshVirtualNodeSpec {
 
   final AppmeshVirtualNodeServiceDiscovery? serviceDiscovery;
 
+  @internal
   Map<String, Object?> encode() => {
     if (backend != null) 'backend': [for (final e in backend!) e.encode()],
     'backend_defaults': ?backendDefaults?.encode(),
@@ -46,6 +47,7 @@ final class AppmeshVirtualNodeBackend {
 
   final AppmeshVirtualNodeVirtualService virtualService;
 
+  @internal
   Map<String, Object?> encode() => {'virtual_service': virtualService.encode()};
 }
 
@@ -62,6 +64,7 @@ final class AppmeshVirtualNodeVirtualService {
 
   final AppmeshVirtualNodeClientPolicy? clientPolicy;
 
+  @internal
   Map<String, Object?> encode() => {
     'virtual_service_name': virtualServiceName.toTfJson(),
     'client_policy': ?clientPolicy?.encode(),
@@ -77,6 +80,7 @@ final class AppmeshVirtualNodeClientPolicy {
 
   final AppmeshVirtualNodeClientPolicyTls? tls;
 
+  @internal
   Map<String, Object?> encode() => {'tls': ?tls?.encode()};
 }
 
@@ -100,6 +104,7 @@ final class AppmeshVirtualNodeClientPolicyTls {
 
   final AppmeshVirtualNodeTlsValidation validation;
 
+  @internal
   Map<String, Object?> encode() => {
     'enforce': ?enforce?.toTfJson(),
     'ports': ?ports?.toTfJson(),
@@ -119,6 +124,7 @@ final class AppmeshVirtualNodeTlsCertificate {
 
   final AppmeshVirtualNodeSds? sds;
 
+  @internal
   Map<String, Object?> encode() => {
     'file': ?file?.encode(),
     'sds': ?sds?.encode(),
@@ -139,6 +145,7 @@ final class AppmeshVirtualNodeCertificateFile {
 
   final TfArg<String> privateKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'certificate_chain': certificateChain.toTfJson(),
     'private_key': privateKey.toTfJson(),
@@ -154,6 +161,7 @@ final class AppmeshVirtualNodeSds {
 
   final TfArg<String> secretName;
 
+  @internal
   Map<String, Object?> encode() => {'secret_name': secretName.toTfJson()};
 }
 
@@ -171,6 +179,7 @@ final class AppmeshVirtualNodeTlsValidation {
 
   final AppmeshVirtualNodeValidationTrust trust;
 
+  @internal
   Map<String, Object?> encode() => {
     'subject_alternative_names': ?subjectAlternativeNames?.encode(),
     'trust': trust.encode(),
@@ -186,6 +195,7 @@ final class AppmeshVirtualNodeSubjectAlternativeNames {
 
   final AppmeshVirtualNodeMatch match;
 
+  @internal
   Map<String, Object?> encode() => {'match': match.encode()};
 }
 
@@ -198,6 +208,7 @@ final class AppmeshVirtualNodeMatch {
 
   final TfArg<List<String>> exact;
 
+  @internal
   Map<String, Object?> encode() => {'exact': exact.toTfJson()};
 }
 
@@ -214,6 +225,7 @@ final class AppmeshVirtualNodeValidationTrust {
 
   final AppmeshVirtualNodeSds? sds;
 
+  @internal
   Map<String, Object?> encode() => {
     'acm': ?acm?.encode(),
     'file': ?file?.encode(),
@@ -230,6 +242,7 @@ final class AppmeshVirtualNodeTrustAcm {
 
   final TfArg<List<String>> certificateAuthorityArns;
 
+  @internal
   Map<String, Object?> encode() => {
     'certificate_authority_arns': certificateAuthorityArns.toTfJson(),
   };
@@ -244,6 +257,7 @@ final class AppmeshVirtualNodeTrustFile {
 
   final TfArg<String> certificateChain;
 
+  @internal
   Map<String, Object?> encode() => {
     'certificate_chain': certificateChain.toTfJson(),
   };
@@ -257,6 +271,7 @@ final class AppmeshVirtualNodeBackendDefaults {
 
   final AppmeshVirtualNodeClientPolicy? clientPolicy;
 
+  @internal
   Map<String, Object?> encode() => {'client_policy': ?clientPolicy?.encode()};
 }
 
@@ -285,6 +300,7 @@ final class AppmeshVirtualNodeListener {
 
   final AppmeshVirtualNodeTls? tls;
 
+  @internal
   Map<String, Object?> encode() => {
     'connection_pool': ?connectionPool?.encode(),
     'health_check': ?healthCheck?.encode(),
@@ -314,6 +330,7 @@ final class AppmeshVirtualNodeConnectionPool {
 
   final List<AppmeshVirtualNodeConnectionPoolTcp>? tcp;
 
+  @internal
   Map<String, Object?> encode() => {
     'grpc': ?grpc?.encode(),
     if (http != null) 'http': [for (final e in http!) e.encode()],
@@ -330,6 +347,7 @@ final class AppmeshVirtualNodeConnectionPoolGrpc {
 
   final TfArg<num> maxRequests;
 
+  @internal
   Map<String, Object?> encode() => {'max_requests': maxRequests.toTfJson()};
 }
 
@@ -346,6 +364,7 @@ final class AppmeshVirtualNodeConnectionPoolHttp {
 
   final TfArg<num>? maxPendingRequests;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_connections': maxConnections.toTfJson(),
     'max_pending_requests': ?maxPendingRequests?.toTfJson(),
@@ -360,6 +379,7 @@ final class AppmeshVirtualNodeConnectionPoolHttp2 {
 
   final TfArg<num> maxRequests;
 
+  @internal
   Map<String, Object?> encode() => {'max_requests': maxRequests.toTfJson()};
 }
 
@@ -371,6 +391,7 @@ final class AppmeshVirtualNodeConnectionPoolTcp {
 
   final TfArg<num> maxConnections;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_connections': maxConnections.toTfJson(),
   };
@@ -404,6 +425,7 @@ final class AppmeshVirtualNodeHealthCheck {
 
   final TfArg<num> unhealthyThreshold;
 
+  @internal
   Map<String, Object?> encode() => {
     'healthy_threshold': healthyThreshold.toTfJson(),
     'interval_millis': intervalMillis.toTfJson(),
@@ -456,6 +478,7 @@ final class AppmeshVirtualNodeOutlierDetection {
 
   final AppmeshVirtualNodeInterval interval;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_ejection_percent': maxEjectionPercent.toTfJson(),
     'max_server_errors': maxServerErrors.toTfJson(),
@@ -477,6 +500,7 @@ final class AppmeshVirtualNodeBaseEjectionDuration {
 
   final TfArg<num> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'unit': unit.toTfJson(),
     'value': value.toTfJson(),
@@ -507,6 +531,7 @@ final class AppmeshVirtualNodeInterval {
 
   final TfArg<num> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'unit': unit.toTfJson(),
     'value': value.toTfJson(),
@@ -526,6 +551,7 @@ final class AppmeshVirtualNodePortMapping {
 
   final AppmeshVirtualNodeProtocol protocol;
 
+  @internal
   Map<String, Object?> encode() => {
     'port': port.toTfJson(),
     'protocol': protocol.toTfJson(),
@@ -546,6 +572,7 @@ final class AppmeshVirtualNodeTimeout {
 
   final AppmeshVirtualNodeTimeoutTcp? tcp;
 
+  @internal
   Map<String, Object?> encode() => {
     'grpc': ?grpc?.encode(),
     'http': ?http?.encode(),
@@ -564,6 +591,7 @@ final class AppmeshVirtualNodeTimeoutGrpc {
 
   final AppmeshVirtualNodePerRequest? perRequest;
 
+  @internal
   Map<String, Object?> encode() => {
     'idle': ?idle?.encode(),
     'per_request': ?perRequest?.encode(),
@@ -581,6 +609,7 @@ final class AppmeshVirtualNodeIdle {
 
   final TfArg<num> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'unit': unit.toTfJson(),
     'value': value.toTfJson(),
@@ -598,6 +627,7 @@ final class AppmeshVirtualNodePerRequest {
 
   final TfArg<num> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'unit': unit.toTfJson(),
     'value': value.toTfJson(),
@@ -614,6 +644,7 @@ final class AppmeshVirtualNodeTimeoutHttp {
 
   final AppmeshVirtualNodePerRequest? perRequest;
 
+  @internal
   Map<String, Object?> encode() => {
     'idle': ?idle?.encode(),
     'per_request': ?perRequest?.encode(),
@@ -630,6 +661,7 @@ final class AppmeshVirtualNodeTimeoutHttp2 {
 
   final AppmeshVirtualNodePerRequest? perRequest;
 
+  @internal
   Map<String, Object?> encode() => {
     'idle': ?idle?.encode(),
     'per_request': ?perRequest?.encode(),
@@ -644,6 +676,7 @@ final class AppmeshVirtualNodeTimeoutTcp {
 
   final AppmeshVirtualNodeIdle? idle;
 
+  @internal
   Map<String, Object?> encode() => {'idle': ?idle?.encode()};
 }
 
@@ -663,6 +696,7 @@ final class AppmeshVirtualNodeTls {
 
   final AppmeshVirtualNodeValidation? validation;
 
+  @internal
   Map<String, Object?> encode() => {
     'mode': mode.toTfJson(),
     'certificate': certificate.encode(),
@@ -703,6 +737,7 @@ final class AppmeshVirtualNodeCertificate {
 
   final AppmeshVirtualNodeSds? sds;
 
+  @internal
   Map<String, Object?> encode() => {
     'acm': ?acm?.encode(),
     'file': ?file?.encode(),
@@ -718,6 +753,7 @@ final class AppmeshVirtualNodeAcm {
 
   final TfArg<String> certificateArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'certificate_arn': certificateArn.toTfJson(),
   };
@@ -736,6 +772,7 @@ final class AppmeshVirtualNodeValidation {
 
   final AppmeshVirtualNodeTrust trust;
 
+  @internal
   Map<String, Object?> encode() => {
     'subject_alternative_names': ?subjectAlternativeNames?.encode(),
     'trust': trust.encode(),
@@ -752,6 +789,7 @@ final class AppmeshVirtualNodeTrust {
 
   final AppmeshVirtualNodeSds? sds;
 
+  @internal
   Map<String, Object?> encode() => {
     'file': ?file?.encode(),
     'sds': ?sds?.encode(),
@@ -766,6 +804,7 @@ final class AppmeshVirtualNodeLogging {
 
   final AppmeshVirtualNodeAccessLog? accessLog;
 
+  @internal
   Map<String, Object?> encode() => {'access_log': ?accessLog?.encode()};
 }
 
@@ -777,6 +816,7 @@ final class AppmeshVirtualNodeAccessLog {
 
   final AppmeshVirtualNodeFile? file;
 
+  @internal
   Map<String, Object?> encode() => {'file': ?file?.encode()};
 }
 
@@ -790,6 +830,7 @@ final class AppmeshVirtualNodeFile {
 
   final AppmeshVirtualNodeFormat? format;
 
+  @internal
   Map<String, Object?> encode() => {
     'path': path.toTfJson(),
     'format': ?format?.encode(),
@@ -806,6 +847,7 @@ final class AppmeshVirtualNodeFormat {
 
   final List<AppmeshVirtualNodeJson>? json;
 
+  @internal
   Map<String, Object?> encode() => {
     'text': ?text?.toTfJson(),
     if (json != null) 'json': [for (final e in json!) e.encode()],
@@ -822,6 +864,7 @@ final class AppmeshVirtualNodeJson {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'value': value.toTfJson(),
@@ -847,8 +890,10 @@ sealed class AppmeshVirtualNodeServiceDiscovery {
   ) = AppmeshVirtualNodeServiceDiscoveryDns;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -859,9 +904,11 @@ final class AppmeshVirtualNodeServiceDiscoveryAwsCloudMap
 
   final AppmeshVirtualNodeAwsCloudMap awsCloudMap;
 
+  @internal
   @override
   String get blockKey => 'aws_cloud_map';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'aws_cloud_map': awsCloudMap.encode()};
 }
@@ -873,9 +920,11 @@ final class AppmeshVirtualNodeServiceDiscoveryDns
 
   final AppmeshVirtualNodeDns dns;
 
+  @internal
   @override
   String get blockKey => 'dns';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'dns': dns.encode()};
 }
@@ -896,6 +945,7 @@ final class AppmeshVirtualNodeAwsCloudMap {
 
   final TfArg<String> serviceName;
 
+  @internal
   Map<String, Object?> encode() => {
     'attributes': ?attributes?.toTfJson(),
     'namespace_name': namespaceName.toTfJson(),
@@ -919,6 +969,7 @@ final class AppmeshVirtualNodeDns {
 
   final AppmeshVirtualNodeResponseType? responseType;
 
+  @internal
   Map<String, Object?> encode() => {
     'hostname': hostname.toTfJson(),
     'ip_preference': ?ipPreference?.toTfJson(),

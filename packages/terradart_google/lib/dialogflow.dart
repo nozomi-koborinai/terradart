@@ -10,6 +10,7 @@
 /// version / test case).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/dialogflow/google_dialogflow_agent.dart'
     show
         DialogflowAgentApiVersion,

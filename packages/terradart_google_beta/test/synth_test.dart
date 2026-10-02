@@ -1,4 +1,4 @@
-import 'package:terradart_core/terradart_core.dart';
+import 'package:terradart_core/internal.dart';
 import 'package:terradart_google_beta/api_gateway.dart';
 import 'package:terradart_google_beta/compute.dart';
 import 'package:terradart_google_beta/folder.dart';

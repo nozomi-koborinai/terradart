@@ -3,6 +3,7 @@
 /// AWS Bedrock AgentCore.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/bedrockagentcore/aws_bedrockagentcore_agent_runtime.dart'
     show
         AwsBedrockagentcoreAgentRuntime,

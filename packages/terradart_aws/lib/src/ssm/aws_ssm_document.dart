@@ -107,6 +107,7 @@ final class SsmDocumentAttachmentsSource {
 
   final TfArg<List<String>> values;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'name': ?name?.toTfJson(),

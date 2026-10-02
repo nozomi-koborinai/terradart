@@ -89,6 +89,7 @@ final class BigtableInstanceCluster {
 
   final BigtableInstanceAutoscalingConfig? autoscalingConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'cluster_id': clusterId.toTfJson(),
     'kms_key_name': ?kmsKeyName?.encodeAs('id').toTfJson(),
@@ -119,6 +120,7 @@ final class BigtableInstanceAutoscalingConfig {
 
   final TfArg<num>? storageTarget;
 
+  @internal
   Map<String, Object?> encode() => {
     'cpu_target': cpuTarget.toTfJson(),
     'max_nodes': maxNodes.toTfJson(),

@@ -17,6 +17,7 @@ final class VpclatticeTargetGroupAttachmentTarget {
 
   final TfArg<num>? port;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
     'port': ?port?.toTfJson(),

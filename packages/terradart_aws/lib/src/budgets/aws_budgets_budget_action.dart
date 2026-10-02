@@ -93,6 +93,7 @@ final class BudgetsBudgetActionThreshold {
 
   final TfArg<num> actionThresholdValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'action_threshold_type': actionThresholdType.toTfJson(),
     'action_threshold_value': actionThresholdValue.toTfJson(),
@@ -137,6 +138,7 @@ final class BudgetsBudgetActionDefinition {
 
   final BudgetsBudgetActionSsmActionDefinition? ssmActionDefinition;
 
+  @internal
   Map<String, Object?> encode() => {
     'iam_action_definition': ?iamActionDefinition?.encode(),
     'scp_action_definition': ?scpActionDefinition?.encode(),
@@ -163,6 +165,7 @@ final class BudgetsBudgetActionIamActionDefinition {
 
   final TfArg<List<String>>? users;
 
+  @internal
   Map<String, Object?> encode() => {
     'groups': ?groups?.toTfJson(),
     'policy_arn': policyArn.encodeAs('arn').toTfJson(),
@@ -184,6 +187,7 @@ final class BudgetsBudgetActionScpActionDefinition {
 
   final TfArg<List<String>> targetIds;
 
+  @internal
   Map<String, Object?> encode() => {
     'policy_id': policyId.toTfJson(),
     'target_ids': targetIds.toTfJson(),
@@ -206,6 +210,7 @@ final class BudgetsBudgetActionSsmActionDefinition {
 
   final TfArg<String> region;
 
+  @internal
   Map<String, Object?> encode() => {
     'action_sub_type': actionSubType.toTfJson(),
     'instance_ids': instanceIds.toTfJson(),
@@ -248,6 +253,7 @@ final class BudgetsBudgetActionSubscriber {
 
   final BudgetsBudgetActionSubscriptionType subscriptionType;
 
+  @internal
   Map<String, Object?> encode() => {
     'address': address.toTfJson(),
     'subscription_type': subscriptionType.toTfJson(),

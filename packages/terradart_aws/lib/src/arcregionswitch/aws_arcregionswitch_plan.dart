@@ -52,6 +52,7 @@ final class ArcregionswitchPlanAssociatedAlarms {
 
   final TfArg<String> resourceIdentifier;
 
+  @internal
   Map<String, Object?> encode() => {
     'alarm_type': alarmType.toTfJson(),
     'cross_account_role': ?crossAccountRole?.toTfJson(),
@@ -91,6 +92,7 @@ final class ArcregionswitchPlanReportConfiguration {
 
   final List<ArcregionswitchPlanReportOutput>? reportOutput;
 
+  @internal
   Map<String, Object?> encode() => {
     if (reportOutput != null)
       'report_output': [for (final e in reportOutput!) e.encode()],
@@ -105,6 +107,7 @@ final class ArcregionswitchPlanReportOutput {
 
   final List<ArcregionswitchPlanS3Configuration>? s3Configuration;
 
+  @internal
   Map<String, Object?> encode() => {
     if (s3Configuration != null)
       's3_configuration': [for (final e in s3Configuration!) e.encode()],
@@ -124,6 +127,7 @@ final class ArcregionswitchPlanS3Configuration {
 
   final TfArg<String> bucketPath;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_owner': bucketOwner.toTfJson(),
     'bucket_path': bucketPath.toTfJson(),
@@ -152,6 +156,7 @@ final class ArcregionswitchPlanTriggers {
 
   final List<ArcregionswitchPlanConditions>? conditions;
 
+  @internal
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
     'description': ?description?.toTfJson(),
@@ -200,6 +205,7 @@ final class ArcregionswitchPlanConditions {
 
   final ArcregionswitchPlanCondition condition;
 
+  @internal
   Map<String, Object?> encode() => {
     'associated_alarm_name': associatedAlarmName.toTfJson(),
     'condition': condition.toTfJson(),
@@ -240,6 +246,7 @@ final class ArcregionswitchPlanWorkflow {
 
   final List<ArcregionswitchPlanStep>? step;
 
+  @internal
   Map<String, Object?> encode() => {
     'workflow_description': ?workflowDescription?.toTfJson(),
     'workflow_target_action': workflowTargetAction.toTfJson(),
@@ -355,6 +362,7 @@ final class ArcregionswitchPlanStep {
   final List<ArcregionswitchPlanRoute53HealthCheckConfig>?
   route53HealthCheckConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'execution_block_type': executionBlockType.toTfJson(),
@@ -537,6 +545,7 @@ final class ArcregionswitchPlanArcRoutingControlConfig {
   final List<ArcregionswitchPlanRegionAndRoutingControls>?
   regionAndRoutingControls;
 
+  @internal
   Map<String, Object?> encode() => {
     'cross_account_role': ?crossAccountRole?.toTfJson(),
     'external_id': ?externalId?.toTfJson(),
@@ -562,6 +571,7 @@ final class ArcregionswitchPlanRegionAndRoutingControls {
 
   final List<ArcregionswitchPlanRoutingControl>? routingControl;
 
+  @internal
   Map<String, Object?> encode() => {
     'region': region.toTfJson(),
     if (routingControl != null)
@@ -583,6 +593,7 @@ final class ArcregionswitchPlanRoutingControl {
 
   final ArcregionswitchPlanState state;
 
+  @internal
   Map<String, Object?> encode() => {
     'routing_control_arn': routingControlArn.toTfJson(),
     'state': state.toTfJson(),
@@ -629,6 +640,7 @@ final class ArcregionswitchPlanAuroraProvisionedScalingConfig {
 
   final TfArg<num>? timeoutMinutes;
 
+  @internal
   Map<String, Object?> encode() => {
     'cross_account_role': ?crossAccountRole?.toTfJson(),
     'external_id': ?externalId?.toTfJson(),
@@ -665,6 +677,7 @@ final class ArcregionswitchPlanAuroraServerlessScalingConfig {
 
   final TfArg<num>? timeoutMinutes;
 
+  @internal
   Map<String, Object?> encode() => {
     'cross_account_role': ?crossAccountRole?.toTfJson(),
     'external_id': ?externalId?.toTfJson(),
@@ -698,6 +711,7 @@ final class ArcregionswitchPlanCustomActionLambdaConfig {
 
   final List<ArcregionswitchPlanCustomActionLambdaConfigUngraceful>? ungraceful;
 
+  @internal
   Map<String, Object?> encode() => {
     'region_to_run': regionToRun.toTfJson(),
     'retry_interval_minutes': retryIntervalMinutes.toTfJson(),
@@ -755,6 +769,7 @@ final class ArcregionswitchPlanLambda {
 
   final TfArg<String>? externalId;
 
+  @internal
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
     'cross_account_role': ?crossAccountRole?.toTfJson(),
@@ -773,6 +788,7 @@ final class ArcregionswitchPlanCustomActionLambdaConfigUngraceful {
 
   final ArcregionswitchPlanUngracefulBehavior behavior;
 
+  @internal
   Map<String, Object?> encode() => {'behavior': behavior.toTfJson()};
 }
 
@@ -822,6 +838,7 @@ final class ArcregionswitchPlanDocumentDbConfig {
 
   final List<ArcregionswitchPlanDocumentDbConfigUngraceful>? ungraceful;
 
+  @internal
   Map<String, Object?> encode() => {
     'behavior': behavior.toTfJson(),
     'cross_account_role': ?crossAccountRole?.toTfJson(),
@@ -867,6 +884,7 @@ final class ArcregionswitchPlanDocumentDbConfigUngraceful {
 
   final ArcregionswitchPlanUngracefulUngraceful ungraceful;
 
+  @internal
   Map<String, Object?> encode() => {'ungraceful': ungraceful.toTfJson()};
 }
 
@@ -914,6 +932,7 @@ final class ArcregionswitchPlanEc2AsgCapacityIncreaseConfig {
   final List<ArcregionswitchPlanEc2AsgCapacityIncreaseConfigUngraceful>?
   ungraceful;
 
+  @internal
   Map<String, Object?> encode() => {
     'capacity_monitoring_approach': capacityMonitoringApproach.toTfJson(),
     'target_percent': ?targetPercent?.toTfJson(),
@@ -970,6 +989,7 @@ final class ArcregionswitchPlanAsg {
 
   final TfArg<String>? externalId;
 
+  @internal
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
     'cross_account_role': ?crossAccountRole?.toTfJson(),
@@ -988,6 +1008,7 @@ final class ArcregionswitchPlanEc2AsgCapacityIncreaseConfigUngraceful {
 
   final TfArg<num> minimumSuccessPercentage;
 
+  @internal
   Map<String, Object?> encode() => {
     'minimum_success_percentage': minimumSuccessPercentage.toTfJson(),
   };
@@ -1018,6 +1039,7 @@ final class ArcregionswitchPlanEcsCapacityIncreaseConfig {
   final List<ArcregionswitchPlanEc2AsgCapacityIncreaseConfigUngraceful>?
   ungraceful;
 
+  @internal
   Map<String, Object?> encode() => {
     'capacity_monitoring_approach': capacityMonitoringApproach.toTfJson(),
     'target_percent': ?targetPercent?.toTfJson(),
@@ -1077,6 +1099,7 @@ final class ArcregionswitchPlanService {
 
   final TfArg<String> serviceArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'cluster_arn': clusterArn.toTfJson(),
     'cross_account_role': ?crossAccountRole?.toTfJson(),
@@ -1116,6 +1139,7 @@ final class ArcregionswitchPlanEksResourceScalingConfig {
   final List<ArcregionswitchPlanEc2AsgCapacityIncreaseConfigUngraceful>?
   ungraceful;
 
+  @internal
   Map<String, Object?> encode() => {
     'capacity_monitoring_approach': capacityMonitoringApproach.toTfJson(),
     'target_percent': targetPercent.toTfJson(),
@@ -1175,6 +1199,7 @@ final class ArcregionswitchPlanEksClusters {
 
   final TfArg<String>? externalId;
 
+  @internal
   Map<String, Object?> encode() => {
     'cluster_arn': clusterArn.toTfJson(),
     'cross_account_role': ?crossAccountRole?.toTfJson(),
@@ -1196,6 +1221,7 @@ final class ArcregionswitchPlanKubernetesResourceType {
 
   final TfArg<String> kind;
 
+  @internal
   Map<String, Object?> encode() => {
     'api_version': apiVersion.toTfJson(),
     'kind': kind.toTfJson(),
@@ -1216,6 +1242,7 @@ final class ArcregionswitchPlanScalingResources {
 
   final List<ArcregionswitchPlanResources>? resources;
 
+  @internal
   Map<String, Object?> encode() => {
     'namespace': namespace.toTfJson(),
     if (resources != null)
@@ -1243,6 +1270,7 @@ final class ArcregionswitchPlanResources {
 
   final TfArg<String> resourceName;
 
+  @internal
   Map<String, Object?> encode() => {
     'hpa_name': ?hpaName?.toTfJson(),
     'name': name.toTfJson(),
@@ -1265,6 +1293,7 @@ final class ArcregionswitchPlanExecutionApprovalConfig {
 
   final TfArg<num>? timeoutMinutes;
 
+  @internal
   Map<String, Object?> encode() => {
     'approval_role': approvalRole.toTfJson(),
     'timeout_minutes': ?timeoutMinutes?.toTfJson(),
@@ -1300,6 +1329,7 @@ final class ArcregionswitchPlanGlobalAuroraConfig {
 
   final List<ArcregionswitchPlanDocumentDbConfigUngraceful>? ungraceful;
 
+  @internal
   Map<String, Object?> encode() => {
     'behavior': behavior.toTfJson(),
     'cross_account_role': ?crossAccountRole?.toTfJson(),
@@ -1333,6 +1363,7 @@ final class ArcregionswitchPlanLambdaEventSourceMappingConfig {
 
   final List<ArcregionswitchPlanCustomActionLambdaConfigUngraceful>? ungraceful;
 
+  @internal
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
     'timeout_minutes': ?timeoutMinutes?.toTfJson(),
@@ -1391,6 +1422,7 @@ final class ArcregionswitchPlanRegionEventSourceMapping {
 
   final TfArg<String> region;
 
+  @internal
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
     'cross_account_role': ?crossAccountRole?.toTfJson(),
@@ -1428,6 +1460,7 @@ final class ArcregionswitchPlanNeptuneGlobalDatabaseConfig {
 
   final List<ArcregionswitchPlanDocumentDbConfigUngraceful>? ungraceful;
 
+  @internal
   Map<String, Object?> encode() => {
     'behavior': behavior.toTfJson(),
     'cross_account_role': ?crossAccountRole?.toTfJson(),
@@ -1448,6 +1481,7 @@ final class ArcregionswitchPlanParallelConfig {
 
   final List<ArcregionswitchPlanParallelConfigStep>? step;
 
+  @internal
   Map<String, Object?> encode() => {
     if (step != null) 'step': [for (final e in step!) e.encode()],
   };
@@ -1530,6 +1564,7 @@ final class ArcregionswitchPlanParallelConfigStep {
   final List<ArcregionswitchPlanRoute53HealthCheckConfig>?
   route53HealthCheckConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'execution_block_type': executionBlockType.toTfJson(),
@@ -1617,6 +1652,7 @@ final class ArcregionswitchPlanRdsCreateCrossRegionReadReplicaConfig {
 
   final TfArg<num>? timeoutMinutes;
 
+  @internal
   Map<String, Object?> encode() => {
     'cross_account_role': ?crossAccountRole?.toTfJson(),
     'db_instance_arn_map': dbInstanceArnMap.toTfJson(),
@@ -1645,6 +1681,7 @@ final class ArcregionswitchPlanRdsPromoteReadReplicaConfig {
 
   final TfArg<num>? timeoutMinutes;
 
+  @internal
   Map<String, Object?> encode() => {
     'cross_account_role': ?crossAccountRole?.toTfJson(),
     'db_instance_arn_map': dbInstanceArnMap.toTfJson(),
@@ -1670,6 +1707,7 @@ final class ArcregionswitchPlanRegionSwitchPlanConfig {
 
   final TfArg<String>? externalId;
 
+  @internal
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
     'cross_account_role': ?crossAccountRole?.toTfJson(),
@@ -1703,6 +1741,7 @@ final class ArcregionswitchPlanRoute53HealthCheckConfig {
 
   final List<ArcregionswitchPlanRecordSet>? recordSet;
 
+  @internal
   Map<String, Object?> encode() => {
     'cross_account_role': ?crossAccountRole?.toTfJson(),
     'external_id': ?externalId?.toTfJson(),
@@ -1728,6 +1767,7 @@ final class ArcregionswitchPlanRecordSet {
 
   final TfArg<String> region;
 
+  @internal
   Map<String, Object?> encode() => {
     'record_set_identifier': recordSetIdentifier.toTfJson(),
     'region': region.toTfJson(),

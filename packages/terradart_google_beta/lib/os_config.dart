@@ -3,6 +3,7 @@
 /// OS Config guest policies (beta-only).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/os_config/google_os_config_guest_policies.dart'
     show
         GoogleOsConfigGuestPolicies,

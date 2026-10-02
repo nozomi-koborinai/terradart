@@ -34,6 +34,7 @@ final class CognitoLogDeliveryConfigurationLogConfigurations {
 
   final List<CognitoLogDeliveryConfigurationS3Configuration>? s3Configuration;
 
+  @internal
   Map<String, Object?> encode() => {
     'event_source': eventSource.toTfJson(),
     'log_level': logLevel.toTfJson(),
@@ -107,6 +108,7 @@ final class CognitoLogDeliveryConfigurationCloudWatchLogsConfiguration {
 
   final RefTo<AwsCloudwatchLogGroup>? logGroupArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'log_group_arn': ?logGroupArn?.encodeAs('arn').toTfJson(),
   };
@@ -120,6 +122,7 @@ final class CognitoLogDeliveryConfigurationFirehoseConfiguration {
 
   final TfArg<String>? streamArn;
 
+  @internal
   Map<String, Object?> encode() => {'stream_arn': ?streamArn?.toTfJson()};
 }
 
@@ -131,6 +134,7 @@ final class CognitoLogDeliveryConfigurationS3Configuration {
 
   final RefTo<AwsS3Bucket>? bucketArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_arn': ?bucketArn?.encodeAs('arn').toTfJson(),
   };

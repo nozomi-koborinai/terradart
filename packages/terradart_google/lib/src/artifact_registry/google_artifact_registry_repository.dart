@@ -295,12 +295,15 @@ sealed class ArtifactRegistryRepositoryConfig {
   ) = ArtifactRegistryRepositoryRemoteRepositoryConfigChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -314,14 +317,17 @@ final class ArtifactRegistryRepositoryVirtualRepositoryConfigChoice
   final ArtifactRegistryRepositoryVirtualRepositoryConfig
   virtualRepositoryConfig;
 
+  @internal
   @override
   String get blockKey => 'virtual_repository_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'virtual_repository_config': virtualRepositoryConfig.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'virtual_repository_config': TfArg.literal(
@@ -339,14 +345,17 @@ final class ArtifactRegistryRepositoryRemoteRepositoryConfigChoice
 
   final ArtifactRegistryRepositoryRemoteRepositoryConfig remoteRepositoryConfig;
 
+  @internal
   @override
   String get blockKey => 'remote_repository_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'remote_repository_config': remoteRepositoryConfig.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'remote_repository_config': TfArg.literal(remoteRepositoryConfig.encode()),
@@ -372,6 +381,7 @@ final class ArtifactRegistryRepositoryCleanupPolicies {
 
   final ArtifactRegistryRepositoryMostRecentVersions? mostRecentVersions;
 
+  @internal
   Map<String, Object?> encode() => {
     'action': ?action?.toTfJson(),
     'id': id.toTfJson(),
@@ -405,6 +415,7 @@ final class ArtifactRegistryRepositoryCondition {
 
   final TfArg<List<String>>? versionNamePrefixes;
 
+  @internal
   Map<String, Object?> encode() => {
     'newer_than': ?newerThan?.toTfJson(),
     'older_than': ?olderThan?.toTfJson(),
@@ -428,6 +439,7 @@ final class ArtifactRegistryRepositoryMostRecentVersions {
 
   final TfArg<List<String>>? packageNamePrefixes;
 
+  @internal
   Map<String, Object?> encode() => {
     'keep_count': ?keepCount?.toTfJson(),
     'package_name_prefixes': ?packageNamePrefixes?.toTfJson(),
@@ -442,6 +454,7 @@ final class ArtifactRegistryRepositoryDockerConfig {
 
   final TfArg<bool>? immutableTags;
 
+  @internal
   Map<String, Object?> encode() => {
     'immutable_tags': ?immutableTags?.toTfJson(),
   };
@@ -460,6 +473,7 @@ final class ArtifactRegistryRepositoryMavenConfig {
 
   final ArtifactRegistryMavenVersionPolicy? versionPolicy;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_snapshot_overwrites': ?allowSnapshotOverwrites?.toTfJson(),
     'version_policy': ?versionPolicy?.toTfJson(),
@@ -488,6 +502,7 @@ final class ArtifactRegistryRepositoryRemoteRepositoryConfig {
 
   final ArtifactRegistryRepositoryUpstreamCredentials? upstreamCredentials;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'disable_upstream_validation': ?disableUpstreamValidation?.toTfJson(),
@@ -540,8 +555,10 @@ sealed class ArtifactRegistryRepositoryRemoteRepositoryConfigFormat {
   ) = ArtifactRegistryRepositoryRemoteRepositoryConfigFormatCommonRepository;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -554,9 +571,11 @@ final class ArtifactRegistryRepositoryRemoteRepositoryConfigFormatAptRepository
 
   final ArtifactRegistryRepositoryAptRepository aptRepository;
 
+  @internal
   @override
   String get blockKey => 'apt_repository';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'apt_repository': aptRepository.encode()};
 }
@@ -570,9 +589,11 @@ final class ArtifactRegistryRepositoryRemoteRepositoryConfigFormatDockerReposito
 
   final ArtifactRegistryRepositoryDockerRepository dockerRepository;
 
+  @internal
   @override
   String get blockKey => 'docker_repository';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'docker_repository': dockerRepository.encode(),
@@ -588,9 +609,11 @@ final class ArtifactRegistryRepositoryRemoteRepositoryConfigFormatMavenRepositor
 
   final ArtifactRegistryRepositoryMavenRepository mavenRepository;
 
+  @internal
   @override
   String get blockKey => 'maven_repository';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'maven_repository': mavenRepository.encode(),
@@ -606,9 +629,11 @@ final class ArtifactRegistryRepositoryRemoteRepositoryConfigFormatNpmRepository
 
   final ArtifactRegistryRepositoryNpmRepository npmRepository;
 
+  @internal
   @override
   String get blockKey => 'npm_repository';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'npm_repository': npmRepository.encode()};
 }
@@ -622,9 +647,11 @@ final class ArtifactRegistryRepositoryRemoteRepositoryConfigFormatPythonReposito
 
   final ArtifactRegistryRepositoryPythonRepository pythonRepository;
 
+  @internal
   @override
   String get blockKey => 'python_repository';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'python_repository': pythonRepository.encode(),
@@ -640,9 +667,11 @@ final class ArtifactRegistryRepositoryRemoteRepositoryConfigFormatYumRepository
 
   final ArtifactRegistryRepositoryYumRepository yumRepository;
 
+  @internal
   @override
   String get blockKey => 'yum_repository';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'yum_repository': yumRepository.encode()};
 }
@@ -656,9 +685,11 @@ final class ArtifactRegistryRepositoryRemoteRepositoryConfigFormatCommonReposito
 
   final ArtifactRegistryRepositoryCommonRepository commonRepository;
 
+  @internal
   @override
   String get blockKey => 'common_repository';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'common_repository': commonRepository.encode(),
@@ -674,6 +705,7 @@ final class ArtifactRegistryRepositoryAptRepository {
   final ArtifactRegistryRepositoryAptRepositoryPublicRepository?
   publicRepository;
 
+  @internal
   Map<String, Object?> encode() => {
     'public_repository': ?publicRepository?.encode(),
   };
@@ -692,6 +724,7 @@ final class ArtifactRegistryRepositoryAptRepositoryPublicRepository {
 
   final TfArg<String> repositoryPath;
 
+  @internal
   Map<String, Object?> encode() => {
     'repository_base': repositoryBase.toTfJson(),
     'repository_path': repositoryPath.toTfJson(),
@@ -706,6 +739,7 @@ final class ArtifactRegistryRepositoryCommonRepository {
 
   final TfArg<String> uri;
 
+  @internal
   Map<String, Object?> encode() => {'uri': uri.toTfJson()};
 }
 
@@ -728,8 +762,10 @@ sealed class ArtifactRegistryRepositoryDockerRepository {
   ) = ArtifactRegistryRepositoryDockerRepositoryCustomRepository;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -742,9 +778,11 @@ final class ArtifactRegistryRepositoryDockerRepositoryPublicRepository
 
   final ArtifactRegistryDockerPublicRepository publicRepository;
 
+  @internal
   @override
   String get blockKey => 'public_repository';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'public_repository': publicRepository.toTfJson(),
@@ -760,9 +798,11 @@ final class ArtifactRegistryRepositoryDockerRepositoryCustomRepository
 
   final ArtifactRegistryRepositoryCustomRepository customRepository;
 
+  @internal
   @override
   String get blockKey => 'custom_repository';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'custom_repository': customRepository.encode(),
@@ -778,6 +818,7 @@ final class ArtifactRegistryRepositoryCustomRepository {
 
   final TfArg<String>? uri;
 
+  @internal
   Map<String, Object?> encode() => {'uri': ?uri?.toTfJson()};
 }
 
@@ -800,8 +841,10 @@ sealed class ArtifactRegistryRepositoryMavenRepository {
   ) = ArtifactRegistryRepositoryMavenRepositoryCustomRepository;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -814,9 +857,11 @@ final class ArtifactRegistryRepositoryMavenRepositoryPublicRepository
 
   final ArtifactRegistryMavenPublicRepository publicRepository;
 
+  @internal
   @override
   String get blockKey => 'public_repository';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'public_repository': publicRepository.toTfJson(),
@@ -832,9 +877,11 @@ final class ArtifactRegistryRepositoryMavenRepositoryCustomRepository
 
   final ArtifactRegistryRepositoryCustomRepository customRepository;
 
+  @internal
   @override
   String get blockKey => 'custom_repository';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'custom_repository': customRepository.encode(),
@@ -847,6 +894,7 @@ final class ArtifactRegistryRepositoryMavenRepositoryCustomRepository
 final class ArtifactRegistryRepositoryNoCache {
   const ArtifactRegistryRepositoryNoCache();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -869,8 +917,10 @@ sealed class ArtifactRegistryRepositoryNpmRepository {
   ) = ArtifactRegistryRepositoryNpmRepositoryCustomRepository;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -883,9 +933,11 @@ final class ArtifactRegistryRepositoryNpmRepositoryPublicRepository
 
   final ArtifactRegistryNpmPublicRepository publicRepository;
 
+  @internal
   @override
   String get blockKey => 'public_repository';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'public_repository': publicRepository.toTfJson(),
@@ -901,9 +953,11 @@ final class ArtifactRegistryRepositoryNpmRepositoryCustomRepository
 
   final ArtifactRegistryRepositoryCustomRepository customRepository;
 
+  @internal
   @override
   String get blockKey => 'custom_repository';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'custom_repository': customRepository.encode(),
@@ -929,8 +983,10 @@ sealed class ArtifactRegistryRepositoryPythonRepository {
   ) = ArtifactRegistryRepositoryPythonRepositoryCustomRepository;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -943,9 +999,11 @@ final class ArtifactRegistryRepositoryPythonRepositoryPublicRepository
 
   final TfArg<String> publicRepository;
 
+  @internal
   @override
   String get blockKey => 'public_repository';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'public_repository': publicRepository.toTfJson(),
@@ -961,9 +1019,11 @@ final class ArtifactRegistryRepositoryPythonRepositoryCustomRepository
 
   final ArtifactRegistryRepositoryCustomRepository customRepository;
 
+  @internal
   @override
   String get blockKey => 'custom_repository';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'custom_repository': customRepository.encode(),
@@ -981,6 +1041,7 @@ final class ArtifactRegistryRepositoryUpstreamCredentials {
   final ArtifactRegistryRepositoryUsernamePasswordCredentials?
   usernamePasswordCredentials;
 
+  @internal
   Map<String, Object?> encode() => {
     'username_password_credentials': ?usernamePasswordCredentials?.encode(),
   };
@@ -999,6 +1060,7 @@ final class ArtifactRegistryRepositoryUsernamePasswordCredentials {
 
   final TfArg<String>? username;
 
+  @internal
   Map<String, Object?> encode() => {
     'password_secret_version': ?passwordSecretVersion?.toTfJson(),
     'username': ?username?.toTfJson(),
@@ -1014,6 +1076,7 @@ final class ArtifactRegistryRepositoryYumRepository {
   final ArtifactRegistryRepositoryYumRepositoryPublicRepository?
   publicRepository;
 
+  @internal
   Map<String, Object?> encode() => {
     'public_repository': ?publicRepository?.encode(),
   };
@@ -1032,6 +1095,7 @@ final class ArtifactRegistryRepositoryYumRepositoryPublicRepository {
 
   final TfArg<String> repositoryPath;
 
+  @internal
   Map<String, Object?> encode() => {
     'repository_base': repositoryBase.toTfJson(),
     'repository_path': repositoryPath.toTfJson(),
@@ -1048,6 +1112,7 @@ final class ArtifactRegistryRepositoryVirtualRepositoryConfig {
 
   final List<ArtifactRegistryRepositoryUpstreamPolicies>? upstreamPolicies;
 
+  @internal
   Map<String, Object?> encode() => {
     if (upstreamPolicies != null)
       'upstream_policies': [for (final e in upstreamPolicies!) e.encode()],
@@ -1070,6 +1135,7 @@ final class ArtifactRegistryRepositoryUpstreamPolicies {
 
   final TfArg<String>? repository;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': ?id?.toTfJson(),
     'priority': ?priority?.toTfJson(),
@@ -1087,6 +1153,7 @@ final class ArtifactRegistryRepositoryVulnerabilityScanningConfig {
 
   final ArtifactRegistryVulnerabilityEnablementConfig? enablementConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'enablement_config': ?enablementConfig?.toTfJson(),
   };

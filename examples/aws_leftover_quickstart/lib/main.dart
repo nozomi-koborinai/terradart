@@ -7,7 +7,6 @@
 library;
 
 import 'package:terradart_aws/terradart_aws.dart';
-import 'package:terradart_core/terradart_core.dart';
 
 final class AwsLeftoverStack extends Stack {
   AwsLeftoverStack()

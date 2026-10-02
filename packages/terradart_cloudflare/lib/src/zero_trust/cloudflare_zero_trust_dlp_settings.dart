@@ -19,6 +19,7 @@ final class ZeroTrustDlpSettingsPayloadLogging {
 
   final TfArg<String>? publicKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'masking_level': ?maskingLevel?.toTfJson(),
     'public_key': ?publicKey?.toTfJson(),

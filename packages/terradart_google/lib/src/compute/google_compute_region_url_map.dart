@@ -120,12 +120,15 @@ sealed class ComputeRegionUrlMapDefaultAction {
   ) = ComputeRegionUrlMapDefaultActionDefaultRouteAction;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -138,14 +141,17 @@ final class ComputeRegionUrlMapDefaultActionDefaultUrlRedirect
 
   final ComputeRegionUrlMapDefaultUrlRedirect defaultUrlRedirect;
 
+  @internal
   @override
   String get blockKey => 'default_url_redirect';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'default_url_redirect': defaultUrlRedirect.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'default_url_redirect': TfArg.literal(defaultUrlRedirect.encode()),
@@ -161,14 +167,17 @@ final class ComputeRegionUrlMapDefaultActionDefaultRouteAction
 
   final ComputeRegionUrlMapDefaultRouteAction defaultRouteAction;
 
+  @internal
   @override
   String get blockKey => 'default_route_action';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'default_route_action': defaultRouteAction.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'default_route_action': TfArg.literal(defaultRouteAction.encode()),
@@ -204,6 +213,7 @@ final class ComputeRegionUrlMapDefaultRouteAction {
   final List<ComputeRegionUrlMapWeightedBackendServices>?
   weightedBackendServices;
 
+  @internal
   Map<String, Object?> encode() => {
     'cors_policy': ?corsPolicy?.encode(),
     'fault_injection_policy': ?faultInjectionPolicy?.encode(),
@@ -250,6 +260,7 @@ final class ComputeRegionUrlMapCorsPolicy {
 
   final TfArg<num>? maxAge;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_credentials': ?allowCredentials?.toTfJson(),
     'allow_headers': ?allowHeaders?.toTfJson(),
@@ -273,6 +284,7 @@ final class ComputeRegionUrlMapFaultInjectionPolicy {
 
   final ComputeRegionUrlMapDelay? delay;
 
+  @internal
   Map<String, Object?> encode() => {
     'abort': ?abort?.encode(),
     'delay': ?delay?.encode(),
@@ -290,6 +302,7 @@ final class ComputeRegionUrlMapAbort {
 
   final TfArg<num>? percentage;
 
+  @internal
   Map<String, Object?> encode() => {
     'http_status': ?httpStatus?.toTfJson(),
     'percentage': ?percentage?.toTfJson(),
@@ -307,6 +320,7 @@ final class ComputeRegionUrlMapDelay {
 
   final ComputeRegionUrlMapFixedDelay? fixedDelay;
 
+  @internal
   Map<String, Object?> encode() => {
     'percentage': ?percentage?.toTfJson(),
     'fixed_delay': ?fixedDelay?.encode(),
@@ -324,6 +338,7 @@ final class ComputeRegionUrlMapFixedDelay {
 
   final TfArg<String>? seconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'nanos': ?nanos?.toTfJson(),
     'seconds': ?seconds?.toTfJson(),
@@ -338,6 +353,7 @@ final class ComputeRegionUrlMapRequestMirrorPolicy {
 
   final RefTo<GoogleComputeRegionBackendService>? backendService;
 
+  @internal
   Map<String, Object?> encode() => {
     'backend_service': ?backendService?.encodeAs('self_link').toTfJson(),
   };
@@ -360,6 +376,7 @@ final class ComputeRegionUrlMapRetryPolicy {
 
   final ComputeRegionUrlMapPerTryTimeout? perTryTimeout;
 
+  @internal
   Map<String, Object?> encode() => {
     'num_retries': ?numRetries?.toTfJson(),
     'retry_conditions': ?retryConditions?.toTfJson(),
@@ -378,6 +395,7 @@ final class ComputeRegionUrlMapPerTryTimeout {
 
   final TfArg<String>? seconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'nanos': ?nanos?.toTfJson(),
     'seconds': ?seconds?.toTfJson(),
@@ -395,6 +413,7 @@ final class ComputeRegionUrlMapTimeout {
 
   final TfArg<String>? seconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'nanos': ?nanos?.toTfJson(),
     'seconds': ?seconds?.toTfJson(),
@@ -415,6 +434,7 @@ final class ComputeRegionUrlMapUrlRewrite {
 
   final TfArg<String>? pathPrefixRewrite;
 
+  @internal
   Map<String, Object?> encode() => {
     'host_rewrite': ?hostRewrite?.toTfJson(),
     'path_prefix_rewrite': ?pathPrefixRewrite?.toTfJson(),
@@ -437,6 +457,7 @@ final class ComputeRegionUrlMapWeightedBackendServices {
 
   final ComputeRegionUrlMapHeaderAction? headerAction;
 
+  @internal
   Map<String, Object?> encode() => {
     'backend_service': ?backendService?.encodeAs('self_link').toTfJson(),
     'weight': ?weight?.toTfJson(),
@@ -464,6 +485,7 @@ final class ComputeRegionUrlMapHeaderAction {
 
   final List<ComputeRegionUrlMapResponseHeadersToAdd>? responseHeadersToAdd;
 
+  @internal
   Map<String, Object?> encode() => {
     'request_headers_to_remove': ?requestHeadersToRemove?.toTfJson(),
     'response_headers_to_remove': ?responseHeadersToRemove?.toTfJson(),
@@ -495,6 +517,7 @@ final class ComputeRegionUrlMapRequestHeadersToAdd {
 
   final TfArg<bool>? replace;
 
+  @internal
   Map<String, Object?> encode() => {
     'header_name': ?headerName?.toTfJson(),
     'header_value': ?headerValue?.toTfJson(),
@@ -519,6 +542,7 @@ final class ComputeRegionUrlMapResponseHeadersToAdd {
 
   final TfArg<bool>? replace;
 
+  @internal
   Map<String, Object?> encode() => {
     'header_name': ?headerName?.toTfJson(),
     'header_value': ?headerValue?.toTfJson(),
@@ -552,6 +576,7 @@ final class ComputeRegionUrlMapDefaultUrlRedirect {
 
   final TfArg<bool> stripQuery;
 
+  @internal
   Map<String, Object?> encode() => {
     'host_redirect': ?hostRedirect?.toTfJson(),
     'https_redirect': ?httpsRedirect?.toTfJson(),
@@ -578,6 +603,7 @@ final class ComputeRegionUrlMapHostRule {
 
   final TfArg<String> pathMatcher;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'hosts': hosts.toTfJson(),
@@ -616,6 +642,7 @@ final class ComputeRegionUrlMapPathMatcher {
 
   final List<ComputeRegionUrlMapRouteRules>? routeRules;
 
+  @internal
   Map<String, Object?> encode() => {
     'default_service': ?defaultService?.encodeAs('self_link').toTfJson(),
     'description': ?description?.toTfJson(),
@@ -662,6 +689,7 @@ final class ComputeRegionUrlMapPathMatcherDefaultRouteAction {
   final List<ComputeRegionUrlMapDefaultRouteActionWeightedBackendServices>?
   weightedBackendServices;
 
+  @internal
   Map<String, Object?> encode() => {
     'cors_policy': ?corsPolicy?.encode(),
     'fault_injection_policy': ?faultInjectionPolicy?.encode(),
@@ -690,6 +718,7 @@ final class ComputeRegionUrlMapMaxStreamDuration {
 
   final TfArg<String> seconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'nanos': ?nanos?.toTfJson(),
     'seconds': seconds.toTfJson(),
@@ -706,6 +735,7 @@ final class ComputeRegionUrlMapDefaultRouteActionRequestMirrorPolicy {
 
   final RefTo<GoogleComputeBackendService> backendService;
 
+  @internal
   Map<String, Object?> encode() => {
     'backend_service': backendService.encodeAs('self_link').toTfJson(),
   };
@@ -728,6 +758,7 @@ final class ComputeRegionUrlMapDefaultRouteActionUrlRewrite {
 
   final TfArg<String>? pathTemplateRewrite;
 
+  @internal
   Map<String, Object?> encode() => {
     'host_rewrite': ?hostRewrite?.toTfJson(),
     'path_prefix_rewrite': ?pathPrefixRewrite?.toTfJson(),
@@ -751,6 +782,7 @@ final class ComputeRegionUrlMapDefaultRouteActionWeightedBackendServices {
 
   final ComputeRegionUrlMapHeaderAction? headerAction;
 
+  @internal
   Map<String, Object?> encode() => {
     'backend_service': ?backendService?.encodeAs('self_link').toTfJson(),
     'weight': ?weight?.toTfJson(),
@@ -777,6 +809,7 @@ final class ComputeRegionUrlMapPathRule {
 
   final ComputeRegionUrlMapPathRuleUrlRedirect? urlRedirect;
 
+  @internal
   Map<String, Object?> encode() => {
     'paths': paths.toTfJson(),
     'service': ?service?.encodeAs('self_link').toTfJson(),
@@ -814,6 +847,7 @@ final class ComputeRegionUrlMapPathRuleRouteAction {
   final List<ComputeRegionUrlMapRouteActionWeightedBackendServices>?
   weightedBackendServices;
 
+  @internal
   Map<String, Object?> encode() => {
     'cors_policy': ?corsPolicy?.encode(),
     'fault_injection_policy': ?faultInjectionPolicy?.encode(),
@@ -859,6 +893,7 @@ final class ComputeRegionUrlMapRouteActionCorsPolicy {
 
   final TfArg<num>? maxAge;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_credentials': ?allowCredentials?.toTfJson(),
     'allow_headers': ?allowHeaders?.toTfJson(),
@@ -884,6 +919,7 @@ final class ComputeRegionUrlMapPathRuleFaultInjectionPolicy {
 
   final ComputeRegionUrlMapPathRuleDelay? delay;
 
+  @internal
   Map<String, Object?> encode() => {
     'abort': ?abort?.encode(),
     'delay': ?delay?.encode(),
@@ -903,6 +939,7 @@ final class ComputeRegionUrlMapFaultInjectionPolicyAbort {
 
   final TfArg<num> percentage;
 
+  @internal
   Map<String, Object?> encode() => {
     'http_status': httpStatus.toTfJson(),
     'percentage': percentage.toTfJson(),
@@ -922,6 +959,7 @@ final class ComputeRegionUrlMapPathRuleDelay {
 
   final ComputeRegionUrlMapDelayFixedDelay fixedDelay;
 
+  @internal
   Map<String, Object?> encode() => {
     'percentage': percentage.toTfJson(),
     'fixed_delay': fixedDelay.encode(),
@@ -939,6 +977,7 @@ final class ComputeRegionUrlMapDelayFixedDelay {
 
   final TfArg<String> seconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'nanos': ?nanos?.toTfJson(),
     'seconds': seconds.toTfJson(),
@@ -956,6 +995,7 @@ final class ComputeRegionUrlMapRouteActionRequestMirrorPolicy {
 
   final RefTo<GoogleComputeRegionBackendService> backendService;
 
+  @internal
   Map<String, Object?> encode() => {
     'backend_service': backendService.encodeAs('self_link').toTfJson(),
   };
@@ -977,6 +1017,7 @@ final class ComputeRegionUrlMapPathRuleRetryPolicy {
 
   final ComputeRegionUrlMapRetryPolicyPerTryTimeout? perTryTimeout;
 
+  @internal
   Map<String, Object?> encode() => {
     'num_retries': ?numRetries?.toTfJson(),
     'retry_conditions': ?retryConditions?.toTfJson(),
@@ -998,6 +1039,7 @@ final class ComputeRegionUrlMapRetryPolicyPerTryTimeout {
 
   final TfArg<String> seconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'nanos': ?nanos?.toTfJson(),
     'seconds': seconds.toTfJson(),
@@ -1018,6 +1060,7 @@ final class ComputeRegionUrlMapRouteActionTimeout {
 
   final TfArg<String> seconds;
 
+  @internal
   Map<String, Object?> encode() => {
     'nanos': ?nanos?.toTfJson(),
     'seconds': seconds.toTfJson(),
@@ -1041,6 +1084,7 @@ final class ComputeRegionUrlMapRouteActionWeightedBackendServices {
 
   final ComputeRegionUrlMapRouteRulesHeaderAction? headerAction;
 
+  @internal
   Map<String, Object?> encode() => {
     'backend_service': backendService.encodeAs('self_link').toTfJson(),
     'weight': weight.toTfJson(),
@@ -1070,6 +1114,7 @@ final class ComputeRegionUrlMapRouteRulesHeaderAction {
   final List<ComputeRegionUrlMapHeaderActionResponseHeadersToAdd>?
   responseHeadersToAdd;
 
+  @internal
   Map<String, Object?> encode() => {
     'request_headers_to_remove': ?requestHeadersToRemove?.toTfJson(),
     'response_headers_to_remove': ?responseHeadersToRemove?.toTfJson(),
@@ -1101,6 +1146,7 @@ final class ComputeRegionUrlMapHeaderActionRequestHeadersToAdd {
 
   final TfArg<bool> replace;
 
+  @internal
   Map<String, Object?> encode() => {
     'header_name': headerName.toTfJson(),
     'header_value': headerValue.toTfJson(),
@@ -1125,6 +1171,7 @@ final class ComputeRegionUrlMapHeaderActionResponseHeadersToAdd {
 
   final TfArg<bool> replace;
 
+  @internal
   Map<String, Object?> encode() => {
     'header_name': headerName.toTfJson(),
     'header_value': headerValue.toTfJson(),
@@ -1157,6 +1204,7 @@ final class ComputeRegionUrlMapPathRuleUrlRedirect {
 
   final TfArg<bool> stripQuery;
 
+  @internal
   Map<String, Object?> encode() => {
     'host_redirect': ?hostRedirect?.toTfJson(),
     'https_redirect': ?httpsRedirect?.toTfJson(),
@@ -1192,6 +1240,7 @@ final class ComputeRegionUrlMapRouteRules {
 
   final ComputeRegionUrlMapRouteRulesUrlRedirect? urlRedirect;
 
+  @internal
   Map<String, Object?> encode() => {
     'priority': priority.toTfJson(),
     'service': ?service?.encodeAs('self_link').toTfJson(),
@@ -1234,6 +1283,7 @@ final class ComputeRegionUrlMapMatchRules {
 
   final List<ComputeRegionUrlMapQueryParameterMatches>? queryParameterMatches;
 
+  @internal
   Map<String, Object?> encode() => {
     'full_path_match': ?fullPathMatch?.toTfJson(),
     'ignore_case': ?ignoreCase?.toTfJson(),
@@ -1282,6 +1332,7 @@ final class ComputeRegionUrlMapHeaderMatches {
 
   final ComputeRegionUrlMapRangeMatch? rangeMatch;
 
+  @internal
   Map<String, Object?> encode() => {
     'exact_match': ?exactMatch?.toTfJson(),
     'header_name': headerName.toTfJson(),
@@ -1307,6 +1358,7 @@ final class ComputeRegionUrlMapRangeMatch {
 
   final TfArg<num> rangeStart;
 
+  @internal
   Map<String, Object?> encode() => {
     'range_end': rangeEnd.toTfJson(),
     'range_start': rangeStart.toTfJson(),
@@ -1326,6 +1378,7 @@ final class ComputeRegionUrlMapMetadataFilters {
 
   final List<ComputeRegionUrlMapFilterLabels> filterLabels;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter_match_criteria': filterMatchCriteria.toTfJson(),
     'filter_labels': [for (final e in filterLabels) e.encode()],
@@ -1345,6 +1398,7 @@ final class ComputeRegionUrlMapFilterLabels {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'value': value.toTfJson(),
@@ -1370,6 +1424,7 @@ final class ComputeRegionUrlMapQueryParameterMatches {
 
   final TfArg<String>? regexMatch;
 
+  @internal
   Map<String, Object?> encode() => {
     'exact_match': ?exactMatch?.toTfJson(),
     'name': name.toTfJson(),
@@ -1407,6 +1462,7 @@ final class ComputeRegionUrlMapRouteRulesRouteAction {
   final List<ComputeRegionUrlMapRouteActionWeightedBackendServices>?
   weightedBackendServices;
 
+  @internal
   Map<String, Object?> encode() => {
     'cors_policy': ?corsPolicy?.encode(),
     'fault_injection_policy': ?faultInjectionPolicy?.encode(),
@@ -1434,6 +1490,7 @@ final class ComputeRegionUrlMapRouteRulesFaultInjectionPolicy {
 
   final ComputeRegionUrlMapRouteRulesDelay? delay;
 
+  @internal
   Map<String, Object?> encode() => {
     'abort': ?abort?.encode(),
     'delay': ?delay?.encode(),
@@ -1450,6 +1507,7 @@ final class ComputeRegionUrlMapRouteRulesDelay {
 
   final ComputeRegionUrlMapDelayFixedDelay? fixedDelay;
 
+  @internal
   Map<String, Object?> encode() => {
     'percentage': ?percentage?.toTfJson(),
     'fixed_delay': ?fixedDelay?.encode(),
@@ -1472,6 +1530,7 @@ final class ComputeRegionUrlMapRouteRulesRetryPolicy {
 
   final ComputeRegionUrlMapRetryPolicyPerTryTimeout? perTryTimeout;
 
+  @internal
   Map<String, Object?> encode() => {
     'num_retries': numRetries.toTfJson(),
     'retry_conditions': ?retryConditions?.toTfJson(),
@@ -1504,6 +1563,7 @@ final class ComputeRegionUrlMapRouteRulesUrlRedirect {
 
   final TfArg<bool>? stripQuery;
 
+  @internal
   Map<String, Object?> encode() => {
     'host_redirect': ?hostRedirect?.toTfJson(),
     'https_redirect': ?httpsRedirect?.toTfJson(),
@@ -1533,6 +1593,7 @@ final class ComputeRegionUrlMapTest {
 
   final RefTo<GoogleComputeRegionBackendService> service;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'host': host.toTfJson(),

@@ -49,7 +49,9 @@ sealed class NetworkServicesAgentGatewayDeployment {
     required TfArg<String> resourceUri,
   }) = NetworkServicesAgentGatewaySelfManaged;
 
+  @internal
   String get blockKey;
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -65,9 +67,11 @@ final class NetworkServicesAgentGatewayGoogleManaged
   governedAccessPath;
 
   @override
+  @internal
   String get blockKey => 'google_managed';
 
   @override
+  @internal
   Map<String, Object?> encode() => {
     'governed_access_path': governedAccessPath.toTfJson(),
   };
@@ -82,9 +86,11 @@ final class NetworkServicesAgentGatewaySelfManaged
   final TfArg<String> resourceUri;
 
   @override
+  @internal
   String get blockKey => 'self_managed';
 
   @override
+  @internal
   Map<String, Object?> encode() => {'resource_uri': resourceUri.toTfJson()};
 }
 
@@ -101,6 +107,7 @@ final class NetworkServicesAgentGatewayNetworkConfig {
 
   final NetworkServicesAgentGatewayEgress egress;
 
+  @internal
   Map<String, Object?> encode() => {
     'dns_peering_config': ?dnsPeeringConfig?.encode(),
     'egress': egress.encode(),
@@ -123,6 +130,7 @@ final class NetworkServicesAgentGatewayDnsPeeringConfig {
 
   final TfArg<String> targetProject;
 
+  @internal
   Map<String, Object?> encode() => {
     'domains': domains.toTfJson(),
     'target_network': targetNetwork.toTfJson(),
@@ -138,6 +146,7 @@ final class NetworkServicesAgentGatewayEgress {
 
   final TfArg<String> networkAttachment;
 
+  @internal
   Map<String, Object?> encode() => {
     'network_attachment': networkAttachment.toTfJson(),
   };

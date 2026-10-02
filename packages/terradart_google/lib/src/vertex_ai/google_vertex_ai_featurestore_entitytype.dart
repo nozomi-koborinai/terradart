@@ -29,6 +29,7 @@ final class VertexAiFeaturestoreEntitytypeMonitoringConfig {
 
   final VertexAiFeaturestoreEntitytypeSnapshotAnalysis? snapshotAnalysis;
 
+  @internal
   Map<String, Object?> encode() => {
     'categorical_threshold_config': ?categoricalThresholdConfig?.encode(),
     'import_features_analysis': ?importFeaturesAnalysis?.encode(),
@@ -47,6 +48,7 @@ final class VertexAiFeaturestoreEntitytypeCategoricalThresholdConfig {
 
   final TfArg<num> value;
 
+  @internal
   Map<String, Object?> encode() => {'value': value.toTfJson()};
 }
 
@@ -63,6 +65,7 @@ final class VertexAiFeaturestoreEntitytypeImportFeaturesAnalysis {
 
   final TfArg<String>? state;
 
+  @internal
   Map<String, Object?> encode() => {
     'anomaly_detection_baseline': ?anomalyDetectionBaseline?.toTfJson(),
     'state': ?state?.toTfJson(),
@@ -79,6 +82,7 @@ final class VertexAiFeaturestoreEntitytypeNumericalThresholdConfig {
 
   final TfArg<num> value;
 
+  @internal
   Map<String, Object?> encode() => {'value': value.toTfJson()};
 }
 
@@ -98,6 +102,7 @@ final class VertexAiFeaturestoreEntitytypeSnapshotAnalysis {
 
   final TfArg<num>? stalenessDays;
 
+  @internal
   Map<String, Object?> encode() => {
     'disabled': ?disabled?.toTfJson(),
     'monitoring_interval_days': ?monitoringIntervalDays?.toTfJson(),

@@ -3,6 +3,11 @@
 /// AWS Global Accelerator.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_globalaccelerator_accelerator.dart'
+    show DataAwsGlobalacceleratorAccelerator;
+export 'src/data/aws_globalaccelerator_custom_routing_accelerator.dart'
+    show DataAwsGlobalacceleratorCustomRoutingAccelerator;
 export 'src/globalaccelerator/aws_globalaccelerator_accelerator.dart'
     show
         AwsGlobalacceleratorAccelerator,

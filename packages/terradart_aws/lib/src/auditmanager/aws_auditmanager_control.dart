@@ -35,6 +35,7 @@ final class AuditmanagerControlMappingSources {
 
   final TfArg<String>? troubleshootingText;
 
+  @internal
   Map<String, Object?> encode() => {
     'source_description': ?sourceDescription?.toTfJson(),
     'source_frequency': ?sourceFrequency?.toTfJson(),

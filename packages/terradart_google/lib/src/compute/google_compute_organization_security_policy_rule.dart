@@ -22,6 +22,7 @@ final class ComputeOrganizationSecurityPolicyRuleHeaderAction {
   final List<ComputeOrganizationSecurityPolicyRuleRequestHeadersToAdds>?
   requestHeadersToAdds;
 
+  @internal
   Map<String, Object?> encode() => {
     if (requestHeadersToAdds != null)
       'request_headers_to_adds': [
@@ -43,6 +44,7 @@ final class ComputeOrganizationSecurityPolicyRuleRequestHeadersToAdds {
 
   final TfArg<String>? headerValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'header_name': ?headerName?.toTfJson(),
     'header_value': ?headerValue?.toTfJson(),
@@ -68,6 +70,7 @@ final class ComputeOrganizationSecurityPolicyRuleMatch {
 
   final ComputeOrganizationSecurityPolicyRuleExpr? expr;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'versioned_expr': ?versionedExpr?.toTfJson(),
@@ -84,6 +87,7 @@ final class ComputeOrganizationSecurityPolicyRuleConfig {
 
   final TfArg<List<String>>? srcIpRanges;
 
+  @internal
   Map<String, Object?> encode() => {'src_ip_ranges': ?srcIpRanges?.toTfJson()};
 }
 
@@ -95,6 +99,7 @@ final class ComputeOrganizationSecurityPolicyRuleExpr {
 
   final TfArg<String> expression;
 
+  @internal
   Map<String, Object?> encode() => {'expression': expression.toTfJson()};
 }
 
@@ -108,6 +113,7 @@ final class ComputeOrganizationSecurityPolicyRulePreconfiguredWafConfig {
 
   final List<ComputeOrganizationSecurityPolicyRuleExclusion>? exclusion;
 
+  @internal
   Map<String, Object?> encode() => {
     if (exclusion != null)
       'exclusion': [for (final e in exclusion!) e.encode()],
@@ -140,6 +146,7 @@ final class ComputeOrganizationSecurityPolicyRuleExclusion {
 
   final List<ComputeOrganizationSecurityPolicyRuleRequestUri>? requestUri;
 
+  @internal
   Map<String, Object?> encode() => {
     'target_rule_ids': ?targetRuleIds?.toTfJson(),
     'target_rule_set': targetRuleSet.toTfJson(),
@@ -167,6 +174,7 @@ final class ComputeOrganizationSecurityPolicyRuleRequestCookie {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
     'value': ?value?.toTfJson(),
@@ -186,6 +194,7 @@ final class ComputeOrganizationSecurityPolicyRuleRequestHeader {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
     'value': ?value?.toTfJson(),
@@ -205,6 +214,7 @@ final class ComputeOrganizationSecurityPolicyRuleRequestQueryParam {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
     'value': ?value?.toTfJson(),
@@ -224,6 +234,7 @@ final class ComputeOrganizationSecurityPolicyRuleRequestUri {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
     'value': ?value?.toTfJson(),
@@ -243,6 +254,7 @@ final class ComputeOrganizationSecurityPolicyRuleRedirectOptions {
 
   final TfArg<String> type;
 
+  @internal
   Map<String, Object?> encode() => {
     'target': ?target?.toTfJson(),
     'type': type.toTfJson(),

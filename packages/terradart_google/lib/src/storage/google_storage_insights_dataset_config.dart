@@ -64,10 +64,12 @@ sealed class StorageInsightsDatasetConfigSource {
       StorageInsightsDatasetConfigOrganizationScope;
 
   /// Terraform attribute or nested-block key.
+  @internal
   String get blockKey;
 
   /// Flat `{blockKey: value}` so mixed nested-block / bool members share
   /// one argMap dispatch (see [GoogleColabNotebookExecution] compute).
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -82,9 +84,11 @@ final class StorageInsightsDatasetConfigSourceProjects
   final TfArg<List<String>> projectNumbers;
 
   @override
+  @internal
   String get blockKey => 'source_projects';
 
   @override
+  @internal
   Map<String, Object?> encode() => {
     blockKey: [
       {'project_numbers': projectNumbers.toTfJson()},
@@ -103,9 +107,11 @@ final class StorageInsightsDatasetConfigSourceFolders
   final TfArg<List<String>> folderNumbers;
 
   @override
+  @internal
   String get blockKey => 'source_folders';
 
   @override
+  @internal
   Map<String, Object?> encode() => {
     blockKey: [
       {'folder_numbers': folderNumbers.toTfJson()},
@@ -120,9 +126,11 @@ final class StorageInsightsDatasetConfigOrganizationScope
   const StorageInsightsDatasetConfigOrganizationScope();
 
   @override
+  @internal
   String get blockKey => 'organization_scope';
 
   @override
+  @internal
   Map<String, Object?> encode() => {blockKey: true};
 }
 
@@ -147,12 +155,15 @@ sealed class StorageInsightsDatasetConfigCloudStorageLocations {
   ) = StorageInsightsDatasetConfigExcludeCloudStorageLocationsChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -166,14 +177,17 @@ final class StorageInsightsDatasetConfigIncludeCloudStorageLocationsChoice
   final StorageInsightsDatasetConfigIncludeCloudStorageLocations
   includeCloudStorageLocations;
 
+  @internal
   @override
   String get blockKey => 'include_cloud_storage_locations';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'include_cloud_storage_locations': includeCloudStorageLocations.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'include_cloud_storage_locations': TfArg.literal(
@@ -192,14 +206,17 @@ final class StorageInsightsDatasetConfigExcludeCloudStorageLocationsChoice
   final StorageInsightsDatasetConfigExcludeCloudStorageLocations
   excludeCloudStorageLocations;
 
+  @internal
   @override
   String get blockKey => 'exclude_cloud_storage_locations';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'exclude_cloud_storage_locations': excludeCloudStorageLocations.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'exclude_cloud_storage_locations': TfArg.literal(
@@ -229,12 +246,15 @@ sealed class StorageInsightsDatasetConfigCloudStorageBuckets {
   ) = StorageInsightsDatasetConfigExcludeCloudStorageBucketsChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -248,14 +268,17 @@ final class StorageInsightsDatasetConfigIncludeCloudStorageBucketsChoice
   final StorageInsightsDatasetConfigIncludeCloudStorageBuckets
   includeCloudStorageBuckets;
 
+  @internal
   @override
   String get blockKey => 'include_cloud_storage_buckets';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'include_cloud_storage_buckets': includeCloudStorageBuckets.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'include_cloud_storage_buckets': TfArg.literal(
@@ -274,14 +297,17 @@ final class StorageInsightsDatasetConfigExcludeCloudStorageBucketsChoice
   final StorageInsightsDatasetConfigExcludeCloudStorageBuckets
   excludeCloudStorageBuckets;
 
+  @internal
   @override
   String get blockKey => 'exclude_cloud_storage_buckets';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'exclude_cloud_storage_buckets': excludeCloudStorageBuckets.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'exclude_cloud_storage_buckets': TfArg.literal(
@@ -303,6 +329,7 @@ final class StorageInsightsDatasetConfigExcludeCloudStorageBuckets {
   >
   cloudStorageBuckets;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloud_storage_buckets': [for (final e in cloudStorageBuckets) e.encode()],
   };
@@ -322,6 +349,7 @@ final class StorageInsightsDatasetConfigExcludeCloudStorageBucketsCloudStorageBu
 
   final TfArg<String>? bucketPrefixRegex;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_name': ?bucketName?.encodeAs('name').toTfJson(),
     'bucket_prefix_regex': ?bucketPrefixRegex?.toTfJson(),
@@ -338,6 +366,7 @@ final class StorageInsightsDatasetConfigExcludeCloudStorageLocations {
 
   final TfArg<List<String>> locations;
 
+  @internal
   Map<String, Object?> encode() => {'locations': locations.toTfJson()};
 }
 
@@ -349,6 +378,7 @@ final class StorageInsightsDatasetConfigIdentity {
 
   final StorageInsightsDatasetConfigType type;
 
+  @internal
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 
@@ -387,6 +417,7 @@ final class StorageInsightsDatasetConfigIncludeCloudStorageBuckets {
   >
   cloudStorageBuckets;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloud_storage_buckets': [for (final e in cloudStorageBuckets) e.encode()],
   };
@@ -402,6 +433,7 @@ final class StorageInsightsDatasetConfigIncludeCloudStorageLocations {
 
   final TfArg<List<String>> locations;
 
+  @internal
   Map<String, Object?> encode() => {'locations': locations.toTfJson()};
 }
 

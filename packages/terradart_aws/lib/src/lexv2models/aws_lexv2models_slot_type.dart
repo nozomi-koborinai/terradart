@@ -18,6 +18,7 @@ final class Lexv2modelsSlotTypeCompositeSlotTypeSetting {
 
   final List<Lexv2modelsSlotTypeSubSlots>? subSlots;
 
+  @internal
   Map<String, Object?> encode() => {
     if (subSlots != null) 'sub_slots': [for (final e in subSlots!) e.encode()],
   };
@@ -36,6 +37,7 @@ final class Lexv2modelsSlotTypeSubSlots {
 
   final TfArg<String> slotTypeId;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'slot_type_id': slotTypeId.toTfJson(),
@@ -50,6 +52,7 @@ final class Lexv2modelsSlotTypeExternalSourceSetting {
 
   final List<Lexv2modelsSlotTypeGrammarSlotTypeSetting>? grammarSlotTypeSetting;
 
+  @internal
   Map<String, Object?> encode() => {
     if (grammarSlotTypeSetting != null)
       'grammar_slot_type_setting': [
@@ -66,6 +69,7 @@ final class Lexv2modelsSlotTypeGrammarSlotTypeSetting {
 
   final List<Lexv2modelsSlotTypeSource>? source;
 
+  @internal
   Map<String, Object?> encode() => {
     if (source != null) 'source': [for (final e in source!) e.encode()],
   };
@@ -87,6 +91,7 @@ final class Lexv2modelsSlotTypeSource {
 
   final TfArg<String> s3ObjectKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_arn': kmsKeyArn.encodeAs('arn').toTfJson(),
     's3_bucket_name': s3BucketName.encodeAs('id').toTfJson(),
@@ -104,6 +109,7 @@ final class Lexv2modelsSlotTypeValues {
 
   final List<Lexv2modelsSlotTypeSynonyms>? synonyms;
 
+  @internal
   Map<String, Object?> encode() => {
     if (sampleValue != null)
       'sample_value': [for (final e in sampleValue!) e.encode()],
@@ -119,6 +125,7 @@ final class Lexv2modelsSlotTypeSampleValue {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {'value': value.toTfJson()};
 }
 
@@ -130,6 +137,7 @@ final class Lexv2modelsSlotTypeSynonyms {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {'value': value.toTfJson()};
 }
 
@@ -150,6 +158,7 @@ final class Lexv2modelsSlotTypeValueSelectionSetting {
 
   final List<Lexv2modelsSlotTypeRegexFilter>? regexFilter;
 
+  @internal
   Map<String, Object?> encode() => {
     'resolution_strategy': resolutionStrategy.toTfJson(),
     if (advancedRecognitionSetting != null)
@@ -198,6 +207,7 @@ final class Lexv2modelsSlotTypeAdvancedRecognitionSetting {
 
   final Lexv2modelsSlotTypeAudioRecognitionStrategy? audioRecognitionStrategy;
 
+  @internal
   Map<String, Object?> encode() => {
     'audio_recognition_strategy': ?audioRecognitionStrategy?.toTfJson(),
   };
@@ -232,6 +242,7 @@ final class Lexv2modelsSlotTypeRegexFilter {
 
   final TfArg<String> pattern;
 
+  @internal
   Map<String, Object?> encode() => {'pattern': pattern.toTfJson()};
 }
 

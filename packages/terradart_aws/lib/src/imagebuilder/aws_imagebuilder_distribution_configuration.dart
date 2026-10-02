@@ -49,6 +49,7 @@ final class ImagebuilderDistributionConfigurationDistribution {
   final List<ImagebuilderDistributionConfigurationSsmParameterConfiguration>?
   ssmParameterConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'license_configuration_arns': ?licenseConfigurationArns?.toTfJson(),
     'region': region.toTfJson(),
@@ -96,6 +97,7 @@ final class ImagebuilderDistributionConfigurationAmiDistributionConfiguration {
 
   final ImagebuilderDistributionConfigurationLaunchPermission? launchPermission;
 
+  @internal
   Map<String, Object?> encode() => {
     'ami_tags': ?amiTags?.toTfJson(),
     'description': ?description?.toTfJson(),
@@ -125,6 +127,7 @@ final class ImagebuilderDistributionConfigurationLaunchPermission {
 
   final TfArg<List<String>>? userIds;
 
+  @internal
   Map<String, Object?> encode() => {
     'organization_arns': ?organizationArns?.toTfJson(),
     'organizational_unit_arns': ?organizationalUnitArns?.toTfJson(),
@@ -149,6 +152,7 @@ final class ImagebuilderDistributionConfigurationContainerDistributionConfigurat
 
   final ImagebuilderDistributionConfigurationTargetRepository targetRepository;
 
+  @internal
   Map<String, Object?> encode() => {
     'container_tags': ?containerTags?.toTfJson(),
     'description': ?description?.toTfJson(),
@@ -169,6 +173,7 @@ final class ImagebuilderDistributionConfigurationTargetRepository {
 
   final ImagebuilderDistributionConfigurationService service;
 
+  @internal
   Map<String, Object?> encode() => {
     'repository_name': repositoryName.toTfJson(),
     'service': service.toTfJson(),
@@ -218,6 +223,7 @@ final class ImagebuilderDistributionConfigurationFastLaunchConfiguration {
   final ImagebuilderDistributionConfigurationSnapshotConfiguration?
   snapshotConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'account_id': accountId.toTfJson(),
     'enabled': enabled.toTfJson(),
@@ -243,6 +249,7 @@ final class ImagebuilderDistributionConfigurationLaunchTemplate {
 
   final TfArg<String>? launchTemplateVersion;
 
+  @internal
   Map<String, Object?> encode() => {
     'launch_template_id': ?launchTemplateId?.toTfJson(),
     'launch_template_name': ?launchTemplateName?.toTfJson(),
@@ -260,6 +267,7 @@ final class ImagebuilderDistributionConfigurationSnapshotConfiguration {
 
   final TfArg<num>? targetResourceCount;
 
+  @internal
   Map<String, Object?> encode() => {
     'target_resource_count': ?targetResourceCount?.toTfJson(),
   };
@@ -281,6 +289,7 @@ final class ImagebuilderDistributionConfigurationLaunchTemplateConfiguration {
 
   final TfArg<String> launchTemplateId;
 
+  @internal
   Map<String, Object?> encode() => {
     'account_id': ?accountId?.toTfJson(),
     'default': ?defaultCase?.toTfJson(),
@@ -307,6 +316,7 @@ final class ImagebuilderDistributionConfigurationS3ExportConfiguration {
 
   final TfArg<String>? s3Prefix;
 
+  @internal
   Map<String, Object?> encode() => {
     'disk_image_format': diskImageFormat.toTfJson(),
     'role_name': roleName.encodeAs('name').toTfJson(),
@@ -358,6 +368,7 @@ final class ImagebuilderDistributionConfigurationSsmParameterConfiguration {
 
   final TfArg<String> parameterName;
 
+  @internal
   Map<String, Object?> encode() => {
     'ami_account_id': ?amiAccountId?.toTfJson(),
     'data_type': ?dataType?.toTfJson(),

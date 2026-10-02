@@ -58,6 +58,7 @@ final class MedialiveChannelCdiInputSpecification {
 
   final MedialiveChannelResolution resolution;
 
+  @internal
   Map<String, Object?> encode() => {'resolution': resolution.toTfJson()};
 }
 
@@ -97,6 +98,7 @@ final class MedialiveChannelDestinations {
 
   final List<MedialiveChannelSettings>? settings;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
     if (mediaPackageSettings != null)
@@ -116,6 +118,7 @@ final class MedialiveChannelMediaPackageSettings {
 
   final TfArg<String> channelId;
 
+  @internal
   Map<String, Object?> encode() => {'channel_id': channelId.toTfJson()};
 }
 
@@ -132,6 +135,7 @@ final class MedialiveChannelMultiplexSettings {
 
   final TfArg<String> programName;
 
+  @internal
   Map<String, Object?> encode() => {
     'multiplex_id': multiplexId.toTfJson(),
     'program_name': programName.toTfJson(),
@@ -157,6 +161,7 @@ final class MedialiveChannelSettings {
 
   final TfArg<String>? username;
 
+  @internal
   Map<String, Object?> encode() => {
     'password_param': ?passwordParam?.toTfJson(),
     'stream_name': ?streamName?.toTfJson(),
@@ -200,6 +205,7 @@ final class MedialiveChannelEncoderSettings {
 
   final List<MedialiveChannelVideoDescriptions>? videoDescriptions;
 
+  @internal
   Map<String, Object?> encode() => {
     if (audioDescriptions != null)
       'audio_descriptions': [for (final e in audioDescriptions!) e.encode()],
@@ -258,6 +264,7 @@ final class MedialiveChannelAudioDescriptions {
 
   final MedialiveChannelRemixSettings? remixSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'audio_selector_name': audioSelectorName.toTfJson(),
     'audio_type': ?audioType?.toTfJson(),
@@ -289,6 +296,7 @@ final class MedialiveChannelAudioNormalizationSettings {
 
   final TfArg<num>? targetLkfs;
 
+  @internal
   Map<String, Object?> encode() => {
     'algorithm': ?algorithm?.toTfJson(),
     'algorithm_control': ?algorithmControl?.toTfJson(),
@@ -306,6 +314,7 @@ final class MedialiveChannelAudioWatermarkSettings {
 
   final MedialiveChannelNielsenWatermarksSettings? nielsenWatermarksSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'nielsen_watermarks_settings': ?nielsenWatermarksSettings?.encode(),
   };
@@ -327,6 +336,7 @@ final class MedialiveChannelNielsenWatermarksSettings {
 
   final List<MedialiveChannelNielsenNaesIiNwSettings>? nielsenNaesIiNwSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'nielsen_distribution_type': ?nielsenDistributionType?.toTfJson(),
     'nielsen_cbet_settings': ?nielsenCbetSettings?.encode(),
@@ -353,6 +363,7 @@ final class MedialiveChannelNielsenCbetSettings {
 
   final TfArg<String> csid;
 
+  @internal
   Map<String, Object?> encode() => {
     'cbet_check_digit_string': cbetCheckDigitString.toTfJson(),
     'cbet_stepaside': cbetStepaside.toTfJson(),
@@ -373,6 +384,7 @@ final class MedialiveChannelNielsenNaesIiNwSettings {
 
   final TfArg<num> sid;
 
+  @internal
   Map<String, Object?> encode() => {
     'check_digit_string': checkDigitString.toTfJson(),
     'sid': sid.toTfJson(),
@@ -407,6 +419,7 @@ final class MedialiveChannelAudioDescriptionsCodecSettings {
 
   final MedialiveChannelWavSettings? wavSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'aac_settings': ?aacSettings?.encode(),
     'ac3_settings': ?ac3Settings?.encode(),
@@ -452,6 +465,7 @@ final class MedialiveChannelAacSettings {
 
   final TfArg<String>? vbrQuality;
 
+  @internal
   Map<String, Object?> encode() => {
     'bitrate': ?bitrate?.toTfJson(),
     'coding_mode': ?codingMode?.toTfJson(),
@@ -493,6 +507,7 @@ final class MedialiveChannelAc3Settings {
 
   final TfArg<String>? metadataControl;
 
+  @internal
   Map<String, Object?> encode() => {
     'bitrate': ?bitrate?.toTfJson(),
     'bitstream_mode': ?bitstreamMode?.toTfJson(),
@@ -532,6 +547,7 @@ final class MedialiveChannelEac3AtmosSettings {
 
   final TfArg<num>? surroundTrim;
 
+  @internal
   Map<String, Object?> encode() => {
     'bitrate': ?bitrate?.toTfJson(),
     'coding_mode': ?codingMode?.toTfJson(),
@@ -610,6 +626,7 @@ final class MedialiveChannelEac3Settings {
 
   final TfArg<String>? surroundMode;
 
+  @internal
   Map<String, Object?> encode() => {
     'attenuation_control': ?attenuationControl?.toTfJson(),
     'bitrate': ?bitrate?.toTfJson(),
@@ -650,6 +667,7 @@ final class MedialiveChannelMp2Settings {
 
   final TfArg<num>? sampleRate;
 
+  @internal
   Map<String, Object?> encode() => {
     'bitrate': ?bitrate?.toTfJson(),
     'coding_mode': ?codingMode?.toTfJson(),
@@ -663,6 +681,7 @@ final class MedialiveChannelMp2Settings {
 final class MedialiveChannelPassThroughSettings {
   const MedialiveChannelPassThroughSettings();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -682,6 +701,7 @@ final class MedialiveChannelWavSettings {
 
   final TfArg<num>? sampleRate;
 
+  @internal
   Map<String, Object?> encode() => {
     'bit_depth': ?bitDepth?.toTfJson(),
     'coding_mode': ?codingMode?.toTfJson(),
@@ -705,6 +725,7 @@ final class MedialiveChannelRemixSettings {
 
   final List<MedialiveChannelMappings> channelMappings;
 
+  @internal
   Map<String, Object?> encode() => {
     'channels_in': ?channelsIn?.toTfJson(),
     'channels_out': ?channelsOut?.toTfJson(),
@@ -725,6 +746,7 @@ final class MedialiveChannelMappings {
 
   final List<MedialiveChannelInputChannelLevels> inputChannelLevels;
 
+  @internal
   Map<String, Object?> encode() => {
     'output_channel': outputChannel.toTfJson(),
     'input_channel_levels': [for (final e in inputChannelLevels) e.encode()],
@@ -744,6 +766,7 @@ final class MedialiveChannelInputChannelLevels {
 
   final TfArg<num> inputChannel;
 
+  @internal
   Map<String, Object?> encode() => {
     'gain': gain.toTfJson(),
     'input_channel': inputChannel.toTfJson(),
@@ -760,6 +783,7 @@ final class MedialiveChannelAvailBlanking {
 
   final MedialiveChannelAvailBlankingImage? availBlankingImage;
 
+  @internal
   Map<String, Object?> encode() => {
     'state': ?state?.toTfJson(),
     'avail_blanking_image': ?availBlankingImage?.encode(),
@@ -782,6 +806,7 @@ final class MedialiveChannelAvailBlankingImage {
 
   final TfArg<String>? username;
 
+  @internal
   Map<String, Object?> encode() => {
     'password_param': ?passwordParam?.toTfJson(),
     'uri': uri.toTfJson(),
@@ -814,6 +839,7 @@ final class MedialiveChannelCaptionDescriptions {
 
   final MedialiveChannelDestinationSettings? destinationSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'accessibility': ?accessibility?.toTfJson(),
     'caption_selector_name': captionSelectorName.toTfJson(),
@@ -875,6 +901,7 @@ final class MedialiveChannelDestinationSettings {
 
   final MedialiveChannelWebvttDestinationSettings? webvttDestinationSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'arib_destination_settings': ?aribDestinationSettings?.encode(),
     'burn_in_destination_settings': ?burnInDestinationSettings?.encode(),
@@ -901,6 +928,7 @@ final class MedialiveChannelDestinationSettings {
 final class MedialiveChannelAribDestinationSettings {
   const MedialiveChannelAribDestinationSettings();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -962,6 +990,7 @@ final class MedialiveChannelBurnInDestinationSettings {
 
   final MedialiveChannelFont? font;
 
+  @internal
   Map<String, Object?> encode() => {
     'alignment': ?alignment?.toTfJson(),
     'background_color': ?backgroundColor?.toTfJson(),
@@ -1000,6 +1029,7 @@ final class MedialiveChannelFont {
 
   final TfArg<String>? username;
 
+  @internal
   Map<String, Object?> encode() => {
     'password_param': ?passwordParam?.toTfJson(),
     'uri': uri.toTfJson(),
@@ -1065,6 +1095,7 @@ final class MedialiveChannelDvbSubDestinationSettings {
 
   final MedialiveChannelFont? font;
 
+  @internal
   Map<String, Object?> encode() => {
     'alignment': ?alignment?.toTfJson(),
     'background_color': ?backgroundColor?.toTfJson(),
@@ -1105,6 +1136,7 @@ final class MedialiveChannelEbuTtDDestinationSettings {
 
   final TfArg<String>? styleControl;
 
+  @internal
   Map<String, Object?> encode() => {
     'copyright_holder': ?copyrightHolder?.toTfJson(),
     'fill_line_gap': ?fillLineGap?.toTfJson(),
@@ -1119,6 +1151,7 @@ final class MedialiveChannelEbuTtDDestinationSettings {
 final class MedialiveChannelEmbeddedDestinationSettings {
   const MedialiveChannelEmbeddedDestinationSettings();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -1128,6 +1161,7 @@ final class MedialiveChannelEmbeddedDestinationSettings {
 final class MedialiveChannelEmbeddedPlusScte20DestinationSettings {
   const MedialiveChannelEmbeddedPlusScte20DestinationSettings();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -1137,6 +1171,7 @@ final class MedialiveChannelEmbeddedPlusScte20DestinationSettings {
 final class MedialiveChannelRtmpCaptionInfoDestinationSettings {
   const MedialiveChannelRtmpCaptionInfoDestinationSettings();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -1146,6 +1181,7 @@ final class MedialiveChannelRtmpCaptionInfoDestinationSettings {
 final class MedialiveChannelScte20PlusEmbeddedDestinationSettings {
   const MedialiveChannelScte20PlusEmbeddedDestinationSettings();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -1155,6 +1191,7 @@ final class MedialiveChannelScte20PlusEmbeddedDestinationSettings {
 final class MedialiveChannelScte27DestinationSettings {
   const MedialiveChannelScte27DestinationSettings();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -1164,6 +1201,7 @@ final class MedialiveChannelScte27DestinationSettings {
 final class MedialiveChannelSmpteTtDestinationSettings {
   const MedialiveChannelSmpteTtDestinationSettings();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -1173,6 +1211,7 @@ final class MedialiveChannelSmpteTtDestinationSettings {
 final class MedialiveChannelTeletextDestinationSettings {
   const MedialiveChannelTeletextDestinationSettings();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -1184,6 +1223,7 @@ final class MedialiveChannelTtmlDestinationSettings {
 
   final TfArg<String> styleControl;
 
+  @internal
   Map<String, Object?> encode() => {'style_control': styleControl.toTfJson()};
 }
 
@@ -1195,6 +1235,7 @@ final class MedialiveChannelWebvttDestinationSettings {
 
   final TfArg<String> styleControl;
 
+  @internal
   Map<String, Object?> encode() => {'style_control': styleControl.toTfJson()};
 }
 
@@ -1223,6 +1264,7 @@ final class MedialiveChannelGlobalConfiguration {
 
   final MedialiveChannelInputLossBehavior? inputLossBehavior;
 
+  @internal
   Map<String, Object?> encode() => {
     'initial_audio_gain': ?initialAudioGain?.toTfJson(),
     'input_end_action': ?inputEndAction?.toTfJson(),
@@ -1255,6 +1297,7 @@ final class MedialiveChannelInputLossBehavior {
 
   final MedialiveChannelInputLossImageSlate? inputLossImageSlate;
 
+  @internal
   Map<String, Object?> encode() => {
     'black_frame_msec': ?blackFrameMsec?.toTfJson(),
     'input_loss_image_color': ?inputLossImageColor?.toTfJson(),
@@ -1280,6 +1323,7 @@ final class MedialiveChannelInputLossImageSlate {
 
   final TfArg<String>? username;
 
+  @internal
   Map<String, Object?> encode() => {
     'password_param': ?passwordParam?.toTfJson(),
     'uri': uri.toTfJson(),
@@ -1300,6 +1344,7 @@ final class MedialiveChannelMotionGraphicsConfiguration {
 
   final MedialiveChannelMotionGraphicsSettings motionGraphicsSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'motion_graphics_insertion': ?motionGraphicsInsertion?.toTfJson(),
     'motion_graphics_settings': motionGraphicsSettings.encode(),
@@ -1316,6 +1361,7 @@ final class MedialiveChannelMotionGraphicsSettings {
 
   final MedialiveChannelHtmlMotionGraphicsSettings? htmlMotionGraphicsSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'html_motion_graphics_settings': ?htmlMotionGraphicsSettings?.encode(),
   };
@@ -1327,6 +1373,7 @@ final class MedialiveChannelMotionGraphicsSettings {
 final class MedialiveChannelHtmlMotionGraphicsSettings {
   const MedialiveChannelHtmlMotionGraphicsSettings();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -1343,6 +1390,7 @@ final class MedialiveChannelNielsenConfiguration {
 
   final TfArg<String>? nielsenPcmToId3Tagging;
 
+  @internal
   Map<String, Object?> encode() => {
     'distributor_id': ?distributorId?.toTfJson(),
     'nielsen_pcm_to_id3_tagging': ?nielsenPcmToId3Tagging?.toTfJson(),
@@ -1365,6 +1413,7 @@ final class MedialiveChannelOutputGroups {
 
   final List<MedialiveChannelOutputs> outputs;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'output_group_settings': outputGroupSettings.encode(),
@@ -1403,6 +1452,7 @@ final class MedialiveChannelOutputGroupSettings {
 
   final MedialiveChannelUdpGroupSettings? udpGroupSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     if (archiveGroupSettings != null)
       'archive_group_settings': [
@@ -1434,6 +1484,7 @@ final class MedialiveChannelArchiveGroupSettings {
 
   final MedialiveChannelDestination destination;
 
+  @internal
   Map<String, Object?> encode() => {
     'rollover_interval': ?rolloverInterval?.toTfJson(),
     'archive_cdn_settings': ?archiveCdnSettings?.encode(),
@@ -1449,6 +1500,7 @@ final class MedialiveChannelArchiveCdnSettings {
 
   final MedialiveChannelArchiveS3Settings? archiveS3Settings;
 
+  @internal
   Map<String, Object?> encode() => {
     'archive_s3_settings': ?archiveS3Settings?.encode(),
   };
@@ -1462,6 +1514,7 @@ final class MedialiveChannelArchiveS3Settings {
 
   final TfArg<String>? cannedAcl;
 
+  @internal
   Map<String, Object?> encode() => {'canned_acl': ?cannedAcl?.toTfJson()};
 }
 
@@ -1474,6 +1527,7 @@ final class MedialiveChannelDestination {
 
   final TfArg<String> destinationRefId;
 
+  @internal
   Map<String, Object?> encode() => {
     'destination_ref_id': destinationRefId.toTfJson(),
   };
@@ -1492,6 +1546,7 @@ final class MedialiveChannelFrameCaptureGroupSettings {
 
   final MedialiveChannelFrameCaptureCdnSettings? frameCaptureCdnSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'destination': destination.encode(),
     'frame_capture_cdn_settings': ?frameCaptureCdnSettings?.encode(),
@@ -1506,6 +1561,7 @@ final class MedialiveChannelFrameCaptureCdnSettings {
 
   final MedialiveChannelFrameCaptureS3Settings? frameCaptureS3Settings;
 
+  @internal
   Map<String, Object?> encode() => {
     'frame_capture_s3_settings': ?frameCaptureS3Settings?.encode(),
   };
@@ -1519,6 +1575,7 @@ final class MedialiveChannelFrameCaptureS3Settings {
 
   final TfArg<String>? cannedAcl;
 
+  @internal
   Map<String, Object?> encode() => {'canned_acl': ?cannedAcl?.toTfJson()};
 }
 
@@ -1655,6 +1712,7 @@ final class MedialiveChannelHlsGroupSettings {
 
   final MedialiveChannelKeyProviderSettings? keyProviderSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'ad_markers': ?adMarkers?.toTfJson(),
     'base_url_content': ?baseUrlContent?.toTfJson(),
@@ -1721,6 +1779,7 @@ final class MedialiveChannelCaptionLanguageMappings {
 
   final TfArg<String> languageDescription;
 
+  @internal
   Map<String, Object?> encode() => {
     'caption_channel': captionChannel.toTfJson(),
     'language_code': languageCode.toTfJson(),
@@ -1750,6 +1809,7 @@ final class MedialiveChannelHlsCdnSettings {
 
   final MedialiveChannelHlsWebdavSettings? hlsWebdavSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'hls_akamai_settings': ?hlsAkamaiSettings?.encode(),
     'hls_basic_put_settings': ?hlsBasicPutSettings?.encode(),
@@ -1787,6 +1847,7 @@ final class MedialiveChannelHlsAkamaiSettings {
 
   final TfArg<String>? token;
 
+  @internal
   Map<String, Object?> encode() => {
     'connection_retry_interval': ?connectionRetryInterval?.toTfJson(),
     'filecache_duration': ?filecacheDuration?.toTfJson(),
@@ -1817,6 +1878,7 @@ final class MedialiveChannelHlsBasicPutSettings {
 
   final TfArg<num>? restartDelay;
 
+  @internal
   Map<String, Object?> encode() => {
     'connection_retry_interval': ?connectionRetryInterval?.toTfJson(),
     'filecache_duration': ?filecacheDuration?.toTfJson(),
@@ -1847,6 +1909,7 @@ final class MedialiveChannelHlsMediaStoreSettings {
 
   final TfArg<num>? restartDelay;
 
+  @internal
   Map<String, Object?> encode() => {
     'connection_retry_interval': ?connectionRetryInterval?.toTfJson(),
     'filecache_duration': ?filecacheDuration?.toTfJson(),
@@ -1864,6 +1927,7 @@ final class MedialiveChannelHlsS3Settings {
 
   final TfArg<String>? cannedAcl;
 
+  @internal
   Map<String, Object?> encode() => {'canned_acl': ?cannedAcl?.toTfJson()};
 }
 
@@ -1889,6 +1953,7 @@ final class MedialiveChannelHlsWebdavSettings {
 
   final TfArg<num>? restartDelay;
 
+  @internal
   Map<String, Object?> encode() => {
     'connection_retry_interval': ?connectionRetryInterval?.toTfJson(),
     'filecache_duration': ?filecacheDuration?.toTfJson(),
@@ -1906,6 +1971,7 @@ final class MedialiveChannelKeyProviderSettings {
 
   final List<MedialiveChannelStaticKeySettings>? staticKeySettings;
 
+  @internal
   Map<String, Object?> encode() => {
     if (staticKeySettings != null)
       'static_key_settings': [for (final e in staticKeySettings!) e.encode()],
@@ -1925,6 +1991,7 @@ final class MedialiveChannelStaticKeySettings {
 
   final MedialiveChannelKeyProviderServer? keyProviderServer;
 
+  @internal
   Map<String, Object?> encode() => {
     'static_key_value': staticKeyValue.toTfJson(),
     'key_provider_server': ?keyProviderServer?.encode(),
@@ -1947,6 +2014,7 @@ final class MedialiveChannelKeyProviderServer {
 
   final TfArg<String>? username;
 
+  @internal
   Map<String, Object?> encode() => {
     'password_param': ?passwordParam?.toTfJson(),
     'uri': uri.toTfJson(),
@@ -1962,6 +2030,7 @@ final class MedialiveChannelMediaPackageGroupSettings {
 
   final MedialiveChannelDestination destination;
 
+  @internal
   Map<String, Object?> encode() => {'destination': destination.encode()};
 }
 
@@ -2029,6 +2098,7 @@ final class MedialiveChannelMsSmoothGroupSettings {
 
   final MedialiveChannelDestination destination;
 
+  @internal
   Map<String, Object?> encode() => {
     'acquisition_point_id': ?acquisitionPointId?.toTfJson(),
     'audio_only_timecode_control': ?audioOnlyTimecodeControl?.toTfJson(),
@@ -2058,6 +2128,7 @@ final class MedialiveChannelMsSmoothGroupSettings {
 final class MedialiveChannelMultiplexGroupSettings {
   const MedialiveChannelMultiplexGroupSettings();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -2089,6 +2160,7 @@ final class MedialiveChannelRtmpGroupSettings {
 
   final TfArg<num>? restartDelay;
 
+  @internal
   Map<String, Object?> encode() => {
     'ad_markers': ?adMarkers?.toTfJson(),
     'authentication_scheme': ?authenticationScheme?.toTfJson(),
@@ -2116,6 +2188,7 @@ final class MedialiveChannelUdpGroupSettings {
 
   final TfArg<num>? timedMetadataId3Period;
 
+  @internal
   Map<String, Object?> encode() => {
     'input_loss_action': ?inputLossAction?.toTfJson(),
     'timed_metadata_id3_frame': ?timedMetadataId3Frame?.toTfJson(),
@@ -2145,6 +2218,7 @@ final class MedialiveChannelOutputs {
 
   final MedialiveChannelOutputSettings outputSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'audio_description_names': ?audioDescriptionNames?.toTfJson(),
     'caption_description_names': ?captionDescriptionNames?.toTfJson(),
@@ -2185,6 +2259,7 @@ final class MedialiveChannelOutputSettings {
 
   final MedialiveChannelUdpOutputSettings? udpOutputSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'archive_output_settings': ?archiveOutputSettings?.encode(),
     'frame_capture_output_settings': ?frameCaptureOutputSettings?.encode(),
@@ -2214,6 +2289,7 @@ final class MedialiveChannelArchiveOutputSettings {
   final MedialiveChannelArchiveOutputSettingsContainerSettings?
   containerSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'extension': ?extension?.toTfJson(),
     'name_modifier': ?nameModifier?.toTfJson(),
@@ -2234,6 +2310,7 @@ final class MedialiveChannelArchiveOutputSettingsContainerSettings {
 
   final MedialiveChannelRawSettings? rawSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'm2ts_settings': ?m2tsSettings?.encode(),
     'raw_settings': ?rawSettings?.encode(),
@@ -2389,6 +2466,7 @@ final class MedialiveChannelM2tsSettings {
 
   final MedialiveChannelDvbTdtSettings? dvbTdtSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'absent_input_audio_behavior': ?absentInputAudioBehavior?.toTfJson(),
     'arib': ?arib?.toTfJson(),
@@ -2457,6 +2535,7 @@ final class MedialiveChannelDvbNitSettings {
 
   final TfArg<num>? repInterval;
 
+  @internal
   Map<String, Object?> encode() => {
     'network_id': networkId.toTfJson(),
     'network_name': networkName.toTfJson(),
@@ -2484,6 +2563,7 @@ final class MedialiveChannelDvbSdtSettings {
 
   final TfArg<String>? serviceProviderName;
 
+  @internal
   Map<String, Object?> encode() => {
     'output_sdt': ?outputSdt?.toTfJson(),
     'rep_interval': ?repInterval?.toTfJson(),
@@ -2501,6 +2581,7 @@ final class MedialiveChannelDvbTdtSettings {
 
   final TfArg<num>? repInterval;
 
+  @internal
   Map<String, Object?> encode() => {'rep_interval': ?repInterval?.toTfJson()};
 }
 
@@ -2510,6 +2591,7 @@ final class MedialiveChannelDvbTdtSettings {
 final class MedialiveChannelRawSettings {
   const MedialiveChannelRawSettings();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -2521,6 +2603,7 @@ final class MedialiveChannelFrameCaptureOutputSettings {
 
   final TfArg<String>? nameModifier;
 
+  @internal
   Map<String, Object?> encode() => {'name_modifier': ?nameModifier?.toTfJson()};
 }
 
@@ -2543,6 +2626,7 @@ final class MedialiveChannelHlsOutputSettings {
 
   final MedialiveChannelHlsSettings hlsSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'h265_packaging_type': ?h265PackagingType?.toTfJson(),
     'name_modifier': ?nameModifier?.toTfJson(),
@@ -2570,6 +2654,7 @@ final class MedialiveChannelHlsSettings {
 
   final MedialiveChannelStandardHlsSettings? standardHlsSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'audio_only_hls_settings': ?audioOnlyHlsSettings?.encode(),
     'fmp4_hls_settings': ?fmp4HlsSettings?.encode(),
@@ -2597,6 +2682,7 @@ final class MedialiveChannelAudioOnlyHlsSettings {
 
   final MedialiveChannelAudioOnlyImage? audioOnlyImage;
 
+  @internal
   Map<String, Object?> encode() => {
     'audio_group_id': ?audioGroupId?.toTfJson(),
     'audio_track_type': ?audioTrackType?.toTfJson(),
@@ -2621,6 +2707,7 @@ final class MedialiveChannelAudioOnlyImage {
 
   final TfArg<String>? username;
 
+  @internal
   Map<String, Object?> encode() => {
     'password_param': ?passwordParam?.toTfJson(),
     'uri': uri.toTfJson(),
@@ -2644,6 +2731,7 @@ final class MedialiveChannelFmp4HlsSettings {
 
   final TfArg<String>? timedMetadataBehavior;
 
+  @internal
   Map<String, Object?> encode() => {
     'audio_rendition_sets': ?audioRenditionSets?.toTfJson(),
     'nielsen_id3_behavior': ?nielsenId3Behavior?.toTfJson(),
@@ -2657,6 +2745,7 @@ final class MedialiveChannelFmp4HlsSettings {
 final class MedialiveChannelFrameCaptureHlsSettings {
   const MedialiveChannelFrameCaptureHlsSettings();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -2673,6 +2762,7 @@ final class MedialiveChannelStandardHlsSettings {
 
   final MedialiveChannelM3u8Settings m3u8Settings;
 
+  @internal
   Map<String, Object?> encode() => {
     'audio_rendition_sets': ?audioRenditionSets?.toTfJson(),
     'm3u8_settings': m3u8Settings.encode(),
@@ -2737,6 +2827,7 @@ final class MedialiveChannelM3u8Settings {
 
   final TfArg<String>? videoPid;
 
+  @internal
   Map<String, Object?> encode() => {
     'audio_frames_per_pes': ?audioFramesPerPes?.toTfJson(),
     'audio_pids': ?audioPids?.toTfJson(),
@@ -2764,6 +2855,7 @@ final class MedialiveChannelM3u8Settings {
 final class MedialiveChannelMediaPackageOutputSettings {
   const MedialiveChannelMediaPackageOutputSettings();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -2780,6 +2872,7 @@ final class MedialiveChannelMsSmoothOutputSettings {
 
   final TfArg<String>? nameModifier;
 
+  @internal
   Map<String, Object?> encode() => {
     'h265_packaging_type': ?h265PackagingType?.toTfJson(),
     'name_modifier': ?nameModifier?.toTfJson(),
@@ -2794,6 +2887,7 @@ final class MedialiveChannelMultiplexOutputSettings {
 
   final MedialiveChannelDestination destination;
 
+  @internal
   Map<String, Object?> encode() => {'destination': destination.encode()};
 }
 
@@ -2816,6 +2910,7 @@ final class MedialiveChannelRtmpOutputSettings {
 
   final MedialiveChannelDestination destination;
 
+  @internal
   Map<String, Object?> encode() => {
     'certificate_mode': ?certificateMode?.toTfJson(),
     'connection_retry_interval': ?connectionRetryInterval?.toTfJson(),
@@ -2843,6 +2938,7 @@ final class MedialiveChannelUdpOutputSettings {
 
   final MedialiveChannelFecOutputSettings? fecOutputSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'buffer_msec': ?bufferMsec?.toTfJson(),
     'container_settings': containerSettings.encode(),
@@ -2859,6 +2955,7 @@ final class MedialiveChannelUdpOutputSettingsContainerSettings {
 
   final MedialiveChannelM2tsSettings? m2tsSettings;
 
+  @internal
   Map<String, Object?> encode() => {'m2ts_settings': ?m2tsSettings?.encode()};
 }
 
@@ -2878,6 +2975,7 @@ final class MedialiveChannelFecOutputSettings {
 
   final TfArg<num>? rowLength;
 
+  @internal
   Map<String, Object?> encode() => {
     'column_depth': ?columnDepth?.toTfJson(),
     'include_fec': ?includeFec?.toTfJson(),
@@ -2898,6 +2996,7 @@ final class MedialiveChannelTimecodeConfig {
 
   final TfArg<num>? syncThreshold;
 
+  @internal
   Map<String, Object?> encode() => {
     'source': source.toTfJson(),
     'sync_threshold': ?syncThreshold?.toTfJson(),
@@ -2932,6 +3031,7 @@ final class MedialiveChannelVideoDescriptions {
 
   final MedialiveChannelVideoDescriptionsCodecSettings? codecSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'height': ?height?.toTfJson(),
     'name': name.toTfJson(),
@@ -2959,6 +3059,7 @@ final class MedialiveChannelVideoDescriptionsCodecSettings {
 
   final MedialiveChannelH265Settings? h265Settings;
 
+  @internal
   Map<String, Object?> encode() => {
     'frame_capture_settings': ?frameCaptureSettings?.encode(),
     'h264_settings': ?h264Settings?.encode(),
@@ -2979,6 +3080,7 @@ final class MedialiveChannelFrameCaptureSettings {
 
   final TfArg<String>? captureIntervalUnits;
 
+  @internal
   Map<String, Object?> encode() => {
     'capture_interval': ?captureInterval?.toTfJson(),
     'capture_interval_units': ?captureIntervalUnits?.toTfJson(),
@@ -3112,6 +3214,7 @@ final class MedialiveChannelH264Settings {
 
   final MedialiveChannelFilterSettings? filterSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'adaptive_quantization': ?adaptiveQuantization?.toTfJson(),
     'afd_signaling': ?afdSignaling?.toTfJson(),
@@ -3165,6 +3268,7 @@ final class MedialiveChannelFilterSettings {
 
   final MedialiveChannelTemporalFilterSettings? temporalFilterSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'temporal_filter_settings': ?temporalFilterSettings?.encode(),
   };
@@ -3184,6 +3288,7 @@ final class MedialiveChannelTemporalFilterSettings {
 
   final TfArg<String>? strength;
 
+  @internal
   Map<String, Object?> encode() => {
     'post_filter_sharpening': ?postFilterSharpening?.toTfJson(),
     'strength': ?strength?.toTfJson(),
@@ -3308,6 +3413,7 @@ final class MedialiveChannelH265Settings {
 
   final MedialiveChannelTimecodeBurninSettings? timecodeBurninSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'adaptive_quantization': ?adaptiveQuantization?.toTfJson(),
     'afd_signaling': ?afdSignaling?.toTfJson(),
@@ -3372,6 +3478,7 @@ final class MedialiveChannelColorSpaceSettings {
 
   final MedialiveChannelRec709Settings? rec709Settings;
 
+  @internal
   Map<String, Object?> encode() => {
     'color_space_passthrough_settings': ?colorSpacePassthroughSettings
         ?.encode(),
@@ -3388,6 +3495,7 @@ final class MedialiveChannelColorSpaceSettings {
 final class MedialiveChannelColorSpacePassthroughSettings {
   const MedialiveChannelColorSpacePassthroughSettings();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -3397,6 +3505,7 @@ final class MedialiveChannelColorSpacePassthroughSettings {
 final class MedialiveChannelDolbyVision81Settings {
   const MedialiveChannelDolbyVision81Settings();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -3410,6 +3519,7 @@ final class MedialiveChannelHdr10Settings {
 
   final TfArg<num>? maxFall;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_cll': ?maxCll?.toTfJson(),
     'max_fall': ?maxFall?.toTfJson(),
@@ -3422,6 +3532,7 @@ final class MedialiveChannelHdr10Settings {
 final class MedialiveChannelRec601Settings {
   const MedialiveChannelRec601Settings();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -3431,6 +3542,7 @@ final class MedialiveChannelRec601Settings {
 final class MedialiveChannelRec709Settings {
   const MedialiveChannelRec709Settings();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -3450,6 +3562,7 @@ final class MedialiveChannelTimecodeBurninSettings {
 
   final TfArg<String>? timecodeBurninPosition;
 
+  @internal
   Map<String, Object?> encode() => {
     'prefix': ?prefix?.toTfJson(),
     'timecode_burnin_font_size': ?timecodeBurninFontSize?.toTfJson(),
@@ -3477,6 +3590,7 @@ final class MedialiveChannelInputAttachments {
 
   final MedialiveChannelInputSettings? inputSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'input_attachment_name': inputAttachmentName.toTfJson(),
     'input_id': inputId.toTfJson(),
@@ -3505,6 +3619,7 @@ final class MedialiveChannelAutomaticInputFailoverSettings {
 
   final List<MedialiveChannelFailoverCondition>? failoverCondition;
 
+  @internal
   Map<String, Object?> encode() => {
     'error_clear_time_msec': ?errorClearTimeMsec?.toTfJson(),
     'input_preference': ?inputPreference?.toTfJson(),
@@ -3544,6 +3659,7 @@ final class MedialiveChannelFailoverCondition {
 
   final MedialiveChannelFailoverConditionSettings? failoverConditionSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'failover_condition_settings': ?failoverConditionSettings?.encode(),
   };
@@ -3565,6 +3681,7 @@ final class MedialiveChannelFailoverConditionSettings {
 
   final MedialiveChannelVideoBlackSettings? videoBlackSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'audio_silence_settings': ?audioSilenceSettings?.encode(),
     'input_loss_settings': ?inputLossSettings?.encode(),
@@ -3585,6 +3702,7 @@ final class MedialiveChannelAudioSilenceSettings {
 
   final TfArg<num>? audioSilenceThresholdMsec;
 
+  @internal
   Map<String, Object?> encode() => {
     'audio_selector_name': audioSelectorName.toTfJson(),
     'audio_silence_threshold_msec': ?audioSilenceThresholdMsec?.toTfJson(),
@@ -3599,6 +3717,7 @@ final class MedialiveChannelInputLossSettings {
 
   final TfArg<num>? inputLossThresholdMsec;
 
+  @internal
   Map<String, Object?> encode() => {
     'input_loss_threshold_msec': ?inputLossThresholdMsec?.toTfJson(),
   };
@@ -3617,6 +3736,7 @@ final class MedialiveChannelVideoBlackSettings {
 
   final TfArg<num>? videoBlackThresholdMsec;
 
+  @internal
   Map<String, Object?> encode() => {
     'black_detect_threshold': ?blackDetectThreshold?.toTfJson(),
     'video_black_threshold_msec': ?videoBlackThresholdMsec?.toTfJson(),
@@ -3663,6 +3783,7 @@ final class MedialiveChannelInputSettings {
 
   final MedialiveChannelVideoSelector? videoSelector;
 
+  @internal
   Map<String, Object?> encode() => {
     'deblock_filter': ?deblockFilter?.toTfJson(),
     'denoise_filter': ?denoiseFilter?.toTfJson(),
@@ -3796,6 +3917,7 @@ final class MedialiveChannelAudioSelector {
 
   final MedialiveChannelAudioSelectorSettings? selectorSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'selector_settings': ?selectorSettings?.encode(),
@@ -3821,6 +3943,7 @@ final class MedialiveChannelAudioSelectorSettings {
 
   final MedialiveChannelAudioTrackSelection? audioTrackSelection;
 
+  @internal
   Map<String, Object?> encode() => {
     'audio_hls_rendition_selection': ?audioHlsRenditionSelection?.encode(),
     'audio_language_selection': ?audioLanguageSelection?.encode(),
@@ -3842,6 +3965,7 @@ final class MedialiveChannelAudioHlsRenditionSelection {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {
     'group_id': groupId.toTfJson(),
     'name': name.toTfJson(),
@@ -3861,6 +3985,7 @@ final class MedialiveChannelAudioLanguageSelection {
 
   final MedialiveChannelLanguageSelectionPolicy? languageSelectionPolicy;
 
+  @internal
   Map<String, Object?> encode() => {
     'language_code': languageCode.toTfJson(),
     'language_selection_policy': ?languageSelectionPolicy?.toTfJson(),
@@ -3898,6 +4023,7 @@ final class MedialiveChannelAudioPidSelection {
 
   final TfArg<num> pid;
 
+  @internal
   Map<String, Object?> encode() => {'pid': pid.toTfJson()};
 }
 
@@ -3914,6 +4040,7 @@ final class MedialiveChannelAudioTrackSelection {
 
   final List<MedialiveChannelTracks> tracks;
 
+  @internal
   Map<String, Object?> encode() => {
     'dolby_e_decode': ?dolbyEDecode?.encode(),
     'tracks': [for (final e in tracks) e.encode()],
@@ -3928,6 +4055,7 @@ final class MedialiveChannelDolbyEDecode {
 
   final MedialiveChannelProgramSelection programSelection;
 
+  @internal
   Map<String, Object?> encode() => {
     'program_selection': programSelection.toTfJson(),
   };
@@ -3991,6 +4119,7 @@ final class MedialiveChannelTracks {
 
   final TfArg<num> track;
 
+  @internal
   Map<String, Object?> encode() => {'track': track.toTfJson()};
 }
 
@@ -4010,6 +4139,7 @@ final class MedialiveChannelCaptionSelector {
 
   final MedialiveChannelCaptionSelectorSettings? selectorSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'language_code': ?languageCode?.toTfJson(),
     'name': name.toTfJson(),
@@ -4045,6 +4175,7 @@ final class MedialiveChannelCaptionSelectorSettings {
 
   final MedialiveChannelTeletextSourceSettings? teletextSourceSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'ancillary_source_settings': ?ancillarySourceSettings?.encode(),
     'arib_source_settings': ?aribSourceSettings?.encode(),
@@ -4066,6 +4197,7 @@ final class MedialiveChannelAncillarySourceSettings {
 
   final TfArg<num>? sourceAncillaryChannelNumber;
 
+  @internal
   Map<String, Object?> encode() => {
     'source_ancillary_channel_number': ?sourceAncillaryChannelNumber
         ?.toTfJson(),
@@ -4078,6 +4210,7 @@ final class MedialiveChannelAncillarySourceSettings {
 final class MedialiveChannelAribSourceSettings {
   const MedialiveChannelAribSourceSettings();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 
@@ -4091,6 +4224,7 @@ final class MedialiveChannelDvbSubSourceSettings {
 
   final TfArg<num>? pid;
 
+  @internal
   Map<String, Object?> encode() => {
     'ocr_language': ?ocrLanguage?.toTfJson(),
     'pid': ?pid?.toTfJson(),
@@ -4139,6 +4273,7 @@ final class MedialiveChannelEmbeddedSourceSettings {
 
   final TfArg<num>? source608ChannelNumber;
 
+  @internal
   Map<String, Object?> encode() => {
     'convert_608_to_708': ?convert608To708?.toTfJson(),
     'scte20_detection': ?scte20Detection?.toTfJson(),
@@ -4196,6 +4331,7 @@ final class MedialiveChannelScte20SourceSettings {
 
   final TfArg<num>? source608ChannelNumber;
 
+  @internal
   Map<String, Object?> encode() => {
     'convert_608_to_708': ?convert608To708?.toTfJson(),
     'source_608_channel_number': ?source608ChannelNumber?.toTfJson(),
@@ -4212,6 +4348,7 @@ final class MedialiveChannelScte27SourceSettings {
 
   final TfArg<num>? pid;
 
+  @internal
   Map<String, Object?> encode() => {
     'ocr_language': ?ocrLanguage?.toTfJson(),
     'pid': ?pid?.toTfJson(),
@@ -4231,6 +4368,7 @@ final class MedialiveChannelTeletextSourceSettings {
 
   final MedialiveChannelOutputRectangle? outputRectangle;
 
+  @internal
   Map<String, Object?> encode() => {
     'page_number': ?pageNumber?.toTfJson(),
     'output_rectangle': ?outputRectangle?.encode(),
@@ -4256,6 +4394,7 @@ final class MedialiveChannelOutputRectangle {
 
   final TfArg<num> width;
 
+  @internal
   Map<String, Object?> encode() => {
     'height': height.toTfJson(),
     'left_offset': leftOffset.toTfJson(),
@@ -4277,6 +4416,7 @@ final class MedialiveChannelNetworkInputSettings {
 
   final MedialiveChannelHlsInputSettings? hlsInputSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'server_validation': ?serverValidation?.toTfJson(),
     'hls_input_settings': ?hlsInputSettings?.encode(),
@@ -4328,6 +4468,7 @@ final class MedialiveChannelHlsInputSettings {
 
   final MedialiveChannelScte35Source? scte35Source;
 
+  @internal
   Map<String, Object?> encode() => {
     'bandwidth': ?bandwidth?.toTfJson(),
     'buffer_segments': ?bufferSegments?.toTfJson(),
@@ -4366,6 +4507,7 @@ final class MedialiveChannelVideoSelector {
 
   final MedialiveChannelColorSpaceUsage? colorSpaceUsage;
 
+  @internal
   Map<String, Object?> encode() => {
     'color_space': ?colorSpace?.toTfJson(),
     'color_space_usage': ?colorSpaceUsage?.toTfJson(),
@@ -4429,6 +4571,7 @@ final class MedialiveChannelInputSpecification {
 
   final MedialiveChannelMaximumBitrate maximumBitrate;
 
+  @internal
   Map<String, Object?> encode() => {
     'codec': codec.toTfJson(),
     'input_resolution': inputResolution.toTfJson(),
@@ -4506,6 +4649,7 @@ final class MedialiveChannelMaintenance {
 
   final TfArg<String> maintenanceStartTime;
 
+  @internal
   Map<String, Object?> encode() => {
     'maintenance_day': maintenanceDay.toTfJson(),
     'maintenance_start_time': maintenanceStartTime.toTfJson(),
@@ -4570,6 +4714,7 @@ final class MedialiveChannelVpc {
 
   final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
+  @internal
   Map<String, Object?> encode() => {
     'public_address_allocation_ids': publicAddressAllocationIds.toTfJson(),
     'security_group_ids': ?securityGroupIds?.encodeAs('id').toTfJson(),

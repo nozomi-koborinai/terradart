@@ -25,12 +25,15 @@ sealed class DatastreamPrivateConnectionConnectivity {
   ) = DatastreamPrivateConnectionConnectivityPscInterfaceConfig;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -43,14 +46,17 @@ final class DatastreamPrivateConnectionConnectivityVpcPeeringConfig
 
   final DatastreamPrivateConnectionVpcPeeringConfig vpcPeeringConfig;
 
+  @internal
   @override
   String get blockKey => 'vpc_peering_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'vpc_peering_config': vpcPeeringConfig.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'vpc_peering_config': TfArg.literal(vpcPeeringConfig.encode()),
@@ -66,14 +72,17 @@ final class DatastreamPrivateConnectionConnectivityPscInterfaceConfig
 
   final DatastreamPrivateConnectionPscInterfaceConfig pscInterfaceConfig;
 
+  @internal
   @override
   String get blockKey => 'psc_interface_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'psc_interface_config': pscInterfaceConfig.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'psc_interface_config': TfArg.literal(pscInterfaceConfig.encode()),
@@ -90,6 +99,7 @@ final class DatastreamPrivateConnectionPscInterfaceConfig {
 
   final TfArg<String> networkAttachment;
 
+  @internal
   Map<String, Object?> encode() => {
     'network_attachment': networkAttachment.toTfJson(),
   };
@@ -108,6 +118,7 @@ final class DatastreamPrivateConnectionVpcPeeringConfig {
 
   final TfArg<String> vpc;
 
+  @internal
   Map<String, Object?> encode() => {
     'subnet': subnet.toTfJson(),
     'vpc': vpc.toTfJson(),

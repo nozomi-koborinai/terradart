@@ -16,6 +16,7 @@ final class DataAccountaccessEntitlementsFilter {
 
   final List<DataAccountaccessEntitlementsPrincipalRole>? principalRole;
 
+  @internal
   Map<String, Object?> encode() => {
     if (principalRole != null)
       'principal_role': [for (final e in principalRole!) e.encode()],
@@ -38,6 +39,7 @@ final class DataAccountaccessEntitlementsPrincipalRole {
 
   final List<DataAccountaccessEntitlementsPrincipal>? principal;
 
+  @internal
   Map<String, Object?> encode() => {
     'account_id': ?accountId?.toTfJson(),
     'role_arn': ?roleArn?.encodeAs('arn').toTfJson(),
@@ -54,6 +56,7 @@ final class DataAccountaccessEntitlementsPrincipal {
 
   final List<DataAccountaccessEntitlementsIdentityCenter>? identityCenter;
 
+  @internal
   Map<String, Object?> encode() => {
     if (identityCenter != null)
       'identity_center': [for (final e in identityCenter!) e.encode()],
@@ -73,6 +76,7 @@ final class DataAccountaccessEntitlementsIdentityCenter {
 
   final TfArg<String>? userId;
 
+  @internal
   Map<String, Object?> encode() => {
     'group_id': ?groupId?.toTfJson(),
     'user_id': ?userId?.toTfJson(),

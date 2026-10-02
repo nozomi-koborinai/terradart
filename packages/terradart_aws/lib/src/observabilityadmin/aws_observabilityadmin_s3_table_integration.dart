@@ -24,6 +24,7 @@ final class ObservabilityadminS3TableIntegrationEncryption {
 
   final ObservabilityadminS3TableIntegrationSseAlgorithm sseAlgorithm;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
     'sse_algorithm': sseAlgorithm.toTfJson(),

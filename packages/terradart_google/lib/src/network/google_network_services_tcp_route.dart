@@ -17,6 +17,7 @@ final class NetworkServicesTcpRouteRules {
 
   final List<NetworkServicesTcpRouteMatches>? matches;
 
+  @internal
   Map<String, Object?> encode() => {
     'action': action.encode(),
     if (matches != null) 'matches': [for (final e in matches!) e.encode()],
@@ -39,6 +40,7 @@ final class NetworkServicesTcpRouteAction {
 
   final List<NetworkServicesTcpRouteDestinations>? destinations;
 
+  @internal
   Map<String, Object?> encode() => {
     'idle_timeout': ?idleTimeout?.toTfJson(),
     'original_destination': ?originalDestination?.toTfJson(),
@@ -57,6 +59,7 @@ final class NetworkServicesTcpRouteDestinations {
 
   final TfArg<num>? weight;
 
+  @internal
   Map<String, Object?> encode() => {
     'service_name': ?serviceName?.toTfJson(),
     'weight': ?weight?.toTfJson(),
@@ -76,6 +79,7 @@ final class NetworkServicesTcpRouteMatches {
 
   final TfArg<String> port;
 
+  @internal
   Map<String, Object?> encode() => {
     'address': address.toTfJson(),
     'port': port.toTfJson(),

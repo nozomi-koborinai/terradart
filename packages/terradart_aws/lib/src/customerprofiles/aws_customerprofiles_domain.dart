@@ -28,6 +28,7 @@ final class CustomerprofilesDomainMatching {
 
   final CustomerprofilesDomainJobSchedule? jobSchedule;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'auto_merging': ?autoMerging?.encode(),
@@ -55,6 +56,7 @@ final class CustomerprofilesDomainAutoMerging {
 
   final CustomerprofilesDomainConsolidation? consolidation;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'min_allowed_confidence_score_for_merging':
@@ -78,6 +80,7 @@ final class CustomerprofilesDomainConflictResolution {
 
   final TfArg<String>? sourceName;
 
+  @internal
   Map<String, Object?> encode() => {
     'conflict_resolving_model': conflictResolvingModel.toTfJson(),
     'source_name': ?sourceName?.toTfJson(),
@@ -118,6 +121,7 @@ final class CustomerprofilesDomainConsolidation {
 
   final TfArg<List<Object?>> matchingAttributesList;
 
+  @internal
   Map<String, Object?> encode() => {
     'matching_attributes_list': matchingAttributesList.toTfJson(),
   };
@@ -132,6 +136,7 @@ final class CustomerprofilesDomainExportingConfig {
 
   final CustomerprofilesDomainS3Exporting? s3Exporting;
 
+  @internal
   Map<String, Object?> encode() => {'s3_exporting': ?s3Exporting?.encode()};
 }
 
@@ -149,6 +154,7 @@ final class CustomerprofilesDomainS3Exporting {
 
   final TfArg<String>? s3KeyName;
 
+  @internal
   Map<String, Object?> encode() => {
     's3_bucket_name': s3BucketName.encodeAs('id').toTfJson(),
     's3_key_name': ?s3KeyName?.toTfJson(),
@@ -168,6 +174,7 @@ final class CustomerprofilesDomainJobSchedule {
 
   final TfArg<String> time;
 
+  @internal
   Map<String, Object?> encode() => {
     'day_of_the_week': dayOfTheWeek.toTfJson(),
     'time': time.toTfJson(),
@@ -247,6 +254,7 @@ final class CustomerprofilesDomainRuleBasedMatching {
 
   final List<CustomerprofilesDomainMatchingRules>? matchingRules;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'max_allowed_rule_level_for_matching': ?maxAllowedRuleLevelForMatching
@@ -305,6 +313,7 @@ final class CustomerprofilesDomainAttributeTypesSelector {
 
   final TfArg<List<String>>? phoneNumber;
 
+  @internal
   Map<String, Object?> encode() => {
     'address': ?address?.toTfJson(),
     'attribute_matching_model': attributeMatchingModel.toTfJson(),
@@ -345,6 +354,7 @@ final class CustomerprofilesDomainMatchingRules {
 
   final TfArg<List<String>> rule;
 
+  @internal
   Map<String, Object?> encode() => {'rule': rule.toTfJson()};
 }
 

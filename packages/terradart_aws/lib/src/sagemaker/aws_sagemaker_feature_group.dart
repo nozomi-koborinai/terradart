@@ -29,6 +29,7 @@ final class SagemakerFeatureGroupFeatureDefinition {
 
   final SagemakerFeatureGroupCollectionConfig? collectionConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'collection_type': ?collectionType?.toTfJson(),
     'feature_name': ?featureName?.toTfJson(),
@@ -96,6 +97,7 @@ final class SagemakerFeatureGroupCollectionConfig {
 
   final SagemakerFeatureGroupVectorConfig? vectorConfig;
 
+  @internal
   Map<String, Object?> encode() => {'vector_config': ?vectorConfig?.encode()};
 }
 
@@ -107,6 +109,7 @@ final class SagemakerFeatureGroupVectorConfig {
 
   final TfArg<num>? dimension;
 
+  @internal
   Map<String, Object?> encode() => {'dimension': ?dimension?.toTfJson()};
 }
 
@@ -129,6 +132,7 @@ final class SagemakerFeatureGroupOfflineStoreConfig {
 
   final SagemakerFeatureGroupS3StorageConfig s3StorageConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'disable_glue_table_creation': ?disableGlueTableCreation?.toTfJson(),
     'table_format': ?tableFormat?.toTfJson(),
@@ -177,6 +181,7 @@ final class SagemakerFeatureGroupDataCatalogConfig {
 
   final TfArg<String>? tableName;
 
+  @internal
   Map<String, Object?> encode() => {
     'catalog': ?catalog?.toTfJson(),
     'database': ?database?.toTfJson(),
@@ -200,6 +205,7 @@ final class SagemakerFeatureGroupS3StorageConfig {
 
   final TfArg<String> s3Uri;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
     'resolved_output_s3_uri': ?resolvedOutputS3Uri?.toTfJson(),
@@ -226,6 +232,7 @@ final class SagemakerFeatureGroupOnlineStoreConfig {
 
   final SagemakerFeatureGroupTtlDuration? ttlDuration;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_online_store': ?enableOnlineStore?.toTfJson(),
     'storage_type': ?storageType?.toTfJson(),
@@ -268,6 +275,7 @@ final class SagemakerFeatureGroupSecurityConfig {
 
   final RefTo<AwsKmsKey>? kmsKeyId;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
   };
@@ -283,6 +291,7 @@ final class SagemakerFeatureGroupTtlDuration {
 
   final TfArg<num>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'unit': ?unit?.toTfJson(),
     'value': ?value?.toTfJson(),
@@ -329,6 +338,7 @@ final class SagemakerFeatureGroupThroughputConfig {
 
   final SagemakerFeatureGroupThroughputMode? throughputMode;
 
+  @internal
   Map<String, Object?> encode() => {
     'provisioned_read_capacity_units': ?provisionedReadCapacityUnits
         ?.toTfJson(),

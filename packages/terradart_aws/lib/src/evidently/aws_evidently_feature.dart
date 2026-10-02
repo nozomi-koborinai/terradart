@@ -39,6 +39,7 @@ final class EvidentlyFeatureVariations {
 
   final EvidentlyFeatureValue value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'value': value.encode(),
@@ -64,6 +65,7 @@ final class EvidentlyFeatureValue {
 
   final TfArg<String>? stringValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'bool_value': ?boolValue?.toTfJson(),
     'double_value': ?doubleValue?.toTfJson(),

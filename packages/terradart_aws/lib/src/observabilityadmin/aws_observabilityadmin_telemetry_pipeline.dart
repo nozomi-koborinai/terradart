@@ -15,6 +15,7 @@ final class ObservabilityadminTelemetryPipelineConfiguration {
 
   final TfArg<String> body;
 
+  @internal
   Map<String, Object?> encode() => {'body': body.toTfJson()};
 }
 

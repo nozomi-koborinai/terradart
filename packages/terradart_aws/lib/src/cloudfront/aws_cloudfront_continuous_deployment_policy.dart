@@ -21,6 +21,7 @@ final class CloudfrontContinuousDeploymentPolicyStagingDistributionDnsNames {
 
   final TfArg<num> quantity;
 
+  @internal
   Map<String, Object?> encode() => {
     'items': ?items?.toTfJson(),
     'quantity': quantity.toTfJson(),
@@ -45,6 +46,7 @@ final class CloudfrontContinuousDeploymentPolicyTrafficConfig {
   final List<CloudfrontContinuousDeploymentPolicySingleWeightConfig>?
   singleWeightConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
     if (singleHeaderConfig != null)
@@ -90,6 +92,7 @@ final class CloudfrontContinuousDeploymentPolicySingleHeaderConfig {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'header': header.toTfJson(),
     'value': value.toTfJson(),
@@ -110,6 +113,7 @@ final class CloudfrontContinuousDeploymentPolicySingleWeightConfig {
   final List<CloudfrontContinuousDeploymentPolicySessionStickinessConfig>?
   sessionStickinessConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'weight': weight.toTfJson(),
     if (sessionStickinessConfig != null)
@@ -132,6 +136,7 @@ final class CloudfrontContinuousDeploymentPolicySessionStickinessConfig {
 
   final TfArg<num> maximumTtl;
 
+  @internal
   Map<String, Object?> encode() => {
     'idle_ttl': idleTtl.toTfJson(),
     'maximum_ttl': maximumTtl.toTfJson(),

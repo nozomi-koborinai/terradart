@@ -63,6 +63,7 @@ class BigqueryReservationAutoscale {
 
   final TfArg<int>? maxSlots;
 
+  @internal
   Map<String, Object?> encode() => {
     if (maxSlots != null) 'max_slots': maxSlots!.toTfJson(),
   };

@@ -17,6 +17,7 @@ final class S3filesSynchronizationConfigurationExpirationDataRule {
 
   final TfArg<num> daysAfterLastAccess;
 
+  @internal
   Map<String, Object?> encode() => {
     'days_after_last_access': daysAfterLastAccess.toTfJson(),
   };
@@ -38,6 +39,7 @@ final class S3filesSynchronizationConfigurationImportDataRule {
 
   final S3filesSynchronizationConfigurationTrigger trigger;
 
+  @internal
   Map<String, Object?> encode() => {
     'prefix': prefix.toTfJson(),
     'size_less_than': sizeLessThan.toTfJson(),

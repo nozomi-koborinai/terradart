@@ -71,6 +71,7 @@ prelude: |
 
     final RefTo<GooglePrivatecaCaPool> caPool;
 
+    @internal
     Map<String, Object?> encode() => {
       'ca_pool': caPool.encodeAs('id').toTfJson(),
     };
@@ -85,6 +86,7 @@ prelude: |
     final CertificateManagerCertificateIssuanceConfigCertificateAuthorityServiceConfig
         certificateAuthorityServiceConfig;
 
+    @internal
     Map<String, Object?> encode() => {
       'certificate_authority_service_config':
           certificateAuthorityServiceConfig.encode(),

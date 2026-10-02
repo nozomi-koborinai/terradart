@@ -40,6 +40,7 @@ final class DiscoveryEngineRecommendationEngineCommonConfig {
 
   final TfArg<String>? companyName;
 
+  @internal
   Map<String, Object?> encode() => {'company_name': ?companyName?.toTfJson()};
 }
 
@@ -66,6 +67,7 @@ final class DiscoveryEngineRecommendationEngineMediaRecommendationEngineConfig {
   final DiscoveryEngineRecommendationEngineOptimizationObjectiveConfig?
   optimizationObjectiveConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'optimization_objective': ?optimizationObjective?.toTfJson(),
     'training_state': ?trainingState?.toTfJson(),
@@ -113,6 +115,7 @@ final class DiscoveryEngineRecommendationEngineFeaturesConfig {
   final DiscoveryEngineRecommendationEngineRecommendedForYouConfig?
   recommendedForYouConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'most_popular_config': ?mostPopularConfig?.encode(),
     'recommended_for_you_config': ?recommendedForYouConfig?.encode(),
@@ -129,6 +132,7 @@ final class DiscoveryEngineRecommendationEngineMostPopularConfig {
 
   final TfArg<num>? timeWindowDays;
 
+  @internal
   Map<String, Object?> encode() => {
     'time_window_days': ?timeWindowDays?.toTfJson(),
   };
@@ -144,6 +148,7 @@ final class DiscoveryEngineRecommendationEngineRecommendedForYouConfig {
 
   final TfArg<String>? contextEventType;
 
+  @internal
   Map<String, Object?> encode() => {
     'context_event_type': ?contextEventType?.toTfJson(),
   };
@@ -162,6 +167,7 @@ final class DiscoveryEngineRecommendationEngineOptimizationObjectiveConfig {
 
   final TfArg<num>? targetFieldValueFloat;
 
+  @internal
   Map<String, Object?> encode() => {
     'target_field': ?targetField?.toTfJson(),
     'target_field_value_float': ?targetFieldValueFloat?.toTfJson(),

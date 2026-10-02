@@ -22,6 +22,7 @@ final class MoqRelayConfig {
 
   final MoqRelayUpstreams? upstreams;
 
+  @internal
   Map<String, Object?> encode() => {
     'lingering_subscribe': ?lingeringSubscribe?.encode(),
     'upstreams': ?upstreams?.encode(),
@@ -38,6 +39,7 @@ final class MoqRelayLingeringSubscribe {
 
   final TfArg<num>? maxTimeoutMs;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'max_timeout_ms': ?maxTimeoutMs?.toTfJson(),
@@ -54,6 +56,7 @@ final class MoqRelayUpstreams {
 
   final List<MoqRelayUpstreamsUpstreams>? upstreams;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     if (upstreams != null)
@@ -69,6 +72,7 @@ final class MoqRelayUpstreamsUpstreams {
 
   final TfArg<String>? url;
 
+  @internal
   Map<String, Object?> encode() => {'url': ?url?.toTfJson()};
 }
 

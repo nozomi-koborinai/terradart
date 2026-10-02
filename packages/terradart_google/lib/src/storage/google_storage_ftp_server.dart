@@ -44,12 +44,15 @@ sealed class StorageFtpServerConfig {
   ) = StorageFtpServerExternalConfigChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -60,12 +63,15 @@ final class StorageFtpServerInternalConfigChoice
 
   final StorageFtpServerInternalConfig internalConfig;
 
+  @internal
   @override
   String get blockKey => 'internal_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'internal_config': internalConfig.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'internal_config': TfArg.literal(internalConfig.encode()),
@@ -79,12 +85,15 @@ final class StorageFtpServerExternalConfigChoice
 
   final StorageFtpServerExternalConfig externalConfig;
 
+  @internal
   @override
   String get blockKey => 'external_config';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'external_config': externalConfig.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'external_config': TfArg.literal(externalConfig.encode()),
@@ -99,6 +108,7 @@ final class StorageFtpServerExternalConfig {
 
   final TfArg<List<String>>? allowedCidrBlocks;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed_cidr_blocks': ?allowedCidrBlocks?.toTfJson(),
   };
@@ -117,6 +127,7 @@ final class StorageFtpServerInternalConfig {
 
   final List<StorageFtpServerConsumerRejectList>? consumerRejectList;
 
+  @internal
   Map<String, Object?> encode() => {
     if (consumerAcceptList != null)
       'consumer_accept_list': [for (final e in consumerAcceptList!) e.encode()],
@@ -138,6 +149,7 @@ final class StorageFtpServerConsumerAcceptList {
 
   final TfArg<String> project;
 
+  @internal
   Map<String, Object?> encode() => {
     'connection_limit': connectionLimit.toTfJson(),
     'project': project.toTfJson(),
@@ -152,6 +164,7 @@ final class StorageFtpServerConsumerRejectList {
 
   final TfArg<String> project;
 
+  @internal
   Map<String, Object?> encode() => {'project': project.toTfJson()};
 }
 

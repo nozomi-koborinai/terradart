@@ -174,12 +174,15 @@ sealed class AlbSubnet {
       AlbSubnetSubnets;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -189,14 +192,17 @@ final class AlbSubnetMappingChoice extends AlbSubnet {
 
   final List<AlbSubnetMapping> subnetMapping;
 
+  @internal
   @override
   String get blockKey => 'subnet_mapping';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'subnet_mapping': [for (final e in subnetMapping) e.encode()],
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'subnet_mapping': TfArg.literal([
@@ -211,14 +217,17 @@ final class AlbSubnetSubnets extends AlbSubnet {
 
   final TfArg<List<RefTo<AwsSubnet>>> subnets;
 
+  @internal
   @override
   String get blockKey => 'subnets';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'subnets': subnets.encodeAs('id').toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'subnets': subnets.encodeAs('id')};
 }
@@ -238,12 +247,15 @@ sealed class AlbName {
   const factory AlbName.namePrefix(TfArg<String> namePrefix) = AlbNamePrefix;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -253,12 +265,15 @@ final class AlbNameChoice extends AlbName {
 
   final TfArg<String> name;
 
+  @internal
   @override
   String get blockKey => 'name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
@@ -269,12 +284,15 @@ final class AlbNamePrefix extends AlbName {
 
   final TfArg<String> namePrefix;
 
+  @internal
   @override
   String get blockKey => 'name_prefix';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'name_prefix': namePrefix.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'name_prefix': namePrefix};
 }
@@ -291,6 +309,7 @@ final class AlbAccessLogs {
 
   final TfArg<String>? prefix;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('id').toTfJson(),
     'enabled': ?enabled?.toTfJson(),
@@ -310,6 +329,7 @@ final class AlbConnectionLogs {
 
   final TfArg<String>? prefix;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('id').toTfJson(),
     'enabled': ?enabled?.toTfJson(),
@@ -329,6 +349,7 @@ final class AlbHealthCheckLogs {
 
   final TfArg<String>? prefix;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('id').toTfJson(),
     'enabled': ?enabled?.toTfJson(),
@@ -344,6 +365,7 @@ final class AlbIpamPools {
 
   final TfArg<String> ipv4IpamPoolId;
 
+  @internal
   Map<String, Object?> encode() => {
     'ipv4_ipam_pool_id': ipv4IpamPoolId.toTfJson(),
   };
@@ -357,6 +379,7 @@ final class AlbMinimumLoadBalancerCapacity {
 
   final TfArg<num> capacityUnits;
 
+  @internal
   Map<String, Object?> encode() => {'capacity_units': capacityUnits.toTfJson()};
 }
 
@@ -379,6 +402,7 @@ final class AlbSubnetMapping {
 
   final RefTo<AwsSubnet> subnetId;
 
+  @internal
   Map<String, Object?> encode() => {
     'allocation_id': ?allocationId?.toTfJson(),
     'ipv6_address': ?ipv6Address?.toTfJson(),

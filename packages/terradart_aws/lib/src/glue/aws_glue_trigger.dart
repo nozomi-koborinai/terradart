@@ -53,6 +53,7 @@ final class GlueTriggerActions {
 
   final GlueTriggerNotificationProperty? notificationProperty;
 
+  @internal
   Map<String, Object?> encode() => {
     'arguments': ?arguments?.toTfJson(),
     'crawler_name': ?crawlerName?.toTfJson(),
@@ -71,6 +72,7 @@ final class GlueTriggerNotificationProperty {
 
   final TfArg<num>? notifyDelayAfter;
 
+  @internal
   Map<String, Object?> encode() => {
     'notify_delay_after': ?notifyDelayAfter?.toTfJson(),
   };
@@ -89,6 +91,7 @@ final class GlueTriggerEventBatchingCondition {
 
   final TfArg<num>? batchWindow;
 
+  @internal
   Map<String, Object?> encode() => {
     'batch_size': batchSize.toTfJson(),
     'batch_window': ?batchWindow?.toTfJson(),
@@ -105,6 +108,7 @@ final class GlueTriggerPredicate {
 
   final List<GlueTriggerConditions> conditions;
 
+  @internal
   Map<String, Object?> encode() => {
     'logical': ?logical?.toTfJson(),
     'conditions': [for (final e in conditions) e.encode()],
@@ -147,6 +151,7 @@ final class GlueTriggerConditions {
 
   final GlueTriggerConditionsState? state;
 
+  @internal
   Map<String, Object?> encode() => {
     'crawl_state': ?crawlState?.toTfJson(),
     'crawler_name': ?crawlerName?.toTfJson(),

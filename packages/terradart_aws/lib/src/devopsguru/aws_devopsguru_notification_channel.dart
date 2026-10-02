@@ -22,6 +22,7 @@ final class DevopsguruNotificationChannelFilters {
 
   final List<DevopsguruNotificationChannelSeverities>? severities;
 
+  @internal
   Map<String, Object?> encode() => {
     if (messageTypes != null)
       'message_types': [for (final e in messageTypes!) e.toTfJson()],
@@ -101,6 +102,7 @@ final class DevopsguruNotificationChannelSns {
 
   final RefTo<AwsSnsTopic> topicArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'topic_arn': topicArn.encodeAs('arn').toTfJson(),
   };

@@ -3,6 +3,13 @@
 /// AWS Elastic Beanstalk.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_elastic_beanstalk_application.dart'
+    show DataAwsElasticBeanstalkApplication;
+export 'src/data/aws_elastic_beanstalk_hosted_zone.dart'
+    show DataAwsElasticBeanstalkHostedZone;
+export 'src/data/aws_elastic_beanstalk_solution_stack.dart'
+    show DataAwsElasticBeanstalkSolutionStack;
 export 'src/elastic_beanstalk/aws_elastic_beanstalk_application.dart'
     show
         AwsElasticBeanstalkApplication,

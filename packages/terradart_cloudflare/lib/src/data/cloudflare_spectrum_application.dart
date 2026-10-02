@@ -19,6 +19,7 @@ final class DataSpectrumApplicationFilter {
 
   final DataSpectrumApplicationOrder? order;
 
+  @internal
   Map<String, Object?> encode() => {
     'direction': ?direction?.toTfJson(),
     'order': ?order?.toTfJson(),

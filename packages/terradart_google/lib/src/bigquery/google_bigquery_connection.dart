@@ -102,8 +102,10 @@ sealed class BigqueryConnectionBackend {
     BigqueryConnectionConfigurationNetwork? network,
   }) = BigqueryConnectionConfiguration;
 
+  @internal
   String get blockKey;
 
+  @internal
   List<Map<String, Object?>> encode();
 }
 
@@ -172,9 +174,11 @@ final class BigqueryConnectionCloudSql extends BigqueryConnectionBackend {
   };
 
   @override
+  @internal
   String get blockKey => 'cloud_sql';
 
   @override
+  @internal
   List<Map<String, Object?>> encode() => [toArgMap()];
 }
 
@@ -244,9 +248,11 @@ final class BigqueryConnectionCloudSpanner extends BigqueryConnectionBackend {
   };
 
   @override
+  @internal
   String get blockKey => 'cloud_spanner';
 
   @override
+  @internal
   List<Map<String, Object?>> encode() => [toArgMap()];
 }
 
@@ -284,9 +290,11 @@ final class BigqueryConnectionAws extends BigqueryConnectionBackend {
   };
 
   @override
+  @internal
   String get blockKey => 'aws';
 
   @override
+  @internal
   List<Map<String, Object?>> encode() => [toArgMap()];
 }
 
@@ -320,9 +328,11 @@ final class BigqueryConnectionAzure extends BigqueryConnectionBackend {
   };
 
   @override
+  @internal
   String get blockKey => 'azure';
 
   @override
+  @internal
   List<Map<String, Object?>> encode() => [toArgMap()];
 }
 
@@ -343,9 +353,11 @@ final class BigqueryConnectionCloudResource extends BigqueryConnectionBackend {
   Map<String, Object?> toArgMap() => const <String, Object?>{};
 
   @override
+  @internal
   String get blockKey => 'cloud_resource';
 
   @override
+  @internal
   List<Map<String, Object?>> encode() => [toArgMap()];
 }
 
@@ -412,9 +424,11 @@ final class BigqueryConnectionSpark extends BigqueryConnectionBackend {
   };
 
   @override
+  @internal
   String get blockKey => 'spark';
 
   @override
+  @internal
   List<Map<String, Object?>> encode() => [toArgMap()];
 }
 
@@ -593,9 +607,11 @@ final class BigqueryConnectionConfiguration extends BigqueryConnectionBackend {
   };
 
   @override
+  @internal
   String get blockKey => 'configuration';
 
   @override
+  @internal
   List<Map<String, Object?>> encode() => [toArgMap()];
 }
 

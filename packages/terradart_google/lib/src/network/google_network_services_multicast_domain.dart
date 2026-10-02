@@ -20,6 +20,7 @@ final class NetworkServicesMulticastDomainConnectionConfig {
 
   final TfArg<String>? nccHub;
 
+  @internal
   Map<String, Object?> encode() => {
     'connection_type': connectionType.toTfJson(),
     'ncc_hub': ?nccHub?.toTfJson(),
@@ -36,6 +37,7 @@ final class NetworkServicesMulticastDomainUllMulticastDomain {
 
   final TfArg<String>? preconfiguredUllDomain;
 
+  @internal
   Map<String, Object?> encode() => {
     'preconfigured_ull_domain': ?preconfiguredUllDomain?.toTfJson(),
   };

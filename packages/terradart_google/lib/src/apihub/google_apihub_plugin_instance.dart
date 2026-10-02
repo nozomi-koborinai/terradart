@@ -28,6 +28,7 @@ final class ApihubPluginInstanceActions {
 
   final ApihubPluginInstanceCurationConfig? curationConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'action_id': actionId.toTfJson(),
     'schedule_cron_expression': ?scheduleCronExpression?.toTfJson(),
@@ -49,6 +50,7 @@ final class ApihubPluginInstanceCurationConfig {
 
   final ApihubPluginInstanceCustomCuration? customCuration;
 
+  @internal
   Map<String, Object?> encode() => {
     'curation_type': ?curationType?.toTfJson(),
     'custom_curation': ?customCuration?.encode(),
@@ -63,6 +65,7 @@ final class ApihubPluginInstanceCustomCuration {
 
   final TfArg<String> curation;
 
+  @internal
   Map<String, Object?> encode() => {'curation': curation.toTfJson()};
 }
 
@@ -90,6 +93,7 @@ final class ApihubPluginInstanceAuthConfig {
 
   final ApihubPluginInstanceUserPasswordConfig? userPasswordConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'auth_type': authType.toTfJson(),
     'api_key_config': ?apiKeyConfig?.encode(),
@@ -116,6 +120,7 @@ final class ApihubPluginInstanceApiKeyConfig {
 
   final ApihubPluginInstanceApiKey apiKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'http_element_location': httpElementLocation.toTfJson(),
     'name': name.toTfJson(),
@@ -131,6 +136,7 @@ final class ApihubPluginInstanceApiKey {
 
   final TfArg<String> secretVersion;
 
+  @internal
   Map<String, Object?> encode() => {'secret_version': secretVersion.toTfJson()};
 }
 
@@ -144,6 +150,7 @@ final class ApihubPluginInstanceGoogleServiceAccountConfig {
 
   final RefTo<GoogleServiceAccount> serviceAccount;
 
+  @internal
   Map<String, Object?> encode() => {
     'service_account': serviceAccount.encodeAs('email').toTfJson(),
   };
@@ -162,6 +169,7 @@ final class ApihubPluginInstanceOauth2ClientCredentialsConfig {
 
   final ApihubPluginInstanceClientSecret clientSecret;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_id': clientId.toTfJson(),
     'client_secret': clientSecret.encode(),
@@ -176,6 +184,7 @@ final class ApihubPluginInstanceClientSecret {
 
   final TfArg<String> secretVersion;
 
+  @internal
   Map<String, Object?> encode() => {'secret_version': secretVersion.toTfJson()};
 }
 
@@ -192,6 +201,7 @@ final class ApihubPluginInstanceUserPasswordConfig {
 
   final ApihubPluginInstancePassword password;
 
+  @internal
   Map<String, Object?> encode() => {
     'username': username.toTfJson(),
     'password': password.encode(),
@@ -206,6 +216,7 @@ final class ApihubPluginInstancePassword {
 
   final TfArg<String> secretVersion;
 
+  @internal
   Map<String, Object?> encode() => {'secret_version': secretVersion.toTfJson()};
 }
 

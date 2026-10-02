@@ -4,6 +4,7 @@
 /// and AI Logic (beta-only).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/firebase/google_firebase_ai_logic_config.dart'
     show
         FirebaseAiLogicConfigApiKey,

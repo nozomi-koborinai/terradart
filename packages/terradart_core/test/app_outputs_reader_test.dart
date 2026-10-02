@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:terradart_core/internal.dart';
 import 'package:terradart_core/terradart_core.dart';
 import 'package:test/test.dart';
 

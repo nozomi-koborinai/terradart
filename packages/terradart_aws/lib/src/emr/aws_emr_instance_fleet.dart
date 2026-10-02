@@ -32,6 +32,7 @@ final class EmrInstanceFleetInstanceTypeConfigs {
 
   final List<EmrInstanceFleetEbsConfig>? ebsConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'bid_price': ?bidPrice?.toTfJson(),
     'bid_price_as_percentage_of_on_demand_price':
@@ -55,6 +56,7 @@ final class EmrInstanceFleetConfigurations {
 
   final TfArg<Map<String, String>>? properties;
 
+  @internal
   Map<String, Object?> encode() => {
     'classification': ?classification?.toTfJson(),
     'properties': ?properties?.toTfJson(),
@@ -80,6 +82,7 @@ final class EmrInstanceFleetEbsConfig {
 
   final TfArg<num>? volumesPerInstance;
 
+  @internal
   Map<String, Object?> encode() => {
     'iops': ?iops?.toTfJson(),
     'size': size.toTfJson(),
@@ -101,6 +104,7 @@ final class EmrInstanceFleetLaunchSpecifications {
 
   final List<EmrInstanceFleetSpotSpecification>? spotSpecification;
 
+  @internal
   Map<String, Object?> encode() => {
     if (onDemandSpecification != null)
       'on_demand_specification': [
@@ -122,6 +126,7 @@ final class EmrInstanceFleetOnDemandSpecification {
   final EmrInstanceFleetOnDemandSpecificationAllocationStrategy
   allocationStrategy;
 
+  @internal
   Map<String, Object?> encode() => {
     'allocation_strategy': allocationStrategy.toTfJson(),
   };
@@ -172,6 +177,7 @@ final class EmrInstanceFleetSpotSpecification {
 
   final TfArg<num> timeoutDurationMinutes;
 
+  @internal
   Map<String, Object?> encode() => {
     'allocation_strategy': allocationStrategy.toTfJson(),
     'block_duration_minutes': ?blockDurationMinutes?.toTfJson(),

@@ -21,6 +21,7 @@ final class SsoadminInstanceAccessControlAttributesAttribute {
 
   final List<SsoadminInstanceAccessControlAttributesValue> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'value': [for (final e in value) e.encode()],
@@ -35,6 +36,7 @@ final class SsoadminInstanceAccessControlAttributesValue {
 
   final TfArg<List<String>> source;
 
+  @internal
   Map<String, Object?> encode() => {'source': source.toTfJson()};
 }
 

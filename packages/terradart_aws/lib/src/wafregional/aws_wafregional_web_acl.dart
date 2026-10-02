@@ -15,6 +15,7 @@ final class WafregionalWebAclDefaultAction {
 
   final WafregionalWebAclDefaultActionType type;
 
+  @internal
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 
@@ -57,6 +58,7 @@ final class WafregionalWebAclLoggingConfiguration {
 
   final WafregionalWebAclRedactedFields? redactedFields;
 
+  @internal
   Map<String, Object?> encode() => {
     'log_destination': logDestination.toTfJson(),
     'redacted_fields': ?redactedFields?.encode(),
@@ -71,6 +73,7 @@ final class WafregionalWebAclRedactedFields {
 
   final List<WafregionalWebAclFieldToMatch> fieldToMatch;
 
+  @internal
   Map<String, Object?> encode() => {
     'field_to_match': [for (final e in fieldToMatch) e.encode()],
   };
@@ -86,6 +89,7 @@ final class WafregionalWebAclFieldToMatch {
 
   final WafregionalWebAclFieldToMatchType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'data': ?data?.toTfJson(),
     'type': type.toTfJson(),
@@ -152,6 +156,7 @@ final class WafregionalWebAclRule {
 
   final WafregionalWebAclOverrideAction? overrideAction;
 
+  @internal
   Map<String, Object?> encode() => {
     'priority': priority.toTfJson(),
     'rule_id': ruleId.toTfJson(),
@@ -191,6 +196,7 @@ final class WafregionalWebAclAction {
 
   final WafregionalWebAclDefaultActionType type;
 
+  @internal
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 
@@ -202,6 +208,7 @@ final class WafregionalWebAclOverrideAction {
 
   final WafregionalWebAclOverrideActionType type;
 
+  @internal
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 

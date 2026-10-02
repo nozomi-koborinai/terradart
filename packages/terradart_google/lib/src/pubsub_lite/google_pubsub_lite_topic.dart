@@ -20,6 +20,7 @@ final class PubsubLiteTopicPartitionConfig {
 
   final PubsubLiteTopicCapacity? capacity;
 
+  @internal
   Map<String, Object?> encode() => {
     'count': count.toTfJson(),
     'capacity': ?capacity?.encode(),
@@ -39,6 +40,7 @@ final class PubsubLiteTopicCapacity {
 
   final TfArg<num> subscribeMibPerSec;
 
+  @internal
   Map<String, Object?> encode() => {
     'publish_mib_per_sec': publishMibPerSec.toTfJson(),
     'subscribe_mib_per_sec': subscribeMibPerSec.toTfJson(),
@@ -53,6 +55,7 @@ final class PubsubLiteTopicReservationConfig {
 
   final RefTo<GooglePubsubLiteReservation>? throughputReservation;
 
+  @internal
   Map<String, Object?> encode() => {
     'throughput_reservation': ?throughputReservation
         ?.encodeAs('name')
@@ -73,6 +76,7 @@ final class PubsubLiteTopicRetentionConfig {
 
   final TfArg<String>? period;
 
+  @internal
   Map<String, Object?> encode() => {
     'per_partition_bytes': perPartitionBytes.toTfJson(),
     'period': ?period?.toTfJson(),

@@ -4,6 +4,7 @@
 /// preference sets, and reports.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/migration/google_migration_center_assets_export_job.dart'
     show
         GoogleMigrationCenterAssetsExportJob,

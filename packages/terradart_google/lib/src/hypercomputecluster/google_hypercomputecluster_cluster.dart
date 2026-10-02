@@ -24,6 +24,7 @@ final class HypercomputeclusterClusterComputeResources {
 
   final HypercomputeclusterClusterComputeResourcesConfig config;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
     'config': config.encode(),
@@ -49,6 +50,7 @@ final class HypercomputeclusterClusterComputeResourcesConfig {
 
   final HypercomputeclusterClusterNewSpotInstances? newSpotInstances;
 
+  @internal
   Map<String, Object?> encode() => {
     'new_flex_start_instances': ?newFlexStartInstances?.encode(),
     'new_on_demand_instances': ?newOnDemandInstances?.encode(),
@@ -73,6 +75,7 @@ final class HypercomputeclusterClusterNewFlexStartInstances {
 
   final TfArg<String> zone;
 
+  @internal
   Map<String, Object?> encode() => {
     'machine_type': machineType.toTfJson(),
     'max_duration': maxDuration.toTfJson(),
@@ -93,6 +96,7 @@ final class HypercomputeclusterClusterNewOnDemandInstances {
 
   final TfArg<String> zone;
 
+  @internal
   Map<String, Object?> encode() => {
     'machine_type': machineType.toTfJson(),
     'zone': zone.toTfJson(),
@@ -107,6 +111,7 @@ final class HypercomputeclusterClusterNewReservedInstances {
 
   final TfArg<String>? reservation;
 
+  @internal
   Map<String, Object?> encode() => {'reservation': ?reservation?.toTfJson()};
 }
 
@@ -126,6 +131,7 @@ final class HypercomputeclusterClusterNewSpotInstances {
 
   final TfArg<String> zone;
 
+  @internal
   Map<String, Object?> encode() => {
     'machine_type': machineType.toTfJson(),
     'termination_action': ?terminationAction?.toTfJson(),
@@ -146,6 +152,7 @@ final class HypercomputeclusterClusterNetworkResources {
 
   final HypercomputeclusterClusterNetworkResourcesConfig? config;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
     'config': ?config?.encode(),
@@ -165,6 +172,7 @@ final class HypercomputeclusterClusterNetworkResourcesConfig {
 
   final HypercomputeclusterClusterNewNetwork? newNetwork;
 
+  @internal
   Map<String, Object?> encode() => {
     'existing_network': ?existingNetwork?.encode(),
     'new_network': ?newNetwork?.encode(),
@@ -184,6 +192,7 @@ final class HypercomputeclusterClusterExistingNetwork {
 
   final RefTo<GoogleComputeSubnetwork> subnetwork;
 
+  @internal
   Map<String, Object?> encode() => {
     'network': network.encodeAs('id').toTfJson(),
     'subnetwork': subnetwork.encodeAs('id').toTfJson(),
@@ -203,6 +212,7 @@ final class HypercomputeclusterClusterNewNetwork {
 
   final TfArg<String> network;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'network': network.toTfJson(),
@@ -217,6 +227,7 @@ final class HypercomputeclusterClusterOrchestrator {
 
   final HypercomputeclusterClusterSlurm? slurm;
 
+  @internal
   Map<String, Object?> encode() => {'slurm': ?slurm?.encode()};
 }
 
@@ -245,6 +256,7 @@ final class HypercomputeclusterClusterSlurm {
 
   final List<HypercomputeclusterClusterPartitions> partitions;
 
+  @internal
   Map<String, Object?> encode() => {
     'default_partition': ?defaultPartition?.toTfJson(),
     'epilog_bash_scripts': ?epilogBashScripts?.toTfJson(),
@@ -289,6 +301,7 @@ final class HypercomputeclusterClusterLoginNodes {
 
   final List<HypercomputeclusterClusterStorageConfigs>? storageConfigs;
 
+  @internal
   Map<String, Object?> encode() => {
     'count': count.toTfJson(),
     'enable_os_login': ?enableOsLogin?.toTfJson(),
@@ -317,6 +330,7 @@ final class HypercomputeclusterClusterBootDisk {
 
   final TfArg<String> type;
 
+  @internal
   Map<String, Object?> encode() => {
     'size_gb': sizeGb.toTfJson(),
     'type': type.toTfJson(),
@@ -337,6 +351,7 @@ final class HypercomputeclusterClusterStorageConfigs {
 
   final TfArg<String> localMount;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
     'local_mount': localMount.toTfJson(),
@@ -368,6 +383,7 @@ final class HypercomputeclusterClusterNodeSets {
 
   final List<HypercomputeclusterClusterStorageConfigs>? storageConfigs;
 
+  @internal
   Map<String, Object?> encode() => {
     'compute_id': ?computeId?.toTfJson(),
     'id': id.toTfJson(),
@@ -395,6 +411,7 @@ final class HypercomputeclusterClusterComputeInstance {
 
   final HypercomputeclusterClusterBootDisk? bootDisk;
 
+  @internal
   Map<String, Object?> encode() => {
     'labels': ?labels?.toTfJson(),
     'startup_script': ?startupScript?.toTfJson(),
@@ -415,6 +432,7 @@ final class HypercomputeclusterClusterPartitions {
 
   final TfArg<List<String>> nodeSetIds;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
     'node_set_ids': nodeSetIds.toTfJson(),
@@ -434,6 +452,7 @@ final class HypercomputeclusterClusterStorageResources {
 
   final HypercomputeclusterClusterStorageResourcesConfig config;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
     'config': config.encode(),
@@ -465,6 +484,7 @@ final class HypercomputeclusterClusterStorageResourcesConfig {
 
   final HypercomputeclusterClusterNewLustre? newLustre;
 
+  @internal
   Map<String, Object?> encode() => {
     'existing_bucket': ?existingBucket?.encode(),
     'existing_filestore': ?existingFilestore?.encode(),
@@ -483,6 +503,7 @@ final class HypercomputeclusterClusterExistingBucket {
 
   final RefTo<GoogleStorageBucket> bucket;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('name').toTfJson(),
   };
@@ -496,6 +517,7 @@ final class HypercomputeclusterClusterExistingFilestore {
 
   final TfArg<String> filestore;
 
+  @internal
   Map<String, Object?> encode() => {'filestore': filestore.toTfJson()};
 }
 
@@ -507,6 +529,7 @@ final class HypercomputeclusterClusterExistingLustre {
 
   final TfArg<String> lustre;
 
+  @internal
   Map<String, Object?> encode() => {'lustre': lustre.toTfJson()};
 }
 
@@ -529,6 +552,7 @@ final class HypercomputeclusterClusterNewBucket {
 
   final HypercomputeclusterClusterHierarchicalNamespace? hierarchicalNamespace;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': bucket.toTfJson(),
     'storage_class': ?storageClass?.toTfJson(),
@@ -550,6 +574,7 @@ final class HypercomputeclusterClusterAutoclass {
 
   final TfArg<String>? terminalStorageClass;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'terminal_storage_class': ?terminalStorageClass?.toTfJson(),
@@ -564,6 +589,7 @@ final class HypercomputeclusterClusterHierarchicalNamespace {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
@@ -589,6 +615,7 @@ final class HypercomputeclusterClusterNewFilestore {
 
   final List<HypercomputeclusterClusterFileShares> fileShares;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'filestore': filestore.toTfJson(),
@@ -661,6 +688,7 @@ final class HypercomputeclusterClusterFileShares {
 
   final TfArg<String> fileShare;
 
+  @internal
   Map<String, Object?> encode() => {
     'capacity_gb': capacityGb.toTfJson(),
     'file_share': fileShare.toTfJson(),
@@ -689,6 +717,7 @@ final class HypercomputeclusterClusterNewLustre {
 
   final TfArg<String>? perUnitStorageThroughput;
 
+  @internal
   Map<String, Object?> encode() => {
     'capacity_gb': capacityGb.toTfJson(),
     'description': ?description?.toTfJson(),

@@ -3,6 +3,7 @@
 /// AWS CodeBuild.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/codebuild/aws_codebuild_fleet.dart'
     show
         AwsCodebuildFleet,
@@ -88,3 +89,4 @@ export 'src/codebuild/aws_codebuild_webhook.dart'
         CodebuildWebhookTriggerBranchFilter,
         CodebuildWebhookTriggerFilterGroup,
         CodebuildWebhookType;
+export 'src/data/aws_codebuild_fleet.dart' show DataAwsCodebuildFleet;

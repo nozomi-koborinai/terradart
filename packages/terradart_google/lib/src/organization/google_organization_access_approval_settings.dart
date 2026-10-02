@@ -21,6 +21,7 @@ final class OrganizationAccessApprovalSettingsEnrolledServices {
 
   final TfArg<String>? enrollmentLevel;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloud_product': cloudProduct.toTfJson(),
     'enrollment_level': ?enrollmentLevel?.toTfJson(),

@@ -3,6 +3,7 @@
 /// AWS Keyspaces (for Apache Cassandra).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/keyspaces/aws_keyspaces_keyspace.dart'
     show
         AwsKeyspacesKeyspace,

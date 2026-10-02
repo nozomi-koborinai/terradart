@@ -3,6 +3,7 @@
 /// AWS AppFabric.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/appfabric/aws_appfabric_app_authorization.dart'
     show
         AppfabricAppAuthorizationApiKeyCredential,

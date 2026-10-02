@@ -21,6 +21,7 @@ final class S3controlMultiRegionAccessPointPolicyDetails {
 
   final TfArg<String> policy;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'policy': policy.toTfJson(),

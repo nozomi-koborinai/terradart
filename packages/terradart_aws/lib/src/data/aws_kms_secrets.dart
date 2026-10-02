@@ -33,6 +33,7 @@ final class DataKmsSecretsSecret {
 
   final TfArg<String> payload;
 
+  @internal
   Map<String, Object?> encode() => {
     'context': ?context?.toTfJson(),
     'encryption_algorithm': ?encryptionAlgorithm?.toTfJson(),

@@ -23,6 +23,7 @@ final class OsisPipelineEndpointVpcOptions {
 
   final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
+  @internal
   Map<String, Object?> encode() => {
     'security_group_ids': ?securityGroupIds?.encodeAs('id').toTfJson(),
     'subnet_ids': subnetIds.encodeAs('id').toTfJson(),

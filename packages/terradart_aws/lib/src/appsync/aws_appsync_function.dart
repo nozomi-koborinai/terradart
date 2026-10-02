@@ -35,6 +35,7 @@ final class AppsyncFunctionRuntime {
 
   final TfArg<String> runtimeVersion;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'runtime_version': runtimeVersion.toTfJson(),
@@ -73,6 +74,7 @@ final class AppsyncFunctionSyncConfig {
 
   final AppsyncFunctionLambdaConflictHandlerConfig? lambdaConflictHandlerConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'conflict_detection': ?conflictDetection?.toTfJson(),
     'conflict_handler': ?conflictHandler?.toTfJson(),
@@ -135,6 +137,7 @@ final class AppsyncFunctionLambdaConflictHandlerConfig {
 
   final TfArg<String>? lambdaConflictHandlerArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'lambda_conflict_handler_arn': ?lambdaConflictHandlerArn?.toTfJson(),
   };

@@ -38,6 +38,7 @@ final class BedrockModelInvocationLoggingConfigurationLoggingConfig {
 
   final List<BedrockModelInvocationLoggingConfigurationS3Config>? s3Config;
 
+  @internal
   Map<String, Object?> encode() => {
     'embedding_data_delivery_enabled': ?embeddingDataDeliveryEnabled
         ?.toTfJson(),
@@ -69,6 +70,7 @@ final class BedrockModelInvocationLoggingConfigurationCloudwatchConfig {
   >?
   largeDataDeliveryS3Config;
 
+  @internal
   Map<String, Object?> encode() => {
     'log_group_name': logGroupName.encodeAs('name').toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
@@ -92,6 +94,7 @@ final class BedrockModelInvocationLoggingConfigurationLargeDataDeliveryS3Config 
 
   final TfArg<String>? keyPrefix;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('id').toTfJson(),
     'key_prefix': ?keyPrefix?.toTfJson(),
@@ -111,6 +114,7 @@ final class BedrockModelInvocationLoggingConfigurationS3Config {
 
   final TfArg<String>? keyPrefix;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('id').toTfJson(),
     'key_prefix': ?keyPrefix?.toTfJson(),

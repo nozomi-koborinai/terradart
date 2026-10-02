@@ -3,6 +3,7 @@
 /// AWS S3 Vectors.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/s3vectors/aws_s3vectors_index.dart'
     show
         AwsS3vectorsIndex,

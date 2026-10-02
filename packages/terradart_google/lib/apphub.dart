@@ -4,6 +4,7 @@
 /// end-to-end business functionality, plus host/service-project attachment.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/apphub/google_apphub_application.dart'
     show
         ApphubApplicationAttributes,
@@ -43,3 +44,9 @@ export 'src/apphub/google_apphub_workload.dart'
         ApphubWorkloadEnvironmentType,
         ApphubWorkloadOperatorOwners,
         GoogleApphubWorkload;
+export 'src/data/google_apphub_application.dart'
+    show DataGoogleApphubApplication;
+export 'src/data/google_apphub_discovered_service.dart'
+    show DataGoogleApphubDiscoveredService;
+export 'src/data/google_apphub_discovered_workload.dart'
+    show DataGoogleApphubDiscoveredWorkload;

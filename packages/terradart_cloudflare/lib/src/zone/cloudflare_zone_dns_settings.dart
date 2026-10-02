@@ -36,6 +36,7 @@ final class ZoneDnsSettingsInternalDns {
 
   final TfArg<String>? referenceZoneId;
 
+  @internal
   Map<String, Object?> encode() => {
     'reference_zone_id': ?referenceZoneId?.toTfJson(),
   };
@@ -51,6 +52,7 @@ final class ZoneDnsSettingsNameservers {
 
   final ZoneDnsSettingsType? type;
 
+  @internal
   Map<String, Object?> encode() => {
     'ns_set': ?nsSet?.toTfJson(),
     'type': ?type?.toTfJson(),
@@ -112,6 +114,7 @@ final class ZoneDnsSettingsSoa {
 
   final TfArg<num>? ttl;
 
+  @internal
   Map<String, Object?> encode() => {
     'expire': ?expire?.toTfJson(),
     'min_ttl': ?minTtl?.toTfJson(),

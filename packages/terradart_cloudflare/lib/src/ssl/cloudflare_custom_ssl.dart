@@ -63,6 +63,7 @@ final class CustomSslGeoRestrictions {
 
   final CustomSslLabel? label;
 
+  @internal
   Map<String, Object?> encode() => {'label': ?label?.toTfJson()};
 }
 

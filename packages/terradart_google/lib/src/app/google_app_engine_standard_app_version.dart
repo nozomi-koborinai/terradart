@@ -28,12 +28,15 @@ sealed class AppEngineStandardAppVersionLegacyServices {
   ) = AppEngineStandardAppVersionLegacyServicesAppEngineBundledServices;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -46,14 +49,17 @@ final class AppEngineStandardAppVersionLegacyServicesAppEngineApis
 
   final TfArg<bool> appEngineApis;
 
+  @internal
   @override
   String get blockKey => 'app_engine_apis';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'app_engine_apis': appEngineApis.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'app_engine_apis': appEngineApis};
 }
@@ -67,14 +73,17 @@ final class AppEngineStandardAppVersionLegacyServicesAppEngineBundledServices
 
   final TfArg<List<String>> appEngineBundledServices;
 
+  @internal
   @override
   String get blockKey => 'app_engine_bundled_services';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'app_engine_bundled_services': appEngineBundledServices.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'app_engine_bundled_services': appEngineBundledServices,
@@ -105,12 +114,15 @@ sealed class AppEngineStandardAppVersionScaling {
   ) = AppEngineStandardAppVersionManualScalingChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -123,14 +135,17 @@ final class AppEngineStandardAppVersionAutomaticScalingChoice
 
   final AppEngineStandardAppVersionAutomaticScaling automaticScaling;
 
+  @internal
   @override
   String get blockKey => 'automatic_scaling';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'automatic_scaling': automaticScaling.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'automatic_scaling': TfArg.literal(automaticScaling.encode()),
@@ -144,12 +159,15 @@ final class AppEngineStandardAppVersionBasicScalingChoice
 
   final AppEngineStandardAppVersionBasicScaling basicScaling;
 
+  @internal
   @override
   String get blockKey => 'basic_scaling';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'basic_scaling': basicScaling.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'basic_scaling': TfArg.literal(basicScaling.encode()),
@@ -163,12 +181,15 @@ final class AppEngineStandardAppVersionManualScalingChoice
 
   final AppEngineStandardAppVersionManualScaling manualScaling;
 
+  @internal
   @override
   String get blockKey => 'manual_scaling';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'manual_scaling': manualScaling.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'manual_scaling': TfArg.literal(manualScaling.encode()),
@@ -201,6 +222,7 @@ final class AppEngineStandardAppVersionAutomaticScaling {
   final AppEngineStandardAppVersionStandardSchedulerSettings?
   standardSchedulerSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_concurrent_requests': ?maxConcurrentRequests?.toTfJson(),
     'max_idle_instances': ?maxIdleInstances?.toTfJson(),
@@ -230,6 +252,7 @@ final class AppEngineStandardAppVersionStandardSchedulerSettings {
 
   final TfArg<num>? targetThroughputUtilization;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_instances': ?maxInstances?.toTfJson(),
     'min_instances': ?minInstances?.toTfJson(),
@@ -251,6 +274,7 @@ final class AppEngineStandardAppVersionBasicScaling {
 
   final TfArg<num> maxInstances;
 
+  @internal
   Map<String, Object?> encode() => {
     'idle_timeout': ?idleTimeout?.toTfJson(),
     'max_instances': maxInstances.toTfJson(),
@@ -267,6 +291,7 @@ final class AppEngineStandardAppVersionDeployment {
 
   final AppEngineStandardAppVersionZip? zip;
 
+  @internal
   Map<String, Object?> encode() => {
     if (files != null) 'files': [for (final e in files!) e.encode()],
     'zip': ?zip?.encode(),
@@ -289,6 +314,7 @@ final class AppEngineStandardAppVersionFiles {
 
   final TfArg<String> sourceUrl;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'sha1_sum': ?sha1Sum?.toTfJson(),
@@ -309,6 +335,7 @@ final class AppEngineStandardAppVersionZip {
 
   final TfArg<String> sourceUrl;
 
+  @internal
   Map<String, Object?> encode() => {
     'files_count': ?filesCount?.toTfJson(),
     'source_url': sourceUrl.toTfJson(),
@@ -323,6 +350,7 @@ final class AppEngineStandardAppVersionEntrypoint {
 
   final TfArg<String> shell;
 
+  @internal
   Map<String, Object?> encode() => {'shell': shell.toTfJson()};
 }
 
@@ -355,6 +383,7 @@ final class AppEngineStandardAppVersionHandlers {
 
   final AppEngineStandardAppVersionStaticFiles? staticFiles;
 
+  @internal
   Map<String, Object?> encode() => {
     'auth_fail_action': ?authFailAction?.toTfJson(),
     'login': ?login?.toTfJson(),
@@ -496,6 +525,7 @@ final class AppEngineStandardAppVersionScript {
 
   final TfArg<String> scriptPath;
 
+  @internal
   Map<String, Object?> encode() => {'script_path': scriptPath.toTfJson()};
 }
 
@@ -527,6 +557,7 @@ final class AppEngineStandardAppVersionStaticFiles {
 
   final TfArg<String>? uploadPathRegex;
 
+  @internal
   Map<String, Object?> encode() => {
     'application_readable': ?applicationReadable?.toTfJson(),
     'expiration': ?expiration?.toTfJson(),
@@ -548,6 +579,7 @@ final class AppEngineStandardAppVersionLibraries {
 
   final TfArg<String>? version;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'version': ?version?.toTfJson(),
@@ -562,6 +594,7 @@ final class AppEngineStandardAppVersionManualScaling {
 
   final TfArg<num> instances;
 
+  @internal
   Map<String, Object?> encode() => {'instances': instances.toTfJson()};
 }
 
@@ -578,6 +611,7 @@ final class AppEngineStandardAppVersionVpcAccessConnector {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {
     'egress_setting': ?egressSetting?.toTfJson(),
     'name': name.toTfJson(),

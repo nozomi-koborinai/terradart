@@ -64,6 +64,7 @@ final class CodepipelineArtifactStore {
 
   final CodepipelineEncryptionKey? encryptionKey;
 
+  @internal
   Map<String, Object?> encode() => {
     'location': location.toTfJson(),
     'region': ?region?.toTfJson(),
@@ -95,6 +96,7 @@ final class CodepipelineEncryptionKey {
 
   final CodepipelineEncryptionKeyType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
     'type': type.toTfJson(),
@@ -137,6 +139,7 @@ final class CodepipelineStage {
 
   final CodepipelineOnSuccess? onSuccess;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'action': [for (final e in action) e.encode()],
@@ -202,6 +205,7 @@ final class CodepipelineAction {
   final List<CodepipelineOutputArtifactsForComputeAction>?
   outputArtifactsForComputeAction;
 
+  @internal
   Map<String, Object?> encode() => {
     'category': category.toTfJson(),
     'commands': ?commands?.toTfJson(),
@@ -280,6 +284,7 @@ final class CodepipelineOutputArtifactsForComputeAction {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {
     'files': ?files?.toTfJson(),
     'name': name.toTfJson(),
@@ -294,6 +299,7 @@ final class CodepipelineBeforeEntry {
 
   final CodepipelineCondition condition;
 
+  @internal
   Map<String, Object?> encode() => {'condition': condition.encode()};
 }
 
@@ -308,6 +314,7 @@ final class CodepipelineCondition {
 
   final List<CodepipelineRule> rule;
 
+  @internal
   Map<String, Object?> encode() => {
     'result': ?result?.toTfJson(),
     'rule': [for (final e in rule) e.encode()],
@@ -346,6 +353,7 @@ final class CodepipelineRule {
 
   final CodepipelineRuleTypeId ruleTypeId;
 
+  @internal
   Map<String, Object?> encode() => {
     'commands': ?commands?.toTfJson(),
     'configuration': ?configuration?.toTfJson(),
@@ -378,6 +386,7 @@ final class CodepipelineRuleTypeId {
 
   final TfArg<String>? version;
 
+  @internal
   Map<String, Object?> encode() => {
     'category': category.toTfJson(),
     'owner': ?owner?.toTfJson(),
@@ -402,6 +411,7 @@ final class CodepipelineOnFailure {
 
   final CodepipelineRetryConfiguration? retryConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'result': ?result?.toTfJson(),
     'condition': ?condition?.encode(),
@@ -433,6 +443,7 @@ final class CodepipelineRetryConfiguration {
 
   final CodepipelineRetryMode? retryMode;
 
+  @internal
   Map<String, Object?> encode() => {'retry_mode': ?retryMode?.toTfJson()};
 }
 
@@ -462,6 +473,7 @@ final class CodepipelineOnSuccess {
 
   final CodepipelineCondition condition;
 
+  @internal
   Map<String, Object?> encode() => {'condition': condition.encode()};
 }
 
@@ -478,6 +490,7 @@ final class CodepipelineTrigger {
 
   final CodepipelineGitConfiguration gitConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     'provider_type': providerType.toTfJson(),
     'git_configuration': gitConfiguration.encode(),
@@ -500,6 +513,7 @@ final class CodepipelineGitConfiguration {
 
   final List<CodepipelinePush>? push;
 
+  @internal
   Map<String, Object?> encode() => {
     'source_action_name': sourceActionName.toTfJson(),
     if (pullRequest != null)
@@ -520,6 +534,7 @@ final class CodepipelinePullRequest {
 
   final CodepipelineFilePaths? filePaths;
 
+  @internal
   Map<String, Object?> encode() => {
     'events': ?events?.toTfJson(),
     'branches': ?branches?.encode(),
@@ -538,6 +553,7 @@ final class CodepipelineBranches {
 
   final TfArg<List<String>>? includes;
 
+  @internal
   Map<String, Object?> encode() => {
     'excludes': ?excludes?.toTfJson(),
     'includes': ?includes?.toTfJson(),
@@ -555,6 +571,7 @@ final class CodepipelineFilePaths {
 
   final TfArg<List<String>>? includes;
 
+  @internal
   Map<String, Object?> encode() => {
     'excludes': ?excludes?.toTfJson(),
     'includes': ?includes?.toTfJson(),
@@ -573,6 +590,7 @@ final class CodepipelinePush {
 
   final CodepipelinePushTags? tags;
 
+  @internal
   Map<String, Object?> encode() => {
     'branches': ?branches?.encode(),
     'file_paths': ?filePaths?.encode(),
@@ -590,6 +608,7 @@ final class CodepipelinePushTags {
 
   final TfArg<List<String>>? includes;
 
+  @internal
   Map<String, Object?> encode() => {
     'excludes': ?excludes?.toTfJson(),
     'includes': ?includes?.toTfJson(),
@@ -612,6 +631,7 @@ final class CodepipelineVariable {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {
     'default_value': ?defaultValue?.toTfJson(),
     'description': ?description?.toTfJson(),

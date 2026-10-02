@@ -14,6 +14,7 @@ const Set<String> _awsSsoadminPrincipalApplicationAssignmentsSensitive =
 final class DataSsoadminPrincipalApplicationAssignments {
   const DataSsoadminPrincipalApplicationAssignments();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 

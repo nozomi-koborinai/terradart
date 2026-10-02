@@ -43,6 +43,7 @@ final class AlbListenerRuleAction {
 
   final AlbListenerRuleRedirect? redirect;
 
+  @internal
   Map<String, Object?> encode() => {
     'order': ?order?.toTfJson(),
     'target_group_arn': ?targetGroupArn?.toTfJson(),
@@ -121,6 +122,7 @@ final class AlbListenerRuleAuthenticateCognito {
 
   final TfArg<String> userPoolDomain;
 
+  @internal
   Map<String, Object?> encode() => {
     'authentication_request_extra_params': ?authenticationRequestExtraParams
         ?.toTfJson(),
@@ -201,6 +203,7 @@ final class AlbListenerRuleAuthenticateOidc {
 
   final TfArg<String> userInfoEndpoint;
 
+  @internal
   Map<String, Object?> encode() => {
     'authentication_request_extra_params': ?authenticationRequestExtraParams
         ?.toTfJson(),
@@ -233,6 +236,7 @@ final class AlbListenerRuleFixedResponse {
 
   final TfArg<String>? statusCode;
 
+  @internal
   Map<String, Object?> encode() => {
     'content_type': contentType.toTfJson(),
     'message_body': ?messageBody?.toTfJson(),
@@ -282,6 +286,7 @@ final class AlbListenerRuleForward {
 
   final List<AlbListenerRuleTargetGroup> targetGroup;
 
+  @internal
   Map<String, Object?> encode() => {
     'stickiness': ?stickiness?.encode(),
     'target_group': [for (final e in targetGroup) e.encode()],
@@ -298,6 +303,7 @@ final class AlbListenerRuleStickiness {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'duration': duration.toTfJson(),
     'enabled': ?enabled?.toTfJson(),
@@ -314,6 +320,7 @@ final class AlbListenerRuleTargetGroup {
 
   final TfArg<num>? weight;
 
+  @internal
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
     'weight': ?weight?.toTfJson(),
@@ -336,6 +343,7 @@ final class AlbListenerRuleJwtValidation {
 
   final List<AlbListenerRuleAdditionalClaim>? additionalClaim;
 
+  @internal
   Map<String, Object?> encode() => {
     'issuer': issuer.toTfJson(),
     'jwks_endpoint': jwksEndpoint.toTfJson(),
@@ -360,6 +368,7 @@ final class AlbListenerRuleAdditionalClaim {
 
   final TfArg<List<String>> values;
 
+  @internal
   Map<String, Object?> encode() => {
     'format': format.toTfJson(),
     'name': name.toTfJson(),
@@ -417,6 +426,7 @@ final class AlbListenerRuleRedirect {
 
   final AlbListenerRuleStatusCode statusCode;
 
+  @internal
   Map<String, Object?> encode() => {
     'host': ?host?.toTfJson(),
     'path': ?path?.toTfJson(),
@@ -484,6 +494,7 @@ final class AlbListenerRuleCondition {
 
   final AlbListenerRuleSourceIp? sourceIp;
 
+  @internal
   Map<String, Object?> encode() => {
     'host_header': ?hostHeader?.encode(),
     'http_header': ?httpHeader?.encode(),
@@ -505,6 +516,7 @@ final class AlbListenerRuleHostHeader {
 
   final TfArg<List<String>>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'regex_values': ?regexValues?.toTfJson(),
     'values': ?values?.toTfJson(),
@@ -527,6 +539,7 @@ final class AlbListenerRuleHttpHeader {
 
   final TfArg<List<String>>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'http_header_name': httpHeaderName.toTfJson(),
     'regex_values': ?regexValues?.toTfJson(),
@@ -542,6 +555,7 @@ final class AlbListenerRuleHttpRequestMethod {
 
   final TfArg<List<String>> values;
 
+  @internal
   Map<String, Object?> encode() => {'values': values.toTfJson()};
 }
 
@@ -555,6 +569,7 @@ final class AlbListenerRulePathPattern {
 
   final TfArg<List<String>>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'regex_values': ?regexValues?.toTfJson(),
     'values': ?values?.toTfJson(),
@@ -571,6 +586,7 @@ final class AlbListenerRuleQueryString {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
     'value': value.toTfJson(),
@@ -587,6 +603,7 @@ final class AlbListenerRuleSourceIp {
 
   final TfArg<List<String>>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'ip_address_type': ?ipAddressType?.toTfJson(),
     'values': ?values?.toTfJson(),
@@ -624,6 +641,7 @@ final class AlbListenerRuleTransform {
 
   final AlbListenerRuleUrlRewriteConfig? urlRewriteConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
     'host_header_rewrite_config': ?hostHeaderRewriteConfig?.encode(),
@@ -661,6 +679,7 @@ final class AlbListenerRuleHostHeaderRewriteConfig {
 
   final AlbListenerRuleRewrite? rewrite;
 
+  @internal
   Map<String, Object?> encode() => {'rewrite': ?rewrite?.encode()};
 }
 
@@ -675,6 +694,7 @@ final class AlbListenerRuleRewrite {
 
   final TfArg<String> replace;
 
+  @internal
   Map<String, Object?> encode() => {
     'regex': regex.toTfJson(),
     'replace': replace.toTfJson(),
@@ -689,6 +709,7 @@ final class AlbListenerRuleUrlRewriteConfig {
 
   final AlbListenerRuleRewrite? rewrite;
 
+  @internal
   Map<String, Object?> encode() => {'rewrite': ?rewrite?.encode()};
 }
 

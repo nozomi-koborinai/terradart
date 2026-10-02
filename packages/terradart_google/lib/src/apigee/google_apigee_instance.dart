@@ -17,6 +17,7 @@ final class ApigeeInstanceAccessLoggingConfig {
 
   final TfArg<String>? filter;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'filter': ?filter?.toTfJson(),

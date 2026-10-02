@@ -23,6 +23,7 @@ final class BillingViewDataFilterExpression {
 
   final List<BillingViewTimeRange>? timeRange;
 
+  @internal
   Map<String, Object?> encode() => {
     if (dimensions != null)
       'dimensions': [for (final e in dimensions!) e.encode()],
@@ -42,6 +43,7 @@ final class BillingViewDimensions {
 
   final TfArg<List<String>> values;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'values': values.toTfJson(),
@@ -74,6 +76,7 @@ final class BillingViewDataFilterExpressionTags {
 
   final TfArg<List<String>> values;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'values': values.toTfJson(),
@@ -93,6 +96,7 @@ final class BillingViewTimeRange {
 
   final TfArg<String> endDateInclusive;
 
+  @internal
   Map<String, Object?> encode() => {
     'begin_date_inclusive': beginDateInclusive.toTfJson(),
     'end_date_inclusive': endDateInclusive.toTfJson(),

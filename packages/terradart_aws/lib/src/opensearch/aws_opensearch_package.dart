@@ -49,6 +49,7 @@ final class OpensearchPackageSource {
 
   final TfArg<String> s3Key;
 
+  @internal
   Map<String, Object?> encode() => {
     's3_bucket_name': s3BucketName.encodeAs('id').toTfJson(),
     's3_key': s3Key.toTfJson(),

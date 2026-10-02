@@ -38,12 +38,15 @@ sealed class IamWorkloadIdentityPoolProviderTrustSource {
   ) = IamWorkloadIdentityPoolProviderTrustSourceX509;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -54,12 +57,15 @@ final class IamWorkloadIdentityPoolProviderTrustSourceAws
 
   final IamWorkloadIdentityPoolProviderAws aws;
 
+  @internal
   @override
   String get blockKey => 'aws';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'aws': aws.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'aws': TfArg.literal(aws.encode()),
@@ -73,12 +79,15 @@ final class IamWorkloadIdentityPoolProviderTrustSourceOidc
 
   final IamWorkloadIdentityPoolProviderOidc oidc;
 
+  @internal
   @override
   String get blockKey => 'oidc';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'oidc': oidc.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'oidc': TfArg.literal(oidc.encode()),
@@ -92,12 +101,15 @@ final class IamWorkloadIdentityPoolProviderTrustSourceSaml
 
   final IamWorkloadIdentityPoolProviderSaml saml;
 
+  @internal
   @override
   String get blockKey => 'saml';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'saml': saml.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'saml': TfArg.literal(saml.encode()),
@@ -111,12 +123,15 @@ final class IamWorkloadIdentityPoolProviderTrustSourceX509
 
   final IamWorkloadIdentityPoolProviderX509 x509;
 
+  @internal
   @override
   String get blockKey => 'x509';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'x509': x509.encode()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'x509': TfArg.literal(x509.encode()),
@@ -131,6 +146,7 @@ final class IamWorkloadIdentityPoolProviderAws {
 
   final TfArg<String> accountId;
 
+  @internal
   Map<String, Object?> encode() => {'account_id': accountId.toTfJson()};
 }
 
@@ -150,6 +166,7 @@ final class IamWorkloadIdentityPoolProviderOidc {
 
   final TfArg<String>? jwksJson;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed_audiences': ?allowedAudiences?.toTfJson(),
     'issuer_uri': issuerUri.toTfJson(),
@@ -165,6 +182,7 @@ final class IamWorkloadIdentityPoolProviderSaml {
 
   final TfArg<String> idpMetadataXml;
 
+  @internal
   Map<String, Object?> encode() => {
     'idp_metadata_xml': idpMetadataXml.toTfJson(),
   };
@@ -178,6 +196,7 @@ final class IamWorkloadIdentityPoolProviderX509 {
 
   final IamWorkloadIdentityPoolProviderTrustStore trustStore;
 
+  @internal
   Map<String, Object?> encode() => {'trust_store': trustStore.encode()};
 }
 
@@ -194,6 +213,7 @@ final class IamWorkloadIdentityPoolProviderTrustStore {
 
   final List<IamWorkloadIdentityPoolProviderTrustAnchors> trustAnchors;
 
+  @internal
   Map<String, Object?> encode() => {
     if (intermediateCas != null)
       'intermediate_cas': [for (final e in intermediateCas!) e.encode()],
@@ -209,6 +229,7 @@ final class IamWorkloadIdentityPoolProviderIntermediateCas {
 
   final TfArg<String>? pemCertificate;
 
+  @internal
   Map<String, Object?> encode() => {
     'pem_certificate': ?pemCertificate?.toTfJson(),
   };
@@ -222,6 +243,7 @@ final class IamWorkloadIdentityPoolProviderTrustAnchors {
 
   final TfArg<String>? pemCertificate;
 
+  @internal
   Map<String, Object?> encode() => {
     'pem_certificate': ?pemCertificate?.toTfJson(),
   };

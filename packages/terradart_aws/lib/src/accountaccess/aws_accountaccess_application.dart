@@ -15,6 +15,7 @@ final class AccountaccessApplicationIdentitySource {
 
   final List<AccountaccessApplicationIdentityCenter>? identityCenter;
 
+  @internal
   Map<String, Object?> encode() => {
     if (identityCenter != null)
       'identity_center': [for (final e in identityCenter!) e.encode()],
@@ -29,6 +30,7 @@ final class AccountaccessApplicationIdentityCenter {
 
   final TfArg<String> instanceArn;
 
+  @internal
   Map<String, Object?> encode() => {'instance_arn': instanceArn.toTfJson()};
 }
 

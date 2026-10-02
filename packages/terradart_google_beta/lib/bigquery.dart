@@ -3,6 +3,7 @@
 /// BigQuery Analytics Hub data-exchange subscription (beta-only).
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/bigquery/google_bigquery_analytics_hub_data_exchange_subscription.dart'
     show
         BigqueryAnalyticsHubDataExchangeSubscriptionDatasetReference,

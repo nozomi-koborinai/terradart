@@ -106,6 +106,7 @@ final class NetworkConnectivityInternalRangeAllocationOptions {
   final NetworkConnectivityInternalRangeAllocationStrategy? allocationStrategy;
   final TfArg<int>? firstAvailableRangesLookupSize;
 
+  @internal
   Map<String, Object?> encode() => {
     if (allocationStrategy != null)
       'allocation_strategy': allocationStrategy!.toTfJson(),
@@ -128,6 +129,7 @@ final class NetworkConnectivityInternalRangeMigration {
 
   final TfArg<String> target;
 
+  @internal
   Map<String, Object?> encode() => {
     'source': source.toTfJson(),
     'target': target.toTfJson(),

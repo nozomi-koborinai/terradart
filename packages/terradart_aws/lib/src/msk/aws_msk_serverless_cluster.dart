@@ -18,6 +18,7 @@ final class MskServerlessClusterClientAuthentication {
 
   final MskServerlessClusterSasl sasl;
 
+  @internal
   Map<String, Object?> encode() => {'sasl': sasl.encode()};
 }
 
@@ -29,6 +30,7 @@ final class MskServerlessClusterSasl {
 
   final MskServerlessClusterIam iam;
 
+  @internal
   Map<String, Object?> encode() => {'iam': iam.encode()};
 }
 
@@ -40,6 +42,7 @@ final class MskServerlessClusterIam {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 
@@ -56,6 +59,7 @@ final class MskServerlessClusterVpcConfig {
 
   final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
+  @internal
   Map<String, Object?> encode() => {
     'security_group_ids': ?securityGroupIds?.encodeAs('id').toTfJson(),
     'subnet_ids': subnetIds.encodeAs('id').toTfJson(),

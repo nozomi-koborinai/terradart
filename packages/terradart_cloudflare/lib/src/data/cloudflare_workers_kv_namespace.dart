@@ -19,6 +19,7 @@ final class DataWorkersKvNamespaceFilter {
 
   final DataWorkersKvNamespaceOrder? order;
 
+  @internal
   Map<String, Object?> encode() => {
     'direction': ?direction?.toTfJson(),
     'order': ?order?.toTfJson(),

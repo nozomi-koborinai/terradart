@@ -101,6 +101,7 @@ final class AlbListenerDefaultAction {
 
   final AlbListenerRedirect? redirect;
 
+  @internal
   Map<String, Object?> encode() => {
     'order': ?order?.toTfJson(),
     'target_group_arn': ?targetGroupArn?.toTfJson(),
@@ -178,6 +179,7 @@ final class AlbListenerAuthenticateCognito {
 
   final TfArg<String> userPoolDomain;
 
+  @internal
   Map<String, Object?> encode() => {
     'authentication_request_extra_params': ?authenticationRequestExtraParams
         ?.toTfJson(),
@@ -258,6 +260,7 @@ final class AlbListenerAuthenticateOidc {
 
   final TfArg<String> userInfoEndpoint;
 
+  @internal
   Map<String, Object?> encode() => {
     'authentication_request_extra_params': ?authenticationRequestExtraParams
         ?.toTfJson(),
@@ -290,6 +293,7 @@ final class AlbListenerFixedResponse {
 
   final TfArg<String>? statusCode;
 
+  @internal
   Map<String, Object?> encode() => {
     'content_type': contentType.toTfJson(),
     'message_body': ?messageBody?.toTfJson(),
@@ -334,6 +338,7 @@ final class AlbListenerForward {
 
   final List<AlbListenerTargetGroup> targetGroup;
 
+  @internal
   Map<String, Object?> encode() => {
     'stickiness': ?stickiness?.encode(),
     'target_group': [for (final e in targetGroup) e.encode()],
@@ -350,6 +355,7 @@ final class AlbListenerStickiness {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'duration': duration.toTfJson(),
     'enabled': ?enabled?.toTfJson(),
@@ -366,6 +372,7 @@ final class AlbListenerTargetGroup {
 
   final TfArg<num>? weight;
 
+  @internal
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
     'weight': ?weight?.toTfJson(),
@@ -388,6 +395,7 @@ final class AlbListenerJwtValidation {
 
   final List<AlbListenerAdditionalClaim>? additionalClaim;
 
+  @internal
   Map<String, Object?> encode() => {
     'issuer': issuer.toTfJson(),
     'jwks_endpoint': jwksEndpoint.toTfJson(),
@@ -412,6 +420,7 @@ final class AlbListenerAdditionalClaim {
 
   final TfArg<List<String>> values;
 
+  @internal
   Map<String, Object?> encode() => {
     'format': format.toTfJson(),
     'name': name.toTfJson(),
@@ -467,6 +476,7 @@ final class AlbListenerRedirect {
 
   final AlbListenerStatusCode statusCode;
 
+  @internal
   Map<String, Object?> encode() => {
     'host': ?host?.toTfJson(),
     'path': ?path?.toTfJson(),
@@ -532,6 +542,7 @@ final class AlbListenerMutualAuthentication {
 
   final TfArg<String>? trustStoreArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'advertise_trust_store_ca_names': ?advertiseTrustStoreCaNames?.toTfJson(),
     'ignore_client_certificate_expiry': ?ignoreClientCertificateExpiry

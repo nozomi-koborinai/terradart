@@ -24,6 +24,7 @@ final class CodegurureviewerRepositoryAssociationKmsKeyDetails {
 
   final RefTo<AwsKmsKey>? kmsKeyId;
 
+  @internal
   Map<String, Object?> encode() => {
     'encryption_option': ?encryptionOption?.toTfJson(),
     'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
@@ -76,6 +77,7 @@ final class CodegurureviewerRepositoryAssociationRepository {
 
   final CodegurureviewerRepositoryAssociationS3Bucket? s3Bucket;
 
+  @internal
   Map<String, Object?> encode() => {
     'bitbucket': ?bitbucket?.encode(),
     'codecommit': ?codecommit?.encode(),
@@ -100,6 +102,7 @@ final class CodegurureviewerRepositoryAssociationBitbucket {
 
   final TfArg<String> owner;
 
+  @internal
   Map<String, Object?> encode() => {
     'connection_arn': connectionArn.toTfJson(),
     'name': name.toTfJson(),
@@ -115,6 +118,7 @@ final class CodegurureviewerRepositoryAssociationCodecommit {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 
@@ -134,6 +138,7 @@ final class CodegurureviewerRepositoryAssociationGithubEnterpriseServer {
 
   final TfArg<String> owner;
 
+  @internal
   Map<String, Object?> encode() => {
     'connection_arn': connectionArn.toTfJson(),
     'name': name.toTfJson(),
@@ -154,6 +159,7 @@ final class CodegurureviewerRepositoryAssociationS3Bucket {
 
   final TfArg<String> name;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('id').toTfJson(),
     'name': name.toTfJson(),

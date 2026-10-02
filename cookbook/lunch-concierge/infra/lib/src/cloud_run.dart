@@ -1,4 +1,3 @@
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/cloud_run.dart';
 import 'package:terradart_google/data.dart';
 
@@ -100,7 +99,7 @@ GoogleCloudRunV2Service addCloudRunService({
     ),
   );
 
-  final project = stack.add(GoogleProject('project'));
+  final project = stack.add(DataGoogleProject('project'));
 
   // IAP fronts the run.app URL, so the IAP service agent is the caller
   // Cloud Run must authorize. The agent exists once the IAP API identity

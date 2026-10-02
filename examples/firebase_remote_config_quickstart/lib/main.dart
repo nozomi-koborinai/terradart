@@ -15,7 +15,6 @@
 /// - [RemoteConfigTagColor] and [RemoteConfigValueType] enum usage.
 library;
 
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/firebase_remote_config.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';

@@ -14,6 +14,7 @@
 /// `terraform-provider-google-beta` and adds that resource.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/artifact_registry/google_artifact_registry_project_config.dart'
     show
         ArtifactRegistryPlatformLogsLoggingState,
@@ -90,3 +91,41 @@ export 'src/artifact_registry/google_artifact_registry_rule.dart'
         ArtifactRegistryRuleCondition,
         ArtifactRegistryRuleOperation,
         GoogleArtifactRegistryRule;
+export 'src/data/google_artifact_registry_docker_image.dart'
+    show DataGoogleArtifactRegistryDockerImage;
+export 'src/data/google_artifact_registry_docker_images.dart'
+    show DataGoogleArtifactRegistryDockerImages;
+export 'src/data/google_artifact_registry_file.dart'
+    show DataGoogleArtifactRegistryFile;
+export 'src/data/google_artifact_registry_locations.dart'
+    show DataGoogleArtifactRegistryLocations;
+export 'src/data/google_artifact_registry_maven_artifact.dart'
+    show DataGoogleArtifactRegistryMavenArtifact;
+export 'src/data/google_artifact_registry_maven_artifacts.dart'
+    show DataGoogleArtifactRegistryMavenArtifacts;
+export 'src/data/google_artifact_registry_npm_package.dart'
+    show DataGoogleArtifactRegistryNpmPackage;
+export 'src/data/google_artifact_registry_npm_packages.dart'
+    show DataGoogleArtifactRegistryNpmPackages;
+export 'src/data/google_artifact_registry_package.dart'
+    show DataGoogleArtifactRegistryPackage;
+export 'src/data/google_artifact_registry_packages.dart'
+    show DataGoogleArtifactRegistryPackages;
+export 'src/data/google_artifact_registry_python_package.dart'
+    show DataGoogleArtifactRegistryPythonPackage;
+export 'src/data/google_artifact_registry_python_packages.dart'
+    show DataGoogleArtifactRegistryPythonPackages;
+export 'src/data/google_artifact_registry_repositories.dart'
+    show DataGoogleArtifactRegistryRepositories;
+export 'src/data/google_artifact_registry_repository.dart'
+    show DataGoogleArtifactRegistryRepository;
+export 'src/data/google_artifact_registry_repository_iam_policy.dart'
+    show DataGoogleArtifactRegistryRepositoryIamPolicy;
+export 'src/data/google_artifact_registry_tag.dart'
+    show DataGoogleArtifactRegistryTag;
+export 'src/data/google_artifact_registry_tags.dart'
+    show DataGoogleArtifactRegistryTags;
+export 'src/data/google_artifact_registry_version.dart'
+    show DataGoogleArtifactRegistryVersion;
+export 'src/data/google_artifact_registry_versions.dart'
+    show DataGoogleArtifactRegistryVersions;

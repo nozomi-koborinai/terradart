@@ -49,6 +49,7 @@ final class GlobalacceleratorCustomRoutingAcceleratorAttributes {
 
   final TfArg<String>? flowLogsS3Prefix;
 
+  @internal
   Map<String, Object?> encode() => {
     'flow_logs_enabled': ?flowLogsEnabled?.toTfJson(),
     'flow_logs_s3_bucket': ?flowLogsS3Bucket?.toTfJson(),

@@ -29,6 +29,7 @@ final class Resiliencehubv2InputSourceResourceConfiguration {
 
   final List<Resiliencehubv2InputSourceResourceTag>? resourceTag;
 
+  @internal
   Map<String, Object?> encode() => {
     'cfn_stack_arn': ?cfnStackArn?.toTfJson(),
     'design_file_s3_url': ?designFileS3Url?.toTfJson(),
@@ -52,6 +53,7 @@ final class Resiliencehubv2InputSourceEks {
 
   final TfArg<List<String>> namespaces;
 
+  @internal
   Map<String, Object?> encode() => {
     'cluster_arn': clusterArn.toTfJson(),
     'namespaces': namespaces.toTfJson(),
@@ -71,6 +73,7 @@ final class Resiliencehubv2InputSourceResourceTag {
 
   final TfArg<List<String>> values;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'values': values.toTfJson(),

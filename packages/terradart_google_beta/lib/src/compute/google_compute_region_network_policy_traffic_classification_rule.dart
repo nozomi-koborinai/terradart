@@ -32,12 +32,15 @@ sealed class ComputeRegionNetworkPolicyTrafficClassificationRuleTarget {
   ) = ComputeRegionNetworkPolicyTrafficClassificationRuleTargetSecureTagsChoice;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -50,14 +53,17 @@ final class ComputeRegionNetworkPolicyTrafficClassificationRuleTargetServiceAcco
 
   final TfArg<List<String>> targetServiceAccounts;
 
+  @internal
   @override
   String get blockKey => 'target_service_accounts';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'target_service_accounts': targetServiceAccounts.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'target_service_accounts': targetServiceAccounts,
@@ -76,14 +82,17 @@ final class ComputeRegionNetworkPolicyTrafficClassificationRuleTargetSecureTagsC
   >
   targetSecureTags;
 
+  @internal
   @override
   String get blockKey => 'target_secure_tags';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'target_secure_tags': [for (final e in targetSecureTags) e.encode()],
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'target_secure_tags': TfArg.literal([
@@ -112,6 +121,7 @@ final class ComputeRegionNetworkPolicyTrafficClassificationRuleAction {
 
   final ComputeRegionNetworkPolicyTrafficClassificationRuleType? type;
 
+  @internal
   Map<String, Object?> encode() => {
     'dscp_mode': ?dscpMode?.toTfJson(),
     'dscp_value': ?dscpValue?.toTfJson(),
@@ -231,6 +241,7 @@ final class ComputeRegionNetworkPolicyTrafficClassificationRuleMatch {
   final List<ComputeRegionNetworkPolicyTrafficClassificationRuleLayer4Configs>
   layer4Configs;
 
+  @internal
   Map<String, Object?> encode() => {
     'dest_ip_ranges': ?destIpRanges?.toTfJson(),
     'src_ip_ranges': ?srcIpRanges?.toTfJson(),
@@ -251,6 +262,7 @@ final class ComputeRegionNetworkPolicyTrafficClassificationRuleLayer4Configs {
 
   final TfArg<List<String>>? ports;
 
+  @internal
   Map<String, Object?> encode() => {
     'ip_protocol': ipProtocol.toTfJson(),
     'ports': ?ports?.toTfJson(),
@@ -267,6 +279,7 @@ final class ComputeRegionNetworkPolicyTrafficClassificationRuleTargetSecureTags 
 
   final TfArg<String>? name;
 
+  @internal
   Map<String, Object?> encode() => {'name': ?name?.toTfJson()};
 }
 

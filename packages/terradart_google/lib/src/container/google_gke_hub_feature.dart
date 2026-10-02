@@ -23,6 +23,7 @@ final class GkeHubFeatureFleetDefaultMemberConfig {
 
   final GkeHubFeaturePolicycontroller? policycontroller;
 
+  @internal
   Map<String, Object?> encode() => {
     'configmanagement': ?configmanagement?.encode(),
     'mesh': ?mesh?.encode(),
@@ -46,6 +47,7 @@ final class GkeHubFeatureConfigmanagement {
 
   final GkeHubFeatureConfigSync? configSync;
 
+  @internal
   Map<String, Object?> encode() => {
     'management': ?management?.toTfJson(),
     'version': ?version?.toTfJson(),
@@ -103,6 +105,7 @@ final class GkeHubFeatureConfigSync {
 
   final GkeHubFeatureOci? oci;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'metrics_gcp_service_account_email': ?metricsGcpServiceAccountEmail
@@ -145,6 +148,7 @@ final class GkeHubFeatureGit {
 
   final TfArg<String>? syncWaitSecs;
 
+  @internal
   Map<String, Object?> encode() => {
     'gcp_service_account_email': ?gcpServiceAccountEmail?.toTfJson(),
     'https_proxy': ?httpsProxy?.toTfJson(),
@@ -182,6 +186,7 @@ final class GkeHubFeatureOci {
 
   final TfArg<String>? version;
 
+  @internal
   Map<String, Object?> encode() => {
     'gcp_service_account_email': ?gcpServiceAccountEmail?.toTfJson(),
     'policy_dir': ?policyDir?.toTfJson(),
@@ -200,6 +205,7 @@ final class GkeHubFeatureMesh {
 
   final GkeHubFeatureManagement management;
 
+  @internal
   Map<String, Object?> encode() => {'management': management.toTfJson()};
 }
 
@@ -216,6 +222,7 @@ final class GkeHubFeaturePolicycontroller {
 
   final GkeHubFeaturePolicyControllerHubConfig policyControllerHubConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'version': ?version?.toTfJson(),
     'policy_controller_hub_config': policyControllerHubConfig.encode(),
@@ -259,6 +266,7 @@ final class GkeHubFeaturePolicyControllerHubConfig {
 
   final GkeHubFeaturePolicyContent? policyContent;
 
+  @internal
   Map<String, Object?> encode() => {
     'audit_interval_seconds': ?auditIntervalSeconds?.toTfJson(),
     'constraint_violation_limit': ?constraintViolationLimit?.toTfJson(),
@@ -329,6 +337,7 @@ final class GkeHubFeatureDeploymentConfigs {
 
   final List<GkeHubFeaturePodToleration>? podToleration;
 
+  @internal
   Map<String, Object?> encode() => {
     'component': component.toTfJson(),
     'pod_affinity': ?podAffinity?.toTfJson(),
@@ -374,6 +383,7 @@ final class GkeHubFeatureContainerResources {
 
   final GkeHubFeatureRequests? requests;
 
+  @internal
   Map<String, Object?> encode() => {
     'limits': ?limits?.encode(),
     'requests': ?requests?.encode(),
@@ -390,6 +400,7 @@ final class GkeHubFeatureLimits {
 
   final TfArg<String>? memory;
 
+  @internal
   Map<String, Object?> encode() => {
     'cpu': ?cpu?.toTfJson(),
     'memory': ?memory?.toTfJson(),
@@ -406,6 +417,7 @@ final class GkeHubFeatureRequests {
 
   final TfArg<String>? memory;
 
+  @internal
   Map<String, Object?> encode() => {
     'cpu': ?cpu?.toTfJson(),
     'memory': ?memory?.toTfJson(),
@@ -431,6 +443,7 @@ final class GkeHubFeaturePodToleration {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'effect': ?effect?.toTfJson(),
     'key': ?key?.toTfJson(),
@@ -447,6 +460,7 @@ final class GkeHubFeatureMonitoring {
 
   final List<GkeHubFeatureBackends>? backends;
 
+  @internal
   Map<String, Object?> encode() => {
     if (backends != null) 'backends': [for (final e in backends!) e.toTfJson()],
   };
@@ -485,6 +499,7 @@ final class GkeHubFeaturePolicyContent {
 
   final GkeHubFeatureTemplateLibrary? templateLibrary;
 
+  @internal
   Map<String, Object?> encode() => {
     if (bundles != null) 'bundles': [for (final e in bundles!) e.encode()],
     'template_library': ?templateLibrary?.encode(),
@@ -501,6 +516,7 @@ final class GkeHubFeatureBundles {
 
   final TfArg<List<String>>? exemptedNamespaces;
 
+  @internal
   Map<String, Object?> encode() => {
     'bundle': bundle.toTfJson(),
     'exempted_namespaces': ?exemptedNamespaces?.toTfJson(),
@@ -515,6 +531,7 @@ final class GkeHubFeatureTemplateLibrary {
 
   final GkeHubFeatureInstallation? installation;
 
+  @internal
   Map<String, Object?> encode() => {'installation': ?installation?.toTfJson()};
 }
 
@@ -564,6 +581,7 @@ final class GkeHubFeatureSpec {
 
   final GkeHubFeatureWorkloadidentity? workloadidentity;
 
+  @internal
   Map<String, Object?> encode() => {
     'clusterupgrade': ?clusterupgrade?.encode(),
     'fleetobservability': ?fleetobservability?.encode(),
@@ -589,6 +607,7 @@ final class GkeHubFeatureClusterupgrade {
 
   final GkeHubFeaturePostConditions? postConditions;
 
+  @internal
   Map<String, Object?> encode() => {
     'upstream_fleets': upstreamFleets.toTfJson(),
     if (gkeUpgradeOverrides != null)
@@ -612,6 +631,7 @@ final class GkeHubFeatureGkeUpgradeOverrides {
 
   final GkeHubFeatureUpgrade upgrade;
 
+  @internal
   Map<String, Object?> encode() => {
     'post_conditions': postConditions.encode(),
     'upgrade': upgrade.encode(),
@@ -627,6 +647,7 @@ final class GkeHubFeaturePostConditions {
 
   final TfArg<String> soaking;
 
+  @internal
   Map<String, Object?> encode() => {'soaking': soaking.toTfJson()};
 }
 
@@ -640,6 +661,7 @@ final class GkeHubFeatureUpgrade {
 
   final TfArg<String> version;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'version': version.toTfJson(),
@@ -654,6 +676,7 @@ final class GkeHubFeatureFleetobservability {
 
   final GkeHubFeatureLoggingConfig? loggingConfig;
 
+  @internal
   Map<String, Object?> encode() => {'logging_config': ?loggingConfig?.encode()};
 }
 
@@ -670,6 +693,7 @@ final class GkeHubFeatureLoggingConfig {
 
   final GkeHubFeatureFleetScopeLogsConfig? fleetScopeLogsConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'default_config': ?defaultConfig?.encode(),
     'fleet_scope_logs_config': ?fleetScopeLogsConfig?.encode(),
@@ -684,6 +708,7 @@ final class GkeHubFeatureDefaultConfig {
 
   final GkeHubFeatureMode? mode;
 
+  @internal
   Map<String, Object?> encode() => {'mode': ?mode?.toTfJson()};
 }
 
@@ -712,6 +737,7 @@ final class GkeHubFeatureFleetScopeLogsConfig {
 
   final GkeHubFeatureMode? mode;
 
+  @internal
   Map<String, Object?> encode() => {'mode': ?mode?.toTfJson()};
 }
 
@@ -723,6 +749,7 @@ final class GkeHubFeatureMulticlusteringress {
 
   final TfArg<String> configMembership;
 
+  @internal
   Map<String, Object?> encode() => {
     'config_membership': configMembership.toTfJson(),
   };
@@ -736,6 +763,7 @@ final class GkeHubFeatureRbacrolebindingactuation {
 
   final TfArg<List<String>>? allowedCustomRoles;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed_custom_roles': ?allowedCustomRoles?.toTfJson(),
   };
@@ -749,6 +777,7 @@ final class GkeHubFeatureWorkloadidentity {
 
   final TfArg<String>? scopeTenancyPool;
 
+  @internal
   Map<String, Object?> encode() => {
     'scope_tenancy_pool': ?scopeTenancyPool?.toTfJson(),
   };

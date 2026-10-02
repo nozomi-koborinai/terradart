@@ -18,6 +18,7 @@ final class NetworkfirewallLoggingConfiguration {
   final List<NetworkfirewallLoggingConfigurationLogDestinationConfig>
   logDestinationConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'log_destination_config': [
       for (final e in logDestinationConfig) e.encode(),
@@ -42,6 +43,7 @@ final class NetworkfirewallLoggingConfigurationLogDestinationConfig {
 
   final NetworkfirewallLoggingConfigurationLogType logType;
 
+  @internal
   Map<String, Object?> encode() => {
     'log_destination': logDestination.toTfJson(),
     'log_destination_type': logDestinationType.toTfJson(),

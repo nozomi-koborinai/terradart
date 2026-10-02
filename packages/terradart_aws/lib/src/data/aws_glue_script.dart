@@ -23,6 +23,7 @@ final class DataGlueScriptDagEdge {
 
   final TfArg<String>? targetParameter;
 
+  @internal
   Map<String, Object?> encode() => {
     'source': source.toTfJson(),
     'target': target.toTfJson(),
@@ -49,6 +50,7 @@ final class DataGlueScriptDagNode {
 
   final List<DataGlueScriptArgs> args;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
     'line_number': ?lineNumber?.toTfJson(),
@@ -73,6 +75,7 @@ final class DataGlueScriptArgs {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'param': ?param?.toTfJson(),

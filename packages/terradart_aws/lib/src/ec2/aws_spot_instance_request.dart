@@ -59,12 +59,15 @@ sealed class SpotInstanceRequestPlacement {
   ) = SpotInstanceRequestPlacementGroupId;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -77,14 +80,17 @@ final class SpotInstanceRequestPlacementHostResourceGroupArn
 
   final TfArg<String> hostResourceGroupArn;
 
+  @internal
   @override
   String get blockKey => 'host_resource_group_arn';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'host_resource_group_arn': hostResourceGroupArn.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'host_resource_group_arn': hostResourceGroupArn,
@@ -98,14 +104,17 @@ final class SpotInstanceRequestPlacementGroup
 
   final TfArg<String> placementGroup;
 
+  @internal
   @override
   String get blockKey => 'placement_group';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'placement_group': placementGroup.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'placement_group': placementGroup};
 }
@@ -117,14 +126,17 @@ final class SpotInstanceRequestPlacementGroupId
 
   final TfArg<String> placementGroupId;
 
+  @internal
   @override
   String get blockKey => 'placement_group_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'placement_group_id': placementGroupId.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'placement_group_id': placementGroupId,
@@ -149,12 +161,15 @@ sealed class SpotInstanceRequestUserData {
   ) = SpotInstanceRequestUserDataBase64;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -165,12 +180,15 @@ final class SpotInstanceRequestUserDataChoice
 
   final TfArg<String> userData;
 
+  @internal
   @override
   String get blockKey => 'user_data';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'user_data': userData.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'user_data': userData};
 }
@@ -182,14 +200,17 @@ final class SpotInstanceRequestUserDataBase64
 
   final TfArg<String> userDataBase64;
 
+  @internal
   @override
   String get blockKey => 'user_data_base64';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'user_data_base64': userDataBase64.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'user_data_base64': userDataBase64,
@@ -215,8 +236,10 @@ sealed class SpotInstanceRequestCapacityReservationSpecification {
   ) = SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTarget;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -230,9 +253,11 @@ final class SpotInstanceRequestCapacityReservationSpecificationCapacityReservati
   final SpotInstanceRequestCapacityReservationPreference
   capacityReservationPreference;
 
+  @internal
   @override
   String get blockKey => 'capacity_reservation_preference';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'capacity_reservation_preference': capacityReservationPreference.toTfJson(),
@@ -248,9 +273,11 @@ final class SpotInstanceRequestCapacityReservationSpecificationCapacityReservati
 
   final SpotInstanceRequestCapacityReservationTarget capacityReservationTarget;
 
+  @internal
   @override
   String get blockKey => 'capacity_reservation_target';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'capacity_reservation_target': capacityReservationTarget.encode(),
@@ -305,8 +332,10 @@ sealed class SpotInstanceRequestCapacityReservationTarget {
   ) = SpotInstanceRequestCapacityReservationTargetCapacityReservationResourceGroupArn;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -319,9 +348,11 @@ final class SpotInstanceRequestCapacityReservationTargetCapacityReservationId
 
   final TfArg<String> capacityReservationId;
 
+  @internal
   @override
   String get blockKey => 'capacity_reservation_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'capacity_reservation_id': capacityReservationId.toTfJson(),
@@ -337,9 +368,11 @@ final class SpotInstanceRequestCapacityReservationTargetCapacityReservationResou
 
   final TfArg<String> capacityReservationResourceGroupArn;
 
+  @internal
   @override
   String get blockKey => 'capacity_reservation_resource_group_arn';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'capacity_reservation_resource_group_arn':
@@ -366,6 +399,7 @@ final class SpotInstanceRequestCpuOptions {
 
   final TfArg<num>? threadsPerCore;
 
+  @internal
   Map<String, Object?> encode() => {
     'amd_sev_snp': ?amdSevSnp?.toTfJson(),
     'core_count': ?coreCount?.toTfJson(),
@@ -424,6 +458,7 @@ final class SpotInstanceRequestCreditSpecification {
 
   final SpotInstanceRequestCpuCredits? cpuCredits;
 
+  @internal
   Map<String, Object?> encode() => {'cpu_credits': ?cpuCredits?.toTfJson()};
 }
 
@@ -489,6 +524,7 @@ final class SpotInstanceRequestEbsBlockDevice {
 
   final SpotInstanceRequestVolumeType? volumeType;
 
+  @internal
   Map<String, Object?> encode() => {
     'delete_on_termination': ?deleteOnTermination?.toTfJson(),
     'device_name': deviceName.toTfJson(),
@@ -542,6 +578,7 @@ final class SpotInstanceRequestEnclaveOptions {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
@@ -561,6 +598,7 @@ final class SpotInstanceRequestEphemeralBlockDevice {
 
   final TfArg<String>? virtualName;
 
+  @internal
   Map<String, Object?> encode() => {
     'device_name': deviceName.toTfJson(),
     'no_device': ?noDevice?.toTfJson(),
@@ -581,6 +619,7 @@ final class SpotInstanceRequestLaunchTemplate {
 
   final TfArg<String>? version;
 
+  @internal
   Map<String, Object?> encode() => {
     ...identifier.encode(),
     'version': ?version?.toTfJson(),
@@ -603,8 +642,10 @@ sealed class SpotInstanceRequestIdentifier {
       SpotInstanceRequestIdentifierName;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -615,9 +656,11 @@ final class SpotInstanceRequestIdentifierId
 
   final TfArg<String> id;
 
+  @internal
   @override
   String get blockKey => 'id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'id': id.toTfJson()};
 }
@@ -629,9 +672,11 @@ final class SpotInstanceRequestIdentifierName
 
   final TfArg<String> name;
 
+  @internal
   @override
   String get blockKey => 'name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
@@ -644,6 +689,7 @@ final class SpotInstanceRequestMaintenanceOptions {
 
   final SpotInstanceRequestAutoRecovery? autoRecovery;
 
+  @internal
   Map<String, Object?> encode() => {'auto_recovery': ?autoRecovery?.toTfJson()};
 }
 
@@ -691,6 +737,7 @@ final class SpotInstanceRequestMetadataOptions {
 
   final SpotInstanceRequestInstanceMetadataTags? instanceMetadataTags;
 
+  @internal
   Map<String, Object?> encode() => {
     'http_endpoint': ?httpEndpoint?.toTfJson(),
     'http_protocol_ipv6': ?httpProtocolIpv6?.toTfJson(),
@@ -806,6 +853,7 @@ final class SpotInstanceRequestNetworkInterface {
 
   final TfArg<String> networkInterfaceId;
 
+  @internal
   Map<String, Object?> encode() => {
     'delete_on_termination': ?deleteOnTermination?.toTfJson(),
     'device_index': deviceIndex.toTfJson(),
@@ -829,6 +877,7 @@ final class SpotInstanceRequestPrivateDnsNameOptions {
 
   final SpotInstanceRequestHostnameType? hostnameType;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_resource_name_dns_a_record': ?enableResourceNameDnsARecord
         ?.toTfJson(),
@@ -894,6 +943,7 @@ final class SpotInstanceRequestRootBlockDevice {
 
   final SpotInstanceRequestVolumeType? volumeType;
 
+  @internal
   Map<String, Object?> encode() => {
     'delete_on_termination': ?deleteOnTermination?.toTfJson(),
     'encrypted': ?encrypted?.toTfJson(),
@@ -932,6 +982,7 @@ final class SpotInstanceRequestSecondaryNetworkInterface {
 
   final TfArg<String> secondarySubnetId;
 
+  @internal
   Map<String, Object?> encode() => {
     'delete_on_termination': ?deleteOnTermination?.toTfJson(),
     'device_index': ?deviceIndex?.toTfJson(),

@@ -55,6 +55,7 @@ final class ContactCenterInsightsAnalysisRuleAnnotatorSelector {
   final ContactCenterInsightsAnalysisRuleSummarizationConfig?
   summarizationConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'issue_models': ?issueModels?.toTfJson(),
     'phrase_matchers': ?phraseMatchers?.toTfJson(),
@@ -80,6 +81,7 @@ final class ContactCenterInsightsAnalysisRuleQaConfig {
 
   final ContactCenterInsightsAnalysisRuleScorecardList? scorecardList;
 
+  @internal
   Map<String, Object?> encode() => {'scorecard_list': ?scorecardList?.encode()};
 }
 
@@ -93,6 +95,7 @@ final class ContactCenterInsightsAnalysisRuleScorecardList {
 
   final TfArg<List<String>>? qaScorecardRevisions;
 
+  @internal
   Map<String, Object?> encode() => {
     'qa_scorecard_revisions': ?qaScorecardRevisions?.toTfJson(),
   };
@@ -111,6 +114,7 @@ final class ContactCenterInsightsAnalysisRuleSummarizationConfig {
 
   final ContactCenterInsightsAnalysisRuleSummarizationModel? summarizationModel;
 
+  @internal
   Map<String, Object?> encode() => {
     'conversation_profile': ?conversationProfile?.toTfJson(),
     'summarization_model': ?summarizationModel?.toTfJson(),

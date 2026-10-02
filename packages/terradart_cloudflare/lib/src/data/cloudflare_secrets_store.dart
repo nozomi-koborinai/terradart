@@ -19,6 +19,7 @@ final class DataSecretsStoreFilter {
 
   final DataSecretsStoreOrder? order;
 
+  @internal
   Map<String, Object?> encode() => {
     'direction': ?direction?.toTfJson(),
     'order': ?order?.toTfJson(),

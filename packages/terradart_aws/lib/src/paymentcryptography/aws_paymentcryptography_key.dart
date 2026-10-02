@@ -58,6 +58,7 @@ final class PaymentcryptographyKeyAttributes {
 
   final List<PaymentcryptographyKeyModesOfUse>? keyModesOfUse;
 
+  @internal
   Map<String, Object?> encode() => {
     'key_algorithm': keyAlgorithm.toTfJson(),
     'key_class': keyClass.toTfJson(),
@@ -318,6 +319,7 @@ final class PaymentcryptographyKeyModesOfUse {
 
   final TfArg<bool>? wrap;
 
+  @internal
   Map<String, Object?> encode() => {
     'decrypt': ?decrypt?.toTfJson(),
     'derive_key': ?deriveKey?.toTfJson(),

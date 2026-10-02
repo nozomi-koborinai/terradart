@@ -45,6 +45,7 @@ final class SecurityposturePosturePolicySets {
 
   final List<SecurityposturePosturePolicies> policies;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'policy_set_id': policySetId.toTfJson(),
@@ -71,6 +72,7 @@ final class SecurityposturePosturePolicies {
 
   final SecurityposturePostureConstraint constraint;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'policy_id': policyId.toTfJson(),
@@ -95,6 +97,7 @@ final class SecurityposturePostureComplianceStandards {
 
   final TfArg<String>? standard;
 
+  @internal
   Map<String, Object?> encode() => {
     'control': ?control?.toTfJson(),
     'standard': ?standard?.toTfJson(),
@@ -123,6 +126,7 @@ final class SecurityposturePostureConstraint {
   final SecurityposturePostureSecurityHealthAnalyticsModule?
   securityHealthAnalyticsModule;
 
+  @internal
   Map<String, Object?> encode() => {
     'org_policy_constraint': ?orgPolicyConstraint?.encode(),
     'org_policy_constraint_custom': ?orgPolicyConstraintCustom?.encode(),
@@ -146,6 +150,7 @@ final class SecurityposturePostureOrgPolicyConstraint {
 
   final List<SecurityposturePosturePolicyRules> policyRules;
 
+  @internal
   Map<String, Object?> encode() => {
     'canned_constraint_id': cannedConstraintId.toTfJson(),
     'policy_rules': [for (final e in policyRules) e.encode()],
@@ -175,6 +180,7 @@ final class SecurityposturePosturePolicyRules {
 
   final SecurityposturePostureValues? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_all': ?allowAll?.toTfJson(),
     'deny_all': ?denyAll?.toTfJson(),
@@ -204,6 +210,7 @@ final class SecurityposturePostureCondition {
 
   final TfArg<String>? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'expression': expression.toTfJson(),
@@ -223,6 +230,7 @@ final class SecurityposturePostureValues {
 
   final TfArg<List<String>>? deniedValues;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed_values': ?allowedValues?.toTfJson(),
     'denied_values': ?deniedValues?.toTfJson(),
@@ -242,6 +250,7 @@ final class SecurityposturePostureOrgPolicyConstraintCustom {
 
   final List<SecurityposturePosturePolicyRules> policyRules;
 
+  @internal
   Map<String, Object?> encode() => {
     'custom_constraint': ?customConstraint?.encode(),
     'policy_rules': [for (final e in policyRules) e.encode()],
@@ -276,6 +285,7 @@ final class SecurityposturePostureCustomConstraint {
 
   final TfArg<List<String>> resourceTypes;
 
+  @internal
   Map<String, Object?> encode() => {
     'action_type': actionType.toTfJson(),
     'condition': condition.toTfJson(),
@@ -320,6 +330,7 @@ final class SecurityposturePostureSecurityHealthAnalyticsCustomModule {
 
   final SecurityposturePostureConfig config;
 
+  @internal
   Map<String, Object?> encode() => {
     'display_name': ?displayName?.toTfJson(),
     'module_enablement_state': ?moduleEnablementState?.toTfJson(),
@@ -381,6 +392,7 @@ final class SecurityposturePostureConfig {
 
   final SecurityposturePostureResourceSelector resourceSelector;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'recommendation': ?recommendation?.toTfJson(),
@@ -429,6 +441,7 @@ final class SecurityposturePostureCustomOutput {
 
   final List<SecurityposturePostureProperties>? properties;
 
+  @internal
   Map<String, Object?> encode() => {
     if (properties != null)
       'properties': [for (final e in properties!) e.encode()],
@@ -448,6 +461,7 @@ final class SecurityposturePostureProperties {
 
   final SecurityposturePostureValueExpression? valueExpression;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'value_expression': ?valueExpression?.encode(),
@@ -473,6 +487,7 @@ final class SecurityposturePostureValueExpression {
 
   final TfArg<String>? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'expression': expression.toTfJson(),
@@ -500,6 +515,7 @@ final class SecurityposturePosturePredicate {
 
   final TfArg<String>? title;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'expression': expression.toTfJson(),
@@ -516,6 +532,7 @@ final class SecurityposturePostureResourceSelector {
 
   final TfArg<List<String>> resourceTypes;
 
+  @internal
   Map<String, Object?> encode() => {'resource_types': resourceTypes.toTfJson()};
 }
 
@@ -532,6 +549,7 @@ final class SecurityposturePostureSecurityHealthAnalyticsModule {
 
   final TfArg<String> moduleName;
 
+  @internal
   Map<String, Object?> encode() => {
     'module_enablement_state': ?moduleEnablementState?.toTfJson(),
     'module_name': moduleName.toTfJson(),

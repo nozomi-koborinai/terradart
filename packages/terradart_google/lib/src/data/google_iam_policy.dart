@@ -21,6 +21,7 @@ final class DataIamPolicyAuditConfig {
 
   final List<DataIamPolicyAuditLogConfigs> auditLogConfigs;
 
+  @internal
   Map<String, Object?> encode() => {
     'service': service.toTfJson(),
     'audit_log_configs': [for (final e in auditLogConfigs) e.encode()],
@@ -40,6 +41,7 @@ final class DataIamPolicyAuditLogConfigs {
 
   final TfArg<String> logType;
 
+  @internal
   Map<String, Object?> encode() => {
     'exempted_members': ?exemptedMembers?.toTfJson(),
     'log_type': logType.toTfJson(),
@@ -62,6 +64,7 @@ final class DataIamPolicyBinding {
 
   final DataIamPolicyCondition? condition;
 
+  @internal
   Map<String, Object?> encode() => {
     'members': members.toTfJson(),
     'role': role.toTfJson(),
@@ -85,6 +88,7 @@ final class DataIamPolicyCondition {
 
   final TfArg<String> title;
 
+  @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'expression': expression.toTfJson(),

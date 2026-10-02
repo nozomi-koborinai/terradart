@@ -38,6 +38,7 @@ final class DataprocJobHadoopConfig {
 
   final DataprocJobLoggingConfig? loggingConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'archive_uris': ?archiveUris?.toTfJson(),
     'args': ?args?.toTfJson(),
@@ -59,6 +60,7 @@ final class DataprocJobLoggingConfig {
 
   final TfArg<Map<String, String>> driverLogLevels;
 
+  @internal
   Map<String, Object?> encode() => {
     'driver_log_levels': driverLogLevels.toTfJson(),
   };
@@ -89,6 +91,7 @@ final class DataprocJobHiveConfig {
 
   final TfArg<Map<String, String>>? scriptVariables;
 
+  @internal
   Map<String, Object?> encode() => {
     'continue_on_failure': ?continueOnFailure?.toTfJson(),
     'jar_file_uris': ?jarFileUris?.toTfJson(),
@@ -127,6 +130,7 @@ final class DataprocJobPigConfig {
 
   final DataprocJobLoggingConfig? loggingConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'continue_on_failure': ?continueOnFailure?.toTfJson(),
     'jar_file_uris': ?jarFileUris?.toTfJson(),
@@ -146,6 +150,7 @@ final class DataprocJobPlacement {
 
   final TfArg<String> clusterName;
 
+  @internal
   Map<String, Object?> encode() => {'cluster_name': clusterName.toTfJson()};
 }
 
@@ -177,6 +182,7 @@ final class DataprocJobPrestoConfig {
 
   final DataprocJobLoggingConfig? loggingConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_tags': ?clientTags?.toTfJson(),
     'continue_on_failure': ?continueOnFailure?.toTfJson(),
@@ -219,6 +225,7 @@ final class DataprocJobPysparkConfig {
 
   final DataprocJobLoggingConfig? loggingConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'archive_uris': ?archiveUris?.toTfJson(),
     'args': ?args?.toTfJson(),
@@ -239,6 +246,7 @@ final class DataprocJobReference {
 
   final TfArg<String>? jobId;
 
+  @internal
   Map<String, Object?> encode() => {'job_id': ?jobId?.toTfJson()};
 }
 
@@ -255,6 +263,7 @@ final class DataprocJobScheduling {
 
   final TfArg<num> maxFailuresTotal;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_failures_per_hour': maxFailuresPerHour.toTfJson(),
     'max_failures_total': maxFailuresTotal.toTfJson(),
@@ -292,6 +301,7 @@ final class DataprocJobSparkConfig {
 
   final DataprocJobLoggingConfig? loggingConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'archive_uris': ?archiveUris?.toTfJson(),
     'args': ?args?.toTfJson(),
@@ -329,6 +339,7 @@ final class DataprocJobSparksqlConfig {
 
   final DataprocJobLoggingConfig? loggingConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'jar_file_uris': ?jarFileUris?.toTfJson(),
     'properties': ?properties?.toTfJson(),

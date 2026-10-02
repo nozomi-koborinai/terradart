@@ -3,6 +3,14 @@
 /// AWS SES.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_sesv2_configuration_set.dart'
+    show DataAwsSesv2ConfigurationSet;
+export 'src/data/aws_sesv2_dedicated_ip_pool.dart'
+    show DataAwsSesv2DedicatedIpPool;
+export 'src/data/aws_sesv2_email_identity.dart' show DataAwsSesv2EmailIdentity;
+export 'src/data/aws_sesv2_email_identity_mail_from_attributes.dart'
+    show DataAwsSesv2EmailIdentityMailFromAttributes;
 export 'src/sesv2/aws_sesv2_account_suppression_attributes.dart'
     show
         AwsSesv2AccountSuppressionAttributes,

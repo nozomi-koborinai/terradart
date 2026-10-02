@@ -23,6 +23,7 @@ final class ComputeGlobalVmExtensionPolicyExtensionPolicies {
 
   final TfArg<String>? stringConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'extension_name': extensionName.toTfJson(),
     'pinned_version': ?pinnedVersion?.toTfJson(),
@@ -38,6 +39,7 @@ final class ComputeGlobalVmExtensionPolicyInstanceSelectors {
 
   final ComputeGlobalVmExtensionPolicyLabelSelector? labelSelector;
 
+  @internal
   Map<String, Object?> encode() => {'label_selector': ?labelSelector?.encode()};
 }
 
@@ -49,6 +51,7 @@ final class ComputeGlobalVmExtensionPolicyLabelSelector {
 
   final TfArg<Map<String, String>>? inclusionLabels;
 
+  @internal
   Map<String, Object?> encode() => {
     'inclusion_labels': ?inclusionLabels?.toTfJson(),
   };
@@ -64,6 +67,7 @@ final class ComputeGlobalVmExtensionPolicyRolloutOperation {
 
   final ComputeGlobalVmExtensionPolicyRolloutInput rolloutInput;
 
+  @internal
   Map<String, Object?> encode() => {'rollout_input': rolloutInput.encode()};
 }
 
@@ -83,6 +87,7 @@ final class ComputeGlobalVmExtensionPolicyRolloutInput {
 
   final TfArg<String>? retryUuid;
 
+  @internal
   Map<String, Object?> encode() => {
     'conflict_behavior': ?conflictBehavior?.toTfJson(),
     ...plan.encode(),
@@ -107,8 +112,10 @@ sealed class ComputeGlobalVmExtensionPolicyPlan {
   ) = ComputeGlobalVmExtensionPolicyPredefinedRolloutPlan;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -119,9 +126,11 @@ final class ComputeGlobalVmExtensionPolicyPlanName
 
   final TfArg<String> name;
 
+  @internal
   @override
   String get blockKey => 'name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
@@ -135,9 +144,11 @@ final class ComputeGlobalVmExtensionPolicyPredefinedRolloutPlan
 
   final TfArg<String> predefinedRolloutPlan;
 
+  @internal
   @override
   String get blockKey => 'predefined_rollout_plan';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'predefined_rollout_plan': predefinedRolloutPlan.toTfJson(),

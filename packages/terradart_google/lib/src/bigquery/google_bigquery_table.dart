@@ -213,6 +213,7 @@ final class BigqueryTableBiglakeConfiguration {
 
   final TfArg<String> tableFormat;
 
+  @internal
   Map<String, Object?> encode() => {
     'connection_id': connectionId.toTfJson(),
     'file_format': fileFormat.toTfJson(),
@@ -229,6 +230,7 @@ final class BigqueryTableEncryptionConfiguration {
 
   final RefTo<GoogleKmsCryptoKey> kmsKeyName;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_key_name': kmsKeyName.encodeAs('id').toTfJson(),
   };
@@ -250,6 +252,7 @@ final class BigqueryTableExternalCatalogTableOptions {
 
   final BigqueryTableStorageDescriptor? storageDescriptor;
 
+  @internal
   Map<String, Object?> encode() => {
     'connection_id': ?connectionId?.toTfJson(),
     'parameters': ?parameters?.toTfJson(),
@@ -276,6 +279,7 @@ final class BigqueryTableStorageDescriptor {
 
   final BigqueryTableSerdeInfo? serdeInfo;
 
+  @internal
   Map<String, Object?> encode() => {
     'input_format': ?inputFormat?.toTfJson(),
     'location_uri': ?locationUri?.toTfJson(),
@@ -300,6 +304,7 @@ final class BigqueryTableSerdeInfo {
 
   final TfArg<String> serializationLibrary;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'parameters': ?parameters?.toTfJson(),
@@ -377,6 +382,7 @@ final class BigqueryTableExternalDataConfiguration {
 
   final BigqueryTableParquetOptions? parquetOptions;
 
+  @internal
   Map<String, Object?> encode() => {
     'autodetect': autodetect.toTfJson(),
     'compression': ?compression?.toTfJson(),
@@ -410,6 +416,7 @@ final class BigqueryTableAvroOptions {
 
   final TfArg<bool> useAvroLogicalTypes;
 
+  @internal
   Map<String, Object?> encode() => {
     'use_avro_logical_types': useAvroLogicalTypes.toTfJson(),
   };
@@ -434,6 +441,7 @@ final class BigqueryTableBigtableOptions {
 
   final List<BigqueryTableColumnFamily>? columnFamily;
 
+  @internal
   Map<String, Object?> encode() => {
     'ignore_unspecified_column_families': ?ignoreUnspecifiedColumnFamilies
         ?.toTfJson(),
@@ -466,6 +474,7 @@ final class BigqueryTableColumnFamily {
 
   final List<BigqueryTableColumn>? column;
 
+  @internal
   Map<String, Object?> encode() => {
     'encoding': ?encoding?.toTfJson(),
     'family_id': ?familyId?.toTfJson(),
@@ -500,6 +509,7 @@ final class BigqueryTableColumn {
 
   final TfArg<String>? type;
 
+  @internal
   Map<String, Object?> encode() => {
     'encoding': ?encoding?.toTfJson(),
     'field_name': ?fieldName?.toTfJson(),
@@ -538,6 +548,7 @@ final class BigqueryTableCsvOptions {
 
   final TfArg<String>? sourceColumnMatch;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_jagged_rows': ?allowJaggedRows?.toTfJson(),
     'allow_quoted_newlines': ?allowQuotedNewlines?.toTfJson(),
@@ -559,6 +570,7 @@ final class BigqueryTableGoogleSheetsOptions {
 
   final TfArg<num>? skipLeadingRows;
 
+  @internal
   Map<String, Object?> encode() => {
     'range': ?range?.toTfJson(),
     'skip_leading_rows': ?skipLeadingRows?.toTfJson(),
@@ -581,6 +593,7 @@ final class BigqueryTableHivePartitioningOptions {
 
   final TfArg<String>? sourceUriPrefix;
 
+  @internal
   Map<String, Object?> encode() => {
     'mode': ?mode?.toTfJson(),
     'require_partition_filter': ?requirePartitionFilter?.toTfJson(),
@@ -596,6 +609,7 @@ final class BigqueryTableJsonOptions {
 
   final TfArg<String>? encoding;
 
+  @internal
   Map<String, Object?> encode() => {'encoding': ?encoding?.toTfJson()};
 }
 
@@ -612,6 +626,7 @@ final class BigqueryTableParquetOptions {
 
   final TfArg<bool>? enumAsString;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_list_inference': ?enableListInference?.toTfJson(),
     'enum_as_string': ?enumAsString?.toTfJson(),
@@ -637,6 +652,7 @@ final class BigqueryTableMaterializedView {
 
   final TfArg<num>? refreshIntervalMs;
 
+  @internal
   Map<String, Object?> encode() => {
     'allow_non_incremental_definition': ?allowNonIncrementalDefinition
         ?.toTfJson(),
@@ -659,6 +675,7 @@ final class BigqueryTableRangePartitioning {
 
   final BigqueryTableRange range;
 
+  @internal
   Map<String, Object?> encode() => {
     'field': field.toTfJson(),
     'range': range.encode(),
@@ -681,6 +698,7 @@ final class BigqueryTableRange {
 
   final TfArg<num> start;
 
+  @internal
   Map<String, Object?> encode() => {
     'end': end.toTfJson(),
     'interval': interval.toTfJson(),
@@ -696,6 +714,7 @@ final class BigqueryTableSchemaForeignTypeInfo {
 
   final TfArg<String> typeSystem;
 
+  @internal
   Map<String, Object?> encode() => {'type_system': typeSystem.toTfJson()};
 }
 
@@ -709,6 +728,7 @@ final class BigqueryTableConstraints {
 
   final BigqueryTablePrimaryKey? primaryKey;
 
+  @internal
   Map<String, Object?> encode() => {
     if (foreignKeys != null)
       'foreign_keys': [for (final e in foreignKeys!) e.encode()],
@@ -732,6 +752,7 @@ final class BigqueryTableForeignKeys {
 
   final BigqueryTableReferencedTable referencedTable;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': ?name?.toTfJson(),
     'column_references': columnReferences.encode(),
@@ -752,6 +773,7 @@ final class BigqueryTableColumnReferences {
 
   final TfArg<String> referencingColumn;
 
+  @internal
   Map<String, Object?> encode() => {
     'referenced_column': referencedColumn.toTfJson(),
     'referencing_column': referencingColumn.toTfJson(),
@@ -774,6 +796,7 @@ final class BigqueryTableReferencedTable {
 
   final TfArg<String> tableId;
 
+  @internal
   Map<String, Object?> encode() => {
     'dataset_id': datasetId.encodeAs('dataset_id').toTfJson(),
     'project_id': projectId.toTfJson(),
@@ -789,6 +812,7 @@ final class BigqueryTablePrimaryKey {
 
   final TfArg<List<String>> columns;
 
+  @internal
   Map<String, Object?> encode() => {'columns': columns.toTfJson()};
 }
 
@@ -811,6 +835,7 @@ final class BigqueryTableReplicationInfo {
 
   final TfArg<String> sourceTableId;
 
+  @internal
   Map<String, Object?> encode() => {
     'replication_interval_ms': ?replicationIntervalMs?.toTfJson(),
     'source_dataset_id': sourceDatasetId.toTfJson(),
@@ -838,6 +863,7 @@ final class BigqueryTableTimePartitioning {
 
   final TimePartitioningType type;
 
+  @internal
   Map<String, Object?> encode() => {
     'expiration_ms': ?expirationMs?.toTfJson(),
     'field': ?field?.toTfJson(),
@@ -856,6 +882,7 @@ final class BigqueryTableView {
 
   final TfArg<bool>? useLegacySql;
 
+  @internal
   Map<String, Object?> encode() => {
     'query': query.toTfJson(),
     'use_legacy_sql': ?useLegacySql?.toTfJson(),

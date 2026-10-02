@@ -18,6 +18,7 @@ final class DataBedrockagentAgentVersionsAgentVersionSummaries {
   final List<DataBedrockagentAgentVersionsGuardrailConfiguration>?
   guardrailConfiguration;
 
+  @internal
   Map<String, Object?> encode() => {
     if (guardrailConfiguration != null)
       'guardrail_configuration': [
@@ -32,6 +33,7 @@ final class DataBedrockagentAgentVersionsAgentVersionSummaries {
 final class DataBedrockagentAgentVersionsGuardrailConfiguration {
   const DataBedrockagentAgentVersionsGuardrailConfiguration();
 
+  @internal
   Map<String, Object?> encode() => {};
 }
 

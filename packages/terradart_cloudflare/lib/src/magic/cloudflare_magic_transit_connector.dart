@@ -27,6 +27,7 @@ final class MagicTransitConnectorDevice {
 
   final TfArg<String>? serialNumber;
 
+  @internal
   Map<String, Object?> encode() => {
     'id': ?id?.toTfJson(),
     'provision_license': ?provisionLicense?.toTfJson(),

@@ -43,6 +43,7 @@ final class EcrRegistryScanningConfigurationRule {
 
   final List<EcrRegistryScanningConfigurationRepositoryFilter> repositoryFilter;
 
+  @internal
   Map<String, Object?> encode() => {
     'scan_frequency': scanFrequency.toTfJson(),
     'repository_filter': [for (final e in repositoryFilter) e.encode()],
@@ -90,6 +91,7 @@ final class EcrRegistryScanningConfigurationRepositoryFilter {
 
   final EcrRegistryScanningConfigurationFilterType filterType;
 
+  @internal
   Map<String, Object?> encode() => {
     'filter': filter.toTfJson(),
     'filter_type': filterType.toTfJson(),

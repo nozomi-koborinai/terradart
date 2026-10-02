@@ -62,6 +62,7 @@ final class QueueConsumerSettings {
 
   final List<QueueConsumerWebhooks>? webhooks;
 
+  @internal
   Map<String, Object?> encode() => {
     'batch_size': ?batchSize?.toTfJson(),
     'max_concurrency': ?maxConcurrency?.toTfJson(),
@@ -84,6 +85,7 @@ final class QueueConsumerEmail {
 
   final TfArg<String> id;
 
+  @internal
   Map<String, Object?> encode() => {'id': id.toTfJson()};
 }
 
@@ -95,6 +97,7 @@ final class QueueConsumerPagerduty {
 
   final TfArg<String> id;
 
+  @internal
   Map<String, Object?> encode() => {'id': id.toTfJson()};
 }
 
@@ -106,6 +109,7 @@ final class QueueConsumerWebhooks {
 
   final TfArg<String> id;
 
+  @internal
   Map<String, Object?> encode() => {'id': id.toTfJson()};
 }
 

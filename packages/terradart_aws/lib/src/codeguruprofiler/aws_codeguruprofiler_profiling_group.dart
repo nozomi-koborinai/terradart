@@ -17,6 +17,7 @@ final class CodeguruprofilerProfilingGroupAgentOrchestrationConfig {
 
   final TfArg<bool> profilingEnabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'profiling_enabled': profilingEnabled.toTfJson(),
   };

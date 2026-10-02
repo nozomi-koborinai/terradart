@@ -17,6 +17,7 @@ final class AuditmanagerFrameworkControlSets {
 
   final List<AuditmanagerFrameworkControls>? controls;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     if (controls != null) 'controls': [for (final e in controls!) e.encode()],
@@ -31,6 +32,7 @@ final class AuditmanagerFrameworkControls {
 
   final TfArg<String> id;
 
+  @internal
   Map<String, Object?> encode() => {'id': id.toTfJson()};
 }
 

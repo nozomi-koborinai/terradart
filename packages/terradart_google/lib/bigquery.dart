@@ -5,6 +5,7 @@
 /// bindings.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/bigquery/google_bigquery_analytics_hub_data_exchange.dart'
     show
         BigqueryAnalyticsHubDataExchangeDcrExchangeConfig,
@@ -314,3 +315,25 @@ export 'src/bigquery/google_bigquery_table_iam_member.dart'
     show BigqueryTableIamMemberCondition, GoogleBigqueryTableIamMember;
 export 'src/bigquery/google_bigquery_table_iam_policy.dart'
     show GoogleBigqueryTableIamPolicy;
+export 'src/data/google_bigquery_analytics_hub_data_exchange_iam_policy.dart'
+    show DataGoogleBigqueryAnalyticsHubDataExchangeIamPolicy;
+export 'src/data/google_bigquery_analytics_hub_listing_iam_policy.dart'
+    show DataGoogleBigqueryAnalyticsHubListingIamPolicy;
+export 'src/data/google_bigquery_connection_iam_policy.dart'
+    show DataGoogleBigqueryConnectionIamPolicy;
+export 'src/data/google_bigquery_datapolicy_data_policy_iam_policy.dart'
+    show DataGoogleBigqueryDatapolicyDataPolicyIamPolicy;
+export 'src/data/google_bigquery_datapolicyv2_data_policy_iam_policy.dart'
+    show DataGoogleBigqueryDatapolicyv2DataPolicyIamPolicy;
+export 'src/data/google_bigquery_dataset.dart' show DataGoogleBigqueryDataset;
+export 'src/data/google_bigquery_dataset_iam_policy.dart'
+    show DataGoogleBigqueryDatasetIamPolicy;
+export 'src/data/google_bigquery_datasets.dart' show DataGoogleBigqueryDatasets;
+export 'src/data/google_bigquery_default_service_account.dart'
+    show DataGoogleBigqueryDefaultServiceAccount;
+export 'src/data/google_bigquery_routine_iam_policy.dart'
+    show DataGoogleBigqueryRoutineIamPolicy;
+export 'src/data/google_bigquery_table.dart' show DataGoogleBigqueryTable;
+export 'src/data/google_bigquery_table_iam_policy.dart'
+    show DataGoogleBigqueryTableIamPolicy;
+export 'src/data/google_bigquery_tables.dart' show DataGoogleBigqueryTables;

@@ -155,6 +155,7 @@ final class DmsEndpointElasticsearchSettings {
 
   final TfArg<bool>? useNewMappingType;
 
+  @internal
   Map<String, Object?> encode() => {
     'endpoint_uri': endpointUri.toTfJson(),
     'error_retry_duration': ?errorRetryDuration?.toTfJson(),
@@ -228,6 +229,7 @@ final class DmsEndpointKafkaSettings {
 
   final TfArg<String>? topic;
 
+  @internal
   Map<String, Object?> encode() => {
     'broker': broker.toTfJson(),
     'include_control_details': ?includeControlDetails?.toTfJson(),
@@ -350,6 +352,7 @@ final class DmsEndpointKinesisSettings {
 
   final TfArg<bool>? useLargeIntegerValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'include_control_details': ?includeControlDetails?.toTfJson(),
     'include_null_and_empty': ?includeNullAndEmpty?.toTfJson(),
@@ -392,6 +395,7 @@ final class DmsEndpointMongodbSettings {
 
   final TfArg<bool>? useUpdateLookup;
 
+  @internal
   Map<String, Object?> encode() => {
     'auth_mechanism': ?authMechanism?.toTfJson(),
     'auth_source': ?authSource?.toTfJson(),
@@ -496,6 +500,7 @@ final class DmsEndpointMysqlSettings {
 
   final DmsEndpointTargetDbType? targetDbType;
 
+  @internal
   Map<String, Object?> encode() => {
     'after_connect_script': ?afterConnectScript?.toTfJson(),
     'authentication_method': ?authenticationMethod?.toTfJson(),
@@ -674,6 +679,7 @@ final class DmsEndpointOracleSettings {
 
   final TfArg<String>? usePathPrefix;
 
+  @internal
   Map<String, Object?> encode() => {
     'access_alternate_directly': ?accessAlternateDirectly?.toTfJson(),
     'add_supplemental_logging': ?addSupplementalLogging?.toTfJson(),
@@ -826,6 +832,7 @@ final class DmsEndpointPostgresSettings {
 
   final TfArg<String>? slotName;
 
+  @internal
   Map<String, Object?> encode() => {
     'after_connect_script': ?afterConnectScript?.toTfJson(),
     'authentication_method': ?authenticationMethod?.toTfJson(),
@@ -933,6 +940,7 @@ final class DmsEndpointRedisSettings {
 
   final DmsEndpointSslSecurityProtocol? sslSecurityProtocol;
 
+  @internal
   Map<String, Object?> encode() => {
     'auth_password': ?authPassword?.toTfJson(),
     'auth_type': authType.toTfJson(),
@@ -1012,6 +1020,7 @@ final class DmsEndpointRedshiftSettings {
 
   final TfArg<String>? serviceAccessRoleArn;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket_folder': ?bucketFolder?.toTfJson(),
     'bucket_name': ?bucketName?.encodeAs('id').toTfJson(),

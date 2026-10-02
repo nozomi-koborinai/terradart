@@ -15,6 +15,7 @@ final class AppmeshVirtualServiceSpec {
 
   final AppmeshVirtualServiceProvider? provider;
 
+  @internal
   Map<String, Object?> encode() => {'provider': ?provider?.encode()};
 }
 
@@ -37,8 +38,10 @@ sealed class AppmeshVirtualServiceProvider {
   ) = AppmeshVirtualServiceProviderVirtualRouter;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 }
 
@@ -49,9 +52,11 @@ final class AppmeshVirtualServiceProviderVirtualNode
 
   final AppmeshVirtualServiceVirtualNode virtualNode;
 
+  @internal
   @override
   String get blockKey => 'virtual_node';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'virtual_node': virtualNode.encode()};
 }
@@ -63,9 +68,11 @@ final class AppmeshVirtualServiceProviderVirtualRouter
 
   final AppmeshVirtualServiceVirtualRouter virtualRouter;
 
+  @internal
   @override
   String get blockKey => 'virtual_router';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'virtual_router': virtualRouter.encode()};
 }
@@ -78,6 +85,7 @@ final class AppmeshVirtualServiceVirtualNode {
 
   final TfArg<String> virtualNodeName;
 
+  @internal
   Map<String, Object?> encode() => {
     'virtual_node_name': virtualNodeName.toTfJson(),
   };
@@ -91,6 +99,7 @@ final class AppmeshVirtualServiceVirtualRouter {
 
   final TfArg<String> virtualRouterName;
 
+  @internal
   Map<String, Object?> encode() => {
     'virtual_router_name': virtualRouterName.toTfJson(),
   };

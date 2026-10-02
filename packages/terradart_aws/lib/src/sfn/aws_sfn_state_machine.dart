@@ -41,12 +41,15 @@ sealed class SfnStateMachineName {
       SfnStateMachineNamePrefix;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -56,12 +59,15 @@ final class SfnStateMachineNameChoice extends SfnStateMachineName {
 
   final TfArg<String> name;
 
+  @internal
   @override
   String get blockKey => 'name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
@@ -72,12 +78,15 @@ final class SfnStateMachineNamePrefix extends SfnStateMachineName {
 
   final TfArg<String> namePrefix;
 
+  @internal
   @override
   String get blockKey => 'name_prefix';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'name_prefix': namePrefix.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'name_prefix': namePrefix};
 }
@@ -98,6 +107,7 @@ final class SfnStateMachineEncryptionConfiguration {
 
   final SfnStateMachineEncryptionConfigurationType? type;
 
+  @internal
   Map<String, Object?> encode() => {
     'kms_data_key_reuse_period_seconds': ?kmsDataKeyReusePeriodSeconds
         ?.toTfJson(),
@@ -147,6 +157,7 @@ final class SfnStateMachineLoggingConfiguration {
 
   final TfArg<String>? logDestination;
 
+  @internal
   Map<String, Object?> encode() => {
     'include_execution_data': ?includeExecutionData?.toTfJson(),
     'level': ?level?.toTfJson(),
@@ -178,6 +189,7 @@ final class SfnStateMachineTracingConfiguration {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 

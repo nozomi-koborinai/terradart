@@ -25,6 +25,7 @@ final class DataOriginCaCertificateFilter {
 
   final RefTo<CloudflareZone> zoneId;
 
+  @internal
   Map<String, Object?> encode() => {
     'limit': ?limit?.toTfJson(),
     'offset': ?offset?.toTfJson(),

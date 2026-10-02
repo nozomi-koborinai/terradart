@@ -39,6 +39,7 @@ final class NetworkServicesEndpointPolicyEndpointMatcher {
 
   final NetworkServicesEndpointPolicyMetadataLabelMatcher metadataLabelMatcher;
 
+  @internal
   Map<String, Object?> encode() => {
     'metadata_label_matcher': metadataLabelMatcher.encode(),
   };
@@ -58,6 +59,7 @@ final class NetworkServicesEndpointPolicyMetadataLabelMatcher {
 
   final List<NetworkServicesEndpointPolicyMetadataLabels>? metadataLabels;
 
+  @internal
   Map<String, Object?> encode() => {
     'metadata_label_match_criteria': metadataLabelMatchCriteria.toTfJson(),
     if (metadataLabels != null)
@@ -104,6 +106,7 @@ final class NetworkServicesEndpointPolicyMetadataLabels {
 
   final TfArg<String> labelValue;
 
+  @internal
   Map<String, Object?> encode() => {
     'label_name': labelName.toTfJson(),
     'label_value': labelValue.toTfJson(),
@@ -118,6 +121,7 @@ final class NetworkServicesEndpointPolicyTrafficPortSelector {
 
   final TfArg<List<String>> ports;
 
+  @internal
   Map<String, Object?> encode() => {'ports': ports.toTfJson()};
 }
 

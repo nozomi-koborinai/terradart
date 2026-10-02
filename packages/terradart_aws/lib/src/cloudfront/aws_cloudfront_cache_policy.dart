@@ -29,6 +29,7 @@ final class CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOrigin {
 
   final CloudfrontCachePolicyQueryStringsConfig queryStringsConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_accept_encoding_brotli': ?enableAcceptEncodingBrotli?.toTfJson(),
     'enable_accept_encoding_gzip': ?enableAcceptEncodingGzip?.toTfJson(),
@@ -51,6 +52,7 @@ final class CloudfrontCachePolicyCookiesConfig {
 
   final CloudfrontCachePolicyCookies? cookies;
 
+  @internal
   Map<String, Object?> encode() => {
     'cookie_behavior': cookieBehavior.toTfJson(),
     'cookies': ?cookies?.encode(),
@@ -94,6 +96,7 @@ final class CloudfrontCachePolicyCookies {
 
   final TfArg<List<String>>? items;
 
+  @internal
   Map<String, Object?> encode() => {'items': ?items?.toTfJson()};
 }
 
@@ -107,6 +110,7 @@ final class CloudfrontCachePolicyHeadersConfig {
 
   final CloudfrontCachePolicyHeaders? headers;
 
+  @internal
   Map<String, Object?> encode() => {
     'header_behavior': ?headerBehavior?.toTfJson(),
     'headers': ?headers?.encode(),
@@ -144,6 +148,7 @@ final class CloudfrontCachePolicyHeaders {
 
   final TfArg<List<String>>? items;
 
+  @internal
   Map<String, Object?> encode() => {'items': ?items?.toTfJson()};
 }
 
@@ -160,6 +165,7 @@ final class CloudfrontCachePolicyQueryStringsConfig {
 
   final CloudfrontCachePolicyQueryStrings? queryStrings;
 
+  @internal
   Map<String, Object?> encode() => {
     'query_string_behavior': queryStringBehavior.toTfJson(),
     'query_strings': ?queryStrings?.encode(),
@@ -205,6 +211,7 @@ final class CloudfrontCachePolicyQueryStrings {
 
   final TfArg<List<String>>? items;
 
+  @internal
   Map<String, Object?> encode() => {'items': ?items?.toTfJson()};
 }
 

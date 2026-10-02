@@ -3,6 +3,7 @@
 /// AWS IAM Access Analyzer.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/accessanalyzer/aws_accessanalyzer_analyzer.dart'
     show
         AccessanalyzerAnalyzerConfiguration,

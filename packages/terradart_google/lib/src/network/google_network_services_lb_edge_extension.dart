@@ -43,6 +43,7 @@ final class NetworkServicesLbEdgeExtensionChains {
 
   final NetworkServicesLbEdgeExtensionMatchCondition matchCondition;
 
+  @internal
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'extensions': [for (final e in extensions) e.encode()],
@@ -75,6 +76,7 @@ final class NetworkServicesLbEdgeExtensionExtensions {
 
   final TfArg<List<String>>? supportedEvents;
 
+  @internal
   Map<String, Object?> encode() => {
     'fail_open': ?failOpen?.toTfJson(),
     'forward_attributes': ?forwardAttributes?.toTfJson(),
@@ -95,6 +97,7 @@ final class NetworkServicesLbEdgeExtensionMatchCondition {
 
   final TfArg<String> celExpression;
 
+  @internal
   Map<String, Object?> encode() => {'cel_expression': celExpression.toTfJson()};
 }
 

@@ -32,6 +32,7 @@ final class Ec2TransitGatewayPolicyTableEntryPolicyRule {
 
   final List<Ec2TransitGatewayPolicyTableEntryMetadata>? metadata;
 
+  @internal
   Map<String, Object?> encode() => {
     'destination_cidr_block': ?destinationCidrBlock?.toTfJson(),
     'destination_port_range': ?destinationPortRange?.toTfJson(),
@@ -52,6 +53,7 @@ final class Ec2TransitGatewayPolicyTableEntryMetadata {
 
   final TfArg<String>? value;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': ?key?.toTfJson(),
     'value': ?value?.toTfJson(),

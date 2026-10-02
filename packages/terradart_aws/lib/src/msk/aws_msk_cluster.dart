@@ -80,6 +80,7 @@ final class MskClusterBrokerNodeGroupInfo {
 
   final MskClusterStorageInfo? storageInfo;
 
+  @internal
   Map<String, Object?> encode() => {
     'az_distribution': ?azDistribution?.toTfJson(),
     'client_subnets': clientSubnets.toTfJson(),
@@ -121,6 +122,7 @@ final class MskClusterConnectivityInfo {
 
   final MskClusterVpcConnectivity? vpcConnectivity;
 
+  @internal
   Map<String, Object?> encode() => {
     'network_type': ?networkType?.toTfJson(),
     'public_access': ?publicAccess?.encode(),
@@ -150,6 +152,7 @@ final class MskClusterPublicAccess {
 
   final MskClusterType? type;
 
+  @internal
   Map<String, Object?> encode() => {'type': ?type?.toTfJson()};
 }
 
@@ -177,6 +180,7 @@ final class MskClusterVpcConnectivity {
 
   final MskClusterVpcConnectivityClientAuthentication? clientAuthentication;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_authentication': ?clientAuthentication?.encode(),
   };
@@ -192,6 +196,7 @@ final class MskClusterVpcConnectivityClientAuthentication {
 
   final MskClusterSasl? sasl;
 
+  @internal
   Map<String, Object?> encode() => {
     'tls': ?tls?.toTfJson(),
     'sasl': ?sasl?.encode(),
@@ -209,6 +214,7 @@ final class MskClusterSasl {
 
   final TfArg<bool>? scram;
 
+  @internal
   Map<String, Object?> encode() => {
     'iam': ?iam?.toTfJson(),
     'scram': ?scram?.toTfJson(),
@@ -223,6 +229,7 @@ final class MskClusterStorageInfo {
 
   final MskClusterEbsStorageInfo? ebsStorageInfo;
 
+  @internal
   Map<String, Object?> encode() => {
     'ebs_storage_info': ?ebsStorageInfo?.encode(),
   };
@@ -238,6 +245,7 @@ final class MskClusterEbsStorageInfo {
 
   final MskClusterProvisionedThroughput? provisionedThroughput;
 
+  @internal
   Map<String, Object?> encode() => {
     'volume_size': ?volumeSize?.toTfJson(),
     'provisioned_throughput': ?provisionedThroughput?.encode(),
@@ -254,6 +262,7 @@ final class MskClusterProvisionedThroughput {
 
   final TfArg<num>? volumeThroughput;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'volume_throughput': ?volumeThroughput?.toTfJson(),
@@ -276,6 +285,7 @@ final class MskClusterClientAuthentication {
 
   final MskClusterTls? tls;
 
+  @internal
   Map<String, Object?> encode() => {
     'unauthenticated': ?unauthenticated?.toTfJson(),
     'sasl': ?sasl?.encode(),
@@ -291,6 +301,7 @@ final class MskClusterTls {
 
   final TfArg<List<String>>? certificateAuthorityArns;
 
+  @internal
   Map<String, Object?> encode() => {
     'certificate_authority_arns': ?certificateAuthorityArns?.toTfJson(),
   };
@@ -309,6 +320,7 @@ final class MskClusterConfigurationInfo {
 
   final TfArg<num> revision;
 
+  @internal
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
     'revision': revision.toTfJson(),
@@ -328,6 +340,7 @@ final class MskClusterEncryptionInfo {
 
   final MskClusterEncryptionInTransit? encryptionInTransit;
 
+  @internal
   Map<String, Object?> encode() => {
     'encryption_at_rest_kms_key_arn': ?encryptionAtRestKmsKeyArn?.toTfJson(),
     'encryption_in_transit': ?encryptionInTransit?.encode(),
@@ -344,6 +357,7 @@ final class MskClusterEncryptionInTransit {
 
   final TfArg<bool>? inCluster;
 
+  @internal
   Map<String, Object?> encode() => {
     'client_broker': ?clientBroker?.toTfJson(),
     'in_cluster': ?inCluster?.toTfJson(),
@@ -379,6 +393,7 @@ final class MskClusterLoggingInfo {
 
   final MskClusterBrokerLogs brokerLogs;
 
+  @internal
   Map<String, Object?> encode() => {'broker_logs': brokerLogs.encode()};
 }
 
@@ -394,6 +409,7 @@ final class MskClusterBrokerLogs {
 
   final MskClusterS3? s3;
 
+  @internal
   Map<String, Object?> encode() => {
     'cloudwatch_logs': ?cloudwatchLogs?.encode(),
     'firehose': ?firehose?.encode(),
@@ -411,6 +427,7 @@ final class MskClusterCloudwatchLogs {
 
   final RefTo<AwsCloudwatchLogGroup>? logGroup;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'log_group': ?logGroup?.encodeAs('name').toTfJson(),
@@ -427,6 +444,7 @@ final class MskClusterFirehose {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'delivery_stream': ?deliveryStream?.toTfJson(),
     'enabled': enabled.toTfJson(),
@@ -445,6 +463,7 @@ final class MskClusterS3 {
 
   final TfArg<String>? prefix;
 
+  @internal
   Map<String, Object?> encode() => {
     'bucket': ?bucket?.encodeAs('id').toTfJson(),
     'enabled': enabled.toTfJson(),
@@ -460,6 +479,7 @@ final class MskClusterOpenMonitoring {
 
   final MskClusterPrometheus prometheus;
 
+  @internal
   Map<String, Object?> encode() => {'prometheus': prometheus.encode()};
 }
 
@@ -473,6 +493,7 @@ final class MskClusterPrometheus {
 
   final MskClusterNodeExporter? nodeExporter;
 
+  @internal
   Map<String, Object?> encode() => {
     'jmx_exporter': ?jmxExporter?.encode(),
     'node_exporter': ?nodeExporter?.encode(),
@@ -487,6 +508,7 @@ final class MskClusterJmxExporter {
 
   final TfArg<bool> enabledInBroker;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled_in_broker': enabledInBroker.toTfJson(),
   };
@@ -500,6 +522,7 @@ final class MskClusterNodeExporter {
 
   final TfArg<bool> enabledInBroker;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled_in_broker': enabledInBroker.toTfJson(),
   };
@@ -513,6 +536,7 @@ final class MskClusterRebalancing {
 
   final MskClusterStatus status;
 
+  @internal
   Map<String, Object?> encode() => {'status': status.toTfJson()};
 }
 

@@ -269,12 +269,15 @@ sealed class CloudwatchMetricAlarmSignal {
   ) = CloudwatchMetricAlarmSignalMetricQuery;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -285,14 +288,17 @@ final class CloudwatchMetricAlarmSignalEvaluationCriteria
 
   final CloudwatchMetricAlarmEvaluationCriteria evaluationCriteria;
 
+  @internal
   @override
   String get blockKey => 'evaluation_criteria';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'evaluation_criteria': evaluationCriteria.encode(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'evaluation_criteria': TfArg.literal(evaluationCriteria.encode()),
@@ -306,12 +312,15 @@ final class CloudwatchMetricAlarmSignalMetricName
 
   final TfArg<String> metricName;
 
+  @internal
   @override
   String get blockKey => 'metric_name';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'metric_name': metricName.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'metric_name': metricName};
 }
@@ -323,14 +332,17 @@ final class CloudwatchMetricAlarmSignalMetricQuery
 
   final List<CloudwatchMetricAlarmMetricQuery> metricQuery;
 
+  @internal
   @override
   String get blockKey => 'metric_query';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'metric_query': [for (final e in metricQuery) e.encode()],
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'metric_query': TfArg.literal([for (final e in metricQuery) e.encode()]),
@@ -356,12 +368,15 @@ sealed class CloudwatchMetricAlarmAggregation {
   ) = CloudwatchMetricAlarmAggregationStatistic;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -374,14 +389,17 @@ final class CloudwatchMetricAlarmAggregationExtendedStatistic
 
   final TfArg<String> extendedStatistic;
 
+  @internal
   @override
   String get blockKey => 'extended_statistic';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'extended_statistic': extendedStatistic.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'extended_statistic': extendedStatistic,
@@ -395,12 +413,15 @@ final class CloudwatchMetricAlarmAggregationStatistic
 
   final CloudwatchMetricAlarmStatistic statistic;
 
+  @internal
   @override
   String get blockKey => 'statistic';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'statistic': statistic.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'statistic': statistic};
 }
@@ -423,12 +444,15 @@ sealed class CloudwatchMetricAlarmThreshold {
   ) = CloudwatchMetricAlarmThresholdMetricId;
 
   /// The Terraform argument this choice sets.
+  @internal
   String get blockKey;
 
+  @internal
   Map<String, Object?> encode();
 
   /// The resource arguments behind [encode], as the caller's
   /// [TfArg]s.
+  @internal
   Map<String, TfArg<Object?>> get argMap;
 }
 
@@ -439,12 +463,15 @@ final class CloudwatchMetricAlarmThresholdChoice
 
   final TfArg<num> threshold;
 
+  @internal
   @override
   String get blockKey => 'threshold';
 
+  @internal
   @override
   Map<String, Object?> encode() => {'threshold': threshold.toTfJson()};
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {'threshold': threshold};
 }
@@ -456,14 +483,17 @@ final class CloudwatchMetricAlarmThresholdMetricId
 
   final TfArg<String> thresholdMetricId;
 
+  @internal
   @override
   String get blockKey => 'threshold_metric_id';
 
+  @internal
   @override
   Map<String, Object?> encode() => {
     'threshold_metric_id': thresholdMetricId.toTfJson(),
   };
 
+  @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'threshold_metric_id': thresholdMetricId,
@@ -478,6 +508,7 @@ final class CloudwatchMetricAlarmEvaluationCriteria {
 
   final CloudwatchMetricAlarmPromqlCriteria promqlCriteria;
 
+  @internal
   Map<String, Object?> encode() => {'promql_criteria': promqlCriteria.encode()};
 }
 
@@ -497,6 +528,7 @@ final class CloudwatchMetricAlarmPromqlCriteria {
 
   final TfArg<num>? recoveryPeriod;
 
+  @internal
   Map<String, Object?> encode() => {
     'pending_period': ?pendingPeriod?.toTfJson(),
     'query': query.toTfJson(),
@@ -532,6 +564,7 @@ final class CloudwatchMetricAlarmMetricQuery {
 
   final CloudwatchMetricAlarmMetric? metric;
 
+  @internal
   Map<String, Object?> encode() => {
     'account_id': ?accountId?.toTfJson(),
     'expression': ?expression?.toTfJson(),
@@ -568,6 +601,7 @@ final class CloudwatchMetricAlarmMetric {
 
   final CloudwatchMetricAlarmMetricUnit? unit;
 
+  @internal
   Map<String, Object?> encode() => {
     'dimensions': ?dimensions?.toTfJson(),
     'metric_name': metricName.toTfJson(),
@@ -731,6 +765,7 @@ final class CloudwatchMetricAlarmWarmUpConfiguration {
 
   final TfArg<num> warmUpPeriodDurationInMinutes;
 
+  @internal
   Map<String, Object?> encode() => {
     'only_start_evaluating_after_warm_up_period_ends':
         ?onlyStartEvaluatingAfterWarmUpPeriodEnds?.toTfJson(),

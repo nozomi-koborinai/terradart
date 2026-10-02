@@ -155,6 +155,7 @@ final class GrafanaWorkspaceNetworkAccessControl {
 
   final TfArg<List<String>> vpceIds;
 
+  @internal
   Map<String, Object?> encode() => {
     'prefix_list_ids': prefixListIds.toTfJson(),
     'vpce_ids': vpceIds.toTfJson(),
@@ -174,6 +175,7 @@ final class GrafanaWorkspaceVpcConfiguration {
 
   final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
+  @internal
   Map<String, Object?> encode() => {
     'security_group_ids': securityGroupIds.encodeAs('id').toTfJson(),
     'subnet_ids': subnetIds.encodeAs('id').toTfJson(),

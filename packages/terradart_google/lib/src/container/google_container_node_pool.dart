@@ -34,6 +34,7 @@ final class ContainerNodePoolAutoscaling {
 
   final TfArg<num>? totalMinNodeCount;
 
+  @internal
   Map<String, Object?> encode() => {
     'location_policy': ?locationPolicy?.toTfJson(),
     'max_node_count': ?maxNodeCount?.toTfJson(),
@@ -52,6 +53,7 @@ final class ContainerNodePoolMaintenancePolicy {
   final List<ContainerNodePoolExclusionUntilEndOfSupport>?
   exclusionUntilEndOfSupport;
 
+  @internal
   Map<String, Object?> encode() => {
     if (exclusionUntilEndOfSupport != null)
       'exclusion_until_end_of_support': [
@@ -68,6 +70,7 @@ final class ContainerNodePoolExclusionUntilEndOfSupport {
 
   final TfArg<bool>? enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
@@ -81,6 +84,7 @@ final class ContainerNodePoolManagement {
 
   final TfArg<bool>? autoUpgrade;
 
+  @internal
   Map<String, Object?> encode() => {
     'auto_repair': ?autoRepair?.toTfJson(),
     'auto_upgrade': ?autoUpgrade?.toTfJson(),
@@ -126,6 +130,7 @@ final class ContainerNodePoolNetworkConfig {
 
   final ContainerNodePoolPodCidrOverprovisionConfig? podCidrOverprovisionConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'accelerator_network_profile': ?acceleratorNetworkProfile?.toTfJson(),
     'create_pod_range': ?createPodRange?.toTfJson(),
@@ -159,6 +164,7 @@ final class ContainerNodePoolAdditionalNodeNetworkConfigs {
 
   final RefTo<GoogleComputeSubnetwork>? subnetwork;
 
+  @internal
   Map<String, Object?> encode() => {
     'network': ?network?.encodeAs('name').toTfJson(),
     'subnetwork': ?subnetwork?.encodeAs('name').toTfJson(),
@@ -181,6 +187,7 @@ final class ContainerNodePoolAdditionalPodNetworkConfigs {
 
   final RefTo<GoogleComputeSubnetwork>? subnetwork;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_pods_per_node': ?maxPodsPerNode?.toTfJson(),
     'secondary_pod_range': ?secondaryPodRange?.toTfJson(),
@@ -198,6 +205,7 @@ final class ContainerNodePoolNetworkPerformanceConfig {
 
   final TfArg<String> totalEgressBandwidthTier;
 
+  @internal
   Map<String, Object?> encode() => {
     'total_egress_bandwidth_tier': totalEgressBandwidthTier.toTfJson(),
   };
@@ -211,6 +219,7 @@ final class ContainerNodePoolPodCidrOverprovisionConfig {
 
   final TfArg<bool> disabled;
 
+  @internal
   Map<String, Object?> encode() => {'disabled': disabled.toTfJson()};
 }
 
@@ -360,6 +369,7 @@ final class ContainerNodePoolNodeConfig {
 
   final ContainerNodePoolWorkloadMetadataConfig? workloadMetadataConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'boot_disk_kms_key': ?bootDiskKmsKey?.toTfJson(),
     'disk_size_gb': ?diskSizeGb?.toTfJson(),
@@ -430,6 +440,7 @@ final class ContainerNodePoolAdvancedMachineFeatures {
 
   final TfArg<num> threadsPerCore;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_nested_virtualization': ?enableNestedVirtualization?.toTfJson(),
     'performance_monitoring_unit': ?performanceMonitoringUnit?.toTfJson(),
@@ -456,6 +467,7 @@ final class ContainerNodePoolBootDisk {
 
   final TfArg<num>? sizeGb;
 
+  @internal
   Map<String, Object?> encode() => {
     'disk_type': ?diskType?.toTfJson(),
     'provisioned_iops': ?provisionedIops?.toTfJson(),
@@ -477,6 +489,7 @@ final class ContainerNodePoolConfidentialNodes {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {
     'confidential_instance_type': ?confidentialInstanceType?.toTfJson(),
     'enabled': enabled.toTfJson(),
@@ -500,6 +513,7 @@ final class ContainerNodePoolContainerdConfig {
 
   final ContainerNodePoolWritableCgroups? writableCgroups;
 
+  @internal
   Map<String, Object?> encode() => {
     'private_registry_access_config': ?privateRegistryAccessConfig?.encode(),
     if (registryHosts != null)
@@ -522,6 +536,7 @@ final class ContainerNodePoolPrivateRegistryAccessConfig {
   final List<ContainerNodePoolCertificateAuthorityDomainConfig>?
   certificateAuthorityDomainConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     if (certificateAuthorityDomainConfig != null)
@@ -545,6 +560,7 @@ final class ContainerNodePoolCertificateAuthorityDomainConfig {
   final ContainerNodePoolGcpSecretManagerCertificateConfig
   gcpSecretManagerCertificateConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'fqdns': fqdns.toTfJson(),
     'gcp_secret_manager_certificate_config': gcpSecretManagerCertificateConfig
@@ -562,6 +578,7 @@ final class ContainerNodePoolGcpSecretManagerCertificateConfig {
 
   final TfArg<String> secretUri;
 
+  @internal
   Map<String, Object?> encode() => {'secret_uri': secretUri.toTfJson()};
 }
 
@@ -575,6 +592,7 @@ final class ContainerNodePoolRegistryHosts {
 
   final List<ContainerNodePoolHosts>? hosts;
 
+  @internal
   Map<String, Object?> encode() => {
     'server': server.toTfJson(),
     if (hosts != null) 'hosts': [for (final e in hosts!) e.encode()],
@@ -609,6 +627,7 @@ final class ContainerNodePoolHosts {
 
   final List<ContainerNodePoolHeader>? header;
 
+  @internal
   Map<String, Object?> encode() => {
     'capabilities': ?capabilities?.toTfJson(),
     'dial_timeout': ?dialTimeout?.toTfJson(),
@@ -628,6 +647,7 @@ final class ContainerNodePoolCa {
 
   final TfArg<String>? gcpSecretManagerSecretUri;
 
+  @internal
   Map<String, Object?> encode() => {
     'gcp_secret_manager_secret_uri': ?gcpSecretManagerSecretUri?.toTfJson(),
   };
@@ -643,6 +663,7 @@ final class ContainerNodePoolClient {
 
   final ContainerNodePoolKey? key;
 
+  @internal
   Map<String, Object?> encode() => {
     'cert': cert.encode(),
     'key': ?key?.encode(),
@@ -657,6 +678,7 @@ final class ContainerNodePoolCert {
 
   final TfArg<String>? gcpSecretManagerSecretUri;
 
+  @internal
   Map<String, Object?> encode() => {
     'gcp_secret_manager_secret_uri': ?gcpSecretManagerSecretUri?.toTfJson(),
   };
@@ -670,6 +692,7 @@ final class ContainerNodePoolKey {
 
   final TfArg<String>? gcpSecretManagerSecretUri;
 
+  @internal
   Map<String, Object?> encode() => {
     'gcp_secret_manager_secret_uri': ?gcpSecretManagerSecretUri?.toTfJson(),
   };
@@ -685,6 +708,7 @@ final class ContainerNodePoolHeader {
 
   final TfArg<List<String>> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'value': value.toTfJson(),
@@ -699,6 +723,7 @@ final class ContainerNodePoolWritableCgroups {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 
@@ -715,6 +740,7 @@ final class ContainerNodePoolEphemeralStorageLocalSsdConfig {
 
   final TfArg<num> localSsdCount;
 
+  @internal
   Map<String, Object?> encode() => {
     'data_cache_count': ?dataCacheCount?.toTfJson(),
     'local_ssd_count': localSsdCount.toTfJson(),
@@ -729,6 +755,7 @@ final class ContainerNodePoolFastSocket {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 
@@ -740,6 +767,7 @@ final class ContainerNodePoolGcfsConfig {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 
@@ -766,6 +794,7 @@ final class ContainerNodePoolGuestAccelerator {
 
   final ContainerNodePoolGpuSharingConfig? gpuSharingConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'count': count.toTfJson(),
     'gpu_partition_size': ?gpuPartitionSize?.toTfJson(),
@@ -785,6 +814,7 @@ final class ContainerNodePoolGpuDriverInstallationConfig {
 
   final TfArg<String> gpuDriverVersion;
 
+  @internal
   Map<String, Object?> encode() => {
     'gpu_driver_version': gpuDriverVersion.toTfJson(),
   };
@@ -803,6 +833,7 @@ final class ContainerNodePoolGpuSharingConfig {
 
   final TfArg<num> maxSharedClientsPerGpu;
 
+  @internal
   Map<String, Object?> encode() => {
     'gpu_sharing_strategy': gpuSharingStrategy.toTfJson(),
     'max_shared_clients_per_gpu': maxSharedClientsPerGpu.toTfJson(),
@@ -817,6 +848,7 @@ final class ContainerNodePoolGvnic {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 
@@ -896,6 +928,7 @@ final class ContainerNodePoolKubeletConfig {
 
   final ContainerNodePoolTopologyManager? topologyManager;
 
+  @internal
   Map<String, Object?> encode() => {
     'allowed_unsafe_sysctls': ?allowedUnsafeSysctls?.toTfJson(),
     'container_log_max_files': ?containerLogMaxFiles?.toTfJson(),
@@ -934,6 +967,7 @@ final class ContainerNodePoolCrashLoopBackOff {
 
   final TfArg<String>? maxContainerRestartPeriod;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_container_restart_period': ?maxContainerRestartPeriod?.toTfJson(),
   };
@@ -964,6 +998,7 @@ final class ContainerNodePoolEvictionMinimumReclaim {
 
   final TfArg<String>? pidAvailable;
 
+  @internal
   Map<String, Object?> encode() => {
     'imagefs_available': ?imagefsAvailable?.toTfJson(),
     'imagefs_inodes_free': ?imagefsInodesFree?.toTfJson(),
@@ -999,6 +1034,7 @@ final class ContainerNodePoolEvictionSoft {
 
   final TfArg<String>? pidAvailable;
 
+  @internal
   Map<String, Object?> encode() => {
     'imagefs_available': ?imagefsAvailable?.toTfJson(),
     'imagefs_inodes_free': ?imagefsInodesFree?.toTfJson(),
@@ -1034,6 +1070,7 @@ final class ContainerNodePoolEvictionSoftGracePeriod {
 
   final TfArg<String>? pidAvailable;
 
+  @internal
   Map<String, Object?> encode() => {
     'imagefs_available': ?imagefsAvailable?.toTfJson(),
     'imagefs_inodes_free': ?imagefsInodesFree?.toTfJson(),
@@ -1052,6 +1089,7 @@ final class ContainerNodePoolMemoryManager {
 
   final TfArg<String>? policy;
 
+  @internal
   Map<String, Object?> encode() => {'policy': ?policy?.toTfJson()};
 }
 
@@ -1065,6 +1103,7 @@ final class ContainerNodePoolTopologyManager {
 
   final TfArg<String>? scope;
 
+  @internal
   Map<String, Object?> encode() => {
     'policy': ?policy?.toTfJson(),
     'scope': ?scope?.toTfJson(),
@@ -1105,6 +1144,7 @@ final class ContainerNodePoolLinuxNodeConfig {
 
   final ContainerNodePoolSwapConfig? swapConfig;
 
+  @internal
   Map<String, Object?> encode() => {
     'cgroup_mode': ?cgroupMode?.toTfJson(),
     'sysctls': ?sysctls?.toTfJson(),
@@ -1126,6 +1166,7 @@ final class ContainerNodePoolAccurateTimeConfig {
 
   final TfArg<bool>? enablePtpKvmTimeSync;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_ptp_kvm_time_sync': ?enablePtpKvmTimeSync?.toTfJson(),
   };
@@ -1139,6 +1180,7 @@ final class ContainerNodePoolCustomNodeInit {
 
   final ContainerNodePoolInitScript? initScript;
 
+  @internal
   Map<String, Object?> encode() => {'init_script': ?initScript?.encode()};
 }
 
@@ -1158,6 +1200,7 @@ final class ContainerNodePoolInitScript {
 
   final TfArg<String>? gcsUri;
 
+  @internal
   Map<String, Object?> encode() => {
     'gcp_secret_manager_secret_uri': ?gcpSecretManagerSecretUri?.toTfJson(),
     'gcs_generation': ?gcsGeneration?.toTfJson(),
@@ -1178,6 +1221,7 @@ final class ContainerNodePoolHugepagesConfig {
 
   final TfArg<num>? hugepageSize2m;
 
+  @internal
   Map<String, Object?> encode() => {
     'hugepage_size_1g': ?hugepageSize1g?.toTfJson(),
     'hugepage_size_2m': ?hugepageSize2m?.toTfJson(),
@@ -1192,6 +1236,7 @@ final class ContainerNodePoolNodeKernelModuleLoading {
 
   final TfArg<String>? policy;
 
+  @internal
   Map<String, Object?> encode() => {'policy': ?policy?.toTfJson()};
 }
 
@@ -1217,6 +1262,7 @@ final class ContainerNodePoolSwapConfig {
 
   final ContainerNodePoolEphemeralLocalSsdProfile? ephemeralLocalSsdProfile;
 
+  @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'boot_disk_profile': ?bootDiskProfile?.encode(),
@@ -1239,6 +1285,7 @@ final class ContainerNodePoolBootDiskProfile {
 
   final TfArg<num>? swapSizePercent;
 
+  @internal
   Map<String, Object?> encode() => {
     'swap_size_gib': ?swapSizeGib?.toTfJson(),
     'swap_size_percent': ?swapSizePercent?.toTfJson(),
@@ -1253,6 +1300,7 @@ final class ContainerNodePoolDedicatedLocalSsdProfile {
 
   final TfArg<num>? diskCount;
 
+  @internal
   Map<String, Object?> encode() => {'disk_count': ?diskCount?.toTfJson()};
 }
 
@@ -1264,6 +1312,7 @@ final class ContainerNodePoolEncryptionConfig {
 
   final TfArg<bool>? disabled;
 
+  @internal
   Map<String, Object?> encode() => {'disabled': ?disabled?.toTfJson()};
 }
 
@@ -1280,6 +1329,7 @@ final class ContainerNodePoolEphemeralLocalSsdProfile {
 
   final TfArg<num>? swapSizePercent;
 
+  @internal
   Map<String, Object?> encode() => {
     'swap_size_gib': ?swapSizeGib?.toTfJson(),
     'swap_size_percent': ?swapSizePercent?.toTfJson(),
@@ -1294,6 +1344,7 @@ final class ContainerNodePoolLocalNvmeSsdBlockConfig {
 
   final TfArg<num> localSsdCount;
 
+  @internal
   Map<String, Object?> encode() => {
     'local_ssd_count': localSsdCount.toTfJson(),
   };
@@ -1309,6 +1360,7 @@ final class ContainerNodePoolNodeImageConfig {
 
   final TfArg<String>? imageProject;
 
+  @internal
   Map<String, Object?> encode() => {
     'image': ?image?.toTfJson(),
     'image_project': ?imageProject?.toTfJson(),
@@ -1331,6 +1383,7 @@ final class ContainerNodePoolReservationAffinity {
 
   final TfArg<List<String>>? values;
 
+  @internal
   Map<String, Object?> encode() => {
     'consume_reservation_type': consumeReservationType.toTfJson(),
     'key': ?key?.toTfJson(),
@@ -1346,6 +1399,7 @@ final class ContainerNodePoolSandboxConfig {
 
   final TfArg<String> type;
 
+  @internal
   Map<String, Object?> encode() => {'type': type.toTfJson()};
 }
 
@@ -1362,6 +1416,7 @@ final class ContainerNodePoolSecondaryBootDisks {
 
   final TfArg<String>? mode;
 
+  @internal
   Map<String, Object?> encode() => {
     'disk_image': diskImage.toTfJson(),
     'mode': ?mode?.toTfJson(),
@@ -1381,6 +1436,7 @@ final class ContainerNodePoolShieldedInstanceConfig {
 
   final TfArg<bool>? enableSecureBoot;
 
+  @internal
   Map<String, Object?> encode() => {
     'enable_integrity_monitoring': ?enableIntegrityMonitoring?.toTfJson(),
     'enable_secure_boot': ?enableSecureBoot?.toTfJson(),
@@ -1400,6 +1456,7 @@ final class ContainerNodePoolSoleTenantConfig {
 
   final List<ContainerNodePoolNodeAffinity> nodeAffinity;
 
+  @internal
   Map<String, Object?> encode() => {
     'min_node_cpus': ?minNodeCpus?.toTfJson(),
     'node_affinity': [for (final e in nodeAffinity) e.encode()],
@@ -1422,6 +1479,7 @@ final class ContainerNodePoolNodeAffinity {
 
   final TfArg<List<String>> values;
 
+  @internal
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'operator': operator.toTfJson(),
@@ -1445,6 +1503,7 @@ final class ContainerNodePoolTaint {
 
   final TfArg<String> value;
 
+  @internal
   Map<String, Object?> encode() => {
     'effect': effect.toTfJson(),
     'key': key.toTfJson(),
@@ -1460,6 +1519,7 @@ final class ContainerNodePoolTaintConfig {
 
   final TfArg<String> architectureTaintBehavior;
 
+  @internal
   Map<String, Object?> encode() => {
     'architecture_taint_behavior': architectureTaintBehavior.toTfJson(),
   };
@@ -1473,6 +1533,7 @@ final class ContainerNodePoolWindowsNodeConfig {
 
   final TfArg<String>? osversion;
 
+  @internal
   Map<String, Object?> encode() => {'osversion': ?osversion?.toTfJson()};
 }
 
@@ -1484,6 +1545,7 @@ final class ContainerNodePoolWorkloadMetadataConfig {
 
   final TfArg<String> mode;
 
+  @internal
   Map<String, Object?> encode() => {'mode': mode.toTfJson()};
 }
 
@@ -1503,6 +1565,7 @@ final class ContainerNodePoolNodeDrainConfig {
 
   final TfArg<bool>? respectPdbDuringNodePoolDeletion;
 
+  @internal
   Map<String, Object?> encode() => {
     'grace_termination_duration': ?graceTerminationDuration?.toTfJson(),
     'pdb_timeout_duration': ?pdbTimeoutDuration?.toTfJson(),
@@ -1527,6 +1590,7 @@ final class ContainerNodePoolPlacementPolicy {
 
   final TfArg<String> type;
 
+  @internal
   Map<String, Object?> encode() => {
     'policy_name': ?policyName?.toTfJson(),
     'tpu_topology': ?tpuTopology?.toTfJson(),
@@ -1542,6 +1606,7 @@ final class ContainerNodePoolQueuedProvisioning {
 
   final TfArg<bool> enabled;
 
+  @internal
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
 }
 
@@ -1564,6 +1629,7 @@ final class ContainerNodePoolUpgradeSettings {
 
   final ContainerNodePoolBlueGreenSettings? blueGreenSettings;
 
+  @internal
   Map<String, Object?> encode() => {
     'max_surge': ?maxSurge?.toTfJson(),
     'max_unavailable': ?maxUnavailable?.toTfJson(),
@@ -1585,6 +1651,7 @@ final class ContainerNodePoolBlueGreenSettings {
 
   final ContainerNodePoolStandardRolloutPolicy standardRolloutPolicy;
 
+  @internal
   Map<String, Object?> encode() => {
     'node_pool_soak_duration': ?nodePoolSoakDuration?.toTfJson(),
     'standard_rollout_policy': standardRolloutPolicy.encode(),
@@ -1607,6 +1674,7 @@ final class ContainerNodePoolStandardRolloutPolicy {
 
   final TfArg<String>? batchSoakDuration;
 
+  @internal
   Map<String, Object?> encode() => {
     'batch_node_count': ?batchNodeCount?.toTfJson(),
     'batch_percentage': ?batchPercentage?.toTfJson(),

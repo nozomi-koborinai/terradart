@@ -3,6 +3,7 @@
 /// AWS Pinpoint.
 library;
 
+export 'package:terradart_core/terradart_core.dart';
 export 'src/pinpoint/aws_pinpoint_adm_channel.dart' show AwsPinpointAdmChannel;
 export 'src/pinpoint/aws_pinpoint_apns_channel.dart'
     show AwsPinpointApnsChannel;
