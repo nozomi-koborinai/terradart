@@ -272,7 +272,7 @@ b "x" {
         (o.item('aws.west')!.value as TraversalExpr).dottedPath,
         'aws.west',
       );
-      final written = HclWriter().writeExpr(o);
+      final written = const HclWriter().writeExpr(o);
       // A quoted dotted key is written unquoted: both forms are the same key.
       expect(written, '{ google.eu = google.eu, aws.west = aws.west }');
       final again = parseHclExpression(written) as ObjectExpr;
