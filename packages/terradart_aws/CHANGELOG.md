@@ -1,7 +1,9 @@
 # Changelog
 
-## Unreleased
+## 0.32.0 - 2026-10-02
 
+- **Breaking:** attribute getters drop the `Ref` suffix and pass straight into an argument (`role.arn`, `bucket.bucket`); a Dart reserved word or a `Resource` / `Data` member takes an `Attr` suffix. See [MIGRATING.md](../../MIGRATING.md#attribute-getters-are-plain-tfargs).
+- **Breaking:** `policy_arn` / `policy_arns` / `managed_policy_arns` / `permissions_boundary` on the `aws_iam_*` attachments, roles and users (plus Budgets IAM actions, Roles Anywhere profiles and QuickSight policy assignments) take `RefTo<AwsIamPolicy>` and emit its `arn`; an AWS managed policy is `.literal('arn:aws:iam::aws:policy/...')`. CloudFront origin access controls and cache policies, ACM certificates, ECR repositories, ECS clusters and Route 53 zones are typed references too (typed slots 1084 → 1108). Synth output changes for `AwsEcsExpressGatewayService.cluster` (`name` → `arn`); `AwsRoute53Record.zoneId` emits `zone_id`, the same value. See [MIGRATING.md](../../MIGRATING.md#aws-iam-policies-and-cloudflare-user-groups).
 - [`examples/aws_serverless_api_quickstart`](../../examples/aws_serverless_api_quickstart/) — a Dart HTTP API on Lambda, API Gateway and DynamoDB, with a least-privilege role. The function uses `aws_client`'s document client, and the API URL and table name are read through the generated outputs reader.
 - **Breaking:** every barrel re-exports `terradart_core`, and a data source is also exported from its service barrel (`DataAwsVpc` from `ec2.dart`). Helper `encode()` / `blockKey` are `@internal`. See [MIGRATING.md](../../MIGRATING.md#fewer-imports).
 - **Breaking:** `provider:` on every factory and data source takes the registered `AwsProvider` instance instead of `'aws.<alias>'`. See [MIGRATING.md](../../MIGRATING.md#providers-are-instances).

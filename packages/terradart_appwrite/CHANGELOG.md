@@ -1,7 +1,9 @@
 # Changelog
 
-## Unreleased
+## 0.32.0 - 2026-10-02
 
+- **Breaking:** attribute getters drop the `Ref` suffix and pass straight into an argument (`db.id`, `bucket.name`); a Dart reserved word or a `Resource` / `Data` member takes an `Attr` suffix. See [MIGRATING.md](../../MIGRATING.md#attribute-getters-are-plain-tfargs).
+- **Breaking:** the `permissions` of storage buckets, files, TablesDB tables and rows are `TfArg<List<AppwritePermission>>`: an action (`.read`, `.create`, `.update`, `.delete`, `.write`) on an `AppwriteRole` (`.any`, `.guests`, `.users(verified: ...)`, `.user(user.ref)`, `.team(team.ref, role: ...)`, `.member(id)`, `.label(name)`), plus `.literal` / `.arg`. Both live in `package:terradart_appwrite/auth.dart`. `AppwriteStorageBucket` gains its `permissions` argument. Synth output is unchanged. See [MIGRATING.md](../../MIGRATING.md#appwrite-permissions).
 - **Breaking:** every barrel re-exports `terradart_core`, and a data source is also exported from its service barrel. See [MIGRATING.md](../../MIGRATING.md#fewer-imports).
 - **Breaking:** `provider:` on every factory and data source takes the registered `AppwriteProvider` instance instead of `'appwrite.<alias>'`. See [MIGRATING.md](../../MIGRATING.md#providers-are-instances).
 - **Breaking:** an argument the provider schema marks sensitive is `Sensitive<T>` — a variable, an expression or an attribute getter, never `.literal(...)`. See [MIGRATING.md](../../MIGRATING.md#sensitive-arguments-take-no-literal).

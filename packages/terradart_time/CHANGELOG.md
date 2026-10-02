@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.32.0 - 2026-10-02
 
 - `terradart_time.dart` re-exports `terradart_core`. See [MIGRATING.md](../../MIGRATING.md#fewer-imports).
 - `TimeSleep` takes `provider:`, the registered `TimeProvider` instance (an aliased `TimeProvider(alias: ...)` from `addProvider`). See [MIGRATING.md](../../MIGRATING.md#providers-are-instances).

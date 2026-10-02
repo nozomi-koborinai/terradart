@@ -5,7 +5,7 @@ description: Guides for TerraDart — type-safe infrastructure-as-code for Dart,
 
 TerraDart lets you write your infrastructure and your app in one typed Dart codebase. A `Stack` synthesizes standard Terraform JSON for Google Cloud, AWS, Cloudflare and Appwrite, and the values your app needs reach it as a generated Dart file instead of copied strings.
 
-Guides track the **0.31.x** line on pub.dev. Every Dart snippet on this site compiles against it in CI.
+Guides track the **0.32.x** line on pub.dev. Every Dart snippet on this site compiles against it in CI.
 
 ## Start
 

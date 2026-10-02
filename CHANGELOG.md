@@ -4,9 +4,9 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, and `terradart_migrate` — this top-level file summarises cross-cutting milestones.
 
-## Unreleased
+## [0.32.0] - 2026-10-02
 
-**Breaking** for the Dart API; read [MIGRATING.md](MIGRATING.md#031x--0320).
+Lockstep release across the workspace. **Breaking** for the Dart API of every package, not for Terraform: no provider pin moves, and synth output changes only where a typed reference now emits the attribute the provider expects, an IAM adjunct now carries its parent's `project` / `location`, or an explicit `false` lifecycle flag is now written. An argument takes what it means: an attribute getter is a `TfArg` (`labels: other.labels`), an enum member goes in bare (`routingMode: .regional`), a variable is the typed handle `variable<T>` returns, a sensitive argument has no `.literal`, `provider:` takes the registered provider instance, `dependsOn` takes the blocks, an IAM grant takes an `IamPrincipal` and an IAM adjunct its parent as one `RefTo`. Every factory takes its local name first, every barrel re-exports `terradart_core`, and synth reports every problem at once as one sealed `SynthIssue` type. New: typed outputs in Flutter, web and CLI clients (`addDartDefineOutput`), provider aliases in migrated child modules, and an AWS serverless API example. Read the upgrade guide in [MIGRATING.md](MIGRATING.md#031x--0320) before bumping. The `terradart_google` catalog is unchanged at **1366 curated resource factories + 468 data sources** (1834 entries).
 
 ### Added
 
@@ -26,6 +26,20 @@ Per-package changelogs live alongside each package and are the system of record 
   streams and call `GetItem` / `PutItem` / `DeleteItem` on only that table.
   `addOutput` publishes the API URL and the table name; the handler and
   `bin/client.dart` read them through the generated outputs reader.
+- **Provider aliases in child modules** (`terradart_core`,
+  `terradart_hcl`, `terradart_migrate`) — `Stack.addConfigurationAlias`
+  registers a provider alias the calling module passes in: synth lists it
+  as `configuration_aliases` on `required_providers` and emits no
+  `provider` block for it, and a resource selects it with `provider:`.
+  `terradart-migrate` uses it for a child module that selects an alias
+  (`provider = google.eu`) or passes one down (`providers = { google =
+  google.eu }`) without configuring it, and `parseHcl` reads the dotted
+  object keys such a provider map uses (`{ google.eu = google.eu }`).
+  `tool/migrate_fixture_gates.dart` now migrates, synthesizes and
+  `terraform validate`s one fixture per provider lane, the mixed-provider
+  stacks and an aliased child.
+- **`userProjectOverride`** (`terradart_google`, `terradart_google_beta`)
+  — `GoogleProvider` and `GoogleBetaProvider` take `user_project_override`.
 
 ### Changed
 
@@ -147,7 +161,7 @@ Per-package changelogs live alongside each package and are the system of record 
   out when the HCL reads them off the same parent block.
 - **Synth reports every problem at once, as one sealed `SynthIssue` type.** `Stack.synth()` / `writeTo()` check the whole Stack first and throw one `SynthException` listing every issue — `NoProviders`, `MissingProvider`, `ProviderConflict`, `UndeclaredVariable`, `UnregisteredReference`, `SensitiveLiteral`, `InvalidTimeout`, `InvalidMoveTarget`, `UnresolvableConstant` — each with the address of the block that holds it and a fix. `Stack.validate()` returns them without throwing. Replaces the `StateError` / `SensitiveLiteralError` / `ArgumentError` synth used to throw at the first problem.
 - **Synth refuses a reference to a block the Stack does not hold** (`UnregisteredReference`): a resource read or `depends_on`'d but never passed to `add(...)` used to synthesize and fail at `terraform plan`. `Stack.addExternalBlock('<address>')` declares a block a hand-written file beside `main.tf.json` holds; `terradart-migrate` writes one for every block it keeps in the sidecar that the Stack still reads.
-- **Names are checked where they are registered.** `add`, `addData`, `addModule`, `addVariable` and `addExternalVariable` throw `ArgumentError` for a `localName` or variable name that is not a Terraform identifier, as `addOutput` already did.
+- **Names are checked where they are registered.** `add`, `addModule`, `variable` and `externalVariable` throw `ArgumentError` for a `localName` or variable name that is not a Terraform identifier, as `addOutput` already did.
 - **IAM grants take an `IamPrincipal`** (`terradart_codegen`,
   `terradart_google`, `terradart_google_beta`, `terradart_migrate`) — the
   `member` of every `*IamMember`, the `members` of every `*IamBinding`,
@@ -189,12 +203,25 @@ Per-package changelogs live alongside each package and are the system of record 
 
 ### Fixed
 
+- **`terradart-migrate` keeps provider settings it cannot model**
+  (`terradart_core`, `terradart_migrate`) — a non-credential provider
+  argument the Dart provider class does not model
+  (`impersonate_service_account`, ...) used to be dropped; now the whole
+  configuration stays in the sidecar and the Stack registers it with the
+  new `Stack.addExternalProvider`, which lists it on `required_providers`
+  without a second `provider` block. Credentials are still dropped,
+  nested credential blocks (`assume_role_with_web_identity`, Google
+  `external_credentials`) included.
+- **`enableApis` with an aliased `TimeProvider`** (`terradart_google`) —
+  the propagation `TimeSleep` selects the Stack's only `TimeProvider` when
+  it has an alias; several aliases and no default throw `StateError`
+  before the Stack changes.
 - **Every Dart example in a doc comment or a package README compiles**
   — `tool/doc_snippets.dart` now also checks the `///` doc comments of the
   published packages and the package and cookbook READMEs, and the
   examples it caught are fixed: `GoogleSqlUser` passes its password as a
   sensitive variable instead of a literal synth rejects,
-  `GoogleServiceAccount` reads `iamMember`, the `terradart_aws` README
+  `GoogleServiceAccount` reads its `principal`, the `terradart_aws` README
   builds its Lambda with `code: .filename(...)` and a runtime enum, and the
   `terradart_core` examples (`TfTimeouts`, `TfMoved`, `ModuleCall`,
   `outputEnvironment`, `S3Backend.r2`, …) name every required argument.

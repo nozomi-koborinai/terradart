@@ -1,7 +1,10 @@
 # Changelog
 
-## Unreleased
+## 0.32.0 - 2026-10-02
 
+- A migrated attribute reference is the plain getter (`labels: other.labels`, `addOutput('id', topic.id)`), and an argument the manifest types `RefTo<R>` — Magic Modules `ResourceRef` inputs, AWS IAM policy ARNs, Cloudflare user group members — is written `x.ref`.
+- A migrated IAM adjunct passes its parent as one reference (`service: api.ref`) and leaves out the `location` / `project` / `region` / `zone` the HCL reads off that same parent. An IAM grant is `member: sa.principal` or a constructor of its kind (`.user('a@example.com')`); the manifest records these slots as `principal`.
+- Appwrite `permissions` are written as `AppwritePermission`s (`.read(.any)`), with `.literal('...')` for a string the roles do not spell.
 - An `output` whose value is an object mapping each output's environment variable to that output (`{ API_URL = google_cloud_run_v2_service.api.uri, ... }`, a non-`String` one under `jsonencode`) becomes `addDartDefineOutput(name: ..., only: [...])`, so a Stack that declares a define file round-trips. Any other object output stays `addOutput`.
 - A child module that selects a provider alias (`provider = google.eu`) with no provider block of its own migrates the resource and registers the alias with `addConfigurationAlias`, so synth emits `configuration_aliases`. A provider block inside the child still stays in Terraform, with any resource that selects it. A child that passes an alias it does not configure down to a nested module (`providers = { google = google.eu }`) declares that alias the same way.
 - `user_project_override` migrates as `userProjectOverride` on `GoogleProvider` and `GoogleBetaProvider`. Any other non-credential provider argument the class does not model keeps that whole configuration in the sidecar; the Stack registers it with `addExternalProvider` and emits no second provider block. Credentials stay dropped, including a nested block of that name (`assume_role_with_web_identity`, Google `external_credentials`) and Appwrite `api_key` / `organization_api_key`.
