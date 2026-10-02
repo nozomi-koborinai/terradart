@@ -44,11 +44,16 @@ export default defineConfig({
       sidebar: [
         {
           label: "Start",
-          items: ["docs/getting-started", "docs/arguments", "docs/cli", "docs/why-terradart"],
+          items: ["docs/getting-started", "docs/why-terradart"],
         },
         {
-          label: "Concepts",
-          items: ["docs/architecture", "docs/client-outputs", "docs/how-its-built"],
+          label: "Guides",
+          items: [
+            "docs/arguments",
+            "docs/client-outputs",
+            "docs/migrate-from-hcl",
+            "docs/agents",
+          ],
         },
         {
           label: "Providers",
@@ -57,6 +62,12 @@ export default defineConfig({
             { label: "AWS", slug: "docs/providers/aws" },
             { label: "Cloudflare", slug: "docs/providers/cloudflare" },
             { label: "Appwrite", slug: "docs/providers/appwrite" },
+          ],
+        },
+        {
+          label: "Reference",
+          items: [
+            "docs/cli",
             {
               label: "Coverage",
               items: [
@@ -68,11 +79,16 @@ export default defineConfig({
                 { label: "Appwrite", slug: "docs/coverage/appwrite" },
               ],
             },
+            {
+              label: "API reference",
+              link: "https://pub.dev/packages?q=terradart",
+              attrs: { target: "_blank", rel: "noopener" },
+            },
           ],
         },
         {
-          label: "Tools",
-          items: ["docs/migrate-from-hcl", "docs/agents"],
+          label: "Under the hood",
+          items: ["docs/architecture", "docs/how-its-built"],
         },
         {
           label: "Project",

@@ -145,7 +145,7 @@ What the compiler now checks for you:
 - **The app and the infra share one source of truth.** Rename the topic in the Stack and `OrdersStackConstants.ordersTopic` follows on the next synth; remove the output and `ordersTopicId` stops compiling. `outputEnvironment()` passes every output to the service, so no variable name is written twice. A Flutter or web client gets the same variables at build time: `addDartDefineOutput()` declares the file `--dart-define-from-file` reads (`terraform output -json dart_defines`), and `const OrdersStackOutputs.fromDartDefine()` reads it — see [Outputs in client apps](https://terradart.dev/docs/client-outputs/).
 - **It is plain Dart.** Loops, conditionals and your own classes work as they always do. Synth is your own `bin/infra.dart` running; `terradart` only runs it and then the engine.
 
-Runnable versions: [`examples/pubsub_quickstart`](examples/pubsub_quickstart/) and the [`single-project-app` cookbook recipe](cookbook/single-project-app/) (Cloud Run + Cloud SQL + the app). Full walkthrough: [Getting Started](https://terradart.dev/docs/getting-started/).
+Runnable versions: [`examples/pubsub_quickstart`](examples/pubsub_quickstart/) and the [`single-project-app` cookbook recipe](cookbook/single-project-app/) (Cloud Run + Cloud SQL + the app). Full walkthrough: [Getting started](https://terradart.dev/docs/getting-started/).
 
 ### Writing arguments
 
