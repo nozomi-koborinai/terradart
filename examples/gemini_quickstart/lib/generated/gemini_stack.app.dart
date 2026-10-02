@@ -38,9 +38,11 @@ final class GeminiStackOutputs {
       _environment = environment;
 
   /// Reads the same variables as [GeminiStackOutputs.fromEnvironment] from the values
-  /// compiled into the app: `--dart-define-from-file` with the JSON of the
-  /// Stack's `addDartDefineOutput` (`terraform output -json dart_defines`),
-  /// or `--dart-define=ORDERS_TOPIC_ID=...`.
+  /// compiled into the app: `--dart-define-from-file` with the file
+  /// `terradart apply` and `terradart outputs` write from the Stack's
+  /// `addDartDefineOutput` (`.terradart/dart_defines.json`, or
+  /// `.terradart/dart_defines.<env>.json` with `--env <env>`), or
+  /// `--dart-define=ORDERS_TOPIC_ID=...`.
   const GeminiStackOutputs.fromDartDefine()
     : _source = _Source.dartDefine,
       _terraform = const {},
