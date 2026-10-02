@@ -23,33 +23,38 @@ Future<void> main() async {
     'http://$runtimeApi/2018-06-01/runtime/invocation/',
   );
   final client = HttpClient();
-  while (true) {
-    final next = await (await client.getUrl(
-      invocations.resolve('next'),
-    )).close();
-    final requestId = next.headers.value('lambda-runtime-aws-request-id')!;
-    final raw = await next.transform(utf8.decoder).join();
-    Object? event;
-    try {
-      event = jsonDecode(raw);
-    } on FormatException {
-      event = null;
+  try {
+    while (true) {
+      final next = await (await client.getUrl(
+        invocations.resolve('next'),
+      )).close();
+      final requestId = next.headers.value('lambda-runtime-aws-request-id')!;
+      final raw = await next.transform(utf8.decoder).join();
+      Object? event;
+      try {
+        event = jsonDecode(raw);
+      } on FormatException {
+        event = null;
+      }
+      final ItemResponse response;
+      try {
+        response = await handleItem(event, items);
+      } on Object catch (e) {
+        await _post(client, invocations.resolve('$requestId/error'), {
+          'errorMessage': '$e',
+          'errorType': 'RuntimeError',
+        });
+        continue;
+      }
+      await _post(
+        client,
+        invocations.resolve('$requestId/response'),
+        response.toGateway(),
+      );
     }
-    final ItemResponse response;
-    try {
-      response = await handleItem(event, items);
-    } on Object catch (e) {
-      await _post(client, invocations.resolve('$requestId/error'), {
-        'errorMessage': '$e',
-        'errorType': 'RuntimeError',
-      });
-      continue;
-    }
-    await _post(
-      client,
-      invocations.resolve('$requestId/response'),
-      response.toGateway(),
-    );
+  } finally {
+    items.close();
+    client.close(force: true);
   }
 }
 

@@ -28,6 +28,10 @@ final class DynamoDbItems implements ItemStore {
   final String tableName;
   final DocumentClient _table;
 
+  /// Closes the underlying HTTP client. The Lambda loop calls this if it
+  /// ever returns; leaving the client open hangs the process on exit.
+  void close() => _table.dynamoDB.close();
+
   @override
   Future<String?> get(String id) async {
     final result = await _call(
@@ -62,7 +66,10 @@ final class DynamoDbItems implements ItemStore {
     try {
       return await request();
     } catch (error) {
-      throw ItemStoreException('dynamodb $action failed: $error');
+      // The routes are public. Return the failure, not the exception text.
+      throw ItemStoreException(
+        'dynamodb $action failed (${error.runtimeType})',
+      );
     }
   }
 }
