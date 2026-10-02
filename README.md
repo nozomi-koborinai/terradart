@@ -134,7 +134,7 @@ dart pub global activate terradart_cli
 terradart apply
 ```
 
-`terradart apply` runs `bin/infra.dart`, which writes `tf-out/main.tf.json` and `lib/generated/orders_stack.app.dart`, then `init` and `apply` in `tf-out/` with the `tofu` or `terraform` on your `PATH` — or a checksum-verified OpenTofu it downloads when there is neither. `terradart plan`, `destroy` and `outputs` work the same way; environments are a Dart enum `bin/infra.dart` hands to `runEnvironments` (`terradart apply --env prod`), and a Stack with `addDartDefineOutput()` gets the define file a Flutter client builds with. See [The terradart command](https://terradart.dev/docs/cli/).
+`terradart apply` runs `bin/infra.dart`, which writes `tf-out/main.tf.json` and `lib/generated/orders_stack.app.dart`, then `init` and `apply` in `tf-out/` with the `tofu` or `terraform` on your `PATH` — or a checksum-verified OpenTofu it downloads when there is neither. `terradart plan`, `destroy` and `outputs` work the same way; environments are a Dart enum `bin/infra.dart` hands to `runEnvironments` (`terradart apply --env prod`), and a Stack with `addDartDefineOutput()` gets the define file a Flutter client builds with. See [The terradart command](https://terradart.dev/docs/cli/), [Environments](https://terradart.dev/docs/environments/) and [Outputs in client apps](https://terradart.dev/docs/client-outputs/).
 
 Prefer plain Terraform? `dart run bin/infra.dart` writes the same `tf-out/`, and `terraform init` and `terraform apply` there apply it.
 

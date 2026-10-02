@@ -3,11 +3,11 @@
 The `terradart` command for [TerraDart](https://terradart.dev) projects: synthesize the Stack, run `init` and `plan` or `apply` with OpenTofu or Terraform, and write the define file a Flutter or Dart client builds with.
 
 ```bash
-dart pub add --dev terradart_cli
-dart run terradart_cli:terradart apply
+dart pub global activate terradart_cli
+terradart apply
 ```
 
-or `dart pub global activate terradart_cli`, then `terradart apply`.
+To pin the version per project, `dart pub add --dev terradart_cli` and run it as `dart run terradart_cli:terradart apply`.
 
 | Command | Runs |
 |---|---|
@@ -69,4 +69,4 @@ Future<void> main(List<String> args) =>
 
 `terradart apply --env sandbox` synthesizes `tf-out/sandbox`, applies it, and writes `.terradart/dart_defines.sandbox.json`; a name that is not a member lists the ones that are. `runEnvironments` also takes a `workspace` or a partial `backendConfig` per environment, for environments that share one directory.
 
-Guide: [The terradart command](https://terradart.dev/docs/cli/).
+Guides: [The terradart command](https://terradart.dev/docs/cli/), [Environments](https://terradart.dev/docs/environments/), [Outputs in client apps](https://terradart.dev/docs/client-outputs/).
