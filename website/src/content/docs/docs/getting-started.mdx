@@ -334,14 +334,14 @@ flutter build web --dart-define-from-file=.terradart/dart_defines.json
 
 With [environments](/docs/environments/), each one gets its own file: `terradart apply --env prod` writes `.terradart/dart_defines.prod.json`. The client reads each value with its type through the same `OrdersStackOutputs` reader; see [Outputs in client apps](/docs/client-outputs/).
 
-Rename `orders-prod` in the Stack and the subscriber follows on the next synth — there is no second copy of the string to update. Rename or remove the constant and `dart analyze` fails. See [Architecture — outputs and constants](/docs/architecture/#outputs-and-constants-the-iac--application-seam) and the runnable [pubsub quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/pubsub_quickstart) (`lib/subscriber_stub.dart`).
+Rename `orders-prod` in the Stack and the subscriber follows on the next synth — there is no second copy of the string to update. Rename or remove the constant and `dart analyze` fails. See [How TerraDart works — the app boundary](/docs/how-it-works/#the-app-boundary-constants-and-outputs) and the runnable [pubsub quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/pubsub_quickstart) (`lib/subscriber_stub.dart`).
 
 ## Next steps
 
 - [Why TerraDart](/docs/why-terradart/) — motivation and comparisons
 - [Outputs in client apps](/docs/client-outputs/) — build a Flutter or web client with the values of an apply
 - [Environments](/docs/environments/) — dev, staging and prod as a Dart enum, one define file each
-- [Architecture](/docs/architecture/) — `synth()`, `writeTo()`, curated coverage
+- [How TerraDart works](/docs/how-it-works/) — synth, plan and apply, and the values your app reads back
 - [Coverage](/docs/coverage/) — every factory of every provider package, its barrel, and runnable examples
 - Providers: [Google Cloud](/docs/providers/google/) (with google-beta and Firebase), [AWS](/docs/providers/aws/), [Cloudflare](/docs/providers/cloudflare/), [Appwrite](/docs/providers/appwrite/)
 - [Migrating from HCL](/docs/migrate-from-hcl/) — bring an existing Terraform tree over

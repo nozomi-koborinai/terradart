@@ -90,6 +90,7 @@ Future<void> main(List<String> args) async {
     'website/src/content/docs/docs/status.md',
     'website/src/content/docs/docs/getting-started.mdx',
     'website/src/content/docs/docs/why-terradart.md',
+    'website/src/content/docs/docs/how-it-works.mdx',
     'website/src/content/docs/docs/how-its-built.mdx',
     ..._providerPages(),
   ]) {

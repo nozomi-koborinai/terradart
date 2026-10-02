@@ -38,7 +38,7 @@ Guides track the **0.33.x** line on pub.dev. Every Dart snippet on this site com
 
 ## Under the hood
 
-- [Architecture](/docs/architecture/) — `synth()` / `writeTo()`, typed references, outputs and constants, `outputEnvironment()`
+- [How TerraDart works](/docs/how-it-works/) — the loop from Stack to `*.tf.json` to OpenTofu or Terraform, synth issues, and the constants and outputs that cross into your app
 - [How TerraDart is built](/docs/how-its-built/) — the generation pipeline and verification harness behind the factories; the maintainer CLI is [`terradart_codegen`](https://pub.dev/packages/terradart_codegen) (`terradart-codegen wrap`)
 
 ## Project

@@ -89,7 +89,7 @@ export default defineConfig({
         },
         {
           label: "Under the hood",
-          items: ["docs/architecture", "docs/how-its-built"],
+          items: ["docs/how-it-works", "docs/how-its-built"],
         },
         {
           label: "Project",
@@ -142,7 +142,7 @@ export default defineConfig({
   redirects: {
     "/docs/aws/": "/docs/providers/aws/",
     "/docs/migrating/": "/docs/upgrading/",
-    "/docs/how-it-works/": "/docs/architecture/",
+    "/docs/architecture/": "/docs/how-it-works/",
     "/docs/agent/": "/docs/agents/",
     "/docs/agent/install/": "/docs/agents/",
     "/docs/agent/clients/": "/docs/agents/",
