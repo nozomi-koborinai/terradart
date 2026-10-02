@@ -11,7 +11,8 @@
     "predev": "bun run sync-branding",
     "dev": "astro dev",
     "prebuild": "bun run sync-branding",
-    "build": "astro build",
+    "build": "astro build && bun run check-og",
+    "check-og": "node scripts/check-og.mjs",
     "preview": "astro preview",
     "typecheck": "astro check",
     "astro": "astro"
