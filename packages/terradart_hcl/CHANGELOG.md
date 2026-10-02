@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.33.0 - 2026-10-02
+
+- No API changes. Lockstep release with the new `terradart_cli` package (the `terradart` command), whose `terradart migrate` reads existing Terraform through this package.
+
 ## 0.32.1 - 2026-10-02
 
 - No API changes. Republishes the 0.32.0 workspace so `terradart_appwrite`, `terradart_cloudflare`, `terradart_aws` and `terradart_migrate` reach pub.dev; the 0.32.0 publish workflow stopped them at a wrapper-count check that also counted hand-written files, and now counts only generated wrappers ([#877](https://github.com/nozomi-koborinai/terradart/pull/877)).

@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.33.0 - 2026-10-02
 
 - `bin/infra.dart` for one Stack calls `runStack`. `--merge-envs` calls `runEnvironments` over the generated `Env` enum (`dir: (env) => 'tf-out/${env.path}'`), so `terradart plan --env <name>` runs that environment. Several merged groups write every environment when `--env` is omitted, and call `runEnvironments` for the group a name selects.
 - The user command is `terradart migrate` (`terradart_cli`). The `terradart-migrate` executable still runs the same flags and prints that it is deprecated.

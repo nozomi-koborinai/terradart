@@ -11,7 +11,7 @@
 >
 > Write your infrastructure and your app in one typed Dart codebase. TerraDart synthesizes Terraform JSON for Google Cloud, AWS, Cloudflare and Appwrite, and hands the values your app needs — topic names, IDs, URLs — to it as typed Dart instead of copied strings. Keep the `terraform apply` you already run.
 
-**Alpha** — no SemVer until v1.0.0, but breaking changes land only on **minor** bumps. Pin `^0.32.x`, read [`MIGRATING.md`](MIGRATING.md) before minor bumps, and see [status on terradart.dev](https://terradart.dev/docs/status/).
+**Alpha** — no SemVer until v1.0.0, but breaking changes land only on **minor** bumps. Pin `^0.33.x`, read [`MIGRATING.md`](MIGRATING.md) before minor bumps, and see [status on terradart.dev](https://terradart.dev/docs/status/).
 
 [![CI](https://github.com/nozomi-koborinai/terradart/actions/workflows/ci.yml/badge.svg)](https://github.com/nozomi-koborinai/terradart/actions/workflows/ci.yml)
 [![Dart SDK](https://img.shields.io/badge/Dart-%E2%89%A53.10-blue.svg)](https://dart.dev)
@@ -28,8 +28,8 @@ name: my_app
 environment:
   sdk: ^3.10.0
 dependencies:
-  terradart_core: ^0.32.x
-  terradart_google: ^0.32.x  # or terradart_aws / terradart_cloudflare / terradart_appwrite
+  terradart_core: ^0.33.x
+  terradart_google: ^0.33.x  # or terradart_aws / terradart_cloudflare / terradart_appwrite
 ```
 
 A `Stack` is one Terraform root module, written as a Dart class. This one runs an API on Cloud Run that publishes to a Pub/Sub topic, and tells the app which topic that is:
@@ -311,7 +311,7 @@ How TerraDart compares with HCL, CDKTF and Pulumi: [Why TerraDart](https://terra
 
 ## Status
 
-**Alpha**, pre-1.0 (0.32.x). No SemVer until v1.0.0, but breaking changes land only on **minor** bumps, always documented in [`MIGRATING.md`](MIGRATING.md); pin `^0.32.x` and take patches freely. Beta needs external validation — see the [path to beta](https://terradart.dev/docs/status/#path-to-beta).
+**Alpha**, pre-1.0 (0.33.x). No SemVer until v1.0.0, but breaking changes land only on **minor** bumps, always documented in [`MIGRATING.md`](MIGRATING.md); pin `^0.33.x` and take patches freely. Beta needs external validation — see the [path to beta](https://terradart.dev/docs/status/#path-to-beta).
 
 ## Contributing
 

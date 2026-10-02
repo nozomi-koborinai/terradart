@@ -24,7 +24,7 @@ dependencies:
   args: ^2.5.0
   crypto: ^3.0.3
   path: ^1.9.0
-  terradart_migrate: ^0.32.1
+  terradart_migrate: ^0.33.0
   yaml: ^3.1.2
 
 dev_dependencies:

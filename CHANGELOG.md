@@ -4,7 +4,9 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, and `terradart_migrate` — this top-level file summarises cross-cutting milestones.
 
-## Unreleased
+## [0.33.0] - 2026-10-02
+
+Lockstep release across the workspace, which grows to eleven packages with **`terradart_cli`**, the `terradart` command. `terradart synth | plan | apply | destroy | outputs` replaces `dart run bin/infra.dart`, `cd tf-out` and the hand-run `terraform init` / `apply` / `output`: it runs the `tofu` or `terraform` on `PATH`, else a pinned OpenTofu release it downloads and checks itself. Environments are declared in Dart — an enum of the project's own passed to `runEnvironments` — and `terradart apply --env <name>` runs one, writing its own `--dart-define-from-file` JSON (`.terradart/dart_defines.<name>.json`) for the client app. The HCL migrator is now `terradart migrate`; the `terradart-migrate` executable still runs and is **deprecated**. **No breaking changes** to the Dart API of the provider packages or to synth output; the one break is for maintainers, whose `terradart_codegen` executable is now `terradart-codegen` ([MIGRATING.md](MIGRATING.md#032x--0330)). No provider pin moves, and the `terradart_google` catalog is unchanged at **1366 curated resource factories + 468 data sources** (1834 entries).
 
 ### Added
 

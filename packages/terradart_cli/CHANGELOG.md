@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.33.0 - Unreleased
+## 0.33.0 - 2026-10-02
 
 First release, in lockstep with the workspace.
 
