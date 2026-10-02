@@ -3,7 +3,7 @@ title: Dart apps on AWS
 description: Run a Dart backend on Lambda or ECS Express Mode and a Flutter Web build on S3 + CloudFront, with terradart_aws.
 ---
 
-[`terradart_aws`](https://github.com/nozomi-koborinai/terradart/tree/main/packages/terradart_aws) wraps the full `hashicorp/aws` provider — every resource and data source at its exact pin. This page covers the three shapes a Dart team usually needs on AWS: a Dart function on Lambda, a Dart server on ECS Express Mode, and a Flutter Web build on S3 behind CloudFront.
+[`terradart_aws`](https://github.com/nozomi-koborinai/terradart/tree/main/packages/terradart_aws) wraps the full `hashicorp/aws` provider — every resource and data source at its exact pin. This page covers the shapes a Dart team usually needs on AWS: a Dart function on Lambda, that function as an HTTP API in front of DynamoDB, a Dart server on ECS Express Mode, and a Flutter Web build on S3 behind CloudFront.
 
 ## Install
 
@@ -117,6 +117,180 @@ dart compile exe bin/bootstrap.dart -o build/bootstrap \
 ```
 
 The runnable version, including a minimal `bin/bootstrap.dart` that long-polls the Lambda Runtime API, is [`examples/aws_lambda_quickstart`](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_lambda_quickstart).
+
+## An HTTP API in front of DynamoDB
+
+The same custom runtime can sit behind an API Gateway HTTP API and talk to one DynamoDB table. The execution role's inline policy names that table and that log group — `GetItem`, `PutItem` and `DeleteItem` on the table ARN, and log writes on the function's log streams — instead of a managed policy with `Resource: "*"`.
+
+The table name is a Terraform output. `outputEnvironment()` puts it in the function's environment, and the handler reads it with the generated outputs reader. The API's invoke URL is an output too, but it stays off the function: the stage that publishes the URL is what invokes the function, so putting it in the function's environment would be a cycle. A client reads both after apply.
+
+```dart
+// lib/serverless_api_stack.dart
+import 'package:terradart_aws/apigatewayv2.dart';
+import 'package:terradart_aws/cloudwatch.dart';
+import 'package:terradart_aws/data.dart';
+import 'package:terradart_aws/dynamodb.dart';
+import 'package:terradart_aws/iam.dart';
+import 'package:terradart_aws/lambda.dart';
+import 'package:terradart_aws/provider.dart';
+
+final class ServerlessApiStack extends Stack {
+  ServerlessApiStack()
+      : super(
+          providers: [
+            const AwsProvider(
+              region: 'us-east-1',
+              defaultTags: {'app': 'items-api'},
+            ),
+          ],
+          appExports: AppExports('lib/generated/serverless_api_stack.app.dart'),
+        ) {
+    final trust = add(DataAwsIamPolicyDocument(
+      'lambda_trust',
+      statement: [
+        DataIamPolicyDocumentStatement(
+          actions: .literal(['sts:AssumeRole']),
+          principals: [
+            .new(
+              type: .literal('Service'),
+              identifiers: .literal(['lambda.amazonaws.com']),
+            ),
+          ],
+        ),
+      ],
+    ));
+    final role = add(AwsIamRole(
+      'api',
+      name: .name(.literal('items-api')),
+      assumeRolePolicy: trust.json,
+    ));
+    final table = add(AwsDynamodbTable(
+      'items',
+      name: .literal('items'),
+      billingMode: .payPerRequest,
+      hashKey: .literal('id'),
+      attribute: [
+        DynamodbTableAttribute(name: .literal('id'), type: .s),
+      ],
+    ));
+    final logs = add(AwsCloudwatchLogGroup(
+      'api',
+      name: .name(.literal('/aws/lambda/items-api')),
+      retentionInDays: .literal(14),
+    ));
+    final policy = add(DataAwsIamPolicyDocument(
+      'api',
+      statement: [
+        DataIamPolicyDocumentStatement(
+          actions: .literal(['logs:CreateLogStream', 'logs:PutLogEvents']),
+          resources: .literal([
+            logs.arn.interpolation,
+            '${logs.arn.interpolation}:*',
+          ]),
+        ),
+        DataIamPolicyDocumentStatement(
+          actions: .literal([
+            'dynamodb:GetItem',
+            'dynamodb:PutItem',
+            'dynamodb:DeleteItem',
+          ]),
+          resources: .literal([table.arn.interpolation]),
+        ),
+      ],
+    ));
+    add(AwsIamRolePolicy(
+      'api',
+      name: .name(.literal('items-api')),
+      role: role.ref,
+      policy: policy.json,
+    ));
+    addOutput('table_name', table.name);
+    final fn = add(AwsLambdaFunction(
+      'api',
+      functionName: .literal('items-api'),
+      role: role.ref,
+      runtime: .providedAl2023,
+      handler: .literal('bootstrap'),
+      code: .filename(.literal('build/bootstrap.zip')),
+      environment: LambdaFunctionEnvironment(
+        variables: .literal({
+          for (final (:name, :value) in outputEnvironment(only: ['table_name']))
+            name: value.toTfJson() as String,
+        }),
+      ),
+      loggingConfig: LambdaFunctionLoggingConfig(
+        logFormat: .text,
+        logGroup: logs.ref,
+      ),
+    ));
+    final api = add(AwsApigatewayv2Api(
+      'items',
+      name: .literal('items-api'),
+      protocolType: .http,
+    ));
+    final integration = add(AwsApigatewayv2Integration(
+      'items',
+      apiId: api.id,
+      integrationType: .awsProxy,
+      integrationUri: fn.invokeArn,
+      payloadFormatVersion: .v2p0,
+    ));
+    final route = add(AwsApigatewayv2Route(
+      'get',
+      apiId: api.id,
+      routeKey: .literal('GET /items/{id}'),
+      target: .literal('integrations/${integration.id.interpolation}'),
+      authorizationType: .none,
+    ));
+    final stage = add(AwsApigatewayv2Stage(
+      'default',
+      apiId: api.id,
+      name: .literal(r'$default'),
+      autoDeploy: .literal(true),
+      dependsOn: [route],
+    ));
+    add(AwsLambdaPermission(
+      'get',
+      statementId: .statementId(.literal('apigw-get')),
+      action: .literal('lambda:InvokeFunction'),
+      functionName: fn.ref,
+      principal: .literal('apigateway.amazonaws.com'),
+      sourceArn: .literal(
+        '${api.executionArn.interpolation}/${stage.name.interpolation}/GET/items/*',
+      ),
+    ));
+    addOutput('api_url', stage.invokeUrl);
+  }
+}
+```
+
+```dart
+// bin/synth_items.dart
+import 'package:my_app/serverless_api_stack.dart';
+
+Future<void> main() async {
+  await ServerlessApiStack().writeTo('tf-out');
+}
+```
+
+The handler and the client import the file synth writes. A missing variable fails at startup instead of becoming an empty string:
+
+```dart
+// lib/items_client.dart
+import 'dart:io';
+
+import 'generated/serverless_api_stack.app.dart';
+
+/// TABLE_NAME, from the function environment the stack passed in.
+String tableName() =>
+    ServerlessApiStackOutputs.fromEnvironment(Platform.environment).tableName;
+
+/// API_URL, from `terraform output` exported into the environment.
+String apiUrl() =>
+    ServerlessApiStackOutputs.fromEnvironment(Platform.environment).apiUrl;
+```
+
+The runnable version — three routes, the SigV4 DynamoDB client, `bin/bootstrap.dart` and `bin/client.dart` — is [`examples/aws_serverless_api_quickstart`](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_serverless_api_quickstart).
 
 ## A Dart server on ECS Express Mode
 
@@ -348,6 +522,14 @@ AWS_PROFILE=my-profile terraform plan
 ```
 
 The rest of the catalog sits on the same per-service barrels, such as `package:terradart_aws/ec2.dart`, `rds.dart`, `dynamodb.dart` and `sqs.dart`. Every factory is exercised by [`examples/aws_leftover_quickstart`](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart), a synth and `terraform validate` coverage stack that is never applied.
+
+## Examples
+
+- [`examples/aws_lambda_quickstart`](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_lambda_quickstart) — a Dart binary on Lambda behind a function URL.
+- [`examples/aws_serverless_api_quickstart`](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_serverless_api_quickstart) — that binary as an HTTP API in front of DynamoDB, with least-privilege IAM and typed outputs.
+- [`examples/aws_ecs_express_quickstart`](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_ecs_express_quickstart) — a Dart server on ECS Express Mode.
+- [`examples/aws_static_site_quickstart`](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_static_site_quickstart) — a Flutter Web build on S3 + CloudFront.
+- [`examples/aws_leftover_quickstart`](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) — every other factory with placeholder values; it synthesizes and validates, and is never applied.
 
 ## Next steps
 

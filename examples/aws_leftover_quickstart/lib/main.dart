@@ -480,14 +480,6 @@ final class AwsLeftoverStack extends Stack {
     );
 
     add(
-      AwsApigatewayv2Api(
-        'apigatewayv2_api',
-        name: .literal(leftover),
-        protocolType: .websocket,
-      ),
-    );
-
-    add(
       AwsApigatewayv2ApiMapping(
         'apigatewayv2_api_mapping',
         apiId: .literal(leftover),
@@ -525,14 +517,6 @@ final class AwsLeftoverStack extends Stack {
     );
 
     add(
-      AwsApigatewayv2Integration(
-        'apigatewayv2_integration',
-        apiId: .literal(leftover),
-        integrationType: .aws,
-      ),
-    );
-
-    add(
       AwsApigatewayv2IntegrationResponse(
         'apigatewayv2_integration_response',
         apiId: .literal(leftover),
@@ -548,14 +532,6 @@ final class AwsLeftoverStack extends Stack {
         contentType: .literal(leftover),
         name: .literal(leftover),
         schema: .literal(policy),
-      ),
-    );
-
-    add(
-      AwsApigatewayv2Route(
-        'apigatewayv2_route',
-        apiId: .literal(leftover),
-        routeKey: .literal(leftover),
       ),
     );
 
@@ -587,14 +563,6 @@ final class AwsLeftoverStack extends Stack {
             ],
           ),
         ],
-      ),
-    );
-
-    add(
-      AwsApigatewayv2Stage(
-        'apigatewayv2_stage',
-        apiId: .literal(leftover),
-        name: .literal(leftover),
       ),
     );
 
@@ -4912,8 +4880,6 @@ final class AwsLeftoverStack extends Stack {
       ),
     );
 
-    add(AwsDynamodbTable('dynamodb_table', name: .literal(leftover)));
-
     add(
       AwsDynamodbTableExport(
         'dynamodb_table_export',
@@ -6934,14 +6900,6 @@ final class AwsLeftoverStack extends Stack {
     );
 
     add(
-      AwsIamRolePolicy(
-        'iam_role_policy',
-        policy: .literal(policy),
-        role: .literal(leftover),
-      ),
-    );
-
-    add(
       AwsIamRolePolicyAttachmentsExclusive(
         'iam_role_policy_attachments_exclusive',
         policyArns: .literal([.literal(arn)]),
@@ -7842,15 +7800,6 @@ final class AwsLeftoverStack extends Stack {
         principal: .literal(leftover),
         statementId: .literal(leftover),
         versionNumber: .literal(200),
-      ),
-    );
-
-    add(
-      AwsLambdaPermission(
-        'lambda_permission',
-        action: .literal('lambda:InvokeFunction'),
-        functionName: .literal(leftover),
-        principal: .literal(leftover),
       ),
     );
 

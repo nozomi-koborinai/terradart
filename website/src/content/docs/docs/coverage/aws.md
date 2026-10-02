@@ -339,18 +339,18 @@ Import per service: `import 'package:terradart_aws/<barrel>.dart';`
 
 | Terraform type | Dart factory | Example |
 | --- | --- | --- |
-| `aws_apigatewayv2_api` | `AwsApigatewayv2Api` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
+| `aws_apigatewayv2_api` | `AwsApigatewayv2Api` | [aws_serverless_api_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_serverless_api_quickstart) |
 | `aws_apigatewayv2_api_mapping` | `AwsApigatewayv2ApiMapping` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
 | `aws_apigatewayv2_authorizer` | `AwsApigatewayv2Authorizer` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
 | `aws_apigatewayv2_deployment` | `AwsApigatewayv2Deployment` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
 | `aws_apigatewayv2_domain_name` | `AwsApigatewayv2DomainName` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
-| `aws_apigatewayv2_integration` | `AwsApigatewayv2Integration` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
+| `aws_apigatewayv2_integration` | `AwsApigatewayv2Integration` | [aws_serverless_api_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_serverless_api_quickstart) |
 | `aws_apigatewayv2_integration_response` | `AwsApigatewayv2IntegrationResponse` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
 | `aws_apigatewayv2_model` | `AwsApigatewayv2Model` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
-| `aws_apigatewayv2_route` | `AwsApigatewayv2Route` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
+| `aws_apigatewayv2_route` | `AwsApigatewayv2Route` | [aws_serverless_api_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_serverless_api_quickstart) |
 | `aws_apigatewayv2_route_response` | `AwsApigatewayv2RouteResponse` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
 | `aws_apigatewayv2_routing_rule` | `AwsApigatewayv2RoutingRule` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
-| `aws_apigatewayv2_stage` | `AwsApigatewayv2Stage` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
+| `aws_apigatewayv2_stage` | `AwsApigatewayv2Stage` | [aws_serverless_api_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_serverless_api_quickstart) |
 | `aws_apigatewayv2_vpc_link` | `AwsApigatewayv2VpcLink` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
 
 ## appautoscaling
@@ -774,7 +774,7 @@ Import per service: `import 'package:terradart_aws/<barrel>.dart';`
 | `aws_cloudwatch_log_delivery_source` | `AwsCloudwatchLogDeliverySource` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
 | `aws_cloudwatch_log_destination` | `AwsCloudwatchLogDestination` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
 | `aws_cloudwatch_log_destination_policy` | `AwsCloudwatchLogDestinationPolicy` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
-| `aws_cloudwatch_log_group` | `AwsCloudwatchLogGroup` | [aws_ecs_express_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_ecs_express_quickstart), [aws_lambda_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_lambda_quickstart) |
+| `aws_cloudwatch_log_group` | `AwsCloudwatchLogGroup` | [aws_ecs_express_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_ecs_express_quickstart), [aws_lambda_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_lambda_quickstart), [aws_serverless_api_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_serverless_api_quickstart) |
 | `aws_cloudwatch_log_index_policy` | `AwsCloudwatchLogIndexPolicy` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
 | `aws_cloudwatch_log_metric_filter` | `AwsCloudwatchLogMetricFilter` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
 | `aws_cloudwatch_log_resource_policy` | `AwsCloudwatchLogResourcePolicy` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
@@ -1053,7 +1053,7 @@ Import per service: `import 'package:terradart_aws/<barrel>.dart';`
 | `aws_billing_service_account` (data source) | `DataAwsBillingServiceAccount` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
 | `aws_billing_views` (data source) | `DataAwsBillingViews` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
 | `aws_budgets_budget` (data source) | `DataAwsBudgetsBudget` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
-| `aws_caller_identity` (data source) | `DataAwsCallerIdentity` | [aws_lambda_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_lambda_quickstart) |
+| `aws_caller_identity` (data source) | `DataAwsCallerIdentity` | [aws_lambda_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_lambda_quickstart), [aws_serverless_api_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_serverless_api_quickstart) |
 | `aws_canonical_user_id` (data source) | `DataAwsCanonicalUserId` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
 | `aws_ce_cost_category` (data source) | `DataAwsCeCostCategory` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
 | `aws_ce_tags` (data source) | `DataAwsCeTags` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
@@ -1277,7 +1277,7 @@ Import per service: `import 'package:terradart_aws/<barrel>.dart';`
 | `aws_iam_openid_connect_provider` (data source) | `DataAwsIamOpenidConnectProvider` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
 | `aws_iam_outbound_web_identity_federation` (data source) | `DataAwsIamOutboundWebIdentityFederation` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
 | `aws_iam_policy` (data source) | `DataAwsIamPolicy` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
-| `aws_iam_policy_document` (data source) | `DataAwsIamPolicyDocument` | [aws_ecs_express_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_ecs_express_quickstart), [aws_lambda_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_lambda_quickstart), [aws_static_site_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_static_site_quickstart) |
+| `aws_iam_policy_document` (data source) | `DataAwsIamPolicyDocument` | [aws_ecs_express_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_ecs_express_quickstart), [aws_lambda_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_lambda_quickstart), [aws_serverless_api_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_serverless_api_quickstart), [aws_static_site_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_static_site_quickstart) |
 | `aws_iam_principal_policy_simulation` (data source) | `DataAwsIamPrincipalPolicySimulation` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
 | `aws_iam_role` (data source) | `DataAwsIamRole` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
 | `aws_iam_role_policies` (data source) | `DataAwsIamRolePolicies` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
@@ -1871,7 +1871,7 @@ Import per service: `import 'package:terradart_aws/<barrel>.dart';`
 | `aws_dynamodb_global_table` | `AwsDynamodbGlobalTable` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
 | `aws_dynamodb_kinesis_streaming_destination` | `AwsDynamodbKinesisStreamingDestination` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
 | `aws_dynamodb_resource_policy` | `AwsDynamodbResourcePolicy` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
-| `aws_dynamodb_table` | `AwsDynamodbTable` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
+| `aws_dynamodb_table` | `AwsDynamodbTable` | [aws_serverless_api_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_serverless_api_quickstart) |
 | `aws_dynamodb_table_export` | `AwsDynamodbTableExport` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
 | `aws_dynamodb_table_item` | `AwsDynamodbTableItem` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
 | `aws_dynamodb_table_replica` | `AwsDynamodbTableReplica` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
@@ -2354,9 +2354,9 @@ Import per service: `import 'package:terradart_aws/<barrel>.dart';`
 | `aws_iam_outbound_web_identity_federation` | `AwsIamOutboundWebIdentityFederation` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
 | `aws_iam_policy` | `AwsIamPolicy` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
 | `aws_iam_policy_attachment` | `AwsIamPolicyAttachment` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
-| `aws_iam_role` | `AwsIamRole` | [aws_ecs_express_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_ecs_express_quickstart), [aws_lambda_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_lambda_quickstart) |
+| `aws_iam_role` | `AwsIamRole` | [aws_ecs_express_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_ecs_express_quickstart), [aws_lambda_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_lambda_quickstart), [aws_serverless_api_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_serverless_api_quickstart) |
 | `aws_iam_role_policies_exclusive` | `AwsIamRolePoliciesExclusive` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
-| `aws_iam_role_policy` | `AwsIamRolePolicy` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
+| `aws_iam_role_policy` | `AwsIamRolePolicy` | [aws_serverless_api_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_serverless_api_quickstart) |
 | `aws_iam_role_policy_attachment` | `AwsIamRolePolicyAttachment` | [aws_ecs_express_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_ecs_express_quickstart), [aws_lambda_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_lambda_quickstart) |
 | `aws_iam_role_policy_attachments_exclusive` | `AwsIamRolePolicyAttachmentsExclusive` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
 | `aws_iam_saml_provider` | `AwsIamSamlProvider` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
@@ -2540,7 +2540,7 @@ Import per service: `import 'package:terradart_aws/<barrel>.dart';`
 | `aws_lambda_capacity_provider` | `AwsLambdaCapacityProvider` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
 | `aws_lambda_code_signing_config` | `AwsLambdaCodeSigningConfig` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
 | `aws_lambda_event_source_mapping` | `AwsLambdaEventSourceMapping` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
-| `aws_lambda_function` | `AwsLambdaFunction` | [aws_lambda_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_lambda_quickstart) |
+| `aws_lambda_function` | `AwsLambdaFunction` | [aws_lambda_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_lambda_quickstart), [aws_serverless_api_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_serverless_api_quickstart) |
 | `aws_lambda_function_event_invoke_config` | `AwsLambdaFunctionEventInvokeConfig` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
 | `aws_lambda_function_recursion_config` | `AwsLambdaFunctionRecursionConfig` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
 | `aws_lambda_function_scaling_config` | `AwsLambdaFunctionScalingConfig` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
@@ -2548,7 +2548,7 @@ Import per service: `import 'package:terradart_aws/<barrel>.dart';`
 | `aws_lambda_invocation` | `AwsLambdaInvocation` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
 | `aws_lambda_layer_version` | `AwsLambdaLayerVersion` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
 | `aws_lambda_layer_version_permission` | `AwsLambdaLayerVersionPermission` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
-| `aws_lambda_permission` | `AwsLambdaPermission` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
+| `aws_lambda_permission` | `AwsLambdaPermission` | [aws_serverless_api_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_serverless_api_quickstart) |
 | `aws_lambda_provisioned_concurrency_config` | `AwsLambdaProvisionedConcurrencyConfig` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
 | `aws_lambda_resource_policy` | `AwsLambdaResourcePolicy` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
 | `aws_lambda_runtime_management_config` | `AwsLambdaRuntimeManagementConfig` | [aws_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) |
