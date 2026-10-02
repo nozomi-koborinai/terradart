@@ -14,7 +14,13 @@ import '_provider_meta.dart';
 /// there is no `TfRef` use case here. Pass literal strings only.
 @immutable
 final class GoogleProvider implements StackProvider {
-  const GoogleProvider({this.alias, this.project, this.region, this.zone});
+  const GoogleProvider({
+    this.alias,
+    this.project,
+    this.region,
+    this.zone,
+    this.userProjectOverride,
+  });
 
   /// Provider alias (`provider "google" { alias = "eu" }`), or `null` for
   /// the default configuration. Select it on a resource by passing the
@@ -32,6 +38,10 @@ final class GoogleProvider implements StackProvider {
   /// Default GCP zone (e.g. `us-central1-a`).
   final String? zone;
 
+  /// When true, quota and billing for the request are attributed to
+  /// [project] (`user_project_override`).
+  final bool? userProjectOverride;
+
   @override
   String get providerName => 'google';
 
@@ -48,5 +58,7 @@ final class GoogleProvider implements StackProvider {
     if (project != null) 'project': project,
     if (region != null) 'region': region,
     if (zone != null) 'zone': zone,
+    if (userProjectOverride != null)
+      'user_project_override': userProjectOverride,
   };
 }

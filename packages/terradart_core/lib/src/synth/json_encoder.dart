@@ -85,8 +85,11 @@ class TfJsonEncoder {
     final byName = <String, List<StackProvider>>{};
     for (final p in stack.providers) {
       // A configuration alias is declared on required_providers, not as a
-      // provider block: the calling module passes the configuration.
-      if (stack.isConfigurationAlias(p)) continue;
+      // provider block: the calling module passes the configuration. An
+      // external configuration lives in a file beside main.tf.json.
+      if (stack.isConfigurationAlias(p) || stack.isExternalProvider(p)) {
+        continue;
+      }
       byName.putIfAbsent(p.providerName, () => []).add(p);
     }
     final entries = <String, dynamic>{};

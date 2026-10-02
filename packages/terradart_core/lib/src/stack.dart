@@ -154,6 +154,9 @@ abstract base class Stack {
   /// [addExternalBlock].
   final Set<String> _externalBlocks = {};
 
+  /// Configurations registered with [addExternalProvider].
+  final List<StackProvider> _externalProviders = [];
+
   /// Insertion-ordered so the emitted `moved` list is stable.
   final List<TfMoved> _moved = [];
 
@@ -164,7 +167,8 @@ abstract base class Stack {
   // ---- Public read-only views (synth reads these) ------------------------
 
   /// The configurations passed to the constructor, then those registered
-  /// with [addProvider] and [addConfigurationAlias], in that order.
+  /// with [addProvider], [addConfigurationAlias] and [addExternalProvider],
+  /// in that order.
   List<StackProvider> get providers =>
       List<StackProvider>.unmodifiable(_providers);
 
@@ -178,6 +182,13 @@ abstract base class Stack {
   /// Whether [provider] was registered with [addConfigurationAlias].
   bool isConfigurationAlias(StackProvider provider) =>
       _configurationAliases.any((p) => identical(p, provider));
+
+  /// Whether [provider] was registered with [addExternalProvider].
+  ///
+  /// Synth lists it on `required_providers` and emits no `provider` block:
+  /// the configuration lives in a file beside `main.tf.json`.
+  bool isExternalProvider(StackProvider provider) =>
+      _externalProviders.any((p) => identical(p, provider));
   StackBackend? get backend => _backend;
   List<Resource> get resources =>
       List<Resource>.unmodifiable(_resources.values);
@@ -274,6 +285,30 @@ abstract base class Stack {
     }
     _providers.add(provider);
     _configurationAliases.add(provider);
+    return provider;
+  }
+
+  /// Registers [provider] so a resource can select it, without emitting a
+  /// `provider` block.
+  ///
+  /// The configuration lives in a file beside `main.tf.json` (the leftover
+  /// sidecar `terradart-migrate` writes when a provider argument has no
+  /// parameter). Synth still lists the provider under `required_providers`.
+  /// Emitting the block as well would configure it twice.
+  ///
+  /// ```dart
+  /// final eu = addExternalProvider(const GoogleProvider(alias: 'eu'));
+  /// add(GooglePubsubTopic(
+  ///   'orders',
+  ///   name: .literal('orders'),
+  ///   provider: eu,
+  /// ));
+  /// ```
+  ///
+  /// Returns [provider], so a resource selects it with `provider:`.
+  P addExternalProvider<P extends StackProvider>(P provider) {
+    _providers.add(provider);
+    _externalProviders.add(provider);
     return provider;
   }
 

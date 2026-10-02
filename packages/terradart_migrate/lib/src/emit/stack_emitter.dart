@@ -18,6 +18,7 @@ import 'package:terradart_time/terradart_time.dart'
     show kTimeProviderVersionConstraint;
 
 import '../migrate_manifest.dart';
+import '../provider_secrets.dart';
 import '../report.dart';
 import 'blocker.dart';
 import 'body_map.dart';
@@ -199,12 +200,14 @@ const _providerRecipes = <String, _ProviderRecipe>{
     'project': _Scalar('project'),
     'region': _Scalar('region'),
     'zone': _Scalar('zone'),
+    'user_project_override': _Scalar('userProjectOverride'),
   }, kProviderVersionConstraint),
   'google-beta':
       _ProviderRecipe('terradart_google_beta', 'GoogleBetaProvider', {
         'project': _Scalar('project'),
         'region': _Scalar('region'),
         'zone': _Scalar('zone'),
+        'user_project_override': _Scalar('userProjectOverride'),
       }, kBetaProviderVersionConstraint),
   'appwrite': _ProviderRecipe('terradart_appwrite', 'AppwriteProvider', {
     'endpoint': _Scalar('endpoint'),
@@ -672,13 +675,17 @@ final class StackEmitter {
       String label,
       String expr, {
       bool configurationAlias = false,
+      bool external = false,
     }) {
-      if (configurationAlias) {
+      if (configurationAlias || external) {
         // Always a body call: the constructor's `providers:` list cannot
-        // mark an entry as a configuration alias. A label nothing selects
-        // is not bound, so analyze does not see an unused local.
+        // mark an entry as a configuration alias or an external
+        // configuration. A label nothing selects is not bound, so analyze
+        // does not see an unused local.
         final selected = selectedProviders.contains(label);
-        final call = 'addConfigurationAlias($expr)';
+        final call = configurationAlias
+            ? 'addConfigurationAlias($expr)'
+            : 'addExternalProvider($expr)';
         body.add(
           StackStatement(
             tag: 'provider.$label',
@@ -731,7 +738,10 @@ final class StackEmitter {
           'first configuration is migrated',
         );
       }
-      final config = defaults.isEmpty
+      final externalDefault =
+          defaults.isNotEmpty &&
+          _externalizeUnmodeled(recipe, name, name, defaults.first);
+      final config = defaults.isEmpty || externalDefault
           ? (args: const <String>[], isConst: true)
           : _providerArgs(recipe, name, defaults.first);
       final args = config.args;
@@ -749,23 +759,33 @@ final class StackEmitter {
         name,
         '${config.isConst ? 'const ' : ''}'
         '${recipe.className}(${args.join(', ')})',
+        external: externalDefault,
       );
       _registeredProviders.add(name);
-      if (!childModule || configs.isEmpty) {
+      if (!externalDefault && (!childModule || configs.isEmpty)) {
         _migrated.add(MigratedItem(address: 'provider.$name'));
       }
       // Every aliased configuration of the name is registered too, with
       // its alias; a resource selects it by passing its instance.
       for (final p in aliases) {
         final alias = p.alias!;
-        final aliasConfig = _providerArgs(recipe, '$name.$alias', p);
+        final label = '$name.$alias';
+        if (_externalizeUnmodeled(recipe, name, label, p)) {
+          register(
+            label,
+            'const ${recipe.className}(alias: ${dartString(alias)})',
+            external: true,
+          );
+          continue;
+        }
+        final aliasConfig = _providerArgs(recipe, label, p);
         final aliasArgs = ['alias: ${dartString(alias)}', ...aliasConfig.args];
         register(
-          '$name.$alias',
+          label,
           '${aliasConfig.isConst ? 'const ' : ''}'
-              '${recipe.className}(${aliasArgs.join(', ')})',
+          '${recipe.className}(${aliasArgs.join(', ')})',
         );
-        _migrated.add(MigratedItem(address: 'provider.$name.$alias'));
+        _migrated.add(MigratedItem(address: 'provider.$label'));
       }
     }
     if (childModule) {
@@ -1157,6 +1177,47 @@ final class StackEmitter {
       out.removeAt(0);
     }
     return out;
+  }
+
+  /// True when [block] sets an argument [recipe] does not model, other than
+  /// a credential.
+  ///
+  /// The whole configuration then stays in Terraform: splitting the modeled
+  /// arguments onto the Stack and the rest into the sidecar would emit two
+  /// provider blocks. Credentials are still dropped, with a warning, and
+  /// the sidecar omits them.
+  bool _externalizeUnmodeled(
+    _ProviderRecipe recipe,
+    String providerName,
+    String label,
+    ProviderBlock block,
+  ) {
+    final values = objectMap(bodyAsObject(block.body)) ?? {};
+    final secrets = droppedProviderArguments[providerName] ?? const {};
+    final unmodeled = <String>[];
+    final secretKeys = <String>[];
+    for (final key in values.keys) {
+      if (key == 'alias') continue;
+      if (secrets.contains(key)) {
+        secretKeys.add(key);
+        continue;
+      }
+      if (!recipe.args.containsKey(key)) unmodeled.add(key);
+    }
+    if (unmodeled.isEmpty) return false;
+    for (final key in secretKeys) {
+      _warnings.add(
+        'provider "$label": argument "$key" has no '
+        '${recipe.className} parameter and was dropped',
+      );
+    }
+    final listed = unmodeled.map((k) => '"$k"').join(', ');
+    _keep(
+      'provider.$label',
+      'provider "$label" sets $listed, which ${recipe.className} does not '
+          'model; the configuration stays in Terraform',
+    );
+    return true;
   }
 
   /// `param: value` arguments of [recipe]'s constructor for the provider

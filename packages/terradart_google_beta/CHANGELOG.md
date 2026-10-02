@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- `GoogleBetaProvider` takes `userProjectOverride` (`user_project_override`).
 - **Breaking:** every barrel re-exports `terradart_core`, and a data source is also exported from its service barrel. Helper `encode()` / `blockKey` are `@internal`. See [MIGRATING.md](../../MIGRATING.md#fewer-imports).
 - **Breaking:** `provider:` takes a registered `GoogleBetaProvider` instance instead of `'google-beta.<alias>'`; the wrappers override `Resource.defaultProvider` to keep `provider = google-beta` by default. See [MIGRATING.md](../../MIGRATING.md#providers-are-instances).
 - **Breaking:** an argument the provider schema marks sensitive is `Sensitive<T>` — a variable, an expression or an attribute getter, never `.literal(...)`. See [MIGRATING.md](../../MIGRATING.md#sensitive-arguments-take-no-literal).
