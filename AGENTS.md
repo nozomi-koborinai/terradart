@@ -257,7 +257,7 @@ When a resource can't be applied on a plain standalone project — org-only (Sha
 
 ## Cursor Cloud specific instructions
 
-Cloud Agent VMs provision their toolchain from [`.cursor/environment.json`](.cursor/environment.json), whose `install` step runs the idempotent [`.cursor/install.sh`](.cursor/install.sh): it installs **Dart SDK stable** (≥ 3.10; every package requires ^3.10) from the official apt repo and **Terraform** (≥ 1.11) from HashiCorp apt, then runs `dart pub get`. Cursor caches the result as a snapshot, so later agent boots are fast. Edit `install.sh` when the toolchain changes — do not rely on a hand-built snapshot. After changing `install.sh`, rebuild / refresh the Cloud Agent environment snapshot.
+Cloud Agent VMs provision their toolchain from [`.cursor/environment.json`](.cursor/environment.json), whose `install` step runs the idempotent [`.cursor/install.sh`](.cursor/install.sh): it installs **Dart SDK stable** (≥ 3.10; every package requires ^3.10) from the official apt repo and **Terraform** (≥ 1.11) from HashiCorp apt, runs `dart pub get`, then pre-downloads the managed OpenTofu that `terradart engine --engine tofu` resolves (the engine example validation runs; Terraform stays for the migrator gates, the cookbook and `appwrite/appwrite`, which the OpenTofu registry lacks). Cursor caches the result as a snapshot, so later agent boots are fast. Edit `install.sh` when the toolchain changes — do not rely on a hand-built snapshot. After changing `install.sh`, rebuild / refresh the Cloud Agent environment snapshot.
 
 There is no long-running dev server for core work. Primary flows:
 
@@ -271,11 +271,11 @@ There is no long-running dev server for core work. Primary flows:
 | Migrator moved gate (unroll count / for_each, synth, plan against the indexed state: moves only) | `dart tool/migrate_moved_gates.dart` |
 | Publish readiness (per package) | `cd packages/<pkg> && dart pub publish --dry-run` |
 | Synth example stack | `cd examples/pubsub_quickstart && GCP_PROJECT_ID=ci-test-project-id dart run bin/infra.dart` |
-| Validate synth output | `cd examples/pubsub_quickstart/tf-out && terraform init -backend=false && terraform validate` |
+| Validate synth output (managed OpenTofu) | `tofu="$(dart run terradart_cli:terradart engine --engine tofu)" && cd examples/pubsub_quickstart/tf-out && "$tofu" init -backend=false && "$tofu" validate` |
 | Release demo clip (cut a `RecordScreen` take) | `tool/promo_video.sh --in RAW.mp4 --out EDIT.mp4 --deliver DELIVERY.mp4` |
 | Docs site (optional) | `cd website && bun install && bun run dev` (needs Bun + Node ≥ 22) |
 
-`dart tool/example_synth_gates.dart` (inside `tool/agent_verify.sh`) synths every quickstart and runs `terraform validate` on each `tf-out/` when `terraform` is on `PATH`; `dart tool/check_docs_consistency.dart` is the text-only docs check. Neither replaces the parallel `terraform_validate` CI matrix on merge. Examples use `GCP_PROJECT_ID` (`tool/example_synth_env.dart` sets the placeholder `ci-test-project-id`) — no live GCP credentials are required for synth or `terraform validate`.
+`dart tool/example_synth_gates.dart` (inside `tool/agent_verify.sh`) synths every quickstart and runs `init -backend=false` + `validate` on each `tf-out/` with OpenTofu — the engine `terradart` gives users: `tofu` on `PATH`, else the release `terradart_cli` pins, resolved by `terradart engine --engine tofu`, picked by `tool/validate_engine.dart`. A Stack that needs a provider the OpenTofu registry lacks (`kNotOnOpenTofuRegistry`: `appwrite/appwrite`) validates with `terraform` instead, as does everything when OpenTofu cannot be resolved (offline); `dart tool/check_docs_consistency.dart` is the text-only docs check. Neither replaces the parallel `terraform_validate` CI matrix on merge, which validates with the same managed OpenTofu. Examples use `GCP_PROJECT_ID` (`tool/example_synth_env.dart` sets the placeholder `ci-test-project-id`) — no live GCP credentials are required for synth or `terraform validate`.
 
 ## Working Rules
 
