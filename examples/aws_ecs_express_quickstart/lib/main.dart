@@ -130,7 +130,7 @@ final class AwsEcsExpressStack extends Stack {
     addOutput(
       'endpoint',
       TfArg.expression<String>(
-        '\${${service.tfAddress}.ingress_paths[0].endpoint}',
+        '\${try(${service.tfAddress}.ingress_paths[0].endpoint, "")}',
       ),
       description: 'Public endpoint of the service load balancer.',
     );
