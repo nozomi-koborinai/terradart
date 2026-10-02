@@ -82,6 +82,9 @@ abstract interface class StackProvider {
 ///   the getters of the generated `<name>Outputs` reader in the
 ///   [appExports] file, which the app builds from `terraform output -json`
 ///   (`fromTerraformJson`) or its environment (`fromEnvironment`).
+/// - `addDartDefineOutput(...)` / `dartDefineOutputs` — an `output` whose
+///   value is the `--dart-define-from-file` JSON a client app is built
+///   with, which the reader's `fromDartDefine` reads.
 /// - `addConstant(...)` / `constants` — `static const` values of the
 ///   generated `<name>Constants` class, written to the [appExports] file.
 /// - `variable<T>(...)` / `variables` — `variable "<name>" { ... }`
@@ -134,6 +137,7 @@ abstract base class Stack {
   /// Insertion-ordered so the generated file and `output` block are stable.
   final Map<String, AppConstant<Object?>> _constants = {};
   final Map<String, TfOutput<Object?>> _outputs = {};
+  final Map<String, DartDefineOutput> _dartDefineOutputs = {};
 
   /// Insertion-ordered so the emitted `variable` block is stable.
   final Map<String, TfVariable> _variables = {};
@@ -198,6 +202,11 @@ abstract base class Stack {
   /// order.
   Map<String, TfOutput<Object?>> get outputs =>
       Map<String, TfOutput<Object?>>.unmodifiable(_outputs);
+
+  /// The outputs registered with [addDartDefineOutput], by name, in
+  /// registration order. Synth emits them after [outputs].
+  Map<String, DartDefineOutput> get dartDefineOutputs =>
+      Map<String, DartDefineOutput>.unmodifiable(_dartDefineOutputs);
 
   /// Read-only map of declared Terraform variables, keyed by variable
   /// name. Insertion order is preserved for deterministic output.
@@ -337,13 +346,7 @@ abstract base class Stack {
             'hyphens; not starting with a digit), e.g. "orders_topic_id"',
       );
     }
-    if (_outputs.containsKey(name)) {
-      throw ArgumentError.value(
-        name,
-        'name',
-        'Output "$name" is already registered on this Stack.',
-      );
-    }
+    _checkOutputNameFree(name);
     if (!sensitive) {
       final field = _sensitiveFieldRead(value);
       if (field != null) {
@@ -388,6 +391,10 @@ abstract base class Stack {
   /// addOutput('service_uri', service.uri);
   /// ```
   ///
+  /// Where the environment is one map argument, pass
+  /// [OutputEnvironment.variables]: `environment: .new(variables:
+  /// outputEnvironment().variables)` on an `AwsLambdaFunction`.
+  ///
   /// Register the outputs that read the service itself after the call: a
   /// resource whose environment references its own attributes is a
   /// Terraform cycle.
@@ -397,9 +404,7 @@ abstract base class Stack {
   /// not a registered non-sensitive output, or an output has no environment
   /// value (a `null` literal, or a non-`String` output whose JSON is not one
   /// interpolation).
-  List<({String name, TfArg<String> value})> outputEnvironment({
-    Iterable<String>? only,
-  }) {
+  OutputEnvironment outputEnvironment({Iterable<String>? only}) {
     if (appExports == null) {
       throw StateError(
         'outputEnvironment() is read by the generated reader: pass '
@@ -425,12 +430,74 @@ abstract base class Stack {
         );
       }
     }
-    return [
-      for (final MapEntry(:key, :value) in names.map(
-        (name) => AppExportsEmitter.environmentEntry(this, name),
-      ))
-        (name: key, value: value),
-    ];
+    return OutputEnvironment([
+      for (final output in names)
+        switch (AppExportsEmitter.environmentEntry(this, output)) {
+          EnvironmentEntry(:final name, :final value?) => (
+            name: name,
+            value: value,
+          ),
+          EnvironmentEntry(:final problem) => throw ArgumentError.value(
+            output,
+            'only',
+            problem,
+          ),
+        },
+    ]);
+  }
+
+  /// Declare `output "<name>" { value = { ORDERS_TOPIC_ID = ..., ... } }`:
+  /// the environment [outputEnvironment] would pass, as the file a client
+  /// app is built with.
+  ///
+  /// ```dart
+  /// addOutput('api_url', service.uri);
+  /// addDartDefineOutput();
+  /// ```
+  ///
+  /// After apply, `terraform output -json dart_defines` prints a JSON
+  /// object of strings that `flutter build --dart-define-from-file` takes
+  /// as it is, and the generated reader's `fromDartDefine()` reads with
+  /// types. The app's build reads the applied state; it never applies.
+  ///
+  /// It carries every non-sensitive output of the Stack, or the outputs
+  /// [only] names, resolved at synth, so the call can come before the
+  /// outputs it carries. Register one per client to give each only what it
+  /// reads.
+  ///
+  /// Throws [ArgumentError] when [name] is not a Terraform identifier or an
+  /// output already has it. Synth reports an [InvalidDartDefineOutput] when
+  /// a name in [only] is not a registered non-sensitive output, an output
+  /// has no environment value, two outputs share a variable, or it carries
+  /// no output.
+  void addDartDefineOutput({
+    String name = 'dart_defines',
+    Iterable<String>? only,
+    String? description,
+  }) {
+    if (!isTerraformIdentifier(name)) {
+      throw ArgumentError.value(
+        name,
+        'name',
+        'must be a Terraform identifier (letters, digits, underscores and '
+            'hyphens; not starting with a digit), e.g. "dart_defines"',
+      );
+    }
+    _checkOutputNameFree(name);
+    _dartDefineOutputs[name] = DartDefineOutput(
+      only: only?.toList(growable: false),
+      description: description,
+    );
+  }
+
+  void _checkOutputNameFree(String name) {
+    if (_outputs.containsKey(name) || _dartDefineOutputs.containsKey(name)) {
+      throw ArgumentError.value(
+        name,
+        'name',
+        'Output "$name" is already registered on this Stack.',
+      );
+    }
   }
 
   /// Members every generated reader has, which no getter may shadow.

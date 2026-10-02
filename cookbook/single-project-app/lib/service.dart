@@ -10,7 +10,7 @@ import 'package:terradart_google/secret_manager.dart';
 /// reads.
 GoogleCloudRunV2Service buildCloudRunService({
   required GoogleServiceAccount runSa,
-  required List<({String name, TfArg<String> value})> outputEnvironment,
+  required OutputEnvironment outputEnvironment,
   required GoogleSecretManagerSecret dbPasswordSecret,
 }) => GoogleCloudRunV2Service(
   'coffee_service',

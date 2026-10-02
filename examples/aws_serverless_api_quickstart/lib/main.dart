@@ -155,12 +155,7 @@ final class AwsServerlessApiStack extends Stack {
         memorySize: .literal(128),
         timeout: .literal(10),
         environment: LambdaFunctionEnvironment(
-          variables: .literal({
-            for (final (:name, :value) in outputEnvironment(
-              only: ['table_name'],
-            ))
-              name: value.toTfJson() as String,
-          }),
+          variables: outputEnvironment(only: ['table_name']).variables,
         ),
         loggingConfig: LambdaFunctionLoggingConfig(
           logFormat: .text,

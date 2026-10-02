@@ -10,6 +10,16 @@ Per-package changelogs live alongside each package and are the system of record 
 
 ### Added
 
+- **Outputs in client apps** (`terradart_core`, `terradart_migrate`) —
+  `Stack.addDartDefineOutput()` declares an output, `dart_defines`, whose
+  value is the `--dart-define-from-file` JSON of the Stack's non-sensitive
+  outputs (the variables `outputEnvironment()` passes, `only:` and `name:`
+  for one file per client). A Flutter, Dart web or CLI client is built
+  with `terraform output -json dart_defines` and reads each value with its
+  type through `const <Stack>Outputs.fromDartDefine()`, on every provider
+  package; the reader's constructors are all `const`. The migrator turns
+  such an output back into `addDartDefineOutput`. Guide:
+  [Outputs in client apps](https://terradart.dev/docs/client-outputs/).
 - **AWS serverless API example** — [`examples/aws_serverless_api_quickstart`](examples/aws_serverless_api_quickstart/)
   runs a Dart handler on Lambda behind an API Gateway HTTP API and a
   DynamoDB table. The execution role can write only that function's log
@@ -23,8 +33,10 @@ Per-package changelogs live alongside each package and are the system of record 
   `terradart_codegen`, `terradart_migrate`) — `backend` and
   `requiredVersion` are Stack constructor arguments (`setBackend` /
   `setRequiredVersion` are removed) and `writeTo()` defaults to `tf-out`.
-  `TfTimeouts` fields are `Duration`s, `outputEnvironment()` returns
-  `(name:, value:)` records, and `TfArg.literal` is a `const` factory.
+  `TfTimeouts` fields are `Duration`s, `outputEnvironment()` returns an
+  `OutputEnvironment` of `(name:, value:)` records whose `variables` is a
+  map argument (`environment: .new(variables: outputEnvironment().variables)`
+  on a Lambda), and `TfArg.literal` is a `const` factory.
   google's `Apis.enable(this, barrels: [...])` is `enableApis([...])`. A
   variant of a block with no fields takes no argument (`.avroFormat()`),
   and google's hand-written one-field variants take it positionally

@@ -7,6 +7,11 @@
 /// `DataAwsCallerIdentity`, logs go to a log group with a 14-day
 /// retention, and every resource carries the provider's `defaultTags`.
 ///
+/// The function URL is only known after apply, so it is an output, and
+/// `addDartDefineOutput` hands it to `bin/client.dart` — a client built
+/// with `--dart-define`, which reads it through the generated
+/// `AwsLambdaStackOutputs.fromDartDefine()`.
+///
 /// Synth needs no credentials and none appear in `tf-out/`. Apply needs
 /// the `bootstrap` zip built first (README, "Before you apply").
 ///
@@ -33,6 +38,7 @@ final class AwsLambdaStack extends Stack {
             defaultTags: const {'app': 'terradart-lambda-quickstart'},
           ),
         ],
+        appExports: AppExports('lib/generated/aws_lambda_stack.app.dart'),
       ) {
     final account = DataAwsCallerIdentity('current');
     add(account);
@@ -100,12 +106,19 @@ final class AwsLambdaStack extends Stack {
       ),
     );
     add(fn);
-    add(
+    final url = add(
       AwsLambdaFunctionUrl(
         'hello',
         functionName: fn.ref,
         authorizationType: .none,
       ),
     );
+
+    addOutput(
+      'function_url',
+      url.functionUrl,
+      description: 'Public URL of the function.',
+    );
+    addDartDefineOutput();
   }
 }

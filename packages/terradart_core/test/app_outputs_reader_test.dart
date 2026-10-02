@@ -42,9 +42,15 @@ TestStack _typedStack() {
     ..addOutput('secret', attr<String>('secret'), sensitive: true);
 }
 
-/// Writes [source] beside a `main.dart` whose body is [body], runs it, and
-/// returns its stdout lines.
-Future<List<String>> _run(String source, String body) async {
+/// Writes [source] beside a `main.dart` whose body is [body], runs it with
+/// the compile-time [defines] — on the VM, or compiled to JavaScript with
+/// dart2js and run by Node when [web] — and returns its stdout lines.
+Future<List<String>> _run(
+  String source,
+  String body, {
+  Map<String, String> defines = const {},
+  bool web = false,
+}) async {
   final dir = await Directory.systemTemp.createTemp('terradart_reader_');
   addTearDown(() => dir.delete(recursive: true));
   await File('${dir.path}/reader.dart').writeAsString(source);
@@ -56,13 +62,38 @@ void main() {
 $body
 }
 ''');
-  final result = await Process.run(Platform.resolvedExecutable, [
-    'run',
-    '${dir.path}/main.dart',
-  ]);
+  final flags = [
+    for (final MapEntry(:key, :value) in defines.entries)
+      '--define=$key=$value',
+  ];
+  final ProcessResult result;
+  if (web) {
+    final js = '${dir.path}/main.js';
+    final compiled = await Process.run(Platform.resolvedExecutable, [
+      'compile',
+      'js',
+      ...flags,
+      '-o',
+      js,
+      '${dir.path}/main.dart',
+    ]);
+    expect(compiled.exitCode, 0, reason: '${compiled.stdout}');
+    result = await Process.run('node', [js]);
+  } else {
+    result = await Process.run(Platform.resolvedExecutable, [
+      'run',
+      ...flags,
+      '${dir.path}/main.dart',
+    ]);
+  }
   expect(result.exitCode, 0, reason: '${result.stdout}\n${result.stderr}');
   return const LineSplitter().convert(result.stdout as String);
 }
+
+/// Why a test needs Node, or `null` when it is on PATH.
+final Object? _noNode = Process.runSync('which', ['node']).exitCode == 0
+    ? null
+    : 'node is not on PATH';
 
 void main() {
   group('generated reader', () {
@@ -169,10 +200,165 @@ void main() {
     });
   });
 
+  group('dart-define output', () {
+    /// The `terraform output -json dart_defines` value of [stack], whose
+    /// outputs are all literals.
+    Map<String, String> applied(Stack stack, [String name = 'dart_defines']) {
+      final output = stack.synth().tfJson['output'] as Map<String, Object?>;
+      final value = (output[name]! as Map<String, Object?>)['value'];
+      return (value! as Map<String, Object?>).cast();
+    }
+
+    test('is the environment of every non-sensitive output', () {
+      final stack = _typedStack()
+        ..addDartDefineOutput(description: 'Client build defines.');
+      final output = stack.synth().tfJson['output'] as Map<String, Object?>;
+      expect(output.keys.last, 'dart_defines');
+      expect(output['dart_defines'], {
+        'value': {
+          'TOPIC_ID': r'${google_pubsub_topic.t.id}',
+          'REPLICAS': r'${jsonencode(google_pubsub_topic.t.replicas)}',
+          'RATIO': r'${jsonencode(google_pubsub_topic.t.ratio)}',
+          'ENABLED': r'${jsonencode(google_pubsub_topic.t.enabled)}',
+          'ZONES': r'${jsonencode(google_pubsub_topic.t.zones)}',
+          'LABELS': r'${jsonencode(google_pubsub_topic.t.labels)}',
+          'MATRIX': r'${jsonencode(google_pubsub_topic.t.matrix)}',
+          'MAYBE': r'${google_pubsub_topic.t.maybe}',
+          'MAYBE_LIST': r'${jsonencode(google_pubsub_topic.t.maybe_list)}',
+          'ANYTHING': r'${jsonencode(google_pubsub_topic.t.labels)}',
+        },
+        'description': 'Client build defines.',
+      });
+      expect(stack.outputs.keys, isNot(contains('dart_defines')));
+      expect(stack.synth().dartSource, isNot(contains('get dartDefines')));
+    });
+
+    test('resolves at synth and picks outputs with only', () {
+      final stack = _stack()
+        ..addDartDefineOutput()
+        ..addDartDefineOutput(name: 'admin_defines', only: ['b'])
+        ..addOutput('a', .literal('1'))
+        ..addOutput('b', .literal(2));
+      expect(applied(stack), {'A': '1', 'B': '2'});
+      expect(applied(stack, 'admin_defines'), {'B': '2'});
+    });
+
+    test('works without appExports', () {
+      final stack = TestStack(providers: const [_provider])
+        ..addOutput('a', .literal('1'))
+        ..addDartDefineOutput();
+      expect(applied(stack), {'A': '1'});
+    });
+
+    test('rejects a taken or invalid name', () {
+      final stack = _stack()
+        ..addOutput('a', .literal('1'))
+        ..addDartDefineOutput();
+      expect(() => stack.addDartDefineOutput(name: 'a'), throwsArgumentError);
+      expect(() => stack.addDartDefineOutput(), throwsArgumentError);
+      expect(
+        () => stack.addOutput('dart_defines', .literal('x')),
+        throwsArgumentError,
+      );
+      expect(() => stack.addDartDefineOutput(name: '1x'), throwsArgumentError);
+    });
+
+    test('reports what it cannot carry', () {
+      List<String> issues(Stack stack) => [
+        for (final issue in stack.validate())
+          if (issue is InvalidDartDefineOutput) issue.toString(),
+      ];
+      expect(issues(_stack()..addDartDefineOutput()), [
+        startsWith('output.dart_defines: it carries no output.'),
+      ]);
+      expect(
+        issues(
+          _stack()
+            ..addOutput('secret', .literal('s'), sensitive: true)
+            ..addOutput('none', TfArg<String?>.literal(null))
+            ..addDartDefineOutput(only: ['missing', 'secret', 'none']),
+        ),
+        [
+          contains('Output "missing" is not registered'),
+          contains('Output "secret" is sensitive'),
+          contains('Output "none" is null'),
+        ],
+      );
+      expect(
+        issues(
+          TestStack(providers: const [_provider])
+            ..addOutput('a_b', .literal('1'))
+            ..addOutput('a-b', .literal('2'))
+            ..addDartDefineOutput(),
+        ),
+        [contains('it carries the variable A_B twice')],
+      );
+      expect(
+        () => (_stack()..addDartDefineOutput()).synth(),
+        throwsA(isA<SynthException>()),
+      );
+    });
+
+    for (final web in [false, true]) {
+      test(
+        'is what fromDartDefine reads ${web ? 'in dart2js' : 'on the VM'}',
+        skip: web ? _noNode : null,
+        () async {
+          final stack = _stack()
+            ..addOutput('api_url', .literal('https://api.example.com/v1?a=b'))
+            ..addOutput('replicas', .literal(3))
+            ..addOutput('zones', .literal(['a', 'b']))
+            ..addOutput('limits', .literal({'cpu': 1}))
+            ..addOutput('unset', .literal('u'))
+            ..addOutput('secret', .literal('s'), sensitive: true)
+            ..addDartDefineOutput(only: ['api_url', 'replicas', 'zones']);
+          final lines = await _run(
+            stack.synth().dartSource!,
+            r'''
+  const o = OrdersOutputs.fromDartDefine();
+  print(jsonEncode([o.apiUrl, o.replicas, o.zones, o.limits]));
+  try {
+    o.unset;
+  } on StateError catch (e) {
+    print(e.message);
+  }
+''',
+            defines: {
+              ...applied(stack),
+              'LIMITS': '{"cpu":1}',
+              'SECRET': 'leaked',
+            },
+            web: web,
+          );
+          expect(lines, [
+            '["https://api.example.com/v1?a=b",3,["a","b"],{"cpu":1}]',
+            'Dart define UNSET (Terraform output "unset") is not set.',
+          ]);
+        },
+      );
+    }
+
+    test('reads only the defines of the reader getters', () {
+      final source =
+          (_stack()
+                ..addOutput('api_url', .literal('a'))
+                ..addOutput('secret', .literal('s'), sensitive: true))
+              .synth()
+              .dartSource!;
+      expect(
+        source,
+        contains(
+          "    if (bool.hasEnvironment('API_URL')) "
+          "'API_URL': String.fromEnvironment('API_URL'),\n  };",
+        ),
+      );
+      expect(source, isNot(contains("'SECRET'")));
+      expect(source, contains('const OrdersOutputs.fromDartDefine()'));
+    });
+  });
+
   group('outputEnvironment', () {
-    Map<String, Object?> encoded(
-      List<({String name, TfArg<String> value})> environment,
-    ) => {
+    Map<String, Object?> encoded(OutputEnvironment environment) => {
       for (final (:name, :value) in environment)
         name: TfJsonEncoder.encodeArg(value),
     };
@@ -198,6 +384,25 @@ void main() {
           'TOPIC_ID': r'${google_pubsub_topic.t.id}',
         },
       );
+    });
+
+    test('is one map argument as variables', () {
+      final environment = _typedStack().outputEnvironment(
+        only: ['topic_id', 'zones'],
+      );
+      expect(TfJsonEncoder.encodeArg(environment.variables), {
+        'TOPIC_ID': r'${google_pubsub_topic.t.id}',
+        'ZONES': r'${jsonencode(google_pubsub_topic.t.zones)}',
+      });
+      final literals =
+          (_stack()
+                ..addOutput('region', .literal('us-central1'))
+                ..addOutput('replicas', .literal(3)))
+              .outputEnvironment();
+      expect(literals.variables.toTfJson(), {
+        'REGION': 'us-central1',
+        'REPLICAS': '3',
+      });
     });
 
     test('is what the generated reader reads', () async {

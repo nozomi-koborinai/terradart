@@ -46,4 +46,28 @@ terraform plan
 
 `AWS_REGION` defaults to `us-east-1`. No credentials appear in `tf-out/main.tf.json`: `AwsProvider` has no `access_key`, `secret_key`, or `token` parameter.
 
-After `terraform apply`, read the endpoint with `terraform state show aws_lambda_function_url.hello` (`function_url`) and `curl` it.
+After `terraform apply`, `terraform output -raw function_url` prints the endpoint; `curl` it.
+
+## Calling the function from a client
+
+The function URL exists only after apply, so the Stack declares it as an output and adds a define file a client is built with:
+
+```dart
+addOutput('function_url', url.functionUrl, description: 'Public URL of the function.');
+addDartDefineOutput();
+```
+
+`dart run bin/infra.dart` also writes `lib/generated/aws_lambda_stack.app.dart`, whose `AwsLambdaStackOutputs` reads the URL with its type. `bin/client.dart` reads it with `const AwsLambdaStackOutputs.fromDartDefine()`, from the value compiled into the client. The client's build reads the applied state with `terraform output`; it never applies, so it can run in its own pipeline:
+
+```bash
+dart run -DFUNCTION_URL="$(terraform -chdir=tf-out output -raw function_url)" bin/client.dart
+```
+
+A Flutter app takes the whole define file instead, since `terraform output -json dart_defines` prints a JSON object of strings that `--dart-define-from-file` reads as it is:
+
+```bash
+terraform -chdir=tf-out output -json dart_defines > dart_defines.json
+flutter build web --dart-define-from-file=dart_defines.json
+```
+
+Without the define, `outputs.functionUrl` throws a `StateError` that names `FUNCTION_URL`. See [Outputs in client apps](https://terradart.dev/docs/client-outputs/) for the whole pattern.

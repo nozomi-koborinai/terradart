@@ -260,6 +260,26 @@ final class UnresolvableConstant extends SynthIssue {
   String get message => reason;
 }
 
+/// An output of `Stack.addDartDefineOutput` that cannot carry what it
+/// names: an output that is not registered, is sensitive or has no
+/// environment value, two outputs read from one variable, or no output at
+/// all.
+final class InvalidDartDefineOutput extends SynthIssue {
+  const InvalidDartDefineOutput({required this.name, required this.reason});
+
+  /// The output's name (`dart_defines`).
+  final String name;
+
+  /// What is wrong, and how to fix it.
+  final String reason;
+
+  @override
+  String get address => 'output.$name';
+
+  @override
+  String get message => reason;
+}
+
 /// Thrown by `Stack.synth()` and `Stack.writeTo()` when the Stack has one or
 /// more [SynthIssue]s. Nothing is written.
 final class SynthException implements Exception {

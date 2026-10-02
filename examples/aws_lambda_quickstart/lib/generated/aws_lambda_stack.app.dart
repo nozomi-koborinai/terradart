@@ -1,15 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// terradart synth output for stack: RegistryStack
+// terradart synth output for stack: AwsLambdaStack
 // dart format off
 // ignore_for_file: type=lint
 
 import 'dart:convert';
 
 /// The constants of the stack, known when synth ran.
-abstract final class RegistryStackConstants {
-  RegistryStackConstants._();
-
-  static const String registryNamespaceId = r'terradart-registry';
+abstract final class AwsLambdaStackConstants {
+  AwsLambdaStackConstants._();
 }
 
 /// The Terraform outputs of the stack, read when the app runs.
@@ -17,13 +15,13 @@ abstract final class RegistryStackConstants {
 /// Each getter reads its output when called, so a reader over an
 /// environment that sets only some of the variables serves those. A
 /// sensitive output has no getter.
-final class RegistryStackOutputs {
+final class AwsLambdaStackOutputs {
   /// Reads the outputs of `terraform output -json`:
-  /// `RegistryStackOutputs.fromTerraformJson(jsonDecode(stdout) as Map<String, Object?>)`.
+  /// `AwsLambdaStackOutputs.fromTerraformJson(jsonDecode(stdout) as Map<String, Object?>)`.
   ///
   /// That JSON holds the sensitive outputs in plain text, so never bundle
-  /// it into a client app; build a client with [RegistryStackOutputs.fromDartDefine].
-  const RegistryStackOutputs.fromTerraformJson(Map<String, Object?> outputs)
+  /// it into a client app; build a client with [AwsLambdaStackOutputs.fromDartDefine].
+  const AwsLambdaStackOutputs.fromTerraformJson(Map<String, Object?> outputs)
     : _source = _Source.terraform,
       _terraform = outputs,
       _environment = const {};
@@ -32,16 +30,16 @@ final class RegistryStackOutputs {
   /// SCREAMING_SNAKE_CASE (`ORDERS_TOPIC_ID` for `orders_topic_id`), such as
   /// `Platform.environment`. A `String` output is the variable's value; any
   /// other type is JSON.
-  const RegistryStackOutputs.fromEnvironment(Map<String, String> environment)
+  const AwsLambdaStackOutputs.fromEnvironment(Map<String, String> environment)
     : _source = _Source.environment,
       _terraform = const {},
       _environment = environment;
 
-  /// Reads the same variables as [RegistryStackOutputs.fromEnvironment] from the values
+  /// Reads the same variables as [AwsLambdaStackOutputs.fromEnvironment] from the values
   /// compiled into the app: `--dart-define-from-file` with the JSON of the
   /// Stack's `addDartDefineOutput` (`terraform output -json dart_defines`),
   /// or `--dart-define=ORDERS_TOPIC_ID=...`.
-  const RegistryStackOutputs.fromDartDefine()
+  const AwsLambdaStackOutputs.fromDartDefine()
     : _source = _Source.dartDefine,
       _terraform = const {},
       _environment = _dartDefines;
@@ -51,7 +49,7 @@ final class RegistryStackOutputs {
   final Map<String, String> _environment;
 
   static const Map<String, String> _dartDefines = {
-    if (bool.hasEnvironment('REGISTRY_SERVICE_ID')) 'REGISTRY_SERVICE_ID': String.fromEnvironment('REGISTRY_SERVICE_ID'),
+    if (bool.hasEnvironment('FUNCTION_URL')) 'FUNCTION_URL': String.fromEnvironment('FUNCTION_URL'),
   };
 
   Object? _read(String output, String variable, bool json) {
@@ -82,9 +80,10 @@ final class RegistryStackOutputs {
     }
   }
 
-  String get registryServiceId {
-    final value = _read(r'registry_service_id', 'REGISTRY_SERVICE_ID', false);
-    return _as<String>(value, r'registry_service_id');
+  /// Public URL of the function.
+  String get functionUrl {
+    final value = _read(r'function_url', 'FUNCTION_URL', false);
+    return _as<String>(value, r'function_url');
   }
 
   static T _as<T>(Object? value, String output) {

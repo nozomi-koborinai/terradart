@@ -3,6 +3,7 @@
 /// them, and they change without a deprecation period.
 library;
 
+export 'src/dart_source.dart' show outputEnvironmentName;
 export 'src/synth/json_encoder.dart' show TfJsonEncoder;
 export 'src/tf_template.dart' show hasTemplateSequence, templateVariableNames;
 export 'src/tf_timeouts.dart' show goDurationString, parseGoDuration;

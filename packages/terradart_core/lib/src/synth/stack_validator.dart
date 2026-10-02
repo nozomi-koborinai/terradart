@@ -20,6 +20,7 @@ abstract final class StackValidator {
     ..._timeouts(stack),
     ..._moved(stack),
     ..._constants(stack),
+    ..._dartDefineOutputs(stack),
     ..._lifecycles(stack),
   ];
 
@@ -473,6 +474,35 @@ abstract final class StackValidator {
     for (final m in stack.moved) {
       if (m.to.startsWith('module.') || addresses.contains(m.to)) continue;
       yield InvalidMoveTarget(from: m.from, to: m.to);
+    }
+  }
+
+  static Iterable<SynthIssue> _dartDefineOutputs(Stack stack) sync* {
+    for (final MapEntry(key: name, value: d)
+        in stack.dartDefineOutputs.entries) {
+      final entries = AppExportsEmitter.dartDefines(stack, d);
+      if (entries.isEmpty) {
+        yield InvalidDartDefineOutput(
+          name: name,
+          reason:
+              'it carries no output. Register the outputs the client reads '
+              "with addOutput, e.g. addOutput('api_url', service.uri).",
+        );
+      }
+      final seen = <String>{};
+      for (final e in entries) {
+        if (e.problem case final problem?) {
+          yield InvalidDartDefineOutput(name: name, reason: problem);
+        } else if (!seen.add(e.name)) {
+          yield InvalidDartDefineOutput(
+            name: name,
+            reason:
+                'it carries the variable ${e.name} twice; list each output '
+                'once and rename outputs that differ only in "-" / "_" or '
+                'case.',
+          );
+        }
+      }
     }
   }
 
