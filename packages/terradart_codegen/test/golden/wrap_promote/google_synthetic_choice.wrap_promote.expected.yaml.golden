@@ -19,12 +19,12 @@ prelude: |
     });
     final TfArg<String> aValue;
 
-    @override
     @internal
+    @override
     String get blockKey => 'option_a';
 
-    @override
     @internal
+    @override
     Map<String, Object?> encode() {
       // TODO(wrap-promote): implement encode for OptionA.
       // Pattern: { if (optional != null) 'optional_key': optional!.toTfJson(), 'required_key': required.toTfJson(), ... }
@@ -40,12 +40,12 @@ prelude: |
     final TfArg<String> bValue;
     final TfArg<bool>? bFlag;
 
-    @override
     @internal
+    @override
     String get blockKey => 'option_b';
 
-    @override
     @internal
+    @override
     Map<String, Object?> encode() {
       // TODO(wrap-promote): implement encode for OptionB.
       // Pattern: { if (optional != null) 'optional_key': optional!.toTfJson(), 'required_key': required.toTfJson(), ... }
