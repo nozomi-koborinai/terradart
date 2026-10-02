@@ -1,6 +1,6 @@
 # TerraDart cookbook
 
-Real-world recipes for [terradart](https://github.com/nozomi-koborinai/terradart), the Dart-first IaC library for Google Cloud.
+Real-world Google Cloud recipes for [terradart](https://github.com/nozomi-koborinai/terradart), type-safe IaC for Dart.
 
 Each recipe is a self-contained Dart project under `cookbook/<name>/` that uses the monorepo workspace packages and ships a working Stack you can `terraform plan + apply` against a real GCP project.
 

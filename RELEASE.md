@@ -12,7 +12,7 @@ terradart bumps every workspace package in lockstep (`tool/bump_version.sh`); al
   dart tool/release_ledger_check.dart --since v0.X.W
   ```
 
-  - `tool/sealed_name_debt.yaml` must be empty — the check fails otherwise, and so does the bump. A temporary `Or` name must not ship: once it is published, renaming it is a breaking change. Name each group with a `sealedNames` entry in its override and re-run `terradart wrap` (`AGENTS.md` **Generation Policy**).
+  - `tool/sealed_name_debt.yaml` must be empty — the check fails otherwise, and so does the bump. A temporary `Or` name must not ship: once it is published, renaming it is a breaking change. Name each group with a `sealedNames` entry in its override and re-run `terradart-codegen wrap` (`AGENTS.md` **Generation Policy**).
   - `awaiting-example:` lines in `tool/example_debt.yaml` and entries in `tool/curation_backlog.yaml` are reported with the ones new since the last tag. Pay them down first (a Wave via [`terradart-ship-wave`](.agents/skills/terradart-ship-wave/SKILL.md), example backfill via [`terradart-backfill-examples`](.agents/skills/terradart-backfill-examples/SKILL.md)) or accept them explicitly by pasting the report into the release PR body. Normal PR CI never fails on a non-empty backlog.
 - [ ] Bump every pubspec to the target version with a single command:
 
@@ -74,17 +74,17 @@ Watch `publish.yml` on GitHub Actions. The workflow ships the 11 packages in 9 p
 
 pub.dev's OIDC trusted publisher only works for **previously published** packages. The first publish of a new package must be done manually with `dart pub publish` (interactive auth via `dart pub token add`); `skip_if_published.sh` then turns that package's `publish.yml` job into a no-op for the version already on pub.dev.
 
-Every package through `terradart_migrate` is on pub.dev already; `terradart_cli` still needs its first release. It depends on `terradart_migrate` at the new version, so it can only be published after the tag's `publish-migrate` job. For that release:
+All 11 packages are on pub.dev with automated publishing set up, so no release needs this today. A package added later does: it can only be published by hand after the tag's job for the phase it depends on has gone green. For that release:
 
 ```bash
-# 1. Push the tag. publish.yml ships everything through terradart_migrate;
-#    publish-cli fails because terradart_cli is not on pub.dev yet.
+# 1. Push the tag. publish.yml ships every existing package;
+#    the new package's job fails because it is not on pub.dev yet.
 git tag v0.X.Y && git push origin v0.X.Y
 
-# 2. Once publish-migrate is green (and pub.dev lists terradart_migrate
-#    v0.X.Y), publish terradart_cli by hand.
-tool/prepare_publish.sh v0.X.Y terradart_cli
-(cd packages/terradart_cli && dart pub publish)
+# 2. Once the phase it depends on is green (and pub.dev lists those
+#    packages at v0.X.Y), publish the new package by hand.
+tool/prepare_publish.sh v0.X.Y <pkg>
+(cd packages/<pkg> && dart pub publish)
 git checkout packages/*/pubspec.yaml
 ```
 

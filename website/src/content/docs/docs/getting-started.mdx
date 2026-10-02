@@ -10,7 +10,7 @@ This guide matches the [README quickstart](https://github.com/nozomi-koborinai/t
 ## Prerequisites
 
 - Dart SDK ≥ 3.10
-- Terraform CLI ≥ 1.11.0
+- Optional: OpenTofu, or Terraform ≥ 1.11.0. The [`terradart` command](/docs/cli/) runs the one on your `PATH`, and downloads a checksum-verified OpenTofu when there is neither.
 - Credentials for your provider at apply time — Google Cloud Application Default Credentials (`gcloud auth application-default login`), the AWS SDK credential chain, `CLOUDFLARE_API_TOKEN`, or `APPWRITE_API_KEY`. Synth needs none, and none are written into the output.
 
 ## 1. Add dependencies
@@ -75,7 +75,10 @@ dependencies:
 
 ```bash
 dart pub get
+dart pub global activate terradart_cli
 ```
+
+The second line installs the [`terradart` command](/docs/cli/), which synthesizes the Stack and runs `plan` or `apply` for you. To pin it per project instead, `dart pub add --dev terradart_cli` and run it as `dart run terradart_cli:terradart`.
 
 Each provider package wraps the whole catalog of its Terraform provider (Google's beta-only types live in [`terradart_google_beta`](https://pub.dev/packages/terradart_google_beta)), so any resource the provider documents has a factory. One Stack can mix packages.
 
@@ -276,44 +279,33 @@ More on each row: [Writing arguments](/docs/arguments/).
 
 ## 3. Synth Terraform JSON
 
-There is no synth CLI: `bin/infra.dart` constructs the Stack and writes it. The rest of this guide follows the Google Cloud Stack; for the others, construct `QueueStack()`, `EdgeStack(accountId: ...)` or `UploadsStack()` the same way.
+Synthesis is plain Dart: `bin/infra.dart`, the project's entry point, constructs the Stack and hands it to `runStack`, which writes it. The rest of this guide follows the Google Cloud Stack; for the others, construct `QueueStack()`, `EdgeStack(accountId: ...)` or `UploadsStack()` the same way.
 
 ```dart
 // bin/infra.dart
 import 'package:my_app/orders_stack.dart';
+import 'package:terradart_core/terradart_core.dart';
 
-Future<void> main() async {
-  final stack = OrdersStack(projectId: 'YOUR-PROJECT-ID');
-  await stack.writeTo('tf-out');
-}
+Future<void> main(List<String> args) =>
+    runStack(args, () => OrdersStack(projectId: 'YOUR-PROJECT-ID'));
 ```
 
 ```bash
-dart run bin/infra.dart
+terradart synth
 ```
 
-This writes `tf-out/main.tf.json` (with the `orders_topic_id` output) and `lib/generated/orders_stack.app.dart` (with the `ordersTopicName` constant and the `OrdersStackOutputs` reader).
+This runs `bin/infra.dart`, which writes `tf-out/main.tf.json` (with the `orders_topic_id` output) and `lib/generated/orders_stack.app.dart` (with the `ordersTopicName` constant and the `OrdersStackOutputs` reader). `dart run bin/infra.dart` does the same without the command.
 
 ## 4. Plan and apply
 
 ```bash
-cd tf-out
-terraform init
-terraform plan
-terraform apply
+terradart plan
+terradart apply
 ```
 
-Or let [the `terradart` command](/docs/cli/) run the loop — synth, `init`, `plan` or `apply` — with the `tofu` or `terraform` on your `PATH`, or a checksum-verified OpenTofu it downloads when there is neither:
+Each command synthesizes first, then runs `init` and `plan` or `apply` in `tf-out/` with the `tofu` or `terraform` on your `PATH`, or a checksum-verified OpenTofu it downloads when there is neither. For several environments, declare them as a Dart enum and hand it to `runEnvironments` in `bin/infra.dart`; `terradart apply --env prod` then runs one of them. See [The terradart command](/docs/cli/).
 
-```bash
-dart pub add --dev terradart_cli
-dart run terradart_cli:terradart plan
-dart run terradart_cli:terradart apply
-```
-
-It also runs one environment of several (`--env prod`) when `bin/infra.dart` declares them with `runEnvironments`.
-
-Your existing remote state backend and modules stay unchanged — TerraDart only replaces HCL/JSON authoring.
+Without the command, `terraform init`, `terraform plan` and `terraform apply` in `tf-out/` do the same. Your existing remote state backend and modules stay unchanged — TerraDart only replaces HCL/JSON authoring.
 
 ## 5. Read it from your app
 

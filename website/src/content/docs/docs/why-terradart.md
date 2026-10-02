@@ -26,7 +26,7 @@ TerraDart pulls infrastructure into the same authoring surface as the rest of yo
 
 ## Terraform stays the execution layer
 
-TerraDart does not run `terraform apply` for you. It does not own your state file. It does not introduce a new provider or a new lock format.
+TerraDart does not replace Terraform. The [`terradart` command](/docs/cli/) runs `plan` and `apply` with the `tofu` or `terraform` you already have (or a pinned OpenTofu it downloads), but it does not own your state file, and it does not introduce a new provider or a new lock format.
 
 What it does is take Terraform's authoring model — provider blocks, resource blocks, references, lifecycle hooks — and express it as Dart code that **generates** the same `*.tf.json` Terraform would have accepted from HCL. `terraform plan`, `terraform apply`, and your remote state backend stay exactly where they are.
 
@@ -126,7 +126,7 @@ Each provider has its own page — [Google Cloud](/docs/providers/google/), [AWS
 - Not a Terraform replacement — state and apply stay in Terraform.
 - Not a multi-cloud abstraction layer — wrappers faithfully mirror provider schemas rather than imposing cross-cloud abstractions.
 - Not a constructs framework in the pre-1.0 cycle.
-- Not module-block support — compose Terraform modules in HCL alongside TerraDart-generated `*.tf.json`; both feed the same `terraform apply`.
+- Not a module system — `addModule(ModuleCall(...))` calls an existing Terraform module by its `source`, and HCL files beside the generated `*.tf.json` feed the same apply; TerraDart does not turn modules into Dart.
 
 ## Next steps
 

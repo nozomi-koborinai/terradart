@@ -21,7 +21,7 @@ TerraDart is a thin authoring layer that produces standard Terraform JSON. The D
     },
     {
       title: "Apply",
-      body: "Run <code>terraform plan</code> and <code>terraform apply</code> against your existing state backend.",
+      body: "Run <code>terradart plan</code> and <code>terradart apply</code> — or <code>terraform plan</code> and <code>apply</code> yourself — against your existing state backend.",
     },
     {
       title: "Hand off (optional)",
@@ -275,7 +275,7 @@ A worked end-to-end example lives in the [cookbook `single-project-app` recipe](
 - Not a Terraform replacement — state and apply stay in Terraform.
 - Not a multi-cloud abstraction layer — wrappers faithfully mirror provider schemas rather than imposing cross-cloud abstractions.
 - Not a constructs framework in the pre-1.0 cycle.
-- Not module-block support — compose Terraform modules in HCL alongside TerraDart-generated `*.tf.json`; both feed the same `terraform apply`.
+- Not a module system — `addModule(ModuleCall(...))` calls an existing Terraform module by its `source`, and HCL files beside the generated `*.tf.json` feed the same apply; TerraDart does not turn modules into Dart.
 
 See [README — Non-goals](https://github.com/nozomi-koborinai/terradart#non-goals) for the canonical list.
 

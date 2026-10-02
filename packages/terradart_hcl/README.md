@@ -5,7 +5,7 @@
 
 A pure Dart front-end for Terraform configurations: an HCL native-syntax
 parser, a `*.tf.json` decoder, and a shared module model (`TfModule`) that
-both produce. It is the input side of `terradart-migrate` (the HCL → Dart
+both produce. It is the input side of `terradart migrate` (the HCL → Dart
 migrator, [#80](https://github.com/nozomi-koborinai/terradart/issues/80)) and
 depends on no other TerraDart package.
 

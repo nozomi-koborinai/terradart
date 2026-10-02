@@ -122,31 +122,28 @@ bool fromOrders(String topicName) => topicName == OrdersStackConstants.ordersTop
 ```dart
 // bin/infra.dart
 import 'package:my_app/orders_stack.dart';
+import 'package:terradart_core/terradart_core.dart';
 
-Future<void> main() async {
-  await OrdersStack(projectId: 'my-project').writeTo('tf-out');
-}
+Future<void> main(List<String> args) =>
+    runStack(args, () => OrdersStack(projectId: 'my-project'));
 ```
 
 ```bash
 dart pub get
-dart run bin/infra.dart                     # synth: tf-out/main.tf.json + lib/generated/
-cd tf-out && terraform init && terraform apply
+dart pub global activate terradart_cli
+terradart apply
 ```
 
-Or run the loop with one command: [`terradart_cli`](packages/terradart_cli/) synthesizes, runs `init` and `apply` with the `tofu` or `terraform` on your `PATH` (or a checksum-verified OpenTofu it downloads), and writes the define file a Flutter client builds with — per environment with `--env`, the environments being a Dart enum `bin/infra.dart` hands to `runEnvironments`. See [The terradart command](https://terradart.dev/docs/cli/).
+`terradart apply` runs `bin/infra.dart`, which writes `tf-out/main.tf.json` and `lib/generated/orders_stack.app.dart`, then `init` and `apply` in `tf-out/` with the `tofu` or `terraform` on your `PATH` — or a checksum-verified OpenTofu it downloads when there is neither. `terradart plan`, `destroy` and `outputs` work the same way; environments are a Dart enum `bin/infra.dart` hands to `runEnvironments` (`terradart apply --env prod`), and a Stack with `addDartDefineOutput()` gets the define file a Flutter client builds with. See [The terradart command](https://terradart.dev/docs/cli/).
 
-```bash
-dart pub add --dev terradart_cli
-dart run terradart_cli:terradart apply      # synth + init + apply + .terradart/dart_defines.json
-```
+Prefer plain Terraform? `dart run bin/infra.dart` writes the same `tf-out/`, and `terraform init` and `terraform apply` there apply it.
 
 What the compiler now checks for you:
 
 - **References are typed.** An argument that names another resource takes that resource's `ref` (`topic: orders.ref`, `serviceAccount: apiSa.ref`) and picks the attribute it emits; passing a bucket where a topic belongs does not compile. Every attribute also has a plain getter (`orders.name`, `apiSa.email`) that is itself a `TfArg`, so it passes straight into any argument of its type.
 - **Fixed value sets are enums and exclusive blocks are sealed types**, written as Dart 3.10 dot shorthands: `.all`, `.pushConfig(...)`, `.value(...)`. A typo or a second delivery mode is a compile error, not a failed plan.
 - **The app and the infra share one source of truth.** Rename the topic in the Stack and `OrdersStackConstants.ordersTopic` follows on the next synth; remove the output and `ordersTopicId` stops compiling. `outputEnvironment()` passes every output to the service, so no variable name is written twice. A Flutter or web client gets the same variables at build time: `addDartDefineOutput()` declares the file `--dart-define-from-file` reads (`terraform output -json dart_defines`), and `const OrdersStackOutputs.fromDartDefine()` reads it — see [Outputs in client apps](https://terradart.dev/docs/client-outputs/).
-- **It is plain Dart.** Loops, conditionals and your own classes work as they always do. There is no synth CLI: `bin/infra.dart` calls `writeTo`, and `terraform` does the rest.
+- **It is plain Dart.** Loops, conditionals and your own classes work as they always do. Synth is your own `bin/infra.dart` running; `terradart` only runs it and then the engine.
 
 Runnable versions: [`examples/pubsub_quickstart`](examples/pubsub_quickstart/) and the [`single-project-app` cookbook recipe](cookbook/single-project-app/) (Cloud Run + Cloud SQL + the app). Full walkthrough: [Getting Started](https://terradart.dev/docs/getting-started/).
 
@@ -283,7 +280,7 @@ cd infra_dart && dart pub get && terradart plan
 
 | Package | What it is | Pub |
 | :--- | :--- | :--- |
-| [`terradart_cli`](packages/terradart_cli) | The `terradart` command: synth, plan, apply, destroy, migrate and the client define file, with OpenTofu or Terraform. | [![pub](https://img.shields.io/pub/v/terradart_cli.svg)](https://pub.dev/packages/terradart_cli) |
+| [`terradart_cli`](packages/terradart_cli) | The `terradart` command: synth, plan, apply, destroy, outputs, migrate and the client define file, with OpenTofu or Terraform. | [![pub](https://img.shields.io/pub/v/terradart_cli.svg)](https://pub.dev/packages/terradart_cli) |
 | [`terradart_migrate`](packages/terradart_migrate) | The HCL → Dart migrator library (`terradart migrate`). | [![pub](https://img.shields.io/pub/v/terradart_migrate.svg)](https://pub.dev/packages/terradart_migrate) |
 | [`terradart_hcl`](packages/terradart_hcl) | A pure Dart HCL / `*.tf.json` parser and Terraform module model — the migrator's input side. | [![pub](https://img.shields.io/pub/v/terradart_hcl.svg)](https://pub.dev/packages/terradart_hcl) |
 | [`terradart_codegen`](packages/terradart_codegen) | The maintainer generation CLI (`terradart-codegen wrap`) that produces the provider packages. | [![pub](https://img.shields.io/pub/v/terradart_codegen.svg)](https://pub.dev/packages/terradart_codegen) |
@@ -303,7 +300,7 @@ Docs: [terradart.dev/docs/agents/](https://terradart.dev/docs/agents/).
 - **Not a Terraform replacement.** TerraDart synthesizes JSON; `terraform plan / apply` runs as before. State stays where you already keep it.
 - **Not a multi-cloud abstraction layer.** Curated wrappers faithfully mirror provider schemas rather than imposing cross-cloud abstractions.
 - **Not a constructs framework.** Composite abstractions are out of scope for the pre-1.0 cycle.
-- **Not module-block support.** Compose Terraform modules in HCL alongside TerraDart-generated `*.tf.json` — both feed the same `terraform apply`.
+- **Not a module system.** `addModule(ModuleCall(...))` calls an existing Terraform module by its `source`, and HCL files beside the generated `*.tf.json` feed the same apply; TerraDart does not turn modules into Dart.
 
 How TerraDart compares with HCL, CDKTF and Pulumi: [Why TerraDart](https://terradart.dev/docs/why-terradart/).
 

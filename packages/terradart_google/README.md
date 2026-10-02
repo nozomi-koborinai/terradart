@@ -62,6 +62,6 @@ Per-service imports (`cloud_run.dart`, `storage.dart`, …) keep IDE completion 
 
 ## How resources are built
 
-Factory wrappers under `lib/src/<service>/` are emitted by `terradart wrap` from curated overrides in [`terradart_codegen`](https://pub.dev/packages/terradart_codegen). They are committed so consumers depend on `terradart_google` without running codegen locally.
+Factory wrappers under `lib/src/<service>/` are emitted by `terradart-codegen wrap` from curated overrides in [`terradart_codegen`](https://pub.dev/packages/terradart_codegen). They are committed so consumers depend on `terradart_google` without running codegen locally.
 
-CI verifies determinism via `terradart wrap --check`. Runtime primitives (`Stack`, `TfArg`, `writeTo`) live in [`terradart_core`](https://pub.dev/packages/terradart_core).
+CI verifies determinism via `terradart-codegen wrap --check`. Runtime primitives (`Stack`, `TfArg`, `writeTo`) live in [`terradart_core`](https://pub.dev/packages/terradart_core).
