@@ -43,8 +43,8 @@ values to the rest of the codebase.
 
 ```text
 infra/  (TerraDart Stack, Dart)
-  │  dart run bin/infra.dart  (synth)
-  ├──► tf-out/main.tf.json ──► terraform apply ──► Google Cloud
+  │  terradart synth
+  ├──► tf-out/main.tf.json ──► terradart apply ──► Google Cloud
   └──► shared/lib/generated/lunch_stack.app.dart   (LunchStackConstants)
                     ▲
                     │ imported as typed constants
@@ -60,7 +60,7 @@ shared/  (schemantic types: LunchRequest / LunchResponse)
 
 Solid edges are the runtime path (browser → IAP → Cloud Run → Agent Platform /
 Cloud SQL via Direct VPC egress). Dashed edges are provisioning (`terradart`
-synth → Terraform plan / apply).
+synth → plan / apply).
 
 Cloud Run reaches the database through **Direct VPC egress** with
 `PRIVATE_RANGES_ONLY` — a private database path without a Serverless VPC
@@ -193,7 +193,7 @@ ai.defineFlow(
 ## Deploy
 
 No GitHub Actions pipeline ships with this recipe. The repository keeps no
-GCP credentials and no workflow that runs `terraform apply`; every deploy is a
+GCP credentials and no workflow that runs `terradart apply`; every deploy is a
 deliberate local step from your own machine against your own project.
 
 ### Local apply
@@ -213,31 +213,28 @@ cd cookbook/lunch-concierge/server
 dart run build_runner build --delete-conflicting-outputs
 
 cd ../infra
-dart run bin/infra.dart
-cd tf-out
-terraform init
-terraform apply -target=google_artifact_registry_repository.app_images
+terradart apply -- -target=google_artifact_registry_repository.app_images
 
-cd ../../../..
+cd ../../..
 gcloud auth configure-docker "$REGION-docker.pkg.dev"
 docker build -f cookbook/lunch-concierge/server/Dockerfile -t "$IMAGE_URI" .
 docker push "$IMAGE_URI"
 
-cd cookbook/lunch-concierge/infra/tf-out
-terraform apply
+cd cookbook/lunch-concierge/infra
+terradart apply
 ```
 
 The targeted first apply creates the Artifact Registry repository so the image
 can be pushed. The second apply creates or updates the rest of the stack.
 
-When you are done, `terraform destroy` cleans up — the Cloud SQL instance and
+When you are done, `terradart destroy` cleans up — the Cloud SQL instance and
 Cloud Run service set `deletion_protection = false` explicitly. The main
 running cost is the Cloud SQL `db-f1-micro` instance; Cloud Run idles at
 min-instances 0, and the VPC / PSA range are free.
 
 ### Teardown gotcha (PSA)
 
-After Cloud SQL is gone, `terraform destroy` can still fail
+After Cloud SQL is gone, `terradart destroy` can still fail
 on `google_service_networking_connection` with `Producer services … are still
 using this connection`. Force-delete the consumer peering, then re-run
 destroy:
@@ -248,7 +245,7 @@ gcloud compute networks peerings delete servicenetworking-googleapis-com \
   --project="$GCP_PROJECT_ID" \
   --quiet
 
-# then: terraform destroy -auto-approve
+terradart destroy
 ```
 
 Same pattern as [`single-project-app`](../single-project-app/README.md).

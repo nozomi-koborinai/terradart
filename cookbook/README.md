@@ -2,7 +2,7 @@
 
 Real-world Google Cloud recipes for [terradart](https://github.com/nozomi-koborinai/terradart), type-safe IaC for Dart.
 
-Each recipe is a self-contained Dart project under `cookbook/<name>/` that uses the monorepo workspace packages and ships a working Stack you can `terraform plan + apply` against a real GCP project.
+Each recipe is a self-contained Dart project under `cookbook/<name>/` that uses the monorepo workspace packages and ships a working Stack you can `terradart plan` and `terradart apply` against a real GCP project.
 
 ## Recipes
 
@@ -11,7 +11,7 @@ Each recipe is a self-contained Dart project under `cookbook/<name>/` that uses 
 | [`lunch-concierge`](lunch-concierge/README.md) | Flutter Web + Dart server + Genkit Vertex AI + Cloud Run sidecar + private Cloud SQL | Demo recipe | 8 |
 | [`single-project-app`](single-project-app/README.md) | Single GCP project, end-to-end app surface (Cloud Run + Cloud SQL + Pub/Sub + Monitoring + Secret Manager + IAM) | Imported | 8 |
 | [`firebase-app-backend`](firebase-app-backend/README.md) | Full-stack Firebase (beta) + Google Cloud (GA) backend (Firebase Web App + Firestore + Cloud Storage + Cloud Run v2 API) | Ready | 4 |
-| [`remote-backend`](remote-backend/README.md) | GCS-backed Terraform remote state (Stage 0 bootstrap + state migration) | Imported | 1 |
+| [`remote-backend`](remote-backend/README.md) | GCS-backed remote state with `GcsBackend` (Stage 0 bootstrap + state migration) | Imported | 1 |
 | [`firestore-seeded-data`](firestore-seeded-data/README.md) | Cloud Firestore master-data seeding (11 docs across 4 collections + composite index + daily backup) via `GoogleFirestoreDocument` + `FirestoreFields.encode` | Imported | 3 |
 
 (Coming in future iterations: `multi-env-dev-prod` for env separation and `dynamic-iam-for-each` for `locals`/`for_each` patterns.)
@@ -19,16 +19,15 @@ Each recipe is a self-contained Dart project under `cookbook/<name>/` that uses 
 ## Usage
 
 ```bash
+dart pub global activate terradart_cli
 cd cookbook/<name>
 dart pub get
-dart run bin/infra.dart    # synth to tf-out/
-cd tf-out
-terraform init
-terraform plan
-terraform apply
-# ...smoke test...
-terraform destroy
+terradart plan
+terradart apply
+terradart destroy
 ```
+
+`terradart` synthesizes the Stack into `tf-out/` and runs OpenTofu there (or the `tofu` / `terraform` on your `PATH`), so there is no Terraform to install.
 
 Each recipe's README documents required env vars (e.g. `GCP_PROJECT_ID`, secrets).
 

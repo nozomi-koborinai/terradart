@@ -17,7 +17,7 @@ A Cloud Firestore master-data seeding recipe. Demonstrates how to manage **small
 
 ## Why master data in IaC
 
-- **Reproducibility**: spin up `dev` / `staging` / `prod` projects with identical master data via `terraform apply`.
+- **Reproducibility**: spin up `dev` / `staging` / `prod` projects with identical master data via `terradart apply`.
 - **Audit-via-PR**: master-data changes go through code review, not manual console clicks.
 - **Env parity**: when you rebuild a project for any reason, master data is recreated by Terraform alongside the database.
 
@@ -31,7 +31,7 @@ See [terradart_google CHANGELOG `0.10.0` § Supersedes 0.3.0-dev note](https://p
 
 ## Prerequisites
 
-- Terraform 1.11+
+- The [`terradart` command](https://terradart.dev/docs/cli/): `dart pub global activate terradart_cli`
 - `gcloud auth application-default login` with `roles/datastore.owner` on the target project
 - A GCP project (e.g., `terradart-validate`). The default `(default)` Firestore database must NOT already exist (Firestore creates one automatically the first time the API is enabled — if `(default)` already exists, see "Recovery" below).
 
@@ -40,11 +40,8 @@ See [terradart_google CHANGELOG `0.10.0` § Supersedes 0.3.0-dev note](https://p
 ```bash
 export GCP_PROJECT_ID=my-project-id
 dart pub get
-dart run bin/infra.dart        # → tf-out/main.tf.json
-cd tf-out
-terraform init
-terraform plan -out=tfplan
-terraform apply tfplan
+terradart plan
+terradart apply
 ```
 
 Expected apply duration: **5-10 minutes**, dominated by the composite index. Documents themselves create in seconds (Terraform fans them out in parallel — all 11 typically finish within ~15s total). The `(default)` database takes ~12s. The composite index on `pricing_tiers` is the long pole and takes 5-6 minutes to provision (Firestore index workers run asynchronously — this is normal and well-documented). If you don't need the index ready immediately (e.g. CI synth-and-validate workflows), consider adding `skip_wait: true` on the `GoogleFirestoreIndex` resource so Terraform returns as soon as the API accepts the request.
@@ -80,8 +77,7 @@ Alternatively, the Firebase / Firestore console: open the project, switch to Fir
 ## Destroy
 
 ```bash
-cd tf-out
-terraform destroy
+terradart destroy
 ```
 
 Expected: `Destroy complete! Resources: 15 destroyed.` in a few seconds. The `(default)` database deletes in ~2s.
@@ -90,14 +86,14 @@ The recipe sets `deletionPolicy: .literal('DELETE')` on the database resource �
 
 ## Recovery: `(default)` database already exists
 
-If the project's `(default)` database was created previously (e.g., by manually enabling the Firestore API), `terraform apply` will fail with "already exists" on the `google_firestore_database` resource. Recovery:
+If the project's `(default)` database was created previously (e.g., by manually enabling the Firestore API), `terradart apply` will fail with "already exists" on the `google_firestore_database` resource. Recovery:
 
 ```bash
-cd tf-out
-terraform import google_firestore_database.default \
-  "projects/$GCP_PROJECT_ID/databases/(default)"
-terraform apply tfplan
+"$(terradart engine)" -chdir=tf-out import google_firestore_database.default "projects/$GCP_PROJECT_ID/databases/(default)"
+terradart apply
 ```
+
+`terradart engine` prints the engine `terradart` runs, so the import needs no separate install.
 
 Subsequent applies will reconcile cleanly.
 

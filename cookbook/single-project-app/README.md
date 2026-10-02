@@ -31,7 +31,7 @@ The recipe enables the following APIs via `google_project_service` resources —
 - `servicenetworking.googleapis.com` (Service Networking — Cloud SQL private peering)
 - `sqladmin.googleapis.com` (Cloud SQL)
 
-Storage is typically already enabled on a fresh GCP project. If any of the above are missing on first apply, `terraform plan` will surface a clear 403 error pointing to the missing API.
+Storage is typically already enabled on a fresh GCP project. If any of the above are missing on first apply, `terradart plan` will surface a clear 403 error pointing to the missing API.
 
 ## Cost notes
 
@@ -42,11 +42,11 @@ This recipe provisions billable resources. Rough estimates if left running 24h i
 - Reserved /16 private services range + VPC peering: free
 - Pub/Sub + Monitoring + Secret Manager: negligible at this volume
 
-**Always end your dogfood session with `terraform destroy`**. The recipe is structured so destroy fully cleans up — including the SQL instance (`deletion_protection = false` is explicit in the Stack).
+**Always end your dogfood session with `terradart destroy`**. The recipe is structured so destroy fully cleans up — including the SQL instance (`deletion_protection = false` is explicit in the Stack).
 
 ## Run
 
-Prerequisites: `gcloud auth application-default login` for an account with Owner on the target project. Terraform 1.11+ (terradart v0.9.0 synth hardcodes `required_version: ">= 1.11.0"` — required for write-only attribute support).
+Prerequisites: `gcloud auth application-default login` for an account with Owner on the target project, and the `terradart` command (`dart pub global activate terradart_cli`). It plans and applies with the OpenTofu release it pins, which supports the write-only attributes this recipe uses.
 
 ```bash
 export GCP_PROJECT_ID=terradart-validate
@@ -54,24 +54,20 @@ export DB_PASSWORD=$(openssl rand -base64 24)
 export ALERT_EMAIL=kobofender@gmail.com
 
 dart pub get
-dart run bin/infra.dart           # synth -> tf-out/main.tf.json
+terradart plan
+terradart apply
+```
 
-cd tf-out
-terraform init
-terraform plan
-# DB_PASSWORD flows via terradart synth → `password_wo` write-only attribute (not stored in tfstate).
-terraform apply -auto-approve
+`DB_PASSWORD` reaches Cloud SQL through the `password_wo` write-only attribute, so it is never stored in the state. `terradart apply` ends by printing the `coffee_service_uri` output; smoke-test it, then tear everything down:
 
-# Smoke test
-SERVICE_URL=$(terraform output -raw coffee_service_uri)
-curl -i "$SERVICE_URL"
-
-terraform destroy -auto-approve
+```bash
+curl -i "$(gcloud run services describe coffee-shop --region=asia-northeast1 --project="$GCP_PROJECT_ID" --format='value(uri)')"
+terradart destroy
 ```
 
 ### Teardown gotcha
 
-If your Cloud SQL instance used a private-services-access peering (this recipe does — via `service_networking_connection`), `terraform destroy` will partially succeed and then hang on the PSA connection with `Producer services (e.g. CloudSQL, Cloud Memstore, etc.) are still using this connection.` even though Cloud SQL itself is already gone. GCP's tenant-side cleanup can take hours.
+If your Cloud SQL instance used a private-services-access peering (this recipe does — via `service_networking_connection`), `terradart destroy` will partially succeed and then hang on the PSA connection with `Producer services (e.g. CloudSQL, Cloud Memstore, etc.) are still using this connection.` even though Cloud SQL itself is already gone. GCP's tenant-side cleanup can take hours.
 
 **Workaround**: force-delete the consumer-side peering, then retry destroy:
 
@@ -80,11 +76,10 @@ gcloud compute networks peerings delete servicenetworking-googleapis-com \
   --network=coffee-shop-vpc \
   --project=terradart-validate \
   --quiet
-
-# Re-run terraform destroy — refresh detects PSA connection missing,
-# proceeds with VPC + global_address cleanup.
-terraform destroy -auto-approve
+terradart destroy
 ```
+
+The second `terradart destroy` sees the peering is gone and finishes the VPC and `global_address` cleanup.
 
 See [FRICTIONS.md](./FRICTIONS.md) for the full context. This is a GCP / Terraform google provider behavior, not a terradart bug.
 
@@ -125,4 +120,4 @@ This recipe uses the terradart v0.9.0 API surface. Key changes from v0.8.0-dev:
 
 ## D1b — GCS backend
 
-To switch to a GCS-backed state for the second dogfood phase, see [FRICTIONS.md](./FRICTIONS.md) and the `bin/bootstrap.dart` flow.
+To move this recipe's state into a GCS bucket for the second dogfood phase, follow the [remote-backend recipe](../remote-backend/README.md).
