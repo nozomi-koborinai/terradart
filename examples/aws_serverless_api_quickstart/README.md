@@ -5,7 +5,7 @@ A Dart HTTP API on AWS: Lambda (`provided.al2023`), API Gateway (HTTP API) and a
 - `AwsDynamodbTable` stores one item per id, on demand (`PAY_PER_REQUEST`).
 - `DataAwsCallerIdentity` and `DataAwsIamPolicyDocument` build a trust policy limited to this account, and an inline policy that can write only this function's log streams and call `GetItem`, `PutItem` and `DeleteItem` on only this table.
 - `AwsIamRole` and `AwsIamRolePolicy` attach that policy. There is no managed `AWSLambdaBasicExecutionRole`.
-- `AwsLambdaFunction` runs `bin/bootstrap.dart`. Its environment comes from `outputEnvironment()`, so `TABLE_NAME` is the output `table_name` and the handler reads it with `AwsServerlessApiStackOutputs.fromEnvironment`.
+- `AwsLambdaFunction` runs `bin/bootstrap.dart`. Its environment comes from `outputEnvironment()`, so `TABLE_NAME` is the output `table_name` and the handler reads it with `AwsServerlessApiStackOutputs.fromEnvironment`. The function talks to the table through `aws_client`'s `DocumentClient`, which signs with the execution role's credentials.
 - `AwsApigatewayv2Api`, `AwsApigatewayv2Integration`, `AwsApigatewayv2Route` and `AwsApigatewayv2Stage` publish `GET`, `PUT` and `DELETE` `/items/{id}`. `AwsLambdaPermission` lets this API's stage invoke the function, one statement per method.
 - `addOutput('api_url', stage.invokeUrl)` and `addOutput('table_name', table.name)` are the values `bin/client.dart` reads back. The API URL is not a function environment variable: the stage that publishes it invokes the function, and that would be a Terraform cycle.
 - `AwsProvider.defaultTags` tags every resource with `app = terradart-serverless-api-quickstart`.

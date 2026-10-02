@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:terradart_example_aws_serverless_api_quickstart/dynamodb.dart';
 import 'package:terradart_example_aws_serverless_api_quickstart/generated/serverless_api_stack.app.dart';
 import 'package:terradart_example_aws_serverless_api_quickstart/items_api.dart';
 import 'package:test/test.dart';
@@ -52,27 +51,6 @@ void main() {
     );
     expect(response.statusCode, 200);
     expect(await store.get('a'), '{"n":1}');
-  });
-
-  test('SigV4 authorization matches an independent signature', () {
-    final headers = sigV4Headers(
-      method: 'POST',
-      service: 'service',
-      region: 'us-east-1',
-      host: 'example.amazonaws.com',
-      body: '',
-      accessKeyId: 'AKIDEXAMPLE',
-      secretAccessKey: 'wJalrXUtnFEMI/K7MDENG+bPxRfiCYEXAMPLEKEY',
-      now: DateTime.utc(2015, 8, 30, 12, 36),
-      headers: {'content-type': 'application/json'},
-    );
-    expect(
-      headers['authorization'],
-      'AWS4-HMAC-SHA256 '
-      'Credential=AKIDEXAMPLE/20150830/us-east-1/service/aws4_request, '
-      'SignedHeaders=content-type;host;x-amz-date, '
-      'Signature=5a2c5a6e41ff6b9d131f981dd0c72dc6a101bafd7e194dfa4d6984a4ae5e0f19',
-    );
   });
 }
 
