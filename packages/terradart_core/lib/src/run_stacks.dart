@@ -12,7 +12,7 @@ const terradartManifestVariable = 'TERRADART_MANIFEST';
 /// ```dart
 /// // bin/run_stack.dart
 /// final class OrdersStack extends Stack {
-///   OrdersStack() : super(providers: const []);
+///   OrdersStack() : super(providers: const [TimeProvider()]);
 /// }
 ///
 /// Future<void> main(List<String> args) => runStack(args, OrdersStack.new);
@@ -56,7 +56,7 @@ Future<void> runStack(
 /// final class OrdersStack extends Stack {
 ///   OrdersStack({required Env env})
 ///     : super(
-///         providers: const [],
+///         providers: const [TimeProvider()],
 ///         backend: switch (env.stateBucket) {
 ///           final bucket? => GcsBackend(bucket: bucket, prefix: 'orders'),
 ///           null => LocalBackend(path: 'state/${env.name}.tfstate'),
@@ -93,7 +93,10 @@ Future<void> runStack(
 ///
 /// final class ApiStack extends Stack {
 ///   ApiStack(Region region)
-///     : super(providers: const [], backend: const GcsBackend());
+///     : super(
+///         providers: const [TimeProvider()],
+///         backend: const GcsBackend(),
+///       );
 /// }
 ///
 /// Future<void> infra(List<String> args) => runEnvironments(
