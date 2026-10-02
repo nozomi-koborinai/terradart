@@ -27,8 +27,10 @@ Per-package changelogs live alongside each package and are the system of record 
   `terradart_codegen`, `terradart_migrate`) — `backend` and
   `requiredVersion` are Stack constructor arguments (`setBackend` /
   `setRequiredVersion` are removed) and `writeTo()` defaults to `tf-out`.
-  `TfTimeouts` fields are `Duration`s, `outputEnvironment()` returns
-  `(name:, value:)` records, and `TfArg.literal` is a `const` factory.
+  `TfTimeouts` fields are `Duration`s, `outputEnvironment()` returns an
+  `OutputEnvironment` of `(name:, value:)` records whose `variables` is a
+  map argument (`environment: .new(variables: outputEnvironment().variables)`
+  on a Lambda), and `TfArg.literal` is a `const` factory.
   google's `Apis.enable(this, barrels: [...])` is `enableApis([...])`. A
   variant of a block with no fields takes no argument (`.avroFormat()`),
   and google's hand-written one-field variants take it positionally

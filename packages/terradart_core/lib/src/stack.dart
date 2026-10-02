@@ -391,6 +391,10 @@ abstract base class Stack {
   /// addOutput('service_uri', service.uri);
   /// ```
   ///
+  /// Where the environment is one map argument, pass
+  /// [OutputEnvironment.variables]: `environment: .new(variables:
+  /// outputEnvironment().variables)` on an `AwsLambdaFunction`.
+  ///
   /// Register the outputs that read the service itself after the call: a
   /// resource whose environment references its own attributes is a
   /// Terraform cycle.
@@ -400,9 +404,7 @@ abstract base class Stack {
   /// not a registered non-sensitive output, or an output has no environment
   /// value (a `null` literal, or a non-`String` output whose JSON is not one
   /// interpolation).
-  List<({String name, TfArg<String> value})> outputEnvironment({
-    Iterable<String>? only,
-  }) {
+  OutputEnvironment outputEnvironment({Iterable<String>? only}) {
     if (appExports == null) {
       throw StateError(
         'outputEnvironment() is read by the generated reader: pass '
@@ -428,7 +430,7 @@ abstract base class Stack {
         );
       }
     }
-    return [
+    return OutputEnvironment([
       for (final output in names)
         switch (AppExportsEmitter.environmentEntry(this, output)) {
           EnvironmentEntry(:final name, :final value?) => (
@@ -441,7 +443,7 @@ abstract base class Stack {
             problem,
           ),
         },
-    ];
+    ]);
   }
 
   /// Declare `output "<name>" { value = { ORDERS_TOPIC_ID = ..., ... } }`:

@@ -358,9 +358,7 @@ void main() {
   });
 
   group('outputEnvironment', () {
-    Map<String, Object?> encoded(
-      List<({String name, TfArg<String> value})> environment,
-    ) => {
+    Map<String, Object?> encoded(OutputEnvironment environment) => {
       for (final (:name, :value) in environment)
         name: TfJsonEncoder.encodeArg(value),
     };
@@ -386,6 +384,25 @@ void main() {
           'TOPIC_ID': r'${google_pubsub_topic.t.id}',
         },
       );
+    });
+
+    test('is one map argument as variables', () {
+      final environment = _typedStack().outputEnvironment(
+        only: ['topic_id', 'zones'],
+      );
+      expect(TfJsonEncoder.encodeArg(environment.variables), {
+        'TOPIC_ID': r'${google_pubsub_topic.t.id}',
+        'ZONES': r'${jsonencode(google_pubsub_topic.t.zones)}',
+      });
+      final literals =
+          (_stack()
+                ..addOutput('region', .literal('us-central1'))
+                ..addOutput('replicas', .literal(3)))
+              .outputEnvironment();
+      expect(literals.variables.toTfJson(), {
+        'REGION': 'us-central1',
+        'REPLICAS': '3',
+      });
     });
 
     test('is what the generated reader reads', () async {

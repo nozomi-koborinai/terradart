@@ -49,7 +49,7 @@ export 'src/tf_arg.dart'
         TfArgVariable,
         TfRef;
 export 'src/tf_moved.dart' show TfMoved;
-export 'src/tf_output.dart' show DartDefineOutput, TfOutput;
+export 'src/tf_output.dart' show DartDefineOutput, OutputEnvironment, TfOutput;
 export 'src/tf_variable.dart'
     show
         TfCollectionType,

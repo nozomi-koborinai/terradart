@@ -241,6 +241,27 @@ final service = add(GoogleCloudRunV2Service(
 addOutput('service_uri', service.uri); // after: a service cannot read itself
 ```
 
+Where a provider takes the environment as one map — an AWS Lambda function, a Cloud Function — pass `variables`, the same environment as a `TfArg<Map<String, String>>`:
+
+```dart
+final table = add(AwsDynamodbTable(
+  'items',
+  name: .literal('items'),
+  hashKey: .literal('id'),
+  attribute: [.new(name: .literal('id'), type: .s)],
+));
+addOutput('table_name', table.name);
+add(AwsLambdaFunction(
+  'api',
+  functionName: .literal('items-api'),
+  role: .literal('arn:aws:iam::123456789012:role/items-api'),
+  runtime: .providedAl2023,
+  handler: .literal('bootstrap'),
+  code: .filename(.literal('build/bootstrap.zip')),
+  environment: .new(variables: outputEnvironment().variables),
+));
+```
+
 `outputEnvironment(only: [...])` picks outputs by name. Register an output that reads the service itself after the call — a resource whose environment references its own attributes is a Terraform cycle.
 
 A client app — Flutter, Dart web, a CLI — gets the same variables as a file instead: `addDartDefineOutput()` declares an output whose value is the JSON that `--dart-define-from-file` reads, and the client reads it with `const OrdersStackOutputs.fromDartDefine()`. [Outputs in client apps](/docs/client-outputs/) walks through it.

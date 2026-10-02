@@ -33,6 +33,46 @@ final class TfOutput<T> {
   };
 }
 
+/// The environment `Stack.outputEnvironment` returns: each variable and its
+/// value, in registration order.
+///
+/// Iterate it where the environment is a list of blocks (a Cloud Run
+/// container's `env`, see `Stack.outputEnvironment`), or pass [variables]
+/// where it is one map argument:
+///
+/// ```dart
+/// addOutput('table_name', table.name);
+/// add(AwsLambdaFunction(
+///   'api',
+///   functionName: .literal('api'),
+///   role: role.ref,
+///   runtime: .providedAl2023,
+///   handler: .literal('bootstrap'),
+///   code: .filename(.literal('build/bootstrap.zip')),
+///   environment: .new(variables: outputEnvironment().variables),
+/// ));
+/// ```
+extension type const OutputEnvironment._(
+  List<({String name, TfArg<String> value})> _entries
+)
+    implements Iterable<({String name, TfArg<String> value})> {
+  @internal
+  const OutputEnvironment(List<({String name, TfArg<String> value})> entries)
+    : this._(entries);
+
+  /// The environment as one map argument, such as a Lambda function's
+  /// `environment.variables` or a Cloud Function's `environmentVariables`.
+  TfArg<Map<String, String>> get variables => TfArg.literal({
+    for (final (:name, :value) in _entries)
+      name: switch (value.toTfJson()) {
+        final String s => s,
+        final other => throw StateError(
+          'The environment value of $name encodes to $other.',
+        ),
+      },
+  });
+}
+
 /// An `output` whose value is the client build's `--dart-define` file,
 /// registered with `Stack.addDartDefineOutput`.
 @immutable

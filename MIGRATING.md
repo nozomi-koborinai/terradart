@@ -362,6 +362,7 @@ are shorter:
 | `const TfTimeouts(create: '30m', delete: '1h30m')` | `const TfTimeouts(create: Duration(minutes: 30), delete: Duration(hours: 1, minutes: 30))` |
 | `TfTimeouts.of(...)`, `TfTimeouts.isDuration(...)` | removed; a negative `Duration` is an `InvalidTimeout` at synth |
 | `for (final MapEntry(:key, :value) in outputEnvironment().entries)` | `for (final (:name, :value) in outputEnvironment())` |
+| `variables: .literal({for (final MapEntry(:key, :value) in outputEnvironment().entries) key: value.toTfJson() as String})` | `variables: outputEnvironment().variables` |
 | `Apis.enable(this, barrels: [Barrels.cloudRun, Barrels.redis])` | `enableApis([.cloudRun, .redis])` (google; `Apis.required` is unchanged) |
 | `.avroFormat(const PubsubTopicAvroFormat())` | `.avroFormat()`: a variant of a block with no fields takes no argument |
 | `.gateway(nextHopGateway: .literal(...))` | `.gateway(.literal(...))`: a hand-written variant with one field takes it positionally, like a generated one |
