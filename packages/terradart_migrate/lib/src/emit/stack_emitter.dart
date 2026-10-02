@@ -202,17 +202,13 @@ const _providerRecipes = <String, _ProviderRecipe>{
     'zone': _Scalar('zone'),
     'user_project_override': _Scalar('userProjectOverride'),
   }, kProviderVersionConstraint),
-  'google-beta': _ProviderRecipe(
-    'terradart_google_beta',
-    'GoogleBetaProvider',
-    {
-      'project': _Scalar('project'),
-      'region': _Scalar('region'),
-      'zone': _Scalar('zone'),
-      'user_project_override': _Scalar('userProjectOverride'),
-    },
-    kBetaProviderVersionConstraint,
-  ),
+  'google-beta':
+      _ProviderRecipe('terradart_google_beta', 'GoogleBetaProvider', {
+        'project': _Scalar('project'),
+        'region': _Scalar('region'),
+        'zone': _Scalar('zone'),
+        'user_project_override': _Scalar('userProjectOverride'),
+      }, kBetaProviderVersionConstraint),
   'appwrite': _ProviderRecipe('terradart_appwrite', 'AppwriteProvider', {
     'endpoint': _Scalar('endpoint'),
     'project_id': _Scalar('projectId'),
