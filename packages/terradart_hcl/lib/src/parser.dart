@@ -527,8 +527,24 @@ final class _Parser {
       final Expr key;
       switch (keyTok.type) {
         case TokenType.ident:
-          key = LiteralExpr(keyTok.text, keyTok.range, source: keyTok.text);
+          // `providers = { google.eu = google.eu }`: a dotted identifier is
+          // one object key, not a traversal. The chain stops at `=` / `:`.
+          final parts = [keyTok.text];
+          var end = keyTok.range.end;
           _i++;
+          while (_t.type == TokenType.dot &&
+              tokens[_i + 1].type == TokenType.ident) {
+            final step = tokens[_i + 1];
+            parts.add(step.text);
+            end = step.range.end;
+            _i += 2;
+          }
+          final text = parts.join('.');
+          key = LiteralExpr(
+            text,
+            SourceRange(keyTok.range.start, end),
+            source: text,
+          );
         case TokenType.string:
           final e = _templateFromString(keyTok);
           key = e is LiteralExpr ? e : RawExpr(keyTok.text, keyTok.range);

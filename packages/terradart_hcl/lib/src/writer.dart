@@ -20,6 +20,13 @@ final class HclWriter {
     unicode: true,
   );
 
+  /// `google.eu`: an object key written as a dotted identifier, which
+  /// Terraform accepts unquoted (`providers = { google.eu = google.eu }`).
+  static final RegExp _dottedIdentifier = RegExp(
+    r'^[\p{L}_][\p{L}\p{M}\p{N}_-]*(\.[\p{L}_][\p{L}\p{M}\p{N}_-]*)+$',
+    unicode: true,
+  );
+
   /// The whole file.
   String writeFile(HclFile file) {
     final buf = StringBuffer();
@@ -178,7 +185,9 @@ final class HclWriter {
   String _key(Expr key) {
     final name = key.constantString;
     if (name != null) {
-      return _identifier.hasMatch(name) ? name : _quote(name);
+      return _identifier.hasMatch(name) || _dottedIdentifier.hasMatch(name)
+          ? name
+          : _quote(name);
     }
     return _expr(key, 0);
   }
