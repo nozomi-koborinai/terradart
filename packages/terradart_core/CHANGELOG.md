@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- `runStack(args, build)` and `runEnvironments(args, Env.values, build, {dir, workspace, backendConfig})` are the entry points `bin/infra.dart` calls: `runEnvironments` takes the members of an enum of the project's own, writes `tf-out/<name>` per member (every member, or the one `--env <name>` names; an unknown name exits 64 listing the members), and throws `ArgumentError` when environments share a directory that neither a workspace nor a partial backend configuration tells apart. Both describe what they wrote to the `terradart` command in the file `TERRADART_MANIFEST` names (`terradartManifestVariable`).
+- The `<Stack>Outputs` reader's missing-define `StateError` names the define file that carries the variable (`--dart-define-from-file=.terradart/dart_defines.json`) and the `terradart apply` / `terradart outputs` command that writes it, or says no `addDartDefineOutput` carries it.
+
 ## 0.32.0 - 2026-10-02
 
 - **Breaking:** `TfRef<T>` is a sealed subtype of `TfArg<T>`, so an attribute getter passes straight into an argument of its type (`labels: other.labels`, `addOutput('id', topic.id)`). `TfArg.ref` and `TfArgRef` are removed; match `TfRef()` / `AttributeRef(:owner, :attr)` where code matched `TfArgRef(:ref)`. `AppConstant.ref(...)` is unchanged. See [MIGRATING.md](../../MIGRATING.md#attribute-getters-are-plain-tfargs).

@@ -44,7 +44,7 @@ export default defineConfig({
       sidebar: [
         {
           label: "Start",
-          items: ["docs/getting-started", "docs/arguments", "docs/why-terradart"],
+          items: ["docs/getting-started", "docs/arguments", "docs/cli", "docs/why-terradart"],
         },
         {
           label: "Concepts",

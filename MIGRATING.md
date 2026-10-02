@@ -1,5 +1,22 @@
 # Migrating terradart
 
+## 0.32.x → 0.33.0
+
+### `terradart_codegen` installs `terradart-codegen`
+
+The `terradart` command is now the user CLI of `terradart_cli`
+(`terradart synth | plan | apply`). The maintainer generation CLI keeps its
+commands under a new executable name:
+
+| 0.32.x | 0.33.0 |
+|---|---|
+| `dart pub global activate terradart_codegen`, then `terradart wrap ...` | `dart pub global activate terradart_codegen`, then `terradart-codegen wrap ...` |
+| `dart run terradart_codegen:terradart wrap ...` | unchanged |
+
+Run `dart pub global deactivate terradart_codegen` and activate it again to
+drop the old `terradart` shim from your `PATH` before activating
+`terradart_cli`.
+
 ## 0.31.x → 0.32.0
 
 0.32.0 is a breaking release for the Dart API of every package, but not for

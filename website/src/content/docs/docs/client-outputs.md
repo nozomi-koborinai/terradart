@@ -98,12 +98,18 @@ Each getter reads when it is called. A getter whose define is not set throws a `
 
 ## Build the client
 
-The client's pipeline reads the applied state; it never plans or applies. After the infrastructure's apply, `terraform output -json dart_defines` prints the define file, which a Flutter build reads as it is:
+The client's pipeline reads the applied state; it never plans or applies. [`terradart apply`](/docs/cli/) writes the define file to `.terradart/dart_defines.json` after the apply, and `terradart outputs` writes it from the applied state alone, for a build job that may read the state but not change it. A Flutter build reads it as it is:
+
+```bash
+terradart outputs
+flutter build web --dart-define-from-file=.terradart/dart_defines.json
+flutter run --dart-define-from-file=.terradart/dart_defines.json
+```
+
+With [environments](/docs/cli/#environments), `--env stg` writes `.terradart/dart_defines.stg.json`. Without the `terradart` command, `terraform output -json dart_defines` prints the same file:
 
 ```bash
 terraform -chdir=tf-out output -json dart_defines > dart_defines.json
-flutter build web --dart-define-from-file=dart_defines.json
-flutter run --dart-define-from-file=dart_defines.json
 ```
 
 The `dart` command takes one define per flag. Read a `String` output with `-raw` and any other with `-json`, which is the encoding the reader expects:
@@ -120,11 +126,9 @@ The app ships when it is ready, against whatever was applied last; a new apply r
 The two halves come at different times:
 
 1. **Synth**, before any apply: `dart run bin/infra.dart` writes the reader class, `AppStackOutputs`. Its getters and their types are known, so the client compiles against it, but it holds no values.
-2. **Apply**, then the client's build: the values exist only once Terraform has applied. `terraform output -json dart_defines > dart_defines.json` writes them, and `flutter build web --dart-define-from-file=dart_defines.json` (or `apk`, `ios`, ...) compiles them in.
+2. **Apply**, then the client's build: the values exist only once Terraform has applied. `terradart apply` (or `terradart outputs` in the client's build) writes them to `.terradart/dart_defines.json`, and `flutter build web --dart-define-from-file=.terradart/dart_defines.json` (or `apk`, `ios`, ...) compiles them in. A build without them fails at the first read, with a `StateError` that names the variable and the command that writes it.
 
-The output step is a command you run in the client's build today; [#873](https://github.com/nozomi-koborinai/terradart/issues/873) will automate it.
-
-`terraform output` reads the state from the Stack's backend: the local `terraform.tfstate`, or a remote bucket such as a `GcsBackend` or `S3Backend`. The machine or CI job that builds the client runs `terraform init` against that backend and needs read access to the state; it never needs permission to apply.
+`terradart outputs` (like `terraform output`) reads the state from the Stack's backend: the local `terraform.tfstate`, or a remote bucket such as a `GcsBackend` or `S3Backend`. The machine or CI job that builds the client runs `init` against that backend — `terradart outputs` does — and needs read access to the state; it never needs permission to apply.
 
 ## One file per client
 

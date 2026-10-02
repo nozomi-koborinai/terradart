@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- **Breaking:** the executable `dart pub global activate terradart_codegen` installs is `terradart-codegen` (`terradart-codegen wrap`), so the `terradart` command belongs to `terradart_cli`. `dart run terradart_codegen:terradart` is unchanged. See [MIGRATING.md](../../MIGRATING.md#032x--0330).
+
 ## 0.32.0 - 2026-10-02
 
 - **Breaking:** every generated attribute getter is the attribute's camelCase name (`name`, `secretId`) instead of `<name>Ref`, and returns a `TfRef<T>` an argument takes directly. A name that is a Dart reserved word or a `Resource` / `Data` member takes an `Attr` suffix (`kindAttr`, `defaultAttr`, `refAttr`, `localNameAttr`). See [MIGRATING.md](../../MIGRATING.md#attribute-getters-are-plain-tfargs).

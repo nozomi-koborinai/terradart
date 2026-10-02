@@ -4,6 +4,35 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, and `terradart_migrate` — this top-level file summarises cross-cutting milestones.
 
+## Unreleased
+
+### Added
+
+- **The `terradart` command** (`terradart_cli`, new) — `terradart synth | plan | apply | destroy | outputs`
+  replaces `dart run bin/infra.dart`, `cd tf-out`, `terraform init`,
+  `terraform apply` and `terraform output -json dart_defines`. It runs the
+  `tofu` or `terraform` on `PATH`, else downloads a pinned OpenTofu release
+  (SHA-256 checked, cached per user) on Linux, macOS and Windows, amd64 and
+  arm64, and warns before running a state with another engine than the one
+  that applied it. `apply` and `outputs` write the define file to
+  `.terradart/dart_defines.json` and print the `--dart-define-from-file`
+  line. Guide: [The terradart command](https://terradart.dev/docs/cli/).
+- **Environments declared in Dart** (`terradart_core`) — `runEnvironments(args, Env.values, (env) => AppStack(env: env))`
+  takes an enum of the project's own and writes `tf-out/<name>` per
+  member; `terradart apply --env <name>` runs one, with its own define
+  file (`.terradart/dart_defines.<name>.json`). Environments that share a
+  directory are told apart by a `workspace` or a partial `backendConfig`,
+  in Dart too. `runStack(args, () => AppStack())` is the one-Stack form.
+
+### Changed
+
+- **Breaking for maintainers** (`terradart_codegen`) — `dart pub global activate terradart_codegen`
+  installs `terradart-codegen`; `terradart` is now the user command.
+  `dart run terradart_codegen:terradart` is unchanged.
+  See [MIGRATING.md](MIGRATING.md#032x--0330).
+- The generated outputs reader's missing-define error names the define
+  file and the `terradart` command that writes it.
+
 ## [0.32.0] - 2026-10-02
 
 Lockstep release across the workspace. **Breaking** for the Dart API of every package, not for Terraform: no provider pin moves, and synth output changes only where a typed reference now emits the attribute the provider expects, an IAM adjunct now carries its parent's `project` / `location`, or an explicit `false` lifecycle flag is now written. An argument takes what it means: an attribute getter is a `TfArg` (`labels: other.labels`), an enum member goes in bare (`routingMode: .regional`), a variable is the typed handle `variable<T>` returns, a sensitive argument has no `.literal`, `provider:` takes the registered provider instance, `dependsOn` takes the blocks, an IAM grant takes an `IamPrincipal` and an IAM adjunct its parent as one `RefTo`. Every factory takes its local name first, every barrel re-exports `terradart_core`, and synth reports every problem at once as one sealed `SynthIssue` type. New: typed outputs in Flutter, web and CLI clients (`addDartDefineOutput`), provider aliases in migrated child modules, and an AWS serverless API example. Read the upgrade guide in [MIGRATING.md](MIGRATING.md#031x--0320) before bumping. The `terradart_google` catalog is unchanged at **1366 curated resource factories + 468 data sources** (1834 entries).

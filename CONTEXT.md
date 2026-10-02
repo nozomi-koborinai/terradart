@@ -104,6 +104,18 @@ _Avoid_: Workspace
 `terradart-migrate --merge-envs`: one `AppStack({required Env env})` for a whole group of environment roots. Every top-level argument the roots write differently becomes a constant on the generated `Env` enum, a block only some of them declare sits behind `if (env.<flag>)`, and each member synthesizes into its own `tf-out/<path>`. Refused, with a reason, when the roots differ in anything the enum cannot hold — a reference, a nested block, a `sensitive` variable's default, a different provider or backend, a different block order. What it never changes is the plan: the per-environment synth is the one the separate Stacks wrote.
 _Avoid_: Multi-environment Stack, Stack template
 
+**Entry point**:
+`bin/infra.dart` (or `terradart.entrypoint` in `pubspec.yaml`): the Dart program whose `main` synthesizes the Stacks. `runStack` writes one; `runEnvironments` writes one Stack per member of an environment enum and is where environments are declared — their names, directories, workspaces and partial backend configuration. Both describe what they wrote to the `terradart` command in the **entry point manifest** (the file `TERRADART_MANIFEST` names).
+_Avoid_: Synth script, infra script
+
+**Environment enum**:
+The Dart enum an entry point passes to `runEnvironments`: one member per environment, any names, each carrying that environment's values. `terradart --env <name>` takes a member's name; the Terraform directory (`tf-out/<name>`) and the define file (`.terradart/dart_defines.<name>.json`) are named after it. The `Env` enum `--merge-envs` generates is one.
+_Avoid_: Environment config, env list
+
+**Managed engine**:
+The OpenTofu release `terradart_cli` pins and downloads when neither `tofu` nor `terraform` is on `PATH`, checked against the SHA-256 the package ships and cached per user. `.terradart/engines.json` records the engine that last applied each state, so the next run keeps it.
+_Avoid_: Bundled Terraform
+
 **Lifted workspace**:
 `terradart-migrate --lift-workspace`: `terraform.workspace` becomes a `workspace` parameter on the Stack, so `bin/infra.dart --workspace prod` synthesizes for one named workspace instead of emitting `${terraform.workspace}` for `terraform workspace select`. Opt-in, and faithful only for the workspace it names.
 _Avoid_: Workspace mode
