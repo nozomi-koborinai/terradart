@@ -103,8 +103,7 @@ final class _SidecarBuilder {
   String _providerText(ProviderBlock p) {
     final dropped = droppedProviderArguments[p.name];
     final body = p.block.body;
-    if (dropped == null ||
-        !body.attributes.any((a) => dropped.contains(a.name))) {
+    if (dropped == null || !_hasDroppedCredential(body, dropped)) {
       return verbatimEntry(p.file, p.block);
     }
     final filtered = Block(
@@ -113,7 +112,7 @@ final class _SidecarBuilder {
       Body(
         [
           for (final e in body.entries)
-            if (e is! Attribute || !dropped.contains(e.name)) e,
+            if (!_isDroppedCredential(e, dropped)) e,
         ],
         body.range,
         trailingComments: body.trailingComments,
@@ -126,6 +125,18 @@ final class _SidecarBuilder {
     );
     return const HclWriter().writeEntry(filtered).trimRight();
   }
+
+  /// A credential attribute, or a nested block of that name
+  /// (`assume_role_with_web_identity { web_identity_token = "..." }`).
+  bool _hasDroppedCredential(Body body, Set<String> dropped) =>
+      body.entries.any((e) => _isDroppedCredential(e, dropped));
+
+  bool _isDroppedCredential(BodyEntry entry, Set<String> dropped) =>
+      switch (entry) {
+        Attribute(:final name) => dropped.contains(name),
+        Block(:final type) => dropped.contains(type),
+        _ => false,
+      };
 
   void _put(String file, String address, String text) {
     final reason = kept[address];

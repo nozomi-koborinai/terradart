@@ -8,4 +8,5 @@ const droppedProviderArguments = <String, Set<String>>{
   'google-beta': {'credentials', 'access_token'},
   'aws': {'access_key', 'secret_key', 'token', 'assume_role_with_web_identity'},
   'cloudflare': {'api_token', 'api_key', 'api_user_service_key'},
+  'appwrite': {'api_key', 'organization_api_key'},
 };

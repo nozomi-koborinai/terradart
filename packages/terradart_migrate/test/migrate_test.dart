@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:terradart_appwrite/provider.dart'
+    show kAppwriteProviderVersionConstraint;
 import 'package:terradart_aws/provider.dart' show kAwsProviderVersionConstraint;
 import 'package:terradart_cloudflare/provider.dart'
     show kCloudflareProviderVersionConstraint;
@@ -1377,6 +1379,71 @@ resource "aws_cloudwatch_log_group" "fn" {
       expect(leftover, isNot(contains('secret-json')));
       expect(leftover, isNot(contains('credentials')));
       expect(r.report.kept.map((k) => k.address), contains('provider.google'));
+    });
+
+    test('an Appwrite API key is dropped, not kept in the sidecar', () {
+      final r = _migrateHcl('''
+terraform {
+  required_providers {
+    appwrite = {
+      source  = "appwrite/appwrite"
+      version = "$kAppwriteProviderVersionConstraint"
+    }
+  }
+}
+provider "appwrite" {
+  endpoint              = "https://cloud.appwrite.io/v1"
+  api_key               = "standard_secret"
+  organization_api_key  = "org_secret"
+}
+resource "appwrite_project" "demo" {
+  name = "demo"
+}
+''');
+      expect(
+        r.stackSource,
+        contains(
+          "const AppwriteProvider(endpoint: 'https://cloud.appwrite.io/v1')",
+        ),
+      );
+      expect(r.stackSource, isNot(contains('standard_secret')));
+      expect(r.stackSource, isNot(contains('org_secret')));
+      expect(r.report.warnings.join('\n'), contains('"api_key"'));
+      expect(r.report.warnings.join('\n'), contains('"organization_api_key"'));
+      final sidecar = r.sidecar.files.values.join('\n');
+      expect(sidecar, isNot(contains('standard_secret')));
+      expect(sidecar, isNot(contains('org_secret')));
+    });
+
+    test('a nested credential block is stripped from the sidecar', () {
+      final r = _migrateHcl('''
+terraform {
+  required_providers {
+    aws = { source = "hashicorp/aws", version = "$kAwsProviderVersionConstraint" }
+  }
+}
+provider "aws" {
+  region = "us-east-1"
+  http_proxy = "http://proxy.example:8080"
+  assume_role_with_web_identity {
+    role_arn              = "arn:aws:iam::111111111111:role/deploy"
+    web_identity_token    = "eyJhbGciOi-secret"
+  }
+}
+resource "aws_sns_topic" "events" {
+  name = "events"
+}
+''');
+      expect(
+        r.stackSource,
+        contains('addExternalProvider(const AwsProvider());'),
+      );
+      expect(r.stackSource, isNot(contains('eyJhbGciOi-secret')));
+      final leftover = r.sidecar.files[leftoverFileName]!;
+      expect(leftover, contains('http_proxy'));
+      expect(leftover, isNot(contains('assume_role_with_web_identity')));
+      expect(leftover, isNot(contains('eyJhbGciOi-secret')));
+      expect(leftover, isNot(contains('web_identity_token')));
     });
 
     test('a pin that differs from the package is a warning', () {
