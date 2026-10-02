@@ -22,6 +22,7 @@ export 'src/stack.dart' show Stack, StackBackend, StackProvider;
 export 'src/synth/stack_synth.dart' show SynthResult;
 export 'src/synth/synth_issue.dart'
     show
+        InvalidDartDefineOutput,
         InvalidLifecycle,
         InvalidMoveTarget,
         InvalidTimeout,
@@ -48,7 +49,7 @@ export 'src/tf_arg.dart'
         TfArgVariable,
         TfRef;
 export 'src/tf_moved.dart' show TfMoved;
-export 'src/tf_output.dart' show TfOutput;
+export 'src/tf_output.dart' show DartDefineOutput, TfOutput;
 export 'src/tf_variable.dart'
     show
         TfCollectionType,

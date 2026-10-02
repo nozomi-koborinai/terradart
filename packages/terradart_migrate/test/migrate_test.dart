@@ -1665,6 +1665,59 @@ resource "google_pubsub_topic" "orders" {
       expect(r.report.kept.single.address, 'output.literal');
     });
 
+    test(
+      'an output of the outputs environment becomes addDartDefineOutput',
+      () {
+        final r = _migrateJson({
+          'terraform': _google,
+          'resource': {
+            'google_pubsub_topic': {
+              'x': {'name': 'x'},
+            },
+          },
+          'output': {
+            'topic_id': {'value': r'${google_pubsub_topic.x.id}'},
+            'labels': {'value': r'${google_pubsub_topic.x.labels}'},
+            'secret': {
+              'value': r'${google_pubsub_topic.x.name}',
+              'sensitive': true,
+            },
+            'dart_defines': {
+              'value': {
+                'TOPIC_ID': r'${google_pubsub_topic.x.id}',
+                'LABELS': r'${jsonencode(google_pubsub_topic.x.labels)}',
+              },
+            },
+            'admin_defines': {
+              'value': {
+                'LABELS': r'${jsonencode(google_pubsub_topic.x.labels)}',
+              },
+              'description': 'admin app',
+            },
+            'raw_labels': {
+              'value': {'LABELS': r'${google_pubsub_topic.x.labels}'},
+            },
+            'other': {
+              'value': {'TOPIC': r'${google_pubsub_topic.x.id}'},
+            },
+          },
+        });
+        expect(r.stackSource, contains('addDartDefineOutput();'));
+        expect(
+          r.stackSource,
+          contains(
+            "addDartDefineOutput(name: 'admin_defines', only: ['labels'], "
+            "description: 'admin app');",
+          ),
+        );
+        expect(
+          r.report.kept.map((k) => k.address),
+          unorderedEquals(['output.raw_labels', 'output.other']),
+          reason: 'a value that is not the encoding, or a key no output has',
+        );
+      },
+    );
+
     test('locals and unresolvable moved blocks stay in Terraform', () {
       final r = _migrateJson({
         'terraform': _google,

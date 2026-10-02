@@ -89,6 +89,8 @@ const Set<String> stackMemberNames = {
   'externalBlocks',
   'validate',
   'outputEnvironment',
+  'addDartDefineOutput',
+  'dartDefineOutputs',
   'requiredVersion',
   'outputs',
   'constants',

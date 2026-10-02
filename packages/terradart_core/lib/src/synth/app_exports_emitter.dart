@@ -9,6 +9,7 @@ import '../data.dart';
 import '../resource.dart';
 import '../stack.dart';
 import '../tf_arg.dart';
+import '../tf_output.dart';
 import '../tf_template.dart';
 import 'json_encoder.dart';
 
@@ -16,63 +17,96 @@ import 'json_encoder.dart';
 /// [Stack.constants] (with [Stack.appExports]) as the generated Dart file.
 @internal
 abstract final class AppExportsEmitter {
-  /// The top-level `output` value, or `null` when the Stack declares none.
+  /// The top-level `output` value, or `null` when the Stack declares none:
+  /// the [Stack.outputs], then the [Stack.dartDefineOutputs].
+  ///
+  /// Assumes [Stack.validate] found no issue, so every dart-define output
+  /// resolves.
   static Map<String, Object?>? outputBlock(Stack stack) {
-    if (stack.outputs.isEmpty) return null;
+    if (stack.outputs.isEmpty && stack.dartDefineOutputs.isEmpty) return null;
     return {
       for (final MapEntry(key: name, value: o) in stack.outputs.entries)
         name: o.toTfJson(TfJsonEncoder.encodeArg(o.value)),
+      for (final MapEntry(key: name, value: d)
+          in stack.dartDefineOutputs.entries)
+        name: {
+          'value': {
+            for (final e in dartDefines(stack, d))
+              e.name: TfJsonEncoder.encodeArg(e.value!),
+          },
+          'description': ?d.description,
+        },
     };
   }
 
+  /// What the dart-define output [d] of [stack] carries: every
+  /// non-sensitive output, or those [DartDefineOutput.only] names, in
+  /// order, each as its environment variable and value.
+  static List<EnvironmentEntry> dartDefines(Stack stack, DartDefineOutput d) {
+    final outputs =
+        d.only ??
+        [
+          for (final MapEntry(:key, :value) in stack.outputs.entries)
+            if (!value.sensitive) key,
+        ];
+    return [
+      for (final output in outputs)
+        switch (stack.outputs[output]) {
+          null => .problem(
+            output,
+            'Output "$output" is not registered on this Stack.',
+          ),
+          TfOutput(sensitive: true) => .problem(
+            output,
+            'Output "$output" is sensitive; a secret never goes into a '
+            'client build. Read it from its secret store.',
+          ),
+          _ => environmentEntry(stack, output),
+        },
+    ];
+  }
+
   /// The environment variable a non-sensitive [output] of [stack] is read
-  /// from by the generated reader's `fromEnvironment`, and its value.
-  static MapEntry<String, TfArg<String>> environmentEntry(
-    Stack stack,
-    String output,
-  ) {
+  /// from by the generated reader's `fromEnvironment` and `fromDartDefine`,
+  /// and its value.
+  static EnvironmentEntry environmentEntry(Stack stack, String output) {
     final o = stack.outputs[output]!;
     final type = o.valueType;
     final encoded = TfJsonEncoder.encodeArg(o.value);
-    final TfArg<String> value;
     if (type is ScalarValueType && type.name == 'String') {
-      value = switch ((o.value, encoded)) {
-        (TfArgLiteral(), final String s) => TfArg.literal(s),
-        (TfArgLiteral(), _) => throw ArgumentError.value(
+      return switch ((o.value, encoded)) {
+        (TfArgLiteral(), final String s) => .new(output, TfArg.literal(s)),
+        (TfArgLiteral(), _) => .problem(
           output,
-          'output',
           'Output "$output" is null, which no environment variable holds.',
         ),
-        (_, final String s) => TfArg.expression<String>(s),
+        (_, final String s) => .new(output, TfArg.expression<String>(s)),
         _ => throw StateError('Output "$output" encodes to $encoded.'),
       };
-    } else if (o.value is TfArgLiteral) {
-      if (_holdsTemplate(encoded)) {
-        throw ArgumentError.value(
-          output,
-          'output',
-          'Output "$output" is a literal holding references; its JSON is '
-              'only known at apply. Pass it as one .expression instead.',
-        );
-      }
-      value = TfArg.literal(jsonEncode(encoded));
-    } else {
-      final template = encoded as String;
-      final inner = template.startsWith(r'${') && template.endsWith('}')
-          ? template.substring(2, template.length - 1)
-          : null;
-      if (inner == null || inner.contains(r'${') || !_balanced(inner)) {
-        throw ArgumentError.value(
-          output,
-          'output',
-          'Output "$output" of type ${type.source} is the template '
-              '"$template", which has no JSON encoding; make it one '
-              r'interpolation ("${...}").',
-        );
-      }
-      value = TfArg.expression<String>('\${jsonencode($inner)}');
     }
-    return MapEntry(outputEnvironmentName(output), value);
+    if (o.value is TfArgLiteral) {
+      if (_holdsTemplate(encoded)) {
+        return .problem(
+          output,
+          'Output "$output" is a literal holding references; its JSON is '
+          'only known at apply. Pass it as one .expression instead.',
+        );
+      }
+      return .new(output, TfArg.literal(jsonEncode(encoded)));
+    }
+    final template = encoded as String;
+    final inner = template.startsWith(r'${') && template.endsWith('}')
+        ? template.substring(2, template.length - 1)
+        : null;
+    if (inner == null || inner.contains(r'${') || !_balanced(inner)) {
+      return .problem(
+        output,
+        'Output "$output" of type ${type.source} is the template '
+        '"$template", which has no JSON encoding; make it one '
+        r'interpolation ("${...}").',
+      );
+    }
+    return .new(output, TfArg.expression<String>('\${jsonencode($inner)}'));
   }
 
   /// True when no `}` in [body] closes the sequence before its end.
@@ -130,6 +164,10 @@ abstract final class AppExportsEmitter {
   }
 
   static void _outputsClass(StringBuffer buf, Stack stack, String name) {
+    final readable = [
+      for (final MapEntry(key: output, value: o) in stack.outputs.entries)
+        if (!o.sensitive) (output: output, o: o),
+    ];
     buf.write("""
 /// The Terraform outputs of the stack, read when the app runs.
 ///
@@ -137,47 +175,79 @@ abstract final class AppExportsEmitter {
 /// environment that sets only some of the variables serves those. A
 /// sensitive output has no getter.
 final class $name {
-  $name._(this._read);
-
   /// Reads the outputs of `terraform output -json`:
   /// `$name.fromTerraformJson(jsonDecode(stdout) as Map<String, Object?>)`.
-  factory $name.fromTerraformJson(Map<String, Object?> outputs) =>
-      $name._((output, variable, json) {
-        final entry = outputs[output];
-        if (entry is Map && entry.containsKey('value')) return entry['value'];
-        throw StateError(
-          'Terraform output "\$output" is missing; apply the stack first.',
-        );
-      });
+  ///
+  /// That JSON holds the sensitive outputs in plain text, so never bundle
+  /// it into a client app; build a client with [$name.fromDartDefine].
+  const $name.fromTerraformJson(Map<String, Object?> outputs)
+    : _source = _Source.terraform,
+      _terraform = outputs,
+      _environment = const {};
 
   /// Reads environment variables named after the outputs in
   /// SCREAMING_SNAKE_CASE (`ORDERS_TOPIC_ID` for `orders_topic_id`), such as
   /// `Platform.environment`. A `String` output is the variable's value; any
   /// other type is JSON.
-  factory $name.fromEnvironment(Map<String, String> environment) =>
-      $name._((output, variable, json) {
-        final raw = environment[variable];
-        if (raw == null) {
-          throw StateError(
-            'Environment variable \$variable (Terraform output "\$output") '
-            'is not set.',
-          );
-        }
-        if (!json) return raw;
-        try {
-          return jsonDecode(raw);
-        } on FormatException catch (e) {
-          throw StateError(
-            'Environment variable \$variable (Terraform output "\$output") '
-            'is not JSON: \${e.message}',
-          );
-        }
-      });
+  const $name.fromEnvironment(Map<String, String> environment)
+    : _source = _Source.environment,
+      _terraform = const {},
+      _environment = environment;
 
-  final Object? Function(String output, String variable, bool json) _read;
+  /// Reads the same variables as [$name.fromEnvironment] from the values
+  /// compiled into the app: `--dart-define-from-file` with the JSON of the
+  /// Stack's `addDartDefineOutput` (`terraform output -json dart_defines`),
+  /// or `--dart-define=ORDERS_TOPIC_ID=...`.
+  const $name.fromDartDefine()
+    : _source = _Source.dartDefine,
+      _terraform = const {},
+      _environment = _dartDefines;
+
+  final _Source _source;
+  final Map<String, Object?> _terraform;
+  final Map<String, String> _environment;
+
+  static const Map<String, String> _dartDefines = {
 """);
-    for (final MapEntry(key: output, value: o) in stack.outputs.entries) {
-      if (o.sensitive) continue;
+    for (final (:output, o: _) in readable) {
+      final variable = "'${outputEnvironmentName(output)}'";
+      buf.writeln(
+        '    if (bool.hasEnvironment($variable)) '
+        '$variable: String.fromEnvironment($variable),',
+      );
+    }
+    buf.write(r"""
+  };
+
+  Object? _read(String output, String variable, bool json) {
+    if (_source == _Source.terraform) {
+      final entry = _terraform[output];
+      if (entry is Map && entry.containsKey('value')) return entry['value'];
+      throw StateError(
+        'Terraform output "$output" is missing; apply the stack first.',
+      );
+    }
+    final what = _source == _Source.dartDefine
+        ? 'Dart define'
+        : 'Environment variable';
+    final raw = _environment[variable];
+    if (raw == null) {
+      throw StateError(
+        '$what $variable (Terraform output "$output") is not set.',
+      );
+    }
+    if (!json) return raw;
+    try {
+      return jsonDecode(raw);
+    } on FormatException catch (e) {
+      throw StateError(
+        '$what $variable (Terraform output "$output") is not JSON: '
+        '${e.message}',
+      );
+    }
+  }
+""");
+    for (final (:output, :o) in readable) {
       final type = o.valueType;
       final json = !(type is ScalarValueType && type.name == 'String');
       buf.writeln();
@@ -203,6 +273,8 @@ final class $name {
     );
   }
 }
+
+enum _Source { terraform, environment, dartDefine }
 """);
   }
 
@@ -363,6 +435,24 @@ final class $name {
     final name = stack.runtimeType.toString();
     return name.replaceFirst(RegExp('^_+'), '');
   }
+}
+
+/// The environment variable an output is passed in, and its value — or,
+/// when the output has none, why.
+@internal
+final class EnvironmentEntry {
+  EnvironmentEntry(String output, TfArg<String> this.value)
+    : name = outputEnvironmentName(output),
+      problem = null;
+
+  EnvironmentEntry.problem(String output, String this.problem)
+    : name = outputEnvironmentName(output),
+      value = null;
+
+  /// `ORDERS_TOPIC_ID` for `orders_topic_id`.
+  final String name;
+  final TfArg<String>? value;
+  final String? problem;
 }
 
 final class _NotPlain {

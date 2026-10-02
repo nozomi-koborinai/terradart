@@ -15,6 +15,7 @@ Guides track the **0.31.x** line on pub.dev. Every Dart snippet on this site com
 ## Concepts
 
 - [Architecture](/docs/architecture/) — `synth()` / `writeTo()`, typed references, outputs and constants, `outputEnvironment()`
+- [Outputs in client apps](/docs/client-outputs/) — build a Flutter, web or CLI client with apply-time values, typed, from `addDartDefineOutput()`
 - [How it's built](/docs/how-its-built/) — the generation pipeline and verification harness behind the factories
 
 ## Providers

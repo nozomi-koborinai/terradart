@@ -9,7 +9,7 @@ import 'package:terradart_aws/provider.dart' show kAwsProviderVersionConstraint;
 import 'package:terradart_cloudflare/provider.dart'
     show kCloudflareProviderVersionConstraint;
 import 'package:terradart_core/internal.dart'
-    show parseGoDuration, templateVariableNames;
+    show outputEnvironmentName, parseGoDuration, templateVariableNames;
 import 'package:terradart_core/terradart_core.dart' show ModuleCall;
 import 'package:terradart_google/provider.dart' show kProviderVersionConstraint;
 import 'package:terradart_google_beta/provider.dart'
@@ -913,9 +913,14 @@ final class StackEmitter {
 
     // --- outputs (resolved first: an output keeps its target's Dart local) --
     final outputStatements = <StackStatement>[];
+    final defineOutputs = <OutputBlock>[];
     for (final o in module.outputs) {
       if (noStack) {
         _keep('output.${o.name}', _noStackReason);
+        continue;
+      }
+      if (o.value is ObjectExpr) {
+        defineOutputs.add(o);
         continue;
       }
       final output = _output(o);
@@ -929,6 +934,17 @@ final class StackEmitter {
         );
         _migrated.add(MigratedItem(address: 'output.${o.name}'));
       }
+    }
+    for (final o in defineOutputs) {
+      final statement = _dartDefineOutput(o);
+      if (statement == null) {
+        _output(o);
+        continue;
+      }
+      outputStatements.add(
+        StackStatement(tag: 'output.${o.name}', text: statement),
+      );
+      _migrated.add(MigratedItem(address: 'output.${o.name}'));
     }
     referenced.addAll(_outputRefs);
     // A local another environment reads keeps its `final x =` here too, so
@@ -2202,7 +2218,19 @@ final class StackEmitter {
       final ref = getterName != null
           ? '$dartName.$getterName'
           : 'TfRef.attribute<Object?>($dartName, ${dartString(attribute)})';
+      final dartType = getterName == null
+          ? 'Object?'
+          : target?.getter(attribute)?.dartType ?? 'String';
       _outputRefs.add(address);
+      if (!args.contains('sensitive: true')) {
+        _environment.add((
+          name: o.name,
+          variable: outputEnvironmentName(o.name),
+          value: dartType == 'String' || dartType == 'String?'
+              ? _interpolated(value)
+              : 'jsonencode(${_interpolated(value)})',
+        ));
+      }
       return (
         statement:
             'addOutput(${[dartString(o.name), ref, ...args].join(', ')});',
@@ -2215,6 +2243,65 @@ final class StackEmitter {
   }
 
   final _outputRefs = <String>{};
+
+  /// The non-sensitive migrated outputs, in order, as `outputEnvironment`
+  /// passes them: the variable and the expression of its value.
+  final _environment = <({String name, String variable, String value})>[];
+
+  /// `addDartDefineOutput(...)` for an output whose value is the
+  /// environment of migrated outputs — each key the variable of one, each
+  /// value its value (a `String`) or `jsonencode` of it — or `null` when
+  /// it is any other object.
+  String? _dartDefineOutput(OutputBlock o) {
+    final values = objectMap(bodyAsObject(o.body)) ?? {};
+    final object = values['value'];
+    if (object is! ObjectExpr) return null;
+    final carried = <String>[];
+    for (final item in object.items) {
+      final key = item.key.constantString;
+      final match = [
+        for (final e in _environment)
+          if (e.variable == key) e,
+      ];
+      if (match.length != 1 ||
+          _interpolated(_rewriter.expr(item.value)) != match.single.value) {
+        return null;
+      }
+      carried.add(match.single.name);
+    }
+    final args = <String>[
+      if (o.name != 'dart_defines') 'name: ${dartString(o.name)}',
+      if (carried.isEmpty ||
+          carried.join('\n') !=
+              [for (final e in _environment) e.name].join('\n'))
+        'only: [${carried.map(dartString).join(', ')}]',
+    ];
+    for (final MapEntry(:key, value: v) in values.entries) {
+      switch (key) {
+        case 'value':
+          break;
+        case 'description':
+          final s = v.constantString;
+          if (s == null) return null;
+          args.add('description: ${dartString(s)}');
+        default:
+          return null;
+      }
+    }
+    return 'addDartDefineOutput(${args.join(', ')});';
+  }
+
+  /// The source of [value] without the `${...}` of a template that is one
+  /// interpolation.
+  static String _interpolated(Expr value) => switch (value) {
+    TemplateExpr(
+      parts: [
+        TemplateInterpolation(:final expr, stripLeft: false, stripRight: false),
+      ],
+    ) =>
+      hclSource(expr),
+    _ => hclSource(value),
+  };
 
   // -----------------------------------------------------------------------
   // Ordering

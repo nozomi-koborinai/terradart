@@ -8,6 +8,19 @@ Per-package changelogs live alongside each package and are the system of record 
 
 **Breaking** for the Dart API; read [MIGRATING.md](MIGRATING.md#031x--0320).
 
+### Added
+
+- **Outputs in client apps** (`terradart_core`, `terradart_migrate`) —
+  `Stack.addDartDefineOutput()` declares an output, `dart_defines`, whose
+  value is the `--dart-define-from-file` JSON of the Stack's non-sensitive
+  outputs (the variables `outputEnvironment()` passes, `only:` and `name:`
+  for one file per client). A Flutter, Dart web or CLI client is built
+  with `terraform output -json dart_defines` and reads each value with its
+  type through `const <Stack>Outputs.fromDartDefine()`, on every provider
+  package; the reader's constructors are all `const`. The migrator turns
+  such an output back into `addDartDefineOutput`. Guide:
+  [Outputs in client apps](https://terradart.dev/docs/client-outputs/).
+
 ### Changed
 
 - **Stack settings and timeouts** (`terradart_core`, `terradart_google`,

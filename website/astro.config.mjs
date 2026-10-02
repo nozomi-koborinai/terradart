@@ -48,7 +48,7 @@ export default defineConfig({
         },
         {
           label: "Concepts",
-          items: ["docs/architecture", "docs/how-its-built"],
+          items: ["docs/architecture", "docs/client-outputs", "docs/how-its-built"],
         },
         {
           label: "Providers",

@@ -32,3 +32,16 @@ final class TfOutput<T> {
     'description': ?description,
   };
 }
+
+/// An `output` whose value is the client build's `--dart-define` file,
+/// registered with `Stack.addDartDefineOutput`.
+@immutable
+final class DartDefineOutput {
+  const DartDefineOutput({this.only, this.description});
+
+  /// The outputs it carries, by name; `null` for every non-sensitive
+  /// output of the Stack.
+  final List<String>? only;
+
+  final String? description;
+}

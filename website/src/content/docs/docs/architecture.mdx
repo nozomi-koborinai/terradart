@@ -145,7 +145,7 @@ graph LR
   ST[Application code] --> DC
   ST --> RD
   TF[Terraform CLI] --> TFO
-  TFO -.terraform output -json / environment.-> RD
+  TFO -.terraform output -json / environment / dart-define.-> RD
 ```
 
 - **`addOutput`** declares a Terraform `output` for a value known after apply — a resource ID, a Cloud Run URL — and a getter of the generated reader (see below). It takes any `TfArg`, so the value is a dot shorthand like every resource argument: `addOutput('service_url', service.uri, description: 'Cloud Run URL')`. It checks at registration that the name is a Terraform identifier, is not taken, and — unless `sensitive: true` — that the value does not read a sensitive field. Read it with `terraform output -raw service_url`.
@@ -189,7 +189,7 @@ Future<void> main() async {
 
 ### Reading outputs in the app
 
-The same file holds `<StackName>Outputs`, a typed reader of the Stack's outputs: one getter per non-sensitive output, named in lowerCamelCase and typed like the output's value (`addOutput('orders_topic_id', topic.id)` becomes `String get ordersTopicId`). The app builds it from either source:
+The same file holds `<StackName>Outputs`, a typed reader of the Stack's outputs: one getter per non-sensitive output, named in lowerCamelCase and typed like the output's value (`addOutput('orders_topic_id', topic.id)` becomes `String get ordersTopicId`). Its `const` constructors pick the source — `terraform output -json`, the environment, or the defines compiled into a client (`fromDartDefine()`, see [Outputs in client apps](/docs/client-outputs/)):
 
 ```dart
 // lib/read_outputs.dart
@@ -215,7 +215,7 @@ String deployedTopicId() =>
     OrdersStackOutputs.fromEnvironment(Platform.environment).ordersTopicId;
 ```
 
-`fromEnvironment` reads each output from the variable named after it in SCREAMING_SNAKE_CASE (`ORDERS_TOPIC_ID`); a `String` output is the variable's value and any other type is JSON. Each getter reads when called, so a service whose environment sets only some of the variables can read those, and a missing or mistyped value throws a `StateError` naming the output and the variable. A sensitive output has no getter — read a secret from its secret store. With `appExports` set, `addOutput` rejects an output whose getter is not a usable Dart identifier, or whose getter or variable another output already has.
+`fromEnvironment` and `fromDartDefine` read each output from the variable named after it in SCREAMING_SNAKE_CASE (`ORDERS_TOPIC_ID`); a `String` output is the variable's value and any other type is JSON. Each getter reads when called, so a service whose environment sets only some of the variables can read those, and a missing or mistyped value throws a `StateError` naming the output and the variable. A sensitive output has no getter — read a secret from its secret store. With `appExports` set, `addOutput` rejects an output whose getter is not a usable Dart identifier, or whose getter or variable another output already has.
 
 ### Passing outputs to the service
 
@@ -242,6 +242,8 @@ addOutput('service_uri', service.uri); // after: a service cannot read itself
 ```
 
 `outputEnvironment(only: [...])` picks outputs by name. Register an output that reads the service itself after the call — a resource whose environment references its own attributes is a Terraform cycle.
+
+A client app — Flutter, Dart web, a CLI — gets the same variables as a file instead: `addDartDefineOutput()` declares an output whose value is the JSON that `--dart-define-from-file` reads, and the client reads it with `const OrdersStackOutputs.fromDartDefine()`. [Outputs in client apps](/docs/client-outputs/) walks through it.
 
 `AppExports(path, name: 'Orders')` renames the generated classes (`OrdersConstants`, `OrdersOutputs`). The path is relative to the directory `bin/infra.dart` runs in, and the generated file imports only `dart:convert`, so it can live in a small package the app and the infra package both depend on, keeping the app free of provider packages — the [Lunch Concierge recipe](https://github.com/nozomi-koborinai/terradart/tree/main/cookbook/lunch-concierge) writes it into its `shared/` package. Runnable pattern: [pubsub quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/pubsub_quickstart) (`lib/subscriber_stub.dart`).
 
