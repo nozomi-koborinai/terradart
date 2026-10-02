@@ -9,8 +9,8 @@ resolution: workspace
 
 dependencies:
   aws_client: ^0.10.0
-  terradart_core: ^0.31.0
-  terradart_aws: ^0.31.0
+  terradart_core: ^0.32.0
+  terradart_aws: ^0.32.0
 
 dev_dependencies:
   lints: ^6.0.0
