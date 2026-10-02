@@ -133,6 +133,13 @@ final class Workflow {
     ]);
   }
 
+  /// `init -backend=false`, then `validate`: needs the providers, not the
+  /// backend, its credentials or the state.
+  Future<void> validate(List<String> extra) async {
+    await _engineRun(['init', '-backend=false', '-input=false']);
+    await _engineRun(['validate', ...extra]);
+  }
+
   Future<void> plan(List<String> extra) =>
       _engineRun(['plan', '-input=false', ...extra]);
 

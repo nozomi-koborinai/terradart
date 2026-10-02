@@ -31,7 +31,7 @@ Guides track the **0.33.x** line on pub.dev. Every Dart snippet on this site com
 
 ## Reference
 
-- [The terradart command](/docs/cli/) — `terradart synth`, `plan`, `apply`, `destroy`, `outputs` and `migrate`, environments declared in Dart, and managed OpenTofu
+- [The terradart command](/docs/cli/) — `terradart synth`, `validate`, `plan`, `apply`, `destroy`, `outputs` and `migrate`, environments declared in Dart, and managed OpenTofu
 - [Coverage](/docs/coverage/) — every factory of every provider package, its barrel, and the examples that use it
 - [API reference](https://pub.dev/packages?q=terradart) — the dartdoc of every package on pub.dev
 - [llms.txt](/llms.txt) — these docs, condensed for LLMs

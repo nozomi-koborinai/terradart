@@ -12,7 +12,7 @@ import 'package:test/test.dart';
 /// empty cache, a Stack per environment synthesized by `runEnvironments`
 /// in `dart run`, then init, apply (a local-state `time_sleep`, no cloud),
 /// outputs and destroy. The environment enum mixes a local backend with a
-/// GCS one, which is only synthesized.
+/// GCS one, which is only synthesized and validated.
 void main() {
   final packages = p.normalize(p.join(Directory.current.path, '..'));
 
@@ -64,6 +64,34 @@ void main() {
     expect((prd['terraform'] as Map)['backend'], {
       'gcs': {'bucket': 'acme-prd-state', 'prefix': 'hello'},
     });
+
+    await terradart(['validate', '--env', 'prd', '--no-synth']);
+    final broken = File(p.join(root.path, 'tf-out', 'prd', 'broken.tf.json'))
+      ..writeAsStringSync(
+        jsonEncode({
+          'output': {
+            'missing': {'value': r'${time_sleep.missing.id}'},
+          },
+        }),
+      );
+    final invalid = await runTerradart(
+      [
+        'validate',
+        '--env',
+        'prd',
+        '--no-synth',
+        '--engine',
+        'tofu',
+        '--project',
+        root.path,
+      ],
+      workingDirectory: root.path,
+      environment: environment,
+      console: Console(out: log.writeln, err: log.writeln),
+    );
+    expect(invalid, isNot(0));
+    expect(log.toString(), contains('tofu validate exited'));
+    broken.deleteSync();
 
     await terradart(['apply', '--env', 'qa', '--auto-approve']);
     final defines = File(

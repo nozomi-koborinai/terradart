@@ -59,7 +59,7 @@ Future<void> main(List<String> args) =>
 
 ## Run one environment
 
-`--env <name>` takes a member's name. `plan`, `apply`, `destroy` and `outputs` need it; `terradart synth` without it writes every environment.
+`--env <name>` takes a member's name. `validate`, `plan`, `apply`, `destroy` and `outputs` need it; `terradart synth` without it writes every environment.
 
 ```bash
 terradart plan --env stg

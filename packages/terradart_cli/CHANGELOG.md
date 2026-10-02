@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- `terradart validate [--env <name>]` synthesizes, then runs `init -backend=false` and `validate` in the directory the entry point wrote, with the same engine as `plan` (managed OpenTofu when neither `tofu` nor `terraform` is on `PATH`). It needs no credentials, backend or state, so a CI job can check every environment; arguments after `--` go to `validate`.
+
 ## 0.33.0 - 2026-10-02
 
 First release, in lockstep with the workspace.
