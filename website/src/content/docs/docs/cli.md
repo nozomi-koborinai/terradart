@@ -13,18 +13,18 @@ It runs the `tofu` or `terraform` already on your `PATH`. With neither, it downl
 
 ## Install
 
-As a dev dependency of the infrastructure package, so everyone on the project runs the same version:
-
-```bash
-dart pub add --dev terradart_cli
-dart run terradart_cli:terradart apply
-```
-
-Or once per machine:
+Once per machine:
 
 ```bash
 dart pub global activate terradart_cli
 terradart apply
+```
+
+To pin the version per project, so everyone on it runs the same one, add it as a dev dependency of the infrastructure package instead:
+
+```bash
+dart pub add --dev terradart_cli
+dart run terradart_cli:terradart apply
 ```
 
 ## Commands
@@ -70,116 +70,9 @@ An entry point that writes `tf-out/` itself (`await OrdersStack(...).writeTo('tf
 
 ## Environments
 
-Environments are a Dart enum of your own: any members, each carrying that environment's values. The Stack takes one and derives everything from it — the project, the sizes, and where its state lives, so one environment can keep a local state file while another uses a GCS bucket:
+With an entry point that calls `runEnvironments`, `plan`, `apply`, `destroy` and `outputs` need `--env <name>`, the name of a member of the project's environment enum; `terradart synth` without it writes every environment. Each environment gets its own Terraform directory (`tf-out/<name>` unless `runEnvironments` says otherwise) and define file (`.terradart/dart_defines.<name>.json`), and a name that is not a member stops before anything runs. `--workspace` and `--backend-config` override and extend, for one run, the workspace and backend settings `runEnvironments` gives an environment.
 
-```dart
-// lib/env.dart
-enum Env {
-  dev(projectId: 'acme-dev', stateBucket: null),
-  stg(projectId: 'acme-stg', stateBucket: 'acme-stg-tfstate'),
-  prod(projectId: 'acme-prod', stateBucket: 'acme-prod-tfstate');
-
-  const Env({required this.projectId, required this.stateBucket});
-
-  final String projectId;
-
-  /// The GCS bucket of the state; `null` keeps a local file.
-  final String? stateBucket;
-}
-```
-
-```dart
-// lib/app_stack.dart
-import 'package:my_app/env.dart';
-import 'package:terradart_google/provider.dart';
-
-final class AppStack extends Stack {
-  AppStack({required Env env})
-    : super(
-        providers: [GoogleProvider(project: env.projectId)],
-        backend: switch (env.stateBucket) {
-          final bucket? => GcsBackend(bucket: bucket, prefix: 'app'),
-          null => LocalBackend(path: 'state/${env.name}.tfstate'),
-        },
-      ) {
-    addOutput('api_url', .literal('https://api.${env.projectId}.example.com'));
-    addDartDefineOutput();
-  }
-}
-```
-
-`runEnvironments` takes the members and builds one Stack per environment:
-
-```dart
-// bin/infra.dart
-import 'package:my_app/app_stack.dart';
-import 'package:my_app/env.dart';
-import 'package:terradart_core/terradart_core.dart';
-
-Future<void> main(List<String> args) =>
-    runEnvironments(args, Env.values, (env) => AppStack(env: env));
-```
-
-`--env <name>` takes a member's name. Each environment gets its own Terraform directory and define file, named after it:
-
-| Command | Terraform directory | Define file | Client build |
-|---|---|---|---|
-| `terradart apply --env dev` | `tf-out/dev` | `.terradart/dart_defines.dev.json` | `flutter run --dart-define-from-file=.terradart/dart_defines.dev.json` |
-| `terradart apply --env stg` | `tf-out/stg` | `.terradart/dart_defines.stg.json` | `flutter build web --dart-define-from-file=.terradart/dart_defines.stg.json` |
-| `terradart apply --env prod` | `tf-out/prod` | `.terradart/dart_defines.prod.json` | `flutter build ipa --dart-define-from-file=.terradart/dart_defines.prod.json` |
-
-The names are the enum's, not a fixed set: `qa`, `sandbox`, `euWest` work the same. A name that is not a member stops before anything runs, listing the ones that are:
-
-```text
-$ terradart plan --env staging
-> dart run bin/infra.dart --env staging
-infra: unknown environment "staging"; known envs: dev, stg, prod.
-terradart: synth failed: bin/infra.dart exited 64.
-```
-
-A project with several environments needs `--env` on `plan`, `apply`, `destroy` and `outputs`; `terradart synth` without it writes them all.
-
-### One directory, one backend, several states
-
-When every environment keeps its state in the same kind of backend and only its settings differ, the environments can share one directory and tell their states apart when `terradart` initializes it. `runEnvironments` says how, in Dart:
-
-- **Partial backend configuration.** The Stack's backend leaves the settings out (`const GcsBackend()`); `backendConfig` names a `-backend-config` file (relative to the package) or `key=value` pairs per environment. `terradart` runs `init -reconfigure` with them on every command, so the directory never keeps another environment's backend.
-
-  ```dart
-  import 'package:my_app/app_stack.dart';
-  import 'package:my_app/env.dart';
-  import 'package:terradart_core/terradart_core.dart';
-
-  Future<void> main(List<String> args) => runEnvironments(
-    args,
-    Env.values,
-    (env) => AppStack(env: env),
-    dir: (_) => 'tf-out',
-    backendConfig: (env) => ['backend/${env.name}.gcs.tfbackend'],
-  );
-  ```
-
-- **Workspaces.** `workspace` names the Terraform workspace `terradart` selects after `init`, creating it on the first `plan` or `apply`.
-
-  ```dart
-  import 'package:my_app/app_stack.dart';
-  import 'package:my_app/env.dart';
-  import 'package:terradart_core/terradart_core.dart';
-
-  Future<void> main(List<String> args) => runEnvironments(
-    args,
-    Env.values,
-    (env) => AppStack(env: env),
-    dir: (_) => 'tf-out',
-    workspace: (env) => env.name,
-  );
-  ```
-
-Two environments may share a directory only when one of these tells them apart; `runEnvironments` throws otherwise. `--workspace` and `--backend-config` on the command line override and extend them for one run.
-
-### Migrated environments
-
-`terradart migrate --merge-envs` writes an `Env` enum whose members carry the directory each environment came from (`path`), and a `bin/infra.dart` that calls `runEnvironments` with `dir: (env) => 'tf-out/${env.path}'`. `terradart plan --env prodEu` reads that manifest and plans the matching environment. A single-module migration calls `runStack` instead, so `terradart plan` with no `--env` is enough. See [Migrating from HCL](/docs/migrate-from-hcl/).
+How to declare the enum, keep each environment's state apart, and build each client with its define file: [Environments](/docs/environments/).
 
 ## The define file
 
@@ -229,4 +122,4 @@ terradart:
     file: ../app/dart_defines.json # instead of .terradart/<output>.json
 ```
 
-Environments are not configured here; they are the enum `runEnvironments` takes.
+Environments are not configured here; they are the enum `runEnvironments` takes ([Environments](/docs/environments/)).

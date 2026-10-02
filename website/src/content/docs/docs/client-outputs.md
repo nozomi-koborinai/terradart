@@ -53,13 +53,13 @@ final class AppStack extends Stack {
 ```dart
 // bin/infra.dart
 import 'package:my_app/app_stack.dart';
+import 'package:terradart_core/terradart_core.dart';
 
-Future<void> main() async {
-  await AppStack(projectId: 'my-project').writeTo('tf-out');
-}
+Future<void> main(List<String> args) =>
+    runStack(args, () => AppStack(projectId: 'my-project'));
 ```
 
-`dart run bin/infra.dart` writes it into `tf-out/main.tf.json` after the three outputs it carries:
+`terradart synth` writes it into `tf-out/main.tf.json` after the three outputs it carries:
 
 ```json
 {
@@ -106,11 +106,30 @@ flutter build web --dart-define-from-file=.terradart/dart_defines.json
 flutter run --dart-define-from-file=.terradart/dart_defines.json
 ```
 
-With [environments](/docs/cli/#environments), `--env stg` writes `.terradart/dart_defines.stg.json`. Without the `terradart` command, `terraform output -json dart_defines` prints the same file:
+The app ships when it is ready, against whatever was applied last; a new apply reaches it on its next build.
+
+### One define file per environment
+
+With [environments](/docs/environments/), each environment's apply writes its own file, `.terradart/dart_defines.<env>.json`, and each client build names the one it is for:
+
+```bash
+terradart outputs --env stg
+flutter run --dart-define-from-file=.terradart/dart_defines.stg.json
+terradart outputs --env prod
+flutter build web --dart-define-from-file=.terradart/dart_defines.prod.json
+```
+
+The generated reader is the same for every environment; only the values compiled in differ.
+
+### Without the `terradart` command
+
+`terraform output -json dart_defines` prints the same file:
 
 ```bash
 terraform -chdir=tf-out output -json dart_defines > dart_defines.json
 ```
+
+### Clients built with the `dart` command
 
 The `dart` command takes one define per flag. Read a `String` output with `-raw` and any other with `-json`, which is the encoding the reader expects:
 
@@ -119,14 +138,14 @@ dart run -DAPI_URL="$(terraform -chdir=tf-out output -raw api_url)" -DAPI_URLS="
 dart compile js -DAPI_URL="$(terraform -chdir=tf-out output -raw api_url)" -o web/main.dart.js web/main.dart
 ```
 
-The app ships when it is ready, against whatever was applied last; a new apply reaches it on its next build. The [AWS Lambda quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_lambda_quickstart) (`bin/client.dart`) calls its function URL this way.
+The [AWS Lambda quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_lambda_quickstart) (`bin/client.dart`) calls its function URL this way.
 
 ## When the values exist
 
 The two halves come at different times:
 
-1. **Synth**, before any apply: `dart run bin/infra.dart` writes the reader class, `AppStackOutputs`. Its getters and their types are known, so the client compiles against it, but it holds no values.
-2. **Apply**, then the client's build: the values exist only once Terraform has applied. `terradart apply` (or `terradart outputs` in the client's build) writes them to `.terradart/dart_defines.json`, and `flutter build web --dart-define-from-file=.terradart/dart_defines.json` (or `apk`, `ios`, ...) compiles them in. A build without them fails at the first read, with a `StateError` that names the variable and the command that writes it.
+1. **Synth**, before any apply: `terradart synth` (or `dart run bin/infra.dart`) writes the reader class, `AppStackOutputs`. Its getters and their types are known, so the client compiles against it, but it holds no values.
+2. **Apply**, then the client's build: the values exist only once Terraform has applied. `terradart apply` (or `terradart outputs` in the client's build) writes them to `.terradart/dart_defines.json` (`.terradart/dart_defines.<env>.json` with `--env`), and `flutter build web --dart-define-from-file=.terradart/dart_defines.json` (or `apk`, `ios`, ...) compiles them in. A build without them fails at the first read, with a `StateError` that names the variable and the command that writes it.
 
 `terradart outputs` (like `terraform output`) reads the state from the Stack's backend: the local `terraform.tfstate`, or a remote bucket such as a `GcsBackend` or `S3Backend`. The machine or CI job that builds the client runs `init` against that backend — `terradart outputs` does — and needs read access to the state; it never needs permission to apply.
 
