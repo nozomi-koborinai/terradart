@@ -15,7 +15,9 @@ dependencies:
   terradart_google_beta: ^0.33.x # only for beta-only types
 ```
 
-Apply authenticates with Application Default Credentials (`gcloud auth application-default login`) or a service account in CI; synth needs no credentials.
+## Credentials
+
+`GoogleProvider` takes no key, so credentials never enter the synthesized JSON, and synth needs none. `terradart plan` and `terradart apply` authenticate with Application Default Credentials (`gcloud auth application-default login`), or a service account in CI. With them in place, [`terradart apply`](/docs/cli/) synthesizes the Stack and applies it.
 
 ## Imports
 
@@ -214,7 +216,7 @@ Synth emits `provider.google` as a list when a name has more than one configurat
 
 ## Examples
 
-Every Google quickstart synthesizes and passes `terraform validate` in CI:
+Every Google quickstart is synthesized and validated against the provider in CI:
 
 - **Foundational & IAM**: [Pub/Sub](https://github.com/nozomi-koborinai/terradart/tree/main/examples/pubsub_quickstart), [Cloud Tasks](https://github.com/nozomi-koborinai/terradart/tree/main/examples/cloud_tasks_quickstart), [Secret Manager](https://github.com/nozomi-koborinai/terradart/tree/main/examples/secret_manager_quickstart), [IAM](https://github.com/nozomi-koborinai/terradart/tree/main/examples/iam_quickstart)
 - **Compute & Networking**: [Compute & Firewall](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_quickstart), [GKE](https://github.com/nozomi-koborinai/terradart/tree/main/examples/gke_quickstart), [Cloud DNS](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dns_quickstart)
