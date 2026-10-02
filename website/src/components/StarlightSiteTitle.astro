@@ -1,73 +1,25 @@
 ---
-import config from "virtual:starlight/user-config";
-
-interface Props {
-  locale: string | undefined;
-}
-
-const { locale } = Astro.props;
-
-let title: string;
-if (typeof config.title === "string") {
-  title = config.title;
-} else {
-  const titleByLocale = config.title as Record<string, string>;
-  title =
-    (locale && titleByLocale[locale]) ||
-    titleByLocale["en"] ||
-    Object.values(titleByLocale)[0] ||
-    "TerraDart";
-}
+import Logo from "./Logo.astro";
 ---
 
-<a href="/" class="site-title">
-  <img
-    src="/logo-horizontal.svg"
-    alt=""
-    width="140"
-    height="28"
-    class="site-title-logo site-title-logo--light"
-  />
-  <img
-    src="/logo-horizontal-dark.svg"
-    alt=""
-    width="140"
-    height="28"
-    class="site-title-logo site-title-logo--dark"
-  />
-  <span class="sr-only">{title}</span>
+<a href="/" class="site-title" aria-label="TerraDart home">
+  <Logo size={24} />
+  <span class="site-title-section">Docs</span>
 </a>
 
 <style>
   .site-title {
     display: inline-flex;
     align-items: center;
+    gap: 0.75rem;
     text-decoration: none;
+    white-space: nowrap;
   }
-  .site-title-logo {
-    height: 1.75rem;
-    width: auto;
-  }
-  .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    border: 0;
-  }
-</style>
-
-<style is:global>
-  .site-title-logo--dark {
-    display: none;
-  }
-  html[data-theme="dark"] .site-title-logo--light {
-    display: none;
-  }
-  html[data-theme="dark"] .site-title-logo--dark {
-    display: inline;
+  .site-title-section {
+    padding-left: 0.75rem;
+    border-left: 1px solid var(--td-line-strong);
+    color: var(--td-mute);
+    font-size: 0.9375rem;
+    font-weight: 500;
   }
 </style>

@@ -1,0 +1,51 @@
+---
+const features = [
+  {
+    title: "References, not strings",
+    code: "topic: orders.ref",
+    body: "An argument that names another resource takes that resource's ref. Pass the wrong kind and it does not compile.",
+  },
+  {
+    title: "Enums for fixed values",
+    code: "ingress: .all",
+    body: "Every fixed value set is an enum, written with Dart 3.10 dot shorthands and completed by your IDE.",
+  },
+  {
+    title: "Sealed choices",
+    code: "delivery: .pushConfig(...)",
+    body: "When a block takes exactly one of several shapes, it is a sealed type. Pick a variant; the compiler rules out the rest.",
+  },
+  {
+    title: "Just Dart",
+    code: "for (final env in Env.values)",
+    body: "Loops, functions, enums for environments, packages and tests. A Stack is a final class, not a template language.",
+  },
+];
+---
+
+<section class="section">
+  <div class="container">
+    <header class="section-head">
+      <p class="eyebrow">Type-safe</p>
+      <h2 class="section-title">The compiler reviews your infrastructure</h2>
+      <p class="section-lead">
+        Mistakes that usually surface halfway through a deploy show up as red squiggles while you type.
+      </p>
+    </header>
+    <ul class="features">
+      {
+        features.map((f) => (
+          <li class="feature">
+            <code class="feature-code">{f.code}</code>
+            <h3>{f.title}</h3>
+            <p>{f.body}</p>
+          </li>
+        ))
+      }
+    </ul>
+    <p class="section-more">
+      <a href="/docs/arguments/" class="text-link">Writing arguments</a>
+      <a href="/docs/why-terradart/" class="text-link">Why TerraDart</a>
+    </p>
+  </div>
+</section>

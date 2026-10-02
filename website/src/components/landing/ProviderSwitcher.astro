@@ -1,0 +1,186 @@
+---
+import CodeWindow from "./CodeWindow.astro";
+import { excerpt, type ExcerptSpec } from "../../lib/excerpt";
+import pubsub from "../../../../examples/pubsub_quickstart/lib/main.dart?raw";
+import lambda from "../../../../examples/aws_lambda_quickstart/lib/main.dart?raw";
+import dns from "../../../../examples/cloudflare_dns_quickstart/lib/main.dart?raw";
+import appwrite from "../../../../examples/appwrite_quickstart/lib/main.dart?raw";
+
+const repo = "https://github.com/nozomi-koborinai/terradart/tree/main/examples";
+
+interface Tab {
+  id: string;
+  name: string;
+  example: string;
+  source: string;
+  spec: ExcerptSpec;
+  package: string;
+  summary: string;
+  points: string[];
+  guide: string;
+}
+
+const tabs: Tab[] = [
+  {
+    id: "google",
+    name: "Google Cloud",
+    example: "pubsub_quickstart",
+    source: pubsub,
+    spec: {
+      imports: ["provider.dart", "pubsub.dart"],
+      stackClass: "final class OrdersStack",
+      statements: ["GooglePubsubTopic(", "GooglePubsubSubscription(", "addConstant(", "addOutput("],
+    },
+    package: "terradart_google",
+    summary: "The full Google Cloud catalog, plus the beta-only types in terradart_google_beta.",
+    points: [
+      "<code>topic: topic.ref</code> takes a topic, and only a topic",
+      "<code>delivery: .pushConfig(...)</code> — push, BigQuery or Cloud Storage, exactly one",
+      "<code>addConstant</code> hands the topic name to subscribers as Dart",
+    ],
+    guide: "/docs/providers/google/",
+  },
+  {
+    id: "aws",
+    name: "AWS",
+    example: "aws_lambda_quickstart",
+    source: lambda,
+    spec: {
+      imports: ["lambda.dart", "provider.dart"],
+      stackClass: "final class AwsLambdaStack",
+      statements: ["AwsLambdaFunction(", "AwsLambdaFunctionUrl(", "addOutput(", "addDartDefineOutput"],
+    },
+    package: "terradart_aws",
+    summary: "Every AWS resource and data source, from Lambda and ECS to S3 and CloudFront.",
+    points: [
+      "<code>runtime: .providedAl2023</code> — runtimes and architectures are enums",
+      "<code>code: .filename(...)</code> — a zip, an image or an S3 object, sealed",
+      "The function URL reaches the client through <code>addDartDefineOutput()</code>",
+    ],
+    guide: "/docs/providers/aws/",
+  },
+  {
+    id: "cloudflare",
+    name: "Cloudflare",
+    example: "cloudflare_dns_quickstart",
+    source: dns,
+    spec: {
+      imports: ["dns.dart", "provider.dart", "zone.dart"],
+      stackClass: "final class CloudflareDnsStack",
+      statements: ["CloudflareZone(", "add(zone)", "CloudflareDnsRecord("],
+    },
+    package: "terradart_cloudflare",
+    summary: "DNS and the edge in front of your app — every Cloudflare resource and data source.",
+    points: [
+      "<code>zoneId: zone.ref</code> wires the record to the zone it lives in",
+      "<code>type: .cname</code> — record types are an enum",
+      "No token in the Stack: apply reads <code>CLOUDFLARE_API_TOKEN</code>",
+    ],
+    guide: "/docs/providers/cloudflare/",
+  },
+  {
+    id: "appwrite",
+    name: "Appwrite",
+    example: "appwrite_quickstart",
+    source: appwrite,
+    spec: {
+      imports: ["auth.dart", "provider.dart", "storage.dart", "tablesdb.dart"],
+      stackClass: "final class AppwriteDemoStack",
+      statements: ["AppwriteAuthTeam(", "AppwriteStorageBucket(", "AppwriteTablesdb(", "AppwriteTablesdbTable("],
+    },
+    package: "terradart_appwrite",
+    summary: "An Appwrite backend — auth, databases, storage, functions, messaging — as a Stack.",
+    points: [
+      "<code>.write(.team(team.ref, role: 'owner'))</code> — permissions are typed, not strings",
+      "<code>databaseId: db.ref</code> keeps tables attached to their database",
+      "No API key in the Stack: apply reads <code>APPWRITE_API_KEY</code>",
+    ],
+    guide: "/docs/providers/appwrite/",
+  },
+];
+
+const panels = tabs.map((tab) => ({
+  ...tab,
+  code: excerpt(tab.source, tab.spec, `${tab.example}/lib/main.dart`),
+}));
+---
+
+<section class="section section--alt" id="providers">
+  <div class="container">
+    <header class="section-head">
+      <p class="eyebrow">Providers</p>
+      <h2 class="section-title">One API, whichever cloud you run on</h2>
+      <p class="section-lead">
+        Every package wraps its provider's full catalog with the same rules: an argument that names another resource
+        takes its <code>ref</code>, fixed values are enums, and exactly-one-of choices are sealed types. One Stack can mix
+        them.
+      </p>
+    </header>
+
+    <div class="switcher" data-switcher>
+      <div class="switcher-tabs" role="tablist" aria-label="Provider">
+        {
+          panels.map((p, i) => (
+            <button
+              type="button"
+              role="tab"
+              id={`tab-${p.id}`}
+              aria-controls={`panel-${p.id}`}
+              aria-selected={i === 0 ? "true" : "false"}
+              tabindex={i === 0 ? 0 : -1}
+            >
+              {p.name}
+            </button>
+          ))
+        }
+      </div>
+      {
+        panels.map((p, i) => (
+          <div class="switcher-panel" role="tabpanel" id={`panel-${p.id}`} aria-labelledby={`tab-${p.id}`} hidden={i !== 0}>
+            <CodeWindow title={`examples/${p.example}/lib/main.dart`} code={p.code} class="switcher-code">
+              <a slot="bar" href={`${repo}/${p.example}`} class="code-window-link">
+                Full example
+              </a>
+            </CodeWindow>
+            <aside class="switcher-aside">
+              <p class="switcher-package">
+                <code>{p.package}</code>
+              </p>
+              <p class="switcher-summary">{p.summary}</p>
+              <ul class="switcher-points">
+                {p.points.map((point) => (
+                  <li set:html={point} />
+                ))}
+              </ul>
+              <a href={p.guide} class="text-link">
+                {p.name} guide
+              </a>
+            </aside>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  for (const root of document.querySelectorAll<HTMLElement>("[data-switcher]")) {
+    const tabs = [...root.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
+    const select = (tab: HTMLButtonElement, focus = false) => {
+      for (const t of tabs) {
+        const on = t === tab;
+        t.setAttribute("aria-selected", String(on));
+        t.tabIndex = on ? 0 : -1;
+        root.querySelector<HTMLElement>(`#${t.getAttribute("aria-controls")}`)!.hidden = !on;
+      }
+      if (focus) tab.focus();
+    };
+    tabs.forEach((tab, i) => {
+      tab.addEventListener("click", () => select(tab));
+      tab.addEventListener("keydown", (e) => {
+        const step = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
+        if (step) select(tabs[(i + step + tabs.length) % tabs.length], true);
+      });
+    });
+  }
+</script>

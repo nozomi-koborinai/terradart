@@ -35,7 +35,6 @@ const googleCountPages = [
   'CONTRIBUTING.md',
   'packages/terradart_google/README.md',
   'website/src/content/docs/docs/coverage/google.md',
-  'website/src/components/PitchCode.astro',
 ];
 
 /// [text] with every terradart_google count phrase set to the catalog's

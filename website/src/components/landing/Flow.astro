@@ -1,0 +1,91 @@
+---
+import CodeWindow from "./CodeWindow.astro";
+
+const stack = `final class AppStack extends Stack {
+  AppStack({required String projectId})
+    : super(
+        providers: [GoogleProvider(project: projectId)],
+        appExports: AppExports('lib/generated/app_stack.app.dart'),
+      ) {
+    final api = add(GoogleCloudRunV2Service(
+      'api',
+      name: .literal('app-api'),
+      location: .literal('asia-northeast1'),
+      template: CloudRunV2ServiceTemplate(
+        containers: [
+          .new(image: .literal('us-docker.pkg.dev/my-app/web/api')),
+        ],
+      ),
+    ));
+
+    addOutput('api_url', api.uri);
+    addDartDefineOutput();
+  }
+}`;
+
+const app = `import 'generated/app_stack.app.dart';
+
+const outputs = AppStackOutputs.fromDartDefine();
+
+Uri endpoint(String path) =>
+    Uri.parse(outputs.apiUrl).resolve(path);`;
+
+const steps = [
+  { name: "synth", detail: "runs bin/infra.dart" },
+  { name: "plan + apply", detail: "provisions the Stack" },
+  { name: "outputs", detail: ".terradart/dart_defines.json" },
+];
+---
+
+<section class="section" id="flow">
+  <div class="container">
+    <header class="section-head">
+      <p class="eyebrow">How it works</p>
+      <h2 class="section-title">From a Dart class to a running app</h2>
+      <p class="section-lead">
+        The Stack declares the infrastructure and the values the app reads. One command provisions it and writes
+        those values for the client build. Rename an output and the app stops compiling — not in production.
+      </p>
+    </header>
+
+    <ol class="flow">
+      <li class="flow-step flow-step--stack">
+        <p class="flow-label"><span>1</span>Write a Stack</p>
+        <CodeWindow title="lib/app_stack.dart" code={stack} />
+      </li>
+      <li class="flow-arrow flow-arrow--1" aria-hidden="true"></li>
+      <li class="flow-step flow-step--apply">
+        <p class="flow-label"><span>2</span>Apply it</p>
+        <div class="apply-card">
+          <p class="apply-command"><span aria-hidden="true">$</span> terradart apply</p>
+          <ul class="apply-steps">
+            {
+              steps.map((s) => (
+                <li>
+                  <span class="apply-check" aria-hidden="true" />
+                  <span class="apply-name">{s.name}</span>
+                  <span class="apply-detail">{s.detail}</span>
+                </li>
+              ))
+            }
+          </ul>
+          <p class="apply-note">Uses the engine on your PATH, or downloads a pinned, checksum-verified one.</p>
+        </div>
+      </li>
+      <li class="flow-arrow flow-arrow--2" aria-hidden="true"></li>
+      <li class="flow-step flow-step--app">
+        <p class="flow-label"><span>3</span>Read it in Flutter</p>
+        <CodeWindow title="lib/api_client.dart" code={app}>
+          <p class="code-window-foot">
+            <span aria-hidden="true">$</span> flutter run \<br />
+            &nbsp;&nbsp;--dart-define-from-file=.terradart/dart_defines.json
+          </p>
+        </CodeWindow>
+      </li>
+    </ol>
+    <p class="section-more">
+      <a href="/docs/client-outputs/" class="text-link">Outputs in client apps</a>
+      <a href="/docs/cli/" class="text-link">The terradart command</a>
+    </p>
+  </div>
+</section>

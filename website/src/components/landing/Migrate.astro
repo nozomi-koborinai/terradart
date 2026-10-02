@@ -1,0 +1,41 @@
+---
+import CodeWindow from "./CodeWindow.astro";
+
+const session = `$ terradart migrate --report --dir infra
+$ terradart migrate --dir infra --out infra_dart
+$ cd infra_dart && terradart plan`;
+
+const points = [
+  ["One Stack per module", "Each directory becomes a Dart class; local modules get a typed wrapper."],
+  ["Nothing is dropped", "Blocks no factory covers yet stay beside the generated JSON, verbatim, with the reason."],
+  ["No changes", "Resource addresses are kept, so the plan against your existing state is empty."],
+  ["Environments merge", "--merge-envs folds dev and prod into one Stack and an Env enum."],
+];
+---
+
+<section class="section section--alt" id="migrate">
+  <div class="container migrate">
+    <div class="migrate-copy">
+      <p class="eyebrow">Already have Terraform?</p>
+      <h2 class="section-title">Bring it over one resource at a time</h2>
+      <p class="section-lead">
+        <code>terradart migrate</code> turns an existing tree into a Dart package. Size it first, migrate it, and keep
+        shipping while you move the rest.
+      </p>
+      <dl class="migrate-points">
+        {
+          points.map(([term, detail]) => (
+            <div>
+              <dt>{term}</dt>
+              <dd>{detail}</dd>
+            </div>
+          ))
+        }
+      </dl>
+      <a href="/docs/migrate-from-hcl/" class="text-link">Migrating from HCL</a>
+    </div>
+    <CodeWindow title="Terminal" lang="shellsession" code={session} terminal class="migrate-terminal">
+      <p class="code-window-foot code-window-foot--result">No changes. Your infrastructure matches the configuration.</p>
+    </CodeWindow>
+  </div>
+</section>

@@ -1,0 +1,192 @@
+/* Starlight docs — TerraDart brand (branding/BRAND.md), tokens in tokens.css. */
+
+:root {
+  --sl-font: var(--td-font);
+  --sl-font-mono: var(--td-font-mono);
+  --sl-nav-height: 3.75rem;
+  --sl-sidebar-width: 18.5rem;
+  --sl-content-width: 48rem;
+  --sl-line-height: 1.7;
+  --sl-text-h1: 2.5rem;
+  --sl-text-h2: 1.75rem;
+  --sl-text-h3: 1.3rem;
+  --sl-text-h4: 1.1rem;
+}
+
+:root,
+:root[data-theme="dark"] {
+  --sl-color-white: #f6f3ec;
+  --sl-color-gray-1: #e6e8ee;
+  --sl-color-gray-2: #c4c8d2;
+  --sl-color-gray-3: #9aa0ae;
+  --sl-color-gray-4: #5e6575;
+  --sl-color-gray-5: #2c3342;
+  --sl-color-gray-6: #171b24;
+  --sl-color-black: #0b0d12;
+
+  --sl-color-accent-low: #0b2b3d;
+  --sl-color-accent: #4dd0fe;
+  --sl-color-accent-high: #c4efff;
+  --sl-color-text-accent: #4dd0fe;
+  --sl-color-text-invert: #0b0d12;
+
+  --sl-color-bg: var(--td-bg);
+  --sl-color-bg-nav: var(--td-bg);
+  --sl-color-bg-sidebar: var(--td-bg);
+  --sl-color-bg-inline-code: var(--td-surface-2);
+  --sl-color-hairline-light: var(--td-line-strong);
+  --sl-color-hairline: var(--td-line);
+  --sl-color-hairline-shade: var(--td-line);
+  --sl-color-backdrop-overlay: rgb(11 13 18 / 0.7);
+}
+
+:root[data-theme="light"] {
+  --sl-color-white: #0f1116;
+  --sl-color-gray-1: #1a1d24;
+  --sl-color-gray-2: #3a3f4b;
+  --sl-color-gray-3: #5c6170;
+  --sl-color-gray-4: #8b919c;
+  --sl-color-gray-5: #d3d8e1;
+  --sl-color-gray-6: #eef1f5;
+  --sl-color-gray-7: #f6f8fa;
+  --sl-color-black: #ffffff;
+
+  --sl-color-accent-low: #e3f2fc;
+  --sl-color-accent: #0175c2;
+  --sl-color-accent-high: #014f85;
+  --sl-color-text-accent: #0175c2;
+  --sl-color-text-invert: #ffffff;
+
+  --sl-color-bg: var(--td-bg);
+  --sl-color-bg-nav: var(--td-bg);
+  --sl-color-bg-sidebar: var(--td-bg);
+  --sl-color-bg-inline-code: var(--td-surface-2);
+  --sl-color-hairline-light: var(--td-line-strong);
+  --sl-color-hairline: var(--td-line);
+  --sl-color-hairline-shade: var(--td-line);
+  --sl-color-backdrop-overlay: rgb(15 17 22 / 0.35);
+}
+
+/* Starlight pushes prose right when a page TOC is present (`auto 0` on .main-pane). */
+@media (min-width: 72rem) {
+  [data-has-sidebar][data-has-toc] .main-pane {
+    --sl-content-margin-inline: 1.5rem;
+  }
+}
+
+/* ---------- Header ---------- */
+
+header.header {
+  border-bottom: 1px solid var(--td-line);
+}
+
+/* ---------- Sidebar ---------- */
+
+#starlight__sidebar a {
+  color: var(--td-mute);
+  font-size: 0.9rem;
+  border-radius: var(--td-radius-sm);
+}
+
+#starlight__sidebar a:hover {
+  color: var(--td-text);
+}
+
+#starlight__sidebar a[aria-current="page"],
+#starlight__sidebar a[aria-current="page"]:hover,
+#starlight__sidebar a[aria-current="page"]:focus {
+  background-color: var(--td-accent-soft);
+  color: var(--td-accent);
+  font-weight: 500;
+}
+
+#starlight__sidebar summary .group-label > span,
+#starlight__sidebar .large {
+  color: var(--td-text);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+/* ---------- Content ---------- */
+
+:where(.sl-markdown-content, .content-panel) :is(h1, h2, h3, h4, h5, h6),
+h1#_top {
+  font-family: var(--td-font);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--sl-color-white);
+}
+
+h1#_top {
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+.sl-markdown-content a:not(:where(.not-content *)) {
+  color: var(--td-accent);
+  text-decoration-color: var(--td-accent-line);
+  text-underline-offset: 0.2em;
+}
+
+.sl-markdown-content a:not(:where(.not-content *)):hover {
+  text-decoration-color: currentColor;
+}
+
+.sl-markdown-content :not(pre) > code {
+  padding: 0.12em 0.38em;
+  border: 1px solid var(--td-line);
+  border-radius: 5px;
+  font-size: 0.85em;
+}
+
+.sl-markdown-content table {
+  font-size: 0.9rem;
+}
+
+.sl-markdown-content th {
+  color: var(--sl-color-white);
+  font-weight: 600;
+}
+
+/* Right-hand table of contents */
+starlight-toc a {
+  color: var(--td-mute);
+}
+
+starlight-toc a[aria-current="true"] {
+  color: var(--td-accent);
+}
+
+/* Prev / next */
+.pagination-links a {
+  border-radius: var(--td-radius);
+  box-shadow: none;
+}
+
+.pagination-links a:hover {
+  border-color: var(--td-accent-line);
+}
+
+/* ---------- Mermaid — brand palette; CSS fallback if the client theme lags ---------- */
+
+:root[data-theme="light"] pre.mermaid {
+  --td-mermaid-line: #0175c2;
+}
+
+:root[data-theme="dark"] pre.mermaid {
+  --td-mermaid-line: #4dd0fe;
+}
+
+.mermaid svg .edgePath .path,
+.mermaid svg .flowchart-link,
+.mermaid svg .messageLine0,
+.mermaid svg .messageLine1 {
+  stroke: var(--td-accent) !important;
+}
+
+.mermaid svg .arrowheadPath,
+.mermaid svg marker path {
+  fill: var(--td-accent) !important;
+  stroke: var(--td-accent) !important;
+}

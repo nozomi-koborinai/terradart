@@ -1,0 +1,28 @@
+---
+import CopyCommand from "./CopyCommand.astro";
+---
+
+<section class="hero">
+  <div class="container hero-inner">
+    <h1 class="hero-title">
+      <span class="hero-wordmark">TerraDart</span>
+      <span class="hero-tagline">Type-safe IaC for Dart.</span>
+    </h1>
+    <p class="hero-sub">Typed outputs, straight into your Flutter app.</p>
+    <p class="hero-command" aria-label="terradart apply">
+      <span class="hero-command-prompt" aria-hidden="true">$</span> terradart apply
+    </p>
+    <p class="hero-lead">
+      Write your cloud as a Dart class — Google Cloud, AWS, Cloudflare, Appwrite. The compiler checks every reference
+      between resources, one command provisions it, and the values your app needs arrive as typed Dart.
+    </p>
+    <div class="hero-actions">
+      <a href="/docs/getting-started/" class="button button--primary">Get started</a>
+      <a href="https://github.com/nozomi-koborinai/terradart" class="button button--ghost">
+        View on GitHub
+      </a>
+    </div>
+    <CopyCommand command="dart pub global activate terradart_cli" class="hero-install" />
+  </div>
+  <div class="stratum" aria-hidden="true"></div>
+</section>

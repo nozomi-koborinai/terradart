@@ -1,0 +1,98 @@
+---
+/** A one-line shell command with a copy button. */
+interface Props {
+  command: string;
+  class?: string;
+}
+const { command, class: className } = Astro.props;
+---
+
+<div class:list={["copy-command", className]}>
+  <code><span class="copy-command-prompt" aria-hidden="true">$</span>{command}</code>
+  <button type="button" data-copy={command} aria-label="Copy command">
+    <svg viewBox="0 0 24 24" aria-hidden="true" class="icon-copy">
+      <rect x="8.5" y="8.5" width="11" height="11" rx="2"></rect>
+      <path d="M15.5 8.5V6.5a2 2 0 0 0-2-2h-7a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h2"></path>
+    </svg>
+    <svg viewBox="0 0 24 24" aria-hidden="true" class="icon-done">
+      <path d="M5 12.5l4.5 4.5L19 7.5"></path>
+    </svg>
+  </button>
+</div>
+
+<style>
+  .copy-command {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    max-width: 100%;
+    padding: 0.5rem 0.4rem 0.5rem 0.75rem;
+    border: 1px solid var(--td-line-strong);
+    border-radius: var(--td-radius-sm);
+    background: var(--td-surface);
+    font-family: var(--td-font-mono);
+    font-size: 0.75rem;
+    color: var(--td-text);
+  }
+  @media (min-width: 480px) {
+    .copy-command {
+      gap: 0.75rem;
+      padding: 0.55rem 0.55rem 0.55rem 1rem;
+      font-size: 0.875rem;
+    }
+  }
+  code {
+    font: inherit;
+    white-space: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .copy-command-prompt {
+    color: var(--td-accent);
+    margin-right: 0.75ch;
+    user-select: none;
+  }
+  button {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    border: 0;
+    border-radius: 4px;
+    background: none;
+    color: var(--td-mute);
+    cursor: pointer;
+  }
+  button:hover {
+    color: var(--td-text);
+    background: var(--td-surface-2);
+  }
+  svg {
+    width: 1rem;
+    height: 1rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .icon-done,
+  button.copied .icon-copy {
+    display: none;
+  }
+  button.copied .icon-done {
+    display: block;
+    color: var(--td-accent);
+  }
+</style>
+
+<script>
+  for (const button of document.querySelectorAll<HTMLButtonElement>("[data-copy]")) {
+    button.addEventListener("click", async () => {
+      await navigator.clipboard.writeText(button.dataset.copy ?? "");
+      button.classList.add("copied");
+      setTimeout(() => button.classList.remove("copied"), 1600);
+    });
+  }
+</script>

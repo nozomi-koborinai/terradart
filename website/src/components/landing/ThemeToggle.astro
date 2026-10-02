@@ -1,0 +1,65 @@
+---
+/**
+ * Light / dark switch for the landing page. It stores the choice under the
+ * same key as Starlight's theme picker (`starlight-theme`), so the docs open
+ * in the theme chosen here and the other way round.
+ */
+---
+
+<button type="button" class="theme-toggle" aria-label="Switch to light theme" data-theme-toggle>
+  <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+    <circle cx="12" cy="12" r="4.2"></circle>
+    <path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"></path>
+  </svg>
+  <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M20 14.6A8.2 8.2 0 0 1 9.4 4a8.2 8.2 0 1 0 10.6 10.6Z"></path>
+  </svg>
+</button>
+
+<style>
+  .theme-toggle {
+    display: inline-grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: var(--td-radius-sm);
+    border: 1px solid transparent;
+    background: none;
+    color: var(--td-mute);
+    cursor: pointer;
+  }
+  .theme-toggle:hover {
+    color: var(--td-text);
+    border-color: var(--td-line);
+  }
+  .theme-toggle svg {
+    width: 1.15rem;
+    height: 1.15rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+  }
+  .icon-moon {
+    display: none;
+  }
+  :global(html[data-theme="light"]) .icon-sun {
+    display: none;
+  }
+  :global(html[data-theme="light"]) .icon-moon {
+    display: block;
+  }
+</style>
+
+<script>
+  const label = (theme: string) => `Switch to ${theme === "dark" ? "light" : "dark"} theme`;
+  for (const button of document.querySelectorAll<HTMLButtonElement>("[data-theme-toggle]")) {
+    button.setAttribute("aria-label", label(document.documentElement.dataset.theme ?? "dark"));
+    button.addEventListener("click", () => {
+      const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+      document.documentElement.dataset.theme = next;
+      localStorage.setItem("starlight-theme", next);
+      button.setAttribute("aria-label", label(next));
+    });
+  }
+</script>

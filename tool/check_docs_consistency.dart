@@ -87,11 +87,6 @@ Future<void> main(List<String> args) async {
   for (final page in _providerPages()) {
     _checkCaretMinor(errors, minor, page);
   }
-  _checkPhrase(
-    errors,
-    'website/src/components/PitchCode.astro',
-    '(GA catalog, $catalogEntryCount entries)',
-  );
   // terradart-migrate distribution: the install line and the guide.
   for (final page in [
     'README.md',

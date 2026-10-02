@@ -1,74 +1,31 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
+import Nav from "../components/landing/Nav.astro";
+import Footer from "../components/landing/Footer.astro";
 ---
 
-<Layout
-  title="Privacy — TerraDart"
-  description="terradart.dev privacy policy — Cloudflare Web Analytics (cookieless)."
->
-  <Header />
-  <main>
-    <section class="section">
-      <div class="container-edit section-inner">
-        <p class="section-label">Privacy</p>
-        <h1 class="display-section">Privacy</h1>
+<Layout title="Privacy — TerraDart" description="terradart.dev privacy policy — Cloudflare Web Analytics (cookieless).">
+  <Nav />
+  <main class="section">
+    <div class="container prose">
+      <p class="eyebrow">Privacy</p>
+      <h1 class="section-title">Privacy</h1>
+      <p class="section-lead">terradart.dev does not use first-party cookies for tracking.</p>
 
-        <p class="body-lead mt-8 max-w-2xl">
-          terradart.dev does not use first-party cookies for tracking.
-        </p>
+      <h2>Analytics</h2>
+      <p>
+        We use <a href="https://www.cloudflare.com/web-analytics/">Cloudflare Web Analytics</a>, a cookieless service
+        for aggregated traffic only.
+      </p>
 
-        <div class="privacy-blocks">
-          <div>
-            <h2 class="privacy-heading">Analytics</h2>
-            <p>
-              We use <a
-                href="https://www.cloudflare.com/web-analytics/"
-                class="link-mark">Cloudflare Web Analytics</a
-              >, a cookieless service for aggregated traffic only.
-            </p>
-          </div>
-          <div>
-            <h2 class="privacy-heading">Infrastructure</h2>
-            <p>
-              Hosted on Cloudflare Pages. Strictly necessary cookies may be set
-              at the CDN layer (e.g. <code>__cf_bm</code>).
-            </p>
-          </div>
-          <div>
-            <h2 class="privacy-heading">Contact</h2>
-            <p>
-              <a
-                href="https://github.com/nozomi-koborinai/terradart/issues"
-                class="link-mark">GitHub Issues</a
-              >
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
+      <h2>Infrastructure</h2>
+      <p>
+        Hosted on Cloudflare Pages. Strictly necessary cookies may be set at the CDN layer (e.g. <code>__cf_bm</code>).
+      </p>
+
+      <h2>Contact</h2>
+      <p><a href="https://github.com/nozomi-koborinai/terradart/issues">GitHub Issues</a></p>
+    </div>
   </main>
   <Footer />
 </Layout>
-
-<style>
-  .mt-8 {
-    margin-top: 2rem;
-  }
-  .privacy-blocks {
-    margin-top: 2.5rem;
-    display: grid;
-    gap: 2rem;
-    max-width: 40rem;
-  }
-  .privacy-blocks p {
-    margin-top: 0.5rem;
-    color: var(--color-mute);
-    line-height: 1.55;
-  }
-  .privacy-heading {
-    font-size: 1rem;
-    font-weight: 500;
-  }
-</style>

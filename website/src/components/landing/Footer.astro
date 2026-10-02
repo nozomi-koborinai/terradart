@@ -1,0 +1,74 @@
+---
+import Logo from "../Logo.astro";
+
+const year = new Date().getFullYear();
+const columns = [
+  {
+    title: "Docs",
+    links: [
+      ["Getting started", "/docs/getting-started/"],
+      ["Writing arguments", "/docs/arguments/"],
+      ["Outputs in client apps", "/docs/client-outputs/"],
+      ["The terradart command", "/docs/cli/"],
+      ["Migrating from HCL", "/docs/migrate-from-hcl/"],
+    ],
+  },
+  {
+    title: "Providers",
+    links: [
+      ["Google Cloud", "/docs/providers/google/"],
+      ["AWS", "/docs/providers/aws/"],
+      ["Cloudflare", "/docs/providers/cloudflare/"],
+      ["Appwrite", "/docs/providers/appwrite/"],
+      ["Coverage", "/docs/coverage/"],
+    ],
+  },
+  {
+    title: "Project",
+    links: [
+      ["GitHub", "https://github.com/nozomi-koborinai/terradart"],
+      ["pub.dev", "https://pub.dev/packages?q=terradart"],
+      ["@terradart_dev", "https://x.com/terradart_dev"],
+      ["Status", "/docs/status/"],
+      ["llms.txt", "/llms.txt"],
+      ["Privacy", "/privacy"],
+    ],
+  },
+];
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <Logo size={22} />
+        <p>Type-safe IaC for Dart.</p>
+      </div>
+      {
+        columns.map((col) => (
+          <nav aria-label={col.title}>
+            <p class="footer-title">{col.title}</p>
+            <ul>
+              {col.links.map(([label, href]) => (
+                <li>
+                  <a href={href}>{label}</a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        ))
+      }
+    </div>
+    <p class="footer-legal">
+      Dart and Flutter are trademarks of Google LLC. Terraform is a registered trademark of HashiCorp, Inc. Google Cloud
+      is a trademark of Google LLC; AWS and the AWS logo are trademarks of Amazon.com, Inc. or its affiliates; Cloudflare
+      and the Cloudflare logo are trademarks of Cloudflare, Inc.; Appwrite and its logo are trademarks of Appwrite. The
+      logos identify the services TerraDart works with. TerraDart is an independent open-source project, not
+      affiliated with, endorsed by or sponsored by any of them.
+    </p>
+    <div class="footer-bottom">
+      <span>© {year} TerraDart · <a href="/privacy">Cookieless analytics via Cloudflare</a></span>
+      <span>Made by <a href="https://www.linkedin.com/in/nozomi-koborinai/">Nozomi Koborinai</a></span>
+    </div>
+  </div>
+</footer>

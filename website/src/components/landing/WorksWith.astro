@@ -1,0 +1,18 @@
+---
+import { providers } from "./providers";
+---
+
+<section class="works-with" aria-labelledby="works-with-label">
+  <div class="container works-with-inner">
+    <p id="works-with-label" class="works-with-label">Works with</p>
+    <ul class="works-with-logos">
+      {
+        providers.map((p) => (
+          <li>
+            <a href={p.href} class={`works-with-logo works-with-logo--${p.id}`} set:html={p.logo} />
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

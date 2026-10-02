@@ -1,80 +1,26 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Header from "../components/Header.astro";
-import Hero from "../components/Hero.astro";
-import PitchCode from "../components/PitchCode.astro";
-import Mission from "../components/Mission.astro";
-import Pipeline from "../components/Pipeline.astro";
-import Footer from "../components/Footer.astro";
+import Nav from "../components/landing/Nav.astro";
+import Hero from "../components/landing/Hero.astro";
+import WorksWith from "../components/landing/WorksWith.astro";
+import Flow from "../components/landing/Flow.astro";
+import ProviderSwitcher from "../components/landing/ProviderSwitcher.astro";
+import Features from "../components/landing/Features.astro";
+import Migrate from "../components/landing/Migrate.astro";
+import CallToAction from "../components/landing/CallToAction.astro";
+import Footer from "../components/landing/Footer.astro";
 ---
 
 <Layout>
-  <Header />
+  <Nav />
   <main>
     <Hero />
-    <PitchCode />
-    <Mission
-      eyebrow="Full-stack Dart"
-      heading="Checked by the compiler, from Stack to app"
-      cards={[
-        {
-          title: "Values reach the app as Dart",
-          body: "<code>addConstant</code> and <code>addOutput</code> become a generated file your app imports: constants known at synth, and a typed reader of the Terraform outputs. <code>outputEnvironment()</code> hands those outputs to the service, so no name is typed twice and a rename reaches the app on the next synth.",
-        },
-        {
-          title: "Types where HCL has strings",
-          body: "An argument that names another resource takes its <code>ref</code>, so the wrong kind does not compile. Fixed values are enums and exactly-one-of blocks are sealed types, written as Dart 3.10 dot shorthands: <code>.all</code>, <code>.pushConfig(...)</code>.",
-        },
-        {
-          title: "OpenTofu or Terraform stays the execution layer",
-          body: "A Stack is a <code>final class … extends Stack</code> that writes standard <code>*.tf.json</code>. <code>terradart plan</code> and <code>apply</code> run it with OpenTofu (or the <code>tofu</code> / <code>terraform</code> on your <code>PATH</code>), remote state stays where it is, and <code>terradart migrate</code> brings an existing Terraform tree over one resource at a time.",
-        },
-      ]}
-    />
-    <p class="lp-cta">
-      <a href="/docs/why-terradart/" class="link-mark">Why TerraDart, and how it compares →</a>
-    </p>
-    <Mission
-      eyebrow="Providers"
-      heading="One API across providers"
-      cards={[
-        {
-          title: "Google Cloud",
-          body: "<code>terradart_google</code> wraps the whole GA <code>hashicorp/google</code> catalog; <code>terradart_google_beta</code> adds the beta-only types. <a href=\"/docs/coverage/\" class=\"link-mark\">Coverage</a>",
-        },
-        {
-          title: "AWS",
-          body: "<code>terradart_aws</code> wraps every <code>hashicorp/aws</code> resource and data source — Lambda, ECS, S3 + CloudFront and the rest. <a href=\"/docs/providers/aws/\" class=\"link-mark\">AWS guide</a>",
-        },
-        {
-          title: "Cloudflare and Appwrite",
-          body: "<code>terradart_cloudflare</code> puts DNS and the edge in front of your app; <code>terradart_appwrite</code> manages an Appwrite backend. One Stack can mix any of them. <a href=\"/docs/getting-started/\" class=\"link-mark\">Getting started</a>",
-        },
-      ]}
-    />
-    <section class="section rule-top">
-      <div class="container-edit section-inner">
-        <Pipeline
-          eyebrow="Pipeline"
-          heading="How it works in three steps"
-          steps={[
-            {
-              title: "Author in Dart",
-              body: "Subclass Stack with the factories of each provider package you use.",
-            },
-            {
-              title: "Generate Terraform JSON",
-              body: "terradart synth runs bin/infra.dart: *.tf.json for Terraform, and the typed file your app imports.",
-            },
-            {
-              title: "Plan and apply",
-              body: "terradart apply runs OpenTofu or Terraform — yours, or a pinned download — and writes the define file your client builds with; state stays where it is.",
-            },
-          ]}
-          footnote={`Start: <a href="/docs/getting-started/" class="link-mark">Getting started</a> · Already on Terraform: <a href="/docs/migrate-from-hcl/" class="link-mark">Migrating from HCL</a> · Details: <a href="/docs/how-it-works/" class="link-mark">How TerraDart works</a>`}
-        />
-      </div>
-    </section>
+    <WorksWith />
+    <Flow />
+    <ProviderSwitcher />
+    <Features />
+    <Migrate />
+    <CallToAction />
   </main>
   <Footer />
 </Layout>

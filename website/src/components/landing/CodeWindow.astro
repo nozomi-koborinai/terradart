@@ -1,0 +1,39 @@
+---
+import { highlight } from "../../lib/highlight";
+
+/** A code or terminal panel with a file-name bar, highlighted at build time. */
+interface Props {
+  code: string;
+  lang?: string;
+  title?: string;
+  terminal?: boolean;
+  class?: string;
+}
+const { code, lang = "dart", title, terminal = false, class: className } = Astro.props;
+const html = await highlight(code, lang);
+---
+
+<figure class:list={["code-window", { "code-window--terminal": terminal }, className]}>
+  {
+    title && (
+      <figcaption class="code-window-bar">
+        {terminal ? (
+          <span class="code-window-dots" aria-hidden="true">
+            <i />
+            <i />
+            <i />
+          </span>
+        ) : (
+          <svg viewBox="0 0 16 16" aria-hidden="true" class="code-window-file">
+            <path d="M4 1.5h5.5L13 5v9.5H4z" />
+            <path d="M9.5 1.5V5H13" />
+          </svg>
+        )}
+        <span>{title}</span>
+        <slot name="bar" />
+      </figcaption>
+    )
+  }
+  <div class="code-window-body" set:html={html} />
+  <slot />
+</figure>
