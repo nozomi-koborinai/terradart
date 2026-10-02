@@ -1,11 +1,17 @@
 /// Migrate fixture gate (#661): migrates the tree fixtures `config_tree/`
-/// (two environment roots sharing six local modules) and `real_plan_src/`
-/// (a root with one child module) with `terradart_migrate`, writes the
+/// (two environment roots sharing six local modules), `real_plan_src/`
+/// (a root with one child module) and `lanes/` (one small module per
+/// provider, plus google+cloudflare, aws+cloudflare, google+google-beta
+/// and an aliased child module) with `terradart_migrate`, writes the
 /// generated package to a temp directory, analyzes and synthesizes it, and
 /// runs `terraform init -backend=false && terraform validate` in every
 /// Terraform directory of the mirrored `tf-out/` tree — each holding the
-/// Stack's `main.tf.json` next to its leftover sidecar. Every kept block
-/// must have landed in a sidecar file.
+/// Stack's `main.tf.json` next to its leftover sidecar. A directory whose
+/// synthesized JSON only declares `configuration_aliases` is not validated
+/// on its own: Terraform requires the calling module for that, and the
+/// root validate covers it. Every kept block must have landed in a sidecar
+/// file. `user_project_override` in a fixture must still be present after
+/// synth.
 ///
 /// The merged-environment gate (#668) migrates `config_tree/` a second time
 /// with `--merge-envs`, and requires that the one `ConfigTreeStack(env: ...)`
@@ -26,7 +32,23 @@ import 'dart:io';
 import 'package:path/path.dart' as p;
 import 'package:terradart_migrate/terradart_migrate.dart';
 
-const _fixtures = ['config_tree', 'real_plan_src'];
+const _fixtures = [
+  'config_tree',
+  'real_plan_src',
+  // One small module per provider lane, plus the mixed and aliased
+  // combinations. Each directory is its own scan root: sibling directories
+  // under one parent would be read as environment roots and merged.
+  'lanes/google',
+  'lanes/google_beta',
+  'lanes/aws',
+  'lanes/cloudflare',
+  'lanes/appwrite',
+  'lanes/time',
+  'lanes/google_cloudflare',
+  'lanes/aws_cloudflare',
+  'lanes/google_google_beta',
+  'lanes/aliased',
+];
 
 /// The fixture whose environment roots `--merge-envs` folds together.
 const _mergeFixture = 'config_tree';
@@ -178,9 +200,8 @@ Future<bool> _build(
       ..writeln('  $pkg:')
       ..writeln('    path: ${p.join(repoRoot, 'packages', pkg)}');
   }
-  File(
-    p.join(temp.path, 'pubspec.yaml'),
-  ).writeAsStringSync(overrides.toString(), mode: FileMode.append);
+  File(p.join(temp.path, 'pubspec.yaml'))
+      .writeAsStringSync(overrides.toString(), mode: FileMode.append);
   for (final step in const [
     ['dart', 'pub', 'get', '--offline'],
     ['dart', 'analyze', '--fatal-infos', '--fatal-warnings', 'lib', 'bin'],
@@ -262,9 +283,8 @@ Future<bool> _gate(
         ..writeln('  $pkg:')
         ..writeln('    path: ${p.join(repoRoot, 'packages', pkg)}');
     }
-    File(
-      p.join(temp.path, 'pubspec.yaml'),
-    ).writeAsStringSync(overrides.toString(), mode: FileMode.append);
+    File(p.join(temp.path, 'pubspec.yaml'))
+        .writeAsStringSync(overrides.toString(), mode: FileMode.append);
 
     final steps = <List<String>>[
       ['dart', 'pub', 'get', '--offline'],
@@ -289,16 +309,40 @@ Future<bool> _gate(
         errors.add('$d: no main.tf.json after synth');
       }
     }
-    if (!skipValidate && errors.isEmpty) {
+    if (_treeContains(input, 'user_project_override') &&
+        !_treeContains(
+          Directory(p.join(temp.path, 'tf-out')),
+          'user_project_override',
+        )) {
+      errors.add(
+        '$fixture: user_project_override was dropped; it is in neither the '
+        'synthesized JSON nor the sidecar',
+      );
+    }
+    if (errors.isNotEmpty) {
+      return _finish(fixture, temp, errors, keep: keep);
+    }
+    var validatedDirs = dirs.length;
+    if (!skipValidate) {
+      validatedDirs = 0;
       for (final d in dirs) {
         final dir = Directory(p.join(temp.path, d));
+        final mainJson = File(p.join(dir.path, 'main.tf.json'));
+        if (mainJson.existsSync() &&
+            mainJson.readAsStringSync().contains('"configuration_aliases"')) {
+          // Terraform cannot validate this module alone: the alias is
+          // passed by the caller. The root's validate loads the module.
+          continue;
+        }
         if (!await _run(_terraformInit, dir, errors)) continue;
-        await _run(['terraform', 'validate', '-no-color'], dir, errors);
+        if (await _run(['terraform', 'validate', '-no-color'], dir, errors)) {
+          validatedDirs++;
+        }
       }
     }
     final validated = skipValidate
         ? ' (terraform validate skipped)'
-        : ', ${dirs.length} directories validated';
+        : ', $validatedDirs directories validated';
     stdout.writeln(
       'migrate_fixture_gates: $fixture: ${project.modules.length} modules, '
       '${project.migratedCount} migrated, ${project.keptCount} kept'
@@ -329,6 +373,17 @@ bool _finish(
   );
   for (final e in errors) {
     stderr.writeln('  $e');
+  }
+  return false;
+}
+
+/// True when any file under [dir] contains [needle].
+bool _treeContains(Directory dir, String needle) {
+  if (!dir.existsSync()) return false;
+  for (final entity in dir.listSync(recursive: true)) {
+    if (entity is File && entity.readAsStringSync().contains(needle)) {
+      return true;
+    }
   }
   return false;
 }
