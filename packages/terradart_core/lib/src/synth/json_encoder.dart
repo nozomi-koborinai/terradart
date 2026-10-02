@@ -26,10 +26,23 @@ class TfJsonEncoder {
   /// resource, data source and module call has its [StackProvider]) is a
   /// [MissingProvider] there, not a throw here.
   static Map<String, dynamic> terraformBlock(Stack stack) {
-    final requiredProviders = <String, dynamic>{
-      for (final p in stack.providers)
-        p.providerName: {'source': p.source, 'version': p.versionConstraint},
-    };
+    final requiredProviders = <String, dynamic>{};
+    for (final p in stack.providers) {
+      final entry =
+          requiredProviders.putIfAbsent(
+                p.providerName,
+                () => <String, dynamic>{
+                  'source': p.source,
+                  'version': p.versionConstraint,
+                },
+              )
+              as Map<String, dynamic>;
+      if (!stack.isConfigurationAlias(p)) continue;
+      final aliases =
+          entry.putIfAbsent('configuration_aliases', () => <String>[])
+              as List<String>;
+      aliases.add(providerReference(p));
+    }
 
     final out = <String, dynamic>{
       'required_version': stack.requiredVersion,
@@ -71,6 +84,9 @@ class TfJsonEncoder {
   static Map<String, dynamic>? providerBlock(Stack stack) {
     final byName = <String, List<StackProvider>>{};
     for (final p in stack.providers) {
+      // A configuration alias is declared on required_providers, not as a
+      // provider block: the calling module passes the configuration.
+      if (stack.isConfigurationAlias(p)) continue;
       byName.putIfAbsent(p.providerName, () => []).add(p);
     }
     final entries = <String, dynamic>{};

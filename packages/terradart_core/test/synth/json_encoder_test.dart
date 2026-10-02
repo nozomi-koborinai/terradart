@@ -338,6 +338,104 @@ void main() {
       ]);
     });
 
+    test('a configuration alias is declared, not configured', () {
+      const google = FakeStackProvider(
+        providerName: 'google',
+        source: 'hashicorp/google',
+        versionConstraint: '~> 8.0',
+        configArgs: {'project': 'demo', 'region': 'us-central1'},
+      );
+      const eu = FakeStackProvider(
+        providerName: 'google',
+        source: 'hashicorp/google',
+        versionConstraint: '~> 8.0',
+        alias: 'eu',
+      );
+      final stack = TestStack(providers: const [google]);
+      expect(stack.addConfigurationAlias(eu), same(eu));
+      expect(stack.configurationAliases, [same(eu)]);
+      expect(stack.isConfigurationAlias(eu), isTrue);
+      expect(stack.isConfigurationAlias(google), isFalse);
+      stack.add(
+        FakePubsubTopic.withMeta(
+          'orders',
+          argMap: {'name': const TfArgLiteral<String>('orders')},
+          provider: eu,
+        ),
+      );
+      final json = stack.synth().tfJson;
+      expect(
+        (json['terraform'] as Map)['required_providers'],
+        equals({
+          'google': {
+            'source': 'hashicorp/google',
+            'version': '~> 8.0',
+            'configuration_aliases': ['google.eu'],
+          },
+        }),
+      );
+      // The alias is not a provider block; the default configuration is.
+      expect(
+        json['provider'],
+        equals({
+          'google': {'project': 'demo', 'region': 'us-central1'},
+        }),
+      );
+      expect(
+        (json['resource'] as Map)['google_pubsub_topic']['orders']['provider'],
+        equals('google.eu'),
+      );
+    });
+
+    test('a configuration alias is the only google configuration', () {
+      const eu = FakeStackProvider(
+        providerName: 'google',
+        source: 'hashicorp/google',
+        versionConstraint: '~> 8.0',
+        alias: 'eu',
+      );
+      final stack = TestStack(providers: const [])
+        ..addConfigurationAlias(eu)
+        ..add(
+          FakePubsubTopic.withMeta(
+            'orders',
+            argMap: {'name': const TfArgLiteral<String>('orders')},
+            provider: eu,
+          ),
+        );
+      final json = stack.synth().tfJson;
+      expect(json.containsKey('provider'), isFalse);
+      expect(
+        ((json['terraform'] as Map)['required_providers'] as Map)['google'],
+        equals({
+          'source': 'hashicorp/google',
+          'version': '~> 8.0',
+          'configuration_aliases': ['google.eu'],
+        }),
+      );
+    });
+
+    test('addConfigurationAlias rejects a default or a configured alias', () {
+      const bare = FakeStackProvider(
+        providerName: 'google',
+        source: 'hashicorp/google',
+        versionConstraint: '~> 8.0',
+      );
+      const configured = FakeStackProvider(
+        providerName: 'google',
+        source: 'hashicorp/google',
+        versionConstraint: '~> 8.0',
+        alias: 'eu',
+        configArgs: {'region': 'europe-west1'},
+      );
+      final stack = TestStack(providers: const []);
+      expect(() => stack.addConfigurationAlias(bare), throwsArgumentError);
+      expect(
+        () => stack.addConfigurationAlias(configured),
+        throwsArgumentError,
+      );
+    });
+
     test('addProvider registers the provider and returns it', () {
       const eu = FakeStackProvider(
         providerName: 'google',
