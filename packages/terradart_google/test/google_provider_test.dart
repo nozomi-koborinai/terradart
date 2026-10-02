@@ -32,6 +32,11 @@ void main() {
       expect(p.configArgs, equals({'zone': 'us-central1-a'}));
     });
 
+    test('userProjectOverride threads through', () {
+      const p = GoogleProvider(userProjectOverride: true);
+      expect(p.configArgs, equals({'user_project_override': true}));
+    });
+
     test('implements StackProvider for Stack registration', () {
       const p = GoogleProvider();
       expect(p, isA<StackProvider>());

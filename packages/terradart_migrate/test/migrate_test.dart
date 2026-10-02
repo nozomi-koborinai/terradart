@@ -1330,18 +1330,53 @@ resource "aws_cloudwatch_log_group" "fn" {
       expect(r.report.warnings.single, contains('"endpoints"'));
     });
 
-    test('an unknown provider argument is dropped with a warning', () {
+    test('user_project_override is carried on GoogleProvider', () {
       final r = _migrateJson({
         'terraform': _google,
         'provider': {
-          'google': {'project': 'p', 'impersonate_service_account': 'sa@x'},
+          'google': {'project': 'p', 'user_project_override': true},
         },
       });
-      expect(r.stackSource, contains("const GoogleProvider(project: 'p')"));
+      expect(r.report.isComplete, isTrue, reason: r.report.renderText());
       expect(
-        r.report.warnings.single,
-        contains('"impersonate_service_account"'),
+        r.stackSource,
+        contains(
+          "const GoogleProvider(project: 'p', userProjectOverride: true)",
+        ),
       );
+      expect(r.report.warnings, isEmpty);
+    });
+
+    test('an unmodeled provider argument keeps the configuration', () {
+      final r = _migrateJson({
+        'terraform': _google,
+        'provider': {
+          'google': {
+            'project': 'p',
+            'credentials': 'secret-json',
+            'impersonate_service_account': 'sa@x',
+          },
+        },
+        'resource': {
+          'google_pubsub_topic': {
+            'orders': {'name': 'orders'},
+          },
+        },
+      });
+      expect(
+        r.stackSource,
+        contains('addExternalProvider(const GoogleProvider());'),
+      );
+      expect(r.stackSource, isNot(contains("project: 'p'")));
+      expect(r.stackSource, isNot(contains('secret-json')));
+      expect(r.stackSource, isNot(contains('sa@x')));
+      expect(r.report.warnings.single, contains('"credentials"'));
+      final leftover = r.sidecar.files[leftoverFileName]!;
+      expect(leftover, contains('impersonate_service_account'));
+      expect(leftover, contains('project'));
+      expect(leftover, isNot(contains('secret-json')));
+      expect(leftover, isNot(contains('credentials')));
+      expect(r.report.kept.map((k) => k.address), contains('provider.google'));
     });
 
     test('a pin that differs from the package is a warning', () {

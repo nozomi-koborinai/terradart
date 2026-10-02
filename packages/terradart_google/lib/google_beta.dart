@@ -10,6 +10,7 @@ import 'src/_provider_meta.dart';
 import 'src/iam/iam_principal.dart';
 
 export 'package:terradart_core/terradart_core.dart';
+
 export 'src/_provider_meta.dart' show kBetaProviderSource;
 
 /// Concrete [StackProvider] for `hashicorp/google-beta`, version-locked to
@@ -20,7 +21,13 @@ export 'src/_provider_meta.dart' show kBetaProviderSource;
 /// [project] / [region] / [zone] as the sibling `GoogleProvider`.
 @immutable
 final class GoogleBetaProvider implements StackProvider {
-  const GoogleBetaProvider({this.alias, this.project, this.region, this.zone});
+  const GoogleBetaProvider({
+    this.alias,
+    this.project,
+    this.region,
+    this.zone,
+    this.userProjectOverride,
+  });
 
   /// Provider alias (`provider "google-beta" { alias = "eu" }`), or `null` for
   /// the default configuration. Select it on a resource by passing the
@@ -38,6 +45,10 @@ final class GoogleBetaProvider implements StackProvider {
   /// Default GCP zone (e.g. `us-central1-a`).
   final String? zone;
 
+  /// When true, quota and billing for the request are attributed to
+  /// [project] (`user_project_override`).
+  final bool? userProjectOverride;
+
   @override
   String get providerName => 'google-beta';
 
@@ -52,6 +63,8 @@ final class GoogleBetaProvider implements StackProvider {
     if (project != null) 'project': project,
     if (region != null) 'region': region,
     if (zone != null) 'zone': zone,
+    if (userProjectOverride != null)
+      'user_project_override': userProjectOverride,
   };
 }
 

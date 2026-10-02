@@ -11,6 +11,7 @@ library;
 import 'package:terradart_hcl/terradart_hcl.dart';
 
 import 'emit/expand.dart';
+import 'provider_secrets.dart';
 import 'report.dart';
 
 /// Resources, data sources, module calls, `moved` and friends, provider
@@ -95,6 +96,37 @@ final class _SidecarBuilder {
   /// written no longer exists in the directory.
   late final _rewriter = ReferenceRewriter(report.expanded);
 
+  /// [p] as written, with credential arguments removed.
+  ///
+  /// Those names never reach Dart and must not reach the sidecar either.
+  /// A block that sets none of them is copied verbatim.
+  String _providerText(ProviderBlock p) {
+    final dropped = droppedProviderArguments[p.name];
+    final body = p.block.body;
+    if (dropped == null ||
+        !body.attributes.any((a) => dropped.contains(a.name))) {
+      return verbatimEntry(p.file, p.block);
+    }
+    final filtered = Block(
+      p.block.type,
+      p.block.labels,
+      Body(
+        [
+          for (final e in body.entries)
+            if (e is! Attribute || !dropped.contains(e.name)) e,
+        ],
+        body.range,
+        trailingComments: body.trailingComments,
+      ),
+      p.block.range,
+      typeRange: p.block.typeRange,
+      oneLine: p.block.oneLine,
+      leadingComments: p.block.leadingComments,
+      trailingComment: p.block.trailingComment,
+    );
+    return const HclWriter().writeEntry(filtered).trimRight();
+  }
+
   void _put(String file, String address, String text) {
     final reason = kept[address];
     final pointed = _pointAtInstances(text);
@@ -152,7 +184,7 @@ final class _SidecarBuilder {
           ? 'provider.${p.name}'
           : 'provider.${p.name}.${p.alias}';
       if (kept.containsKey(address)) {
-        _put(leftoverFileName, address, verbatimEntry(p.file, p.block));
+        _put(leftoverFileName, address, _providerText(p));
       }
     }
     for (final a in module.strayAttributes) {

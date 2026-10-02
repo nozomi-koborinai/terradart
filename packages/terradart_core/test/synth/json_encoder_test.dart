@@ -520,6 +520,35 @@ void main() {
       );
     });
 
+    test('an external provider is selected and not configured', () {
+      const eu = FakeStackProvider(
+        providerName: 'google',
+        source: 'hashicorp/google',
+        versionConstraint: '~> 7.0',
+        alias: 'eu',
+        configArgs: {'region': 'europe-west1'},
+      );
+      final stack = TestStack(providers: const [])
+        ..addExternalProvider(eu)
+        ..add(
+          FakePubsubTopic.withMeta(
+            'orders',
+            argMap: {'name': const TfArgLiteral<String>('orders')},
+            provider: eu,
+          ),
+        );
+      expect(stack.isExternalProvider(eu), isTrue);
+      final json = stack.synth().tfJson;
+      expect(json.containsKey('provider'), isFalse);
+      expect(
+        (json['resource'] as Map)['google_pubsub_topic']['orders']['provider'],
+        equals('google.eu'),
+      );
+      final required = (json['terraform'] as Map)['required_providers'] as Map;
+      expect(required['google'], isNot(contains('configuration_aliases')));
+      expect((required['google'] as Map)['source'], 'hashicorp/google');
+    });
+
     test('omits provider block entirely if no configArgs', () {
       final stack = TestStack(
         providers: const [
