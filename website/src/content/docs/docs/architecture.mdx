@@ -86,7 +86,7 @@ void explain(Stack stack) {
 }
 ```
 
-A block declared in a hand-written `.tf` file beside `main.tf.json` is the one legitimate unregistered reference: declare it with `addExternalBlock('google_pubsub_topic.legacy')`, the counterpart of `externalVariable` for variables (`terradart-migrate` does this for the blocks it leaves in the sidecar). Names are checked earlier, where they are registered: `add`, `addModule`, `variable` and `addOutput` throw `ArgumentError` for a name that is not a Terraform identifier.
+A block declared in a hand-written `.tf` file beside `main.tf.json` is the one legitimate unregistered reference: declare it with `addExternalBlock('google_pubsub_topic.legacy')`, the counterpart of `externalVariable` for variables (`terradart migrate` does this for the blocks it leaves in the sidecar). Names are checked earlier, where they are registered: `add`, `addModule`, `variable` and `addOutput` throw `ArgumentError` for a name that is not a Terraform identifier.
 
 `Stack`, `Resource`, and `Data` are `abstract base class`. Your subclasses must declare a class modifier:
 

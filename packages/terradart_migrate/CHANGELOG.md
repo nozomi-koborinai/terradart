@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- `bin/infra.dart` for one Stack calls `runStack`. `--merge-envs` calls `runEnvironments` over the generated `Env` enum (`dir: (env) => 'tf-out/${env.path}'`), so `terradart plan --env <name>` runs that environment. Several merged groups write every environment when `--env` is omitted, and call `runEnvironments` for the group a name selects.
+- The user command is `terradart migrate` (`terradart_cli`). The `terradart-migrate` executable still runs the same flags and prints that it is deprecated.
+
 ## 0.32.1 - 2026-10-02
 
 - No API changes. Republishes the 0.32.0 workspace so `terradart_appwrite`, `terradart_cloudflare`, `terradart_aws` and `terradart_migrate` reach pub.dev; the 0.32.0 publish workflow stopped them at a wrapper-count check that also counted hand-written files, and now counts only generated wrappers ([#877](https://github.com/nozomi-koborinai/terradart/pull/877)).

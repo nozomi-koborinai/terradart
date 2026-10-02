@@ -17,6 +17,17 @@ Run `dart pub global deactivate terradart_codegen` and activate it again to
 drop the old `terradart` shim from your `PATH` before activating
 `terradart_cli`.
 
+### `terradart migrate` replaces `terradart-migrate`
+
+```sh
+dart pub global activate terradart_cli
+terradart migrate --dir infra --out infra_dart
+```
+
+`terradart-migrate` still runs, and prints that it is deprecated. A later
+release removes it. `terradart_migrate` stays the library the command calls;
+there is no Homebrew formula.
+
 ## 0.31.x → 0.32.0
 
 0.32.0 is a breaking release for the Dart API of every package, but not for

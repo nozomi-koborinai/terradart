@@ -21,8 +21,8 @@ resource "google_pubsub_subscription" "orders_worker" {
 /// print the report and the generated Stack.
 ///
 /// To migrate a whole directory tree instead, run the CLI:
-/// `dart pub global activate terradart_migrate` then
-/// `terradart-migrate --dir infra --out infra_dart`.
+/// `dart pub global activate terradart_cli` then
+/// `terradart migrate --dir infra --out infra_dart`.
 void main() {
   final module = TfModule.fromHcl(_mainTf, fileName: 'main.tf');
   final result = migrateModule(module, name: 'orders');

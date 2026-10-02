@@ -14,4 +14,12 @@ dart run terradart_cli:terradart outputs --env prd
 flutter build web --dart-define-from-file=.terradart/dart_defines.prd.json
 ```
 
-See [The terradart command](https://terradart.dev/docs/cli/).
+`terradart migrate` does not need a project. From any directory:
+
+```bash
+dart pub global activate terradart_cli
+terradart migrate --dir infra --out infra_dart
+cd infra_dart && dart pub get && terradart plan
+```
+
+See [The terradart command](https://terradart.dev/docs/cli/) and [Migrating from HCL](https://terradart.dev/docs/migrate-from-hcl/).

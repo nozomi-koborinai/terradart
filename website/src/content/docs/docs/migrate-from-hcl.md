@@ -1,40 +1,40 @@
 ---
 title: Migrating from HCL
-description: Bring an existing Terraform tree into TerraDart with terradart-migrate — one Stack per module directory, a leftover sidecar for the rest, and a plan that reports No changes.
+description: Bring an existing Terraform tree into TerraDart with terradart migrate — one Stack per module directory, a leftover sidecar for the rest, and a plan that reports No changes.
 ---
 
-`terradart-migrate` turns a Terraform source tree (`*.tf` and `*.tf.json`) into a TerraDart package: one `Stack` class per module directory, a `tf-out/` tree that mirrors the source, and a **leftover sidecar** beside every synthesized `main.tf.json` holding, verbatim, each block the curated factories do not cover yet. Resource addresses are preserved, so `terraform plan` against your existing state reports **No changes** — you migrate one resource at a time, at your own pace, with no big-bang rewrite.
+`terradart migrate` turns a Terraform source tree (`*.tf` and `*.tf.json`) into a TerraDart package: one `Stack` class per module directory, a `tf-out/` tree that mirrors the source, and a **leftover sidecar** beside every synthesized `main.tf.json` holding, verbatim, each block the curated factories do not cover yet. Resource addresses are preserved, so `terraform plan` against your existing state reports **No changes** — you migrate one resource at a time, at your own pace, with no big-bang rewrite.
 
 It reads files only. It never runs Terraform, never reads or writes state, never writes into the source tree, and never writes outside the output directory.
 
 ## Install
 
 ```sh
-dart pub global activate terradart_migrate
+dart pub global activate terradart_cli
 ```
 
-`terradart-migrate` lands in `~/.pub-cache/bin`; add that directory to your `PATH` if `dart pub global activate` asks you to. The only prerequisite is a Dart SDK, which the migrated package needs anyway.
+`terradart` lands in `~/.pub-cache/bin`; add that directory to your `PATH` if `dart pub global activate` asks you to. Migration runs before a Dart project exists, so a global install is enough — there is no `pubspec.yaml` to find. The only prerequisite is a Dart SDK, which the migrated package needs anyway.
 
-**From a checkout:** `cd packages/terradart_migrate && dart run bin/terradart_migrate.dart --help`.
+**From a checkout:** `dart run bin/terradart.dart migrate --help` in `packages/terradart_cli`.
 
 ```sh
-terradart-migrate --version
+terradart migrate --version
 ```
 
-The generated package needs the Dart SDK (`dart pub get`, `dart run`) and `terraform` for the plan; the migrator itself needs neither.
+The generated package needs the Dart SDK (`dart pub get`, `terradart plan`) and OpenTofu or Terraform for the plan; the migrator itself needs neither. The `terradart-migrate` executable still runs the same flags and prints that it is deprecated.
 
 ## Size it first
 
 `--report` runs the whole migration in memory and writes nothing — no `--out`, no files, no `terraform`:
 
 ```sh
-terradart-migrate --report --dir infra
+terradart migrate --report --dir infra
 ```
 
 It lists every `resource` and `data` type in the tree with how many of its blocks translate, how many stay in Terraform, and the curated factory it maps to — or `not in any catalog`. Because it is the migration itself, not a catalog lookup, a type with a factory can still show kept blocks: a non-literal `count`, a sensitive literal, an argument with no Dart parameter. Every kept block is listed with its reason, and a `module` call whose source is outside the tree (a registry or git module) is listed as not scanned, since its resources are not counted. A literal `count` / `for_each` counts once per instance; a child module counts once however many times it is called. `--dir` defaults to the current directory, and `--json` prints the same report as JSON.
 
 ```text
-terradart-migrate 0.x.y --report: infra
+terradart migrate 0.x.y --report: infra
   37 of 42 resource and data blocks translate (88%); 19 of 20 types have a curated factory. Nothing was written.
 
 Types (20):
@@ -46,7 +46,7 @@ Types (20):
 ## Migrate a tree
 
 ```sh
-terradart-migrate --dir infra --out infra_dart
+terradart migrate --dir infra --out infra_dart
 ```
 
 Every directory under `--dir` that holds `.tf` / `.tf.json` files is a module (hidden directories such as `.terraform` are skipped). Given a tree like
@@ -65,7 +65,7 @@ infra/
 | Path | Content |
 | :--- | :--- |
 | `pubspec.yaml` | lockstep pins on `terradart_core` and the provider packages the Stacks use |
-| `bin/infra.dart` | synthesizes every Stack into its Terraform directory |
+| `bin/infra.dart` | synthesizes every Stack. One Stack calls `runStack`; `--merge-envs` calls `runEnvironments`, so `terradart plan --env <name>` runs one environment |
 | `lib/dev_stack.dart`, `lib/prod_stack.dart`, `lib/network_stack.dart` | one Stack per module directory (`dev` → `DevStack`) |
 | `lib/network_module.dart` | one typed `ModuleCall` wrapper per local module directory a `module` block calls (`modules/network` → `NetworkModule`), from its `variable` and `output` blocks |
 | `tf-out/envs/dev/`, `tf-out/envs/prod/`, `tf-out/modules/network/` | each module's Terraform directory, mirroring the source so `source = "../../modules/network"` keeps resolving: `main.tf.json` (written by synth) next to the sidecar files, plus `terraform.tfvars`, `*.auto.tfvars` and `.terraform.lock.hcl` copied from the source |
@@ -74,7 +74,7 @@ infra/
 A single-module `--dir` synthesizes into `tf-out/` directly. The summary on stdout says what happened per directory; `--json` prints the same report as JSON.
 
 ```text
-terradart-migrate 0.x.y: infra → infra_dart (infra)
+terradart migrate 0.x.y: infra → infra_dart (infra)
   modules: 3 (2 roots, 1 child); migrated 41 blocks, kept 5
   envs/dev: DevStack — 17 migrated, 2 kept → tf-out/envs/dev
   envs/prod: ProdStack — 19 migrated, 3 kept → tf-out/envs/prod
@@ -88,11 +88,19 @@ Next: cd infra_dart && dart pub get && dart run bin/infra.dart
 ```sh
 cd infra_dart
 dart pub get
+terradart plan               # one Stack: synth, init, plan
+```
+
+A tree of several roots (the `envs/dev` and `envs/prod` layout above, without `--merge-envs`) still synthesizes every directory from `dart run bin/infra.dart`. Plan one of them in its Terraform directory:
+
+```sh
 dart run bin/infra.dart      # writes tf-out/**/main.tf.json next to the sidecar files
 cd tf-out/envs/dev
 terraform init
 terraform plan               # No changes. Your infrastructure matches the configuration.
 ```
+
+With `--merge-envs`, the generated entry point calls `runEnvironments`, so the same check is `terradart plan --env dev`.
 
 Terraform merges every file in a directory, so the synthesized `main.tf.json` and the sidecar files form the same module the source was. The Stack carries the backend (`GcsBackend`, `S3Backend`, `LocalBackend`; any other backend stays in `backend.tf` as written), so `terraform init` in the new directory connects to the same remote state. With a **local backend**, copy `terraform.tfstate` into the new directory first — the migrator never copies state. `terraform.tfvars` and `*.auto.tfvars` are copied; other `*.tfvars` files are listed in `MIGRATION.md` for `-var-file`.
 
@@ -127,9 +135,9 @@ The migrator does the mechanical part once; what it kept is yours to port, by ha
 
 1. Pick a block from `MIGRATION.md` whose reason you can resolve — an argument the migrator had no typed slot for, a `depends_on` on a block you have since ported, a literal `locals` entry that could be a Dart `final`.
 2. Write it in the Stack with the same `localName`, so its address does not change, and delete it from the sidecar — and the `addExternalBlock('<address>')` line the migrator wrote for it when the Stack reads it (synth accepts a reference to a block it does not hold only once it is declared external). A local leaves `locals.tf` only once nothing still in the sidecar reads it.
-3. `dart run bin/infra.dart`, then `terraform plan` in that root. *No changes* means the port is faithful; anything else is the diff to fix in Dart.
+3. `terradart synth` (or `dart run bin/infra.dart`), then `terradart plan` — with `--env <name>` when the package was migrated with `--merge-envs`. *No changes* means the port is faithful; anything else is the diff to fix in Dart.
 
-A later catalog release may cover a type that is `not in any catalog` today: `terradart-migrate --report` over a copy of the sidecar files lists what translates now.
+A later catalog release may cover a type that is `not in any catalog` today: `terradart migrate --report` over a copy of the sidecar files lists what translates now.
 
 ## Modules and environments
 
@@ -213,11 +221,11 @@ enum Env {
 }
 ```
 
-`dart run bin/infra.dart` writes every environment into its own `tf-out/` directory; `--env dev` writes the ones of that name. A value lifts when every root writes it as a plain scalar: a resource argument, a `module` call input, a `variable` default or description, a provider argument, a backend argument. The constant is typed as the argument takes it, so an enum-valued one is a typed member (`storageClass: env.assetsStorageClass`, with `BucketStorageClass.nearline` on the enum). Anything else — a reference, a nested block, a list, an interpolated string, a `sensitive` variable's default (never copied into Dart), a different provider or backend, a different block order — keeps one Stack per root, with the reason in `MIGRATION.md`. What merging never changes is the plan: the fixture gate proves the merged Stack synthesizes, per environment, exactly the JSON the separate Stacks did.
+`dart run bin/infra.dart` and `terradart synth` write every environment into its own `tf-out/` directory. The generated `bin/infra.dart` calls `runEnvironments` over the `Env` enum, with `dir` set to `tf-out/<path>`, so `terradart plan --env dev` plans that environment and `dart run bin/infra.dart --env dev` writes only it. Omitting `--env` writes every environment, and `terradart plan` then asks which one to run. A value lifts when every root writes it as a plain scalar: a resource argument, a `module` call input, a `variable` default or description, a provider argument, a backend argument. The constant is typed as the argument takes it, so an enum-valued one is a typed member (`storageClass: env.assetsStorageClass`, with `BucketStorageClass.nearline` on the enum). Anything else — a reference, a nested block, a list, an interpolated string, a `sensitive` variable's default (never copied into Dart), a different provider or backend, a different block order — keeps one Stack per root, with the reason in `MIGRATION.md`. What merging never changes is the plan: the fixture gate proves the merged Stack synthesizes, per environment, exactly the JSON the separate Stacks did.
 
 ### The workspace as a parameter
 
-`--lift-workspace` turns `terraform.workspace` into a `workspace` parameter on the Stack: a bare reference becomes `.literal(workspace)`, a template around it becomes Dart interpolation (`.literal('orders-$workspace')`), and one inside a list or map becomes the value. `dart run bin/infra.dart --workspace prod` then synthesizes for that workspace by name. It is opt-in because it moves the decision: the JSON names a workspace instead of leaving `${terraform.workspace}` for `terraform workspace select`, so it is faithful for the workspace it names and only that one. A template mixing the workspace with another reference stays a Terraform expression, with a warning naming it.
+`--lift-workspace` turns `terraform.workspace` into a `workspace` parameter on the Stack: a bare reference becomes `.literal(workspace)`, a template around it becomes Dart interpolation (`.literal('orders-$workspace')`), and one inside a list or map becomes the value. `terradart plan --workspace prod` and `dart run bin/infra.dart --workspace prod` then synthesize for that workspace by name (the default name is `default`), and `terradart` selects it after `init`. It is opt-in because it moves the decision: the JSON names a workspace instead of leaving `${terraform.workspace}` for `terraform workspace select`, so it is faithful for the workspace it names and only that one. A template mixing the workspace with another reference stays a Terraform expression, with a warning naming it.
 
 ## Options
 
@@ -229,7 +237,7 @@ enum Env {
 | `--name <name>` | The package name and the root Stack class. Defaults to the base name of `--dir`. |
 | `--roots <dir>` | Treat `<dir>` as a root module even when a `module` block references it. |
 | `--env-dirs <dir>` | Root directories that are environments of one deployment. |
-| `--merge-envs` | Fold each group of environment siblings into one Stack taking a generated `Env` enum. |
+| `--merge-envs` | Fold each group of environment siblings into one Stack taking a generated `Env` enum. `bin/infra.dart` calls `runEnvironments`, so `terradart plan --env <name>` runs one environment. |
 | `--lift-workspace` | Turn `terraform.workspace` into a `workspace` parameter on the Stack. |
 | `--json` | Print the report as JSON instead of the summary. |
 | `--force` | Write into a non-empty `--out`, overwriting only the files the migrator generates. |
@@ -238,7 +246,7 @@ Exit codes follow sysexits: `0` success, `64` usage, `65` unreadable input or no
 
 ## Library
 
-The same pipeline is a Dart library: `scanModuleTree` reads the tree, `migrateTree` produces every file, `migrateModule` migrates one module. See the [package README](https://github.com/nozomi-koborinai/terradart/tree/main/packages/terradart_migrate) for the API and the conversion rules, and the [migrator design](https://github.com/nozomi-koborinai/terradart/issues/655) for how the migration manifests tie the recipe to the generated factories.
+`terradart migrate` is the command. The pipeline stays a library in `terradart_migrate`: `scanModuleTree` reads the tree, `migrateTree` produces every file, `migrateModule` migrates one module. See the [package README](https://github.com/nozomi-koborinai/terradart/tree/main/packages/terradart_migrate) for the API and the conversion rules, and the [migrator design](https://github.com/nozomi-koborinai/terradart/issues/655) for how the migration manifests tie the recipe to the generated factories.
 
 ## What comes next
 

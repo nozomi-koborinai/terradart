@@ -37,6 +37,7 @@ terradart apply
 | `terradart destroy` | synth, `init`, `destroy` |
 | `terradart outputs` | synth, `init`, then writes the define file from the applied state — no plan, no apply |
 | `terradart engine` | prints the engine binary it would run, downloading OpenTofu if that is the one |
+| `terradart migrate` | turns a Terraform tree into a Dart package. No project is required — it does not look for a `pubspec.yaml` |
 
 `--no-synth` reuses what the last synth wrote, `--project <dir>` (`-C`) runs against another package, and `--engine tofu|terraform` or `--engine-path <file>` picks the engine for one run. The exit code is the failing step's (64 for a usage error).
 
@@ -178,7 +179,7 @@ Two environments may share a directory only when one of these tells them apart; 
 
 ### Migrated environments
 
-`terradart-migrate --merge-envs` writes an `Env` enum whose members carry the directory each environment came from (`path`). Its generated `bin/infra.dart` already takes `--env <member>`, and `terradart` finds the directory under `tf-out/` named after the member (`prodEu` → `tf-out/envs/prod-eu`), so `terradart plan --env prodEu` works on a migrated package unchanged. When the merged Stack is the package's only one, its `main` can become `runEnvironments(args, Env.values, (env) => AppStack(env: env), dir: (env) => 'tf-out/${env.path}')`, and `terradart` then takes the names and directories from the enum instead of looking for them.
+`terradart migrate --merge-envs` writes an `Env` enum whose members carry the directory each environment came from (`path`), and a `bin/infra.dart` that calls `runEnvironments` with `dir: (env) => 'tf-out/${env.path}'`. `terradart plan --env prodEu` reads that manifest and plans the matching environment. A single-module migration calls `runStack` instead, so `terradart plan` with no `--env` is enough. See [Migrating from HCL](/docs/migrate-from-hcl/).
 
 ## The define file
 

@@ -238,58 +238,69 @@ typedef MergedInfra = ({
   bool workspace,
 });
 
+/// One Stack `bin/infra.dart` synthesizes into its own Terraform directory.
+typedef InfraStack = ({
+  String stackFile,
+  String stackClass,
+  String terraformDir,
+  bool workspace,
+});
+
 /// `bin/infra.dart`: synthesizes every Stack into its Terraform directory.
 ///
-/// With [merged] groups the entry point takes `--env <name>`, narrowing the
-/// merged environments to the ones of that name; without it every
-/// environment is written. A name no group declares is a usage error.
+/// A single Stack calls `runStack`, so `terradart synth`, `plan` and `apply`
+/// read the entry-point manifest. Each [merged] group calls `runEnvironments`
+/// over its `Env` enum (`dir` is `tf-out/<member path>`), so
+/// `terradart plan --env <member>` runs that environment. Several groups
+/// write every environment when `--env` is omitted, and call
+/// `runEnvironments` for the one group a name selects — that call is the
+/// manifest `terradart` reads. A name no group declares is a usage error.
 String renderInfra(
   String packageName,
-  List<
-    ({String stackFile, String stackClass, String terraformDir, bool workspace})
-  >
-  stacks, {
+  List<InfraStack> stacks, {
   List<MergedInfra> merged = const [],
   bool format = true,
 }) {
+  final workspace =
+      stacks.any((s) => s.workspace) || merged.any((m) => m.workspace);
+  final singleStack = merged.isEmpty && stacks.length == 1;
   final files = {
     for (final s in stacks) s.stackFile,
     for (final m in merged) ...[m.stackFile, m.envFile],
   }.toList()..sort();
-  final imports = [
-    if (merged.isNotEmpty) "import 'dart:io';\n",
+  final packageImports = [
     for (final f in files) "import 'package:$packageName/$f.dart';",
+    if (singleStack || merged.isNotEmpty)
+      "import 'package:terradart_core/terradart_core.dart';",
+  ]..sort();
+  final imports = [
+    if (merged.length > 1) "import 'dart:io';\n",
+    ...packageImports,
   ].join('\n');
-  final workspace =
-      stacks.any((s) => s.workspace) || merged.any((m) => m.workspace);
-  final calls = [
-    if (merged.isNotEmpty) "  final selected = _option(args, '--env');",
-    if (merged.isNotEmpty) '  var written = 0;',
-    if (workspace)
+  final body = StringBuffer();
+  if (workspace) {
+    body.writeln(
       "  final workspace = _option(args, '--workspace') ?? 'default';",
-    for (final s in stacks)
-      '  await ${s.stackClass}(${s.workspace ? 'workspace: workspace' : ''})'
-          '.writeTo(${dartString(s.terraformDir)});',
-    for (final m in merged) ...[
-      '  for (final env in _environments(selected, ${m.envClass}.values)) {',
-      '    await ${m.stackClass}(env: env'
-          '${m.workspace ? ', workspace: workspace' : ''})',
-      "        .writeTo('${m.outPrefix}/\${env.path}');",
-      '    written++;',
-      '  }',
-    ],
-    // A name none of the groups declares is the error; a name only some of
-    // them declare selects those, and leaves the others alone.
-    if (merged.isNotEmpty) ...[
-      '  if (selected != null && written == 0) {',
-      '    stderr.writeln(',
-      '      \'infra: unknown environment "\$selected"; expected one of \'',
-      "      '\${[${[for (final m in merged) '...${m.envClass}.values'].join(', ')}].map((e) => e.name).toSet().join(', ')}',",
-      '    );',
-      '    exit(64);',
-      '  }',
-    ],
-  ].join('\n');
+    );
+  }
+  if (singleStack) {
+    final s = stacks.single;
+    body.writeln(
+      '  await runStack(args, () => ${_plainCtor(s)}, '
+      'out: ${dartString(s.terraformDir)});',
+    );
+  } else {
+    for (final s in stacks) {
+      body.writeln(
+        '  await ${_plainCtor(s)}.writeTo(${dartString(s.terraformDir)});',
+      );
+    }
+  }
+  if (merged.length == 1) {
+    body.writeln(_runEnvironmentsStmt(merged.single));
+  } else if (merged.length > 1) {
+    body.write(_manyGroupBody(merged));
+  }
   final what = switch ((stacks.length, merged.length)) {
     (0, 0) =>
       '/// nothing yet: no module directory translates, so the Terraform\n'
@@ -301,26 +312,16 @@ String renderInfra(
   };
   final usage = [
     if (merged.isNotEmpty)
-      '/// `dart run bin/infra.dart --env <name>` writes the merged '
-          'environments\n/// of that name instead of all of them.',
+      '/// `terradart plan --env <name>` and\n'
+          '/// `dart run bin/infra.dart --env <name>` write that environment.\n'
+          '/// Without `--env`, every environment is written.',
     if (workspace)
       '/// `--workspace <name>` names the Terraform workspace the Stacks\n'
-          "/// synthesize for (default `default`).",
+          '/// synthesize for (default `default`).',
   ];
   final usageText = usage.isEmpty ? '' : '\n///\n${usage.join('\n///\n')}';
-  final helper = merged.isEmpty
-      ? ''
-      : '''
-
-/// The environments to synthesize: every member, or the ones [name] picks.
-List<T> _environments<T extends Enum>(String? name, List<T> values) => name ==
-        null
-    ? values
-    : [
-        for (final value in values)
-          if (value.name == name) value,
-      ];''';
-  final optionHelper = merged.isEmpty && !workspace
+  final needsArgs = singleStack || merged.isNotEmpty || workspace;
+  final optionHelper = !workspace && merged.length < 2
       ? ''
       : '''
 
@@ -336,18 +337,78 @@ String? _option(List<String> args, String flag) {
 }''';
   final src =
       '''
-/// Synth entry point: `dart run bin/infra.dart` writes
+/// Synth entry point: `terradart synth` and `dart run bin/infra.dart` write
 $what$usageText
 library;
 
 $imports
 
-Future<void> main(${merged.isEmpty && !workspace ? '' : 'List<String> args'}) async {
-$calls
-}
-$helper$optionHelper
+Future<void> main(${needsArgs ? 'List<String> args' : ''}) async {
+$body}
+$optionHelper
 ''';
   return format ? formatDart(src) : src;
+}
+
+String _plainCtor(InfraStack stack) => stack.workspace
+    ? '${stack.stackClass}(workspace: workspace)'
+    : '${stack.stackClass}()';
+
+String _mergedCtor(MergedInfra group) => group.workspace
+    ? '${group.stackClass}(env: env, workspace: workspace)'
+    : '${group.stackClass}(env: env)';
+
+/// `runEnvironments` for [group]: the manifest `terradart --env` reads.
+String _runEnvironmentsStmt(MergedInfra group, {String indent = '  '}) {
+  final lines = [
+    '${indent}await runEnvironments(',
+    '$indent  args,',
+    '$indent  ${group.envClass}.values,',
+    '$indent  (env) => ${_mergedCtor(group)},',
+    "$indent  dir: (env) => '${group.outPrefix}/\${env.path}',",
+    if (group.workspace) '$indent  workspace: (_) => workspace,',
+    '$indent);',
+  ];
+  return lines.join('\n');
+}
+
+/// Several merged groups. Omitting `--env` writes every member (no manifest:
+/// `terradart plan` then asks for `--env`). A name selects one group through
+/// `runEnvironments`, so the manifest names that environment's directory.
+String _manyGroupBody(List<MergedInfra> merged) {
+  final b = StringBuffer()
+    ..writeln("  final selected = _option(args, '--env');")
+    ..writeln('  if (selected == null) {');
+  for (final group in merged) {
+    b
+      ..writeln('    for (final env in ${group.envClass}.values) {')
+      ..writeln(
+        "      await ${_mergedCtor(group)}.writeTo('${group.outPrefix}/\${env.path}');",
+      )
+      ..writeln('    }');
+  }
+  b
+    ..writeln('    return;')
+    ..writeln('  }');
+  for (final group in merged) {
+    b
+      ..writeln(
+        '  if (${group.envClass}.values.any((env) => env.name == selected)) {',
+      )
+      ..writeln(_runEnvironmentsStmt(group, indent: '    '))
+      ..writeln('    return;')
+      ..writeln('  }');
+  }
+  final names = merged.map((group) => '...${group.envClass}.values').join(', ');
+  b
+    ..writeln('  stderr.writeln(')
+    ..writeln(
+      "    'infra: unknown environment \"\$selected\"; expected one of '",
+    )
+    ..writeln("    '\${[$names].map((env) => env.name).toSet().join(', ')}',")
+    ..writeln('  );')
+    ..writeln('  exit(64);');
+  return b.toString();
 }
 
 /// The generated package's `pubspec.yaml`: lockstep pins on `terradart_core`

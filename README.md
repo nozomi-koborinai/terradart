@@ -267,15 +267,15 @@ Credentials never enter the synthesized JSON: each provider authenticates at app
 
 ## Already on Terraform?
 
-[`terradart-migrate`](packages/terradart_migrate/) turns an existing Terraform source tree into a TerraDart package: one `Stack` per module directory, a `tf-out/` tree mirroring the source, and a **leftover sidecar** beside each `main.tf.json` holding, verbatim and with a reason, every block it cannot translate yet. Resource addresses are preserved, so `terraform plan` against your existing state reports *No changes* — move one resource at a time, no big-bang rewrite. It reads `.tf` / `.tf.json` only: no Terraform run, no state access.
+[`terradart migrate`](packages/terradart_cli/) turns an existing Terraform source tree into a TerraDart package: one `Stack` per module directory, a `tf-out/` tree mirroring the source, and a **leftover sidecar** beside each `main.tf.json` holding, verbatim and with a reason, every block it cannot translate yet. Resource addresses are preserved, so `terraform plan` against your existing state reports *No changes* — move one resource at a time, no big-bang rewrite. It reads `.tf` / `.tf.json` only: no Terraform run, no state access.
 
 ```sh
-dart pub global activate terradart_migrate
-terradart-migrate --dir infra --out infra_dart
-cd infra_dart && dart pub get && dart run bin/infra.dart   # then: terraform init && terraform plan in tf-out/<root>
+dart pub global activate terradart_cli
+terradart migrate --dir infra --out infra_dart
+cd infra_dart && dart pub get && terradart plan
 ```
 
-`terradart-migrate --report` sizes a tree without writing anything. Guide: [Migrating from HCL](https://terradart.dev/docs/migrate-from-hcl/).
+`terradart migrate --report` sizes a tree without writing anything. `--merge-envs` folds sibling environments into one Stack, and `terradart plan --env <name>` runs one of them. Guide: [Migrating from HCL](https://terradart.dev/docs/migrate-from-hcl/).
 
 ---
 
@@ -283,8 +283,8 @@ cd infra_dart && dart pub get && dart run bin/infra.dart   # then: terraform ini
 
 | Package | What it is | Pub |
 | :--- | :--- | :--- |
-| [`terradart_cli`](packages/terradart_cli) | The `terradart` command: synth, plan, apply, destroy and the client define file, with OpenTofu or Terraform. | [![pub](https://img.shields.io/pub/v/terradart_cli.svg)](https://pub.dev/packages/terradart_cli) |
-| [`terradart_migrate`](packages/terradart_migrate) | The HCL → Dart migrator (`terradart-migrate`). | [![pub](https://img.shields.io/pub/v/terradart_migrate.svg)](https://pub.dev/packages/terradart_migrate) |
+| [`terradart_cli`](packages/terradart_cli) | The `terradart` command: synth, plan, apply, destroy, migrate and the client define file, with OpenTofu or Terraform. | [![pub](https://img.shields.io/pub/v/terradart_cli.svg)](https://pub.dev/packages/terradart_cli) |
+| [`terradart_migrate`](packages/terradart_migrate) | The HCL → Dart migrator library (`terradart migrate`). | [![pub](https://img.shields.io/pub/v/terradart_migrate.svg)](https://pub.dev/packages/terradart_migrate) |
 | [`terradart_hcl`](packages/terradart_hcl) | A pure Dart HCL / `*.tf.json` parser and Terraform module model — the migrator's input side. | [![pub](https://img.shields.io/pub/v/terradart_hcl.svg)](https://pub.dev/packages/terradart_hcl) |
 | [`terradart_codegen`](packages/terradart_codegen) | The maintainer generation CLI (`terradart-codegen wrap`) that produces the provider packages. | [![pub](https://img.shields.io/pub/v/terradart_codegen.svg)](https://pub.dev/packages/terradart_codegen) |
 

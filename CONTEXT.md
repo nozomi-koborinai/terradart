@@ -101,7 +101,7 @@ A root module directory with its own backend and state (`envs/dev`). Sibling roo
 _Avoid_: Workspace
 
 **Merged environment Stack**:
-`terradart-migrate --merge-envs`: one `AppStack({required Env env})` for a whole group of environment roots. Every top-level argument the roots write differently becomes a constant on the generated `Env` enum, a block only some of them declare sits behind `if (env.<flag>)`, and each member synthesizes into its own `tf-out/<path>`. Refused, with a reason, when the roots differ in anything the enum cannot hold — a reference, a nested block, a `sensitive` variable's default, a different provider or backend, a different block order. What it never changes is the plan: the per-environment synth is the one the separate Stacks wrote.
+`terradart migrate --merge-envs`: one `AppStack({required Env env})` for a whole group of environment roots. Every top-level argument the roots write differently becomes a constant on the generated `Env` enum, a block only some of them declare sits behind `if (env.<flag>)`, and each member synthesizes into its own `tf-out/<path>`. The generated `bin/infra.dart` calls `runEnvironments`, so `terradart plan --env <member>` runs one of them. Refused, with a reason, when the roots differ in anything the enum cannot hold — a reference, a nested block, a `sensitive` variable's default, a different provider or backend, a different block order. What it never changes is the plan: the per-environment synth is the one the separate Stacks wrote.
 _Avoid_: Multi-environment Stack, Stack template
 
 **Entry point**:
@@ -117,7 +117,7 @@ The OpenTofu release `terradart_cli` pins and downloads when neither `tofu` nor 
 _Avoid_: Bundled Terraform
 
 **Lifted workspace**:
-`terradart-migrate --lift-workspace`: `terraform.workspace` becomes a `workspace` parameter on the Stack, so `bin/infra.dart --workspace prod` synthesizes for one named workspace instead of emitting `${terraform.workspace}` for `terraform workspace select`. Opt-in, and faithful only for the workspace it names.
+`terradart migrate --lift-workspace`: `terraform.workspace` becomes a `workspace` parameter on the Stack, so `terradart plan --workspace prod` synthesizes for one named workspace instead of emitting `${terraform.workspace}` for `terraform workspace select`. Opt-in, and faithful only for the workspace it names.
 _Avoid_: Workspace mode
 
 **Round-trip gate**:

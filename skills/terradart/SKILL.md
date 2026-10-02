@@ -140,13 +140,13 @@ cd tf-out && terraform init -backend=false && terraform validate
 
 Do not rewrite an existing Terraform tree by hand. Run the migrator first; it translates every block it can, keeps the rest in Terraform verbatim, and preserves every resource address. Your job is the part it left behind.
 
-1. **Size it.** `terradart-migrate --report --dir infra` writes nothing. It lists every `resource` / `data` type with how many blocks translate and how many stay in Terraform, and why.
+1. **Size it.** `terradart migrate --report --dir infra` writes nothing. It lists every `resource` / `data` type with how many blocks translate and how many stay in Terraform, and why.
 
 2. **Migrate.**
 
    ```bash
-   dart pub global activate terradart_migrate
-   terradart-migrate --dir infra --out infra_dart
+   dart pub global activate terradart_cli
+   terradart migrate --dir infra --out infra_dart
    ```
 
    The package has one `Stack` per module directory (`lib/`) and a `tf-out/` tree that mirrors the source. Beside each `main.tf.json` is the **sidecar**: `terradart_leftover.tf`, `backend.tf`, `variables.tf`, `locals.tf` and `outputs.tf`, holding what did not translate. `MIGRATION.md` lists every kept block with its reason.

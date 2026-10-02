@@ -17,6 +17,7 @@ or `dart pub global activate terradart_cli`, then `terradart apply`.
 | `terradart destroy` | synth, `init`, `destroy` |
 | `terradart outputs` | synth, `init`, then writes the define file from the applied state |
 | `terradart engine` | prints the engine binary it runs |
+| `terradart migrate` | turns a Terraform tree into a Dart package; no project required |
 
 It runs the `tofu`, else the `terraform`, on your `PATH`. With neither, it downloads the OpenTofu release it pins, checks the archive's SHA-256, and keeps the binary in your user cache — on Linux, macOS and Windows, amd64 and arm64.
 

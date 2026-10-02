@@ -58,9 +58,11 @@ String fixGoogleCounts(String text) => text
       '(GA catalog, $catalogEntryCount entries)',
     );
 
-/// The pub.dev install line of the migrator: README, the package README and
-/// the website guide must all carry it.
-const migrateInstallPhrase = 'dart pub global activate terradart_migrate';
+/// The pub.dev install line of `terradart migrate`: README, the migrate
+/// package README and the website guide must all carry it. Migration runs
+/// before a Dart project exists, so the install is the user CLI, not
+/// `terradart_migrate` (the library the command calls).
+const migrateInstallPhrase = 'dart pub global activate terradart_cli';
 
 class _CatalogCounts {
   const _CatalogCounts({

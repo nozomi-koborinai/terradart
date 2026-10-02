@@ -7,6 +7,7 @@ import 'package:args/command_runner.dart';
 import 'cli_exception.dart';
 import 'config.dart';
 import 'engine.dart';
+import 'migrate_command.dart';
 import 'process_runner.dart';
 import 'target.dart';
 import 'workflow.dart';
@@ -35,14 +36,16 @@ Future<int> runTerradart(
   final cli =
       CommandRunner<int>(
           'terradart',
-          'Synthesize, plan and apply a TerraDart Stack with OpenTofu or Terraform.',
+          'Synthesize, plan and apply a TerraDart Stack with OpenTofu or '
+              'Terraform, and migrate an existing Terraform tree.',
         )
         ..addCommand(_SynthCommand(context))
         ..addCommand(_PlanCommand(context))
         ..addCommand(_ApplyCommand(context))
         ..addCommand(_DestroyCommand(context))
         ..addCommand(_OutputsCommand(context))
-        ..addCommand(_EngineCommand(context));
+        ..addCommand(_EngineCommand(context))
+        ..addCommand(MigrateCommand(io));
   try {
     return await cli.run(arguments) ?? 0;
   } on UsageException catch (e) {

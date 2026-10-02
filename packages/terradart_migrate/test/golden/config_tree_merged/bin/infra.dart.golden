@@ -1,12 +1,11 @@
-/// Synth entry point: `dart run bin/infra.dart` writes
+/// Synth entry point: `terradart synth` and `dart run bin/infra.dart` write
 /// every Stack's `main.tf.json` under `tf-out/`, mirroring the
 /// migrated module tree.
 ///
-/// `dart run bin/infra.dart --env <name>` writes the merged environments
-/// of that name instead of all of them.
+/// `terradart plan --env <name>` and
+/// `dart run bin/infra.dart --env <name>` write that environment.
+/// Without `--env`, every environment is written.
 library;
-
-import 'dart:io';
 
 import 'package:config_tree/cloud_run_stack.dart';
 import 'package:config_tree/cloud_sql_stack.dart';
@@ -16,45 +15,19 @@ import 'package:config_tree/pubsub_stack.dart';
 import 'package:config_tree/secret_manager_stack.dart';
 import 'package:config_tree/service_account_stack.dart';
 import 'package:config_tree/workload_identity_stack.dart';
+import 'package:terradart_core/terradart_core.dart';
 
 Future<void> main(List<String> args) async {
-  final selected = _option(args, '--env');
-  var written = 0;
   await CloudRunStack().writeTo('tf-out/modules/cloud_run');
   await CloudSqlStack().writeTo('tf-out/modules/cloud_sql');
   await PubsubStack().writeTo('tf-out/modules/pubsub');
   await SecretManagerStack().writeTo('tf-out/modules/secret_manager');
   await ServiceAccountStack().writeTo('tf-out/modules/service_account');
   await WorkloadIdentityStack().writeTo('tf-out/modules/workload_identity');
-  for (final env in _environments(selected, Env.values)) {
-    await ConfigTreeStack(env: env).writeTo('tf-out/${env.path}');
-    written++;
-  }
-  if (selected != null && written == 0) {
-    stderr.writeln(
-      'infra: unknown environment "$selected"; expected one of '
-      '${[...Env.values].map((e) => e.name).toSet().join(', ')}',
-    );
-    exit(64);
-  }
-}
-
-/// The environments to synthesize: every member, or the ones [name] picks.
-List<T> _environments<T extends Enum>(String? name, List<T> values) =>
-    name == null
-    ? values
-    : [
-        for (final value in values)
-          if (value.name == name) value,
-      ];
-
-/// The value of `--flag <value>` or `--flag=<value>`, or `null`.
-String? _option(List<String> args, String flag) {
-  for (var i = 0; i < args.length; i++) {
-    if (args[i] == flag && i + 1 < args.length) return args[i + 1];
-    if (args[i].startsWith('$flag=')) {
-      return args[i].substring(flag.length + 1);
-    }
-  }
-  return null;
+  await runEnvironments(
+    args,
+    Env.values,
+    (env) => ConfigTreeStack(env: env),
+    dir: (env) => 'tf-out/${env.path}',
+  );
 }
