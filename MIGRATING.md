@@ -1,5 +1,33 @@
 # Migrating terradart
 
+## Unreleased — next minor (`0.34.x` → `0.35.0`)
+
+### `terradart` asks only on a terminal, and stops with exit code 3 when it cannot
+
+`terradart apply` and `terradart destroy` without `--auto-approve` used to
+start the engine even with nobody to approve the plan: in CI the engine read
+an empty answer and failed with its own exit code. Without a terminal — or
+with `--no-input`, `TERRADART_NO_INPUT=1`, `CI`, or in an AI agent's shell
+(`CLAUDECODE`, `CURSOR_AGENT`, `GEMINI_CLI`, `CODEX_SANDBOX`, `AI_AGENT`, ...) —
+they now stop before `init` with exit code 3 and the command to run:
+
+```text
+terradart: apply needs --auto-approve when it cannot ask (CI).
+  Next: terradart apply --env dev --auto-approve
+```
+
+| 0.34.x | 0.35.0 |
+|---|---|
+| `terradart apply` in CI runs the engine, which fails on the approval | exit code 3 before `init`; pass `--auto-approve` |
+| `terradart state migrate` without a terminal: exit code 64 | exit code 3 |
+| the engine-switch guard without a terminal: exit code 64 | exit code 3, with `Choices:` and `Next: ... --engine <kind>` |
+| `TERRADART_ENV` / `defaultEnv` confirmation read a piped `yes` | asked on a terminal only; without one, `--auto-approve` |
+| a missing `--env` on a terminal: exit code 64 | a question listing the environments |
+
+A CI job that already passes `--auto-approve` (or `--env` with it) needs no
+change. A script that piped `yes` into `terradart apply` passes
+`--auto-approve` instead.
+
 ## 0.32.x → 0.33.0
 
 ### `terradart_codegen` installs `terradart-codegen`

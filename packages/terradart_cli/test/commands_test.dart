@@ -98,10 +98,9 @@ void main() {
       );
       final r = await project.run(['validate'], runner);
       expect(r.code, 64);
-      expect(
-        r.err,
-        contains('pass --env <name> or set TERRADART_ENV, one of dev, prod'),
-      );
+      expect(r.err, contains('--env is required'));
+      expect(r.err, contains('  Choices: dev, prod'));
+      expect(r.err, contains('  Next: terradart validate --env dev'));
       expect(runner.engineCalls, isEmpty);
     });
 
@@ -153,7 +152,7 @@ void main() {
   test('a failing engine step stops with its exit code', () async {
     final project = TestProject.create();
     final runner = FakeRunner(synth: (_) => runStackEntry(), failOn: 'init');
-    final r = await project.run(['apply'], runner);
+    final r = await project.run(['apply', '--auto-approve'], runner);
     expect(r.code, 1);
     expect(r.err, contains('tofu init exited 1'));
     expect(runner.engineCalls, isNot(contains(startsWith('apply'))));
@@ -170,7 +169,7 @@ void main() {
     expect(runner.engineCalls, [
       'version -json',
       'init -input=false',
-      'apply -auto-approve',
+      'apply -input=false -auto-approve',
       'output -json dart_defines',
     ]);
     final file = File(project.path('.terradart/dart_defines.json'));
@@ -188,9 +187,9 @@ void main() {
   test('apply skips the define file when the Stack declares none', () async {
     final project = TestProject.create();
     final runner = FakeRunner(synth: (_) => runStackEntry());
-    final r = await project.run(['apply'], runner);
+    final r = await project.run(['apply', '--auto-approve'], runner);
     expect(r.code, 0, reason: r.err);
-    expect(runner.engineCalls.last, 'apply');
+    expect(runner.engineCalls.last, 'apply -input=false -auto-approve');
     expect(
       File(project.path('.terradart/dart_defines.json')).existsSync(),
       isFalse,
@@ -295,7 +294,7 @@ void main() {
       }),
       outputs: {'dart_defines': defines},
     );
-    final r = await project.run(['apply'], runner);
+    final r = await project.run(['apply', '--auto-approve'], runner);
     expect(r.code, 0, reason: r.err);
     expect(runner.calls.last.workingDirectory, project.path('tf-out'));
     expect(
@@ -313,7 +312,12 @@ void main() {
         synth: (args) => runEnvironmentsEntry(args, envs),
         outputs: {'dart_defines': defines},
       );
-      final r = await project.run(['apply', '--env', 'stg'], runner);
+      final r = await project.run([
+        'apply',
+        '--env',
+        'stg',
+        '--auto-approve',
+      ], runner);
       expect(r.code, 0, reason: r.err);
       expect(runner.calls.first.args, [
         'run',
@@ -438,7 +442,7 @@ void main() {
         'version -json',
         'init -input=false',
         'workspace select -or-create=true prod',
-        'apply -auto-approve',
+        'apply -input=false -auto-approve',
         'output -json dart_defines',
       ]);
       runner.calls.clear();
@@ -459,7 +463,12 @@ void main() {
         outputs: {'dart_defines': defines},
       );
       for (final env in custom) {
-        final r = await project.run(['apply', '--env', env], runner);
+        final r = await project.run([
+          'apply',
+          '--env',
+          env,
+          '--auto-approve',
+        ], runner);
         expect(r.code, 0, reason: r.err);
         expect(runner.calls.last.workingDirectory, project.path('tf-out/$env'));
         expect(
@@ -519,7 +528,11 @@ void main() {
       expect(
         r.err,
         contains(
-          'pass --env <name> or set TERRADART_ENV, one of dev, stg, prod',
+          'terradart: --env is required: bin/infra.dart declares dev, stg, '
+          'prod and no defaultEnv. Pass --env, set TERRADART_ENV, or give '
+          'runEnvironments a defaultEnv.\n'
+          '  Choices: dev, stg, prod\n'
+          '  Next: terradart plan --env dev\n',
         ),
       );
     });
@@ -598,7 +611,7 @@ void main() {
         synth: (args) => runEnvironmentsEntry(args, ['dev']),
         outputs: {'dart_defines': defines},
       );
-      final r = await project.run(['apply'], runner);
+      final r = await project.run(['apply', '--auto-approve'], runner);
       expect(r.code, 0, reason: r.err);
       expect(r.out, contains('env: dev (only environment)'));
       expect(r.out, isNot(contains('Only "yes" is accepted')));
@@ -608,7 +621,7 @@ void main() {
       final project = TestProject.create();
       final runner = FakeRunner(synth: (_) => runStackEntry());
       final r = await project.run(
-        ['apply'],
+        ['apply', '--auto-approve'],
         runner,
         env: {'TERRADART_ENV': 'dev'},
       );
@@ -662,12 +675,19 @@ void main() {
           expect(fake.engineCalls, isEmpty);
         });
 
-        test('$command without input fails before the engine', () async {
+        test('$command without a terminal stops with exit code 3', () async {
           final project = TestProject.create();
           final fake = runner();
           final r = await project.run([command], fake);
-          expect(r.code, 1);
-          expect(r.err, contains('pass --env dev, or --auto-approve'));
+          expect(r.code, 3);
+          expect(
+            r.err,
+            contains(
+              'terradart: $command needs --auto-approve when it cannot ask '
+              '(no terminal).\n'
+              '  Next: terradart $command --env dev --auto-approve\n',
+            ),
+          );
           expect(fake.engineCalls, isEmpty);
         });
 
@@ -681,15 +701,23 @@ void main() {
           );
           expect(r.code, 0, reason: r.err);
           expect(r.out, isNot(contains('Only "yes" is accepted')));
-          expect(fake.engineCalls, contains('$command -auto-approve'));
+          expect(
+            fake.engineCalls,
+            contains('$command -input=false -auto-approve'),
+          );
         });
 
         test('$command --env does not ask', () async {
           final project = TestProject.create();
           final fake = runner();
-          final r = await project.run([command, '--env', 'dev'], fake);
+          final r = await project.run(
+            [command, '--env', 'dev'],
+            fake,
+            input: const [],
+          );
           expect(r.code, 0, reason: r.err);
           expect(r.out, isNot(contains('Only "yes" is accepted')));
+          expect(fake.engineCalls, contains(command));
         });
       }
     });
@@ -780,6 +808,7 @@ void main() {
           'apply',
           '--engine',
           'terraform',
+          '--auto-approve',
         ], runner);
         expect(first.code, 0, reason: first.err);
         final records = jsonDecode(

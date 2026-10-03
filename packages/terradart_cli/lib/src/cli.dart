@@ -9,6 +9,7 @@ import 'config.dart';
 import 'engine.dart';
 import 'init_command.dart';
 import 'migrate_command.dart';
+import 'output/interaction.dart';
 import 'process_runner.dart';
 import 'target.dart';
 import 'workflow.dart';
@@ -16,7 +17,8 @@ import 'workflow.dart';
 /// Runs the `terradart` command with [arguments] and returns its exit code.
 ///
 /// [runner], [console], [workingDirectory], [environment] (read for `PATH`,
-/// `TERRADART_ENV`, `TERRADART_CACHE_DIR` and `TERRADART_OPENTOFU_MIRROR`) and
+/// `TERRADART_ENV`, `TERRADART_NO_INPUT`, `CI`, the [agentVariables],
+/// `TERRADART_CACHE_DIR` and `TERRADART_OPENTOFU_MIRROR`) and
 /// [dartExecutable] replace the process, terminal and host in tests.
 Future<int> runTerradart(
   List<String> arguments, {
@@ -57,13 +59,41 @@ Future<int> runTerradart(
         ..addCommand(_EngineCommand(context))
         ..addCommand(_StateCommand(context))
         ..addCommand(MigrateCommand(io));
+  cli.argParser
+    ..addFlag(
+      'no-input',
+      negatable: false,
+      help:
+          'Never ask, even on a terminal; a command that needs an answer '
+          'stops with the flag that gives it. Also: \$$noInputVariable=1, '
+          '\$CI, or an AI agent\'s shell.',
+    )
+    ..addFlag(
+      'quiet',
+      abbr: 'q',
+      negatable: false,
+      help:
+          'Leave out the values terradart picks by itself (env, engine); '
+          'errors and warnings still print.',
+    );
   try {
-    return await cli.run(arguments) ?? 0;
+    final results = cli.parse(arguments);
+    io
+      ..noInput = noInputReason(
+        context.environment,
+        noInputFlag: results.flag('no-input'),
+      )
+      ..quiet = results.flag('quiet');
+    return await cli.runCommand(results) ?? 0;
   } on UsageException catch (e) {
     io.err('$e');
     return 64;
   } on CliException catch (e) {
     io.err('terradart: ${e.message}');
+    if (e.choices.isNotEmpty) io.err('  Choices: ${e.choices.join(', ')}');
+    for (final add in e.next) {
+      io.err('  Next: ${commandLine(arguments, add)}');
+    }
     return e.exitCode;
   }
 }
@@ -261,7 +291,7 @@ final class _SynthCommand extends _TerradartCommand {
     final flow = workflow(entryArgs: args.rest);
     final request = flow.request;
     if (request.env case final env?) {
-      context.console.out('env: $env (${request.envSource.label})');
+      context.console.info('env: $env (${request.envSource.label})');
     }
     await flow.synth();
     return 0;

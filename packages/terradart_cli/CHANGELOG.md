@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- **Breaking:** `terradart` asks only on a terminal — stdin and stdout both one — and never when `--no-input`, `TERRADART_NO_INPUT=1`, `CI`, or an AI agent's shell (`AI_AGENT`, `CURSOR_AGENT`, `CLAUDECODE`, `GEMINI_CLI`, `CODEX_SANDBOX`, `CODEX_THREAD_ID`, `OPENCODE`) says not to. Without an answer, `apply` and `destroy` need `--auto-approve` and otherwise stop before `init` with exit code 3; `state migrate` and the engine-switch guard stop with 3 instead of 64; and the engine gets `-input=false`. On a terminal, a missing `--env` is a question listing the environments (`env: stg (prompt)`), not an error. An error that a flag would fix prints up to three lines — the message, `Choices:` and `Next:`, the failed command with the flag added (`terradart plan --env dev`). `--quiet` (`-q`) leaves out the values terradart picked by itself (`env:`, `Using OpenTofu ...`). See `MIGRATING.md`.
+
 ## 0.34.0 - 2026-10-03
 
 - `terradart validate [--env <name>]` synthesizes, then runs `init -backend=false` and `validate` in the directory the entry point wrote, with the same engine as `plan` (managed OpenTofu when neither `tofu` nor `terraform` is on `PATH`). It needs no credentials, backend or state, so a CI job can check every environment; arguments after `--` go to `validate`.
