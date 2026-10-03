@@ -7,6 +7,7 @@ import 'package:args/command_runner.dart';
 import 'cli_exception.dart';
 import 'config.dart';
 import 'engine.dart';
+import 'help.dart';
 import 'init_command.dart';
 import 'migrate_command.dart';
 import 'output/exit_codes.dart';
@@ -41,30 +42,25 @@ Future<int> runTerradart(
     environment: environment ?? Platform.environment,
     dartExecutable: dartExecutable,
   );
-  final cli =
-      CommandRunner<int>(
-          'terradart',
-          'Create, synthesize, validate, plan and apply a TerraDart Stack with '
-              'OpenTofu or Terraform, and migrate an existing Terraform tree.',
-        )
-        ..addCommand(
-          InitCommand(
-            console: io,
-            cwd: context.cwd,
-            runner: runner,
-            dartExecutable: dartExecutable,
-          ),
-        )
-        ..addCommand(_SynthCommand(context))
-        ..addCommand(_ValidateCommand(context))
-        ..addCommand(_PlanCommand(context))
-        ..addCommand(_ApplyCommand(context))
-        ..addCommand(_DestroyCommand(context))
-        ..addCommand(_OutputsCommand(context))
-        ..addCommand(_EngineCommand(context))
-        ..addCommand(_StateCommand(context))
-        ..addCommand(MigrateCommand(io))
-        ..addCommand(SkillCommand(console: io, cwd: context.cwd));
+  final cli = TerradartRunner()
+    ..addCommand(
+      InitCommand(
+        console: io,
+        cwd: context.cwd,
+        runner: runner,
+        dartExecutable: dartExecutable,
+      ),
+    )
+    ..addCommand(_SynthCommand(context))
+    ..addCommand(_ValidateCommand(context))
+    ..addCommand(_PlanCommand(context))
+    ..addCommand(_ApplyCommand(context))
+    ..addCommand(_DestroyCommand(context))
+    ..addCommand(_OutputsCommand(context))
+    ..addCommand(_EngineCommand(context))
+    ..addCommand(_StateCommand(context))
+    ..addCommand(MigrateCommand(io))
+    ..addCommand(SkillCommand(console: io, cwd: context.cwd));
   cli.argParser
     ..addFlag(
       'no-input',
@@ -89,6 +85,23 @@ Future<int> runTerradart(
           'Print one JSON result on stdout (schemaVersion 1) and everything '
           'else on stderr; implies --no-input.',
     );
+  const globalFlags = {'--json', '--no-input', '--quiet', '-q'};
+  if (arguments.where((a) => !globalFlags.contains(a)).toList() case [
+    'help',
+    ...final rest,
+  ]) {
+    if (topicHelp(rest, cli) case final text?) {
+      if (!arguments.contains('--json')) {
+        io.out(text);
+      } else {
+        io
+          ..err(text)
+          ..printResult(JsonResult('help').encode(0));
+      }
+      return 0;
+    }
+  }
+
   final path = _commandPath(arguments, cli);
   // `--json` on `migrate` is the migrator's own report, wherever it is
   // written: a global one moves onto the command.
@@ -275,6 +288,16 @@ abstract class _TerradartCommand extends Command<int> {
 
   final _Context context;
 
+  /// The `Examples:` of `--help`: the simplest use first, the form an agent
+  /// runs (`--no-input --json`) last.
+  List<String> get examples;
+
+  /// The help topics `--help` points at.
+  List<String> get seeAlso => const [];
+
+  @override
+  String get usageFooter => commandFooter(examples, seeAlso: seeAlso);
+
   bool get runsEngine => true;
   bool get usesBackend => runsEngine;
   bool get synthesizes => true;
@@ -388,6 +411,16 @@ final class _SynthCommand extends _TerradartCommand {
   _SynthCommand(super.context);
 
   @override
+  List<String> get examples => const [
+    'terradart synth',
+    'terradart synth --env dev',
+    'terradart synth --env dev --no-input --json',
+  ];
+
+  @override
+  List<String> get seeAlso => const ['environments'];
+
+  @override
   String get name => 'synth';
 
   @override
@@ -412,6 +445,16 @@ final class _SynthCommand extends _TerradartCommand {
 
 final class _ValidateCommand extends _TerradartCommand {
   _ValidateCommand(super.context);
+
+  @override
+  List<String> get examples => const [
+    'terradart validate',
+    'terradart validate --env prd',
+    'terradart validate --env dev --no-input --json',
+  ];
+
+  @override
+  List<String> get seeAlso => const ['environments', 'exit-codes'];
 
   @override
   String get name => 'validate';
@@ -441,6 +484,16 @@ final class _PlanCommand extends _TerradartCommand {
       help: 'Exit 2 when the plan has changes, 0 when it has none.',
     );
   }
+
+  @override
+  List<String> get examples => const [
+    'terradart plan --env dev',
+    'terradart plan --env prd -- -target=google_storage_bucket.assets',
+    'terradart plan --env dev --detailed-exitcode --no-input --json',
+  ];
+
+  @override
+  List<String> get seeAlso => const ['environments', 'backends', 'json'];
 
   @override
   String get name => 'plan';
@@ -490,6 +543,16 @@ final class _ApplyCommand extends _TerradartCommand {
   }
 
   @override
+  List<String> get examples => const [
+    'terradart apply --env dev',
+    'terradart apply --env prd --dry-run',
+    'terradart apply --env dev --auto-approve --no-input --json',
+  ];
+
+  @override
+  List<String> get seeAlso => const ['environments', 'outputs'];
+
+  @override
   String get name => 'apply';
 
   @override
@@ -529,6 +592,16 @@ final class _DestroyCommand extends _TerradartCommand {
       help: 'Synth, init and plan -destroy, and stop there.',
     );
   }
+
+  @override
+  List<String> get examples => const [
+    'terradart destroy --env dev',
+    'terradart destroy --env dev --dry-run',
+    'terradart destroy --env dev --auto-approve --no-input --json',
+  ];
+
+  @override
+  List<String> get seeAlso => const ['environments', 'backends'];
 
   @override
   String get name => 'destroy';
@@ -571,6 +644,16 @@ final class _OutputsCommand extends _TerradartCommand {
   }
 
   @override
+  List<String> get examples => const [
+    'terradart outputs --env stg',
+    'terradart outputs --env stg --define-file ../app/dart_defines.json',
+    'terradart outputs --env stg --dry-run --no-input --json',
+  ];
+
+  @override
+  List<String> get seeAlso => const ['outputs'];
+
+  @override
   String get name => 'outputs';
 
   @override
@@ -603,6 +686,16 @@ final class _OutputsCommand extends _TerradartCommand {
 
 final class _EngineCommand extends _TerradartCommand {
   _EngineCommand(super.context);
+
+  @override
+  List<String> get examples => const [
+    'terradart engine',
+    'terradart engine --engine terraform',
+    'terradart engine --no-input --json',
+  ];
+
+  @override
+  List<String> get seeAlso => const ['engines'];
 
   @override
   String get name => 'engine';
@@ -660,6 +753,15 @@ final class _StateMigrateCommand extends _TerradartCommand {
       help: 'Move the state without asking (required without a terminal).',
     );
   }
+
+  @override
+  List<String> get examples => const [
+    'terradart state migrate --env dev',
+    'terradart state migrate --env dev --auto-approve --no-input --json',
+  ];
+
+  @override
+  List<String> get seeAlso => const ['backends', 'environments'];
 
   @override
   String get name => 'migrate';

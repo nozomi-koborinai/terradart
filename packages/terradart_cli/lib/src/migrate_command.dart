@@ -1,6 +1,7 @@
 import 'package:args/command_runner.dart';
 import 'package:terradart_migrate/terradart_migrate.dart';
 
+import 'help.dart';
 import 'workflow.dart';
 
 /// `terradart migrate`: the user-facing front end of `terradart_migrate`.
@@ -29,6 +30,17 @@ final class MigrateCommand extends Command<int> {
   @override
   String get invocation =>
       'terradart migrate (--dir <terraform dir> --out <package dir> | --report)';
+
+  @override
+  String get usageFooter => commandFooter(
+    [
+      'terradart migrate --report --dir infra',
+      'terradart migrate --dir infra --out infra_dart',
+      'terradart migrate --dir infra --out infra_dart --merge-envs',
+      'terradart migrate --report --dir infra --json',
+    ],
+    seeAlso: ['migrate', 'engines'],
+  );
 
   @override
   Future<int> run() => runMigrate(argResults!.arguments, _console);

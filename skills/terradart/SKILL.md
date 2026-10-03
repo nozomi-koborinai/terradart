@@ -3,7 +3,7 @@ name: terradart
 description: Write TerraDart infrastructure code (Dart that synthesizes Terraform JSON). Use when a task mentions TerraDart, a Dart `Stack`, `terradart_google` / `terradart_aws` / `terradart_cloudflare` / `terradart_appwrite` / `terradart_google_beta`, or translating Terraform (`.tf`) into Dart.
 metadata:
   terradart-version: "0.34.0"
-  terradart-sha256: "bf6d07b1e7f2b3a0e9fb40b1a20689d50b57df7e7b2652638da949d906eeae50"
+  terradart-sha256: "27ef5e7eef199e7302362a2c90e9ae80ebb13ee08e4dbd39b53c88ac47b76221"
 ---
 
 # TerraDart
@@ -168,7 +168,7 @@ terradart outputs    # synth, init, then writes the define file from the applied
 
 Arguments after `--` go to the engine (`terradart plan -- -target=...`), and `--no-synth` reuses the last synth.
 
-Run every `terradart` command with `--no-input --json`: it then never waits for an answer (it also stops asking in `CI` and in an agent's shell it recognizes), and stdout is one JSON object — read `ok`, `error.code`, `error.choices` and `next` from it instead of parsing the log on stderr. Where it needs an answer, it exits 3 (`apply` / `destroy` without `--auto-approve`) or 64 (no `--env`) and `next` holds the command to run; never add `--auto-approve` unless the user asked for the apply. `terradart apply --dry-run` (and `destroy --dry-run`) stops after the plan, and `terradart outputs --dry-run` lists the define keys without writing them. `terradart plan --detailed-exitcode` exits 2 when there are changes; 10 is the entry point failing (fix the Dart), 12 the engine (`error.engineExitCode`).
+Run every `terradart` command with `--no-input --json`: it then never waits for an answer (it also stops asking in `CI` and in an agent's shell it recognizes), and stdout is one JSON object — read `ok`, `error.code`, `error.choices` and `next` from it instead of parsing the log on stderr. Where it needs an answer, it exits 3 (`apply` / `destroy` without `--auto-approve`) or 64 (no `--env`) and `next` holds the command to run; never add `--auto-approve` unless the user asked for the apply. `terradart help agents` and `terradart help exit-codes` print the same rules in the terminal. `terradart apply --dry-run` (and `destroy --dry-run`) stops after the plan, and `terradart outputs --dry-run` lists the define keys without writing them. `terradart plan --detailed-exitcode` exits 2 when there are changes; 10 is the entry point failing (fix the Dart), 12 the engine (`error.engineExitCode`).
 
 **Environments are declared in Dart**, never in `pubspec.yaml`: an enum of your own, any member names, each carrying that environment's values. The Stack takes a member and `bin/infra.dart` hands the members to `runEnvironments`:
 

@@ -169,10 +169,12 @@ Examples:
       With the agent skill in .agents/skills/ and .claude/skills/.
   terradart init --dry-run --provider appwrite --defaults
       Lists the files, writes nothing.
+  terradart init --provider google --defaults --no-input --json
 
 Existing Terraform:
   terradart migrate --report --dir <dir>
-  terradart migrate --dir <dir> --out <package dir>''';
+  terradart migrate --dir <dir> --out <package dir>
+See also: terradart help environments, terradart help backends, terradart help agents''';
 
   bool get _interactive => _console.ask != null;
 
