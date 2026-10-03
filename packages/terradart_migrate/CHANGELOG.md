@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- `migrateTree` writes a `terradart:` section with `engine: terraform` into the generated `pubspec.yaml` — `engine: tofu` when a module directory holds a `.tofu` file or a `.terraform.lock.hcl` naming `registry.opentofu.org` — so the `terradart` command keeps the existing state on the engine that wrote it (`sourceEngine`, `renderPubspec(engine:)`).
+
 ## 0.33.0 - 2026-10-02
 
 - `bin/infra.dart` for one Stack calls `runStack`. `--merge-envs` calls `runEnvironments` over the generated `Env` enum (`dir: (env) => 'tf-out/${env.path}'`), so `terradart plan --env <name>` runs that environment. Several merged groups write every environment when `--env` is omitted, and call `runEnvironments` for the group a name selects.

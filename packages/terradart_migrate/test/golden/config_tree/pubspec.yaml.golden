@@ -11,3 +11,9 @@ dependencies:
 
 dev_dependencies:
   lints: ^6.0.0
+
+# The migrated tree's state was written by Terraform, so `terradart plan`
+# and `apply` keep running Terraform on it. Set `engine: tofu` to move the
+# state to OpenTofu at the next apply.
+terradart:
+  engine: terraform

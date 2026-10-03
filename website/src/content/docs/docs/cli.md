@@ -103,6 +103,14 @@ The download is the release pinned in `terradart_cli` (`opentofu_version` in `pu
 
 State written by one engine is not always readable by another: Terraform 1.6 and later and OpenTofu have diverged. When the engine about to run differs from the one that last applied the state, or is older, `terradart` warns before it runs.
 
+Without that record — right after a migration, or in a fresh clone, since `.terradart/` is not committed — `plan`, `apply` and `destroy` read the state itself: the local state file before `init`, and a remote backend's state (`state pull`) after it. Its provider addresses say which engine wrote it (`registry.terraform.io` or `registry.opentofu.org`), as does a `terraform_version` older than OpenTofu. When the other engine wrote it, `terradart` warns; and when it picked the engine by itself (step 3 to 5), it asks before running on a terminal, and without one stops with the flag that decides:
+
+```text
+terradart: Stopped before running OpenTofu on a state Terraform wrote. Pass --engine terraform to keep Terraform (or set terradart.engine: terraform in pubspec.yaml), or --engine tofu to move the state to OpenTofu.
+```
+
+`terradart migrate` writes `engine: terraform` into the package it generates, so a migrated project keeps the engine its state came from.
+
 ## `pubspec.yaml`
 
 Every key is optional.

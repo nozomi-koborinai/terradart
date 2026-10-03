@@ -300,6 +300,32 @@ void main() {
     expect(result.stdout, isNot(contains(migrateExecutableDeprecation)));
   });
 
+  test('the pubspec keeps the engine the tree was run with', () async {
+    final input = Directory(p.join(tmp.path, 'infra'))..createSync();
+    File(p.join(input.path, 'main.tf')).writeAsStringSync(
+      'resource "google_pubsub_topic" "t" { name = "orders" }\n',
+    );
+    Future<String> pubspec(String out) async {
+      final r = await _run(['--dir', input.path, '--out', out]);
+      expect(r.code, MigrateExitCodes.success, reason: r.err);
+      return File(p.join(out, 'pubspec.yaml')).readAsStringSync();
+    }
+
+    expect(
+      await pubspec(p.join(tmp.path, 'terraform')),
+      contains('terradart:\n  engine: terraform\n'),
+    );
+    File(p.join(input.path, '.terraform.lock.hcl')).writeAsStringSync(
+      'provider "registry.opentofu.org/hashicorp/google" {\n'
+      '  version = "7.0.0"\n'
+      '}\n',
+    );
+    expect(
+      await pubspec(p.join(tmp.path, 'tofu')),
+      contains('terradart:\n  engine: tofu\n'),
+    );
+  });
+
   test('--merge-envs writes runEnvironments for terradart --env', () async {
     final input = Directory(p.join(tmp.path, 'infra'));
     for (final env in ['dev', 'prod']) {
