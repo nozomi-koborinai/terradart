@@ -334,7 +334,59 @@ resource "google_pubsub_topic" "t" {
     expect(infra, contains("dir: (env) => 'tf-out/\${env.path}'"));
     expect(infra, contains('package:terradart_core/terradart_core.dart'));
     expect(File(p.join(out, 'lib/env.dart')).existsSync(), isTrue);
-    expect(r.out, contains('terradart plan --env dev'));
+    expect(r.out, contains('      then terradart plan --env dev\n'));
+  });
+
+  group('the Next hint runs the terradart command', () {
+    Future<String> migrate(Map<String, String> tree) async {
+      final input = Directory(p.join(tmp.path, 'infra'));
+      for (final e in tree.entries) {
+        File(p.join(input.path, e.key))
+          ..createSync(recursive: true)
+          ..writeAsStringSync(e.value);
+      }
+      final out = p.join(tmp.path, 'pkg');
+      final r = await _run(['--dir', input.path, '--out', out]);
+      expect(r.code, MigrateExitCodes.success, reason: r.err);
+      expect(
+        r.out,
+        contains('Next: cd $out && dart pub get && terradart synth\n'),
+      );
+      expect(r.out, isNot(contains('dart run bin/infra.dart')));
+      return r.out;
+    }
+
+    String topic(String name) =>
+        'resource "google_pubsub_topic" "t" { name = "$name" }\n';
+
+    test('one Stack: plan without --env', () async {
+      final out = await migrate({'main.tf': topic('t')});
+      expect(out, contains('      then terradart plan\n'));
+    });
+
+    test('a root at tf-out with a child Stack: plan without --env', () async {
+      final out = await migrate({
+        'main.tf': '${topic('t')}module "m" { source = "./modules/m" }\n',
+        'modules/m/main.tf': topic('m'),
+      });
+      expect(out, contains('      then terradart plan\n'));
+    });
+
+    test('unmerged roots: plan one by its directory name', () async {
+      final out = await migrate({
+        'envs/dev/main.tf': topic('dev'),
+        'envs/prod/main.tf': topic('prod'),
+      });
+      expect(out, contains('      then terradart plan --env dev\n'));
+    });
+
+    test('roots no --env tells apart: no plan line', () async {
+      final out = await migrate({
+        'a/app/main.tf': topic('a'),
+        'b/app/main.tf': topic('b'),
+      });
+      expect(out, isNot(contains('terradart plan')));
+    });
   });
 
   test('--lift-workspace tells terradart which workspace to select', () async {
