@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
 import 'package:path/path.dart' as p;
 import 'package:yaml/yaml.dart';
@@ -41,26 +42,44 @@ final class InitCommand extends Command<int> {
         abbr: 'e',
         valueHelp: 'names',
         help:
-            'The environments, comma-separated lowerCamelCase names '
-            '(default: dev,prd).',
+            'The environments, comma-separated lowerCamelCase names. '
+            'Required without a terminal, unless --defaults (dev,prd).',
       );
     for (final id in InitId.values) {
       argParser.addMultiOption(
         id.flag,
-        valueHelp: 'env=id',
-        help:
-            'The ${id.label} of each environment (--provider '
-            '${id.provider.name}); a bare id is every environment\'s. Left '
-            'out, lib/env.dart holds a placeholder marked TODO.',
+        valueHelp: 'env=value',
+        help: switch (id.provider) {
+          null =>
+            'The bucket that already holds the state, one for every '
+                'environment or env=name pairs; picks the backend from the '
+                'provider (google: gcs, aws: s3, cloudflare: r2) unless '
+                '--backend names it.',
+          final p =>
+            'The ${id.label} of each environment (--provider ${p.name}); '
+                'a bare value is every environment\'s. Left out, '
+                '${id.optional ? 'the provider takes any account' : 'lib/env.dart holds a placeholder marked TODO'}.',
+        },
       );
     }
     argParser
       ..addOption(
         'backend',
         allowed: [for (final b in InitBackend.values) b.name],
+        allowedHelp: {for (final b in InitBackend.values) b.name: b.label},
         help:
-            'Where the state lives (default: local). gcs and s3 need a '
-            'bucket that already exists.',
+            'Where the state lives. Required without a terminal, unless '
+            '--state-bucket or --defaults (local). A bucket must already '
+            'exist; r2 needs --provider cloudflare.',
+      )
+      ..addFlag(
+        'defaults',
+        negatable: false,
+        help:
+            'Take the defaults for what the flags leave out instead of '
+            'asking: --env dev,prd, --backend local, placeholder IDs, and '
+            'the Flutter wiring when there is an app. Never picks the '
+            'providers.',
       )
       ..addFlag(
         'flutter',
@@ -104,7 +123,8 @@ final class InitCommand extends Command<int> {
       'Create a TerraDart project in [dir] (default: infra/): pubspec.yaml, '
       'an Env enum, a Stack, bin/infra.dart, README.md and AGENTS.md, then '
       'dart pub get. In a terminal it asks for what the flags leave out; '
-      'otherwise it needs --provider and takes the defaults. Inside a Flutter app it wires the '
+      'without one it needs --provider, --env and --backend (or --defaults '
+      'for the last two). Inside a Flutter app it wires the '
       "app to the Stack's outputs. For an existing Terraform directory use "
       'terradart migrate.';
 
@@ -117,11 +137,15 @@ final class InitCommand extends Command<int> {
 Examples:
   terradart init
       Asks in a terminal.
-  terradart init --provider google
-      Without a terminal: infra/, environments dev and prd, local state.
-  terradart init infra --provider aws --env dev,stg,prd --backend s3
-  terradart init --provider google,cloudflare --gcp-project dev=acme-dev,prd=acme-prd --cloudflare-account 0123abcd
-  terradart init --dry-run --provider appwrite
+  terradart init --provider google --env dev,prd --backend local
+      Without a terminal: these three are required.
+  terradart init --provider google --defaults
+      The same: --defaults is --env dev,prd --backend local.
+  terradart init --provider google --env dev,prd --gcp-project dev=myapp-dev,prd=myapp-prd --state-bucket myapp-tfstate
+      State in an existing GCS bucket, under myapp_infra/<env>.
+  terradart init --provider aws --env dev,prd --aws-region dev=us-east-1,prd=eu-west-1 --aws-account prd=123456789012 --state-bucket dev=myapp-dev-tfstate,prd=myapp-prd-tfstate
+  terradart init --provider cloudflare --env prd --cloudflare-account 0123abcd --backend local
+  terradart init --dry-run --provider appwrite --defaults
       Lists the files, writes nothing.
 
 Existing Terraform:
@@ -159,6 +183,9 @@ Existing Terraform:
       }
     }
 
+    final useDefaults = args.flag('defaults');
+    if (!_interactive) _requireFlags(args, useDefaults);
+
     final flutterApp = _flutterAppName(_cwd);
     final flutterFlag = args.wasParsed('flutter') ? args.flag('flutter') : null;
     if (flutterFlag == true && flutterApp == null) {
@@ -173,28 +200,31 @@ Existing Terraform:
         : _askProviders();
     final envs = args.wasParsed('env')
         ? _flagEnvs(_split(args.multiOption('env')))
+        : useDefaults
+        ? _defaultEnvs
         : _askEnvs();
     final ids = <InitId, Map<String, String>>{};
     for (final id in InitId.values) {
-      final chosen = providers.contains(id.provider);
+      final provider = id.provider;
+      if (provider == null) continue;
+      final chosen = providers.contains(provider);
       if (args.wasParsed(id.flag)) {
         if (!chosen) {
-          usageException('--${id.flag} needs --provider ${id.provider.name}.');
+          usageException('--${id.flag} needs --provider ${provider.name}.');
         }
         ids[id] = _flagIds(id, args.multiOption(id.flag), envs);
-      } else if (chosen) {
+      } else if (chosen && !useDefaults) {
         final asked = _askIds(id, envs);
         if (asked.isNotEmpty) ids[id] = asked;
       }
     }
-    final backend = switch (args.option('backend')) {
-      final name? => InitBackend.parse(name),
-      null => _askBackend(),
-    };
+    final (backend, buckets) = _state(args, providers, envs, useDefaults);
+    if (buckets.isNotEmpty) ids[InitId.stateBucket] = buckets;
     final wire =
         flutterApp != null &&
         (flutterFlag ??
             (!_interactive ||
+                useDefaults ||
                 _confirmFlag(
                   'flutter',
                   'Flutter app "$flutterApp" found: generate its reader in '
@@ -216,14 +246,16 @@ Existing Terraform:
       flutter: wire ? _flutterApp(target) : null,
     );
     _checkFieldNames(plan);
-    final defaults = _interactive
+    final defaults = _interactive && !useDefaults
         ? const <String>[]
         : [
             if (!args.wasParsed('env')) '--env ${envs.join(',')}',
             for (final id in plan.idFields)
-              if (!args.wasParsed(id.flag))
+              if (!id.optional && !args.wasParsed(id.flag))
                 '--${id.flag} (placeholders marked TODO)',
-            if (args.option('backend') == null) '--backend local',
+            if (args.option('backend') == null &&
+                !args.wasParsed('state-bucket'))
+              '--backend local',
             if (flutterApp != null && flutterFlag == null) '--flutter',
           ];
 
@@ -290,8 +322,7 @@ Existing Terraform:
     _console
       ..out('')
       ..out(
-        plan.ids.length == plan.idFields.length &&
-                plan.backend == InitBackend.local
+        !plan.hasPlaceholders
             ? 'Next:'
             : 'Replace each placeholder marked TODO in '
                   '${_show(p.join(target, 'lib', 'env.dart'))}, then:',
@@ -300,9 +331,56 @@ Existing Terraform:
     for (final step in nextSteps(plan, cd: cd, pubGet: !pubGet)) {
       _console.out('  $step');
     }
+    if (plan.backend == InitBackend.local) {
+      _console
+        ..out('')
+        ..out('State is a local file under tf-out/<env>/. $moveStateNote');
+    }
     if (plan.has(InitProvider.appwrite)) _console.warn(appwriteEngineNote);
     _printRerun(plan, target, force: force);
     return 0;
+  }
+
+  /// Without a terminal nothing consequential is defaulted: fails, with a
+  /// command to edit, unless the flags give the providers, environments
+  /// and backend, or --defaults accepts the documented ones.
+  void _requireFlags(ArgResults args, bool useDefaults) {
+    final missing = [
+      if (!args.wasParsed('provider')) '--provider',
+      if (!args.wasParsed('env') && !useDefaults) '--env',
+      if (args.option('backend') == null &&
+          !args.wasParsed('state-bucket') &&
+          !useDefaults)
+        '--backend',
+    ];
+    if (missing.isEmpty) return;
+    String given(String flag, String example) =>
+        args.wasParsed(flag) ? args.multiOption(flag).join(',') : example;
+    final command = [
+      'terradart init',
+      ...args.rest,
+      '--provider ${given('provider', 'google')}',
+      if (!useDefaults || args.wasParsed('env'))
+        '--env ${given('env', _defaultEnvs.join(','))}',
+      if (args.wasParsed('state-bucket'))
+        '--state-bucket ${args.multiOption('state-bucket').join(',')}',
+      if (args.option('backend') != null ||
+          (!useDefaults && !args.wasParsed('state-bucket')))
+        '--backend ${args.option('backend') ?? InitBackend.local.name}',
+      if (useDefaults) '--defaults',
+    ].join(' ');
+    throw CliException(
+      'Without a terminal, terradart init asks nothing and needs '
+      '${missing.join(', ')}. Choose them (providers: '
+      '${InitProvider.values.map((p) => p.name).join(', ')}; backend: '
+      '${InitBackend.values.map((b) => b.name).join(', ')}) and run, for '
+      'example:\n'
+      '  $command\n'
+      '--state-bucket <name> instead of --backend keeps the state in a '
+      'bucket that exists; --defaults stands for --env '
+      '${_defaultEnvs.join(',')} --backend ${InitBackend.local.name}.',
+      exitCode: 64,
+    );
   }
 
   void _printDefaults(List<String> defaults) {
@@ -313,9 +391,12 @@ Existing Terraform:
   /// The non-interactive command for what was asked.
   void _printRerun(InitPlan plan, String target, {required bool force}) {
     if (_answered.isEmpty) return;
-    String pairs(Map<String, String> ids) => [
-      for (final MapEntry(:key, :value) in ids.entries) '$key=$value',
-    ].join(',');
+    String pairs(Map<String, String> ids) =>
+        ids.length == plan.envs.length && ids.values.toSet().length == 1
+        ? ids.values.first
+        : [
+            for (final MapEntry(:key, :value) in ids.entries) '$key=$value',
+          ].join(',');
     final command = [
       'terradart init',
       _posix(_rel(target)),
@@ -367,17 +448,34 @@ Existing Terraform:
         );
   }
 
-  List<String> _askEnvs() => _ask('env', 'Environments [dev,prd]: ', const [
-    'dev',
-    'prd',
-  ], (answer) => _checkEnvs(_split([answer])));
+  List<String> _askEnvs() => _ask(
+    'env',
+    'Environments [${_defaultEnvs.join(',')}]: ',
+    _defaultEnvs,
+    (answer) => _checkEnvs(_split([answer])),
+  );
 
   Map<String, String> _askIds(InitId id, List<String> envs) {
     final ids = <String, String>{};
+    if (!id.perEnv) {
+      final value = _ask<String?>(
+        id.flag,
+        '${id.label} [skip]: ',
+        null,
+        (answer) => switch (_checkId(answer)) {
+          null => (answer, null),
+          final problem => (null, problem),
+        },
+      );
+      return {
+        if (value != null)
+          for (final env in envs) env: value,
+      };
+    }
     for (final env in envs) {
       final value = _ask<String?>(
         id.flag,
-        '${id.label} for $env [skip]: ',
+        '${id.label} for $env${id.optional ? ' (optional)' : ''} [skip]: ',
         null,
         (answer) => switch (_checkId(answer)) {
           null => (answer, null),
@@ -389,18 +487,97 @@ Existing Terraform:
     return ids;
   }
 
-  InitBackend _askBackend() {
-    final names = [for (final b in InitBackend.values) b.name];
-    if (_interactive) {
-      _console.out(
-        'State backend: local keeps the state in a file under tf-out/; gcs '
-        'and s3 keep it in a bucket that must already exist.',
+  /// The backend, and the bucket of each environment when the flags or
+  /// the answers name one.
+  (InitBackend, Map<String, String>) _state(
+    ArgResults args,
+    List<InitProvider> providers,
+    List<String> envs,
+    bool useDefaults,
+  ) {
+    final flag = switch (args.option('backend')) {
+      final name? => InitBackend.parse(name),
+      null => null,
+    };
+    if (flag == InitBackend.r2 &&
+        !providers.contains(InitProvider.cloudflare)) {
+      usageException(
+        '--backend r2 needs --provider cloudflare: the bucket is in its '
+        'account.',
       );
     }
+    if (args.wasParsed(InitId.stateBucket.flag)) {
+      if (flag == InitBackend.local) {
+        usageException(
+          '--state-bucket: --backend local keeps no bucket; drop one of them.',
+        );
+      }
+      final buckets = _flagIds(
+        InitId.stateBucket,
+        args.multiOption(InitId.stateBucket.flag),
+        envs,
+      );
+      if (flag != null) return (flag, buckets);
+      final kinds = _bucketKinds(providers);
+      if (kinds case [final only]) return (only, buckets);
+      if (!_interactive) {
+        final named = kinds.isEmpty ? _anyBucket : kinds;
+        usageException(
+          '--state-bucket: pass --backend ${named.map((b) => b.name).join(' or ')} '
+          'too, for the kind of bucket.',
+        );
+      }
+      return (_askKind(kinds), buckets);
+    }
+    if (flag != null) return (flag, const {});
+    if (useDefaults || !_interactive) return (InitBackend.local, const {});
+
+    _console.out(
+      'Terraform state: without a bucket it is a local file under tf-out/, '
+      'fine to start with and moved to a bucket later.',
+    );
+    if (!_confirmFlag(
+      'backend',
+      'Do you already have a bucket for Terraform state?',
+      false,
+    )) {
+      return (InitBackend.local, const {});
+    }
+    final kind = _askKind(_bucketKinds(providers));
+    final buckets = _ask<Map<String, String>?>(
+      InitId.stateBucket.flag,
+      'Bucket name, one for every environment or env=name pairs: ',
+      null,
+      (answer) => _parseIds(InitId.stateBucket, _split([answer]), envs),
+      allowEmpty: false,
+    );
+    if (buckets == null) {
+      _console.err('No bucket name: the state stays local.');
+      return (InitBackend.local, const {});
+    }
+    return (kind, buckets);
+  }
+
+  /// The kind of bucket: the one [kinds] holds, else asked.
+  InitBackend _askKind(List<InitBackend> kinds) {
+    _answered.add('backend');
+    var options = kinds;
+    if (kinds case [InitBackend.r2]) {
+      if (_confirm('Is it a Cloudflare R2 bucket?', true)) {
+        return InitBackend.r2;
+      }
+      options = _anyBucket;
+    } else if (kinds case [final only]) {
+      _console.out('Taken as ${only.label} (--backend ${only.name}).');
+      return only;
+    } else if (kinds.isEmpty) {
+      options = _anyBucket;
+    }
+    final names = [for (final b in options) b.name];
     return _ask(
       'backend',
-      'State backend (${names.join(', ')}) [local]: ',
-      InitBackend.local,
+      'Which kind of bucket (${names.join(', ')}) [${names.first}]: ',
+      options.first,
       (answer) => names.contains(answer)
           ? (InitBackend.parse(answer), null)
           : (null, 'Pick one of ${names.join(', ')}.'),
@@ -464,28 +641,9 @@ Existing Terraform:
     List<String> values,
     List<String> envs,
   ) {
-    final ids = <String, String>{};
-    for (final value in values) {
-      final eq = value.indexOf('=');
-      final (keys, given) = eq < 0
-          ? (envs, value)
-          : ([value.substring(0, eq)], value.substring(eq + 1));
-      for (final env in keys) {
-        if (!envs.contains(env)) {
-          usageException(
-            '--${id.flag}: no environment "$env"; --env is ${envs.join(',')}.',
-          );
-        }
-        if (_checkId(given) case final problem?) {
-          usageException('--${id.flag}: $problem');
-        }
-        ids[env] = given;
-      }
-    }
-    return {
-      for (final env in envs)
-        if (ids.containsKey(env)) env: ids[env]!,
-    };
+    final (ids, problem) = _parseIds(id, values, envs);
+    if (problem != null) usageException('--${id.flag}: $problem');
+    return ids!;
   }
 
   FlutterApp _flutterApp(String target) => FlutterApp(
@@ -572,6 +730,54 @@ Existing Terraform:
     final rel = _rel(path);
     return rel == '.' ? 'the current directory' : _posix(rel);
   }
+}
+
+const _defaultEnvs = ['dev', 'prd'];
+
+const _anyBucket = [InitBackend.gcs, InitBackend.s3];
+
+/// The buckets the providers point at: google's is GCS, and so on.
+List<InitBackend> _bucketKinds(List<InitProvider> providers) => [
+  for (final p in providers)
+    ?switch (p) {
+      InitProvider.google => InitBackend.gcs,
+      InitProvider.aws => InitBackend.s3,
+      InitProvider.cloudflare => InitBackend.r2,
+      InitProvider.appwrite => null,
+    },
+];
+
+/// `<env>=<value>` pairs, or one value for every environment, by
+/// environment in [envs] order.
+(Map<String, String>?, String?) _parseIds(
+  InitId id,
+  List<String> values,
+  List<String> envs,
+) {
+  final ids = <String, String>{};
+  for (final value in values) {
+    final eq = value.indexOf('=');
+    final (keys, given) = eq < 0
+        ? (envs, value)
+        : ([value.substring(0, eq)], value.substring(eq + 1));
+    for (final env in keys) {
+      if (!envs.contains(env)) {
+        return (
+          null,
+          'no environment "$env"; the environments are ${envs.join(',')}.',
+        );
+      }
+      if (_checkId(given) case final problem?) return (null, problem);
+      ids[env] = given;
+    }
+  }
+  return (
+    {
+      for (final env in envs)
+        if (ids.containsKey(env)) env: ids[env]!,
+    },
+    null,
+  );
 }
 
 const _forceHint = 'Pass --force to scaffold a new project anyway.';

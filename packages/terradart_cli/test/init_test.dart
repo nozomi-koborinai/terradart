@@ -55,7 +55,7 @@ void main() {
   }
 
   test('defaults to infra/, dev and prd, local state', () async {
-    final r = await init(['-p', 'google']);
+    final r = await init(['-p', 'google', '--defaults']);
     expect(r.code, 0, reason: r.err);
     final infra = p.join(root, 'infra');
     expect(
@@ -125,16 +125,63 @@ void main() {
     expect(r.out, isNot(contains('Re-run with')));
   });
 
-  test('needs --provider without a terminal', () async {
-    final r = await init(['--env', 'dev']);
-    expect(r.code, 64);
+  test('without a terminal, names every missing flag and a command', () async {
+    final none = await init([]);
+    expect(none.code, 64);
     expect(
-      r.err,
+      none.err,
+      contains('needs --provider, --env, --backend. Choose them (providers: '),
+    );
+    expect(
+      none.err,
       contains(
-        'Pass --provider: one or more of google, aws, cloudflare, appwrite',
+        '  terradart init --provider google --env dev,prd --backend local\n'
+        '--state-bucket <name> instead of --backend keeps the state in a '
+        'bucket that exists; --defaults stands for --env dev,prd --backend '
+        'local.',
       ),
     );
+
+    final some = await init(['app', '-p', 'aws', '--env', 'qa']);
+    expect(some.code, 64);
+    expect(some.err, contains('needs --backend.'));
+    expect(
+      some.err,
+      contains(
+        '  terradart init app --provider aws --env qa --backend local\n',
+      ),
+    );
+
+    final defaults = await init(['--defaults']);
+    expect(defaults.code, 64);
+    expect(defaults.err, contains('needs --provider.'));
+    expect(
+      defaults.err,
+      contains('  terradart init --provider google --defaults\n'),
+    );
     expect(Directory(p.join(root, 'infra')).existsSync(), isFalse);
+    expect(Directory(p.join(root, 'app')).existsSync(), isFalse);
+  });
+
+  test('--defaults in a terminal asks only for the providers', () async {
+    final r = await init(['--defaults'], answers: ['aws']);
+    expect(r.code, 0, reason: r.err);
+    expect(r.asked, ['Providers, comma-separated names or numbers: ']);
+    expect(read('infra/lib/stack.dart'), contains('LocalBackend'));
+    expect(
+      r.out,
+      contains(
+        'Defaults: --env dev,prd, --aws-region (placeholders marked TODO), '
+        '--backend local.\n',
+      ),
+    );
+    expect(
+      r.out,
+      contains(
+        'Re-run with: terradart init infra --provider aws --env dev,prd '
+        '--backend local\n',
+      ),
+    );
   });
 
   test('prints no defaults for what the flags give', () async {
@@ -143,12 +190,16 @@ void main() {
       'aws',
       '--env',
       'dev',
+      '--aws-region',
+      'eu-west-1',
       '--backend',
       'local',
       '--no-pub-get',
     ]);
     expect(r.code, 0, reason: r.err);
     expect(r.out, isNot(contains('Defaults:')));
+    expect(r.out, contains('Next:\n'));
+    expect(read('infra/lib/env.dart'), contains("  dev(region: 'eu-west-1');"));
   });
 
   test('takes providers, environments and a backend from flags', () async {
@@ -191,6 +242,7 @@ void main() {
       'dev=acme-dev',
       '--cloudflare-account',
       '0123abcd',
+      '--defaults',
     ]);
     expect(r.code, 0, reason: r.err);
     final env = read('infra/lib/env.dart');
@@ -204,28 +256,65 @@ void main() {
   });
 
   test('names the flag an ID is wrong for', () async {
-    final google = await init(['-p', 'google', '--gcp-project', 'acme']);
+    final google = await init([
+      '-p',
+      'google',
+      '--gcp-project',
+      'acme',
+      '--defaults',
+    ]);
     expect(google.code, 0, reason: google.err);
-    final wrong = await init(['x', '-p', 'aws', '--gcp-project', 'acme']);
+    final wrong = await init([
+      'x',
+      '-p',
+      'aws',
+      '--gcp-project',
+      'acme',
+      '--defaults',
+    ]);
     expect(wrong.code, 64);
     expect(wrong.err, contains('--gcp-project needs --provider google.'));
-    final env = await init(['y', '-p', 'google', '--gcp-project', 'stg=acme']);
+    final env = await init([
+      'y',
+      '-p',
+      'google',
+      '--gcp-project',
+      'stg=acme',
+      '--defaults',
+    ]);
     expect(env.code, 64);
     expect(env.err, contains('--gcp-project: no environment "stg"'));
-    final quote = await init(['z', '-p', 'google', '--gcp-project', "it's"]);
+    final quote = await init([
+      'z',
+      '-p',
+      'google',
+      '--gcp-project',
+      "it's",
+      '--defaults',
+    ]);
     expect(quote.code, 64);
     expect(quote.err, contains('--gcp-project: "it\'s" is not an ID'));
   });
 
   test('names the Appwrite project projectId without google', () async {
-    expect((await init(['a', '-p', 'appwrite'])).code, 0);
+    expect((await init(['a', '-p', 'appwrite', '--defaults'])).code, 0);
     expect(read('a/lib/env.dart'), contains('final String projectId;'));
-    expect((await init(['b', '-p', 'google,appwrite'])).code, 0);
+    expect((await init(['b', '-p', 'google,appwrite', '--defaults'])).code, 0);
     expect(read('b/lib/env.dart'), contains('final String appwriteProjectId;'));
   });
 
   test('S3 state without aws gets a region of its own', () async {
-    expect((await init(['a', '-p', 'cloudflare', '--backend', 's3'])).code, 0);
+    expect(
+      (await init([
+        'a',
+        '-p',
+        'cloudflare',
+        '--backend',
+        's3',
+        '--defaults',
+      ])).code,
+      0,
+    );
     expect(read('a/lib/env.dart'), contains('final String stateRegion;'));
     expect(read('a/lib/stack.dart'), contains('region: env.stateRegion,'));
   });
@@ -240,10 +329,11 @@ void main() {
         'qa,prod',
         'acme-qa',
         '',
-        '',
         "it's",
-        'cf-prod',
-        'gcs',
+        'cf-1',
+        'y',
+        'r2',
+        'qa=acme-qa-state,prod=acme-state',
       ],
     );
     expect(r.code, 0, reason: r.err);
@@ -254,27 +344,173 @@ void main() {
       'Environments [dev,prd]: ',
       'Google Cloud project ID for qa [skip]: ',
       'Google Cloud project ID for prod [skip]: ',
-      'Cloudflare account ID for qa [skip]: ',
-      'Cloudflare account ID for prod [skip]: ',
-      'Cloudflare account ID for prod [skip]: ',
-      'State backend (local, gcs, s3) [local]: ',
+      'Cloudflare account ID [skip]: ',
+      'Cloudflare account ID [skip]: ',
+      'Do you already have a bucket for Terraform state? [y/N] ',
+      'Which kind of bucket (gcs, r2) [gcs]: ',
+      'Bucket name, one for every environment or env=name pairs: ',
     ]);
     expect(r.out, contains('  1) google\n  2) aws\n'));
-    expect(r.out, contains('gcs and s3 keep it in a bucket that must already'));
+    expect(r.out, contains('without a bucket it is a local file'));
     expect(r.err, contains('Pick from google, aws, cloudflare, appwrite'));
     expect(r.err, contains('Environment "Dev" is not a lowerCamelCase'));
     final env = read('app/lib/env.dart');
     expect(env, contains("projectId: 'acme-qa'"));
-    expect(env, contains("accountId: 'cf-prod'"));
-    expect(read('app/lib/stack.dart'), contains('GcsBackend('));
+    expect("accountId: 'cf-1'".allMatches(env), hasLength(2));
+    expect(env, contains("stateBucket: 'acme-state'"));
+    expect(env, isNot(contains('TODO: create this bucket')));
+    final stack = read('app/lib/stack.dart');
+    expect(stack, contains('S3Backend.r2('));
+    expect(stack, contains('accountId: env.accountId,'));
+    expect(stack, contains(r"key: 'app/${env.name}/terraform.tfstate',"));
     expect(
       r.out,
       contains(
         'Re-run with: terradart init app --provider google,cloudflare '
-        '--env qa,prod --gcp-project qa=acme-qa --cloudflare-account '
-        'prod=cf-prod --backend gcs\n',
+        '--env qa,prod --gcp-project qa=acme-qa --cloudflare-account cf-1 '
+        '--state-bucket qa=acme-qa-state,prod=acme-state --backend r2\n',
       ),
     );
+  });
+
+  test('no bucket keeps the state local, and says how to move it', () async {
+    final r = await init(
+      ['app'],
+      answers: ['aws', '', 'us-west-2', '', '', '111122223333', 'n'],
+    );
+    expect(r.code, 0, reason: r.err);
+    expect(r.asked, [
+      'Providers, comma-separated names or numbers: ',
+      'Environments [dev,prd]: ',
+      'AWS region for dev [skip]: ',
+      'AWS region for prd [skip]: ',
+      'AWS account ID for dev (optional) [skip]: ',
+      'AWS account ID for prd (optional) [skip]: ',
+      'Do you already have a bucket for Terraform state? [y/N] ',
+    ]);
+    final env = read('app/lib/env.dart');
+    expect(env, contains("  dev(region: 'us-west-2', awsAccountId: null),"));
+    expect(
+      env,
+      contains(
+        "    // TODO: your AWS region.\n    region: 'us-east-1',\n"
+        "    awsAccountId: '111122223333',",
+      ),
+    );
+    expect(env, contains('final String? awsAccountId;'));
+    final stack = read('app/lib/stack.dart');
+    expect(stack, contains('allowedAccountIds: switch (env.awsAccountId) {'));
+    expect(stack, contains('LocalBackend'));
+    expect(r.out, contains('then run `terradart state migrate`.\n'));
+    expect(r.out, isNot(contains('-migrate-state')));
+    expect(read('app/README.md'), contains('`terradart state migrate`'));
+    expect(
+      r.out,
+      contains(
+        'Re-run with: terradart init app --provider aws --env dev,prd '
+        '--aws-region dev=us-west-2 --aws-account prd=111122223333 '
+        '--backend local\n',
+      ),
+    );
+  });
+
+  test('a bucket of the one provider needs no kind question', () async {
+    final r = await init(['app'], answers: ['google', '', '', '', 'y', 'tf']);
+    expect(r.code, 0, reason: r.err);
+    expect(r.asked.last, startsWith('Bucket name'));
+    expect(
+      r.out,
+      contains('Taken as a Google Cloud Storage bucket (--backend gcs).'),
+    );
+    expect(
+      read('app/lib/stack.dart'),
+      contains(
+        r"GcsBackend(bucket: env.stateBucket, prefix: 'app/${env.name}')",
+      ),
+    );
+    expect(
+      "stateBucket: 'tf'".allMatches(read('app/lib/env.dart')),
+      hasLength(2),
+    );
+    expect(r.out, contains('--state-bucket tf --backend gcs\n'));
+    expect(r.out, isNot(contains('terradart state migrate')));
+  });
+
+  test('a Cloudflare bucket that is not R2 is asked for its kind', () async {
+    final r = await init(
+      ['app'],
+      answers: ['cloudflare', 'prd', 'cf', 'y', 'n', 's3', 'state'],
+    );
+    expect(r.code, 0, reason: r.err);
+    expect(r.asked.sublist(3), [
+      'Do you already have a bucket for Terraform state? [y/N] ',
+      'Is it a Cloudflare R2 bucket? [Y/n] ',
+      'Which kind of bucket (gcs, s3) [gcs]: ',
+      'Bucket name, one for every environment or env=name pairs: ',
+    ]);
+    expect(read('app/lib/env.dart'), contains('final String stateRegion;'));
+    expect(read('app/lib/stack.dart'), contains('S3Backend(\n'));
+  });
+
+  group('--state-bucket', () {
+    test('takes the backend from the provider', () async {
+      final r = await init([
+        '-p',
+        'aws',
+        '--env',
+        'dev,prd',
+        '--state-bucket',
+        'dev=a,prd=b',
+      ]);
+      expect(r.code, 0, reason: r.err);
+      final env = read('infra/lib/env.dart');
+      expect(env, contains("stateBucket: 'a'"));
+      expect(env, contains("stateBucket: 'b'"));
+      expect(read('infra/lib/stack.dart'), contains('S3Backend('));
+      expect(r.out, isNot(contains('--backend local')));
+    });
+
+    test('needs --backend when the providers do not settle it', () async {
+      for (final providers in ['google,aws', 'appwrite']) {
+        final r = await init([
+          '-p',
+          providers,
+          '--defaults',
+          '--state-bucket',
+          'tf',
+        ]);
+        expect(r.code, 64, reason: providers);
+        expect(r.err, contains('pass --backend '), reason: providers);
+      }
+      final r = await init([
+        '-p',
+        'google,aws',
+        '--defaults',
+        '--state-bucket',
+        'tf',
+        '--backend',
+        's3',
+      ]);
+      expect(r.code, 0, reason: r.err);
+      expect(read('infra/lib/stack.dart'), contains('S3Backend('));
+    });
+
+    test('contradicts --backend local, and r2 needs cloudflare', () async {
+      final local = await init([
+        '-p',
+        'google',
+        '--defaults',
+        '--state-bucket',
+        'tf',
+        '--backend',
+        'local',
+      ]);
+      expect(local.code, 64);
+      expect(local.err, contains('--backend local keeps no bucket'));
+      final r2 = await init(['-p', 'aws', '--defaults', '--backend', 'r2']);
+      expect(r2.code, 64);
+      expect(r2.err, contains('--backend r2 needs --provider cloudflare'));
+    });
   });
 
   test('an empty answer or end of input takes the default', () async {
@@ -318,7 +554,7 @@ void main() {
       expect(r.err, contains('Pass --force'));
       expect(Directory(p.join(root, 'infra')).existsSync(), isFalse);
 
-      final forced = await init(['--force', '-p', 'google']);
+      final forced = await init(['--force', '-p', 'google', '--defaults']);
       expect(forced.code, 0, reason: forced.err);
       expect(exists('infra/lib/stack.dart'), isTrue);
     });
@@ -356,11 +592,11 @@ void main() {
     ]) {
       touch(skipped);
     }
-    expect((await init(['-p', 'google', '--dry-run'])).code, 0);
+    expect((await init(['-p', 'google', '--dry-run', '--defaults'])).code, 0);
 
     touch('envs/dev/main.tf');
     touch('modules/net/net.tf.json');
-    final r = await init(['-p', 'google']);
+    final r = await init(['-p', 'google', '--defaults']);
     expect(r.code, 1);
     expect(
       r.err,
@@ -376,7 +612,7 @@ void main() {
     File(p.join(other, 'stacks', 'main.tf'))
       ..parent.createSync(recursive: true)
       ..writeAsStringSync('');
-    final r = await init(['../old', '-p', 'google']);
+    final r = await init(['../old', '-p', 'google', '--defaults']);
     expect(r.code, 1);
     expect(r.err, contains('Found Terraform in ../old/stacks.'));
     expect(r.err, contains('terradart migrate --dir ../old --out ../old_dart'));
@@ -384,7 +620,7 @@ void main() {
 
   test('refuses to overwrite a file unless --force', () async {
     File(p.join(root, 'pubspec.yaml')).writeAsStringSync('name: mine\n');
-    final r = await init(['.', '-p', 'google']);
+    final r = await init(['.', '-p', 'google', '--defaults']);
     expect(r.code, 1);
     expect(
       r.err,
@@ -393,14 +629,14 @@ void main() {
     expect(read('pubspec.yaml'), 'name: mine\n');
     expect(exists('lib/env.dart'), isFalse);
 
-    final forced = await init(['.', '-p', 'google', '--force']);
+    final forced = await init(['.', '-p', 'google', '--force', '--defaults']);
     expect(forced.code, 0, reason: forced.err);
     expect(read('pubspec.yaml'), contains('name: acme\n'));
     expect(forced.out, isNot(contains('  cd ')));
   });
 
   test('--dry-run lists the files and writes nothing', () async {
-    final r = await init(['--dry-run', '-p', 'aws']);
+    final r = await init(['--dry-run', '-p', 'aws', '--defaults']);
     expect(r.code, 0, reason: r.err);
     expect(r.out, contains('Would write acme_infra in infra'));
     expect(r.out, contains('  lib/stack.dart\n'));
@@ -409,14 +645,21 @@ void main() {
     expect(r.runner.calls, isEmpty);
 
     File(p.join(root, 'README.md')).writeAsStringSync('mine\n');
-    expect((await init(['.', '--dry-run', '-p', 'aws'])).code, 1);
-    final forced = await init(['.', '--dry-run', '-p', 'aws', '--force']);
+    expect((await init(['.', '--dry-run', '-p', 'aws', '--defaults'])).code, 1);
+    final forced = await init([
+      '.',
+      '--dry-run',
+      '-p',
+      'aws',
+      '--force',
+      '--defaults',
+    ]);
     expect(forced.out, contains('  README.md (overwrite)\n'));
     expect(read('README.md'), 'mine\n');
   });
 
   test('a failing dart pub get keeps the files and says so', () async {
-    final r = await init(['-p', 'google'], failOn: 'pub');
+    final r = await init(['-p', 'google', '--defaults'], failOn: 'pub');
     expect(r.code, 1);
     expect(r.err, contains('dart pub get failed in infra (exit 1)'));
     expect(exists('infra/pubspec.yaml'), isTrue);
@@ -424,7 +667,14 @@ void main() {
 
   test('rejects an environment an enum member cannot be named', () async {
     for (final bad in ['prd-eu', '1st', 'values', 'dev,dev', 'projectId']) {
-      final r = await init(['-p', 'google', '--env', bad]);
+      final r = await init([
+        '-p',
+        'google',
+        '--backend',
+        'local',
+        '--env',
+        bad,
+      ]);
       expect(r.code, 64, reason: bad);
       expect(r.err, contains('--env: '), reason: bad);
     }
@@ -456,7 +706,7 @@ void main() {
     });
 
     test('scaffolds infra/ wired to the app', () async {
-      final r = await init(['-p', 'google']);
+      final r = await init(['-p', 'google', '--defaults']);
       expect(r.code, 0, reason: r.err);
       expect(r.out, contains('--backend local, --flutter.\n'));
       expect(read('infra/pubspec.yaml'), contains('name: shop_infra\n'));
@@ -487,13 +737,16 @@ void main() {
       expect(read('a/lib/stack.dart'), isNot(contains('appExports')));
       expect(r.out, contains('--backend local --no-flutter\n'));
 
-      expect((await init(['b', '-p', 'google', '--no-flutter'])).code, 0);
+      expect(
+        (await init(['b', '-p', 'google', '--no-flutter', '--defaults'])).code,
+        0,
+      );
       expect(read('b/lib/stack.dart'), isNot(contains('appExports')));
     });
   });
 
   test('--flutter outside a Flutter app is a usage error', () async {
-    final r = await init(['--flutter']);
+    final r = await init(['--flutter', '-p', 'google', '--defaults']);
     expect(r.code, 64);
     expect(r.err, contains('--flutter: no Flutter app'));
   });

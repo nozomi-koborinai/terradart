@@ -19,9 +19,14 @@ enum InitProvider {
 
 /// Where the scaffolded Stack keeps its state.
 enum InitBackend {
-  local,
-  gcs,
-  s3;
+  local('a file under tf-out/'),
+  gcs('a Google Cloud Storage bucket'),
+  s3('an AWS S3 bucket'),
+  r2('a Cloudflare R2 bucket');
+
+  const InitBackend(this.label);
+
+  final String label;
 
   static InitBackend parse(String name) =>
       values.firstWhere((b) => b.name == name);
@@ -51,24 +56,48 @@ final class FlutterApp {
   final String appDir;
 }
 
-/// A per-environment ID `terradart init` takes with a flag or a question,
-/// `<env>=<id>`: left out, the field holds a placeholder and a TODO.
+/// A per-environment value `terradart init` takes with a flag or a
+/// question, `<env>=<value>` or one value for every environment: left out,
+/// the field holds a placeholder and a TODO.
 enum InitId {
   gcpProject(InitProvider.google, 'gcp-project', 'Google Cloud project ID'),
+  awsRegion(InitProvider.aws, 'aws-region', 'AWS region'),
+  awsAccount(InitProvider.aws, 'aws-account', 'AWS account ID', optional: true),
   cloudflareAccount(
     InitProvider.cloudflare,
     'cloudflare-account',
     'Cloudflare account ID',
+    perEnv: false,
+  ),
+  appwriteEndpoint(
+    InitProvider.appwrite,
+    'appwrite-endpoint',
+    'Appwrite API endpoint',
+    perEnv: false,
   ),
   appwriteProject(
     InitProvider.appwrite,
     'appwrite-project',
     'Appwrite project ID',
-  );
+  ),
+  stateBucket(null, 'state-bucket', 'state bucket');
 
-  const InitId(this.provider, this.flag, this.label);
+  const InitId(
+    this.provider,
+    this.flag,
+    this.label, {
+    this.optional = false,
+    this.perEnv = true,
+  });
 
-  final InitProvider provider;
+  /// The provider it belongs to; `null` for the state bucket.
+  final InitProvider? provider;
+
+  /// Left out, the field is `null` rather than a placeholder.
+  final bool optional;
+
+  /// Usually differs between environments, so a question asks each one.
+  final bool perEnv;
 
   /// The `terradart init` option, without `--`.
   final String flag;
@@ -117,11 +146,22 @@ final class InitPlan {
     if (has(InitProvider.google)) 'terradart_time',
   }.toList()..sort();
 
-  /// The IDs the chosen providers take.
+  /// The values the chosen providers and backend take.
   List<InitId> get idFields => [
     for (final id in InitId.values)
-      if (has(id.provider)) id,
+      if (switch (id.provider) {
+        final p? => has(p),
+        null => backend != InitBackend.local,
+      })
+        id,
   ];
+
+  /// Whether `lib/env.dart` holds a placeholder marked TODO.
+  bool get hasPlaceholders => fields.any(
+    (f) =>
+        f.todo != null &&
+        envs.any((env) => f.id == null || ids[f.id]?[env] == null),
+  );
 
   /// The [Env] fields, in declaration order.
   List<EnvField> get fields {
@@ -140,7 +180,22 @@ final class InitPlan {
           (_) => 'us-central1',
         ),
       ],
-      if (aws) EnvField(_awsRegion, 'The AWS region.', (_) => 'us-east-1'),
+      if (aws) ...[
+        EnvField(
+          _awsRegion,
+          'The AWS region.',
+          (_) => 'us-east-1',
+          id: InitId.awsRegion,
+        ),
+        if (ids[InitId.awsAccount]?.isNotEmpty ?? false)
+          EnvField(
+            'awsAccountId',
+            'The AWS account the Stack may deploy to: the provider refuses '
+                'credentials of any other.',
+            null,
+            id: InitId.awsAccount,
+          ),
+      ],
       if (has(InitProvider.cloudflare))
         EnvField(
           'accountId',
@@ -151,8 +206,10 @@ final class InitPlan {
       if (has(InitProvider.appwrite)) ...[
         EnvField(
           'appwriteEndpoint',
-          'The Appwrite API endpoint.',
+          'The Appwrite API endpoint: on Appwrite Cloud, '
+              '`https://<region>.cloud.appwrite.io/v1`.',
           (_) => 'https://cloud.appwrite.io/v1',
+          id: InitId.appwriteEndpoint,
         ),
         EnvField(
           _appwriteProjectField,
@@ -164,9 +221,11 @@ final class InitPlan {
       if (backend != InitBackend.local)
         EnvField(
           'stateBucket',
-          'The ${backend == InitBackend.gcs ? 'GCS' : 'S3'} bucket holding '
-              "this environment's Terraform state.",
+          'The ${backend.name.toUpperCase()} bucket holding this '
+              "environment's Terraform state, under ${backend == InitBackend.gcs ? 'the prefix' : 'a key'} "
+              'named after the package and the environment.',
           (env) => '$slug-$env-tfstate',
+          id: InitId.stateBucket,
           todo: 'create this bucket before the first `terradart plan`.',
         ),
       if (backend == InitBackend.s3 && !aws)
@@ -189,11 +248,16 @@ final class InitPlan {
 /// One field of the generated `Env` enum, and its value per environment.
 final class EnvField {
   EnvField(this.name, this.doc, this.placeholder, {this.id, String? todo})
-    : todo = todo ?? (id == null ? null : 'your ${id.label}.');
+    : todo =
+          todo ??
+          (id == null || placeholder == null ? null : 'your ${id.label}.');
 
   final String name;
   final String doc;
-  final String Function(String env) placeholder;
+
+  /// The value of an environment the flags leave out; `null` makes the
+  /// field nullable, and leaves it `null`.
+  final String Function(String env)? placeholder;
 
   /// The flag that sets it, when it takes one.
   final InitId? id;
@@ -237,6 +301,7 @@ npx skills add nozomi-koborinai/terradart --skill terradart
 - Environments (${plan.envs.map((e) => '`$e`').join(', ')}) and their values are the `Env` enum in `lib/env.dart`; resources go in `lib/stack.dart`.
 - `tf-out/` and `.terradart/` are generated: never edit them by hand.
 - Apply changes real infrastructure: run `terradart plan` and have a human approve before `terradart apply`.
+- Before running `terradart init` for another project, or again with `--force`, ask the human for the providers, the environment names and the state backend; never choose them yourself.
 ''';
 }
 
@@ -267,7 +332,8 @@ String _env(InitPlan plan) {
     for (final f in fields) {
       final given = f.id == null ? null : plan.ids[f.id]?[env];
       if (given == null && f.todo != null) b.writeln('    // TODO: ${f.todo}');
-      b.writeln("    ${f.name}: '${given ?? f.placeholder(env)}',");
+      final value = given ?? f.placeholder?.call(env);
+      b.writeln("    ${f.name}: ${value == null ? 'null' : "'$value'"},");
     }
     b.writeln('  )${last ? ';' : ','}');
   }
@@ -280,11 +346,16 @@ String _env(InitPlan plan) {
     b
       ..writeln()
       ..write(_docComment(f.doc, '  '))
-      ..writeln('  final String ${f.name};');
+      ..writeln('  final String${_nullable(plan, f) ? '?' : ''} ${f.name};');
   }
   b.writeln('}');
   return '$b';
 }
+
+/// Whether an environment leaves [f] `null`.
+bool _nullable(InitPlan plan, EnvField f) =>
+    f.placeholder == null &&
+    plan.envs.any((env) => plan.ids[f.id]?[env] == null);
 
 /// [text] as `///` lines of at most 80 columns.
 String _docComment(String text, String indent) {
@@ -330,7 +401,7 @@ String _stack(InitPlan plan) {
     if (google) 'GoogleProvider(project: env.projectId, region: env.region)',
     if (google) 'const TimeProvider()',
     if (plan.has(InitProvider.aws))
-      'AwsProvider(region: env.${plan._awsRegion})',
+      'AwsProvider(region: env.${plan._awsRegion}${_awsAccounts(plan)})',
     if (plan.has(InitProvider.cloudflare)) 'const CloudflareProvider()',
     if (plan.has(InitProvider.appwrite))
       'AppwriteProvider(\n'
@@ -338,7 +409,7 @@ String _stack(InitPlan plan) {
           '            projectId: env.${plan._appwriteProjectField},\n'
           '          )',
   ];
-  final stateKey = plan.packageName;
+  final stateKey = '${plan.packageName}/\${env.name}';
   final backend = switch (plan.backend) {
     InitBackend.local => 'const LocalBackend()',
     InitBackend.gcs =>
@@ -348,6 +419,12 @@ String _stack(InitPlan plan) {
           '          bucket: env.stateBucket,\n'
           "          key: '$stateKey/terraform.tfstate',\n"
           '          region: env.${plan.has(InitProvider.aws) ? plan._awsRegion : 'stateRegion'},\n'
+          '        )',
+    InitBackend.r2 =>
+      'S3Backend.r2(\n'
+          '          accountId: env.accountId,\n'
+          '          bucket: env.stateBucket,\n'
+          "          key: '$stateKey/terraform.tfstate',\n"
           '        )',
   };
 
@@ -434,6 +511,16 @@ $body  }
 ''';
 }
 
+String _awsAccounts(InitPlan plan) {
+  final field = plan.fields.where((f) => f.id == InitId.awsAccount);
+  if (field.isEmpty) return '';
+  if (!_nullable(plan, field.single)) {
+    return ', allowedAccountIds: [env.awsAccountId]';
+  }
+  return ', allowedAccountIds: switch (env.awsAccountId) '
+      '{final id? => [id], null => null}';
+}
+
 String _entry(InitPlan plan) =>
     '''
 import 'package:${plan.packageName}/env.dart';
@@ -487,16 +574,18 @@ String _readme(InitPlan plan) {
     if (plan.backend == InitBackend.s3)
       '- State: create each `stateBucket` (`aws s3 mb s3://<bucket>`) before '
           'the first plan.',
+    if (plan.backend == InitBackend.r2)
+      '- State: create each `stateBucket` in R2, and export an R2 API token '
+          'as `AWS_ACCESS_KEY_ID` / `AWS_SECRET_ACCESS_KEY`.',
   ];
   final state = switch (plan.backend) {
     InitBackend.local =>
-      "State is a local file, `tf-out/<env>/terraform.tfstate`, kept out of "
-          'git. Move it to a bucket (`GcsBackend` or `S3Backend` in '
-          '`lib/stack.dart`) before anyone else applies.',
-    InitBackend.gcs =>
-      'State is in the GCS bucket `stateBucket` of each environment.',
-    InitBackend.s3 =>
-      'State is in the S3 bucket `stateBucket` of each environment.',
+      'State is a local file, `tf-out/<env>/terraform.tfstate`, kept out of '
+          'git. $moveStateNote',
+    _ =>
+      'State is in the ${plan.backend.name.toUpperCase()} bucket '
+          '`stateBucket` of each environment, under '
+          '`${plan.packageName}/<env>`.',
   };
   final steps = [
     'dart pub get',
@@ -545,6 +634,12 @@ $flutter
 Guides: [The terradart command](https://terradart.dev/docs/cli/), [Environments](https://terradart.dev/docs/environments/), [Writing arguments](https://terradart.dev/docs/arguments/).
 ''';
 }
+
+/// How local state moves to a bucket; `terradart init` only scaffolds.
+const moveStateNote =
+    'Move it to a bucket before anyone else applies: set `backend:` in '
+    '`lib/stack.dart` to `GcsBackend`, `S3Backend` or `S3Backend.r2`, then run '
+    '`terradart state migrate`.';
 
 /// The OpenTofu registry has no `appwrite/appwrite`, so the downloaded
 /// OpenTofu cannot install it.

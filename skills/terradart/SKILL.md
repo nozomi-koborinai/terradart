@@ -7,6 +7,17 @@ description: Write TerraDart infrastructure code (Dart that synthesizes Terrafor
 
 TerraDart factories are generated Dart classes, one per Terraform resource or data source. They are committed to the provider packages, so you can read the exact constructor, its doc comment and a runnable example instead of guessing a name.
 
+## Start a new project
+
+`terradart init` (from `dart pub global activate terradart_cli`) writes a project that plans as it is. Without a terminal it never asks and never picks a provider, the environments or the state backend for you. **Ask the human for all three before you run it**, then pass them as flags:
+
+```bash
+terradart init --provider google --env dev,prd --backend local
+terradart init --dry-run --provider aws --env dev,prd --backend s3   # list the files first
+```
+
+For a bucket that already holds the state, pass `--state-bucket <name>` (or `<env>=<name>` pairs) instead of `--backend`: the backend follows the provider (GCS, S3, Cloudflare R2). `--defaults` stands for `--env dev,prd --backend local`; pass it only when the human chose those. Project and account IDs you leave out become placeholders marked `TODO` in `lib/env.dart`. A directory that already holds `*.tf` files is a migration (see [Existing Terraform](#existing-terraform)), not a new project.
+
 ## 1. Pick the package
 
 | Terraform type | Package | Import |

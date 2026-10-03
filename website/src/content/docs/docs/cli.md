@@ -45,22 +45,28 @@ dart run terradart_cli:terradart apply
 `terradart init` writes a project that plans as it is — `pubspec.yaml`, an `Env` enum in `lib/env.dart`, a Stack with one resource and one output in `lib/stack.dart`, `bin/infra.dart`, a `.gitignore`, a `README.md` and an `AGENTS.md` — then runs `dart pub get` in it (`--no-pub-get` skips that):
 
 ```bash
-terradart init infra --provider aws --env dev,stg,prd --backend s3
-terradart init --provider google,cloudflare --gcp-project dev=acme-dev,prd=acme-prd --cloudflare-account 0123abcd
-terradart init --dry-run --provider appwrite # lists the files, writes nothing
+terradart init --provider google --env dev,prd --gcp-project dev=myapp-dev,prd=myapp-prd --state-bucket myapp-tfstate
+terradart init --provider aws --env dev,stg,prd --aws-region prd=eu-west-1 --aws-account prd=123456789012 --backend local
+terradart init --provider cloudflare --defaults --cloudflare-account 0123abcd
+terradart init --dry-run --provider appwrite --defaults # lists the files, writes nothing
 ```
 
 | Flag | Takes | Default |
 |---|---|---|
-| `--provider`, `-p` | `google`, `aws`, `cloudflare`, `appwrite`, comma-separated | none: required without a terminal |
-| `--env`, `-e` | lowerCamelCase environment names, comma-separated | `dev,prd` |
-| `--gcp-project`, `--cloudflare-account`, `--appwrite-project` | `<env>=<id>` pairs, or one ID for every environment | a placeholder marked `TODO` |
-| `--backend` | `local`, `gcs`, `s3` — the last two need a bucket that already exists | `local` |
+| `--provider`, `-p` | `google`, `aws`, `cloudflare`, `appwrite`, comma-separated or repeated | required without a terminal |
+| `--env`, `-e` | lowerCamelCase environment names, comma-separated or repeated | required without a terminal; `--defaults`: `dev,prd` |
+| `--gcp-project`, `--aws-region`, `--cloudflare-account`, `--appwrite-endpoint`, `--appwrite-project` | `<env>=<value>` pairs, or one value for every environment | a placeholder marked `TODO` |
+| `--aws-account` | the same; the provider then refuses credentials of another account | any account |
+| `--state-bucket` | the bucket that already holds the state, one name or `<env>=<name>` pairs; the backend follows the provider — google `gcs`, aws `s3`, cloudflare `r2` | |
+| `--backend` | `local`, `gcs`, `s3`, `r2` (Cloudflare R2, with `--provider cloudflare`) | required without a terminal unless `--state-bucket`; `--defaults`: `local` |
+| `--defaults` | take `--env dev,prd`, `--backend local`, placeholder IDs and the Flutter wiring for what the flags leave out; never the providers | |
 | `--[no-]flutter` | wiring to the Flutter app in the current directory | on when there is one |
 | `--dry-run` | list the files, write nothing | |
 | `--force` | overwrite existing files, scaffold next to existing Terraform | |
 
-In a terminal, every flag left out is a question, asked in the order of the table; the run ends with `Re-run with: terradart init ...`, the same answers as flags. Without a terminal it never asks: `--provider` is the one flag it needs, every other flag left out takes its default and is printed (`Defaults: --env dev,prd, --backend local.`), and a missing or wrong value is a usage error that names its flag.
+In a terminal, every flag left out is a question: the providers, the environments, each environment's IDs (a blank answer leaves a placeholder marked `TODO`), then *Do you already have a bucket for Terraform state?* — yes asks for its name, one for every environment or one each, and takes the kind from the provider (asking when the providers do not settle it); no keeps the state local. The run ends with `Re-run with: terradart init ...`, the same answers as flags.
+
+Without a terminal it never asks, and never picks the providers, the environments or the state backend for you: a run that leaves out any of `--provider`, `--env` and `--backend` (or `--state-bucket`) fails with exit 64, names every missing flag, and prints a command to edit. `--defaults` accepts `dev,prd` and local state; the IDs it leaves out become placeholders, and the defaults it took are printed. A bucket's state sits under `<package>/<env>`, so one bucket serves every environment. Local state moves to a bucket later with `terradart state migrate`; `terradart init` only scaffolds.
 
 Inside a Flutter app (a `pubspec.yaml` that depends on `flutter` in the current directory), the Stack's `appExports` writes the reader the app imports to the app's `lib/generated/infra.g.dart`, the Stack declares `addDartDefineOutput()`, and the steps printed end with `flutter run --dart-define-from-file=infra/.terradart/dart_defines.<env>.json`.
 

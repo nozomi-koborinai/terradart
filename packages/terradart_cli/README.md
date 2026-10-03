@@ -28,11 +28,12 @@ It runs the `tofu`, else the `terraform`, on your `PATH`. With neither, it downl
 
 ## A new project
 
-`terradart init` asks, in a terminal, for the providers, the environment names, each environment's project or account ID and the backend, and prints the flags that give the same answers; without a terminal it never asks, needs `--provider`, and takes and prints the defaults (`dev,prd`, local state) for the rest:
+`terradart init` asks, in a terminal, for the providers, the environment names, each environment's IDs (GCP project, AWS region and account, Cloudflare account, Appwrite endpoint and project) and whether a bucket for the state already exists, and prints the flags that give the same answers. Without a terminal it never asks and never chooses for you: `--provider`, `--env` and `--backend` (or `--state-bucket`) are required, and `--defaults` accepts `dev,prd` and local state. IDs left out become placeholders marked `TODO`:
 
 ```bash
-terradart init --provider google,cloudflare --env dev,prd --gcp-project dev=acme-dev,prd=acme-prd --backend gcs
-terradart init --dry-run --provider aws   # list the files, write nothing
+terradart init --provider google --env dev,prd --gcp-project dev=myapp-dev,prd=myapp-prd --state-bucket myapp-tfstate
+terradart init --provider aws --defaults --aws-region eu-west-1
+terradart init --dry-run --provider cloudflare --defaults   # list the files, write nothing
 ```
 
 Inside a Flutter app it wires `infra/` to the app: the generated reader goes to the app's `lib/generated/`, and `flutter run --dart-define-from-file=infra/.terradart/dart_defines.dev.json` builds with the outputs. A directory that already holds Terraform, at any depth, is pointed at `terradart migrate` instead.

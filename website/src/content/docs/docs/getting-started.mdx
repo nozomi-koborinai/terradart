@@ -19,7 +19,7 @@ Install the [`terradart` command](/docs/cli/) once, and let it write the project
 
 ```bash
 dart pub global activate terradart_cli
-terradart init --provider google --gcp-project dev=acme-dev,prd=acme-prd
+terradart init --provider google --env dev,prd --gcp-project dev=acme-dev,prd=acme-prd --backend local
 cd infra
 terradart plan --env dev
 ```
@@ -37,14 +37,16 @@ terradart plan --env dev
 
 A value you did not give is a placeholder marked `TODO` in `lib/env.dart`.
 
-In a terminal, `terradart init` asks for what the flags leave out — the providers, the environment names, each environment's project or account ID, the backend — and ends by printing the `terradart init ...` command that gives the same answers as flags. Without a terminal it never asks: it needs `--provider`, takes `dev,prd` and local state for what the other flags leave out and prints those defaults, and names the flag at fault when a value is missing or wrong. `--dry-run` lists the files without writing them, and an existing file is never overwritten without `--force`.
+In a terminal, `terradart init` asks for what the flags leave out — the providers, the environment names, each environment's project, region or account ID, whether a state bucket exists — and ends by printing the `terradart init ...` command that gives the same answers as flags. Asked whether a bucket for the state already exists, *no* keeps the state in a local file (move it later with `terradart state migrate`); *yes* takes its name and the backend of your provider. Without a terminal it never asks and never chooses for you: `--provider`, `--env` and `--backend` (or `--state-bucket`) are required, and a run without them prints the command to edit; `--defaults` accepts `dev,prd` and local state. `--dry-run` lists the files without writing them, and an existing file is never overwritten without `--force`.
 
 | Flag | Takes |
 |---|---|
 | `--provider` | `google`, `aws`, `cloudflare`, `appwrite`, comma-separated |
 | `--env` | any lowerCamelCase names, comma-separated |
-| `--gcp-project`, `--cloudflare-account`, `--appwrite-project` | `<env>=<id>` pairs, or one ID for every environment |
-| `--backend` | `local` (a file under `tf-out/`), `gcs` or `s3` (a bucket that already exists) |
+| `--gcp-project`, `--aws-region`, `--aws-account`, `--cloudflare-account`, `--appwrite-endpoint`, `--appwrite-project` | `<env>=<value>` pairs, or one value for every environment |
+| `--state-bucket` | a bucket that already exists, one name or `<env>=<name>` pairs: GCS for google, S3 for aws, R2 for cloudflare |
+| `--backend` | `local` (a file under `tf-out/`), `gcs`, `s3` or `r2` |
+| `--defaults` | `--env dev,prd --backend local` |
 | `--[no-]flutter` | wiring to the Flutter app in the current directory |
 
 Run inside a Flutter app, it also generates the reader the app imports into the app's `lib/generated/`, and declares the [define file](/docs/client-outputs/) the app builds with:

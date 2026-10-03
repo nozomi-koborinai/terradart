@@ -41,6 +41,8 @@ void main() {
       'google',
       '--env',
       'dev',
+      '--backend',
+      'local',
       '--no-pub-get',
     ], cwd: root);
     final infra = p.join(root, 'infra');
