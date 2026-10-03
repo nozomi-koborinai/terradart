@@ -4,13 +4,16 @@ The `terradart` command for [TerraDart](https://terradart.dev) projects: synthes
 
 ```bash
 dart pub global activate terradart_cli
-terradart apply
+terradart init            # writes infra/ and runs dart pub get
+cd infra
+terradart plan --env dev
 ```
 
 To pin the version per project, `dart pub add --dev terradart_cli` and run it as `dart run terradart_cli:terradart apply`.
 
 | Command | Runs |
 |---|---|
+| `terradart init [dir]` | writes a new project (default `infra/`): `pubspec.yaml`, an `Env` enum, a Stack, `bin/infra.dart`, `README.md`, `AGENTS.md`; then `dart pub get` |
 | `terradart synth` | the entry point, `dart run bin/infra.dart` |
 | `terradart validate` | synth, `init -backend=false`, `validate` — no credentials or state needed |
 | `terradart plan` | synth, `init`, `plan` |
@@ -22,6 +25,18 @@ To pin the version per project, `dart pub add --dev terradart_cli` and run it as
 | `terradart migrate` | turns a Terraform tree into a Dart package; no project required |
 
 It runs the `tofu`, else the `terraform`, on your `PATH`. With neither, it downloads the OpenTofu release it pins, checks the archive's SHA-256, and keeps the binary in your user cache — on Linux, macOS and Windows, amd64 and arm64. Before it runs one engine on a state the other wrote, it asks — or, without a terminal, stops and names the `--engine` flag that decides.
+
+## A new project
+
+`terradart init` asks, in a terminal, for the providers, the environment names, each environment's IDs (GCP project, AWS region and account, Cloudflare account, Appwrite endpoint and project) and whether a bucket for the state already exists, and prints the flags that give the same answers. Without a terminal it never asks and never chooses for you: `--provider`, `--env` and `--backend` (or `--state-bucket`) are required, and `--defaults` accepts `dev,prd` and local state. IDs left out become placeholders marked `TODO`:
+
+```bash
+terradart init --provider google --env dev,prd --gcp-project dev=myapp-dev,prd=myapp-prd --state-bucket myapp-tfstate
+terradart init --provider aws --defaults --aws-region eu-west-1
+terradart init --dry-run --provider cloudflare --defaults   # list the files, write nothing
+```
+
+Inside a Flutter app it wires `infra/` to the app: the generated reader goes to the app's `lib/generated/`, and `flutter run --dart-define-from-file=infra/.terradart/dart_defines.dev.json` builds with the outputs. A directory that already holds Terraform, at any depth, is pointed at `terradart migrate` instead.
 
 ## Environments
 

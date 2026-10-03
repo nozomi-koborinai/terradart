@@ -7,6 +7,7 @@ import 'package:args/command_runner.dart';
 import 'cli_exception.dart';
 import 'config.dart';
 import 'engine.dart';
+import 'init_command.dart';
 import 'migrate_command.dart';
 import 'process_runner.dart';
 import 'target.dart';
@@ -36,8 +37,16 @@ Future<int> runTerradart(
   final cli =
       CommandRunner<int>(
           'terradart',
-          'Synthesize, validate, plan and apply a TerraDart Stack with OpenTofu or '
-              'Terraform, and migrate an existing Terraform tree.',
+          'Create, synthesize, validate, plan and apply a TerraDart Stack with '
+              'OpenTofu or Terraform, and migrate an existing Terraform tree.',
+        )
+        ..addCommand(
+          InitCommand(
+            console: io,
+            cwd: context.cwd,
+            runner: runner,
+            dartExecutable: dartExecutable,
+          ),
         )
         ..addCommand(_SynthCommand(context))
         ..addCommand(_ValidateCommand(context))

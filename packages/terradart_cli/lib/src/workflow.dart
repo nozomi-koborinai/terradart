@@ -13,13 +13,26 @@ import 'target.dart';
 /// Where the CLI prints: progress to [out], warnings to [err]; answers come
 /// from [readLine].
 final class Console {
-  const Console({required this.out, required this.err, this.readLine});
+  const Console({
+    required this.out,
+    required this.err,
+    this.readLine,
+    this.ask,
+  });
 
-  /// [stdout], [stderr] and [stdin].
+  /// [stdout], [stderr] and [stdin]. [ask] reads a line only when both
+  /// standard streams are a terminal (`stdin.hasTerminal` alone is also
+  /// true for `< /dev/null`).
   factory Console.io() => Console(
     out: stdout.writeln,
     err: stderr.writeln,
     readLine: stdin.readLineSync,
+    ask: stdin.hasTerminal && stdout.hasTerminal
+        ? (question) {
+            stdout.write(question);
+            return stdin.readLineSync();
+          }
+        : null,
   );
 
   final void Function(String) out;
@@ -27,6 +40,10 @@ final class Console {
 
   /// One line of input, `null` at its end; `null` reads nothing.
   final String? Function()? readLine;
+
+  /// Prints a question and returns the answer line, `null` at end of input;
+  /// `null` itself when nobody can answer, and commands use their defaults.
+  final String? Function(String question)? ask;
 
   void warn(String message) => err('warning: $message');
 }
@@ -73,7 +90,7 @@ final class Workflow {
         exitCode: 64,
       );
     }
-    final dart = dartExecutable ?? _dart();
+    final dart = dartExecutable ?? dartBinary();
     final args = request.entryArgs;
     console.out('> dart run $entry${args.isEmpty ? '' : ' ${args.join(' ')}'}');
     if (_manifest.existsSync()) _manifest.deleteSync();
@@ -588,11 +605,12 @@ final class Workflow {
     final rel = p.relative(path, from: cwd);
     return rel.isEmpty ? '.' : rel;
   }
+}
 
-  static String _dart() {
-    final vm = Platform.resolvedExecutable;
-    return p.basenameWithoutExtension(vm) == 'dart' ? vm : 'dart';
-  }
+/// The running VM when it is `dart`, else `dart` on `PATH`.
+String dartBinary() {
+  final vm = Platform.resolvedExecutable;
+  return p.basenameWithoutExtension(vm) == 'dart' ? vm : 'dart';
 }
 
 /// A backend type plus the configuration that tells one of that type from

@@ -1,6 +1,6 @@
 ---
 title: Getting started
-description: Install TerraDart, define a Stack for your provider, and generate your first *.tf.json plus the typed file your app imports.
+description: Create a TerraDart project with terradart init, then see each piece by hand — the Stack, the synthesized *.tf.json, and the typed file your app imports.
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components';
@@ -13,7 +13,55 @@ This guide matches the [README quickstart](https://github.com/nozomi-koborinai/t
 - Nothing else to install for plan and apply: the [`terradart` command](/docs/cli/) downloads a checksum-verified OpenTofu on first use, or runs the `tofu` or `terraform` already on your `PATH`.
 - Credentials for your provider at apply time — Google Cloud Application Default Credentials (`gcloud auth application-default login`), the AWS SDK credential chain, `CLOUDFLARE_API_TOKEN`, or `APPWRITE_API_KEY`. Synth needs none, and none are written into the output.
 
-## 1. Add dependencies
+## 1. Create a project
+
+Install the [`terradart` command](/docs/cli/) once, and let it write the project:
+
+```bash
+dart pub global activate terradart_cli
+terradart init --provider google --env dev,prd --gcp-project dev=acme-dev,prd=acme-prd --backend local
+cd infra
+terradart plan --env dev
+```
+
+`terradart init` writes `infra/` (or the directory you name), runs `dart pub get` in it, and prints what to run next. The project plans as it is:
+
+| File | Holds |
+|---|---|
+| `pubspec.yaml` | `terradart_core` and the provider packages, at the command's own version |
+| `lib/env.dart` | the `Env` enum: each environment and its values — project or account ID, region, state bucket |
+| `lib/stack.dart` | a Stack with the provider, the backend, one resource and one output |
+| `bin/infra.dart` | the entry point, which hands the environments to `runEnvironments` |
+| `.gitignore` | `tf-out/` and `.terradart/` |
+| `README.md`, `AGENTS.md` | the next steps, and the commands and Agent Skill a coding agent works with |
+
+A value you did not give is a placeholder marked `TODO` in `lib/env.dart`.
+
+In a terminal, `terradart init` asks for what the flags leave out — the providers, the environment names, each environment's project, region or account ID, whether a state bucket exists — and ends by printing the `terradart init ...` command that gives the same answers as flags. Asked whether a bucket for the state already exists, *no* keeps the state in a local file (move it later with `terradart state migrate`); *yes* takes its name and the backend of your provider. Without a terminal it never asks and never chooses for you: `--provider`, `--env` and `--backend` (or `--state-bucket`) are required, and a run without them prints the command to edit; `--defaults` accepts `dev,prd` and local state. `--dry-run` lists the files without writing them, and an existing file is never overwritten without `--force`.
+
+| Flag | Takes |
+|---|---|
+| `--provider` | `google`, `aws`, `cloudflare`, `appwrite`, comma-separated |
+| `--env` | any lowerCamelCase names, comma-separated |
+| `--gcp-project`, `--aws-region`, `--aws-account`, `--cloudflare-account`, `--appwrite-endpoint`, `--appwrite-project` | `<env>=<value>` pairs, or one value for every environment |
+| `--state-bucket` | a bucket that already exists, one name or `<env>=<name>` pairs: GCS for google, S3 for aws, R2 for cloudflare |
+| `--backend` | `local` (a file under `tf-out/`), `gcs`, `s3` or `r2` |
+| `--defaults` | `--env dev,prd --backend local` |
+| `--[no-]flutter` | wiring to the Flutter app in the current directory |
+
+Run inside a Flutter app, it also generates the reader the app imports into the app's `lib/generated/`, and declares the [define file](/docs/client-outputs/) the app builds with:
+
+```bash
+terradart init
+cd infra && terradart apply --env dev && cd ..
+flutter run --dart-define-from-file=infra/.terradart/dart_defines.dev.json
+```
+
+A directory that already holds `*.tf` files, at any depth, gets no scaffold: `terradart init` names where it found them and points at [`terradart migrate`](/docs/migrate-from-hcl/) instead, and in a terminal offers to run its report.
+
+The rest of this guide builds the same pieces by hand, one at a time.
+
+## 2. Add dependencies
 
 `terradart_core` plus the package for each provider your Stack uses (all on [pub.dev](https://pub.dev/packages/terradart_core)). Every provider barrel re-exports `terradart_core`, so the Stack itself imports only the barrels:
 
