@@ -34,6 +34,8 @@ Types (2):
 
 By directory:
   . (root): 2 translate, 0 kept
+
+Next: terradart migrate --dir infra --out <package dir>
 ```
 
 Each type shows how many of its blocks become Dart and how many stay in Terraform, with the reason for each kept block — a non-literal `count`, a sensitive literal, a type with no factory yet.
