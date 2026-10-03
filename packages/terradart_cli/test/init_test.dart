@@ -304,8 +304,14 @@ void main() {
 
   test('S3 state without aws gets a region of its own', () async {
     expect(
-      (await init(['a', '-p', 'cloudflare', '--backend', 's3', '--defaults']))
-          .code,
+      (await init([
+        'a',
+        '-p',
+        'cloudflare',
+        '--backend',
+        's3',
+        '--defaults',
+      ])).code,
       0,
     );
     expect(read('a/lib/env.dart'), contains('final String stateRegion;'));

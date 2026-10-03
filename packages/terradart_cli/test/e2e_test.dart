@@ -56,10 +56,13 @@ void main() {
     expect(unknown, 64);
 
     await terradart(['synth', '--env', 'prd']);
-    final prd = jsonDecode(
-      File(p.join(root.path, 'tf-out', 'prd', 'main.tf.json'))
-          .readAsStringSync(),
-    ) as Map;
+    final prd =
+        jsonDecode(
+              File(
+                p.join(root.path, 'tf-out', 'prd', 'main.tf.json'),
+              ).readAsStringSync(),
+            )
+            as Map;
     expect((prd['terraform'] as Map)['backend'], {
       'gcs': {'bucket': 'acme-prd-state', 'prefix': 'hello'},
     });
