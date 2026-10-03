@@ -10,9 +10,9 @@ description: terradart_google and terradart_google_beta — the whole hashicorp/
 ```yaml
 # pubspec.yaml
 dependencies:
-  terradart_core: ^0.33.x
-  terradart_google: ^0.33.x
-  terradart_google_beta: ^0.33.x # only for beta-only types
+  terradart_core: ^0.33.0
+  terradart_google: ^0.33.0
+  terradart_google_beta: ^0.33.0 # only for beta-only types
 ```
 
 ## Credentials
@@ -105,9 +105,9 @@ graph TB
 ```yaml
 # pubspec.yaml
 dependencies:
-  terradart_core: ^0.33.x
-  terradart_google: ^0.33.x
-  terradart_google_beta: ^0.33.x
+  terradart_core: ^0.33.0
+  terradart_google: ^0.33.0
+  terradart_google_beta: ^0.33.0
 ```
 
 ```dart
