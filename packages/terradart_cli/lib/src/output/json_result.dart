@@ -36,51 +36,68 @@ final class JsonResult {
   /// sensitive.
   List<String>? keys;
 
-  /// One-line notices (`skill_outdated`).
+  /// One-line notices (`skill_outdated`, `skill_newer`).
   final notices = <({String code, String message})>[];
 
   /// Commands to run next.
   final next = <String>[];
 
-  /// The result of a run that exited [exitCode], failing with [error] or a
-  /// usage error ([usage]).
+  /// The result of a run that exited [exitCode], failing with [error], a
+  /// usage error ([usage]), or only a failing code (`skill status --check`).
   Map<String, Object?> toJson(
     int exitCode, {
     CliException? error,
     String? usage,
     List<String> errorNext = const [],
-  }) => {
-    'schemaVersion': jsonSchemaVersion,
-    'command': command,
-    'ok': error == null && usage == null,
-    'exitCode': exitCode,
-    if (env case final env?) 'env': {'name': env.name, 'source': env.source},
-    if (engine case final engine?)
-      'engine': {
-        'kind': engine.kind,
-        'version': engine.version,
-        'source': engine.source,
-        'path': engine.path,
-      },
-    'outDir': ?outDir,
-    if (plan case final plan?) 'plan': plan.toJson(),
-    'defineFile': ?defineFile,
-    'keys': ?keys,
-    'notices': [
-      for (final n in notices) {'code': n.code, 'message': n.message},
-    ],
-    if (error != null)
-      'error': {
-        'code': error.kind.error,
-        'message': error.message,
-        'flag': ?error.flag,
-        if (error.choices.isNotEmpty) 'choices': error.choices,
-        'engineExitCode': ?error.engineExitCode,
-      }
-    else if (usage != null)
-      'error': {'code': ExitCode.usage.error, 'message': usage},
-    'next': [...errorNext, ...next],
-  };
+  }) {
+    final failed =
+        error == null &&
+            usage == null &&
+            exitCode != 0 &&
+            exitCode != exitChanges
+        ? ExitCode.values.firstWhere(
+            (c) => c.code == exitCode,
+            orElse: () => ExitCode.internal,
+          )
+        : null;
+    return {
+      'schemaVersion': jsonSchemaVersion,
+      'command': command,
+      'ok': error == null && usage == null && failed == null,
+      'exitCode': exitCode,
+      if (env case final env?) 'env': {'name': env.name, 'source': env.source},
+      if (engine case final engine?)
+        'engine': {
+          'kind': engine.kind,
+          'version': engine.version,
+          'source': engine.source,
+          'path': engine.path,
+        },
+      'outDir': ?outDir,
+      if (plan case final plan?) 'plan': plan.toJson(),
+      'defineFile': ?defineFile,
+      'keys': ?keys,
+      'notices': [
+        for (final n in notices) {'code': n.code, 'message': n.message},
+      ],
+      if (error != null)
+        'error': {
+          'code': error.kind.error,
+          'message': error.message,
+          'flag': ?error.flag,
+          if (error.choices.isNotEmpty) 'choices': error.choices,
+          'engineExitCode': ?error.engineExitCode,
+        }
+      else if (usage != null)
+        'error': {'code': ExitCode.usage.error, 'message': usage}
+      else if (failed != null)
+        'error': {
+          'code': failed.error,
+          'message': 'exited $exitCode; the reason is on stderr',
+        },
+      'next': [...errorNext, ...next],
+    };
+  }
 
   String encode(
     int exitCode, {

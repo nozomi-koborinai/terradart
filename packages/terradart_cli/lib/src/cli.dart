@@ -291,7 +291,9 @@ abstract class _TerradartCommand extends Command<int> {
     final root = ProjectConfig.findRoot(_option('project') ?? context.cwd);
     if (context.environment['TERRADART_NO_SKILL_NOTICE'] != '1') {
       if (skillNotice(root) case final notice?) {
-        context.console.err('terradart: $notice');
+        context.console
+          ..err('terradart: ${notice.message}')
+          ..result?.notices.add(notice);
       }
     }
     final config = ProjectConfig.load(root);

@@ -163,6 +163,7 @@ terradart plan --env dev --json --detailed-exitcode
 | `outDir` | the Terraform directory |
 | `plan` | `plan`: the resource changes of the saved plan as `show -json` lists them; a replacement counts once, as `replace` |
 | `defineFile`, `keys` | `apply`, `outputs`: the define file and its keys — never the values, which may be secrets |
+| `notices` | one-line warnings with a `code`: `skill_outdated` / `skill_newer` when the project's agent skill is older or newer than this CLI |
 | `error` | on failure: `code` from the table, `message`, and when they apply `flag`, `choices`, `engineExitCode` |
 | `next` | the commands to run next: the failed one with the flag it lacks, or `terradart apply` after a plan with changes |
 
@@ -172,6 +173,8 @@ terradart plan --env dev --json --detailed-exitcode
 | 1 | `internal` | anything else: a bug, a cancelled question, a malformed engine output |
 | 2 | | `plan --detailed-exitcode` found changes — not a failure, `ok` is `true` |
 | 3 | `input_required` | an answer nobody can give: `--auto-approve`, or `--engine` on a state the other engine wrote |
+| 4 | `skill_drift` | `skill status --check`: the agent skill is missing, older, newer or edited |
+| 5 | `local_edits` | `skill update` kept a skill with local edits (`--force` overwrites it) |
 | 10 | `synth_failed` | the entry point exited non-zero |
 | 11 | `engine_unavailable` | no engine: not on `PATH`, a missing `engine_path`, or the OpenTofu download or its SHA-256 check failed |
 | 12 | `engine_failed` | `init`, `plan`, `apply`, `validate`, `output` ... failed; `error.engineExitCode` is the engine's own code |

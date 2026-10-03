@@ -166,9 +166,9 @@ bool skillsCliManages(String root) {
 }
 
 /// The one-line notice other commands print when a skill under [root] is
-/// older (or newer) than this CLI; `null` when there is none, or when
-/// reading fails.
-String? skillNotice(String root) {
+/// older (`skill_outdated`) or newer (`skill_newer`) than this CLI; `null`
+/// when there is none, or when reading fails.
+({String code, String message})? skillNotice(String root) {
   try {
     for (final i in inspectSkills(root)) {
       final version = i.version;
@@ -176,13 +176,21 @@ String? skillNotice(String root) {
       final where = i.target.dir;
       if (i.state == SkillState.outdated &&
           (compareVersions(version, cliVersion) ?? 0) < 0) {
-        return 'the terradart agent skill in $where is $version; this CLI '
-            'is $cliVersion. Run: terradart skill update';
+        return (
+          code: 'skill_outdated',
+          message:
+              'the terradart agent skill in $where is $version; this CLI '
+              'is $cliVersion. Run: terradart skill update',
+        );
       }
       if (i.state == SkillState.newer) {
-        return 'the terradart agent skill in $where is $version, newer than '
-            'this CLI ($cliVersion). Run: dart pub global activate '
-            'terradart_cli';
+        return (
+          code: 'skill_newer',
+          message:
+              'the terradart agent skill in $where is $version, newer than '
+              'this CLI ($cliVersion). Run: dart pub global activate '
+              'terradart_cli',
+        );
       }
     }
   } on FileSystemException {

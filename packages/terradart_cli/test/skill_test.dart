@@ -91,6 +91,16 @@ void main() {
       expect(r.out, contains('0.1.0 → $cliVersion'));
     });
 
+    test('--json fails with skill_drift, not ok', () async {
+      put(agentsSkill, older);
+      final r = await run(['skill', 'status', '--check', '--json']);
+      expect(r.code, 4);
+      final json = jsonDecode(r.out.trim()) as Map<String, Object?>;
+      expect(json['ok'], isFalse);
+      expect(json['exitCode'], 4);
+      expect(json['error'], containsPair('code', 'skill_drift'));
+    });
+
     test('the same content under an older version is marker-only, and '
         'passes --check', () async {
       put(agentsSkill, withSkillMarker(bundledSkillMd, '0.1.0'));
@@ -237,6 +247,22 @@ void main() {
         'this CLI is $cliVersion. Run: terradart skill update\n',
       );
       expect(r.out, isNot(contains('skill')));
+    });
+
+    test('is a notice in the --json result', () async {
+      put(agentsSkill, older);
+      final r = await run(['synth', '--json']);
+      expect(r.code, 0, reason: r.err);
+      final json = jsonDecode(r.out.trim()) as Map<String, Object?>;
+      expect(json['ok'], isTrue);
+      expect(json['notices'], [
+        {
+          'code': 'skill_outdated',
+          'message':
+              'the terradart agent skill in .agents/skills is 0.1.0; this CLI '
+              'is $cliVersion. Run: terradart skill update',
+        },
+      ]);
     });
 
     test(
