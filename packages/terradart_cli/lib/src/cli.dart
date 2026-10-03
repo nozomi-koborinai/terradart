@@ -113,8 +113,9 @@ Future<int> runTerradart(
   } on UsageException catch (e) {
     io.err('$e');
     final code = ExitCode.usage.code;
-    if (io.result case final r?)
+    if (io.result case final r?) {
       io.printResult(r.encode(code, usage: e.message));
+    }
     return code;
   } on CliException catch (e) {
     io.err('terradart: ${e.message}');
