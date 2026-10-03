@@ -46,17 +46,22 @@
       "title": "my_app/infra",
       "clip": "clips/02-plan.mp4",
       "segments": [
-        { "from": 0.3, "to": 11.18 },
-        { "hold": 11.22, "seconds": 2.5 },
-        { "from": 12.75, "to": 15.6 },
-        { "hold": 15.6, "seconds": 0.6 },
-        { "from": 15.75, "to": 19.6 },
-        { "from": 20.85, "to": 26.5 }
+        { "from": 0.3, "to": 9.9 },
+        { "hold": 9.92, "seconds": 2.4 },
+        { "from": 9.92, "to": 10.36 },
+        { "hold": 10.36, "seconds": 4.8 },
+        { "from": 11.32, "to": 13.4 },
+        { "hold": 13.4, "seconds": 0.9 },
+        { "from": 13.4, "to": 13.84 },
+        { "hold": 13.84, "seconds": 4.8 },
+        { "from": 13.84, "to": 14.2 },
+        { "from": 14.3, "to": 18.16 },
+        { "from": 19.2, "to": 24.85 }
       ],
       "masks": [
-        { "from": 11.22, "to": 11.22, "last": "Using OpenTofu" },
-        { "from": 12.75, "to": 15.6, "first": "Success!" },
-        { "from": 20.85, "to": 26.5, "first": "^Plan:", "last": "events_topic_id" }
+        { "from": 9.92, "to": 10.36, "last": "Using OpenTofu" },
+        { "from": 11.32, "to": 14.2, "first": "Success!" },
+        { "from": 19.2, "to": 24.85, "first": "^Plan:", "last": "events_topic_id" }
       ],
       "camera": [
         { "at": 0, "s": 1, "x": 0.5, "y": 0.5 },
@@ -64,20 +69,22 @@
         { "at": 3.3, "s": 1.7, "x": 0, "y": 0.1 },
         { "at": 8.0, "s": 1.7, "x": 0, "y": 0.1 },
         { "at": 8.8, "s": 1, "x": 0.5, "y": 0.5 },
-        { "at": 11.22, "s": 1, "x": 0.5, "y": 0.5 },
-        { "at": 12.75, "s": 1.6, "x": 0, "y": 1 },
-        { "at": 15.6, "s": 1.6, "x": 0, "y": 1 },
-        { "at": 15.75, "s": 1.7, "x": 0, "y": 0 },
-        { "at": 19.6, "s": 1.7, "x": 0, "y": 0 },
-        { "at": 20.85, "s": 1.6, "x": 0, "y": 0.5 },
-        { "at": 26.5, "s": 1.6, "x": 0, "y": 0.5 }
+        { "at": 10.36, "s": 1, "x": 0.5, "y": 0.5 },
+        { "at": 11.32, "s": 1.6, "x": 0, "y": 1 },
+        { "at": 14.2, "s": 1.6, "x": 0, "y": 1 },
+        { "at": 14.3, "s": 1.7, "x": 0, "y": 0 },
+        { "at": 18.16, "s": 1.7, "x": 0, "y": 0 },
+        { "at": 19.2, "s": 1.6, "x": 0, "y": 0.5 },
+        { "at": 24.85, "s": 1.6, "x": 0, "y": 0.5 }
       ],
       "captions": [
         { "from": 2.9, "to": 6.1, "text": "No Terraform on this machine" },
-        { "from": 9.0, "to": 11.6, "text": "`terradart validate` downloads OpenTofu" },
-        { "from": 12.75, "to": 15.7, "text": "The configuration is valid" },
-        { "from": 16.2, "to": 19.7, "text": "Then `terradart plan`" },
-        { "from": 20.85, "to": 26.6, "text": "3 to add, and the outputs the app reads", "say": "Three to add, and the outputs the app reads." }
+        { "from": 8.0, "to": 10.14, "text": "`terradart validate`: OpenTofu runs underneath", "say": "terradart validate: OpenTofu runs underneath." },
+        { "from": 10.16, "to": 10.6, "text": "TerraDart pins and manages it for you: nothing to install", "say": "TerraDart pins and manages it for you: nothing to install." },
+        { "from": 11.32, "to": 13.6, "text": "The configuration is valid" },
+        { "from": 13.62, "to": 14.22, "text": "Already on Terraform? Use your own install: `--engine terraform`", "say": "Already on Terraform? Use your own install with engine terraform." },
+        { "from": 14.75, "to": 18.25, "text": "Then `terradart plan`" },
+        { "from": 19.2, "to": 24.95, "text": "3 to add, and the outputs the app reads", "say": "Three to add, and the outputs the app reads." }
       ]
     },
     {
@@ -112,8 +119,8 @@
   "poster": { "scene": "title", "at": 2.0 },
   "stills": [
     { "name": "1-init-providers", "scene": "init", "at": 5.8 },
-    { "name": "2-validate-opentofu", "scene": "plan", "at": 12.0 },
-    { "name": "3-plan", "scene": "plan", "at": 22.5 },
+    { "name": "2-validate-opentofu", "scene": "plan", "at": 14.5 },
+    { "name": "3-plan", "scene": "plan", "at": 32.0 },
     { "name": "4-flutter", "scene": "flutter", "at": 7.0 }
   ],
   "ocr": {

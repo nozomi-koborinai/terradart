@@ -151,8 +151,9 @@ Set Theme ${JSON.stringify(palette)}
 `;
 
 const prompt = String.raw`\[\e[38;2;77;208;254m\]$\[\e[0m\] `;
-// Empty, so the take downloads OpenTofu on screen, and short, so the
-// "Installed OpenTofu ... at <path>" line fits a zoomed shot.
+// terradart's own engine cache, filled off camera before the validate beat
+// as on any machine where terradart has run once: the take shows the managed
+// OpenTofu it runs, not the one-time download into this directory.
 const cache = fs.mkdtempSync("/tmp/td-");
 const setup = (cwd) => `Hide
 Type "export PATH='${shellPath}' GOOGLE_APPLICATION_CREDENTIALS='${credentials}' TERRADART_CACHE_DIR='${cache}' PS1='${prompt}' && cd '${cwd}' && clear"
@@ -176,6 +177,14 @@ for (const [name, cwd] of tapes) {
       `\ndependency_overrides:\n${names.map((n) => `  ${n}:\n    path: ${path.join(rehearse, "packages", n)}\n`).join("")}`,
     );
     execFileSync("dart", ["pub", "get"], { cwd, stdio: "ignore" });
+  }
+  if (name === "02-plan") {
+    const warm = spawnSync("terradart", ["engine", "--engine", "tofu"], {
+      cwd,
+      env: { ...process.env, PATH: shellPath, TERRADART_CACHE_DIR: cache },
+      encoding: "utf8",
+    });
+    if (warm.status !== 0) die(`terradart engine did not fetch OpenTofu into ${cache}:\n${warm.stderr}`);
   }
   const body = fs.readFileSync(path.join(here, "tapes", `${name}.tape`), "utf8");
   const out = path.join(clips, `${name}.mp4`);

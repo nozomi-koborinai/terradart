@@ -64,12 +64,13 @@ Needs Node ≥ 22.12, `vhs` with `ttyd`, `ffmpeg`, `tesseract`, `google-chrome` 
 
 ## Writing the beats
 
-One message per beat, five to seven beats, 60–75s. Open on the lockup with the release, close on the install line and the site.
+One message per beat, five to seven beats, 60–85s. Open on the lockup with the release, close on the install line and the site.
 
 - **Leave time to read.** A viewer reads every prompt and result, and hears the line about it: the tapes type at 100ms a character and sleep a few seconds after each answer and each finished command, and a caption starts when the output it describes appears, not while the command is still being typed. A 40s cut of the same beats was too fast to follow.
 
 - **Show what the user touches.** The commands they type, the Stack they write, the app code that reads the outputs. Generated internals, engine logs and plumbing get cut, masked or sped through; check every beat against this before recording.
 - **Record what the user runs, nothing else.** No `clear`, `ls`, `--version` or checks; the tapes hide setup with `Hide` / `Show`. The one exception is a command that proves a claim (`terraform version` answering `command not found`), which the storyboard's `ocr.allow` names.
+- **Show the engine as a returning user sees it.** `terradart` fetches its pinned OpenTofu once into its own cache; `capture.mjs` fills that cache off camera with `terradart engine --engine tofu` before the validate beat, so the take shows the managed engine running, not the one-time download. A claim about another invocation (`--engine terraform`) is a caption only, after running it off camera to confirm it works.
 - **Wait on output, not on time.** `Wait /regex/` on the prompt (`Wait /^\$\s*$/`) ends a beat when the command does; `Sleep` is only for reading time.
 - **Cut what nobody reads** (dependency resolution, an engine's init text) with a segment gap, and **hold what proves the claim** — a line that scrolls past in half a second gets a `{ "hold": t, "seconds": s }` segment.
 - **Mask what lands in the same frame.** VHS paints a command's lines in one frame, so stopping on `Using OpenTofu` also shows the engine's first lines. A `masks` entry keeps the rows from the line `first` matches through the line `last` matches over a span of clip time; `render.mjs` finds both lines with tesseract and puts the edges in the gaps between rows, so a take whose output moves a row still masks right. The composition lightens each clip onto the palette's background, so the paint and the decoded background are one colour.
@@ -85,7 +86,7 @@ A female English voice reads every caption. `render.mjs` runs `$PROMO_TTS OUT.wa
 - **The storyboard sets the pace, not the voice.** Each line starts `voice.lead` seconds into its caption, and the render fails when a line runs past `voice.tail` before its caption ends or into the next line: make room with a longer segment or a hold, never by speeding the voice up.
 - **Choose the voice by its licence.** A neural voice that runs locally, whose model weights *and* voice data allow commercial and promotional use; a robotic formant voice is not acceptable, and neither is an account with a paid service. Keep the command and the licence record outside the repository.
 - **Fix a mispronounced word in the TTS command**, at the phoneme level, rather than respelling the caption. Transcribe every line with a local speech recognizer before rendering.
-- **A caption that spans a hold ends past the held second.** Captions fade on clip time, so a caption that ends a moment after a `hold` stays half-faded for the whole hold.
+- **A caption that spans a hold ends past the held second.** Captions fade on clip time, so a caption that ends a moment after a `hold` stays half-faded for the whole hold. Two captions on one frozen frame take two holds with about 0.4s of live clip between them, where the first fades out and the second in; a mask over that span keeps the frame still.
 
 ## The brand system on screen
 
