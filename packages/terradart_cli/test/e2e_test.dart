@@ -20,7 +20,7 @@ void main() {
 
   test('apply, outputs and destroy with the managed OpenTofu', () async {
     final root = Directory.systemTemp.createTempSync('terradart_cli_e2e_');
-    addTearDown(() => root.deleteSync(recursive: true));
+    addTearDown(() => _deleteTemp(root));
     _project(root.path, packages);
 
     final environment = {
@@ -126,7 +126,7 @@ void main() {
     setUpAll(() {
       cache = Directory.systemTemp.createTempSync('terradart_cli_e2e_').path;
     });
-    tearDownAll(() => Directory(cache).deleteSync(recursive: true));
+    tearDownAll(() => _deleteTemp(Directory(cache)));
 
     for (final MapEntry(key: name, value: s) in scaffolds.entries) {
       // appwrite/appwrite is published to registry.terraform.io only;
@@ -134,7 +134,7 @@ void main() {
       if (name == 'appwrite') continue;
       test(name, () async {
         final root = Directory.systemTemp.createTempSync('terradart_init_');
-        addTearDown(() => root.deleteSync(recursive: true));
+        addTearDown(() => _deleteTemp(root));
         final environment = {
           ...Platform.environment,
           'TERRADART_CACHE_DIR': cache,
@@ -156,6 +156,22 @@ void main() {
       }, timeout: const Timeout(Duration(minutes: 10)));
     }
   });
+}
+
+/// On Windows a provider plugin that has just exited can hold its files for
+/// a moment, so a scratch directory is deleted with retries and, if it stays
+/// locked, left to the system temp directory.
+Future<void> _deleteTemp(Directory dir) async {
+  for (var attempt = 0; ; attempt++) {
+    try {
+      dir.deleteSync(recursive: true);
+      return;
+    } on FileSystemException {
+      if (!Platform.isWindows) rethrow;
+      if (attempt == 20) return;
+      await Future<void>.delayed(const Duration(milliseconds: 250));
+    }
+  }
 }
 
 void _project(String root, String packages) {
