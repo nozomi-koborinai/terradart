@@ -368,6 +368,22 @@ abstract class _TerradartCommand extends Command<int> {
   }
 }
 
+/// `apply --dry-run` and `destroy --dry-run`: what `plan` does, then the
+/// command to run without the flag.
+Future<int> _dryRun(Workflow flow, String action, List<String> extra) async {
+  flow.console.result?.dryRun = true;
+  await flow.checkLocalState();
+  await flow.init();
+  await flow.selectWorkspace(create: action == 'apply');
+  await flow.checkBackendState();
+  await flow.plan(extra, destroy: action == 'destroy', next: false);
+  flow.console.out(
+    'Dry run: nothing was ${action == 'apply' ? 'applied' : 'destroyed'}.',
+  );
+  flow.suggest(action);
+  return 0;
+}
+
 final class _SynthCommand extends _TerradartCommand {
   _SynthCommand(super.context);
 
@@ -457,6 +473,13 @@ final class _ApplyCommand extends _TerradartCommand {
         help: 'Apply without asking for approval.',
       )
       ..addFlag(
+        'dry-run',
+        negatable: false,
+        help:
+            'Synth, init and plan, and stop there: nothing is applied and '
+            'no define file is written.',
+      )
+      ..addFlag(
         'outputs',
         defaultsTo: true,
         help:
@@ -480,6 +503,7 @@ final class _ApplyCommand extends _TerradartCommand {
     if (synthFirst) await flow.synth();
     final outputs = args.flag('outputs');
     if (outputs) flow.checkDefineOutput();
+    if (args.flag('dry-run')) return _dryRun(flow, 'apply', args.rest);
     final autoApprove = args.flag('auto-approve');
     flow.confirmEnvironment('apply', autoApprove: autoApprove);
     await flow.checkLocalState();
@@ -499,6 +523,11 @@ final class _DestroyCommand extends _TerradartCommand {
       negatable: false,
       help: 'Destroy without asking for approval.',
     );
+    argParser.addFlag(
+      'dry-run',
+      negatable: false,
+      help: 'Synth, init and plan -destroy, and stop there.',
+    );
   }
 
   @override
@@ -512,6 +541,7 @@ final class _DestroyCommand extends _TerradartCommand {
   Future<int> run() async {
     final flow = workflow();
     if (synthFirst) await flow.synth();
+    if (args.flag('dry-run')) return _dryRun(flow, 'destroy', args.rest);
     final autoApprove = args.flag('auto-approve');
     flow.confirmEnvironment('destroy', autoApprove: autoApprove);
     await flow.checkLocalState();
@@ -531,6 +561,11 @@ final class _OutputsCommand extends _TerradartCommand {
       help:
           'Run init first (needed once per checkout for a remote backend; '
           'always run for an environment with backendConfig).',
+    );
+    argParser.addFlag(
+      'dry-run',
+      negatable: false,
+      help: 'Read the outputs and print the file and keys, without writing.',
     );
     addDefineOptions();
   }
@@ -561,7 +596,7 @@ final class _OutputsCommand extends _TerradartCommand {
       await flow.init();
     }
     await flow.selectWorkspace(create: false);
-    await flow.writeDefines(required: true);
+    await flow.writeDefines(required: true, dryRun: args.flag('dry-run'));
     return 0;
   }
 }

@@ -31,9 +31,9 @@ dart run terradart_cli:terradart apply
 | `terradart synth` | the entry point (`dart run bin/infra.dart`); arguments after `--` go to it |
 | `terradart validate` | synth, `init -backend=false`, `validate`: checks the configuration without credentials, a backend or state — the step for CI; arguments after `--` go to `validate` (`-- -json`) |
 | `terradart plan` | synth, `init`, `plan`; arguments after `--` go to the engine (`-- -target=...`); `--detailed-exitcode` exits 2 when the plan has changes |
-| `terradart apply` | synth, `init`, `apply`, then writes the define file; `--auto-approve` skips the prompt |
-| `terradart destroy` | synth, `init`, `destroy`; `--auto-approve` skips the prompt |
-| `terradart outputs` | synth, `init`, then writes the define file from the applied state — no plan, no apply |
+| `terradart apply` | synth, `init`, `apply`, then writes the define file; `--auto-approve` skips the prompt; `--dry-run` stops after `plan` |
+| `terradart destroy` | synth, `init`, `destroy`; `--auto-approve` skips the prompt; `--dry-run` stops after `plan -destroy` |
+| `terradart outputs` | synth, `init`, then writes the define file from the applied state — no plan, no apply; `--dry-run` prints the file and its keys and writes nothing |
 | `terradart state migrate` | synth, then `init -migrate-state`: moves the state to the backend the Stack now configures, after asking (`--auto-approve` skips the question, and is required when it cannot ask: no terminal, `--no-input`, CI or an agent) |
 | `terradart engine` | prints the engine binary it would run, downloading OpenTofu if that is the one |
 | `terradart migrate` | turns a Terraform tree into a Dart package. No project is required — it does not look for a `pubspec.yaml` |
@@ -165,7 +165,8 @@ terradart plan --env dev --json --detailed-exitcode
 | `defineFile`, `keys` | `apply`, `outputs`: the define file and its keys — never the values, which may be secrets |
 | `notices` | one-line warnings with a `code`: `skill_outdated` / `skill_newer` when the project's agent skill is older or newer than this CLI |
 | `error` | on failure: `code` from the table, `message`, and when they apply `flag`, `choices`, `engineExitCode` |
-| `next` | the commands to run next: the failed one with the flag it lacks, or `terradart apply` after a plan with changes |
+| `dryRun` | `true` when `--dry-run` stopped the command before it changed anything |
+| `next` | the commands to run next: the failed one with the flag it lacks, `terradart apply` after a plan with changes, or the command without `--dry-run` |
 
 | Exit code | `error.code` | Means |
 |---|---|---|
