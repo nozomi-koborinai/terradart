@@ -68,7 +68,8 @@ One message per beat, five to seven beats, 40–50s. Open on the lockup with the
 - **Record what the user runs, nothing else.** No `clear`, `ls`, `--version` or checks; the tapes hide setup with `Hide` / `Show`.
 - **Wait on output, not on time.** `Wait /regex/` on the prompt (`Wait /^\$\s*$/`) ends a beat when the command does; `Sleep` is only for reading time.
 - **Cut what nobody reads** (dependency resolution, an engine's init text) with a segment gap, and **hold what proves the claim** — a line that scrolls past in half a second gets a `{ "hold": t, "seconds": s }` segment.
-- **Zoom on the line that carries the beat**, 1.3–1.7x. A long line clips at the right edge, so anchor wide lines left (`"x": 0`) and keep the whole line in frame at peak zoom.
+- **Zoom on the line that carries the beat**, 1.3–1.7x, anchored left (`"x": 0`). The storyboard states the intent; `render.mjs` settles every still stretch of the camera on the clip's own frames, lowering the zoom (or moving the focus up to 0.2) until no line of text runs past the side and no row straddles the top or bottom edge, and prints each change. A wrapped full-width line on screen — a download URL, a long hint — therefore means a wide shot, and the Flutter beat's `next.crop` fails the render when it cuts a line. `capture.mjs` keeps `TERRADART_CACHE_DIR` short so the install path stays narrow.
+- **Captions own the bottom band.** Scenes lay out above `SAFE_BOTTOM` (`src/components.tsx`); a layout that reaches into the caption band throws and fails the render.
 - **Show real files.** Code beats are excerpts of what the take generated (`code` rules in the storyboard: start line, picked lines, folds), highlighted with the site's theme; never a hand-written mock.
 
 ## The brand system on screen
