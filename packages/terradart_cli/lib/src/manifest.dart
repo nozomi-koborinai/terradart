@@ -13,6 +13,7 @@ final class Manifest {
   const Manifest({
     required this.environments,
     required this.selected,
+    this.defaultEnv,
     required this.roots,
   });
 
@@ -31,6 +32,8 @@ final class Manifest {
         return Manifest(
           environments: environments?.cast<String>(),
           selected: selected,
+          // Absent from what a terradart_core before defaultEnv writes.
+          defaultEnv: json['default'] as String?,
           roots: [for (final r in roots) ManifestRoot.parse(r)],
         );
       }
@@ -48,6 +51,9 @@ final class Manifest {
 
   /// The `--env` the entry point ran with.
   final String? selected;
+
+  /// The `defaultEnv` of `runEnvironments`.
+  final String? defaultEnv;
 
   /// The directories it wrote.
   final List<ManifestRoot> roots;

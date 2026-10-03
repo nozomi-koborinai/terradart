@@ -82,6 +82,7 @@ void main() {
         'version': 1,
         'environments': ['qa', 'sandbox', 'prd'],
         'selected': 'sandbox',
+        'default': null,
         'roots': [
           {
             'environment': 'sandbox',
@@ -191,6 +192,51 @@ Future<void> main(List<String> args) => runEnvironments(
       );
     });
 
+    test('records defaultEnv and still writes every environment', () async {
+      final r = await _run(
+        'Future<void> main(List<String> args) => '
+        'runEnvironments(args, Env.values, AppStack.new, '
+        'defaultEnv: Env.sandbox);',
+        [],
+      );
+      expect(r.code, 0, reason: r.err);
+      final manifest = _json(r.dir, 'manifest.json');
+      expect(manifest['default'], 'sandbox');
+      expect(manifest['selected'], isNull);
+      expect(manifest['roots'], hasLength(3));
+    });
+
+    test(
+      'writes only defaultEnv when environments share a directory',
+      () async {
+        final r = await _run('''
+Future<void> main(List<String> args) => runEnvironments(
+  args,
+  Env.values,
+  AppStack.new,
+  dir: (_) => 'tf-out',
+  workspace: (env) => 'app-\${env.name}',
+  defaultEnv: Env.qa,
+);''', []);
+        expect(r.code, 0, reason: r.err);
+        final manifest = _json(r.dir, 'manifest.json');
+        expect(manifest['default'], 'qa');
+        final root = (manifest['roots'] as List).single;
+        expect(root, containsPair('environment', 'qa'));
+        expect(root, containsPair('workspace', 'app-qa'));
+      },
+    );
+
+    test('rejects a defaultEnv that is not an environment', () async {
+      final r = await _run(
+        'Future<void> main(List<String> args) => runEnvironments(args, '
+        '[Env.qa, Env.prd], AppStack.new, defaultEnv: Env.sandbox);',
+        [],
+      );
+      expect(r.code, isNot(0));
+      expect(r.err, contains('defaultEnv'));
+    });
+
     test('writes no manifest outside terradart', () async {
       final r = await _run(_main, ['--env', 'qa'], manifest: false);
       expect(r.code, 0, reason: r.err);
@@ -210,6 +256,7 @@ Future<void> main(List<String> args) => runEnvironments(
       'version': 1,
       'environments': null,
       'selected': null,
+      'default': null,
       'roots': [
         {
           'environment': null,

@@ -9,15 +9,23 @@ import 'manifest.dart';
 import 'process_runner.dart';
 import 'target.dart';
 
-/// Where the CLI prints: progress to [out], warnings to [err].
+/// Where the CLI prints: progress to [out], warnings to [err]; answers come
+/// from [readLine].
 final class Console {
-  const Console({required this.out, required this.err});
+  const Console({required this.out, required this.err, this.readLine});
 
-  /// [stdout] and [stderr].
-  factory Console.io() => Console(out: stdout.writeln, err: stderr.writeln);
+  /// [stdout], [stderr] and [stdin].
+  factory Console.io() => Console(
+    out: stdout.writeln,
+    err: stderr.writeln,
+    readLine: stdin.readLineSync,
+  );
 
   final void Function(String) out;
   final void Function(String) err;
+
+  /// One line of input, `null` at its end; `null` reads nothing.
+  final String? Function()? readLine;
 
   void warn(String message) => err('warning: $message');
 }
@@ -75,14 +83,59 @@ final class Workflow {
       environment: {manifestVariable: _manifest.path},
     );
     if (code != 0) {
-      throw CliException('synth failed: $entry exited $code.', exitCode: code);
+      final from = request.envSource == EnvSource.variable
+          ? ' (--env ${request.env} comes from $envVariable)'
+          : '';
+      throw CliException(
+        'synth failed: $entry exited $code$from.',
+        exitCode: code,
+      );
     }
     _target = null;
   }
 
   /// What this command runs against: what the entry point last wrote, as
-  /// its manifest describes it.
-  Target get target => _target ??= request.resolve(Manifest.read(_manifest));
+  /// its manifest describes it. Prints the environment and why it is the
+  /// one.
+  Target get target {
+    if (_target case final target?) return target;
+    final target = _target = request.resolve(Manifest.read(_manifest));
+    if (target.ignoredEnv case final env?) {
+      console.out(
+        '$envVariable=$env ignored: ${request.config.entrypoint} declares no '
+        'environments.',
+      );
+    }
+    if (target.environment case final env?) {
+      console.out('env: $env (${target.environmentSource!.label})');
+    }
+    return target;
+  }
+
+  /// Before `apply` or `destroy`: asks whether to run against an
+  /// environment the command line did not name (`TERRADART_ENV` or the
+  /// entry point's `defaultEnv`), unless [autoApprove].
+  void confirmEnvironment(String action, {required bool autoApprove}) {
+    final env = target.environment;
+    final source = target.environmentSource;
+    if (autoApprove || env == null || source == null || !source.confirms) {
+      return;
+    }
+    console.out(
+      '${action[0].toUpperCase()}${action.substring(1)} environment "$env" '
+      '(${source.label})? Only "yes" is accepted:',
+    );
+    final answer = console.readLine?.call();
+    if (answer == null) {
+      throw CliException(
+        'No answer to whether to $action environment "$env" '
+        '(${source.label}); pass --env $env, or --auto-approve.',
+      );
+    }
+    if (answer.trim() != 'yes') {
+      throw CliException('Cancelled: did not $action environment "$env".');
+    }
+  }
 
   /// The Terraform directory this command runs in.
   String get dir => target.dir;

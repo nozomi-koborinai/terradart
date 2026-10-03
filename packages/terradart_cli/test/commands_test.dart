@@ -97,7 +97,10 @@ void main() {
       );
       final r = await project.run(['validate'], runner);
       expect(r.code, 64);
-      expect(r.err, contains('pass --env <name>, one of dev, prod'));
+      expect(
+        r.err,
+        contains('pass --env <name> or set TERRADART_ENV, one of dev, prod'),
+      );
       expect(runner.engineCalls, isEmpty);
     });
 
@@ -481,7 +484,7 @@ void main() {
       expect(
         r.err,
         contains(
-          'Unknown environment "staging"; known envs: qa, sandbox, prd.',
+          'Unknown environment "staging" (--env); known envs: qa, sandbox, prd.',
         ),
       );
     });
@@ -504,7 +507,182 @@ void main() {
       );
       final r = await project.run(['plan'], runner);
       expect(r.code, 64);
-      expect(r.err, contains('pass --env <name>, one of dev, stg, prod'));
+      expect(
+        r.err,
+        contains(
+          'pass --env <name> or set TERRADART_ENV, one of dev, stg, prod',
+        ),
+      );
+    });
+
+    test('--env prints that it chose the env', () async {
+      final project = TestProject.create();
+      final runner = FakeRunner(
+        synth: (args) => runEnvironmentsEntry(args, envs, defaultEnv: 'dev'),
+      );
+      final r = await project.run(
+        ['plan', '--env', 'prod'],
+        runner,
+        env: {'TERRADART_ENV': 'stg'},
+      );
+      expect(r.code, 0, reason: r.err);
+      expect(runner.calls.first.args, [
+        'run',
+        'bin/infra.dart',
+        '--env',
+        'prod',
+      ]);
+      expect(r.out, contains('env: prod (--env)'));
+      expect(runner.calls.last.workingDirectory, project.path('tf-out/prod'));
+    });
+
+    test('TERRADART_ENV names the env without --env', () async {
+      final project = TestProject.create();
+      final runner = FakeRunner(
+        synth: (args) => runEnvironmentsEntry(args, envs, defaultEnv: 'dev'),
+      );
+      final r = await project.run(
+        ['plan'],
+        runner,
+        env: {'TERRADART_ENV': 'stg'},
+      );
+      expect(r.code, 0, reason: r.err);
+      expect(runner.calls.first.args, [
+        'run',
+        'bin/infra.dart',
+        '--env',
+        'stg',
+      ]);
+      expect(r.out, contains('env: stg (TERRADART_ENV)'));
+      expect(runner.calls.last.workingDirectory, project.path('tf-out/stg'));
+    });
+
+    test('an unknown TERRADART_ENV says where the name came from', () async {
+      final project = TestProject.create();
+      final runner = FakeRunner(
+        synth: (args) => runEnvironmentsEntry(args, envs),
+      );
+      final r = await project.run(
+        ['plan'],
+        runner,
+        env: {'TERRADART_ENV': 'staging'},
+      );
+      expect(r.code, 64);
+      expect(r.err, contains('(--env staging comes from TERRADART_ENV)'));
+    });
+
+    test('the defaultEnv of runEnvironments, without either', () async {
+      final project = TestProject.create();
+      final runner = FakeRunner(
+        synth: (args) => runEnvironmentsEntry(args, envs, defaultEnv: 'dev'),
+      );
+      final r = await project.run(['plan'], runner);
+      expect(r.code, 0, reason: r.err);
+      expect(runner.calls.first.args, ['run', 'bin/infra.dart']);
+      expect(r.out, contains('env: dev (default)'));
+      expect(runner.calls.last.workingDirectory, project.path('tf-out/dev'));
+    });
+
+    test('the only environment, without either', () async {
+      final project = TestProject.create();
+      final runner = FakeRunner(
+        synth: (args) => runEnvironmentsEntry(args, ['dev']),
+        outputs: {'dart_defines': defines},
+      );
+      final r = await project.run(['apply'], runner);
+      expect(r.code, 0, reason: r.err);
+      expect(r.out, contains('env: dev (only environment)'));
+      expect(r.out, isNot(contains('Only "yes" is accepted')));
+    });
+
+    test('TERRADART_ENV is ignored by an entry point without envs', () async {
+      final project = TestProject.create();
+      final runner = FakeRunner(synth: (_) => runStackEntry());
+      final r = await project.run(
+        ['apply'],
+        runner,
+        env: {'TERRADART_ENV': 'dev'},
+      );
+      expect(r.code, 0, reason: r.err);
+      expect(
+        r.out,
+        contains(
+          'TERRADART_ENV=dev ignored: bin/infra.dart declares no '
+          'environments.',
+        ),
+      );
+      expect(runner.calls.last.workingDirectory, project.path('tf-out'));
+    });
+
+    group('apply and destroy confirm an env the command line did not name', () {
+      FakeRunner runner() => FakeRunner(
+        synth: (args) => runEnvironmentsEntry(args, envs, defaultEnv: 'dev'),
+        outputs: {'dart_defines': defines},
+      );
+
+      for (final command in ['apply', 'destroy']) {
+        test('$command runs on "yes" (default)', () async {
+          final project = TestProject.create();
+          final fake = runner();
+          final r = await project.run([command], fake, input: ['yes']);
+          expect(r.code, 0, reason: r.err);
+          expect(
+            r.out,
+            contains(
+              '${command[0].toUpperCase()}${command.substring(1)} environment '
+              '"dev" (default)? Only "yes" is accepted:',
+            ),
+          );
+          expect(fake.engineCalls, contains(startsWith(command)));
+        });
+
+        test('$command stops on any other answer (TERRADART_ENV)', () async {
+          final project = TestProject.create();
+          final fake = runner();
+          final r = await project.run(
+            [command],
+            fake,
+            env: {'TERRADART_ENV': 'prod'},
+            input: ['y'],
+          );
+          expect(r.code, 1);
+          expect(
+            r.err,
+            contains('Cancelled: did not $command environment "prod".'),
+          );
+          expect(fake.engineCalls, isEmpty);
+        });
+
+        test('$command without input fails before the engine', () async {
+          final project = TestProject.create();
+          final fake = runner();
+          final r = await project.run([command], fake);
+          expect(r.code, 1);
+          expect(r.err, contains('pass --env dev, or --auto-approve'));
+          expect(fake.engineCalls, isEmpty);
+        });
+
+        test('$command --auto-approve does not ask', () async {
+          final project = TestProject.create();
+          final fake = runner();
+          final r = await project.run(
+            [command, '--auto-approve'],
+            fake,
+            env: {'TERRADART_ENV': 'stg'},
+          );
+          expect(r.code, 0, reason: r.err);
+          expect(r.out, isNot(contains('Only "yes" is accepted')));
+          expect(fake.engineCalls, contains('$command -auto-approve'));
+        });
+
+        test('$command --env does not ask', () async {
+          final project = TestProject.create();
+          final fake = runner();
+          final r = await project.run([command, '--env', 'dev'], fake);
+          expect(r.code, 0, reason: r.err);
+          expect(r.out, isNot(contains('Only "yes" is accepted')));
+        });
+      }
     });
 
     test('a migrated entry point of its own finds envs/<dir>', () async {
