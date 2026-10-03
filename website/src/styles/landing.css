@@ -724,6 +724,18 @@ html[data-theme="light"] .shiki span {
   transition: color 0.15s, border-color 0.15s;
 }
 
+@media (max-width: 479px) {
+  .switcher-tabs {
+    gap: 0;
+  }
+
+  .switcher-tabs button {
+    gap: 0.35rem;
+    padding: 0.65rem 0.5rem 0.7rem;
+    font-size: 0.8125rem;
+  }
+}
+
 .switcher-tabs button:hover {
   color: var(--td-text);
 }
