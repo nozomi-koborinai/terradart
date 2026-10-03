@@ -14,7 +14,9 @@ dependencies:
   terradart_cloudflare: ^0.33.x
 ```
 
-`CloudflareProvider` takes no token, so credentials never enter the synthesized JSON. Apply authenticates with `CLOUDFLARE_API_TOKEN` (or the other `CLOUDFLARE_*` variables the provider reads).
+## Credentials
+
+`CloudflareProvider` takes no token, so credentials never enter the synthesized JSON, and synth needs none. `terradart plan` and `terradart apply` authenticate with `CLOUDFLARE_API_TOKEN` (or the other `CLOUDFLARE_*` variables the provider reads). With them in place, [`terradart apply`](/docs/cli/) synthesizes the Stack and applies it.
 
 ## A zone in front of your API
 

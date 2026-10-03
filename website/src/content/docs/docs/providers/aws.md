@@ -18,11 +18,11 @@ Check [pub.dev](https://pub.dev/packages/terradart_aws) for the latest patch, th
 
 ## Credentials
 
-**Credentials never appear in synth output.** `AwsProvider` has no `access_key`, `secret_key` or `token` parameter, so there is nothing secret to write into `tf-out/`. `plan` and `apply` — through `terradart` or `terraform` — authenticate through the AWS SDK credential chain:
+**Credentials never appear in synth output.** `AwsProvider` has no `access_key`, `secret_key` or `token` parameter, so there is nothing secret to write into `tf-out/`. `terradart plan` and `terradart apply` authenticate through the AWS SDK credential chain:
 
 - `AWS_PROFILE` with your shared config, including IAM Identity Center (SSO) profiles after `aws sso login`
 - `AWS_ACCESS_KEY_ID` / `AWS_SECRET_ACCESS_KEY` / `AWS_SESSION_TOKEN`
-- an instance role through IMDS, or an ECS task role, when Terraform runs on AWS
+- an instance role through IMDS, or an ECS task role, when `terradart` runs on AWS
 
 Synth needs no credentials at all. `assumeRole`, `defaultTags`, `ignoreTags` and `endpoints` are typed settings on `AwsProvider`.
 
@@ -107,7 +107,7 @@ final class HelloLambdaStack extends Stack {
 
 `policyArn` takes an `AwsIamPolicy`: pass `policy.ref` for a policy the stack creates, or `.literal(...)` with the ARN of an AWS managed policy, as here.
 
-Build the zip before `terraform apply`. Synth does not build it, and the `--target-os` / `--target-arch` flags cross-compile from macOS or Windows (Dart 3.8 or later):
+Build the zip before `terradart apply`. Synth does not build it, and the `--target-os` / `--target-arch` flags cross-compile from macOS or Windows (Dart 3.8 or later):
 
 ```bash
 mkdir -p build
@@ -115,6 +115,22 @@ dart compile exe bin/bootstrap.dart -o build/bootstrap \
   --target-os linux --target-arch x64
 (cd build && zip bootstrap.zip bootstrap)
 ```
+
+Then hand the Stack to `runStack` in `bin/infra.dart` and apply it:
+
+```dart
+// bin/infra.dart
+import 'package:my_app/hello_lambda_stack.dart';
+import 'package:terradart_core/terradart_core.dart';
+
+Future<void> main(List<String> args) => runStack(args, HelloLambdaStack.new);
+```
+
+```bash
+AWS_PROFILE=my-profile terradart apply
+```
+
+[`terradart apply`](/docs/cli/) runs `bin/infra.dart`, then `init` and `apply` in `tf-out/`; `terradart plan` stops at the plan. The other Stacks on this page run the same way.
 
 The runnable version, including a minimal `bin/bootstrap.dart` that long-polls the Lambda Runtime API, is [`examples/aws_lambda_quickstart`](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_lambda_quickstart).
 
@@ -282,7 +298,7 @@ import 'generated/serverless_api_stack.app.dart';
 String tableName() =>
     ServerlessApiStackOutputs.fromEnvironment(Platform.environment).tableName;
 
-/// API_URL, from `terraform output` exported into the environment.
+/// API_URL, exported from the define file `terradart outputs` writes.
 String apiUrl() =>
     ServerlessApiStackOutputs.fromEnvironment(Platform.environment).apiUrl;
 ```
@@ -370,7 +386,7 @@ final class DartServerStack extends Stack {
 }
 ```
 
-The image must exist before `terraform apply`. A two-stage Dockerfile that runs `dart compile exe` and copies the binary onto `scratch` keeps it small. The service bills by the hour while it runs, and without network settings it uses the account's default VPC. After apply, the service's public endpoint is in its `ingress_paths` attribute.
+The image must exist before `terradart apply`. A two-stage Dockerfile that runs `dart compile exe` and copies the binary onto `scratch` keeps it small. The service bills by the hour while it runs, and without network settings it uses the account's default VPC. After apply, the service's public endpoint is in its `ingress_paths` attribute.
 
 The runnable version, with an ECR repository, a log group, the `dart:io` server and its `Dockerfile`, is [`examples/aws_ecs_express_quickstart`](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_ecs_express_quickstart). Its README lists what apply needs and what it bills.
 
@@ -488,7 +504,7 @@ final class FlutterWebStack extends Stack {
 
 This serves the app on the distribution's `*.cloudfront.net` domain. For a custom domain, add an `AwsAcmCertificate` in `us-east-1` (CloudFront only accepts certificates from that region), validate it through an `AwsRoute53Record`, and point `viewerCertificate.acmCertificateArn` and `aliases` at it.
 
-After `terraform apply`, upload the build and invalidate the cache:
+After `terradart apply`, upload the build and invalidate the cache:
 
 ```bash
 flutter build web
@@ -498,27 +514,9 @@ aws cloudfront create-invalidation --distribution-id <id> --paths '/*'
 
 The runnable version, with the custom domain, ACM certificate and Route 53 aliases wired in, is [`examples/aws_static_site_quickstart`](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_static_site_quickstart). Its README lists the hosted zone apply needs.
 
-## Synth and apply
-
-Each Stack synths like any other TerraDart Stack:
-
-```dart
-// bin/infra.dart
-import 'package:my_app/hello_lambda_stack.dart';
-import 'package:terradart_core/terradart_core.dart';
-
-Future<void> main(List<String> args) => runStack(args, HelloLambdaStack.new);
-```
-
-```bash
-AWS_PROFILE=my-profile terradart plan
-```
-
-[`terradart plan`](/docs/cli/) runs `bin/infra.dart`, then `init` and `plan` in `tf-out/`; `terradart apply` applies it.
-
-The rest of the catalog sits on the same per-service barrels, such as `package:terradart_aws/ec2.dart`, `rds.dart`, `dynamodb.dart` and `sqs.dart`. Every factory is exercised by [`examples/aws_leftover_quickstart`](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart), a synth and `terraform validate` coverage stack that is never applied.
-
 ## Examples
+
+The rest of the catalog sits on the same per-service barrels, such as `package:terradart_aws/ec2.dart`, `rds.dart`, `dynamodb.dart` and `sqs.dart`.
 
 - [`examples/aws_lambda_quickstart`](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_lambda_quickstart) — a Dart binary on Lambda behind a function URL.
 - [`examples/aws_serverless_api_quickstart`](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_serverless_api_quickstart) — that binary as an HTTP API in front of DynamoDB, with least-privilege IAM and typed outputs.
@@ -526,7 +524,7 @@ The rest of the catalog sits on the same per-service barrels, such as `package:t
 - [`examples/aws_static_site_quickstart`](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_static_site_quickstart) — a Flutter Web build on S3 + CloudFront.
 - [`examples/aws_leftover_quickstart`](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_leftover_quickstart) — every other factory with placeholder values; it synthesizes and validates, and is never applied.
 
-## Next steps
+## Reference
 
 - [Getting started](/docs/getting-started/) for Stacks, synth, and the outputs / constants boundary
 - [How TerraDart is built](/docs/how-its-built/) for how provider packages are generated
