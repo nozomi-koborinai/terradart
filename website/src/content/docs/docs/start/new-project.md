@@ -198,7 +198,7 @@ Apply environment "dev" (default)? Only "yes" is accepted:
 
 Then the engine shows the plan and asks again. After the apply, the command writes the outputs to `.terradart/dart_defines.dev.json` for an app to build with ([step 10](#10-hand-the-outputs-to-an-app)).
 
-`--env prd` (or `TERRADART_ENV=prd`) applies the other environment. Name the environment with `--env` in CI: without a terminal to answer the question, an apply that `defaultEnv` chose stops before it changes anything, unless `--auto-approve` is given.
+`--env prd` (or `TERRADART_ENV=prd`) applies the other environment. In CI, name the environment with `--env` and pass `--auto-approve`: without a terminal to answer the question, an apply stops before it changes anything (exit code 3).
 
 ```bash
 terradart apply --env prd

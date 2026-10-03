@@ -71,7 +71,7 @@ Read the plan, then apply it yourself:
 terradart apply --env dev
 ```
 
-The apply shows the plan again and asks before it changes anything. The skill and the generated `AGENTS.md` both tell the agent to run `apply` and `destroy` only when you ask. `--auto-approve` skips every question an apply asks, so an agent should pass it only when you said so. After the apply, the define file for a Flutter or web client is in `.terradart/dart_defines.dev.json` ([Outputs in client apps](/docs/client-outputs/)).
+In a terminal of your own, the apply shows the plan again and asks before it changes anything. In an agent's shell `terradart` never asks: an apply without `--auto-approve` stops before `init` with exit code 3 and prints the command with the flag added. The skill and the generated `AGENTS.md` both tell the agent to run `apply` and `destroy` only when you ask, so an agent should pass `--auto-approve` only when you said so. After the apply, the define file for a Flutter or web client is in `.terradart/dart_defines.dev.json` ([Outputs in client apps](/docs/client-outputs/)).
 
 ## Migrate existing Terraform
 
