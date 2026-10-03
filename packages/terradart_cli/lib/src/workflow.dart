@@ -278,8 +278,9 @@ final class Workflow {
       if (!f.path.endsWith('.tf.json')) continue;
       try {
         final json = jsonDecode(f.readAsStringSync());
-        if (json case {'terraform': {'backend': final Map<Object?, Object?> b}}
-            when b.isNotEmpty) {
+        if (json case {
+          'terraform': {'backend': final Map<Object?, Object?> b},
+        } when b.isNotEmpty) {
           return '${b.keys.first}';
         }
         if (json case {'terraform': {'cloud': final Map<Object?, Object?> _}}) {
