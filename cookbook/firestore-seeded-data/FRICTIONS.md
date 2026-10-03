@@ -1,5 +1,7 @@
 # firestore-seeded-data — FRICTIONS
 
+> **Historical record.** These entries log dogfood runs on earlier terradart versions, when the recipe ran `terraform` directly. Commands and APIs quoted here may be out of date; the [README](./README.md) has the current steps.
+
 Findings from dogfooding the recipe against `terradart-validate` GCP project.
 
 Cycle 1: **2026-05-22 — initial validation against terradart v0.10.0** published to pub.dev. Apply → smoke → destroy against `terradart-validate`. Followed by a second dogfood cycle the same day after discovering a P1 recipe-correctness omission (see below).

@@ -1,6 +1,6 @@
 > Part of the [TerraDart cookbook](../README.md). Library: [terradart](https://github.com/nozomi-koborinai/terradart).
 >
-> **Status:** Verified on terradart v0.11.0. Stage 0 bucket apply + destroy cycle confirmed end-to-end via the synth-emitted local backend. See [FRICTIONS.md](./FRICTIONS.md) for dogfood findings.
+> **Status:** Last applied end to end on terradart v0.11.0, when recipes still ran `terraform` directly; the steps below use the `terradart` command. Stage 0 bucket apply + destroy cycle confirmed end-to-end via the synth-emitted local backend. See [FRICTIONS.md](./FRICTIONS.md) for dogfood findings.
 
 # remote-backend
 

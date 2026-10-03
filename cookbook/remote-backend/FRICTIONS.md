@@ -1,5 +1,7 @@
 # Friction log — remote-backend recipe
 
+> **Historical record.** These entries log dogfood runs on earlier terradart versions, when the recipe ran `terraform` directly. Commands and APIs quoted here may be out of date; the [README](./README.md) has the current steps.
+
 Findings from authoring + dogfooding the `remote-backend` recipe. Separate from `single-project-app/FRICTIONS.md` because the patterns surfaced are state-management-specific.
 
 ## Entry template
