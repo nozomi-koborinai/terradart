@@ -97,7 +97,10 @@ void main() {
       );
       final r = await project.run(['validate'], runner);
       expect(r.code, 64);
-      expect(r.err, contains('pass --env <name>, one of dev, prod'));
+      expect(
+        r.err,
+        contains('pass --env <name> or set TERRADART_ENV, one of dev, prod'),
+      );
       expect(runner.engineCalls, isEmpty);
     });
 
