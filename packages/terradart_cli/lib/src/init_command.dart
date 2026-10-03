@@ -32,7 +32,9 @@ final class InitCommand extends Command<int> {
         abbr: 'p',
         allowed: [for (final p in InitProvider.values) p.name],
         valueHelp: 'names',
-        help: 'The provider packages, comma-separated (default: google).',
+        help:
+            'The provider packages, comma-separated. Required without a '
+            'terminal; in one, a question.',
       )
       ..addMultiOption(
         'env',
@@ -102,7 +104,7 @@ final class InitCommand extends Command<int> {
       'Create a TerraDart project in [dir] (default: infra/): pubspec.yaml, '
       'an Env enum, a Stack, bin/infra.dart, README.md and AGENTS.md, then '
       'dart pub get. In a terminal it asks for what the flags leave out; '
-      'otherwise it takes the defaults. Inside a Flutter app it wires the '
+      'otherwise it needs --provider and takes the defaults. Inside a Flutter app it wires the '
       "app to the Stack's outputs. For an existing Terraform directory use "
       'terradart migrate.';
 
@@ -114,7 +116,9 @@ final class InitCommand extends Command<int> {
 
 Examples:
   terradart init
-      Asks in a terminal; without one: infra/, google, dev and prd, local state.
+      Asks in a terminal.
+  terradart init --provider google
+      Without a terminal: infra/, environments dev and prd, local state.
   terradart init infra --provider aws --env dev,stg,prd --backend s3
   terradart init --provider google,cloudflare --gcp-project dev=acme-dev,prd=acme-prd --cloudflare-account 0123abcd
   terradart init --dry-run --provider appwrite
@@ -135,7 +139,7 @@ Existing Terraform:
     final dryRun = args.flag('dry-run');
 
     if (!force) {
-      final found = _terraformDirs({_cwd, target});
+      final found = _terraformDirs([_cwd, target]);
       if (found.isNotEmpty) {
         final hint = _migrateHint(found);
         if (!_interactive) throw CliException('$hint\n$_forceHint');
@@ -212,6 +216,16 @@ Existing Terraform:
       flutter: wire ? _flutterApp(target) : null,
     );
     _checkFieldNames(plan);
+    final defaults = _interactive
+        ? const <String>[]
+        : [
+            if (!args.wasParsed('env')) '--env ${envs.join(',')}',
+            for (final id in plan.idFields)
+              if (!args.wasParsed(id.flag))
+                '--${id.flag} (placeholders marked TODO)',
+            if (args.option('backend') == null) '--backend local',
+            if (flutterApp != null && flutterFlag == null) '--flutter',
+          ];
 
     final files = renderProject(plan);
     final existing = [
@@ -233,6 +247,7 @@ Existing Terraform:
       for (final rel in files.keys) {
         _console.out('  $rel${existing.contains(rel) ? ' (overwrite)' : ''}');
       }
+      _printDefaults(defaults);
       _printRerun(plan, target, force: force);
       return 0;
     }
@@ -248,6 +263,7 @@ Existing Terraform:
     for (final rel in files.keys) {
       _console.out('  $rel');
     }
+    _printDefaults(defaults);
     if (plan.flutter case final app?) {
       _console.out(
         'Synth writes ${_show(p.normalize(p.join(target, app.appExports)))} '
@@ -289,6 +305,11 @@ Existing Terraform:
     return 0;
   }
 
+  void _printDefaults(List<String> defaults) {
+    if (defaults.isEmpty) return;
+    _console.out('Defaults: ${defaults.join(', ')}.');
+  }
+
   /// The non-interactive command for what was asked.
   void _printRerun(InitPlan plan, String target, {required bool force}) {
     if (_answered.isEmpty) return;
@@ -320,10 +341,10 @@ Existing Terraform:
         _console.out('  ${i + 1}) $n');
       }
     }
-    return _ask(
+    final picked = _ask<List<InitProvider>?>(
       'provider',
-      'Providers, comma-separated names or numbers [google]: ',
-      [InitProvider.google],
+      'Providers, comma-separated names or numbers: ',
+      null,
       (answer) {
         final picked = [
           for (final n in _split([answer]))
@@ -337,7 +358,13 @@ Existing Terraform:
         }
         return ([for (final n in picked) InitProvider.parse(n)], null);
       },
+      allowEmpty: false,
     );
+    return picked ??
+        usageException(
+          'Pass --provider: one or more of ${names.join(', ')}, '
+          'comma-separated.',
+        );
   }
 
   List<String> _askEnvs() => _ask('env', 'Environments [dev,prd]: ', const [
@@ -380,20 +407,27 @@ Existing Terraform:
     );
   }
 
-  /// Asks until [parse] accepts the answer; an empty answer, end of input
-  /// or no terminal is [fallback]. An accepted answer is the [flag]'s.
+  /// Asks until [parse] accepts the answer; end of input, no terminal, or
+  /// an empty answer when [allowEmpty] is [fallback]. An accepted answer is
+  /// the [flag]'s.
   T _ask<T>(
     String flag,
     String question,
     T fallback,
-    (T?, String?) Function(String answer) parse,
-  ) {
+    (T?, String?) Function(String answer) parse, {
+    bool allowEmpty = true,
+  }) {
     final ask = _console.ask;
     if (ask == null) return fallback;
     _answered.add(flag);
     while (true) {
       final answer = ask(question)?.trim();
-      if (answer == null || answer.isEmpty) return fallback;
+      if (answer == null) return fallback;
+      if (answer.isEmpty) {
+        if (allowEmpty) return fallback;
+        _console.err('Pick at least one.');
+        continue;
+      }
       final (value, problem) = parse(answer);
       if (value != null) return value;
       _console.err(problem!);
@@ -468,36 +502,61 @@ Existing Terraform:
     appDir: _posix(p.relative(_cwd, from: target)),
   );
 
-  /// The `*.tf` / `*.tf.json` files directly in each of [dirs] that has
-  /// any, by directory relative to the working directory.
-  Map<String, List<String>> _terraformDirs(Set<String> dirs) => {
-    for (final dir in dirs)
-      if (Directory(dir).existsSync())
-        if ([
-              for (final f in Directory(dir).listSync().whereType<File>())
-                if (f.path.endsWith('.tf') || f.path.endsWith('.tf.json'))
-                  p.basename(f.path),
-            ]..sort()
-            case final files when files.isNotEmpty)
-          _posix(_rel(dir)): files,
-  };
+  /// The directories under each of [roots] that hold `*.tf` / `*.tf.json`
+  /// files, by root; all relative to the working directory. A root inside
+  /// another is not walked twice.
+  Map<String, List<String>> _terraformDirs(Iterable<String> roots) {
+    final walked = <String>[];
+    final found = <String, List<String>>{};
+    for (final root in roots) {
+      if (walked.any((r) => p.equals(r, root) || p.isWithin(r, root))) {
+        continue;
+      }
+      walked.add(root);
+      final dirs = <String>{};
+      void walk(Directory dir) {
+        final List<FileSystemEntity> entries;
+        try {
+          entries = dir.listSync(followLinks: false);
+        } on FileSystemException {
+          return;
+        }
+        for (final e in entries) {
+          final name = p.basename(e.path);
+          if (e is Directory) {
+            if (!_notTerraform.contains(name)) walk(e);
+          } else if (e is File &&
+              (name.endsWith('.tf') || name.endsWith('.tf.json'))) {
+            dirs.add(_posix(_rel(dir.path)));
+          }
+        }
+      }
+
+      if (Directory(root).existsSync()) walk(Directory(root));
+      if (dirs.isNotEmpty) found[_posix(_rel(root))] = dirs.toList()..sort();
+    }
+    return found;
+  }
 
   String _migrateHint(Map<String, List<String>> found) {
     final b = StringBuffer();
-    for (final MapEntry(key: dir, value: files) in found.entries) {
-      final out = dir == '.' ? 'infra' : '${dir}_dart';
+    for (final MapEntry(key: root, value: dirs) in found.entries) {
+      final out = root == '.' ? 'infra' : '${root}_dart';
+      final shown = [
+        for (final d in dirs.take(5))
+          d == '.' ? '. (the current directory)' : d,
+        if (dirs.length > 5) '... (${dirs.length} directories)',
+      ];
       b
         ..writeln(
-          '${dir == '.' ? 'The current directory' : dir} already holds '
-          'Terraform (${files.take(3).join(', ')}'
-          '${files.length > 3 ? ', ...' : ''}). Migrate it to TerraDart '
+          'Found Terraform in ${shown.join(', ')}. Migrate it to TerraDart '
           'instead of starting over:',
         )
         ..writeln(
-          '  terradart migrate --report --dir $dir    '
+          '  terradart migrate --report --dir $root    '
           '# what migrates, and what stays Terraform',
         )
-        ..writeln('  terradart migrate --dir $dir --out $out');
+        ..writeln('  terradart migrate --dir $root --out $out');
     }
     return '$b'.trimRight();
   }
@@ -516,6 +575,14 @@ Existing Terraform:
 }
 
 const _forceHint = 'Pass --force to scaffold a new project anyway.';
+
+/// Directories the Terraform scan skips: tooling, build output, the
+/// platform folders of a Flutter app, and what TerraDart itself writes.
+const _notTerraform = {
+  '.git', '.dart_tool', 'build', 'node_modules', '.terraform', //
+  'tf-out', '.terradart', 'ios', 'android', 'macos', 'linux', 'windows',
+  'web',
+};
 
 List<String> _split(List<String> values) => [
   for (final v in values)

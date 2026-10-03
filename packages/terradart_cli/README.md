@@ -28,14 +28,14 @@ It runs the `tofu`, else the `terraform`, on your `PATH`. With neither, it downl
 
 ## A new project
 
-`terradart init` asks, in a terminal, for the providers, the environment names, each environment's project or account ID and the backend, and prints the flags that give the same answers; without a terminal it takes the defaults (`google`, `dev,prd`, local state) and never asks:
+`terradart init` asks, in a terminal, for the providers, the environment names, each environment's project or account ID and the backend, and prints the flags that give the same answers; without a terminal it never asks, needs `--provider`, and takes and prints the defaults (`dev,prd`, local state) for the rest:
 
 ```bash
 terradart init --provider google,cloudflare --env dev,prd --gcp-project dev=acme-dev,prd=acme-prd --backend gcs
-terradart init --dry-run   # list the files, write nothing
+terradart init --dry-run --provider aws   # list the files, write nothing
 ```
 
-Inside a Flutter app it wires `infra/` to the app: the generated reader goes to the app's `lib/generated/`, and `flutter run --dart-define-from-file=infra/.terradart/dart_defines.dev.json` builds with the outputs. A directory that already holds Terraform is pointed at `terradart migrate` instead.
+Inside a Flutter app it wires `infra/` to the app: the generated reader goes to the app's `lib/generated/`, and `flutter run --dart-define-from-file=infra/.terradart/dart_defines.dev.json` builds with the outputs. A directory that already holds Terraform, at any depth, is pointed at `terradart migrate` instead.
 
 ## Environments
 

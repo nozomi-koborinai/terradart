@@ -54,8 +54,8 @@ void main() {
     return (code: code, out: '$out', err: '$err', asked: asked, runner: runner);
   }
 
-  test('defaults to infra/, google, dev and prd, local state', () async {
-    final r = await init([]);
+  test('defaults to infra/, dev and prd, local state', () async {
+    final r = await init(['-p', 'google']);
     expect(r.code, 0, reason: r.err);
     final infra = p.join(root, 'infra');
     expect(
@@ -115,7 +115,40 @@ void main() {
     expect(r.runner.calls.single.workingDirectory, infra);
     expect(r.out, contains('> dart pub get\n'));
     expect(r.out, contains('  cd infra\n  terradart plan --env dev\n'));
+    expect(
+      r.out,
+      contains(
+        'Defaults: --env dev,prd, --gcp-project (placeholders marked TODO), '
+        '--backend local.\n',
+      ),
+    );
     expect(r.out, isNot(contains('Re-run with')));
+  });
+
+  test('needs --provider without a terminal', () async {
+    final r = await init(['--env', 'dev']);
+    expect(r.code, 64);
+    expect(
+      r.err,
+      contains(
+        'Pass --provider: one or more of google, aws, cloudflare, appwrite',
+      ),
+    );
+    expect(Directory(p.join(root, 'infra')).existsSync(), isFalse);
+  });
+
+  test('prints no defaults for what the flags give', () async {
+    final r = await init([
+      '-p',
+      'aws',
+      '--env',
+      'dev',
+      '--backend',
+      'local',
+      '--no-pub-get',
+    ]);
+    expect(r.code, 0, reason: r.err);
+    expect(r.out, isNot(contains('Defaults:')));
   });
 
   test('takes providers, environments and a backend from flags', () async {
@@ -171,15 +204,15 @@ void main() {
   });
 
   test('names the flag an ID is wrong for', () async {
-    final noProvider = await init(['--gcp-project', 'acme']);
-    expect(noProvider.code, 0, reason: noProvider.err);
+    final google = await init(['-p', 'google', '--gcp-project', 'acme']);
+    expect(google.code, 0, reason: google.err);
     final wrong = await init(['x', '-p', 'aws', '--gcp-project', 'acme']);
     expect(wrong.code, 64);
     expect(wrong.err, contains('--gcp-project needs --provider google.'));
-    final env = await init(['y', '--gcp-project', 'stg=acme']);
+    final env = await init(['y', '-p', 'google', '--gcp-project', 'stg=acme']);
     expect(env.code, 64);
     expect(env.err, contains('--gcp-project: no environment "stg"'));
-    final quote = await init(['z', '--gcp-project', "it's"]);
+    final quote = await init(['z', '-p', 'google', '--gcp-project', "it's"]);
     expect(quote.code, 64);
     expect(quote.err, contains('--gcp-project: "it\'s" is not an ID'));
   });
@@ -215,8 +248,8 @@ void main() {
     );
     expect(r.code, 0, reason: r.err);
     expect(r.asked, [
-      'Providers, comma-separated names or numbers [google]: ',
-      'Providers, comma-separated names or numbers [google]: ',
+      'Providers, comma-separated names or numbers: ',
+      'Providers, comma-separated names or numbers: ',
       'Environments [dev,prd]: ',
       'Environments [dev,prd]: ',
       'Google Cloud project ID for qa [skip]: ',
@@ -245,9 +278,10 @@ void main() {
   });
 
   test('an empty answer or end of input takes the default', () async {
-    final r = await init(['app'], answers: ['', null]);
+    final r = await init(['app'], answers: ['', 'google', '', null]);
     expect(r.code, 0, reason: r.err);
-    expect(r.asked, hasLength(5));
+    expect(r.asked, hasLength(6));
+    expect(r.err, contains('Pick at least one.'));
     expect(read('app/pubspec.yaml'), contains('terradart_google'));
     expect(read('app/lib/env.dart'), contains('  prd(\n'));
     expect(read('app/lib/stack.dart'), contains('LocalBackend'));
@@ -258,6 +292,13 @@ void main() {
         '--backend local\n',
       ),
     );
+  });
+
+  test('end of input before a provider names the flag', () async {
+    final r = await init(['app'], answers: []);
+    expect(r.code, 64);
+    expect(r.err, contains('Pass --provider'));
+    expect(Directory(p.join(root, 'app')).existsSync(), isFalse);
   });
 
   group('next to existing Terraform', () {
@@ -271,13 +312,13 @@ void main() {
     test('points at terradart migrate without a terminal', () async {
       final r = await init([]);
       expect(r.code, 1);
-      expect(r.err, contains('already holds Terraform (main.tf)'));
+      expect(r.err, contains('Found Terraform in . (the current directory).'));
       expect(r.err, contains('terradart migrate --report --dir .'));
       expect(r.err, contains('terradart migrate --dir . --out infra'));
       expect(r.err, contains('Pass --force'));
       expect(Directory(p.join(root, 'infra')).existsSync(), isFalse);
 
-      final forced = await init(['--force']);
+      final forced = await init(['--force', '-p', 'google']);
       expect(forced.code, 0, reason: forced.err);
       expect(exists('infra/lib/stack.dart'), isTrue);
     });
@@ -302,9 +343,48 @@ void main() {
     });
   });
 
+  test('finds Terraform in subdirectories, past the ones it skips', () async {
+    void touch(String rel) => File(p.join(root, rel))
+      ..parent.createSync(recursive: true)
+      ..writeAsStringSync('{}\n');
+    for (final skipped in [
+      'ios/Flutter/x.tf',
+      'build/x.tf',
+      'tf-out/dev/main.tf.json',
+      'infra/.terraform/modules/m/main.tf',
+      'node_modules/m/main.tf',
+    ]) {
+      touch(skipped);
+    }
+    expect((await init(['-p', 'google', '--dry-run'])).code, 0);
+
+    touch('envs/dev/main.tf');
+    touch('modules/net/net.tf.json');
+    final r = await init(['-p', 'google']);
+    expect(r.code, 1);
+    expect(
+      r.err,
+      contains(
+        'Found Terraform in envs/dev, modules/net. Migrate it to TerraDart',
+      ),
+    );
+    expect(r.err, contains('terradart migrate --report --dir .'));
+  });
+
+  test('finds Terraform in a target outside the working directory', () async {
+    final other = p.join(p.dirname(root), 'old');
+    File(p.join(other, 'stacks', 'main.tf'))
+      ..parent.createSync(recursive: true)
+      ..writeAsStringSync('');
+    final r = await init(['../old', '-p', 'google']);
+    expect(r.code, 1);
+    expect(r.err, contains('Found Terraform in ../old/stacks.'));
+    expect(r.err, contains('terradart migrate --dir ../old --out ../old_dart'));
+  });
+
   test('refuses to overwrite a file unless --force', () async {
     File(p.join(root, 'pubspec.yaml')).writeAsStringSync('name: mine\n');
-    final r = await init(['.']);
+    final r = await init(['.', '-p', 'google']);
     expect(r.code, 1);
     expect(
       r.err,
@@ -313,7 +393,7 @@ void main() {
     expect(read('pubspec.yaml'), 'name: mine\n');
     expect(exists('lib/env.dart'), isFalse);
 
-    final forced = await init(['.', '--force']);
+    final forced = await init(['.', '-p', 'google', '--force']);
     expect(forced.code, 0, reason: forced.err);
     expect(read('pubspec.yaml'), contains('name: acme\n'));
     expect(forced.out, isNot(contains('  cd ')));
@@ -329,14 +409,14 @@ void main() {
     expect(r.runner.calls, isEmpty);
 
     File(p.join(root, 'README.md')).writeAsStringSync('mine\n');
-    expect((await init(['.', '--dry-run'])).code, 1);
-    final forced = await init(['.', '--dry-run', '--force']);
+    expect((await init(['.', '--dry-run', '-p', 'aws'])).code, 1);
+    final forced = await init(['.', '--dry-run', '-p', 'aws', '--force']);
     expect(forced.out, contains('  README.md (overwrite)\n'));
     expect(read('README.md'), 'mine\n');
   });
 
   test('a failing dart pub get keeps the files and says so', () async {
-    final r = await init([], failOn: 'pub');
+    final r = await init(['-p', 'google'], failOn: 'pub');
     expect(r.code, 1);
     expect(r.err, contains('dart pub get failed in infra (exit 1)'));
     expect(exists('infra/pubspec.yaml'), isTrue);
@@ -344,7 +424,7 @@ void main() {
 
   test('rejects an environment an enum member cannot be named', () async {
     for (final bad in ['prd-eu', '1st', 'values', 'dev,dev', 'projectId']) {
-      final r = await init(['--env', bad]);
+      final r = await init(['-p', 'google', '--env', bad]);
       expect(r.code, 64, reason: bad);
       expect(r.err, contains('--env: '), reason: bad);
     }
@@ -376,8 +456,9 @@ void main() {
     });
 
     test('scaffolds infra/ wired to the app', () async {
-      final r = await init([]);
+      final r = await init(['-p', 'google']);
       expect(r.code, 0, reason: r.err);
+      expect(r.out, contains('--backend local, --flutter.\n'));
       expect(read('infra/pubspec.yaml'), contains('name: shop_infra\n'));
       final stack = read('infra/lib/stack.dart');
       expect(
@@ -400,13 +481,13 @@ void main() {
     });
 
     test('asks before wiring, and --no-flutter leaves it out', () async {
-      final r = await init(['a'], answers: ['', '', '', '', '', 'n']);
+      final r = await init(['a'], answers: ['google', '', '', '', '', 'n']);
       expect(r.code, 0, reason: r.err);
       expect(r.asked.last, startsWith('Flutter app "shop" found'));
       expect(read('a/lib/stack.dart'), isNot(contains('appExports')));
       expect(r.out, contains('--backend local --no-flutter\n'));
 
-      expect((await init(['b', '--no-flutter'])).code, 0);
+      expect((await init(['b', '-p', 'google', '--no-flutter'])).code, 0);
       expect(read('b/lib/stack.dart'), isNot(contains('appExports')));
     });
   });

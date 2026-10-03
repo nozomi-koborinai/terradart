@@ -52,7 +52,7 @@ terradart init --dry-run --provider appwrite # lists the files, writes nothing
 
 | Flag | Takes | Default |
 |---|---|---|
-| `--provider`, `-p` | `google`, `aws`, `cloudflare`, `appwrite`, comma-separated | `google` |
+| `--provider`, `-p` | `google`, `aws`, `cloudflare`, `appwrite`, comma-separated | none: required without a terminal |
 | `--env`, `-e` | lowerCamelCase environment names, comma-separated | `dev,prd` |
 | `--gcp-project`, `--cloudflare-account`, `--appwrite-project` | `<env>=<id>` pairs, or one ID for every environment | a placeholder marked `TODO` |
 | `--backend` | `local`, `gcs`, `s3` — the last two need a bucket that already exists | `local` |
@@ -60,11 +60,11 @@ terradart init --dry-run --provider appwrite # lists the files, writes nothing
 | `--dry-run` | list the files, write nothing | |
 | `--force` | overwrite existing files, scaffold next to existing Terraform | |
 
-In a terminal, every flag left out is a question, asked in the order of the table; the run ends with `Re-run with: terradart init ...`, the same answers as flags. Without a terminal it never asks, takes the defaults, and a wrong value is a usage error that names its flag.
+In a terminal, every flag left out is a question, asked in the order of the table; the run ends with `Re-run with: terradart init ...`, the same answers as flags. Without a terminal it never asks: `--provider` is the one flag it needs, every other flag left out takes its default and is printed (`Defaults: --env dev,prd, --backend local.`), and a missing or wrong value is a usage error that names its flag.
 
 Inside a Flutter app (a `pubspec.yaml` that depends on `flutter` in the current directory), the Stack's `appExports` writes the reader the app imports to the app's `lib/generated/infra.g.dart`, the Stack declares `addDartDefineOutput()`, and the steps printed end with `flutter run --dart-define-from-file=infra/.terradart/dart_defines.<env>.json`.
 
-A directory holding `*.tf` or `*.tf.json` files gets no scaffold: `terradart init` prints the `terradart migrate --report` and `terradart migrate` commands for it and exits 1 — in a terminal it offers to run the report first. `--force` scaffolds anyway.
+A working or target directory holding `*.tf` or `*.tf.json` files, at any depth, gets no scaffold: `terradart init` names the directories that hold them (`Found Terraform in envs/dev, modules/net.`), prints the `terradart migrate --report` and `terradart migrate` commands for it and exits 1 — in a terminal it offers to run the report first. `--force` scaffolds anyway.
 
 The OpenTofu registry has no `appwrite/appwrite` provider, so an Appwrite project plans and applies with Terraform on your `PATH` (`--engine terraform`); `terradart init` says so when you pick it.
 

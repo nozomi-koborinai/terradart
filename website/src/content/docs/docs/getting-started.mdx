@@ -37,7 +37,7 @@ terradart plan --env dev
 
 A value you did not give is a placeholder marked `TODO` in `lib/env.dart`.
 
-In a terminal, `terradart init` asks for what the flags leave out — the providers, the environment names, each environment's project or account ID, the backend — and ends by printing the `terradart init ...` command that gives the same answers as flags. Without a terminal it never asks: it takes `google`, `dev,prd` and local state, and names the flag at fault when a value is wrong. `--dry-run` lists the files without writing them, and an existing file is never overwritten without `--force`.
+In a terminal, `terradart init` asks for what the flags leave out — the providers, the environment names, each environment's project or account ID, the backend — and ends by printing the `terradart init ...` command that gives the same answers as flags. Without a terminal it never asks: it needs `--provider`, takes `dev,prd` and local state for what the other flags leave out and prints those defaults, and names the flag at fault when a value is missing or wrong. `--dry-run` lists the files without writing them, and an existing file is never overwritten without `--force`.
 
 | Flag | Takes |
 |---|---|
@@ -55,7 +55,7 @@ cd infra && terradart apply --env dev && cd ..
 flutter run --dart-define-from-file=infra/.terradart/dart_defines.dev.json
 ```
 
-A directory that already holds `*.tf` files gets no scaffold: `terradart init` points at [`terradart migrate`](/docs/migrate-from-hcl/) instead, and in a terminal offers to run its report.
+A directory that already holds `*.tf` files, at any depth, gets no scaffold: `terradart init` names where it found them and points at [`terradart migrate`](/docs/migrate-from-hcl/) instead, and in a terminal offers to run its report.
 
 The rest of this guide builds the same pieces by hand, one at a time.
 
