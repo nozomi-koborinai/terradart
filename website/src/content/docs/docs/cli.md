@@ -272,7 +272,7 @@ terradart: the terradart agent skill in .agents/skills is 0.33.0; this CLI is 0.
 Without the CLI, the [`skills` CLI](https://github.com/vercel-labs/skills) installs the same file. Pin it to the release tag, since it fetches `main` otherwise:
 
 ```bash
-npx skills add nozomi-koborinai/terradart#v0.34.0 --skill terradart
+npx skills add nozomi-koborinai/terradart#v0.35.0 --skill terradart
 ```
 
 It is byte for byte the file `terradart skill install` writes, so `terradart skill status` reads it too, and points at `npx skills update terradart -p -y` when `skills-lock.json` records it.

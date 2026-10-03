@@ -3,22 +3,22 @@ title: Status & versioning
 description: Alpha expectations, the path to beta, and how TerraDart versions releases.
 ---
 
-TerraDart is **alpha** on the **0.34.x** line today. Alpha means the maintainer-side quality gates are done and the [change policy](#change-policy-from-alpha-onward) below is in force; what still separates alpha from **beta** is external validation — see [Path to beta](#path-to-beta).
+TerraDart is **alpha** on the **0.35.x** line today. Alpha means the maintainer-side quality gates are done and the [change policy](#change-policy-from-alpha-onward) below is in force; what still separates alpha from **beta** is external validation — see [Path to beta](#path-to-beta).
 
-There are no SemVer guarantees until **v1.0.0**, but breaking changes land only on **minor** bumps: pin with `^0.34.0`, take patch releases freely, and read [MIGRATING.md](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md) before every minor bump. Check [pub.dev](https://pub.dev/packages/terradart_core) for the latest patch.
+There are no SemVer guarantees until **v1.0.0**, but breaking changes land only on **minor** bumps: pin with `^0.35.0`, take patch releases freely, and read [MIGRATING.md](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md) before every minor bump. Check [pub.dev](https://pub.dev/packages/terradart_core) for the latest patch.
 
 ## Release phases
 
 | Phase | Version line | What we promise |
 | --- | --- | --- |
-| **Alpha** | 0.34.x (current) | Maintainer-side gates are done (docs, CI, example validation). **No breaking changes within a minor** (`^0.N.x`); breaking changes only on minor bumps, always documented in `MIGRATING.md`. Not SemVer until 1.0.0. |
+| **Alpha** | 0.35.x (current) | Maintainer-side gates are done (docs, CI, example validation). **No breaking changes within a minor** (`^0.N.x`); breaking changes only on minor bumps, always documented in `MIGRATING.md`. Not SemVer until 1.0.0. |
 | **Beta** | TBD (needs external validation) | The same change policy, proven against real external usage — see [Path to beta](#path-to-beta). |
 | **1.0.0** | TBD | Stable SemVer for `terradart_core`, every provider package (`terradart_google`, `terradart_google_beta`, `terradart_aws`, `terradart_cloudflare`, `terradart_appwrite`, `terradart_time`) and `terradart_cli`. The maintainer tooling (`terradart_codegen`) and the migrator libraries (`terradart_migrate`, `terradart_hcl`) stay outside the promise. |
 
 ## What to expect today (alpha)
 
 - Breaking changes to the public Dart API or the emitted Terraform JSON land only on **minor** bumps, each with a [MIGRATING.md](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md) section; patch releases within `^0.N.x` are safe to take.
-- Use hosted `^0.34.0` carets on [pub.dev](https://pub.dev/packages/terradart_core) — not legacy `0.x.y-dev` pre-release tags.
+- Use hosted `^0.35.0` carets on [pub.dev](https://pub.dev/packages/terradart_core) — not legacy `0.x.y-dev` pre-release tags.
 - Only the **curated** surfaces are supported for users. The GA `hashicorp/google` catalog is filled in `terradart_google`; beta-only types ship in `terradart_google_beta` (112 resource factories). `terradart_appwrite` is filled at `2.0.0-beta.1` (38 resource factories + 24 data sources). `terradart_cloudflare` and `terradart_aws` are filled at their exact provider pins (every resource and data source).
 
 ## Change policy (from alpha onward)

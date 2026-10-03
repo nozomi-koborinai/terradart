@@ -20,7 +20,7 @@ That writes `.agents/skills/terradart/SKILL.md` (Cursor, Codex, Gemini CLI, GitH
 Without the `terradart` command, use the [`skills` CLI](https://github.com/vercel-labs/skills), pinned to the release tag so the skill matches the release you depend on rather than `main`:
 
 ```bash
-npx skills add nozomi-koborinai/terradart#v0.34.0 --skill terradart
+npx skills add nozomi-koborinai/terradart#v0.35.0 --skill terradart
 ```
 
 The `skills` CLI asks which agents you use and writes the skill where each looks for skills. It is the same file `terradart skill install` writes.

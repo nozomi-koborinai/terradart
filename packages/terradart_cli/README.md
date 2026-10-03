@@ -96,6 +96,6 @@ Future<void> main(List<String> args) =>
 
 ## The agent skill
 
-The package bundles the [TerraDart Agent Skill](https://terradart.dev/docs/start/ai-agent/) of its own release. Each copy `terradart skill install` writes records the CLI version and its content hash in its front matter (`metadata:` `terradart-version` / `terradart-sha256`), so `terradart skill status` tells an outdated copy from one you edited. When the project's copy is older than the CLI, the other commands print one line on stderr; `TERRADART_NO_SKILL_NOTICE=1` turns it off. Without the CLI, `npx skills add nozomi-koborinai/terradart#v0.34.0 --skill terradart` installs the same file from the release tag.
+The package bundles the [TerraDart Agent Skill](https://terradart.dev/docs/start/ai-agent/) of its own release. Each copy `terradart skill install` writes records the CLI version and its content hash in its front matter (`metadata:` `terradart-version` / `terradart-sha256`), so `terradart skill status` tells an outdated copy from one you edited. When the project's copy is older than the CLI, the other commands print one line on stderr; `TERRADART_NO_SKILL_NOTICE=1` turns it off. Without the CLI, `npx skills add nozomi-koborinai/terradart#v0.35.0 --skill terradart` installs the same file from the release tag.
 
 Guides: [The terradart command](https://terradart.dev/docs/cli/), [Environments](https://terradart.dev/docs/environments/), [Outputs in client apps](https://terradart.dev/docs/client-outputs/).
