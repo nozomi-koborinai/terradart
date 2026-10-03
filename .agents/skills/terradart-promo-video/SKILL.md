@@ -1,6 +1,6 @@
 ---
 name: terradart-promo-video
-description: Produce a TerraDart release clip — scripted terminal beats (VHS), a composition in the brand system with English and Japanese captions (Remotion), phone-safe delivery encodes — and draft the X / LinkedIn copy. Use when announcing a release with a video.
+description: Produce a TerraDart release clip — scripted terminal beats (VHS), a composition in the brand system with English captions (Remotion), phone-safe delivery encodes — and draft the X / LinkedIn copy. Use when announcing a release with a video.
 ---
 # TerraDart promo video
 
@@ -38,9 +38,9 @@ When a claim is tempting but unsupported, cut the claim, not the caveat.
 
 ## Workflow
 
-[`tool/promo/`](../../../tool/promo/) holds the whole clip as code: `tapes/*.tape` (the terminal beats, recorded by VHS), `storyboard.json` (scenes, cuts and holds, camera keyframes, captions in both languages, which lines of the generated files to show) and a Remotion composition under `src/` that reads the site's tokens and syntax theme. Re-recording after a CLI change is a re-run, not a re-edit.
+[`tool/promo/`](../../../tool/promo/) holds the whole clip as code: `tapes/*.tape` (the terminal beats, recorded by VHS), `storyboard.json` (scenes, cuts and holds, camera keyframes, masks, captions, which lines of the generated files to show, the `ocr` deny list) and a Remotion composition under `src/` that reads the site's tokens and syntax theme. Re-recording after a CLI change is a re-run, not a re-edit.
 
-Needs Node ≥ 22.12, `vhs` with `ttyd`, `ffmpeg` and `google-chrome`; `npm ci` in `tool/promo/` installs Remotion and the fonts (Inter, JetBrains Mono, Noto Sans JP), so no system font matters.
+Needs Node ≥ 22.12, `vhs` with `ttyd`, `ffmpeg`, `tesseract` and `google-chrome`; `npm ci` in `tool/promo/` installs Remotion and the fonts (Inter, JetBrains Mono), so no system font matters.
 
 **Task progress:**
 
@@ -55,9 +55,9 @@ Needs Node ≥ 22.12, `vhs` with `ttyd`, `ffmpeg` and `google-chrome`; `npm ci` 
       ```bash
       ffmpeg -i public/clips/02-plan.mp4 -vf "fps=2,scale=400:-1,drawtext=text='%{pts\\:flt}':fontcolor=yellow:fontsize=22,tile=6x7" -frames:v 1 sheet.png
       ```
-- [ ] 4. **Look before rendering.** `node render.mjs --stills-only` writes the poster and one key frame per entry of `stills` in each language — the brand check.
+- [ ] 4. **Look before rendering.** `node render.mjs --stills-only` writes the poster and one key frame per entry of `stills` — the brand check — and reads them back with tesseract.
 - [ ] 5. **The take**, once the release is on pub.dev: `dart pub global activate terradart_cli`, move the engines off `PATH` for real (`capture.mjs` refuses to record while `terraform` or `tofu` is on it), `node capture.mjs`, restore them. Re-time the storyboard against the new clips.
-- [ ] 6. **Render**: `node render.mjs --out DIR` writes `terradart-v<release>-en.mp4`, `terradart-v<release>-ja.mp4`, `poster.png` and the key frames. `npm run studio` scrubs the composition frame by frame.
+- [ ] 6. **Render**: `node render.mjs --out DIR` writes `terradart-v<release>.mp4`, `terradart-v<release>-poster.png` and the key frames, after reading every tenth terminal and app frame back with tesseract. `npm run studio` scrubs the composition frame by frame.
 - [ ] 7. **Review** each delivery with the `videoReview` subagent: captions against what the frame shows, zooms that clip a line, text too small at phone size. Treat its brand verdicts with care — check a flagged colour against `tokens.css` before changing anything.
 - [ ] 8. Draft the copy ([below](#writing-the-copy)). The maintainer posts; agents do not post to X or LinkedIn.
 
@@ -65,12 +65,15 @@ Needs Node ≥ 22.12, `vhs` with `ttyd`, `ffmpeg` and `google-chrome`; `npm ci` 
 
 One message per beat, five to seven beats, 40–50s. Open on the lockup with the release, close on the install line and the site.
 
-- **Record what the user runs, nothing else.** No `clear`, `ls`, `--version` or checks; the tapes hide setup with `Hide` / `Show`.
+- **Show what the user touches.** The commands they type, the Stack they write, the app code that reads the outputs. Generated internals, engine logs and plumbing get cut, masked or sped through; check every beat against this before recording.
+- **Record what the user runs, nothing else.** No `clear`, `ls`, `--version` or checks; the tapes hide setup with `Hide` / `Show`. The one exception is a command that proves a claim (`terraform version` answering `command not found`), which the storyboard's `ocr.allow` names.
 - **Wait on output, not on time.** `Wait /regex/` on the prompt (`Wait /^\$\s*$/`) ends a beat when the command does; `Sleep` is only for reading time.
 - **Cut what nobody reads** (dependency resolution, an engine's init text) with a segment gap, and **hold what proves the claim** — a line that scrolls past in half a second gets a `{ "hold": t, "seconds": s }` segment.
+- **Mask what lands in the same frame.** VHS paints a command's lines in one frame, so stopping on `Using OpenTofu` also shows the engine's first lines. A `masks` entry keeps the rows from the line `first` matches through the line `last` matches over a span of clip time; `render.mjs` finds both lines with tesseract and puts the edges in the gaps between rows, so a take whose output moves a row still masks right. The composition lightens each clip onto the palette's background, so the paint and the decoded background are one colour.
 - **Zoom on the line that carries the beat**, 1.3–1.7x, anchored left (`"x": 0`). The storyboard states the intent; `render.mjs` settles every still stretch of the camera on the clip's own frames, lowering the zoom (or moving the focus up to 0.2) until no line of text runs past the side and no row straddles the top or bottom edge, and prints each change. A wrapped full-width line on screen — a download URL, a long hint — therefore means a wide shot, and the Flutter beat's `next.crop` fails the render when it cuts a line. `capture.mjs` keeps `TERRADART_CACHE_DIR` short so the install path stays narrow.
 - **Captions own the bottom band.** Scenes lay out above `SAFE_BOTTOM` (`src/components.tsx`); a layout that reaches into the caption band throws and fails the render.
-- **Show real files.** Code beats are excerpts of what the take generated (`code` rules in the storyboard: start line, picked lines, folds), highlighted with the site's theme; never a hand-written mock.
+- **Show real files.** Code beats are excerpts of what the take generated (`code` rules in the storyboard: start line, picked lines, folds), highlighted with the site's theme; never a hand-written mock. The app beat shows `lib/main.dart` as the Flutter client quickstart uses the reader (`const outputs = <Stack>Outputs.fromDartDefine();`, a getter in a widget): `capture.mjs` writes it against the reader the take generated and fails when it does not analyze.
+- **No error on screen by accident.** The storyboard's `ocr.deny` (not found, error, warning, note, can't, ...) fails the render on any key frame or sampled clip frame that shows a matching line, unless `ocr.allow` names it.
 
 ## The brand system on screen
 
@@ -81,7 +84,7 @@ Everything on screen comes from [`BRAND.md`](../../../branding/BRAND.md) and [`w
 | Ground | `--td-bg` |
 | Windows | the landing's code window: `--td-surface` body, `--td-surface-2` bar, `--td-line-strong` border, neutral dots |
 | Terminal | JetBrains Mono, the site's dark syntax palette, every ANSI hue mapped into the corridor (`capture.mjs`) |
-| Captions | Inter (Noto Sans JP for kana and kanji) on a `--td-surface-2` pill; commands in JetBrains Mono, `--td-accent` |
+| Captions | Inter, English only, on a `--td-surface-2` pill; commands in JetBrains Mono, `--td-accent` |
 | Highlight | `--td-accent-soft` band with a `--td-accent` rule |
 | Cards | the repository's dark lockup, inlined so its wordmark is the loaded Inter |
 
