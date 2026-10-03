@@ -1,6 +1,6 @@
 # firestore-seeded-data
 
-> **Status:** Verified on terradart v0.11.0. 15-resource Stack (default Firestore database + 11 documents across 4 collections + composite index + daily backup schedule). See [FRICTIONS.md](FRICTIONS.md) for dogfood findings.
+> **Status:** Last applied end to end on terradart v0.11.0, when recipes still ran `terraform` directly; the steps below use the `terradart` command. 15-resource Stack (default Firestore database + 11 documents across 4 collections + composite index + daily backup schedule). See [FRICTIONS.md](FRICTIONS.md) for dogfood findings.
 
 A Cloud Firestore master-data seeding recipe. Demonstrates how to manage **small fixed master-data sets** (feature flags, pricing tiers, lookup tables, regional config) via IaC, with the new `GoogleFirestoreDocument` resource + `FirestoreFields.encode(Map)` helper introduced in terradart v0.10.0.
 
@@ -86,14 +86,14 @@ The recipe sets `deletionPolicy: .literal('DELETE')` on the database resource â€
 
 ## Recovery: `(default)` database already exists
 
-If the project's `(default)` database was created previously (e.g., by manually enabling the Firestore API), `terradart apply` will fail with "already exists" on the `google_firestore_database` resource. Recovery:
+If the project's `(default)` database was created previously (e.g., by manually enabling the Firestore API), `terradart apply` will fail with "already exists" on the `google_firestore_database` resource. The `terradart` command has no import step, so recovery calls the engine directly once:
 
 ```bash
 "$(terradart engine)" -chdir=tf-out import google_firestore_database.default "projects/$GCP_PROJECT_ID/databases/(default)"
 terradart apply
 ```
 
-`terradart engine` prints the engine `terradart` runs, so the import needs no separate install.
+`terradart engine` prints the engine `terradart` runs (the one whose state `terradart apply` reads), so the import needs no separate install.
 
 Subsequent applies will reconcile cleanly.
 

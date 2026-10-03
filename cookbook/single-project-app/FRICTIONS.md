@@ -1,5 +1,7 @@
 # Friction log
 
+> **Historical record.** These entries log dogfood runs on earlier terradart versions, when the recipe ran `terraform` directly. Commands and APIs quoted here may be out of date; the [README](./README.md) has the current steps.
+
 Findings from dogfooding terradart against the coffee-shop recipe. Each entry was a candidate for the v0.9 polish wave (sub-project A of the v0.9 design).
 
 **v0.9 status:** Issues terradart#52-#57 are resolved in terradart v0.9.0 (link TBD post-tag). This recipe has been migrated to the v0.9 surface on branch `migrate/v0.9`.
