@@ -2,6 +2,8 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:path/path.dart' as p;
+import 'package:terradart_cli/src/config.dart';
+import 'package:terradart_cli/src/engine.dart';
 import 'package:terradart_cli/terradart_cli.dart';
 import 'package:terradart_migrate/terradart_migrate.dart' show packageVersion;
 import 'package:test/test.dart';
@@ -84,6 +86,7 @@ void main() {
       expect(pubspec, contains('  $pkg: ^$packageVersion\n'));
     }
     expect(pubspec, isNot(contains('terradart_aws')));
+    expect(pubspec, isNot(contains('terradart:')));
     final env = read('infra/lib/env.dart');
     expect(
       env,
@@ -293,6 +296,15 @@ void main() {
     ]);
     expect(quote.code, 64);
     expect(quote.err, contains('--gcp-project: "it\'s" is not an ID'));
+  });
+
+  test('pins an Appwrite project to Terraform', () async {
+    final r = await init(['a', '-p', 'google,appwrite', '--defaults']);
+    expect(r.code, 0, reason: r.err);
+    final config = ProjectConfig.load(p.join(root, 'a'));
+    expect(config.engine.kind, EngineKind.terraform);
+    expect(read('a/README.md'), contains('with Terraform, which must be on'));
+    expect(r.err, contains('Appwrite currently needs Terraform on your PATH'));
   });
 
   test('names the Appwrite project projectId without google', () async {

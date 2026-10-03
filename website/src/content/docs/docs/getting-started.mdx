@@ -11,6 +11,7 @@ This guide matches the [README quickstart](https://github.com/nozomi-koborinai/t
 
 - Dart SDK ≥ 3.10
 - Nothing else to install for plan and apply: the [`terradart` command](/docs/cli/) downloads a checksum-verified OpenTofu on first use, or runs the `tofu` or `terraform` already on your `PATH`.
+- Appwrite only: [Terraform](https://developer.hashicorp.com/terraform/install) on your `PATH`. The `appwrite/appwrite` provider is published to the Terraform registry only, so OpenTofu cannot install it, and an Appwrite Stack runs on Terraform (`--engine terraform`, or `terradart: engine: terraform` in `pubspec.yaml`).
 - Credentials for your provider at apply time — Google Cloud Application Default Credentials (`gcloud auth application-default login`), the AWS SDK credential chain, `CLOUDFLARE_API_TOKEN`, or `APPWRITE_API_KEY`. Synth needs none, and none are written into the output.
 
 ## 1. Create a project
@@ -28,7 +29,7 @@ terradart plan --env dev
 
 | File | Holds |
 |---|---|
-| `pubspec.yaml` | `terradart_core` and the provider packages, at the command's own version |
+| `pubspec.yaml` | `terradart_core` and the provider packages, at the command's own version; `terradart: engine: terraform` with Appwrite |
 | `lib/env.dart` | the `Env` enum: each environment and its values — project or account ID, region, state bucket |
 | `lib/stack.dart` | a Stack with the provider, the backend, one resource and one output |
 | `bin/infra.dart` | the entry point, which hands the environments to `runEnvironments` |
@@ -116,6 +117,8 @@ environment:
 dependencies:
   terradart_core: ^0.33.0
   terradart_appwrite: ^0.33.0
+terradart:
+  engine: terraform # Appwrite currently needs Terraform on PATH
 ```
 
 </TabItem>
@@ -351,7 +354,7 @@ terradart plan
 terradart apply
 ```
 
-Each command synthesizes first, then runs `init` and `plan` or `apply` in `tf-out/` with the `tofu` or `terraform` on your `PATH`, or a checksum-verified OpenTofu it downloads when there is neither. For several environments, declare them as a Dart enum and hand it to `runEnvironments` in `bin/infra.dart`; `terradart apply --env prod` then runs one of them. See [Environments](/docs/environments/) and [The terradart command](/docs/cli/).
+Each command synthesizes first, then runs `init` and `plan` or `apply` in `tf-out/` with the `tofu` or `terraform` on your `PATH`, or a checksum-verified OpenTofu it downloads when there is neither. A Stack that uses Appwrite runs on the `terraform` on your `PATH`, and stops before `init` when there is none or `--engine tofu` asks for OpenTofu. For several environments, declare them as a Dart enum and hand it to `runEnvironments` in `bin/infra.dart`; `terradart apply --env prod` then runs one of them. See [Environments](/docs/environments/) and [The terradart command](/docs/cli/).
 
 The output is ordinary Terraform JSON, so your existing remote state backend and modules stay unchanged — TerraDart only replaces HCL/JSON authoring.
 
