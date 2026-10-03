@@ -9,7 +9,13 @@ Guides track the **0.34.x** line on pub.dev. Every Dart snippet on this site com
 
 ## Start
 
-- [Getting started](/docs/getting-started/) — install, define a Stack for your provider, synth, apply, and read the values from your app
+Pick the guide for where you start. Each is one path you can paste, from `dart pub global activate terradart_cli` to an apply, and none asks you to install Terraform.
+
+- [Start from an existing Flutter app](/docs/start/flutter-app/) — add `infra/` beside the app, apply it, and build the app with the outputs, typed, through `--dart-define-from-file`
+- [Start from an empty directory](/docs/start/new-project/) — `terradart init`, then `validate`, `plan` and `apply`, with a default environment and the state moved to a bucket
+- [Migrate an existing Terraform project](/docs/start/migrate-terraform/) — `terradart migrate`, a plan that reports *No changes*, then Dart one resource at a time
+- [Let an AI agent do it](/docs/start/ai-agent/) — the TerraDart Agent Skill, and the plan you approve
+- [Getting started](/docs/getting-started/) — the pieces built by hand: a Stack for your provider, synth, apply, and the values your app reads
 - [Why TerraDart](/docs/why-terradart/) — the problem, the design, and how it compares with HCL, CDKTF and Pulumi
 
 ## Guides
@@ -18,8 +24,6 @@ Guides track the **0.34.x** line on pub.dev. Every Dart snippet on this site com
 - [Environments](/docs/environments/) — dev, staging and prod as a Dart enum: each with its own project and state, and its own define file for the client
 - [Outputs in client apps](/docs/client-outputs/) — build a Flutter, web or CLI client with apply-time values, typed, from the define file `terradart apply` writes
 - [Migrating from HCL](/docs/migrate-from-hcl/) — `terradart migrate` brings an existing Terraform tree over with a plan that reports *No changes*
-- [Coding agents](/docs/agents/) — the TerraDart Agent Skill: how an agent finds the right factory
-
 ## Providers
 
 - [Google Cloud](/docs/providers/google/) — `terradart_google` and `terradart_google_beta`

@@ -3,9 +3,20 @@ title: Getting started
 description: Create a TerraDart project with terradart init, then see each piece by hand — the Stack, the synthesized *.tf.json, and the typed file your app imports.
 ---
 
-import { Tabs, TabItem } from '@astrojs/starlight/components';
+import { CardGrid, LinkCard, Tabs, TabItem } from '@astrojs/starlight/components';
 
 This guide matches the [README quickstart](https://github.com/nozomi-koborinai/terradart#quickstart) for the **0.34.x** line. TerraDart is **alpha** — breaking changes land only on **minor** bumps; see [Status & versioning](/docs/status/) for the change policy and the [path to beta](/docs/status/#path-to-beta).
+
+## Choose your path
+
+Each of these is one path you can paste, from installing the `terradart` command to an apply. The rest of this page builds the same pieces by hand, one at a time.
+
+<CardGrid>
+  <LinkCard title="Start from an existing Flutter app" description="infra/ beside the app, and the outputs typed in the app through dart-define." href="/docs/start/flutter-app/" />
+  <LinkCard title="Start from an empty directory" description="terradart init, validate, plan and apply." href="/docs/start/new-project/" />
+  <LinkCard title="Migrate an existing Terraform project" description="terradart migrate and a plan that reports No changes." href="/docs/start/migrate-terraform/" />
+  <LinkCard title="Let an AI agent do it" description="The TerraDart Agent Skill, and the plan you approve." href="/docs/start/ai-agent/" />
+</CardGrid>
 
 ## Prerequisites
 
@@ -355,6 +366,8 @@ terradart apply
 ```
 
 Each command synthesizes first, then runs `init` and `plan` or `apply` in `tf-out/` with the `tofu` or `terraform` on your `PATH`, or a checksum-verified OpenTofu it downloads when there is neither. A Stack that uses Appwrite runs on the `terraform` on your `PATH`, and stops before `init` when there is none or `--engine tofu` asks for OpenTofu. For several environments, declare them as a Dart enum and hand it to `runEnvironments` in `bin/infra.dart`; `terradart apply --env prod` then runs one of them. See [Environments](/docs/environments/) and [The terradart command](/docs/cli/).
+
+On a new Google Cloud project every API is off, so the first apply fails with a 403 until the Stack turns on the ones it uses with `enableApis([.pubsub])` — see [Enabling APIs](/docs/providers/google/#enabling-apis). The project `terradart init` writes does it already.
 
 The output is ordinary Terraform JSON, so your existing remote state backend and modules stay unchanged — TerraDart only replaces HCL/JSON authoring.
 
