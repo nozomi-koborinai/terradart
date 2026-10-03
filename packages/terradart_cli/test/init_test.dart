@@ -585,7 +585,7 @@ void main() {
 
     test('points at terradart migrate without a terminal', () async {
       final r = await init([]);
-      expect(r.code, 1);
+      expect(r.code, 64);
       expect(r.err, contains('Found Terraform in . (the current directory).'));
       expect(r.err, contains('terradart migrate --report --dir .'));
       expect(r.err, contains('terradart migrate --dir . --out infra'));
@@ -635,7 +635,7 @@ void main() {
     touch('envs/dev/main.tf');
     touch('modules/net/net.tf.json');
     final r = await init(['-p', 'google', '--defaults']);
-    expect(r.code, 1);
+    expect(r.code, 64);
     expect(
       r.err,
       contains(
@@ -651,7 +651,7 @@ void main() {
       ..parent.createSync(recursive: true)
       ..writeAsStringSync('');
     final r = await init(['../old', '-p', 'google', '--defaults']);
-    expect(r.code, 1);
+    expect(r.code, 64);
     expect(r.err, contains('Found Terraform in ../old/stacks.'));
     expect(r.err, contains('terradart migrate --dir ../old --out ../old_dart'));
   });
@@ -659,7 +659,7 @@ void main() {
   test('refuses to overwrite a file unless --force', () async {
     File(p.join(root, 'pubspec.yaml')).writeAsStringSync('name: mine\n');
     final r = await init(['.', '-p', 'google', '--defaults']);
-    expect(r.code, 1);
+    expect(r.code, 64);
     expect(
       r.err,
       contains('the current directory already has pubspec.yaml; pass --force'),
@@ -683,7 +683,10 @@ void main() {
     expect(r.runner.calls, isEmpty);
 
     File(p.join(root, 'README.md')).writeAsStringSync('mine\n');
-    expect((await init(['.', '--dry-run', '-p', 'aws', '--defaults'])).code, 1);
+    expect(
+      (await init(['.', '--dry-run', '-p', 'aws', '--defaults'])).code,
+      64,
+    );
     final forced = await init([
       '.',
       '--dry-run',

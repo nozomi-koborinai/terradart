@@ -8,6 +8,7 @@ import 'package:yaml/yaml.dart';
 import 'cli_exception.dart';
 import 'init_templates.dart';
 import 'migrate_command.dart';
+import 'output/exit_codes.dart';
 import 'process_runner.dart';
 import 'skill/installer.dart';
 import 'workflow.dart';
@@ -187,7 +188,13 @@ Existing Terraform:
       final found = _terraformDirs([_cwd, target]);
       if (found.isNotEmpty) {
         final hint = _migrateHint(found);
-        if (!_interactive) throw CliException('$hint\n$_forceHint');
+        if (!_interactive) {
+          throw CliException(
+            '$hint\n$_forceHint',
+            kind: ExitCode.missingFlag,
+            flag: '--force',
+          );
+        }
         _console.err(hint);
         if (_confirm('Run the migration report now?', true)) {
           return runMigrate([
@@ -291,6 +298,11 @@ Existing Terraform:
       throw CliException(
         '${_show(target)} already has ${existing.join(', ')}; pass --force '
         'to overwrite.',
+        kind: ExitCode.missingFlag,
+        flag: '--force',
+        next: [
+          ['--force'],
+        ],
       );
     }
 
@@ -329,15 +341,16 @@ Existing Terraform:
     final pubGet = args.flag('pub-get');
     if (pubGet) {
       _console.out('> dart pub get');
-      final code = await _runner.stream(_dart ?? dartBinary(), [
-        'pub',
-        'get',
-      ], workingDirectory: target);
+      final code = await _runner.stream(
+        _dart ?? dartBinary(),
+        ['pub', 'get'],
+        workingDirectory: target,
+        toStderr: _console.result != null,
+      );
       if (code != 0) {
         throw CliException(
           'dart pub get failed in ${_show(target)} (exit $code); the files '
           'are written, so fix it and run dart pub get there again.',
-          exitCode: code,
         );
       }
     }
@@ -402,7 +415,7 @@ Existing Terraform:
       '--state-bucket <name> instead of --backend keeps the state in a '
       'bucket that exists; --defaults stands for --env '
       '${_defaultEnvs.join(',')} --backend ${InitBackend.local.name}.',
-      exitCode: 64,
+      kind: ExitCode.missingFlag,
     );
   }
 
@@ -884,7 +897,7 @@ void _checkFieldNames(InitPlan plan) {
       throw CliException(
         '--env: environment "$env" is also a field of the Env enum; name it '
         'differently.',
-        exitCode: 64,
+        kind: ExitCode.usage,
       );
     }
   }

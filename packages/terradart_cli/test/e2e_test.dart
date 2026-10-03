@@ -53,7 +53,7 @@ void main() {
       environment: environment,
       console: Console(out: log.writeln, err: log.writeln),
     );
-    expect(unknown, 64);
+    expect(unknown, 65);
 
     await terradart(['synth', '--env', 'prd']);
     final prd =

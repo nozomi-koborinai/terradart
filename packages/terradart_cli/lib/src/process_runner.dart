@@ -7,12 +7,15 @@ typedef CapturedProcess = ({int exitCode, String stdout, String stderr});
 /// Runs the entry point and the engine; tests substitute a fake.
 abstract interface class ProcessRunner {
   /// Runs [executable] with the terminal attached (an `apply` prompt reads
-  /// stdin) and returns its exit code.
+  /// stdin) and returns its exit code. With [toStderr] its output goes to
+  /// stderr and it reads no input, so stdout carries only the `--json`
+  /// result.
   Future<int> stream(
     String executable,
     List<String> arguments, {
     String? workingDirectory,
     Map<String, String>? environment,
+    bool toStderr = false,
   });
 
   /// Runs [executable] and returns what it printed.
@@ -34,14 +37,21 @@ final class IoProcessRunner implements ProcessRunner {
     List<String> arguments, {
     String? workingDirectory,
     Map<String, String>? environment,
+    bool toStderr = false,
   }) async {
     final process = await Process.start(
       executable,
       arguments,
       workingDirectory: workingDirectory,
       environment: environment,
-      mode: ProcessStartMode.inheritStdio,
+      mode: toStderr ? ProcessStartMode.normal : ProcessStartMode.inheritStdio,
     );
+    if (!toStderr) return process.exitCode;
+    await process.stdin.close();
+    await Future.wait([
+      process.stdout.forEach(stderr.add),
+      process.stderr.forEach(stderr.add),
+    ]);
     return process.exitCode;
   }
 

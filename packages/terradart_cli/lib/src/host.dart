@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:path/path.dart' as p;
 
 import 'cli_exception.dart';
+import 'output/exit_codes.dart';
 
 /// The operating system and CPU the CLI runs on, named as OpenTofu release
 /// archives name them (`linux_amd64`, `darwin_arm64`, `windows_amd64`).
@@ -41,6 +42,7 @@ final class HostPlatform {
       throw CliException(
         'terradart has no managed OpenTofu for $abi. Install tofu or '
         'terraform on PATH, or set terradart.engine_path in pubspec.yaml.',
+        kind: ExitCode.engineUnavailable,
       );
     }
   }
@@ -88,6 +90,7 @@ String cacheDirectory({
     throw const CliException(
       'Cannot find a cache directory for the managed OpenTofu; set '
       'TERRADART_CACHE_DIR.',
+      kind: ExitCode.engineUnavailable,
     );
   }
   return p.join(base, 'terradart');

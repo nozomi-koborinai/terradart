@@ -94,7 +94,7 @@ void main() {
         () => Request(config(), env: 'staging').resolve(envs(names, null)),
         cliError(
           'Unknown environment "staging" (--env); known envs: qa, sandbox, prd.',
-          code: 64,
+          code: 65,
         ),
       );
     });
@@ -159,7 +159,7 @@ void main() {
           env: 'stg',
           envSource: EnvSource.variable,
         ).resolve(envs(names, null)),
-        cliError(contains('"stg" (TERRADART_ENV)'), code: 64),
+        cliError(contains('"stg" (TERRADART_ENV)'), code: 65),
       );
       expect(
         () => Request(config(), env: 'a b', envSource: EnvSource.variable),
@@ -320,11 +320,17 @@ void main() {
       writeRoot('tf-out/api/qa');
       expect(
         () => Request(config(), env: 'qa').resolve(null),
-        cliError(contains('Declare the environments with runEnvironments')),
+        cliError(
+          contains('Declare the environments with runEnvironments'),
+          code: 65,
+        ),
       );
       expect(
         () => Request(config(), env: 'sandbox').resolve(null),
-        cliError(contains('No Terraform directory for environment "sandbox"')),
+        cliError(
+          contains('No Terraform directory for environment "sandbox"'),
+          code: 65,
+        ),
       );
     });
   });

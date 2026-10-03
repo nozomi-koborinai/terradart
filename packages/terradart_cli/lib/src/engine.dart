@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:path/path.dart' as p;
 
 import 'cli_exception.dart';
+import 'output/exit_codes.dart';
 import 'host.dart';
 import 'opentofu.dart';
 import 'process_runner.dart';
@@ -22,14 +23,43 @@ enum EngineKind {
     'terraform' => terraform,
     _ => throw CliException(
       '$where must be "tofu" or "terraform", not "$value".',
-      exitCode: 64,
+      kind: where.startsWith('--') ? ExitCode.usage : ExitCode.projectConfig,
     ),
   };
 }
 
+/// Why the resolver picked an engine; `--json` names it in
+/// `engine.source`.
+enum EngineSource {
+  /// `--engine-path` or `terradart.engine_path`.
+  enginePath('engine_path'),
+
+  /// `--engine` or `terradart.engine`.
+  setting('setting'),
+
+  /// The engine `.terradart/engines.json` records for the state.
+  state('state'),
+
+  /// `tofu`, else `terraform`, on `PATH`.
+  path('path'),
+
+  /// The OpenTofu terradart downloaded.
+  managed('managed');
+
+  const EngineSource(this.id);
+
+  final String id;
+}
+
 /// One resolved engine binary.
 final class Engine {
-  const Engine(this.kind, this.path, {this.managed = false, this.reason = ''});
+  const Engine(
+    this.kind,
+    this.path, {
+    this.managed = false,
+    this.reason = '',
+    this.source = EngineSource.path,
+  });
 
   final EngineKind kind;
   final String path;
@@ -39,6 +69,9 @@ final class Engine {
 
   /// Why this engine was picked, for the log line.
   final String reason;
+
+  /// Why this engine was picked: [EngineSource.managed] when [managed].
+  final EngineSource source;
 
   @override
   String toString() => '${kind.label} ($path)';
@@ -93,43 +126,61 @@ final class EngineResolver {
               ? EngineKind.tofu
               : EngineKind.terraform);
       if (!File(path).existsSync()) {
-        throw CliException('engine_path $path does not exist.');
+        throw CliException(
+          'engine_path $path does not exist.',
+          kind: ExitCode.engineUnavailable,
+        );
       }
       if (kind == EngineKind.tofu && terraformOnly.isNotEmpty) {
         throw CliException(
           terraformOnlyMessage(terraformOnly, 'engine_path $path is OpenTofu'),
+          kind: ExitCode.projectConfig,
         );
       }
-      return Engine(kind, path, reason: 'engine_path');
+      return Engine(
+        kind,
+        path,
+        reason: 'engine_path',
+        source: EngineSource.enginePath,
+      );
     }
     if (settings.kind case final kind?) {
       if (kind == EngineKind.tofu && terraformOnly.isNotEmpty) {
         throw CliException(
           terraformOnlyMessage(terraformOnly, 'the engine is set to tofu'),
+          kind: ExitCode.projectConfig,
         );
       }
-      return await _byKind(kind, 'engine: ${kind.name}') ??
+      return await _byKind(
+            kind,
+            'engine: ${kind.name}',
+            EngineSource.setting,
+          ) ??
           (throw CliException(
             terraformOnly.isNotEmpty
                 ? terraformOnlyMessage(terraformOnly, 'no terraform is on PATH')
                 : 'terradart.engine is ${kind.name}, but no ${kind.name} '
                       'is on PATH. Install ${kind.label}, or set '
                       'engine_path.',
+            kind: ExitCode.engineUnavailable,
           ));
     }
     if (terraformOnly.isNotEmpty) {
       return await _byKind(
             EngineKind.terraform,
             'the Stack uses ${terraformOnly.join(', ')}',
+            EngineSource.path,
           ) ??
           (throw CliException(
             terraformOnlyMessage(terraformOnly, 'no terraform is on PATH'),
+            kind: ExitCode.engineUnavailable,
           ));
     }
     if (recorded != null) {
       final engine = await _byKind(
         recorded.kind,
         'the state was last applied with ${recorded.kind.label}',
+        EngineSource.state,
       );
       if (engine != null) return engine;
       warn(
@@ -152,13 +203,19 @@ final class EngineResolver {
     return _managed('no tofu or terraform on PATH');
   }
 
-  Future<Engine?> _byKind(EngineKind kind, String reason) async {
+  Future<Engine?> _byKind(
+    EngineKind kind,
+    String reason,
+    EngineSource source,
+  ) async {
     final onPath = findOnPath(
       kind.name,
       environment: environment,
       platform: platform,
     );
-    if (onPath != null) return Engine(kind, onPath, reason: reason);
+    if (onPath != null) {
+      return Engine(kind, onPath, reason: reason, source: source);
+    }
     if (kind == EngineKind.terraform || !platform.hasManaged) return null;
     return _managed(reason);
   }
@@ -180,6 +237,7 @@ final class EngineResolver {
       await installer.ensure(),
       managed: true,
       reason: '$reason; managed OpenTofu ${installer.version}',
+      source: EngineSource.managed,
     );
   }
 }

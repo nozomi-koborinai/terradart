@@ -5,6 +5,7 @@ import 'package:yaml/yaml.dart';
 
 import 'cli_exception.dart';
 import 'engine.dart';
+import 'output/exit_codes.dart';
 
 /// The optional `terradart:` section of a project's `pubspec.yaml`.
 ///
@@ -59,7 +60,7 @@ final class ProjectConfig {
         throw CliException(
           'No pubspec.yaml in $start or above it. Run terradart inside a '
           'Dart project, or pass --project <dir>.',
-          exitCode: 64,
+          kind: ExitCode.noProject,
         );
       }
       dir = parent;
@@ -73,7 +74,10 @@ final class ProjectConfig {
     try {
       doc = loadYaml(file.readAsStringSync(), sourceUrl: file.uri);
     } on YamlException catch (e) {
-      throw CliException('${file.path}: ${e.message}', exitCode: 64);
+      throw CliException(
+        '${file.path}: ${e.message}',
+        kind: ExitCode.projectConfig,
+      );
     }
     final section = doc is YamlMap ? doc['terradart'] : null;
     return parse(root, section);
@@ -127,7 +131,7 @@ final class ProjectConfig {
     Set<String> keys,
   ) {
     if (value is! Map) {
-      throw CliException('$where must be a map.', exitCode: 64);
+      throw CliException('$where must be a map.', kind: ExitCode.projectConfig);
     }
     final unknown = [
       for (final k in value.keys)
@@ -138,7 +142,7 @@ final class ProjectConfig {
         '$where: unknown key${unknown.length == 1 ? '' : 's'} '
         '${unknown.join(', ')}; expected ${keys.join(', ')}.'
         '${unknown.contains('environments') ? ' Environments are declared in Dart: call runEnvironments in the entry point.' : ''}',
-        exitCode: 64,
+        kind: ExitCode.projectConfig,
       );
     }
     if (value is YamlMap) {
@@ -161,6 +165,9 @@ final class ProjectConfig {
     null => null,
     final String s when s.isNotEmpty => s,
     final num n => '$n',
-    _ => throw CliException('$where must be a string.', exitCode: 64),
+    _ => throw CliException(
+      '$where must be a string.',
+      kind: ExitCode.projectConfig,
+    ),
   };
 }

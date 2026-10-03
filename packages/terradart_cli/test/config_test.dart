@@ -62,7 +62,7 @@ dart_defines:
       throwsA(
         isA<CliException>()
             .having((e) => e.message, 'message', contains('unknown key entry'))
-            .having((e) => e.exitCode, 'exitCode', 64),
+            .having((e) => e.exitCode, 'exitCode', 65),
       ),
     );
   });

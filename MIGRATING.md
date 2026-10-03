@@ -28,6 +28,27 @@ A CI job that already passes `--auto-approve` (or `--env` with it) needs no
 change. A script that piped `yes` into `terradart apply` passes
 `--auto-approve` instead.
 
+### Exit codes are a fixed table
+
+`terradart` used to exit 0, 1, 64, or whatever the engine or the entry point
+exited with. Each code now means one thing, whichever step failed, and
+`--json` names it as `error.code`:
+
+| 0.34.x | 0.35.0 |
+|---|---|
+| the engine's own code (`tofu plan` exits 1) | 12 `engine_failed`; the engine's code is `error.engineExitCode` with `--json` |
+| the entry point failing: 1 | 10 `synth_failed` |
+| an `--env` the entry point does not declare: 64 | 65 `project_config` |
+| a wrong `terradart:` section in `pubspec.yaml`, a missing entry point or define output: 64 or 1 | 65 `project_config` |
+| no `pubspec.yaml`: 1 | 66 `no_project` |
+| no engine, or the OpenTofu download failed: 1 | 11 `engine_unavailable` |
+| `terradart init` next to existing Terraform or over existing files: 1 | 64 `missing_flag` (`--force`) |
+
+A script that tested `$? -eq 1` for a failed plan tests `$? -ne 0`, or reads
+`error.code` from `terradart plan --json`.
+`terradart plan --detailed-exitcode` exits 2 when the plan has changes, as
+the engine's flag does. The table: [JSON and exit codes](https://terradart.dev/docs/cli/#json-and-exit-codes).
+
 ## 0.32.x → 0.33.0
 
 ### `terradart_codegen` installs `terradart-codegen`
