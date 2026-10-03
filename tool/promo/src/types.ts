@@ -1,4 +1,7 @@
 import storyboard from "../storyboard.json";
+import { segmentSeconds } from "./camera.mjs";
+
+export { segmentSeconds };
 
 export type Lang = "en" | "ja";
 
@@ -12,6 +15,8 @@ export type CodeBlock = { title: string; lines: CodeLine[] };
 export type PromoData = {
   code: Record<string, CodeBlock>;
   terradart: string;
+  /** Each terminal scene's keyframes, settled on its clip so no zoom cuts a line. */
+  camera: Record<string, Keyframe[]>;
 };
 
 export type PromoProps = { lang: Lang; data: PromoData | null };
@@ -22,8 +27,6 @@ export type Caption = { from: number; to: number; en: string; ja: string };
 export type Keyframe = { at: number; s: number; x: number; y: number };
 
 export type Segment = { from: number; to: number } | { hold: number; seconds: number };
-
-export const segmentSeconds = (s: Segment) => ("hold" in s ? s.seconds : s.to - s.from);
 
 export type SceneSpec = {
   id: string;

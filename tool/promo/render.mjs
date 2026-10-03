@@ -19,6 +19,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { codeToTokens } from "shiki";
 import { terradartDark } from "../../website/src/lib/syntax-themes.mjs";
+import { viewport } from "./src/camera.mjs";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, "../..");
@@ -93,13 +94,120 @@ const excerpt = async (spec) => {
 };
 
 const versions = JSON.parse(fs.readFileSync(path.join(pub, "files/versions.json"), "utf8"));
-const data = { terradart: versions.terradart, code: {} };
+const data = { terradart: versions.terradart, code: {}, camera: {} };
 for (const [name, spec] of Object.entries(board.code)) data.code[name] = await excerpt(spec);
+
+// Where the clips have text, read from their frames at half size: per pixel
+// row, the leftmost and rightmost ink over every sampled frame.
+const HALF = { w: board.terminal.width / 2, h: board.terminal.height / 2 };
+const inkOf = (clip, times) => {
+  const left = new Float64Array(HALF.h).fill(Infinity);
+  const right = new Float64Array(HALF.h).fill(-Infinity);
+  for (const t of times) {
+    const frame = execFileSync("ffmpeg", [
+      "-v", "error", "-ss", t.toFixed(3), "-i", path.join(pub, clip), "-frames:v", "1",
+      "-vf", `scale=${HALF.w}:${HALF.h}:flags=area,format=gray`, "-f", "rawvideo", "-",
+    ], { maxBuffer: HALF.w * HALF.h * 2 });
+    const bg = frame[4 * HALF.w + 4];
+    for (let y = 0; y < HALF.h; y++) {
+      const row = y * HALF.w;
+      for (let x = 0; x < HALF.w; x++) {
+        if (Math.abs(frame[row + x] - bg) > 30) {
+          left[y] = Math.min(left[y], x);
+          break;
+        }
+      }
+      for (let x = HALF.w - 1; x >= 0; x--) {
+        if (Math.abs(frame[row + x] - bg) > 30) {
+          right[y] = Math.max(right[y], x);
+          break;
+        }
+      }
+    }
+  }
+  return { left, right };
+};
+
+// Rows of text are runs of inked pixel rows; a run a few pixels tall is a
+// horizontal rule, which reads the same cut short.
+const ruleRows = (ink) => {
+  const rule = new Uint8Array(HALF.h);
+  for (let y = 0; y < HALF.h; ) {
+    if (ink.right[y] < 0) {
+      y++;
+      continue;
+    }
+    let end = y;
+    while (end < HALF.h && ink.right[end] >= 0) end++;
+    if (end - y <= 3) rule.fill(1, y, end);
+    y = end;
+  }
+  return rule;
+};
+
+// A box (fractions of the clip) cuts no line when no visible row of text has
+// ink past its sides and no row of text straddles its top or bottom edge.
+const cutBy = (ink, box) => {
+  const rule = (ink.rule ??= ruleRows(ink));
+  const x0 = box.x * HALF.w;
+  const x1 = (box.x + box.w) * HALF.w;
+  const y0 = box.y * HALF.h;
+  const y1 = (box.y + box.h) * HALF.h;
+  for (let y = Math.ceil(y0); y < Math.min(HALF.h, Math.floor(y1)); y++) {
+    if (rule[y]) continue;
+    if (ink.right[y] > x1 - 2 || (box.x > 0 && ink.left[y] < x0 + 2)) return "a line runs past the side";
+  }
+  for (const edge of [y0, y1]) {
+    if (edge < 1 || edge > HALF.h - 1) continue;
+    for (let y = Math.floor(edge) - 2; y <= Math.ceil(edge) + 2; y++) {
+      if (y >= 0 && y < HALF.h && ink.right[y] >= 0 && !rule[y]) return "the edge cuts through a row of text";
+    }
+  }
+  return null;
+};
+
+// Every still stretch of a terminal camera is settled on the frames it shows:
+// as close as the storyboard asks but never past a line, with its edges in the
+// gaps between rows. The composition plays the settled keyframes.
+const SAMPLE = 0.1;
+for (const scene of board.scenes.filter((s) => s.kind === "terminal")) {
+  const shown = (t) => scene.segments.some((s) => (s.hold !== undefined ? Math.abs(s.hold - t) < SAMPLE / 2 : t >= s.from && t <= s.to));
+  const keys = scene.camera.map((k) => ({ ...k }));
+  for (let i = 0; i < keys.length - 1; i++) {
+    const [a, b] = [keys[i], keys[i + 1]];
+    if (a.s <= 1 || a.s !== b.s || a.x !== b.x || a.y !== b.y) continue;
+    const times = [];
+    for (let t = a.at; t <= b.at + 1e-6; t += SAMPLE) if (shown(t)) times.push(t);
+    for (const s of scene.segments) if (s.hold !== undefined && s.hold >= a.at && s.hold <= b.at) times.push(s.hold);
+    if (times.length === 0) continue;
+    const ink = inkOf(scene.clip, times);
+    let settled = null;
+    for (let s = a.s; s >= 1 && !settled; s = Math.round((s - 0.01) * 100) / 100) {
+      for (let d = 0; d <= 0.2 && !settled; d += 0.002) {
+        for (const y of d === 0 ? [a.y] : [a.y - d, a.y + d]) {
+          if (y < 0 || y > 1) continue;
+          if (!cutBy(ink, viewport({ at: 0, s, x: a.x, y }))) {
+            settled = { s, y: Math.round(y * 1000) / 1000 };
+            break;
+          }
+        }
+      }
+    }
+    if (!settled || settled.s < 1.1) settled = { s: 1, y: a.y };
+    if (settled.s !== a.s || settled.y !== a.y) {
+      console.log(`camera ${scene.id} ${a.at}-${b.at}s: s ${a.s} -> ${settled.s}, y ${a.y} -> ${settled.y}`);
+    }
+    for (const k of [a, b]) Object.assign(k, settled);
+  }
+  data.camera[scene.id] = keys;
+}
 fs.writeFileSync(path.join(pub, "files/data.json"), JSON.stringify(data));
 
 // The init clip's last screen, cut to its next steps, for the Flutter beat.
 const flutter = board.scenes.find((s) => s.kind === "flutter");
 if (flutter) {
+  const cut = cutBy(inkOf(flutter.next.clip, [flutter.next.at]), flutter.next.crop);
+  if (cut) die(`flutter: next.crop ${JSON.stringify(flutter.next.crop)} cuts the init clip at ${flutter.next.at}s: ${cut}`);
   const { clip, at, crop } = flutter.next;
   fs.mkdirSync(path.join(pub, "stills"), { recursive: true });
   run("ffmpeg", [

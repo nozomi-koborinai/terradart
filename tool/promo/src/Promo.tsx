@@ -14,7 +14,9 @@ import {
   useVideoConfig,
 } from "remotion";
 import { font, radius, v } from "./brand";
+import { clipTime } from "./camera.mjs";
 import {
+  assertSafe,
   BAR,
   cameraAt,
   cameraTransform,
@@ -24,22 +26,13 @@ import {
   codeSizeFor,
   focusSchedule,
   Lockup,
+  SAFE_BOTTOM,
   Window,
 } from "./components";
-import {
-  board,
-  type Lang,
-  type PromoData,
-  type PromoProps,
-  type SceneSpec,
-  type Segment,
-  sceneSeconds,
-  segmentSeconds,
-} from "./types";
+import { board, type Lang, type PromoData, type PromoProps, type SceneSpec, sceneSeconds, segmentSeconds } from "./types";
 
 const W = board.width;
 const H = board.height;
-/** The terminal window's box, leaving the bottom band to the captions. */
 const TERM_W = 1720;
 const TERM_H = BAR + (TERM_W * board.terminal.height) / board.terminal.width;
 const TERM_LEFT = (W - TERM_W) / 2;
@@ -82,23 +75,13 @@ const Title = ({ scene }: { scene: SceneSpec }) => {
   );
 };
 
-/** Maps scene seconds to clip seconds across the cuts; a hold keeps its second. */
-const clipTime = (segments: Segment[], t: number) => {
-  let rest = t;
-  for (const s of segments) {
-    if (rest < segmentSeconds(s)) return "hold" in s ? s.hold : s.from + rest;
-    rest -= segmentSeconds(s);
-  }
-  const last = segments[segments.length - 1];
-  return "hold" in last ? last.hold : last.to;
-};
-
-const Terminal = ({ scene, lang }: { scene: SceneSpec; lang: Lang }) => {
+const Terminal = ({ scene, lang, data }: { scene: SceneSpec; lang: Lang; data: PromoData }) => {
   const { fps } = useVideoConfig();
   const t = seconds();
   const segments = scene.segments!;
+  assertSafe(scene.id, TERM_TOP + TERM_H);
   const clip = clipTime(segments, t);
-  const camera = cameraAt(scene.camera!, clip);
+  const camera = cameraAt(data.camera[scene.id] ?? scene.camera!, clip);
   let start = 0;
   return (
     <AbsoluteFill>
@@ -133,11 +116,13 @@ const CodeScene = ({ scene, lang, data }: { scene: SceneSpec; lang: Lang; data: 
   const t = seconds();
   const block = data.code[scene.code!];
   const focusCount = Math.max(...block.lines.map((l) => (l.focus ?? -1) + 1));
-  const size = codeSizeFor(block, 900);
+  const size = codeSizeFor(block, SAFE_BOTTOM - 36);
   const height = codeHeight(block, size);
+  const top = Math.max(30, (SAFE_BOTTOM - height) / 2);
+  assertSafe(scene.id, top + height);
   return (
     <AbsoluteFill>
-      <Window title={block.title} style={{ left: (W - 1320) / 2, width: 1320, top: Math.max(30, (936 - height) / 2), height }}>
+      <Window title={block.title} style={{ left: (W - 1320) / 2, width: 1320, top, height }}>
         <Code block={block} size={size} focus={focusSchedule(focusCount, 0.9, sceneSeconds(scene) - 0.3, t)} />
       </Window>
       <Captions captions={scene.captions ?? []} time={t} lang={lang} />
@@ -150,23 +135,25 @@ const FlutterScene = ({ scene, lang, data }: { scene: SceneSpec; lang: Lang; dat
   const next = scene.next!;
   const block = data.code[scene.code!];
   const focusCount = Math.max(...block.lines.map((l) => (l.focus ?? -1) + 1));
-  const codeH = codeHeight(block);
   const cropW = 1500;
   const cropH = (cropW * (next.crop.h * board.terminal.height)) / (next.crop.w * board.terminal.width);
+  const gap = 28;
+  const size = codeSizeFor(block, SAFE_BOTTOM - 2 * 26 - gap - BAR - cropH);
+  const codeH = codeHeight(block, size);
+  const top = Math.max(26, (SAFE_BOTTOM - (codeH + gap + BAR + cropH)) / 2);
+  assertSafe(scene.id, top + codeH + gap + BAR + cropH);
   const enter = interpolate(t, [next.from - 0.1, next.from + 0.45], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
     easing: Easing.out(Easing.cubic),
   });
   const band = interpolate(t, [next.from + 0.5, next.from + 0.8], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const gap = 28;
-  const top = Math.max(26, (930 - (codeH + gap + BAR + cropH)) / 2);
   const term = board.terminal;
   const lineH = (cropH * ((term.fontSize * term.lineHeight) / term.height)) / next.crop.h;
   return (
     <AbsoluteFill>
       <Window title={block.title} style={{ left: (W - 1500) / 2, width: 1500, top, height: codeH }}>
-        <Code block={block} focus={focusSchedule(focusCount, 0.8, next.from, t)} />
+        <Code block={block} size={size} focus={focusSchedule(focusCount, 0.8, next.from, t)} />
       </Window>
       <Window
         title={next.title}
@@ -203,6 +190,7 @@ const Site = ({ scene, lang }: { scene: SceneSpec; lang: Lang }) => {
   const width = 1560;
   const height = 880;
   const push = interpolate(t, [0, sceneSeconds(scene)], [1, 1.05]);
+  assertSafe(scene.id, 30 + height);
   return (
     <AbsoluteFill>
       <Window title={scene.url!} center style={{ left: (W - width) / 2, width, top: 30, height }}>
@@ -259,7 +247,7 @@ const SceneBody = ({ scene, lang, data }: { scene: SceneSpec; lang: Lang; data: 
     case "title":
       return <Title scene={scene} />;
     case "terminal":
-      return <Terminal scene={scene} lang={lang} />;
+      return <Terminal scene={scene} lang={lang} data={data} />;
     case "code":
       return <CodeScene scene={scene} lang={lang} data={data} />;
     case "flutter":

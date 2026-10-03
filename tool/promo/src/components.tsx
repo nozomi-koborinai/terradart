@@ -1,7 +1,10 @@
 import { useEffect, useState, type CSSProperties, type ReactNode } from "react";
 import { continueRender, delayRender, Easing, interpolate, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import { font, radius, v } from "./brand";
-import type { Caption, CodeBlock, Keyframe, Lang } from "./types";
+import { cameraOffset } from "./camera.mjs";
+import { board, type Caption, type CodeBlock, type Keyframe, type Lang } from "./types";
+
+export { cameraAt } from "./camera.mjs";
 
 export const BAR = 44;
 
@@ -56,30 +59,22 @@ export const Window = ({
   </div>
 );
 
-const easeInOut = Easing.bezier(0.65, 0, 0.35, 1);
-
-/** Interpolates keyframes; zoom is geometric so a push in and out reads at an even pace. */
-export const cameraAt = (keys: Keyframe[], t: number) => {
-  if (t <= keys[0].at) return keys[0];
-  for (let i = 0; i < keys.length - 1; i++) {
-    const a = keys[i];
-    const b = keys[i + 1];
-    if (t <= b.at) {
-      const p = b.at === a.at ? 1 : easeInOut((t - a.at) / (b.at - a.at));
-      return { at: t, s: a.s * Math.pow(b.s / a.s, p), x: a.x + (b.x - a.x) * p, y: a.y + (b.y - a.y) * p };
-    }
-  }
-  return keys[keys.length - 1];
+export const cameraTransform = (k: Keyframe, w: number, h: number): CSSProperties => {
+  const { dx, dy } = cameraOffset(k, w, h);
+  return { transform: `translate(${dx}px, ${dy}px) scale(${k.s})`, transformOrigin: "0 0" };
 };
 
-/**
- * Scales a box about a focus point and moves that point toward the box's
- * centre, clamped so the zoomed box never uncovers what the box covered.
- */
-export const cameraTransform = (k: Keyframe, w: number, h: number): CSSProperties => {
-  const dx = Math.min(0, Math.max(w - w * k.s, w / 2 - k.x * w * k.s));
-  const dy = Math.min(0, Math.max(h - h * k.s, h / 2 - k.y * h * k.s));
-  return { transform: `translate(${dx}px, ${dy}px) scale(${k.s})`, transformOrigin: "0 0" };
+const CAPTION_BOTTOM = 34;
+const CAPTION_HEIGHT = 92;
+
+/** The lowest y a scene may draw at: the band below belongs to the captions. */
+export const SAFE_BOTTOM = board.height - CAPTION_BOTTOM - CAPTION_HEIGHT - 18;
+
+/** Fails the render when a scene's layout reaches into the caption band. */
+export const assertSafe = (scene: string, bottom: number) => {
+  if (bottom > SAFE_BOTTOM + 0.5) {
+    throw new Error(`${scene}: content ends at y=${Math.round(bottom)}, inside the caption band (below ${SAFE_BOTTOM})`);
+  }
 };
 
 /** Splits on backticks: the odd parts are commands, set in the mono face. */
@@ -116,7 +111,7 @@ export const Captions = ({ captions, time, lang }: { captions: Caption[]; time: 
         position: "absolute",
         left: 0,
         right: 0,
-        bottom: 34,
+        bottom: CAPTION_BOTTOM,
         display: "flex",
         justifyContent: "center",
         opacity,
@@ -125,7 +120,11 @@ export const Captions = ({ captions, time, lang }: { captions: Caption[]; time: 
     >
       <div
         style={{
-          padding: "16px 30px 18px",
+          boxSizing: "border-box",
+          height: CAPTION_HEIGHT,
+          display: "flex",
+          alignItems: "center",
+          padding: "0 30px 2px",
           borderRadius: radius,
           border: `1px solid ${v("line-strong")}`,
           background: v("surface-2"),
@@ -137,7 +136,9 @@ export const Captions = ({ captions, time, lang }: { captions: Caption[]; time: 
           whiteSpace: "nowrap",
         }}
       >
-        <Rich text={active[lang]} />
+        <span>
+          <Rich text={active[lang]} />
+        </span>
       </div>
     </div>
   );

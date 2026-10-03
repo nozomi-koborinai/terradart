@@ -151,8 +151,11 @@ Set Theme ${JSON.stringify(palette)}
 `;
 
 const prompt = String.raw`\[\e[38;2;77;208;254m\]$\[\e[0m\] `;
+// Empty, so the take downloads OpenTofu on screen, and short, so the
+// "Installed OpenTofu ... at <path>" line fits a zoomed shot.
+const cache = fs.mkdtempSync("/tmp/td-");
 const setup = (cwd) => `Hide
-Type "export PATH='${shellPath}' GOOGLE_APPLICATION_CREDENTIALS='${credentials}' TERRADART_CACHE_DIR='${path.join(work, "cache")}' PS1='${prompt}' && cd '${cwd}' && clear"
+Type "export PATH='${shellPath}' GOOGLE_APPLICATION_CREDENTIALS='${credentials}' TERRADART_CACHE_DIR='${cache}' PS1='${prompt}' && cd '${cwd}' && clear"
 Enter
 Sleep 600ms
 `;
