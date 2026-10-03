@@ -14,7 +14,9 @@ dependencies:
   terradart_appwrite: ^0.33.x
 ```
 
-`AppwriteProvider` takes the endpoint and the project or organization, but no API key, so credentials never enter the synthesized JSON. Apply authenticates with `APPWRITE_API_KEY` (project resources) or `APPWRITE_ORGANIZATION_API_KEY` (organization resources).
+## Credentials
+
+`AppwriteProvider` takes the endpoint and the project or organization, but no API key, so credentials never enter the synthesized JSON, and synth needs none. `terradart plan` and `terradart apply` authenticate with `APPWRITE_API_KEY` (project resources) or `APPWRITE_ORGANIZATION_API_KEY` (organization resources). With them in place, [`terradart apply`](/docs/cli/) synthesizes the Stack and applies it.
 
 ## A backend for a Flutter app
 
@@ -56,7 +58,7 @@ final class BackendStack extends Stack {
 }
 ```
 
-Appwrite assigns the IDs on create, so they are outputs, each with a typed getter on `BackendStackOutputs` (`databaseId`, `notesTableId`, `uploadsBucketId`). For the Flutter app, add `addDartDefineOutput()` to the Stack: `terradart apply` (or `terradart outputs`) then writes the define file `flutter build --dart-define-from-file` reads, and `const BackendStackOutputs.fromDartDefine()` reads the IDs in the app — see [Outputs in client apps](/docs/client-outputs/). A script reads them from `terraform output -json` with `BackendStackOutputs.fromTerraformJson(...)`.
+Appwrite assigns the IDs on create, so they are outputs, each with a typed getter on `BackendStackOutputs` (`databaseId`, `notesTableId`, `uploadsBucketId`). For the Flutter app, add `addDartDefineOutput()` to the Stack: `terradart apply` (or `terradart outputs`) then writes the define file `flutter build --dart-define-from-file` reads, and `const BackendStackOutputs.fromDartDefine()` reads the IDs in the app — see [Outputs in client apps](/docs/client-outputs/). A script reads the same define file at run time with `BackendStackOutputs.fromEnvironment(...)`.
 
 Who may read or change a bucket, file, table or row is a list of `AppwritePermission` (from `package:terradart_appwrite/auth.dart`), one per action and role, so a misspelled role does not compile:
 

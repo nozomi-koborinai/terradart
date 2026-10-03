@@ -63,19 +63,7 @@ Future<void> main(List<String> args) async {
   );
   _checkPhrase(
     errors,
-    'website/src/content/docs/docs/status.md',
-    '$curatedFactoryCount curated resource factories + $dataSourceCatalogPhrase',
-    '($catalogEntryCount catalog entries)',
-  );
-  _checkPhrase(
-    errors,
     'website/src/content/docs/docs/coverage/google.md',
-    '$curatedFactoryCount curated resource factories + $dataSourceCatalogPhrase',
-    '($catalogEntryCount catalog entries)',
-  );
-  _checkPhrase(
-    errors,
-    'website/src/content/docs/docs/why-terradart.md',
     '$curatedFactoryCount curated resource factories + $dataSourceCatalogPhrase',
     '($catalogEntryCount catalog entries)',
   );

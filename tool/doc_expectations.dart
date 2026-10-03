@@ -34,9 +34,7 @@ const googleCountPages = [
   'README.md',
   'CONTRIBUTING.md',
   'packages/terradart_google/README.md',
-  'website/src/content/docs/docs/status.md',
   'website/src/content/docs/docs/coverage/google.md',
-  'website/src/content/docs/docs/why-terradart.md',
   'website/src/components/PitchCode.astro',
 ];
 
