@@ -108,6 +108,8 @@ flutter run --dart-define-from-file=.terradart/dart_defines.json
 
 The app ships when it is ready, against whatever was applied last; a new apply reaches it on its next build.
 
+The [Flutter client quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/flutter_client_quickstart) is that build, end to end: `terradart apply --env dev` writes `.terradart/dart_defines.dev.json`, and `flutter run --dart-define-from-file=.terradart/dart_defines.dev.json` compiles it into the app, which reads `FlutterClientStackOutputs.fromDartDefine()`.
+
 ### One define file per environment
 
 With [environments](/docs/environments/), each environment's apply writes its own file, `.terradart/dart_defines.<env>.json`, and each client build names the one it is for:
