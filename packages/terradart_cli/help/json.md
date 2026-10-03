@@ -28,6 +28,7 @@ implies --no-input, and goes before or after the command.
   dryRun         true when --dry-run stopped before any change
   defineFile     apply, outputs: the define file written
   keys           its keys; never the values
+  notices        one-line warnings: skill_outdated, skill_newer
   error          on failure: code (terradart help exit-codes), message,
                  and flag, choices, engineExitCode when they apply
   next           commands to run next

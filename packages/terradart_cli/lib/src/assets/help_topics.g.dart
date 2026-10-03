@@ -168,6 +168,9 @@ Each exit code means one thing, whichever step failed.
   2   plan --detailed-exitcode found changes; not a failure
   3   input_required: an answer nobody can give
       (--auto-approve, or --engine on a state the other engine wrote)
+  4   skill_drift: skill status --check found the agent skill missing,
+      older, newer or edited
+  5   local_edits: skill update kept a skill with local edits
   10  synth_failed: the entry point exited non-zero
   11  engine_unavailable: no engine on PATH, a missing engine_path, or the
       OpenTofu download or its checksum failed
@@ -224,6 +227,7 @@ implies --no-input, and goes before or after the command.
   dryRun         true when --dry-run stopped before any change
   defineFile     apply, outputs: the define file written
   keys           its keys; never the values
+  notices        one-line warnings: skill_outdated, skill_newer
   error          on failure: code (terradart help exit-codes), message,
                  and flag, choices, engineExitCode when they apply
   next           commands to run next
