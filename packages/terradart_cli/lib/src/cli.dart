@@ -163,12 +163,13 @@ Future<int> runTerradart(
 List<String> _jsonOntoMigrate(List<String> arguments) {
   final at = arguments.indexOf('migrate');
   final before = arguments.sublist(0, at);
+  final after = arguments.sublist(at + 1);
   if (!before.contains('--json')) return arguments;
   return [
     ...before.where((a) => a != '--json'),
     'migrate',
-    '--json',
-    ...arguments.sublist(at + 1),
+    if (!after.takeWhile((a) => a != '--').contains('--json')) '--json',
+    ...after,
   ];
 }
 
