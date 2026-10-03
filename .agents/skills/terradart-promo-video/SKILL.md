@@ -1,6 +1,6 @@
 ---
 name: terradart-promo-video
-description: Produce a TerraDart release clip — scripted terminal beats (VHS), a composition in the brand system with English captions (Remotion), phone-safe delivery encodes — and draft the X / LinkedIn copy. Use when announcing a release with a video.
+description: Produce a TerraDart release clip — scripted terminal beats (VHS), a composition in the brand system with English captions and a voiceover reading them (Remotion), phone-safe delivery encodes — and draft the X / LinkedIn copy. Use when announcing a release with a video.
 ---
 # TerraDart promo video
 
@@ -12,6 +12,7 @@ Policy lives in [`AGENTS.md`](../../../AGENTS.md). This skill is the repeatable 
 - [What a clip may claim](#what-a-clip-may-claim)
 - [Workflow](#workflow)
 - [Writing the beats](#writing-the-beats)
+- [Narration](#narration)
 - [The brand system on screen](#the-brand-system-on-screen)
 - [One screen recording](#one-screen-recording)
 - [Delivery](#delivery)
@@ -40,7 +41,7 @@ When a claim is tempting but unsupported, cut the claim, not the caveat.
 
 [`tool/promo/`](../../../tool/promo/) holds the whole clip as code: `tapes/*.tape` (the terminal beats, recorded by VHS), `storyboard.json` (scenes, cuts and holds, camera keyframes, masks, captions, which lines of the generated files to show, the `ocr` deny list) and a Remotion composition under `src/` that reads the site's tokens and syntax theme. Re-recording after a CLI change is a re-run, not a re-edit.
 
-Needs Node ≥ 22.12, `vhs` with `ttyd`, `ffmpeg`, `tesseract` and `google-chrome`; `npm ci` in `tool/promo/` installs Remotion and the fonts (Inter, JetBrains Mono), so no system font matters.
+Needs Node ≥ 22.12, `vhs` with `ttyd`, `ffmpeg`, `tesseract`, `google-chrome` and a local text-to-speech command for the [narration](#narration); `npm ci` in `tool/promo/` installs Remotion and the fonts (Inter, JetBrains Mono), so no system font matters.
 
 **Task progress:**
 
@@ -58,12 +59,14 @@ Needs Node ≥ 22.12, `vhs` with `ttyd`, `ffmpeg`, `tesseract` and `google-chrom
 - [ ] 4. **Look before rendering.** `node render.mjs --stills-only` writes the poster and one key frame per entry of `stills` — the brand check — and reads them back with tesseract.
 - [ ] 5. **The take**, once the release is on pub.dev: `dart pub global activate terradart_cli`, move the engines off `PATH` for real (`capture.mjs` refuses to record while `terraform` or `tofu` is on it), `node capture.mjs`, restore them. Re-time the storyboard against the new clips.
 - [ ] 6. **Render**: `node render.mjs --out DIR` writes `terradart-v<release>.mp4`, `terradart-v<release>-poster.png` and the key frames, after reading every tenth terminal and app frame back with tesseract. `npm run studio` scrubs the composition frame by frame.
-- [ ] 7. **Review** each delivery with the `videoReview` subagent: captions against what the frame shows, zooms that clip a line, text too small at phone size. Treat its brand verdicts with care — check a flagged colour against `tokens.css` before changing anything.
+- [ ] 7. **Review** each delivery with the `videoReview` subagent: captions against what the frame shows, zooms that clip a line, text too small at phone size, the pace. Treat its brand verdicts with care — check a flagged colour against `tokens.css` before changing anything. It sees frames only, so check the narration separately: transcribe each line of the delivery's audio with a local speech recognizer, and listen to it before handing it over.
 - [ ] 8. Draft the copy ([below](#writing-the-copy)). The maintainer posts; agents do not post to X or LinkedIn.
 
 ## Writing the beats
 
-One message per beat, five to seven beats, 40–50s. Open on the lockup with the release, close on the install line and the site.
+One message per beat, five to seven beats, 60–75s. Open on the lockup with the release, close on the install line and the site.
+
+- **Leave time to read.** A viewer reads every prompt and result, and hears the line about it: the tapes type at 100ms a character and sleep a few seconds after each answer and each finished command, and a caption starts when the output it describes appears, not while the command is still being typed. A 40s cut of the same beats was too fast to follow.
 
 - **Show what the user touches.** The commands they type, the Stack they write, the app code that reads the outputs. Generated internals, engine logs and plumbing get cut, masked or sped through; check every beat against this before recording.
 - **Record what the user runs, nothing else.** No `clear`, `ls`, `--version` or checks; the tapes hide setup with `Hide` / `Show`. The one exception is a command that proves a claim (`terraform version` answering `command not found`), which the storyboard's `ocr.allow` names.
@@ -74,6 +77,15 @@ One message per beat, five to seven beats, 40–50s. Open on the lockup with the
 - **Captions own the bottom band.** Scenes lay out above `SAFE_BOTTOM` (`src/components.tsx`); a layout that reaches into the caption band throws and fails the render.
 - **Show real files.** Code beats are excerpts of what the take generated (`code` rules in the storyboard: start line, picked lines, folds), highlighted with the site's theme; never a hand-written mock. The app beat shows `lib/main.dart` as the Flutter client quickstart uses the reader (`const outputs = <Stack>Outputs.fromDartDefine();`, a getter in a widget): `capture.mjs` writes it against the reader the take generated and fails when it does not analyze.
 - **No error on screen by accident.** The storyboard's `ocr.deny` (not found, error, warning, note, can't, ...) fails the render on any key frame or sampled clip frame that shows a matching line, unless `ocr.allow` names it.
+
+## Narration
+
+A female English voice reads every caption. `render.mjs` runs `$PROMO_TTS OUT.wav TEXT` for each caption and caches the lines under `public/voice/`; a caption's `say` gives the spoken form when it differs from the text (`"3 to add"` read as *three*, `--dart-define-from-file` as *dart define from file*, `terradart.dev` as *terradart dot dev*).
+
+- **The storyboard sets the pace, not the voice.** Each line starts `voice.lead` seconds into its caption, and the render fails when a line runs past `voice.tail` before its caption ends or into the next line: make room with a longer segment or a hold, never by speeding the voice up.
+- **Choose the voice by its licence.** A neural voice that runs locally, whose model weights *and* voice data allow commercial and promotional use; a robotic formant voice is not acceptable, and neither is an account with a paid service. Keep the command and the licence record outside the repository.
+- **Fix a mispronounced word in the TTS command**, at the phoneme level, rather than respelling the caption. Transcribe every line with a local speech recognizer before rendering.
+- **A caption that spans a hold ends past the held second.** Captions fade on clip time, so a caption that ends a moment after a `hold` stays half-faded for the whole hold.
 
 ## The brand system on screen
 
@@ -103,7 +115,7 @@ tool/promo_video.sh --in RAW.mp4 --out EDIT.mp4 \
 
 ## Delivery
 
-`render.mjs` (and `promo_video.sh --deliver`) writes the encode that platforms and phones accept: 1080p30, H.264 High@4.1, a silent AAC track, `faststart`, `mp42` brand.
+`render.mjs` (and `promo_video.sh --deliver`) writes the encode that platforms and phones accept: 1080p30, H.264 High@4.1, an AAC track (the narration, levelled in two passes to a quiet −20 LUFS; silent from `promo_video.sh`), `faststart`, `mp42` brand. No music.
 
 This is not cosmetic. **iOS Photos silently refuses "Save Video"** on the raw recording shape — soundless, 1200 tall, 60fps, level 5.0 — with no error to explain it. The delivery encode is what saves to a phone and what to hand over for posting. On iOS, open it in **Safari** and use Share → Save Video; the in-app share sheet does not always offer it.
 
