@@ -10,8 +10,8 @@ description: Run a Dart backend on Lambda or ECS Express Mode and a Flutter Web 
 ```yaml
 # pubspec.yaml
 dependencies:
-  terradart_core: ^0.33.x
-  terradart_aws: ^0.33.x
+  terradart_core: ^0.33.0
+  terradart_aws: ^0.33.0
 ```
 
 Check [pub.dev](https://pub.dev/packages/terradart_aws) for the latest patch, then run `dart pub get`.

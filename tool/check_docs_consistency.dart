@@ -12,6 +12,8 @@
 
 import 'dart:io';
 
+import 'package:pub_semver/pub_semver.dart';
+
 import 'doc_expectations.dart';
 
 Future<void> main(List<String> args) async {
@@ -68,7 +70,8 @@ Future<void> main(List<String> args) async {
     '($catalogEntryCount catalog entries)',
   );
   // Version-line freshness: any `0.NN.x` token in these user-facing pages must
-  // match the current workspace minor. Pages that intentionally reference old
+  // match the current workspace minor, and no `^0.NN.P` caret may name an
+  // older one. Pages that intentionally reference old
   // lines (MIGRATING, waves history, SECURITY's unsupported-versions table)
   // are exempt.
   for (final page in [
@@ -103,6 +106,7 @@ Future<void> main(List<String> args) async {
   for (final lane in exactPinLanes) {
     _checkNoExactPinCopies(errors, lane);
   }
+  _checkCopyPasteConstraints(errors);
   for (final template in [
     '.github/ISSUE_TEMPLATE/bug.yml',
     '.github/ISSUE_TEMPLATE/feature.yml',
@@ -116,7 +120,7 @@ Future<void> main(List<String> args) async {
     if (!pubspec.existsSync()) continue;
     final text = pubspec.readAsStringSync();
     if (!text.contains('^0.$minor.')) {
-      errors.add('examples/$example/pubspec.yaml: expected caret ^0.$minor.x');
+      errors.add('examples/$example/pubspec.yaml: expected caret ^0.$minor.N');
     }
   }
 
@@ -130,7 +134,7 @@ Future<void> main(List<String> args) async {
           RegExp(r'\^0\.(10|11|1)\.').hasMatch(text) ||
           text.contains('^0.1.0-dev');
       if (hasOld) {
-        errors.add('$readme: caret minor should be ^0.$minor.x');
+        errors.add('$readme: caret minor should be ^0.$minor.0');
       }
     }
   }
@@ -209,6 +213,15 @@ void _checkNoStaleVersionLine(List<String> errors, int minor, String path) {
       );
     }
   }
+  for (final match in RegExp(r'\^0\.(\d+)\.\d+\b').allMatches(text)) {
+    final found = int.parse(match.group(1)!);
+    if (found < minor && reported.add(match.group(0)!)) {
+      errors.add(
+        '$path: stale caret "${match.group(0)}" (current minor is '
+        '^0.$minor.0)',
+      );
+    }
+  }
 }
 
 void _checkCaretMinor(
@@ -223,8 +236,8 @@ void _checkCaretMinor(
     return;
   }
   final text = file.readAsStringSync();
-  final caret = '^0.$minor.x';
-  if (!text.contains(caret) && !text.contains('^0.$minor.')) {
+  final caret = '^0.$minor.0';
+  if (!text.contains('^0.$minor.')) {
     if (path.endsWith('.yml')) {
       if (!text.contains('0.$minor')) {
         errors.add('$path: expected reference to 0.$minor.x line');
@@ -259,6 +272,72 @@ void _checkNoExactPinCopies(List<String> errors, ExactPinLane lane) {
       }
     }
   }
+}
+
+/// A version constraint a reader copies into `pubspec.yaml` or onto a
+/// `dart pub global activate` line must be one pub accepts: `^0.33.x` is not
+/// (`dart pub get` fails), `^0.33.0` is. Prose such as "the 0.33.x line" has
+/// no caret and is fine. History (CHANGELOG, MIGRATING) is exempt.
+void _checkCopyPasteConstraints(List<String> errors) {
+  final caretX = RegExp(r'\^\d+\.\d+\.x\b');
+  final fence = RegExp(r'^\s*```+\s*(\w*)');
+  final dependency = RegExp(r'^\s*#?\s*terradart_\w+:\s*([^\s#`]+)');
+  final activate = RegExp(r'dart pub global activate terradart_\w+ ([^\s`]+)');
+  final files = {
+    ..._proseFiles(),
+    ..._filesUnder('skills', (p) => p.endsWith('.md')),
+    ..._filesUnder('cookbook', (p) => p.endsWith('README.md')),
+    ..._filesUnder('packages', (p) => p.contains('/example/')),
+    ..._filesUnder('.github/ISSUE_TEMPLATE', (p) => p.endsWith('.yml')),
+  }.where((p) => !p.endsWith('CHANGELOG.md') && !p.endsWith('MIGRATING.md'));
+  for (final path in files.toList()..sort()) {
+    final lines = File(path).readAsLinesSync();
+    String? fenceLang;
+    for (var i = 0; i < lines.length; i++) {
+      final line = lines[i];
+      final where = '$path:${i + 1}';
+      final open = fence.firstMatch(line);
+      if (open != null) {
+        fenceLang = fenceLang == null ? open.group(1)! : null;
+        continue;
+      }
+      final caret = caretX.firstMatch(line);
+      if (caret != null) {
+        errors.add(
+          '$where: "${caret.group(0)}" is not a pub version constraint '
+          '(`dart pub get` rejects it); write '
+          '"${caret.group(0)!.replaceFirst(RegExp(r'x$'), '0')}"',
+        );
+        continue;
+      }
+      final constraints = [
+        if (fenceLang == 'yaml') dependency.firstMatch(line)?.group(1),
+        activate.firstMatch(line)?.group(1),
+      ].nonNulls;
+      for (final constraint in constraints) {
+        try {
+          VersionConstraint.parse(constraint);
+        } on FormatException catch (e) {
+          errors.add(
+            '$where: "$constraint" is not a pub version constraint '
+            '(${e.message})',
+          );
+        }
+      }
+    }
+  }
+}
+
+List<String> _filesUnder(String root, bool Function(String) keep) {
+  final d = Directory(root);
+  if (!d.existsSync()) return const [];
+  return [
+    for (final f in d.listSync(recursive: true).whereType<File>())
+      if (!f.path.contains('/.dart_tool/') &&
+          !f.path.contains('/build/') &&
+          keep(f.path))
+        f.path,
+  ];
 }
 
 /// Hand-written prose a reader sees: root guides, package / example

@@ -12,8 +12,8 @@
 
 ```yaml
 dependencies:
-  terradart_core: ^0.33.x
-  terradart_time: ^0.33.x
+  terradart_core: ^0.33.0
+  terradart_time: ^0.33.0
 ```
 
 ## Usage

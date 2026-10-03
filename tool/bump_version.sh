@@ -35,6 +35,8 @@
 #   - packages/terradart_aws/README.md            (pubspec sample carets)
 #   - packages/terradart_time/README.md           (pubspec sample carets)
 #   - packages/terradart_codegen/README.md        (`dart pub global activate` caret)
+#   - packages/terradart_codegen/example/main.dart (`dart pub global activate` caret)
+#   (doc pins are the minor-line caret ^X.Y.0: minor bumps move them, patch bumps do not)
 #   - website/src/content/docs/docs/getting-started.mdx  (pubspec sample caret note + version line)
 #   - website/src/content/docs/docs/providers/*.md                (pubspec sample carets)
 #   - .github/ISSUE_TEMPLATE/bug.yml              (alpha banner version)
@@ -173,73 +175,49 @@ for f in cookbook/*/pubspec.yaml cookbook/*/*/pubspec.yaml; do
 done
 echo "    - scanned $COOKBOOK_COUNT cookbook pubspecs for terradart_{core,google,google_beta,appwrite,cloudflare,aws,time}: ^$NEW"
 
-# 4. Markdown caret samples (README + website getting-started).
-#    Two distinct patterns:
-#    a) Inside a pubspec block: `  terradart_(core|codegen|google): ^X.Y.Z`
-#    b) On a `dart pub global activate` line: `... terradart_codegen ^X.Y.Z`
-echo "  Markdown caret samples:"
-for md in README.md website/src/content/docs/docs/getting-started.mdx; do
-  if [ -f "$md" ]; then
-    sed_inplace "s#terradart_(core|codegen|google): \\^${OLD_RE}#terradart_\\1: ^${NEW}#g" "$md"
-    sed_inplace "s#(dart pub global activate terradart_codegen) \\^${OLD_RE}#\\1 ^${NEW}#g" "$md"
-    echo "    - $md"
-  fi
-done
-
 # Extract old/new minor for plain x.y.x-style references (e.g. "0.13.x").
 OLD_MINOR="$(printf '%s' "$OLD" | sed 's/\.[^.]*$//')"
 NEW_MINOR="$(printf '%s' "$NEW" | sed 's/\.[^.]*$//')"
 OLD_MINOR_RE="$(printf '%s' "$OLD_MINOR" | sed 's/[.]/\\./g')"
 
-# 4b. Additional doc/template files that reference the minor line.
-#     Pattern set per file (only the version token is replaced; surrounding
-#     text is left intact so prose stays correct):
+# Copy-paste pins in docs are the minor-line caret ^X.Y.0 — the form
+# `dart pub get` accepts that takes every patch of the line. Patch bumps leave
+# them alone; minor bumps move them. A legacy ^X.Y.x pin (pub rejects it) is
+# rewritten to the valid form on the way.
+DOC_CARET_SED="s#\\^${OLD_MINOR_RE}\\.(0|x)([^0-9A-Za-z.-]|\$)#^${NEW_MINOR}.0\\2#g"
+
+# 4. Additional doc/template files that reference the minor line.
+#    Pattern set per file (only the version token is replaced; surrounding
+#    text is left intact so prose stays correct):
 #
-#   CONTRIBUTING.md  — "X.Y.x today" + "^X.Y.x" caret
-#   SECURITY.md      — "^X.Y.x" pin + table rows "**X.Y.x**"
-#   package READMEs  — pubspec/activate caret samples (same pattern as above)
-#   website pages    — "**X.Y.x** line" + "^X.Y.x" pins + "X.Y.x (current)"
+#   CONTRIBUTING.md  — "X.Y.x today" + "^X.Y.0" caret
+#   SECURITY.md      — "^X.Y.0" pin + table rows "**X.Y.x**"
+#   website pages    — "**X.Y.x** line" + "^X.Y.0" pins + "X.Y.x (current)"
 #   ISSUE_TEMPLATE   — "**X.Y.x** today" in markdown value
 echo "  Additional doc/template files:"
 
-# CONTRIBUTING.md: replace ^X.Y.x and "X.Y.x today" and "vX.Y.0 beta" labels.
+# CONTRIBUTING.md: replace ^X.Y.0 and "X.Y.x today" labels.
 if [ -f CONTRIBUTING.md ]; then
-  sed_inplace "s#\\^${OLD_MINOR_RE}\\.x#^${NEW_MINOR}.x#g" CONTRIBUTING.md
+  sed_inplace "$DOC_CARET_SED" CONTRIBUTING.md
   sed_inplace "s#${OLD_MINOR_RE}\\.x today#${NEW_MINOR}.x today#g" CONTRIBUTING.md
   echo "    - CONTRIBUTING.md"
 fi
 
-# SECURITY.md: replace ^X.Y.x pin and **X.Y.x** table cells and "X.Y.x" upgrade references.
+# SECURITY.md: replace ^X.Y.0 pin and **X.Y.x** table cells and "X.Y.x" upgrade references.
 if [ -f SECURITY.md ]; then
-  sed_inplace "s#\\^${OLD_MINOR_RE}\\.x#^${NEW_MINOR}.x#g" SECURITY.md
+  sed_inplace "$DOC_CARET_SED" SECURITY.md
   sed_inplace "s#\\*\\*${OLD_MINOR_RE}\\.x\\*\\*#**${NEW_MINOR}.x**#g" SECURITY.md
   sed_inplace "s#${OLD_MINOR_RE}\\.x; see#${NEW_MINOR}.x; see#g" SECURITY.md
   echo "    - SECURITY.md"
 fi
 
-# Package READMEs: pubspec caret samples + activate caret.
-for pkg_readme in packages/terradart_core/README.md \
-                  packages/terradart_google/README.md \
-                  packages/terradart_google_beta/README.md \
-                  packages/terradart_appwrite/README.md \
-                  packages/terradart_cloudflare/README.md \
-                  packages/terradart_aws/README.md \
-                  packages/terradart_time/README.md \
-                  packages/terradart_codegen/README.md; do
-  if [ -f "$pkg_readme" ]; then
-    sed_inplace "s#terradart_(core|codegen|google): \\^${OLD_RE}#terradart_\\1: ^${NEW}#g" "$pkg_readme"
-    sed_inplace "s#(dart pub global activate terradart_codegen) \\^${OLD_RE}#\\1 ^${NEW}#g" "$pkg_readme"
-    echo "    - $pkg_readme"
-  fi
-done
-
-# website pages: "**X.Y.x** line", "^X.Y.x" pins, "X.Y.x (current)" phase row.
+# website pages: "**X.Y.x** line", "^X.Y.0" pins, "X.Y.x (current)" phase row.
 for site_md in website/src/content/docs/docs/getting-started.mdx \
                website/src/content/docs/docs/index.md \
                website/src/content/docs/docs/status.md; do
   if [ -f "$site_md" ]; then
     sed_inplace "s#\\*\\*${OLD_MINOR_RE}\\.x\\*\\* line#**${NEW_MINOR}.x** line#g" "$site_md"
-    sed_inplace "s#\\^${OLD_MINOR_RE}\\.x#^${NEW_MINOR}.x#g" "$site_md"
+    sed_inplace "$DOC_CARET_SED" "$site_md"
     sed_inplace "s#${OLD_MINOR_RE}\\.x \\(current\\)#${NEW_MINOR}.x (current)#g" "$site_md"
     echo "    - $site_md"
   fi
@@ -255,13 +233,10 @@ for tpl in .github/ISSUE_TEMPLATE/bug.yml \
   fi
 done
 
-# `.x`-style minor carets + alpha banner. The pubspec samples in the
-# READMEs and the website getting-started page, plus the README alpha
-# banner, use the ^X.Y.x minor form — distinct from the ^X.Y.Z full-semver
-# samples handled above, which is why those passes leave them untouched. Sweep
-# them in one pass so the docs-consistency check (which expects ^X.Y.x) stays
-# green every release.
-echo "  Minor (.x) caret samples + banner:"
+# Minor-line caret samples + alpha banner: the pubspec samples, the
+# `dart pub global activate` lines and the "Pin `^X.Y.0`" prose in the
+# READMEs, the website and the codegen example.
+echo "  Minor-line (^X.Y.0) caret samples + banner:"
 for f in README.md \
          website/src/content/docs/docs/getting-started.mdx \
          website/src/content/docs/docs/providers/*.md \
@@ -272,12 +247,10 @@ for f in README.md \
          packages/terradart_cloudflare/README.md \
          packages/terradart_aws/README.md \
          packages/terradart_time/README.md \
-         packages/terradart_codegen/README.md; do
+         packages/terradart_codegen/README.md \
+         packages/terradart_codegen/example/main.dart; do
   [ -f "$f" ] || continue
-  # Blanket ^X.Y.x replace (like CONTRIBUTING/SECURITY below) covers every
-  # caret form — pubspec samples, the `dart pub global activate` line, and bare
-  # "Pin `^X.Y.x`" prose — in one go.
-  sed_inplace "s#\\^${OLD_MINOR_RE}\\.x#^${NEW_MINOR}.x#g" "$f"
+  sed_inplace "$DOC_CARET_SED" "$f"
   sed_inplace "s#pre-1\\.0 \\(${OLD_MINOR_RE}\\.x\\)#pre-1.0 (${NEW_MINOR}.x)#g" "$f"
   echo "    - $f"
 done
@@ -314,23 +287,10 @@ STALE=$(
   grep -nE "^version: ${OLD_RE}\$" packages/*/pubspec.yaml 2>/dev/null
   grep -nE "terradart_(core|codegen|google|google_beta|appwrite|cloudflare|aws|time|hcl|migrate): \\^${OLD_RE}([^0-9A-Za-z.-]|\$)" \
     packages/*/pubspec.yaml examples/*/pubspec.yaml \
-    cookbook/*/pubspec.yaml cookbook/*/*/pubspec.yaml \
-    README.md website/src/content/docs/docs/getting-started.mdx \
-    packages/terradart_core/README.md \
-    packages/terradart_google/README.md \
-    packages/terradart_google_beta/README.md \
-    packages/terradart_appwrite/README.md \
-    packages/terradart_cloudflare/README.md \
-    packages/terradart_aws/README.md \
-    packages/terradart_time/README.md \
-    packages/terradart_codegen/README.md 2>/dev/null
-  grep -nE "dart pub global activate terradart_codegen \\^${OLD_RE}([^0-9A-Za-z.-]|\$)" \
-    README.md \
-    website/src/content/docs/docs/getting-started.mdx \
-    packages/terradart_codegen/README.md 2>/dev/null
+    cookbook/*/pubspec.yaml cookbook/*/*/pubspec.yaml 2>/dev/null
   grep -nE "packageVersion = '${OLD_RE}'" packages/terradart_migrate/lib/src/version.dart 2>/dev/null
   if [ "$OLD_MINOR" != "$NEW_MINOR" ]; then
-    grep -nE "\\^${OLD_MINOR_RE}\\.x" \
+    grep -nE "\\^${OLD_MINOR_RE}\\.(0|x)([^0-9A-Za-z.-]|\$)" \
       CONTRIBUTING.md SECURITY.md 2>/dev/null
     grep -nE "\\*\\*${OLD_MINOR_RE}\\.x\\*\\* (today|\\()" \
       CONTRIBUTING.md SECURITY.md \
@@ -339,8 +299,11 @@ STALE=$(
       .github/ISSUE_TEMPLATE/question.yml 2>/dev/null
     grep -nE "\\*\\*${OLD_MINOR_RE}\\.x\\*\\* line" \
       website/src/content/docs/docs/getting-started.mdx 2>/dev/null
-    grep -nE "\\^${OLD_MINOR_RE}\\.x" \
+    grep -nE "\\^${OLD_MINOR_RE}\\.(0|x)([^0-9A-Za-z.-]|\$)" \
       README.md website/src/content/docs/docs/getting-started.mdx \
+      website/src/content/docs/docs/status.md \
+      website/src/content/docs/docs/providers/*.md \
+      packages/terradart_codegen/example/main.dart \
       packages/terradart_core/README.md \
       packages/terradart_google/README.md \
       packages/terradart_google_beta/README.md \

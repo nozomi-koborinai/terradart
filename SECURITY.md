@@ -31,7 +31,7 @@ What does **not** count:
 
 ## Supported versions
 
-Pin dependencies with `^0.33.x` on [pub.dev](https://pub.dev/packages/terradart_core) today.
+Pin dependencies with `^0.33.0` on [pub.dev](https://pub.dev/packages/terradart_core) today.
 
 | Version | Status | Security fixes |
 |---|---|---|
