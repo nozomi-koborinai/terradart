@@ -19,7 +19,7 @@ Read this page before every **minor** bump. Breaking changes land only on minor 
      # terradart_cloudflare, terradart_appwrite or terradart_time
    ```
 
-2. **Optional: switch to the command.** `dart pub global activate terradart_cli`, then `terradart apply` replaces `dart run bin/infra.dart`, `cd tf-out`, `terraform init` and `terraform apply`, and writes the define file a client reads its outputs from. An existing `bin/infra.dart` keeps working; calling `runStack` or `runEnvironments` from it lets the command select an environment with `--env <name>`. See [The terradart command](/docs/cli/).
+2. **Switch to the command.** `dart pub global activate terradart_cli`, then `terradart apply` replaces `dart run bin/infra.dart`, `cd tf-out`, `terraform init` and `terraform apply`, and writes the define file a client reads its outputs from. An existing `bin/infra.dart` keeps working; calling `runStack` or `runEnvironments` from it lets the command select an environment with `--env <name>`. See [The terradart command](/docs/cli/).
 3. **`terradart-migrate` users:** run `terradart migrate` with the same flags. `terradart-migrate` still runs, prints that it is deprecated, and goes away in a later release.
 4. **Maintainers only:** `dart pub global activate terradart_codegen` now installs `terradart-codegen` (`terradart-codegen wrap ...`), because `terradart` is the user command. Deactivate and reactivate `terradart_codegen` before activating `terradart_cli`; `dart run terradart_codegen:terradart` is unchanged.
 
@@ -41,7 +41,7 @@ Read this page before every **minor** bump. Breaking changes land only on minor 
 
 2. **Drop `import 'package:terradart_core/terradart_core.dart';`** where a file imports a provider barrel: every barrel re-exports it.
 3. **Fix the compile errors** with the [upgrade guide in MIGRATING.md](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md#upgrade-guide), which lists the groups in order of how many stacks they touch, each with a before / after table.
-4. **Synthesize, then read `terraform plan` before you apply.** A few typed references emit a different attribute than the one a stack passed ([the list](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md#more-arguments-take-reftor)); `.ref.pinned('id')` keeps the old one.
+4. **Read `terradart plan` before you apply.** A few typed references emit a different attribute than the one a stack passed ([the list](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md#more-arguments-take-reftor)); `.ref.pinned('id')` keeps the old one.
 5. **`terradart-migrate` users:** `dart pub global activate terradart_migrate` installs 0.32.0, which writes the new API.
 
 ### The common changes
@@ -118,7 +118,7 @@ New in 0.32.0 and not breaking: [typed outputs in Flutter and web clients](/docs
    [outputs and constants](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md#outputs-and-constants),
    [typed nested helpers](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md#typed-nested-helpers),
    [type names](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md#type-names).
-4. **Synthesize, then read `terraform plan` before you apply.** Typed references emit the attribute the argument expects — Google `network` / `subnetwork` emit `id` where many stacks passed `self_link`. Pin the old one with `.ref.pinned('self_link')` to keep the old value exactly.
+4. **Read `terradart plan` before you apply.** Typed references emit the attribute the argument expects — Google `network` / `subnetwork` emit `id` where many stacks passed `self_link`. Pin the old one with `.ref.pinned('self_link')` to keep the old value exactly.
 5. **`terradart-migrate` users:** `dart pub global activate terradart_migrate` installs 0.31.0, which writes the new API.
 
 ### Sealed arguments and dot shorthands

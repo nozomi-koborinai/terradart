@@ -3,7 +3,7 @@ title: Migrating from HCL
 description: Bring an existing Terraform tree into TerraDart with terradart migrate — one Stack per module directory, a leftover sidecar for the rest, and a plan that reports No changes.
 ---
 
-`terradart migrate` turns a Terraform source tree (`*.tf` and `*.tf.json`) into a TerraDart package: one `Stack` class per module directory, a `tf-out/` tree that mirrors the source, and a **leftover sidecar** beside every synthesized `main.tf.json` holding, verbatim, each block the curated factories do not cover yet. Resource addresses are preserved, so `terraform plan` against your existing state reports **No changes** — you migrate one resource at a time, at your own pace, with no big-bang rewrite.
+`terradart migrate` turns a Terraform source tree (`*.tf` and `*.tf.json`) into a TerraDart package: one `Stack` class per module directory, a `tf-out/` tree that mirrors the source, and a **leftover sidecar** beside every synthesized `main.tf.json` holding, verbatim, each block the curated factories do not cover yet. Resource addresses are preserved, so `terradart plan` against your existing state reports **No changes** — you migrate one resource at a time, at your own pace, with no big-bang rewrite.
 
 It reads files only. It never runs Terraform, never reads or writes state, never writes into the source tree, and never writes outside the output directory.
 
@@ -91,18 +91,15 @@ dart pub get
 terradart plan               # one Stack: synth, init, plan
 ```
 
-A tree of several roots (the `envs/dev` and `envs/prod` layout above, without `--merge-envs`) still synthesizes every directory from `dart run bin/infra.dart`. Plan one of them in its Terraform directory:
+A tree of several roots (the `envs/dev` and `envs/prod` layout above) synthesizes every directory from one `bin/infra.dart`. Name the one to plan with `--env`: `terradart` runs the entry point, then `init` and `plan` in the `tf-out/` directory of that name.
 
 ```sh
-dart run bin/infra.dart      # writes tf-out/**/main.tf.json next to the sidecar files
-cd tf-out/envs/dev
-terraform init
-terraform plan               # No changes. Your infrastructure matches the configuration.
+terradart plan --env dev     # No changes. Your infrastructure matches the configuration.
 ```
 
-With `--merge-envs`, the generated entry point calls `runEnvironments`, so the same check is `terradart plan --env dev`.
+With `--merge-envs`, the generated entry point calls `runEnvironments`, and `--env dev` selects that member of the generated `Env` enum.
 
-Terraform merges every file in a directory, so the synthesized `main.tf.json` and the sidecar files form the same module the source was. The Stack carries the backend (`GcsBackend`, `S3Backend`, `LocalBackend`; any other backend stays in `backend.tf` as written), so `terraform init` in the new directory connects to the same remote state. With a **local backend**, copy `terraform.tfstate` into the new directory first — the migrator never copies state. `terraform.tfvars` and `*.auto.tfvars` are copied; other `*.tfvars` files are listed in `MIGRATION.md` for `-var-file`.
+Terraform merges every file in a directory, so the synthesized `main.tf.json` and the sidecar files form the same module the source was. The Stack carries the backend (`GcsBackend`, `S3Backend`, `LocalBackend`; any other backend stays in `backend.tf` as written), so the `init` that `terradart plan` runs in the new directory connects to the same remote state. With a **local backend**, copy `terraform.tfstate` into the new directory first — the migrator never copies state. `terraform.tfvars` and `*.auto.tfvars` are copied; other `*.tfvars` files are listed in `MIGRATION.md`; pass one after `--` (`terradart plan --env dev -- -var-file=extra.tfvars`).
 
 A plan that is not empty means a block was translated differently from how it was written. Nothing has been applied: compare that resource in `main.tf.json` with the original and [open an issue](https://github.com/nozomi-koborinai/terradart/issues/new/choose) with both.
 

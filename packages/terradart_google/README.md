@@ -52,8 +52,8 @@ Future<void> main() async {
 
 ```bash
 dart pub get
-dart run bin/infra.dart
-cd tf-out && terraform init && terraform apply
+dart pub global activate terradart_cli
+terradart apply
 ```
 
 Register a second configuration with `final eu = addProvider(GoogleProvider(alias: 'eu', ...))` and select it on a resource with `provider: eu` — every factory and data source takes `provider:` (Terraform's `provider` meta-argument), a provider instance the Stack registers; a registered `GoogleBetaProvider` puts a GA type on the beta provider.

@@ -121,6 +121,8 @@ flutter build web --dart-define-from-file=.terradart/dart_defines.prod.json
 
 The generated reader is the same for every environment; only the values compiled in differ.
 
+`terradart outputs --env prod` runs `init` with that environment's backend, then the engine's `output -json dart_defines`, and writes the file. Running the raw engine command yourself also works — `tofu output -json dart_defines > dart_defines.json` (or `terraform output ...`) in the environment's Terraform directory, after `init` — and prints the same JSON object.
+
 ### Clients built with the `dart` command
 
 `dart run` and `dart compile` take one define per flag, so pass each value of the define file as it is — every value in it is already the string the reader expects:
@@ -138,7 +140,7 @@ The [AWS Lambda quickstart](https://github.com/nozomi-koborinai/terradart/tree/m
 The two halves come at different times:
 
 1. **Synth**, before any apply: `terradart synth` (or `dart run bin/infra.dart`) writes the reader class, `AppStackOutputs`. Its getters and their types are known, so the client compiles against it, but it holds no values.
-2. **Apply**, then the client's build: the values exist only once Terraform has applied. `terradart apply` (or `terradart outputs` in the client's build) writes them to `.terradart/dart_defines.json` (`.terradart/dart_defines.<env>.json` with `--env`), and `flutter build web --dart-define-from-file=.terradart/dart_defines.json` (or `apk`, `ios`, ...) compiles them in. A build without them fails at the first read, with a `StateError` that names the variable and the command that writes it.
+2. **Apply**, then the client's build: the values exist only once the Stack is applied. `terradart apply` (or `terradart outputs` in the client's build) writes them to `.terradart/dart_defines.json` (`.terradart/dart_defines.<env>.json` with `--env`), and `flutter build web --dart-define-from-file=.terradart/dart_defines.json` (or `apk`, `ios`, ...) compiles them in. A build without them fails at the first read, with a `StateError` that names the variable and the command that writes it.
 
 `terradart outputs` reads the state from the Stack's backend: a local state file, or a remote bucket such as a `GcsBackend` or `S3Backend`. The machine or CI job that builds the client runs `init` against that backend — `terradart outputs` does — and needs read access to the state; it never needs permission to apply.
 
