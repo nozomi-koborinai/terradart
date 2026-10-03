@@ -44,7 +44,7 @@ graph TB
 ## Prerequisites
 
 - Dart SDK ≥ 3.10
-- Terraform CLI ≥ 1.11.0
+- The [`terradart` command](https://terradart.dev/docs/cli/): `dart pub global activate terradart_cli`
 - Google Cloud project with Application Default Credentials configured (`gcloud auth application-default login`)
 
 ## Run
@@ -53,18 +53,14 @@ graph TB
 export GCP_PROJECT_ID=my-project-id
 
 dart pub get
-dart run bin/infra.dart        # → tf-out/main.tf.json
-
-cd tf-out
-terraform init
-terraform plan
-terraform apply
+terradart plan
+terradart apply
 ```
 
 To clean up resources:
 
 ```bash
-terraform destroy
+terradart destroy
 ```
 
 ## How provider composition works

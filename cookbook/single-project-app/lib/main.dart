@@ -101,8 +101,8 @@ final class SingleProjectAppStack extends Stack {
 
     // ===== Outputs and constants — IaC ↔ application seam =================
     // `coffee_service_uri` is apply-time known (Cloud Run assigns the URL),
-    // so it surfaces as a Terraform output that the README's smoke recipe
-    // consumes via `terraform output -raw coffee_service_uri`.
+    // so it surfaces as a Terraform output that `terradart apply` prints at
+    // the end and the README's smoke test curls.
     //
     // `serviceName` and `region` read the service's literal `name` and
     // `location` at synth into `static const`s of
