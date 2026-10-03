@@ -10,7 +10,7 @@ name: terradart
 description: Write TerraDart infrastructure code (Dart that synthesizes Terraform JSON). Use when a task mentions TerraDart, a Dart `Stack`, `terradart_google` / `terradart_aws` / `terradart_cloudflare` / `terradart_appwrite` / `terradart_google_beta`, or translating Terraform (`.tf`) into Dart.
 metadata:
   terradart-version: "0.34.0"
-  terradart-sha256: "f8fc636b11034fbd1cce429749396ce478cd5d2f7b699e5890632642094a564c"
+  terradart-sha256: "e8a79716d03be06fa74d00df5e728e7d2197fe35a52fd472102fcad33a08681f"
 ---
 
 # TerraDart
@@ -174,6 +174,8 @@ terradart outputs    # synth, init, then writes the define file from the applied
 ```
 
 Arguments after `--` go to the engine (`terradart plan -- -target=...`), and `--no-synth` reuses the last synth.
+
+Run every `terradart` command with `--no-input`: it then never waits for an answer (it also stops asking in `CI` and in an agent's shell it recognizes). Where it needs one, it exits 3 (`apply` / `destroy` without `--auto-approve`) or 64 (no `--env`) and prints `Next:` — the command to run; never add `--auto-approve` unless the user asked for the apply.
 
 **Environments are declared in Dart**, never in `pubspec.yaml`: an enum of your own, any member names, each carrying that environment's values. The Stack takes a member and `bin/infra.dart` hands the members to `runEnvironments`:
 

@@ -3,7 +3,7 @@ name: terradart
 description: Write TerraDart infrastructure code (Dart that synthesizes Terraform JSON). Use when a task mentions TerraDart, a Dart `Stack`, `terradart_google` / `terradart_aws` / `terradart_cloudflare` / `terradart_appwrite` / `terradart_google_beta`, or translating Terraform (`.tf`) into Dart.
 metadata:
   terradart-version: "0.34.0"
-  terradart-sha256: "f8fc636b11034fbd1cce429749396ce478cd5d2f7b699e5890632642094a564c"
+  terradart-sha256: "e8a79716d03be06fa74d00df5e728e7d2197fe35a52fd472102fcad33a08681f"
 ---
 
 # TerraDart
