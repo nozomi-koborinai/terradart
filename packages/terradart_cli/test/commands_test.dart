@@ -864,7 +864,7 @@ void main() {
       final project = TestProject.create(engines: ['tofu']);
       final runner = appwrite();
       final r = await project.run(['apply', '--auto-approve'], runner);
-      expect(r.code, 1);
+      expect(r.code, 11);
       expect(r.err, contains('Appwrite currently needs Terraform on PATH'));
       expect(r.err, contains('--engine terraform'));
       expect(runner.engineCalls, isEmpty);
@@ -874,7 +874,7 @@ void main() {
       final project = TestProject.create(engines: ['tofu']);
       final runner = appwrite();
       final r = await project.run(['validate'], runner);
-      expect(r.code, 1);
+      expect(r.code, 11);
       expect(r.err, contains('Appwrite currently needs Terraform on PATH'));
       expect(runner.engineCalls, isEmpty);
     });
@@ -896,7 +896,7 @@ void main() {
       final project = TestProject.create(engines: []);
       final runner = appwrite();
       final r = await project.run(['plan'], runner);
-      expect(r.code, 1);
+      expect(r.code, 11);
       expect(r.err, contains('no terraform is on PATH'));
       expect(runner.engineCalls, isEmpty);
     });
@@ -912,7 +912,7 @@ void main() {
         );
         final runner = appwrite();
         final r = await project.run(['plan', ...args], runner);
-        expect(r.code, 1);
+        expect(r.code, 65);
         expect(r.err, contains('the engine is set to tofu'));
         expect(r.err, contains('terradart.engine: terraform'));
         expect(runner.engineCalls, isEmpty);
@@ -925,7 +925,7 @@ void main() {
       final path = fakeExecutable(project.path('tools'), 'tofu');
       final runner = appwrite();
       final r = await project.run(['plan', '--engine-path', path], runner);
-      expect(r.code, 1);
+      expect(r.code, 65);
       expect(r.err, contains('is OpenTofu'));
       expect(runner.engineCalls, isEmpty);
     });
