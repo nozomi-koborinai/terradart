@@ -316,7 +316,12 @@ environment:
 
 dependencies:
 ${[for (final p in plan.packages) '  $p: ^$packageVersion'].join('\n')}
-''';
+${plan.has(InitProvider.appwrite) ? '''
+
+# Appwrite needs Terraform: OpenTofu cannot install appwrite/appwrite.
+terradart:
+  engine: terraform
+''' : ''}''';
 
 String _env(InitPlan plan) {
   final fields = plan.fields;
@@ -615,7 +620,7 @@ flutter run --dart-define-from-file=${app.defineFile.replaceAll('<env>', env)}
   return '''
 # ${plan.packageName}
 
-Infrastructure in Dart with [TerraDart](https://terradart.dev). The `terradart` command synthesizes the Stack and plans and applies it with OpenTofu, which it downloads on first use — nothing else to install.
+Infrastructure in Dart with [TerraDart](https://terradart.dev). ${plan.has(InitProvider.appwrite) ? 'The `terradart` command synthesizes the Stack and plans and applies it with Terraform, which must be on your `PATH`: the Appwrite provider is published to the Terraform registry only, so OpenTofu cannot install it.' : 'The `terradart` command synthesizes the Stack and plans and applies it with OpenTofu, which it downloads on first use — nothing else to install.'}
 
 | File | Holds |
 |---|---|
@@ -650,9 +655,9 @@ const moveStateNote =
 /// The OpenTofu registry has no `appwrite/appwrite`, so the downloaded
 /// OpenTofu cannot install it.
 const appwriteEngineNote =
-    'The Appwrite provider is published to the Terraform registry only, '
-    'which the OpenTofu terradart downloads cannot install from: put '
-    'Terraform on your PATH and run with `--engine terraform`.';
+    'Appwrite currently needs Terraform on your PATH: the Appwrite provider '
+    'is published to the Terraform registry only, which OpenTofu cannot '
+    'install from. pubspec.yaml sets `terradart: engine: terraform`.';
 
 String _pascal(String snake) => [
   for (final part in snake.split('_'))

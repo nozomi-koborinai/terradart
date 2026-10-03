@@ -78,7 +78,14 @@ final class EngineResolver {
   final void Function(String) warn;
 
   /// Resolves the engine, preferring the one [recorded] ran the state last.
-  Future<Engine> resolve({EngineRecord? recorded}) async {
+  ///
+  /// [terraformOnly] lists the Terraform-only providers the Stack uses
+  /// ([terraformOnlyProviders]): when it is not empty the engine is
+  /// Terraform, and asking for OpenTofu fails.
+  Future<Engine> resolve({
+    EngineRecord? recorded,
+    List<String> terraformOnly = const [],
+  }) async {
     if (settings.path case final path?) {
       final kind =
           settings.kind ??
@@ -88,13 +95,35 @@ final class EngineResolver {
       if (!File(path).existsSync()) {
         throw CliException('engine_path $path does not exist.');
       }
+      if (kind == EngineKind.tofu && terraformOnly.isNotEmpty) {
+        throw CliException(
+          terraformOnlyMessage(terraformOnly, 'engine_path $path is OpenTofu'),
+        );
+      }
       return Engine(kind, path, reason: 'engine_path');
     }
     if (settings.kind case final kind?) {
+      if (kind == EngineKind.tofu && terraformOnly.isNotEmpty) {
+        throw CliException(
+          terraformOnlyMessage(terraformOnly, 'the engine is set to tofu'),
+        );
+      }
       return await _byKind(kind, 'engine: ${kind.name}') ??
           (throw CliException(
-            'terradart.engine is ${kind.name}, but no ${kind.name} is on '
-            'PATH. Install ${kind.label}, or set engine_path.',
+            terraformOnly.isNotEmpty
+                ? terraformOnlyMessage(terraformOnly, 'no terraform is on PATH')
+                : 'terradart.engine is ${kind.name}, but no ${kind.name} '
+                      'is on PATH. Install ${kind.label}, or set '
+                      'engine_path.',
+          ));
+    }
+    if (terraformOnly.isNotEmpty) {
+      return await _byKind(
+            EngineKind.terraform,
+            'the Stack uses ${terraformOnly.join(', ')}',
+          ) ??
+          (throw CliException(
+            terraformOnlyMessage(terraformOnly, 'no terraform is on PATH'),
           ));
     }
     if (recorded != null) {
@@ -154,6 +183,51 @@ final class EngineResolver {
     );
   }
 }
+
+/// Providers published to the Terraform registry only: OpenTofu cannot
+/// install them, so a Stack that uses one runs on Terraform.
+const kTerraformOnlyProviders = {'appwrite/appwrite'};
+
+/// The [kTerraformOnlyProviders] the `*.tf.json` files in [dir] require, by
+/// `terraform.required_providers.<name>.source`.
+List<String> terraformOnlyProviders(String dir) {
+  final found = <String>{};
+  final directory = Directory(dir);
+  if (!directory.existsSync()) return const [];
+  for (final file in directory.listSync().whereType<File>()) {
+    if (!file.path.endsWith('.tf.json')) continue;
+    final Object? json;
+    try {
+      json = jsonDecode(file.readAsStringSync());
+    } on FormatException {
+      continue;
+    }
+    if (json is! Map) continue;
+    final terraform = json['terraform'];
+    for (final block in terraform is List ? terraform : [terraform]) {
+      if (block is! Map || block['required_providers'] is! Map) continue;
+      for (final provider in (block['required_providers'] as Map).values) {
+        if (provider case {'source': final String source}) {
+          final address = source.toLowerCase().replaceFirst(
+            'registry.terraform.io/',
+            '',
+          );
+          if (kTerraformOnlyProviders.contains(address)) found.add(address);
+        }
+      }
+    }
+  }
+  return found.toList()..sort();
+}
+
+/// Why OpenTofu cannot run a Stack that uses [providers], and the fix.
+String terraformOnlyMessage(List<String> providers, String problem) =>
+    'This Stack uses ${providers.join(', ')}, which is published to the '
+    'Terraform registry only, so OpenTofu cannot install it: Appwrite '
+    'currently needs Terraform on PATH, but $problem. Install Terraform '
+    '(https://developer.hashicorp.com/terraform/install) and run with '
+    '--engine terraform, or set terradart.engine: terraform in '
+    'pubspec.yaml.';
 
 /// The engine version `<engine> version -json` reports, or `null`.
 Future<String?> engineVersion(Engine engine, ProcessRunner runner) async {

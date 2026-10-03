@@ -166,7 +166,10 @@ final class Workflow {
     final records = _records();
     final key = target.stateKey;
     final recorded = records.read()[key];
-    final engine = await _resolver.resolve(recorded: recorded);
+    final engine = await _resolver.resolve(
+      recorded: recorded,
+      terraformOnly: terraformOnlyProviders(dir),
+    );
     _version = await engineVersion(engine, runner);
     console.out(
       'Using ${engine.kind.label} ${_version ?? '(unknown version)'} '

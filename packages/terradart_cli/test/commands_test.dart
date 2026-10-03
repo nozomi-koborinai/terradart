@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:path/path.dart' as p;
+import 'package:terradart_cli/src/engine.dart';
 import 'package:test/test.dart';
 
 import 'support.dart';
@@ -806,6 +807,95 @@ void main() {
         );
       },
     );
+  });
+
+  group('an Appwrite Stack', () {
+    FakeRunner appwrite() => FakeRunner(
+      synth: (_) => plainEntry({
+        'tf-out': {
+          'terraform': {
+            'required_providers': {
+              'appwrite': {'source': 'appwrite/appwrite', 'version': '1.0.0'},
+            },
+          },
+        },
+      }),
+    );
+
+    test('runs Terraform on PATH, not the tofu before it', () async {
+      final project = TestProject.create(engines: ['tofu', 'terraform']);
+      final runner = appwrite();
+      final r = await project.run(['plan'], runner);
+      expect(r.code, 0, reason: r.err);
+      expect(r.out, contains('the Stack uses appwrite/appwrite'));
+      expect(runner.calls.last.executable, project.engine('terraform'));
+    });
+
+    test('fails before init when only tofu is on PATH', () async {
+      final project = TestProject.create(engines: ['tofu']);
+      final runner = appwrite();
+      final r = await project.run(['apply'], runner);
+      expect(r.code, 1);
+      expect(r.err, contains('Appwrite currently needs Terraform on PATH'));
+      expect(r.err, contains('--engine terraform'));
+      expect(runner.engineCalls, isEmpty);
+    });
+
+    test('fails before init when nothing is on PATH', () async {
+      final project = TestProject.create(engines: []);
+      final runner = appwrite();
+      final r = await project.run(['plan'], runner);
+      expect(r.code, 1);
+      expect(r.err, contains('no terraform is on PATH'));
+      expect(runner.engineCalls, isEmpty);
+    });
+
+    for (final (how, args, pubspec) in [
+      ('--engine tofu', ['--engine', 'tofu'], ''),
+      ('engine: tofu', <String>[], '  engine: tofu\n'),
+    ]) {
+      test('fails before init with $how', () async {
+        final project = TestProject.create(
+          engines: ['tofu', 'terraform'],
+          terradart: pubspec,
+        );
+        final runner = appwrite();
+        final r = await project.run(['plan', ...args], runner);
+        expect(r.code, 1);
+        expect(r.err, contains('the engine is set to tofu'));
+        expect(r.err, contains('terradart.engine: terraform'));
+        expect(runner.engineCalls, isEmpty);
+      });
+    }
+
+    test('fails before init with a tofu engine_path', () async {
+      final project = TestProject.create(engines: ['terraform']);
+      Directory(project.path('tools')).createSync();
+      final path = fakeExecutable(project.path('tools'), 'tofu');
+      final runner = appwrite();
+      final r = await project.run(['plan', '--engine-path', path], runner);
+      expect(r.code, 1);
+      expect(r.err, contains('is OpenTofu'));
+      expect(runner.engineCalls, isEmpty);
+    });
+
+    test('names the registry address too', () {
+      final dir = Directory.systemTemp.createTempSync('terradart_tf_');
+      addTearDown(() => dir.deleteSync(recursive: true));
+      File(p.join(dir.path, 'main.tf.json')).writeAsStringSync(
+        jsonEncode({
+          'terraform': [
+            {
+              'required_providers': {
+                'aw': {'source': 'registry.terraform.io/Appwrite/appwrite'},
+                'google': {'source': 'hashicorp/google'},
+              },
+            },
+          ],
+        }),
+      );
+      expect(terraformOnlyProviders(dir.path), ['appwrite/appwrite']);
+    });
   });
 
   test('a usage error exits 64', () async {
