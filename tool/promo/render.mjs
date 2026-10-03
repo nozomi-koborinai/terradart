@@ -10,18 +10,21 @@
 // --out DIR      also copy the delivery, the poster and the key frames to DIR
 //
 // Needs ffmpeg and tesseract: every terminal and app frame is read back and
-// the render fails on output the clip must not show (storyboard `ocr`).
+// the render fails on output the clip must not show (storyboard `ocr`). The
+// captions are narrated by the local text-to-speech command PROMO_TTS names.
 //
-// The deliveries are 1080p30 H.264 High@4.1 with a silent AAC track, faststart
-// and an mp42 brand: the shape iOS Photos saves and X and LinkedIn accept.
+// The deliveries are 1080p30 H.264 High@4.1 with the narration as AAC,
+// faststart and an mp42 brand: the shape iOS Photos saves and X and LinkedIn
+// accept.
 
-import { execFileSync, spawn } from "node:child_process";
+import { execFileSync, spawn, spawnSync } from "node:child_process";
+import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { codeToTokens } from "shiki";
 import { terradartDark } from "../../website/src/lib/syntax-themes.mjs";
-import { viewport } from "./src/camera.mjs";
+import { clipTime, segmentSeconds, viewport } from "./src/camera.mjs";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, "../..");
@@ -295,21 +298,65 @@ if (flutter) {
     path.join(pub, "stills/next-steps.png"),
   ]);
 }
-fs.writeFileSync(path.join(pub, "files/data.json"), JSON.stringify(data));
 
 // Absolute frames: each scene overlaps the one before it by the crossfade.
 const fps = board.fps;
 const fade = Math.round(board.crossfade * fps);
+const sceneSeconds = (scene) => (scene.segments ? scene.segments.reduce((sum, s) => sum + segmentSeconds(s), 0) : scene.duration);
 const starts = {};
 let start = 0;
 for (const scene of board.scenes) {
   starts[scene.id] = start;
-  const seconds = scene.segments
-    ? scene.segments.reduce((sum, s) => sum + (s.hold !== undefined ? s.seconds : s.to - s.from), 0)
-    : scene.duration;
-  start += Math.round(seconds * fps) - fade;
+  start += Math.round(sceneSeconds(scene) * fps) - fade;
 }
 const frameOf = ({ scene, at }) => starts[scene] + Math.round(at * fps);
+
+// The narration reads every caption aloud. PROMO_TTS names a local
+// text-to-speech command, run as `$PROMO_TTS OUT.wav TEXT`; its lines are
+// cached under public/voice by command and text. Each line starts `lead`
+// seconds into its caption and has to end `tail` seconds before the caption
+// does, so the storyboard's timing, not the voice, sets the pace.
+const tts = process.env.PROMO_TTS;
+const voiceDir = path.join(pub, "voice");
+fs.mkdirSync(voiceDir, { recursive: true });
+const secondsOf = (wav) => Number(execFileSync("ffprobe", ["-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", wav], { encoding: "utf8" }));
+data.voice = [];
+const lines = [];
+const tooShort = [];
+for (const scene of board.scenes) {
+  for (const caption of scene.captions ?? []) {
+    // The frames the composition shows the caption on: the clip time of a
+    // terminal scene, scene time otherwise.
+    const total = Math.round(sceneSeconds(scene) * fps);
+    const shownAt = [];
+    for (let f = 0; f < total; f++) {
+      const time = scene.segments ? clipTime(scene.segments, f / fps) : f / fps;
+      if ((scene.captions ?? []).find((c) => time >= c.from && time < c.to) === caption) shownAt.push(f);
+    }
+    if (!shownAt.length) die(`${scene.id}: caption ${JSON.stringify(caption.text)} is never on screen`);
+    const text = caption.say ?? caption.text.replaceAll("`", "");
+    const name = `${crypto.createHash("sha1").update(`${tts}\n${text}`).digest("hex").slice(0, 16)}.wav`;
+    const wav = path.join(voiceDir, name);
+    if (!fs.existsSync(wav)) {
+      if (!tts) die("PROMO_TTS is not set: name a local text-to-speech command run as `$PROMO_TTS OUT.wav TEXT`");
+      execFileSync("sh", ["-c", `${tts} "$0" "$1"`, `${wav}.tmp.wav`, text], { stdio: ["ignore", "ignore", "inherit"] });
+      fs.renameSync(`${wav}.tmp.wav`, wav);
+    }
+    const from = (starts[scene.id] + shownAt[0]) / fps + board.voice.lead;
+    const end = from + secondsOf(wav);
+    const captionEnd = (starts[scene.id] + shownAt.at(-1) + 1) / fps;
+    if (end + board.voice.tail > captionEnd + 1e-6) {
+      tooShort.push(`${scene.id} ${JSON.stringify(caption.text)}: on screen ${(captionEnd - from + board.voice.lead).toFixed(2)}s, needs ${(end - from + board.voice.lead + board.voice.tail).toFixed(2)}s`);
+    }
+    lines.push({ text, from, end });
+    data.voice.push({ src: `voice/${name}`, from: Math.round(from * fps) });
+  }
+}
+if (tooShort.length) die(`captions end before their narration does:\n  ${tooShort.join("\n  ")}`);
+for (let i = 1; i < lines.length; i++) {
+  if (lines[i].from < lines[i - 1].end + 0.2) die(`narration ${JSON.stringify(lines[i].text)} starts before ${JSON.stringify(lines[i - 1].text)} has ended`);
+}
+fs.writeFileSync(path.join(pub, "files/data.json"), JSON.stringify(data));
 
 fs.mkdirSync(outDir, { recursive: true });
 const remotion = path.join(here, "node_modules/.bin/remotion");
@@ -367,16 +414,24 @@ if (!args.includes("--stills-only")) {
     run(remotion, ["render", "src/index.ts", "promo", master, "--codec=h264", "--crf=12"]);
     const shown = board.scenes
       .filter((s) => s.kind === "terminal" || s.kind === "flutter")
-      .map((s) => `between(n,${starts[s.id]},${starts[s.id] + Math.round((s.segments ? s.segments.reduce((sum, g) => sum + (g.hold !== undefined ? g.seconds : g.to - g.from), 0) : s.duration) * fps)})`);
+      .map((s) => `between(n,${starts[s.id]},${starts[s.id] + Math.round(sceneSeconds(s) * fps)})`);
     const frames = readable(master, path.join(outDir, "ocr", "master"), `select='(${shown.join("+")})*not(mod(n,10))',setpts=N/TB,`);
     blocked = await denied(frames);
     if (blocked.length) die(`the clip shows output it must not (ocr frame: line):\n  ${blocked.join("\n  ")}`);
+    // Narration levelled to a quiet speech loudness in two passes: measure,
+    // then one linear gain, so no compressor pumps between the lines.
+    const loud = "I=-20:TP=-2:LRA=11";
+    const pass = spawnSync("ffmpeg", ["-hide_banner", "-i", master, "-vn", "-af", `loudnorm=${loud}:print_format=json`, "-f", "null", "-"], { encoding: "utf8" });
+    const report = /\{[^{}]*"input_i"[^{}]*\}/.exec(pass.stderr);
+    if (pass.status !== 0 || !report) die(`the master has no narration to measure:\n${pass.stderr}`);
+    const measured = JSON.parse(report[0]);
+    const level = `loudnorm=${loud}:linear=true:measured_I=${measured.input_i}:measured_TP=${measured.input_tp}:measured_LRA=${measured.input_lra}:measured_thresh=${measured.input_thresh}:offset=${measured.target_offset}`;
     const delivery = path.join(outDir, `terradart-v${board.release}.mp4`);
     run("ffmpeg", [
       "-v", "error", "-y", "-i", master,
-      "-f", "lavfi", "-i", "anullsrc=channel_layout=stereo:sample_rate=48000",
-      "-map", "0:v", "-map", "1:a",
+      "-map", "0:v", "-map", "0:a",
       "-vf", "fps=30,format=yuv420p",
+      "-af", `${level},aresample=48000`,
       "-c:v", "libx264", "-profile:v", "high", "-level", "4.1", "-preset", "slow", "-crf", "18",
       "-c:a", "aac", "-b:a", "128k", "-ac", "2", "-ar", "48000", "-shortest",
       "-movflags", "+faststart", "-brand", "mp42", "-map_metadata", "-1",

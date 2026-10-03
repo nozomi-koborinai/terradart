@@ -1,32 +1,33 @@
 # Beat 1: a Flutter app, then `terradart init`, answering the questions.
+# The pauses leave each prompt on screen long enough to read along.
 Show
-Sleep 800ms
+Sleep 1.2s
 Type "terradart init"
-Sleep 500ms
-Enter
-Wait /numbers:/
-Sleep 1.8s
-Type "1"
-Sleep 400ms
-Enter
-Wait /Environments/
 Sleep 700ms
 Enter
+Wait /numbers:/
+Sleep 4.5s
+Type "1"
+Sleep 700ms
+Enter
+Wait /Environments/
+Sleep 1.8s
+Enter
 Wait /for dev/
-Sleep 300ms
+Sleep 900ms
 Type "myapp-dev"
-Sleep 300ms
+Sleep 600ms
 Enter
 Wait /for prd/
-Sleep 300ms
+Sleep 900ms
 Type "myapp-prd"
-Sleep 300ms
+Sleep 600ms
 Enter
 Wait /\[y\/N\]/
-Sleep 900ms
+Sleep 2s
 Enter
 Wait /\[Y\/n\]/
-Sleep 2.4s
+Sleep 3.5s
 Enter
 Wait@90s /^\$\s*$/
-Sleep 3s
+Sleep 4s

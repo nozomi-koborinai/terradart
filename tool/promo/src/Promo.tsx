@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import {
   AbsoluteFill,
+  Audio,
   continueRender,
   delayRender,
   Easing,
@@ -287,6 +288,11 @@ export const Promo = ({ data }: PromoProps) => {
             </Sequence>
           );
         })}
+      {data?.voice.map((line) => (
+        <Sequence key={line.src} from={line.from} layout="none">
+          <Audio src={staticFile(line.src)} volume={board.voice.volume} />
+        </Sequence>
+      ))}
     </AbsoluteFill>
   );
 };

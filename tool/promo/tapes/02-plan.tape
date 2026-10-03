@@ -1,23 +1,24 @@
 # Beat 3: no engine on PATH, then validate and plan through the managed OpenTofu.
+# The pauses leave each result on screen long enough to read along.
 Show
-Sleep 600ms
+Sleep 1s
 Type "terraform version"
-Sleep 300ms
+Sleep 500ms
 Enter
-Sleep 1.6s
+Sleep 3s
 Type "terradart validate"
-Sleep 400ms
+Sleep 600ms
 Enter
 Wait@120s /^\$\s*$/
-Sleep 2s
+Sleep 3s
 Hide
 Type "clear"
 Enter
 Sleep 300ms
 Show
-Sleep 400ms
+Sleep 800ms
 Type "terradart plan"
-Sleep 400ms
+Sleep 600ms
 Enter
 Wait@120s /^\$\s*$/
-Sleep 4s
+Sleep 6s

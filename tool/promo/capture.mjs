@@ -145,7 +145,7 @@ Set Padding ${term.padding}
 Set Margin 0
 Set BorderRadius 0
 Set Framerate 30
-Set TypingSpeed 55ms
+Set TypingSpeed 100ms
 Set CursorBlink false
 Set Theme ${JSON.stringify(palette)}
 `;

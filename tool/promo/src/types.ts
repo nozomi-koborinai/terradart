@@ -21,6 +21,8 @@ export type PromoData = {
   background: string;
   /** The Flutter beat's band behind `next.highlight`, as fractions of its crop. */
   highlight: { top: number; height: number };
+  /** One narrated line per caption: a WAV under public/ and the frame it starts on. */
+  voice: { src: string; from: number }[];
 };
 
 /** Over clip seconds `from`-`to`, only rows `y0`-`y1` of the clip (fractions) show. */
@@ -28,7 +30,8 @@ export type Mask = { from: number; to: number; y0: number; y1: number };
 
 export type PromoProps = { data: PromoData | null };
 
-export type Caption = { from: number; to: number; text: string };
+/** `say` is how the narration reads `text` aloud, when that differs from the text without backticks. */
+export type Caption = { from: number; to: number; text: string; say?: string };
 
 /** A camera position: scale `s`, centred on the point (`x`, `y`) of the window, as fractions. */
 export type Keyframe = { at: number; s: number; x: number; y: number };
@@ -73,6 +76,11 @@ export type Storyboard = {
   crossfade: number;
   /** The VHS terminal capture.mjs records, in pixels. */
   terminal: { width: number; height: number; fontSize: number; lineHeight: number; padding: number };
+  /**
+   * The narration: each line starts `lead` seconds into its caption, and the
+   * caption stays up at least `tail` seconds after the line ends.
+   */
+  voice: { lead: number; tail: number; volume: number };
   scenes: SceneSpec[];
 };
 
