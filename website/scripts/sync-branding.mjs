@@ -1,6 +1,7 @@
-import { cpSync, existsSync, mkdirSync } from "node:fs";
+import { cpSync, existsSync, mkdirSync, readdirSync, rmSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { ogImageFile } from "../src/lib/og-image.mjs";
 
 const root = dirname(fileURLToPath(import.meta.url));
 const websiteDir = join(root, "..");
@@ -9,9 +10,16 @@ const publicDir = join(websiteDir, "public");
 
 mkdirSync(publicDir, { recursive: true });
 
+for (const name of readdirSync(publicDir)) {
+  if (/^og-[0-9a-f]{8}\.png$/.test(name) && name !== ogImageFile) {
+    rmSync(join(publicDir, name));
+  }
+}
+
 const copies = [
   ["svg/app-icon.svg", "favicon.svg"],
   ["png/og-card.png", "og.png"],
+  ["png/og-card.png", ogImageFile],
   ["favicon/favicon-180.png", "apple-touch-icon.png"],
   ["favicon/favicon-512.png", "icon-512.png"],
   ["favicon/favicon.ico", "favicon.ico"],

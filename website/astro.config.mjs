@@ -6,6 +6,7 @@ import starlight from "@astrojs/starlight";
 import mdx from "@astrojs/mdx";
 import rehypeMermaid from "rehype-mermaid";
 import starlightLlmsTxt from "starlight-llms-txt";
+import { SITE, ogImageUrl } from "./src/lib/og-image.mjs";
 
 const websiteDir = dirname(fileURLToPath(import.meta.url));
 const mermaidInit = readFileSync(
@@ -15,7 +16,7 @@ const mermaidInit = readFileSync(
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://terradart.dev",
+  site: SITE,
   integrations: [
     starlight({
       title: "TerraDart",
@@ -108,12 +109,12 @@ export default defineConfig({
         { tag: "link", attrs: { rel: "icon", href: "/favicon.ico", sizes: "48x48" } },
         { tag: "link", attrs: { rel: "apple-touch-icon", href: "/apple-touch-icon.png" } },
         { tag: "meta", attrs: { name: "theme-color", content: "#0B0D12" } },
-        { tag: "meta", attrs: { property: "og:image", content: "https://terradart.dev/og.png" } },
+        { tag: "meta", attrs: { property: "og:image", content: ogImageUrl } },
         { tag: "meta", attrs: { property: "og:image:width", content: "1200" } },
         { tag: "meta", attrs: { property: "og:image:height", content: "630" } },
         { tag: "meta", attrs: { name: "twitter:card", content: "summary_large_image" } },
         { tag: "meta", attrs: { name: "twitter:site", content: "@terradart_dev" } },
-        { tag: "meta", attrs: { name: "twitter:image", content: "https://terradart.dev/og.png" } },
+        { tag: "meta", attrs: { name: "twitter:image", content: ogImageUrl } },
         {
           tag: "script",
           attrs: { type: "module" },
@@ -123,6 +124,10 @@ export default defineConfig({
     }),
     mdx(),
   ],
+  vite: {
+    // Bundled pages cannot locate branding/ from their own module URL.
+    define: { "import.meta.env.OG_IMAGE_URL": JSON.stringify(ogImageUrl) },
+  },
   markdown: {
     rehypePlugins: [
       [rehypeMermaid, { strategy: "pre-mermaid" }],

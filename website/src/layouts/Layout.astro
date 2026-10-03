@@ -15,7 +15,6 @@ const {
 } = Astro.props;
 
 const url = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : Astro.url.href;
-const ogImage = Astro.site ? new URL("/og.png", Astro.site).href : "/og.png";
 ---
 
 <!doctype html>
@@ -47,14 +46,14 @@ const ogImage = Astro.site ? new URL("/og.png", Astro.site).href : "/og.png";
     <meta property="og:url" content={url} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={ogImage} />
+    <meta property="og:image" content={import.meta.env.OG_IMAGE_URL} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@terradart_dev" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image" content={import.meta.env.OG_IMAGE_URL} />
     <meta name="generator" content={Astro.generator} />
   </head>
   <body>
