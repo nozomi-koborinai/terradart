@@ -177,6 +177,7 @@ dev_dependencies:
   terradart_migrate:
     path: packages/terradart_migrate
   # tool/example_synth_gates.dart and the CI validate matrix run the OpenTofu
-  # `terradart engine --engine tofu` resolves — the one users get.
+  # `terradart engine --engine tofu` resolves — the one users get;
+  # tool/sync_bundled_skill.dart writes the CLI's skill marker.
   terradart_cli:
     path: packages/terradart_cli
