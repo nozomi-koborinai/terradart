@@ -97,13 +97,19 @@ Set<String> pinnedTerraformProviders(String dir) {
   return pinned;
 }
 
-/// The local state file of [workspace] (`null`: the default one) in [dir],
-/// where the local backend keeps it: the `path` a `*.tf.json` backend block
-/// gives, else `terraform.tfstate`.
+/// The local state file of [workspace] in [dir], where the local backend
+/// keeps it.
+///
+/// [workspace] `null` is the one [recordedWorkspace] names, else the default.
+/// A named workspace is `terraform.tfstate.d/<name>/terraform.tfstate`; the
+/// default is the `path` a `local` backend gives, else `terraform.tfstate`.
+/// A missing [dir] has not been written (`--no-synth`): the default path is
+/// returned and does not exist.
 File localStateFile(String dir, String? workspace) {
-  if (workspace != null && workspace != 'default') {
+  final selected = workspace ?? recordedWorkspace(dir);
+  if (selected != null && selected != 'default') {
     return File(
-      p.join(dir, 'terraform.tfstate.d', workspace, 'terraform.tfstate'),
+      p.join(dir, 'terraform.tfstate.d', selected, 'terraform.tfstate'),
     );
   }
   // `--no-synth` or a deleted output dir: nothing has been written, so there
@@ -124,6 +130,37 @@ File localStateFile(String dir, String? workspace) {
     }
   }
   return File(p.join(dir, 'terraform.tfstate'));
+}
+
+/// The workspace the last `init` selected in [dir] (`.terraform/environment`),
+/// or `null` when none is recorded.
+String? recordedWorkspace(String dir) {
+  final file = File(p.join(dir, '.terraform', 'environment'));
+  if (!file.existsSync()) return null;
+  final name = file.readAsStringSync().trim();
+  return name.isEmpty ? null : name;
+}
+
+/// Whether [dir]'s configuration stores state in a local file: no `backend`
+/// block, or a `local` one. A remote backend's leftover `terraform.tfstate`
+/// is not the state the next command will use.
+bool configuredLocalBackend(String dir) {
+  final d = Directory(dir);
+  if (!d.existsSync()) return true;
+  for (final f in d.listSync().whereType<File>()) {
+    if (!f.path.endsWith('.tf.json')) continue;
+    try {
+      final json = jsonDecode(f.readAsStringSync());
+      if (json case {
+        'terraform': {'backend': final Map<Object?, Object?> backend},
+      }) {
+        if (backend.keys.any((key) => key != 'local')) return false;
+      }
+    } on FormatException {
+      continue;
+    }
+  }
+  return true;
 }
 
 /// Whether `init` configured [dir] with a backend other than `local`, as

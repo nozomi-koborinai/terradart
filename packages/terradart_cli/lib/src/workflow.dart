@@ -165,10 +165,12 @@ final class Workflow {
 
   /// Before `init`: stops when the target's local state file was written by
   /// the other engine than the one about to run, and nothing records which
-  /// engine last applied it (see [_guardState]).
+  /// engine last applied it (see [_guardState]). A remote backend is not
+  /// read here — a leftover local file is not its state; [checkBackendState]
+  /// pulls that after `init`.
   Future<void> checkLocalState() async {
     final engine = await this.engine();
-    if (_stateChecked) return;
+    if (_stateChecked || !configuredLocalBackend(dir)) return;
     final writer = stateFileWriter(
       localStateFile(dir, target.workspace),
       pinned: pinnedTerraformProviders(dir),

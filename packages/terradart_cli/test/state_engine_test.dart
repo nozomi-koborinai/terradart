@@ -87,6 +87,51 @@ void main() {
     );
   });
 
+  test('localStateFile reads the workspace Terraform already selected', () {
+    final dir = Directory.systemTemp.createTempSync('state_engine_ws_');
+    addTearDown(() => dir.deleteSync(recursive: true));
+    File(p.join(dir.path, '.terraform', 'environment'))
+      ..createSync(recursive: true)
+      ..writeAsStringSync('stg\n');
+    expect(
+      localStateFile(dir.path, null).path,
+      p.join(dir.path, 'terraform.tfstate.d', 'stg', 'terraform.tfstate'),
+    );
+    expect(
+      localStateFile(dir.path, 'prd').path,
+      p.join(dir.path, 'terraform.tfstate.d', 'prd', 'terraform.tfstate'),
+    );
+    expect(recordedWorkspace(dir.path), 'stg');
+  });
+
+  test('configuredLocalBackend is false only for a remote backend', () {
+    final dir = Directory.systemTemp.createTempSync('state_engine_backend_');
+    addTearDown(() => dir.deleteSync(recursive: true));
+    final missing = p.join(dir.path, 'absent');
+    expect(configuredLocalBackend(missing), isTrue);
+    expect(configuredLocalBackend(dir.path), isTrue);
+    File(p.join(dir.path, 'main.tf.json')).writeAsStringSync(
+      jsonEncode({
+        'terraform': {
+          'backend': {
+            'local': {'path': 'terraform.tfstate'},
+          },
+        },
+      }),
+    );
+    expect(configuredLocalBackend(dir.path), isTrue);
+    File(p.join(dir.path, 'main.tf.json')).writeAsStringSync(
+      jsonEncode({
+        'terraform': {
+          'backend': {
+            'gcs': {'bucket': 'states'},
+          },
+        },
+      }),
+    );
+    expect(configuredLocalBackend(dir.path), isFalse);
+  });
+
   test('localStateFile treats a missing directory as no local state', () {
     final missing = p.join(
       Directory.systemTemp.path,
@@ -204,6 +249,79 @@ void main() {
         'init -input=false',
         'state pull',
       ]);
+    });
+
+    test(
+      'a leftover local state does not skip a remote backend pull',
+      () async {
+        final project = TestProject.create();
+        File(project.path('tf-out/.terraform/terraform.tfstate'))
+          ..createSync(recursive: true)
+          ..writeAsStringSync(
+            jsonEncode({
+              'backend': {'type': 'gcs'},
+            }),
+          );
+        final runner = FakeRunner(
+          synth: (_) {
+            // Same engine as the one about to run: trusting this file would
+            // mark the check done and never pull the remote state.
+            File(project.path('tf-out/terraform.tfstate'))
+              ..createSync(recursive: true)
+              ..writeAsStringSync(
+                jsonEncode(_state('1.9.0', [_google('registry.opentofu.org')])),
+              );
+            final entry = runStackEntry();
+            return (
+              files: {
+                'tf-out': {
+                  'terraform': {
+                    'required_version': '>= 1.11.0',
+                    'backend': {
+                      'gcs': {'bucket': 'states'},
+                    },
+                  },
+                },
+              },
+              manifest: entry.manifest,
+              exitCode: 0,
+            );
+          },
+          pulledState: jsonEncode(
+            _state('1.9.8', [_google('registry.terraform.io')]),
+          ),
+        );
+        final r = await project.run(['plan'], runner);
+        expect(r.code, 64);
+        expect(runner.engineCalls, contains('state pull'));
+        expect(r.err, contains('written by Terraform 1.9.8'));
+      },
+    );
+
+    test('checks the workspace Terraform already selected', () async {
+      final project = TestProject.create();
+      final runner = FakeRunner(
+        synth: (_) {
+          File(project.path('tf-out/.terraform/environment'))
+            ..createSync(recursive: true)
+            ..writeAsStringSync('stg\n');
+          File(project.path('tf-out/terraform.tfstate.d/stg/terraform.tfstate'))
+            ..createSync(recursive: true)
+            ..writeAsStringSync(
+              jsonEncode(_state('1.9.8', [_google('registry.terraform.io')])),
+            );
+          File(project.path('tf-out/terraform.tfstate'))
+            ..createSync(recursive: true)
+            ..writeAsStringSync(
+              jsonEncode(_state('1.9.0', [_google('registry.opentofu.org')])),
+            );
+          return runStackEntry();
+        },
+      );
+      final r = await project.run(['plan'], runner);
+      expect(r.code, 64);
+      expect(r.err, contains('written by Terraform 1.9.8'));
+      expect(runner.engineCalls, isNot(contains('state pull')));
     });
 
     test('a local backend is not pulled', () async {
