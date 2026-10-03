@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.34.0 - 2026-10-03
+
+- No API changes. Lockstep release with the `terradart` command's `init`, `validate` and `state migrate`.
+
 ## 0.33.0 - 2026-10-02
 
 - **Breaking:** the executable `dart pub global activate terradart_codegen` installs is `terradart-codegen` (`terradart-codegen wrap`), so the `terradart` command belongs to `terradart_cli`. `dart run terradart_codegen:terradart` is unchanged. See [MIGRATING.md](../../MIGRATING.md#032x--0330).

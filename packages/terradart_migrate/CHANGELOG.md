@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.34.0 - 2026-10-03
 
 - `migrateTree` writes a `terradart:` section with `engine: terraform` into the generated `pubspec.yaml` — `engine: tofu` when a module directory holds a `.tofu` file or a `.terraform.lock.hcl` naming `registry.opentofu.org` — so the `terradart` command keeps the existing state on the engine that wrote it (`sourceEngine`, `renderPubspec(engine:)`).
 

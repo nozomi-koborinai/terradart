@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.34.0 - 2026-10-03
+
+- No API changes. Lockstep release; no provider pin moves. The `terradart` command now runs a Stack that uses this package on Terraform, because `appwrite/appwrite` is published to the Terraform registry only, and stops before `init` when OpenTofu is asked for. `terradart init --provider appwrite` scaffolds such a project.
+
 ## 0.33.0 - 2026-10-02
 
 - No API changes. Lockstep release with the new `terradart_cli` package (the `terradart` command); no provider pin moves.

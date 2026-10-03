@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.34.0 - 2026-10-03
+
+- No API changes. Lockstep release with the `terradart` command's `init`, `validate` and `state migrate`.
+
 ## 0.33.0 - 2026-10-02
 
 - No API changes. Lockstep release with the new `terradart_cli` package (the `terradart` command), whose `terradart migrate` reads existing Terraform through this package.

@@ -1,9 +1,18 @@
 ---
 title: Upgrading
-description: Upgrade notes for every TerraDart package — the 0.32.x → 0.33.0 and 0.31.x → 0.32.0 changes, and where to find older ones.
+description: Upgrade notes for every TerraDart package — the 0.33.x → 0.34.0, 0.32.x → 0.33.0 and 0.31.x → 0.32.0 changes, and where to find older ones.
 ---
 
 Read this page before every **minor** bump. Breaking changes land only on minor releases, and every one has a section in [MIGRATING.md on GitHub](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md), which stays the full, canonical history. This page summarizes the latest two.
+
+## 0.33.x → 0.34.0
+
+0.34.0 changes no Stack code: the Dart API, synth output and every provider pin stay as they were.
+
+1. **Raise every TerraDart constraint to `^0.34.0` by hand**, then run `dart pub upgrade`, and `dart pub global activate terradart_cli` for the new command.
+2. **Optional: name a default environment.** `runEnvironments(args, Env.values, build, defaultEnv: Env.dev)` lets `terradart plan` run without `--env`; `TERRADART_ENV` overrides it. See [Environments](/docs/environments/).
+3. **Appwrite Stacks run on Terraform.** The `terradart` command now picks the `terraform` on `PATH` for a Stack that uses `terradart_appwrite`, and stops before `init` when there is none or OpenTofu is asked for.
+4. **A state another engine wrote now needs an answer.** When `.terradart/engines.json` has no record (a fresh clone, or right after a migration), `plan`, `apply` and `destroy` read the state first. If the engine the command picked by itself is not the one that wrote the state, they ask on a terminal. Without a terminal they stop with exit code 64; pass `--engine`, or set `terradart: engine:` in `pubspec.yaml`, in CI.
 
 ## 0.32.x → 0.33.0
 
