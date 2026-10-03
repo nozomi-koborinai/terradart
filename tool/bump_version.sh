@@ -20,7 +20,7 @@
 #   - packages/terradart_hcl/pubspec.yaml         (version: line)
 #   - packages/terradart_migrate/pubspec.yaml     (version: + terradart_{core,google,google_beta,appwrite,cloudflare,aws,hcl,time} carets)
 #   - packages/terradart_cli/pubspec.yaml         (version: line)
-#   - packages/terradart_migrate/lib/src/version.dart (packageVersion const — pinned into migrated pubspecs and printed by `terradart-migrate --version`)
+#   - packages/terradart_migrate/lib/src/version.dart (packageVersion const — the caret `terradart init` scaffolds and `terradart migrate` pins into generated pubspecs, and the `--version` it prints)
 #   - examples/*/pubspec.yaml                     (terradart_core + terradart_google + terradart_google_beta + terradart_appwrite + terradart_cloudflare + terradart_aws + terradart_time carets)
 #   - cookbook/*/pubspec.yaml,                    (terradart_core + terradart_google + terradart_time carets on
 #     cookbook/*/*/pubspec.yaml                    workspace-member cookbook recipes)
@@ -272,7 +272,8 @@ for f in README.md \
          website/src/content/docs/docs/index.md \
          website/src/content/docs/docs/status.md \
          website/src/content/docs/docs/getting-started.mdx \
-         website/src/content/docs/docs/why-terradart.md; do
+         website/src/content/docs/docs/why-terradart.md \
+         cookbook/*/README.md; do
   [ -f "$f" ] || continue
   sed_inplace "s#${OLD_MINOR_RE}\\.x#${NEW_MINOR}.x#g" "$f"
   echo "    - $f"
