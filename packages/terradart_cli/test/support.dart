@@ -105,6 +105,7 @@ final class FakeRunner implements ProcessRunner {
     this.outputs = const {},
     this.engineVersion = '1.13.1',
     this.failOn,
+    this.pulledState,
   });
 
   /// The entry point, given its arguments.
@@ -117,6 +118,9 @@ final class FakeRunner implements ProcessRunner {
 
   /// The engine subcommand that exits 1.
   final String? failOn;
+
+  /// What `state pull` prints.
+  final String? pulledState;
 
   final calls = <Call>[];
 
@@ -178,6 +182,9 @@ final class FakeRunner implements ProcessRunner {
         stdout: jsonEncode({'terraform_version': engineVersion}),
         stderr: '',
       );
+    }
+    if (arguments case ['state', 'pull']) {
+      return (exitCode: 0, stdout: pulledState ?? '', stderr: '');
     }
     if (arguments case ['output', '-json', final name]) {
       if (outputs[name] case final value?) {

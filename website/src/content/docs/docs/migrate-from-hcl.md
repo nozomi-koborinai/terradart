@@ -21,7 +21,20 @@ dart pub global activate terradart_cli
 terradart migrate --version
 ```
 
-The generated package needs the Dart SDK (`dart pub get`, `terradart plan`) and OpenTofu or Terraform for the plan; the migrator itself needs neither. The `terradart-migrate` executable still runs the same flags and prints that it is deprecated.
+The generated package needs the Dart SDK (`dart pub get`, `terradart plan`) and, for a state Terraform wrote, Terraform on your `PATH` for the plan ([The engine](#the-engine)); the migrator itself needs neither. The `terradart-migrate` executable still runs the same flags and prints that it is deprecated.
+
+## The engine
+
+Your existing state was written by Terraform, so the generated `pubspec.yaml` keeps `terradart plan` and `apply` on Terraform:
+
+```yaml
+terradart:
+  engine: terraform
+```
+
+Without it, `terradart` would run the `tofu` on your `PATH`, or download OpenTofu — and OpenTofu rewrites the state for itself at its first apply, after which Terraform may not read it back. When the tree was run with OpenTofu (a `.tofu` file, or a `.terraform.lock.hcl` naming `registry.opentofu.org`), the section says `engine: tofu` instead.
+
+To move the state to OpenTofu, change it to `engine: tofu` (or delete the section): the next `apply` rewrites the state for OpenTofu. Either way, `terradart plan`, `apply` and `destroy` look at the state before they run, and warn when the other engine wrote it. Without the section, where `terradart` picks the engine by itself, they also ask first on a terminal, and without one stop with the `--engine` flag that decides ([The terradart command](/docs/cli/#the-engine)).
 
 ## Size it first
 
@@ -64,7 +77,7 @@ infra/
 
 | Path | Content |
 | :--- | :--- |
-| `pubspec.yaml` | lockstep pins on `terradart_core` and the provider packages the Stacks use |
+| `pubspec.yaml` | lockstep pins on `terradart_core` and the provider packages the Stacks use, and the engine `terradart` runs the existing state with ([The engine](#the-engine)) |
 | `bin/infra.dart` | synthesizes every Stack. One Stack calls `runStack`; `--merge-envs` calls `runEnvironments`, so `terradart plan --env <name>` runs one environment |
 | `lib/dev_stack.dart`, `lib/prod_stack.dart`, `lib/network_stack.dart` | one Stack per module directory (`dev` → `DevStack`) |
 | `lib/network_module.dart` | one typed `ModuleCall` wrapper per local module directory a `module` block calls (`modules/network` → `NetworkModule`), from its `variable` and `output` blocks |

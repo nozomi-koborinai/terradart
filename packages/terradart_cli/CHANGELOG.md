@@ -4,6 +4,8 @@
 
 - `terradart validate [--env <name>]` synthesizes, then runs `init -backend=false` and `validate` in the directory the entry point wrote, with the same engine as `plan` (managed OpenTofu when neither `tofu` nor `terraform` is on `PATH`). It needs no credentials, backend or state, so a CI job can check every environment; arguments after `--` go to `validate`.
 - Without `--env`, `validate`, `plan`, `apply`, `destroy` and `outputs` take the `TERRADART_ENV` environment variable, else the `defaultEnv` of `runEnvironments`, else the only environment, and print which one and why (`env: dev (TERRADART_ENV)`, `env: dev (default)`). An entry point that calls `runStack` ignores `TERRADART_ENV`. `apply` and `destroy` ask before running against an environment `TERRADART_ENV` or `defaultEnv` chose, and stop without an answer; `--auto-approve` skips the question.
+- `plan`, `apply` and `destroy` no longer run one engine on a state the other wrote without asking. When `.terradart/engines.json` has no record for the state (right after a migration, or in a fresh clone), they read it — the local state file before `init`, a remote backend's `state pull` after it — and tell the engine that wrote it from its provider addresses (`registry.terraform.io` / `registry.opentofu.org`) or a `terraform_version` older than OpenTofu. An engine `terradart` picked by itself (`PATH` or the OpenTofu download) then needs a yes on a terminal, and without one stops with exit code 64 and the `--engine` flag that decides; an engine `--engine` or `pubspec.yaml` chose runs with a warning.
+- A package `terradart migrate` generates carries `terradart: engine: terraform` (`tofu` for a tree run with OpenTofu), so its state stays on the engine it came from.
 
 ## 0.33.0 - 2026-10-02
 

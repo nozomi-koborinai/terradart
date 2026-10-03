@@ -295,8 +295,10 @@ final class _PlanCommand extends _TerradartCommand {
   Future<int> run() async {
     final flow = workflow();
     if (synthFirst) await flow.synth();
+    await flow.checkLocalState();
     await flow.init();
     await flow.selectWorkspace(create: true);
+    await flow.checkBackendState();
     await flow.plan(args.rest);
     return 0;
   }
@@ -336,8 +338,10 @@ final class _ApplyCommand extends _TerradartCommand {
     if (outputs) flow.checkDefineOutput();
     final autoApprove = args.flag('auto-approve');
     flow.confirmEnvironment('apply', autoApprove: autoApprove);
+    await flow.checkLocalState();
     await flow.init();
     await flow.selectWorkspace(create: true);
+    await flow.checkBackendState();
     await flow.apply(args.rest, autoApprove: autoApprove);
     if (outputs) await flow.writeDefines(required: false);
     return 0;
@@ -366,8 +370,10 @@ final class _DestroyCommand extends _TerradartCommand {
     if (synthFirst) await flow.synth();
     final autoApprove = args.flag('auto-approve');
     flow.confirmEnvironment('destroy', autoApprove: autoApprove);
+    await flow.checkLocalState();
     await flow.init();
     await flow.selectWorkspace(create: false);
+    await flow.checkBackendState();
     await flow.destroy(args.rest, autoApprove: autoApprove);
     return 0;
   }

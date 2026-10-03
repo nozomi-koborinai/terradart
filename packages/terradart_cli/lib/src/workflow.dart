@@ -7,6 +7,7 @@ import 'cli_exception.dart';
 import 'engine.dart';
 import 'manifest.dart';
 import 'process_runner.dart';
+import 'state_engine.dart';
 import 'target.dart';
 
 /// Where the CLI prints: progress to [out], warnings to [err]; answers come
@@ -56,6 +57,7 @@ final class Workflow {
   Engine? _engine;
   String? _version;
   Target? _target;
+  bool _stateChecked = false;
 
   String get _root => request.config.root;
 
@@ -156,8 +158,77 @@ final class Workflow {
     if (recorded != null) {
       final warning = engineSwitchWarning(recorded, engine.kind, _version);
       if (warning != null) console.warn(warning);
+      _stateChecked = true;
     }
     return _engine = engine;
+  }
+
+  /// Before `init`: stops when the target's local state file was written by
+  /// the other engine than the one about to run, and nothing records which
+  /// engine last applied it (see [_guardState]).
+  Future<void> checkLocalState() async {
+    final engine = await this.engine();
+    if (_stateChecked) return;
+    final writer = stateFileWriter(
+      localStateFile(dir, target.workspace),
+      pinned: pinnedTerraformProviders(dir),
+    );
+    if (writer == null) return;
+    _stateChecked = true;
+    _guardState(writer, engine);
+  }
+
+  /// After `init` and the workspace: the same check against the state the
+  /// backend holds (`state pull`), when `init` configured a backend other
+  /// than `local` and [checkLocalState] found nothing.
+  Future<void> checkBackendState() async {
+    final engine = await this.engine();
+    if (_stateChecked || !initializedRemoteBackend(dir)) return;
+    _stateChecked = true;
+    final pulled = await runner.capture(engine.path, [
+      'state',
+      'pull',
+    ], workingDirectory: dir);
+    if (pulled.exitCode != 0) return;
+    final writer = stateTextWriter(
+      pulled.stdout,
+      pinned: pinnedTerraformProviders(dir),
+    );
+    if (writer != null) _guardState(writer, engine);
+  }
+
+  /// A state written by one engine is rewritten for the other at its next
+  /// apply, and the first may not read it back. An engine the command line
+  /// or `pubspec.yaml` chose runs with a warning; one terradart picked by
+  /// itself (`PATH`, the OpenTofu download) needs a yes on the terminal, and
+  /// without a terminal stops with the flag that decides.
+  void _guardState(StateWriter writer, Engine engine) {
+    if (writer.kind == engine.kind) return;
+    final now = engine.kind.label;
+    final was = writer.kind.label;
+    console.warn(
+      'The state in ${_show(dir)} was written by ${writer.evidence}, but '
+      'terradart is about to run $now${_version == null ? '' : ' $_version'} '
+      '(${engine.reason}). $now rewrites the state for itself at the next '
+      'apply, and $was may not read it back.',
+    );
+    final settings = request.config.engine;
+    if (settings.kind != null || settings.path != null) return;
+    final choose =
+        'Pass --engine ${writer.kind.name} to keep $was (or set '
+        'terradart.engine: ${writer.kind.name} in pubspec.yaml), or '
+        '--engine ${engine.kind.name} to move the state to $now.';
+    console.out('Run $now on it anyway? [y/N]');
+    final answer = console.readLine?.call()?.trim().toLowerCase();
+    if (answer == null) {
+      throw CliException(
+        'Stopped before running $now on a state $was wrote. $choose',
+        exitCode: 64,
+      );
+    }
+    if (answer != 'y' && answer != 'yes') {
+      throw CliException('Stopped. $choose');
+    }
   }
 
   /// `init`, with the target's backend configuration. A target that passes

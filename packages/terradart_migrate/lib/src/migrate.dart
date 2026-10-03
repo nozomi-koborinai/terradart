@@ -412,16 +412,38 @@ String _manyGroupBody(List<MergedInfra> merged) {
 }
 
 /// The generated package's `pubspec.yaml`: lockstep pins on `terradart_core`
-/// and every provider package a Stack imports.
+/// and every provider package a Stack imports, and — with [engine] — the
+/// `terradart.engine` the `terradart` command runs the existing state with.
 String renderPubspec(
   String packageName,
   String module,
-  Iterable<String> packages,
-) {
+  Iterable<String> packages, {
+  SourceEngine? engine,
+}) {
   final deps = StringBuffer('  terradart_core: ^$packageVersion\n');
   for (final p in packages.toSet().toList()..sort()) {
     deps.write('  $p: ^$packageVersion\n');
   }
+  final section = switch (engine) {
+    null => '',
+    SourceEngine.terraform =>
+      '''
+
+# The migrated tree's state was written by Terraform, so `terradart plan`
+# and `apply` keep running Terraform on it. Set `engine: tofu` to move the
+# state to OpenTofu at the next apply.
+terradart:
+  engine: terraform
+''',
+    SourceEngine.tofu =>
+      '''
+
+# The migrated tree was run with OpenTofu (its lock file or `.tofu` files
+# say so), so `terradart plan` and `apply` keep running OpenTofu on it.
+terradart:
+  engine: tofu
+''',
+  };
   return '''
 name: $packageName
 description: Migrated from `$module` by terradart-migrate $packageVersion.
@@ -434,5 +456,14 @@ dependencies:
 $deps
 dev_dependencies:
   lints: ^6.0.0
-''';
+$section''';
+}
+
+/// The engine a migrated tree's state belongs to.
+enum SourceEngine {
+  /// `terradart.engine: terraform`.
+  terraform,
+
+  /// `terradart.engine: tofu`.
+  tofu,
 }

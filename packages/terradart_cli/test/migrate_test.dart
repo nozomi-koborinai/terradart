@@ -35,6 +35,35 @@ void main() {
     );
   });
 
+  test('a migrated project keeps running Terraform', () async {
+    final scratch = Directory.systemTemp.createTempSync('terradart_engine_');
+    addTearDown(() => scratch.deleteSync(recursive: true));
+    File(p.join(scratch.path, 'main.tf')).writeAsStringSync(
+      'resource "google_pubsub_topic" "t" { name = "orders" }\n',
+    );
+    final out = p.join(scratch.path, 'pkg');
+    final bin = Directory(p.join(scratch.path, 'bin'))..createSync();
+    fakeExecutable(bin.path, 'tofu');
+    final terraform = fakeExecutable(bin.path, 'terraform');
+    final stdout = StringBuffer();
+    final stderr = StringBuffer();
+    Future<int> run(List<String> args) => runTerradart(
+      args,
+      runner: FakeRunner(),
+      console: Console(out: stdout.writeln, err: stderr.writeln),
+      workingDirectory: scratch.path,
+      environment: {
+        'PATH': bin.path,
+        if (Platform.isWindows) 'PATHEXT': '.EXE',
+      },
+      dartExecutable: 'dart',
+    );
+    expect(await run(['migrate', '--dir', scratch.path, '--out', out]), 0);
+    stdout.clear();
+    expect(await run(['engine', '--project', out]), 0, reason: '$stderr');
+    expect(stdout.toString().trim(), terraform);
+  });
+
   test('migrate --report writes nothing', () async {
     final scratch = Directory.systemTemp.createTempSync('terradart_report_');
     addTearDown(() => scratch.deleteSync(recursive: true));

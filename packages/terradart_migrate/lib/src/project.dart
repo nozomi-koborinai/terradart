@@ -636,7 +636,13 @@ MigratedProject migrateTree(
     ],
     format: format,
   );
-  files['pubspec.yaml'] = renderPubspec(packageName, name, packages);
+  final engine = sourceEngine(tree);
+  files['pubspec.yaml'] = renderPubspec(
+    packageName,
+    name,
+    packages,
+    engine: engine,
+  );
   final project = MigratedProject(
     name: name,
     packageName: packageName,
@@ -714,6 +720,27 @@ Map<String, String> _envMembers(List<ModuleDir> roots) {
     candidate = stackNames('${base}_envs_$n');
     if (!taken.contains(candidate.stackFile)) return candidate;
   }
+}
+
+/// The engine [tree] was run with: OpenTofu when a module directory holds a
+/// `.tofu` file or a `.terraform.lock.hcl` naming `registry.opentofu.org`,
+/// else Terraform — the tree is Terraform's language, and its state is
+/// Terraform's unless something says otherwise.
+SourceEngine sourceEngine(ModuleTree tree) {
+  for (final m in tree.modules) {
+    for (final f
+        in m.directory.listSync(followLinks: false).whereType<File>()) {
+      final base = p.basename(f.path);
+      if (base.endsWith('.tofu') || base.endsWith('.tofu.json')) {
+        return SourceEngine.tofu;
+      }
+      if (base == '.terraform.lock.hcl' &&
+          f.readAsStringSync().contains('registry.opentofu.org/')) {
+        return SourceEngine.tofu;
+      }
+    }
+  }
+  return SourceEngine.terraform;
 }
 
 bool _isCopied(String base) =>
