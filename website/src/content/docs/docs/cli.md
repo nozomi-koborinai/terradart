@@ -37,6 +37,7 @@ dart run terradart_cli:terradart apply
 | `terradart state migrate` | synth, then `init -migrate-state`: moves the state to the backend the Stack now configures, after asking (`--auto-approve` skips the question, and is required when it cannot ask: no terminal, `--no-input`, CI or an agent) |
 | `terradart engine` | prints the engine binary it would run, downloading OpenTofu if that is the one |
 | `terradart migrate` | turns a Terraform tree into a Dart package. No project is required — it does not look for a `pubspec.yaml` |
+| `terradart skill install` / `update` / `status` | writes, updates and checks the [agent skill](#the-agent-skill) this CLI bundles |
 
 `--no-synth` reuses what the last synth wrote, `--project <dir>` (`-C`) runs against another package, and `--engine tofu|terraform` or `--engine-path <file>` picks the engine for one run. The exit code is the failing step's (64 for a usage error, 3 when the command needs an answer nobody can give).
 
@@ -179,6 +180,46 @@ terradart: Stopped before running OpenTofu on a state Terraform wrote. Pass --en
 ```
 
 `terradart migrate` writes `engine: terraform` into the package it generates, so a migrated project keeps the engine its state came from.
+
+## The agent skill
+
+`terradart_cli` bundles the [TerraDart Agent Skill](/docs/start/ai-agent/) of its own release, so a coding agent learns the CLI it runs and not the one on `main`. `terradart skill install` writes it to the project (the directory holding `pubspec.yaml`, or `--project <dir>`):
+
+```text
+.agents/skills/terradart/SKILL.md   Cursor, Codex, Gemini CLI, GitHub Copilot and most other agents
+.claude/skills/terradart/SKILL.md   Claude Code, which does not read .agents/skills
+```
+
+`--agents` picks other directories, comma-separated: `agents`, `claude`, `cursor` (`.cursor/skills`), `windsurf` (`.windsurf/skills`), `copilot` (`.github/skills`), or `all`. The files are copies, not symlinks; commit them with the project.
+
+Each copy records, under `metadata:` in its front matter, the CLI version that wrote it and the SHA-256 of its content (leaving those two lines out):
+
+```yaml
+metadata:
+  terradart-version: "0.34.0"
+  terradart-sha256: "<sha256>"
+```
+
+| Command | Does |
+|---|---|
+| `terradart skill status` | shows each copy: `current`, `marker-only` (same content, older version), `outdated`, `newer` (written by a newer CLI), `edited`, `missing`, or `foreign` (no marker) |
+| `terradart skill status --check` | exits 4 when a copy is missing, outdated, newer, edited or foreign — for CI |
+| `terradart skill update` | rewrites every installed copy with the bundled one. A copy that is edited, foreign or newer is left alone (exit 5) unless `--force` |
+| `terradart skill update --dry-run` | prints the diff and writes nothing (`install` takes it too) |
+
+When a copy in the project is older than the CLI, every other command prints one line on stderr (`TERRADART_NO_SKILL_NOTICE=1` turns it off):
+
+```text
+terradart: the terradart agent skill in .agents/skills is 0.33.0; this CLI is 0.34.0. Run: terradart skill update
+```
+
+Without the CLI, the [`skills` CLI](https://github.com/vercel-labs/skills) installs the same file. Pin it to the release tag, since it fetches `main` otherwise:
+
+```bash
+npx skills add nozomi-koborinai/terradart#v0.34.0 --skill terradart
+```
+
+It is byte for byte the file `terradart skill install` writes, so `terradart skill status` reads it too, and points at `npx skills update terradart -p -y` when `skills-lock.json` records it.
 
 ## `pubspec.yaml`
 

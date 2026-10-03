@@ -23,6 +23,9 @@ To pin the version per project, `dart pub add --dev terradart_cli` and run it as
 | `terradart state migrate` | synth, then `init -migrate-state`: moves the state to the backend the Stack configures |
 | `terradart engine` | prints the engine binary it runs |
 | `terradart migrate` | turns a Terraform tree into a Dart package; no project required |
+| `terradart skill install` | writes the agent skill this CLI bundles to `.agents/skills/terradart/` and `.claude/skills/terradart/` |
+| `terradart skill update` | rewrites them after a CLI upgrade; leaves a copy you edited alone unless `--force` |
+| `terradart skill status` | shows each copy against the bundled one; `--check` exits 4 when one is missing or stale |
 
 It runs the `tofu`, else the `terraform`, on your `PATH`. With neither, it downloads the OpenTofu release it pins, checks the archive's SHA-256, and keeps the binary in your user cache — on Linux, macOS and Windows, amd64 and arm64. Before it runs one engine on a state the other wrote, it asks — or, without a terminal, stops and names the `--engine` flag that decides. A Stack that uses Appwrite runs on the `terraform` on your `PATH` instead: the `appwrite/appwrite` provider is published to the Terraform registry only, which OpenTofu cannot install from, so without Terraform (or with `--engine tofu`) the command stops before `init` and says so.
 
@@ -87,5 +90,9 @@ Future<void> main(List<String> args) =>
 ```
 
 `terradart apply --env sandbox` synthesizes `tf-out/sandbox`, applies it, and writes `.terradart/dart_defines.sandbox.json`; a name that is not a member lists the ones that are. Without `--env`, `validate`, `plan`, `apply`, `destroy` and `outputs` take the `TERRADART_ENV` environment variable, else the `defaultEnv` given to `runEnvironments` (`defaultEnv: Env.qa`), else the only member, and prints which one and why (`env: qa (default)`). `apply` and `destroy` ask before running against an environment `TERRADART_ENV` or `defaultEnv` chose; `--auto-approve` skips the question. `runEnvironments` also takes a `workspace` or a partial `backendConfig` per environment, for environments that share one directory.
+
+## The agent skill
+
+The package bundles the [TerraDart Agent Skill](https://terradart.dev/docs/start/ai-agent/) of its own release. Each copy `terradart skill install` writes records the CLI version and its content hash in its front matter (`metadata:` `terradart-version` / `terradart-sha256`), so `terradart skill status` tells an outdated copy from one you edited. When the project's copy is older than the CLI, the other commands print one line on stderr; `TERRADART_NO_SKILL_NOTICE=1` turns it off. Without the CLI, `npx skills add nozomi-koborinai/terradart#v0.34.0 --skill terradart` installs the same file from the release tag.
 
 Guides: [The terradart command](https://terradart.dev/docs/cli/), [Environments](https://terradart.dev/docs/environments/), [Outputs in client apps](https://terradart.dev/docs/client-outputs/).
