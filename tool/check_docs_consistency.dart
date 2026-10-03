@@ -70,7 +70,8 @@ Future<void> main(List<String> args) async {
     '($catalogEntryCount catalog entries)',
   );
   // Version-line freshness: any `0.NN.x` token in these user-facing pages must
-  // match the current workspace minor. Pages that intentionally reference old
+  // match the current workspace minor, and no `^0.NN.P` caret may name an
+  // older one. Pages that intentionally reference old
   // lines (MIGRATING, waves history, SECURITY's unsupported-versions table)
   // are exempt.
   for (final page in [
@@ -209,6 +210,15 @@ void _checkNoStaleVersionLine(List<String> errors, int minor, String path) {
     if (found != minor && reported.add('0.$found.x')) {
       errors.add(
         '$path: stale version line "0.$found.x" (current minor is 0.$minor.x)',
+      );
+    }
+  }
+  for (final match in RegExp(r'\^0\.(\d+)\.\d+\b').allMatches(text)) {
+    final found = int.parse(match.group(1)!);
+    if (found < minor && reported.add(match.group(0)!)) {
+      errors.add(
+        '$path: stale caret "${match.group(0)}" (current minor is '
+        '^0.$minor.0)',
       );
     }
   }

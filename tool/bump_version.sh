@@ -301,6 +301,7 @@ STALE=$(
       website/src/content/docs/docs/getting-started.mdx 2>/dev/null
     grep -nE "\\^${OLD_MINOR_RE}\\.(0|x)([^0-9A-Za-z.-]|\$)" \
       README.md website/src/content/docs/docs/getting-started.mdx \
+      website/src/content/docs/docs/status.md \
       website/src/content/docs/docs/providers/*.md \
       packages/terradart_codegen/example/main.dart \
       packages/terradart_core/README.md \
