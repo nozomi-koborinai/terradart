@@ -1,7 +1,7 @@
 /// Example: invoke the terradart maintainer CLI.
 ///
 /// ```bash
-/// dart pub global activate terradart_codegen ^0.33.0
+/// dart pub global activate terradart_codegen ^0.34.0
 /// terradart-codegen wrap \
 ///   --provider hashicorp/google \
 ///   --source path/to/schema-dir \

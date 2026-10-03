@@ -10,8 +10,8 @@ description: terradart_cloudflare — every cloudflare/cloudflare resource and d
 ```yaml
 # pubspec.yaml
 dependencies:
-  terradart_core: ^0.33.0
-  terradart_cloudflare: ^0.33.0
+  terradart_core: ^0.34.0
+  terradart_cloudflare: ^0.34.0
 ```
 
 ## Credentials

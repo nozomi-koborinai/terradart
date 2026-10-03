@@ -1,6 +1,6 @@
 > Part of the [TerraDart cookbook](../README.md). Library: [terradart](https://github.com/nozomi-koborinai/terradart).
 >
-> **Status:** Full-stack demo recipe — Flutter Web + Dart server + Genkit (Agent Platform) + Cloud Run + private Cloud SQL, all authored in Dart. Tracks the workspace packages (`terradart_core` / `terradart_google` 0.33.x).
+> **Status:** Full-stack demo recipe — Flutter Web + Dart server + Genkit (Agent Platform) + Cloud Run + private Cloud SQL, all authored in Dart. Tracks the workspace packages (`terradart_core` / `terradart_google` 0.34.x).
 
 # Lunch Concierge
 
