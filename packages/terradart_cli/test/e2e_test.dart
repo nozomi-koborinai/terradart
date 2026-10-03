@@ -8,6 +8,8 @@ import 'package:path/path.dart' as p;
 import 'package:terradart_cli/terradart_cli.dart';
 import 'package:test/test.dart';
 
+import 'init_support.dart';
+
 /// The real loop on the host OS: the pinned OpenTofu downloaded into an
 /// empty cache, a Stack per environment synthesized by `runEnvironments`
 /// in `dart run`, then init, apply (a local-state `time_sleep`, no cloud),
@@ -118,6 +120,57 @@ void main() {
       'env:qa': {'engine': 'tofu', 'version': kOpenTofuVersion},
     });
   }, timeout: const Timeout(Duration(minutes: 10)));
+
+  group('init scaffolds validate with the managed OpenTofu', () {
+    late String cache;
+    setUpAll(() {
+      cache = Directory.systemTemp.createTempSync('terradart_cli_e2e_').path;
+    });
+    tearDownAll(() => Directory(cache).deleteSync(recursive: true));
+
+    for (final MapEntry(key: name, value: s) in scaffolds.entries) {
+      // appwrite/appwrite is published to registry.terraform.io only;
+      // registry.opentofu.org has no such provider.
+      if (name == 'appwrite') continue;
+      test(name, () async {
+        final root = Directory.systemTemp.createTempSync('terradart_init_');
+        addTearDown(() => root.deleteSync(recursive: true));
+        final environment = {
+          ...Platform.environment,
+          'TERRADART_CACHE_DIR': cache,
+        };
+        await terradart([
+          'init',
+          'app',
+          '--no-pub-get',
+          ...s.args,
+        ], cwd: root.path);
+        final app = p.join(root.path, 'app');
+        overrideWorkspacePackages(app);
+        await terradart(['synth', '--env', 'dev'], cwd: app);
+
+        final out = StringBuffer();
+        final err = StringBuffer();
+        final code = await runTerradart(
+          ['engine', '--engine', 'tofu'],
+          workingDirectory: app,
+          environment: environment,
+          console: Console(out: out.writeln, err: err.writeln),
+        );
+        expect(code, 0, reason: '$err');
+        final tofu = '$out'.trim().split('\n').last;
+
+        final dir = p.join(app, 'tf-out', 'dev');
+        for (final args in [
+          ['init', '-backend=false', '-input=false', '-no-color'],
+          ['validate', '-no-color'],
+        ]) {
+          final r = await Process.run(tofu, args, workingDirectory: dir);
+          expect(r.exitCode, 0, reason: '${r.stdout}${r.stderr}');
+        }
+      }, timeout: const Timeout(Duration(minutes: 10)));
+    }
+  });
 }
 
 void _project(String root, String packages) {

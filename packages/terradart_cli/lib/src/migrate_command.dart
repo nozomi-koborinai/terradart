@@ -31,14 +31,17 @@ final class MigrateCommand extends Command<int> {
       'terradart migrate (--dir <terraform dir> --out <package dir> | --report)';
 
   @override
-  Future<int> run() async {
-    final out = StringBuffer();
-    final err = StringBuffer();
-    final code = await runMigrateCli(argResults!.arguments, out: out, err: err);
-    _emit(out.toString(), _console.out);
-    _emit(err.toString(), _console.err);
-    return code;
-  }
+  Future<int> run() => runMigrate(argResults!.arguments, _console);
+}
+
+/// Runs `terradart migrate <arguments>`, printing to [console].
+Future<int> runMigrate(List<String> arguments, Console console) async {
+  final out = StringBuffer();
+  final err = StringBuffer();
+  final code = await runMigrateCli(arguments, out: out, err: err);
+  _emit(out.toString(), console.out);
+  _emit(err.toString(), console.err);
+  return code;
 }
 
 void _emit(String text, void Function(String line) line) {
