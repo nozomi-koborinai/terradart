@@ -13,7 +13,7 @@ Once per machine:
 
 ```bash
 dart pub global activate terradart_cli
-terradart apply
+terradart init
 ```
 
 To pin the version per project, so everyone on it runs the same one, add it as a dev dependency of the infrastructure package instead:
@@ -27,6 +27,7 @@ dart run terradart_cli:terradart apply
 
 | Command | Runs |
 |---|---|
+| `terradart init [dir]` | writes a new project (default `infra/`) and runs `dart pub get` in it; no project is required |
 | `terradart synth` | the entry point (`dart run bin/infra.dart`); arguments after `--` go to it |
 | `terradart validate` | synth, `init -backend=false`, `validate`: checks the configuration without credentials, a backend or state — the step for CI; arguments after `--` go to `validate` (`-- -json`) |
 | `terradart plan` | synth, `init`, `plan`; arguments after `--` go to the engine (`-- -target=...`) |
@@ -38,6 +39,34 @@ dart run terradart_cli:terradart apply
 | `terradart migrate` | turns a Terraform tree into a Dart package. No project is required — it does not look for a `pubspec.yaml` |
 
 `--no-synth` reuses what the last synth wrote, `--project <dir>` (`-C`) runs against another package, and `--engine tofu|terraform` or `--engine-path <file>` picks the engine for one run. The exit code is the failing step's (64 for a usage error).
+
+## Creating a project
+
+`terradart init` writes a project that plans as it is — `pubspec.yaml`, an `Env` enum in `lib/env.dart`, a Stack with one resource and one output in `lib/stack.dart`, `bin/infra.dart`, a `.gitignore`, a `README.md` and an `AGENTS.md` — then runs `dart pub get` in it (`--no-pub-get` skips that):
+
+```bash
+terradart init infra --provider aws --env dev,stg,prd --backend s3
+terradart init --provider google,cloudflare --gcp-project dev=acme-dev,prd=acme-prd --cloudflare-account 0123abcd
+terradart init --dry-run --provider appwrite # lists the files, writes nothing
+```
+
+| Flag | Takes | Default |
+|---|---|---|
+| `--provider`, `-p` | `google`, `aws`, `cloudflare`, `appwrite`, comma-separated | `google` |
+| `--env`, `-e` | lowerCamelCase environment names, comma-separated | `dev,prd` |
+| `--gcp-project`, `--cloudflare-account`, `--appwrite-project` | `<env>=<id>` pairs, or one ID for every environment | a placeholder marked `TODO` |
+| `--backend` | `local`, `gcs`, `s3` — the last two need a bucket that already exists | `local` |
+| `--[no-]flutter` | wiring to the Flutter app in the current directory | on when there is one |
+| `--dry-run` | list the files, write nothing | |
+| `--force` | overwrite existing files, scaffold next to existing Terraform | |
+
+In a terminal, every flag left out is a question, asked in the order of the table; the run ends with `Re-run with: terradart init ...`, the same answers as flags. Without a terminal it never asks, takes the defaults, and a wrong value is a usage error that names its flag.
+
+Inside a Flutter app (a `pubspec.yaml` that depends on `flutter` in the current directory), the Stack's `appExports` writes the reader the app imports to the app's `lib/generated/infra.g.dart`, the Stack declares `addDartDefineOutput()`, and the steps printed end with `flutter run --dart-define-from-file=infra/.terradart/dart_defines.<env>.json`.
+
+A directory holding `*.tf` or `*.tf.json` files gets no scaffold: `terradart init` prints the `terradart migrate --report` and `terradart migrate` commands for it and exits 1 — in a terminal it offers to run the report first. `--force` scaffolds anyway.
+
+The OpenTofu registry has no `appwrite/appwrite` provider, so an Appwrite project plans and applies with Terraform on your `PATH` (`--engine terraform`); `terradart init` says so when you pick it.
 
 ## The entry point
 
