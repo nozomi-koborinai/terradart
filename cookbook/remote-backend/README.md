@@ -46,7 +46,7 @@ The plan adds one resource, `google_storage_bucket.tfstate`, named `<GCP_PROJECT
 
 ## Move the Stack's own state into the bucket
 
-Setting `STATE_BUCKET` makes the Stack synthesize `GcsBackend(bucket: ..., prefix: 'remote-backend')` instead of `LocalBackend()`. The state then has to move once, with the engine's `init -migrate-state`. The `terradart` command has no step for moving state, so this one calls the engine directly; `terradart engine` prints the engine `terradart` runs, so no separate install is needed:
+Setting `STATE_BUCKET` makes the Stack synthesize `GcsBackend(bucket: ..., prefix: 'remote-backend')` instead of `LocalBackend()`. The state then has to move once, with the engine's `init -migrate-state`; `terradart engine` prints the engine it runs, so no separate install is needed:
 
 1. **(One-time setup)** Ensure your ADC quota project matches the bucket's GCP project, otherwise the GCS backend lookup hits a confusing 404:
 
@@ -80,7 +80,7 @@ Then, in `cookbook/single-project-app/`:
 
 ```bash
 terradart synth
-"$(terradart engine)" -chdir=tf-out init -migrate-state   # not a terradart command; see above
+"$(terradart engine)" -chdir=tf-out init -migrate-state
 ```
 
 The 28-resource state moves into GCS. The same ADC quota project gotcha applies: if you see a 404 "project not found" on init, set the quota project as above before retrying.
@@ -93,4 +93,4 @@ A regional GCS bucket with versioning + a few KB of state files costs essentiall
 
 ## When to destroy
 
-The state bucket is long-lived by design. `terradart destroy` on this recipe should be **manual / deliberate** (e.g., when retiring the GCP project entirely), and it cannot delete the bucket that holds its own state: move the state back to a local file first (unset `STATE_BUCKET`, `terradart synth`, then `"$(terradart engine)" -chdir=tf-out init -migrate-state`, the same direct engine call as above). The recipe's `force_destroy = false` ensures versioned objects block accidental deletion.
+The state bucket is long-lived by design. `terradart destroy` on this recipe should be **manual / deliberate** (e.g., when retiring the GCP project entirely), and it cannot delete the bucket that holds its own state: move the state back to a local file first (unset `STATE_BUCKET`, `terradart synth`, then `"$(terradart engine)" -chdir=tf-out init -migrate-state`). The recipe's `force_destroy = false` ensures versioned objects block accidental deletion.
