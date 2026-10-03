@@ -186,11 +186,11 @@ final class _SkillWriteCommand extends _SkillSubcommand {
       }
       writeSkill(install);
       wrote = true;
-      console.out(
-        state == SkillState.missing
-            ? 'wrote $rel ($cliVersion)'
-            : 'updated $rel ($from → $cliVersion)',
-      );
+      console.out(switch (state) {
+        SkillState.missing => 'wrote $rel ($cliVersion)',
+        SkillState.edited => 'overwrote local edits in $rel ($cliVersion)',
+        _ => 'updated $rel ($from → $cliVersion)',
+      });
     }
     if (wrote && skillsCliManages(root)) {
       console.warn(

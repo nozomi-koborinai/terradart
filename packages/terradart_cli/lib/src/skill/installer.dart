@@ -216,11 +216,11 @@ String unifiedDiff(
   while (i < a.length || j < b.length) {
     if (i < a.length && j < b.length && a[i] == b[j]) {
       ops.add((' ', i++, j++));
-    } else if (j < b.length &&
-        (i == a.length || lcs[i][j + 1] >= lcs[i + 1][j])) {
-      ops.add(('+', i, j++));
-    } else {
+    } else if (i < a.length &&
+        (j == b.length || lcs[i + 1][j] >= lcs[i][j + 1])) {
       ops.add(('-', i++, j));
+    } else {
+      ops.add(('+', i, j++));
     }
   }
   final changed = [
