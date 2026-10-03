@@ -15,7 +15,8 @@ enum EnvSource {
   flag('--env'),
   variable(envVariable),
   defaultEnv('default'),
-  only('only environment');
+  only('only environment'),
+  prompt('prompt');
 
   const EnvSource(this.label);
 
@@ -64,6 +65,18 @@ final class Request {
   final String? defineFile;
 
   final List<String> _entryArgs;
+
+  /// This request with [env], which [source] chose.
+  Request withEnv(String env, EnvSource source) => Request(
+    config,
+    env: env,
+    envSource: source,
+    workspace: workspace,
+    backendConfig: backendConfig,
+    entryArgs: _entryArgs,
+    defineOutput: defineOutput,
+    defineFile: defineFile,
+  );
 
   /// What `dart run <entrypoint>` receives.
   List<String> get entryArgs => [
@@ -131,10 +144,15 @@ final class Request {
       (null, Manifest(defaultEnv: final d?)) => (d, EnvSource.defaultEnv),
       _ when envs.length == 1 => (envs.single, EnvSource.only),
       _ => throw CliException(
-        '${config.entrypoint} declares environments; pass --env <name> or '
-        'set $envVariable, one of ${envs.join(', ')} (or give '
-        'runEnvironments a defaultEnv).',
+        '--env is required: ${config.entrypoint} declares '
+        '${envs.join(', ')} and no defaultEnv. Pass --env, set '
+        '$envVariable, or give runEnvironments a defaultEnv.',
         exitCode: 64,
+        flag: '--env',
+        choices: envs,
+        next: [
+          ['--env', envs.first],
+        ],
       ),
     };
     if (!envs.contains(name)) {
@@ -142,6 +160,8 @@ final class Request {
         'Unknown environment "$name" (${source.label}); known envs: '
         '${envs.join(', ')}.',
         exitCode: 64,
+        flag: '--env',
+        choices: envs,
       );
     }
     for (final r in manifest.roots) {
@@ -167,13 +187,23 @@ final class Request {
     if (env == null) {
       if (_isRoot(out)) return (_Root.guessed(out), null);
       final roots = _rootsUnder(out);
+      if (roots.isEmpty) {
+        throw CliException(
+          'No main.tf.json in ${_rel(out)}. Does ${config.entrypoint} '
+          'write there? Set terradart.out to the directory it writes, or '
+          'call runStack in it.',
+        );
+      }
+      final names = [for (final r in roots) p.basename(r)];
       throw CliException(
-        roots.isEmpty
-            ? 'No main.tf.json in ${_rel(out)}. Does ${config.entrypoint} '
-                  'write there? Set terradart.out to the directory it '
-                  'writes, or call runStack in it.'
-            : 'No main.tf.json in ${_rel(out)} itself, but in '
-                  '${roots.map(_rel).join(', ')}. Pass --env <name>.',
+        '--env is required: no main.tf.json in ${_rel(out)} itself, but in '
+        '${roots.map(_rel).join(', ')}.',
+        exitCode: 64,
+        flag: '--env',
+        choices: names,
+        next: [
+          ['--env', names.first],
+        ],
       );
     }
     final named = [

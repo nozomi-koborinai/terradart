@@ -34,11 +34,11 @@ dart run terradart_cli:terradart apply
 | `terradart apply` | synth, `init`, `apply`, then writes the define file; `--auto-approve` skips the prompt |
 | `terradart destroy` | synth, `init`, `destroy`; `--auto-approve` skips the prompt |
 | `terradart outputs` | synth, `init`, then writes the define file from the applied state — no plan, no apply |
-| `terradart state migrate` | synth, then `init -migrate-state`: moves the state to the backend the Stack now configures, after asking (`--auto-approve` skips the question, and is required without a terminal) |
+| `terradart state migrate` | synth, then `init -migrate-state`: moves the state to the backend the Stack now configures, after asking (`--auto-approve` skips the question, and is required when it cannot ask: no terminal, `--no-input`, CI or an agent) |
 | `terradart engine` | prints the engine binary it would run, downloading OpenTofu if that is the one |
 | `terradart migrate` | turns a Terraform tree into a Dart package. No project is required — it does not look for a `pubspec.yaml` |
 
-`--no-synth` reuses what the last synth wrote, `--project <dir>` (`-C`) runs against another package, and `--engine tofu|terraform` or `--engine-path <file>` picks the engine for one run. The exit code is the failing step's (64 for a usage error).
+`--no-synth` reuses what the last synth wrote, `--project <dir>` (`-C`) runs against another package, and `--engine tofu|terraform` or `--engine-path <file>` picks the engine for one run. The exit code is the failing step's (64 for a usage error, 3 when the command needs an answer nobody can give).
 
 ## Creating a project
 
@@ -103,9 +103,30 @@ An entry point that writes `tf-out/` itself (`await OrdersStack(...).writeTo('tf
 
 ## Environments
 
-With an entry point that calls `runEnvironments`, `validate`, `plan`, `apply`, `destroy` and `outputs` run against one member of the project's environment enum: the one `--env <name>` (`-e`) names, else the `TERRADART_ENV` environment variable, else the `defaultEnv` the entry point gives `runEnvironments`, else the only member; with none of these the command stops and lists the names. When `TERRADART_ENV` or `defaultEnv` chose it, `apply` and `destroy` ask first unless `--auto-approve` is set. `terradart synth` without `--env` writes every environment. Each environment gets its own Terraform directory (`tf-out/<name>` unless `runEnvironments` says otherwise) and define file (`.terradart/dart_defines.<name>.json`), and a name that is not a member stops before anything runs. `--workspace` and `--backend-config` override and extend, for one run, the workspace and backend settings `runEnvironments` gives an environment.
+With an entry point that calls `runEnvironments`, `validate`, `plan`, `apply`, `destroy` and `outputs` run against one member of the project's environment enum: the one `--env <name>` (`-e`) names, else the `TERRADART_ENV` environment variable, else the `defaultEnv` the entry point gives `runEnvironments`, else the only member; with none of these the command asks on a terminal, and otherwise stops with the names and the command to run. When `TERRADART_ENV` or `defaultEnv` chose it, `apply` and `destroy` ask first on a terminal unless `--auto-approve` is set. `terradart synth` without `--env` writes every environment. Each environment gets its own Terraform directory (`tf-out/<name>` unless `runEnvironments` says otherwise) and define file (`.terradart/dart_defines.<name>.json`), and a name that is not a member stops before anything runs. `--workspace` and `--backend-config` override and extend, for one run, the workspace and backend settings `runEnvironments` gives an environment.
 
 How to declare the enum, keep each environment's state apart, and build each client with its define file: [Environments](/docs/environments/).
+
+## Terminals, CI and agents
+
+`terradart` asks a question only on a terminal (stdin and stdout both one), and never with `--no-input`, `TERRADART_NO_INPUT=1`, `CI` set, or in an AI agent's shell (`AI_AGENT`, `CURSOR_AGENT`, `CLAUDECODE`, `GEMINI_CLI`, `CODEX_SANDBOX`, `CODEX_THREAD_ID`, `OPENCODE`). Where it would ask, it uses the flag instead or stops and names it:
+
+| Question on a terminal | Without one |
+|---|---|
+| Which environment, when `--env`, `TERRADART_ENV`, `defaultEnv` and a single member leave it open | exit code 64, the names, and `Next: terradart plan --env <first>` |
+| `apply` / `destroy` approval, and `Apply environment "dev" (default)?` | exit code 3 before `init` unless `--auto-approve` |
+| `state migrate` copying the state | exit code 3 unless `--auto-approve` |
+| running one engine on a state the other wrote | exit code 3; `--engine tofu\|terraform` decides |
+
+An error a flag would fix prints the flag's choices and the command to run next:
+
+```text
+terradart: --env is required: bin/infra.dart declares dev, stg, prd and no defaultEnv. Pass --env, set TERRADART_ENV, or give runEnvironments a defaultEnv.
+  Choices: dev, stg, prd
+  Next: terradart plan --env dev
+```
+
+The engine gets `-input=false` whenever nobody can answer. `--quiet` (`-q`) leaves out the values terradart picks by itself (`env: dev (default)`, `Using OpenTofu ...`); errors and warnings still print.
 
 ## Moving the state
 

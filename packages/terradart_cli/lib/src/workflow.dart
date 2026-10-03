@@ -10,23 +10,21 @@ import 'process_runner.dart';
 import 'state_engine.dart';
 import 'target.dart';
 
-/// Where the CLI prints: progress to [out], warnings to [err]; answers come
-/// from [readLine].
+/// Where the CLI prints: progress to [out], warnings to [err], questions
+/// through [ask].
 final class Console {
-  const Console({
+  Console({
     required this.out,
     required this.err,
-    this.readLine,
-    this.ask,
-  });
+    String? Function(String question)? ask,
+  }) : _ask = ask;
 
-  /// [stdout], [stderr] and [stdin]. [ask] reads a line only when both
-  /// standard streams are a terminal (`stdin.hasTerminal` alone is also
-  /// true for `< /dev/null`).
+  /// [stdout] and [stderr]; questions read [stdin] when both it and
+  /// [stdout] are a terminal (`stdin.hasTerminal` alone is also true for
+  /// `< /dev/null`).
   factory Console.io() => Console(
     out: stdout.writeln,
     err: stderr.writeln,
-    readLine: stdin.readLineSync,
     ask: stdin.hasTerminal && stdout.hasTerminal
         ? (question) {
             stdout.write(question);
@@ -37,15 +35,67 @@ final class Console {
 
   final void Function(String) out;
   final void Function(String) err;
+  final String? Function(String question)? _ask;
 
-  /// One line of input, `null` at its end; `null` reads nothing.
-  final String? Function()? readLine;
+  /// Why nobody is asked although there is a terminal (`--no-input`, `CI`,
+  /// an agent's shell); `null` when nothing says so.
+  String? noInput;
+
+  /// `--quiet`: [info] prints nothing.
+  bool quiet = false;
 
   /// Prints a question and returns the answer line, `null` at end of input;
-  /// `null` itself when nobody can answer, and commands use their defaults.
-  final String? Function(String question)? ask;
+  /// `null` itself when nobody can answer — no terminal, or [noInput] — and
+  /// commands use their defaults or stop with the flag that decides.
+  String? Function(String question)? get ask => noInput == null ? _ask : null;
+
+  /// A value the command picked by itself (`env: dev (default)`), which
+  /// `--quiet` leaves out.
+  void info(String message) {
+    if (!quiet) out(message);
+  }
 
   void warn(String message) => err('warning: $message');
+
+  /// Asks a yes / no question; [fallback] on an empty answer, `null` when
+  /// nobody can answer.
+  bool? confirm(String question, {bool fallback = false}) {
+    final ask = this.ask;
+    if (ask == null) return null;
+    while (true) {
+      final answer = ask(
+        '$question ${fallback ? '[Y/n]' : '[y/N]'} ',
+      )?.trim().toLowerCase();
+      if (answer == null || answer.isEmpty) return fallback;
+      if (answer == 'y' || answer == 'yes') return true;
+      if (answer == 'n' || answer == 'no') return false;
+      err('Answer y or n.');
+    }
+  }
+
+  /// Asks for one of [choices] by number or name; `null` when nobody can
+  /// answer. The question names [flag], which answers it without asking.
+  String? choose(
+    String question,
+    List<String> choices, {
+    required String flag,
+  }) {
+    final ask = this.ask;
+    if (ask == null) return null;
+    final listed = [
+      for (final (i, c) in choices.indexed) '(${i + 1}) $c',
+    ].join('  ');
+    while (true) {
+      final answer = ask(
+        '$question $listed  (non-interactive: $flag <name>) ',
+      )?.trim();
+      if (answer == null) return null;
+      if (choices.contains(answer)) return answer;
+      final n = int.tryParse(answer);
+      if (n != null && n >= 1 && n <= choices.length) return choices[n - 1];
+      err('Answer a number from 1 to ${choices.length}, or a name.');
+    }
+  }
 }
 
 /// The steps the commands are made of, for one [Request].
@@ -59,7 +109,9 @@ final class Workflow {
     this.dartExecutable,
   }) : _resolver = resolver;
 
-  final Request request;
+  /// What the command line asks for; an answer to the environment
+  /// question replaces it.
+  Request request;
   final ProcessRunner runner;
   final Console console;
 
@@ -118,40 +170,60 @@ final class Workflow {
   /// one.
   Target get target {
     if (_target case final target?) return target;
-    final target = _target = request.resolve(Manifest.read(_manifest));
+    final manifest = Manifest.read(_manifest);
+    Target target;
+    try {
+      target = request.resolve(manifest);
+    } on CliException catch (e) {
+      // Only a missing --env lists its choices and suggests a command.
+      if (e.flag != '--env' || e.next.isEmpty) rethrow;
+      final env = console.choose('Environment?', e.choices, flag: '--env');
+      if (env == null) rethrow;
+      request = request.withEnv(env, EnvSource.prompt);
+      target = request.resolve(manifest);
+    }
+    _target = target;
     if (target.ignoredEnv case final env?) {
-      console.out(
+      console.info(
         '$envVariable=$env ignored: ${request.config.entrypoint} declares no '
         'environments.',
       );
     }
     if (target.environment case final env?) {
-      console.out('env: $env (${target.environmentSource!.label})');
+      console.info('env: $env (${target.environmentSource!.label})');
     }
     return target;
   }
 
-  /// Before `apply` or `destroy`: asks whether to run against an
-  /// environment the command line did not name (`TERRADART_ENV` or the
-  /// entry point's `defaultEnv`), unless [autoApprove].
+  /// Before `apply` or `destroy`, unless [autoApprove]: without a terminal
+  /// stops with exit code 3, since the engine cannot ask for approval; on
+  /// one asks whether to run against an environment the command line did
+  /// not name (`TERRADART_ENV` or the entry point's `defaultEnv`).
   void confirmEnvironment(String action, {required bool autoApprove}) {
+    if (autoApprove) return;
     final env = target.environment;
     final source = target.environmentSource;
-    if (autoApprove || env == null || source == null || !source.confirms) {
-      return;
-    }
-    console.out(
-      '${action[0].toUpperCase()}${action.substring(1)} environment "$env" '
-      '(${source.label})? Only "yes" is accepted:',
-    );
-    final answer = console.readLine?.call();
-    if (answer == null) {
+    final ask = console.ask;
+    if (ask == null) {
       throw CliException(
-        'No answer to whether to $action environment "$env" '
-        '(${source.label}); pass --env $env, or --auto-approve.',
+        '$action needs --auto-approve when it cannot ask'
+        '${console.noInput == null ? ' (no terminal)' : ' (${console.noInput})'}.',
+        exitCode: 3,
+        flag: '--auto-approve',
+        next: [
+          [
+            if (env != null && source != EnvSource.flag) ...['--env', env],
+            '--auto-approve',
+          ],
+        ],
       );
     }
-    if (answer.trim() != 'yes') {
+    if (env == null || source == null || !source.confirms) return;
+    final answer = ask(
+      '${action[0].toUpperCase()}${action.substring(1)} environment "$env" '
+      '(${source.label})? Only "yes" is accepted: ',
+    );
+    if (answer?.trim() != 'yes') {
       throw CliException('Cancelled: did not $action environment "$env".');
     }
   }
@@ -171,7 +243,7 @@ final class Workflow {
       terraformOnly: terraformOnlyProviders(dir),
     );
     _version = await engineVersion(engine, runner);
-    console.out(
+    console.info(
       'Using ${engine.kind.label} ${_version ?? '(unknown version)'} '
       '(${engine.reason})',
     );
@@ -240,22 +312,19 @@ final class Workflow {
         'Pass --engine ${writer.kind.name} to keep $was (or set '
         'terradart.engine: ${writer.kind.name} in pubspec.yaml), or '
         '--engine ${engine.kind.name} to move the state to $now.';
-    // A pipe is not a terminal: do not read it (it may block, or be someone
-    // else's input). No answer takes the non-interactive stop below.
-    String? answer;
-    if (stdin.hasTerminal) {
-      console.out('Run $now on it anyway? [y/N]');
-      answer = console.readLine?.call()?.trim().toLowerCase();
-    }
+    final answer = console.confirm('Run $now on it anyway?');
     if (answer == null) {
       throw CliException(
         'Stopped before running $now on a state $was wrote. $choose',
-        exitCode: 64,
+        exitCode: 3,
+        flag: '--engine',
+        choices: [writer.kind.name, engine.kind.name],
+        next: [
+          ['--engine', writer.kind.name],
+        ],
       );
     }
-    if (answer != 'y' && answer != 'yes') {
-      throw CliException('Stopped. $choose');
-    }
+    if (!answer) throw CliException('Stopped. $choose');
   }
 
   /// `init`, with the target's backend configuration. A target that passes
@@ -339,8 +408,8 @@ final class Workflow {
   }
 
   /// Asks before copying the state, unless [autoApprove]. The question names
-  /// the full source and target configuration. A pipe is not a terminal: no
-  /// answer stops with exit code 64.
+  /// the full source and target configuration. Nobody to answer stops with
+  /// exit code 3.
   void confirmStateMove({
     required bool autoApprove,
     required String from,
@@ -348,33 +417,41 @@ final class Workflow {
   }) {
     if (autoApprove) return;
     final question = 'Copy the state in ${_show(dir)} from $from to $to?';
-    String? answer;
-    if (stdin.hasTerminal) {
-      console.out('$question [y/N]');
-      answer = console.readLine?.call()?.trim().toLowerCase();
-    }
+    final answer = console.confirm(question);
     if (answer == null) {
       throw CliException(
         'state migrate copies the state to another backend: $question '
-        'Pass --auto-approve to run it without a terminal.',
-        exitCode: 64,
+        'Pass --auto-approve to run it without asking.',
+        exitCode: 3,
+        flag: '--auto-approve',
+        next: [
+          ['--auto-approve'],
+        ],
       );
     }
-    if (answer != 'y' && answer != 'yes') {
-      throw const CliException('Stopped; the state did not move.');
-    }
+    if (!answer) throw const CliException('Stopped; the state did not move.');
   }
 
   Future<void> plan(List<String> extra) =>
       _engineRun(['plan', '-input=false', ...extra]);
 
   Future<void> apply(List<String> extra, {required bool autoApprove}) async {
-    await _engineRun(['apply', if (autoApprove) '-auto-approve', ...extra]);
+    await _engineRun([
+      'apply',
+      if (console.ask == null) '-input=false',
+      if (autoApprove) '-auto-approve',
+      ...extra,
+    ]);
     await _record();
   }
 
   Future<void> destroy(List<String> extra, {required bool autoApprove}) async {
-    await _engineRun(['destroy', if (autoApprove) '-auto-approve', ...extra]);
+    await _engineRun([
+      'destroy',
+      if (console.ask == null) '-input=false',
+      if (autoApprove) '-auto-approve',
+      ...extra,
+    ]);
     await _record();
   }
 

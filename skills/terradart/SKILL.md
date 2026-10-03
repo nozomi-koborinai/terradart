@@ -165,6 +165,8 @@ terradart outputs    # synth, init, then writes the define file from the applied
 
 Arguments after `--` go to the engine (`terradart plan -- -target=...`), and `--no-synth` reuses the last synth.
 
+Run every `terradart` command with `--no-input`: it then never waits for an answer (it also stops asking in `CI` and in an agent's shell it recognizes). Where it needs one, it exits 3 (`apply` / `destroy` without `--auto-approve`) or 64 (no `--env`) and prints `Next:` — the command to run; never add `--auto-approve` unless the user asked for the apply.
+
 **Environments are declared in Dart**, never in `pubspec.yaml`: an enum of your own, any member names, each carrying that environment's values. The Stack takes a member and `bin/infra.dart` hands the members to `runEnvironments`:
 
 ```dart

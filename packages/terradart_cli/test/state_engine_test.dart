@@ -216,11 +216,13 @@ terraform {
       final project = terraformState();
       final runner = FakeRunner(synth: (_) => runStackEntry());
       final r = await project.run(['plan'], runner);
-      expect(r.code, 64);
+      expect(r.code, 3);
       expect(r.err, contains('written by Terraform 1.9.8'));
       expect(r.err, contains('about to run OpenTofu 1.13.1 (tofu on PATH)'));
       expect(r.err, contains('Pass --engine terraform to keep Terraform'));
       expect(r.err, contains('or --engine tofu to move the state to OpenTofu'));
+      expect(r.err, contains('  Choices: terraform, tofu'));
+      expect(r.err, contains('  Next: terradart plan --engine terraform'));
       expect(runner.engineCalls, ['version -json']);
     });
 
@@ -230,40 +232,17 @@ terraform {
       final r = await project.run(
         ['apply', '--auto-approve'],
         runner,
-        input: ['yes'],
+        input: ['y'],
       );
-      if (!stdin.hasTerminal) {
-        expect(r.code, 64);
-        expect(runner.engineCalls, isNot(contains('apply -auto-approve')));
-        return;
-      }
       expect(r.code, 0, reason: r.err);
-      expect(r.out, contains('Run OpenTofu on it anyway?'));
+      expect(r.out, contains('Run OpenTofu on it anyway? [y/N]'));
       expect(runner.engineCalls, contains('apply -auto-approve'));
-    });
-
-    test('a piped answer is not a yes', () async {
-      final project = terraformState();
-      final runner = FakeRunner(synth: (_) => runStackEntry());
-      final r = await project.run(['plan'], runner, input: ['yes']);
-      if (stdin.hasTerminal) {
-        expect(r.code, 0, reason: r.err);
-        expect(runner.engineCalls.last, 'plan -input=false');
-        return;
-      }
-      expect(r.code, 64);
-      expect(r.err, contains('Stopped before running OpenTofu'));
-      expect(runner.engineCalls, ['version -json']);
     });
 
     test('stops on a no', () async {
       final project = terraformState();
       final runner = FakeRunner(synth: (_) => runStackEntry());
-      final r = await project.run(['destroy'], runner, input: ['no']);
-      if (!stdin.hasTerminal) {
-        expect(r.code, 64);
-        return;
-      }
+      final r = await project.run(['destroy'], runner, input: ['n']);
       expect(r.code, 1);
       expect(r.err, contains('Stopped. Pass --engine terraform'));
       expect(runner.engineCalls.where((c) => c.startsWith('destroy')), isEmpty);
@@ -296,7 +275,7 @@ terraform {
       );
       final runner = FakeRunner(synth: (_) => runStackEntry());
       final r = await project.run(['plan'], runner);
-      expect(r.code, 64);
+      expect(r.code, 3);
       expect(r.err, contains('Pass --engine tofu to keep OpenTofu'));
     });
 
@@ -316,7 +295,7 @@ terraform {
         ),
       );
       final r = await project.run(['plan'], runner);
-      expect(r.code, 64);
+      expect(r.code, 3);
       expect(runner.engineCalls, [
         'version -json',
         'init -input=false',
@@ -356,7 +335,7 @@ terraform {
         ),
       );
       final r = await project.run(['plan'], runner);
-      expect(r.code, 64);
+      expect(r.code, 3);
       expect(runner.engineCalls, contains('state pull'));
       expect(r.err, contains('written by Terraform 1.9.8'));
     });
@@ -374,7 +353,7 @@ resource "google_storage_bucket" "states" {
 ''');
         final runner = FakeRunner(synth: (_) => runStackEntry());
         final r = await project.run(['plan'], runner);
-        expect(r.code, 64);
+        expect(r.code, 3);
         expect(r.err, contains('written by Terraform 1.9.8'));
         expect(runner.engineCalls, isNot(contains('state pull')));
       },
@@ -414,7 +393,7 @@ terraform {
           ),
         );
         final r = await project.run(['plan'], runner);
-        expect(r.code, 64);
+        expect(r.code, 3);
         expect(runner.engineCalls, contains('state pull'));
         expect(r.err, contains('written by Terraform 1.9.8'));
       },
@@ -461,7 +440,7 @@ terraform {
           ),
         );
         final r = await project.run(['plan'], runner);
-        expect(r.code, 64);
+        expect(r.code, 3);
         expect(runner.engineCalls, contains('state pull'));
         expect(r.err, contains('written by Terraform 1.9.8'));
       },
@@ -488,7 +467,7 @@ terraform {
         },
       );
       final r = await project.run(['plan'], runner);
-      expect(r.code, 64);
+      expect(r.code, 3);
       expect(r.err, contains('written by Terraform 1.9.8'));
       expect(runner.engineCalls, isNot(contains('state pull')));
     });

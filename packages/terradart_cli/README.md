@@ -26,6 +26,8 @@ To pin the version per project, `dart pub add --dev terradart_cli` and run it as
 
 It runs the `tofu`, else the `terraform`, on your `PATH`. With neither, it downloads the OpenTofu release it pins, checks the archive's SHA-256, and keeps the binary in your user cache — on Linux, macOS and Windows, amd64 and arm64. Before it runs one engine on a state the other wrote, it asks — or, without a terminal, stops and names the `--engine` flag that decides. A Stack that uses Appwrite runs on the `terraform` on your `PATH` instead: the `appwrite/appwrite` provider is published to the Terraform registry only, which OpenTofu cannot install from, so without Terraform (or with `--engine tofu`) the command stops before `init` and says so.
 
+In CI or an AI agent's shell it never asks: `apply` and `destroy` need `--auto-approve` (exit code 3 otherwise), a missing `--env` stops with the names, and every such error ends with the command to run next. `--no-input` does the same on a terminal.
+
 ## A new project
 
 `terradart init` asks, in a terminal, for the providers, the environment names, each environment's IDs (GCP project, AWS region and account, Cloudflare account, Appwrite endpoint and project) and whether a bucket for the state already exists, and prints the flags that give the same answers. Without a terminal it never asks and never chooses for you: `--provider`, `--env` and `--backend` (or `--state-bucket`) are required, and `--defaults` accepts `dev,prd` and local state. IDs left out become placeholders marked `TODO`:

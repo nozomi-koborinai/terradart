@@ -104,7 +104,8 @@ void main() {
         () => Request(config()).resolve(envs(names, null)),
         cliError(
           contains(
-            'pass --env <name> or set TERRADART_ENV, one of qa, sandbox, prd',
+            '--env is required: bin/infra.dart declares qa, sandbox, prd and '
+            'no defaultEnv.',
           ),
           code: 64,
         ),
@@ -147,7 +148,7 @@ void main() {
       expect(only.environmentSource, EnvSource.only);
       expect(
         [for (final s in EnvSource.values) s.confirms],
-        [false, true, true, false],
+        [false, true, true, false, false],
       );
     });
 
@@ -293,7 +294,10 @@ void main() {
       writeRoot('tf-out/envs/sandbox');
       expect(
         () => Request(config()).resolve(null),
-        cliError(allOf(contains('Pass --env'), contains('sandbox'))),
+        cliError(
+          allOf(contains('--env is required'), contains('sandbox')),
+          code: 64,
+        ),
       );
     });
 

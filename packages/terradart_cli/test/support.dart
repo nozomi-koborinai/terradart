@@ -250,24 +250,32 @@ final class TestProject {
   String engine(String name) =>
       p.join(binDir, Platform.isWindows ? '$name.exe' : name);
 
-  /// Runs the CLI against this project, with [env] added to [environment]
-  /// and [input] as the lines it reads.
+  /// Runs the CLI against this project, with [env] added to [environment].
+  ///
+  /// [input] makes it a terminal: the lines answer the CLI's questions,
+  /// which print to `out` as a terminal shows them. Without it there is no
+  /// terminal.
   Future<({int code, String out, String err})> run(
     List<String> args,
     FakeRunner runner, {
     Map<String, String> env = const {},
-    List<String> input = const [],
+    List<String>? input,
   }) async {
     final out = StringBuffer();
     final err = StringBuffer();
-    final lines = [...input];
+    final lines = [...?input];
     final code = await runTerradart(
       args,
       runner: runner,
       console: Console(
         out: out.writeln,
         err: err.writeln,
-        readLine: () => lines.isEmpty ? null : lines.removeAt(0),
+        ask: input == null
+            ? null
+            : (question) {
+                out.writeln(question);
+                return lines.isEmpty ? null : lines.removeAt(0);
+              },
       ),
       workingDirectory: root,
       environment: {...environment, ...env},

@@ -78,23 +78,13 @@ void main() {
   test('asks on a terminal, then runs init -migrate-state', () async {
     final project = TestProject.create();
     final runner = FakeRunner(synth: (_) => _withBackend(_gcs));
-    final r = await project.run(
-      ['state', 'migrate'],
-      runner,
-      input: const ['yes'],
-    );
-    if (!stdin.hasTerminal) {
-      expect(r.code, 64);
-      expect(r.err, contains('Pass --auto-approve'));
-      expect(runner.engineCalls, isEmpty);
-      return;
-    }
+    final r = await project.run(['state', 'migrate'], runner, input: ['y']);
     expect(r.code, 0, reason: r.err);
     expect(
       r.out,
       contains(
         'Copy the state in tf-out from local to gcs '
-        '(bucket=acme-tfstate, prefix=app)?',
+        '(bucket=acme-tfstate, prefix=app)? [y/N]',
       ),
     );
     expect(runner.calls.first.executable, 'dart');
@@ -111,16 +101,7 @@ void main() {
   test('a no stops before the engine runs', () async {
     final project = TestProject.create();
     final runner = FakeRunner(synth: (_) => _withBackend(_gcs));
-    final r = await project.run(
-      ['state', 'migrate'],
-      runner,
-      input: const ['no'],
-    );
-    if (!stdin.hasTerminal) {
-      expect(r.code, 64);
-      expect(runner.engineCalls, isEmpty);
-      return;
-    }
+    final r = await project.run(['state', 'migrate'], runner, input: ['n']);
     expect(r.code, 1);
     expect(r.err, contains('Stopped; the state did not move.'));
     expect(runner.engineCalls, isEmpty);
@@ -130,8 +111,9 @@ void main() {
     final project = TestProject.create();
     final runner = FakeRunner(synth: (_) => _withBackend(_gcs));
     final r = await project.run(['state', 'migrate'], runner);
-    expect(r.code, 64);
+    expect(r.code, 3);
     expect(r.err, contains('Pass --auto-approve'));
+    expect(r.err, contains('  Next: terradart state migrate --auto-approve'));
     expect(runner.engineCalls, isEmpty);
 
     final approved = await project.run([
@@ -166,16 +148,7 @@ void main() {
         }),
       );
     final runner = FakeRunner(synth: (_) => _withBackend(_gcs));
-    final r = await project.run(
-      ['state', 'migrate'],
-      runner,
-      input: const ['yes'],
-    );
-    if (!stdin.hasTerminal) {
-      expect(r.code, 64);
-      expect(runner.engineCalls, isEmpty);
-      return;
-    }
+    final r = await project.run(['state', 'migrate'], runner, input: ['y']);
     expect(r.code, 0, reason: r.err);
     expect(
       r.out,
@@ -204,15 +177,7 @@ void main() {
         }),
       );
     final runner = FakeRunner(synth: (_) => _withBackend(null));
-    final r = await project.run(
-      ['state', 'migrate'],
-      runner,
-      input: const ['yes'],
-    );
-    if (!stdin.hasTerminal) {
-      expect(r.code, 64);
-      return;
-    }
+    final r = await project.run(['state', 'migrate'], runner, input: ['y']);
     expect(r.code, 0, reason: r.err);
     expect(r.out, contains('from gcs (bucket=acme-old) to local'));
   });
@@ -289,14 +254,8 @@ void main() {
     final r = await project.run(
       ['state', 'migrate', '--env', 'prod'],
       runner,
-      input: const ['yes'],
+      input: ['y'],
     );
-    if (!stdin.hasTerminal) {
-      expect(r.code, 64);
-      expect(r.err, contains('Pass --auto-approve'));
-      expect(runner.engineCalls, isEmpty);
-      return;
-    }
     expect(r.code, 0, reason: r.err);
     expect(
       r.out,
