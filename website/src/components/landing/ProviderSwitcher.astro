@@ -1,6 +1,5 @@
 ---
 import CodeWindow from "./CodeWindow.astro";
-import ProviderIcon from "./ProviderIcon.astro";
 import { excerpt, type ExcerptSpec } from "../../lib/excerpt";
 import pubsub from "../../../../examples/pubsub_quickstart/lib/main.dart?raw";
 import lambda from "../../../../examples/aws_lambda_quickstart/lib/main.dart?raw";
@@ -130,7 +129,6 @@ const panels = tabs.map((tab) => ({
               aria-selected={i === 0 ? "true" : "false"}
               tabindex={i === 0 ? 0 : -1}
             >
-              <ProviderIcon id={p.id} />
               {p.name}
             </button>
           ))
@@ -179,6 +177,9 @@ const panels = tabs.map((tab) => ({
     };
     tabs.forEach((tab, i) => {
       tab.addEventListener("click", () => select(tab));
+      for (const link of document.querySelectorAll(`[data-provider-tab="${tab.id.replace(/^tab-/, "")}"]`)) {
+        link.addEventListener("click", () => select(tab));
+      }
       tab.addEventListener("keydown", (e) => {
         const step = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
         if (step) select(tabs[(i + step + tabs.length) % tabs.length], true);

@@ -1,7 +1,7 @@
-/** The providers TerraDart ships a package for. */
+/** The provider packages TerraDart ships, in switcher order. */
 export const providers = [
-  { id: "google", name: "Google Cloud", href: "/docs/providers/google/" },
-  { id: "aws", name: "AWS", href: "/docs/providers/aws/" },
-  { id: "cloudflare", name: "Cloudflare", href: "/docs/providers/cloudflare/" },
-  { id: "appwrite", name: "Appwrite", href: "/docs/providers/appwrite/" },
+  { id: "google", name: "Google Cloud", package: "terradart_google" },
+  { id: "aws", name: "AWS", package: "terradart_aws" },
+  { id: "cloudflare", name: "Cloudflare", package: "terradart_cloudflare" },
+  { id: "appwrite", name: "Appwrite", package: "terradart_appwrite" },
 ];

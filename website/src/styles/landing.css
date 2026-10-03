@@ -310,50 +310,59 @@ code {
   background: var(--td-terra);
 }
 
-/* ---------- Works with ---------- */
+/* ---------- Provider packages ---------- */
 
-.works-with {
+.packages {
   border-bottom: 1px solid var(--td-line);
 }
 
-.works-with-inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.5rem;
-  padding-top: 2.5rem;
-  padding-bottom: 2.75rem;
-}
-
-.works-with-label {
-  font-family: var(--td-font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--td-faint);
-}
-
-.works-with-logos {
+.packages-row {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
-  gap: 1.75rem 3.25rem;
+  gap: 0.75rem 2.25rem;
+  padding-top: 1.35rem;
+  padding-bottom: 1.4rem;
+  font-family: var(--td-font-mono);
+  font-size: 0.875rem;
 }
 
-.works-with-logo {
+.packages-row li {
   display: flex;
-  align-items: center;
-  gap: 0.6rem;
+  align-items: baseline;
+  gap: 0.35rem;
+}
+
+.packages-name {
   color: var(--td-mute);
-  font-size: 1.125rem;
-  font-weight: 500;
-  letter-spacing: -0.01em;
   transition: color 0.15s;
 }
 
-.works-with-logo:hover {
+.packages-name:hover,
+.packages-name:focus-visible {
   color: var(--td-text);
+}
+
+.packages-pub {
+  color: var(--td-faint);
+  font-size: 0.75rem;
+  transition: color 0.15s, opacity 0.15s;
+}
+
+.packages-pub:hover,
+.packages-pub:focus-visible {
+  color: var(--td-accent);
+}
+
+@media (hover: hover) {
+  .packages-pub {
+    opacity: 0;
+  }
+
+  .packages-row li:hover .packages-pub,
+  .packages-pub:focus-visible {
+    opacity: 1;
+  }
 }
 
 /* ---------- Sections ---------- */
@@ -710,9 +719,6 @@ html[data-theme="light"] .shiki span {
 
 .switcher-tabs button {
   flex: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
   margin-bottom: -1px;
   padding: 0.7rem 0.9rem 0.75rem;
   border: 0;
@@ -730,15 +736,8 @@ html[data-theme="light"] .shiki span {
   }
 
   .switcher-tabs button {
-    gap: 0.3rem;
-    padding: 0.65rem 0.4rem 0.7rem;
-    font-size: 0.78rem;
-    letter-spacing: -0.01em;
-  }
-
-  .switcher-tabs .provider-icon {
-    width: 14px;
-    height: 14px;
+    padding: 0.65rem 0.6rem 0.7rem;
+    font-size: 0.875rem;
   }
 }
 
