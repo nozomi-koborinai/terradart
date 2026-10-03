@@ -10,7 +10,7 @@
 #     --zoom-in 5.15 --zoom-out 11.15 --zoom-focus 490,740 \
 #     --deliver DELIVERY.mp4
 #   tool/promo_video.sh --in RAW.mp4 --out EDIT_JA.mp4 \
-#     --subtitles beats.ja.srt --subtitle-font 'Noto Sans CJK JP'
+#     --title-card 'v0.34.0' --subtitles beats.ja.srt
 #
 # Editorial judgment (what to record, what a clip may claim) lives in
 # .agents/skills/terradart-promo-video/SKILL.md. This script only owns the
@@ -43,6 +43,8 @@ WITH_CARD=1
 SUBTITLES=""
 SUBTITLE_FONT="Inter"
 SUBTITLE_SIZE="13"
+TITLE_CARD=""
+TITLE_SECONDS="1.6"
 
 die() {
   echo "promo_video.sh: $*" >&2
@@ -66,6 +68,8 @@ while [[ $# -gt 0 ]]; do
     --zoom-ramp) ZOOM_RAMP="${2:?--zoom-ramp needs seconds}"; shift 2 ;;
     --trim-outro) TRIM_OUTRO="${2:?--trim-outro needs seconds or auto or none}"; shift 2 ;;
     --no-endcard) WITH_CARD=0; shift ;;
+    --title-card) TITLE_CARD="${2:?--title-card needs the text under the lockup}"; shift 2 ;;
+    --title-seconds) TITLE_SECONDS="${2:?--title-seconds needs a number}"; shift 2 ;;
     --subtitles) SUBTITLES="${2:?--subtitles needs an .srt or .ass file}"; shift 2 ;;
     --subtitle-font) SUBTITLE_FONT="${2:?--subtitle-font needs a fontconfig family}"; shift 2 ;;
     --subtitle-size) SUBTITLE_SIZE="${2:?--subtitle-size needs a number}"; shift 2 ;;
@@ -169,8 +173,14 @@ fi
 # frame pushes in; cue times are body seconds (the source minus the outro).
 if [[ -n "$SUBTITLES" ]]; then
   [[ -f "$SUBTITLES" ]] || die "no such subtitles file: $SUBTITLES"
-  command -v fc-list >/dev/null 2>&1 && ! fc-list "$SUBTITLE_FONT" family | grep -q . &&
-    die "font family '$SUBTITLE_FONT' is not installed (fc-list); Japanese needs e.g. fonts-noto-cjk"
+  if command -v fc-list >/dev/null 2>&1; then
+    fc-list "$SUBTITLE_FONT" family | grep -q . || die "font family '$SUBTITLE_FONT' is not installed (fc-list)"
+    # libass falls back per glyph, so Inter keeps the Latin text on brand and a
+    # CJK family draws the kana; without one it draws empty boxes.
+    if grep -qP '[\x{3040}-\x{30FF}\x{4E00}-\x{9FFF}]' "$SUBTITLES" && ! fc-list ':lang=ja' family | grep -q .; then
+      die "$SUBTITLES has Japanese text but no Japanese font is installed (e.g. fonts-noto-cjk)"
+    fi
+  fi
   # libass parses the filter argument itself, so hand it a path with no ':' or quotes.
   SUB_FILE="$WORK/subtitles.${SUBTITLES##*.}"
   cp "$SUBTITLES" "$SUB_FILE"
@@ -184,54 +194,70 @@ else
   SUBTITLE_CHAIN="null"
 fi
 
-if [[ "$WITH_CARD" == 1 ]]; then
+# One renderer for both cards: the lockup on the --paper-dark ground, with an
+# optional line of --paper text under it.
+render_card() {
+  local text="$1" out="$2" filter
+  local logo_w=$((SRC_W * 46 / 100))
   [[ -f "$LOGO" ]] || die "no logo at $LOGO"
-  if [[ -n "$TAGLINE" ]]; then
-    [[ -f "$FONT" ]] || die "no font at $FONT (pass --font, or --tagline '' to drop the text)"
-  fi
-
-  CARD="$WORK/endcard.png"
-  CARD_LOGO_W=$((SRC_W * 46 / 100))
-  CARD_FILTER="[1:v]scale=${CARD_LOGO_W}:-1:flags=lanczos[logo];[0:v][logo]overlay=(W-w)/2:(H-h)/2-36:format=auto[bg]"
-  if [[ -n "$TAGLINE" ]]; then
-    CARD_FILTER="${CARD_FILTER};[bg]drawtext=fontfile=${FONT}:text='${TAGLINE}':fontsize=34:fontcolor=${CARD_FG}:x=(w-text_w)/2:y=(h/2)+148"
+  filter="[1:v]scale=${logo_w}:-1:flags=lanczos[logo];[0:v][logo]overlay=(W-w)/2:(H-h)/2-36:format=auto[bg]"
+  if [[ -n "$text" ]]; then
+    [[ -f "$FONT" ]] || die "no font at $FONT (pass --font, or an empty card text)"
+    filter="${filter};[bg]drawtext=fontfile=${FONT}:text='${text}':fontsize=34:fontcolor=${CARD_FG}:x=(w-text_w)/2:y=(h/2)+148"
   else
-    CARD_FILTER="${CARD_FILTER};[bg]null"
+    filter="${filter};[bg]null"
   fi
-
   ffmpeg -v error -y \
     -f lavfi -i "color=c=${CARD_BG}:s=${SRC_W}x${SRC_H}:d=1:r=1" \
     -i "$LOGO" \
-    -filter_complex "$CARD_FILTER" \
-    -frames:v 1 -update 1 "$CARD"
+    -filter_complex "$filter" \
+    -frames:v 1 -update 1 "$out"
+}
 
-  cat >"$WORK/edit.filter" <<FILTER
-[0:v]trim=start=0:end=${BODY_END},setpts=PTS-STARTPTS,${ZOOM_CHAIN},${SUBTITLE_CHAIN},fade=t=out:st=$(awk -v e="$BODY_END" 'BEGIN { printf "%.3f", e - 0.38 }'):d=0.38,format=yuv420p[body];
-[1:v]fps=${SRC_FPS},fade=t=in:st=0:d=0.45,format=yuv420p[card];
-[body][card]concat=n=2:v=1:a=0[v]
+INPUTS=(-i "$IN")
+BODY_FADES=""
+CHAIN_HEAD=""
+CONCAT_IN="[body]"
+N_SEGMENTS=1
+NEXT_INPUT=1
+
+if [[ -n "$TITLE_CARD" ]]; then
+  render_card "$TITLE_CARD" "$WORK/titlecard.png"
+  INPUTS+=(-loop 1 -t "$TITLE_SECONDS" -r "$SRC_FPS" -i "$WORK/titlecard.png")
+  CHAIN_HEAD="[${NEXT_INPUT}:v]fps=${SRC_FPS},fade=t=out:st=$(awk -v d="$TITLE_SECONDS" 'BEGIN { printf "%.3f", d - 0.38 }'):d=0.38,format=yuv420p[title];"
+  CONCAT_IN="[title]${CONCAT_IN}"
+  BODY_FADES="${BODY_FADES},fade=t=in:st=0:d=0.45"
+  N_SEGMENTS=$((N_SEGMENTS + 1))
+  NEXT_INPUT=$((NEXT_INPUT + 1))
+  echo ">> title card: TerraDart lockup + \"$TITLE_CARD\", ${TITLE_SECONDS}s"
+fi
+
+if [[ "$WITH_CARD" == 1 ]]; then
+  render_card "$TAGLINE" "$WORK/endcard.png"
+  INPUTS+=(-loop 1 -t "$CARD_SECONDS" -r "$SRC_FPS" -i "$WORK/endcard.png")
+  CHAIN_TAIL="[${NEXT_INPUT}:v]fps=${SRC_FPS},fade=t=in:st=0:d=0.45,format=yuv420p[card];"
+  CONCAT_IN="${CONCAT_IN}[card]"
+  BODY_FADES="${BODY_FADES},fade=t=out:st=$(awk -v e="$BODY_END" 'BEGIN { printf "%.3f", e - 0.38 }'):d=0.38"
+  N_SEGMENTS=$((N_SEGMENTS + 1))
+else
+  CHAIN_TAIL=""
+fi
+
+cat >"$WORK/edit.filter" <<FILTER
+${CHAIN_HEAD}[0:v]trim=start=0:end=${BODY_END},setpts=PTS-STARTPTS,${ZOOM_CHAIN},${SUBTITLE_CHAIN}${BODY_FADES},format=yuv420p[body];
+${CHAIN_TAIL}${CONCAT_IN}concat=n=${N_SEGMENTS}:v=1:a=0[v]
 FILTER
 
-  ffmpeg -v error -y \
-    -i "$IN" \
-    -loop 1 -t "$CARD_SECONDS" -r "$SRC_FPS" -i "$CARD" \
-    -filter_complex_script "$WORK/edit.filter" \
-    -map '[v]' -an \
-    -c:v libx264 -preset medium -crf 18 -pix_fmt yuv420p \
-    -movflags +faststart -map_metadata -1 \
-    "$OUT"
+ffmpeg -v error -y \
+  "${INPUTS[@]}" \
+  -filter_complex_script "$WORK/edit.filter" \
+  -map '[v]' -an \
+  -c:v libx264 -preset medium -crf 18 -pix_fmt yuv420p \
+  -movflags +faststart -map_metadata -1 \
+  "$OUT"
+if [[ "$WITH_CARD" == 1 ]]; then
   echo ">> end card: TerraDart lockup${TAGLINE:+ + \"$TAGLINE\"}, ${CARD_SECONDS}s"
 else
-  cat >"$WORK/edit.filter" <<FILTER
-[0:v]trim=start=0:end=${BODY_END},setpts=PTS-STARTPTS,${ZOOM_CHAIN},${SUBTITLE_CHAIN},format=yuv420p[v]
-FILTER
-
-  ffmpeg -v error -y \
-    -i "$IN" \
-    -filter_complex_script "$WORK/edit.filter" \
-    -map '[v]' -an \
-    -c:v libx264 -preset medium -crf 18 -pix_fmt yuv420p \
-    -movflags +faststart -map_metadata -1 \
-    "$OUT"
   echo ">> no end card"
 fi
 

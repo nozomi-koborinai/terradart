@@ -71,8 +71,9 @@ Terminal setup that reads well at tweet size:
 | Setting | Value | Why |
 |---|---|---|
 | Window | **not** fullscreen, ~60% of screen | wallpaper frames the terminal; fullscreen reads as a screenshot |
-| Font | monospace ~17pt | smaller is unreadable inline on a timeline; much larger fits too few columns |
-| Background | `#1e1e1e` | sits with the dark end card |
+| Font | JetBrains Mono ~17pt | the landing page's `--td-font-mono`; smaller is unreadable inline on a timeline, much larger fits too few columns |
+| Background | `#11141b` on a `#0b0d12` desktop | the landing's code window (`--td-surface`) on its page ground (`--td-bg`), the same ground as the cards |
+| Colours | text `#f6f3ec`, cursor and prompt `#4dd0fe`, ANSI hues mapped into the corridor | `website/src/styles/tokens.css`; a stock palette puts green and magenta on screen, which [`BRAND.md`](../../../branding/BRAND.md) rules out |
 | Title | the command + version (`terradart-migrate 0.28.1`) | on screen for the whole clip, no beat spent on it |
 | Prompt | short, no host or long path | a long prompt pushes the command off the zoom |
 
@@ -94,7 +95,8 @@ The script drops the Cursor outro (reading `cursor_brand_tag_duration_ms` off th
 - `--zoom-factor` defaults to `1.70`. Past roughly `2.0` a 1920-wide capture starts clipping the end of a long command — check the peak frame rather than trusting the number.
 - `--no-endcard` and `--trim-outro none` exist for clips going somewhere that brands them already.
 - Pass `--tagline ''` for the lockup with no strapline.
-- `--subtitles beats.srt` burns captions in for muted phone viewing — most feed views start silent. Cue times are body seconds (the source minus the outro), read off the dumped frames like the zoom. One `.srt` per language, one cut per language: Japanese needs `--subtitle-font 'Noto Sans CJK JP'` (`fonts-noto-cjk`), and the script stops when the family is not installed rather than letting libass draw boxes. A caption is part of the copy: it may only say what the frame shows.
+- `--title-card 'v0.N.P'` opens on the same lockup with that line under it — the release, before the first beat.
+- `--subtitles beats.srt` burns captions in for muted phone viewing — most feed views start silent. Cue times are body seconds (the source minus the outro), read off the dumped frames like the zoom. One `.srt` and one cut per language. Keep the default `--subtitle-font Inter` for Japanese too: libass falls back per glyph, so the Latin stays in the brand face and a CJK family (`fonts-noto-cjk`) draws the kana; the script stops when the subtitles hold Japanese and no Japanese font is installed, rather than letting libass draw boxes. The caption box is `--paper` text on the `--paper-dark` ground. A caption is part of the copy: it may only say what the frame shows.
 
 ## Delivery
 
