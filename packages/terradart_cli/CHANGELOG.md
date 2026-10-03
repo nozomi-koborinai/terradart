@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.34.0 - 2026-10-03
 
 - `terradart validate [--env <name>]` synthesizes, then runs `init -backend=false` and `validate` in the directory the entry point wrote, with the same engine as `plan` (managed OpenTofu when neither `tofu` nor `terraform` is on `PATH`). It needs no credentials, backend or state, so a CI job can check every environment; arguments after `--` go to `validate`.
 - Without `--env`, `validate`, `plan`, `apply`, `destroy` and `outputs` take the `TERRADART_ENV` environment variable, else the `defaultEnv` of `runEnvironments`, else the only environment, and print which one and why (`env: dev (TERRADART_ENV)`, `env: dev (default)`). An entry point that calls `runStack` ignores `TERRADART_ENV`. `apply` and `destroy` ask before running against an environment `TERRADART_ENV` or `defaultEnv` chose, and stop without an answer; `--auto-approve` skips the question.

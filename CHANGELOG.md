@@ -4,6 +4,47 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, and `terradart_migrate` — this top-level file summarises cross-cutting milestones.
 
+## [0.34.0] - 2026-10-03
+
+Lockstep release across the eleven packages. The `terradart` command now covers a project end to end:
+- `terradart init` scaffolds a project that plans as written;
+- `terradart validate` checks every environment with no credentials;
+- `terradart state migrate` moves state when the backend changes;
+- every engine command picks its environment from `TERRADART_ENV` or the entry point's `defaultEnv`.
+
+The managed OpenTofu stays the default engine. Two guards keep a state on the engine it came from: the command stops before running one engine on a state the other wrote, and Appwrite Stacks run on Terraform. A new example, [`examples/flutter_client_quickstart`](examples/flutter_client_quickstart/), runs a Flutter app on typed outputs. Every example and cookbook entry point calls `runStack` or `runEnvironments`, and terradart.dev is redesigned with the command as the path everywhere.
+
+**No breaking changes** to the Dart API or to synth output. No provider pin moves, and the `terradart_google` catalog is unchanged at **1366 curated resource factories + 468 data sources** (1834 entries).
+
+### Added
+
+- **`terradart init [dir]`** (`terradart_cli`) — writes a project into `infra/` by default and runs `dart pub get`. The project holds:
+  - `pubspec.yaml` (`terradart_core` and the provider packages at the command's version);
+  - `lib/env.dart` (an `Env` enum);
+  - `lib/stack.dart` (provider, backend, one resource, one output);
+  - `bin/infra.dart` (`runEnvironments`);
+  - `.gitignore`, `README.md` and `AGENTS.md`.
+
+  It picks Google, AWS, Cloudflare or Appwrite, the environments, their project, region or account, and the state backend (local, or GCS, S3 or Cloudflare R2 to follow the provider). In a terminal each choice is a question, and the run ends with the equivalent command. Without one, every choice is a flag (`--defaults` accepts `dev,prd` and local state). Inside a Flutter app it points the generated outputs reader at the app's `lib/generated/` and declares `addDartDefineOutput()`. A directory that already holds Terraform is pointed at `terradart migrate`.
+- **`terradart validate [--env <name>]`** (`terradart_cli`) — synthesizes, then runs `init -backend=false` and `validate` with the same engine as `plan`. It needs no credentials, backend or state, so a CI job can check every environment.
+- **`terradart state migrate [--env <name>]`** (`terradart_cli`) — after a Stack's backend changes, moves its state to the new backend with the engine's `init -migrate-state`. It names the full source and target configuration and asks first; `--auto-approve` skips the question.
+- **A default environment** (`terradart_core`, `terradart_cli`) — `runEnvironments` takes `defaultEnv`. Without `--env`, `validate`, `plan`, `apply`, `destroy` and `outputs` take `TERRADART_ENV`, else `defaultEnv`, else the only environment, and print which one and why (`env: dev (default)`). `apply` and `destroy` ask before running against an environment chosen that way.
+- **Flutter client quickstart** — [`examples/flutter_client_quickstart`](examples/flutter_client_quickstart/): an `Env` enum, `terradart apply --env`, and a Flutter app that reads its backend through `FlutterClientStackOutputs.fromDartDefine()`.
+
+### Changed
+
+- **The engine guard** (`terradart_cli`) — `plan`, `apply` and `destroy` no longer run one engine on a state the other wrote without asking. With no record in `.terradart/engines.json`, they read the state and tell the engine that wrote it from its provider addresses. An engine the command picked by itself then needs a yes on a terminal, and without one it stops with the `--engine` flag that decides.
+- **Appwrite runs on Terraform** (`terradart_cli`) — `appwrite/appwrite` is published to the Terraform registry only, so a Stack that names it resolves to the `terraform` on `PATH`. The engine commands stop before `init`, with a message naming `--engine terraform`, when there is none or OpenTofu is asked for. `terradart init --provider appwrite` writes `terradart: engine: terraform`.
+- **Migrated packages keep their engine** (`terradart_migrate`) — the `pubspec.yaml` that `terradart migrate` writes carries `terradart: engine: terraform` (`tofu` for a tree run with OpenTofu). It prints `terradart synth` and `terradart plan` as the next step.
+- **`runStack` everywhere** — every example and cookbook entry point calls `runStack` or `runEnvironments`, and every README runs it with the `terradart` command.
+- **CI** validates every example with the managed OpenTofu that `terradart` gives users.
+
+### Docs
+
+- terradart.dev is redesigned: a dark landing page, an `og:image` on every page, and a sidebar regrouped around the command.
+- New and rebuilt guides: [Environments](https://terradart.dev/docs/environments/), [How TerraDart works](https://terradart.dev/docs/how-it-works/), and the [terradart command](https://terradart.dev/docs/cli/) reference. Every [provider page](https://terradart.dev/docs/providers/google/) now has Install, Credentials, scenarios, Examples and Reference sections.
+- The quickstarts, provider pages, cookbook and the TerraDart Agent Skill run the `terradart` command, with your own engine as the alternative. Every copy-paste pin is a valid `^0.N.0` constraint.
+
 ## [0.33.0] - 2026-10-02
 
 Lockstep release across the workspace, which grows to eleven packages with **`terradart_cli`**, the `terradart` command. `terradart synth | plan | apply | destroy | outputs` replaces `dart run bin/infra.dart`, `cd tf-out` and the hand-run `terraform init` / `apply` / `output`: it runs the `tofu` or `terraform` on `PATH`, else a pinned OpenTofu release it downloads and checks itself. Environments are declared in Dart — an enum of the project's own passed to `runEnvironments` — and `terradart apply --env <name>` runs one, writing its own `--dart-define-from-file` JSON (`.terradart/dart_defines.<name>.json`) for the client app. The HCL migrator is now `terradart migrate`; the `terradart-migrate` executable still runs and is **deprecated**. **No breaking changes** to the Dart API of the provider packages or to synth output; the one break is for maintainers, whose `terradart_codegen` executable is now `terradart-codegen` ([MIGRATING.md](MIGRATING.md#032x--0330)). No provider pin moves, and the `terradart_google` catalog is unchanged at **1366 curated resource factories + 468 data sources** (1834 entries).

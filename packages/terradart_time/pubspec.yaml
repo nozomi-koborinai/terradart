@@ -1,6 +1,6 @@
 name: terradart_time
 description: TimeProvider and TimeSleep for the hashicorp/time Terraform provider — propagation waits for Dart-first Terraform stacks on any cloud.
-version: 0.33.0
+version: 0.34.0
 homepage: https://github.com/nozomi-koborinai/terradart
 repository: https://github.com/nozomi-koborinai/terradart
 issue_tracker: https://github.com/nozomi-koborinai/terradart/issues
@@ -16,7 +16,7 @@ environment:
 resolution: workspace
 
 dependencies:
-  terradart_core: ^0.33.0
+  terradart_core: ^0.34.0
   meta: ^1.15.0
 
 dev_dependencies:
