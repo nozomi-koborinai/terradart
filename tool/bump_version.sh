@@ -35,6 +35,8 @@
 #   - packages/terradart_aws/README.md            (pubspec sample carets)
 #   - packages/terradart_time/README.md           (pubspec sample carets)
 #   - packages/terradart_codegen/README.md        (`dart pub global activate` caret)
+#   - packages/terradart_codegen/example/main.dart (`dart pub global activate` caret)
+#   (doc pins are the minor-line caret ^X.Y.0: minor bumps move them, patch bumps do not)
 #   - website/src/content/docs/docs/getting-started.mdx  (pubspec sample caret note + version line)
 #   - website/src/content/docs/docs/providers/*.md                (pubspec sample carets)
 #   - .github/ISSUE_TEMPLATE/bug.yml              (alpha banner version)
