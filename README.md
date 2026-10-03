@@ -291,7 +291,7 @@ cd infra_dart && dart pub get && terradart plan
 npx skills add nozomi-koborinai/terradart --skill terradart
 ```
 
-Docs: [terradart.dev/docs/agents/](https://terradart.dev/docs/agents/).
+Docs: [Let an AI agent do it](https://terradart.dev/docs/start/ai-agent/).
 
 ---
 

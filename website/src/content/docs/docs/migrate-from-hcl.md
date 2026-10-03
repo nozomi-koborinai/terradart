@@ -142,7 +142,7 @@ A block's own leading comments come across with it: the `#`, `//` or `/* */` lin
 
 ## Finishing the migration
 
-The migrator does the mechanical part once; what it kept is yours to port, by hand or with a coding agent (the [agent skill](/docs/agents/) describes the same loop):
+The migrator does the mechanical part once; what it kept is yours to port, by hand or with a coding agent (the [agent skill](/docs/start/ai-agent/) describes the same loop):
 
 1. Pick a block from `MIGRATION.md` whose reason you can resolve — an argument the migrator had no typed slot for, a `depends_on` on a block you have since ported, a literal `locals` entry that could be a Dart `final`.
 2. Write it in the Stack with the same `localName`, so its address does not change, and delete it from the sidecar — and the `addExternalBlock('<address>')` line the migrator wrote for it when the Stack reads it (synth accepts a reference to a block it does not hold only once it is declared external). A local leaves `locals.tf` only once nothing still in the sidecar reads it.

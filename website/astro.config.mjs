@@ -41,7 +41,14 @@ export default defineConfig({
       sidebar: [
         {
           label: "Start",
-          items: ["docs/getting-started", "docs/why-terradart"],
+          items: [
+            "docs/getting-started",
+            "docs/start/flutter-app",
+            "docs/start/new-project",
+            "docs/start/migrate-terraform",
+            "docs/start/ai-agent",
+            "docs/why-terradart",
+          ],
         },
         {
           label: "Guides",
@@ -50,7 +57,6 @@ export default defineConfig({
             "docs/environments",
             "docs/client-outputs",
             "docs/migrate-from-hcl",
-            "docs/agents",
           ],
         },
         {
@@ -93,7 +99,13 @@ export default defineConfig({
           items: ["docs/upgrading", "docs/status"],
         },
       ],
-      plugins: [starlightLlmsTxt()],
+      plugins: [
+        starlightLlmsTxt({
+          promote: ["index*", "docs", "docs/getting-started", "docs/start/**", "docs/cli"],
+          demote: ["docs/coverage/**"],
+          exclude: ["docs/coverage/**"],
+        }),
+      ],
       components: {
         SiteTitle: "./src/components/StarlightSiteTitle.astro",
       },
@@ -137,10 +149,11 @@ export default defineConfig({
     "/docs/aws/": "/docs/providers/aws/",
     "/docs/migrating/": "/docs/upgrading/",
     "/docs/architecture/": "/docs/how-it-works/",
-    "/docs/agent/": "/docs/agents/",
-    "/docs/agent/install/": "/docs/agents/",
-    "/docs/agent/clients/": "/docs/agents/",
-    "/docs/agent/tools-reference/": "/docs/agents/",
-    "/docs/agent/recipes/": "/docs/agents/",
+    "/docs/agents/": "/docs/start/ai-agent/",
+    "/docs/agent/": "/docs/start/ai-agent/",
+    "/docs/agent/install/": "/docs/start/ai-agent/",
+    "/docs/agent/clients/": "/docs/start/ai-agent/",
+    "/docs/agent/tools-reference/": "/docs/start/ai-agent/",
+    "/docs/agent/recipes/": "/docs/start/ai-agent/",
   },
 });

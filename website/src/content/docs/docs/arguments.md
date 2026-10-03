@@ -71,7 +71,7 @@ add(
 ```
 <!-- argument-rules:end -->
 
-The same table is in the [README](https://github.com/nozomi-koborinai/terradart#writing-arguments), on the dartdoc pages of `TfArg`, `RefTo` and every provider package, and in the [agent skill](/docs/agents/). The sections below say more about each row.
+The same table is in the [README](https://github.com/nozomi-koborinai/terradart#writing-arguments), on the dartdoc pages of `TfArg`, `RefTo` and every provider package, and in the [agent skill](/docs/start/ai-agent/). The sections below say more about each row.
 
 ## Literals
 
