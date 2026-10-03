@@ -104,6 +104,26 @@ void main() {
     expect(r.out, contains('google_pubsub_topic'));
   });
 
+  test('a global --json before migrate is the report too', () async {
+    final scratch = Directory.systemTemp.createTempSync('terradart_report_');
+    addTearDown(() => scratch.deleteSync(recursive: true));
+    File(p.join(scratch.path, 'main.tf')).writeAsStringSync(
+      'resource "google_pubsub_topic" "t" { name = "orders" }\n',
+    );
+    final project = TestProject.create();
+    final r = await project.run([
+      '--json',
+      'migrate',
+      '--report',
+      '--dir',
+      scratch.path,
+    ], FakeRunner());
+    expect(r.code, 0, reason: r.err);
+    final report = jsonDecode(r.out) as Map<String, Object?>;
+    expect(report, isNot(contains('schemaVersion')));
+    expect(r.out, contains('google_pubsub_topic'));
+  });
+
   test('migrate --merge-envs is the same command as the library', () async {
     final scratch = Directory.systemTemp.createTempSync('terradart_merge_');
     addTearDown(() => scratch.deleteSync(recursive: true));

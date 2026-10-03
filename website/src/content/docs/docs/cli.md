@@ -133,7 +133,7 @@ The engine gets `-input=false` whenever nobody can answer. `--quiet` (`-q`) leav
 
 ## JSON and exit codes
 
-`--json` prints one JSON object on stdout when the command ends — and nothing else there: progress, the entry point's and the engine's output go to stderr. It implies `--no-input`, and it goes before or after the command (`terradart --json plan`, `terradart plan --json`). `terradart migrate --report --json` is the exception: its `--json` is the migration report itself.
+`--json` prints one JSON object on stdout when the command ends — and nothing else there: progress, `--help`, the entry point's and the engine's output go to stderr. It implies `--no-input`, and it goes before or after the command (`terradart --json plan`, `terradart plan --json`). `terradart migrate` is the exception: its `--json`, before or after `migrate`, is the migrator's own report (`terradart migrate --report --json`).
 
 ```bash
 terradart plan --env dev --json --detailed-exitcode

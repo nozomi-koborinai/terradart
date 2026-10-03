@@ -89,9 +89,11 @@ Future<int> runTerradart(
           'Print one JSON result on stdout (schemaVersion 1) and everything '
           'else on stderr; implies --no-input.',
     );
-  // Set before parsing, so a usage error is a result too. `terradart
-  // migrate --report --json` is the migrator's own JSON report.
   final path = _commandPath(arguments, cli);
+  // `--json` on `migrate` is the migrator's own report, wherever it is
+  // written: a global one moves onto the command.
+  if (path == 'migrate') arguments = _jsonOntoMigrate(arguments);
+  // Set before parsing, so a usage error is a result too.
   if (path != 'migrate' &&
       arguments.takeWhile((a) => a != '--').contains('--json')) {
     io.result = JsonResult(path);
@@ -117,7 +119,17 @@ Future<int> runTerradart(
               noInputFlag: results.flag('no-input'),
             )
       ..quiet = results.flag('quiet');
-    return finish(await cli.runCommand(results) ?? 0);
+    // `--help` prints usage with `print`; with `--json` stdout carries the
+    // result alone.
+    final code = json
+        ? await runZoned(
+            () => cli.runCommand(results),
+            zoneSpecification: ZoneSpecification(
+              print: (_, _, _, line) => io.err(line),
+            ),
+          )
+        : await cli.runCommand(results);
+    return finish(code ?? 0);
   } on UsageException catch (e) {
     io.err('$e');
     final code = ExitCode.usage.code;
@@ -145,6 +157,19 @@ Future<int> runTerradart(
       ..printResult(result.encode(error.exitCode, error: error));
     return error.exitCode;
   }
+}
+
+/// [arguments] with a `--json` written before `migrate` moved after it.
+List<String> _jsonOntoMigrate(List<String> arguments) {
+  final at = arguments.indexOf('migrate');
+  final before = arguments.sublist(0, at);
+  if (!before.contains('--json')) return arguments;
+  return [
+    ...before.where((a) => a != '--json'),
+    'migrate',
+    '--json',
+    ...arguments.sublist(at + 1),
+  ];
 }
 
 /// The command path the arguments name (`plan`, `state migrate`), for the

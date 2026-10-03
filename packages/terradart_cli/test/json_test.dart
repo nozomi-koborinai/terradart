@@ -273,6 +273,19 @@ void main() {
     expect(r.err, contains(project.engine('tofu')));
   });
 
+  test('--help with --json prints the usage on stderr', () async {
+    final project = TestProject.create();
+    for (final args in [
+      ['plan', '--help', '--json'],
+      ['--json', 'help', 'plan'],
+    ]) {
+      final r = await project.run(args, envRunner());
+      expect(r.code, 0, reason: r.err);
+      expect(result(r)['ok'], isTrue);
+      expect(r.err, contains('Usage: terradart plan'));
+    }
+  });
+
   test('state migrate is one command path', () async {
     final project = TestProject.create();
     final r = await project.run([
