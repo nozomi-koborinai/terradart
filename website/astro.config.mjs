@@ -16,12 +16,6 @@ const mermaidInit = readFileSync(
 // https://astro.build/config
 export default defineConfig({
   site: "https://terradart.dev",
-  vite: {
-    build: {
-      // Vendor marks ship as the files the vendor published, never re-encoded inline.
-      assetsInlineLimit: (file) => (file.includes("/src/assets/providers/") ? false : undefined),
-    },
-  },
   integrations: [
     starlight({
       title: "TerraDart",
