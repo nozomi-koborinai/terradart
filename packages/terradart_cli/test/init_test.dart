@@ -469,6 +469,19 @@ void main() {
       expect(r.out, isNot(contains('--backend local')));
     });
 
+    test('a repeated provider still settles the backend', () async {
+      final r = await init([
+        '-p',
+        'google,google',
+        '--defaults',
+        '--state-bucket',
+        'tf',
+      ]);
+      expect(r.code, 0, reason: r.err);
+      expect(read('infra/lib/stack.dart'), contains('GcsBackend('));
+      expect(r.err, isNot(contains('gcs or gcs')));
+    });
+
     test('needs --backend when the providers do not settle it', () async {
       for (final providers in ['google,aws', 'appwrite']) {
         final r = await init([

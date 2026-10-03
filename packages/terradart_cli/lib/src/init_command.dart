@@ -738,7 +738,7 @@ const _anyBucket = [InitBackend.gcs, InitBackend.s3];
 
 /// The buckets the providers point at: google's is GCS, and so on.
 List<InitBackend> _bucketKinds(List<InitProvider> providers) => [
-  for (final p in providers)
+  for (final p in providers.toSet())
     ?switch (p) {
       InitProvider.google => InitBackend.gcs,
       InitProvider.aws => InitBackend.s3,
