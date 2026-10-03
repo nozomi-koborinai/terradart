@@ -1,6 +1,6 @@
 # Migrating terradart
 
-## Unreleased — next minor (`0.34.x` → `0.35.0`)
+## 0.34.x → 0.35.0
 
 ### `terradart` asks only on a terminal, and stops with exit code 3 when it cannot
 

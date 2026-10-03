@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.35.0 - 2026-10-03
+
+- No API changes. Lockstep release with the `terradart` command's `--json` output, fixed exit codes, `--no-input`, `--dry-run`, `terradart help <topic>` and bundled agent skill; no provider pin moves.
+
 ## 0.34.0 - 2026-10-03
 
 - No API changes. Lockstep release with the `terradart` command's `init`, `validate` and `state migrate`; no provider pin moves.

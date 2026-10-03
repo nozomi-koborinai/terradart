@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.35.0 - 2026-10-03
+
+- No API changes. Lockstep release with the `terradart` command's `--json` output, fixed exit codes, `--no-input`, `--dry-run`, `terradart help <topic>` and bundled agent skill.
+
 ## 0.34.0 - 2026-10-03
 
 - `migrateTree` writes a `terradart:` section with `engine: terraform` into the generated `pubspec.yaml` — `engine: tofu` when a module directory holds a `.tofu` file or a `.terraform.lock.hcl` naming `registry.opentofu.org` — so the `terradart` command keeps the existing state on the engine that wrote it (`sourceEngine`, `renderPubspec(engine:)`).

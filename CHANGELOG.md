@@ -4,6 +4,36 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, and `terradart_migrate` — this top-level file summarises cross-cutting milestones.
 
+## [0.35.0] - 2026-10-03
+
+Lockstep release across the eleven packages. The `terradart` command is now safe to run where nobody can answer it — CI, scripts and AI agents:
+- it asks only on a terminal, and `--no-input` (or `CI`, or an agent's shell) makes every missing answer an error that names the flag;
+- `--json` prints one result object on stdout, and the exit codes are a fixed table;
+- `--dry-run` on `apply`, `destroy` and `outputs` stops before anything changes;
+- every `--help` ends with examples, and `terradart help <topic>` prints a short guide;
+- the package bundles the TerraDart Agent Skill of its release, which `terradart skill install` writes into a project.
+
+**Breaking** for scripts and CI jobs that call the `terradart` command: `apply` and `destroy` without a terminal need `--auto-approve`, and exit codes change ([MIGRATING.md](MIGRATING.md#034x--0350)). **No breaking changes** to the Dart API or to synth output. No provider pin moves, and the `terradart_google` catalog is unchanged at **1366 curated resource factories + 468 data sources** (1834 entries).
+
+### Added
+
+- **`--json`** (`terradart_cli`) — every command prints one object on stdout: `schemaVersion`, `command`, `ok`, `exitCode`, `env` and `engine` with why each is the one, `outDir`, the plan's `add` / `change` / `destroy` / `replace`, `defineFile` and `keys` (never the values), `notices`, `error` (`code`, `message`, `flag`, `choices`, `engineExitCode`) and `next`. Progress and the engine's output go to stderr, and `--json` implies `--no-input`.
+- **`--no-input`, `--quiet`** (`terradart_cli`) — `--no-input` (or `TERRADART_NO_INPUT=1`) turns every question into an error that prints the message, `Choices:` and `Next:`, the failed command with the flag added. `--quiet` (`-q`) leaves out the values the command picked by itself.
+- **`--dry-run`** (`terradart_cli`) — on `apply` and `destroy` it runs synth, `init` and `plan` (`plan -destroy`) and stops; on `outputs` it prints the define file and its keys without writing it.
+- **`plan --detailed-exitcode`** (`terradart_cli`) — exits 2 when the plan has changes.
+- **Command examples and help topics** (`terradart_cli`) — every `--help` ends with `Examples:` and `See also:`. `terradart help <topic>` prints `environments`, `outputs`, `backends`, `engines`, `migrate`, `exit-codes`, `json` or `agents`, and `terradart help --list` lists them.
+- **The bundled agent skill** (`terradart_cli`) — `terradart skill install` writes the skill of the CLI's release into `.agents/skills/` and `.claude/skills/` (`--agents` picks `agents`, `claude`, `cursor`, `windsurf`, `copilot` or `all`). `terradart skill update` refreshes it, and `terradart skill status --check` fails CI on a stale copy. `terradart init --agent-skill` writes it into a new project. Each copy records its version and hash, and so does `npx skills add nozomi-koborinai/terradart#v0.35.0 --skill terradart`. The engine commands print one line when the project's skill is older than the CLI.
+
+### Changed
+
+- **Questions only on a terminal** (`terradart_cli`) — the command asks only when stdin and stdout are both a terminal, and never under `--no-input`, `CI` or an AI agent's shell. Without an answer, `apply` and `destroy` need `--auto-approve` and stop before `init` with exit code 3, and the engine gets `-input=false`. On a terminal, a missing `--env` is a question listing the environments.
+- **Fixed exit codes** (`terradart_cli`) — 1 internal, 2 changes found, 3 an answer is needed, 10 the entry point failed, 11 no engine, 12 the engine failed (it used to pass the engine's own code through), 64 usage or a missing flag, 65 a wrong `terradart:` section or unknown `--env`, 66 no `pubspec.yaml`.
+
+### Docs
+
+- Four journey guides on terradart.dev: [Start from an existing Flutter app](https://terradart.dev/docs/start/flutter-app/), [Start from an empty directory](https://terradart.dev/docs/start/new-project/), [Migrate an existing Terraform project](https://terradart.dev/docs/start/migrate-terraform/) and [Let an AI agent do it](https://terradart.dev/docs/start/ai-agent/), which replaces the Agents page.
+- The [terradart command](https://terradart.dev/docs/cli/) reference covers terminals, CI and agents, [JSON and exit codes](https://terradart.dev/docs/cli/#json-and-exit-codes) and the agent skill.
+
 ## [0.34.0] - 2026-10-03
 
 Lockstep release across the eleven packages. The `terradart` command now covers a project end to end:
