@@ -40,6 +40,9 @@ final class SkillCommand extends Command<int> {
       'Install, update and check the terradart agent skill this CLI bundles '
       '(skills/terradart/SKILL.md at v$cliVersion) in .agents/skills/ and '
       '.claude/skills/.';
+
+  @override
+  String get usageFooter => _footer;
 }
 
 abstract class _SkillSubcommand extends Command<int> {
@@ -84,16 +87,7 @@ abstract class _SkillSubcommand extends Command<int> {
   String show(String path) => p.relative(path, from: cwd);
 
   @override
-  String get usageFooter => '''
-
-Examples:
-  terradart skill install
-  terradart skill install --agents agents,claude,cursor
-  terradart skill update --dry-run
-  terradart skill status --check
-
-Without this CLI, the same skill pinned to this release:
-  $npxSkillsAdd''';
+  String get usageFooter => _footer;
 }
 
 final class _SkillWriteCommand extends _SkillSubcommand {
@@ -299,3 +293,17 @@ final class _SkillStatusCommand extends _SkillSubcommand {
     SkillState.foreign => 'no terradart marker; update needs --force',
   };
 }
+
+const _footer = '''
+
+Examples:
+  terradart skill install
+  terradart skill install --agents agents,claude,cursor
+  terradart skill update --dry-run
+  terradart skill status --check
+  terradart skill install --no-input --json
+
+See also: terradart help agents
+
+Without this CLI, the same skill pinned to this release:
+  $npxSkillsAdd''';
