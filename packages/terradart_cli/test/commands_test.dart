@@ -379,6 +379,14 @@ void main() {
         'init -input=false -reconfigure '
             '-backend-config=bucket=prod-state -backend-config=prefix=app',
       ]);
+      expect(
+        jsonDecode(
+          File(
+            project.path('tf-out/.terraform/terradart-env.json'),
+          ).readAsStringSync(),
+        ),
+        {'environment': 'prod', 'workspace': null},
+      );
     });
 
     test('outputs --no-init still switches the backend', () async {
