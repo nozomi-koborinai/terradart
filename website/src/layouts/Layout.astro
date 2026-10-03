@@ -23,18 +23,6 @@ const ogImage = Astro.site ? new URL("/og.png", Astro.site).href : "/og.png";
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script is:inline>
-      (() => {
-        const stored = localStorage.getItem("starlight-theme");
-        const theme =
-          stored === "light" || stored === "dark"
-            ? stored
-            : matchMedia("(prefers-color-scheme: light)").matches
-              ? "light"
-              : "dark";
-        document.documentElement.dataset.theme = theme;
-      })();
-    </script>
     <meta name="theme-color" content="#0B0D12" />
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
