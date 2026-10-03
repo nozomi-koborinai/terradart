@@ -863,7 +863,7 @@ void main() {
     test('fails before init when only tofu is on PATH', () async {
       final project = TestProject.create(engines: ['tofu']);
       final runner = appwrite();
-      final r = await project.run(['apply'], runner);
+      final r = await project.run(['apply', '--auto-approve'], runner);
       expect(r.code, 1);
       expect(r.err, contains('Appwrite currently needs Terraform on PATH'));
       expect(r.err, contains('--engine terraform'));
