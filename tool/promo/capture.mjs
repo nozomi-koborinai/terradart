@@ -18,10 +18,10 @@
 //                 at DIR/packages (a checkout of the unreleased version); for
 //                 rehearsals before the release is on pub.dev
 //
-// Needs vhs, ttyd, ffmpeg and google-chrome on PATH, and Google credentials
-// (GOOGLE_APPLICATION_CREDENTIALS as a file path or as the key JSON) for the
-// plan: the google provider configures itself before planning, although a plan
-// that only creates resources makes no API call.
+// Needs vhs, ttyd, ffmpeg and google-chrome on PATH. No AWS account: the
+// take's Stack tells the aws provider to skip the credential check and the
+// account lookup, and the shell carries AWS's documented placeholder keys, so
+// a plan that only creates resources runs with no AWS API call.
 
 import { execFileSync, spawnSync } from "node:child_process";
 import fs from "node:fs";
@@ -82,13 +82,7 @@ if (flag("--sandbox-path")) {
 }
 if (!which("terradart", shellPath)) die("no terradart on PATH (dart pub global activate terradart_cli, or --bin-dir)");
 
-let credentials = process.env.GOOGLE_APPLICATION_CREDENTIALS ?? "";
-if (credentials.trim().startsWith("{")) {
-  const file = path.join(work, "gcp.json");
-  fs.writeFileSync(file, credentials, { mode: 0o600 });
-  credentials = file;
-}
-if (!credentials || !fs.existsSync(credentials)) die("GOOGLE_APPLICATION_CREDENTIALS names no key file or JSON");
+const awsPlaceholder = "AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY";
 
 // A Flutter app as `flutter create` leaves its pubspec, cut to what
 // `terradart init` reads; the clip never runs Flutter.
@@ -156,16 +150,18 @@ const prompt = String.raw`\[\e[38;2;77;208;254m\]$\[\e[0m\] `;
 // OpenTofu it runs, not the one-time download into this directory.
 const cache = fs.mkdtempSync("/tmp/td-");
 const setup = (cwd) => `Hide
-Type "export PATH='${shellPath}' GOOGLE_APPLICATION_CREDENTIALS='${credentials}' TERRADART_CACHE_DIR='${cache}' PS1='${prompt}' && cd '${cwd}' && clear"
+Type "export PATH='${shellPath}' ${awsPlaceholder} TERRADART_CACHE_DIR='${cache}' PS1='${prompt}' && cd '${cwd}' && clear"
 Enter
 Sleep 600ms
 `;
 
 const clips = path.join(pub, "clips");
 fs.mkdirSync(clips, { recursive: true });
+const infra = path.join(app, "infra");
 const tapes = [
   ["01-init", app],
-  ["02-plan", path.join(app, "infra")],
+  ["02-plan", infra],
+  ["03-run", app],
 ];
 const rehearse = option("--rehearse-packages");
 for (const [name, cwd] of tapes) {
@@ -179,6 +175,12 @@ for (const [name, cwd] of tapes) {
     execFileSync("dart", ["pub", "get"], { cwd, stdio: "ignore" });
   }
   if (name === "02-plan") {
+    // The Stack a user writes in place of init's example, shaped like
+    // examples/aws_serverless_api_quickstart. A plan does not read the
+    // function's zip, so the take does not build one.
+    fs.copyFileSync(path.join(here, "take", "stack.dart.txt"), path.join(infra, "lib", "stack.dart"));
+    const lint = spawnSync("dart", ["analyze", "--fatal-infos", "lib"], { cwd: infra, encoding: "utf8" });
+    if (lint.status !== 0) die(`the take's Stack does not analyze:\n${lint.stdout}`);
     const warm = spawnSync("terradart", ["engine", "--engine", "tofu"], {
       cwd,
       env: { ...process.env, PATH: shellPath, TERRADART_CACHE_DIR: cache },
@@ -204,7 +206,8 @@ for (const [name, cwd] of tapes) {
 // this take generated and analyzed against it, so the beat shows real API.
 const reader = fs.readFileSync(path.join(app, "lib", "generated", "infra.g.dart"), "utf8");
 const outputsClass = /final class (\w+Outputs) \{/.exec(reader)?.[1];
-const getter = /^ {2}String get (\w+) \{/m.exec(reader)?.[1];
+const getters = [...reader.matchAll(/^ {2}String get (\w+) \{/gm)].map((m) => m[1]);
+const getter = getters.find((g) => /url/i.test(g)) ?? getters[0];
 if (!outputsClass || !getter) die("the generated reader has no Outputs class with a String getter");
 const mainDart = `import 'package:flutter/material.dart';
 

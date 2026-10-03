@@ -58,17 +58,53 @@ const Title = ({ scene }: { scene: SceneSpec }) => {
   const ease = Easing.out(Easing.cubic);
   const mark = interpolate(t, [0.1, 0.8], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: ease });
   const line = interpolate(t, [0.6, 1.1], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: ease });
+  const features = scene.features ?? [];
   return (
     <AbsoluteFill style={{ alignItems: "center", justifyContent: "center", gap: 34 }}>
       <div style={{ opacity: mark, transform: `translateY(${(1 - mark) * -22}px)` }}>
         <Lockup width={880} />
       </div>
-      <div style={{ opacity: line, textAlign: "center", marginTop: -20 }}>
-        <div style={{ fontFamily: font.sans, fontSize: 46, color: v("text-2"), letterSpacing: "-0.01em" }}>
-          {scene.tagline}
+      {features.length ? (
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 26, marginTop: -6 }}>
+          <div style={{ opacity: line, fontFamily: font.sans, fontSize: 36, color: v("text-2"), letterSpacing: "-0.01em" }}>
+            {scene.tagline}
+          </div>
+          <div style={{ display: "flex", gap: 26 }}>
+            {features.map((feature, i) => {
+              const at = 0.85 + i * 0.3;
+              const show = interpolate(t, [at, at + 0.45], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: ease });
+              return (
+                <div
+                  key={feature}
+                  style={{
+                    opacity: show,
+                    transform: `translateY(${(1 - show) * 16}px)`,
+                    padding: "18px 34px",
+                    borderRadius: radius,
+                    border: `1px solid ${v("line-strong")}`,
+                    background: v("surface"),
+                    fontFamily: font.sans,
+                    fontSize: 50,
+                    fontWeight: 500,
+                    letterSpacing: "-0.01em",
+                    color: v("text"),
+                  }}
+                >
+                  {feature}
+                </div>
+              );
+            })}
+          </div>
+          <div style={{ opacity: line, fontFamily: font.mono, fontSize: 30, color: v("mute") }}>v{board.release}</div>
         </div>
-        <div style={{ marginTop: 22, fontFamily: font.mono, fontSize: 30, color: v("mute") }}>v{board.release}</div>
-      </div>
+      ) : (
+        <div style={{ opacity: line, textAlign: "center", marginTop: -20 }}>
+          <div style={{ fontFamily: font.sans, fontSize: 46, color: v("text-2"), letterSpacing: "-0.01em" }}>
+            {scene.tagline}
+          </div>
+          <div style={{ marginTop: 22, fontFamily: font.mono, fontSize: 30, color: v("mute") }}>v{board.release}</div>
+        </div>
+      )}
     </AbsoluteFill>
   );
 };

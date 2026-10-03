@@ -1,0 +1,132 @@
+import 'package:terradart_aws/apigatewayv2.dart';
+import 'package:terradart_aws/cloudwatch.dart';
+import 'package:terradart_aws/dynamodb.dart';
+import 'package:terradart_aws/iam.dart';
+import 'package:terradart_aws/lambda.dart';
+import 'package:terradart_aws/provider.dart';
+
+import 'env.dart';
+
+/// The app's API in one environment: a DynamoDB table, a Dart function on
+/// AWS Lambda that reads and writes it, and an HTTP API in front.
+final class MyAppInfraStack extends Stack {
+  MyAppInfraStack({required Env env})
+    : super(
+        providers: [
+          AwsProvider(
+            region: env.region,
+            // Plan without an AWS account; drop both before the first apply.
+            skipCredentialsValidation: true,
+            skipRequestingAccountId: true,
+          ),
+        ],
+        backend: const LocalBackend(),
+        appExports: AppExports('../lib/generated/infra.g.dart'),
+      ) {
+    final name = 'my-app-${env.name}';
+
+    final trust = add(
+      DataAwsIamPolicyDocument(
+        'lambda_trust',
+        statement: [
+          DataIamPolicyDocumentStatement(
+            actions: .literal(['sts:AssumeRole']),
+            principals: [
+              .new(
+                type: .literal('Service'),
+                identifiers: .literal(['lambda.amazonaws.com']),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+    final role = add(
+      AwsIamRole(
+        'api',
+        name: .name(.literal('$name-api')),
+        assumeRolePolicy: trust.json,
+      ),
+    );
+
+    final table = add(
+      AwsDynamodbTable(
+        'items',
+        name: .literal('$name-items'),
+        billingMode: .payPerRequest,
+        hashKey: .literal('id'),
+        attribute: [DynamodbTableAttribute(name: .literal('id'), type: .s)],
+      ),
+    );
+
+    final logs = add(
+      AwsCloudwatchLogGroup(
+        'api',
+        name: .name(.literal('/aws/lambda/$name-api')),
+        retentionInDays: .literal(14),
+      ),
+    );
+
+    final policy = add(
+      DataAwsIamPolicyDocument(
+        'api',
+        statement: [
+          DataIamPolicyDocumentStatement(
+            actions: .literal(['logs:CreateLogStream', 'logs:PutLogEvents']),
+            resources: .literal(['${logs.arn.interpolation}:*']),
+          ),
+          DataIamPolicyDocumentStatement(
+            actions: .literal(['dynamodb:GetItem', 'dynamodb:PutItem']),
+            resources: .literal([table.arn.interpolation]),
+          ),
+        ],
+      ),
+    );
+    add(
+      AwsIamRolePolicy(
+        'api',
+        name: .name(.literal('$name-api')),
+        role: role.ref,
+        policy: policy.json,
+      ),
+    );
+    addOutput('table_name', table.name);
+
+    final fn = add(
+      AwsLambdaFunction(
+        'api',
+        functionName: .literal('$name-api'),
+        role: role.ref,
+        runtime: .providedAl2023,
+        handler: .literal('bootstrap'),
+        code: .filename(.literal('../../build/bootstrap.zip')),
+        environment: LambdaFunctionEnvironment(
+          variables: outputEnvironment(only: ['table_name']).variables,
+        ),
+      ),
+    );
+
+    final api = add(
+      AwsApigatewayv2Api(
+        'api',
+        name: .literal('$name-api'),
+        protocolType: .http,
+        target: fn.arn,
+      ),
+    );
+    add(
+      AwsLambdaPermission(
+        'api',
+        action: .literal('lambda:InvokeFunction'),
+        functionName: fn.ref,
+        principal: .literal('apigateway.amazonaws.com'),
+        sourceArn: .literal('${api.executionArn.interpolation}/*'),
+      ),
+    );
+    addOutput('api_url', api.apiEndpoint);
+
+    // The outputs above, as the file `terradart apply --env <name>` writes
+    // for `flutter run --dart-define-from-file`.
+    addDartDefineOutput();
+  }
+}

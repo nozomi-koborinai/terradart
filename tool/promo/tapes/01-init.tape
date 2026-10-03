@@ -7,24 +7,40 @@ Sleep 700ms
 Enter
 Wait /numbers:/
 Sleep 4.5s
-Type "1"
+Type "2"
 Sleep 700ms
 Enter
 Wait /Environments/
-Sleep 1.8s
+Sleep 1.5s
+Type "dev,stg,prd"
+Sleep 700ms
 Enter
-Wait /for dev/
-Sleep 900ms
-Type "myapp-dev"
-Sleep 600ms
+Wait /region for dev/
+Sleep 1.5s
+Type "us-east-1"
+Sleep 500ms
 Enter
-Wait /for prd/
-Sleep 900ms
-Type "myapp-prd"
+Wait /region for stg/
 Sleep 600ms
+Type "us-east-1"
+Sleep 500ms
+Enter
+Wait /region for prd/
+Sleep 600ms
+Type "us-east-1"
+Sleep 500ms
+Enter
+Wait /account ID for dev/
+Sleep 1.5s
+Enter
+Wait /account ID for stg/
+Sleep 500ms
+Enter
+Wait /account ID for prd/
+Sleep 500ms
 Enter
 Wait /\[y\/N\]/
-Sleep 2s
+Sleep 2.5s
 Enter
 Wait /\[Y\/n\]/
 Sleep 3.5s

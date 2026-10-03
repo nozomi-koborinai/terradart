@@ -45,6 +45,8 @@ export type SceneSpec = {
   duration?: number;
   title?: string;
   tagline?: string;
+  /** Title only: the release's headline features, shown as pills under the tagline. */
+  features?: string[];
   /** Under public/. */
   clip?: string;
   /** Played back to back: a span of the clip, or a still of one clip second. */

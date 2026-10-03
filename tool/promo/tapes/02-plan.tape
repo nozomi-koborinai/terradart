@@ -17,7 +17,7 @@ Enter
 Sleep 300ms
 Show
 Sleep 800ms
-Type "terradart plan"
+Type "terradart plan --env stg"
 Sleep 600ms
 Enter
 Wait@120s /^\$\s*$/
