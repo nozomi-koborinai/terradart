@@ -94,6 +94,7 @@ The script drops the Cursor outro (reading `cursor_brand_tag_duration_ms` off th
 - `--zoom-factor` defaults to `1.70`. Past roughly `2.0` a 1920-wide capture starts clipping the end of a long command — check the peak frame rather than trusting the number.
 - `--no-endcard` and `--trim-outro none` exist for clips going somewhere that brands them already.
 - Pass `--tagline ''` for the lockup with no strapline.
+- `--subtitles beats.srt` burns captions in for muted phone viewing — most feed views start silent. Cue times are body seconds (the source minus the outro), read off the dumped frames like the zoom. One `.srt` per language, one cut per language: Japanese needs `--subtitle-font 'Noto Sans CJK JP'` (`fonts-noto-cjk`), and the script stops when the family is not installed rather than letting libass draw boxes. A caption is part of the copy: it may only say what the frame shows.
 
 ## Delivery
 

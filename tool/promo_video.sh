@@ -9,6 +9,8 @@
 #   tool/promo_video.sh --in RAW.mp4 --out EDIT.mp4 \
 #     --zoom-in 5.15 --zoom-out 11.15 --zoom-focus 490,740 \
 #     --deliver DELIVERY.mp4
+#   tool/promo_video.sh --in RAW.mp4 --out EDIT_JA.mp4 \
+#     --subtitles beats.ja.srt --subtitle-font 'Noto Sans CJK JP'
 #
 # Editorial judgment (what to record, what a clip may claim) lives in
 # .agents/skills/terradart-promo-video/SKILL.md. This script only owns the
@@ -38,6 +40,9 @@ ZOOM_FACTOR="1.70"
 ZOOM_RAMP="1.75"
 TRIM_OUTRO="auto"
 WITH_CARD=1
+SUBTITLES=""
+SUBTITLE_FONT="Inter"
+SUBTITLE_SIZE="13"
 
 die() {
   echo "promo_video.sh: $*" >&2
@@ -61,8 +66,11 @@ while [[ $# -gt 0 ]]; do
     --zoom-ramp) ZOOM_RAMP="${2:?--zoom-ramp needs seconds}"; shift 2 ;;
     --trim-outro) TRIM_OUTRO="${2:?--trim-outro needs seconds or auto or none}"; shift 2 ;;
     --no-endcard) WITH_CARD=0; shift ;;
+    --subtitles) SUBTITLES="${2:?--subtitles needs an .srt or .ass file}"; shift 2 ;;
+    --subtitle-font) SUBTITLE_FONT="${2:?--subtitle-font needs a fontconfig family}"; shift 2 ;;
+    --subtitle-size) SUBTITLE_SIZE="${2:?--subtitle-size needs a number}"; shift 2 ;;
     -h | --help)
-      sed -n '2,14p' "$0"
+      sed -n '2,16p' "$0"
       exit 0
       ;;
     *) die "unknown argument: $1" ;;
@@ -157,6 +165,25 @@ else
   echo ">> no zoom"
 fi
 
+# Burned in after the zoom so a caption keeps its size and place while the
+# frame pushes in; cue times are body seconds (the source minus the outro).
+if [[ -n "$SUBTITLES" ]]; then
+  [[ -f "$SUBTITLES" ]] || die "no such subtitles file: $SUBTITLES"
+  command -v fc-list >/dev/null 2>&1 && ! fc-list "$SUBTITLE_FONT" family | grep -q . &&
+    die "font family '$SUBTITLE_FONT' is not installed (fc-list); Japanese needs e.g. fonts-noto-cjk"
+  # libass parses the filter argument itself, so hand it a path with no ':' or quotes.
+  SUB_FILE="$WORK/subtitles.${SUBTITLES##*.}"
+  cp "$SUBTITLES" "$SUB_FILE"
+  # Sizes are in libass's 288-line script space: 13 is ~1/22 of the frame height.
+  # BorderStyle=3 is an opaque box, legible over any terminal colour. ASS
+  # colours are &HAABBGGRR: the CARD_FG text on the CARD_BG ground.
+  SUB_STYLE="FontName=${SUBTITLE_FONT},FontSize=${SUBTITLE_SIZE},PrimaryColour=&H00ECF3F6,BackColour=&H30120D0B,OutlineColour=&H30120D0B,BorderStyle=3,Outline=6,Shadow=0,MarginV=18,Alignment=2"
+  SUBTITLE_CHAIN="subtitles=filename=${SUB_FILE}:force_style='${SUB_STYLE}'"
+  echo ">> subtitles: ${SUBTITLES} in ${SUBTITLE_FONT} ${SUBTITLE_SIZE}"
+else
+  SUBTITLE_CHAIN="null"
+fi
+
 if [[ "$WITH_CARD" == 1 ]]; then
   [[ -f "$LOGO" ]] || die "no logo at $LOGO"
   if [[ -n "$TAGLINE" ]]; then
@@ -179,7 +206,7 @@ if [[ "$WITH_CARD" == 1 ]]; then
     -frames:v 1 -update 1 "$CARD"
 
   cat >"$WORK/edit.filter" <<FILTER
-[0:v]trim=start=0:end=${BODY_END},setpts=PTS-STARTPTS,${ZOOM_CHAIN},fade=t=out:st=$(awk -v e="$BODY_END" 'BEGIN { printf "%.3f", e - 0.38 }'):d=0.38,format=yuv420p[body];
+[0:v]trim=start=0:end=${BODY_END},setpts=PTS-STARTPTS,${ZOOM_CHAIN},${SUBTITLE_CHAIN},fade=t=out:st=$(awk -v e="$BODY_END" 'BEGIN { printf "%.3f", e - 0.38 }'):d=0.38,format=yuv420p[body];
 [1:v]fps=${SRC_FPS},fade=t=in:st=0:d=0.45,format=yuv420p[card];
 [body][card]concat=n=2:v=1:a=0[v]
 FILTER
@@ -195,7 +222,7 @@ FILTER
   echo ">> end card: TerraDart lockup${TAGLINE:+ + \"$TAGLINE\"}, ${CARD_SECONDS}s"
 else
   cat >"$WORK/edit.filter" <<FILTER
-[0:v]trim=start=0:end=${BODY_END},setpts=PTS-STARTPTS,${ZOOM_CHAIN},format=yuv420p[v]
+[0:v]trim=start=0:end=${BODY_END},setpts=PTS-STARTPTS,${ZOOM_CHAIN},${SUBTITLE_CHAIN},format=yuv420p[v]
 FILTER
 
   ffmpeg -v error -y \
