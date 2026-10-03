@@ -241,7 +241,8 @@ final class Workflow {
   /// `init`, with the target's backend configuration. A target that passes
   /// `-backend-config` re-initializes (`-reconfigure`) every time, so a
   /// directory shared by several environments never keeps another one's
-  /// backend.
+  /// backend. Records which environment this was, so [ensureInitializedEnvironment]
+  /// can refuse to copy a different one's state.
   Future<void> init() async {
     final reconfigure = target.backendConfigArgs.isNotEmpty;
     await _engineRun([
@@ -250,6 +251,7 @@ final class Workflow {
       if (reconfigure) '-reconfigure',
       ...target.backendConfigArgs,
     ]);
+    _recordInitializedEnvironment();
   }
 
   /// Selects the target's workspace, creating it when [create] is set.
@@ -271,64 +273,61 @@ final class Workflow {
     await _engineRun(['validate', ...extra]);
   }
 
-  /// The backend type the Stack configures (`gcs`), from the `*.tf.json`
-  /// files in [dir]; `local` when none does.
-  String get configuredBackend {
-    for (final f in Directory(dir).listSync().whereType<File>()) {
-      if (!f.path.endsWith('.tf.json')) continue;
-      try {
-        final json = jsonDecode(f.readAsStringSync());
-        if (json case {
-          'terraform': {'backend': final Map<Object?, Object?> b},
-        } when b.isNotEmpty) {
-          return '${b.keys.first}';
-        }
-        if (json case {'terraform': {'cloud': final Map<Object?, Object?> _}}) {
-          return 'cloud';
-        }
-      } on FormatException {
-        continue;
-      }
-    }
-    return 'local';
-  }
+  /// The backend the Stack configures, from the `*.tf.json` files in [dir]
+  /// plus this environment's partial `-backend-config` (bucket, prefix, and
+  /// the rest). `local` when nothing configures one.
+  String get configuredBackend => _configuredBackend().label;
 
-  /// The backend type the last `init` in [dir] configured
-  /// (`.terraform/terraform.tfstate`); `local` before any.
-  String get initializedBackend {
-    final file = File(p.join(dir, '.terraform', 'terraform.tfstate'));
-    if (!file.existsSync()) return 'local';
-    try {
-      final json = jsonDecode(file.readAsStringSync());
-      if (json case {'backend': {'type': final String type}}) return type;
-    } on FormatException {
-      return 'local';
-    }
-    return 'local';
+  /// The backend the last `init` in [dir] actually configured
+  /// (`.terraform/terraform.tfstate`, including bucket and prefix — not only
+  /// the type). `local` before any.
+  String get initializedBackend => _initializedBackend().label;
+
+  /// Stops when [target] passes `backendConfig` and the last `init` of [dir]
+  /// was a different environment, or which environment it was is not
+  /// recorded. `init -migrate-state -force-copy` would otherwise copy that
+  /// other state into this environment's backend. `--auto-approve` does not
+  /// skip this.
+  void ensureInitializedEnvironment() {
+    final env = target.environment;
+    if (env == null || target.backendConfig.isEmpty) return;
+    final recorded = _readInitializedEnvironment();
+    final where = _show(dir);
+    if (recorded == env) return;
+    final detail = recorded == null
+        ? 'TerraDart cannot tell which environment last initialized $where.'
+        : 'The last init of $where was environment "$recorded", not "$env".';
+    throw CliException(
+      '$detail Run `terradart plan --env $env` first so state migrate '
+      "copies that environment's state.",
+      exitCode: 64,
+    );
   }
 
   /// `init -migrate-state`: copies the state from the backend the last
   /// `init` configured to the one the Stack configures now. `-force-copy`
   /// answers the engine's copy prompt, which the caller has already asked.
-  Future<void> migrateState() => _engineRun([
-    'init',
-    '-input=false',
-    '-migrate-state',
-    '-force-copy',
-    ...target.backendConfigArgs,
-  ]);
+  Future<void> migrateState() async {
+    await _engineRun([
+      'init',
+      '-input=false',
+      '-migrate-state',
+      '-force-copy',
+      ...target.backendConfigArgs,
+    ]);
+    _recordInitializedEnvironment();
+  }
 
-  /// Asks before copying the state, unless [autoApprove]. A pipe is not a
-  /// terminal: no answer stops with exit code 64.
+  /// Asks before copying the state, unless [autoApprove]. The question names
+  /// the full source and target configuration. A pipe is not a terminal: no
+  /// answer stops with exit code 64.
   void confirmStateMove({
     required bool autoApprove,
     required String from,
     required String to,
   }) {
     if (autoApprove) return;
-    final question =
-        'Copy the state in ${p.relative(dir, from: cwd)} '
-        'from the $from backend to the $to backend the Stack configures?';
+    final question = 'Copy the state in ${_show(dir)} from $from to $to?';
     String? answer;
     if (stdin.hasTerminal) {
       console.out('$question [y/N]');
@@ -429,6 +428,110 @@ final class Workflow {
       ..out('  flutter build <target> --dart-define-from-file=$shown');
   }
 
+  static const _initializedEnvFile = 'terradart-env.json';
+
+  /// Backend arguments whose values must not appear in the migrate question.
+  static const _secretBackendKeys = {
+    'access_key',
+    'access_token',
+    'client_secret',
+    'credentials',
+    'encryption_key',
+    'password',
+    'sas_token',
+    'secret_key',
+    'token',
+  };
+
+  _Backend _configuredBackend() {
+    var spec = const _Backend('local');
+    if (Directory(dir).existsSync()) {
+      for (final f in Directory(dir).listSync().whereType<File>()) {
+        if (!f.path.endsWith('.tf.json')) continue;
+        try {
+          final found = _backendFromTfJson(jsonDecode(f.readAsStringSync()));
+          if (found != null) {
+            spec = found;
+            break;
+          }
+        } on FormatException {
+          continue;
+        } on FileSystemException {
+          continue;
+        }
+      }
+    }
+    final config = {...spec.config};
+    for (final v in target.backendConfig) {
+      if (v.contains('=')) {
+        final eq = v.indexOf('=');
+        final key = v.substring(0, eq).trim();
+        if (key.isEmpty || _secretBackendKeys.contains(key)) continue;
+        config[key] = _unquote(v.substring(eq + 1).trim());
+      } else {
+        final file = File(p.normalize(p.join(target.config.root, v)));
+        if (!file.existsSync()) continue;
+        try {
+          config.addAll(_parseBackendFile(file.readAsStringSync()));
+        } on FormatException {
+          continue;
+        } on FileSystemException {
+          continue;
+        }
+      }
+    }
+    return _Backend(spec.type, config);
+  }
+
+  _Backend _initializedBackend() {
+    final file = File(p.join(dir, '.terraform', 'terraform.tfstate'));
+    if (!file.existsSync()) return const _Backend('local');
+    try {
+      final json = jsonDecode(file.readAsStringSync());
+      if (json case {'backend': final Map<Object?, Object?> backend}) {
+        final type = backend['type'];
+        final config = backend['config'];
+        return _Backend(
+          type is String && type.isNotEmpty ? type : 'local',
+          config is Map ? _publicConfig(config) : const {},
+        );
+      }
+    } on FormatException {
+      return const _Backend('local');
+    } on FileSystemException {
+      return const _Backend('local');
+    }
+    return const _Backend('local');
+  }
+
+  void _recordInitializedEnvironment() {
+    final env = target.environment;
+    if (env == null) return;
+    final file = File(p.join(dir, '.terraform', _initializedEnvFile));
+    file.parent.createSync(recursive: true);
+    file.writeAsStringSync(
+      '${jsonEncode({'environment': env, 'workspace': target.workspace})}\n',
+    );
+  }
+
+  /// The environment the last `init` recorded, or `null` when that record
+  /// is missing or unreadable.
+  String? _readInitializedEnvironment() {
+    final file = File(p.join(dir, '.terraform', _initializedEnvFile));
+    if (!file.existsSync()) return null;
+    try {
+      final json = jsonDecode(file.readAsStringSync());
+      if (json case {'environment': final String env} when env.isNotEmpty) {
+        return env;
+      }
+    } on FormatException {
+      return null;
+    } on FileSystemException {
+      return null;
+    }
+    return null;
+  }
+
   bool _declaresOutput(String? name) {
     if (name == null) return false;
     final main = File(p.join(dir, 'main.tf.json'));
@@ -490,4 +593,92 @@ final class Workflow {
     final vm = Platform.resolvedExecutable;
     return p.basenameWithoutExtension(vm) == 'dart' ? vm : 'dart';
   }
+}
+
+/// A backend type plus the configuration that tells one of that type from
+/// another (`bucket`, `prefix`), with secret values left out.
+final class _Backend {
+  const _Backend(this.type, [this.config = const {}]);
+
+  final String type;
+  final Map<String, String> config;
+
+  String get label {
+    if (config.isEmpty) return type;
+    final keys = config.keys.toList()..sort();
+    return '$type (${[for (final k in keys) '$k=${config[k]}'].join(', ')})';
+  }
+}
+
+_Backend? _backendFromTfJson(Object? json) {
+  if (json is! Map) return null;
+  final terraform = json['terraform'];
+  if (terraform is! Map) return null;
+  final backend = terraform['backend'];
+  if (backend is Map && backend.isNotEmpty) {
+    final type = backend.keys.first;
+    if (type is! String) return null;
+    final body = backend[type];
+    return _Backend(type, body is Map ? _publicConfig(body) : const {});
+  }
+  if (terraform['cloud'] is Map) {
+    return _Backend('cloud', _publicConfig(terraform['cloud'] as Map));
+  }
+  return null;
+}
+
+Map<String, String> _publicConfig(Map<Object?, Object?> raw) {
+  final out = <String, String>{};
+  for (final MapEntry(:key, :value) in raw.entries) {
+    if (key is! String || value == null) continue;
+    if (Workflow._secretBackendKeys.contains(key)) continue;
+    if (value is String || value is num || value is bool) out[key] = '$value';
+  }
+  return out;
+}
+
+/// A partial backend file: a JSON object, or one `key = "value"` assignment
+/// per line. Not general HCL.
+Map<String, String> _parseBackendFile(String text) {
+  final trimmed = text.trim();
+  if (trimmed.startsWith('{')) {
+    final json = jsonDecode(trimmed);
+    if (json is Map) return _publicConfig(json);
+    return const {};
+  }
+  final out = <String, String>{};
+  for (final raw in text.split('\n')) {
+    final line = _stripLineComment(raw.trim());
+    if (line.isEmpty) continue;
+    final eq = line.indexOf('=');
+    if (eq <= 0) continue;
+    final key = line.substring(0, eq).trim();
+    if (key.isEmpty || Workflow._secretBackendKeys.contains(key)) continue;
+    out[key] = _unquote(line.substring(eq + 1).trim());
+  }
+  return out;
+}
+
+String _stripLineComment(String line) {
+  var quoted = false;
+  for (var i = 0; i < line.length; i++) {
+    final c = line[i];
+    if (c == '"') {
+      quoted = !quoted;
+      continue;
+    }
+    if (quoted) continue;
+    if (c == '#') return line.substring(0, i).trim();
+    if (c == '/' && i + 1 < line.length && line[i + 1] == '/') {
+      return line.substring(0, i).trim();
+    }
+  }
+  return line;
+}
+
+String _unquote(String value) {
+  if (value.length >= 2 && value.startsWith('"') && value.endsWith('"')) {
+    return value.substring(1, value.length - 1);
+  }
+  return value;
 }

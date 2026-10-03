@@ -493,6 +493,7 @@ final class _StateMigrateCommand extends _TerradartCommand {
     }
     final flow = workflow();
     if (synthFirst) await flow.synth();
+    flow.ensureInitializedEnvironment();
     final from = flow.initializedBackend;
     final to = flow.configuredBackend;
     flow.confirmStateMove(
@@ -501,7 +502,7 @@ final class _StateMigrateCommand extends _TerradartCommand {
       to: to,
     );
     await flow.migrateState();
-    context.console.out('Moved the state to the $to backend.');
+    context.console.out('Moved the state to $to.');
     return 0;
   }
 }

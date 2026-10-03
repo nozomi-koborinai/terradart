@@ -174,7 +174,7 @@ An environment's backend is Dart too, so moving its state starts with a change t
 terradart state migrate --env stg
 ```
 
-It synthesizes `stg`, says which backend the state moves from and to, asks, and runs the engine's `init -migrate-state` in `stg`'s directory with its `backendConfig`. `--auto-approve` skips the question, and is required without a terminal. The other environments are not touched.
+It synthesizes `stg`, names the full source and target configuration (the bucket and prefix, not only the backend type), asks, and runs the engine's `init -migrate-state` in `stg`'s directory with its `backendConfig`. `--auto-approve` skips the question, and is required without a terminal. Run it before the next `plan` or `apply` of `stg`: those reconfigure the directory onto the new backend without copying. When environments share that directory, the copy is the state of the environment that last initialized it. If that was another environment, or TerraDart has no record of which one, it stops and tells you to run `terradart plan --env stg` first — it does not copy, and `--auto-approve` does not skip the stop. The other environments are not touched.
 
 ## Migrated environments
 

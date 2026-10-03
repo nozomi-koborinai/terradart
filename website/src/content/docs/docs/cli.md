@@ -80,7 +80,7 @@ When the Stack changes its backend — `LocalBackend()` to `GcsBackend(...)`, on
 terradart state migrate --env prod
 ```
 
-It synthesizes, says which backend the state moves from and to, asks, and runs the engine's `init -migrate-state` in that environment's directory, with its `backendConfig`. Without a terminal it stops unless `--auto-approve` is given.
+It synthesizes, names the full source and target configuration (the bucket and prefix, not only `gcs` → `gcs`), asks, and runs the engine's `init -migrate-state` in that environment's directory, with its `backendConfig`. Without a terminal it stops unless `--auto-approve` is given. Run it before the next `plan` or `apply` of that environment: those reconfigure the directory onto the new backend without copying. When several environments share the directory and pass `backendConfig`, the copy is the state of the environment that last initialized it. If that was another environment, or TerraDart has no record, it stops and tells you to run `terradart plan --env <name>` first; `--auto-approve` does not skip that.
 
 ## The define file
 
