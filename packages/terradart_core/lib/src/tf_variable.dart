@@ -15,8 +15,9 @@ import 'dart_source.dart';
 /// ```
 ///
 /// Fields left null are omitted so Terraform's own default applies. A
-/// variable with no [defaultValue] is required at `terraform apply`
-/// time, which is the point for secrets: the value never enters synth
+/// variable with no [defaultValue] is required when the engine runs
+/// (`terradart apply -- -var '<name>=...'`, or `TF_VAR_<name>`), which is
+/// the point for secrets: the value never enters synth
 /// output or any Dart-side artifact.
 @immutable
 final class TfVariable {

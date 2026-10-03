@@ -455,10 +455,12 @@ abstract base class Stack {
   /// addDartDefineOutput();
   /// ```
   ///
-  /// After apply, `terraform output -json dart_defines` prints a JSON
-  /// object of strings that `flutter build --dart-define-from-file` takes
-  /// as it is, and the generated reader's `fromDartDefine()` reads with
-  /// types. The app's build reads the applied state; it never applies.
+  /// `terradart apply` writes it to `.terradart/<name>.json`
+  /// (`.terradart/<name>.<env>.json` with `--env <env>`), and
+  /// `terradart outputs` writes the same file from the applied state: a
+  /// JSON object of strings that `flutter build --dart-define-from-file`
+  /// takes as it is, and the generated reader's `fromDartDefine()` reads
+  /// with types. The app's build reads the applied state; it never applies.
   ///
   /// It carries every non-sensitive output of the Stack, or the outputs
   /// [only] names, resolved at synth, so the call can come before the
