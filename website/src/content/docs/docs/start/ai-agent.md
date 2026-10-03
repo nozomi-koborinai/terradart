@@ -9,18 +9,15 @@ A coding agent can do the whole loop: create the project, write the Stack, check
 
 The **TerraDart Agent Skill** tells the agent where to look and which commands to run. From your project's directory:
 
-<!-- TODO: `terradart skill install` lands with #909; once it is released, add `skill update` / `skill status` and drop the npx fallback. -->
-
-
-```bash
-terradart skill install
-```
-
-It writes the skill, at the version of your `terradart` command, where agents look for skills: `.agents/skills/terradart/SKILL.md` (Cursor, Codex, Gemini CLI, GitHub Copilot and most others) and `.claude/skills/terradart/SKILL.md` (Claude Code). On a `terradart` that does not have `skill install` yet, install it with the `skills` CLI instead:
+<!-- TODO: #909 puts `terradart skill install` first again when it ships. -->
 
 ```bash
 npx skills add nozomi-koborinai/terradart --skill terradart
 ```
+
+The `skills` CLI asks which agents you use and writes the skill where each looks for skills, for example `.agents/skills/terradart/SKILL.md` (Cursor, Codex, Gemini CLI, GitHub Copilot and most others) and `.claude/skills/terradart/SKILL.md` (Claude Code).
+
+The next release of the `terradart` command adds `terradart skill install`, which writes the same file, at the version of your `terradart`, with nothing else to install.
 
 The skill is [`skills/terradart/SKILL.md`](https://github.com/nozomi-koborinai/terradart/blob/main/skills/terradart/SKILL.md) in the repository, in the [Agent Skills](https://agentskills.io) format; copying it into one of those directories works too.
 
