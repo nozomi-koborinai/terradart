@@ -1,0 +1,56 @@
+---
+import appwriteMark from "../../assets/providers/appwrite/logomark.svg?url";
+
+/**
+ * The icon beside a provider's name. Appwrite publishes its logomark for
+ * third-party use, so it is shown unaltered; the other vendors grant no
+ * logo use without permission, so they get a generic glyph of TerraDart's
+ * own that does not imitate their marks (see src/assets/providers/README.md).
+ */
+interface Props {
+  id: string;
+  size?: number;
+}
+const { id, size = 16 } = Astro.props;
+---
+
+{
+  id === "appwrite" ? (
+    <img class="provider-icon provider-icon--mark" src={appwriteMark} alt="" width={size} height={size} />
+  ) : (
+    <svg class="provider-icon" viewBox="0 0 24 24" width={size} height={size} aria-hidden="true">
+      {id === "google" && <path d="M7 18.5h10.25a4.25 4.25 0 0 0 .55-8.46A5.75 5.75 0 0 0 6.9 9.1 4.7 4.7 0 0 0 7 18.5Z" />}
+      {id === "aws" && (
+        <>
+          <rect x="4" y="4.5" width="16" height="6.25" rx="1.5" />
+          <rect x="4" y="13.25" width="16" height="6.25" rx="1.5" />
+          <path d="M7.5 7.6h.01M7.5 16.35h.01" />
+        </>
+      )}
+      {id === "cloudflare" && (
+        <>
+          <circle cx="12" cy="12" r="8" />
+          <ellipse cx="12" cy="12" rx="3.4" ry="8" />
+          <path d="M4 12h16" />
+        </>
+      )}
+    </svg>
+  )
+}
+
+<style>
+  .provider-icon {
+    flex: none;
+    display: block;
+  }
+  svg.provider-icon {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .provider-icon--mark {
+    object-fit: contain;
+  }
+</style>

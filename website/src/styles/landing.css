@@ -342,28 +342,18 @@ code {
 }
 
 .works-with-logo {
-  display: block;
-  color: var(--td-text);
-  opacity: 0.88;
-  transition: opacity 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--td-mute);
+  font-size: 1.125rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  transition: color 0.15s;
 }
 
 .works-with-logo:hover {
-  opacity: 1;
-}
-
-.works-with-logo :is(svg) {
-  display: block;
-  height: 1.6rem;
-  width: auto;
-}
-
-.works-with-logo--aws :is(svg) {
-  height: 1.9rem;
-}
-
-.works-with-logo--cloudflare :is(svg) {
-  height: 1.55rem;
+  color: var(--td-text);
 }
 
 /* ---------- Sections ---------- */
@@ -712,26 +702,26 @@ html[data-theme="light"] .shiki span {
 .switcher-tabs {
   display: flex;
   gap: 0.25rem;
-  width: fit-content;
-  max-width: 100%;
   margin-bottom: 1.25rem;
-  padding: 0.25rem;
-  border: 1px solid var(--td-line-strong);
-  border-radius: calc(var(--td-radius-sm) + 4px);
-  background: var(--td-surface);
+  border-bottom: 1px solid var(--td-line);
   overflow-x: auto;
   scrollbar-width: none;
 }
 
 .switcher-tabs button {
   flex: none;
-  padding: 0.5rem 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: -1px;
+  padding: 0.7rem 0.9rem 0.75rem;
   border: 0;
-  border-radius: var(--td-radius-sm);
+  border-bottom: 2px solid transparent;
   background: none;
   color: var(--td-mute);
-  font: 500 0.9rem var(--td-font);
+  font: 500 0.9375rem var(--td-font);
   cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
 }
 
 .switcher-tabs button:hover {
@@ -739,9 +729,8 @@ html[data-theme="light"] .shiki span {
 }
 
 .switcher-tabs button[aria-selected="true"] {
-  background: var(--td-bg);
+  border-bottom-color: var(--td-accent);
   color: var(--td-text);
-  box-shadow: inset 0 0 0 1px var(--td-line-strong);
 }
 
 .switcher-panel {

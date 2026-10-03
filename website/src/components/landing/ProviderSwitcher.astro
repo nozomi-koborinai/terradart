@@ -1,5 +1,6 @@
 ---
 import CodeWindow from "./CodeWindow.astro";
+import ProviderIcon from "./ProviderIcon.astro";
 import { excerpt, type ExcerptSpec } from "../../lib/excerpt";
 import pubsub from "../../../../examples/pubsub_quickstart/lib/main.dart?raw";
 import lambda from "../../../../examples/aws_lambda_quickstart/lib/main.dart?raw";
@@ -129,6 +130,7 @@ const panels = tabs.map((tab) => ({
               aria-selected={i === 0 ? "true" : "false"}
               tabindex={i === 0 ? 0 : -1}
             >
+              <ProviderIcon id={p.id} />
               {p.name}
             </button>
           ))

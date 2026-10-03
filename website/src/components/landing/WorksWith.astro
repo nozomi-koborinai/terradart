@@ -1,4 +1,5 @@
 ---
+import ProviderIcon from "./ProviderIcon.astro";
 import { providers } from "./providers";
 ---
 
@@ -9,7 +10,10 @@ import { providers } from "./providers";
       {
         providers.map((p) => (
           <li>
-            <a href={p.href} class={`works-with-logo works-with-logo--${p.id}`} set:html={p.logo} />
+            <a href={p.href} class="works-with-logo">
+              <ProviderIcon id={p.id} size={22} />
+              {p.name}
+            </a>
           </li>
         ))
       }
