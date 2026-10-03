@@ -220,8 +220,13 @@ final class Workflow {
         'Pass --engine ${writer.kind.name} to keep $was (or set '
         'terradart.engine: ${writer.kind.name} in pubspec.yaml), or '
         '--engine ${engine.kind.name} to move the state to $now.';
-    console.out('Run $now on it anyway? [y/N]');
-    final answer = console.readLine?.call()?.trim().toLowerCase();
+    // A pipe is not a terminal: do not read it (it may block, or be someone
+    // else's input). No answer takes the non-interactive stop below.
+    String? answer;
+    if (stdin.hasTerminal) {
+      console.out('Run $now on it anyway? [y/N]');
+      answer = console.readLine?.call()?.trim().toLowerCase();
+    }
     if (answer == null) {
       throw CliException(
         'Stopped before running $now on a state $was wrote. $choose',

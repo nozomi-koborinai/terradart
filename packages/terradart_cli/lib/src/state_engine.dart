@@ -144,23 +144,64 @@ String? recordedWorkspace(String dir) {
 /// Whether [dir]'s configuration stores state in a local file: no `backend`
 /// block, or a `local` one. A remote backend's leftover `terraform.tfstate`
 /// is not the state the next command will use.
+///
+/// JSON (`.tf.json`) and HCL (`.tf`, including a migrator `backend.tf`
+/// sidecar) both count. A `backend` block whose type is not clearly `local`
+/// is not local, so the check falls through to a remote `state pull`.
 bool configuredLocalBackend(String dir) {
   final d = Directory(dir);
   if (!d.existsSync()) return true;
   for (final f in d.listSync().whereType<File>()) {
-    if (!f.path.endsWith('.tf.json')) continue;
-    try {
-      final json = jsonDecode(f.readAsStringSync());
-      if (json case {
-        'terraform': {'backend': final Map<Object?, Object?> backend},
-      }) {
-        if (backend.keys.any((key) => key != 'local')) return false;
-      }
-    } on FormatException {
-      continue;
+    final name = p.basename(f.path);
+    if (name.endsWith('.tf.json')) {
+      if (!_jsonBackendIsLocal(f)) return false;
+    } else if (name.endsWith('.tf')) {
+      if (!_hclBackendIsLocal(f)) return false;
     }
   }
   return true;
+}
+
+/// `true` when [f] has no backend or only `local`. Unreadable JSON, or a
+/// backend that is not `local`, is not local.
+bool _jsonBackendIsLocal(File f) {
+  Object? json;
+  try {
+    json = jsonDecode(f.readAsStringSync());
+  } on FormatException {
+    return false;
+  } on FileSystemException {
+    return false;
+  }
+  if (json case {'terraform': {'backend': final backend}}) {
+    if (backend is! Map) return false;
+    return backend.isNotEmpty && backend.keys.every((key) => key == 'local');
+  }
+  return true;
+}
+
+final _hclLineComment = RegExp(r'//.*?$|#.*?$', multiLine: true);
+final _hclBlockComment = RegExp(r'/\*.*?\*/', dotAll: true);
+final _hclBackendType = RegExp(r'\bbackend\s+"([^"]+)"');
+final _hclBackendWord = RegExp(r'\bbackend\b');
+
+/// `true` when [f] has no backend block or only `backend "local"`. Any other
+/// `backend` block, including one whose type cannot be read, is not local.
+bool _hclBackendIsLocal(File f) {
+  String text;
+  try {
+    text = f.readAsStringSync();
+  } on FileSystemException {
+    return false;
+  }
+  final code = text
+      .replaceAll(_hclBlockComment, ' ')
+      .replaceAll(_hclLineComment, ' ');
+  final types = [
+    for (final match in _hclBackendType.allMatches(code)) match.group(1)!,
+  ];
+  if (types.isEmpty) return !_hclBackendWord.hasMatch(code);
+  return types.every((type) => type == 'local');
 }
 
 /// Whether `init` configured [dir] with a backend other than `local`, as

@@ -130,6 +130,37 @@ void main() {
       }),
     );
     expect(configuredLocalBackend(dir.path), isFalse);
+    File(p.join(dir.path, 'main.tf.json')).writeAsStringSync('{');
+    expect(configuredLocalBackend(dir.path), isFalse);
+  });
+
+  test('configuredLocalBackend reads an HCL backend sidecar', () {
+    final dir = Directory.systemTemp.createTempSync('state_engine_hcl_');
+    addTearDown(() => dir.deleteSync(recursive: true));
+    File(p.join(dir.path, 'backend.tf')).writeAsStringSync('''
+terraform {
+  backend "gcs" {
+    bucket = "states"
+  }
+}
+''');
+    expect(configuredLocalBackend(dir.path), isFalse);
+    File(p.join(dir.path, 'backend.tf')).writeAsStringSync('''
+terraform {
+  backend "local" {
+    path = "terraform.tfstate"
+  }
+}
+''');
+    expect(configuredLocalBackend(dir.path), isTrue);
+    // A comment is not a backend, and a block whose type cannot be read is
+    // not evidence of a local file.
+    File(p.join(dir.path, 'backend.tf')).writeAsStringSync('''
+// backend "gcs" { bucket = "states" }
+''');
+    expect(configuredLocalBackend(dir.path), isTrue);
+    File(p.join(dir.path, 'backend.tf')).writeAsStringSync('backend {\n}\n');
+    expect(configuredLocalBackend(dir.path), isFalse);
   });
 
   test('localStateFile treats a missing directory as no local state', () {
@@ -182,15 +213,38 @@ void main() {
         runner,
         input: ['yes'],
       );
+      if (!stdin.hasTerminal) {
+        expect(r.code, 64);
+        expect(runner.engineCalls, isNot(contains('apply -auto-approve')));
+        return;
+      }
       expect(r.code, 0, reason: r.err);
       expect(r.out, contains('Run OpenTofu on it anyway?'));
       expect(runner.engineCalls, contains('apply -auto-approve'));
+    });
+
+    test('a piped answer is not a yes', () async {
+      final project = terraformState();
+      final runner = FakeRunner(synth: (_) => runStackEntry());
+      final r = await project.run(['plan'], runner, input: ['yes']);
+      if (stdin.hasTerminal) {
+        expect(r.code, 0, reason: r.err);
+        expect(runner.engineCalls.last, 'plan -input=false');
+        return;
+      }
+      expect(r.code, 64);
+      expect(r.err, contains('Stopped before running OpenTofu'));
+      expect(runner.engineCalls, ['version -json']);
     });
 
     test('stops on a no', () async {
       final project = terraformState();
       final runner = FakeRunner(synth: (_) => runStackEntry());
       final r = await project.run(['destroy'], runner, input: ['no']);
+      if (!stdin.hasTerminal) {
+        expect(r.code, 64);
+        return;
+      }
       expect(r.code, 1);
       expect(r.err, contains('Stopped. Pass --engine terraform'));
       expect(runner.engineCalls.where((c) => c.startsWith('destroy')), isEmpty);
@@ -250,6 +304,46 @@ void main() {
         'state pull',
       ]);
     });
+
+    test(
+      'an HCL backend sidecar does not skip a remote backend pull',
+      () async {
+        final project = TestProject.create();
+        File(project.path('tf-out/.terraform/terraform.tfstate'))
+          ..createSync(recursive: true)
+          ..writeAsStringSync(
+            jsonEncode({
+              'backend': {'type': 'gcs'},
+            }),
+          );
+        final runner = FakeRunner(
+          synth: (_) {
+            File(project.path('tf-out/terraform.tfstate'))
+              ..createSync(recursive: true)
+              ..writeAsStringSync(
+                jsonEncode(_state('1.9.0', [_google('registry.opentofu.org')])),
+              );
+            File(project.path('tf-out/backend.tf'))
+              ..createSync(recursive: true)
+              ..writeAsStringSync('''
+terraform {
+  backend "gcs" {
+    bucket = "states"
+  }
+}
+''');
+            return runStackEntry();
+          },
+          pulledState: jsonEncode(
+            _state('1.9.8', [_google('registry.terraform.io')]),
+          ),
+        );
+        final r = await project.run(['plan'], runner);
+        expect(r.code, 64);
+        expect(runner.engineCalls, contains('state pull'));
+        expect(r.err, contains('written by Terraform 1.9.8'));
+      },
+    );
 
     test(
       'a leftover local state does not skip a remote backend pull',
