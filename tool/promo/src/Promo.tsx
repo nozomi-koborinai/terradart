@@ -116,19 +116,24 @@ const Terminal = ({ scene, data }: { scene: SceneSpec; data: PromoData }) => {
   assertSafe(scene.id, TERM_TOP + TERM_H);
   const clip = clipTime(segments, t);
   const camera = cameraAt(data.camera[scene.id] ?? scene.camera!, clip);
+  // A segment owns the frames clipTime maps into it, so the video, the masks
+  // and the camera switch on the same frame at every cut.
+  const firstFrame = (seconds: number) => Math.ceil(seconds * fps - 1e-6);
   let start = 0;
   return (
     <AbsoluteFill>
       <Window title={scene.title!} style={{ left: TERM_LEFT, top: TERM_TOP, width: TERM_W, height: TERM_H }}>
         <div style={{ position: "absolute", inset: 0, background: data.background, isolation: "isolate", ...cameraTransform(camera, TERM_W, TERM_H - BAR) }}>
           {segments.map((segment, i) => {
-            const frames = Math.round(segmentSeconds(segment) * fps);
-            const at = start;
-            start += frames;
+            const begins = start;
+            start += segmentSeconds(segment);
+            const at = firstFrame(begins);
+            const frames = firstFrame(start) - at;
+            if (frames <= 0) return null;
             const video = (
               <OffthreadVideo
                 src={staticFile(scene.clip!)}
-                trimBefore={Math.round(("hold" in segment ? segment.hold : segment.from) * fps)}
+                trimBefore={Math.round(("hold" in segment ? segment.hold : segment.from + at / fps - begins) * fps)}
                 muted
                 style={{ position: "absolute", inset: 0, width: "100%", height: "100%", mixBlendMode: "lighten" }}
               />
