@@ -87,6 +87,20 @@ void main() {
     );
   });
 
+  test('localStateFile treats a missing directory as no local state', () {
+    final missing = p.join(
+      Directory.systemTemp.path,
+      'state_engine_missing_${DateTime.now().microsecondsSinceEpoch}',
+    );
+    expect(Directory(missing).existsSync(), isFalse);
+    expect(() => localStateFile(missing, null), returnsNormally);
+    expect(
+      localStateFile(missing, null).path,
+      p.join(missing, 'terraform.tfstate'),
+    );
+    expect(stateFileWriter(localStateFile(missing, null)), isNull);
+  });
+
   group('a state the other engine wrote', () {
     TestProject terraformState({
       List<String> engines = const ['tofu'],

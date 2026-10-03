@@ -106,7 +106,11 @@ File localStateFile(String dir, String? workspace) {
       p.join(dir, 'terraform.tfstate.d', workspace, 'terraform.tfstate'),
     );
   }
-  for (final f in Directory(dir).listSync().whereType<File>()) {
+  // `--no-synth` or a deleted output dir: nothing has been written, so there
+  // is no local state to guard. Listing a missing directory throws.
+  final d = Directory(dir);
+  if (!d.existsSync()) return File(p.join(dir, 'terraform.tfstate'));
+  for (final f in d.listSync().whereType<File>()) {
     if (!f.path.endsWith('.tf.json')) continue;
     try {
       final json = jsonDecode(f.readAsStringSync());
