@@ -90,8 +90,9 @@ sealed class TfArg<T> {
   /// `Stack.variable<T>(...)` declares a variable and returns this already,
   /// typed — pass that handle where its type fits. Spell the name out where
   /// it does not: an enum or `RefTo` slot, or a variable of another Dart
-  /// type. Synth emits the interpolation `"\${var.<name>}"`; the value is
-  /// supplied at `terraform apply -var '...'` time and never appears in any
+  /// type. Synth emits the interpolation `"\${var.<name>}"`; the engine
+  /// reads the value when it runs (`terradart apply -- -var '<name>=...'`,
+  /// or a `TF_VAR_<name>` environment variable), so it never appears in any
   /// Dart-side artifact.
   static TfArg<T> variable<T>(String name) => TfArgVariable<T>(name);
 
@@ -222,7 +223,9 @@ final class TfArgVariable<T> extends TfArg<T> implements Sensitive<T> {
   }
 
   /// Terraform variable name. Emitted as `"\${var.<name>}"` so consumers
-  /// can supply the value at `terraform apply -var '<name>=...'` time.
+  /// can supply the value when the engine runs:
+  /// `terradart apply -- -var '<name>=...'`, or a `TF_VAR_<name>`
+  /// environment variable.
   ///
   /// `Stack.variable` declares the matching `variable "<name>" { ... }`
   /// block. Synth throws when a reference has no declaration, so a typo

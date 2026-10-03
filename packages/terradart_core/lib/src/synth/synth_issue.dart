@@ -166,7 +166,8 @@ final class SensitiveLiteral extends SynthIssue {
         "`$param: $param` with "
         "`final $param = variable<String>('${field.split('.').last}', "
         'sensitive: true)`, '
-        'supplied at `terraform apply -var` time — or a '
+        'supplied at apply time (`terradart apply -- -var` or '
+        '`TF_VAR_${field.split('.').last}`) — or a '
         'reference or expression Terraform computes. A write-only '
         '`${field.split('.').last}_wo` argument, where the resource has '
         'one, takes the literal instead.';
