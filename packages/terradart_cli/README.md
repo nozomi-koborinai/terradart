@@ -12,6 +12,7 @@ To pin the version per project, `dart pub add --dev terradart_cli` and run it as
 | Command | Runs |
 |---|---|
 | `terradart synth` | the entry point, `dart run bin/infra.dart` |
+| `terradart validate` | synth, `init -backend=false`, `validate` — no credentials or state needed |
 | `terradart plan` | synth, `init`, `plan` |
 | `terradart apply` | synth, `init`, `apply`, then writes `.terradart/dart_defines.json` |
 | `terradart destroy` | synth, `init`, `destroy` |

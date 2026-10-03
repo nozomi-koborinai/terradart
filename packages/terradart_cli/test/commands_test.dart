@@ -47,6 +47,94 @@ void main() {
     expect(r.out, contains('Using OpenTofu 1.13.1 (tofu on PATH)'));
   });
 
+  group('validate', () {
+    test('synthesizes, then validates without the backend', () async {
+      final project = TestProject.create();
+      final runner = FakeRunner(synth: (_) => runStackEntry());
+      final r = await project.run(['validate', '--', '-json'], runner);
+      expect(r.code, 0, reason: r.err);
+      expect(runner.calls.first.executable, 'dart');
+      expect(runner.engineCalls, [
+        'version -json',
+        'init -backend=false -input=false',
+        'validate -json',
+      ]);
+      expect(runner.calls.last.executable, project.engine('tofu'));
+      expect(runner.calls.last.workingDirectory, project.path('tf-out'));
+    });
+
+    test('takes --env, and leaves its backend and workspace alone', () async {
+      final project = TestProject.create();
+      final runner = FakeRunner(
+        synth: (args) => runEnvironmentsEntry(
+          args,
+          ['dev', 'prod'],
+          dir: (_) => 'tf-out',
+          workspace: (e) => e,
+          backendConfig: (e) => ['prefix=app-$e'],
+        ),
+      );
+      final r = await project.run(['validate', '--env', 'prod'], runner);
+      expect(r.code, 0, reason: r.err);
+      expect(runner.calls.first.args, [
+        'run',
+        'bin/infra.dart',
+        '--env',
+        'prod',
+      ]);
+      expect(runner.engineCalls, [
+        'version -json',
+        'init -backend=false -input=false',
+        'validate',
+      ]);
+      expect(File(project.path('.terradart/engines.json')).existsSync(), false);
+    });
+
+    test('several environments need --env', () async {
+      final project = TestProject.create();
+      final runner = FakeRunner(
+        synth: (args) => runEnvironmentsEntry(args, ['dev', 'prod']),
+      );
+      final r = await project.run(['validate'], runner);
+      expect(r.code, 64);
+      expect(r.err, contains('pass --env <name>, one of dev, prod'));
+      expect(runner.engineCalls, isEmpty);
+    });
+
+    test('--no-synth validates what the last synth wrote', () async {
+      final project = TestProject.create();
+      File(project.path('tf-out/main.tf.json'))
+        ..createSync(recursive: true)
+        ..writeAsStringSync('{}');
+      final runner = FakeRunner();
+      final r = await project.run(['validate', '--no-synth'], runner);
+      expect(r.code, 0, reason: r.err);
+      expect(runner.calls.where((c) => c.executable == 'dart'), isEmpty);
+      expect(runner.engineCalls.last, 'validate');
+    });
+
+    test('an invalid configuration exits with validate\'s code', () async {
+      final project = TestProject.create();
+      final runner = FakeRunner(
+        synth: (_) => runStackEntry(),
+        failOn: 'validate',
+      );
+      final r = await project.run(['validate'], runner);
+      expect(r.code, 1);
+      expect(r.err, contains('tofu validate exited 1'));
+    });
+
+    test('takes no --backend-config', () async {
+      final project = TestProject.create();
+      final r = await project.run([
+        'validate',
+        '--backend-config',
+        'bucket=x',
+      ], FakeRunner());
+      expect(r.code, 64);
+    });
+  });
+
   test('plan --no-synth skips the entry point', () async {
     final project = TestProject.create();
     File(project.path('tf-out/main.tf.json'))

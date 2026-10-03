@@ -36,10 +36,11 @@ Future<int> runTerradart(
   final cli =
       CommandRunner<int>(
           'terradart',
-          'Synthesize, plan and apply a TerraDart Stack with OpenTofu or '
+          'Synthesize, validate, plan and apply a TerraDart Stack with OpenTofu or '
               'Terraform, and migrate an existing Terraform tree.',
         )
         ..addCommand(_SynthCommand(context))
+        ..addCommand(_ValidateCommand(context))
         ..addCommand(_PlanCommand(context))
         ..addCommand(_ApplyCommand(context))
         ..addCommand(_DestroyCommand(context))
@@ -119,7 +120,7 @@ abstract class _TerradartCommand extends Command<int> {
             'entry point gets --workspace <name>.',
       );
     }
-    if (runsEngine) {
+    if (usesBackend) {
       argParser.addMultiOption(
         'backend-config',
         valueHelp: 'file|key=value',
@@ -145,6 +146,7 @@ abstract class _TerradartCommand extends Command<int> {
   final _Context context;
 
   bool get runsEngine => true;
+  bool get usesBackend => runsEngine;
   bool get synthesizes => true;
 
   ArgResults get args => argResults!;
@@ -239,6 +241,29 @@ final class _SynthCommand extends _TerradartCommand {
   Future<int> run() async {
     final flow = workflow(entryArgs: args.rest);
     await flow.synth();
+    return 0;
+  }
+}
+
+final class _ValidateCommand extends _TerradartCommand {
+  _ValidateCommand(super.context);
+
+  @override
+  String get name => 'validate';
+
+  @override
+  String get description =>
+      'Synth, then init without the backend and validate — no credentials '
+      'or state needed. Arguments after -- go to validate.';
+
+  @override
+  bool get usesBackend => false;
+
+  @override
+  Future<int> run() async {
+    final flow = workflow();
+    if (synthFirst) await flow.synth();
+    await flow.validate(args.rest);
     return 0;
   }
 }

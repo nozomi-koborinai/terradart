@@ -28,6 +28,7 @@ dart run terradart_cli:terradart apply
 | Command | Runs |
 |---|---|
 | `terradart synth` | the entry point (`dart run bin/infra.dart`); arguments after `--` go to it |
+| `terradart validate` | synth, `init -backend=false`, `validate`: checks the configuration without credentials, a backend or state — the step for CI; arguments after `--` go to `validate` (`-- -json`) |
 | `terradart plan` | synth, `init`, `plan`; arguments after `--` go to the engine (`-- -target=...`) |
 | `terradart apply` | synth, `init`, `apply`, then writes the define file; `--auto-approve` skips the prompt |
 | `terradart destroy` | synth, `init`, `destroy` |
@@ -66,7 +67,7 @@ An entry point that writes `tf-out/` itself (`await OrdersStack(...).writeTo('tf
 
 ## Environments
 
-With an entry point that calls `runEnvironments`, `plan`, `apply`, `destroy` and `outputs` need `--env <name>`, the name of a member of the project's environment enum; `terradart synth` without it writes every environment. Each environment gets its own Terraform directory (`tf-out/<name>` unless `runEnvironments` says otherwise) and define file (`.terradart/dart_defines.<name>.json`), and a name that is not a member stops before anything runs. `--workspace` and `--backend-config` override and extend, for one run, the workspace and backend settings `runEnvironments` gives an environment.
+With an entry point that calls `runEnvironments`, `validate`, `plan`, `apply`, `destroy` and `outputs` need `--env <name>`, the name of a member of the project's environment enum; `terradart synth` without it writes every environment. Each environment gets its own Terraform directory (`tf-out/<name>` unless `runEnvironments` says otherwise) and define file (`.terradart/dart_defines.<name>.json`), and a name that is not a member stops before anything runs. `--workspace` and `--backend-config` override and extend, for one run, the workspace and backend settings `runEnvironments` gives an environment.
 
 How to declare the enum, keep each environment's state apart, and build each client with its define file: [Environments](/docs/environments/).
 
