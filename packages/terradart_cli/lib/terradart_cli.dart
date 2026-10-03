@@ -1,6 +1,7 @@
-/// The `terradart` command: synthesize a TerraDart Stack, plan and apply it
-/// with OpenTofu or Terraform, migrate an existing Terraform tree
-/// (`terradart migrate`), and write its outputs as the
+/// The `terradart` command: create a TerraDart project (`terradart init`),
+/// synthesize its Stack, plan and apply it with OpenTofu or Terraform,
+/// migrate an existing Terraform tree (`terradart migrate`), and write its
+/// outputs as the
 /// `--dart-define-from-file` JSON a Flutter or Dart client builds with.
 ///
 /// Run it as `dart run terradart_cli:terradart <command>` from a project
