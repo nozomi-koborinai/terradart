@@ -11,6 +11,8 @@ import 'init_command.dart';
 import 'migrate_command.dart';
 import 'output/interaction.dart';
 import 'process_runner.dart';
+import 'skill/installer.dart';
+import 'skill/skill_command.dart';
 import 'target.dart';
 import 'workflow.dart';
 
@@ -18,7 +20,8 @@ import 'workflow.dart';
 ///
 /// [runner], [console], [workingDirectory], [environment] (read for `PATH`,
 /// `TERRADART_ENV`, `TERRADART_NO_INPUT`, `CI`, the [agentVariables],
-/// `TERRADART_CACHE_DIR` and `TERRADART_OPENTOFU_MIRROR`) and
+/// `TERRADART_CACHE_DIR`, `TERRADART_OPENTOFU_MIRROR` and
+/// `TERRADART_NO_SKILL_NOTICE`) and
 /// [dartExecutable] replace the process, terminal and host in tests.
 Future<int> runTerradart(
   List<String> arguments, {
@@ -58,7 +61,8 @@ Future<int> runTerradart(
         ..addCommand(_OutputsCommand(context))
         ..addCommand(_EngineCommand(context))
         ..addCommand(_StateCommand(context))
-        ..addCommand(MigrateCommand(io));
+        ..addCommand(MigrateCommand(io))
+        ..addCommand(SkillCommand(console: io, cwd: context.cwd));
   cli.argParser
     ..addFlag(
       'no-input',
@@ -200,6 +204,11 @@ abstract class _TerradartCommand extends Command<int> {
 
   ProjectConfig loadConfig() {
     final root = ProjectConfig.findRoot(_option('project') ?? context.cwd);
+    if (context.environment['TERRADART_NO_SKILL_NOTICE'] != '1') {
+      if (skillNotice(root) case final notice?) {
+        context.console.err('terradart: $notice');
+      }
+    }
     final config = ProjectConfig.load(root);
     final kind = _option('engine');
     final path = _option('engine-path');

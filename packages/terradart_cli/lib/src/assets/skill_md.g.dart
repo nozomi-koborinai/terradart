@@ -1,3 +1,10 @@
+// GENERATED FILE - DO NOT EDIT
+// `dart tool/sync_bundled_skill.dart --fix` copies skills/terradart/SKILL.md here;
+// tool/bundled_skill_test.dart fails when the two differ.
+
+/// `skills/terradart/SKILL.md`, byte for byte: the agent skill
+/// `terradart skill install` writes.
+const String bundledSkillMd = r'''
 ---
 name: terradart
 description: Write TerraDart infrastructure code (Dart that synthesizes Terraform JSON). Use when a task mentions TerraDart, a Dart `Stack`, `terradart_google` / `terradart_aws` / `terradart_cloudflare` / `terradart_appwrite` / `terradart_google_beta`, or translating Terraform (`.tf`) into Dart.
@@ -263,3 +270,4 @@ Do not rewrite an existing Terraform tree by hand. Run the migrator first; it tr
 5. **Plan.** `terradart plan` for a single Stack; for several roots, `terradart plan --env <name>` per root (a `--merge-envs` member, or the root's directory name: `--env dev` plans `tf-out/envs/dev`). It must report *No changes*. A diff means the port changed something, so fix the Dart rather than the plan. Do not run `terradart apply` for the user.
 
 See [Migrating from HCL](https://terradart.dev/docs/migrate-from-hcl/) for the flags (`--merge-envs` folds `envs/dev` and `envs/prod` into one Stack; `--lift-workspace` turns `terraform.workspace` into a Stack parameter, so `terradart plan --workspace prod` synthesizes for that workspace).
+''';

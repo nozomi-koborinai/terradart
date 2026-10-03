@@ -37,17 +37,18 @@ dart run terradart_cli:terradart apply
 | `terradart state migrate` | synth, then `init -migrate-state`: moves the state to the backend the Stack now configures, after asking (`--auto-approve` skips the question, and is required when it cannot ask: no terminal, `--no-input`, CI or an agent) |
 | `terradart engine` | prints the engine binary it would run, downloading OpenTofu if that is the one |
 | `terradart migrate` | turns a Terraform tree into a Dart package. No project is required — it does not look for a `pubspec.yaml` |
+| `terradart skill install` / `update` / `status` | writes, updates and checks the [agent skill](#the-agent-skill) this CLI bundles |
 
 `--no-synth` reuses what the last synth wrote, `--project <dir>` (`-C`) runs against another package, and `--engine tofu|terraform` or `--engine-path <file>` picks the engine for one run. The exit code is the failing step's (64 for a usage error, 3 when the command needs an answer nobody can give).
 
 ## Creating a project
 
-`terradart init` writes a project that plans as it is — `pubspec.yaml`, an `Env` enum in `lib/env.dart`, a Stack with one resource and one output in `lib/stack.dart`, `bin/infra.dart`, a `.gitignore`, a `README.md` and an `AGENTS.md` — then runs `dart pub get` in it (`--no-pub-get` skips that):
+`terradart init` writes a project that plans as it is — `pubspec.yaml`, an `Env` enum in `lib/env.dart`, a Stack with one resource and one output in `lib/stack.dart`, `bin/infra.dart`, a `.gitignore`, a `README.md` and an `AGENTS.md`, and with `--agent-skill` the [agent skill](#the-agent-skill) — then runs `dart pub get` in it (`--no-pub-get` skips that):
 
 ```bash
 terradart init --provider google --env dev,prd --gcp-project dev=myapp-dev,prd=myapp-prd --state-bucket myapp-tfstate
 terradart init --provider aws --env dev,stg,prd --aws-region prd=eu-west-1 --aws-account prd=123456789012 --backend local
-terradart init --provider cloudflare --defaults --cloudflare-account 0123abcd
+terradart init --provider cloudflare --defaults --cloudflare-account 0123abcd --agent-skill
 terradart init --dry-run --provider appwrite --defaults # lists the files, writes nothing
 ```
 
@@ -61,10 +62,12 @@ terradart init --dry-run --provider appwrite --defaults # lists the files, write
 | `--backend` | `local`, `gcs`, `s3`, `r2` (Cloudflare R2, with `--provider cloudflare`) | required without a terminal unless `--state-bucket`; `--defaults`: `local` |
 | `--defaults` | take `--env dev,prd`, `--backend local`, placeholder IDs and the Flutter wiring for what the flags leave out; never the providers | |
 | `--[no-]flutter` | wiring to the Flutter app in the current directory | on when there is one |
+| `--[no-]agent-skill` | write the agent skill this CLI bundles into the project | asked in a terminal (yes); off without one or with `--defaults` |
+| `--agents` | where `--agent-skill` writes it: `agents`, `claude`, `cursor`, `windsurf`, `copilot`, `all`; implies `--agent-skill` | `agents,claude` |
 | `--dry-run` | list the files, write nothing | |
 | `--force` | overwrite existing files, scaffold next to existing Terraform | |
 
-In a terminal, every flag left out is a question: the providers, the environments, each environment's IDs (a blank answer leaves a placeholder marked `TODO`), then *Do you already have a bucket for Terraform state?* — yes asks for its name, one for every environment or one each, and takes the kind from the provider (asking when the providers do not settle it); no keeps the state local. The run ends with `Re-run with: terradart init ...`, the same answers as flags.
+In a terminal, every flag left out is a question: the providers, the environments, each environment's IDs (a blank answer leaves a placeholder marked `TODO`), then *Do you already have a bucket for Terraform state?* — yes asks for its name, one for every environment or one each, and takes the kind from the provider (asking when the providers do not settle it); no keeps the state local — and last whether to install the agent skill. Without the skill, `AGENTS.md` says how to add it: `terradart skill install`, or the pinned `npx skills add` line. The run ends with `Re-run with: terradart init ...`, the same answers as flags.
 
 Without a terminal it never asks, and never picks the providers, the environments or the state backend for you: a run that leaves out any of `--provider`, `--env` and `--backend` (or `--state-bucket`) fails with exit 64, names every missing flag, and prints a command to edit. `--defaults` accepts `dev,prd` and local state; the IDs it leaves out become placeholders, and the defaults it took are printed. A bucket's state sits under `<package>/<env>`, so one bucket serves every environment. Local state moves to a bucket later with `terradart state migrate`; `terradart init` only scaffolds.
 
@@ -179,6 +182,46 @@ terradart: Stopped before running OpenTofu on a state Terraform wrote. Pass --en
 ```
 
 `terradart migrate` writes `engine: terraform` into the package it generates, so a migrated project keeps the engine its state came from.
+
+## The agent skill
+
+`terradart_cli` bundles the [TerraDart Agent Skill](/docs/start/ai-agent/) of its own release, so a coding agent learns the CLI it runs and not the one on `main`. `terradart skill install` writes it to the project (the directory holding `pubspec.yaml`, or `--project <dir>`):
+
+```text
+.agents/skills/terradart/SKILL.md   Cursor, Codex, Gemini CLI, GitHub Copilot and most other agents
+.claude/skills/terradart/SKILL.md   Claude Code, which does not read .agents/skills
+```
+
+`--agents` picks other directories, comma-separated: `agents`, `claude`, `cursor` (`.cursor/skills`), `windsurf` (`.windsurf/skills`), `copilot` (`.github/skills`), or `all`. The files are copies, not symlinks; commit them with the project.
+
+Each copy records, under `metadata:` in its front matter, the CLI version that wrote it and the SHA-256 of its content (leaving those two lines out):
+
+```yaml
+metadata:
+  terradart-version: "0.34.0"
+  terradart-sha256: "<sha256>"
+```
+
+| Command | Does |
+|---|---|
+| `terradart skill status` | shows each copy: `current`, `marker-only` (same content, older version), `outdated`, `newer` (written by a newer CLI), `edited`, `missing`, or `foreign` (no marker) |
+| `terradart skill status --check` | exits 4 when a copy is missing, outdated, newer, edited or foreign — for CI |
+| `terradart skill update` | rewrites every installed copy with the bundled one. A copy that is edited, foreign or newer is left alone (exit 5) unless `--force` |
+| `terradart skill update --dry-run` | prints the diff and writes nothing (`install` takes it too) |
+
+When a copy in the project is older than the CLI, every other command prints one line on stderr (`TERRADART_NO_SKILL_NOTICE=1` turns it off):
+
+```text
+terradart: the terradart agent skill in .agents/skills is 0.33.0; this CLI is 0.34.0. Run: terradart skill update
+```
+
+Without the CLI, the [`skills` CLI](https://github.com/vercel-labs/skills) installs the same file. Pin it to the release tag, since it fetches `main` otherwise:
+
+```bash
+npx skills add nozomi-koborinai/terradart#v0.34.0 --skill terradart
+```
+
+It is byte for byte the file `terradart skill install` writes, so `terradart skill status` reads it too, and points at `npx skills update terradart -p -y` when `skills-lock.json` records it.
 
 ## `pubspec.yaml`
 

@@ -7,17 +7,23 @@ A coding agent can do the whole loop: create the project, write the Stack, check
 
 ## 1. Give the agent the skill
 
-The **TerraDart Agent Skill** tells the agent where to look and which commands to run. From your project's directory:
+The **TerraDart Agent Skill** tells the agent where to look and which commands to run. The `terradart` command bundles the skill of its own release, so the agent learns that CLI and not whatever is on `main`.
 
-<!-- TODO: #909 puts `terradart skill install` first again when it ships. -->
+In a project that already has a `pubspec.yaml`:
 
 ```bash
-npx skills add nozomi-koborinai/terradart --skill terradart
+terradart skill install
 ```
 
-The `skills` CLI asks which agents you use and writes the skill where each looks for skills, for example `.agents/skills/terradart/SKILL.md` (Cursor, Codex, Gemini CLI, GitHub Copilot and most others) and `.claude/skills/terradart/SKILL.md` (Claude Code).
+That writes `.agents/skills/terradart/SKILL.md` (Cursor, Codex, Gemini CLI, GitHub Copilot and most others) and `.claude/skills/terradart/SKILL.md` (Claude Code). Commit both. After upgrading the CLI, `terradart skill update` rewrites them, and leaves a copy you edited alone unless `--force`. A new project gets the same files from `terradart init --agent-skill`.
 
-The next release of the `terradart` command adds `terradart skill install`, which writes the same file, at the version of your `terradart`, with nothing else to install.
+Without the `terradart` command, use the [`skills` CLI](https://github.com/vercel-labs/skills), pinned to the release tag so the skill matches the release you depend on rather than `main`:
+
+```bash
+npx skills add nozomi-koborinai/terradart#v0.34.0 --skill terradart
+```
+
+The `skills` CLI asks which agents you use and writes the skill where each looks for skills. It is the same file `terradart skill install` writes.
 
 The skill is [`skills/terradart/SKILL.md`](https://github.com/nozomi-koborinai/terradart/blob/main/skills/terradart/SKILL.md) in the repository, in the [Agent Skills](https://agentskills.io) format; copying it into one of those directories works too.
 
@@ -27,14 +33,15 @@ Decide three things before the agent runs anything: the providers, the environme
 
 ```text
 Create a TerraDart project in my_app with terradart init: Google Cloud,
-environments dev and prd (projects my-app-dev and my-app-prd), local state.
+environments dev and prd (projects my-app-dev and my-app-prd), local state,
+and the agent skill.
 Then run terradart validate --env dev.
 ```
 
 The agent runs, with your answers as flags:
 
 ```bash
-terradart init my_app --provider google --env dev,prd --gcp-project dev=my-app-dev,prd=my-app-prd --backend local
+terradart init my_app --provider google --env dev,prd --gcp-project dev=my-app-dev,prd=my-app-prd --backend local --agent-skill
 cd my_app
 terradart validate --env dev
 ```

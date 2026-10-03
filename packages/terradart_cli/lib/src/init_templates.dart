@@ -1,6 +1,10 @@
 import 'package:terradart_migrate/terradart_migrate.dart'
     show formatDart, packageVersion;
 
+import 'assets/skill_md.g.dart';
+import 'skill/installer.dart';
+import 'skill/skill_command.dart';
+
 /// A provider package `terradart init` can scaffold a Stack for.
 enum InitProvider {
   google('terradart_google'),
@@ -115,6 +119,7 @@ final class InitPlan {
     required this.backend,
     this.ids = const {},
     this.flutter,
+    this.skillTargets = const [],
   }) : providers = [
          for (final p in InitProvider.values)
            if (providers.contains(p)) p,
@@ -130,6 +135,10 @@ final class InitPlan {
   /// The IDs given, by environment.
   final Map<InitId, Map<String, String>> ids;
   final FlutterApp? flutter;
+
+  /// Where the project gets the agent skill this CLI bundles; none when
+  /// empty.
+  final List<SkillTarget> skillTargets;
 
   bool has(InitProvider p) => providers.contains(p);
 
@@ -275,7 +284,22 @@ Map<String, String> renderProject(InitPlan plan) => {
   '.gitignore': '.dart_tool/\ntf-out/\n.terradart/\n',
   'README.md': _readme(plan),
   'AGENTS.md': _agents(plan),
+  for (final t in plan.skillTargets) t.display: bundledSkillMd,
 };
+
+String _skillInstalled(List<SkillTarget> targets) =>
+    'The TerraDart Agent Skill (the API and its argument forms) is in '
+    '${targets.map((t) => '`${t.dir}/terradart/`').join(', ')}. After '
+    'upgrading the `terradart` command, run `terradart skill update`.';
+
+const _skillToInstall =
+    '''Install the TerraDart Agent Skill for the API and its argument forms:
+
+```bash
+terradart skill install
+```
+
+Without the `terradart` command, the same skill pinned to its release: `$npxSkillsAdd`.''';
 
 String _agents(InitPlan plan) {
   final env = plan.envs.first;
@@ -284,11 +308,7 @@ String _agents(InitPlan plan) {
 
 A [TerraDart](https://terradart.dev) project: infrastructure written in Dart, synthesized to Terraform JSON, and planned and applied by the `terradart` command, which downloads OpenTofu itself. Do not install or call `terraform` / `tofu` directly.
 
-Install the TerraDart Agent Skill for the API and its argument forms:
-
-```bash
-npx skills add nozomi-koborinai/terradart --skill terradart
-```
+${plan.skillTargets.isEmpty ? _skillToInstall : _skillInstalled(plan.skillTargets)}
 
 | Task | Command |
 |---|---|

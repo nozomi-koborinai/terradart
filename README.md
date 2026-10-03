@@ -288,8 +288,10 @@ cd infra_dart && dart pub get && terradart plan
 **Coding agents.** The factories are generated Dart committed to the provider packages, so an agent can read the exact constructor, its doc comment and a CI-validated example instead of guessing. The [TerraDart Agent Skill](skills/terradart/SKILL.md) tells it where to look (each package's `lib/src/_catalog.g.dart`, [`examples/`](examples/), [`/llms.txt`](https://terradart.dev/llms.txt)):
 
 ```sh
-npx skills add nozomi-koborinai/terradart --skill terradart
+terradart skill install   # .agents/skills/ and .claude/skills/, the skill of this CLI's release
 ```
+
+`terradart skill update` keeps it in step with the CLI, and `terradart skill status --check` fails CI when it falls behind. Without the CLI: `npx skills add nozomi-koborinai/terradart#v0.34.0 --skill terradart`, pinned to the release tag.
 
 Docs: [Let an AI agent do it](https://terradart.dev/docs/start/ai-agent/).
 

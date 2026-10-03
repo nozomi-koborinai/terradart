@@ -21,6 +21,10 @@
 #   - packages/terradart_migrate/pubspec.yaml     (version: + terradart_{core,google,google_beta,appwrite,cloudflare,aws,hcl,time} carets)
 #   - packages/terradart_cli/pubspec.yaml         (version: line)
 #   - packages/terradart_migrate/lib/src/version.dart (packageVersion const — the caret `terradart init` scaffolds and `terradart migrate` pins into generated pubspecs, and the `--version` it prints)
+#   - packages/terradart_cli/lib/src/version.dart (cliVersion const)
+#   - skills/terradart/SKILL.md                   (metadata terradart-version; then `dart tool/sync_bundled_skill.dart --fix`
+#     + packages/terradart_cli/lib/src/assets/skill_md.g.dart   re-hashes it and regenerates the CLI's bundled copy)
+#   - README.md, packages/terradart_cli/README.md, website docs cli.md + start/ai-agent.md (`npx skills add nozomi-koborinai/terradart#vX.Y.Z`)
 #   - examples/*/pubspec.yaml                     (terradart_core + terradart_google + terradart_google_beta + terradart_appwrite + terradart_cloudflare + terradart_aws + terradart_time carets)
 #   - cookbook/*/pubspec.yaml,                    (terradart_core + terradart_google + terradart_time carets on
 #     cookbook/*/*/pubspec.yaml                    workspace-member cookbook recipes)
@@ -151,6 +155,22 @@ echo "    - terradart_cli.dependencies.terradart_{hcl,migrate}: ^${NEW}"
 echo "  terradart-migrate version const:"
 sed_inplace "s#^const String packageVersion = '${OLD_RE}';\$#const String packageVersion = '${NEW}';#" packages/terradart_migrate/lib/src/version.dart
 echo "    - packages/terradart_migrate/lib/src/version.dart -> $NEW"
+
+# 2c. terradart CLI version const, the agent skill marker it bundles (then
+#     the hash and the bundled copy: tool/sync_bundled_skill.dart --fix), and
+#     the `npx skills add ...#v<version>` lines pinned to the release tag.
+echo "  terradart CLI version + bundled agent skill:"
+sed_inplace "s#^const String cliVersion = '${OLD_RE}';\$#const String cliVersion = '${NEW}';#" packages/terradart_cli/lib/src/version.dart
+echo "    - packages/terradart_cli/lib/src/version.dart -> $NEW"
+sed_inplace "s#^(  terradart-version: )\"${OLD_RE}\"\$#\\1\"${NEW}\"#" skills/terradart/SKILL.md
+dart tool/sync_bundled_skill.dart --fix
+echo "    - skills/terradart/SKILL.md + packages/terradart_cli/lib/src/assets/skill_md.g.dart -> $NEW"
+NPX_SKILL_DOCS=(README.md packages/terradart_cli/README.md website/src/content/docs/docs/cli.md website/src/content/docs/docs/start/ai-agent.md)
+for f in "${NPX_SKILL_DOCS[@]}"; do
+  [ -f "$f" ] || continue
+  sed_inplace "s#(nozomi-koborinai/terradart)\\#v${OLD_RE}([^0-9A-Za-z.-]|\$)#\\1\\#v${NEW}\\2#g" "$f"
+  echo "    - $f (npx skills add ...#v$NEW)"
+done
 
 # 3. Every example pubspec: terradart_core + terradart_google carets.
 echo "  Example pubspecs:"
@@ -290,6 +310,9 @@ STALE=$(
     packages/*/pubspec.yaml examples/*/pubspec.yaml \
     cookbook/*/pubspec.yaml cookbook/*/*/pubspec.yaml 2>/dev/null
   grep -nE "packageVersion = '${OLD_RE}'" packages/terradart_migrate/lib/src/version.dart 2>/dev/null
+  grep -nE "cliVersion = '${OLD_RE}'" packages/terradart_cli/lib/src/version.dart 2>/dev/null
+  grep -nE "terradart-version: \"${OLD_RE}\"" skills/terradart/SKILL.md 2>/dev/null
+  grep -nE "nozomi-koborinai/terradart#v${OLD_RE}([^0-9A-Za-z.-]|\$)" "${NPX_SKILL_DOCS[@]}" 2>/dev/null
   if [ "$OLD_MINOR" != "$NEW_MINOR" ]; then
     grep -nE "\\^${OLD_MINOR_RE}\\.(0|x)([^0-9A-Za-z.-]|\$)" \
       CONTRIBUTING.md SECURITY.md 2>/dev/null
