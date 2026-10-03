@@ -20,7 +20,7 @@ Binary Authorization payload material and are not exercised here.
 ```
 examples/container_analysis_quickstart/
 ├── lib/main.dart       # ContainerAnalysisStack
-├── bin/infra.dart      # Synth: stack.writeTo('tf-out')
+├── bin/infra.dart      # Synth: runStack → tf-out/
 ├── tf-out/             # (created on synth) main.tf.json
 └── pubspec.yaml
 ```

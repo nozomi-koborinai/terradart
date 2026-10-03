@@ -9,13 +9,15 @@ library;
 
 import 'dart:io';
 
+import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_example_aws_static_site_quickstart/main.dart';
 
-Future<void> main() async {
-  final stack = AwsStaticSiteStack(
-    siteDomain: Platform.environment['SITE_DOMAIN'] ?? 'app.example.com',
-    hostedZone: Platform.environment['HOSTED_ZONE'] ?? 'example.com',
+Future<void> main(List<String> args) async {
+  await runStack(
+    args,
+    () => AwsStaticSiteStack(
+      siteDomain: Platform.environment['SITE_DOMAIN'] ?? 'app.example.com',
+      hostedZone: Platform.environment['HOSTED_ZONE'] ?? 'example.com',
+    ),
   );
-  await stack.writeTo('tf-out');
-  print('synthesized to tf-out/main.tf.json');
 }

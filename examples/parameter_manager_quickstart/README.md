@@ -15,7 +15,7 @@ Parameter *versions* (which hold the payload) are tracked in `tool/example_debt.
 ```
 examples/parameter_manager_quickstart/
 ├── lib/main.dart       # ParamsStack (API enablement + global + regional parameters)
-├── bin/infra.dart      # Synth: stack.writeTo('tf-out')
+├── bin/infra.dart      # Synth: runStack → tf-out/
 ├── lib/generated/      # (created on synth) params_stack.app.dart
 ├── tf-out/             # (created on synth) main.tf.json
 └── pubspec.yaml

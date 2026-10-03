@@ -13,7 +13,7 @@ End-to-end terradart example for Document AI. Enables the Document AI API and pr
 ```
 examples/document_ai_quickstart/
 ├── lib/main.dart       # DocAiStack (API + OCR processor + default version + schema + exports)
-├── bin/infra.dart      # Synth: stack.writeTo('tf-out')
+├── bin/infra.dart      # Synth: runStack → tf-out/
 ├── lib/generated/      # (created on synth) doc_ai_stack.app.dart
 ├── tf-out/             # (created on synth) main.tf.json
 └── pubspec.yaml

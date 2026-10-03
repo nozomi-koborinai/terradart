@@ -24,7 +24,7 @@ The Hive metastore stores catalog metadata only, but the Iceberg table incurs Bi
 ```
 examples/biglake_quickstart/
 ├── lib/main.dart       # MetastoreStack (Hive + Iceberg trees)
-├── bin/infra.dart      # Synth: stack.writeTo('tf-out')
+├── bin/infra.dart      # Synth: runStack → tf-out/
 ├── lib/generated/      # (created on synth) metastore_stack.app.dart
 ├── tf-out/             # (created on synth) main.tf.json
 └── pubspec.yaml

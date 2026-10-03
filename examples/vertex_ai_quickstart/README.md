@@ -20,7 +20,7 @@ The feature group's `big_query` config is passed as a structured map, matching t
 ```
 examples/vertex_ai_quickstart/
 ├── lib/main.dart       # FeatureStack (BQ dataset + table + feature group)
-├── bin/infra.dart      # Synth: stack.writeTo('tf-out')
+├── bin/infra.dart      # Synth: runStack → tf-out/
 ├── lib/generated/      # (created on synth) feature_stack.app.dart
 ├── tf-out/             # (created on synth) main.tf.json
 └── pubspec.yaml

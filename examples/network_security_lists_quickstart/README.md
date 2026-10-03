@@ -13,7 +13,7 @@ End-to-end terradart example for Network Security reusable lists. Enables the Ne
 ```
 examples/network_security_lists_quickstart/
 ├── lib/main.dart       # ListsStack (API enablement + address group + URL list)
-├── bin/infra.dart      # Synth: stack.writeTo('tf-out')
+├── bin/infra.dart      # Synth: runStack → tf-out/
 ├── lib/generated/      # (created on synth) lists_stack.app.dart
 ├── tf-out/             # (created on synth) main.tf.json
 └── pubspec.yaml

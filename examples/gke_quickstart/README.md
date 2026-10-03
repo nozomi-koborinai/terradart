@@ -17,7 +17,7 @@ The GKE control plane fee and the node VMs bill hourly while the cluster exists.
 ```
 examples/gke_quickstart/
 ├── lib/main.dart        # GkeQuickstartStack
-├── bin/infra.dart       # Synth entry: stack.writeTo('tf-out')
+├── bin/infra.dart       # Synth entry: runStack → tf-out/
 ├── tf-out/              # (created on synth) main.tf.json
 └── pubspec.yaml         # workspace member
 ```

@@ -15,7 +15,7 @@ Nested config blocks are passed as structured maps (`TfArg<Map<String, dynamic>>
 ```
 examples/clouddeploy_quickstart/
 ├── lib/main.dart       # DeployStack (target + pipeline + custom type + automation + policy + IAM)
-├── bin/infra.dart      # Synth: stack.writeTo('tf-out')
+├── bin/infra.dart      # Synth: runStack → tf-out/
 ├── lib/generated/      # (created on synth) deploy_stack.app.dart
 ├── tf-out/             # (created on synth) main.tf.json
 └── pubspec.yaml

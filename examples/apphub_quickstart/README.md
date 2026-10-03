@@ -20,7 +20,7 @@ GCP project plus discovered resource URIs and are not exercised here.
 ```
 examples/apphub_quickstart/
 ├── lib/main.dart       # ApphubStack
-├── bin/infra.dart      # Synth: stack.writeTo('tf-out')
+├── bin/infra.dart      # Synth: runStack → tf-out/
 ├── tf-out/             # (created on synth) main.tf.json
 └── pubspec.yaml
 ```

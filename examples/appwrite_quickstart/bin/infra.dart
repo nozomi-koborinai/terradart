@@ -7,10 +7,9 @@
 /// `terraform validate`.
 library;
 
+import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_example_appwrite_quickstart/main.dart';
 
-Future<void> main() async {
-  final stack = AppwriteDemoStack();
-  await stack.writeTo('tf-out');
-  print('synthesized to tf-out/main.tf.json');
+Future<void> main(List<String> args) async {
+  await runStack(args, () => AppwriteDemoStack());
 }

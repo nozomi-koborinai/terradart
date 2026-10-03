@@ -13,7 +13,7 @@ End-to-end terradart example for Cloud Observability. Enables the Cloud Observab
 ```
 examples/observability_quickstart/
 ├── lib/main.dart       # ObservabilityStack (API enablement + trace scope + exports)
-├── bin/infra.dart      # Synth: stack.writeTo('tf-out')
+├── bin/infra.dart      # Synth: runStack → tf-out/
 ├── lib/generated/      # (created on synth) observability_stack.app.dart
 ├── tf-out/             # (created on synth) main.tf.json
 └── pubspec.yaml

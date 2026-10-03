@@ -38,6 +38,14 @@ dart analyze \
   cookbook/firestore-seeded-data \
   cookbook/remote-backend
 
+echo ">> cookbook entry points call runStack / runEnvironments"
+missing=$(grep -LE '\b(runStack|runEnvironments)\(' cookbook/*/bin/infra.dart cookbook/*/*/bin/infra.dart 2>/dev/null || true)
+if [ -n "$missing" ]; then
+  echo "error: call runStack (or runEnvironments) in:" >&2
+  echo "$missing" >&2
+  exit 1
+fi
+
 echo ">> compile Lunch Concierge server"
 (
   cd cookbook/lunch-concierge/server
