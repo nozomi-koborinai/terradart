@@ -30,7 +30,7 @@ dart run terradart_cli:terradart apply
 | `terradart init [dir]` | writes a new project (default `infra/`) and runs `dart pub get` in it; no project is required |
 | `terradart synth` | the entry point (`dart run bin/infra.dart`); arguments after `--` go to it |
 | `terradart validate` | synth, `init -backend=false`, `validate`: checks the configuration without credentials, a backend or state — the step for CI; arguments after `--` go to `validate` (`-- -json`) |
-| `terradart plan` | synth, `init`, `plan`; arguments after `--` go to the engine (`-- -target=...`) |
+| `terradart plan` | synth, `init`, `plan`; arguments after `--` go to the engine (`-- -target=...`); `--detailed-exitcode` exits 2 when the plan has changes |
 | `terradart apply` | synth, `init`, `apply`, then writes the define file; `--auto-approve` skips the prompt |
 | `terradart destroy` | synth, `init`, `destroy`; `--auto-approve` skips the prompt |
 | `terradart outputs` | synth, `init`, then writes the define file from the applied state — no plan, no apply |
@@ -39,7 +39,7 @@ dart run terradart_cli:terradart apply
 | `terradart migrate` | turns a Terraform tree into a Dart package. No project is required — it does not look for a `pubspec.yaml` |
 | `terradart skill install` / `update` / `status` | writes, updates and checks the [agent skill](#the-agent-skill) this CLI bundles |
 
-`--no-synth` reuses what the last synth wrote, `--project <dir>` (`-C`) runs against another package, and `--engine tofu|terraform` or `--engine-path <file>` picks the engine for one run. The exit code is the failing step's (64 for a usage error, 3 when the command needs an answer nobody can give).
+`--no-synth` reuses what the last synth wrote, `--project <dir>` (`-C`) runs against another package, and `--engine tofu|terraform` or `--engine-path <file>` picks the engine for one run. `--json` prints one result object on stdout, and every exit code means one thing: [JSON and exit codes](#json-and-exit-codes).
 
 ## Creating a project
 
@@ -73,7 +73,7 @@ Without a terminal it never asks, and never picks the providers, the environment
 
 Inside a Flutter app (a `pubspec.yaml` that depends on `flutter` in the current directory), the Stack's `appExports` writes the reader the app imports to the app's `lib/generated/infra.g.dart`, the Stack declares `addDartDefineOutput()`, and the steps printed end with `flutter run --dart-define-from-file=infra/.terradart/dart_defines.<env>.json`.
 
-A working or target directory holding `*.tf` or `*.tf.json` files, at any depth, gets no scaffold: `terradart init` names the directories that hold them (`Found Terraform in envs/dev, modules/net.`), prints the `terradart migrate --report` and `terradart migrate` commands for it and exits 1 — in a terminal it offers to run the report first. `--force` scaffolds anyway.
+A working or target directory holding `*.tf` or `*.tf.json` files, at any depth, gets no scaffold: `terradart init` names the directories that hold them (`Found Terraform in envs/dev, modules/net.`), prints the `terradart migrate --report` and `terradart migrate` commands for it and exits 64 — in a terminal it offers to run the report first. `--force` scaffolds anyway.
 
 Picking `appwrite` writes `terradart: engine: terraform` into `pubspec.yaml`: an Appwrite project plans and applies with Terraform on your `PATH` ([The engine](#the-engine)).
 
@@ -130,6 +130,54 @@ terradart: --env is required: bin/infra.dart declares dev, stg, prd and no defau
 ```
 
 The engine gets `-input=false` whenever nobody can answer. `--quiet` (`-q`) leaves out the values terradart picks by itself (`env: dev (default)`, `Using OpenTofu ...`); errors and warnings still print.
+
+## JSON and exit codes
+
+`--json` prints one JSON object on stdout when the command ends — and nothing else there: progress, the entry point's and the engine's output go to stderr. It implies `--no-input`, and it goes before or after the command (`terradart --json plan`, `terradart plan --json`).
+
+```bash
+terradart plan --env dev --json --detailed-exitcode
+```
+
+```json
+{
+  "schemaVersion": 1,
+  "command": "plan",
+  "ok": true,
+  "exitCode": 2,
+  "env": {"name": "dev", "source": "flag"},
+  "engine": {"kind": "tofu", "version": "1.13.1", "source": "path", "path": "/usr/local/bin/tofu"},
+  "outDir": "tf-out/dev",
+  "plan": {"add": 3, "change": 0, "destroy": 0, "replace": 0},
+  "notices": [],
+  "next": ["terradart apply --env dev"]
+}
+```
+
+| Field | Holds |
+|---|---|
+| `schemaVersion` | `1`; raised only for a change that breaks a reader |
+| `command`, `ok`, `exitCode` | the command path (`state migrate`), whether it succeeded, and the exit code |
+| `env` | the environment and why: `flag`, `variable` (`TERRADART_ENV`), `default`, `only`, `prompt` |
+| `engine` | `kind` (`tofu`, `terraform`), `version`, `path`, and why: `engine_path`, `setting` (`--engine` or `pubspec.yaml`), `state` (the engine that last applied it), `path`, `managed` (the OpenTofu download) |
+| `outDir` | the Terraform directory |
+| `plan` | `plan`: the resource changes of the saved plan as `show -json` lists them; a replacement counts once, as `replace` |
+| `defineFile`, `keys` | `apply`, `outputs`: the define file and its keys — never the values, which may be secrets |
+| `error` | on failure: `code` from the table, `message`, and when they apply `flag`, `choices`, `engineExitCode` |
+| `next` | the commands to run next: the failed one with the flag it lacks, or `terradart apply` after a plan with changes |
+
+| Exit code | `error.code` | Means |
+|---|---|---|
+| 0 | | success |
+| 1 | `internal` | anything else: a bug, a cancelled question, a malformed engine output |
+| 2 | | `plan --detailed-exitcode` found changes — not a failure, `ok` is `true` |
+| 3 | `input_required` | an answer nobody can give: `--auto-approve`, or `--engine` on a state the other engine wrote |
+| 10 | `synth_failed` | the entry point exited non-zero |
+| 11 | `engine_unavailable` | no engine: not on `PATH`, a missing `engine_path`, or the OpenTofu download or its SHA-256 check failed |
+| 12 | `engine_failed` | `init`, `plan`, `apply`, `validate`, `output` ... failed; `error.engineExitCode` is the engine's own code |
+| 64 | `usage` / `missing_flag` | a wrong flag or argument, or a required one is missing (`--env`, `--force`) |
+| 65 | `project_config` | the `terradart:` section of `pubspec.yaml` is wrong, an `--env` the entry point does not declare, a Terraform directory or dart-define output that is not there |
+| 66 | `no_project` | no `pubspec.yaml` in the directory or above it |
 
 ## Moving the state
 

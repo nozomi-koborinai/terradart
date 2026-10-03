@@ -28,7 +28,7 @@ void main() {
   test('synth names a missing entry point', () async {
     final project = TestProject.create(terradart: '  entrypoint: infra.dart\n');
     final r = await project.run(['synth'], FakeRunner());
-    expect(r.code, 64);
+    expect(r.code, 65);
     expect(r.err, contains('No infra.dart'));
   });
 
@@ -116,14 +116,14 @@ void main() {
       expect(runner.engineCalls.last, 'validate');
     });
 
-    test('an invalid configuration exits with validate\'s code', () async {
+    test('an invalid configuration exits 12', () async {
       final project = TestProject.create();
       final runner = FakeRunner(
         synth: (_) => runStackEntry(),
         failOn: 'validate',
       );
       final r = await project.run(['validate'], runner);
-      expect(r.code, 1);
+      expect(r.code, 12);
       expect(r.err, contains('tofu validate exited 1'));
     });
 
@@ -149,11 +149,11 @@ void main() {
     expect(runner.calls.where((c) => c.executable == 'dart'), isEmpty);
   });
 
-  test('a failing engine step stops with its exit code', () async {
+  test('a failing engine step exits 12', () async {
     final project = TestProject.create();
     final runner = FakeRunner(synth: (_) => runStackEntry(), failOn: 'init');
     final r = await project.run(['apply', '--auto-approve'], runner);
-    expect(r.code, 1);
+    expect(r.code, 12);
     expect(r.err, contains('tofu init exited 1'));
     expect(runner.engineCalls, isNot(contains(startsWith('apply'))));
   });
@@ -219,7 +219,7 @@ void main() {
     final project = TestProject.create();
     final runner = FakeRunner(synth: (_) => runStackEntry());
     final r = await project.run(['outputs', '--no-init'], runner);
-    expect(r.code, 1);
+    expect(r.code, 65);
     expect(r.err, contains('addDartDefineOutput()'));
   });
 
@@ -229,7 +229,7 @@ void main() {
       synth: (args) => runEnvironmentsEntry(args, ['dev', 'stg']),
     );
     final r = await project.run(['outputs', '--env', 'stg'], runner);
-    expect(r.code, 1);
+    expect(r.code, 12);
     expect(r.err, contains('terradart apply --env stg'));
   });
 
@@ -260,7 +260,7 @@ void main() {
     );
     for (final command in ['apply', 'outputs']) {
       final r = await project.run([command], runner);
-      expect(r.code, 64, reason: command);
+      expect(r.code, 65, reason: command);
       expect(
         r.err,
         contains(
@@ -498,7 +498,7 @@ void main() {
         '--env',
         'staging',
       ], runner);
-      expect(r.code, 64);
+      expect(r.code, 65);
       expect(
         r.err,
         contains(
@@ -513,7 +513,7 @@ void main() {
         synth: (args) => runEnvironmentsEntry(args, ['qa']),
       );
       final r = await project.run(['plan', '--env', 'staging'], runner);
-      expect(r.code, 64);
+      expect(r.code, 65);
       expect(r.err, contains('synth failed: bin/infra.dart exited 64'));
       expect(runner.engineCalls, isEmpty);
     });
@@ -589,7 +589,7 @@ void main() {
         runner,
         env: {'TERRADART_ENV': 'staging'},
       );
-      expect(r.code, 64);
+      expect(r.code, 65);
       expect(r.err, contains('(--env staging comes from TERRADART_ENV)'));
     });
 
@@ -756,7 +756,7 @@ void main() {
         '--engine',
         'terraform',
       ], FakeRunner());
-      expect(r.code, 1);
+      expect(r.code, 11);
       expect(r.err, contains('no terraform is on PATH'));
     });
 

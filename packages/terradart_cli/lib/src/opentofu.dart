@@ -8,6 +8,7 @@ import 'package:path/path.dart' as p;
 
 import 'cli_exception.dart';
 import 'host.dart';
+import 'output/exit_codes.dart';
 import 'tar.dart';
 
 /// The OpenTofu release terradart downloads when neither `tofu` nor
@@ -88,6 +89,7 @@ final class OpenTofuInstaller {
         throw CliException(
           'Checksum mismatch for $_asset: expected $expected, got $actual. '
           'The download was discarded.',
+          kind: ExitCode.engineUnavailable,
         );
       }
       final staged = File(
@@ -99,12 +101,18 @@ final class OpenTofuInstaller {
         staged,
       );
       if (!found) {
-        throw CliException('$_asset holds no ${platform.executable('tofu')}.');
+        throw CliException(
+          '$_asset holds no ${platform.executable('tofu')}.',
+          kind: ExitCode.engineUnavailable,
+        );
       }
       if (!platform.isWindows) {
         final chmod = await Process.run('chmod', ['755', staged.path]);
         if (chmod.exitCode != 0) {
-          throw CliException('chmod ${staged.path} failed: ${chmod.stderr}');
+          throw CliException(
+            'chmod ${staged.path} failed: ${chmod.stderr}',
+            kind: ExitCode.engineUnavailable,
+          );
         }
       }
       final target = Directory(p.dirname(binaryPath));
@@ -127,7 +135,10 @@ final class OpenTofuInstaller {
     if (version == kOpenTofuVersion) {
       final pinned = kOpenTofuChecksums[platform.toString()];
       if (pinned == null) {
-        throw CliException('OpenTofu $version has no build for $platform.');
+        throw CliException(
+          'OpenTofu $version has no build for $platform.',
+          kind: ExitCode.engineUnavailable,
+        );
       }
       return pinned;
     }
@@ -143,7 +154,10 @@ final class OpenTofuInstaller {
         final parts = line.trim().split(RegExp(r'\s+'));
         if (parts.length == 2 && parts[1] == _asset) return parts[0];
       }
-      throw CliException('$sums lists no $_asset.');
+      throw CliException(
+        '$sums lists no $_asset.',
+        kind: ExitCode.engineUnavailable,
+      );
     } finally {
       client.close(force: true);
     }
@@ -158,13 +172,17 @@ final class OpenTofuInstaller {
       final response = await (await client.getUrl(url)).close();
       if (response.statusCode != HttpStatus.ok) {
         await response.drain<void>();
-        throw CliException('GET $url returned HTTP ${response.statusCode}.');
+        throw CliException(
+          'GET $url returned HTTP ${response.statusCode}.',
+          kind: ExitCode.engineUnavailable,
+        );
       }
       return response;
     } on IOException catch (e) {
       throw CliException(
         'Cannot download $url ($e). The first run needs network access; '
         'or put tofu or terraform on PATH.',
+        kind: ExitCode.engineUnavailable,
       );
     }
   }
@@ -184,7 +202,10 @@ final class OpenTofuInstaller {
         sink.add(chunk);
       }
     } on IOException catch (e) {
-      throw CliException('Download of $url failed: $e');
+      throw CliException(
+        'Download of $url failed: $e',
+        kind: ExitCode.engineUnavailable,
+      );
     } finally {
       await sink.close();
     }

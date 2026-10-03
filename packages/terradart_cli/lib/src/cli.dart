@@ -9,7 +9,9 @@ import 'config.dart';
 import 'engine.dart';
 import 'init_command.dart';
 import 'migrate_command.dart';
+import 'output/exit_codes.dart';
 import 'output/interaction.dart';
+import 'output/json_result.dart';
 import 'process_runner.dart';
 import 'skill/installer.dart';
 import 'skill/skill_command.dart';
@@ -79,27 +81,75 @@ Future<int> runTerradart(
       help:
           'Leave out the values terradart picks by itself (env, engine); '
           'errors and warnings still print.',
+    )
+    ..addFlag(
+      'json',
+      negatable: false,
+      help:
+          'Print one JSON result on stdout (schemaVersion 1) and everything '
+          'else on stderr; implies --no-input.',
     );
+  final json = arguments.takeWhile((a) => a != '--').contains('--json');
+  if (json) io.result = JsonResult(_commandPath(arguments, cli));
+  int finish(int code) {
+    if (io.result case final result?) io.printResult(result.encode(code));
+    return code;
+  }
+
   try {
     final results = cli.parse(arguments);
+    if (json && results.command == null) {
+      throw UsageException('--json needs a command.', cli.usage);
+    }
     io
-      ..noInput = noInputReason(
-        context.environment,
-        noInputFlag: results.flag('no-input'),
-      )
+      ..noInput = json && !results.flag('no-input')
+          ? '--json'
+          : noInputReason(
+              context.environment,
+              noInputFlag: results.flag('no-input'),
+            )
       ..quiet = results.flag('quiet');
-    return await cli.runCommand(results) ?? 0;
+    return finish(await cli.runCommand(results) ?? 0);
   } on UsageException catch (e) {
     io.err('$e');
-    return 64;
+    final code = ExitCode.usage.code;
+    if (io.result case final r?)
+      io.printResult(r.encode(code, usage: e.message));
+    return code;
   } on CliException catch (e) {
     io.err('terradart: ${e.message}');
     if (e.choices.isNotEmpty) io.err('  Choices: ${e.choices.join(', ')}');
-    for (final add in e.next) {
-      io.err('  Next: ${commandLine(arguments, add)}');
+    final next = [for (final add in e.next) commandLine(arguments, add)];
+    for (final line in next) {
+      io.err('  Next: $line');
+    }
+    if (io.result case final r?) {
+      io.printResult(r.encode(e.exitCode, error: e, errorNext: next));
     }
     return e.exitCode;
+  } on Object catch (e) {
+    final result = io.result;
+    if (result == null) rethrow;
+    final error = CliException('$e');
+    io
+      ..err('terradart: $e')
+      ..printResult(result.encode(error.exitCode, error: error));
+    return error.exitCode;
   }
+}
+
+/// The command path the arguments name (`plan`, `state migrate`), for the
+/// `--json` result before they are parsed; `terradart` when none.
+String _commandPath(List<String> arguments, CommandRunner<int> cli) {
+  final path = <String>[];
+  var commands = cli.commands;
+  for (final a in arguments.takeWhile((a) => a != '--')) {
+    final command = commands[a];
+    if (command == null) continue;
+    path.add(command.name);
+    commands = command.subcommands;
+  }
+  return path.isEmpty ? 'terradart' : path.join(' ');
 }
 
 final class _Context {
@@ -331,7 +381,13 @@ final class _ValidateCommand extends _TerradartCommand {
 }
 
 final class _PlanCommand extends _TerradartCommand {
-  _PlanCommand(super.context);
+  _PlanCommand(super.context) {
+    argParser.addFlag(
+      'detailed-exitcode',
+      negatable: false,
+      help: 'Exit 2 when the plan has changes, 0 when it has none.',
+    );
+  }
 
   @override
   String get name => 'plan';
@@ -348,8 +404,10 @@ final class _PlanCommand extends _TerradartCommand {
     await flow.init();
     await flow.selectWorkspace(create: true);
     await flow.checkBackendState();
-    await flow.plan(args.rest);
-    return 0;
+    return flow.plan(
+      args.rest,
+      detailedExitCode: args.flag('detailed-exitcode'),
+    );
   }
 }
 
@@ -497,6 +555,14 @@ final class _EngineCommand extends _TerradartCommand {
       log: context.console.err,
       warn: context.console.warn,
     ).resolve();
+    if (context.console.result case final result?) {
+      result.engine = (
+        kind: engine.kind.name,
+        version: await engineVersion(engine, context.runner),
+        source: engine.source.id,
+        path: engine.path,
+      );
+    }
     context.console.out(engine.path);
     return 0;
   }

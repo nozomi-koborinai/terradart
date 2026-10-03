@@ -4,6 +4,7 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'cli_exception.dart';
+import 'output/exit_codes.dart';
 
 /// Writes the regular file [entry] of the gzip-compressed tar [archive] to
 /// [destination], streaming, and returns whether the archive held it.
@@ -21,7 +22,10 @@ Future<bool> extractTarGzEntry(
       if (await reader.add(chunk)) break;
     }
   } on FormatException catch (e) {
-    throw CliException('${archive.path} is not a gzip archive: ${e.message}');
+    throw CliException(
+      '${archive.path} is not a gzip archive: ${e.message}',
+      kind: ExitCode.engineUnavailable,
+    );
   } finally {
     await reader.close();
   }

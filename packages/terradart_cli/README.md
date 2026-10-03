@@ -29,7 +29,7 @@ To pin the version per project, `dart pub add --dev terradart_cli` and run it as
 
 It runs the `tofu`, else the `terraform`, on your `PATH`. With neither, it downloads the OpenTofu release it pins, checks the archive's SHA-256, and keeps the binary in your user cache — on Linux, macOS and Windows, amd64 and arm64. Before it runs one engine on a state the other wrote, it asks — or, without a terminal, stops and names the `--engine` flag that decides. A Stack that uses Appwrite runs on the `terraform` on your `PATH` instead: the `appwrite/appwrite` provider is published to the Terraform registry only, which OpenTofu cannot install from, so without Terraform (or with `--engine tofu`) the command stops before `init` and says so.
 
-In CI or an AI agent's shell it never asks: `apply` and `destroy` need `--auto-approve` (exit code 3 otherwise), a missing `--env` stops with the names, and every such error ends with the command to run next. `--no-input` does the same on a terminal.
+In CI or an AI agent's shell it never asks: `apply` and `destroy` need `--auto-approve` (exit code 3 otherwise), a missing `--env` stops with the names, and every such error ends with the command to run next. `--no-input` does the same on a terminal. `--json` prints one result object on stdout (the env, the engine, the plan's changes, the error and the command to run next), and each exit code means one thing — 3 an answer is needed, 10 synth failed, 12 the engine failed, 64 a flag is wrong or missing; see [the CLI reference](https://terradart.dev/docs/cli/#json-and-exit-codes).
 
 ## A new project
 

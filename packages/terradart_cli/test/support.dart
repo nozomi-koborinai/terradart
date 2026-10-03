@@ -13,6 +13,7 @@ typedef Call = ({
   String? workingDirectory,
   Map<String, String>? environment,
   bool streamed,
+  bool toStderr,
 });
 
 /// What a fake entry point does: the `main.tf.json` files it writes
@@ -105,7 +106,9 @@ final class FakeRunner implements ProcessRunner {
     this.outputs = const {},
     this.engineVersion = '1.13.1',
     this.failOn,
+    this.failCode = 1,
     this.pulledState,
+    this.planChanges = const [],
   });
 
   /// The entry point, given its arguments.
@@ -116,8 +119,15 @@ final class FakeRunner implements ProcessRunner {
 
   final String engineVersion;
 
-  /// The engine subcommand that exits 1.
+  /// The engine subcommand that exits [failCode].
   final String? failOn;
+
+  final int failCode;
+
+  /// The `actions` lists of the plan's resource changes: `plan
+  /// -detailed-exitcode` exits 2 when there are any, `plan -out` writes
+  /// the plan file, and `show -json` prints them.
+  final List<List<String>> planChanges;
 
   /// What `state pull` prints.
   final String? pulledState;
@@ -136,6 +146,7 @@ final class FakeRunner implements ProcessRunner {
     List<String> arguments, {
     String? workingDirectory,
     Map<String, String>? environment,
+    bool toStderr = false,
   }) async {
     calls.add((
       executable: executable,
@@ -143,6 +154,7 @@ final class FakeRunner implements ProcessRunner {
       workingDirectory: workingDirectory,
       environment: environment,
       streamed: true,
+      toStderr: toStderr,
     ));
     if (arguments.first == 'run') {
       final result = synth?.call(arguments.sublist(2)) ?? plainEntry(const {});
@@ -159,7 +171,20 @@ final class FakeRunner implements ProcessRunner {
       }
       return result.exitCode;
     }
-    return arguments.first == failOn ? 1 : 0;
+    if (arguments.first == failOn) return failCode;
+    if (arguments.first == 'plan') {
+      for (final a in arguments) {
+        if (a.startsWith('-out=')) {
+          File(a.substring('-out='.length))
+            ..parent.createSync(recursive: true)
+            ..writeAsStringSync('plan');
+        }
+      }
+      if (arguments.contains('-detailed-exitcode') && planChanges.isNotEmpty) {
+        return 2;
+      }
+    }
+    return 0;
   }
 
   @override
@@ -175,11 +200,26 @@ final class FakeRunner implements ProcessRunner {
       workingDirectory: workingDirectory,
       environment: environment,
       streamed: false,
+      toStderr: false,
     ));
     if (arguments case ['version', '-json']) {
       return (
         exitCode: 0,
         stdout: jsonEncode({'terraform_version': engineVersion}),
+        stderr: '',
+      );
+    }
+    if (arguments case ['show', '-json', _]) {
+      return (
+        exitCode: 0,
+        stdout: jsonEncode({
+          'resource_changes': [
+            for (final actions in planChanges)
+              {
+                'change': {'actions': actions},
+              },
+          ],
+        }),
         stderr: '',
       );
     }

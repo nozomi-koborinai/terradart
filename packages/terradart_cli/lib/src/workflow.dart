@@ -6,18 +6,22 @@ import 'package:path/path.dart' as p;
 import 'cli_exception.dart';
 import 'engine.dart';
 import 'manifest.dart';
+import 'output/exit_codes.dart';
+import 'output/json_result.dart';
 import 'process_runner.dart';
 import 'state_engine.dart';
 import 'target.dart';
 
 /// Where the CLI prints: progress to [out], warnings to [err], questions
-/// through [ask].
+/// through [ask]; with `--json` ([result]) progress goes to [err] too, and
+/// stdout carries the result alone.
 final class Console {
   Console({
-    required this.out,
+    required void Function(String) out,
     required this.err,
     String? Function(String question)? ask,
-  }) : _ask = ask;
+  }) : _out = out,
+       _ask = ask;
 
   /// [stdout] and [stderr]; questions read [stdin] when both it and
   /// [stdout] are a terminal (`stdin.hasTerminal` alone is also true for
@@ -33,9 +37,18 @@ final class Console {
         : null,
   );
 
-  final void Function(String) out;
+  final void Function(String) _out;
   final void Function(String) err;
   final String? Function(String question)? _ask;
+
+  /// The `--json` result the command fills in; `null` without `--json`.
+  JsonResult? result;
+
+  /// Progress: stdout, or stderr with `--json`.
+  void out(String message) => (result == null ? _out : err)(message);
+
+  /// Prints the `--json` result, the one line on stdout.
+  void printResult(String json) => _out(json);
 
   /// Why nobody is asked although there is a terminal (`--no-input`, `CI`,
   /// an agent's shell); `null` when nothing says so.
@@ -139,7 +152,7 @@ final class Workflow {
       throw CliException(
         'No $entry in ${_show(_root)}. Point terradart.entrypoint in '
         'pubspec.yaml at the Dart file whose main() synthesizes the Stack.',
-        exitCode: 64,
+        kind: ExitCode.projectConfig,
       );
     }
     final dart = dartExecutable ?? dartBinary();
@@ -152,14 +165,22 @@ final class Workflow {
       ['run', entry, ...args],
       workingDirectory: _root,
       environment: {manifestVariable: _manifest.path},
+      toStderr: console.result != null,
     );
     if (code != 0) {
       final from = request.envSource == EnvSource.variable
           ? ' (--env ${request.env} comes from $envVariable)'
           : '';
+      // runEnvironments exits 64 for an --env it does not declare, and for
+      // none when its environments share a directory.
       throw CliException(
         'synth failed: $entry exited $code$from.',
-        exitCode: code,
+        kind: switch ((code, request.env)) {
+          (64, null) => ExitCode.missingFlag,
+          (64, _) => ExitCode.projectConfig,
+          _ => ExitCode.synthFailed,
+        },
+        flag: code == 64 ? '--env' : null,
       );
     }
     _target = null;
@@ -175,14 +196,19 @@ final class Workflow {
     try {
       target = request.resolve(manifest);
     } on CliException catch (e) {
-      // Only a missing --env lists its choices and suggests a command.
-      if (e.flag != '--env' || e.next.isEmpty) rethrow;
+      if (e.kind != ExitCode.missingFlag || e.flag != '--env') rethrow;
       final env = console.choose('Environment?', e.choices, flag: '--env');
       if (env == null) rethrow;
       request = request.withEnv(env, EnvSource.prompt);
       target = request.resolve(manifest);
     }
     _target = target;
+    if (console.result case final result?) {
+      result.outDir = _show(target.dir);
+      if (target.environment case final env?) {
+        result.env = (name: env, source: target.environmentSource!.id);
+      }
+    }
     if (target.ignoredEnv case final env?) {
       console.info(
         '$envVariable=$env ignored: ${request.config.entrypoint} declares no '
@@ -208,7 +234,7 @@ final class Workflow {
       throw CliException(
         '$action needs --auto-approve when it cannot ask'
         '${console.noInput == null ? ' (no terminal)' : ' (${console.noInput})'}.',
-        exitCode: 3,
+        kind: ExitCode.inputRequired,
         flag: '--auto-approve',
         next: [
           [
@@ -246,6 +272,12 @@ final class Workflow {
     console.info(
       'Using ${engine.kind.label} ${_version ?? '(unknown version)'} '
       '(${engine.reason})',
+    );
+    console.result?.engine = (
+      kind: engine.kind.name,
+      version: _version,
+      source: engine.source.id,
+      path: engine.path,
     );
     if (recorded != null) {
       final warning = engineSwitchWarning(recorded, engine.kind, _version);
@@ -316,7 +348,7 @@ final class Workflow {
     if (answer == null) {
       throw CliException(
         'Stopped before running $now on a state $was wrote. $choose',
-        exitCode: 3,
+        kind: ExitCode.inputRequired,
         flag: '--engine',
         choices: [writer.kind.name, engine.kind.name],
         next: [
@@ -389,7 +421,7 @@ final class Workflow {
     throw CliException(
       '$detail Run `terradart plan --env $env` first so state migrate '
       "copies that environment's state.",
-      exitCode: 64,
+      kind: ExitCode.usage,
     );
   }
 
@@ -422,7 +454,7 @@ final class Workflow {
       throw CliException(
         'state migrate copies the state to another backend: $question '
         'Pass --auto-approve to run it without asking.',
-        exitCode: 3,
+        kind: ExitCode.inputRequired,
         flag: '--auto-approve',
         next: [
           ['--auto-approve'],
@@ -432,8 +464,47 @@ final class Workflow {
     if (!answer) throw const CliException('Stopped; the state did not move.');
   }
 
-  Future<void> plan(List<String> extra) =>
-      _engineRun(['plan', '-input=false', ...extra]);
+  /// `plan`; returns [exitChanges] when [detailedExitCode] and the plan has
+  /// changes, else 0. With `--json` the plan is saved and read back with
+  /// `show -json`, so the result counts its changes.
+  Future<int> plan(List<String> extra, {bool detailedExitCode = false}) async {
+    final result = console.result;
+    final saved = result == null
+        ? null
+        : File(p.join(dir, '.terraform', 'terradart.tfplan'));
+    final code = await _engineRun(
+      [
+        'plan',
+        '-input=false',
+        if (detailedExitCode) '-detailed-exitcode',
+        if (saved != null) '-out=${saved.path}',
+        ...extra,
+      ],
+      succeeds: {if (detailedExitCode) exitChanges},
+    );
+    if (saved != null && saved.existsSync()) {
+      final engine = await this.engine();
+      final shown = await runner.capture(engine.path, [
+        'show',
+        '-json',
+        saved.path,
+      ], workingDirectory: dir);
+      saved.deleteSync();
+      if (shown.exitCode == 0) {
+        try {
+          if (jsonDecode(shown.stdout) case final Map<String, Object?> json) {
+            result!.plan = PlanSummary.fromShowJson(json);
+          }
+        } on FormatException {
+          // The counts are left out; the plan itself succeeded.
+        }
+      }
+    }
+    if (result?.plan?.hasChanges ?? false) {
+      result!.next.add(_terradart('apply'));
+    }
+    return code == exitChanges ? exitChanges : 0;
+  }
 
   Future<void> apply(List<String> extra, {required bool autoApprove}) async {
     await _engineRun([
@@ -465,7 +536,7 @@ final class Workflow {
     throw CliException(
       'The Stack declares no dart-define output "$name"'
       '${declared == null || declared.isEmpty ? '; add it with addDartDefineOutput(name: \'$name\')' : '; it declares ${declared.join(', ')}'}.',
-      exitCode: 64,
+      kind: ExitCode.projectConfig,
     );
   }
 
@@ -483,6 +554,7 @@ final class Workflow {
         throw const CliException(
           'The Stack declares no dart-define output; add one with '
           'addDartDefineOutput().',
+          kind: ExitCode.projectConfig,
         );
       }
     }
@@ -497,7 +569,8 @@ final class Workflow {
         '${engine.kind.name} output -json $name failed in ${_show(dir)}:\n'
         '${result.stderr.trim()}\n'
         '${declared ? 'Apply the Stack first (terradart apply${_envFlag()}).' : 'Declare the output with addDartDefineOutput() in the Stack.'}',
-        exitCode: result.exitCode,
+        kind: ExitCode.engineFailed,
+        engineExitCode: result.exitCode,
       );
     }
     final Object? value;
@@ -510,6 +583,7 @@ final class Workflow {
       throw CliException(
         'Output "$name" is not a map of strings; declare it with '
         'addDartDefineOutput() in the Stack.',
+        kind: ExitCode.projectConfig,
       );
     }
     final file = File(target.defineFile!);
@@ -519,6 +593,9 @@ final class Workflow {
       '${const JsonEncoder.withIndent('  ').convert(value)}\n',
     );
     final shown = _show(file.path);
+    console.result
+      ?..defineFile = shown
+      ..keys = [for (final k in value.keys) '$k'];
     console
       ..out('Wrote ${value.length} dart-defines to $shown')
       ..out('  flutter run --dart-define-from-file=$shown')
@@ -643,22 +720,37 @@ final class Workflow {
     }
   }
 
+  /// `terradart <command>` against this target.
+  String _terradart(String command) => 'terradart $command${_envFlag()}';
+
   String _envFlag() => [
     if (target.environment case final env?) ' --env $env',
     if (target.workspace case final ws? when target.environment == null)
       ' --workspace $ws',
   ].join();
 
-  Future<void> _engineRun(List<String> args) async {
+  /// Runs the engine in [dir]; an exit code other than 0 and [succeeds]
+  /// fails the command with [ExitCode.engineFailed].
+  Future<int> _engineRun(
+    List<String> args, {
+    Set<int> succeeds = const {},
+  }) async {
     final engine = await this.engine();
     console.out('> ${engine.kind.name} ${args.join(' ')}  (in ${_show(dir)})');
-    final code = await runner.stream(engine.path, args, workingDirectory: dir);
-    if (code != 0) {
+    final code = await runner.stream(
+      engine.path,
+      args,
+      workingDirectory: dir,
+      toStderr: console.result != null,
+    );
+    if (code != 0 && !succeeds.contains(code)) {
       throw CliException(
         '${engine.kind.name} ${args.first} exited $code.',
-        exitCode: code,
+        kind: ExitCode.engineFailed,
+        engineExitCode: code,
       );
     }
+    return code;
   }
 
   Future<void> _record() async {

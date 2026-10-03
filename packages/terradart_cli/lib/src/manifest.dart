@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'cli_exception.dart';
+import 'output/exit_codes.dart';
 
 /// The environment variable `terradart` sets to the file the entry point
 /// describes what it wrote in (`terradartManifestVariable` of
@@ -43,6 +44,7 @@ final class Manifest {
     throw CliException(
       '${file.path} is not a manifest this terradart reads; upgrade '
       'terradart_cli and terradart_core together.',
+      kind: ExitCode.synthFailed,
     );
   }
 

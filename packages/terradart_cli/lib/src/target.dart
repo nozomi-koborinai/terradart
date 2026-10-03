@@ -5,6 +5,7 @@ import 'package:path/path.dart' as p;
 import 'cli_exception.dart';
 import 'config.dart';
 import 'manifest.dart';
+import 'output/exit_codes.dart';
 
 /// The environment variable that names the environment when `--env` does
 /// not.
@@ -12,16 +13,19 @@ const envVariable = 'TERRADART_ENV';
 
 /// Why a command runs against the environment it does.
 enum EnvSource {
-  flag('--env'),
-  variable(envVariable),
-  defaultEnv('default'),
-  only('only environment'),
-  prompt('prompt');
+  flag('--env', 'flag'),
+  variable(envVariable, 'variable'),
+  defaultEnv('default', 'default'),
+  only('only environment', 'only'),
+  prompt('prompt', 'prompt');
 
-  const EnvSource(this.label);
+  const EnvSource(this.label, this.id);
 
   /// What `env: <name> (<label>)` says.
   final String label;
+
+  /// `env.source` in the `--json` result.
+  final String id;
 
   /// Whether `apply` and `destroy` ask before running against it: the
   /// command line did not name it.
@@ -134,7 +138,7 @@ final class Request {
           '${config.entrypoint} declares no environments (it calls '
           'runStack); drop --env, or call runEnvironments with an enum of '
           'them.',
-          exitCode: 64,
+          kind: ExitCode.usage,
         );
       }
       return (_Root.of(manifest.roots.single), null);
@@ -147,7 +151,7 @@ final class Request {
         '--env is required: ${config.entrypoint} declares '
         '${envs.join(', ')} and no defaultEnv. Pass --env, set '
         '$envVariable, or give runEnvironments a defaultEnv.',
-        exitCode: 64,
+        kind: ExitCode.missingFlag,
         flag: '--env',
         choices: envs,
         next: [
@@ -159,7 +163,7 @@ final class Request {
       throw CliException(
         'Unknown environment "$name" (${source.label}); known envs: '
         '${envs.join(', ')}.',
-        exitCode: 64,
+        kind: ExitCode.projectConfig,
         flag: '--env',
         choices: envs,
       );
@@ -170,6 +174,7 @@ final class Request {
     throw CliException(
       'The last synth did not write environment "$name"; run without '
       '--no-synth.',
+      kind: ExitCode.usage,
     );
   }
 
@@ -192,13 +197,14 @@ final class Request {
           'No main.tf.json in ${_rel(out)}. Does ${config.entrypoint} '
           'write there? Set terradart.out to the directory it writes, or '
           'call runStack in it.',
+          kind: ExitCode.projectConfig,
         );
       }
       final names = [for (final r in roots) p.basename(r)];
       throw CliException(
         '--env is required: no main.tf.json in ${_rel(out)} itself, but in '
         '${roots.map(_rel).join(', ')}.',
-        exitCode: 64,
+        kind: ExitCode.missingFlag,
         flag: '--env',
         choices: names,
         next: [
@@ -222,6 +228,7 @@ final class Request {
           : 'Environment "$env" matches ${named.map(_rel).join(', ')}. '
                 'Declare the environments with runEnvironments in '
                 '${config.entrypoint}, so terradart knows which one it is.',
+      kind: ExitCode.projectConfig,
     );
   }
 
@@ -259,7 +266,7 @@ final class Request {
       throw CliException(
         '$flag "$name": use letters, digits, "_", "-" and ".", starting with '
         'a letter or digit.',
-        exitCode: 64,
+        kind: ExitCode.usage,
       );
     }
   }
