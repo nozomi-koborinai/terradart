@@ -4,8 +4,9 @@ library;
 import 'dart:io';
 
 import 'package:single_project_app/main.dart';
+import 'package:terradart_core/terradart_core.dart';
 
-Future<void> main() async {
+Future<void> main(List<String> args) async {
   final projectId = Platform.environment['GCP_PROJECT_ID'];
   if (projectId == null || projectId.isEmpty) {
     stderr.writeln(
@@ -25,11 +26,12 @@ Future<void> main() async {
     );
     exit(64);
   }
-  final stack = SingleProjectAppStack(
-    projectId: projectId,
-    dbPassword: dbPassword,
-    alertEmail: alertEmail,
+  await runStack(
+    args,
+    () => SingleProjectAppStack(
+      projectId: projectId,
+      dbPassword: dbPassword,
+      alertEmail: alertEmail,
+    ),
   );
-  await stack.writeTo('tf-out');
-  print('synthesized to tf-out/main.tf.json');
 }

@@ -13,7 +13,7 @@ End-to-end terradart example for Service Directory. Provisions a `google_service
 ```
 examples/service_directory_quickstart/
 ├── lib/main.dart       # RegistryStack (namespace + service + endpoint + IAM + exports)
-├── bin/infra.dart      # Synth: stack.writeTo('tf-out')
+├── bin/infra.dart      # Synth: runStack → tf-out/
 ├── lib/generated/      # (created on synth) registry_stack.app.dart
 ├── tf-out/             # (created on synth) main.tf.json
 └── pubspec.yaml

@@ -13,7 +13,7 @@ End-to-end terradart example for free Compute networking extras. Enables the Com
 ```
 examples/compute_route_quickstart/
 ├── lib/main.dart       # NetworkRouteStack (VPC + route + metadata + exports)
-├── bin/infra.dart      # Synth: stack.writeTo('tf-out')
+├── bin/infra.dart      # Synth: runStack → tf-out/
 ├── lib/generated/      # (created on synth) network_route_stack.app.dart
 ├── tf-out/             # (created on synth) main.tf.json
 └── pubspec.yaml

@@ -5,10 +5,9 @@
 /// Never apply. Authentication is unused at synth time.
 library;
 
+import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_example_aws_leftover_quickstart/main.dart';
 
-Future<void> main() async {
-  final stack = AwsLeftoverStack();
-  await stack.writeTo('tf-out');
-  print('synthesized to tf-out/main.tf.json');
+Future<void> main(List<String> args) async {
+  await runStack(args, () => AwsLeftoverStack());
 }

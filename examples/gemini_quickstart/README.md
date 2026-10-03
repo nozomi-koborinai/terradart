@@ -13,7 +13,7 @@ End-to-end terradart example for Gemini for Google Cloud (Gemini Code Assist). E
 ```
 examples/gemini_quickstart/
 ├── lib/main.dart       # GeminiStack (enablement + logging + release-channel + data-sharing)
-├── bin/infra.dart      # Synth: stack.writeTo('tf-out')
+├── bin/infra.dart      # Synth: runStack → tf-out/
 ├── lib/generated/      # (created on synth) gemini_stack.app.dart
 ├── tf-out/             # (created on synth) main.tf.json
 └── pubspec.yaml

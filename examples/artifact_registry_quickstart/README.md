@@ -17,7 +17,7 @@ repo (`google_tags_location_tag_binding`). Enables
 ```
 examples/artifact_registry_quickstart/
 ├── lib/main.dart       # ArtifactRegistryStack (API + config + repo + rule + tag)
-├── bin/infra.dart      # Synth: stack.writeTo('tf-out')
+├── bin/infra.dart      # Synth: runStack → tf-out/
 ├── tf-out/             # (created on synth) main.tf.json
 └── pubspec.yaml
 ```

@@ -17,7 +17,7 @@ returns 404 Method not found on terradart-validate; see
 ```
 examples/healthcare_quickstart/
 ├── lib/main.dart       # HealthcareStack (dataset + DICOM/consent/HL7v2/FHIR + IAM)
-├── bin/infra.dart      # Synth: stack.writeTo('tf-out')
+├── bin/infra.dart      # Synth: runStack → tf-out/
 ├── lib/generated/      # (created on synth) healthcare_stack.app.dart
 ├── tf-out/             # (created on synth) main.tf.json
 └── pubspec.yaml

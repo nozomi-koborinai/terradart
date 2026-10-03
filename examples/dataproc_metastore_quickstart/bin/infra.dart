@@ -6,9 +6,10 @@ library;
 
 import 'dart:io';
 
+import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_example_dataproc_metastore_quickstart/main.dart';
 
-Future<void> main() async {
+Future<void> main(List<String> args) async {
   final projectId = Platform.environment['GCP_PROJECT_ID'];
   if (projectId == null || projectId.isEmpty) {
     stderr.writeln(
@@ -17,7 +18,5 @@ Future<void> main() async {
     exit(64);
   }
 
-  final stack = DataprocMetastoreStack(projectId: projectId);
-  await stack.writeTo('tf-out');
-  print('synthesized to tf-out/main.tf.json');
+  await runStack(args, () => DataprocMetastoreStack(projectId: projectId));
 }

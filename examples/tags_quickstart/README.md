@@ -13,7 +13,7 @@ End-to-end terradart example for Resource Manager Tags. Provisions a project-sco
 ```
 examples/tags_quickstart/
 ├── lib/main.dart       # TagsStack (tag key + value + binding + IAM + exports)
-├── bin/infra.dart      # Synth: stack.writeTo('tf-out')
+├── bin/infra.dart      # Synth: runStack → tf-out/
 ├── lib/generated/      # (created on synth) tags_stack.app.dart
 ├── tf-out/             # (created on synth) main.tf.json
 └── pubspec.yaml

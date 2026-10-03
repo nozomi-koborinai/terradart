@@ -14,7 +14,7 @@ The smallest end-to-end terradart example. Provisions a `google_pubsub_topic`, a
 examples/pubsub_quickstart/
 ├── lib/main.dart           # OrdersStack (topic + subscription + exports)
 ├── lib/subscriber_stub.dart # Imports generated constants (boundary demo)
-├── bin/infra.dart          # Synth: stack.writeTo('tf-out')
+├── bin/infra.dart          # Synth: runStack → tf-out/
 ├── lib/generated/          # (created on synth) orders_stack.app.dart
 ├── tf-out/                 # (created on synth) main.tf.json
 └── pubspec.yaml

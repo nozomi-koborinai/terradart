@@ -192,6 +192,16 @@ Future<Map<String, dynamic>?> synthExample(
     errors.add('examples/$slug: missing bin/infra.dart');
     return null;
   }
+  // Readers and agents copy the entry point; it must be the documented one,
+  // which also tells the `terradart` command what it wrote.
+  if (!RegExp(
+    r'\b(runStack|runEnvironments)\(',
+  ).hasMatch(infra.readAsStringSync())) {
+    errors.add(
+      'examples/$slug/bin/infra.dart: call runStack (or runEnvironments) '
+      'instead of writing the Stack yourself',
+    );
+  }
   final result = await Process.run(
     'dart',
     ['run', 'bin/infra.dart'],

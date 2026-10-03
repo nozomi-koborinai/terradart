@@ -3,11 +3,11 @@ library;
 
 import 'dart:io';
 
+import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_example_vm_compliance_quickstart/main.dart';
 
-Future<void> main() async {
+Future<void> main(List<String> args) async {
   final projectId =
       Platform.environment['GCP_PROJECT_ID'] ?? 'ci-test-project-id';
-  final stack = VmComplianceStack(projectId: projectId);
-  await stack.writeTo('tf-out');
+  await runStack(args, () => VmComplianceStack(projectId: projectId));
 }

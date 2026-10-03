@@ -13,7 +13,7 @@ End-to-end terradart example for GKE Hub fleet team management — **no cluster 
 ```
 examples/gke_hub_quickstart/
 ├── lib/main.dart       # FleetStack (API + scope + namespace + scope RBAC + rollout sequence)
-├── bin/infra.dart      # Synth: stack.writeTo('tf-out')
+├── bin/infra.dart      # Synth: runStack → tf-out/
 ├── lib/generated/      # (created on synth) fleet_stack.app.dart
 ├── tf-out/             # (created on synth) main.tf.json
 └── pubspec.yaml

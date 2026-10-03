@@ -17,7 +17,7 @@ Beyond the network basics described above, this stack provisions Compute Engine 
 ```
 examples/compute_quickstart/
 ├── lib/main.dart        # NetworkStack: VPC + load-balancer VIP
-├── bin/infra.dart       # Synth entry: stack.writeTo('tf-out')
+├── bin/infra.dart       # Synth entry: runStack → tf-out/
 ├── tf-out/              # (created on synth) main.tf.json
 └── pubspec.yaml         # workspace member
 ```

@@ -4,8 +4,9 @@ library;
 import 'dart:io';
 
 import 'package:firebase_app_backend/main.dart';
+import 'package:terradart_core/terradart_core.dart';
 
-Future<void> main() async {
+Future<void> main(List<String> args) async {
   final projectId = Platform.environment['GCP_PROJECT_ID'];
   if (projectId == null || projectId.isEmpty) {
     stderr.writeln(
@@ -13,7 +14,5 @@ Future<void> main() async {
     );
     exit(64);
   }
-  final stack = FirebaseAppBackendStack(projectId: projectId);
-  await stack.writeTo('tf-out');
-  print('synthesized to tf-out/main.tf.json');
+  await runStack(args, () => FirebaseAppBackendStack(projectId: projectId));
 }

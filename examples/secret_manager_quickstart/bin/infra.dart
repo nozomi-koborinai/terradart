@@ -8,9 +8,10 @@ library;
 
 import 'dart:io';
 
+import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_example_secret_manager_quickstart/main.dart';
 
-Future<void> main() async {
+Future<void> main(List<String> args) async {
   final cleartext = Platform.environment['DB_PASSWORD'];
   if (cleartext == null || cleartext.isEmpty) {
     stderr.writeln(
@@ -21,10 +22,12 @@ Future<void> main() async {
   }
 
   final projectId = Platform.environment['GCP_PROJECT_ID'] ?? 'YOUR-PROJECT-ID';
-  final stack = DbCredentialsStack(
-    projectId: projectId,
-    dbPasswordCleartext: cleartext,
-    secretVersion: 1, // bump this on rotation
+  await runStack(
+    args,
+    () => DbCredentialsStack(
+      projectId: projectId,
+      dbPasswordCleartext: cleartext,
+      secretVersion: 1, // bump this on rotation
+    ),
   );
-  await stack.writeTo('tf-out');
 }

@@ -8,13 +8,15 @@ library;
 
 import 'dart:io';
 
+import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_example_aws_ecs_express_quickstart/main.dart';
 
-Future<void> main() async {
-  final stack = AwsEcsExpressStack(
-    region: Platform.environment['AWS_REGION'] ?? 'us-east-1',
-    imageTag: Platform.environment['IMAGE_TAG'] ?? 'latest',
+Future<void> main(List<String> args) async {
+  await runStack(
+    args,
+    () => AwsEcsExpressStack(
+      region: Platform.environment['AWS_REGION'] ?? 'us-east-1',
+      imageTag: Platform.environment['IMAGE_TAG'] ?? 'latest',
+    ),
   );
-  await stack.writeTo('tf-out');
-  print('synthesized to tf-out/main.tf.json');
 }

@@ -17,7 +17,7 @@ Stage `app.zip` in the deploy bucket and use a domain you can verify for the dom
 ```
 examples/app_engine_quickstart/
 ├── lib/main.dart       # AppEngineStack
-├── bin/infra.dart      # Synth: stack.writeTo('tf-out')
+├── bin/infra.dart      # Synth: runStack → tf-out/
 ├── tf-out/             # (created on synth) main.tf.json
 └── pubspec.yaml
 ```

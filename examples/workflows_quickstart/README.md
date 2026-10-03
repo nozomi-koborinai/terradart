@@ -13,7 +13,7 @@ End-to-end terradart example for Workflows. Enables the Workflows API and provis
 ```
 examples/workflows_quickstart/
 ├── lib/main.dart       # WorkflowStack (API enablement + workflow + exports)
-├── bin/infra.dart      # Synth: stack.writeTo('tf-out')
+├── bin/infra.dart      # Synth: runStack → tf-out/
 ├── lib/generated/      # (created on synth) workflow_stack.app.dart
 ├── tf-out/             # (created on synth) main.tf.json
 └── pubspec.yaml

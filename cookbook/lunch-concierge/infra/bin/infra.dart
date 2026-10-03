@@ -11,26 +11,27 @@ import 'dart:io';
 import 'package:terradart_core/terradart_core.dart';
 import 'package:lunch_concierge_infra/lunch_concierge_stack.dart';
 
-Future<void> main() async {
+Future<void> main(List<String> args) async {
   final projectId = _requiredEnv('GCP_PROJECT_ID');
   final imageUri = _requiredEnv('IMAGE_URI');
   final invokerEmail = _requiredEnv('INVOKER_EMAIL');
 
   final stateBucket = Platform.environment['TF_STATE_BUCKET'];
-  final stack = LunchStack(
-    projectId: projectId,
-    imageUri: imageUri,
-    invokerEmail: invokerEmail,
-    backend: stateBucket == null || stateBucket.isEmpty
-        ? null
-        : GcsBackend(
-            bucket: stateBucket,
-            prefix:
-                Platform.environment['TF_STATE_PREFIX'] ?? 'lunch-concierge',
-          ),
+  await runStack(
+    args,
+    () => LunchStack(
+      projectId: projectId,
+      imageUri: imageUri,
+      invokerEmail: invokerEmail,
+      backend: stateBucket == null || stateBucket.isEmpty
+          ? null
+          : GcsBackend(
+              bucket: stateBucket,
+              prefix:
+                  Platform.environment['TF_STATE_PREFIX'] ?? 'lunch-concierge',
+            ),
+    ),
   );
-  await stack.writeTo();
-  stdout.writeln('synthesized to tf-out/main.tf.json');
 }
 
 String _requiredEnv(String name) {
