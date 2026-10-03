@@ -144,8 +144,8 @@ sed_inplace "s#^( *terradart_core): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terra
 echo "    - terradart_aws.dependencies.terradart_core: ^${NEW}"
 sed_inplace "s#^( *terradart_core): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_time/pubspec.yaml
 echo "    - terradart_time.dependencies.terradart_core: ^${NEW}"
-sed_inplace "s#^( *terradart_migrate): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_cli/pubspec.yaml
-echo "    - terradart_cli.dependencies.terradart_migrate: ^${NEW}"
+sed_inplace "s#^( *terradart_(hcl|migrate)): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_cli/pubspec.yaml
+echo "    - terradart_cli.dependencies.terradart_{hcl,migrate}: ^${NEW}"
 
 # 2b. terradart_migrate --version const (lockstep with its pubspec).
 echo "  terradart-migrate version const:"

@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:path/path.dart' as p;
+import 'package:terradart_hcl/terradart_hcl.dart';
 
 import 'engine.dart';
 
@@ -145,63 +146,51 @@ String? recordedWorkspace(String dir) {
 /// block, or a `local` one. A remote backend's leftover `terraform.tfstate`
 /// is not the state the next command will use.
 ///
-/// JSON (`.tf.json`) and HCL (`.tf`, including a migrator `backend.tf`
-/// sidecar) both count. A `backend` block whose type is not clearly `local`
-/// is not local, so the check falls through to a remote `state pull`.
+/// `.tf` and `.tf.json` are parsed (`parseHcl` / the JSON front-end). A
+/// `backend` other than `"local"`, or a `cloud { }` block, is not local, so
+/// the check falls through to a remote `state pull`. A file that does not
+/// parse does the same — guessing wrong would skip the guard.
 bool configuredLocalBackend(String dir) {
   final d = Directory(dir);
   if (!d.existsSync()) return true;
   for (final f in d.listSync().whereType<File>()) {
     final name = p.basename(f.path);
     if (name.endsWith('.tf.json')) {
-      if (!_jsonBackendIsLocal(f)) return false;
+      if (!_parsedBackendIsLocal(
+        () => TfModule.fromTfJson(f.readAsStringSync(), fileName: f.path),
+      )) {
+        return false;
+      }
     } else if (name.endsWith('.tf')) {
-      if (!_hclBackendIsLocal(f)) return false;
+      if (!_parsedBackendIsLocal(
+        () => TfModule.fromHcl(f.readAsStringSync(), fileName: f.path),
+      )) {
+        return false;
+      }
     }
   }
   return true;
 }
 
-/// `true` when [f] has no backend or only `local`. Unreadable JSON, or a
-/// backend that is not `local`, is not local.
-bool _jsonBackendIsLocal(File f) {
-  Object? json;
+/// `true` when the parsed module has no remote state config. A parse error
+/// is not local.
+bool _parsedBackendIsLocal(TfModule Function() parse) {
+  final TfModule module;
   try {
-    json = jsonDecode(f.readAsStringSync());
-  } on FormatException {
+    module = parse();
+  } on HclParseException {
     return false;
   } on FileSystemException {
     return false;
   }
-  if (json case {'terraform': {'backend': final backend}}) {
-    if (backend is! Map) return false;
-    return backend.isNotEmpty && backend.keys.every((key) => key == 'local');
+  for (final block in module.terraform) {
+    if (block.cloud != null) return false;
+    final backend = block.backend;
+    if (backend == null) continue;
+    final type = backend.labels.isEmpty ? null : backend.labels.first.text;
+    if (type != 'local') return false;
   }
   return true;
-}
-
-final _hclLineComment = RegExp(r'//.*?$|#.*?$', multiLine: true);
-final _hclBlockComment = RegExp(r'/\*.*?\*/', dotAll: true);
-final _hclBackendType = RegExp(r'\bbackend\s+"([^"]+)"');
-final _hclBackendWord = RegExp(r'\bbackend\b');
-
-/// `true` when [f] has no backend block or only `backend "local"`. Any other
-/// `backend` block, including one whose type cannot be read, is not local.
-bool _hclBackendIsLocal(File f) {
-  String text;
-  try {
-    text = f.readAsStringSync();
-  } on FileSystemException {
-    return false;
-  }
-  final code = text
-      .replaceAll(_hclBlockComment, ' ')
-      .replaceAll(_hclLineComment, ' ');
-  final types = [
-    for (final match in _hclBackendType.allMatches(code)) match.group(1)!,
-  ];
-  if (types.isEmpty) return !_hclBackendWord.hasMatch(code);
-  return types.every((type) => type == 'local');
 }
 
 /// Whether `init` configured [dir] with a backend other than `local`, as

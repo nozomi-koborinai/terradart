@@ -132,6 +132,14 @@ void main() {
     expect(configuredLocalBackend(dir.path), isFalse);
     File(p.join(dir.path, 'main.tf.json')).writeAsStringSync('{');
     expect(configuredLocalBackend(dir.path), isFalse);
+    File(p.join(dir.path, 'main.tf.json')).writeAsStringSync(
+      jsonEncode({
+        'terraform': {
+          'cloud': {'organization': 'acme'},
+        },
+      }),
+    );
+    expect(configuredLocalBackend(dir.path), isFalse);
   });
 
   test('configuredLocalBackend reads an HCL backend sidecar', () {
@@ -153,13 +161,24 @@ terraform {
 }
 ''');
     expect(configuredLocalBackend(dir.path), isTrue);
-    // A comment is not a backend, and a block whose type cannot be read is
-    // not evidence of a local file.
+    // The word "backend" in a leftover block is not a backend configuration.
     File(p.join(dir.path, 'backend.tf')).writeAsStringSync('''
-// backend "gcs" { bucket = "states" }
+resource "google_storage_bucket" "states" {
+  description = "the backend bucket"
+}
 ''');
     expect(configuredLocalBackend(dir.path), isTrue);
-    File(p.join(dir.path, 'backend.tf')).writeAsStringSync('backend {\n}\n');
+    File(p.join(dir.path, 'backend.tf')).writeAsStringSync('''
+terraform {
+  cloud {
+    organization = "acme"
+  }
+}
+''');
+    expect(configuredLocalBackend(dir.path), isFalse);
+    File(
+      p.join(dir.path, 'backend.tf'),
+    ).writeAsStringSync('terraform { !!! }\n');
     expect(configuredLocalBackend(dir.path), isFalse);
   });
 
@@ -304,6 +323,62 @@ terraform {
         'state pull',
       ]);
     });
+
+    test('a cloud block does not skip a remote backend pull', () async {
+      final project = TestProject.create();
+      File(project.path('tf-out/.terraform/terraform.tfstate'))
+        ..createSync(recursive: true)
+        ..writeAsStringSync(
+          jsonEncode({
+            'backend': {'type': 'remote'},
+          }),
+        );
+      final runner = FakeRunner(
+        synth: (_) {
+          File(project.path('tf-out/terraform.tfstate'))
+            ..createSync(recursive: true)
+            ..writeAsStringSync(
+              jsonEncode(_state('1.9.0', [_google('registry.opentofu.org')])),
+            );
+          File(project.path('tf-out/backend.tf'))
+            ..createSync(recursive: true)
+            ..writeAsStringSync('''
+terraform {
+  cloud {
+    organization = "acme"
+  }
+}
+''');
+          return runStackEntry();
+        },
+        pulledState: jsonEncode(
+          _state('1.9.8', [_google('registry.terraform.io')]),
+        ),
+      );
+      final r = await project.run(['plan'], runner);
+      expect(r.code, 64);
+      expect(runner.engineCalls, contains('state pull'));
+      expect(r.err, contains('written by Terraform 1.9.8'));
+    });
+
+    test(
+      'the word backend in a leftover block still checks local state',
+      () async {
+        final project = terraformState();
+        File(project.path('tf-out/terradart_leftover.tf'))
+          ..createSync(recursive: true)
+          ..writeAsStringSync('''
+resource "google_storage_bucket" "states" {
+  description = "the backend bucket"
+}
+''');
+        final runner = FakeRunner(synth: (_) => runStackEntry());
+        final r = await project.run(['plan'], runner);
+        expect(r.code, 64);
+        expect(r.err, contains('written by Terraform 1.9.8'));
+        expect(runner.engineCalls, isNot(contains('state pull')));
+      },
+    );
 
     test(
       'an HCL backend sidecar does not skip a remote backend pull',
