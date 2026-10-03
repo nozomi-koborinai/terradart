@@ -93,7 +93,7 @@ If the project's `(default)` database was created previously (e.g., by manually 
 terradart apply
 ```
 
-`terradart engine` prints the engine `terradart` runs (the one whose state `terradart apply` reads), so the import needs no separate install.
+`terradart engine` prints the engine `terradart` runs, so the import uses the same one and needs no separate install.
 
 Subsequent applies will reconcile cleanly.
 
