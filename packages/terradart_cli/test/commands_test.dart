@@ -841,6 +841,28 @@ void main() {
       expect(runner.engineCalls, isEmpty);
     });
 
+    test('validate fails before init when only tofu is on PATH', () async {
+      final project = TestProject.create(engines: ['tofu']);
+      final runner = appwrite();
+      final r = await project.run(['validate'], runner);
+      expect(r.code, 1);
+      expect(r.err, contains('Appwrite currently needs Terraform on PATH'));
+      expect(runner.engineCalls, isEmpty);
+    });
+
+    test('validate runs Terraform, not the tofu before it', () async {
+      final project = TestProject.create(engines: ['tofu', 'terraform']);
+      final runner = appwrite();
+      final r = await project.run(['validate'], runner);
+      expect(r.code, 0, reason: r.err);
+      expect(runner.calls.last.executable, project.engine('terraform'));
+      expect(runner.engineCalls, [
+        'version -json',
+        'init -backend=false -input=false',
+        'validate',
+      ]);
+    });
+
     test('fails before init when nothing is on PATH', () async {
       final project = TestProject.create(engines: []);
       final runner = appwrite();
