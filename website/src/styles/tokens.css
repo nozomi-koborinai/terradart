@@ -1,0 +1,57 @@
+/* TerraDart design tokens — branding/BRAND.md. Shared by the landing page
+   (landing.css) and the Starlight docs (starlight.css). Dark is the brand's
+   home surface (#0B0D12); light keeps the same corridor on white. */
+
+:root,
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --td-bg: #0b0d12;
+  --td-bg-raised: #0f1218;
+  --td-surface: #11141b;
+  --td-surface-2: #171b24;
+  --td-line: #1f2430;
+  --td-line-strong: #2c3342;
+  --td-text: #f6f3ec;
+  --td-text-2: #c4c8d2;
+  --td-mute: #9aa0ae;
+  --td-faint: #6b7385;
+  --td-accent: #4dd0fe;
+  --td-accent-strong: #0f8fd8;
+  --td-accent-soft: rgb(77 208 254 / 0.1);
+  --td-accent-line: rgb(77 208 254 / 0.32);
+  --td-on-accent: #0b0d12;
+  --td-terra: #3b4a82;
+  --td-mark-upper: #4dd0fe;
+  --td-mark-lower: #0f8fd8;
+  --td-mark-stratum: #3b4a82;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --td-bg: #ffffff;
+  --td-bg-raised: #fafbfc;
+  --td-surface: #f6f8fa;
+  --td-surface-2: #eef1f5;
+  --td-line: #e6e9ef;
+  --td-line-strong: #d3d8e1;
+  --td-text: #0f1116;
+  --td-text-2: #3a3f4b;
+  --td-mute: #5c6170;
+  --td-faint: #8b919c;
+  --td-accent: #0175c2;
+  --td-accent-strong: #015a99;
+  --td-accent-soft: rgb(1 117 194 / 0.07);
+  --td-accent-line: rgb(1 117 194 / 0.28);
+  --td-on-accent: #ffffff;
+  --td-terra: #1e2a56;
+  --td-mark-upper: #13b9fd;
+  --td-mark-lower: #0175c2;
+  --td-mark-stratum: #1e2a56;
+}
+
+:root {
+  --td-font: "Inter Variable", "Inter", "SF Pro Display", "Helvetica Neue", system-ui, sans-serif;
+  --td-font-mono: "JetBrains Mono Variable", "JetBrains Mono", "SF Mono", ui-monospace, Consolas, monospace;
+  --td-radius: 10px;
+  --td-radius-sm: 6px;
+}

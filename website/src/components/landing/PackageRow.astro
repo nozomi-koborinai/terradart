@@ -1,0 +1,25 @@
+---
+import { providers } from "./providers";
+---
+
+<section class="packages" aria-label="Provider packages">
+  <ul class="container packages-row">
+    {
+      providers.map((p) => (
+        <li>
+          <a href="#providers" class="packages-name" data-provider-tab={p.id}>
+            {p.package}
+          </a>
+          <a
+            href={`https://pub.dev/packages/${p.package}`}
+            class="packages-pub"
+            aria-label={`${p.package} on pub.dev`}
+            title="pub.dev"
+          >
+            ↗
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</section>

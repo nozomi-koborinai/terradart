@@ -1,0 +1,42 @@
+---
+/**
+ * Horizontal lockup: the descending-dart mark (branding/svg/mark-*.svg
+ * geometry, never altered) and the `TerraDart` wordmark in Inter Regular.
+ * The mark's palette follows the theme through the --td-mark-* tokens.
+ */
+interface Props {
+  size?: number;
+  class?: string;
+}
+const { size = 26, class: className } = Astro.props;
+---
+
+<span class:list={["td-logo", className]} style={`--td-logo-size: ${size}px`}>
+  <svg viewBox="32 40 192 200" aria-hidden="true" class="td-logo-mark">
+    <polygon points="32,48 224,48 180,152 76,152" fill="var(--td-mark-upper)"></polygon>
+    <polygon points="76,152 180,152 128,232" fill="var(--td-mark-lower)"></polygon>
+    <rect x="60" y="94" width="136" height="10" fill="var(--td-mark-stratum)"></rect>
+  </svg>
+  <span class="td-logo-word">TerraDart</span>
+</span>
+
+<style>
+  .td-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: calc(var(--td-logo-size) * 0.36);
+    color: var(--td-text);
+    line-height: 1;
+  }
+  .td-logo-mark {
+    width: var(--td-logo-size);
+    height: var(--td-logo-size);
+    flex: none;
+  }
+  .td-logo-word {
+    font-family: var(--td-font);
+    font-weight: 400;
+    font-size: calc(var(--td-logo-size) * 0.8);
+    letter-spacing: -0.01em;
+  }
+</style>

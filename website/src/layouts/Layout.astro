@@ -1,5 +1,8 @@
 ---
-import "../styles/global.css";
+import "@fontsource-variable/inter";
+import "@fontsource-variable/jetbrains-mono";
+import "../styles/tokens.css";
+import "../styles/landing.css";
 
 interface Props {
   title?: string;
@@ -8,24 +11,35 @@ interface Props {
 
 const {
   title = "TerraDart — Type-safe IaC for Dart",
-  description =
-    "Cloud infrastructure as Dart — standard *.tf.json, planned and applied by the terradart command with OpenTofu or Terraform.",
+  description = "Write cloud infrastructure as Dart for Google Cloud, AWS, Cloudflare and Appwrite, apply it with one command, and read its outputs in your Flutter app as typed Dart.",
 } = Astro.props;
 
-const url = Astro.site
-  ? new URL(Astro.url.pathname, Astro.site).href
-  : Astro.url.href;
-
+const url = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : Astro.url.href;
 const ogImage = Astro.site ? new URL("/og.png", Astro.site).href : "/og.png";
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script is:inline>
+      (() => {
+        const stored = localStorage.getItem("starlight-theme");
+        const theme =
+          stored === "light" || stored === "dark"
+            ? stored
+            : matchMedia("(prefers-color-scheme: light)").matches
+              ? "light"
+              : "dark";
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script>
+    <meta name="theme-color" content="#0B0D12" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="canonical" href={url} />
     <title>{title}</title>
     <meta name="description" content={description} />
 
@@ -34,18 +48,13 @@ const ogImage = Astro.site ? new URL("/og.png", Astro.site).href : "/og.png";
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@terradart_dev" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
-    />
-
     <meta name="generator" content={Astro.generator} />
   </head>
   <body>
