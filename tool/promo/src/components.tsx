@@ -2,7 +2,7 @@ import { useEffect, useState, type CSSProperties, type ReactNode } from "react";
 import { continueRender, delayRender, Easing, interpolate, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import { font, radius, v } from "./brand";
 import { cameraOffset } from "./camera.mjs";
-import { board, type Caption, type CodeBlock, type Keyframe, type Lang } from "./types";
+import { board, type Caption, type CodeBlock, type Keyframe } from "./types";
 
 export { cameraAt } from "./camera.mjs";
 
@@ -92,7 +92,7 @@ const Rich = ({ text }: { text: string }) => (
   </>
 );
 
-export const Captions = ({ captions, time, lang }: { captions: Caption[]; time: number; lang: Lang }) => {
+export const Captions = ({ captions, time }: { captions: Caption[]; time: number }) => {
   const { fps } = useVideoConfig();
   const fade = 6 / fps;
   const active = captions.find((c) => time >= c.from && time < c.to);
@@ -129,15 +129,15 @@ export const Captions = ({ captions, time, lang }: { captions: Caption[]; time: 
           border: `1px solid ${v("line-strong")}`,
           background: v("surface-2"),
           fontFamily: font.sans,
-          fontSize: lang === "ja" ? 40 : 42,
-          fontWeight: lang === "ja" ? 500 : 450,
-          letterSpacing: lang === "ja" ? "0.02em" : "-0.01em",
+          fontSize: 42,
+          fontWeight: 450,
+          letterSpacing: "-0.01em",
           color: v("text"),
           whiteSpace: "nowrap",
         }}
       >
         <span>
-          <Rich text={active[lang]} />
+          <Rich text={active.text} />
         </span>
       </div>
     </div>

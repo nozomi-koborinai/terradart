@@ -3,8 +3,6 @@ import { segmentSeconds } from "./camera.mjs";
 
 export { segmentSeconds };
 
-export type Lang = "en" | "ja";
-
 export type Token = { content: string; color: string; bold?: boolean; italic?: boolean };
 
 export type CodeLine = { tokens: Token[]; fold?: boolean; focus?: number };
@@ -17,11 +15,20 @@ export type PromoData = {
   terradart: string;
   /** Each terminal scene's keyframes, settled on its clip so no zoom cuts a line. */
   camera: Record<string, Keyframe[]>;
+  /** Each terminal scene's masks, resolved to the band of the clip they keep. */
+  masks: Record<string, Mask[]>;
+  /** The terminal palette's background: the clips lighten onto it, and masks paint it. */
+  background: string;
+  /** The Flutter beat's band behind `next.highlight`, as fractions of its crop. */
+  highlight: { top: number; height: number };
 };
 
-export type PromoProps = { lang: Lang; data: PromoData | null };
+/** Over clip seconds `from`-`to`, only rows `y0`-`y1` of the clip (fractions) show. */
+export type Mask = { from: number; to: number; y0: number; y1: number };
 
-export type Caption = { from: number; to: number; en: string; ja: string };
+export type PromoProps = { data: PromoData | null };
+
+export type Caption = { from: number; to: number; text: string };
 
 /** A camera position: scale `s`, centred on the point (`x`, `y`) of the window, as fractions. */
 export type Keyframe = { at: number; s: number; x: number; y: number };
@@ -41,6 +48,8 @@ export type SceneSpec = {
   segments?: Segment[];
   /** In clip seconds for a terminal scene, scene seconds otherwise. */
   camera?: Keyframe[];
+  /** Terminal only: over clip seconds `from`-`to`, keep the rows from the line `first` matches through the line `last` matches. */
+  masks?: { from: number; to: number; first?: string; last?: string }[];
   captions?: Caption[];
   code?: string;
   next?: {
@@ -48,7 +57,8 @@ export type SceneSpec = {
     clip: string;
     at: number;
     crop: { x: number; y: number; w: number; h: number };
-    highlight: number;
+    /** Text of the line the band marks. */
+    highlight: string;
     from: number;
   };
   url?: string;

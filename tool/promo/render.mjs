@@ -1,19 +1,21 @@
 #!/usr/bin/env node
 // Renders the release clip from what capture.mjs left in public/: the code
 // excerpts (highlighted with the site's palette), the still of init's next
-// steps, then one video per caption language, the poster and key frames.
+// steps, then the clip, the poster and key frames.
 //
-//   node render.mjs [--lang en,ja] [--stills-only] [--out DIR]
+//   node render.mjs [--stills-only] [--out DIR]
 //
-// --lang         the caption languages to render (default: en,ja)
 // --stills-only  only the poster and the key frames, for a look before the
 //                full render
-// --out DIR      also copy the deliveries, the poster and the key frames to DIR
+// --out DIR      also copy the delivery, the poster and the key frames to DIR
+//
+// Needs ffmpeg and tesseract: every terminal and app frame is read back and
+// the render fails on output the clip must not show (storyboard `ocr`).
 //
 // The deliveries are 1080p30 H.264 High@4.1 with a silent AAC track, faststart
 // and an mp42 brand: the shape iOS Photos saves and X and LinkedIn accept.
 
-import { execFileSync } from "node:child_process";
+import { execFileSync, spawn } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -30,16 +32,17 @@ const option = (name) => {
   const i = args.indexOf(name);
   return i >= 0 ? args[i + 1] : undefined;
 };
-const langs = (option("--lang") ?? "en,ja").split(",");
 const board = JSON.parse(fs.readFileSync(path.join(here, "storyboard.json"), "utf8"));
 
 const die = (message) => {
   console.error(`render.mjs: ${message}`);
   process.exit(64);
 };
+// One thread each: tesseract's default oversubscribes the cores when several run at once.
+const ocrEnv = { ...process.env, OMP_THREAD_LIMIT: "1" };
 const run = (cmd, argv) => execFileSync(cmd, argv, { cwd: here, stdio: "inherit" });
 
-for (const file of ["clips/01-init.mp4", "clips/02-plan.mp4", "files/stack.dart.txt", "files/infra.g.dart.txt", "site.png"]) {
+for (const file of ["clips/01-init.mp4", "clips/02-plan.mp4", "files/stack.dart.txt", "files/main.dart.txt", "site.png"]) {
   if (!fs.existsSync(path.join(pub, file))) die(`public/${file} is missing; run capture.mjs first`);
 }
 
@@ -94,13 +97,14 @@ const excerpt = async (spec) => {
 };
 
 const versions = JSON.parse(fs.readFileSync(path.join(pub, "files/versions.json"), "utf8"));
-const data = { terradart: versions.terradart, code: {}, camera: {} };
+const data = { terradart: versions.terradart, code: {}, camera: {}, background: terradartDark.colors["editor.background"] };
 for (const [name, spec] of Object.entries(board.code)) data.code[name] = await excerpt(spec);
 
 // Where the clips have text, read from their frames at half size: per pixel
-// row, the leftmost and rightmost ink over every sampled frame.
+// row, the leftmost and rightmost ink over every sampled frame, leaving out
+// the rows a mask paints over at that time.
 const HALF = { w: board.terminal.width / 2, h: board.terminal.height / 2 };
-const inkOf = (clip, times) => {
+const inkOf = (clip, times, bandAt = () => undefined) => {
   const left = new Float64Array(HALF.h).fill(Infinity);
   const right = new Float64Array(HALF.h).fill(-Infinity);
   for (const t of times) {
@@ -109,7 +113,9 @@ const inkOf = (clip, times) => {
       "-vf", `scale=${HALF.w}:${HALF.h}:flags=area,format=gray`, "-f", "rawvideo", "-",
     ], { maxBuffer: HALF.w * HALF.h * 2 });
     const bg = frame[4 * HALF.w + 4];
+    const band = bandAt(t);
     for (let y = 0; y < HALF.h; y++) {
+      if (band && (y < band.y0 * HALF.h || y > band.y1 * HALF.h)) continue;
       const row = y * HALF.w;
       for (let x = 0; x < HALF.w; x++) {
         if (Math.abs(frame[row + x] - bg) > 30) {
@@ -166,12 +172,82 @@ const cutBy = (ink, box) => {
   return null;
 };
 
+// The lines tesseract reads in a clip frame, top and bottom as fractions.
+const linesAt = (clip, t) => {
+  const png = path.join(fs.mkdtempSync("/tmp/td-ocr-"), "frame.png");
+  execFileSync("ffmpeg", ["-v", "error", "-y", "-ss", t.toFixed(3), "-i", path.join(pub, clip), "-frames:v", "1", "-vf", "format=gray,negate", png]);
+  const tsv = execFileSync("tesseract", [png, "-", "--psm", "6", "tsv"], { encoding: "utf8", stdio: ["ignore", "pipe", "ignore"], env: ocrEnv });
+  const lines = new Map();
+  for (const row of tsv.split("\n").slice(1)) {
+    const [level, , block, par, line, , , top, , height, , text] = row.split("\t");
+    if (level !== "5" || !text?.trim()) continue;
+    const key = `${block}.${par}.${line}`;
+    const l = lines.get(key) ?? { words: [], top: Infinity, bottom: -Infinity };
+    l.words.push(text);
+    l.top = Math.min(l.top, +top / board.terminal.height);
+    l.bottom = Math.max(l.bottom, (+top + +height) / board.terminal.height);
+    lines.set(key, l);
+  }
+  return [...lines.values()].map((l) => ({ text: l.words.join(" "), top: l.top, bottom: l.bottom }));
+};
+
+// A mask keeps one band of a terminal clip on screen for a span of clip
+// time, from the line `first` matches (else the top) through the line `last`
+// matches (else the bottom), and paints the rest with the terminal
+// background: the way to stop on a line when the next ones land in the same
+// frame. Its edges sit midway between the kept rows and their neighbours.
+// The composition lays each clip over the palette's background with
+// `lighten`, so the decoded background and the paint are the same colour.
+const resolveMask = (clip, mask) => {
+  const where = `mask ${clip} ${mask.from}-${mask.to}s`;
+  const ink = inkOf(clip, [mask.from]);
+  const runs = [];
+  for (let y = 0; y < HALF.h; y++) {
+    if (ink.right[y] < 0) continue;
+    if (runs.length && runs.at(-1).end === y) runs.at(-1).end = y + 1;
+    else runs.push({ start: y, end: y + 1 });
+  }
+  const runOf = (pattern, lines) => {
+    const hit = lines.find((l) => new RegExp(pattern).test(l.text));
+    if (!hit) die(`${where}: no line matches ${JSON.stringify(pattern)}`);
+    const mid = ((hit.top + hit.bottom) / 2) * HALF.h;
+    const i = runs.findIndex((r) => mid >= r.start - 2 && mid <= r.end + 2);
+    if (i < 0) die(`${where}: ${JSON.stringify(pattern)} sits on no row of text`);
+    return i;
+  };
+  const lines = linesAt(clip, mask.from);
+  let y0 = 0;
+  let y1 = 1;
+  if (mask.first) {
+    const i = runOf(mask.first, lines);
+    if (i > 0) y0 = (runs[i - 1].end + runs[i].start) / 2 / HALF.h;
+  }
+  if (mask.last) {
+    const i = runOf(mask.last, lines);
+    if (i < runs.length - 1) y1 = (runs[i].end + runs[i + 1].start) / 2 / HALF.h;
+  }
+  if (mask.to !== mask.from) {
+    const later = linesAt(clip, mask.to);
+    for (const pattern of [mask.first, mask.last].filter(Boolean)) {
+      const [a, b] = [lines, later].map((ls) => ls.find((l) => new RegExp(pattern).test(l.text)));
+      if (!b || Math.abs(a.top - b.top) > 0.005) die(`${where}: ${JSON.stringify(pattern)} moves before the mask ends`);
+    }
+  }
+  return { from: mask.from, to: mask.to, y0: Math.round(y0 * 10000) / 10000, y1: Math.round(y1 * 10000) / 10000 };
+};
+
+data.masks = {};
+for (const scene of board.scenes.filter((s) => s.kind === "terminal")) {
+  data.masks[scene.id] = (scene.masks ?? []).map((m) => resolveMask(scene.clip, m));
+}
+
 // Every still stretch of a terminal camera is settled on the frames it shows:
 // as close as the storyboard asks but never past a line, with its edges in the
 // gaps between rows. The composition plays the settled keyframes.
 const SAMPLE = 0.1;
 for (const scene of board.scenes.filter((s) => s.kind === "terminal")) {
   const shown = (t) => scene.segments.some((s) => (s.hold !== undefined ? Math.abs(s.hold - t) < SAMPLE / 2 : t >= s.from && t <= s.to));
+  const bandAt = (t) => data.masks[scene.id].find((m) => t >= m.from - 1e-6 && t <= m.to + 1e-6);
   const keys = scene.camera.map((k) => ({ ...k }));
   for (let i = 0; i < keys.length - 1; i++) {
     const [a, b] = [keys[i], keys[i + 1]];
@@ -180,7 +256,7 @@ for (const scene of board.scenes.filter((s) => s.kind === "terminal")) {
     for (let t = a.at; t <= b.at + 1e-6; t += SAMPLE) if (shown(t)) times.push(t);
     for (const s of scene.segments) if (s.hold !== undefined && s.hold >= a.at && s.hold <= b.at) times.push(s.hold);
     if (times.length === 0) continue;
-    const ink = inkOf(scene.clip, times);
+    const ink = inkOf(scene.clip, times, bandAt);
     let settled = null;
     for (let s = a.s; s >= 1 && !settled; s = Math.round((s - 0.01) * 100) / 100) {
       for (let d = 0; d <= 0.2 && !settled; d += 0.002) {
@@ -201,14 +277,17 @@ for (const scene of board.scenes.filter((s) => s.kind === "terminal")) {
   }
   data.camera[scene.id] = keys;
 }
-fs.writeFileSync(path.join(pub, "files/data.json"), JSON.stringify(data));
-
-// The init clip's last screen, cut to its next steps, for the Flutter beat.
+// The init clip's last screen, cut to its next steps, for the Flutter beat,
+// with the band behind the line `next.highlight` names.
 const flutter = board.scenes.find((s) => s.kind === "flutter");
 if (flutter) {
   const cut = cutBy(inkOf(flutter.next.clip, [flutter.next.at]), flutter.next.crop);
   if (cut) die(`flutter: next.crop ${JSON.stringify(flutter.next.crop)} cuts the init clip at ${flutter.next.at}s: ${cut}`);
-  const { clip, at, crop } = flutter.next;
+  const { clip, at, crop, highlight } = flutter.next;
+  const line = linesAt(clip, at).find((l) => l.text.includes(highlight));
+  if (!line || line.top < crop.y || line.bottom > crop.y + crop.h) die(`flutter: no line ${JSON.stringify(highlight)} inside next.crop`);
+  const pad = (line.bottom - line.top) * 0.3;
+  data.highlight = { top: (line.top - pad - crop.y) / crop.h, height: (line.bottom - line.top + 2 * pad) / crop.h };
   fs.mkdirSync(path.join(pub, "stills"), { recursive: true });
   run("ffmpeg", [
     "-v", "error", "-y", "-ss", String(at), "-i", path.join(pub, clip), "-frames:v", "1",
@@ -216,6 +295,7 @@ if (flutter) {
     path.join(pub, "stills/next-steps.png"),
   ]);
 }
+fs.writeFileSync(path.join(pub, "files/data.json"), JSON.stringify(data));
 
 // Absolute frames: each scene overlaps the one before it by the crossfade.
 const fps = board.fps;
@@ -235,22 +315,63 @@ fs.mkdirSync(outDir, { recursive: true });
 const remotion = path.join(here, "node_modules/.bin/remotion");
 const outputs = [];
 
-const poster = path.join(outDir, "poster.png");
-run(remotion, ["still", "src/index.ts", "promo-en", poster, `--frame=${frameOf(board.poster)}`]);
-outputs.push(poster);
-for (const lang of langs) {
-  for (const still of board.stills) {
-    const file = path.join(outDir, `keyframe-${still.name}-${lang}.png`);
-    run(remotion, ["still", "src/index.ts", `promo-${lang}`, file, `--frame=${frameOf(still)}`]);
-    outputs.push(file);
+// Reads frames back with tesseract and fails on a line the storyboard denies
+// (an error, a warning, a caution) unless it is one the clip shows on purpose.
+const deny = new RegExp(board.ocr.deny, "i");
+const allow = board.ocr.allow.map((a) => new RegExp(a, "i"));
+const ocr = (png) =>
+  new Promise((resolve, reject) => {
+    const p = spawn("tesseract", [png, "-", "--psm", "6"], { stdio: ["ignore", "pipe", "ignore"], env: ocrEnv });
+    let text = "";
+    p.stdout.on("data", (d) => (text += d));
+    p.on("error", () => reject(new Error("tesseract is not on PATH")));
+    p.on("close", () => resolve(text));
+  });
+const denied = async (pngs) => {
+  const found = [];
+  for (let i = 0; i < pngs.length; i += 8) {
+    const texts = await Promise.all(pngs.slice(i, i + 8).map(ocr));
+    texts.forEach((text, j) => {
+      for (const line of text.split("\n")) {
+        if (deny.test(line) && !allow.some((a) => a.test(line))) found.push(`${path.basename(pngs[i + j])}: ${line.trim()}`);
+      }
+    });
   }
+  return found;
+};
+const readable = (src, dir, filter) => {
+  fs.rmSync(dir, { recursive: true, force: true });
+  fs.mkdirSync(dir, { recursive: true });
+  run("ffmpeg", ["-v", "error", "-y", "-i", src, "-vf", `${filter}format=gray,negate`, path.join(dir, "%04d.png")]);
+  return fs.readdirSync(dir).map((f) => path.join(dir, f));
+};
+
+const poster = path.join(outDir, `terradart-v${board.release}-poster.png`);
+run(remotion, ["still", "src/index.ts", "promo", poster, `--frame=${frameOf(board.poster)}`]);
+outputs.push(poster);
+const stills = [];
+for (const still of board.stills) {
+  const file = path.join(outDir, `keyframe-${still.name}.png`);
+  run(remotion, ["still", "src/index.ts", "promo", file, `--frame=${frameOf(still)}`]);
+  stills.push(file);
 }
+outputs.push(...stills);
+const read = [];
+for (const [i, file] of stills.entries()) read.push(...readable(file, path.join(outDir, "ocr", `still-${i}`), ""));
+let blocked = await denied(read);
+if (blocked.length) die(`the key frames show output the clip must not:\n  ${blocked.join("\n  ")}`);
 
 if (!args.includes("--stills-only")) {
-  for (const lang of langs) {
-    const master = path.join(outDir, `master-${lang}.mp4`);
-    run(remotion, ["render", "src/index.ts", `promo-${lang}`, master, "--codec=h264", "--crf=12"]);
-    const delivery = path.join(outDir, `terradart-v${board.release}-${lang}.mp4`);
+  {
+    const master = path.join(outDir, "master.mp4");
+    run(remotion, ["render", "src/index.ts", "promo", master, "--codec=h264", "--crf=12"]);
+    const shown = board.scenes
+      .filter((s) => s.kind === "terminal" || s.kind === "flutter")
+      .map((s) => `between(n,${starts[s.id]},${starts[s.id] + Math.round((s.segments ? s.segments.reduce((sum, g) => sum + (g.hold !== undefined ? g.seconds : g.to - g.from), 0) : s.duration) * fps)})`);
+    const frames = readable(master, path.join(outDir, "ocr", "master"), `select='(${shown.join("+")})*not(mod(n,10))',setpts=N/TB,`);
+    blocked = await denied(frames);
+    if (blocked.length) die(`the clip shows output it must not (ocr frame: line):\n  ${blocked.join("\n  ")}`);
+    const delivery = path.join(outDir, `terradart-v${board.release}.mp4`);
     run("ffmpeg", [
       "-v", "error", "-y", "-i", master,
       "-f", "lavfi", "-i", "anullsrc=channel_layout=stereo:sample_rate=48000",

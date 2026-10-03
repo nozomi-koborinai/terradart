@@ -9,23 +9,18 @@ export const totalFrames = () => {
 };
 
 export const Root = () => (
-  <>
-    {(["en", "ja"] as const).map((lang) => (
-      <Composition
-        key={lang}
-        id={`promo-${lang}`}
-        component={Promo}
-        durationInFrames={totalFrames()}
-        fps={board.fps}
-        width={board.width}
-        height={board.height}
-        defaultProps={{ lang, data: null } satisfies PromoProps}
-        calculateMetadata={async ({ props }) => {
-          if (props.data) return { props };
-          const response = await fetch(staticFile("files/data.json"));
-          return { props: { ...props, data: (await response.json()) as PromoData } };
-        }}
-      />
-    ))}
-  </>
+  <Composition
+    id="promo"
+    component={Promo}
+    durationInFrames={totalFrames()}
+    fps={board.fps}
+    width={board.width}
+    height={board.height}
+    defaultProps={{ data: null } satisfies PromoProps}
+    calculateMetadata={async ({ props }) => {
+      if (props.data) return { props };
+      const response = await fetch(staticFile("files/data.json"));
+      return { props: { ...props, data: (await response.json()) as PromoData } };
+    }}
+  />
 );

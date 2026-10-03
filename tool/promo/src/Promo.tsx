@@ -29,7 +29,7 @@ import {
   SAFE_BOTTOM,
   Window,
 } from "./components";
-import { board, type Lang, type PromoData, type PromoProps, type SceneSpec, sceneSeconds, segmentSeconds } from "./types";
+import { board, type PromoData, type PromoProps, type SceneSpec, sceneSeconds, segmentSeconds } from "./types";
 
 const W = board.width;
 const H = board.height;
@@ -41,12 +41,9 @@ const TERM_TOP = 30;
 const useFonts = () => {
   const [handle] = useState(() => delayRender("fonts"));
   useEffect(() => {
-    const ja = board.scenes.flatMap((s) => s.captions ?? []).map((c) => c.ja).join("");
     Promise.all([
       document.fonts.load(`450 42px "Inter Variable"`),
       document.fonts.load(`400 25px "JetBrains Mono Variable"`),
-      document.fonts.load(`500 40px "Noto Sans JP"`, ja),
-      document.fonts.load(`400 40px "Noto Sans JP"`, ja),
     ])
       .then(() => document.fonts.ready)
       .then(() => continueRender(handle));
@@ -75,7 +72,7 @@ const Title = ({ scene }: { scene: SceneSpec }) => {
   );
 };
 
-const Terminal = ({ scene, lang, data }: { scene: SceneSpec; lang: Lang; data: PromoData }) => {
+const Terminal = ({ scene, data }: { scene: SceneSpec; data: PromoData }) => {
   const { fps } = useVideoConfig();
   const t = seconds();
   const segments = scene.segments!;
@@ -86,7 +83,7 @@ const Terminal = ({ scene, lang, data }: { scene: SceneSpec; lang: Lang; data: P
   return (
     <AbsoluteFill>
       <Window title={scene.title!} style={{ left: TERM_LEFT, top: TERM_TOP, width: TERM_W, height: TERM_H }}>
-        <div style={{ position: "absolute", inset: 0, ...cameraTransform(camera, TERM_W, TERM_H - BAR) }}>
+        <div style={{ position: "absolute", inset: 0, background: data.background, isolation: "isolate", ...cameraTransform(camera, TERM_W, TERM_H - BAR) }}>
           {segments.map((segment, i) => {
             const frames = Math.round(segmentSeconds(segment) * fps);
             const at = start;
@@ -96,7 +93,7 @@ const Terminal = ({ scene, lang, data }: { scene: SceneSpec; lang: Lang; data: P
                 src={staticFile(scene.clip!)}
                 trimBefore={Math.round(("hold" in segment ? segment.hold : segment.from) * fps)}
                 muted
-                style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}
+                style={{ position: "absolute", inset: 0, width: "100%", height: "100%", mixBlendMode: "lighten" }}
               />
             );
             return (
@@ -105,14 +102,20 @@ const Terminal = ({ scene, lang, data }: { scene: SceneSpec; lang: Lang; data: P
               </Sequence>
             );
           })}
+          {(data.masks?.[scene.id] ?? [])
+            .filter((m) => clip >= m.from - 1e-6 && clip <= m.to + 1e-6)
+            .flatMap((m, i) => [
+              <div key={`${i}a`} style={{ position: "absolute", left: 0, right: 0, top: 0, height: `${m.y0 * 100}%`, background: data.background }} />,
+              <div key={`${i}b`} style={{ position: "absolute", left: 0, right: 0, top: `${m.y1 * 100}%`, bottom: 0, background: data.background }} />,
+            ])}
         </div>
       </Window>
-      <Captions captions={scene.captions ?? []} time={clip} lang={lang} />
+      <Captions captions={scene.captions ?? []} time={clip} />
     </AbsoluteFill>
   );
 };
 
-const CodeScene = ({ scene, lang, data }: { scene: SceneSpec; lang: Lang; data: PromoData }) => {
+const CodeScene = ({ scene, data }: { scene: SceneSpec; data: PromoData }) => {
   const t = seconds();
   const block = data.code[scene.code!];
   const focusCount = Math.max(...block.lines.map((l) => (l.focus ?? -1) + 1));
@@ -125,12 +128,12 @@ const CodeScene = ({ scene, lang, data }: { scene: SceneSpec; lang: Lang; data: 
       <Window title={block.title} style={{ left: (W - 1320) / 2, width: 1320, top, height }}>
         <Code block={block} size={size} focus={focusSchedule(focusCount, 0.9, sceneSeconds(scene) - 0.3, t)} />
       </Window>
-      <Captions captions={scene.captions ?? []} time={t} lang={lang} />
+      <Captions captions={scene.captions ?? []} time={t} />
     </AbsoluteFill>
   );
 };
 
-const FlutterScene = ({ scene, lang, data }: { scene: SceneSpec; lang: Lang; data: PromoData }) => {
+const FlutterScene = ({ scene, data }: { scene: SceneSpec; data: PromoData }) => {
   const t = seconds();
   const next = scene.next!;
   const block = data.code[scene.code!];
@@ -148,8 +151,6 @@ const FlutterScene = ({ scene, lang, data }: { scene: SceneSpec; lang: Lang; dat
     easing: Easing.out(Easing.cubic),
   });
   const band = interpolate(t, [next.from + 0.5, next.from + 0.8], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const term = board.terminal;
-  const lineH = (cropH * ((term.fontSize * term.lineHeight) / term.height)) / next.crop.h;
   return (
     <AbsoluteFill>
       <Window title={block.title} style={{ left: (W - 1500) / 2, width: 1500, top, height: codeH }}>
@@ -172,20 +173,20 @@ const FlutterScene = ({ scene, lang, data }: { scene: SceneSpec; lang: Lang; dat
             position: "absolute",
             left: 0,
             right: 0,
-            top: cropH * next.highlight - lineH / 2,
-            height: lineH,
+            top: cropH * data.highlight.top,
+            height: cropH * data.highlight.height,
             background: v("accent-soft"),
             borderLeft: `3px solid ${v("accent")}`,
             opacity: band,
           }}
         />
       </Window>
-      <Captions captions={scene.captions ?? []} time={t} lang={lang} />
+      <Captions captions={scene.captions ?? []} time={t} />
     </AbsoluteFill>
   );
 };
 
-const Site = ({ scene, lang }: { scene: SceneSpec; lang: Lang }) => {
+const Site = ({ scene }: { scene: SceneSpec }) => {
   const t = seconds();
   const width = 1560;
   const height = 880;
@@ -206,7 +207,7 @@ const Site = ({ scene, lang }: { scene: SceneSpec; lang: Lang }) => {
           }}
         />
       </Window>
-      <Captions captions={scene.captions ?? []} time={t} lang={lang} />
+      <Captions captions={scene.captions ?? []} time={t} />
     </AbsoluteFill>
   );
 };
@@ -242,18 +243,18 @@ const End = ({ scene }: { scene: SceneSpec }) => {
   );
 };
 
-const SceneBody = ({ scene, lang, data }: { scene: SceneSpec; lang: Lang; data: PromoData }) => {
+const SceneBody = ({ scene, data }: { scene: SceneSpec; data: PromoData }) => {
   switch (scene.kind) {
     case "title":
       return <Title scene={scene} />;
     case "terminal":
-      return <Terminal scene={scene} lang={lang} data={data} />;
+      return <Terminal scene={scene} data={data} />;
     case "code":
-      return <CodeScene scene={scene} lang={lang} data={data} />;
+      return <CodeScene scene={scene} data={data} />;
     case "flutter":
-      return <FlutterScene scene={scene} lang={lang} data={data} />;
+      return <FlutterScene scene={scene} data={data} />;
     case "site":
-      return <Site scene={scene} lang={lang} />;
+      return <Site scene={scene} />;
     case "end":
       return <End scene={scene} />;
   }
@@ -267,7 +268,7 @@ const Fade = ({ first, children }: { first: boolean; children: React.ReactNode }
   return <AbsoluteFill style={{ background: v("bg"), opacity }}>{children}</AbsoluteFill>;
 };
 
-export const Promo = ({ lang, data }: PromoProps) => {
+export const Promo = ({ data }: PromoProps) => {
   useFonts();
   const fade = Math.round(board.crossfade * board.fps);
   let start = 0;
@@ -281,7 +282,7 @@ export const Promo = ({ lang, data }: PromoProps) => {
           return (
             <Sequence key={scene.id} name={scene.id} from={from} durationInFrames={frames}>
               <Fade first={i === 0}>
-                <SceneBody scene={scene} lang={lang} data={data} />
+                <SceneBody scene={scene} data={data} />
               </Fade>
             </Sequence>
           );

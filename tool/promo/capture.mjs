@@ -190,12 +190,51 @@ for (const [name, cwd] of tapes) {
   }
 }
 
+// The app's side of the typed outputs: the call site the Flutter quickstart
+// has (a top-level reader, a getter in a widget), written against the reader
+// this take generated and analyzed against it, so the beat shows real API.
+const reader = fs.readFileSync(path.join(app, "lib", "generated", "infra.g.dart"), "utf8");
+const outputsClass = /final class (\w+Outputs) \{/.exec(reader)?.[1];
+const getter = /^ {2}String get (\w+) \{/m.exec(reader)?.[1];
+if (!outputsClass || !getter) die("the generated reader has no Outputs class with a String getter");
+const mainDart = `import 'package:flutter/material.dart';
+
+import 'generated/infra.g.dart';
+
+const outputs = ${outputsClass}.fromDartDefine();
+
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) => MaterialApp(
+        home: Scaffold(
+          body: Center(child: Text(outputs.${getter})),
+        ),
+      );
+}
+`;
+fs.writeFileSync(path.join(app, "lib", "main.dart"), mainDart);
+const check = path.join(work, "outputs_check");
+fs.mkdirSync(path.join(check, "lib", "generated"), { recursive: true });
+fs.writeFileSync(path.join(check, "pubspec.yaml"), "name: outputs_check\npublish_to: none\n\nenvironment:\n  sdk: ^3.10.0\n");
+fs.copyFileSync(path.join(app, "lib", "generated", "infra.g.dart"), path.join(check, "lib", "generated", "infra.g.dart"));
+fs.writeFileSync(
+  path.join(check, "lib", "check.dart"),
+  `import 'generated/infra.g.dart';\n\nconst outputs = ${outputsClass}.fromDartDefine();\n\nString read() => outputs.${getter};\n`,
+);
+execFileSync("dart", ["pub", "get"], { cwd: check, stdio: "ignore" });
+const analyze = spawnSync("dart", ["analyze", "--fatal-infos", "lib/check.dart"], { cwd: check, encoding: "utf8" });
+if (analyze.status !== 0) die(`the app snippet does not analyze against the generated reader:\n${analyze.stdout}`);
+
 // The files the code beats show, as this take generated them; `.txt` keeps
 // `dart analyze` at the repository root from reading them.
 const files = path.join(pub, "files");
 fs.mkdirSync(files, { recursive: true });
 fs.copyFileSync(path.join(app, "infra", "lib", "stack.dart"), path.join(files, "stack.dart.txt"));
-fs.copyFileSync(path.join(app, "lib", "generated", "infra.g.dart"), path.join(files, "infra.g.dart.txt"));
+fs.copyFileSync(path.join(app, "lib", "main.dart"), path.join(files, "main.dart.txt"));
 fs.writeFileSync(
   path.join(files, "versions.json"),
   JSON.stringify(
