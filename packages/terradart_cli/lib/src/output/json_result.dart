@@ -26,6 +26,9 @@ final class JsonResult {
   /// The Terraform directory, relative to the working directory.
   String? outDir;
 
+  /// `--dry-run`: the command stopped before it changed anything.
+  bool dryRun = false;
+
   /// What `plan` would do.
   PlanSummary? plan;
 
@@ -65,6 +68,7 @@ final class JsonResult {
       'command': command,
       'ok': error == null && usage == null && failed == null,
       'exitCode': exitCode,
+      if (dryRun) 'dryRun': true,
       if (env case final env?) 'env': {'name': env.name, 'source': env.source},
       if (engine case final engine?)
         'engine': {

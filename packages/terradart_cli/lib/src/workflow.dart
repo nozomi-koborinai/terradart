@@ -464,10 +464,16 @@ final class Workflow {
     if (!answer) throw const CliException('Stopped; the state did not move.');
   }
 
-  /// `plan`; returns [exitChanges] when [detailedExitCode] and the plan has
-  /// changes, else 0. With `--json` the plan is saved and read back with
-  /// `show -json`, so the result counts its changes.
-  Future<int> plan(List<String> extra, {bool detailedExitCode = false}) async {
+  /// `plan` (`plan -destroy` with [destroy]); returns [exitChanges] when
+  /// [detailedExitCode] and the plan has changes, else 0. With `--json` the
+  /// plan is saved and read back with `show -json`, so the result counts its
+  /// changes, and with [next] suggests `terradart apply` when there are any.
+  Future<int> plan(
+    List<String> extra, {
+    bool detailedExitCode = false,
+    bool destroy = false,
+    bool next = true,
+  }) async {
     final result = console.result;
     final saved = result == null
         ? null
@@ -476,6 +482,7 @@ final class Workflow {
       [
         'plan',
         '-input=false',
+        if (destroy) '-destroy',
         if (detailedExitCode) '-detailed-exitcode',
         if (saved != null) '-out=${saved.path}',
         ...extra,
@@ -500,9 +507,7 @@ final class Workflow {
         }
       }
     }
-    if (result?.plan?.hasChanges ?? false) {
-      result!.next.add(_terradart('apply'));
-    }
+    if (next && (result?.plan?.hasChanges ?? false)) suggest('apply');
     return code == exitChanges ? exitChanges : 0;
   }
 
@@ -544,8 +549,12 @@ final class Workflow {
   ///
   /// When [required] is false (after `apply`), a Stack that declares no
   /// define output is skipped; one `--define-output` or `pubspec.yaml`
-  /// names must exist ([checkDefineOutput]).
-  Future<void> writeDefines({required bool required}) async {
+  /// names must exist ([checkDefineOutput]). With [dryRun] it prints the
+  /// file and the keys and writes nothing.
+  Future<void> writeDefines({
+    required bool required,
+    bool dryRun = false,
+  }) async {
     final name = target.defineOutput;
     final declared = target.declaresDefineOutput ?? _declaresOutput(name);
     if (name == null || !declared) {
@@ -587,15 +596,24 @@ final class Workflow {
       );
     }
     final file = File(target.defineFile!);
+    final shown = _show(file.path);
+    console.result
+      ?..defineFile = shown
+      ..keys = [for (final k in value.keys) '$k'];
+    if (dryRun) {
+      console.result?.dryRun = true;
+      console.out(
+        'Would write ${value.length} dart-defines to $shown: '
+        '${value.keys.join(', ')}',
+      );
+      suggest('outputs');
+      return;
+    }
     await file.parent.create(recursive: true);
     _ignoreStateDir(file.parent);
     await file.writeAsString(
       '${const JsonEncoder.withIndent('  ').convert(value)}\n',
     );
-    final shown = _show(file.path);
-    console.result
-      ?..defineFile = shown
-      ..keys = [for (final k in value.keys) '$k'];
     console
       ..out('Wrote ${value.length} dart-defines to $shown')
       ..out('  flutter run --dart-define-from-file=$shown')
@@ -720,8 +738,10 @@ final class Workflow {
     }
   }
 
-  /// `terradart <command>` against this target.
-  String _terradart(String command) => 'terradart $command${_envFlag()}';
+  /// Adds `terradart <command>` against this target to the `--json` result's
+  /// `next`.
+  void suggest(String command) =>
+      console.result?.next.add('terradart $command${_envFlag()}');
 
   String _envFlag() => [
     if (target.environment case final env?) ' --env $env',
