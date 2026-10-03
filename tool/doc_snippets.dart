@@ -21,10 +21,11 @@
 //   `outputEnvironment()` resolve.
 // - `bin/*.dart` fences with a `main` run first, in document order, so a
 //   synth writes the generated file the app fences import.
-// - In a README, `<!-- doc-snippets: skip: <reason> -->` on the line before
-//   a fence leaves it out — only for code that needs a package outside the
-//   workspace (a cookbook recipe's Genkit server), which the recipe's own
-//   build compiles (tool/check_cookbook.sh).
+// - In a README or a website page, `<!-- doc-snippets: skip: <reason> -->`
+//   on the line before a fence leaves it out — only for code that needs a
+//   package outside the workspace (a cookbook recipe's Genkit server, which
+//   the recipe's own build compiles in tool/check_cookbook.sh; a Flutter
+//   app's `lib/main.dart`).
 //
 // Then one `dart analyze` checks every sandbox; an error or warning fails.
 //
