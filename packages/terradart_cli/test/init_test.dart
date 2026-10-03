@@ -98,10 +98,9 @@ void main() {
     expect(stack, contains('final class AcmeInfraStack extends Stack'));
     expect(stack, contains('backend: const LocalBackend(),'));
     expect(stack, isNot(contains('appExports')));
-    expect(
-      read('infra/bin/infra.dart'),
-      contains('runEnvironments(args, Env.values, (env) => AcmeInfraStack('),
-    );
+    final entry = read('infra/bin/infra.dart');
+    expect(entry, contains('(env) => AcmeInfraStack('));
+    expect(entry, contains('defaultEnv: Env.dev'));
     expect(read('infra/.gitignore'), contains('tf-out/\n.terradart/\n'));
     expect(read('infra/README.md'), contains('terradart plan --env dev'));
     final agents = read('infra/AGENTS.md');
@@ -305,14 +304,8 @@ void main() {
 
   test('S3 state without aws gets a region of its own', () async {
     expect(
-      (await init([
-        'a',
-        '-p',
-        'cloudflare',
-        '--backend',
-        's3',
-        '--defaults',
-      ])).code,
+      (await init(['a', '-p', 'cloudflare', '--backend', 's3', '--defaults']))
+          .code,
       0,
     );
     expect(read('a/lib/env.dart'), contains('final String stateRegion;'));

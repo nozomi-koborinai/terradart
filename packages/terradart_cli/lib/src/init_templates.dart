@@ -529,8 +529,14 @@ import 'package:terradart_core/terradart_core.dart';
 
 /// Writes `tf-out/<env>/main.tf.json` for each environment, or the one
 /// `--env` names. `terradart plan`, `apply` and `destroy` run it first.
-Future<void> main(List<String> args) =>
-    runEnvironments(args, Env.values, (env) => ${plan.stackClass}(env: env));
+/// `${plan.envs.first}` is the environment those commands use when neither
+/// `--env` nor `TERRADART_ENV` names one.
+Future<void> main(List<String> args) => runEnvironments(
+  args,
+  Env.values,
+  (env) => ${plan.stackClass}(env: env),
+  defaultEnv: Env.${plan.envs.first},
+);
 ''';
 
 /// The commands that follow `terradart init`, run from where it ran: [cd]

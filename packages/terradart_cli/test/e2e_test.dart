@@ -56,13 +56,10 @@ void main() {
     expect(unknown, 64);
 
     await terradart(['synth', '--env', 'prd']);
-    final prd =
-        jsonDecode(
-              File(
-                p.join(root.path, 'tf-out', 'prd', 'main.tf.json'),
-              ).readAsStringSync(),
-            )
-            as Map;
+    final prd = jsonDecode(
+      File(p.join(root.path, 'tf-out', 'prd', 'main.tf.json'))
+          .readAsStringSync(),
+    ) as Map;
     expect((prd['terraform'] as Map)['backend'], {
       'gcs': {'bucket': 'acme-prd-state', 'prefix': 'hello'},
     });
@@ -147,27 +144,12 @@ void main() {
         ], cwd: root.path);
         final app = p.join(root.path, 'app');
         overrideWorkspacePackages(app);
-        await terradart(['synth', '--env', 'dev'], cwd: app);
-
-        final out = StringBuffer();
-        final err = StringBuffer();
-        final code = await runTerradart(
-          ['engine', '--engine', 'tofu'],
-          workingDirectory: app,
+        final log = await terradart(
+          ['validate', '--env', 'dev', '--engine', 'tofu'],
+          cwd: app,
           environment: environment,
-          console: Console(out: out.writeln, err: err.writeln),
         );
-        expect(code, 0, reason: '$err');
-        final tofu = '$out'.trim().split('\n').last;
-
-        final dir = p.join(app, 'tf-out', 'dev');
-        for (final args in [
-          ['init', '-backend=false', '-input=false', '-no-color'],
-          ['validate', '-no-color'],
-        ]) {
-          final r = await Process.run(tofu, args, workingDirectory: dir);
-          expect(r.exitCode, 0, reason: '${r.stdout}${r.stderr}');
-        }
+        expect(log, contains('OpenTofu'));
       }, timeout: const Timeout(Duration(minutes: 10)));
     }
   });
