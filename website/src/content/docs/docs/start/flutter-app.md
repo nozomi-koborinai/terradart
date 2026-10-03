@@ -132,7 +132,7 @@ final class MyAppInfraStack extends Stack {
 
 Each `addOutput` becomes a typed getter of `MyAppInfraStackOutputs`; the `events_topic_id` output is `eventsTopicId`. Add the resources your app uses — a Cloud Run service, a bucket, Firebase — and an output for each value the app reads. Every resource of the provider has a factory, listed in [Coverage](/docs/coverage/google/).
 
-To run without `--env`, give `runEnvironments` in `infra/bin/infra.dart` a default — `defaultEnv: Env.dev` after the builder, as in [Start from an empty directory](/docs/start/new-project/#4-pick-the-default-environment). The commands below name the environment, which works either way.
+`infra/bin/infra.dart` gives `runEnvironments` the first environment as `defaultEnv`, so a command without `--env` runs against `dev` — see [Start from an empty directory](/docs/start/new-project/#4-the-default-environment). The commands below name the environment anyway, as a build script should.
 
 ## 4. Synth and validate
 

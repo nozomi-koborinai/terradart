@@ -115,9 +115,9 @@ final class MyAppStack extends Stack {
 
 Replace the topic with your own resources as you go: every resource of the provider has a factory, listed in [Coverage](/docs/coverage/google/), and [Writing arguments](/docs/arguments/) says which form each argument takes.
 
-## 4. Pick the default environment
+## 4. The default environment
 
-`bin/infra.dart` hands the environments to `runEnvironments`. Give it a `defaultEnv`, so that a command without `--env` runs against `dev`:
+`bin/infra.dart` hands the environments to `runEnvironments`, with the first one as `defaultEnv`, so that a command without `--env` runs against `dev`:
 
 ```dart
 // bin/infra.dart
@@ -127,6 +127,8 @@ import 'package:terradart_core/terradart_core.dart';
 
 /// Writes `tf-out/<env>/main.tf.json` for each environment, or the one
 /// `--env` names. `terradart plan`, `apply` and `destroy` run it first.
+/// `dev` is the environment those commands use when neither
+/// `--env` nor `TERRADART_ENV` names one.
 Future<void> main(List<String> args) => runEnvironments(
   args,
   Env.values,
@@ -135,7 +137,7 @@ Future<void> main(List<String> args) => runEnvironments(
 );
 ```
 
-A command now runs against the first of: `--env <name>`, the `TERRADART_ENV` environment variable, `defaultEnv`, or the only environment when there is one. It prints which one and why, `env: dev (default)`. Without a `defaultEnv`, keep passing `--env dev`. More in [Environments](/docs/environments/#run-one-environment).
+A command now runs against the first of: `--env <name>`, the `TERRADART_ENV` environment variable, `defaultEnv`, or the only environment when there is one. It prints which one and why, `env: dev (default)`. Delete the `defaultEnv` line to make every command name its environment. More in [Environments](/docs/environments/#run-one-environment).
 
 ## 5. Synth
 

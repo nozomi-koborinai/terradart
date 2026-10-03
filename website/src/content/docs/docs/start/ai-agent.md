@@ -9,7 +9,7 @@ A coding agent can do the whole loop: create the project, write the Stack, check
 
 The **TerraDart Agent Skill** tells the agent where to look and which commands to run. From your project's directory:
 
-<!-- TODO: `terradart skill install` lands with the skill-distribution PR; drop the npx fallback once it is released. -->
+<!-- TODO: `terradart skill install` lands with #909; once it is released, add `skill update` / `skill status` and drop the npx fallback. -->
 
 
 ```bash
