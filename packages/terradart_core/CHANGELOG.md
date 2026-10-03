@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.35.0 - 2026-10-03
+
+- No API changes. Lockstep release with the `terradart` command's `--json` output, fixed exit codes, `--no-input`, `--dry-run`, `terradart help <topic>` and bundled agent skill.
+
 ## 0.34.0 - 2026-10-03
 
 - `runEnvironments` takes `defaultEnv`, the member `terradart` runs against when neither `--env` nor `TERRADART_ENV` names one; it records it in the manifest (`default`). Without `--env`, environments that share a directory write only `defaultEnv` instead of exiting 64. A `defaultEnv` that is not one of the environments throws `ArgumentError`.

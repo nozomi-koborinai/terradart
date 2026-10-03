@@ -31,12 +31,12 @@ What does **not** count:
 
 ## Supported versions
 
-Pin dependencies with `^0.34.0` on [pub.dev](https://pub.dev/packages/terradart_core) today.
+Pin dependencies with `^0.35.0` on [pub.dev](https://pub.dev/packages/terradart_core) today.
 
 | Version | Status | Security fixes |
 |---|---|---|
-| **0.34.x** (alpha, current) | **Best-effort** | Yes, on a rolling basis — no embargo guarantees |
-| **0.11.x and older** | Unsupported | Upgrade to 0.34.x; see [MIGRATING.md](MIGRATING.md) |
+| **0.35.x** (alpha, current) | **Best-effort** | Yes, on a rolling basis — no embargo guarantees |
+| **0.11.x and older** | Unsupported | Upgrade to 0.35.x; see [MIGRATING.md](MIGRATING.md) |
 | Future beta line (TBD) | Best-effort with clearer minor-boundary policy | See [status on terradart.dev](https://terradart.dev/docs/status/) |
 
 ## Disclosure policy

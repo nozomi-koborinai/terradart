@@ -1,9 +1,18 @@
 ---
 title: Upgrading
-description: Upgrade notes for every TerraDart package — the 0.33.x → 0.34.0, 0.32.x → 0.33.0 and 0.31.x → 0.32.0 changes, and where to find older ones.
+description: Upgrade notes for every TerraDart package — the 0.34.x → 0.35.0, 0.33.x → 0.34.0, 0.32.x → 0.33.0 and 0.31.x → 0.32.0 changes, and where to find older ones.
 ---
 
 Read this page before every **minor** bump. Breaking changes land only on minor releases, and every one has a section in [MIGRATING.md on GitHub](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md), which stays the full, canonical history. This page summarizes the latest two.
+
+## 0.34.x → 0.35.0
+
+0.35.0 changes no Stack code: the Dart API, synth output and every provider pin stay as they were. It changes how the `terradart` command behaves in CI and scripts.
+
+1. **Raise every TerraDart constraint to `^0.35.0` by hand**, then run `dart pub upgrade`, and `dart pub global activate terradart_cli` for the new command.
+2. **Pass `--auto-approve` where nobody can answer.** Without a terminal — or with `--no-input`, `CI`, or in an AI agent's shell — `terradart apply` and `terradart destroy` stop before `init` with exit code 3 instead of starting the engine. A script that piped `yes` into them passes `--auto-approve` instead.
+3. **Check exit codes against the new table.** A failed engine step exits 12 (the engine's own code is `error.engineExitCode` under `--json`), a failed entry point 10, an unknown `--env` 65. A script that tested `$? -eq 1` tests `$? -ne 0`, or reads `error.code` from `--json`. See [JSON and exit codes](/docs/cli/#json-and-exit-codes).
+4. **Optional: install the agent skill.** `terradart skill install` writes the TerraDart Agent Skill of the CLI's release into the project; `terradart skill status --check` keeps it current in CI. See [Let an AI agent do it](/docs/start/ai-agent/).
 
 ## 0.33.x → 0.34.0
 

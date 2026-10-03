@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.35.0 - 2026-10-03
 
 - Every command's `--help` ends with `Examples:` (the simplest use first, the `--no-input --json` form an agent runs last) and `See also:` topics. `terradart help <topic>` prints a terminal-sized guide — `environments`, `outputs`, `backends`, `engines`, `migrate`, `exit-codes`, `json`, `agents` — and `terradart help --list` lists them; `terradart help migrate` is the command's usage followed by the guide.
 - `--dry-run` on `apply` and `destroy` runs synth, `init` and `plan` (`plan -destroy`) and stops: no question, no state change, no define file. On `outputs` it reads the outputs and prints the define file and its keys without writing it. With `--json` the result has `"dryRun": true` and the command to run without the flag in `next`.

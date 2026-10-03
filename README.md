@@ -11,7 +11,7 @@
 >
 > Write your infrastructure and your app in one typed Dart codebase. TerraDart synthesizes Terraform JSON for Google Cloud, AWS, Cloudflare and Appwrite, and hands the values your app needs — topic names, IDs, URLs — to it as typed Dart instead of copied strings. The `terradart` command plans and applies it with OpenTofu, and you never install Terraform.
 
-**Alpha** — no SemVer until v1.0.0, but breaking changes land only on **minor** bumps. Pin `^0.34.0`, read [`MIGRATING.md`](MIGRATING.md) before minor bumps, and see [status on terradart.dev](https://terradart.dev/docs/status/).
+**Alpha** — no SemVer until v1.0.0, but breaking changes land only on **minor** bumps. Pin `^0.35.0`, read [`MIGRATING.md`](MIGRATING.md) before minor bumps, and see [status on terradart.dev](https://terradart.dev/docs/status/).
 
 [![CI](https://github.com/nozomi-koborinai/terradart/actions/workflows/ci.yml/badge.svg)](https://github.com/nozomi-koborinai/terradart/actions/workflows/ci.yml)
 [![Dart SDK](https://img.shields.io/badge/Dart-%E2%89%A53.10-blue.svg)](https://dart.dev)
@@ -28,8 +28,8 @@ name: my_app
 environment:
   sdk: ^3.10.0
 dependencies:
-  terradart_core: ^0.34.0
-  terradart_google: ^0.34.0  # or terradart_aws / terradart_cloudflare / terradart_appwrite
+  terradart_core: ^0.35.0
+  terradart_google: ^0.35.0  # or terradart_aws / terradart_cloudflare / terradart_appwrite
 ```
 
 A `Stack` is one Terraform root module, written as a Dart class. This one runs an API on Cloud Run that publishes to a Pub/Sub topic, and tells the app which topic that is:
@@ -291,7 +291,7 @@ cd infra_dart && dart pub get && terradart plan
 terradart skill install   # .agents/skills/ and .claude/skills/, the skill of this CLI's release
 ```
 
-`terradart skill update` keeps it in step with the CLI, and `terradart skill status --check` fails CI when it falls behind. Without the CLI: `npx skills add nozomi-koborinai/terradart#v0.34.0 --skill terradart`, pinned to the release tag.
+`terradart skill update` keeps it in step with the CLI, and `terradart skill status --check` fails CI when it falls behind. Without the CLI: `npx skills add nozomi-koborinai/terradart#v0.35.0 --skill terradart`, pinned to the release tag.
 
 Docs: [Let an AI agent do it](https://terradart.dev/docs/start/ai-agent/).
 
@@ -310,7 +310,7 @@ How TerraDart compares with HCL, CDKTF and Pulumi: [Why TerraDart](https://terra
 
 ## Status
 
-**Alpha**, pre-1.0 (0.34.x). No SemVer until v1.0.0, but breaking changes land only on **minor** bumps, always documented in [`MIGRATING.md`](MIGRATING.md); pin `^0.34.0` and take patches freely. Beta needs external validation — see the [path to beta](https://terradart.dev/docs/status/#path-to-beta).
+**Alpha**, pre-1.0 (0.35.x). No SemVer until v1.0.0, but breaking changes land only on **minor** bumps, always documented in [`MIGRATING.md`](MIGRATING.md); pin `^0.35.0` and take patches freely. Beta needs external validation — see the [path to beta](https://terradart.dev/docs/status/#path-to-beta).
 
 ## Contributing
 
