@@ -24,7 +24,7 @@
 #   - packages/terradart_cli/lib/src/version.dart (cliVersion const)
 #   - skills/terradart/SKILL.md                   (metadata terradart-version; then `dart tool/sync_bundled_skill.dart --fix`
 #     + packages/terradart_cli/lib/src/assets/skill_md.g.dart   re-hashes it and regenerates the CLI's bundled copy)
-#   - README.md, packages/terradart_cli/README.md, website docs cli.md + agents.md (`npx skills add nozomi-koborinai/terradart#vX.Y.Z`)
+#   - README.md, packages/terradart_cli/README.md, website docs cli.md + start/ai-agent.md (`npx skills add nozomi-koborinai/terradart#vX.Y.Z`)
 #   - examples/*/pubspec.yaml                     (terradart_core + terradart_google + terradart_google_beta + terradart_appwrite + terradart_cloudflare + terradart_aws + terradart_time carets)
 #   - cookbook/*/pubspec.yaml,                    (terradart_core + terradart_google + terradart_time carets on
 #     cookbook/*/*/pubspec.yaml                    workspace-member cookbook recipes)
@@ -165,7 +165,7 @@ echo "    - packages/terradart_cli/lib/src/version.dart -> $NEW"
 sed_inplace "s#^(  terradart-version: )\"${OLD_RE}\"\$#\\1\"${NEW}\"#" skills/terradart/SKILL.md
 dart tool/sync_bundled_skill.dart --fix
 echo "    - skills/terradart/SKILL.md + packages/terradart_cli/lib/src/assets/skill_md.g.dart -> $NEW"
-NPX_SKILL_DOCS=(README.md packages/terradart_cli/README.md website/src/content/docs/docs/cli.md website/src/content/docs/docs/agents.md)
+NPX_SKILL_DOCS=(README.md packages/terradart_cli/README.md website/src/content/docs/docs/cli.md website/src/content/docs/docs/start/ai-agent.md)
 for f in "${NPX_SKILL_DOCS[@]}"; do
   [ -f "$f" ] || continue
   sed_inplace "s#(nozomi-koborinai/terradart)\\#v${OLD_RE}([^0-9A-Za-z.-]|\$)#\\1\\#v${NEW}\\2#g" "$f"
