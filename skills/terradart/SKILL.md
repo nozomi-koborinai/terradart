@@ -133,9 +133,10 @@ add(
 ```bash
 dart analyze
 terradart synth                    # runs bin/infra.dart, which writes tf-out/
+terradart validate [--env <member>]  # synth, init -backend=false, validate
 ```
 
-Synth reports every issue that keeps the Stack from synthesizing (an unregistered reference, a sensitive literal, a missing provider) at once. `terradart plan` (section 6) is the next check once the user's credentials are in the environment.
+Synth reports every issue that keeps the Stack from synthesizing (an unregistered reference, a sensitive literal, a missing provider) at once. `terradart validate` is the next check: it needs no credentials, backend, or state. `terradart plan` (section 6) is the one that does, once those credentials are in the environment. With several environments, pass `--env` or set `TERRADART_ENV` (section 6).
 
 ## 6. Deploy
 
@@ -144,6 +145,7 @@ The `terradart` command runs the whole loop: the entry point, then `init` and `p
 ```bash
 dart pub global activate terradart_cli   # or: dart pub add --dev terradart_cli, then dart run terradart_cli:terradart <command>
 terradart synth      # the entry point only: writes tf-out/
+terradart validate   # synth, init -backend=false, validate — no credentials, backend or state
 terradart plan       # synth, init, plan
 terradart apply      # synth, init, apply, then writes the define file (--auto-approve skips the prompt)
 terradart destroy    # synth, init, destroy
@@ -195,11 +197,15 @@ import 'package:my_app/app_stack.dart';
 import 'package:my_app/env.dart';
 import 'package:terradart_core/terradart_core.dart';
 
-Future<void> main(List<String> args) =>
-    runEnvironments(args, Env.values, (env) => AppStack(env: env));
+Future<void> main(List<String> args) => runEnvironments(
+  args,
+  Env.values,
+  (env) => AppStack(env: env),
+  defaultEnv: Env.dev,
+);
 ```
 
-With environments, `plan`, `apply`, `destroy` and `outputs` need `--env <member>`; `terradart synth` without it writes them all. A single Stack calls `runStack(args, () => AppStack(...))` instead and takes no `--env`. Pick where each environment's state lives:
+With environments, `validate`, `plan`, `apply`, `destroy` and `outputs` run against one member: the one `--env <name>` (`-e`) names, else the `TERRADART_ENV` environment variable, else the `defaultEnv` passed to `runEnvironments`, else the only member. With none of these the command stops and lists the names. An entry point that calls `runStack` ignores `TERRADART_ENV` and takes no `--env`. When `TERRADART_ENV` or `defaultEnv` chose the environment, `apply` and `destroy` ask first unless `--auto-approve` is set; `validate` does not ask. `terradart synth` without `--env` writes every environment. Pick where each environment's state lives:
 
 - **A directory per environment** (the default): `tf-out/<env>`, each with the backend its Stack derives from the member — `GcsBackend(bucket: ..., prefix: ...)`, `S3Backend(bucket: ..., key: ..., region: ...)` or `LocalBackend(path: ...)`, as in `AppStack`.
 - **One directory, partial backend configuration**: the Stack sets `const GcsBackend()` (or `const S3Backend()`), and `runEnvironments(..., dir: (_) => 'tf-out', backendConfig: (env) => ['backend/${env.name}.gcs.tfbackend'])` names a `-backend-config` file or `key=value` pairs per environment; `terradart` runs `init -reconfigure` with them.
