@@ -14,6 +14,18 @@ dependencies:
   terradart_appwrite: ^0.33.0
 ```
 
+## Terraform, not OpenTofu
+
+Appwrite currently needs Terraform on your `PATH`. The `appwrite/appwrite` provider is published to the Terraform registry only, and OpenTofu cannot install it from there. A Stack that uses it runs on `terraform` from `PATH` without being asked; pin it in `pubspec.yaml` (`terradart init --provider appwrite` writes this) or pass `--engine terraform`:
+
+```yaml
+# pubspec.yaml
+terradart:
+  engine: terraform
+```
+
+With only OpenTofu available, or with `--engine tofu`, `terradart plan`, `apply`, `destroy` and `outputs` stop before `init` and say so ([The engine](/docs/cli/#the-engine)).
+
 ## Credentials
 
 `AppwriteProvider` takes the endpoint and the project or organization, but no API key, so credentials never enter the synthesized JSON, and synth needs none. `terradart plan` and `terradart apply` authenticate with `APPWRITE_API_KEY` (project resources) or `APPWRITE_ORGANIZATION_API_KEY` (organization resources). With them in place, [`terradart apply`](/docs/cli/) synthesizes the Stack and applies it.

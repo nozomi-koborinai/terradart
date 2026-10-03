@@ -72,7 +72,7 @@ Inside a Flutter app (a `pubspec.yaml` that depends on `flutter` in the current 
 
 A working or target directory holding `*.tf` or `*.tf.json` files, at any depth, gets no scaffold: `terradart init` names the directories that hold them (`Found Terraform in envs/dev, modules/net.`), prints the `terradart migrate --report` and `terradart migrate` commands for it and exits 1 — in a terminal it offers to run the report first. `--force` scaffolds anyway.
 
-The OpenTofu registry has no `appwrite/appwrite` provider, so an Appwrite project plans and applies with Terraform on your `PATH` (`--engine terraform`); `terradart init` says so when you pick it.
+Picking `appwrite` writes `terradart: engine: terraform` into `pubspec.yaml`: an Appwrite project plans and applies with Terraform on your `PATH` ([The engine](#the-engine)).
 
 ## The entry point
 
@@ -146,6 +146,8 @@ Dart define API_URL (Terraform output "api_url") is not set. Build the app with 
 5. OpenTofu downloaded from its GitHub release.
 
 The download is the release pinned in `terradart_cli` (`opentofu_version` in `pubspec.yaml` picks another), for Linux, macOS and Windows on amd64 and arm64. Its archive is checked against the SHA-256 checksum `terradart_cli` ships for the pinned release, or against the release's `SHA256SUMS` for another; a mismatch is deleted and stops the run. The binary is kept in `~/.cache/terradart` on Linux, `~/Library/Caches/terradart` on macOS and `%LOCALAPPDATA%\terradart` on Windows (`TERRADART_CACHE_DIR` moves it; `TERRADART_OPENTOFU_MIRROR` downloads from a mirror of the release layout).
+
+Appwrite currently needs Terraform. The `appwrite/appwrite` provider is published to the Terraform registry only, which OpenTofu cannot install from, so a Stack that requires it runs on `terraform` from `PATH` whatever steps 2–5 would pick. When there is none, or `--engine tofu`, `engine: tofu` or a `tofu` `engine_path` asks for OpenTofu, `plan`, `apply`, `destroy` and `outputs` stop before `init` with a message that says so. Install [Terraform](https://developer.hashicorp.com/terraform/install) and run with `--engine terraform`, or set `engine: terraform` in `pubspec.yaml`.
 
 State written by one engine is not always readable by another: Terraform 1.6 and later and OpenTofu have diverged. When the engine about to run differs from the one that last applied the state, or is older, `terradart` warns before it runs.
 
