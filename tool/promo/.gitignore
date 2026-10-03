@@ -1,0 +1,4 @@
+node_modules/
+# Written by capture.mjs and render.mjs; reproducible from the tapes and the storyboard.
+public/
+out/
