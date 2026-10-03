@@ -17,6 +17,7 @@ To pin the version per project, `dart pub add --dev terradart_cli` and run it as
 | `terradart apply` | synth, `init`, `apply`, then writes `.terradart/dart_defines.json` |
 | `terradart destroy` | synth, `init`, `destroy` |
 | `terradart outputs` | synth, `init`, then writes the define file from the applied state |
+| `terradart state migrate` | synth, then `init -migrate-state`: moves the state to the backend the Stack configures |
 | `terradart engine` | prints the engine binary it runs |
 | `terradart migrate` | turns a Terraform tree into a Dart package; no project required |
 

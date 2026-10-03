@@ -166,6 +166,16 @@ When every environment keeps its state in the same kind of backend and only its 
 
 Two environments may share a directory only when one of these tells them apart; `runEnvironments` throws otherwise. `--workspace` and `--backend-config` on the command line override and extend them for one run.
 
+## Moving an environment's state
+
+An environment's backend is Dart too, so moving its state starts with a change to the Stack — giving `stg` a `stateBucket`, say, where it kept a local file. The state then follows once:
+
+```bash
+terradart state migrate --env stg
+```
+
+It synthesizes `stg`, says which backend the state moves from and to, asks, and runs the engine's `init -migrate-state` in `stg`'s directory with its `backendConfig`. `--auto-approve` skips the question, and is required without a terminal. The other environments are not touched.
+
 ## Migrated environments
 
 `terradart migrate --merge-envs` writes an `Env` enum whose members carry the directory each environment came from (`path`), and a `bin/infra.dart` that calls `runEnvironments` with `dir: (env) => 'tf-out/${env.path}'`. `terradart plan --env prodEu` plans the matching environment. A single-module migration calls `runStack` instead, so `terradart plan` with no `--env` is enough. See [Migrating from HCL](/docs/migrate-from-hcl/).

@@ -46,6 +46,7 @@ Future<int> runTerradart(
         ..addCommand(_DestroyCommand(context))
         ..addCommand(_OutputsCommand(context))
         ..addCommand(_EngineCommand(context))
+        ..addCommand(_StateCommand(context))
         ..addCommand(MigrateCommand(io));
   try {
     return await cli.run(arguments) ?? 0;
@@ -449,6 +450,58 @@ final class _EngineCommand extends _TerradartCommand {
       warn: context.console.warn,
     ).resolve();
     context.console.out(engine.path);
+    return 0;
+  }
+}
+
+final class _StateCommand extends Command<int> {
+  _StateCommand(_Context context) {
+    addSubcommand(_StateMigrateCommand(context));
+  }
+
+  @override
+  String get name => 'state';
+
+  @override
+  String get description => 'Work with the state of the Stack.';
+}
+
+final class _StateMigrateCommand extends _TerradartCommand {
+  _StateMigrateCommand(super.context) {
+    argParser.addFlag(
+      'auto-approve',
+      negatable: false,
+      help: 'Move the state without asking (required without a terminal).',
+    );
+  }
+
+  @override
+  String get name => 'migrate';
+
+  @override
+  String get description =>
+      'Synth, then move the state to the backend the Stack configures '
+      '(init -migrate-state) — after the Stack changes its backend.';
+
+  @override
+  String get invocation => 'terradart state migrate [--env <name>]';
+
+  @override
+  Future<int> run() async {
+    if (args.rest.isNotEmpty) {
+      usageException('state migrate takes no arguments after --.');
+    }
+    final flow = workflow();
+    if (synthFirst) await flow.synth();
+    final from = flow.initializedBackend;
+    final to = flow.configuredBackend;
+    flow.confirmStateMove(
+      autoApprove: args.flag('auto-approve'),
+      from: from,
+      to: to,
+    );
+    await flow.migrateState();
+    context.console.out('Moved the state to the $to backend.');
     return 0;
   }
 }

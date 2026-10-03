@@ -33,6 +33,7 @@ dart run terradart_cli:terradart apply
 | `terradart apply` | synth, `init`, `apply`, then writes the define file; `--auto-approve` skips the prompt |
 | `terradart destroy` | synth, `init`, `destroy`; `--auto-approve` skips the prompt |
 | `terradart outputs` | synth, `init`, then writes the define file from the applied state — no plan, no apply |
+| `terradart state migrate` | synth, then `init -migrate-state`: moves the state to the backend the Stack now configures, after asking (`--auto-approve` skips the question, and is required without a terminal) |
 | `terradart engine` | prints the engine binary it would run, downloading OpenTofu if that is the one |
 | `terradart migrate` | turns a Terraform tree into a Dart package. No project is required — it does not look for a `pubspec.yaml` |
 
@@ -70,6 +71,16 @@ An entry point that writes `tf-out/` itself (`await OrdersStack(...).writeTo('tf
 With an entry point that calls `runEnvironments`, `validate`, `plan`, `apply`, `destroy` and `outputs` run against one member of the project's environment enum: the one `--env <name>` (`-e`) names, else the `TERRADART_ENV` environment variable, else the `defaultEnv` the entry point gives `runEnvironments`, else the only member; with none of these the command stops and lists the names. When `TERRADART_ENV` or `defaultEnv` chose it, `apply` and `destroy` ask first unless `--auto-approve` is set. `terradart synth` without `--env` writes every environment. Each environment gets its own Terraform directory (`tf-out/<name>` unless `runEnvironments` says otherwise) and define file (`.terradart/dart_defines.<name>.json`), and a name that is not a member stops before anything runs. `--workspace` and `--backend-config` override and extend, for one run, the workspace and backend settings `runEnvironments` gives an environment.
 
 How to declare the enum, keep each environment's state apart, and build each client with its define file: [Environments](/docs/environments/).
+
+## Moving the state
+
+When the Stack changes its backend — `LocalBackend()` to `GcsBackend(...)`, one bucket to another, or back to a local file — the state has to follow it once:
+
+```bash
+terradart state migrate --env prod
+```
+
+It synthesizes, says which backend the state moves from and to, asks, and runs the engine's `init -migrate-state` in that environment's directory, with its `backendConfig`. Without a terminal it stops unless `--auto-approve` is given.
 
 ## The define file
 

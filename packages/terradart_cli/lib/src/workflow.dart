@@ -271,6 +271,80 @@ final class Workflow {
     await _engineRun(['validate', ...extra]);
   }
 
+  /// The backend type the Stack configures (`gcs`), from the `*.tf.json`
+  /// files in [dir]; `local` when none does.
+  String get configuredBackend {
+    for (final f in Directory(dir).listSync().whereType<File>()) {
+      if (!f.path.endsWith('.tf.json')) continue;
+      try {
+        final json = jsonDecode(f.readAsStringSync());
+        if (json case {'terraform': {'backend': final Map<Object?, Object?> b}}
+            when b.isNotEmpty) {
+          return '${b.keys.first}';
+        }
+        if (json case {'terraform': {'cloud': final Map<Object?, Object?> _}}) {
+          return 'cloud';
+        }
+      } on FormatException {
+        continue;
+      }
+    }
+    return 'local';
+  }
+
+  /// The backend type the last `init` in [dir] configured
+  /// (`.terraform/terraform.tfstate`); `local` before any.
+  String get initializedBackend {
+    final file = File(p.join(dir, '.terraform', 'terraform.tfstate'));
+    if (!file.existsSync()) return 'local';
+    try {
+      final json = jsonDecode(file.readAsStringSync());
+      if (json case {'backend': {'type': final String type}}) return type;
+    } on FormatException {
+      return 'local';
+    }
+    return 'local';
+  }
+
+  /// `init -migrate-state`: copies the state from the backend the last
+  /// `init` configured to the one the Stack configures now. `-force-copy`
+  /// answers the engine's copy prompt, which the caller has already asked.
+  Future<void> migrateState() => _engineRun([
+    'init',
+    '-input=false',
+    '-migrate-state',
+    '-force-copy',
+    ...target.backendConfigArgs,
+  ]);
+
+  /// Asks before copying the state, unless [autoApprove]. A pipe is not a
+  /// terminal: no answer stops with exit code 64.
+  void confirmStateMove({
+    required bool autoApprove,
+    required String from,
+    required String to,
+  }) {
+    if (autoApprove) return;
+    final question =
+        'Copy the state in ${p.relative(dir, from: cwd)} '
+        'from the $from backend to the $to backend the Stack configures?';
+    String? answer;
+    if (stdin.hasTerminal) {
+      console.out('$question [y/N]');
+      answer = console.readLine?.call()?.trim().toLowerCase();
+    }
+    if (answer == null) {
+      throw CliException(
+        'state migrate copies the state to another backend: $question '
+        'Pass --auto-approve to run it without a terminal.',
+        exitCode: 64,
+      );
+    }
+    if (answer != 'y' && answer != 'yes') {
+      throw const CliException('Stopped; the state did not move.');
+    }
+  }
+
   Future<void> plan(List<String> extra) =>
       _engineRun(['plan', '-input=false', ...extra]);
 
