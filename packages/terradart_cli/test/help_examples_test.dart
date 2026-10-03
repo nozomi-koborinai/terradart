@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:async';
 
 import 'package:terradart_cli/src/assets/help_topics.g.dart';
@@ -133,6 +134,36 @@ void main() {
       expect(r.out, contains('66  no_project'));
       expect(r.out.trim(), endsWith('#json-and-exit-codes'));
     });
+
+    test(
+      'takes the global flags; with --json the topic is on stderr',
+      () async {
+        for (final args in [
+          ['help', 'exit-codes', '--no-input', '-q'],
+          ['--no-input', 'help', 'exit-codes'],
+        ]) {
+          final r = await terradart(args);
+          expect(r.code, 0, reason: '$args');
+          expect(r.out, contains('66  no_project'), reason: '$args');
+        }
+        for (final args in [
+          ['help', 'exit-codes', '--no-input', '--json'],
+          ['--json', 'help', '--list'],
+        ]) {
+          final r = await terradart(args);
+          expect(r.code, 0, reason: '$args');
+          expect(r.err, isNotEmpty, reason: '$args');
+          expect(jsonDecode(r.out.trim()), {
+            'schemaVersion': 1,
+            'command': 'help',
+            'ok': true,
+            'exitCode': 0,
+            'notices': <Object?>[],
+            'next': <Object?>[],
+          });
+        }
+      },
+    );
 
     test('migrate is the command usage, then the topic as the guide', () async {
       final r = await terradart(['help', 'migrate']);

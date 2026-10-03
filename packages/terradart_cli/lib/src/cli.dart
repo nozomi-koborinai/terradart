@@ -85,9 +85,19 @@ Future<int> runTerradart(
           'Print one JSON result on stdout (schemaVersion 1) and everything '
           'else on stderr; implies --no-input.',
     );
-  if (arguments case ['help', ...final rest]) {
+  const globalFlags = {'--json', '--no-input', '--quiet', '-q'};
+  if (arguments.where((a) => !globalFlags.contains(a)).toList() case [
+    'help',
+    ...final rest,
+  ]) {
     if (topicHelp(rest, cli) case final text?) {
-      io.out(text);
+      if (!arguments.contains('--json')) {
+        io.out(text);
+      } else {
+        io
+          ..err(text)
+          ..printResult(JsonResult('help').encode(0));
+      }
       return 0;
     }
   }
