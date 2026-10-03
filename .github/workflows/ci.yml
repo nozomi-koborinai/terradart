@@ -87,8 +87,8 @@ jobs:
     # API-enablement gates); the analyzer then checks the examples against
     # the files that synth regenerated (lib/generated/*.app.dart), and the
     # topology gate and the coverage-page freshness check reuse those tf-outs
-    # instead of re-synthing. terraform validate is skipped here — the
-    # per-example terraform_validate matrix covers it.
+    # instead of re-synthing. Validate is skipped here — the per-example
+    # terraform_validate matrix (OpenTofu) covers it.
     steps:
       - uses: actions/checkout@v6
       - uses: dart-lang/setup-dart@v1
@@ -225,18 +225,22 @@ jobs:
         run: dart test --run-skipped -t e2e --name 'wrap-promote'
 
   terraform_validate:
-    name: terraform validate (${{ matrix.example }})
+    name: validate (${{ matrix.example }})
     runs-on: ubuntu-latest
     needs: [test, changes]
+    # Validates with OpenTofu, the engine `terradart` gives users: the release
+    # terradart_cli pins (kOpenTofuVersion), resolved and checksum-verified by
+    # `terradart engine --engine tofu`, so the pin has one source. The job id
+    # stays `terraform_validate` for the required `terraform validate gate`.
     # Skip entirely when no relevant example changed (the gate job below still
     # runs and reports success, so the required-check status stays satisfied).
     if: needs.changes.outputs.examples != '[]'
     env:
       TF_PLUGIN_CACHE_DIR: ${{ github.workspace }}/.terraform-plugin-cache
       # tf-out is regenerated every run and its .terraform.lock.hcl is
-      # gitignored, so `terraform init` never has a lock file to verify cached
-      # providers against — and without this opt-in Terraform ignores the
-      # cache and downloads ~100 MB per leg from releases.hashicorp.com. A
+      # gitignored, so `tofu init` never has a lock file to verify cached
+      # providers against — and without this opt-in OpenTofu ignores the
+      # cache and downloads ~100 MB per leg from the provider registry. A
       # registry hiccup then fails the whole matrix (two legs on #647,
       # 2026-09-06: "connection reset by peer"). Validate-only, no state, so
       # the "may break the lock file" caveat has nothing to break.
@@ -260,15 +264,18 @@ jobs:
           path: ~/.pub-cache
           key: pub-${{ runner.os }}-${{ hashFiles('**/pubspec.yaml') }}
           restore-keys: pub-${{ runner.os }}-
-      - uses: hashicorp/setup-terraform@v4
+      - name: Cache managed OpenTofu
+        uses: actions/cache@v4
         with:
-          terraform_version: "1.15.2"
-      - name: Cache Terraform providers
+          path: ~/.cache/terradart/opentofu
+          # opentofu.dart holds the pin and its SHA-256s.
+          key: opentofu-${{ runner.os }}-${{ hashFiles('packages/terradart_cli/lib/src/opentofu.dart') }}
+      - name: Cache OpenTofu providers
         uses: actions/cache@v4
         with:
           path: ${{ env.TF_PLUGIN_CACHE_DIR }}
           # A cache entry is immutable per key, and google synth writes the
-          # floating constraint `~> 7.0`, so `terraform init` resolves the
+          # floating constraint `~> 7.0`, so `tofu init` resolves the
           # NEWEST provider release while a key derived from the pinned metadata
           # never changed: the entry went stale on the first upstream release
           # and every leg then restored it, missed, downloaded, and could not
@@ -276,8 +283,8 @@ jobs:
           # the run instead: each run saves what it downloaded (the first leg
           # to finish wins), and the next run restores the newest entry via
           # the prefix, so a provider release costs one run of downloads.
-          key: tfplugins-${{ runner.os }}-${{ github.run_id }}
-          restore-keys: tfplugins-${{ runner.os }}-
+          key: tofuplugins-${{ runner.os }}-${{ github.run_id }}
+          restore-keys: tofuplugins-${{ runner.os }}-
       - name: Ensure plugin cache dir exists
         run: mkdir -p "$TF_PLUGIN_CACHE_DIR"
 
@@ -313,14 +320,32 @@ jobs:
           dart run bin/infra.dart
           echo "duration_ms=$(( ($(date +%s%N) - start) / 1000000 ))" >> "$GITHUB_OUTPUT"
 
-      - name: Terraform validate
+      - name: Pick the validate engine
+        id: engine
+        # OpenTofu from `terradart engine --engine tofu`, unless the Stack
+        # needs a provider the OpenTofu registry lacks (kNotOnOpenTofuRegistry
+        # in tool/validate_engine.dart: appwrite/appwrite), which keeps
+        # Terraform until it is published there.
+        run: |
+          picked="$(dart tool/validate_engine.dart examples/${{ matrix.example }}_quickstart/tf-out)"
+          read -r kind path <<< "$picked"
+          echo "kind=$kind" >> "$GITHUB_OUTPUT"
+          echo "ENGINE=$path" >> "$GITHUB_ENV"
+      - uses: hashicorp/setup-terraform@v4
+        if: steps.engine.outputs.kind == 'terraform'
+        with:
+          terraform_version: "1.15.2"
+          terraform_wrapper: false
+
+      - name: Validate
         id: tf_validate
         working-directory: examples/${{ matrix.example }}_quickstart/tf-out
         run: |
           start=$(date +%s%N)
-          terraform fmt -check
-          terraform init -backend=false
-          terraform validate
+          "$ENGINE" version
+          "$ENGINE" fmt -check
+          "$ENGINE" init -backend=false -input=false
+          "$ENGINE" validate
           echo "duration_ms=$(( ($(date +%s%N) - start) / 1000000 ))" >> "$GITHUB_OUTPUT"
 
       - name: Timing summary
@@ -334,11 +359,11 @@ jobs:
             echo ""
             echo "| Step | Duration (ms) |"
             echo "|---|---|"
-            echo "| Setup (checkout + Dart + Terraform install) | $setup_ms |"
+            echo "| Setup (checkout + Dart + caches) | $setup_ms |"
             echo "| Workspace \`pub get\` | ${{ steps.pub_get_workspace.outputs.duration_ms }} |"
             echo "| Example \`pub get\` | ${{ steps.pub_get_example.outputs.duration_ms }} |"
             echo "| Synth (\`dart run bin/infra.dart\`) | ${{ steps.synth.outputs.duration_ms }} |"
-            echo "| \`terraform fmt + init + validate\` | ${{ steps.tf_validate.outputs.duration_ms }} |"
+            echo "| \`${{ steps.engine.outputs.kind }} fmt + init + validate\` | ${{ steps.tf_validate.outputs.duration_ms }} |"
           } >> "$GITHUB_STEP_SUMMARY"
 
   terraform_validate_gate:

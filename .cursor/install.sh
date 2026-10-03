@@ -5,7 +5,7 @@
 # VM boot and caches the result as a snapshot, so it MUST be idempotent: it can
 # run again on partially cached state. Mirrors the toolchain documented in
 # AGENTS.md "Cursor Cloud specific instructions" (Dart SDK stable +
-# Terraform).
+# Terraform + the managed OpenTofu).
 set -euo pipefail
 
 # apt steps need root; the default cloud image may run install as a non-root
@@ -47,3 +47,10 @@ export PATH="/usr/lib/dart/bin:$PATH"
 dart --version
 terraform version
 dart pub get
+
+# --- Managed OpenTofu (the engine example validation runs) -----------------
+# The release terradart_cli pins, downloaded and checksum-verified into
+# ~/.cache/terradart; a no-op once cached. Terraform above stays for the
+# migrator gates, the cookbook and appwrite/appwrite, which the OpenTofu
+# registry lacks (tool/validate_engine.dart).
+dart run terradart_cli:terradart engine --engine tofu

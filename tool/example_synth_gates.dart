@@ -16,8 +16,9 @@
 //   migrate to `enableApis`.
 //
 // Run from repo root: dart tool/example_synth_gates.dart
-// Pass --skip-validate to skip the terraform init/validate pass (CI runs the
-// per-example terraform validate matrix separately).
+// Pass --skip-validate to skip the init/validate pass (CI runs the
+// per-example validate matrix separately). The pass runs OpenTofu, the
+// engine `terradart` gives users (tool/validate_engine.dart).
 // ignore_for_file: avoid_print
 
 import 'dart:convert';
@@ -27,6 +28,7 @@ import 'package:yaml/yaml.dart';
 
 import 'example_synth_env.dart';
 import 'terraform_api_requirements.dart';
+import 'validate_engine.dart';
 
 Future<void> main(List<String> args) async {
   final errors = <String>[];
@@ -69,9 +71,9 @@ Future<void> runExampleSynthGates(
   }
   _checkStaleApiDebt(errors, synthByExample, apiDebt);
   if (skipValidate) {
-    print('example terraform validate: skipped (--skip-validate)');
+    print('example validate: skipped (--skip-validate)');
   } else {
-    await _checkTerraformValidate(errors, quickstarts);
+    await _checkValidate(errors, quickstarts);
   }
 
   print(
@@ -81,30 +83,59 @@ Future<void> runExampleSynthGates(
   );
 }
 
-/// Runs `terraform init` + `terraform validate` on each quickstart's synth
-/// output. Catches nested-block shape mistakes that synth-only coverage
-/// misses (e.g. wrong keys inside `destination_dataset`).
-Future<void> _checkTerraformValidate(
+/// Runs `init` + `validate` on each quickstart's synth output with the
+/// engine users get, OpenTofu (tool/validate_engine.dart). Catches
+/// nested-block shape mistakes that synth-only coverage misses (e.g. wrong
+/// keys inside `destination_dataset`).
+///
+/// A quickstart whose provider the OpenTofu registry lacks validates with
+/// `terraform` on `PATH`, as in CI. When OpenTofu cannot be resolved at all
+/// (offline, an unsupported host), `terraform` on `PATH` stands in, with a
+/// warning; CI never takes that fallback.
+Future<void> _checkValidate(
   List<String> errors,
   List<String> quickstarts,
 ) async {
-  final which = await Process.run('which', ['terraform']);
-  if (which.exitCode != 0) {
-    print('example terraform validate: skipped (terraform not on PATH)');
+  final tofu = await resolveOpenTofu();
+  final terraform = (await Process.run('which', ['terraform'])).exitCode == 0
+      ? 'terraform'
+      : null;
+  if (tofu == null && terraform == null) {
+    print(
+      'example validate: skipped (no OpenTofu from terradart engine, and no '
+      'terraform on PATH)',
+    );
     return;
   }
+  if (tofu == null) {
+    stderr.writeln(
+      'example validate: warning: validating with terraform on PATH; CI '
+      'validates with OpenTofu.',
+    );
+  }
 
-  var validated = 0;
+  final byEngine = <String, int>{};
+  final skipped = <String>[];
   for (final slug in quickstarts) {
     final tfOut = Directory('examples/$slug/tf-out');
     final mainTf = File('${tfOut.path}/main.tf.json');
     if (!mainTf.existsSync()) {
-      errors.add(
-        'examples/$slug: missing tf-out/main.tf.json before terraform validate',
-      );
+      errors.add('examples/$slug: missing tf-out/main.tf.json before validate');
       continue;
     }
-    final init = await Process.run('terraform', [
+    final json = jsonDecode(mainTf.readAsStringSync()) as Map<String, dynamic>;
+    final String? engine;
+    if (providersNotOnOpenTofu(json).isNotEmpty) {
+      engine = terraform;
+    } else {
+      engine = tofu ?? terraform;
+    }
+    if (engine == null) {
+      skipped.add(slug);
+      continue;
+    }
+    final name = engine == terraform ? 'terraform' : 'tofu';
+    final init = await Process.run(engine, [
       'init',
       '-backend=false',
       '-input=false',
@@ -112,25 +143,28 @@ Future<void> _checkTerraformValidate(
     ], workingDirectory: tfOut.path);
     if (init.exitCode != 0) {
       errors.add(
-        'examples/$slug: terraform init failed (exit ${init.exitCode})\n'
+        'examples/$slug: $name init failed (exit ${init.exitCode})\n'
         '${init.stderr}',
       );
       continue;
     }
-    final validate = await Process.run('terraform', [
+    final validate = await Process.run(engine, [
       'validate',
     ], workingDirectory: tfOut.path);
     if (validate.exitCode != 0) {
       errors.add(
-        'examples/$slug: terraform validate failed (exit ${validate.exitCode})\n'
+        'examples/$slug: $name validate failed (exit ${validate.exitCode})\n'
         '${validate.stderr}',
       );
       continue;
     }
-    validated++;
+    byEngine.update(name, (n) => n + 1, ifAbsent: () => 1);
   }
+  final counts = [for (final e in byEngine.entries) '${e.value} with ${e.key}'];
   print(
-    'example terraform validate: $validated/${quickstarts.length} quickstarts OK',
+    'example validate: ${byEngine.values.fold(0, (a, b) => a + b)}/'
+    '${quickstarts.length} quickstarts OK (${counts.join(', ')})'
+    '${skipped.isEmpty ? '' : '; skipped ${skipped.join(', ')} (provider not on the OpenTofu registry, no terraform on PATH)'}',
   );
 }
 

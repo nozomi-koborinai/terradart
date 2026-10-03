@@ -175,3 +175,7 @@ dev_dependencies:
     path: packages/terradart_hcl
   terradart_migrate:
     path: packages/terradart_migrate
+  # tool/example_synth_gates.dart and the CI validate matrix run the OpenTofu
+  # `terradart engine --engine tofu` resolves — the one users get.
+  terradart_cli:
+    path: packages/terradart_cli
