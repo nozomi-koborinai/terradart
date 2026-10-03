@@ -89,8 +89,13 @@ Future<int> runTerradart(
           'Print one JSON result on stdout (schemaVersion 1) and everything '
           'else on stderr; implies --no-input.',
     );
-  final json = arguments.takeWhile((a) => a != '--').contains('--json');
-  if (json) io.result = JsonResult(_commandPath(arguments, cli));
+  // Set before parsing, so a usage error is a result too. `terradart
+  // migrate --report --json` is the migrator's own JSON report.
+  final path = _commandPath(arguments, cli);
+  if (path != 'migrate' &&
+      arguments.takeWhile((a) => a != '--').contains('--json')) {
+    io.result = JsonResult(path);
+  }
   int finish(int code) {
     if (io.result case final result?) io.printResult(result.encode(code));
     return code;
@@ -98,10 +103,13 @@ Future<int> runTerradart(
 
   try {
     final results = cli.parse(arguments);
+    final json = results.flag('json');
+    if (!json) io.result = null;
     if (json && results.command == null) {
       throw UsageException('--json needs a command.', cli.usage);
     }
     io
+      ..result ??= json ? JsonResult(path) : null
       ..noInput = json && !results.flag('no-input')
           ? '--json'
           : noInputReason(
