@@ -39,7 +39,10 @@ In CI or an AI agent's shell it never asks: `apply` and `destroy` need `--auto-a
 terradart init --provider google --env dev,prd --gcp-project dev=myapp-dev,prd=myapp-prd --state-bucket myapp-tfstate
 terradart init --provider aws --defaults --aws-region eu-west-1
 terradart init --dry-run --provider cloudflare --defaults   # list the files, write nothing
+terradart init --provider google --defaults --agent-skill   # with the agent skill
 ```
+
+`--agent-skill` (asked last in a terminal) writes the [agent skill](#the-agent-skill) into the new project, to `.agents/skills/` and `.claude/skills/` unless `--agents` names others.
 
 Inside a Flutter app it wires `infra/` to the app: the generated reader goes to the app's `lib/generated/`, and `flutter run --dart-define-from-file=infra/.terradart/dart_defines.dev.json` builds with the outputs. A directory that already holds Terraform, at any depth, is pointed at `terradart migrate` instead.
 

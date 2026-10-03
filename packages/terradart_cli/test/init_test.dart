@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:path/path.dart' as p;
+import 'package:terradart_cli/src/assets/skill_md.g.dart';
 import 'package:terradart_cli/src/config.dart';
 import 'package:terradart_cli/src/engine.dart';
 import 'package:terradart_cli/terradart_cli.dart';
@@ -107,10 +108,15 @@ void main() {
     expect(read('infra/.gitignore'), contains('tf-out/\n.terradart/\n'));
     expect(read('infra/README.md'), contains('terradart plan --env dev'));
     final agents = read('infra/AGENTS.md');
+    expect(agents, contains('terradart skill install\n'));
     expect(
       agents,
-      contains('npx skills add nozomi-koborinai/terradart --skill terradart'),
+      contains(
+        'npx skills add nozomi-koborinai/terradart#v$packageVersion '
+        '--skill terradart',
+      ),
     );
+    expect(exists('infra/.agents/skills/terradart/SKILL.md'), isFalse);
     expect(agents, contains('`terradart plan --env dev`'));
 
     expect(r.runner.calls.single.args, ['pub', 'get']);
@@ -345,6 +351,7 @@ void main() {
         'y',
         'r2',
         'qa=acme-qa-state,prod=acme-state',
+        'n',
       ],
     );
     expect(r.code, 0, reason: r.err);
@@ -360,6 +367,7 @@ void main() {
       'Do you already have a bucket for Terraform state? [y/N] ',
       'Which kind of bucket (gcs, r2) [gcs]: ',
       'Bucket name, one for every environment or env=name pairs: ',
+      'Install the terradart agent skill for coding agents (.agents/skills/, .claude/skills/)? [Y/n] ',
     ]);
     expect(r.out, contains('  1) google\n  2) aws\n'));
     expect(r.out, contains('without a bucket it is a local file'));
@@ -387,7 +395,7 @@ void main() {
   test('no bucket keeps the state local, and says how to move it', () async {
     final r = await init(
       ['app'],
-      answers: ['aws', '', 'us-west-2', '', '', '111122223333', 'n'],
+      answers: ['aws', '', 'us-west-2', '', '', '111122223333', 'n', 'n'],
     );
     expect(r.code, 0, reason: r.err);
     expect(r.asked, [
@@ -398,6 +406,7 @@ void main() {
       'AWS account ID for dev (optional) [skip]: ',
       'AWS account ID for prd (optional) [skip]: ',
       'Do you already have a bucket for Terraform state? [y/N] ',
+      'Install the terradart agent skill for coding agents (.agents/skills/, .claude/skills/)? [Y/n] ',
     ]);
     final env = read('app/lib/env.dart');
     expect(env, contains("  dev(region: 'us-west-2', awsAccountId: null),"));
@@ -426,9 +435,12 @@ void main() {
   });
 
   test('a bucket of the one provider needs no kind question', () async {
-    final r = await init(['app'], answers: ['google', '', '', '', 'y', 'tf']);
+    final r = await init(
+      ['app'],
+      answers: ['google', '', '', '', 'y', 'tf', 'n'],
+    );
     expect(r.code, 0, reason: r.err);
-    expect(r.asked.last, startsWith('Bucket name'));
+    expect(r.asked[r.asked.length - 2], startsWith('Bucket name'));
     expect(
       r.out,
       contains('Taken as a Google Cloud Storage bucket (--backend gcs).'),
@@ -450,7 +462,7 @@ void main() {
   test('a Cloudflare bucket that is not R2 is asked for its kind', () async {
     final r = await init(
       ['app'],
-      answers: ['cloudflare', 'prd', 'cf', 'y', 'n', 's3', 'state'],
+      answers: ['cloudflare', 'prd', 'cf', 'y', 'n', 's3', 'state', 'n'],
     );
     expect(r.code, 0, reason: r.err);
     expect(r.asked.sublist(3), [
@@ -458,6 +470,7 @@ void main() {
       'Is it a Cloudflare R2 bucket? [Y/n] ',
       'Which kind of bucket (gcs, s3) [gcs]: ',
       'Bucket name, one for every environment or env=name pairs: ',
+      'Install the terradart agent skill for coding agents (.agents/skills/, .claude/skills/)? [Y/n] ',
     ]);
     expect(read('app/lib/env.dart'), contains('final String stateRegion;'));
     expect(read('app/lib/stack.dart'), contains('S3Backend(\n'));
@@ -540,8 +553,9 @@ void main() {
   test('an empty answer or end of input takes the default', () async {
     final r = await init(['app'], answers: ['', 'google', '', null]);
     expect(r.code, 0, reason: r.err);
-    expect(r.asked, hasLength(6));
+    expect(r.asked, hasLength(7));
     expect(r.err, contains('Pick at least one.'));
+    expect(exists('app/.agents/skills/terradart/SKILL.md'), isTrue);
     expect(read('app/pubspec.yaml'), contains('terradart_google'));
     expect(read('app/lib/env.dart'), contains('  prd(\n'));
     expect(read('app/lib/stack.dart'), contains('LocalBackend'));
@@ -549,7 +563,7 @@ void main() {
       r.out,
       contains(
         'Re-run with: terradart init app --provider google --env dev,prd '
-        '--backend local\n',
+        '--backend local --agent-skill\n',
       ),
     );
   });
@@ -599,7 +613,7 @@ void main() {
       final r = await init(['-p', 'aws'], answers: ['n', 'y']);
       expect(r.code, 0, reason: r.err);
       expect(exists('infra/lib/stack.dart'), isTrue);
-      expect(r.out, contains('--backend local --force\n'));
+      expect(r.out, contains('--backend local --agent-skill --force\n'));
     });
   });
 
@@ -755,9 +769,15 @@ void main() {
     });
 
     test('asks before wiring, and --no-flutter leaves it out', () async {
-      final r = await init(['a'], answers: ['google', '', '', '', '', 'n']);
+      final r = await init(
+        ['a'],
+        answers: ['google', '', '', '', '', 'n', 'n'],
+      );
       expect(r.code, 0, reason: r.err);
-      expect(r.asked.last, startsWith('Flutter app "shop" found'));
+      expect(
+        r.asked[r.asked.length - 2],
+        startsWith('Flutter app "shop" found'),
+      );
       expect(read('a/lib/stack.dart'), isNot(contains('appExports')));
       expect(r.out, contains('--backend local --no-flutter\n'));
 
@@ -773,6 +793,92 @@ void main() {
     final r = await init(['--flutter', '-p', 'google', '--defaults']);
     expect(r.code, 64);
     expect(r.err, contains('--flutter: no Flutter app'));
+  });
+
+  group('--agent-skill', () {
+    test('writes the bundled skill for Claude and the others', () async {
+      final r = await init(['-p', 'google', '--defaults', '--agent-skill']);
+      expect(r.code, 0, reason: r.err);
+      for (final rel in [
+        '.agents/skills/terradart/SKILL.md',
+        '.claude/skills/terradart/SKILL.md',
+      ]) {
+        expect(read('infra/$rel'), bundledSkillMd, reason: rel);
+        expect(r.out, contains('  $rel\n'));
+      }
+      final agents = read('infra/AGENTS.md');
+      expect(
+        agents,
+        contains(
+          'is in `.agents/skills/terradart/`, `.claude/skills/terradart/`. '
+          'After upgrading the `terradart` command, run '
+          '`terradart skill update`.',
+        ),
+      );
+      expect(agents, isNot(contains('npx skills')));
+
+      final status = await runTerradart(
+        ['skill', 'status', '--check', '-C', 'infra'],
+        runner: FakeRunner(),
+        workingDirectory: root,
+        environment: const {},
+        console: Console(out: (_) {}, err: (_) {}),
+      );
+      expect(status, 0);
+    });
+
+    test('--agents picks where, and implies --agent-skill', () async {
+      final r = await init([
+        '--dry-run',
+        '-p',
+        'aws',
+        '--defaults',
+        '--agents',
+        'cursor',
+      ]);
+      expect(r.code, 0, reason: r.err);
+      expect(r.out, contains('  .cursor/skills/terradart/SKILL.md\n'));
+      expect(r.out, isNot(contains('.claude/skills')));
+      expect(Directory(p.join(root, 'infra')).existsSync(), isFalse);
+
+      final no = await init([
+        '-p',
+        'aws',
+        '--defaults',
+        '--no-agent-skill',
+        '--agents',
+        'cursor',
+      ]);
+      expect(no.code, 64);
+      expect(no.err, contains('--agents: --no-agent-skill writes no skill.'));
+    });
+
+    test('is asked last in a terminal, and re-run with', () async {
+      final r = await init(['app', '-p', 'google'], answers: []);
+      expect(r.code, 0, reason: r.err);
+      expect(
+        r.asked.last,
+        'Install the terradart agent skill for coding agents '
+        '(.agents/skills/, .claude/skills/)? [Y/n] ',
+      );
+      expect(exists('app/.claude/skills/terradart/SKILL.md'), isTrue);
+      expect(r.out, contains('--backend local --agent-skill\n'));
+
+      final no = await init(
+        ['b', '-p', 'google'],
+        answers: ['', '', '', '', 'n'],
+      );
+      expect(no.code, 0, reason: no.err);
+      expect(exists('b/.agents/skills/terradart/SKILL.md'), isFalse);
+      expect(no.out, contains('--backend local\n'));
+    });
+
+    test('--defaults in a terminal does not ask, and writes none', () async {
+      final r = await init(['-p', 'google', '--defaults'], answers: []);
+      expect(r.code, 0, reason: r.err);
+      expect(r.asked, isEmpty);
+      expect(exists('infra/.agents/skills/terradart/SKILL.md'), isFalse);
+    });
   });
 
   test('writes formatted Dart', () async {

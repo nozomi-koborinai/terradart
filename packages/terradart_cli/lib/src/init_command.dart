@@ -9,6 +9,7 @@ import 'cli_exception.dart';
 import 'init_templates.dart';
 import 'migrate_command.dart';
 import 'process_runner.dart';
+import 'skill/installer.dart';
 import 'workflow.dart';
 
 /// `terradart init [dir]`: scaffolds a project that `terradart plan` runs.
@@ -89,6 +90,24 @@ final class InitCommand extends Command<int> {
             '(default: when there is one).',
       )
       ..addFlag(
+        'agent-skill',
+        defaultsTo: null,
+        help:
+            'Write the agent skill this CLI bundles into the project, for '
+            'coding agents (default: asked in a terminal, else not; '
+            'terradart skill install adds it later).',
+      )
+      ..addMultiOption(
+        'agents',
+        allowed: [...SkillTarget.values.map((t) => t.name), 'all'],
+        allowedHelp: {
+          for (final t in SkillTarget.values) t.name: t.dir,
+          'all': 'every one of them',
+        },
+        valueHelp: 'names',
+        help: 'Where --agent-skill writes it (default: agents,claude).',
+      )
+      ..addFlag(
         'pub-get',
         defaultsTo: true,
         help: 'Run dart pub get in the new project.',
@@ -121,8 +140,8 @@ final class InitCommand extends Command<int> {
   @override
   String get description =>
       'Create a TerraDart project in [dir] (default: infra/): pubspec.yaml, '
-      'an Env enum, a Stack, bin/infra.dart, README.md and AGENTS.md, then '
-      'dart pub get. In a terminal it asks for what the flags leave out; '
+      'an Env enum, a Stack, bin/infra.dart, README.md and AGENTS.md (and '
+      'with --agent-skill the agent skill), then dart pub get. In a terminal it asks for what the flags leave out; '
       'without one it needs --provider, --env and --backend (or --defaults '
       'for the last two). Inside a Flutter app it wires the '
       "app to the Stack's outputs. For an existing Terraform directory use "
@@ -145,6 +164,8 @@ Examples:
       State in an existing GCS bucket, under myapp_infra/<env>.
   terradart init --provider aws --env dev,prd --aws-region dev=us-east-1,prd=eu-west-1 --aws-account prd=123456789012 --state-bucket dev=myapp-dev-tfstate,prd=myapp-prd-tfstate
   terradart init --provider cloudflare --env prd --cloudflare-account 0123abcd --backend local
+  terradart init --provider google --defaults --agent-skill
+      With the agent skill in .agents/skills/ and .claude/skills/.
   terradart init --dry-run --provider appwrite --defaults
       Lists the files, writes nothing.
 
@@ -231,6 +252,7 @@ Existing Terraform:
                       'lib/generated/ and the define file it builds with?',
                   true,
                 )));
+    final skillTargets = _skillTargets(args, useDefaults);
 
     final base = p.basename(target);
     final plan = InitPlan(
@@ -244,6 +266,7 @@ Existing Terraform:
       backend: backend,
       ids: ids,
       flutter: wire ? _flutterApp(target) : null,
+      skillTargets: skillTargets,
     );
     _checkFieldNames(plan);
     final defaults = _interactive && !useDefaults
@@ -407,11 +430,42 @@ Existing Terraform:
       '--backend ${plan.backend.name}',
       if (_flutterAppName(_cwd) != null)
         plan.flutter == null ? '--no-flutter' : '--flutter',
+      if (plan.skillTargets.isNotEmpty) '--agent-skill',
+      if (plan.skillTargets.isNotEmpty &&
+          !_sameTargets(plan.skillTargets, SkillTarget.defaults))
+        '--agents ${plan.skillTargets.map((t) => t.name).join(',')}',
       if (force) '--force',
     ].join(' ');
     _console
       ..out('')
       ..out('Re-run with: $command');
+  }
+
+  /// Where the agent skill goes: the flags, else asked in a terminal
+  /// without --defaults, else nowhere.
+  List<SkillTarget> _skillTargets(ArgResults args, bool useDefaults) {
+    final agents = args.wasParsed('agents')
+        ? SkillTarget.parse(args.multiOption('agents'))
+        : null;
+    final flag = args.wasParsed('agent-skill')
+        ? args.flag('agent-skill')
+        : null;
+    if (flag == false && agents != null) {
+      usageException('--agents: --no-agent-skill writes no skill.');
+    }
+    final targets = agents ?? SkillTarget.defaults;
+    final install =
+        flag ??
+        (agents != null ||
+            (_interactive &&
+                !useDefaults &&
+                _confirmFlag(
+                  'agent-skill',
+                  'Install the terradart agent skill for coding agents '
+                      '(${targets.map((t) => '${t.dir}/').join(', ')})?',
+                  true,
+                )));
+    return install ? targets : const [];
   }
 
   List<InitProvider> _askProviders() {
@@ -733,6 +787,9 @@ Existing Terraform:
 }
 
 const _defaultEnvs = ['dev', 'prd'];
+
+bool _sameTargets(List<SkillTarget> a, List<SkillTarget> b) =>
+    a.toSet().containsAll(b) && b.toSet().containsAll(a);
 
 const _anyBucket = [InitBackend.gcs, InitBackend.s3];
 

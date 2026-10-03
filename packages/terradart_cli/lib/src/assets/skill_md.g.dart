@@ -10,7 +10,7 @@ name: terradart
 description: Write TerraDart infrastructure code (Dart that synthesizes Terraform JSON). Use when a task mentions TerraDart, a Dart `Stack`, `terradart_google` / `terradart_aws` / `terradart_cloudflare` / `terradart_appwrite` / `terradart_google_beta`, or translating Terraform (`.tf`) into Dart.
 metadata:
   terradart-version: "0.33.0"
-  terradart-sha256: "5ee214057d9d7f3495bb2f30012f66ed5111e0e8f83c02f697a1f89cead71281"
+  terradart-sha256: "f8fc636b11034fbd1cce429749396ce478cd5d2f7b699e5890632642094a564c"
 ---
 
 # TerraDart
@@ -22,11 +22,11 @@ TerraDart factories are generated Dart classes, one per Terraform resource or da
 `terradart init` (from `dart pub global activate terradart_cli`) writes a project that plans as it is. Without a terminal it never asks and never picks a provider, the environments or the state backend for you. **Ask the human for all three before you run it**, then pass them as flags:
 
 ```bash
-terradart init --provider google --env dev,prd --backend local
+terradart init --provider google --env dev,prd --backend local --agent-skill
 terradart init --dry-run --provider aws --env dev,prd --backend s3   # list the files first
 ```
 
-For a bucket that already holds the state, pass `--state-bucket <name>` (or `<env>=<name>` pairs) instead of `--backend`: the backend follows the provider (GCS, S3, Cloudflare R2). `--defaults` stands for `--env dev,prd --backend local`; pass it only when the human chose those. Project and account IDs you leave out become placeholders marked `TODO` in `lib/env.dart`. A directory that already holds `*.tf` files is a migration (see [Existing Terraform](#existing-terraform)), not a new project.
+For a bucket that already holds the state, pass `--state-bucket <name>` (or `<env>=<name>` pairs) instead of `--backend`: the backend follows the provider (GCS, S3, Cloudflare R2). `--defaults` stands for `--env dev,prd --backend local`; pass it only when the human chose those. `--agent-skill` copies this skill into the project (`.agents/skills/`, `.claude/skills/`), so the next agent there has it at the CLI's version. Project and account IDs you leave out become placeholders marked `TODO` in `lib/env.dart`. A directory that already holds `*.tf` files is a migration (see [Existing Terraform](#existing-terraform)), not a new project.
 
 ## 1. Pick the package
 
