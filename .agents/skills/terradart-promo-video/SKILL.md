@@ -58,7 +58,7 @@ Needs Node ≥ 22.12, `vhs` with `ttyd`, `ffmpeg`, `tesseract`, `google-chrome`,
       ```
 - [ ] 4. **Look before rendering.** `node render.mjs --stills-only` writes the poster and one key frame per entry of `stills` — the brand check — and reads them back with tesseract.
 - [ ] 5. **The take**, once the release is on pub.dev: `dart pub global activate terradart_cli`, move the engines off `PATH` for real (`capture.mjs` refuses to record while `terraform` or `tofu` is on it), `node capture.mjs`, restore them. Re-time the storyboard against the new clips.
-- [ ] 6. **Render**: `node render.mjs --out DIR` writes `terradart-v<release>.mp4`, `terradart-v<release>-poster.png` and the key frames, after reading every tenth terminal and app frame back with tesseract. `npm run studio` scrubs the composition frame by frame.
+- [ ] 6. **Render**: `node render.mjs --out DIR` writes `terradart-v<release>.mp4`, `terradart-v<release>-poster.png` and the key frames, after reading every tenth terminal and app frame back with tesseract. `--social` adds the [feed variant](#delivery). `npm run studio` scrubs the composition frame by frame.
 - [ ] 7. **Review** each delivery with the `videoReview` subagent: captions against what the frame shows, zooms that clip a line, text too small at phone size, the pace. Treat its brand verdicts with care — check a flagged colour against `tokens.css` before changing anything. It sees frames only, so check the narration separately: transcribe each line of the delivery's audio with a local speech recognizer, and listen to it before handing it over.
 - [ ] 8. Draft the copy ([below](#writing-the-copy)). The maintainer posts; agents do not post to X or LinkedIn.
 
@@ -121,6 +121,8 @@ tool/promo_video.sh --in RAW.mp4 --out EDIT.mp4 \
 `render.mjs` (and `promo_video.sh --deliver`) writes the encode that platforms and phones accept: 1080p30, H.264 High@4.1, an AAC track (the narration, levelled in two passes to a quiet −20 LUFS; silent from `promo_video.sh`), `faststart`, `mp42` brand.
 
 This is not cosmetic. **iOS Photos silently refuses "Save Video"** on the raw recording shape — soundless, 1200 tall, 60fps, level 5.0 — with no error to explain it. The delivery encode is what saves to a phone and what to hand over for posting. On iOS, open it in **Safari** and use Share → Save Video; the in-app share sheet does not always offer it.
+
+**A feed that cannot pick a thumbnail shows frame 0**, which the title's entrance leaves dark. `render.mjs --social` also writes `terradart-v<release>-social.mp4`: the finished card from the first frame, held until the first beat fades in, so the card appears once. Post that one where the first frame is the thumbnail (X); the main delivery keeps the entrance.
 
 ## Writing the copy
 

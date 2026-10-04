@@ -3,11 +3,14 @@
 // excerpts (highlighted with the site's palette), the still of init's next
 // steps, then the clip, the poster and key frames.
 //
-//   node render.mjs [--stills-only] [--out DIR]
+//   node render.mjs [--stills-only] [--social] [--out DIR]
 //
 // --stills-only  only the poster and the key frames, for a look before the
 //                full render
-// --out DIR      also copy the delivery, the poster and the key frames to DIR
+// --social       also write terradart-v<release>-social.mp4, which opens on
+//                the finished title card, held until the first beat fades
+//                in: a feed that takes frame 0 as the thumbnail shows the card
+// --out DIR      also copy the deliveries, the poster and the key frames to DIR
 //
 // Needs ffmpeg and tesseract: every terminal and app frame is read back and
 // the render fails on output the clip must not show (storyboard `ocr`). The
@@ -426,18 +429,33 @@ if (!args.includes("--stills-only")) {
     if (pass.status !== 0 || !report) die(`the master has no narration to measure:\n${pass.stderr}`);
     const measured = JSON.parse(report[0]);
     const level = `loudnorm=${loud}:linear=true:measured_I=${measured.input_i}:measured_TP=${measured.input_tp}:measured_LRA=${measured.input_lra}:measured_thresh=${measured.input_thresh}:offset=${measured.target_offset}`;
-    const delivery = path.join(outDir, `terradart-v${board.release}.mp4`);
-    run("ffmpeg", [
-      "-v", "error", "-y", "-i", master,
-      "-map", "0:v", "-map", "0:a",
-      "-vf", "fps=30,format=yuv420p",
-      "-af", `${level},aresample=48000`,
-      "-c:v", "libx264", "-profile:v", "high", "-level", "4.1", "-preset", "slow", "-crf", "18",
-      "-c:a", "aac", "-b:a", "128k", "-ac", "2", "-ar", "48000", "-shortest",
-      "-movflags", "+faststart", "-brand", "mp42", "-map_metadata", "-1",
-      delivery,
-    ]);
-    outputs.push(delivery);
+    const inputs = ["-i", master];
+    const audio = `[0:a]${level},aresample=48000[a]`;
+    const deliver = (file, video) => {
+      run("ffmpeg", [
+        "-v", "error", "-y", ...inputs, ...video.inputs,
+        "-filter_complex", `${video.filter};${audio}`,
+        "-map", "[v]", "-map", "[a]",
+        "-c:v", "libx264", "-profile:v", "high", "-level", "4.1", "-preset", "slow", "-crf", "18",
+        "-c:a", "aac", "-b:a", "128k", "-ac", "2", "-ar", "48000", "-shortest",
+        "-movflags", "+faststart", "-brand", "mp42", "-map_metadata", "-1",
+        file,
+      ]);
+      outputs.push(file);
+    };
+    deliver(path.join(outDir, `terradart-v${board.release}.mp4`), { inputs: [], filter: "[0:v]fps=30,format=yuv420p[v]" });
+    if (args.includes("--social")) {
+      // The title's last frame before the first beat starts fading in: the
+      // card with every element in place, painted over the title's entrance.
+      if (board.scenes[0].kind !== "title") die("--social needs the title as the first scene");
+      const until = starts[board.scenes[1].id];
+      const card = path.join(outDir, "title-card.png");
+      run("ffmpeg", ["-v", "error", "-y", "-i", master, "-vf", `select=eq(n\\,${until - 1})`, "-frames:v", "1", card]);
+      deliver(path.join(outDir, `terradart-v${board.release}-social.mp4`), {
+        inputs: ["-loop", "1", "-framerate", String(fps), "-i", card],
+        filter: `[0:v]fps=30[clip];[clip][${inputs.length / 2}:v]overlay=enable='lt(n,${until})':shortest=1,format=yuv420p[v]`,
+      });
+    }
   }
 }
 
