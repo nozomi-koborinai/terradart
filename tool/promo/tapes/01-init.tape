@@ -41,6 +41,13 @@ Sleep 500ms
 Enter
 Wait /\[y\/N\]/
 Sleep 2.5s
+Type "y"
+Sleep 500ms
+Enter
+Wait /pairs:/
+Sleep 1.2s
+Type@35ms "dev=my-app-dev-tfstate,stg=my-app-stg-tfstate,prd=my-app-prd-tfstate"
+Sleep 600ms
 Enter
 Wait /\[Y\/n\]/
 Sleep 3.5s

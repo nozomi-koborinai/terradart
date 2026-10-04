@@ -22,8 +22,14 @@
 // take's Stack tells the aws provider to skip the credential check and the
 // account lookup, and the shell carries AWS's documented placeholder keys, so
 // a plan that only creates resources runs with no AWS API call.
+//
+// The state lives in S3 buckets, one per environment, as init's answer in
+// tapes/01-init.tape names them, kept in a local S3-compatible store at the
+// endpoint take/stack.dart.txt sets. The plan really reads its state through
+// the S3 API: a store already listening there is used, else `moto_server`
+// (`pip install 'moto[server]'`) is started for the take and stopped after.
 
-import { execFileSync, spawnSync } from "node:child_process";
+import { execFileSync, spawn, spawnSync } from "node:child_process";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
@@ -155,6 +161,38 @@ Enter
 Sleep 600ms
 `;
 
+// The local S3-compatible store the take's state goes to, with the buckets
+// init was told about.
+const stateStore = async () => {
+  const stack = fs.readFileSync(path.join(here, "take", "stack.dart.txt"), "utf8");
+  const endpoint = /endpoints: \{'s3': '(http:\/\/[^']+)'\}/.exec(stack)?.[1];
+  if (!endpoint) die("take/stack.dart.txt sets no local S3 endpoint for the state");
+  const answer = /Wait \/pairs:\/[\s\S]*?\nType(?:@\S+)? "([^"]+)"/.exec(fs.readFileSync(path.join(here, "tapes", "01-init.tape"), "utf8"))?.[1];
+  const buckets = [...(answer ?? "").matchAll(/\w+=([a-z0-9][a-z0-9.-]+)/g)].map((m) => m[1]);
+  if (!buckets.length) die("tapes/01-init.tape types no env=bucket pairs after the bucket question");
+  const answers = async () => {
+    try {
+      await fetch(endpoint);
+      return true;
+    } catch {
+      return false;
+    }
+  };
+  if (!(await answers())) {
+    if (!which("moto_server")) die(`no S3-compatible store at ${endpoint}; start one, or put moto_server on PATH`);
+    const { hostname, port } = new URL(endpoint);
+    const store = spawn("moto_server", ["-H", hostname, "-p", port], { stdio: "ignore" });
+    store.unref();
+    process.on("exit", () => store.kill());
+    for (let i = 0; i < 50 && !(await answers()); i++) await new Promise((r) => setTimeout(r, 200));
+    if (!(await answers())) die(`moto_server did not come up at ${endpoint}`);
+  }
+  for (const bucket of buckets) {
+    const res = await fetch(`${endpoint}/${bucket}`, { method: "PUT" });
+    if (!res.ok && res.status !== 409) die(`could not create the state bucket ${bucket} at ${endpoint}: HTTP ${res.status}`);
+  }
+};
+
 const clips = path.join(pub, "clips");
 fs.mkdirSync(clips, { recursive: true });
 const infra = path.join(app, "infra");
@@ -187,6 +225,7 @@ for (const [name, cwd] of tapes) {
       encoding: "utf8",
     });
     if (warm.status !== 0) die(`terradart engine did not fetch OpenTofu into ${cache}:\n${warm.stderr}`);
+    await stateStore();
   }
   const body = fs.readFileSync(path.join(here, "tapes", `${name}.tape`), "utf8");
   const out = path.join(clips, `${name}.mp4`);
