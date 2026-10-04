@@ -6,6 +6,7 @@
   "crossfade": 0.27,
   "terminal": { "width": 2400, "height": 1200, "fontSize": 30, "lineHeight": 1.35, "padding": 56 },
   "voice": { "lead": 0.25, "tail": 0.7, "volume": 1 },
+  "music": { "volume": 0.28 },
   "scenes": [
     { "id": "title", "kind": "title", "duration": 3.0, "tagline": "Introducing", "features": ["TerraDart CLI", "AWS provider"] },
     {
@@ -18,7 +19,7 @@
         { "hold": 10.2, "seconds": 0.6 },
         { "from": 10.2, "to": 23.98 },
         { "hold": 24.0, "seconds": 0.8 },
-        { "from": 24.0, "to": 28.25 }
+        { "from": 24.0, "to": 33.55 }
       ],
       "camera": [
         { "at": 0, "s": 1, "x": 0.5, "y": 0.5 },
@@ -26,7 +27,7 @@
         { "at": 4.0, "s": 1.6, "x": 0, "y": 0.2 },
         { "at": 8.6, "s": 1.6, "x": 0, "y": 0.2 },
         { "at": 9.2, "s": 1, "x": 0.5, "y": 0.5 },
-        { "at": 28.25, "s": 1, "x": 0.5, "y": 0.5 }
+        { "at": 33.55, "s": 1, "x": 0.5, "y": 0.5 }
       ],
       "captions": [
         { "from": 0.2, "to": 3.6, "text": "In a Flutter app, run `terradart init`" },
@@ -34,8 +35,13 @@
         { "from": 9.6, "to": 13.0, "text": "Three environments: dev, stg and prd", "say": "Three environments: dev, staging and prod." },
         { "from": 13.0, "to": 19.2, "text": "An AWS region for each environment" },
         { "from": 19.2, "to": 22.4, "text": "Account IDs are optional" },
-        { "from": 22.4, "to": 24.85, "text": "State starts as a local file" },
-        { "from": 24.85, "to": 28.3, "text": "It finds the Flutter app" }
+        {
+          "from": 22.4,
+          "to": 29.75,
+          "text": "State where you want it: a local file, or S3, GCS or R2",
+          "say": "State where you want it: a local file, or S 3, G C S or R 2."
+        },
+        { "from": 29.75, "to": 33.6, "text": "It finds the Flutter app" }
       ]
     },
     {
@@ -54,21 +60,21 @@
       "title": "my_app/infra",
       "clip": "clips/02-plan.mp4",
       "segments": [
-        { "from": 0.3, "to": 10.1 },
-        { "hold": 10.12, "seconds": 2.4 },
-        { "from": 10.12, "to": 10.56 },
-        { "hold": 10.56, "seconds": 4.8 },
-        { "from": 17.04, "to": 18.5 },
-        { "hold": 18.5, "seconds": 0.5 },
-        { "from": 18.5, "to": 19.9 },
-        { "from": 20.04, "to": 25.1 },
-        { "hold": 25.12, "seconds": 0.86 },
-        { "from": 31.64, "to": 37.2 }
+        { "from": 0.3, "to": 10.2 },
+        { "hold": 10.22, "seconds": 2.4 },
+        { "from": 10.22, "to": 10.66 },
+        { "hold": 10.66, "seconds": 4.8 },
+        { "from": 17.4, "to": 18.75 },
+        { "hold": 18.75, "seconds": 0.5 },
+        { "from": 18.75, "to": 20.15 },
+        { "from": 20.29, "to": 25.6 },
+        { "hold": 25.62, "seconds": 0.86 },
+        { "from": 33.39, "to": 38.95 }
       ],
       "masks": [
-        { "from": 10.12, "to": 10.56, "last": "Using OpenTofu" },
-        { "from": 17.04, "to": 19.9, "first": "Success!" },
-        { "from": 31.64, "to": 37.2, "first": "^Plan:", "last": "table_name" }
+        { "from": 10.22, "to": 10.66, "last": "Using OpenTofu" },
+        { "from": 17.4, "to": 20.15, "first": "Success!" },
+        { "from": 33.39, "to": 38.95, "first": "^Plan:", "last": "table_name" }
       ],
       "camera": [
         { "at": 0, "s": 1, "x": 0.5, "y": 0.5 },
@@ -76,33 +82,33 @@
         { "at": 3.3, "s": 1.7, "x": 0, "y": 0.1 },
         { "at": 8.0, "s": 1.7, "x": 0, "y": 0.1 },
         { "at": 8.8, "s": 1, "x": 0.5, "y": 0.5 },
-        { "at": 10.56, "s": 1, "x": 0.5, "y": 0.5 },
-        { "at": 17.04, "s": 1.6, "x": 0, "y": 1 },
-        { "at": 19.9, "s": 1.6, "x": 0, "y": 1 },
-        { "at": 19.98, "s": 1.7, "x": 0, "y": 0 },
-        { "at": 25.12, "s": 1.7, "x": 0, "y": 0 },
-        { "at": 31.64, "s": 1.6, "x": 0, "y": 0.5 },
-        { "at": 37.2, "s": 1.6, "x": 0, "y": 0.5 }
+        { "at": 10.66, "s": 1, "x": 0.5, "y": 0.5 },
+        { "at": 17.4, "s": 1.6, "x": 0, "y": 1 },
+        { "at": 20.15, "s": 1.6, "x": 0, "y": 1 },
+        { "at": 20.23, "s": 1.7, "x": 0, "y": 0 },
+        { "at": 25.62, "s": 1.7, "x": 0, "y": 0 },
+        { "at": 33.39, "s": 1.6, "x": 0, "y": 0.5 },
+        { "at": 38.95, "s": 1.6, "x": 0, "y": 0.5 }
       ],
       "captions": [
         { "from": 2.9, "to": 6.1, "text": "No Terraform on this machine" },
-        { "from": 8.0, "to": 10.34, "text": "`terradart validate`: OpenTofu runs underneath", "say": "terradart validate: OpenTofu runs underneath." },
+        { "from": 8.0, "to": 10.44, "text": "`terradart validate`: OpenTofu runs underneath", "say": "terradart validate: OpenTofu runs underneath." },
         {
-          "from": 10.36,
-          "to": 10.8,
+          "from": 10.46,
+          "to": 10.9,
           "text": "TerraDart pins and manages it for you: nothing to install",
           "say": "TerraDart pins and manages it for you: nothing to install."
         },
-        { "from": 17.04, "to": 19.95, "text": "The configuration is valid" },
+        { "from": 17.4, "to": 20.2, "text": "The configuration is valid" },
         {
-          "from": 19.98,
-          "to": 25.35,
+          "from": 20.23,
+          "to": 25.85,
           "text": "Already on Terraform? Use your own install: `--engine terraform`",
           "say": "Already on Terraform? Use your own install with engine terraform."
         },
         {
-          "from": 31.64,
-          "to": 37.3,
+          "from": 33.39,
+          "to": 39.05,
           "text": "Staging plan: 7 to add, and the outputs the app reads",
           "say": "Staging plan: seven to add, and the outputs the app reads."
         }

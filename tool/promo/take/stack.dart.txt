@@ -20,7 +20,17 @@ final class MyAppInfraStack extends Stack {
             skipRequestingAccountId: true,
           ),
         ],
-        backend: const LocalBackend(),
+        backend: S3Backend(
+          bucket: env.stateBucket,
+          key: 'my_app_infra/${env.name}/terraform.tfstate',
+          region: env.region,
+          // The take keeps the state in a local S3-compatible store; drop
+          // these four before the first apply.
+          endpoints: {'s3': 'http://127.0.0.1:9000'},
+          usePathStyle: true,
+          skipCredentialsValidation: true,
+          skipRequestingAccountId: true,
+        ),
         appExports: AppExports('../lib/generated/infra.g.dart'),
       ) {
     final name = 'my-app-${env.name}';

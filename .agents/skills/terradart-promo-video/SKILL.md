@@ -41,7 +41,7 @@ When a claim is tempting but unsupported, cut the claim, not the caveat.
 
 [`tool/promo/`](../../../tool/promo/) holds the whole clip as code: `tapes/*.tape` (the terminal beats, recorded by VHS), `storyboard.json` (scenes, cuts and holds, camera keyframes, masks, captions, which lines of the generated files to show, the `ocr` deny list) and a Remotion composition under `src/` that reads the site's tokens and syntax theme. Re-recording after a CLI change is a re-run, not a re-edit.
 
-Needs Node ≥ 22.12, `vhs` with `ttyd`, `ffmpeg`, `tesseract`, `google-chrome` and a local text-to-speech command for the [narration](#narration); `npm ci` in `tool/promo/` installs Remotion and the fonts (Inter, JetBrains Mono), so no system font matters.
+Needs Node ≥ 22.12, `vhs` with `ttyd`, `ffmpeg`, `tesseract`, `google-chrome`, a local text-to-speech command for the [narration](#narration), `moto_server` for the state store (`pip install 'moto[server]'`) and python3 with numpy for the [music](#music); `npm ci` in `tool/promo/` installs Remotion and the fonts (Inter, JetBrains Mono), so no system font matters.
 
 **Task progress:**
 
@@ -58,7 +58,7 @@ Needs Node ≥ 22.12, `vhs` with `ttyd`, `ffmpeg`, `tesseract`, `google-chrome` 
       ```
 - [ ] 4. **Look before rendering.** `node render.mjs --stills-only` writes the poster and one key frame per entry of `stills` — the brand check — and reads them back with tesseract.
 - [ ] 5. **The take**, once the release is on pub.dev: `dart pub global activate terradart_cli`, move the engines off `PATH` for real (`capture.mjs` refuses to record while `terraform` or `tofu` is on it), `node capture.mjs`, restore them. Re-time the storyboard against the new clips.
-- [ ] 6. **Render**: `node render.mjs --out DIR` writes `terradart-v<release>.mp4`, `terradart-v<release>-poster.png` and the key frames, after reading every tenth terminal and app frame back with tesseract. `npm run studio` scrubs the composition frame by frame.
+- [ ] 6. **Render**: `node render.mjs --out DIR` writes `terradart-v<release>.mp4`, `terradart-v<release>-poster.png` and the key frames, after reading every tenth terminal and app frame back with tesseract. `--social` adds the [feed variant](#delivery) and `--music` the [music bed](#music). `npm run studio` scrubs the composition frame by frame.
 - [ ] 7. **Review** each delivery with the `videoReview` subagent: captions against what the frame shows, zooms that clip a line, text too small at phone size, the pace. Treat its brand verdicts with care — check a flagged colour against `tokens.css` before changing anything. It sees frames only, so check the narration separately: transcribe each line of the delivery's audio with a local speech recognizer, and listen to it before handing it over.
 - [ ] 8. Draft the copy ([below](#writing-the-copy)). The maintainer posts; agents do not post to X or LinkedIn.
 
@@ -72,6 +72,7 @@ One message per beat, five to seven beats, 60–95s. Open on the lockup with the
 - **Record what the user runs, nothing else.** No `clear`, `ls`, `--version` or checks; the tapes hide setup with `Hide` / `Show`. The one exception is a command that proves a claim (`terraform version` answering `command not found`), which the storyboard's `ocr.allow` names.
 - **Show the engine as a returning user sees it.** `terradart` fetches its pinned OpenTofu once into its own cache; `capture.mjs` fills that cache off camera with `terradart engine --engine tofu` before the validate beat, so the take shows the managed engine running, not the one-time download. A claim about another invocation (`--engine terraform`) is a caption only, after running it off camera to confirm it works.
 - **Plan a cloud without an account, and say so off screen.** A plan that only creates resources needs no cloud API call when the provider is told not to look: the AWS take's `AwsProvider` sets `skipCredentialsValidation` and `skipRequestingAccountId`, and the recorded shell carries AWS's documented placeholder keys (`capture.mjs`). Keep those settings outside the excerpt, leave out data sources that call the API (`DataAwsCallerIdentity`), and never apply. A command whose input only an apply writes (`flutter run --dart-define-from-file=…stg.json`) is typed and not run (`tapes/03-run.tape`).
+- **Show the state choice, and keep it real.** Init asks whether a state bucket exists; a local file is the default answer. Say the user picks (*a local file, or S3, GCS or R2*), and when the take answers with buckets (one per environment), the plan has to read them: the take's `S3Backend` points at a local S3-compatible store, and `capture.mjs` starts one (`moto_server`, unless the endpoint already answers) and creates the buckets init was told about. The four settings that aim the backend at that store sit outside the excerpt, like the provider's skip flags.
 - **Wait on output, not on time.** `Wait /regex/` on the prompt (`Wait /^\$\s*$/`) ends a beat when the command does; `Sleep` is only for reading time.
 - **Cut what nobody reads** (dependency resolution, an engine's init text) with a segment gap, and **hold what proves the claim** — a line that scrolls past in half a second gets a `{ "hold": t, "seconds": s }` segment.
 - **Mask what lands in the same frame.** VHS paints a command's lines in one frame, so stopping on `Using OpenTofu` also shows the engine's first lines. A `masks` entry keeps the rows from the line `first` matches through the line `last` matches over a span of clip time; `render.mjs` finds both lines with tesseract and puts the edges in the gaps between rows, so a take whose output moves a row still masks right. The composition lightens each clip onto the palette's background, so the paint and the decoded background are one colour.
@@ -117,9 +118,18 @@ tool/promo_video.sh --in RAW.mp4 --out EDIT.mp4 \
 
 ## Delivery
 
-`render.mjs` (and `promo_video.sh --deliver`) writes the encode that platforms and phones accept: 1080p30, H.264 High@4.1, an AAC track (the narration, levelled in two passes to a quiet −20 LUFS; silent from `promo_video.sh`), `faststart`, `mp42` brand. No music.
+`render.mjs` (and `promo_video.sh --deliver`) writes the encode that platforms and phones accept: 1080p30, H.264 High@4.1, an AAC track (the narration, levelled in two passes to a quiet −20 LUFS; silent from `promo_video.sh`), `faststart`, `mp42` brand.
 
 This is not cosmetic. **iOS Photos silently refuses "Save Video"** on the raw recording shape — soundless, 1200 tall, 60fps, level 5.0 — with no error to explain it. The delivery encode is what saves to a phone and what to hand over for posting. On iOS, open it in **Safari** and use Share → Save Video; the in-app share sheet does not always offer it.
+
+**A feed that cannot pick a thumbnail shows frame 0**, which the title's entrance leaves dark. `render.mjs --social` also writes `terradart-v<release>-social.mp4`: the finished card from the first frame, held until the first beat fades in, so the card appears once. Post that one where the first frame is the thumbnail (X); the main delivery keeps the entrance.
+
+### Music
+
+`render.mjs --music` lays a music bed under the narration in every delivery. [`music.py`](../../../tool/promo/music.py) synthesizes it at the clip's length with numpy — no samples or third-party audio, so there is nothing to license or credit. Never swap in a downloaded track. A compressor keyed by the narration ducks the bed under each line; `music.volume` in the storyboard sets it before ducking.
+
+- **Listen to the end card.** It has no narration, so the bed plays unducked there and is louder than anywhere the voice runs, until its 3s fade. If it takes over the install line and the site, lower `music.volume` rather than shortening the card.
+- The first seconds before the first line are music only: keep the title short enough that this reads as an intro, not a gap.
 
 ## Writing the copy
 
