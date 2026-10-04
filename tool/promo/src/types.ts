@@ -83,6 +83,8 @@ export type Storyboard = {
    * caption stays up at least `tail` seconds after the line ends.
    */
   voice: { lead: number; tail: number; volume: number };
+  /** The bed `render.mjs --music` lays under the narration, before ducking. */
+  music: { volume: number };
   scenes: SceneSpec[];
 };
 

@@ -41,7 +41,7 @@ When a claim is tempting but unsupported, cut the claim, not the caveat.
 
 [`tool/promo/`](../../../tool/promo/) holds the whole clip as code: `tapes/*.tape` (the terminal beats, recorded by VHS), `storyboard.json` (scenes, cuts and holds, camera keyframes, masks, captions, which lines of the generated files to show, the `ocr` deny list) and a Remotion composition under `src/` that reads the site's tokens and syntax theme. Re-recording after a CLI change is a re-run, not a re-edit.
 
-Needs Node ≥ 22.12, `vhs` with `ttyd`, `ffmpeg`, `tesseract`, `google-chrome`, a local text-to-speech command for the [narration](#narration) and `moto_server` for the state store (`pip install 'moto[server]'`); `npm ci` in `tool/promo/` installs Remotion and the fonts (Inter, JetBrains Mono), so no system font matters.
+Needs Node ≥ 22.12, `vhs` with `ttyd`, `ffmpeg`, `tesseract`, `google-chrome`, a local text-to-speech command for the [narration](#narration), `moto_server` for the state store (`pip install 'moto[server]'`) and python3 with numpy for the [music](#music); `npm ci` in `tool/promo/` installs Remotion and the fonts (Inter, JetBrains Mono), so no system font matters.
 
 **Task progress:**
 
@@ -58,7 +58,7 @@ Needs Node ≥ 22.12, `vhs` with `ttyd`, `ffmpeg`, `tesseract`, `google-chrome`,
       ```
 - [ ] 4. **Look before rendering.** `node render.mjs --stills-only` writes the poster and one key frame per entry of `stills` — the brand check — and reads them back with tesseract.
 - [ ] 5. **The take**, once the release is on pub.dev: `dart pub global activate terradart_cli`, move the engines off `PATH` for real (`capture.mjs` refuses to record while `terraform` or `tofu` is on it), `node capture.mjs`, restore them. Re-time the storyboard against the new clips.
-- [ ] 6. **Render**: `node render.mjs --out DIR` writes `terradart-v<release>.mp4`, `terradart-v<release>-poster.png` and the key frames, after reading every tenth terminal and app frame back with tesseract. `--social` adds the [feed variant](#delivery). `npm run studio` scrubs the composition frame by frame.
+- [ ] 6. **Render**: `node render.mjs --out DIR` writes `terradart-v<release>.mp4`, `terradart-v<release>-poster.png` and the key frames, after reading every tenth terminal and app frame back with tesseract. `--social` adds the [feed variant](#delivery) and `--music` the [music bed](#music). `npm run studio` scrubs the composition frame by frame.
 - [ ] 7. **Review** each delivery with the `videoReview` subagent: captions against what the frame shows, zooms that clip a line, text too small at phone size, the pace. Treat its brand verdicts with care — check a flagged colour against `tokens.css` before changing anything. It sees frames only, so check the narration separately: transcribe each line of the delivery's audio with a local speech recognizer, and listen to it before handing it over.
 - [ ] 8. Draft the copy ([below](#writing-the-copy)). The maintainer posts; agents do not post to X or LinkedIn.
 
@@ -123,6 +123,13 @@ tool/promo_video.sh --in RAW.mp4 --out EDIT.mp4 \
 This is not cosmetic. **iOS Photos silently refuses "Save Video"** on the raw recording shape — soundless, 1200 tall, 60fps, level 5.0 — with no error to explain it. The delivery encode is what saves to a phone and what to hand over for posting. On iOS, open it in **Safari** and use Share → Save Video; the in-app share sheet does not always offer it.
 
 **A feed that cannot pick a thumbnail shows frame 0**, which the title's entrance leaves dark. `render.mjs --social` also writes `terradart-v<release>-social.mp4`: the finished card from the first frame, held until the first beat fades in, so the card appears once. Post that one where the first frame is the thumbnail (X); the main delivery keeps the entrance.
+
+### Music
+
+`render.mjs --music` lays a music bed under the narration in every delivery. [`music.py`](../../../tool/promo/music.py) synthesizes it at the clip's length with numpy — no samples or third-party audio, so there is nothing to license or credit. Never swap in a downloaded track. A compressor keyed by the narration ducks the bed under each line; `music.volume` in the storyboard sets it before ducking.
+
+- **Listen to the end card.** It has no narration, so the bed plays unducked there and is louder than anywhere the voice runs, until its 3s fade. If it takes over the install line and the site, lower `music.volume` rather than shortening the card.
+- The first seconds before the first line are music only: keep the title short enough that this reads as an intro, not a gap.
 
 ## Writing the copy
 

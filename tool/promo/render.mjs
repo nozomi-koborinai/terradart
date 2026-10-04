@@ -3,13 +3,16 @@
 // excerpts (highlighted with the site's palette), the still of init's next
 // steps, then the clip, the poster and key frames.
 //
-//   node render.mjs [--stills-only] [--social] [--out DIR]
+//   node render.mjs [--stills-only] [--social] [--music] [--out DIR]
 //
 // --stills-only  only the poster and the key frames, for a look before the
 //                full render
 // --social       also write terradart-v<release>-social.mp4, which opens on
 //                the finished title card, held until the first beat fades
 //                in: a feed that takes frame 0 as the thumbnail shows the card
+// --music        lay the music bed music.py synthesizes under the narration,
+//                ducked while a line is spoken (storyboard `music.volume`);
+//                needs python3 with numpy
 // --out DIR      also copy the deliveries, the poster and the key frames to DIR
 //
 // Needs ffmpeg and tesseract: every terminal and app frame is read back and
@@ -430,7 +433,21 @@ if (!args.includes("--stills-only")) {
     const measured = JSON.parse(report[0]);
     const level = `loudnorm=${loud}:linear=true:measured_I=${measured.input_i}:measured_TP=${measured.input_tp}:measured_LRA=${measured.input_lra}:measured_thresh=${measured.input_thresh}:offset=${measured.target_offset}`;
     const inputs = ["-i", master];
-    const audio = `[0:a]${level},aresample=48000[a]`;
+    let audio = `[0:a]${level},aresample=48000[a]`;
+    if (args.includes("--music")) {
+      const bed = path.join(pub, "music.wav");
+      execFileSync("python3", [path.join(here, "music.py"), bed, String((start + fade) / fps)], { stdio: "inherit" });
+      inputs.push("-i", bed);
+      // The levelled narration keys a compressor on the bed, so the music
+      // dips under each line and comes back between them; the limiter keeps
+      // the sum under the narration's true peak.
+      audio = [
+        `[0:a]${level},aresample=48000,asplit=2[voice][key]`,
+        `[1:a]aresample=48000,volume=${board.music.volume}[bed]`,
+        "[bed][key]sidechaincompress=threshold=0.02:ratio=10:attack=15:release=450[ducked]",
+        "[voice][ducked]amix=inputs=2:normalize=0:duration=first,alimiter=limit=0.79:level=disabled[a]",
+      ].join(";");
+    }
     const deliver = (file, video) => {
       run("ffmpeg", [
         "-v", "error", "-y", ...inputs, ...video.inputs,

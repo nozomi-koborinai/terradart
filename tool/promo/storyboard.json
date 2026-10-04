@@ -6,6 +6,7 @@
   "crossfade": 0.27,
   "terminal": { "width": 2400, "height": 1200, "fontSize": 30, "lineHeight": 1.35, "padding": 56 },
   "voice": { "lead": 0.25, "tail": 0.7, "volume": 1 },
+  "music": { "volume": 0.28 },
   "scenes": [
     { "id": "title", "kind": "title", "duration": 3.0, "tagline": "Introducing", "features": ["TerraDart CLI", "AWS provider"] },
     {
