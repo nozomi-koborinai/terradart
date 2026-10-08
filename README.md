@@ -324,6 +324,10 @@ Dart™ and the related logo are trademarks of Google LLC. We are not endorsed b
 
 TerraDart is an independent open-source project and is not affiliated with, endorsed by, or sponsored by HashiCorp or Google.
 
+## Sponsor
+
+[TerraDart is an independent project built by @nozomi-koborinai. If it's useful to you, sponsoring helps me keep pushing it forward.](https://github.com/sponsors/nozomi-koborinai)
+
 ## License & acknowledgements
 
 Apache-2.0. See [LICENSE](LICENSE).
