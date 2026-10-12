@@ -74,7 +74,7 @@ list. A stack that set one credential passes a one-element list.
 
 | Before | After |
 |---|---|
-| `userCredentials: StorageFtpUserCredentials(username: .literal('ftp'), password: Sensitive.variable('ftp_password'))` | `userCredentials: [StorageFtpUserCredentials(username: .literal('ftp'), password: Sensitive.variable('ftp_password'))]` |
+| `userCredentials: StorageFtpUserCredentials(credentialName: .literal('deploy-key'), credentialType: .literal('ssh'), sshPublicKeyBody: .literal('ssh-ed25519 AAAA'))` | `userCredentials: [StorageFtpUserCredentials(credentialName: .literal('deploy-key'), credentialType: .literal('ssh'), sshPublicKeyBody: .literal('ssh-ed25519 AAAA'))]` |
 
 ### IAM policy binding targets are a sealed choice
 
