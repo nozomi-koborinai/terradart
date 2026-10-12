@@ -7,6 +7,10 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleResourceManagerCapabilityConfigSensitive = <String>{};
 
 /// Factory wrapper for `google_resource_manager_capability_config`.
+///
+/// Capability configs define the enabled capabilities and their scope of
+/// enforcement for folders, organizations, or projects within the resource
+/// hierarchy.
 final class GoogleResourceManagerCapabilityConfig extends Resource {
   static const String tfType = 'google_resource_manager_capability_config';
 

@@ -2854,7 +2854,7 @@ files:
   google_dialogflow_tool:
     upstream: mmv1/products/dialogflow/Tool.yaml
   google_resource_manager_capability_config:
-    upstream: null  # schema bump: no mmv1 YAML at the guessed paths; probe upstream by hand
+    upstream: mmv1/products/resourcemanagerv3/CapabilityConfig.yaml
   google_vertex_ai_semantic_governance_policy:
     upstream: mmv1/products/vertexai/SemanticGovernancePolicy.yaml
   data_google_access_approval_folder_service_account:
