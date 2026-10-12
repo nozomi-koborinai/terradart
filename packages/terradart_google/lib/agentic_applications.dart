@@ -41,4 +41,5 @@ export 'src/agentic/google_agentic_applications_analyst_agent_persona.dart'
         AgenticApplicationsAnalystAgentPersonaUsda,
         AgenticApplicationsAnalystAgentPersonaVisualizationExamples,
         AgenticApplicationsAnalystAgentPersonaVisualizationOptions,
+        AgenticApplicationsAnalystAgentPersonaWebSearchConfig,
         GoogleAgenticApplicationsAnalystAgentPersona;

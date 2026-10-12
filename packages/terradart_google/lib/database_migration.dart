@@ -74,5 +74,6 @@ export 'src/database_migration/google_database_migration_service_migration_job.d
 export 'src/database_migration/google_database_migration_service_private_connection.dart'
     show
         DatabaseMigrationServicePrivateConnectionPscInterfaceConfig,
+        DatabaseMigrationServicePrivateConnectionReservedPublicIpConfig,
         DatabaseMigrationServicePrivateConnectionVpcPeeringConfig,
         GoogleDatabaseMigrationServicePrivateConnection;

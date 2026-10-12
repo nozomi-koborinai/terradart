@@ -167,6 +167,10 @@ final class GoogleChronicleEnvironment extends Resource {
   /// Reference to `location` attribute.
   TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
+  /// Reference to `parallel_instance` attribute.
+  TfRef<String> get parallelInstance =>
+      TfRef.attribute<String>(this, 'parallel_instance');
+
   /// Reference to `project` attribute.
   TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 

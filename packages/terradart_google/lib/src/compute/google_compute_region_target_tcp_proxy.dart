@@ -94,6 +94,10 @@ final class GoogleComputeRegionTargetTcpProxy extends Resource {
   /// Reference to `description` attribute.
   TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
+  /// Reference to `load_balancing_scheme` attribute.
+  TfRef<String> get loadBalancingScheme =>
+      TfRef.attribute<String>(this, 'load_balancing_scheme');
+
   /// Reference to `project` attribute.
   TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 

@@ -95,4 +95,8 @@ final class GoogleOracleDatabaseCloudExadataInfrastructureExascaleConfig
   /// Reference to `total_storage_size_gb` attribute.
   TfRef<num> get totalStorageSizeGb =>
       TfRef.attribute<num>(this, 'total_storage_size_gb');
+
+  /// Reference to `total_vm_storage_size_gb` attribute.
+  TfRef<num> get totalVmStorageSizeGb =>
+      TfRef.attribute<num>(this, 'total_vm_storage_size_gb');
 }

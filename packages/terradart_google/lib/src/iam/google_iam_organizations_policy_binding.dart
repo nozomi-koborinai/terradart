@@ -39,12 +39,75 @@ final class IamOrganizationsPolicyBindingCondition {
 /// `google_iam_organizations_policy_binding` (derived from provider schema).
 @immutable
 final class IamOrganizationsPolicyBindingTarget {
-  const IamOrganizationsPolicyBindingTarget({this.principalSet});
+  const IamOrganizationsPolicyBindingTarget({this.principalSetOrResource});
 
-  final TfArg<String>? principalSet;
+  final IamOrganizationsPolicyBindingTargetPrincipalSetOrResource?
+  principalSetOrResource;
 
   @internal
-  Map<String, Object?> encode() => {'principal_set': ?principalSet?.toTfJson()};
+  Map<String, Object?> encode() => {...?principalSetOrResource?.encode()};
+}
+
+/// At most one of `principal_set`, `resource` on the `target` block of `google_iam_organizations_policy_binding`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.principalSet(...)`.
+sealed class IamOrganizationsPolicyBindingTargetPrincipalSetOrResource {
+  const IamOrganizationsPolicyBindingTargetPrincipalSetOrResource();
+
+  /// Sets `principal_set`.
+  const factory IamOrganizationsPolicyBindingTargetPrincipalSetOrResource.principalSet(
+    TfArg<String> principalSet,
+  ) = IamOrganizationsPolicyBindingTargetPrincipalSetOrResourcePrincipalSet;
+
+  /// Sets `resource`.
+  const factory IamOrganizationsPolicyBindingTargetPrincipalSetOrResource.resource(
+    TfArg<String> resource,
+  ) = IamOrganizationsPolicyBindingTargetPrincipalSetOrResourceChoice;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [IamOrganizationsPolicyBindingTargetPrincipalSetOrResource.principalSet] choice: sets `principal_set`.
+final class IamOrganizationsPolicyBindingTargetPrincipalSetOrResourcePrincipalSet
+    extends IamOrganizationsPolicyBindingTargetPrincipalSetOrResource {
+  const IamOrganizationsPolicyBindingTargetPrincipalSetOrResourcePrincipalSet(
+    this.principalSet,
+  );
+
+  final TfArg<String> principalSet;
+
+  @internal
+  @override
+  String get blockKey => 'principal_set';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'principal_set': principalSet.toTfJson()};
+}
+
+/// The [IamOrganizationsPolicyBindingTargetPrincipalSetOrResource.resource] choice: sets `resource`.
+final class IamOrganizationsPolicyBindingTargetPrincipalSetOrResourceChoice
+    extends IamOrganizationsPolicyBindingTargetPrincipalSetOrResource {
+  const IamOrganizationsPolicyBindingTargetPrincipalSetOrResourceChoice(
+    this.resource,
+  );
+
+  final TfArg<String> resource;
+
+  @internal
+  @override
+  String get blockKey => 'resource';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'resource': resource.toTfJson()};
 }
 
 /// Factory wrapper for `google_iam_organizations_policy_binding`.

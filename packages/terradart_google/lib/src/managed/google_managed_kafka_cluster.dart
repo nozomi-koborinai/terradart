@@ -293,6 +293,10 @@ final class GoogleManagedKafkaCluster extends Resource {
   TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
 
+  /// Reference to `kafka_version` attribute.
+  TfRef<String> get kafkaVersion =>
+      TfRef.attribute<String>(this, 'kafka_version');
+
   /// Reference to `labels` attribute.
   TfRef<Map<String, String>> get labels =>
       TfRef.attribute<Map<String, String>>(this, 'labels');

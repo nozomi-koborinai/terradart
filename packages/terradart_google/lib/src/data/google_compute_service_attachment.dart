@@ -77,6 +77,10 @@ final class DataGoogleComputeServiceAttachment extends Data {
   /// Reference to `fingerprint` attribute.
   TfRef<String> get fingerprint => TfRef.attribute<String>(this, 'fingerprint');
 
+  /// Reference to `nat_ips_per_endpoint` attribute.
+  TfRef<num> get natIpsPerEndpoint =>
+      TfRef.attribute<num>(this, 'nat_ips_per_endpoint');
+
   /// Reference to `nat_subnets` attribute.
   TfRef<List<String>> get natSubnets =>
       TfRef.attribute<List<String>>(this, 'nat_subnets');

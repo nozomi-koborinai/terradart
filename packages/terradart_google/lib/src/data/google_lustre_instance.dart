@@ -48,6 +48,10 @@ final class DataGoogleLustreInstance extends Data {
   TfRef<List<Map<String, Object?>>> get accessRulesOptions =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'access_rules_options');
 
+  /// Reference to `available_version` attribute.
+  TfRef<String> get availableVersion =>
+      TfRef.attribute<String>(this, 'available_version');
+
   /// Reference to `capacity_gib` attribute.
   TfRef<String> get capacityGib =>
       TfRef.attribute<String>(this, 'capacity_gib');
@@ -69,6 +73,10 @@ final class DataGoogleLustreInstance extends Data {
   /// Reference to `effective_labels` attribute.
   TfRef<Map<String, String>> get effectiveLabels =>
       TfRef.attribute<Map<String, String>>(this, 'effective_labels');
+
+  /// Reference to `effective_version` attribute.
+  TfRef<String> get effectiveVersion =>
+      TfRef.attribute<String>(this, 'effective_version');
 
   /// Reference to `filesystem` attribute.
   TfRef<String> get filesystem => TfRef.attribute<String>(this, 'filesystem');
@@ -111,6 +119,10 @@ final class DataGoogleLustreInstance extends Data {
   /// Reference to `state_reason` attribute.
   TfRef<String> get stateReason =>
       TfRef.attribute<String>(this, 'state_reason');
+
+  /// Reference to `target_version` attribute.
+  TfRef<String> get targetVersion =>
+      TfRef.attribute<String>(this, 'target_version');
 
   /// Reference to `terraform_labels` attribute.
   TfRef<Map<String, String>> get terraformLabels =>

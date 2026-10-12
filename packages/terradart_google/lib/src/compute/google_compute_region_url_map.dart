@@ -743,7 +743,6 @@ final class ComputeRegionUrlMapDefaultRouteActionRequestMirrorPolicy {
 
 /// Typed helper for the `path_matcher.default_route_action.url_rewrite` block of
 /// `google_compute_region_url_map` (derived from provider schema).
-/// Shared by every block of this shape in the resource.
 @immutable
 final class ComputeRegionUrlMapDefaultRouteActionUrlRewrite {
   const ComputeRegionUrlMapDefaultRouteActionUrlRewrite({
@@ -1457,7 +1456,7 @@ final class ComputeRegionUrlMapRouteRulesRouteAction {
 
   final ComputeRegionUrlMapRouteActionTimeout? timeout;
 
-  final ComputeRegionUrlMapDefaultRouteActionUrlRewrite? urlRewrite;
+  final ComputeRegionUrlMapRouteActionUrlRewrite? urlRewrite;
 
   final List<ComputeRegionUrlMapRouteActionWeightedBackendServices>?
   weightedBackendServices;
@@ -1535,6 +1534,54 @@ final class ComputeRegionUrlMapRouteRulesRetryPolicy {
     'num_retries': numRetries.toTfJson(),
     'retry_conditions': ?retryConditions?.toTfJson(),
     'per_try_timeout': ?perTryTimeout?.encode(),
+  };
+}
+
+/// Typed helper for the `path_matcher.route_rules.route_action.url_rewrite` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapRouteActionUrlRewrite {
+  const ComputeRegionUrlMapRouteActionUrlRewrite({
+    this.hostRewrite,
+    this.pathPrefixRewrite,
+    this.pathTemplateRewrite,
+    this.regexRewrite,
+  });
+
+  final TfArg<String>? hostRewrite;
+
+  final TfArg<String>? pathPrefixRewrite;
+
+  final TfArg<String>? pathTemplateRewrite;
+
+  final ComputeRegionUrlMapRegexRewrite? regexRewrite;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'host_rewrite': ?hostRewrite?.toTfJson(),
+    'path_prefix_rewrite': ?pathPrefixRewrite?.toTfJson(),
+    'path_template_rewrite': ?pathTemplateRewrite?.toTfJson(),
+    'regex_rewrite': ?regexRewrite?.encode(),
+  };
+}
+
+/// Typed helper for the `path_matcher.route_rules.route_action.url_rewrite.regex_rewrite` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapRegexRewrite {
+  const ComputeRegionUrlMapRegexRewrite({
+    required this.pathPattern,
+    required this.pathSubstitution,
+  });
+
+  final TfArg<String> pathPattern;
+
+  final TfArg<String> pathSubstitution;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'path_pattern': pathPattern.toTfJson(),
+    'path_substitution': pathSubstitution.toTfJson(),
   };
 }
 

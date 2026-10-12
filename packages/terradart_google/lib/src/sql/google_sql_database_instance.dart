@@ -1333,6 +1333,10 @@ final class GoogleSqlDatabaseInstance extends Resource {
   TfRef<bool> get deletionProtection =>
       TfRef.attribute<bool>(this, 'deletion_protection');
 
+  /// Reference to `encryption_confidential_mode` attribute.
+  TfRef<bool> get encryptionConfidentialMode =>
+      TfRef.attribute<bool>(this, 'encryption_confidential_mode');
+
   /// Reference to `encryption_key_name` attribute.
   TfRef<String> get encryptionKeyName =>
       TfRef.attribute<String>(this, 'encryption_key_name');

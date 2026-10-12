@@ -4,6 +4,7 @@
 /// Never apply.
 library;
 
+import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/data.dart';
 import 'package:terradart_google/provider.dart';
 
@@ -1793,6 +1794,13 @@ final class DataSourceLeftoverStack extends Stack {
     );
 
     add(
+      DataGoogleIamWorkloadIdentityPoolJwks(
+        'iam_workload_identity_pool_jwks',
+        resourceName: TfArg.literal(leftover),
+      ),
+    );
+
+    add(
       DataGoogleIamWorkloadIdentityPoolOpenidConfig(
         'iam_workload_identity_pool_openid_config',
         resourceName: TfArg.literal(leftover),
@@ -2192,6 +2200,14 @@ final class DataSourceLeftoverStack extends Stack {
       DataGoogleNetworkSecurityAddressGroups(
         'network_security_address_groups',
         location: TfArg.literal(leftover),
+      ),
+    );
+
+    add(
+      DataGoogleNetworkServicesGateway(
+        'network_services_gateway',
+        location: TfArg.literal(leftover),
+        name: TfArg.literal(leftover),
       ),
     );
 

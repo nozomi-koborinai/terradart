@@ -1254,11 +1254,14 @@ final class ComputeBackendServiceStrongSessionAffinityCookie {
 final class ComputeBackendServiceTlsSettings {
   const ComputeBackendServiceTlsSettings({
     this.authenticationConfig,
+    this.identity,
     this.sni,
     this.subjectAltNames,
   });
 
   final TfArg<String>? authenticationConfig;
+
+  final TfArg<String>? identity;
 
   final TfArg<String>? sni;
 
@@ -1267,6 +1270,7 @@ final class ComputeBackendServiceTlsSettings {
   @internal
   Map<String, Object?> encode() => {
     'authentication_config': ?authenticationConfig?.toTfJson(),
+    'identity': ?identity?.toTfJson(),
     'sni': ?sni?.toTfJson(),
     if (subjectAltNames != null)
       'subject_alt_names': [for (final e in subjectAltNames!) e.encode()],

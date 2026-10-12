@@ -517,6 +517,8 @@ export 'src/data/google_iam_workload_identity_pool.dart'
     show DataGoogleIamWorkloadIdentityPool;
 export 'src/data/google_iam_workload_identity_pool_iam_policy.dart'
     show DataGoogleIamWorkloadIdentityPoolIamPolicy;
+export 'src/data/google_iam_workload_identity_pool_jwks.dart'
+    show DataGoogleIamWorkloadIdentityPoolJwks;
 export 'src/data/google_iam_workload_identity_pool_openid_config.dart'
     show DataGoogleIamWorkloadIdentityPoolOpenidConfig;
 export 'src/data/google_iam_workload_identity_pool_provider.dart'
@@ -623,6 +625,8 @@ export 'src/data/google_network_security_address_group_iam_policy.dart'
     show DataGoogleNetworkSecurityAddressGroupIamPolicy;
 export 'src/data/google_network_security_address_groups.dart'
     show DataGoogleNetworkSecurityAddressGroups;
+export 'src/data/google_network_services_gateway.dart'
+    show DataGoogleNetworkServicesGateway;
 export 'src/data/google_observability_folder_settings.dart'
     show DataGoogleObservabilityFolderSettings;
 export 'src/data/google_observability_organization_settings.dart'

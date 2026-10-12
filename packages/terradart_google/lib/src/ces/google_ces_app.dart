@@ -83,12 +83,18 @@ final class CesAppBargeInConfig {
 @immutable
 final class CesAppSynthesizeSpeechConfigs {
   const CesAppSynthesizeSpeechConfigs({
+    this.instruction,
     required this.languageCode,
+    this.model,
     this.speakingRate,
     this.voice,
   });
 
+  final TfArg<String>? instruction;
+
   final TfArg<String> languageCode;
+
+  final TfArg<String>? model;
 
   final TfArg<num>? speakingRate;
 
@@ -96,7 +102,9 @@ final class CesAppSynthesizeSpeechConfigs {
 
   @internal
   Map<String, Object?> encode() => {
+    'instruction': ?instruction?.toTfJson(),
     'language_code': languageCode.toTfJson(),
+    'model': ?model?.toTfJson(),
     'speaking_rate': ?speakingRate?.toTfJson(),
     'voice': ?voice?.toTfJson(),
   };

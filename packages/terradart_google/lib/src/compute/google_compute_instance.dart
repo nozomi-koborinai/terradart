@@ -567,6 +567,7 @@ final class ComputeInstanceEncryptionKey {
 @immutable
 final class ComputeInstanceNetworkInterface {
   const ComputeInstanceNetworkInterface({
+    this.enableVpcScopedDns,
     this.igmpQuery,
     this.internalIpv6PrefixLength,
     this.ipv6Address,
@@ -583,6 +584,8 @@ final class ComputeInstanceNetworkInterface {
     this.aliasIpRange,
     this.ipv6AccessConfig,
   });
+
+  final TfArg<bool>? enableVpcScopedDns;
 
   final TfArg<String>? igmpQuery;
 
@@ -616,6 +619,7 @@ final class ComputeInstanceNetworkInterface {
 
   @internal
   Map<String, Object?> encode() => {
+    'enable_vpc_scoped_dns': ?enableVpcScopedDns?.toTfJson(),
     'igmp_query': ?igmpQuery?.toTfJson(),
     'internal_ipv6_prefix_length': ?internalIpv6PrefixLength?.toTfJson(),
     'ipv6_address': ?ipv6Address?.toTfJson(),

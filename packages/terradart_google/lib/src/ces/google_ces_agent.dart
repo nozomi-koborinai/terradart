@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '../ces/google_ces_app.dart' show GoogleCesApp;
 import '../ces/google_ces_toolset.dart' show GoogleCesToolset;
+import '../iam/google_service_account.dart' show GoogleServiceAccount;
 
 /// Sensitive field paths for `google_ces_agent`.
 const Set<String> _googleCesAgentSensitive = <String>{};
@@ -17,6 +18,7 @@ final class CesAgentAfterAgentCallbacks {
   const CesAgentAfterAgentCallbacks({
     this.description,
     this.disabled,
+    this.proactiveExecutionEnabled,
     required this.pythonCode,
   });
 
@@ -24,12 +26,15 @@ final class CesAgentAfterAgentCallbacks {
 
   final TfArg<bool>? disabled;
 
+  final TfArg<bool>? proactiveExecutionEnabled;
+
   final TfArg<String> pythonCode;
 
   @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'disabled': ?disabled?.toTfJson(),
+    'proactive_execution_enabled': ?proactiveExecutionEnabled?.toTfJson(),
     'python_code': pythonCode.toTfJson(),
   };
 }
@@ -41,6 +46,7 @@ final class CesAgentAfterModelCallbacks {
   const CesAgentAfterModelCallbacks({
     this.description,
     this.disabled,
+    this.proactiveExecutionEnabled,
     required this.pythonCode,
   });
 
@@ -48,12 +54,15 @@ final class CesAgentAfterModelCallbacks {
 
   final TfArg<bool>? disabled;
 
+  final TfArg<bool>? proactiveExecutionEnabled;
+
   final TfArg<String> pythonCode;
 
   @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'disabled': ?disabled?.toTfJson(),
+    'proactive_execution_enabled': ?proactiveExecutionEnabled?.toTfJson(),
     'python_code': pythonCode.toTfJson(),
   };
 }
@@ -65,6 +74,7 @@ final class CesAgentAfterToolCallbacks {
   const CesAgentAfterToolCallbacks({
     this.description,
     this.disabled,
+    this.proactiveExecutionEnabled,
     required this.pythonCode,
   });
 
@@ -72,12 +82,15 @@ final class CesAgentAfterToolCallbacks {
 
   final TfArg<bool>? disabled;
 
+  final TfArg<bool>? proactiveExecutionEnabled;
+
   final TfArg<String> pythonCode;
 
   @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'disabled': ?disabled?.toTfJson(),
+    'proactive_execution_enabled': ?proactiveExecutionEnabled?.toTfJson(),
     'python_code': pythonCode.toTfJson(),
   };
 }
@@ -89,6 +102,7 @@ final class CesAgentBeforeAgentCallbacks {
   const CesAgentBeforeAgentCallbacks({
     this.description,
     this.disabled,
+    this.proactiveExecutionEnabled,
     required this.pythonCode,
   });
 
@@ -96,12 +110,15 @@ final class CesAgentBeforeAgentCallbacks {
 
   final TfArg<bool>? disabled;
 
+  final TfArg<bool>? proactiveExecutionEnabled;
+
   final TfArg<String> pythonCode;
 
   @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'disabled': ?disabled?.toTfJson(),
+    'proactive_execution_enabled': ?proactiveExecutionEnabled?.toTfJson(),
     'python_code': pythonCode.toTfJson(),
   };
 }
@@ -113,6 +130,7 @@ final class CesAgentBeforeModelCallbacks {
   const CesAgentBeforeModelCallbacks({
     this.description,
     this.disabled,
+    this.proactiveExecutionEnabled,
     required this.pythonCode,
   });
 
@@ -120,12 +138,15 @@ final class CesAgentBeforeModelCallbacks {
 
   final TfArg<bool>? disabled;
 
+  final TfArg<bool>? proactiveExecutionEnabled;
+
   final TfArg<String> pythonCode;
 
   @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'disabled': ?disabled?.toTfJson(),
+    'proactive_execution_enabled': ?proactiveExecutionEnabled?.toTfJson(),
     'python_code': pythonCode.toTfJson(),
   };
 }
@@ -137,6 +158,7 @@ final class CesAgentBeforeToolCallbacks {
   const CesAgentBeforeToolCallbacks({
     this.description,
     this.disabled,
+    this.proactiveExecutionEnabled,
     required this.pythonCode,
   });
 
@@ -144,12 +166,15 @@ final class CesAgentBeforeToolCallbacks {
 
   final TfArg<bool>? disabled;
 
+  final TfArg<bool>? proactiveExecutionEnabled;
+
   final TfArg<String> pythonCode;
 
   @internal
   Map<String, Object?> encode() => {
     'description': ?description?.toTfJson(),
     'disabled': ?disabled?.toTfJson(),
+    'proactive_execution_enabled': ?proactiveExecutionEnabled?.toTfJson(),
     'python_code': pythonCode.toTfJson(),
   };
 }
@@ -178,6 +203,274 @@ final class CesAgentModelSettings {
   Map<String, Object?> encode() => {
     'model': ?model?.toTfJson(),
     'temperature': ?temperature?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `remote_a2a_agent` block of
+/// `google_ces_agent` (derived from provider schema).
+@immutable
+final class CesAgentRemoteA2aAgent {
+  const CesAgentRemoteA2aAgent({required this.a2aConfig});
+
+  final CesAgentA2aConfig a2aConfig;
+
+  @internal
+  Map<String, Object?> encode() => {'a2a_config': a2aConfig.encode()};
+}
+
+/// Typed helper for the `remote_a2a_agent.a2a_config` block of
+/// `google_ces_agent` (derived from provider schema).
+@immutable
+final class CesAgentA2aConfig {
+  const CesAgentA2aConfig({
+    this.agentRegistry,
+    this.contextId,
+    this.inputVariableMapping,
+    this.outputVariableMapping,
+    this.streamingEnabled,
+    this.agentCard,
+    this.apiAuthentication,
+  });
+
+  final TfArg<String>? agentRegistry;
+
+  final TfArg<String>? contextId;
+
+  final TfArg<Map<String, String>>? inputVariableMapping;
+
+  final TfArg<Map<String, String>>? outputVariableMapping;
+
+  final TfArg<bool>? streamingEnabled;
+
+  final CesAgentCard? agentCard;
+
+  final CesAgentApiAuthentication? apiAuthentication;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'agent_registry': ?agentRegistry?.toTfJson(),
+    'context_id': ?contextId?.toTfJson(),
+    'input_variable_mapping': ?inputVariableMapping?.toTfJson(),
+    'output_variable_mapping': ?outputVariableMapping?.toTfJson(),
+    'streaming_enabled': ?streamingEnabled?.toTfJson(),
+    'agent_card': ?agentCard?.encode(),
+    'api_authentication': ?apiAuthentication?.encode(),
+  };
+}
+
+/// Typed helper for the `remote_a2a_agent.a2a_config.agent_card` block of
+/// `google_ces_agent` (derived from provider schema).
+@immutable
+final class CesAgentCard {
+  const CesAgentCard({
+    required this.description,
+    required this.name,
+    required this.version,
+    required this.skills,
+    required this.supportedInterfaces,
+  });
+
+  final TfArg<String> description;
+
+  final TfArg<String> name;
+
+  final TfArg<String> version;
+
+  final List<CesAgentSkills> skills;
+
+  final List<CesAgentSupportedInterfaces> supportedInterfaces;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'description': description.toTfJson(),
+    'name': name.toTfJson(),
+    'version': version.toTfJson(),
+    'skills': [for (final e in skills) e.encode()],
+    'supported_interfaces': [for (final e in supportedInterfaces) e.encode()],
+  };
+}
+
+/// Typed helper for the `remote_a2a_agent.a2a_config.agent_card.skills` block of
+/// `google_ces_agent` (derived from provider schema).
+@immutable
+final class CesAgentSkills {
+  const CesAgentSkills({
+    required this.description,
+    this.examples,
+    required this.id,
+    this.inputModes,
+    required this.name,
+    this.outputModes,
+    required this.tags,
+  });
+
+  final TfArg<String> description;
+
+  final TfArg<List<String>>? examples;
+
+  final TfArg<String> id;
+
+  final TfArg<List<String>>? inputModes;
+
+  final TfArg<String> name;
+
+  final TfArg<List<String>>? outputModes;
+
+  final TfArg<List<String>> tags;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'description': description.toTfJson(),
+    'examples': ?examples?.toTfJson(),
+    'id': id.toTfJson(),
+    'input_modes': ?inputModes?.toTfJson(),
+    'name': name.toTfJson(),
+    'output_modes': ?outputModes?.toTfJson(),
+    'tags': tags.toTfJson(),
+  };
+}
+
+/// Typed helper for the `remote_a2a_agent.a2a_config.agent_card.supported_interfaces` block of
+/// `google_ces_agent` (derived from provider schema).
+@immutable
+final class CesAgentSupportedInterfaces {
+  const CesAgentSupportedInterfaces({
+    required this.protocolBinding,
+    required this.protocolVersion,
+    this.tenant,
+    required this.url,
+  });
+
+  final TfArg<String> protocolBinding;
+
+  final TfArg<String> protocolVersion;
+
+  final TfArg<String>? tenant;
+
+  final TfArg<String> url;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'protocol_binding': protocolBinding.toTfJson(),
+    'protocol_version': protocolVersion.toTfJson(),
+    'tenant': ?tenant?.toTfJson(),
+    'url': url.toTfJson(),
+  };
+}
+
+/// Typed helper for the `remote_a2a_agent.a2a_config.api_authentication` block of
+/// `google_ces_agent` (derived from provider schema).
+@immutable
+final class CesAgentApiAuthentication {
+  const CesAgentApiAuthentication({
+    this.apiKeyConfig,
+    this.bearerTokenConfig,
+    this.oauthConfig,
+    this.serviceAccountAuthConfig,
+  });
+
+  final CesAgentApiKeyConfig? apiKeyConfig;
+
+  final CesAgentBearerTokenConfig? bearerTokenConfig;
+
+  final CesAgentOauthConfig? oauthConfig;
+
+  final CesAgentServiceAccountAuthConfig? serviceAccountAuthConfig;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'api_key_config': ?apiKeyConfig?.encode(),
+    'bearer_token_config': ?bearerTokenConfig?.encode(),
+    'oauth_config': ?oauthConfig?.encode(),
+    'service_account_auth_config': ?serviceAccountAuthConfig?.encode(),
+  };
+}
+
+/// Typed helper for the `remote_a2a_agent.a2a_config.api_authentication.api_key_config` block of
+/// `google_ces_agent` (derived from provider schema).
+@immutable
+final class CesAgentApiKeyConfig {
+  const CesAgentApiKeyConfig({
+    required this.apiKeySecretVersion,
+    required this.keyName,
+    required this.requestLocation,
+  });
+
+  final TfArg<String> apiKeySecretVersion;
+
+  final TfArg<String> keyName;
+
+  final TfArg<String> requestLocation;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'api_key_secret_version': apiKeySecretVersion.toTfJson(),
+    'key_name': keyName.toTfJson(),
+    'request_location': requestLocation.toTfJson(),
+  };
+}
+
+/// Typed helper for the `remote_a2a_agent.a2a_config.api_authentication.bearer_token_config` block of
+/// `google_ces_agent` (derived from provider schema).
+@immutable
+final class CesAgentBearerTokenConfig {
+  const CesAgentBearerTokenConfig({required this.token});
+
+  final TfArg<String> token;
+
+  @internal
+  Map<String, Object?> encode() => {'token': token.toTfJson()};
+}
+
+/// Typed helper for the `remote_a2a_agent.a2a_config.api_authentication.oauth_config` block of
+/// `google_ces_agent` (derived from provider schema).
+@immutable
+final class CesAgentOauthConfig {
+  const CesAgentOauthConfig({
+    required this.clientId,
+    required this.clientSecretVersion,
+    required this.oauthGrantType,
+    this.scopes,
+    required this.tokenEndpoint,
+  });
+
+  final TfArg<String> clientId;
+
+  final TfArg<String> clientSecretVersion;
+
+  final TfArg<String> oauthGrantType;
+
+  final TfArg<List<String>>? scopes;
+
+  final TfArg<String> tokenEndpoint;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'client_id': clientId.toTfJson(),
+    'client_secret_version': clientSecretVersion.toTfJson(),
+    'oauth_grant_type': oauthGrantType.toTfJson(),
+    'scopes': ?scopes?.toTfJson(),
+    'token_endpoint': tokenEndpoint.toTfJson(),
+  };
+}
+
+/// Typed helper for the `remote_a2a_agent.a2a_config.api_authentication.service_account_auth_config` block of
+/// `google_ces_agent` (derived from provider schema).
+@immutable
+final class CesAgentServiceAccountAuthConfig {
+  const CesAgentServiceAccountAuthConfig({
+    this.scopes,
+    required this.serviceAccount,
+  });
+
+  final TfArg<List<String>>? scopes;
+
+  final RefTo<GoogleServiceAccount> serviceAccount;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'scopes': ?scopes?.toTfJson(),
+    'service_account': serviceAccount.encodeAs('email').toTfJson(),
   };
 }
 

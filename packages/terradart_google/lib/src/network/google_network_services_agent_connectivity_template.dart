@@ -41,6 +41,7 @@ final class NetworkServicesAgentConnectivityTemplateEgressNetworkConfig {
     this.networkAttachment,
     this.vpcEgress,
     this.dnsPeeringConfig,
+    this.tlsConfig,
   });
 
   final TfArg<String>? networkAttachment;
@@ -50,11 +51,14 @@ final class NetworkServicesAgentConnectivityTemplateEgressNetworkConfig {
   final NetworkServicesAgentConnectivityTemplateDnsPeeringConfig?
   dnsPeeringConfig;
 
+  final NetworkServicesAgentConnectivityTemplateTlsConfig? tlsConfig;
+
   @internal
   Map<String, Object?> encode() => {
     'network_attachment': ?networkAttachment?.toTfJson(),
     'vpc_egress': ?vpcEgress?.toTfJson(),
     'dns_peering_config': ?dnsPeeringConfig?.encode(),
+    'tls_config': ?tlsConfig?.encode(),
   };
 }
 
@@ -86,19 +90,69 @@ extension type const NetworkServicesAgentConnectivityTemplateVpcEgress._(
 @immutable
 final class NetworkServicesAgentConnectivityTemplateDnsPeeringConfig {
   const NetworkServicesAgentConnectivityTemplateDnsPeeringConfig({
-    required this.domain,
+    this.domain,
+    this.domains,
     required this.targetNetwork,
   });
 
-  final TfArg<String> domain;
+  final TfArg<String>? domain;
+
+  final TfArg<List<String>>? domains;
 
   final TfArg<String> targetNetwork;
 
   @internal
   Map<String, Object?> encode() => {
-    'domain': domain.toTfJson(),
+    'domain': ?domain?.toTfJson(),
+    'domains': ?domains?.toTfJson(),
     'target_network': targetNetwork.toTfJson(),
   };
+}
+
+/// Typed helper for the `egress_network_config.tls_config` block of
+/// `google_network_services_agent_connectivity_template` (derived from provider schema).
+@immutable
+final class NetworkServicesAgentConnectivityTemplateTlsConfig {
+  const NetworkServicesAgentConnectivityTemplateTlsConfig({
+    required this.additionalRoots,
+    this.trustConfig,
+  });
+
+  final NetworkServicesAgentConnectivityTemplateAdditionalRoots additionalRoots;
+
+  final TfArg<String>? trustConfig;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'additional_roots': additionalRoots.toTfJson(),
+    'trust_config': ?trustConfig?.toTfJson(),
+  };
+}
+
+/// `additional_roots` — derived from the provider schema description.
+extension type const NetworkServicesAgentConnectivityTemplateAdditionalRoots._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkServicesAgentConnectivityTemplateAdditionalRoots.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkServicesAgentConnectivityTemplateAdditionalRoots.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const NetworkServicesAgentConnectivityTemplateAdditionalRoots.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const noAdditionalRoots =
+      NetworkServicesAgentConnectivityTemplateAdditionalRoots._(
+        TfArgLiteral('NO_ADDITIONAL_ROOTS'),
+      );
+  static const publiclyTrustedRoots =
+      NetworkServicesAgentConnectivityTemplateAdditionalRoots._(
+        TfArgLiteral('PUBLICLY_TRUSTED_ROOTS'),
+      );
+
+  static const List<NetworkServicesAgentConnectivityTemplateAdditionalRoots>
+  values = [noAdditionalRoots, publiclyTrustedRoots];
 }
 
 /// Factory wrapper for `google_network_services_agent_connectivity_template`.

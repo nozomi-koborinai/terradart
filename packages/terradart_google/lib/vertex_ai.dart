@@ -267,6 +267,8 @@ export 'src/vertex_ai/google_vertex_ai_reasoning_engine_iam_member.dart'
         VertexAiReasoningEngineIamMemberCondition;
 export 'src/vertex_ai/google_vertex_ai_reasoning_engine_iam_policy.dart'
     show GoogleVertexAiReasoningEngineIamPolicy;
+export 'src/vertex_ai/google_vertex_ai_semantic_governance_policy.dart'
+    show GoogleVertexAiSemanticGovernancePolicy;
 export 'src/vertex_ai/google_vertex_ai_semantic_governance_policy_engine.dart'
     show
         GoogleVertexAiSemanticGovernancePolicyEngine,

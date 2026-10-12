@@ -92,7 +92,7 @@ final class GoogleStorageFtpUser extends Resource {
     required TfArg<String> location,
     required RefTo<GoogleServiceAccount> customerServiceAccount,
     List<StorageFtpUserStorageDirectoryMappings>? storageDirectoryMappings,
-    StorageFtpUserCredentials? userCredentials,
+    List<StorageFtpUserCredentials>? userCredentials,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
@@ -112,7 +112,9 @@ final class GoogleStorageFtpUser extends Resource {
                for (final e in storageDirectoryMappings) e.encode(),
              ]),
            if (userCredentials != null)
-             'user_credentials': TfArg.literal(userCredentials.encode()),
+             'user_credentials': TfArg.literal([
+               for (final e in userCredentials) e.encode(),
+             ]),
            'labels': ?labels,
            'deletion_policy': ?deletionPolicy,
            'project': ?project,
@@ -133,9 +135,15 @@ final class GoogleStorageFtpUser extends Resource {
   TfRef<Map<String, String>> get effectiveLabels =>
       TfRef.attribute<Map<String, String>>(this, 'effective_labels');
 
+  /// Reference to `state` attribute.
+  TfRef<String> get state => TfRef.attribute<String>(this, 'state');
+
   /// Reference to `terraform_labels` attribute.
   TfRef<Map<String, String>> get terraformLabels =>
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
+
+  /// Reference to `username` attribute.
+  TfRef<String> get username => TfRef.attribute<String>(this, 'username');
 
   /// Reference to `customer_service_account` attribute.
   TfRef<String> get customerServiceAccount =>

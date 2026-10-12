@@ -350,6 +350,10 @@ final class GoogleDiscoveryEngineSearchEngine extends Resource {
   /// Reference to `location` attribute.
   TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
+  /// Reference to `procurement_contact_emails` attribute.
+  TfRef<List<String>> get procurementContactEmails =>
+      TfRef.attribute<List<String>>(this, 'procurement_contact_emails');
+
   /// Reference to `project` attribute.
   TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

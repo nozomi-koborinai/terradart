@@ -450,14 +450,18 @@ final class AgenticApplicationsAnalystAgentPersonaSlideExamples {
 @immutable
 final class AgenticApplicationsAnalystAgentPersonaVisualizationOptions {
   const AgenticApplicationsAnalystAgentPersonaVisualizationOptions({
+    this.visualizationMode,
     this.visualizationExamples,
   });
+
+  final TfArg<String>? visualizationMode;
 
   final List<AgenticApplicationsAnalystAgentPersonaVisualizationExamples>?
   visualizationExamples;
 
   @internal
   Map<String, Object?> encode() => {
+    'visualization_mode': ?visualizationMode?.toTfJson(),
     if (visualizationExamples != null)
       'visualization_examples': [
         for (final e in visualizationExamples!) e.encode(),
@@ -621,6 +625,7 @@ final class AgenticApplicationsAnalystAgentPersonaUsda {
 final class AgenticApplicationsAnalystAgentPersonaMcpDataSources {
   const AgenticApplicationsAnalystAgentPersonaMcpDataSources({
     this.apiKey,
+    this.apiKeyHeader,
     this.apiKeyName,
     this.clientId,
     this.clientSecret,
@@ -633,6 +638,8 @@ final class AgenticApplicationsAnalystAgentPersonaMcpDataSources {
   });
 
   final Sensitive<String>? apiKey;
+
+  final TfArg<String>? apiKeyHeader;
 
   final TfArg<String>? apiKeyName;
 
@@ -655,6 +662,7 @@ final class AgenticApplicationsAnalystAgentPersonaMcpDataSources {
   @internal
   Map<String, Object?> encode() => {
     'api_key': ?apiKey?.toTfJson(),
+    'api_key_header': ?apiKeyHeader?.toTfJson(),
     'api_key_name': ?apiKeyName?.toTfJson(),
     'client_id': ?clientId?.toTfJson(),
     'client_secret': ?clientSecret?.toTfJson(),
@@ -808,6 +816,26 @@ final class AgenticApplicationsAnalystAgentPersonaColumns {
     'data_type': dataType.toTfJson(),
     'description': ?description?.toTfJson(),
     'name': name.toTfJson(),
+  };
+}
+
+/// Typed helper for the `web_search_config` block of
+/// `google_agentic_applications_analyst_agent_persona` (derived from provider schema).
+@immutable
+final class AgenticApplicationsAnalystAgentPersonaWebSearchConfig {
+  const AgenticApplicationsAnalystAgentPersonaWebSearchConfig({
+    this.disabled,
+    this.excludedDomains,
+  });
+
+  final TfArg<bool>? disabled;
+
+  final TfArg<List<String>>? excludedDomains;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'disabled': ?disabled?.toTfJson(),
+    'excluded_domains': ?excludedDomains?.toTfJson(),
   };
 }
 
@@ -976,6 +1004,10 @@ final class GoogleAgenticApplicationsAnalystAgentPersona extends Resource {
 
   /// Reference to `location` attribute.
   TfRef<String> get location => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `math_rendering_mode` attribute.
+  TfRef<String> get mathRenderingMode =>
+      TfRef.attribute<String>(this, 'math_rendering_mode');
 
   /// Reference to `model_description` attribute.
   TfRef<String> get modelDescription =>

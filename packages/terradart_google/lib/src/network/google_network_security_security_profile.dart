@@ -28,12 +28,16 @@ extension type const NetworkSecuritySecurityProfileType._(TfArg<String> _)
   static const customIntercept = NetworkSecuritySecurityProfileType._(
     TfArgLiteral('CUSTOM_INTERCEPT'),
   );
+  static const wildfireAnalysis = NetworkSecuritySecurityProfileType._(
+    TfArgLiteral('WILDFIRE_ANALYSIS'),
+  );
 
   static const List<NetworkSecuritySecurityProfileType> values = [
     threatPrevention,
     urlFiltering,
     customMirroring,
     customIntercept,
+    wildfireAnalysis,
   ];
 }
 

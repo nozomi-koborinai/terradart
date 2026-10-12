@@ -284,5 +284,6 @@ export 'src/dialogflow/google_dialogflow_intent.dart'
     show DialogflowIntentWebhookState, GoogleDialogflowIntent;
 export 'src/dialogflow/google_dialogflow_sip_trunk.dart'
     show DialogflowSipTrunkDeletionPolicy, GoogleDialogflowSipTrunk;
+export 'src/dialogflow/google_dialogflow_tool.dart' show GoogleDialogflowTool;
 export 'src/dialogflow/google_dialogflow_version.dart'
     show GoogleDialogflowVersion;

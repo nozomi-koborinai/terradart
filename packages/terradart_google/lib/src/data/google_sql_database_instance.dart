@@ -74,6 +74,10 @@ final class DataGoogleSqlDatabaseInstance extends Data {
   TfRef<List<Map<String, Object?>>> get dnsNames =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'dns_names');
 
+  /// Reference to `encryption_confidential_mode` attribute.
+  TfRef<bool> get encryptionConfidentialMode =>
+      TfRef.attribute<bool>(this, 'encryption_confidential_mode');
+
   /// Reference to `encryption_key_name` attribute.
   TfRef<String> get encryptionKeyName =>
       TfRef.attribute<String>(this, 'encryption_key_name');

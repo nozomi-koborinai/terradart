@@ -523,6 +523,7 @@ final class ComputeInstanceTemplateGuestAccelerator {
 @immutable
 final class ComputeInstanceTemplateNetworkInterface {
   const ComputeInstanceTemplateNetworkInterface({
+    this.enableVpcScopedDns,
     this.igmpQuery,
     this.internalIpv6PrefixLength,
     this.ipv6Address,
@@ -539,6 +540,8 @@ final class ComputeInstanceTemplateNetworkInterface {
     this.aliasIpRange,
     this.ipv6AccessConfig,
   });
+
+  final TfArg<bool>? enableVpcScopedDns;
 
   final TfArg<String>? igmpQuery;
 
@@ -572,6 +575,7 @@ final class ComputeInstanceTemplateNetworkInterface {
 
   @internal
   Map<String, Object?> encode() => {
+    'enable_vpc_scoped_dns': ?enableVpcScopedDns?.toTfJson(),
     'igmp_query': ?igmpQuery?.toTfJson(),
     'internal_ipv6_prefix_length': ?internalIpv6PrefixLength?.toTfJson(),
     'ipv6_address': ?ipv6Address?.toTfJson(),

@@ -68,6 +68,9 @@ final class GoogleParameterManagerRegionalParameterVersion extends Resource {
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
+  /// Reference to `data_crc32c` attribute.
+  TfRef<String> get dataCrc32c => TfRef.attribute<String>(this, 'data_crc32c');
+
   /// Reference to `deletion_policy` attribute.
   TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');

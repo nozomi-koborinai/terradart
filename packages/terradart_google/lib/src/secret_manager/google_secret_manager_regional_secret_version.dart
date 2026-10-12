@@ -20,7 +20,7 @@ final class GoogleSecretManagerRegionalSecretVersion extends Resource {
   GoogleSecretManagerRegionalSecretVersion(
     super.localName, {
     required RefTo<GoogleSecretManagerRegionalSecret> secret,
-    required Sensitive<String> secretData,
+    Sensitive<String>? secretData,
     TfArg<bool>? enabled,
     TfArg<bool>? isSecretDataBase64,
     TfArg<String>? deletionPolicy,
@@ -32,7 +32,7 @@ final class GoogleSecretManagerRegionalSecretVersion extends Resource {
          terraformType: tfType,
          argMap: {
            'secret': secret.encodeAs('name'),
-           'secret_data': secretData,
+           'secret_data': ?secretData,
            'enabled': ?enabled,
            'is_secret_data_base64': ?isSecretDataBase64,
            'deletion_policy': ?deletionPolicy,
@@ -89,4 +89,8 @@ final class GoogleSecretManagerRegionalSecretVersion extends Resource {
 
   /// Reference to `secret_data` attribute.
   TfRef<String> get secretData => TfRef.attribute<String>(this, 'secret_data');
+
+  /// Reference to `secret_data_wo_version` attribute.
+  TfRef<String> get secretDataWoVersion =>
+      TfRef.attribute<String>(this, 'secret_data_wo_version');
 }
