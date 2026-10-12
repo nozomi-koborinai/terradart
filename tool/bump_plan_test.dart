@@ -24,6 +24,21 @@ void main() {
     expect(days, hasLength(lanes.length));
   });
 
+  test(
+    'schema-bump commits with git add -A and does not name .schema-bump',
+    () {
+      // .schema-bump/ is gitignored. An exclude pathspec that names it makes
+      // `git add` exit 1, which killed every bump that had something to commit
+      // (runs 26–28, and the commit step of any later run).
+      final workflow = File(
+        '.github/workflows/schema-bump.yml',
+      ).readAsStringSync();
+      expect(workflow, contains('\n          git add -A\n'));
+      expect(workflow, isNot(contains(':(exclude).schema-bump')));
+      expect(workflow, isNot(contains('git add -f')));
+    },
+  );
+
   test("schema-bump.yml schedules exactly the lanes' crons", () {
     final workflow = File(
       '.github/workflows/schema-bump.yml',

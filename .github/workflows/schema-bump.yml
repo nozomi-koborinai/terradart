@@ -491,9 +491,12 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git switch -c "$branch"
           # Everything the bump wrote: fixtures, overrides, wrappers,
-          # manifests, ledgers, docs, examples. The drift report is the PR
-          # body, and tf-out/ synth output is gitignored.
-          git add -A -- . ':(exclude).schema-bump'
+          # manifests, ledgers, docs, examples. git add -A already skips
+          # gitignored paths, including .schema-bump/ (the drift report, which
+          # is the PR body) and examples/*/tf-out/. Naming .schema-bump in an
+          # exclude pathspec makes git treat that ignored directory as an
+          # explicit path and exit 1.
+          git add -A
           # --allow-empty: a new-major week with nothing to regenerate still
           # opens a PR so the drift report's new-major banner reaches a human.
           git commit --allow-empty -m "chore(schema): weekly $LANE bump $today"
