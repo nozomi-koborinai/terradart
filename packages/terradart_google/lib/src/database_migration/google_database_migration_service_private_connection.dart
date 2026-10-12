@@ -24,6 +24,20 @@ final class DatabaseMigrationServicePrivateConnectionPscInterfaceConfig {
   };
 }
 
+/// Typed helper for the `reserved_public_ip_config` block of
+/// `google_database_migration_service_private_connection` (derived from provider schema).
+@immutable
+final class DatabaseMigrationServicePrivateConnectionReservedPublicIpConfig {
+  const DatabaseMigrationServicePrivateConnectionReservedPublicIpConfig({
+    this.natIpsCount,
+  });
+
+  final TfArg<num>? natIpsCount;
+
+  @internal
+  Map<String, Object?> encode() => {'nat_ips_count': ?natIpsCount?.toTfJson()};
+}
+
 /// Typed helper for the `vpc_peering_config` block of
 /// `google_database_migration_service_private_connection` (derived from provider schema).
 @immutable

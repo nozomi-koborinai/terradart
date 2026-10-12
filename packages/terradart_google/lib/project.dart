@@ -31,6 +31,8 @@ export 'src/project/google_project_usage_export_bucket.dart'
     show GoogleProjectUsageExportBucket;
 export 'src/project/google_resource_manager_capability.dart'
     show GoogleResourceManagerCapability;
+export 'src/project/google_resource_manager_capability_config.dart'
+    show GoogleResourceManagerCapabilityConfig;
 export 'src/project/google_resource_manager_lien.dart'
     show GoogleResourceManagerLien;
 export 'src/project/apis.dart' show Apis, StackApis;

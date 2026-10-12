@@ -28,6 +28,8 @@ export 'src/data/google_iam_workload_identity_pool.dart'
     show DataGoogleIamWorkloadIdentityPool;
 export 'src/data/google_iam_workload_identity_pool_iam_policy.dart'
     show DataGoogleIamWorkloadIdentityPoolIamPolicy;
+export 'src/data/google_iam_workload_identity_pool_jwks.dart'
+    show DataGoogleIamWorkloadIdentityPoolJwks;
 export 'src/data/google_iam_workload_identity_pool_openid_config.dart'
     show DataGoogleIamWorkloadIdentityPoolOpenidConfig;
 export 'src/data/google_iam_workload_identity_pool_provider.dart'
@@ -72,7 +74,10 @@ export 'src/iam/google_iam_folders_policy_binding.dart'
     show
         GoogleIamFoldersPolicyBinding,
         IamFoldersPolicyBindingCondition,
-        IamFoldersPolicyBindingTarget;
+        IamFoldersPolicyBindingTarget,
+        IamFoldersPolicyBindingTargetPrincipalSetOrResource,
+        IamFoldersPolicyBindingTargetPrincipalSetOrResourceChoice,
+        IamFoldersPolicyBindingTargetPrincipalSetOrResourcePrincipalSet;
 export 'src/iam/google_iam_oauth_client.dart' show GoogleIamOauthClient;
 export 'src/iam/google_iam_oauth_client_credential.dart'
     show GoogleIamOauthClientCredential;
@@ -88,7 +93,10 @@ export 'src/iam/google_iam_organizations_policy_binding.dart'
     show
         GoogleIamOrganizationsPolicyBinding,
         IamOrganizationsPolicyBindingCondition,
-        IamOrganizationsPolicyBindingTarget;
+        IamOrganizationsPolicyBindingTarget,
+        IamOrganizationsPolicyBindingTargetPrincipalSetOrResource,
+        IamOrganizationsPolicyBindingTargetPrincipalSetOrResourceChoice,
+        IamOrganizationsPolicyBindingTargetPrincipalSetOrResourcePrincipalSet;
 export 'src/iam/google_iam_principal_access_boundary_policy.dart'
     show
         GoogleIamPrincipalAccessBoundaryPolicy,
@@ -106,7 +114,10 @@ export 'src/iam/google_iam_projects_policy_binding.dart'
     show
         GoogleIamProjectsPolicyBinding,
         IamProjectsPolicyBindingCondition,
-        IamProjectsPolicyBindingTarget;
+        IamProjectsPolicyBindingTarget,
+        IamProjectsPolicyBindingTargetPrincipalSetOrResource,
+        IamProjectsPolicyBindingTargetPrincipalSetOrResourceChoice,
+        IamProjectsPolicyBindingTargetPrincipalSetOrResourcePrincipalSet;
 export 'src/iam/google_iam_workforce_pool.dart'
     show
         GoogleIamWorkforcePool,

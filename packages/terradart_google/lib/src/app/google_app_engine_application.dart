@@ -75,20 +75,28 @@ final class AppEngineApplicationIap {
   const AppEngineApplicationIap({
     this.enabled,
     required this.oauth2ClientId,
-    required this.oauth2ClientSecret,
+    this.oauth2ClientSecret,
+    this.oauth2ClientSecretWo,
+    this.oauth2ClientSecretWoVersion,
   });
 
   final TfArg<bool>? enabled;
 
   final TfArg<String> oauth2ClientId;
 
-  final Sensitive<String> oauth2ClientSecret;
+  final Sensitive<String>? oauth2ClientSecret;
+
+  final TfArg<String>? oauth2ClientSecretWo;
+
+  final TfArg<String>? oauth2ClientSecretWoVersion;
 
   @internal
   Map<String, Object?> encode() => {
     'enabled': ?enabled?.toTfJson(),
     'oauth2_client_id': oauth2ClientId.toTfJson(),
-    'oauth2_client_secret': oauth2ClientSecret.toTfJson(),
+    'oauth2_client_secret': ?oauth2ClientSecret?.toTfJson(),
+    'oauth2_client_secret_wo': ?oauth2ClientSecretWo?.toTfJson(),
+    'oauth2_client_secret_wo_version': ?oauth2ClientSecretWoVersion?.toTfJson(),
   };
 }
 

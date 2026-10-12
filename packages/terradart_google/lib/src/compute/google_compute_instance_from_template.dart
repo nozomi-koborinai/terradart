@@ -358,6 +358,7 @@ final class ComputeInstanceFromTemplateInstanceEncryptionKey {
 @immutable
 final class ComputeInstanceFromTemplateNetworkInterface {
   const ComputeInstanceFromTemplateNetworkInterface({
+    this.enableVpcScopedDns,
     this.igmpQuery,
     this.internalIpv6PrefixLength,
     this.ipv6Address,
@@ -374,6 +375,8 @@ final class ComputeInstanceFromTemplateNetworkInterface {
     this.aliasIpRange,
     this.ipv6AccessConfig,
   });
+
+  final TfArg<bool>? enableVpcScopedDns;
 
   final TfArg<String>? igmpQuery;
 
@@ -407,6 +410,7 @@ final class ComputeInstanceFromTemplateNetworkInterface {
 
   @internal
   Map<String, Object?> encode() => {
+    'enable_vpc_scoped_dns': ?enableVpcScopedDns?.toTfJson(),
     'igmp_query': ?igmpQuery?.toTfJson(),
     'internal_ipv6_prefix_length': ?internalIpv6PrefixLength?.toTfJson(),
     'ipv6_address': ?ipv6Address?.toTfJson(),

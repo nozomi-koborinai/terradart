@@ -1161,11 +1161,14 @@ final class ComputeRegionBackendServiceStrongSessionAffinityCookie {
 final class ComputeRegionBackendServiceTlsSettings {
   const ComputeRegionBackendServiceTlsSettings({
     this.authenticationConfig,
+    this.identity,
     this.sni,
     this.subjectAltNames,
   });
 
   final TfArg<String>? authenticationConfig;
+
+  final TfArg<String>? identity;
 
   final TfArg<String>? sni;
 
@@ -1174,6 +1177,7 @@ final class ComputeRegionBackendServiceTlsSettings {
   @internal
   Map<String, Object?> encode() => {
     'authentication_config': ?authenticationConfig?.toTfJson(),
+    'identity': ?identity?.toTfJson(),
     'sni': ?sni?.toTfJson(),
     if (subjectAltNames != null)
       'subject_alt_names': [for (final e in subjectAltNames!) e.encode()],
@@ -1494,6 +1498,10 @@ final class GoogleComputeRegionBackendService extends Resource {
   /// Reference to `security_policy` attribute.
   TfRef<String> get securityPolicy =>
       TfRef.attribute<String>(this, 'security_policy');
+
+  /// Reference to `service_lb_policy` attribute.
+  TfRef<String> get serviceLbPolicy =>
+      TfRef.attribute<String>(this, 'service_lb_policy');
 
   /// Reference to `session_affinity` attribute.
   TfRef<String> get sessionAffinity =>

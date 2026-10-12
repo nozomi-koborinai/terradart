@@ -2851,6 +2851,12 @@ files:
     upstream: mmv1/products/vertexai/EvaluationMetric.yaml
   google_firestore_change_stream:
     upstream: mmv1/products/firestore/ChangeStream.yaml
+  google_dialogflow_tool:
+    upstream: mmv1/products/dialogflow/Tool.yaml
+  google_resource_manager_capability_config:
+    upstream: mmv1/products/resourcemanagerv3/CapabilityConfig.yaml
+  google_vertex_ai_semantic_governance_policy:
+    upstream: mmv1/products/vertexai/SemanticGovernancePolicy.yaml
   data_google_access_approval_folder_service_account:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
   data_google_access_approval_organization_service_account:
@@ -3391,6 +3397,8 @@ files:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
   data_google_iam_workload_identity_pool_iam_policy:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_iam_workload_identity_pool_jwks:
+    upstream: null  # data source; no mmv1 YAML (schema bump)
   data_google_iam_workload_identity_pool_openid_config:
     upstream: null  # data source; no mmv1 YAML (schema bump)
   data_google_iam_workload_identity_pool_provider:
@@ -3509,6 +3517,8 @@ files:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
   data_google_network_security_address_groups:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_network_services_gateway:
+    upstream: null  # data source; no mmv1 YAML (schema bump)
   data_google_observability_folder_settings:
     upstream: null  # data source; no mmv1 YAML (schema bump)
   data_google_observability_organization_settings:

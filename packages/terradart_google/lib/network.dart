@@ -27,6 +27,8 @@ export 'src/data/google_network_security_address_group_iam_policy.dart'
     show DataGoogleNetworkSecurityAddressGroupIamPolicy;
 export 'src/data/google_network_security_address_groups.dart'
     show DataGoogleNetworkSecurityAddressGroups;
+export 'src/data/google_network_services_gateway.dart'
+    show DataGoogleNetworkServicesGateway;
 export 'src/network/google_network_connectivity_destination.dart'
     show
         GoogleNetworkConnectivityDestination,
@@ -302,8 +304,10 @@ export 'src/network/google_network_services_agent_connectivity_template.dart'
     show
         GoogleNetworkServicesAgentConnectivityTemplate,
         NetworkServicesAgentConnectivityTemplateAccessPath,
+        NetworkServicesAgentConnectivityTemplateAdditionalRoots,
         NetworkServicesAgentConnectivityTemplateDnsPeeringConfig,
         NetworkServicesAgentConnectivityTemplateEgressNetworkConfig,
+        NetworkServicesAgentConnectivityTemplateTlsConfig,
         NetworkServicesAgentConnectivityTemplateVpcEgress;
 export 'src/network/google_network_services_agent_gateway.dart'
     show

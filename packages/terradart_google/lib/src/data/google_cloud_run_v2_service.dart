@@ -156,6 +156,9 @@ final class DataGoogleCloudRunV2Service extends Data {
   TfRef<List<Map<String, Object?>>> get scaling =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'scaling');
 
+  /// Reference to `ssh_enabled` attribute.
+  TfRef<bool> get sshEnabled => TfRef.attribute<bool>(this, 'ssh_enabled');
+
   /// Reference to `tags` attribute.
   TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');

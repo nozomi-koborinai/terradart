@@ -166,6 +166,10 @@ final class GoogleComputeServiceAttachment extends Resource {
   TfRef<bool> get enableProxyProtocol =>
       TfRef.attribute<bool>(this, 'enable_proxy_protocol');
 
+  /// Reference to `nat_ips_per_endpoint` attribute.
+  TfRef<num> get natIpsPerEndpoint =>
+      TfRef.attribute<num>(this, 'nat_ips_per_endpoint');
+
   /// Reference to `nat_subnets` attribute.
   TfRef<List<String>> get natSubnets =>
       TfRef.attribute<List<String>>(this, 'nat_subnets');

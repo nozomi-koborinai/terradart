@@ -12127,6 +12127,13 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       className: 'ComputeInstanceFromMachineImageNetworkInterface',
       slots: <MigrateSlot>[
         MigrateSlot(
+          tfName: 'enable_vpc_scoped_dns',
+          dartName: 'enableVpcScopedDns',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
           tfName: 'igmp_query',
           dartName: 'igmpQuery',
           kind: MigrateSlotKind.scalar,

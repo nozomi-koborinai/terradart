@@ -199,8 +199,11 @@ final class DataLossPreventionContentPolicyCustomInfoTypes {
   const DataLossPreventionContentPolicyCustomInfoTypes({
     this.exclusionType,
     this.likelihood,
+    this.detectionRules,
     this.dictionary,
+    this.fileLabelInfoType,
     required this.infoType,
+    this.metadataKeyValueExpression,
     this.regex,
     this.sensitivityScore,
     this.storedType,
@@ -211,9 +214,16 @@ final class DataLossPreventionContentPolicyCustomInfoTypes {
 
   final DataLossPreventionContentPolicyLikelihood? likelihood;
 
+  final List<DataLossPreventionContentPolicyDetectionRules>? detectionRules;
+
   final DataLossPreventionContentPolicyDictionary? dictionary;
 
-  final DataLossPreventionContentPolicyCustomInfoTypesInfoType infoType;
+  final DataLossPreventionContentPolicyFileLabelInfoType? fileLabelInfoType;
+
+  final DataLossPreventionContentPolicyInfoType infoType;
+
+  final DataLossPreventionContentPolicyMetadataKeyValueExpression?
+  metadataKeyValueExpression;
 
   final DataLossPreventionContentPolicyRegex? regex;
 
@@ -227,8 +237,12 @@ final class DataLossPreventionContentPolicyCustomInfoTypes {
   Map<String, Object?> encode() => {
     'exclusion_type': ?exclusionType?.toTfJson(),
     'likelihood': ?likelihood?.toTfJson(),
+    if (detectionRules != null)
+      'detection_rules': [for (final e in detectionRules!) e.encode()],
     'dictionary': ?dictionary?.encode(),
+    'file_label_info_type': ?fileLabelInfoType?.encode(),
     'info_type': infoType.encode(),
+    'metadata_key_value_expression': ?metadataKeyValueExpression?.encode(),
     'regex': ?regex?.encode(),
     'sensitivity_score': ?sensitivityScore?.encode(),
     'stored_type': ?storedType?.encode(),
@@ -270,6 +284,143 @@ extension type const DataLossPreventionContentPolicyLikelihood._(
     likely,
     veryLikely,
   ];
+}
+
+/// Typed helper for the `inspect_config.custom_info_types.detection_rules` block of
+/// `google_data_loss_prevention_content_policy` (derived from provider schema).
+@immutable
+final class DataLossPreventionContentPolicyDetectionRules {
+  const DataLossPreventionContentPolicyDetectionRules({this.hotwordRule});
+
+  final DataLossPreventionContentPolicyHotwordRule? hotwordRule;
+
+  @internal
+  Map<String, Object?> encode() => {'hotword_rule': ?hotwordRule?.encode()};
+}
+
+/// Typed helper for the `inspect_config.custom_info_types.detection_rules.hotword_rule` block of
+/// `google_data_loss_prevention_content_policy` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
+@immutable
+final class DataLossPreventionContentPolicyHotwordRule {
+  const DataLossPreventionContentPolicyHotwordRule({
+    required this.hotwordRegex,
+    required this.likelihoodAdjustment,
+    required this.proximity,
+  });
+
+  final DataLossPreventionContentPolicyHotwordRegex hotwordRegex;
+
+  final DataLossPreventionContentPolicyHotwordRuleLikelihoodAdjustment
+  likelihoodAdjustment;
+
+  final DataLossPreventionContentPolicyProximity proximity;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'hotword_regex': hotwordRegex.encode(),
+    'likelihood_adjustment': likelihoodAdjustment.encode(),
+    'proximity': proximity.encode(),
+  };
+}
+
+/// Typed helper for the `inspect_config.custom_info_types.detection_rules.hotword_rule.hotword_regex` block of
+/// `google_data_loss_prevention_content_policy` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
+@immutable
+final class DataLossPreventionContentPolicyHotwordRegex {
+  const DataLossPreventionContentPolicyHotwordRegex({
+    this.groupIndexes,
+    required this.pattern,
+  });
+
+  final TfArg<List<num>>? groupIndexes;
+
+  final TfArg<String> pattern;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'group_indexes': ?groupIndexes?.toTfJson(),
+    'pattern': pattern.toTfJson(),
+  };
+}
+
+/// Typed helper for the `inspect_config.custom_info_types.detection_rules.hotword_rule.likelihood_adjustment` block of
+/// `google_data_loss_prevention_content_policy` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
+@immutable
+final class DataLossPreventionContentPolicyHotwordRuleLikelihoodAdjustment {
+  const DataLossPreventionContentPolicyHotwordRuleLikelihoodAdjustment({
+    this.fixedLikelihood,
+    this.relativeLikelihood,
+  });
+
+  final DataLossPreventionContentPolicyFixedLikelihood? fixedLikelihood;
+
+  final TfArg<num>? relativeLikelihood;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'fixed_likelihood': ?fixedLikelihood?.toTfJson(),
+    'relative_likelihood': ?relativeLikelihood?.toTfJson(),
+  };
+}
+
+/// `fixed_likelihood` — derived from the provider schema description.
+extension type const DataLossPreventionContentPolicyFixedLikelihood._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataLossPreventionContentPolicyFixedLikelihood.variable(String name)
+    : this._(TfArg.variable(name));
+  DataLossPreventionContentPolicyFixedLikelihood.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataLossPreventionContentPolicyFixedLikelihood.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const veryUnlikely = DataLossPreventionContentPolicyFixedLikelihood._(
+    TfArgLiteral('VERY_UNLIKELY'),
+  );
+  static const unlikely = DataLossPreventionContentPolicyFixedLikelihood._(
+    TfArgLiteral('UNLIKELY'),
+  );
+  static const possible = DataLossPreventionContentPolicyFixedLikelihood._(
+    TfArgLiteral('POSSIBLE'),
+  );
+  static const likely = DataLossPreventionContentPolicyFixedLikelihood._(
+    TfArgLiteral('LIKELY'),
+  );
+  static const veryLikely = DataLossPreventionContentPolicyFixedLikelihood._(
+    TfArgLiteral('VERY_LIKELY'),
+  );
+
+  static const List<DataLossPreventionContentPolicyFixedLikelihood> values = [
+    veryUnlikely,
+    unlikely,
+    possible,
+    likely,
+    veryLikely,
+  ];
+}
+
+/// Typed helper for the `inspect_config.custom_info_types.detection_rules.hotword_rule.proximity` block of
+/// `google_data_loss_prevention_content_policy` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
+@immutable
+final class DataLossPreventionContentPolicyProximity {
+  const DataLossPreventionContentPolicyProximity({
+    this.windowAfter,
+    this.windowBefore,
+  });
+
+  final TfArg<num>? windowAfter;
+
+  final TfArg<num>? windowBefore;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'window_after': ?windowAfter?.toTfJson(),
+    'window_before': ?windowBefore?.toTfJson(),
+  };
 }
 
 /// Typed helper for the `inspect_config.custom_info_types.dictionary` block of
@@ -319,12 +470,88 @@ final class DataLossPreventionContentPolicyWordList {
   Map<String, Object?> encode() => {'words': words.toTfJson()};
 }
 
+/// Typed helper for the `inspect_config.custom_info_types.file_label_info_type` block of
+/// `google_data_loss_prevention_content_policy` (derived from provider schema).
+@immutable
+final class DataLossPreventionContentPolicyFileLabelInfoType {
+  const DataLossPreventionContentPolicyFileLabelInfoType({
+    this.googleDriveLabel,
+    this.sensitivityLabel,
+  });
+
+  final DataLossPreventionContentPolicyGoogleDriveLabel? googleDriveLabel;
+
+  final DataLossPreventionContentPolicySensitivityLabel? sensitivityLabel;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'google_drive_label': ?googleDriveLabel?.encode(),
+    'sensitivity_label': ?sensitivityLabel?.encode(),
+  };
+}
+
+/// Typed helper for the `inspect_config.custom_info_types.file_label_info_type.google_drive_label` block of
+/// `google_data_loss_prevention_content_policy` (derived from provider schema).
+@immutable
+final class DataLossPreventionContentPolicyGoogleDriveLabel {
+  const DataLossPreventionContentPolicyGoogleDriveLabel({
+    required this.labelId,
+    this.labelFieldsToMatch,
+  });
+
+  final TfArg<String> labelId;
+
+  final List<DataLossPreventionContentPolicyLabelFieldsToMatch>?
+  labelFieldsToMatch;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'label_id': labelId.toTfJson(),
+    if (labelFieldsToMatch != null)
+      'label_fields_to_match': [
+        for (final e in labelFieldsToMatch!) e.encode(),
+      ],
+  };
+}
+
+/// Typed helper for the `inspect_config.custom_info_types.file_label_info_type.google_drive_label.label_fields_to_match` block of
+/// `google_data_loss_prevention_content_policy` (derived from provider schema).
+@immutable
+final class DataLossPreventionContentPolicyLabelFieldsToMatch {
+  const DataLossPreventionContentPolicyLabelFieldsToMatch({
+    required this.id,
+    required this.value,
+  });
+
+  final TfArg<String> id;
+
+  final TfArg<String> value;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'id': id.toTfJson(),
+    'value': value.toTfJson(),
+  };
+}
+
+/// Typed helper for the `inspect_config.custom_info_types.file_label_info_type.sensitivity_label` block of
+/// `google_data_loss_prevention_content_policy` (derived from provider schema).
+@immutable
+final class DataLossPreventionContentPolicySensitivityLabel {
+  const DataLossPreventionContentPolicySensitivityLabel({required this.guid});
+
+  final TfArg<String> guid;
+
+  @internal
+  Map<String, Object?> encode() => {'guid': guid.toTfJson()};
+}
+
 /// Typed helper for the `inspect_config.custom_info_types.info_type` block of
 /// `google_data_loss_prevention_content_policy` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionContentPolicyCustomInfoTypesInfoType {
-  const DataLossPreventionContentPolicyCustomInfoTypesInfoType({
+final class DataLossPreventionContentPolicyInfoType {
+  const DataLossPreventionContentPolicyInfoType({
     required this.name,
     this.version,
     this.sensitivityScore,
@@ -382,6 +609,26 @@ extension type const DataLossPreventionContentPolicyScore._(TfArg<String> _)
     sensitivityModerate,
     sensitivityHigh,
   ];
+}
+
+/// Typed helper for the `inspect_config.custom_info_types.metadata_key_value_expression` block of
+/// `google_data_loss_prevention_content_policy` (derived from provider schema).
+@immutable
+final class DataLossPreventionContentPolicyMetadataKeyValueExpression {
+  const DataLossPreventionContentPolicyMetadataKeyValueExpression({
+    required this.keyRegex,
+    required this.valueRegex,
+  });
+
+  final TfArg<String> keyRegex;
+
+  final TfArg<String> valueRegex;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'key_regex': keyRegex.toTfJson(),
+    'value_regex': valueRegex.toTfJson(),
+  };
 }
 
 /// Typed helper for the `inspect_config.custom_info_types.regex` block of
@@ -491,7 +738,7 @@ final class DataLossPreventionContentPolicyMaxFindingsPerInfoType {
 
   final TfArg<num> maxFindings;
 
-  final DataLossPreventionContentPolicyCustomInfoTypesInfoType? infoType;
+  final DataLossPreventionContentPolicyInfoType? infoType;
 
   @internal
   Map<String, Object?> encode() => {
@@ -511,33 +758,12 @@ final class DataLossPreventionContentPolicyMinLikelihoodPerInfoType {
 
   final DataLossPreventionContentPolicyMinLikelihood minLikelihood;
 
-  final DataLossPreventionContentPolicyMinLikelihoodPerInfoTypeInfoType?
-  infoType;
+  final DataLossPreventionContentPolicyInfoType? infoType;
 
   @internal
   Map<String, Object?> encode() => {
     'min_likelihood': minLikelihood.toTfJson(),
     'info_type': ?infoType?.encode(),
-  };
-}
-
-/// Typed helper for the `inspect_config.min_likelihood_per_info_type.info_type` block of
-/// `google_data_loss_prevention_content_policy` (derived from provider schema).
-@immutable
-final class DataLossPreventionContentPolicyMinLikelihoodPerInfoTypeInfoType {
-  const DataLossPreventionContentPolicyMinLikelihoodPerInfoTypeInfoType({
-    required this.name,
-    this.version,
-  });
-
-  final TfArg<String> name;
-
-  final TfArg<String>? version;
-
-  @internal
-  Map<String, Object?> encode() => {
-    'name': name.toTfJson(),
-    'version': ?version?.toTfJson(),
   };
 }
 
@@ -566,9 +792,12 @@ final class DataLossPreventionContentPolicyRuleSet {
 @immutable
 final class DataLossPreventionContentPolicyRuleSetRules {
   const DataLossPreventionContentPolicyRuleSetRules({
+    this.adjustmentRule,
     this.exclusionRule,
     this.hotwordRule,
   });
+
+  final DataLossPreventionContentPolicyAdjustmentRule? adjustmentRule;
 
   final DataLossPreventionContentPolicyExclusionRule? exclusionRule;
 
@@ -576,8 +805,197 @@ final class DataLossPreventionContentPolicyRuleSetRules {
 
   @internal
   Map<String, Object?> encode() => {
+    'adjustment_rule': ?adjustmentRule?.encode(),
     'exclusion_rule': ?exclusionRule?.encode(),
     'hotword_rule': ?hotwordRule?.encode(),
+  };
+}
+
+/// Typed helper for the `inspect_config.rule_set.rules.adjustment_rule` block of
+/// `google_data_loss_prevention_content_policy` (derived from provider schema).
+@immutable
+final class DataLossPreventionContentPolicyAdjustmentRule {
+  const DataLossPreventionContentPolicyAdjustmentRule({
+    this.adjustByImageFindings,
+    this.adjustByMatchingInfoTypes,
+    required this.likelihoodAdjustment,
+  });
+
+  final DataLossPreventionContentPolicyAdjustByImageFindings?
+  adjustByImageFindings;
+
+  final DataLossPreventionContentPolicyAdjustByMatchingInfoTypes?
+  adjustByMatchingInfoTypes;
+
+  final DataLossPreventionContentPolicyAdjustmentRuleLikelihoodAdjustment
+  likelihoodAdjustment;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'adjust_by_image_findings': ?adjustByImageFindings?.encode(),
+    'adjust_by_matching_info_types': ?adjustByMatchingInfoTypes?.encode(),
+    'likelihood_adjustment': likelihoodAdjustment.encode(),
+  };
+}
+
+/// Typed helper for the `inspect_config.rule_set.rules.adjustment_rule.adjust_by_image_findings` block of
+/// `google_data_loss_prevention_content_policy` (derived from provider schema).
+@immutable
+final class DataLossPreventionContentPolicyAdjustByImageFindings {
+  const DataLossPreventionContentPolicyAdjustByImageFindings({
+    required this.minLikelihood,
+    this.imageContainmentType,
+    required this.infoTypes,
+  });
+
+  final DataLossPreventionContentPolicyMinLikelihood minLikelihood;
+
+  final DataLossPreventionContentPolicyImageContainmentType?
+  imageContainmentType;
+
+  final List<DataLossPreventionContentPolicyInfoTypes> infoTypes;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'min_likelihood': minLikelihood.toTfJson(),
+    'image_containment_type': ?imageContainmentType?.encode(),
+    'info_types': [for (final e in infoTypes) e.encode()],
+  };
+}
+
+/// Typed helper for the `inspect_config.rule_set.rules.adjustment_rule.adjust_by_image_findings.image_containment_type` block of
+/// `google_data_loss_prevention_content_policy` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
+@immutable
+final class DataLossPreventionContentPolicyImageContainmentType {
+  const DataLossPreventionContentPolicyImageContainmentType({
+    this.encloses,
+    this.fullyInside,
+    this.overlaps,
+  });
+
+  final DataLossPreventionContentPolicyEncloses? encloses;
+
+  final DataLossPreventionContentPolicyFullyInside? fullyInside;
+
+  final DataLossPreventionContentPolicyOverlaps? overlaps;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'encloses': ?encloses?.encode(),
+    'fully_inside': ?fullyInside?.encode(),
+    'overlaps': ?overlaps?.encode(),
+  };
+}
+
+/// Typed helper for the `inspect_config.rule_set.rules.adjustment_rule.adjust_by_image_findings.image_containment_type.encloses` block of
+/// `google_data_loss_prevention_content_policy` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
+@immutable
+final class DataLossPreventionContentPolicyEncloses {
+  const DataLossPreventionContentPolicyEncloses();
+
+  @internal
+  Map<String, Object?> encode() => {};
+}
+
+/// Typed helper for the `inspect_config.rule_set.rules.adjustment_rule.adjust_by_image_findings.image_containment_type.fully_inside` block of
+/// `google_data_loss_prevention_content_policy` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
+@immutable
+final class DataLossPreventionContentPolicyFullyInside {
+  const DataLossPreventionContentPolicyFullyInside();
+
+  @internal
+  Map<String, Object?> encode() => {};
+}
+
+/// Typed helper for the `inspect_config.rule_set.rules.adjustment_rule.adjust_by_image_findings.image_containment_type.overlaps` block of
+/// `google_data_loss_prevention_content_policy` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
+@immutable
+final class DataLossPreventionContentPolicyOverlaps {
+  const DataLossPreventionContentPolicyOverlaps();
+
+  @internal
+  Map<String, Object?> encode() => {};
+}
+
+/// Typed helper for the `inspect_config.rule_set.rules.adjustment_rule.adjust_by_matching_info_types` block of
+/// `google_data_loss_prevention_content_policy` (derived from provider schema).
+@immutable
+final class DataLossPreventionContentPolicyAdjustByMatchingInfoTypes {
+  const DataLossPreventionContentPolicyAdjustByMatchingInfoTypes({
+    required this.matchingType,
+    required this.minLikelihood,
+    required this.infoTypes,
+  });
+
+  final DataLossPreventionContentPolicyAdjustByMatchingInfoTypesMatchingType
+  matchingType;
+
+  final DataLossPreventionContentPolicyMinLikelihood minLikelihood;
+
+  final List<DataLossPreventionContentPolicyInfoTypes> infoTypes;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'matching_type': matchingType.toTfJson(),
+    'min_likelihood': minLikelihood.toTfJson(),
+    'info_types': [for (final e in infoTypes) e.encode()],
+  };
+}
+
+/// `matching_type` — derived from the provider schema description.
+extension type const DataLossPreventionContentPolicyAdjustByMatchingInfoTypesMatchingType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataLossPreventionContentPolicyAdjustByMatchingInfoTypesMatchingType.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  DataLossPreventionContentPolicyAdjustByMatchingInfoTypesMatchingType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const DataLossPreventionContentPolicyAdjustByMatchingInfoTypesMatchingType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const matchingTypeFullMatch =
+      DataLossPreventionContentPolicyAdjustByMatchingInfoTypesMatchingType._(
+        TfArgLiteral('MATCHING_TYPE_FULL_MATCH'),
+      );
+  static const matchingTypePartialMatch =
+      DataLossPreventionContentPolicyAdjustByMatchingInfoTypesMatchingType._(
+        TfArgLiteral('MATCHING_TYPE_PARTIAL_MATCH'),
+      );
+  static const matchingTypeInverseMatch =
+      DataLossPreventionContentPolicyAdjustByMatchingInfoTypesMatchingType._(
+        TfArgLiteral('MATCHING_TYPE_INVERSE_MATCH'),
+      );
+
+  static const List<
+    DataLossPreventionContentPolicyAdjustByMatchingInfoTypesMatchingType
+  >
+  values = [
+    matchingTypeFullMatch,
+    matchingTypePartialMatch,
+    matchingTypeInverseMatch,
+  ];
+}
+
+/// Typed helper for the `inspect_config.rule_set.rules.adjustment_rule.likelihood_adjustment` block of
+/// `google_data_loss_prevention_content_policy` (derived from provider schema).
+@immutable
+final class DataLossPreventionContentPolicyAdjustmentRuleLikelihoodAdjustment {
+  const DataLossPreventionContentPolicyAdjustmentRuleLikelihoodAdjustment({
+    required this.fixedLikelihood,
+  });
+
+  final DataLossPreventionContentPolicyFixedLikelihood fixedLikelihood;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'fixed_likelihood': fixedLikelihood.toTfJson(),
   };
 }
 
@@ -589,6 +1007,7 @@ final class DataLossPreventionContentPolicyExclusionRule {
     required this.matchingType,
     this.dictionary,
     this.excludeByHotword,
+    this.excludeByImageFindings,
     this.excludeInfoTypes,
     this.regex,
   });
@@ -599,6 +1018,9 @@ final class DataLossPreventionContentPolicyExclusionRule {
 
   final DataLossPreventionContentPolicyExcludeByHotword? excludeByHotword;
 
+  final DataLossPreventionContentPolicyExcludeByImageFindings?
+  excludeByImageFindings;
+
   final DataLossPreventionContentPolicyExcludeInfoTypes? excludeInfoTypes;
 
   final DataLossPreventionContentPolicyRegex? regex;
@@ -608,6 +1030,7 @@ final class DataLossPreventionContentPolicyExclusionRule {
     'matching_type': matchingType.toTfJson(),
     'dictionary': ?dictionary?.encode(),
     'exclude_by_hotword': ?excludeByHotword?.encode(),
+    'exclude_by_image_findings': ?excludeByImageFindings?.encode(),
     'exclude_info_types': ?excludeInfoTypes?.encode(),
     'regex': ?regex?.encode(),
   };
@@ -636,11 +1059,16 @@ extension type const DataLossPreventionContentPolicyMatchingType._(
       DataLossPreventionContentPolicyMatchingType._(
         TfArgLiteral('MATCHING_TYPE_INVERSE_MATCH'),
       );
+  static const matchingTypeRuleSpecific =
+      DataLossPreventionContentPolicyMatchingType._(
+        TfArgLiteral('MATCHING_TYPE_RULE_SPECIFIC'),
+      );
 
   static const List<DataLossPreventionContentPolicyMatchingType> values = [
     matchingTypeFullMatch,
     matchingTypePartialMatch,
     matchingTypeInverseMatch,
+    matchingTypeRuleSpecific,
   ];
 }
 
@@ -664,45 +1092,24 @@ final class DataLossPreventionContentPolicyExcludeByHotword {
   };
 }
 
-/// Typed helper for the `inspect_config.rule_set.rules.hotword_rule.hotword_regex` block of
+/// Typed helper for the `inspect_config.rule_set.rules.exclusion_rule.exclude_by_image_findings` block of
 /// `google_data_loss_prevention_content_policy` (derived from provider schema).
-/// Shared by every block of this shape in the resource.
 @immutable
-final class DataLossPreventionContentPolicyHotwordRegex {
-  const DataLossPreventionContentPolicyHotwordRegex({
-    this.groupIndexes,
-    required this.pattern,
+final class DataLossPreventionContentPolicyExcludeByImageFindings {
+  const DataLossPreventionContentPolicyExcludeByImageFindings({
+    this.imageContainmentType,
+    required this.infoTypes,
   });
 
-  final TfArg<List<num>>? groupIndexes;
+  final DataLossPreventionContentPolicyImageContainmentType?
+  imageContainmentType;
 
-  final TfArg<String> pattern;
+  final List<DataLossPreventionContentPolicyInfoTypes> infoTypes;
 
   @internal
   Map<String, Object?> encode() => {
-    'group_indexes': ?groupIndexes?.toTfJson(),
-    'pattern': pattern.toTfJson(),
-  };
-}
-
-/// Typed helper for the `inspect_config.rule_set.rules.hotword_rule.proximity` block of
-/// `google_data_loss_prevention_content_policy` (derived from provider schema).
-/// Shared by every block of this shape in the resource.
-@immutable
-final class DataLossPreventionContentPolicyProximity {
-  const DataLossPreventionContentPolicyProximity({
-    this.windowAfter,
-    this.windowBefore,
-  });
-
-  final TfArg<num>? windowAfter;
-
-  final TfArg<num>? windowBefore;
-
-  @internal
-  Map<String, Object?> encode() => {
-    'window_after': ?windowAfter?.toTfJson(),
-    'window_before': ?windowBefore?.toTfJson(),
+    'image_containment_type': ?imageContainmentType?.encode(),
+    'info_types': [for (final e in infoTypes) e.encode()],
   };
 }
 
@@ -720,87 +1127,6 @@ final class DataLossPreventionContentPolicyExcludeInfoTypes {
   Map<String, Object?> encode() => {
     'info_types': [for (final e in infoTypes) e.encode()],
   };
-}
-
-/// Typed helper for the `inspect_config.rule_set.rules.hotword_rule` block of
-/// `google_data_loss_prevention_content_policy` (derived from provider schema).
-@immutable
-final class DataLossPreventionContentPolicyHotwordRule {
-  const DataLossPreventionContentPolicyHotwordRule({
-    required this.hotwordRegex,
-    required this.likelihoodAdjustment,
-    required this.proximity,
-  });
-
-  final DataLossPreventionContentPolicyHotwordRegex hotwordRegex;
-
-  final DataLossPreventionContentPolicyLikelihoodAdjustment
-  likelihoodAdjustment;
-
-  final DataLossPreventionContentPolicyProximity proximity;
-
-  @internal
-  Map<String, Object?> encode() => {
-    'hotword_regex': hotwordRegex.encode(),
-    'likelihood_adjustment': likelihoodAdjustment.encode(),
-    'proximity': proximity.encode(),
-  };
-}
-
-/// Typed helper for the `inspect_config.rule_set.rules.hotword_rule.likelihood_adjustment` block of
-/// `google_data_loss_prevention_content_policy` (derived from provider schema).
-@immutable
-final class DataLossPreventionContentPolicyLikelihoodAdjustment {
-  const DataLossPreventionContentPolicyLikelihoodAdjustment({
-    this.fixedLikelihood,
-    this.relativeLikelihood,
-  });
-
-  final DataLossPreventionContentPolicyFixedLikelihood? fixedLikelihood;
-
-  final TfArg<num>? relativeLikelihood;
-
-  @internal
-  Map<String, Object?> encode() => {
-    'fixed_likelihood': ?fixedLikelihood?.toTfJson(),
-    'relative_likelihood': ?relativeLikelihood?.toTfJson(),
-  };
-}
-
-/// `fixed_likelihood` — derived from the provider schema description.
-extension type const DataLossPreventionContentPolicyFixedLikelihood._(
-  TfArg<String> _
-) implements TfArg<String> {
-  DataLossPreventionContentPolicyFixedLikelihood.variable(String name)
-    : this._(TfArg.variable(name));
-  DataLossPreventionContentPolicyFixedLikelihood.expression(String template)
-    : this._(TfArg.expression(template));
-  const DataLossPreventionContentPolicyFixedLikelihood.arg(TfArg<String> arg)
-    : this._(arg);
-
-  static const veryUnlikely = DataLossPreventionContentPolicyFixedLikelihood._(
-    TfArgLiteral('VERY_UNLIKELY'),
-  );
-  static const unlikely = DataLossPreventionContentPolicyFixedLikelihood._(
-    TfArgLiteral('UNLIKELY'),
-  );
-  static const possible = DataLossPreventionContentPolicyFixedLikelihood._(
-    TfArgLiteral('POSSIBLE'),
-  );
-  static const likely = DataLossPreventionContentPolicyFixedLikelihood._(
-    TfArgLiteral('LIKELY'),
-  );
-  static const veryLikely = DataLossPreventionContentPolicyFixedLikelihood._(
-    TfArgLiteral('VERY_LIKELY'),
-  );
-
-  static const List<DataLossPreventionContentPolicyFixedLikelihood> values = [
-    veryUnlikely,
-    unlikely,
-    possible,
-    likely,
-    veryLikely,
-  ];
 }
 
 /// Typed helper for the `logging_configs` block of

@@ -947,3 +947,6 @@ DataCloudflareFirewallRule: provider bug — every configuration fails validate 
 # a tool/curation_backlog.yaml entry; the synth gate fails an
 # `awaiting-example:` line without one. Cover the factory in an example (and
 # delete the line) or replace the line with a reasoned entry.
+GoogleDialogflowTool: awaiting-example: google_dialogflow_tool added in hashicorp/google 8.6.0 (schema bump 2026-10-12)
+GoogleResourceManagerCapabilityConfig: awaiting-example: google_resource_manager_capability_config added in hashicorp/google 8.6.0 (schema bump 2026-10-12)
+GoogleVertexAiSemanticGovernancePolicy: awaiting-example: google_vertex_ai_semantic_governance_policy added in hashicorp/google 8.6.0 (schema bump 2026-10-12)

@@ -315,12 +315,20 @@ final class GoogleLustreInstance extends Resource {
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
+  /// Reference to `available_version` attribute.
+  TfRef<String> get availableVersion =>
+      TfRef.attribute<String>(this, 'available_version');
+
   /// Reference to `create_time` attribute.
   TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
 
   /// Reference to `effective_labels` attribute.
   TfRef<Map<String, String>> get effectiveLabels =>
       TfRef.attribute<Map<String, String>>(this, 'effective_labels');
+
+  /// Reference to `effective_version` attribute.
+  TfRef<String> get effectiveVersion =>
+      TfRef.attribute<String>(this, 'effective_version');
 
   /// Reference to `mount_point` attribute.
   TfRef<String> get mountPoint => TfRef.attribute<String>(this, 'mount_point');
@@ -393,4 +401,8 @@ final class GoogleLustreInstance extends Resource {
 
   /// Reference to `project` attribute.
   TfRef<String> get project => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `target_version` attribute.
+  TfRef<String> get targetVersion =>
+      TfRef.attribute<String>(this, 'target_version');
 }

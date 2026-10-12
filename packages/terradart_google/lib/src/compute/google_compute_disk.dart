@@ -109,23 +109,146 @@ final class ComputeDiskEncryptionKey {
     this.kmsKeySelfLink,
     this.kmsKeyServiceAccount,
     this.rawKey,
+    this.rawKeyWoVersion,
     this.rsaEncryptedKey,
+    this.rsaEncryptedKeyWoVersion,
   });
 
   final RefTo<GoogleKmsCryptoKey>? kmsKeySelfLink;
 
   final TfArg<String>? kmsKeyServiceAccount;
 
-  final Sensitive<String>? rawKey;
+  final ComputeDiskRawKey? rawKey;
 
-  final Sensitive<String>? rsaEncryptedKey;
+  final TfArg<String>? rawKeyWoVersion;
+
+  final ComputeDiskRsaEncryptedKey? rsaEncryptedKey;
+
+  final TfArg<String>? rsaEncryptedKeyWoVersion;
 
   @internal
   Map<String, Object?> encode() => {
     'kms_key_self_link': ?kmsKeySelfLink?.encodeAs('id').toTfJson(),
     'kms_key_service_account': ?kmsKeyServiceAccount?.toTfJson(),
-    'raw_key': ?rawKey?.toTfJson(),
-    'rsa_encrypted_key': ?rsaEncryptedKey?.toTfJson(),
+    ...?rawKey?.encode(),
+    'raw_key_wo_version': ?rawKeyWoVersion?.toTfJson(),
+    ...?rsaEncryptedKey?.encode(),
+    'rsa_encrypted_key_wo_version': ?rsaEncryptedKeyWoVersion?.toTfJson(),
+  };
+}
+
+/// At most one of `raw_key`, `raw_key_wo` on the `disk_encryption_key` block of `google_compute_disk`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.rawKey(...)`.
+sealed class ComputeDiskRawKey {
+  const ComputeDiskRawKey();
+
+  /// Sets `raw_key`.
+  const factory ComputeDiskRawKey.rawKey(Sensitive<String> rawKey) =
+      ComputeDiskRawKeyChoice;
+
+  /// Sets `raw_key_wo`.
+  const factory ComputeDiskRawKey.rawKeyWo(TfArg<String> rawKeyWo) =
+      ComputeDiskRawKeyWo;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [ComputeDiskRawKey.rawKey] choice: sets `raw_key`.
+final class ComputeDiskRawKeyChoice extends ComputeDiskRawKey {
+  const ComputeDiskRawKeyChoice(this.rawKey);
+
+  final Sensitive<String> rawKey;
+
+  @internal
+  @override
+  String get blockKey => 'raw_key';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'raw_key': rawKey.toTfJson()};
+}
+
+/// The [ComputeDiskRawKey.rawKeyWo] choice: sets `raw_key_wo`.
+final class ComputeDiskRawKeyWo extends ComputeDiskRawKey {
+  const ComputeDiskRawKeyWo(this.rawKeyWo);
+
+  final TfArg<String> rawKeyWo;
+
+  @internal
+  @override
+  String get blockKey => 'raw_key_wo';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'raw_key_wo': rawKeyWo.toTfJson()};
+}
+
+/// At most one of `rsa_encrypted_key`, `rsa_encrypted_key_wo` on the `disk_encryption_key` block of `google_compute_disk`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.rsaEncryptedKey(...)`.
+sealed class ComputeDiskRsaEncryptedKey {
+  const ComputeDiskRsaEncryptedKey();
+
+  /// Sets `rsa_encrypted_key`.
+  const factory ComputeDiskRsaEncryptedKey.rsaEncryptedKey(
+    Sensitive<String> rsaEncryptedKey,
+  ) = ComputeDiskRsaEncryptedKeyChoice;
+
+  /// Sets `rsa_encrypted_key_wo`.
+  const factory ComputeDiskRsaEncryptedKey.rsaEncryptedKeyWo(
+    TfArg<String> rsaEncryptedKeyWo,
+  ) = ComputeDiskRsaEncryptedKeyWo;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [ComputeDiskRsaEncryptedKey.rsaEncryptedKey] choice: sets `rsa_encrypted_key`.
+final class ComputeDiskRsaEncryptedKeyChoice
+    extends ComputeDiskRsaEncryptedKey {
+  const ComputeDiskRsaEncryptedKeyChoice(this.rsaEncryptedKey);
+
+  final Sensitive<String> rsaEncryptedKey;
+
+  @internal
+  @override
+  String get blockKey => 'rsa_encrypted_key';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'rsa_encrypted_key': rsaEncryptedKey.toTfJson(),
+  };
+}
+
+/// The [ComputeDiskRsaEncryptedKey.rsaEncryptedKeyWo] choice: sets `rsa_encrypted_key_wo`.
+final class ComputeDiskRsaEncryptedKeyWo extends ComputeDiskRsaEncryptedKey {
+  const ComputeDiskRsaEncryptedKeyWo(this.rsaEncryptedKeyWo);
+
+  final TfArg<String> rsaEncryptedKeyWo;
+
+  @internal
+  @override
+  String get blockKey => 'rsa_encrypted_key_wo';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'rsa_encrypted_key_wo': rsaEncryptedKeyWo.toTfJson(),
   };
 }
 

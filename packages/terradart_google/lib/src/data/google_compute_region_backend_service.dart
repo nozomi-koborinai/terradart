@@ -159,6 +159,10 @@ final class DataGoogleComputeRegionBackendService extends Data {
   /// Reference to `self_link` attribute.
   TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
 
+  /// Reference to `service_lb_policy` attribute.
+  TfRef<String> get serviceLbPolicy =>
+      TfRef.attribute<String>(this, 'service_lb_policy');
+
   /// Reference to `session_affinity` attribute.
   TfRef<String> get sessionAffinity =>
       TfRef.attribute<String>(this, 'session_affinity');

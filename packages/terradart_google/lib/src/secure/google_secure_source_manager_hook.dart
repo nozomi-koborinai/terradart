@@ -119,6 +119,10 @@ final class GoogleSecureSourceManagerHook extends Resource {
   TfRef<String> get sensitiveQueryString =>
       TfRef.attribute<String>(this, 'sensitive_query_string');
 
+  /// Reference to `service_account_auth` attribute.
+  TfRef<bool> get serviceAccountAuth =>
+      TfRef.attribute<bool>(this, 'service_account_auth');
+
   /// Reference to `target_uri` attribute.
   TfRef<String> get targetUri => TfRef.attribute<String>(this, 'target_uri');
 }

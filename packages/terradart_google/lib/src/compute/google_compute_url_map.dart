@@ -1934,6 +1934,7 @@ final class ComputeUrlMapRouteActionUrlRewrite {
     this.hostRewrite,
     this.pathPrefixRewrite,
     this.pathTemplateRewrite,
+    this.regexRewrite,
   });
 
   final TfArg<String>? hostRewrite;
@@ -1942,11 +1943,34 @@ final class ComputeUrlMapRouteActionUrlRewrite {
 
   final TfArg<String>? pathTemplateRewrite;
 
+  final ComputeUrlMapRegexRewrite? regexRewrite;
+
   @internal
   Map<String, Object?> encode() => {
     'host_rewrite': ?hostRewrite?.toTfJson(),
     'path_prefix_rewrite': ?pathPrefixRewrite?.toTfJson(),
     'path_template_rewrite': ?pathTemplateRewrite?.toTfJson(),
+    'regex_rewrite': ?regexRewrite?.encode(),
+  };
+}
+
+/// Typed helper for the `path_matcher.route_rules.route_action.url_rewrite.regex_rewrite` block of
+/// `google_compute_url_map` (derived from provider schema).
+@immutable
+final class ComputeUrlMapRegexRewrite {
+  const ComputeUrlMapRegexRewrite({
+    required this.pathPattern,
+    required this.pathSubstitution,
+  });
+
+  final TfArg<String> pathPattern;
+
+  final TfArg<String> pathSubstitution;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'path_pattern': pathPattern.toTfJson(),
+    'path_substitution': pathSubstitution.toTfJson(),
   };
 }
 

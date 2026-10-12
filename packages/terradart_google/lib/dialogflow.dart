@@ -284,5 +284,29 @@ export 'src/dialogflow/google_dialogflow_intent.dart'
     show DialogflowIntentWebhookState, GoogleDialogflowIntent;
 export 'src/dialogflow/google_dialogflow_sip_trunk.dart'
     show DialogflowSipTrunkDeletionPolicy, GoogleDialogflowSipTrunk;
+export 'src/dialogflow/google_dialogflow_tool.dart'
+    show
+        DialogflowToolActions,
+        DialogflowToolApiKeyConfig,
+        DialogflowToolAuthentication,
+        DialogflowToolBearerTokenConfig,
+        DialogflowToolCaCerts,
+        DialogflowToolConnectorSpec,
+        DialogflowToolEntityOperation,
+        DialogflowToolFunctionSpec,
+        DialogflowToolMethodType,
+        DialogflowToolOauthConfig,
+        DialogflowToolOpenApiSpec,
+        DialogflowToolOperation,
+        DialogflowToolRequestLocation,
+        DialogflowToolServiceAgentAuth,
+        DialogflowToolServiceAgentAuthConfig,
+        DialogflowToolServiceDirectoryConfig,
+        DialogflowToolSpecification,
+        DialogflowToolSpecificationConnectorSpec,
+        DialogflowToolSpecificationFunctionSpec,
+        DialogflowToolSpecificationOpenApiSpec,
+        DialogflowToolTlsConfig,
+        GoogleDialogflowTool;
 export 'src/dialogflow/google_dialogflow_version.dart'
     show GoogleDialogflowVersion;

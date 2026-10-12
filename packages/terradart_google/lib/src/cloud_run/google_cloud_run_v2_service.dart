@@ -997,9 +997,15 @@ final class CloudRunV2ServiceTemplatesEnv {
 @immutable
 final class CloudRunV2ServiceTemplateScaling {
   const CloudRunV2ServiceTemplateScaling({
+    this.concurrencyUtilization,
+    this.cpuUtilization,
     this.maxInstanceCount,
     this.minInstanceCount,
   });
+
+  final TfArg<num>? concurrencyUtilization;
+
+  final TfArg<num>? cpuUtilization;
 
   final TfArg<num>? maxInstanceCount;
 
@@ -1007,6 +1013,8 @@ final class CloudRunV2ServiceTemplateScaling {
 
   @internal
   Map<String, Object?> encode() => {
+    'concurrency_utilization': ?concurrencyUtilization?.toTfJson(),
+    'cpu_utilization': ?cpuUtilization?.toTfJson(),
     'max_instance_count': ?maxInstanceCount?.toTfJson(),
     'min_instance_count': ?minInstanceCount?.toTfJson(),
   };
@@ -1697,6 +1705,9 @@ final class GoogleCloudRunV2Service extends Resource {
 
   /// Reference to `project` attribute.
   TfRef<String> get project => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `ssh_enabled` attribute.
+  TfRef<bool> get sshEnabled => TfRef.attribute<bool>(this, 'ssh_enabled');
 
   /// Reference to `tags` attribute.
   TfRef<Map<String, String>> get tags =>

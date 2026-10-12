@@ -7,4 +7,9 @@
 # `sealedNames: {"<members>": <concept>}` to the override and
 # re-running wrap, which drops the entry. `wrap --check` fails
 # on a missing or stale entry.
-{}
+google_iam_folders_policy_binding:
+  "target.principal_set, target.resource": "awaiting-name: hashicorp/google 8.6.0"
+google_iam_organizations_policy_binding:
+  "target.principal_set, target.resource": "awaiting-name: hashicorp/google 8.6.0"
+google_iam_projects_policy_binding:
+  "target.principal_set, target.resource": "awaiting-name: hashicorp/google 8.6.0"
