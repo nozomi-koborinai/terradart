@@ -20,10 +20,12 @@ typedef ExclusiveGroups = ({
 ///
 /// - every [exactlyOne] set, and every [atLeastOne] set whose members all
 ///   pairwise conflict, is an exactly-one group (sets compare as sets, the
-///   first-seen order is kept). Overlapping exactly-one sets are one group:
+///   first-seen order is kept). Overlapping exactly-one sets are one group
+///   when every pair in the union appears together in some input set.
 ///   Magic Modules writes a 3-way `exactly_one_of` as each member listing the
-///   other two, and sealing one of those pairs would require that pair while
-///   dropping the member it leaves out.
+///   other two, so each pair appears in one of those lists. Two rules that
+///   only share a member stay separate. Sealing one pair of a 3-way would
+///   require that pair and drop the member it leaves out.
 /// - the remaining [conflicts] (undirected pairs) between inputs of one
 ///   block and outside every exactly-one group form a graph; each connected
 ///   component whose members all pairwise conflict is an at-most-one group,
@@ -126,10 +128,37 @@ ExclusiveGroups exclusiveGroups({
   return (exactlyOne: exact, atMostOne: atMostOne, unsealed: unsealed);
 }
 
-/// Unions exactly-one sets that share a member, keeping first-seen member
-/// order. A 3-way Magic Modules group arrives as the three pairs "everyone
-/// but me"; those pairs overlap, and the union is the real group.
+/// Unions overlapping exactly-one sets whose union is one rule.
+///
+/// A pair counts when some input set contains both members. Magic Modules
+/// writes a 3-way group as the three pairs "everyone but me", and every pair
+/// of that union appears in one of those pairs, so they become one group.
+/// Two rules that only share a member do not. Their cross pairs never appear
+/// together, and merging them would reject a config the provider accepts.
+/// Member order is the first-seen order of the earliest set in the union.
 List<List<String>> _mergeOverlapping(List<List<String>> groups) {
+  bool clique(List<String> members) {
+    for (var i = 0; i < members.length; i++) {
+      for (var j = i + 1; j < members.length; j++) {
+        final a = members[i];
+        final b = members[j];
+        final together = groups.any((g) => g.contains(a) && g.contains(b));
+        if (!together) return false;
+      }
+    }
+    return true;
+  }
+
+  List<String> unionOf(List<List<String>> parts) {
+    final out = <String>[];
+    for (final part in parts) {
+      for (final member in part) {
+        if (!out.contains(member)) out.add(member);
+      }
+    }
+    return out;
+  }
+
   final merged = <List<String>>[];
   for (final group in groups) {
     final hits = <int>[
@@ -140,16 +169,23 @@ List<List<String>> _mergeOverlapping(List<List<String>> groups) {
       merged.add(List.of(group));
       continue;
     }
-    final into = merged[hits.first];
-    for (final member in group) {
-      if (!into.contains(member)) into.add(member);
-    }
-    for (final i in hits.skip(1).toList().reversed) {
-      for (final member in merged[i]) {
-        if (!into.contains(member)) into.add(member);
+    final all = unionOf([for (final i in hits) merged[i], group]);
+    if (clique(all)) {
+      merged[hits.first] = all;
+      for (final i in hits.skip(1).toList().reversed) {
+        merged.removeAt(i);
       }
-      merged.removeAt(i);
+      continue;
     }
+    var placed = false;
+    for (final i in hits) {
+      final candidate = unionOf([merged[i], group]);
+      if (!clique(candidate)) continue;
+      merged[i] = candidate;
+      placed = true;
+      break;
+    }
+    if (!placed) merged.add(List.of(group));
   }
   return merged;
 }

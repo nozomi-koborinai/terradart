@@ -72,6 +72,82 @@ void main() {
     ]);
   });
 
+  test('keeps two rules that only share a member', () {
+    // {a, c} satisfies both rules. One sealed argument over all five
+    // members would reject it.
+    final g = exclusiveGroups(
+      exactlyOne: [
+        ['a', 'b', 'shared'],
+        ['c', 'd', 'shared'],
+      ],
+    );
+    expect(g.exactlyOne, [
+      ['a', 'b', 'shared'],
+      ['c', 'd', 'shared'],
+    ]);
+  });
+
+  test('keeps a chain of pairs as separate rules', () {
+    final g = exclusiveGroups(
+      exactlyOne: [
+        ['a', 'b'],
+        ['c', 'd'],
+        ['b', 'c'],
+      ],
+    );
+    expect(g.exactlyOne, [
+      ['a', 'b'],
+      ['c', 'd'],
+      ['b', 'c'],
+    ]);
+  });
+
+  test('does not fold an at-least-one promotion into a neighboring rule', () {
+    final g = exclusiveGroups(
+      exactlyOne: [
+        ['a', 'b'],
+      ],
+      atLeastOne: [
+        ['b', 'c'],
+      ],
+      conflicts: [('b', 'c')],
+    );
+    expect(g.exactlyOne, [
+      ['a', 'b'],
+      ['b', 'c'],
+    ]);
+  });
+
+  test('a set the schema will reject does not swallow a valid neighbor', () {
+    final g = exclusiveGroups(
+      exactlyOne: [
+        ['a', 'b'],
+        ['b', 'x.y'],
+      ],
+    );
+    expect(g.exactlyOne, [
+      ['a', 'b'],
+      ['b', 'x.y'],
+    ]);
+  });
+
+  test('two 3-way rules that share a member stay two groups', () {
+    final g = exclusiveGroups(
+      exactlyOne: [
+        ['a', 'b'],
+        ['a', 'c'],
+        ['b', 'c'],
+        ['a', 'd'],
+        ['a', 'e'],
+        ['d', 'e'],
+      ],
+    );
+    expect(g.exactlyOne, [
+      ['a', 'b', 'c'],
+      ['a', 'd', 'e'],
+    ]);
+  });
+
   test('reports conflicts no group expresses', () {
     final g = exclusiveGroups(
       exactlyOne: [

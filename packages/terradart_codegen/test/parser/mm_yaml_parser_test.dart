@@ -187,6 +187,30 @@ properties:
       ]);
     });
 
+    test('leaves a 2-way omit-self pair ungrouped', () {
+      // Each side lists only the other member. The list has length 1, so it
+      // is not a group. Adding the declaring property would seal the pair
+      // and change every constructor that already takes both fields.
+      final result = const MmYamlParser().parseString('''
+properties:
+  - name: vpcPeeringConfig
+    type: NestedObject
+    exactly_one_of:
+      - pscInterfaceConfig
+    properties:
+      - name: vpcName
+        type: String
+  - name: pscInterfaceConfig
+    type: NestedObject
+    exactly_one_of:
+      - vpcPeeringConfig
+    properties:
+      - name: networkAttachment
+        type: String
+''');
+      expect(result.exactlyOneOfPaths, isEmpty);
+    });
+
     test('drops a group whose members span parent blocks', () {
       final result = const MmYamlParser().parseString('''
 properties:
