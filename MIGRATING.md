@@ -1,5 +1,96 @@
 # Migrating terradart
 
+## Unreleased
+
+The weekly `hashicorp/google` pin moved from 8.4.0 to 8.6.0. `terradart_google`
+and `terradart_google_beta` follow that pin. These are the breaking Dart API
+changes. Synth output stays the same except `GoogleStorageFtpUser`, where
+`user_credentials` is now a list.
+
+### Disk encryption keys are sealed
+
+**Breaking (`terradart_google`)** — `ComputeDiskEncryptionKey` and
+`ComputeRegionDiskEncryptionKey` no longer take `rawKey` and
+`rsaEncryptedKey` as `Sensitive<String>?`. Each pair of a plaintext input
+and its write-only sibling is one nullable sealed argument. The provider
+rejects setting both members. `rawKeyWoVersion` and
+`rsaEncryptedKeyWoVersion` are unchanged.
+
+| Before | After |
+|---|---|
+| `ComputeDiskEncryptionKey(rawKey: Sensitive.variable('disk_key'))` | `ComputeDiskEncryptionKey(rawKey: .rawKey(Sensitive.variable('disk_key')))` |
+| `ComputeDiskEncryptionKey(rsaEncryptedKey: Sensitive.variable('rsa_key'))` | `ComputeDiskEncryptionKey(rsaEncryptedKey: .rsaEncryptedKey(Sensitive.variable('rsa_key')))` |
+| *(not available)* | `ComputeDiskEncryptionKey(rawKey: .rawKeyWo(TfArg.variable('disk_key_wo')))` |
+| *(not available)* | `ComputeDiskEncryptionKey(rsaEncryptedKey: .rsaEncryptedKeyWo(TfArg.variable('rsa_key_wo')))` |
+| `ComputeRegionDiskEncryptionKey(rawKey: Sensitive.variable('disk_key'))` | `ComputeRegionDiskEncryptionKey(rawKey: .rawKey(Sensitive.variable('disk_key')))` |
+| `ComputeRegionDiskEncryptionKey(rsaEncryptedKey: Sensitive.variable('rsa_key'))` | `ComputeRegionDiskEncryptionKey(rsaEncryptedKey: .rsaEncryptedKey(Sensitive.variable('rsa_key')))` |
+
+`GoogleComputeDisk` uses `ComputeDiskRawKey` and
+`ComputeDiskRsaEncryptedKey`. `GoogleComputeRegionDisk` uses
+`ComputeRegionDiskRawKey` and `ComputeRegionDiskRsaEncryptedKey`. The
+snapshot encryption helpers on those factories still take `rawKey` as
+`Sensitive<String>?`.
+
+### Region URL map route-rule rewrites use their own helper
+
+**Breaking (`terradart_google`)** —
+`ComputeRegionUrlMapRouteRulesRouteAction.urlRewrite` takes
+`ComputeRegionUrlMapRouteActionUrlRewrite`. It used to take
+`ComputeRegionUrlMapDefaultRouteActionUrlRewrite`, which the default route
+action still uses. The route-rule helper adds `regexRewrite`.
+
+| Before | After |
+|---|---|
+| `ComputeRegionUrlMapRouteRulesRouteAction(urlRewrite: ComputeRegionUrlMapDefaultRouteActionUrlRewrite(hostRewrite: .literal('app.example.com')))` | `ComputeRegionUrlMapRouteRulesRouteAction(urlRewrite: ComputeRegionUrlMapRouteActionUrlRewrite(hostRewrite: .literal('app.example.com'), regexRewrite: ComputeRegionUrlMapRegexRewrite(pathPattern: .literal('.*'), pathSubstitution: .literal('/'))))` |
+
+### DLP content-policy info types share one helper
+
+**Breaking (`terradart_google`)** — blocks that named an info type on
+`GoogleDataLossPreventionContentPolicy` take
+`DataLossPreventionContentPolicyInfoType`. Three helpers are removed, and
+the hotword likelihood adjustment is renamed. The fields of each removed
+helper are the fields of the type that replaces it. `fixedLikelihood` and
+`relativeLikelihood` stay on the renamed likelihood-adjustment helper.
+
+| Before | After |
+|---|---|
+| `DataLossPreventionContentPolicyCustomInfoTypes(infoType: DataLossPreventionContentPolicyCustomInfoTypesInfoType(name: .literal('EMAIL'), version: .literal('1')))` | `DataLossPreventionContentPolicyCustomInfoTypes(infoType: DataLossPreventionContentPolicyInfoType(name: .literal('EMAIL'), version: .literal('1')))` |
+| `DataLossPreventionContentPolicyMaxFindingsPerInfoType(maxFindings: .literal(10), infoType: DataLossPreventionContentPolicyCustomInfoTypesInfoType(name: .literal('EMAIL')))` | `DataLossPreventionContentPolicyMaxFindingsPerInfoType(maxFindings: .literal(10), infoType: DataLossPreventionContentPolicyInfoType(name: .literal('EMAIL')))` |
+| `DataLossPreventionContentPolicyMinLikelihoodPerInfoType(minLikelihood: .literal(.possible), infoType: DataLossPreventionContentPolicyMinLikelihoodPerInfoTypeInfoType(name: .literal('EMAIL'), version: .literal('1')))` | `DataLossPreventionContentPolicyMinLikelihoodPerInfoType(minLikelihood: .literal(.possible), infoType: DataLossPreventionContentPolicyInfoType(name: .literal('EMAIL'), version: .literal('1')))` |
+| `DataLossPreventionContentPolicyHotwordRule(hotwordRegex: ..., likelihoodAdjustment: DataLossPreventionContentPolicyLikelihoodAdjustment(fixedLikelihood: .literal(.veryLikely)), proximity: ...)` | `DataLossPreventionContentPolicyHotwordRule(hotwordRegex: ..., likelihoodAdjustment: DataLossPreventionContentPolicyHotwordRuleLikelihoodAdjustment(fixedLikelihood: .literal(.veryLikely)), proximity: ...)` |
+
+Removed, with no replacement class of the old name:
+
+- `DataLossPreventionContentPolicyCustomInfoTypesInfoType` (`name`, `version`, `sensitivityScore`)
+- `DataLossPreventionContentPolicyMinLikelihoodPerInfoTypeInfoType` (`name`, `version`)
+- `DataLossPreventionContentPolicyLikelihoodAdjustment` (`fixedLikelihood`, `relativeLikelihood`)
+
+### FTP user credentials are a list
+
+**Breaking (`terradart_google`)** — `GoogleStorageFtpUser.userCredentials`
+is `List<StorageFtpUserCredentials>?`. It was one
+`StorageFtpUserCredentials?`. Synth writes `user_credentials` as a JSON
+list. A stack that set one credential passes a one-element list.
+
+| Before | After |
+|---|---|
+| `userCredentials: StorageFtpUserCredentials(username: .literal('ftp'), password: Sensitive.variable('ftp_password'))` | `userCredentials: [StorageFtpUserCredentials(username: .literal('ftp'), password: Sensitive.variable('ftp_password'))]` |
+
+### IAM policy binding targets are a sealed choice
+
+**Breaking (`terradart_google`)** — `IamFoldersPolicyBindingTarget`,
+`IamOrganizationsPolicyBindingTarget`, and
+`IamProjectsPolicyBindingTarget` no longer take `principalSet`. The
+`principal_set` and `resource` inputs are one nullable sealed argument,
+`principalSetOrResource`. A null choice sets neither. The same shape
+applies to the folders and organizations helpers. Replace
+`IamProjects` in the names below with `IamFolders` or `IamOrganizations`.
+
+| Before | After |
+|---|---|
+| `IamProjectsPolicyBindingTarget(principalSet: .literal('//cloudresourcemanager.googleapis.com/projects/123'))` | `IamProjectsPolicyBindingTarget(principalSetOrResource: .principalSet(.literal('//cloudresourcemanager.googleapis.com/projects/123')))` |
+| *(not available)* | `IamProjectsPolicyBindingTarget(principalSetOrResource: .resource(.literal('//cloudresourcemanager.googleapis.com/projects/123')))` |
+
 ## 0.34.x → 0.35.0
 
 ### `terradart` asks only on a terminal, and stops with exit code 3 when it cannot
