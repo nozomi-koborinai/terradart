@@ -53,6 +53,25 @@ void main() {
     },
   );
 
+  test('unions overlapping exactly-one pairs into one group', () {
+    // Magic Modules writes a 3-way exactly_one_of as each member listing
+    // the other two. Sealing any one pair would drop the third member.
+    final g = exclusiveGroups(
+      exactlyOne: [
+        ['psc_interface_config', 'reserved_public_ip_config'],
+        ['vpc_peering_config', 'reserved_public_ip_config'],
+        ['vpc_peering_config', 'psc_interface_config'],
+      ],
+    );
+    expect(g.exactlyOne, [
+      [
+        'psc_interface_config',
+        'reserved_public_ip_config',
+        'vpc_peering_config',
+      ],
+    ]);
+  });
+
   test('reports conflicts no group expresses', () {
     final g = exclusiveGroups(
       exactlyOne: [

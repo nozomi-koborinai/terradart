@@ -20,7 +20,10 @@ typedef ExclusiveGroups = ({
 ///
 /// - every [exactlyOne] set, and every [atLeastOne] set whose members all
 ///   pairwise conflict, is an exactly-one group (sets compare as sets, the
-///   first-seen order is kept);
+///   first-seen order is kept). Overlapping exactly-one sets are one group:
+///   Magic Modules writes a 3-way `exactly_one_of` as each member listing the
+///   other two, and sealing one of those pairs would require that pair while
+///   dropping the member it leaves out.
 /// - the remaining [conflicts] (undirected pairs) between inputs of one
 ///   block and outside every exactly-one group form a graph; each connected
 ///   component whose members all pairwise conflict is an at-most-one group,
@@ -65,6 +68,10 @@ ExclusiveGroups exclusiveGroups({
   for (final g in atLeastOne) {
     if (allConflict({...g}.toList())) add(g);
   }
+  final merged = _mergeOverlapping(exact);
+  exact
+    ..clear()
+    ..addAll(merged);
   final covered = {for (final g in exact) ...g};
 
   String parent(String m) =>
@@ -117,4 +124,32 @@ ExclusiveGroups exclusiveGroups({
     }
   }
   return (exactlyOne: exact, atMostOne: atMostOne, unsealed: unsealed);
+}
+
+/// Unions exactly-one sets that share a member, keeping first-seen member
+/// order. A 3-way Magic Modules group arrives as the three pairs "everyone
+/// but me"; those pairs overlap, and the union is the real group.
+List<List<String>> _mergeOverlapping(List<List<String>> groups) {
+  final merged = <List<String>>[];
+  for (final group in groups) {
+    final hits = <int>[
+      for (var i = 0; i < merged.length; i++)
+        if (merged[i].any(group.contains)) i,
+    ];
+    if (hits.isEmpty) {
+      merged.add(List.of(group));
+      continue;
+    }
+    final into = merged[hits.first];
+    for (final member in group) {
+      if (!into.contains(member)) into.add(member);
+    }
+    for (final i in hits.skip(1).toList().reversed) {
+      for (final member in merged[i]) {
+        if (!into.contains(member)) into.add(member);
+      }
+      merged.removeAt(i);
+    }
+  }
+  return merged;
 }

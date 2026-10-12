@@ -147,6 +147,46 @@ properties:
       expect(result.exactlyOneOfGroups, hasLength(3));
     });
 
+    test('unions a 3-way group whose members each list the other two', () {
+      // Magic Modules omits the declaring property from exactly_one_of, so a
+      // 3-way set arrives as three overlapping pairs. They are one group;
+      // sealing a pair would drop the third member.
+      final result = const MmYamlParser().parseString('''
+properties:
+  - name: vpcPeeringConfig
+    type: NestedObject
+    exactly_one_of:
+      - pscInterfaceConfig
+      - reservedPublicIpConfig
+    properties:
+      - name: vpcName
+        type: String
+  - name: pscInterfaceConfig
+    type: NestedObject
+    exactly_one_of:
+      - vpcPeeringConfig
+      - reservedPublicIpConfig
+    properties:
+      - name: networkAttachment
+        type: String
+  - name: reservedPublicIpConfig
+    type: NestedObject
+    exactly_one_of:
+      - vpcPeeringConfig
+      - pscInterfaceConfig
+    properties:
+      - name: natIpsCount
+        type: Integer
+''');
+      expect(result.exactlyOneOfPaths, [
+        [
+          'psc_interface_config',
+          'reserved_public_ip_config',
+          'vpc_peering_config',
+        ],
+      ]);
+    });
+
     test('drops a group whose members span parent blocks', () {
       final result = const MmYamlParser().parseString('''
 properties:
