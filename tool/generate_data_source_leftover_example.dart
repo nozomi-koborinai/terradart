@@ -133,7 +133,6 @@ void main() {
     ..writeln('/// Never apply.')
     ..writeln('library;')
     ..writeln()
-    ..writeln("import 'package:terradart_core/terradart_core.dart';")
     ..writeln("import 'package:terradart_google/data.dart';")
     ..writeln("import 'package:terradart_google/provider.dart';")
     ..writeln()
@@ -251,6 +250,11 @@ String _literal(String className, String name, String dartType) {
   }
   if (name == 'name' && className == 'DataGoogleServiceAccountKey') {
     return "TfArg.literal('\$saId/keys/1')";
+  }
+  // The provider parses resource_name as a URL and rejects a value with no host.
+  if (name == 'resourceName' &&
+      className == 'DataGoogleIamWorkloadIdentityPoolJwks') {
+    return "TfArg.literal('https://example.com/.well-known/jwks.json')";
   }
   if (dartType.startsWith('List<String>')) {
     return 'TfArg.literal([leftover])';

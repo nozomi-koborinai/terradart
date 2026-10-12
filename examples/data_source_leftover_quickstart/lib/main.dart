@@ -4,7 +4,6 @@
 /// Never apply.
 library;
 
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/data.dart';
 import 'package:terradart_google/provider.dart';
 
@@ -1796,7 +1795,9 @@ final class DataSourceLeftoverStack extends Stack {
     add(
       DataGoogleIamWorkloadIdentityPoolJwks(
         'iam_workload_identity_pool_jwks',
-        resourceName: TfArg.literal(leftover),
+        resourceName: TfArg.literal(
+          'https://example.com/.well-known/jwks.json',
+        ),
       ),
     );
 
