@@ -68,7 +68,7 @@
 #   bump:            (optional) the weekly schema bump's coordinates for
 #                    the lane; a lane without it is never bumped by the
 #                    workflow (google-beta rides the google bump at the
-#                    same version; appwrite stays pinned by hand).
+#                    same version).
 #     mode:          auto    — open a PR and enable auto-merge when the
 #                              drift report finds nothing for a human
 #                    pr-only — open a PR, never auto-merge
@@ -159,6 +159,15 @@ providers:
     migrateManifest: packages/terradart_migrate/lib/src/manifest/appwrite.g.dart
     providerEnums: true
     references: typed
+    bump:
+      mode: auto
+      repo: appwrite/terraform-provider-appwrite
+      major: 2
+      cron: '0 22 * * 3' # Wednesday 22:00 UTC
+      refresh: extract
+      dataSources: true
+      scaffold: lane
+      exampleGenerator: tool/generate_appwrite_leftover_example.dart
   cloudflare:
     source: cloudflare/cloudflare
     schemaDir: packages/terradart_codegen/test/fixtures/wrap/source_cloudflare

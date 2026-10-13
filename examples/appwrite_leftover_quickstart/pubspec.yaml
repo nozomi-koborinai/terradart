@@ -1,0 +1,15 @@
+name: terradart_example_appwrite_leftover_quickstart
+description: Fills remaining terradart_appwrite factories at the current pin — synth + terraform validate only; never apply.
+publish_to: none
+
+environment:
+  sdk: ^3.10.0
+
+resolution: workspace
+
+dependencies:
+  terradart_core: ^0.35.0
+  terradart_appwrite: ^0.35.0
+
+dev_dependencies:
+  lints: ^6.0.0
