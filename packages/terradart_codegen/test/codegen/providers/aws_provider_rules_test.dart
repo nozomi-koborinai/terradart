@@ -48,6 +48,7 @@ void main() {
       {
         'hashicorp/google': 'hashicorp/google',
         'hashicorp/google-beta': 'hashicorp/google-beta',
+        'appwrite/appwrite': 'appwrite/appwrite',
         'cloudflare/cloudflare': 'cloudflare/cloudflare',
         'hashicorp/aws': 'hashicorp/aws',
       },
