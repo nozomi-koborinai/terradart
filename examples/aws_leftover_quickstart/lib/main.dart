@@ -4361,7 +4361,7 @@ final class AwsLeftoverStack extends Stack {
     add(
       AwsDirectoryServiceConditionalForwarder(
         'directory_service_conditional_forwarder',
-        directoryId: .literal(leftover),
+        directoryId: .literal('d-1234567890'),
         dnsIps: .literal([leftover]),
         remoteDomainName: .literal('example.com'),
       ),
@@ -4379,21 +4379,21 @@ final class AwsLeftoverStack extends Stack {
       AwsDirectoryServiceIpRoute(
         'directory_service_ip_route',
         cidr: .cidrIp(.literal('10.0.0.0/16')),
-        directoryId: .literal(leftover),
+        directoryId: .literal('d-1234567890'),
       ),
     );
 
     add(
       AwsDirectoryServiceIpRoutesExclusive(
         'directory_service_ip_routes_exclusive',
-        directoryId: .literal(leftover),
+        directoryId: .literal('d-1234567890'),
       ),
     );
 
     add(
       AwsDirectoryServiceLogSubscription(
         'directory_service_log_subscription',
-        directoryId: .literal(leftover),
+        directoryId: .literal('d-1234567890'),
         logGroupName: .literal(leftover),
       ),
     );
@@ -4402,7 +4402,7 @@ final class AwsLeftoverStack extends Stack {
       AwsDirectoryServiceRadiusSettings(
         'directory_service_radius_settings',
         authenticationProtocol: .pap,
-        directoryId: .literal(leftover),
+        directoryId: .literal('d-1234567890'),
         displayLabel: .literal(leftover),
         radiusPort: .literal(200),
         radiusRetries: .literal(0),
@@ -4415,7 +4415,7 @@ final class AwsLeftoverStack extends Stack {
     add(
       AwsDirectoryServiceRegion(
         'directory_service_region',
-        directoryId: .literal(leftover),
+        directoryId: .literal('d-1234567890'),
         regionName: .literal('us-east-1'),
         vpcSettings: DirectoryServiceRegionVpcSettings(
           subnetIds: .literal([.literal(leftover)]),
@@ -4427,7 +4427,7 @@ final class AwsLeftoverStack extends Stack {
     add(
       AwsDirectoryServiceSharedDirectory(
         'directory_service_shared_directory',
-        directoryId: .literal(leftover),
+        directoryId: .literal('d-1234567890'),
         target: DirectoryServiceSharedDirectoryTarget(id: .literal(leftover)),
       ),
     );
@@ -4452,7 +4452,7 @@ final class AwsLeftoverStack extends Stack {
     add(
       AwsDirectoryservicedataUser(
         'directoryservicedata_user',
-        directoryId: .literal(leftover),
+        directoryId: .literal('d-1234567890'),
         samAccountName: .literal(leftover),
       ),
     );
@@ -16017,7 +16017,7 @@ final class AwsLeftoverStack extends Stack {
     add(
       DataAwsDirectoryServiceDirectory(
         'd_directory_service_directory',
-        directoryId: .literal(leftover),
+        directoryId: .literal('d-1234567890'),
       ),
     );
 

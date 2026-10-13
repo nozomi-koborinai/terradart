@@ -1529,7 +1529,6 @@ const _literalByKey = <String, String>{
   'AwsDirectoryServiceRadiusSettings.radiusRetries': '0',
   'AwsDirectoryServiceRadiusSettings.radiusTimeout': '1',
   'AwsDirectoryServiceRegion.regionName': '\'us-east-1\'',
-  'AwsDirectoryServiceTrust.directoryId': '\'d-1234567890\'',
   'AwsDirectoryServiceTrust.remoteDomainName': '\'example.com\'',
   'AwsDirectoryServiceTrust.trustDirection': '\'Two-Way\'',
   'AwsDlmLifecyclePolicy.defaultPolicy': '\'VOLUME\'',
@@ -2359,6 +2358,10 @@ String _stringLiteral(String name, {String owner = ''}) {
   if (n == 'subnetid') return "'subnet-0123456789abcdef0'";
   if (n == 'securitygroupid') return "'sg-0123456789abcdef0'";
   if (n == 'instanceid') return "'i-0123456789abcdef0'";
+  // Directory Service `directory_id` matches `^d-[0-9a-f]{10}$`.
+  if (n == 'directoryid' && owner.toLowerCase().contains('directoryservice')) {
+    return "'d-1234567890'";
+  }
   if (n.contains('email')) return "'leftover@example.com'";
   if (n.endsWith('url') || n.endsWith('uri')) return "'https://example.com'";
   if (n.contains('cidr')) return "'10.0.0.0/16'";
