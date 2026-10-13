@@ -1,11 +1,15 @@
 // ignore_for_file: avoid_print
 //
 // Regenerates examples/data_source_leftover_quickstart/lib/main.dart from
-// the generated data-source wrappers. Run after `terradart wrap`.
+// the generated data-source wrappers. Run after `terradart wrap`. Literal
+// values live in tool/coverage_dummies/google.yaml.
 
 import 'dart:io';
 
+import 'package:terradart_migrate/terradart_migrate.dart';
+
 import 'catalog_class_names.dart';
+import 'coverage_dummies.dart';
 
 const _dataDir = 'packages/terradart_google/lib/src/data';
 const _outPath = 'examples/data_source_leftover_quickstart/lib/main.dart';
@@ -46,7 +50,21 @@ _requiredCtorParams(String ctor) {
   return out;
 }
 
+/// Names the stack's preamble declares, which a ledger value may read.
+const googleStackBindings = {
+  'projectId',
+  'saEmail',
+  'saId',
+  'kmsVersion',
+  'leftover',
+};
+
 void main() {
+  final dummies = CoverageDummies.load(
+    'google',
+    manifest: googleMigrateManifest,
+    bindings: googleStackBindings,
+  );
   final catalogued = catalogClassNames('packages/terradart_google/lib/src');
   final files =
       Directory(_dataDir)
@@ -87,7 +105,7 @@ void main() {
     for (final param in _requiredCtorParams(ctor)) {
       final value = param.sensitive
           ? _sensitiveValue
-          : _literal(className, param.name, param.dartType);
+          : _literal(dummies, className, param.name, param.dartType);
       args.add(
         '      ${param.name}: '
         '${param.ref ? value.replaceFirst('TfArg.', 'RefTo.') : value},',
@@ -220,42 +238,14 @@ const _requiredHelpers = <String, String>{
       'DataCloudIdentityGroupLookupGroupKey(id: .literal(leftover))',
 };
 
-String _literal(String className, String name, String dartType) {
-  if (name == 'project' || name == 'projectId') {
-    return 'TfArg.literal(projectId)';
-  }
-  if (name == 'network') {
-    return "TfArg.literal('projects/\$projectId/global/networks/terradart')";
-  }
-  if (name == 'ciphertext') {
-    return "TfArg.literal('dGVycmFkYXJ0')";
-  }
-  if (name == 'cryptoKeyVersion') {
-    return 'TfArg.literal(kmsVersion)';
-  }
-  if (name == 'targetServiceAccount') {
-    return 'TfArg.literal(saEmail)';
-  }
-  if (name == 'serviceAccountId') {
-    return 'TfArg.literal(saId)';
-  }
-  if (name == 'managedFolder') {
-    return "TfArg.literal('terradart-leftover/')";
-  }
-  if (name == 'type' && className.contains('SiteVerification')) {
-    return "TfArg.literal('INET_DOMAIN')";
-  }
-  if (name == 'verificationMethod') {
-    return "TfArg.literal('DNS_TXT')";
-  }
-  if (name == 'name' && className == 'DataGoogleServiceAccountKey') {
-    return "TfArg.literal('\$saId/keys/1')";
-  }
-  // The provider parses resource_name as a URL and rejects a value with no host.
-  if (name == 'resourceName' &&
-      className == 'DataGoogleIamWorkloadIdentityPoolJwks') {
-    return "TfArg.literal('https://example.com/.well-known/jwks.json')";
-  }
+String _literal(
+  CoverageDummies dummies,
+  String className,
+  String name,
+  String dartType,
+) {
+  final value = dummies.valueFor(className, name);
+  if (value != null) return 'TfArg.literal(${value.dart})';
   if (dartType.startsWith('List<String>')) {
     return 'TfArg.literal([leftover])';
   }

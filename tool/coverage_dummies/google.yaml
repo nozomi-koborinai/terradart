@@ -1,0 +1,34 @@
+# Dummy values for the google coverage stack
+# (examples/data_source_leftover_quickstart), and the only place
+# its literal values live. The generator asks for a value by Dart owner
+# and parameter (`CoverageDummies.valueFor`);
+# `dart tool/coverage_stack.dart --lane google` renders the stack from this
+# file, validates it as required CI does, and writes back each value the
+# provider asked for, with the diagnostic it answered as `why:`.
+#
+# Key: `Owner.param` (the Dart class holding the parameter: factory, helper
+# or sealed type), a bare `param` (any owner), or a glob of either with `*`
+# for any run of characters, matched case-sensitively. An exact
+# `Owner.param` wins, then a bare `param`, then the first glob in file
+# order. Value: a string, number, bool or list of them. `${name}` reads one
+# of the names the stack declares:
+#   projectId, saEmail, saId, kmsVersion, leftover
+# The map form adds `why:`, or holds Dart source as `dart:` where no
+# literal can say it.
+
+'*SiteVerification*.type': 'INET_DOMAIN'
+
+ciphertext: 'dGVycmFkYXJ0'
+cryptoKeyVersion: '${kmsVersion}'
+managedFolder: 'terradart-leftover/'
+network: 'projects/${projectId}/global/networks/terradart'
+project: '${projectId}'
+projectId: '${projectId}'
+serviceAccountId: '${saId}'
+targetServiceAccount: '${saEmail}'
+verificationMethod: 'DNS_TXT'
+
+DataGoogleIamWorkloadIdentityPoolJwks.resourceName:
+  value: 'https://example.com/.well-known/jwks.json'
+  why: 'The provider parses resource_name as a URL and rejects a value with no host.'
+DataGoogleServiceAccountKey.name: '${saId}/keys/1'

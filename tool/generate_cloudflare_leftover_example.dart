@@ -3,12 +3,16 @@
 // Generates examples/cloudflare_leftover_quickstart/lib/main.dart — one
 // constructor call per leftover Cloudflare factory (resource or data source).
 // Dummy values satisfy Dart types so synth + terraform validate can cover
-// the filled catalog. Live apply is out of scope.
+// the filled catalog. Live apply is out of scope. Literal values live in
+// tool/coverage_dummies/cloudflare.yaml.
 //
 // Regenerates from generated wrappers; do not hand-edit main.dart.
 
 import 'dart:io';
 
+import 'package:terradart_migrate/terradart_migrate.dart';
+
+import 'coverage_dummies.dart';
 import 'dot_shorthands.dart';
 
 const _skipResourceTypes = {'cloudflare_zone', 'cloudflare_dns_record'};
@@ -33,7 +37,17 @@ String _secretFor(String type) {
       : "Sensitive.variable('$_secretVar')";
 }
 
+/// Names the stack's preamble declares, which a ledger value may read.
+const cloudflareStackBindings = {'accountId', 'zoneId', 'leftover'};
+
+late CoverageDummies _dummies;
+
 void main() {
+  _dummies = CoverageDummies.load(
+    'cloudflare',
+    manifest: cloudflareMigrateManifest,
+    bindings: cloudflareStackBindings,
+  );
   final files =
       Directory(_srcRoot)
           .listSync(recursive: true)
@@ -549,18 +563,6 @@ String _dummy(
       p.type.startsWith('Sensitive<')) {
     return _secretFor(p.type);
   }
-  if (n == 'accountId' || n == 'account') {
-    if (p.type.startsWith('RefTo')) return 'RefTo.literal(accountId)';
-    if (p.type.startsWith('TfArg')) {
-      return 'TfArg.literal(accountId)';
-    }
-  }
-  if (n == 'zoneId' || n == 'zone') {
-    if (p.type.startsWith('RefTo')) return 'RefTo.literal(zoneId)';
-    if (p.type.startsWith('TfArg')) {
-      return 'TfArg.literal(zoneId)';
-    }
-  }
   return _dummyForType(
     p.type,
     helpers,
@@ -602,9 +604,7 @@ String _dummyForType(
   if (t.endsWith('?')) t = t.substring(0, t.length - 1).trim();
 
   if (t.startsWith('RefTo<')) {
-    final value =
-        _valueByKey['$owner.$name'] ?? _stringLiteral(name, owner: owner);
-    return 'RefTo.literal($value)';
+    return 'RefTo.literal(${_stringLiteral(name, owner: owner)})';
   }
   if (t.startsWith('Sensitive<')) return _secretFor(t);
   if (t.startsWith('TfArg<') && t.endsWith('>')) {
@@ -675,13 +675,12 @@ String _literalInner(
 }) {
   var t = inner.trim();
   if (t.endsWith('?')) t = t.substring(0, t.length - 1).trim();
-  final keyed = _valueByKey['$owner.$name'];
-  if (keyed != null) return keyed;
-  if (t == 'String') return _stringLiteral(name, owner: owner);
+  final value = _dummies.valueFor(owner, name);
+  final fitted = value == null ? null : _fit(value, t);
+  if (fitted != null) return fitted;
+  if (t == 'String') return 'leftover';
   if (_enums.containsKey(t)) return _enumMember(t, name, owner: owner);
-  if (t == 'num' || t == 'int' || t == 'double') {
-    return _numberByKey['$owner.$name'] ?? '200';
-  }
+  if (t == 'num' || t == 'int' || t == 'double') return '200';
   if (t == 'bool') return 'true';
   if (t.startsWith('List<') && t.endsWith('>')) {
     final listInner = t.substring(5, t.length - 1).trim().replaceAll('?', '');
@@ -707,8 +706,6 @@ String _literalInner(
   }
   return 'leftover';
 }
-
-const _hex32 = '00000000000000000000000000000001';
 
 /// Every enum the package declares: name → (member, raw value) in
 /// declaration order.
@@ -746,108 +743,6 @@ String _enumMember(String enumName, String name, {required String owner}) {
   return '$enumName.${pick.$1}';
 }
 
-const _literalByKey = <String, String>{
-  'settingId': "'ciphers'",
-  'datasetId': "'audit_logs'",
-  'validationDefaultMitigationAction': "'none'",
-  'mitigationAction': "'none'",
-  'integrationType': "'Okta'",
-  'patternType': "'EMAIL'",
-  'certificateAuthority': "'google'",
-  'validationMethod': "'txt'",
-  'requestType': "'origin-rsa'",
-  'strategy': "'percentage'",
-  'tlp': "'clear'",
-  'scope': "'incoming'",
-  'vendor': "'aws'",
-  'identifier': "'1000_errors'",
-  'phase': "'http_request_firewall_custom'",
-  'tokenType': "'JWT'",
-  'tokenEndpointAuthMethod': "'none'",
-  'haMode': "'none'",
-  'alertType': "'abuse_report_alert'",
-  'decision': "'allow'",
-  'method': "'GET'",
-  'validityDays': "'90'",
-  'certificateType': "'advanced'",
-  'state': "'default'",
-  'target': "'ethereum'",
-  'action': "'allow'",
-  'effect': "'allow'",
-  'resourceType': "'custom-ruleset'",
-  'CloudflareTurnstileWidget.mode': "'non-interactive'",
-  'CloudflareAccessRule.mode': "'block'",
-  'CloudflareList.kind': "'ip'",
-  'CloudflareApiShieldSchema.kind': "'openapi_v3'",
-  'CloudflareSchemaValidationSchema.kind': "'openapi_v3'",
-  'CloudflareRuleset.kind': "'zone'",
-  'CloudflareTieredCache.value': "'on'",
-  'CloudflareArgoSmartRouting.value': "'on'",
-  'CloudflareArgoTieredCaching.value': "'on'",
-  'CloudflareContentScanning.value': "'enabled'",
-  'CloudflareRegionalHostname.value': "'on'",
-  'CloudflareUrlNormalizationSettings.type': "'cloudflare'",
-  'CloudflareQueueConsumer.type': "'worker'",
-  'CloudflareWorkersScript.strategy?': "'percentage'",
-  'CloudflareWorkersDeployment.strategy': "'percentage'",
-  'CloudflareZeroTrustDeviceManagedNetworks.type': "'tls'",
-  'CloudflareZeroTrustList.type': "'SERIAL'",
-  'CloudflareZeroTrustAccessCustomPage.type': "'forbidden'",
-  'CloudflareZeroTrustGatewayPolicy.action': "'allow'",
-  'CloudflareZeroTrustDevicePostureRule.type': "'file'",
-  'CloudflareZeroTrustDevicePostureIntegration.type': "'workspace_one'",
-  // The dummy config sets apps_domain, which only google-apps accepts.
-  'CloudflareZeroTrustAccessIdentityProvider.type': "'google-apps'",
-  'CloudflareMagicNetworkMonitoringRule.type': "'threshold'",
-  'CloudflarePipelineSink.type': "'r2'",
-  'CloudflareConnectivityDirectoryService.type': "'tcp'",
-  'CloudflarePageShieldPolicy.action': "'allow'",
-  'CloudflareTokenValidationRules.action': "'log'",
-  'CloudflareWaitingRoomRules.action': "'bypass_waiting_room'",
-  'CloudflareOriginCaCertificate.requestType': "'origin-rsa'",
-  'CloudflareCertificatePack.type': "'advanced'",
-  'CloudflareWeb3Hostname.target': "'ethereum'",
-  'CloudflareCustomPages.state': "'default'",
-  'EmailRoutingRuleActions.type': "'drop'",
-  'EmailRoutingRuleMatchers.type': "'all'",
-  'EmailRoutingCatchAllActions.type': "'drop'",
-  'EmailRoutingCatchAllMatchers.type': "'all'",
-  'ApiShieldAuthIdCharacteristics.type': "'header'",
-  'ShareResources.resourceType': "'custom-ruleset'",
-  'AccountTokenPolicies.effect': "'allow'",
-  'ApiTokenPolicies.effect': "'allow'",
-  'TokenValidationConfigKeys.alg': "'RS256'",
-  'TokenValidationConfigKeys.kty': "'RSA'",
-  'HyperdriveConfigOrigin.scheme': "'postgres'",
-  'AiGatewayDynamicRoutingElements.type': "'start'",
-  'VulnerabilityScannerTargetEnvironmentTarget.type': "'zone'",
-  'R2BucketEventNotificationRules.actions': "'PutObject'",
-  'ImageVariantOptions.fit': "'scale-down'",
-  'ImageVariantOptions.metadata': "'none'",
-  'CloudflareZeroTrustAccessAiControlsMcpServer.authType': "'unauthenticated'",
-  'CloudflareMagicWanBgpFilterProfile.matchAction': "'allow'",
-  'CloudflareZeroTrustCasbWebhook.authenticationType': "'None'",
-  'ZoneTracingRules.action': "'set_trace_settings'",
-};
-
-/// Number literals for slots whose provider validator bounds the value
-/// below the default `200`.
-const _numberByKey = <String, String>{
-  'ZoneTracingRulesActionParameters.samplingRatio': '1',
-  'CloudflareCertificatePack.validityDays': '90',
-  'WorkersDeploymentVersions.percentage': '100',
-};
-
-/// Whole literal values for untyped slots (JSON strings, lists of maps)
-/// whose provider schema rejects the generic dummy.
-const _valueByKey = <String, String>{
-  'CloudflareSnippet.files':
-      "[{'name': 'main.js', 'content': 'export default {};'},]",
-  'SnippetMetadata.mainModule': "'main.js'",
-  'ShareResources.meta': "'{}'",
-  'CloudflareShareResource.meta': "'{}'",
-};
-
 /// Optional slots a factory needs anyway: the provider requires at least
 /// one of a group the generated constructor leaves optional.
 const _optionalExtras = <String, List<String>>{
@@ -856,26 +751,26 @@ const _optionalExtras = <String, List<String>>{
 };
 
 String _stringLiteral(String name, {String owner = ''}) {
-  final key = '$owner.$name';
-  if (_literalByKey.containsKey(key)) return _literalByKey[key]!;
-  if (_literalByKey.containsKey(name)) return _literalByKey[name]!;
-  final n = name.toLowerCase();
-  if (n == 'accountid' || n == 'account') return 'accountId';
-  if (n == 'zoneid' || n == 'zone') return 'zoneId';
-  if (n == 'id') return "'$_hex32'";
-  if (n.contains('email')) return "'leftover@example.com'";
-  if (n.endsWith('url') || n.contains('uri')) {
-    return "'https://example.com'";
-  }
-  if (n.contains('cron')) return "'* * * * *'";
-  if (n.contains('cidr') || n.contains('prefix')) return "'192.0.2.0/24'";
-  if (n == 'ip' || n.endsWith('ip') || n.contains('address')) {
-    return "'192.0.2.1'";
-  }
-  if (name.endsWith('Id') && name != 'settingId' && name != 'datasetId') {
-    return "'$_hex32'";
-  }
-  return 'leftover';
+  final value = _dummies.valueFor(owner, name);
+  return value != null && value.isString ? value.dart : 'leftover';
+}
+
+/// [value] written for a slot of inner type [t], or null when it does not
+/// fit and the slot takes its type default.
+String? _fit(DummyValue value, String t) {
+  final json = switch (value) {
+    LiteralDummy(:final json) => json,
+    BoundDummy(:final template) => template,
+    DartDummy() => null,
+  };
+  if (value is DartDummy || t == 'Object' || t == 'dynamic') return value.dart;
+  final fits = switch (t) {
+    'String' => json is String,
+    'num' || 'int' || 'double' => json is num,
+    'bool' => json is bool,
+    _ => t.startsWith('List<') && json is List,
+  };
+  return fits ? value.dart : null;
 }
 
 /// Whether the value being built sits inside a helper or a sealed variant,

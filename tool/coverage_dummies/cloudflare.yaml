@@ -1,0 +1,129 @@
+# Dummy values for the cloudflare coverage stack
+# (examples/cloudflare_leftover_quickstart), and the only place
+# its literal values live. The generator asks for a value by Dart owner
+# and parameter (`CoverageDummies.valueFor`);
+# `dart tool/coverage_stack.dart --lane cloudflare` renders the stack from this
+# file, validates it as required CI does, and writes back each value the
+# provider asked for, with the diagnostic it answered as `why:`.
+#
+# Key: `Owner.param` (the Dart class holding the parameter: factory, helper
+# or sealed type), a bare `param` (any owner), or a glob of either with `*`
+# for any run of characters, matched case-sensitively. An exact
+# `Owner.param` wins, then a bare `param`, then the first glob in file
+# order. Value: a string, number, bool or list of them. `${name}` reads one
+# of the names the stack declares:
+#   accountId, zoneId, leftover
+# The map form adds `why:`, or holds Dart source as `dart:` where no
+# literal can say it.
+
+'*email*': 'leftover@example.com'
+'*Email*': 'leftover@example.com'
+'*url': 'https://example.com'
+'*Url': 'https://example.com'
+'*uri*': 'https://example.com'
+'*Uri*': 'https://example.com'
+'*cron*': '* * * * *'
+'*Cron*': '* * * * *'
+'*cidr*': '192.0.2.0/24'
+'*Cidr*': '192.0.2.0/24'
+'*prefix*': '192.0.2.0/24'
+'*Prefix*': '192.0.2.0/24'
+'*ip': '192.0.2.1'
+'*Ip': '192.0.2.1'
+'*address*': '192.0.2.1'
+'*Address*': '192.0.2.1'
+'*Id': '00000000000000000000000000000001'
+
+account: '${accountId}'
+accountId: '${accountId}'
+action: 'allow'
+alertType: 'abuse_report_alert'
+certificateAuthority: 'google'
+certificateType: 'advanced'
+datasetId: 'audit_logs'
+decision: 'allow'
+effect: 'allow'
+haMode: 'none'
+id: '00000000000000000000000000000001'
+identifier: '1000_errors'
+integrationType: 'Okta'
+method: 'GET'
+mitigationAction: 'none'
+patternType: 'EMAIL'
+phase: 'http_request_firewall_custom'
+requestType: 'origin-rsa'
+resourceType: 'custom-ruleset'
+scope: 'incoming'
+settingId: 'ciphers'
+state: 'default'
+strategy: 'percentage'
+target: 'ethereum'
+tlp: 'clear'
+tokenEndpointAuthMethod: 'none'
+tokenType: 'JWT'
+validationDefaultMitigationAction: 'none'
+validationMethod: 'txt'
+validityDays: '90'
+vendor: 'aws'
+zone: '${zoneId}'
+zoneId: '${zoneId}'
+
+AccountTokenPolicies.effect: 'allow'
+AiGatewayDynamicRoutingElements.type: 'start'
+ApiShieldAuthIdCharacteristics.type: 'header'
+ApiTokenPolicies.effect: 'allow'
+CloudflareAccessRule.mode: 'block'
+CloudflareApiShieldSchema.kind: 'openapi_v3'
+CloudflareArgoSmartRouting.value: 'on'
+CloudflareArgoTieredCaching.value: 'on'
+CloudflareCertificatePack.type: 'advanced'
+CloudflareCertificatePack.validityDays: 90
+CloudflareConnectivityDirectoryService.type: 'tcp'
+CloudflareContentScanning.value: 'enabled'
+CloudflareCustomPages.state: 'default'
+CloudflareList.kind: 'ip'
+CloudflareMagicNetworkMonitoringRule.type: 'threshold'
+CloudflareMagicWanBgpFilterProfile.matchAction: 'allow'
+CloudflareOriginCaCertificate.requestType: 'origin-rsa'
+CloudflarePageShieldPolicy.action: 'allow'
+CloudflarePipelineSink.type: 'r2'
+CloudflareQueueConsumer.type: 'worker'
+CloudflareRuleset.kind: 'zone'
+CloudflareSchemaValidationSchema.kind: 'openapi_v3'
+CloudflareShareResource.meta: '{}'
+CloudflareSnippet.files:
+  dart: '[{''name'': ''main.js'', ''content'': ''export default {};''},]'
+CloudflareTieredCache.value: 'on'
+CloudflareTokenValidationRules.action: 'log'
+CloudflareTurnstileWidget.mode: 'non-interactive'
+CloudflareUrlNormalizationSettings.type: 'cloudflare'
+CloudflareWeb3Hostname.target: 'ethereum'
+CloudflareWorkersDeployment.strategy: 'percentage'
+CloudflareZeroTrustAccessAiControlsMcpServer.authType: 'unauthenticated'
+CloudflareZeroTrustAccessCustomPage.type: 'forbidden'
+CloudflareZeroTrustAccessIdentityProvider.type:
+  value: 'google-apps'
+  why: 'The dummy config sets apps_domain, which only google-apps accepts.'
+CloudflareZeroTrustCasbWebhook.authenticationType: 'None'
+CloudflareZeroTrustDeviceManagedNetworks.type: 'tls'
+CloudflareZeroTrustDevicePostureIntegration.type: 'workspace_one'
+CloudflareZeroTrustDevicePostureRule.type: 'file'
+CloudflareZeroTrustGatewayPolicy.action: 'allow'
+CloudflareZeroTrustList.type: 'SERIAL'
+EmailRoutingCatchAllActions.type: 'drop'
+EmailRoutingCatchAllMatchers.type: 'all'
+EmailRoutingRuleActions.type: 'drop'
+EmailRoutingRuleMatchers.type: 'all'
+HyperdriveConfigOrigin.scheme: 'postgres'
+ImageVariantOptions.fit: 'scale-down'
+ImageVariantOptions.metadata: 'none'
+R2BucketEventNotificationRules.actions: 'PutObject'
+ShareResources.meta: '{}'
+ShareResources.resourceType: 'custom-ruleset'
+SnippetMetadata.mainModule: 'main.js'
+TokenValidationConfigKeys.alg: 'RS256'
+TokenValidationConfigKeys.kty: 'RSA'
+VulnerabilityScannerTargetEnvironmentTarget.type: 'zone'
+WorkersDeploymentVersions.percentage: 100
+ZoneTracingRules.action: 'set_trace_settings'
+ZoneTracingRulesActionParameters.samplingRatio: 1
