@@ -118,6 +118,18 @@ extension type const WorkspacesWorkspaceComputeTypeName._(TfArg<String> _)
   static const graphicsGr6f4xlarge = WorkspacesWorkspaceComputeTypeName._(
     TfArgLiteral('GRAPHICS_GR6F_4XLARGE'),
   );
+  static const graphicsG72xlarge = WorkspacesWorkspaceComputeTypeName._(
+    TfArgLiteral('GRAPHICS_G7_2XLARGE'),
+  );
+  static const graphicsG74xlarge = WorkspacesWorkspaceComputeTypeName._(
+    TfArgLiteral('GRAPHICS_G7_4XLARGE'),
+  );
+  static const graphicsG78xlarge = WorkspacesWorkspaceComputeTypeName._(
+    TfArgLiteral('GRAPHICS_G7_8XLARGE'),
+  );
+  static const graphicsG712xlarge = WorkspacesWorkspaceComputeTypeName._(
+    TfArgLiteral('GRAPHICS_G7_12XLARGE'),
+  );
 
   static const List<WorkspacesWorkspaceComputeTypeName> values = [
     value,
@@ -143,6 +155,10 @@ extension type const WorkspacesWorkspaceComputeTypeName._(TfArg<String> _)
     graphicsG6f2xlarge,
     graphicsG6f4xlarge,
     graphicsGr6f4xlarge,
+    graphicsG72xlarge,
+    graphicsG74xlarge,
+    graphicsG78xlarge,
+    graphicsG712xlarge,
   ];
 }
 

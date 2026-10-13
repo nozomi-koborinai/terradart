@@ -307,6 +307,30 @@ final class NetworkInterfaceAttachment {
   };
 }
 
+/// Typed helper for the `connection_tracking_specification` block of
+/// `aws_network_interface` (derived from provider schema).
+@immutable
+final class NetworkInterfaceConnectionTrackingSpecification {
+  const NetworkInterfaceConnectionTrackingSpecification({
+    this.tcpEstablishedTimeout,
+    this.udpStreamTimeout,
+    this.udpTimeout,
+  });
+
+  final TfArg<num>? tcpEstablishedTimeout;
+
+  final TfArg<num>? udpStreamTimeout;
+
+  final TfArg<num>? udpTimeout;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'tcp_established_timeout': ?tcpEstablishedTimeout?.toTfJson(),
+    'udp_stream_timeout': ?udpStreamTimeout?.toTfJson(),
+    'udp_timeout': ?udpTimeout?.toTfJson(),
+  };
+}
+
 /// Typed helper for the `ena_srd_specification` block of
 /// `aws_network_interface` (derived from provider schema).
 @immutable
@@ -365,6 +389,8 @@ final class AwsNetworkInterface extends Resource {
     required RefTo<AwsSubnet> subnetId,
     TfArg<Map<String, String>>? tags,
     List<NetworkInterfaceAttachment>? attachment,
+    NetworkInterfaceConnectionTrackingSpecification?
+    connectionTrackingSpecification,
     NetworkInterfaceEnaSrdSpecification? enaSrdSpecification,
     super.lifecycle,
     super.dependsOn,
@@ -394,6 +420,10 @@ final class AwsNetworkInterface extends Resource {
              'attachment': TfArg.literal([
                for (final e in attachment) e.encode(),
              ]),
+           if (connectionTrackingSpecification != null)
+             'connection_tracking_specification': TfArg.literal(
+               connectionTrackingSpecification.encode(),
+             ),
            if (enaSrdSpecification != null)
              'ena_srd_specification': TfArg.literal(
                enaSrdSpecification.encode(),

@@ -140,6 +140,10 @@ extension type const ObservabilityadminTelemetryRuleForOrganizationResourceType.
       ObservabilityadminTelemetryRuleForOrganizationResourceType._(
         TfArgLiteral('AWS::BedrockAgentCore::WorkloadIdentity'),
       );
+  static const awsBedrockagentcorePaymentmanager =
+      ObservabilityadminTelemetryRuleForOrganizationResourceType._(
+        TfArgLiteral('AWS::BedrockAgentCore::PaymentManager'),
+      );
   static const awsSecurityhubHub =
       ObservabilityadminTelemetryRuleForOrganizationResourceType._(
         TfArgLiteral('AWS::SecurityHub::Hub'),
@@ -185,6 +189,7 @@ extension type const ObservabilityadminTelemetryRuleForOrganizationResourceType.
     awsBedrockagentcoreGateway,
     awsBedrockagentcoreMemory,
     awsBedrockagentcoreWorkloadidentity,
+    awsBedrockagentcorePaymentmanager,
     awsSecurityhubHub,
     awsCloudfrontDistribution,
     awsSecurityhubHubv2,

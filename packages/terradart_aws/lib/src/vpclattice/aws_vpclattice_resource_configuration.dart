@@ -20,8 +20,14 @@ extension type const VpclatticeResourceConfigurationProtocol._(TfArg<String> _)
   static const tcp = VpclatticeResourceConfigurationProtocol._(
     TfArgLiteral('TCP'),
   );
+  static const tcpUdp = VpclatticeResourceConfigurationProtocol._(
+    TfArgLiteral('TCP_UDP'),
+  );
 
-  static const List<VpclatticeResourceConfigurationProtocol> values = [tcp];
+  static const List<VpclatticeResourceConfigurationProtocol> values = [
+    tcp,
+    tcpUdp,
+  ];
 }
 
 /// Exactly one of `resource_configuration_group_id`, `resource_gateway_identifier` on `aws_vpclattice_resource_configuration`: the provider rejects

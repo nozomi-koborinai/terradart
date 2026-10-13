@@ -709,6 +709,7 @@ export 'src/ec2/aws_network_interface.dart'
     show
         AwsNetworkInterface,
         NetworkInterfaceAttachment,
+        NetworkInterfaceConnectionTrackingSpecification,
         NetworkInterfaceEnaSrdSpecification,
         NetworkInterfaceEnaSrdUdpSpecification,
         NetworkInterfaceIpv4Prefix,

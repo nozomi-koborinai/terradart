@@ -12,6 +12,30 @@ import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
 /// Sensitive field paths for `aws_bedrockagentcore_agent_runtime`.
 const Set<String> _awsBedrockagentcoreAgentRuntimeSensitive = <String>{};
 
+/// Bedrockagentcore Agent Runtime Platform enum for `platform_version`.
+extension type const BedrockagentcoreAgentRuntimePlatformVersion._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BedrockagentcoreAgentRuntimePlatformVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentcoreAgentRuntimePlatformVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentcoreAgentRuntimePlatformVersion.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const v1 = BedrockagentcoreAgentRuntimePlatformVersion._(
+    TfArgLiteral('V1'),
+  );
+  static const v2 = BedrockagentcoreAgentRuntimePlatformVersion._(
+    TfArgLiteral('V2'),
+  );
+
+  static const List<BedrockagentcoreAgentRuntimePlatformVersion> values = [
+    v1,
+    v2,
+  ];
+}
+
 /// Typed helper for the `agent_runtime_artifact` block of
 /// `aws_bedrockagentcore_agent_runtime` (derived from provider schema).
 @immutable
@@ -726,6 +750,7 @@ final class AwsBedrockagentcoreAgentRuntime extends Resource {
     TfArg<String>? description,
     TfArg<Map<String, String>>? environmentVariables,
     TfArg<List<Map<String, Object?>>>? lifecycleConfiguration,
+    BedrockagentcoreAgentRuntimePlatformVersion? platformVersion,
     TfArg<String>? region,
     required RefTo<AwsIamRole> roleArn,
     TfArg<Map<String, String>>? tags,
@@ -751,6 +776,7 @@ final class AwsBedrockagentcoreAgentRuntime extends Resource {
            'description': ?description,
            'environment_variables': ?environmentVariables,
            'lifecycle_configuration': ?lifecycleConfiguration,
+           'platform_version': ?platformVersion,
            'region': ?region,
            'role_arn': roleArn.encodeAs('arn'),
            'tags': ?tags,
@@ -828,6 +854,10 @@ final class AwsBedrockagentcoreAgentRuntime extends Resource {
         this,
         'lifecycle_configuration',
       );
+
+  /// Reference to `platform_version` attribute.
+  TfRef<String> get platformVersion =>
+      TfRef.attribute<String>(this, 'platform_version');
 
   /// Reference to `region` attribute.
   TfRef<String> get region => TfRef.attribute<String>(this, 'region');

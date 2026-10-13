@@ -335,6 +335,9 @@ barrels:
   directory_service:
     doc: |-
       /// AWS Directory Service.
+  directoryservicedata:
+    doc: |-
+      /// `directoryservicedata` factories, added by the weekly schema bump.
   dlm:
     doc: |-
       /// AWS Data Lifecycle Manager.

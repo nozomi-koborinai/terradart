@@ -16,6 +16,16 @@ export 'src/directory_service/aws_directory_service_directory.dart'
         DirectoryServiceDirectorySize,
         DirectoryServiceDirectoryType,
         DirectoryServiceDirectoryVpcSettings;
+export 'src/directory_service/aws_directory_service_ip_route.dart'
+    show
+        AwsDirectoryServiceIpRoute,
+        DirectoryServiceIpRouteCidr,
+        DirectoryServiceIpRouteCidrIp,
+        DirectoryServiceIpRouteCidrIpv6;
+export 'src/directory_service/aws_directory_service_ip_routes_exclusive.dart'
+    show
+        AwsDirectoryServiceIpRoutesExclusive,
+        DirectoryServiceIpRoutesExclusiveIpRoute;
 export 'src/directory_service/aws_directory_service_log_subscription.dart'
     show AwsDirectoryServiceLogSubscription;
 export 'src/directory_service/aws_directory_service_radius_settings.dart'

@@ -92,6 +92,10 @@ extension type const S3BucketInventoryOptionalFields._(TfArg<String> _)
   static const lifecycleexpirationdate = S3BucketInventoryOptionalFields._(
     TfArgLiteral('LifecycleExpirationDate'),
   );
+  static const intelligenttieringreferencedate =
+      S3BucketInventoryOptionalFields._(
+        TfArgLiteral('IntelligentTieringReferenceDate'),
+      );
 
   static const List<S3BucketInventoryOptionalFields> values = [
     size,
@@ -112,6 +116,7 @@ extension type const S3BucketInventoryOptionalFields._(TfArg<String> _)
     objectaccesscontrollist,
     objectowner,
     lifecycleexpirationdate,
+    intelligenttieringreferencedate,
   ];
 }
 

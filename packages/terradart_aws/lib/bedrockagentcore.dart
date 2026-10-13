@@ -28,6 +28,7 @@ export 'src/bedrockagentcore/aws_bedrockagentcore_agent_runtime.dart'
         BedrockagentcoreAgentRuntimeNetworkConfiguration,
         BedrockagentcoreAgentRuntimeNetworkMode,
         BedrockagentcoreAgentRuntimeNetworkModeConfig,
+        BedrockagentcoreAgentRuntimePlatformVersion,
         BedrockagentcoreAgentRuntimePrivateEndpoint,
         BedrockagentcoreAgentRuntimePrivateEndpointOverrides,
         BedrockagentcoreAgentRuntimeProtocolConfiguration,
