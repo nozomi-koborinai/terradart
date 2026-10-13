@@ -44,7 +44,7 @@ void main() {
     final empty = Directory.systemTemp.createTempSync('appwrite_covered_');
     addTearDown(() => empty.deleteSync(recursive: true));
     final rendered = AppwriteLeftoverGenerator(
-      coveredBy: empty.path,
+      omitConstructedIn: empty.path,
     ).render(lane.dummies, exclude: lane.debtListed);
     expect(rendered.unplaceable, isEmpty);
     for (final entry in appwriteMigrateManifest.entries) {
@@ -65,7 +65,7 @@ void main() {
       final empty = Directory.systemTemp.createTempSync('appwrite_covered_');
       addTearDown(() => empty.deleteSync(recursive: true));
       final rendered = AppwriteLeftoverGenerator(
-        coveredBy: empty.path,
+        omitConstructedIn: empty.path,
       ).render(dummies, exclude: lane.debtListed);
       expect(
         rendered.source,

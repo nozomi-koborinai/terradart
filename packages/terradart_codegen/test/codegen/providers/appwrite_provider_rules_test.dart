@@ -54,8 +54,6 @@ void main() {
   });
 }
 
-/// Package tests run from `packages/terradart_codegen` in CI and from the
-/// repo root when invoked as `dart test packages/...`.
 Directory _overrideYamlDir() {
   const rel = 'lib/src/codegen/wrapper_overrides/appwrite/yaml';
   if (Directory(rel).existsSync()) return Directory(rel);

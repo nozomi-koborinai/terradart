@@ -52,10 +52,6 @@ final class _PermissionStack extends Stack {
   }
 }
 
-/// The lane's schema fixture in the monorepo: the pin and the full catalog
-/// are both derived from it. CI runs this file from the package directory;
-/// `dart test packages/terradart_appwrite/...` from the repo root uses the
-/// other path.
 String get _fixtureDir {
   const fromPackage = '../terradart_codegen/test/fixtures/wrap/source_appwrite';
   const fromRepo =

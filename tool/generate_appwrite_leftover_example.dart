@@ -1,9 +1,3 @@
-// Renders examples/appwrite_leftover_quickstart/lib/main.dart for
-// tool/coverage_stack.dart, which writes and validates it: one constructor
-// call per terradart_appwrite factory examples/appwrite_quickstart does not
-// construct, with its required arguments only. A value comes from
-// tool/coverage_dummies/appwrite.yaml, else from the type default.
-
 import 'dart:convert';
 import 'dart:io';
 
@@ -13,24 +7,16 @@ import 'dot_shorthands.dart';
 
 const appwriteLeftoverStack = AppwriteLeftoverGenerator();
 
-/// The appwrite coverage stack. Factories are flat at the pins the lane has
-/// seen; a required input outside the flat vocabulary is reported
-/// `unplaceable` (the driver records it `awaiting-example:` without
-/// withholding auto-merge) instead of guessed.
 final class AppwriteLeftoverGenerator implements CoverageStackGenerator {
   const AppwriteLeftoverGenerator({
-    this.coveredBy = 'examples/appwrite_quickstart/lib',
+    this.omitConstructedIn = 'examples/appwrite_quickstart/lib',
   });
 
-  /// The hand-written example whose constructor calls this stack leaves out.
-  final String coveredBy;
+  final String omitConstructedIn;
 
   @override
   String get slug => 'appwrite_leftover';
 
-  /// Empty: appwrite factories share no identity that must agree across
-  /// blocks (`project_id` is optional and defaults from the provider), so the
-  /// stack declares no names and a ledger `${name}` fails to load.
   @override
   Set<String> get bindings => const {};
 
@@ -41,7 +27,7 @@ final class AppwriteLeftoverGenerator implements CoverageStackGenerator {
   }) {
     final enums = _parseEnums(_srcRoot);
     final all = _parseFactories(_srcRoot);
-    final covered = _constructedIn(coveredBy, {
+    final covered = _constructedIn(omitConstructedIn, {
       for (final factory in all) factory.className,
     });
     final todo =
@@ -94,7 +80,6 @@ const _skipFiles = {
 
 enum _Kind { resource, data }
 
-/// One factory class, read from its generated wrapper.
 final class _Factory {
   const _Factory({
     required this.className,
@@ -107,22 +92,17 @@ final class _Factory {
   final String tfType;
   final _Kind kind;
 
-  /// Required named constructor parameters, in declaration order.
   final List<_Param> required;
 }
 
 final class _Param {
   const _Param(this.name, this.type);
 
-  /// The Dart parameter name (`databaseId`): the ledger's `param`.
   final String name;
 
-  /// As declared, without `?`: `TfArg<String>`, `RefTo<AppwriteSite>`,
-  /// `Sensitive<String>`, `ProxyRuleType`.
   final String type;
 }
 
-/// What one required parameter is written as.
 sealed class _Arg {
   const _Arg();
 }
@@ -130,18 +110,15 @@ sealed class _Arg {
 final class _Written extends _Arg {
   const _Written(this.dart);
 
-  /// Dart source before dot shorthands: `TfArg.literal('leftover')`.
   final String dart;
 }
 
 final class _Unplaceable extends _Arg {
   const _Unplaceable(this.reason);
 
-  /// `databaseId: required Foo is outside the flat vocabulary`.
   final String reason;
 }
 
-/// Enum name → (member, raw value), in declaration order.
 typedef _Enums = Map<String, List<(String member, String raw)>>;
 
 final _enumDecl = RegExp(
@@ -165,7 +142,6 @@ String _basename(String path) {
   return slash < 0 ? path : path.substring(slash + 1);
 }
 
-/// Every factory class under [srcRoot].
 List<_Factory> _parseFactories(String srcRoot) {
   final out = <_Factory>[];
   for (final file in _dartFiles(srcRoot)) {
@@ -211,7 +187,6 @@ List<_Factory> _parseFactories(String srcRoot) {
   return out;
 }
 
-/// Package enums, member then raw value, in declaration order.
 _Enums _parseEnums(String srcRoot) {
   final enums = <String, List<(String, String)>>{};
   for (final file in _dartFiles(srcRoot)) {
@@ -227,8 +202,6 @@ _Enums _parseEnums(String srcRoot) {
   return enums;
 }
 
-/// The class names in [classNames] that the Dart sources under [dir]
-/// construct: `\bClassName\(` in comment-stripped source.
 Set<String> _constructedIn(String dir, Set<String> classNames) {
   if (classNames.isEmpty) return const {};
   final pattern = RegExp(
@@ -336,8 +309,6 @@ String _sensitiveExpression(String secret) {
 String _outside(_Param param) =>
     '${param.name}: required ${param.type} is outside the flat vocabulary';
 
-/// `appwrite_storage_bucket` → `storage_bucket`. A resource and a data source
-/// of one type do not collide (`data.` prefixes the latter's address).
 String _local(_Factory factory) {
   if (!factory.tfType.startsWith(_typePrefix)) {
     throw StateError('${factory.tfType} does not start with $_typePrefix');
@@ -345,9 +316,6 @@ String _local(_Factory factory) {
   return factory.tfType.substring(_typePrefix.length);
 }
 
-/// The whole `lib/main.dart`, unformatted. With no factory placed the
-/// constructor is an initializer, so an empty stack has no unused local and
-/// no empty body.
 String _source(List<(_Factory, List<(_Param, _Written)>)> placed) {
   final out = StringBuffer()
     ..writeln('// GENERATED — dart tool/coverage_stack.dart --lane appwrite')
@@ -389,8 +357,6 @@ String _source(List<(_Factory, List<(_Param, _Written)>)> placed) {
   return out.toString();
 }
 
-/// Drops `//` and `/* */` comments, leaving string literals intact so a URL
-/// does not swallow the rest of its line.
 String _stripComments(String source) {
   final out = StringBuffer();
   var i = 0;
