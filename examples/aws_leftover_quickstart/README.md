@@ -12,8 +12,9 @@ terradart synth
 ```
 
 `lib/main.dart` is generated. Regenerate it after a wrap with
-`dart tool/generate_aws_leftover_example.dart` from the repository root; the
-placeholder values that satisfy provider validators live in that tool's tables.
+`dart tool/coverage_stack.dart --lane aws` from the repository root, which
+also validates it against the provider; the placeholder values that satisfy
+provider validators live in `tool/coverage_dummies/aws.yaml`.
 
 ## Before you apply
 

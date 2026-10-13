@@ -346,4 +346,88 @@ AwsDirectoryServiceTrust.remoteDomainName: 'example.com'
     };
     expect(kCoverageStacks.keys.toSet(), generators);
   });
+
+  group('only the driver writes a coverage stack', () {
+    test('the scan flags the rule PR #922 needed', () {
+      expect(
+        generatorViolations('''
+void main() => File(_outPath).writeAsStringSync(render());
+
+String _literal(String className, String name) {
+  if (name == 'resourceName' &&
+      className == 'DataGoogleIamWorkloadIdentityPoolJwks') {
+    return "'https://example.com/.well-known/jwks.json'";
+  }
+  if (owner.startsWith('AwsDirectoryService')) return "'d-1234567890'";
+  switch (owner) {
+    case 'AwsDirectoryServiceTrust':
+      return "'d-1234567890'";
+  }
+  return _literalByKey['\$className.\$name'] ?? _stringLiteral(name);
 }
+'''),
+        [
+          'declares main: void main(',
+          'uses _literalByKey',
+          'uses _stringLiteral',
+          "compares an owner class name: className == '",
+          "compares an owner class name: owner.startsWith('",
+          "compares an owner class name: case 'AwsDirectoryServiceTrust'",
+        ],
+      );
+    });
+
+    test('no leftover generator chooses a dummy value itself', () {
+      expect(
+        {
+          for (final path in kCoverageStacks.keys)
+            path: generatorViolations(File(path).readAsStringSync()),
+        },
+        {for (final path in kCoverageStacks.keys) path: isEmpty},
+      );
+    });
+
+    test('the schema bump runs the driver, never a generator', () {
+      final workflow = File(
+        '.github/workflows/schema-bump.yml',
+      ).readAsStringSync();
+      expect(
+        RegExp(
+          r'dart tool/coverage_stack\.dart --lane="\$LANE"',
+        ).allMatches(workflow),
+        hasLength(1),
+      );
+      expect([
+        for (final m in RegExp(
+          r'dart\s+(?:run\s+)?"?\$\{?EXAMPLE_GENERATOR',
+        ).allMatches(workflow))
+          m[0],
+      ], isEmpty);
+    });
+  });
+}
+
+/// What a coverage-stack generator may not do: declare `main` (only
+/// `tool/coverage_stack.dart` writes a stack, after validating it), keep a
+/// retired value table, or pick a dummy value by comparing the owner's class
+/// name (the ledger `tool/coverage_dummies/<lane>.yaml` owns every value).
+List<String> generatorViolations(String source) => [
+  for (final m in RegExp(
+    r'^(?:[\w<>?]+\s+)?main\s*\(',
+    multiLine: true,
+  ).allMatches(source))
+    'declares main: ${m[0]}',
+  for (final name in [
+    '_literalByKey',
+    '_stringLiteral',
+    '_valueByKey',
+    '_numberByKey',
+  ])
+    if (RegExp('\\b$name\\b').hasMatch(source)) 'uses $name',
+  for (final m in RegExp(
+    r"\b\w*(?:[cC]lassName|[oO]wner)\s*(?:==|!=)\s*'"
+    r"|\b\w*(?:[cC]lassName|[oO]wner)\.(?:contains|startsWith|endsWith)\(\s*'"
+    r"|\bcase\s+'(?:Data)?(?:Aws|Cloudflare|Google)[A-Z]\w*'",
+  ).allMatches(source))
+    'compares an owner class name: ${m[0]}',
+];

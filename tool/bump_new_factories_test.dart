@@ -2,11 +2,14 @@
 // does not recognize it as a test for @visibleForTesting purposes.
 // ignore_for_file: invalid_use_of_visible_for_testing_member
 
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:test/test.dart';
 
+import 'append_curation_backlog.dart';
 import 'bump_new_factories.dart';
+import 'coverage_verdict.dart';
 import 'wrap_lanes.dart';
 
 void main() {
@@ -53,14 +56,246 @@ const terradartCatalog = <CatalogEntry>[
     ]);
   });
 
-  test('a generator covering data sources leaves new resources awaiting', () {
-    final factories = readCatalog(catalog);
-    expect(awaitingExample(factories, {'dataSource'}).map((f) => f.className), [
-      'AwsNew',
-      'AwsOld',
-    ]);
-    expect(awaitingExample(factories, {'resource', 'dataSource'}), isEmpty);
-    expect(awaitingExample(factories, const {}), factories);
+  group('coverage', () {
+    CoverageGreen green(List<ExcludedFactory> excluded) => CoverageGreen(
+      slug: 'aws_leftover',
+      engine: 'tofu 1.13.1',
+      providers: const {'hashicorp/aws': '6.69.0'},
+      learned: const [],
+      excluded: excluded,
+      pruned: const [],
+    );
+    const newDataRejected = ExcludedFactory(
+      className: 'AwsNewData',
+      tfType: 'aws_new',
+      kind: FactoryKind.dataSource,
+      cause: ProviderRejected(
+        'data.aws_new.new.mode',
+        'leftover',
+        'Attribute mode must be a valid Foo mode, got: leftover',
+      ),
+    );
+    const oldRejected = ExcludedFactory(
+      className: 'AwsOld',
+      tfType: 'aws_old',
+      kind: FactoryKind.resource,
+      cause: ProviderRejected(
+        'aws_old.old.directory_id',
+        'leftover',
+        'Attribute directory_id must be a valid Directory Service Directory '
+            'ID,\ngot: leftover',
+      ),
+    );
+
+    test('a green stack covering data sources leaves new resources '
+        'awaiting', () {
+      expect(
+        awaitingExample(readCatalog(catalog), {
+          'dataSource',
+        }, green(const [])).map((f) => f.className),
+        ['AwsNew', 'AwsOld'],
+      );
+    });
+
+    test('a factory the stack left out awaits an example', () {
+      expect(
+        awaitingExample(readCatalog(catalog), {
+          'resource',
+          'dataSource',
+        }, green(const [newDataRejected])).map((f) => f.className),
+        ['AwsNewData'],
+      );
+    });
+
+    test('no verdict, or a broken one, covers nothing', () {
+      final factories = readCatalog(catalog);
+      expect(
+        awaitingExample(factories, {'resource', 'dataSource'}, null),
+        factories,
+      );
+      expect(
+        awaitingExample(
+          factories,
+          {'resource', 'dataSource'},
+          const CoverageBroken(
+            slug: 'aws_leftover',
+            stage: OracleStage.init,
+            logExcerpt: 'registry unreachable',
+          ),
+        ),
+        factories,
+      );
+    });
+
+    test('an existing factory the stack left out is not a new one', () {
+      final factories = newFactories({
+        'added_resources': ['aws_new'],
+        'added_data_sources': ['aws_new'],
+      }, readCatalog(catalog));
+      expect(
+        leftExisting(
+          green(const [newDataRejected, oldRejected]),
+          factories,
+        ).map((e) => e.className),
+        ['AwsOld'],
+      );
+      expect(leftExisting(null, factories), isEmpty);
+    });
+
+    test('left-out factories carry why on their awaiting-example line', () {
+      final out = appendAwaitingExampleDebt(
+        '# ledger\n',
+        factories: [
+          (tfType: 'aws_new', className: 'AwsNewData', kind: 'dataSource'),
+        ],
+        leftOut: const [
+          newDataRejected,
+          oldRejected,
+          ExcludedFactory(
+            className: 'AwsKeyed',
+            tfType: 'aws_keyed',
+            kind: FactoryKind.dataSource,
+            cause: GeneratorCannotPlace(
+              'AwsKeyed.key takes a required AwsKeyedKey: add a dummy value '
+              'to _requiredHelpers',
+            ),
+          ),
+        ],
+        source: 'hashicorp/aws',
+        providerVersion: '6.69.0',
+        detectedAt: '2026-10-19',
+      );
+      expect(out.split('\n').where((l) => l.isNotEmpty && !l.startsWith('#')), [
+        'AwsNewData: awaiting-example: aws_new (data source) added in '
+            'hashicorp/aws 6.69.0 (schema bump 2026-10-19); the coverage '
+            'stack left it out: data.aws_new.new.mode rejected leftover: '
+            'Attribute mode must be a valid Foo mode, got: leftover',
+        'AwsOld: awaiting-example: aws_old left the coverage stack in '
+            'hashicorp/aws 6.69.0 (schema bump 2026-10-19): '
+            'aws_old.old.directory_id rejected leftover: Attribute '
+            'directory_id must be a valid Directory Service Directory ID, '
+            'got: leftover',
+        'AwsKeyed: awaiting-example: aws_keyed (data source) left the '
+            'coverage stack in hashicorp/aws 6.69.0 (schema bump '
+            '2026-10-19): AwsKeyed.key takes a required AwsKeyedKey: add a '
+            'dummy value to _requiredHelpers',
+      ]);
+    });
+
+    test('the left-out backlog note survives the backlog file', () {
+      final yaml = formatBacklogYaml(
+        header: '# backlog',
+        entries: appendCurationEntries(
+          existing: const [],
+          resources: ['aws_old'],
+          detectedAt: '2026-10-19',
+          providerVersion: '6.69.0',
+          note: leftCoverageNote('aws'),
+        ),
+      );
+      expect(readBacklogEntries(yaml), [
+        {
+          'resource': 'aws_old',
+          'detected_at': '2026-10-19',
+          'provider_version': '6.69.0',
+          'note':
+              'the coverage stack left this factory out (its awaiting-example '
+              'line in tool/example_debt.yaml says why); give its dummy value '
+              'in tool/coverage_dummies/aws.yaml, delete that line, and run '
+              'dart tool/coverage_stack.dart --lane aws',
+        },
+      ]);
+    });
+
+    test('record --coverage writes the backlog and debt entries', () async {
+      final root = Directory.systemTemp.createTempSync('record');
+      addTearDown(() => root.deleteSync(recursive: true));
+      void put(String path, String text) => File('${root.path}/$path')
+        ..createSync(recursive: true)
+        ..writeAsStringSync(text);
+      put(providersPath, File(providersPath).readAsStringSync());
+      put('packages/terradart_aws/lib/src/_catalog.g.dart', catalog);
+      put(curationBacklogPath, '# backlog\n\nentries: []\n');
+      put(exampleDebtPath, '# ledger\n');
+      put(
+        'diff.json',
+        jsonEncode({
+          'added_resources': ['aws_new'],
+          'added_data_sources': ['aws_new'],
+        }),
+      );
+      put(
+        'coverage.json',
+        jsonEncode(encodeVerdict(green(const [newDataRejected, oldRejected]))),
+      );
+
+      final r = await Process.run(Platform.resolvedExecutable, [
+        File('tool/bump_new_factories.dart').absolute.path,
+        'record',
+        '--lane=aws',
+        '--diff=diff.json',
+        '--detected-at=2026-10-19',
+        '--provider-version=6.69.0',
+        '--coverage=coverage.json',
+        '--out=out.json',
+      ], workingDirectory: root.path);
+      expect(r.exitCode, 0, reason: '${r.stdout}${r.stderr}');
+
+      String read(String path) => File('${root.path}/$path').readAsStringSync();
+      expect(
+        read(
+          exampleDebtPath,
+        ).split('\n').where((l) => l.isNotEmpty && !l.startsWith('#')),
+        [
+          'AwsNewData: awaiting-example: aws_new (data source) added in '
+              'hashicorp/aws 6.69.0 (schema bump 2026-10-19); the coverage '
+              'stack left it out: data.aws_new.new.mode rejected leftover: '
+              'Attribute mode must be a valid Foo mode, got: leftover',
+          'AwsOld: awaiting-example: aws_old left the coverage stack in '
+              'hashicorp/aws 6.69.0 (schema bump 2026-10-19): '
+              'aws_old.old.directory_id rejected leftover: Attribute '
+              'directory_id must be a valid Directory Service Directory ID, '
+              'got: leftover',
+        ],
+      );
+      expect(readBacklogEntries(read(curationBacklogPath)), [
+        {
+          'data_source': 'aws_new',
+          'detected_at': '2026-10-19',
+          'provider_version': '6.69.0',
+          'note': generatedFactoryNote,
+        },
+        {
+          'resource': 'aws_new',
+          'detected_at': '2026-10-19',
+          'provider_version': '6.69.0',
+          'note': generatedFactoryNote,
+        },
+        {
+          'resource': 'aws_old',
+          'detected_at': '2026-10-19',
+          'provider_version': '6.69.0',
+          'note': leftCoverageNote('aws'),
+        },
+      ]);
+      expect(jsonDecode(read('out.json')), {
+        'example_generator': 'tool/generate_aws_leftover_example.dart',
+        'factories': [
+          {
+            'tf_type': 'aws_new',
+            'class_name': 'AwsNew',
+            'kind': 'resource',
+            'example_covered': true,
+          },
+          {
+            'tf_type': 'aws_new',
+            'class_name': 'AwsNewData',
+            'kind': 'dataSource',
+            'example_covered': false,
+          },
+        ],
+      });
+    });
   });
 
   test('awaiting-example lines go under one section, once', () {

@@ -20,7 +20,9 @@
 //   (tool/schema_resource_diff.dart); optional mm_yaml_sync.json (lanes
 //   with Magic Modules YAML), beta_bump.json (the google-beta ride-along),
 //   api_diff.json (tool/bump_api_surface.dart diff), scaffold.json and
-//   new_factories.json (tool/bump_new_factories.dart scaffold / record).
+//   new_factories.json (tool/bump_new_factories.dart scaffold / record),
+//   coverage_stack.json (tool/coverage_stack.dart; absent on a lane with a
+//   coverage stack → blocks).
 //
 // --decision-out (optional) receives `{auto_merge, blockers}`: the
 // workflow enables auto-merge only when `blockers` is empty.
@@ -35,6 +37,8 @@ import 'dart:io';
 
 import 'package:meta/meta.dart';
 import 'package:yaml/yaml.dart';
+
+import 'coverage_verdict.dart';
 
 const _exitUsage = 64;
 const _exitMissingInput = 65;
@@ -119,10 +123,11 @@ class ReportLane {
     required this.source,
     required this.schemaDir,
     this.prOnly = false,
+    this.hasCoverageStack = false,
   });
 
-  /// Reads [name]'s `source`, `schemaDir` and `bump.mode` from
-  /// tool/providers.yaml.
+  /// Reads [name]'s `source`, `schemaDir`, `bump.mode` and
+  /// `bump.exampleGenerator` from tool/providers.yaml.
   factory ReportLane.fromProviders(String providersYaml, String name) {
     final providers =
         (loadYaml(providersYaml) as YamlMap)['providers'] as YamlMap;
@@ -138,6 +143,7 @@ class ReportLane {
       source: entry['source'] as String,
       schemaDir: entry['schemaDir'] as String,
       prOnly: bump is YamlMap && bump['mode'] == 'pr-only',
+      hasCoverageStack: bump is YamlMap && bump['exampleGenerator'] is String,
     );
   }
 
@@ -145,6 +151,7 @@ class ReportLane {
     name: 'google',
     source: 'hashicorp/google',
     schemaDir: 'packages/terradart_codegen/test/fixtures/wrap/source',
+    hasCoverageStack: true,
   );
 
   final String name;
@@ -154,6 +161,10 @@ class ReportLane {
   /// `bump.mode: pr-only`: the workflow opens the PR but never enables
   /// auto-merge on it.
   final bool prOnly;
+
+  /// `bump.exampleGenerator` is set: the bump must hand in a coverage
+  /// verdict.
+  final bool hasCoverageStack;
 
   /// `google_`, `aws_`, `cloudflare_`: the source's provider name.
   String get typePrefix => '${source.split('/').last}_';
@@ -176,6 +187,7 @@ class ReportInputs {
     this.apiDiff,
     this.scaffold,
     this.newFactories,
+    this.coverage,
     this.lane = ReportLane.google,
   });
   final Map<String, dynamic> state;
@@ -208,6 +220,10 @@ class ReportInputs {
   /// kind}], example_generator}` — the new types the regenerate made
   /// factories.
   final Map<String, dynamic>? newFactories;
+
+  /// Optional `coverage_stack.json`: the lane's coverage stack after the
+  /// regenerate. Absent on a lane with one → blocks auto-merge.
+  final CoverageVerdict? coverage;
 }
 
 @visibleForTesting
@@ -242,6 +258,7 @@ ReportInputs readInputs(String dir, {ReportLane lane = ReportLane.google}) {
   }
 
   final api = optional('api_diff.json');
+  final coverage = File('$dir/coverage_stack.json');
   return ReportInputs(
     state: state,
     wrapCheckStdout: wrapCheck,
@@ -254,6 +271,9 @@ ReportInputs readInputs(String dir, {ReportLane lane = ReportLane.google}) {
     apiDiff: api,
     scaffold: optional('scaffold.json'),
     newFactories: optional('new_factories.json'),
+    coverage: coverage.existsSync()
+        ? decodeVerdict(jsonDecode(coverage.readAsStringSync()))
+        : null,
     lane: lane,
   );
 }
@@ -292,6 +312,11 @@ String buildReport(ReportInputs i) {
   b.writeln();
   b.writeln(buildGateSection(i));
   b.writeln();
+  final coverageSection = buildCoverageSection(i);
+  if (coverageSection != null) {
+    b.writeln(coverageSection);
+    b.writeln();
+  }
   b.writeln(buildNewResourceSection(i));
   b.writeln();
   b.writeln(buildRemovedResourceSection(i));
@@ -310,9 +335,11 @@ String buildReport(ReportInputs i) {
 /// Auto-merge is for the routine week only: a clean regenerate, green QA
 /// gates, no MM sync failure, no removed curated resource (or data source,
 /// on lanes that diff them), no new major, and no breaking change to the
-/// generated Dart API. A new upstream type is routine: the bump scaffolds
-/// its default override and records it for later polish, so only a failed
-/// scaffold blocks. CI's required checks still gate the merge itself.
+/// generated Dart API, and a coverage stack that validated with every
+/// factory the provider accepts ([coverageBlockers]). A new upstream type is
+/// routine: the bump scaffolds its default override and records it for
+/// later polish, so only a failed scaffold blocks. CI's required checks
+/// still gate the merge itself.
 @visibleForTesting
 List<String> autoMergeBlockers(ReportInputs i) {
   final blockers = <String>[
@@ -354,8 +381,179 @@ List<String> autoMergeBlockers(ReportInputs i) {
     final breaking = (api['breaking'] as List?)?.length ?? 0;
     if (breaking > 0) blockers.add('$breaking breaking API change(s)');
   }
-  return blockers;
+  return [...blockers, ...coverageBlockers(i)];
 }
+
+/// What the coverage verdict means for auto-merge. A learned value and a
+/// factory the generator cannot place do not block: the first is in the
+/// ledger, the second has an `awaiting-example:` line as before. A factory
+/// the provider rejected does, new or existing, because its dummy value is
+/// what a maintainer must supply.
+@visibleForTesting
+List<String> coverageBlockers(ReportInputs i) {
+  if (!i.lane.hasCoverageStack) return const [];
+  return switch (i.coverage) {
+    null => const ['the coverage stack was not validated'],
+    CoverageBroken(:final slug, :final stage) => [
+      'the coverage stack `$slug` fails ${stage.name}',
+    ],
+    CoverageGreen(:final slug, :final excluded) => switch (excluded
+        .where((f) => f.cause is ProviderRejected)
+        .length) {
+      0 => const [],
+      1 => [
+        '1 factory left the coverage stack `$slug`: the provider rejects its '
+            'dummy value',
+      ],
+      final n => [
+        '$n factories left the coverage stack `$slug`: the provider rejects '
+            'their dummy values',
+      ],
+    },
+  };
+}
+
+/// The lane's coverage stack: what validated it, what it learned, what it
+/// left out. Null on a lane without one.
+@visibleForTesting
+String? buildCoverageSection(ReportInputs i) {
+  if (!i.lane.hasCoverageStack) return null;
+  final lane = i.lane.name;
+  final rerun = 'dart tool/coverage_stack.dart --lane $lane';
+  final ledger = '`tool/coverage_dummies/$lane.yaml`';
+  switch (i.coverage) {
+    case null:
+      return '## ❌ Coverage stack\n\n'
+          'Not validated: `tool/coverage_stack.dart` wrote no verdict (it '
+          'crashed, or the regenerate failed before it ran), so the stack is '
+          'as the bump found it. Reproduce with `$rerun`.';
+    case CoverageBroken(:final slug, :final stage, :final logExcerpt):
+      return '## ❌ Coverage stack `$slug`\n\n'
+          'Fails `${stage.name}`; the stack and $ledger are as the bump found '
+          'them. Reproduce with `$rerun`.\n\n'
+          '```\n'
+          '${_truncate(logExcerpt.trim(), 8000)}\n'
+          '```';
+    case CoverageGreen(
+      :final slug,
+      :final engine,
+      :final providers,
+      :final learned,
+      :final excluded,
+      :final pruned,
+    ):
+      final added = _addedTypeKeys(i);
+      final b = StringBuffer(
+        '## ${excluded.isEmpty ? '✅' : '⚠️'} Coverage stack `$slug`\n\n'
+        'Validated with $engine against ${_providerList(providers)}: the '
+        'commands of the `validate ($slug)` CI leg, then '
+        '`dart analyze` as the example gates run it.\n',
+      );
+      if (learned.isNotEmpty) {
+        b
+          ..writeln()
+          ..writeln('Learned from provider diagnostics ($ledger):')
+          ..writeln();
+        for (final l in learned) {
+          b
+            ..writeln('- `${l.key}` = `${_shown(l.value)}` (${l.source})')
+            ..writeln(
+              '  - `${l.at}` rejected `${_shown(l.rejected)}`: '
+              '${_oneLine(l.detail)}',
+            );
+        }
+      }
+      if (excluded.isNotEmpty) {
+        b
+          ..writeln()
+          ..writeln(
+            'Left out of the stack (an `awaiting-example:` line in '
+            '`tool/example_debt.yaml` holds its coverage):',
+          )
+          ..writeln();
+        for (final f in excluded) {
+          final what = [
+            '`${f.tfType}`',
+            if (f.kind == FactoryKind.dataSource) 'data source',
+            added.contains(f.typeKey) ? 'new' : 'existing',
+          ].join(', ');
+          switch (f.cause) {
+            case ProviderRejected(:final at, :final rejected, :final detail):
+              b
+                ..writeln(
+                  '- `${f.className}` ($what): `$at`'
+                  '${rejected == null ? '' : ' rejected `${_shown(rejected)}`'}'
+                  ': ${_oneLine(detail)}',
+                )
+                ..writeln(
+                  '  - Withholds auto-merge. To cover it, give the rejected '
+                  'argument a value in $ledger (keys are Dart names, '
+                  '`${f.className}.<parameter>`), or add a message family to '
+                  '`kDiagnosticFamilies` when the message names a shape. '
+                  'Then delete its `awaiting-example:` line and run '
+                  '`$rerun`.',
+                );
+            case GeneratorCannotPlace(:final reason):
+              b
+                ..writeln(
+                  '- `${f.className}` ($what): the generator cannot place it: '
+                  '$reason',
+                )
+                ..writeln(
+                  '  - Then delete its `awaiting-example:` line and run '
+                  '`$rerun`.',
+                );
+          }
+        }
+      }
+      if (pruned.isNotEmpty) {
+        b
+          ..writeln()
+          ..writeln(
+            'Removed from $ledger (the manifest no longer has their slot): '
+            '${pruned.map((k) => '`$k`').join(', ')}.',
+          );
+      }
+      return b.toString().trimRight();
+  }
+}
+
+String? _coverageRow(ReportInputs i) {
+  if (!i.lane.hasCoverageStack) return null;
+  return switch (i.coverage) {
+    null => '| coverage stack | ❌ not validated |',
+    CoverageBroken(:final slug, :final stage) =>
+      '| coverage stack `$slug` | ❌ fails ${stage.name} |',
+    CoverageGreen(
+      :final slug,
+      :final engine,
+      :final providers,
+      :final learned,
+      :final excluded,
+    ) =>
+      '| coverage stack `$slug` | '
+          '${excluded.isEmpty ? '✅' : '⚠️'} validated ($engine, '
+          '${_providerList(providers)})'
+          '${learned.isEmpty ? '' : ' · ${learned.length} learned'}'
+          '${excluded.isEmpty ? '' : ' · ${excluded.length} left out'} |',
+  };
+}
+
+Set<String> _addedTypeKeys(ReportInputs i) => {
+  for (final t in (i.schemaDiff['added_resources'] as List?) ?? const [])
+    'resource:$t',
+  for (final t in (i.schemaDiff['added_data_sources'] as List?) ?? const [])
+    'dataSource:$t',
+};
+
+String _providerList(Map<String, String> providers) => [
+  for (final source in providers.keys.toList()..sort())
+    '$source ${providers[source]}',
+].join(', ');
+
+String _shown(Object? value) => value is String ? value : jsonEncode(value);
+
+String _oneLine(String s) => s.trim().replaceAll(RegExp(r'\s+'), ' ');
 
 int _count(ReportInputs i, String key) =>
     (i.schemaDiff[key] as List?)?.length ?? 0;
@@ -428,6 +626,7 @@ String buildSummaryTable(ReportInputs i) {
   final removed =
       _count(i, 'removed_resources') + _count(i, 'removed_data_sources');
   final betaRow = betaSummaryRow(i);
+  final coverageRow = _coverageRow(i);
   final mm = i.mmYamlSync;
   return '## Summary\n\n'
       '| Source | Status |\n'
@@ -438,6 +637,7 @@ String buildSummaryTable(ReportInputs i) {
       '${mm == null ? '' : '| magic-modules | **${(mm['changed'] as List?)?.length ?? 0} files updated** |\n'}'
       '| `terradart wrap --check` | $wrapStatus |\n'
       '| ${i.lane.gatesLabel} | $gatesStatus |\n'
+      '${coverageRow == null ? '' : '$coverageRow\n'}'
       '| New `$prefix*` resources | **${_count(i, 'added_resources')} detected** |\n'
       '${_tracksDataSources(i) ? '| New `$prefix*` data sources | **${_count(i, 'added_data_sources')} detected** |\n' : ''}'
       '| Removed curated types | ${removed == 0 ? "✅ none" : "⚠️ $removed"} |';

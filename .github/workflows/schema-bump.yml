@@ -18,6 +18,12 @@ name: schema-bump
 # into a factory, and records it in tool/curation_backlog.yaml (API polish)
 # and — unless the lane's leftover example covers it — tool/example_debt.yaml
 # (`awaiting-example:`). A removed type or a breaking API diff still blocks.
+#
+# Before the PR opens, the bump validates the lane's leftover example (its
+# coverage stack) the way required CI does (tool/coverage_stack.dart). A
+# value the provider rejects is re-learned into tool/coverage_dummies/; a
+# factory no value satisfies is left out with an `awaiting-example:` line,
+# and that withholds auto-merge.
 
 on:
   schedule:
@@ -254,25 +260,31 @@ jobs:
             echo "wrap failed; bump PR will carry inputs only (see drift report)."
             exit 0
           fi
-          example_ok=true
           if [ -n "$EXAMPLE_GENERATOR" ]; then
-            # The leftover example covers every factory no other example
-            # does; a regenerate can add, drop or reshape them.
-            if ! dart "$EXAMPLE_GENERATOR"; then
-              git checkout -- examples
+            # The leftover example (the lane's coverage stack) covers every
+            # factory no other example does; a regenerate can add, drop or
+            # reshape them. The driver renders it, synthesizes it, and runs
+            # what required CI runs on it (the `validate (<slug>)` leg and
+            # `dart analyze`). A value the provider rejects is re-learned
+            # into tool/coverage_dummies/$LANE.yaml; a factory no value
+            # satisfies is left out. Exit 0 means a verdict was written
+            # (green or broken). Anything else is a crash, which leaves no
+            # verdict, and a missing verdict blocks auto-merge.
+            if ! dart tool/coverage_stack.dart --lane="$LANE" --out=/tmp/coverage_stack.json; then
+              git checkout -- examples tool/coverage_dummies
               git clean -fdq -- examples
-              example_ok=false
-              echo "::warning::$EXAMPLE_GENERATOR failed; the example is unchanged and the new factories are recorded as awaiting an example."
+              echo "::warning::tool/coverage_stack.dart crashed; the coverage stack is unchanged and the new factories are recorded as awaiting an example."
             fi
           fi
           # Every new type the catalog now wraps goes into the curation
-          # backlog (API polish) and, when no leftover example covers it,
-          # into tool/example_debt.yaml as awaiting an example.
+          # backlog (API polish) and, when the coverage stack does not cover
+          # it, into tool/example_debt.yaml as awaiting an example. So does
+          # an existing factory the coverage stack left out.
           dart tool/bump_new_factories.dart record --lane="$LANE" \
             --diff=/tmp/schema_diff.json \
             --detected-at="$(date -u +%Y-%m-%d)" \
             --provider-version="$(jq -r '.latest' /tmp/state.json)" \
-            --example-generator-ok="$example_ok" \
+            --coverage=/tmp/coverage_stack.json \
             --out=/tmp/new_factories.json
 
       - name: Run `terradart wrap --check`
@@ -406,8 +418,9 @@ jobs:
           # Optional inputs: MM sync (lanes with Magic Modules YAML), the
           # ride-along (bump weeks only), the API diff (absent → blocks).
           # The new-type scaffold and record (absent → nothing new, or wrap
-          # failed before record ran).
-          for f in mm_yaml_sync.json beta_bump.json api_diff.json scaffold.json new_factories.json; do
+          # failed before record ran). The coverage verdict (absent on a
+          # lane with a leftover example → blocks).
+          for f in mm_yaml_sync.json beta_bump.json api_diff.json scaffold.json new_factories.json coverage_stack.json; do
             if [ -f "/tmp/$f" ]; then cp "/tmp/$f" "/tmp/inputs/$f"; fi
           done
           # Add bump_date to state.json for the report title.

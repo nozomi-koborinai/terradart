@@ -2,11 +2,24 @@
 // does not recognize it as a test for @visibleForTesting purposes.
 // ignore_for_file: invalid_use_of_visible_for_testing_member
 
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:test/test.dart';
 
+import 'coverage_verdict.dart';
 import 'generate_drift_report.dart';
 
 const _noBreaks = <String, dynamic>{'breaking': <String>[], 'added': 0};
+
+const _validated = CoverageGreen(
+  slug: 'data_source_leftover',
+  engine: 'tofu 1.13.1',
+  providers: {'hashicorp/google': '8.6.0'},
+  learned: [],
+  excluded: [],
+  pruned: [],
+);
 
 ReportInputs inputs({
   Map<String, dynamic>? betaBump,
@@ -19,6 +32,9 @@ ReportInputs inputs({
     'changed': <String>[],
     'failed': <String>[],
   },
+  CoverageVerdict? coverage = _validated,
+  ReportLane lane = ReportLane.google,
+  List<String> addedDataSources = const [],
 }) => ReportInputs(
   state: {
     'bump_date': '2026-08-24',
@@ -33,11 +49,18 @@ ReportInputs inputs({
   gatesStdout: 'ok',
   gatesExitCode: 0,
   mmYamlSync: mmYamlSync,
-  schemaDiff: {'added_resources': added, 'removed_resources': <String>[]},
+  schemaDiff: {
+    'added_resources': added,
+    'removed_resources': <String>[],
+    'added_data_sources': addedDataSources,
+    'removed_data_sources': <String>[],
+  },
   betaBump: betaBump,
   apiDiff: apiDiff,
   newFactories: newFactories,
   scaffold: scaffold,
+  coverage: coverage,
+  lane: lane,
 );
 
 void main() {
@@ -246,5 +269,292 @@ void main() {
       '`terradart wrap --check` diverged',
       'the google-beta ride-along failed',
     ]);
+  });
+
+  group('coverage stack', () {
+    const aws = ReportLane(
+      name: 'aws',
+      source: 'hashicorp/aws',
+      schemaDir: 's',
+      hasCoverageStack: true,
+    );
+    CoverageGreen awsGreen(List<ExcludedFactory> excluded) => CoverageGreen(
+      slug: 'aws_leftover',
+      engine: 'tofu 1.13.1',
+      providers: const {'hashicorp/aws': '6.69.0'},
+      learned: const [],
+      excluded: excluded,
+      pruned: const [],
+    );
+    const fooRejected = ExcludedFactory(
+      className: 'AwsFooBar',
+      tfType: 'aws_foo_bar',
+      kind: FactoryKind.resource,
+      cause: ProviderRejected(
+        'aws_foo_bar.foo_bar.mode',
+        'leftover',
+        'Attribute mode must be a valid Foo mode, got: leftover',
+      ),
+    );
+    const routeRejected = ExcludedFactory(
+      className: 'AwsDirectoryServiceIpRoute',
+      tfType: 'aws_directory_service_ip_route',
+      kind: FactoryKind.resource,
+      cause: ProviderRejected(
+        'aws_directory_service_ip_route.directory_service_ip_route.'
+            'directory_id',
+        'leftover',
+        'Attribute directory_id must be a valid Directory Service Directory '
+            'ID, got: leftover',
+      ),
+    );
+    const keyedUnplaceable = ExcludedFactory(
+      className: 'DataAwsKeyed',
+      tfType: 'aws_keyed',
+      kind: FactoryKind.dataSource,
+      cause: GeneratorCannotPlace(
+        'DataAwsKeyed.key takes a required DataAwsKeyedKey: add a dummy '
+        'value to _requiredHelpers',
+      ),
+    );
+
+    test('the #922 week: a learned value keeps auto-merge and is listed', () {
+      final i = inputs(
+        coverage: const CoverageGreen(
+          slug: 'data_source_leftover',
+          engine: 'tofu 1.13.1',
+          providers: {'hashicorp/google': '8.6.0'},
+          learned: [
+            LearnedEntry(
+              key: 'DataGoogleIamWorkloadIdentityPoolJwks.resourceName',
+              value: 'https://example.com/leftover',
+              source: 'family url-host',
+              rejected: 'terradart-leftover',
+              at:
+                  'data.google_iam_workload_identity_pool_jwks.jwks.'
+                  'resource_name',
+              detail:
+                  'expected "resource_name" to have a host, got '
+                  'terradart-leftover',
+            ),
+          ],
+          excluded: [],
+          pruned: [],
+        ),
+      );
+      expect(autoMergeBlockers(i), isEmpty);
+      expect(
+        buildCoverageSection(i),
+        '## ✅ Coverage stack `data_source_leftover`\n'
+        '\n'
+        'Validated with tofu 1.13.1 against hashicorp/google 8.6.0: the '
+        'commands of the `validate (data_source_leftover)` CI leg, then '
+        '`dart analyze` as the example gates run it.\n'
+        '\n'
+        'Learned from provider diagnostics '
+        '(`tool/coverage_dummies/google.yaml`):\n'
+        '\n'
+        '- `DataGoogleIamWorkloadIdentityPoolJwks.resourceName` = '
+        '`https://example.com/leftover` (family url-host)\n'
+        '  - `data.google_iam_workload_identity_pool_jwks.jwks.resource_name` '
+        'rejected `terradart-leftover`: expected "resource_name" to have a '
+        'host, got terradart-leftover',
+      );
+      expect(
+        buildSummaryTable(i),
+        contains(
+          '| coverage stack `data_source_leftover` | ✅ validated (tofu '
+          '1.13.1, hashicorp/google 8.6.0) · 1 learned |\n',
+        ),
+      );
+    });
+
+    test('a factory the provider rejects withholds auto-merge, new or '
+        'existing', () {
+      final i = inputs(
+        lane: aws,
+        added: ['aws_foo_bar'],
+        coverage: awsGreen(const [fooRejected, routeRejected]),
+      );
+      expect(autoMergeBlockers(i), [
+        '2 factories left the coverage stack `aws_leftover`: the provider '
+            'rejects their dummy values',
+      ]);
+      expect(
+        buildCoverageSection(i),
+        '## ⚠️ Coverage stack `aws_leftover`\n'
+        '\n'
+        'Validated with tofu 1.13.1 against hashicorp/aws 6.69.0: the '
+        'commands of the `validate (aws_leftover)` CI leg, then `dart '
+        'analyze` as the example gates run it.\n'
+        '\n'
+        'Left out of the stack (an `awaiting-example:` line in '
+        '`tool/example_debt.yaml` holds its coverage):\n'
+        '\n'
+        '- `AwsFooBar` (`aws_foo_bar`, new): `aws_foo_bar.foo_bar.mode` '
+        'rejected `leftover`: Attribute mode must be a valid Foo mode, got: '
+        'leftover\n'
+        '  - Withholds auto-merge. To cover it, give the rejected argument a '
+        'value in `tool/coverage_dummies/aws.yaml` (keys are Dart names, '
+        '`AwsFooBar.<parameter>`), or add a message family to '
+        '`kDiagnosticFamilies` when the message names a shape. Then delete '
+        'its `awaiting-example:` line and run `dart tool/coverage_stack.dart '
+        '--lane aws`.\n'
+        '- `AwsDirectoryServiceIpRoute` (`aws_directory_service_ip_route`, '
+        'existing): `aws_directory_service_ip_route.directory_service_ip_route'
+        '.directory_id` rejected `leftover`: Attribute directory_id must be a '
+        'valid Directory Service Directory ID, got: leftover\n'
+        '  - Withholds auto-merge. To cover it, give the rejected argument a '
+        'value in `tool/coverage_dummies/aws.yaml` (keys are Dart names, '
+        '`AwsDirectoryServiceIpRoute.<parameter>`), or add a message family '
+        'to `kDiagnosticFamilies` when the message names a shape. Then delete '
+        'its `awaiting-example:` line and run `dart tool/coverage_stack.dart '
+        '--lane aws`.',
+      );
+    });
+
+    test('a factory the generator cannot place does not block', () {
+      final i = inputs(lane: aws, coverage: awsGreen(const [keyedUnplaceable]));
+      expect(autoMergeBlockers(i), isEmpty);
+      expect(
+        buildCoverageSection(i),
+        endsWith(
+          '- `DataAwsKeyed` (`aws_keyed`, data source, existing): the '
+          'generator cannot place it: DataAwsKeyed.key takes a required '
+          'DataAwsKeyedKey: add a dummy value to _requiredHelpers\n'
+          '  - Then delete its `awaiting-example:` line and run `dart '
+          'tool/coverage_stack.dart --lane aws`.',
+        ),
+      );
+      expect(
+        buildSummaryTable(i),
+        contains(
+          '| coverage stack `aws_leftover` | ⚠️ validated (tofu 1.13.1, '
+          'hashicorp/aws 6.69.0) · 1 left out |\n',
+        ),
+      );
+    });
+
+    test('a missing verdict blocks auto-merge', () {
+      final i = inputs(lane: aws, coverage: null);
+      expect(autoMergeBlockers(i), ['the coverage stack was not validated']);
+      expect(
+        buildCoverageSection(i),
+        '## ❌ Coverage stack\n'
+        '\n'
+        'Not validated: `tool/coverage_stack.dart` wrote no verdict (it '
+        'crashed, or the regenerate failed before it ran), so the stack is as '
+        'the bump found it. Reproduce with `dart tool/coverage_stack.dart '
+        '--lane aws`.',
+      );
+    });
+
+    test('a broken stack blocks auto-merge and shows its log', () {
+      final i = inputs(
+        lane: aws,
+        coverage: const CoverageBroken(
+          slug: 'aws_leftover',
+          stage: OracleStage.init,
+          logExcerpt: 'Error: Failed to query available provider packages\n',
+        ),
+      );
+      expect(autoMergeBlockers(i), [
+        'the coverage stack `aws_leftover` fails init',
+      ]);
+      expect(
+        buildCoverageSection(i),
+        '## ❌ Coverage stack `aws_leftover`\n'
+        '\n'
+        'Fails `init`; the stack and `tool/coverage_dummies/aws.yaml` are as '
+        'the bump found them. Reproduce with `dart tool/coverage_stack.dart '
+        '--lane aws`.\n'
+        '\n'
+        '```\n'
+        'Error: Failed to query available provider packages\n'
+        '```',
+      );
+      expect(
+        buildSummaryTable(i),
+        contains('| coverage stack `aws_leftover` | ❌ fails init |\n'),
+      );
+    });
+
+    test('a lane without a coverage stack has no section and no blocker', () {
+      final i = inputs(
+        lane: const ReportLane(
+          name: 'aws',
+          source: 'hashicorp/aws',
+          schemaDir: 's',
+        ),
+        coverage: null,
+      );
+      expect(coverageBlockers(i), isEmpty);
+      expect(buildCoverageSection(i), isNull);
+      expect(buildReport(i), isNot(contains('Coverage stack')));
+    });
+
+    test('every bump lane of tool/providers.yaml has a coverage stack', () {
+      final yaml = File('tool/providers.yaml').readAsStringSync();
+      expect(
+        [
+          for (final name in ['google', 'aws', 'cloudflare'])
+            ReportLane.fromProviders(yaml, name).hasCoverageStack,
+        ],
+        [true, true, true],
+      );
+      expect(
+        ReportLane.fromProviders('''
+providers:
+  appwrite:
+    source: appwrite/appwrite
+    schemaDir: s
+    bump: {mode: auto}
+''', 'appwrite').hasCoverageStack,
+        isFalse,
+      );
+    });
+
+    test('readInputs reads coverage_stack.json', () {
+      final dir = Directory.systemTemp.createTempSync('drift');
+      addTearDown(() => dir.deleteSync(recursive: true));
+      void put(String name, String text) =>
+          File('${dir.path}/$name').writeAsStringSync(text);
+      put('state.json', '{}');
+      put('wrap_check.txt', '');
+      put('wrap_check_exit', '0');
+      put('gates.txt', '');
+      put('gates_exit', '0');
+      put('schema_diff.json', '{}');
+      expect(readInputs(dir.path).coverage, isNull);
+      put(
+        'coverage_stack.json',
+        jsonEncode(encodeVerdict(awsGreen(const [routeRejected]))),
+      );
+      expect(encodeVerdict(readInputs(dir.path).coverage!), {
+        'verdict': 'green',
+        'slug': 'aws_leftover',
+        'engine': 'tofu 1.13.1',
+        'providers': {'hashicorp/aws': '6.69.0'},
+        'learned': <Object>[],
+        'excluded': [
+          {
+            'class_name': 'AwsDirectoryServiceIpRoute',
+            'tf_type': 'aws_directory_service_ip_route',
+            'kind': 'resource',
+            'cause': {
+              'kind': 'provider_rejected',
+              'at':
+                  'aws_directory_service_ip_route.directory_service_ip_route.'
+                  'directory_id',
+              'rejected': 'leftover',
+              'detail':
+                  'Attribute directory_id must be a valid Directory Service '
+                  'Directory ID, got: leftover',
+            },
+          },
+        ],
+        'pruned': <Object>[],
+      });
+    });
   });
 }

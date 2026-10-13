@@ -8,6 +8,11 @@ Dummy constructor values. Synth only; CI validates the output against the provid
 terradart synth
 ```
 
+`lib/main.dart` is generated. Regenerate it after a wrap with
+`dart tool/coverage_stack.dart --lane cloudflare` from the repository root,
+which also validates it against the provider; the placeholder values that
+satisfy provider validators live in `tool/coverage_dummies/cloudflare.yaml`.
+
 Factories no constructor value can take through provider validation
 (a wrapper shape mismatch or a provider bug) are listed with the error in [`tool/example_debt.yaml`](../../tool/example_debt.yaml).
 
