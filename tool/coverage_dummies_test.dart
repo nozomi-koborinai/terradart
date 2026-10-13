@@ -4,6 +4,7 @@ import 'package:terradart_migrate/terradart_migrate.dart';
 import 'package:test/test.dart';
 
 import 'coverage_dummies.dart';
+import 'generate_appwrite_leftover_example.dart';
 import 'generate_aws_leftover_example.dart';
 import 'generate_cloudflare_leftover_example.dart';
 import 'generate_data_source_leftover_example.dart';
@@ -43,6 +44,7 @@ CoverageDummies _parse(String source, {Set<String> bindings = const {}}) =>
 void main() {
   final lanes = {
     'google': (googleMigrateManifest, googleDataSourceStack.bindings),
+    'appwrite': (appwriteMigrateManifest, appwriteLeftoverStack.bindings),
     'aws': (awsMigrateManifest, awsLeftoverStack.bindings),
     'cloudflare': (cloudflareMigrateManifest, cloudflareLeftoverStack.bindings),
   };

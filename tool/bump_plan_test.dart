@@ -13,8 +13,8 @@ void main() {
   final lanes = parseBumpLanes(File(providersPath).readAsStringSync());
   String names(List<BumpLane> l) => l.map((b) => b.lane.name).join(',');
 
-  test('google, cloudflare and aws bump; google-beta and appwrite do not', () {
-    expect(names(lanes), 'google,cloudflare,aws');
+  test('google, appwrite, cloudflare and aws bump; google-beta does not', () {
+    expect(names(lanes), 'google,appwrite,cloudflare,aws');
   });
 
   test('each lane has its own cron, on different days', () {
@@ -57,8 +57,11 @@ void main() {
 
   test('a manual run plans one lane or all of them', () {
     expect(names(planLanes(lanes, lane: 'cloudflare')), 'cloudflare');
-    expect(names(planLanes(lanes, lane: 'all')), 'google,cloudflare,aws');
-    expect(() => planLanes(lanes, lane: 'appwrite'), throwsFormatException);
+    expect(
+      names(planLanes(lanes, lane: 'all')),
+      'google,appwrite,cloudflare,aws',
+    );
+    expect(() => planLanes(lanes, lane: 'google-beta'), throwsFormatException);
   });
 
   test('google rides google-beta along and dumps with MM YAML', () {
@@ -83,6 +86,7 @@ void main() {
   test('which new factories each lane example generator covers', () {
     final covers = {for (final l in lanes) l.lane.name: l.exampleCovers};
     expect(covers['google'], {'dataSource'});
+    expect(covers['appwrite'], {'resource', 'dataSource'});
     expect(covers['cloudflare'], {'resource', 'dataSource'});
     expect(covers['aws'], {'resource', 'dataSource'});
   });
@@ -131,6 +135,27 @@ providers:
       );
     });
   });
+
+  test(
+    'appwrite auto-merges, extracts every type and has a coverage stack',
+    () {
+      final aw = lanes.firstWhere((l) => l.lane.name == 'appwrite').toMatrix();
+      expect(aw['mode'], 'auto');
+      expect(aw['refresh'], 'extract');
+      expect(aw['scaffold'], 'lane');
+      expect(aw['data_sources'], isTrue);
+      expect(aw['api_lanes'], 'appwrite');
+      expect(
+        aw['catalog'],
+        'packages/terradart_appwrite/lib/src/_catalog.g.dart',
+      );
+      expect(
+        aw['example_generator'],
+        'tool/generate_appwrite_leftover_example.dart',
+      );
+      expect(names(planLanes(lanes, schedule: '0 22 * * 3')), 'appwrite');
+    },
+  );
 
   test('cloudflare is pr-only and extracts every type', () {
     final cf = lanes.firstWhere((l) => l.lane.name == 'cloudflare').toMatrix();

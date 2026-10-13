@@ -1,5 +1,5 @@
-/// Appwrite quickstart — the filled `terradart_appwrite` catalog at pin
-/// `2.0.0-beta.1`.
+/// Appwrite quickstart — the filled `terradart_appwrite` catalog at the
+/// current pin.
 ///
 /// Covers every applyable resource and every data source. `AppwriteProjectKey`
 /// is import-only (upstream create is gone) and lives in

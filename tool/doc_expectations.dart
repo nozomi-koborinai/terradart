@@ -154,6 +154,11 @@ class ExactPinLane {
 
 const exactPinLanes = [
   ExactPinLane(
+    'terradart_appwrite',
+    'packages/terradart_codegen/test/fixtures/wrap/source_appwrite',
+    'kAppwriteProviderVersionConstraint',
+  ),
+  ExactPinLane(
     'terradart_aws',
     'packages/terradart_codegen/test/fixtures/wrap/source_aws',
     'kAwsProviderVersionConstraint',

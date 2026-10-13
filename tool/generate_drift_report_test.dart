@@ -497,10 +497,10 @@ void main() {
       final yaml = File('tool/providers.yaml').readAsStringSync();
       expect(
         [
-          for (final name in ['google', 'aws', 'cloudflare'])
+          for (final name in ['google', 'aws', 'cloudflare', 'appwrite'])
             ReportLane.fromProviders(yaml, name).hasCoverageStack,
         ],
-        [true, true, true],
+        [true, true, true, true],
       );
       expect(
         ReportLane.fromProviders('''

@@ -22,6 +22,7 @@ import 'bump_plan.dart' show parseBumpLanes;
 import 'coverage_dummies.dart';
 import 'coverage_verdict.dart';
 import 'example_synth_gates.dart' show synthExample;
+import 'generate_appwrite_leftover_example.dart' show appwriteLeftoverStack;
 import 'generate_aws_leftover_example.dart' show awsLeftoverStack;
 import 'generate_cloudflare_leftover_example.dart' show cloudflareLeftoverStack;
 import 'generate_data_source_leftover_example.dart' show googleDataSourceStack;
@@ -60,6 +61,7 @@ const Map<String, CoverageStackGenerator> kCoverageStacks = {
   'tool/generate_data_source_leftover_example.dart': googleDataSourceStack,
   'tool/generate_aws_leftover_example.dart': awsLeftoverStack,
   'tool/generate_cloudflare_leftover_example.dart': cloudflareLeftoverStack,
+  'tool/generate_appwrite_leftover_example.dart': appwriteLeftoverStack,
 };
 
 /// Everything one lane's run needs, read and validated at the boundary.

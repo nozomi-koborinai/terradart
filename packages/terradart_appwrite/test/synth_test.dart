@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:terradart_appwrite/auth.dart';
 import 'package:terradart_appwrite/project.dart';
 import 'package:terradart_appwrite/provider.dart';
@@ -49,6 +52,28 @@ final class _PermissionStack extends Stack {
   }
 }
 
+String get _fixtureDir {
+  const fromPackage = '../terradart_codegen/test/fixtures/wrap/source_appwrite';
+  const fromRepo =
+      'packages/terradart_codegen/test/fixtures/wrap/source_appwrite';
+  if (File('$fromPackage/provider_version.txt').existsSync()) {
+    return fromPackage;
+  }
+  return fromRepo;
+}
+
+Map<String, dynamic> _fixtureSchema() {
+  final root =
+      jsonDecode(File('$_fixtureDir/schema.json').readAsStringSync())
+          as Map<String, dynamic>;
+  return (root['provider_schemas'] as Map<String, dynamic>).values.single
+      as Map<String, dynamic>;
+}
+
+Set<String> _catalogTypes(CatalogKind kind) => {
+  for (final e in terradartCatalog.where((e) => e.kind == kind)) e.tfType,
+};
+
 void main() {
   test('synths the appwrite provider block and both resources', () {
     final json = _TestStack().synth().tfJson;
@@ -59,6 +84,10 @@ void main() {
             as Map<String, dynamic>;
     expect(requiredProviders['source'], 'appwrite/appwrite');
     expect(requiredProviders['version'], kAppwriteProviderVersionConstraint);
+    expect(
+      kAppwriteProviderVersionConstraint,
+      File('$_fixtureDir/provider_version.txt').readAsStringSync().trim(),
+    );
 
     final resources = json['resource'] as Map<String, dynamic>;
     expect(
@@ -73,14 +102,15 @@ void main() {
     expect(project.containsKey('provider'), isFalse);
   });
 
-  test('catalog lists every factory at the current pin', () {
+  test('catalog lists every resource and data source at the pin', () {
+    final schema = _fixtureSchema();
     expect(
-      terradartCatalog.where((e) => e.kind == CatalogKind.resource).length,
-      38,
+      _catalogTypes(CatalogKind.resource),
+      (schema['resource_schemas'] as Map).keys.toSet(),
     );
     expect(
-      terradartCatalog.where((e) => e.kind == CatalogKind.dataSource).length,
-      24,
+      _catalogTypes(CatalogKind.dataSource),
+      (schema['data_source_schemas'] as Map).keys.toSet(),
     );
   });
 

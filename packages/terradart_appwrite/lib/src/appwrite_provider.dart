@@ -1,15 +1,16 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '_provider_version.g.dart';
+
 /// Provider source identifier — `appwrite/appwrite` (the official
 /// Appwrite Terraform provider).
 const String kAppwriteProviderSource = 'appwrite/appwrite';
 
-/// Exact version pin. The provider is beta-maturity (`2.0.0-beta.1`), so
-/// TerraDart pins the version it was generated against instead of a
-/// floating `~>` range; bumps are deliberate maintainer changes together
-/// with a fixture re-extraction.
-const String kAppwriteProviderVersionConstraint = '2.0.0-beta.1';
+/// Exact version pin: the provider release the wrappers were generated
+/// against. `terradart wrap` emits it from the schema fixture's
+/// `provider_version.txt`, so the pin and the wrapper surface move together.
+const String kAppwriteProviderVersionConstraint = terradartProviderVersion;
 
 /// Concrete `StackProvider` for `appwrite/appwrite`.
 ///
@@ -64,7 +65,7 @@ final class AppwriteProvider implements StackProvider {
   @override
   String get source => kAppwriteProviderSource;
 
-  /// Version constraint — exact `2.0.0-beta.1` pin.
+  /// Version constraint — the exact [kAppwriteProviderVersionConstraint] pin.
   @override
   String get versionConstraint => kAppwriteProviderVersionConstraint;
 

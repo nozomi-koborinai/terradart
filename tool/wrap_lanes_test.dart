@@ -236,6 +236,7 @@ providers:
         File(providersPath).readAsStringSync(),
       ).singleWhere((l) => l.name == 'appwrite');
       expect(appwrite.providerEnums, isTrue);
+      expect(appwrite.hintsRepo, 'appwrite/terraform-provider-appwrite');
       expect(staleHints(appwrite.schemaDir), isEmpty);
     });
 

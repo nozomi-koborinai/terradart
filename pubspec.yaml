@@ -19,6 +19,7 @@ workspace:
   - packages/terradart_cli
   - examples/agentic_applications_quickstart
   - examples/apigee_quickstart
+  - examples/appwrite_leftover_quickstart
   - examples/appwrite_quickstart
   - examples/aws_ecs_express_quickstart
   - examples/aws_lambda_quickstart

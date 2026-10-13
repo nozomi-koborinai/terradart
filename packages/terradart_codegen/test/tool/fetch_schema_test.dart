@@ -152,8 +152,12 @@ providers:
     test(
       'every bumped lane in tool/providers.yaml names its repo and major',
       () {
-        final text = File('../../tool/providers.yaml').readAsStringSync();
-        for (final lane in ['google', 'aws', 'cloudflare']) {
+        final text = File(
+          File('tool/providers.yaml').existsSync()
+              ? 'tool/providers.yaml'
+              : '../../tool/providers.yaml',
+        ).readAsStringSync();
+        for (final lane in ['google', 'aws', 'cloudflare', 'appwrite']) {
           expect(laneBumpCoordinates(text, lane).repo, isNotEmpty);
         }
       },

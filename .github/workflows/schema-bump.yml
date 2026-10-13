@@ -2,10 +2,9 @@ name: schema-bump
 
 # Weekly provider schema bumps: one job and one PR per tool/providers.yaml
 # lane with a `bump:` entry (tool/bump_plan.dart) — google (with the
-# google-beta ride-along), aws, cloudflare. appwrite has no `bump:` entry
-# and stays pinned by hand. The lanes' crons fall on different days, so
-# one lane's PR can merge before the next opens instead of leaving it
-# behind main.
+# google-beta ride-along), aws, cloudflare, appwrite. The lanes' crons
+# fall on different days, so one lane's PR can merge before the next
+# opens instead of leaving it behind main.
 #
 # A lane's PR body is its drift report. The workflow enables auto-merge
 # (squash) only when the report finds nothing for a human
@@ -32,12 +31,13 @@ on:
     - cron: '0 22 * * 0' # google + google-beta (Monday 07:00 JST)
     - cron: '0 22 * * 1' # aws
     - cron: '0 22 * * 2' # cloudflare
+    - cron: '0 22 * * 3' # appwrite
   workflow_dispatch:
     inputs:
       lane:
         description: 'Lane to bump (a tool/providers.yaml lane with bump:), or all.'
         type: choice
-        options: [all, google, aws, cloudflare]
+        options: [all, google, aws, cloudflare, appwrite]
         default: all
       dry_run:
         description: 'If true, do not create a PR (only run detection + report).'

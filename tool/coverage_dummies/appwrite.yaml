@@ -1,0 +1,30 @@
+# Dummy values for constructor arguments in the appwrite coverage stack
+# (examples/appwrite_leftover_quickstart). The generator asks for a
+# value by Dart owner and parameter (`CoverageDummies.valueFor`);
+# `dart tool/coverage_stack.dart --lane appwrite` renders the stack from this
+# file, validates it as required CI does, and writes back each value the
+# provider asked for, with the diagnostic it answered as `why:`.
+#
+# Key: `Owner.param` (the Dart class holding the parameter), a bare `param`
+# (any owner), or a glob of either with `*` for any run of characters,
+# matched case-sensitively. An exact `Owner.param` wins, then a bare
+# `param`, then the first glob in file order. Value: a string, number, bool
+# or list of them. The appwrite stack declares no names, so no value reads
+# `${name}`. The map form adds `why:`, or holds Dart source as `dart:`
+# where no literal can say it.
+#
+# The seeds are the formats the provider schema's descriptions name for
+# required inputs; every other input takes the generator's type default.
+
+'*email*': 'leftover@example.com'
+'*Email*': 'leftover@example.com'
+'*url': 'https://example.com'
+'*Url': 'https://example.com'
+
+buildRuntime: 'node-22'
+data: '{}'
+domain: 'leftover.example.com'
+framework: 'other'
+runtime: 'node-22'
+schedule: '0 3 * * *'
+services: ['databases']
