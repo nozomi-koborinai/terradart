@@ -1,0 +1,35 @@
+{
+  "format_version": "1.0",
+  "valid": false,
+  "error_count": 1,
+  "warning_count": 0,
+  "diagnostics": [
+    {
+      "severity": "error",
+      "summary": "expected \"resource_name\" to have a host, got terradart-leftover",
+      "detail": "",
+      "address": "data.google_iam_workload_identity_pool_jwks.jwks",
+      "range": {
+        "filename": "main.tf.json",
+        "start": {
+          "line": 18,
+          "column": 26,
+          "byte": 334
+        },
+        "end": {
+          "line": 18,
+          "column": 46,
+          "byte": 354
+        }
+      },
+      "snippet": {
+        "context": "data.google_iam_workload_identity_pool_jwks.jwks",
+        "code": "        \"resource_name\": \"terradart-leftover\"",
+        "start_line": 18,
+        "highlight_start_offset": 25,
+        "highlight_end_offset": 45,
+        "values": []
+      }
+    }
+  ]
+}

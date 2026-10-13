@@ -1,14 +1,14 @@
-#!/usr/bin/env dart
-
-// Generates examples/cloudflare_leftover_quickstart/lib/main.dart — one
-// constructor call per leftover Cloudflare factory (resource or data source).
-// Dummy values satisfy Dart types so synth + terraform validate can cover
-// the filled catalog. Live apply is out of scope.
-//
-// Regenerates from generated wrappers; do not hand-edit main.dart.
+// Renders examples/cloudflare_leftover_quickstart/lib/main.dart, for
+// tool/coverage_stack.dart, which writes and validates it: one constructor
+// call per leftover Cloudflare factory (resource or data source). Dummy
+// values satisfy Dart types so synth + terraform validate can cover the
+// filled catalog. Live apply is out of scope. Literal values live in
+// tool/coverage_dummies/cloudflare.yaml.
 
 import 'dart:io';
 
+import 'coverage_dummies.dart';
+import 'coverage_stack.dart';
 import 'dot_shorthands.dart';
 
 const _skipResourceTypes = {'cloudflare_zone', 'cloudflare_dns_record'};
@@ -16,7 +16,6 @@ const _skipResourceTypes = {'cloudflare_zone', 'cloudflare_dns_record'};
 const _skipDataTypes = {'cloudflare_firewall_rule'};
 
 const _srcRoot = 'packages/terradart_cloudflare/lib/src';
-const _outPath = 'examples/cloudflare_leftover_quickstart/lib/main.dart';
 
 /// Terraform variable backing every sensitive leaf in the generated
 /// stack. Declared by the generator so the reference resolves at synth.
@@ -33,148 +32,161 @@ String _secretFor(String type) {
       : "Sensitive.variable('$_secretVar')";
 }
 
-void main() {
-  final files =
-      Directory(_srcRoot)
-          .listSync(recursive: true)
-          .whereType<File>()
-          .where(
-            (f) =>
-                f.path.endsWith('.dart') &&
-                !f.path.endsWith('_catalog.g.dart') &&
-                !f.path.endsWith('catalog_entry.dart'),
-          )
-          .toList()
-        ..sort((a, b) => a.path.compareTo(b.path));
+/// The cloudflare lane's coverage stack.
+const cloudflareLeftoverStack = _CloudflareLeftoverStack();
 
-  final parsedFiles = <String, _ParsedFile>{};
-  for (final file in files) {
-    parsedFiles[file.path] = _parseFile(file);
-    _collectEnums(file.readAsStringSync());
-  }
-  for (final sealed in _sealedMember.keys) {
-    if (!_sealedVariants.containsKey(sealed)) {
-      throw StateError('_sealedMember: no sealed type $sealed');
+final class _CloudflareLeftoverStack implements CoverageStackGenerator {
+  const _CloudflareLeftoverStack();
+
+  @override
+  String get slug => 'cloudflare_leftover';
+
+  @override
+  Set<String> get bindings => const {'accountId', 'zoneId', 'leftover'};
+
+  @override
+  RenderedStack render(
+    CoverageDummies dummies, {
+    required Set<String> exclude,
+  }) {
+    _dummies = dummies;
+    _sealedVariants.clear();
+    _enums.clear();
+    _insideHelper = false;
+    final files =
+        Directory(_srcRoot)
+            .listSync(recursive: true)
+            .whereType<File>()
+            .where(
+              (f) =>
+                  f.path.endsWith('.dart') &&
+                  !f.path.endsWith('_catalog.g.dart') &&
+                  !f.path.endsWith('catalog_entry.dart'),
+            )
+            .toList()
+          ..sort((a, b) => a.path.compareTo(b.path));
+
+    final parsedFiles = <String, _ParsedFile>{};
+    for (final file in files) {
+      parsedFiles[file.path] = _parseFile(file);
+      _collectEnums(file.readAsStringSync());
     }
-  }
-
-  final helpers = <String, _ClassInfo>{};
-  final factories = <_Factory>[];
-  for (final parsed in parsedFiles.values) {
-    for (final cls in parsed.classes.values) {
-      if (cls.kind == _Kind.helper) {
-        helpers[cls.name] = cls;
-      } else if (cls.kind == _Kind.resource || cls.kind == _Kind.data) {
-        if (cls.tfType == null) continue;
-        if (cls.kind == _Kind.resource &&
-            _skipResourceTypes.contains(cls.tfType)) {
-          continue;
-        }
-        if (cls.kind == _Kind.data && _skipDataTypes.contains(cls.tfType)) {
-          continue;
-        }
-        factories.add(
-          _Factory(
-            type: cls.tfType!,
-            className: cls.name,
-            kind: cls.kind,
-            requiredParams: cls.requiredParams,
-            optionalParams: cls.optionalParams,
-            filePath: parsed.path,
-            sensitiveLeaves: parsed.sensitiveLeaves,
-          ),
-        );
+    for (final sealed in _sealedMember.keys) {
+      if (!_sealedVariants.containsKey(sealed)) {
+        throw StateError('_sealedMember: no sealed type $sealed');
       }
     }
-  }
-  factories.sort((a, b) {
-    final k = a.kind.index.compareTo(b.kind.index);
-    if (k != 0) return k;
-    return a.type.compareTo(b.type);
-  });
 
-  final usedLocals = <String>{};
-  final buf = StringBuffer()
-    ..writeln(
-      '// GENERATED — dart run tool/generate_cloudflare_leftover_example.dart',
-    )
-    ..writeln('// ignore_for_file: unused_element')
-    ..writeln()
-    ..writeln(
-      '/// Coverage stack for leftover Cloudflare factories at the current pin.',
-    )
-    ..writeln('/// Dummy constructor values; synth + terraform validate only.')
-    ..writeln('/// Never apply.')
-    ..writeln('library;')
-    ..writeln()
-    ..writeln(
-      "import 'package:terradart_cloudflare/terradart_cloudflare.dart';",
-    )
-    ..writeln("import 'package:terradart_core/terradart_core.dart';")
-    ..writeln()
-    ..writeln('final class CloudflareLeftoverStack extends Stack {')
-    ..writeln('  CloudflareLeftoverStack()')
-    ..writeln('      : super(providers: [const CloudflareProvider()]) {')
-    ..writeln("    const leftover = 'leftover';")
-    ..writeln("    const accountId = '00000000000000000000000000000001';")
-    ..writeln("    const zoneId = '00000000000000000000000000000002';")
-    ..writeln();
+    final helpers = <String, _ClassInfo>{};
+    final factories = <_Factory>[];
+    for (final parsed in parsedFiles.values) {
+      for (final cls in parsed.classes.values) {
+        if (cls.kind == _Kind.helper) {
+          helpers[cls.name] = cls;
+        } else if (cls.kind == _Kind.resource || cls.kind == _Kind.data) {
+          if (cls.tfType == null) continue;
+          if (cls.kind == _Kind.resource &&
+              _skipResourceTypes.contains(cls.tfType)) {
+            continue;
+          }
+          if (cls.kind == _Kind.data && _skipDataTypes.contains(cls.tfType)) {
+            continue;
+          }
+          if (exclude.contains(cls.name)) continue;
+          factories.add(
+            _Factory(
+              type: cls.tfType!,
+              className: cls.name,
+              kind: cls.kind,
+              requiredParams: cls.requiredParams,
+              optionalParams: cls.optionalParams,
+              filePath: parsed.path,
+              sensitiveLeaves: parsed.sensitiveLeaves,
+            ),
+          );
+        }
+      }
+    }
+    factories.sort((a, b) {
+      final k = a.kind.index.compareTo(b.kind.index);
+      if (k != 0) return k;
+      return a.type.compareTo(b.type);
+    });
 
-  // Body first: the preamble can only decide whether to declare the
-  // secret variable once it knows a factory actually referenced it.
-  final body = StringBuffer();
-  for (final f in factories) {
-    final local = _uniqueLocal(f.type, f.kind, usedLocals);
-    body.writeln('    add(');
-    body.writeln('      ${f.className}(');
-    body.writeln("        '$local',");
-    for (final p in f.requiredParams) {
-      body.writeln(
-        '        ${p.name}: ${_dummy(p, helpers, sensitive: f.sensitiveLeaves, depth: 0, owner: f.className)},',
+    final usedLocals = <String>{};
+    final buf = StringBuffer()
+      ..writeln(
+        '// GENERATED — dart tool/coverage_stack.dart --lane cloudflare',
+      )
+      ..writeln('// ignore_for_file: unused_element')
+      ..writeln()
+      ..writeln(
+        '/// Coverage stack for leftover Cloudflare factories at the current pin.',
+      )
+      ..writeln(
+        '/// Dummy constructor values; synth + terraform validate only.',
+      )
+      ..writeln('/// Never apply.')
+      ..writeln('library;')
+      ..writeln()
+      ..writeln(
+        "import 'package:terradart_cloudflare/terradart_cloudflare.dart';",
+      )
+      ..writeln()
+      ..writeln('final class CloudflareLeftoverStack extends Stack {')
+      ..writeln('  CloudflareLeftoverStack()')
+      ..writeln('      : super(providers: [const CloudflareProvider()]) {')
+      ..writeln("    const leftover = 'leftover';")
+      ..writeln("    const accountId = '00000000000000000000000000000001';")
+      ..writeln("    const zoneId = '00000000000000000000000000000002';")
+      ..writeln();
+
+    // Body first: the preamble can only decide whether to declare the
+    // secret variable once it knows a factory actually referenced it.
+    final body = StringBuffer();
+    for (final f in factories) {
+      final local = _uniqueLocal(f.type, f.kind, usedLocals);
+      body.writeln('    add(');
+      body.writeln('      ${f.className}(');
+      body.writeln("        '$local',");
+      for (final p in f.requiredParams) {
+        body.writeln(
+          '        ${p.name}: ${_dummy(p, helpers, sensitive: f.sensitiveLeaves, depth: 0, owner: f.className)},',
+        );
+      }
+      for (final extra in _extras(f, helpers)) {
+        body.writeln('        ${extra.name}: ${extra.value},');
+      }
+      body.writeln('      ),');
+      body.writeln('    );');
+      body.writeln();
+    }
+
+    // Sensitive leaves read the variable's handle, and synth
+    // rejects a reference with no matching declaration — so the declaration
+    // is generated too, not hand-added to this generated file.
+    if (body.toString().contains(_secretVarRef)) {
+      buf.writeln(
+        "    final $_secretVarRef = variable<String>('$_secretVar', "
+        'sensitive: true);',
       );
+      buf.writeln();
     }
-    for (final extra in _extras(f, helpers)) {
-      body.writeln('        ${extra.name}: ${extra.value},');
-    }
-    body.writeln('      ),');
-    body.writeln('    );');
-    body.writeln();
-  }
+    buf.write(body);
 
-  // Sensitive leaves read the variable's handle, and synth
-  // rejects a reference with no matching declaration — so the declaration
-  // is generated too, not hand-added to this generated file.
-  if (body.toString().contains(_secretVarRef)) {
-    buf.writeln(
-      "    final $_secretVarRef = variable<String>('$_secretVar', "
-      'sensitive: true);',
-    );
-    buf.writeln();
-  }
-  buf.write(body);
+    buf.writeln('  }');
+    buf.writeln('}');
 
-  buf.writeln('  }');
-  buf.writeln('}');
-
-  File(_outPath)
-    ..createSync(recursive: true)
-    ..writeAsStringSync(
+    return RenderedStack(
       dotShorthands(
         buf.toString(),
         packageEnums('packages/terradart_cloudflare/lib/src'),
       ),
     );
-  final fmt = Process.runSync('dart', ['format', _outPath]);
-  if (fmt.exitCode != 0) {
-    stderr.writeln('dart format failed on $_outPath:\n${fmt.stderr}');
-    exit(fmt.exitCode);
   }
-  stdout.writeln(
-    'Wrote leftover example: ${factories.length} factories '
-    '(${factories.where((f) => f.kind == _Kind.resource).length} resources + '
-    '${factories.where((f) => f.kind == _Kind.data).length} data)',
-  );
 }
+
+late CoverageDummies _dummies;
 
 enum _Kind { resource, data, helper }
 
@@ -549,18 +561,6 @@ String _dummy(
       p.type.startsWith('Sensitive<')) {
     return _secretFor(p.type);
   }
-  if (n == 'accountId' || n == 'account') {
-    if (p.type.startsWith('RefTo')) return 'RefTo.literal(accountId)';
-    if (p.type.startsWith('TfArg')) {
-      return 'TfArg.literal(accountId)';
-    }
-  }
-  if (n == 'zoneId' || n == 'zone') {
-    if (p.type.startsWith('RefTo')) return 'RefTo.literal(zoneId)';
-    if (p.type.startsWith('TfArg')) {
-      return 'TfArg.literal(zoneId)';
-    }
-  }
   return _dummyForType(
     p.type,
     helpers,
@@ -602,9 +602,7 @@ String _dummyForType(
   if (t.endsWith('?')) t = t.substring(0, t.length - 1).trim();
 
   if (t.startsWith('RefTo<')) {
-    final value =
-        _valueByKey['$owner.$name'] ?? _stringLiteral(name, owner: owner);
-    return 'RefTo.literal($value)';
+    return 'RefTo.literal(${_stringValue(name, owner: owner)})';
   }
   if (t.startsWith('Sensitive<')) return _secretFor(t);
   if (t.startsWith('TfArg<') && t.endsWith('>')) {
@@ -675,18 +673,17 @@ String _literalInner(
 }) {
   var t = inner.trim();
   if (t.endsWith('?')) t = t.substring(0, t.length - 1).trim();
-  final keyed = _valueByKey['$owner.$name'];
-  if (keyed != null) return keyed;
-  if (t == 'String') return _stringLiteral(name, owner: owner);
+  final value = _dummies.valueFor(owner, name);
+  final fitted = value == null ? null : _fit(value, t);
+  if (fitted != null) return fitted;
+  if (t == 'String') return 'leftover';
   if (_enums.containsKey(t)) return _enumMember(t, name, owner: owner);
-  if (t == 'num' || t == 'int' || t == 'double') {
-    return _numberByKey['$owner.$name'] ?? '200';
-  }
+  if (t == 'num' || t == 'int' || t == 'double') return '200';
   if (t == 'bool') return 'true';
   if (t.startsWith('List<') && t.endsWith('>')) {
     final listInner = t.substring(5, t.length - 1).trim().replaceAll('?', '');
     if (listInner.startsWith('RefTo<')) {
-      return '[RefTo.literal(${_stringLiteral(name, owner: owner)})]';
+      return '[RefTo.literal(${_stringValue(name, owner: owner)})]';
     }
     if (helpers.containsKey(listInner)) {
       return '[${_constructHelper(listInner, helpers, depth: depth + 1, sensitive: sensitive)},]';
@@ -707,8 +704,6 @@ String _literalInner(
   }
   return 'leftover';
 }
-
-const _hex32 = '00000000000000000000000000000001';
 
 /// Every enum the package declares: name → (member, raw value) in
 /// declaration order.
@@ -731,11 +726,11 @@ void _collectEnums(String source) {
   }
 }
 
-/// The member whose value [_stringLiteral] would have written for the slot
+/// The member whose value [_stringValue] would have written for the slot
 /// (the value its provider validator accepts), else the first member.
 String _enumMember(String enumName, String name, {required String owner}) {
   final members = _enums[enumName]!;
-  final literal = _stringLiteral(name, owner: owner);
+  final literal = _stringValue(name, owner: owner);
   final preferred = literal.startsWith("'") && literal.endsWith("'")
       ? literal.substring(1, literal.length - 1)
       : null;
@@ -746,108 +741,6 @@ String _enumMember(String enumName, String name, {required String owner}) {
   return '$enumName.${pick.$1}';
 }
 
-const _literalByKey = <String, String>{
-  'settingId': "'ciphers'",
-  'datasetId': "'audit_logs'",
-  'validationDefaultMitigationAction': "'none'",
-  'mitigationAction': "'none'",
-  'integrationType': "'Okta'",
-  'patternType': "'EMAIL'",
-  'certificateAuthority': "'google'",
-  'validationMethod': "'txt'",
-  'requestType': "'origin-rsa'",
-  'strategy': "'percentage'",
-  'tlp': "'clear'",
-  'scope': "'incoming'",
-  'vendor': "'aws'",
-  'identifier': "'1000_errors'",
-  'phase': "'http_request_firewall_custom'",
-  'tokenType': "'JWT'",
-  'tokenEndpointAuthMethod': "'none'",
-  'haMode': "'none'",
-  'alertType': "'abuse_report_alert'",
-  'decision': "'allow'",
-  'method': "'GET'",
-  'validityDays': "'90'",
-  'certificateType': "'advanced'",
-  'state': "'default'",
-  'target': "'ethereum'",
-  'action': "'allow'",
-  'effect': "'allow'",
-  'resourceType': "'custom-ruleset'",
-  'CloudflareTurnstileWidget.mode': "'non-interactive'",
-  'CloudflareAccessRule.mode': "'block'",
-  'CloudflareList.kind': "'ip'",
-  'CloudflareApiShieldSchema.kind': "'openapi_v3'",
-  'CloudflareSchemaValidationSchema.kind': "'openapi_v3'",
-  'CloudflareRuleset.kind': "'zone'",
-  'CloudflareTieredCache.value': "'on'",
-  'CloudflareArgoSmartRouting.value': "'on'",
-  'CloudflareArgoTieredCaching.value': "'on'",
-  'CloudflareContentScanning.value': "'enabled'",
-  'CloudflareRegionalHostname.value': "'on'",
-  'CloudflareUrlNormalizationSettings.type': "'cloudflare'",
-  'CloudflareQueueConsumer.type': "'worker'",
-  'CloudflareWorkersScript.strategy?': "'percentage'",
-  'CloudflareWorkersDeployment.strategy': "'percentage'",
-  'CloudflareZeroTrustDeviceManagedNetworks.type': "'tls'",
-  'CloudflareZeroTrustList.type': "'SERIAL'",
-  'CloudflareZeroTrustAccessCustomPage.type': "'forbidden'",
-  'CloudflareZeroTrustGatewayPolicy.action': "'allow'",
-  'CloudflareZeroTrustDevicePostureRule.type': "'file'",
-  'CloudflareZeroTrustDevicePostureIntegration.type': "'workspace_one'",
-  // The dummy config sets apps_domain, which only google-apps accepts.
-  'CloudflareZeroTrustAccessIdentityProvider.type': "'google-apps'",
-  'CloudflareMagicNetworkMonitoringRule.type': "'threshold'",
-  'CloudflarePipelineSink.type': "'r2'",
-  'CloudflareConnectivityDirectoryService.type': "'tcp'",
-  'CloudflarePageShieldPolicy.action': "'allow'",
-  'CloudflareTokenValidationRules.action': "'log'",
-  'CloudflareWaitingRoomRules.action': "'bypass_waiting_room'",
-  'CloudflareOriginCaCertificate.requestType': "'origin-rsa'",
-  'CloudflareCertificatePack.type': "'advanced'",
-  'CloudflareWeb3Hostname.target': "'ethereum'",
-  'CloudflareCustomPages.state': "'default'",
-  'EmailRoutingRuleActions.type': "'drop'",
-  'EmailRoutingRuleMatchers.type': "'all'",
-  'EmailRoutingCatchAllActions.type': "'drop'",
-  'EmailRoutingCatchAllMatchers.type': "'all'",
-  'ApiShieldAuthIdCharacteristics.type': "'header'",
-  'ShareResources.resourceType': "'custom-ruleset'",
-  'AccountTokenPolicies.effect': "'allow'",
-  'ApiTokenPolicies.effect': "'allow'",
-  'TokenValidationConfigKeys.alg': "'RS256'",
-  'TokenValidationConfigKeys.kty': "'RSA'",
-  'HyperdriveConfigOrigin.scheme': "'postgres'",
-  'AiGatewayDynamicRoutingElements.type': "'start'",
-  'VulnerabilityScannerTargetEnvironmentTarget.type': "'zone'",
-  'R2BucketEventNotificationRules.actions': "'PutObject'",
-  'ImageVariantOptions.fit': "'scale-down'",
-  'ImageVariantOptions.metadata': "'none'",
-  'CloudflareZeroTrustAccessAiControlsMcpServer.authType': "'unauthenticated'",
-  'CloudflareMagicWanBgpFilterProfile.matchAction': "'allow'",
-  'CloudflareZeroTrustCasbWebhook.authenticationType': "'None'",
-  'ZoneTracingRules.action': "'set_trace_settings'",
-};
-
-/// Number literals for slots whose provider validator bounds the value
-/// below the default `200`.
-const _numberByKey = <String, String>{
-  'ZoneTracingRulesActionParameters.samplingRatio': '1',
-  'CloudflareCertificatePack.validityDays': '90',
-  'WorkersDeploymentVersions.percentage': '100',
-};
-
-/// Whole literal values for untyped slots (JSON strings, lists of maps)
-/// whose provider schema rejects the generic dummy.
-const _valueByKey = <String, String>{
-  'CloudflareSnippet.files':
-      "[{'name': 'main.js', 'content': 'export default {};'},]",
-  'SnippetMetadata.mainModule': "'main.js'",
-  'ShareResources.meta': "'{}'",
-  'CloudflareShareResource.meta': "'{}'",
-};
-
 /// Optional slots a factory needs anyway: the provider requires at least
 /// one of a group the generated constructor leaves optional.
 const _optionalExtras = <String, List<String>>{
@@ -855,27 +748,27 @@ const _optionalExtras = <String, List<String>>{
   'CloudflareWorkersScript': ['content'],
 };
 
-String _stringLiteral(String name, {String owner = ''}) {
-  final key = '$owner.$name';
-  if (_literalByKey.containsKey(key)) return _literalByKey[key]!;
-  if (_literalByKey.containsKey(name)) return _literalByKey[name]!;
-  final n = name.toLowerCase();
-  if (n == 'accountid' || n == 'account') return 'accountId';
-  if (n == 'zoneid' || n == 'zone') return 'zoneId';
-  if (n == 'id') return "'$_hex32'";
-  if (n.contains('email')) return "'leftover@example.com'";
-  if (n.endsWith('url') || n.contains('uri')) {
-    return "'https://example.com'";
-  }
-  if (n.contains('cron')) return "'* * * * *'";
-  if (n.contains('cidr') || n.contains('prefix')) return "'192.0.2.0/24'";
-  if (n == 'ip' || n.endsWith('ip') || n.contains('address')) {
-    return "'192.0.2.1'";
-  }
-  if (name.endsWith('Id') && name != 'settingId' && name != 'datasetId') {
-    return "'$_hex32'";
-  }
-  return 'leftover';
+String _stringValue(String name, {String owner = ''}) {
+  final value = _dummies.valueFor(owner, name);
+  return value != null && value.isString ? value.dart : 'leftover';
+}
+
+/// [value] written for a slot of inner type [t], or null when it does not
+/// fit and the slot takes its type default.
+String? _fit(DummyValue value, String t) {
+  final json = switch (value) {
+    LiteralDummy(:final json) => json,
+    BoundDummy(:final template) => template,
+    DartDummy() => null,
+  };
+  if (value is DartDummy || t == 'Object' || t == 'dynamic') return value.dart;
+  final fits = switch (t) {
+    'String' => json is String,
+    'num' || 'int' || 'double' => json is num,
+    'bool' => json is bool,
+    _ => t.startsWith('List<') && json is List,
+  };
+  return fits ? value.dart : null;
 }
 
 /// Whether the value being built sits inside a helper or a sealed variant,

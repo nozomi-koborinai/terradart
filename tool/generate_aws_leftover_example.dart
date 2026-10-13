@@ -1,16 +1,16 @@
-#!/usr/bin/env dart
-
-// Generates examples/aws_leftover_quickstart/lib/main.dart: one constructor
+// Renders examples/aws_leftover_quickstart/lib/main.dart, for
+// tool/coverage_stack.dart, which writes and validates it: one constructor
 // call per AWS factory (resource or data source) that no other example
 // covers. Dummy values satisfy the Dart types and the provider's
 // validate-time checks, so synth + terraform validate cover the filled
-// catalog. Live apply is out of scope.
-//
-// Regenerates from generated wrappers; do not hand-edit main.dart.
+// catalog. Live apply is out of scope. Literal values live in
+// tool/coverage_dummies/aws.yaml.
 
 import 'dart:io';
 
 import 'catalog_class_names.dart';
+import 'coverage_dummies.dart';
+import 'coverage_stack.dart';
 import 'dot_shorthands.dart';
 
 const _skipResourceTypes = {
@@ -54,7 +54,6 @@ const _skipDataTypes = {
 };
 
 const _srcRoot = 'packages/terradart_aws/lib/src';
-const _outPath = 'examples/aws_leftover_quickstart/lib/main.dart';
 
 /// Terraform variable backing every sensitive leaf in the generated
 /// stack. Declared by the generator so the reference resolves at synth.
@@ -71,163 +70,175 @@ String _secretFor(String type) {
       : "Sensitive.variable('$_secretVar')";
 }
 
-void main() {
-  final catalogued = catalogClassNames(_srcRoot);
-  final files =
-      Directory(_srcRoot)
-          .listSync(recursive: true)
-          .whereType<File>()
-          .where(
-            (f) =>
-                f.path.endsWith('.dart') &&
-                !f.path.endsWith('_catalog.g.dart') &&
-                !f.path.endsWith('catalog_entry.dart'),
-          )
-          .toList()
-        ..sort((a, b) => a.path.compareTo(b.path));
+/// The aws lane's coverage stack.
+const awsLeftoverStack = _AwsLeftoverStack();
 
-  final parsedFiles = <String, _ParsedFile>{};
-  for (final file in files) {
-    parsedFiles[file.path] = _parseFile(file);
-    _collectEnums(file.readAsStringSync());
-  }
+final class _AwsLeftoverStack implements CoverageStackGenerator {
+  const _AwsLeftoverStack();
 
-  final helpers = <String, _ClassInfo>{};
-  final factories = <_Factory>[];
-  for (final parsed in parsedFiles.values) {
-    for (final cls in parsed.classes.values) {
-      if (cls.kind == _Kind.helper) {
-        helpers[cls.name] = cls;
-      } else if (cls.kind == _Kind.resource || cls.kind == _Kind.data) {
-        if (cls.tfType == null || !catalogued.contains(cls.name)) continue;
-        if (cls.kind == _Kind.resource &&
-            _skipResourceTypes.contains(cls.tfType)) {
-          continue;
+  @override
+  String get slug => 'aws_leftover';
+
+  @override
+  Set<String> get bindings => const {'arn', 'policy', 'leftover'};
+
+  @override
+  RenderedStack render(
+    CoverageDummies dummies, {
+    required Set<String> exclude,
+  }) {
+    _dummies = dummies;
+    _sealedVariants.clear();
+    _enums.clear();
+    _usedKeys.clear();
+    _insideHelper = false;
+    final catalogued = catalogClassNames(_srcRoot);
+    final files =
+        Directory(_srcRoot)
+            .listSync(recursive: true)
+            .whereType<File>()
+            .where(
+              (f) =>
+                  f.path.endsWith('.dart') &&
+                  !f.path.endsWith('_catalog.g.dart') &&
+                  !f.path.endsWith('catalog_entry.dart'),
+            )
+            .toList()
+          ..sort((a, b) => a.path.compareTo(b.path));
+
+    final parsedFiles = <String, _ParsedFile>{};
+    for (final file in files) {
+      parsedFiles[file.path] = _parseFile(file);
+      _collectEnums(file.readAsStringSync());
+    }
+
+    final helpers = <String, _ClassInfo>{};
+    final factories = <_Factory>[];
+    final leftOut = <String>{};
+    for (final parsed in parsedFiles.values) {
+      for (final cls in parsed.classes.values) {
+        if (cls.kind == _Kind.helper) {
+          helpers[cls.name] = cls;
+        } else if (cls.kind == _Kind.resource || cls.kind == _Kind.data) {
+          if (cls.tfType == null || !catalogued.contains(cls.name)) continue;
+          if (cls.kind == _Kind.resource &&
+              _skipResourceTypes.contains(cls.tfType)) {
+            continue;
+          }
+          if (cls.kind == _Kind.data && _skipDataTypes.contains(cls.tfType)) {
+            continue;
+          }
+          if (exclude.contains(cls.name)) {
+            leftOut.add(cls.name);
+            continue;
+          }
+          factories.add(
+            _Factory(
+              type: cls.tfType!,
+              className: cls.name,
+              kind: cls.kind,
+              requiredParams: cls.requiredParams,
+              optionalParams: cls.optionalParams,
+              filePath: parsed.path,
+              sensitiveLeaves: parsed.sensitiveLeaves,
+            ),
+          );
         }
-        if (cls.kind == _Kind.data && _skipDataTypes.contains(cls.tfType)) {
-          continue;
-        }
-        factories.add(
-          _Factory(
-            type: cls.tfType!,
-            className: cls.name,
-            kind: cls.kind,
-            requiredParams: cls.requiredParams,
-            optionalParams: cls.optionalParams,
-            filePath: parsed.path,
-            sensitiveLeaves: parsed.sensitiveLeaves,
-          ),
+      }
+    }
+    factories.sort((a, b) {
+      final k = a.kind.index.compareTo(b.kind.index);
+      if (k != 0) return k;
+      return a.type.compareTo(b.type);
+    });
+
+    final usedLocals = <String>{};
+    final buf = StringBuffer()
+      ..writeln('// GENERATED — dart tool/coverage_stack.dart --lane aws')
+      ..writeln('// ignore_for_file: unused_element')
+      ..writeln()
+      ..writeln(
+        '/// Coverage stack for leftover AWS factories at the current pin.',
+      )
+      ..writeln(
+        '/// Dummy constructor values; synth + terraform validate only.',
+      )
+      ..writeln('/// Never apply.')
+      ..writeln('library;')
+      ..writeln()
+      ..writeln("import 'package:terradart_aws/terradart_aws.dart';")
+      ..writeln()
+      ..writeln('final class AwsLeftoverStack extends Stack {')
+      ..writeln('  AwsLeftoverStack()')
+      ..writeln(
+        "      : super(providers: [const AwsProvider(region: 'us-east-1')]) {",
+      )
+      ..writeln("    const leftover = 'leftover';")
+      ..writeln("    const arn = 'arn:aws:iam::$_accountId:role/leftover';")
+      ..writeln('    const policy =')
+      ..writeln('        $_policyJson;')
+      ..writeln();
+
+    // Body first: the preamble can only decide whether to declare the
+    // secret variable once it knows a factory actually referenced it.
+    final body = StringBuffer();
+    for (final f in factories) {
+      final local = _uniqueLocal(f.type, f.kind, usedLocals);
+      body.writeln('    add(');
+      body.writeln('      ${f.className}(');
+      body.writeln("        '$local',");
+      for (final p in f.requiredParams) {
+        body.writeln(
+          '        ${p.name}: ${_dummy(p, helpers, sensitive: f.sensitiveLeaves, depth: 0, owner: f.className)},',
+        );
+      }
+      for (final extra in _extras(f, helpers)) {
+        body.writeln('        ${extra.name}: ${extra.value},');
+      }
+      body.writeln('      ),');
+      body.writeln('    );');
+      body.writeln();
+    }
+
+    // Sensitive leaves read the variable's handle, and synth
+    // rejects a reference with no matching declaration — so the declaration
+    // is generated too, not hand-added to this generated file.
+    if (body.toString().contains(_secretVarRef)) {
+      buf.writeln(
+        "    final $_secretVarRef = variable<String>('$_secretVar', "
+        'sensitive: true);',
+      );
+      buf.writeln();
+    }
+    buf.write(body);
+
+    buf.writeln('  }');
+    buf.writeln('}');
+
+    // A left-out factory leaves its knobs unread, so only a render that left
+    // none out can tell a stale knob.
+    if (leftOut.isEmpty) {
+      final stale = {
+        ..._extraParams.keys,
+        ..._listCounts.keys,
+      }.difference(_usedKeys).toList()..sort();
+      if (stale.isNotEmpty) {
+        throw StateError(
+          'Unused _extraParams / _listCounts keys:\n  ${stale.join('\n  ')}',
         );
       }
     }
-  }
-  factories.sort((a, b) {
-    final k = a.kind.index.compareTo(b.kind.index);
-    if (k != 0) return k;
-    return a.type.compareTo(b.type);
-  });
 
-  final usedLocals = <String>{};
-  final buf = StringBuffer()
-    ..writeln('// GENERATED — dart run tool/generate_aws_leftover_example.dart')
-    ..writeln('// ignore_for_file: unused_element')
-    ..writeln()
-    ..writeln(
-      '/// Coverage stack for leftover AWS factories at the current pin.',
-    )
-    ..writeln('/// Dummy constructor values; synth + terraform validate only.')
-    ..writeln('/// Never apply.')
-    ..writeln('library;')
-    ..writeln()
-    ..writeln("import 'package:terradart_aws/terradart_aws.dart';")
-    ..writeln()
-    ..writeln('final class AwsLeftoverStack extends Stack {')
-    ..writeln('  AwsLeftoverStack()')
-    ..writeln(
-      "      : super(providers: [const AwsProvider(region: 'us-east-1')]) {",
-    )
-    ..writeln("    const leftover = 'leftover';")
-    ..writeln("    const arn = 'arn:aws:iam::$_accountId:role/leftover';")
-    ..writeln('    const policy =')
-    ..writeln('        $_policyJson;')
-    ..writeln();
-
-  // Body first: the preamble can only decide whether to declare the
-  // secret variable once it knows a factory actually referenced it.
-  final body = StringBuffer();
-  for (final f in factories) {
-    final local = _uniqueLocal(f.type, f.kind, usedLocals);
-    body.writeln('    add(');
-    body.writeln('      ${f.className}(');
-    body.writeln("        '$local',");
-    for (final p in f.requiredParams) {
-      body.writeln(
-        '        ${p.name}: ${_dummy(p, helpers, sensitive: f.sensitiveLeaves, depth: 0, owner: f.className)},',
-      );
-    }
-    for (final extra in _extras(f, helpers)) {
-      body.writeln('        ${extra.name}: ${extra.value},');
-    }
-    body.writeln('      ),');
-    body.writeln('    );');
-    body.writeln();
-  }
-
-  // Sensitive leaves read the variable's handle, and synth
-  // rejects a reference with no matching declaration — so the declaration
-  // is generated too, not hand-added to this generated file.
-  if (body.toString().contains(_secretVarRef)) {
-    buf.writeln(
-      "    final $_secretVarRef = variable<String>('$_secretVar', "
-      'sensitive: true);',
-    );
-    buf.writeln();
-  }
-  buf.write(body);
-
-  buf.writeln('  }');
-  buf.writeln('}');
-
-  final stale = {
-    ..._literalByKey.keys,
-    ..._extraParams.keys,
-    ..._listCounts.keys,
-  }.difference(_usedKeys).toList()..sort();
-  if (stale.isNotEmpty) {
-    stderr.writeln(
-      'Unused _literalByKey / _extraParams / _listCounts keys:\n  '
-      '${stale.join('\n  ')}',
-    );
-    exit(1);
-  }
-
-  File(_outPath)
-    ..createSync(recursive: true)
-    ..writeAsStringSync(
+    return RenderedStack(
       dotShorthands(
         buf.toString(),
         packageEnums('packages/terradart_aws/lib/src'),
       ),
     );
-  // dart format splits long literals without the trailing commas
-  // `require_trailing_commas` wants, so fix between two format passes.
-  _run(['format', _outPath]);
-  _run(['fix', '--apply', '--code=require_trailing_commas', _outPath]);
-  _run(['format', _outPath]);
-  stdout.writeln(
-    'Wrote leftover example: ${factories.length} factories '
-    '(${factories.where((f) => f.kind == _Kind.resource).length} resources + '
-    '${factories.where((f) => f.kind == _Kind.data).length} data)',
-  );
-}
-
-void _run(List<String> args) {
-  final r = Process.runSync('dart', args);
-  if (r.exitCode != 0) {
-    stderr.writeln('dart ${args.join(' ')} failed:\n${r.stdout}${r.stderr}');
-    exit(r.exitCode);
   }
 }
+
+late CoverageDummies _dummies;
 
 enum _Kind { resource, data, helper }
 
@@ -889,7 +900,7 @@ const _extraParams = <String, List<String>>{
 /// The variant of sealed type [sealed] to construct: the one whose member
 /// `_extraParams` entry of [sealed] (a block that collapsed into its sealed
 /// type) or of [owner] names, else the first. A collapsed block keeps its
-/// `_literalByKey` entries under its own class name.
+/// ledger entries under its own class name.
 String _sealedChoice(
   String sealed,
   Map<String, _ClassInfo> helpers, {
@@ -900,7 +911,6 @@ String _sealedChoice(
   final ownExtras = _extraParams[sealed];
   if (ownExtras != null) _usedKeys.add(sealed);
   final extras = ownExtras ?? _extraParams[owner] ?? const <String>[];
-  if (_literalByKey.keys.any((k) => k.startsWith('$sealed.'))) owner = sealed;
   final variants = [
     for (final v in _sealedVariants[sealed]!)
       (v, helpers[v]!.requiredParams.single),
@@ -911,6 +921,11 @@ String _sealedChoice(
         ? throw StateError('$sealed declares no variants')
         : variants.first,
   );
+  if (_dummies.ownsValue(variant, member.name)) {
+    owner = variant;
+  } else if (_dummies.ownsValue(sealed, member.name)) {
+    owner = sealed;
+  }
   final outer = _insideHelper;
   _insideHelper = true;
   final value = _dummy(
@@ -1070,28 +1085,6 @@ String _dummy(
 }) {
   if (depth > _maxDepth) return "TfArg.literal('leftover')";
   final n = p.name;
-  // A sealed slot named like one of its members takes the value inside the
-  // variant `_sealedChoice` builds, not as itself.
-  final sealed = _sealedVariants.containsKey(
-    p.type.replaceFirst(RegExp(r'\?$'), ''),
-  );
-  final value = sealed ? null : _lookup('$owner.$n');
-  if (value != null) {
-    final enumType = _enumSlotType(p.type);
-    if (enumType != null) {
-      final member = _enumFor(enumType, value);
-      return p.type.startsWith('List<') ? '[$member,]' : member;
-    }
-    if (p.type.startsWith('RefTo')) return 'RefTo.literal($value)';
-    if (p.type.contains('List<RefTo<')) {
-      final refs = value.replaceAllMapped(
-        RegExp(r"'[^']*'"),
-        (m) => 'RefTo.literal(${m[0]})',
-      );
-      return 'TfArg.literal($refs)';
-    }
-    return p.type.startsWith('TfArg') ? 'TfArg.literal($value)' : value;
-  }
   if (_isSensitive(n, sensitive) && p.type.startsWith('TfArg') ||
       p.type.startsWith('Sensitive<')) {
     return _secretFor(p.type);
@@ -1111,6 +1104,14 @@ String _dummy(
       count,
     );
   }
+  // A sealed slot named like one of its members takes the value inside the
+  // variant `_sealedChoice` builds, not as itself.
+  final sealed = _sealedVariants.containsKey(
+    p.type.replaceFirst(RegExp(r'\?$'), ''),
+  );
+  final value = sealed ? null : _dummies.valueFor(owner, n);
+  final fitted = value == null ? null : _fit(value, p.type);
+  if (fitted != null) return fitted;
   return _dummyForType(
     p.type,
     helpers,
@@ -1119,6 +1120,64 @@ String _dummy(
     sensitive: sensitive,
     owner: owner,
   );
+}
+
+/// [value] written for a slot of [type], or null when it does not fit the
+/// type and the slot takes its type default.
+String? _fit(DummyValue value, String type) {
+  var t = type.trim();
+  if (t.endsWith('?')) t = t.substring(0, t.length - 1).trim();
+  final dart = value.dart;
+  if (value is DartDummy) {
+    if (t.startsWith('RefTo')) return 'RefTo.literal($dart)';
+    return t.startsWith('TfArg') ? 'TfArg.literal($dart)' : dart;
+  }
+  final enumType = _enumSlotType(type);
+  if (enumType != null) {
+    if (!value.isString) return null;
+    final member = _enumFor(enumType, dart);
+    return t.startsWith('List<') ? '[$member,]' : member;
+  }
+  if (t.startsWith('RefTo<')) {
+    return value.isString ? 'RefTo.literal($dart)' : null;
+  }
+  if (t.startsWith('TfArg<') && t.endsWith('>')) {
+    final inner = _fitInner(value, t.substring(6, t.length - 1));
+    return inner == null ? null : 'TfArg.literal($inner)';
+  }
+  return _fitInner(value, t);
+}
+
+String? _fitInner(DummyValue value, String type) {
+  var t = type.trim();
+  if (t.endsWith('?')) t = t.substring(0, t.length - 1).trim();
+  final dart = value.dart;
+  final json = switch (value) {
+    LiteralDummy(:final json) => json,
+    BoundDummy(:final template) => template,
+    DartDummy() => null,
+  };
+  if (t == 'String' || t == 'Object' || t == 'dynamic') {
+    return json is String || t != 'String' ? dart : null;
+  }
+  if (t == 'num' || t == 'int' || t == 'double') {
+    return json is num ? dart : null;
+  }
+  if (t == 'bool') return json is bool ? dart : null;
+  if (t.startsWith('List<') && t.endsWith('>')) {
+    final element = t.substring(5, t.length - 1).trim().replaceAll('?', '');
+    if (json is List) {
+      if (!element.startsWith('RefTo<')) return dart;
+      return dart.replaceAllMapped(
+        RegExp(r"'[^']*'"),
+        (m) => 'RefTo.literal(${m[0]})',
+      );
+    }
+    if (json is! String) return null;
+    if (element == 'String') return '[$dart]';
+    if (element.startsWith('RefTo<')) return '[RefTo.literal($dart)]';
+  }
+  return null;
 }
 
 const _primitives = {
@@ -1179,7 +1238,7 @@ String _dummyForType(
   if (t.endsWith('?')) t = t.substring(0, t.length - 1).trim();
 
   if (t.startsWith('RefTo<')) {
-    return 'RefTo.literal(${_stringLiteral(name, owner: owner)})';
+    return 'RefTo.literal(${_stringValue(name, owner: owner)})';
   }
   if (t.startsWith('Sensitive<')) return _secretFor(t);
   if (t.startsWith('TfArg<') && t.endsWith('>')) {
@@ -1250,14 +1309,14 @@ String _literalInner(
 }) {
   var t = inner.trim();
   if (t.endsWith('?')) t = t.substring(0, t.length - 1).trim();
-  if (t == 'String') return _stringLiteral(name, owner: owner);
+  if (t == 'String') return _stringValue(name, owner: owner);
   if (_enums.containsKey(t)) return _enumMember(t, name, owner: owner);
   if (t == 'num' || t == 'int' || t == 'double') return '200';
   if (t == 'bool') return 'true';
   if (t.startsWith('List<') && t.endsWith('>')) {
     final listInner = t.substring(5, t.length - 1).trim().replaceAll('?', '');
     if (listInner.startsWith('RefTo<')) {
-      return '[RefTo.literal(${_stringLiteral(name, owner: owner)})]';
+      return '[RefTo.literal(${_stringValue(name, owner: owner)})]';
     }
     if (helpers.containsKey(listInner)) {
       return '[${_constructHelper(listInner, helpers, depth: depth + 1, sensitive: sensitive)},]';
@@ -1269,7 +1328,7 @@ String _literalInner(
       return '[200]';
     }
     if (listInner.contains('bool')) return '[true]';
-    if (listInner == 'String') return '[${_stringLiteral(name, owner: owner)}]';
+    if (listInner == 'String') return '[${_stringValue(name, owner: owner)}]';
     return '[leftover]';
   }
   if (t.startsWith('Map<') || t == 'Map') {
@@ -1328,945 +1387,17 @@ String _enumFor(String enumName, String literal) {
   return '$enumName.${pick.$1}';
 }
 
-/// The member whose value [_stringLiteral] would have written for the slot
+/// The member whose value [_stringValue] would have written for the slot
 /// (the value its provider validator accepts), else the first member.
 String _enumMember(String enumName, String name, {required String owner}) =>
-    _enumFor(enumName, _stringLiteral(name, owner: owner));
+    _enumFor(enumName, _stringValue(name, owner: owner));
 
 /// Deeper than any typed helper chain in the catalog; the heavy
 /// resources take their nested blocks as maps.
 const _maxDepth = 20;
 
-/// Values the provider's validate-time checks accept, keyed by
-/// `Owner.param` (resource, data source, or helper class) or by bare
-/// parameter name.
-const _literalByKey = <String, String>{
-  'AcmpcaCertificateAuthorityConfiguration.keyAlgorithm': '\'RSA_2048\'',
-  'AcmpcaCertificateAuthorityConfiguration.signingAlgorithm':
-      '\'SHA256WITHRSA\'',
-  'AcmpcaCertificateValidity.type': '\'END_DATE\'',
-  'AcmpcaCertificateValidity.value': '\'2026-01-01T00:00:00Z\'',
-  'AgentregistryRegistryDiscoveryConfiguration.authorizerType':
-      '\'CUSTOM_JWT\'',
-  'AlbListenerDefaultAction.type': '\'forward\'',
-  'AlbListenerRuleAction.type': '\'forward\'',
-  'Apigatewayv2DomainNameConfiguration.endpointType': '\'REGIONAL\'',
-  'Apigatewayv2DomainNameConfiguration.securityPolicy': '\'TLS_1_2\'',
-  'AppautoscalingScheduledActionScalableTargetAction.maxCapacity': '\'64512\'',
-  'AppconfigExtensionActionPoint.point':
-      '\'PRE_CREATE_HOSTED_CONFIGURATION_VERSION\'',
-  'AppfabricIngestionDestinationProcessingConfigurationAuditLog.format':
-      '\'json\'',
-  'AppfabricIngestionDestinationProcessingConfigurationAuditLog.schema':
-      '\'ocsf\'',
-  'AppflowFlowDestinationFlowConfig.connectorType': '\'Salesforce\'',
-  'AppflowFlowSourceFlowConfig.connectorType': '\'Salesforce\'',
-  'AppflowFlowTask.taskType': '\'Arithmetic\'',
-  'AppflowFlowTriggerConfig.triggerType': '\'Scheduled\'',
-  'AppintegrationsEventIntegrationEventFilter.source':
-      '\'aws.partner/example.com/leftover\'',
-  'AppmeshVirtualGatewayPortMapping.protocol': '\'http\'',
-  'AppmeshVirtualRouterPortMapping.protocol': '\'http\'',
-  'ApprunnerServiceSourceCodeVersion.type': '\'BRANCH\'',
-  'ApprunnerServiceSourceCodeVersion.value': '\'BRANCH\'',
-  'AppsyncApiAuthProvider.authType': '\'API_KEY\'',
-  'AppsyncApiConnectionAuthMode.authType': '\'API_KEY\'',
-  'AppsyncApiDefaultPublishAuthMode.authType': '\'API_KEY\'',
-  'AppsyncApiDefaultSubscribeAuthMode.authType': '\'API_KEY\'',
-  'AuditmanagerAssessmentRoles.roleType': '\'PROCESS_OWNER\'',
-  'AutoscalingplansScalingPlanScalingInstruction.scalableDimension':
-      '\'autoscaling:autoScalingGroup:DesiredCapacity\'',
-  'AutoscalingplansScalingPlanScalingInstruction.serviceNamespace':
-      '\'autoscaling\'',
-  'AwsAccountAlternateContact.alternateContactType': '\'BILLING\'',
-  'AwsAccountAlternateContact.phoneNumber': '\'+12065550100\'',
-  'AwsAccountPrimaryContact.phoneNumber': '\'+12065550100\'',
-  'AwsAcmpcaCertificate.signingAlgorithm': '\'SHA256WITHRSA\'',
-  'AwsAcmpcaPermission.actions': '[\'IssueCertificate\']',
-  'AwsAcmpcaPermission.principal': '\'acm.amazonaws.com\'',
-  'AwsApiGatewayDomainNameAccessAssociation.accessAssociationSourceType':
-      '\'VPCE\'',
-  'AwsApiGatewayIntegration.httpMethod': '\'ANY\'',
-  'AwsApiGatewayIntegration.type': '\'HTTP\'',
-  'AwsApiGatewayIntegrationResponse.httpMethod': '\'ANY\'',
-  'AwsApiGatewayMethod.httpMethod': '\'ANY\'',
-  'AwsApiGatewayMethodResponse.httpMethod': '\'ANY\'',
-  'AwsApigatewayv2Authorizer.authorizerType': '\'REQUEST\'',
-  'AwsApigatewayv2Model.schema': 'policy',
-  'AwsAppconfigDeployment.deploymentStrategyId': '\'yh1uqgz\'',
-  'AwsAppconfigDeploymentStrategy.growthFactor': '1',
-  'AwsAppconfigDeploymentStrategy.replicateTo': '\'NONE\'',
-  'AwsAppconfigEnvironment.applicationId': '\'abc1234\'',
-  'AwsAppfabricAppAuthorization.authType': '\'oauth2\'',
-  'AwsAppfabricIngestion.ingestionType': '\'auditLog\'',
-  'AwsAppflowConnectorProfile.connectionMode': '\'Public\'',
-  'AwsAppflowConnectorProfile.connectorType': '\'Salesforce\'',
-  'AwsApprunnerConnection.providerType': '\'GITHUB\'',
-  'AwsAppstreamUser.authenticationType': '\'API\'',
-  'AwsAppstreamUserStackAssociation.authenticationType': '\'API\'',
-  'AwsAppsyncApiCache.apiCachingBehavior': '\'FULL_REQUEST_CACHING\'',
-  'AwsAppsyncApiCache.type': '\'T2_SMALL\'',
-  'AwsAppsyncDatasource.type': '\'AWS_LAMBDA\'',
-  'AwsAppsyncGraphqlApi.authenticationType': '\'API_KEY\'',
-  'AwsAppsyncType.format': '\'SDL\'',
-  'AwsArcregionswitchPlan.executionRole': 'arn',
-  'AwsArcregionswitchPlan.recoveryApproach': '\'activeActive\'',
-  'AwsArczonalshiftAutoshiftObserverNotificationStatus.status': '\'ENABLED\'',
-  'AwsArczonalshiftZonalAutoshiftConfiguration.zonalAutoshiftStatus':
-      '\'ENABLED\'',
-  'AwsAthenaDataCatalog.type': '\'LAMBDA\'',
-  'AwsAuditmanagerAssessmentDelegation.roleType': '\'PROCESS_OWNER\'',
-  'AwsAuditmanagerFrameworkShare.destinationAccount': '\'123456789012\'',
-  'AwsAutoscalingLifecycleHook.lifecycleTransition':
-      '\'autoscaling:EC2_INSTANCE_LAUNCHING\'',
-  'AwsBackupVaultNotifications.backupVaultEvents': '[\'BACKUP_JOB_STARTED\']',
-  'AwsBatchComputeEnvironment.type': '\'MANAGED\'',
-  'AwsBatchJobDefinition.type': '\'container\'',
-  'AwsBatchJobQueue.state': '\'ENABLED\'',
-  'AwsBedrockCustomModel.baseModelIdentifier': 'arn',
-  'AwsBedrockUseCaseForModelAccess.formData': 'policy',
-  'AwsBedrockagentAgentKnowledgeBaseAssociation.knowledgeBaseState':
-      '\'ENABLED\'',
-  'AwsBedrockagentcoreEvaluator.level': '\'TOOL_CALL\'',
-  'AwsBedrockagentcoreGateway.authorizerType': '\'AWS_IAM\'',
-  'AwsBedrockagentcoreMemoryStrategy.type': '\'SEMANTIC\'',
-  'AwsBedrockagentcoreOauth2CredentialProvider.credentialProviderVendor':
-      '\'GoogleOauth2\'',
-  'AwsBedrockagentcorePolicy.policyEngineId': '\'T0OLrnw-qkcm9dd3b0\'',
-  'AwsBudgetsBudget.budgetType': '\'USAGE\'',
-  'AwsBudgetsBudget.timeUnit': '\'DAILY\'',
-  'AwsBudgetsBudgetAction.actionType': '\'APPLY_IAM_POLICY\'',
-  'AwsBudgetsBudgetAction.approvalModel': '\'AUTOMATIC\'',
-  'AwsBudgetsBudgetAction.notificationType': '\'ACTUAL\'',
-  'AwsCeAnomalyMonitor.monitorType': '\'DIMENSIONAL\'',
-  'AwsCeAnomalySubscription.frequency': '\'DAILY\'',
-  'AwsCeAnomalySubscription.monitorArnList': '[arn]',
-  'AwsCeCostAllocationTag.status': '\'Active\'',
-  'AwsChimeVoiceConnectorTermination.callingRegions': '[\'US\']',
-  'AwsChimeVoiceConnectorTermination.cidrAllowList': '[\'10.0.0.0/28\']',
-  'AwsChimesdkvoiceSipRule.triggerType': '\'ToPhoneNumber\'',
-  'AwsCleanroomsMembership.queryLogStatus': '\'ENABLED\'',
-  'AwsCloud9EnvironmentEc2.imageId': '\'amazonlinux-1-x86_64\'',
-  'AwsCloud9EnvironmentMembership.permissions': '\'owner\'',
-  'AwsCloudcontrolapiResource.typeName': '\'AWS::S3::Bucket\'',
-  'AwsCloudformationType.schemaHandlerPackage':
-      '\'s3://leftover-bucket/leftover\'',
-  'AwsCloudformationType.typeName': '\'Leftover::Example::Thing\'',
-  'AwsCloudfrontAnycastIpList.ipCount': '3',
-  'AwsCloudfrontFunction.runtime': '\'cloudfront-js-1.0\'',
-  'AwsCloudfrontRealtimeLogConfig.samplingRate': '1',
-  'AwsCloudhsmV2Cluster.hsmType': '\'hsm1.medium\'',
-  'AwsCloudwatchContributorInsightRule.ruleDefinition': 'policy',
-  'AwsCloudwatchDashboard.dashboardBody': 'policy',
-  'AwsCloudwatchEventApiDestination.httpMethod': '\'POST\'',
-  'AwsCloudwatchEventConnection.authorizationType': '\'BASIC\'',
-  'AwsCloudwatchEventPermission.principal': '\'123456789012\'',
-  'AwsCloudwatchEventRule.eventPattern': 'policy',
-  'AwsCloudwatchLogAccountPolicy.policyType': '\'DATA_PROTECTION_POLICY\'',
-  'AwsCloudwatchLogStorageTierPolicy.storageTier': '\'STANDARD\'',
-  'AwsCloudwatchMetricStream.outputFormat': '\'json\'',
-  'AwsCodebuildFleet.computeType': '\'BUILD_GENERAL1_SMALL\'',
-  'AwsCodebuildFleet.environmentType': '\'WINDOWS_CONTAINER\'',
-  'AwsCodebuildProject.serviceRole': 'arn',
-  'AwsCodebuildReportGroup.type': '\'TEST\'',
-  'AwsCodebuildSourceCredential.authType': '\'OAUTH\'',
-  'AwsCodebuildSourceCredential.serverType': '\'GITHUB\'',
-  'AwsCodecatalystDevEnvironment.instanceType': '\'dev.standard1.small\'',
-  'AwsCodecommitApprovalRuleTemplate.content': 'policy',
-  'AwsCodeconnectionsHost.providerType': '\'Bitbucket\'',
-  'AwsCodepipelineCustomActionType.category': '\'Source\'',
-  'AwsCodepipelineWebhook.authentication': '\'GITHUB_HMAC\'',
-  'AwsCodestarconnectionsHost.providerType': '\'Bitbucket\'',
-  'AwsCodestarnotificationsNotificationRule.detailType': '\'BASIC\'',
-  'AwsCodestarnotificationsNotificationRule.resource': 'arn',
-  'AwsCognitoIdentityPoolProviderPrincipalTag.identityPoolId':
-      '\'us-east-1:12345678-1234-1234-1234-123456789012\'',
-  'AwsCognitoIdentityProvider.providerType': '\'SAML\'',
-  'AwsCognitoManagedLoginBranding.settings': 'policy',
-  'AwsCognitoRiskConfiguration.userPoolId': '\'us-east-1_leftover\'',
-  'AwsCognitoUserGroup.userPoolId': '\'us-east-1_leftover\'',
-  'AwsCognitoUserInGroup.userPoolId': '\'us-east-1_leftover\'',
-  'AwsComprehendDocumentClassifier.languageCode': '\'en\'',
-  'AwsComprehendEntityRecognizer.languageCode': '\'en\'',
-  'AwsComputeoptimizerEnrollmentStatus.status': '\'Active\'',
-  'AwsComputeoptimizerRecommendationPreferences.enhancedInfrastructureMetrics':
-      '\'Active\'',
-  'AwsComputeoptimizerRecommendationPreferences.resourceType':
-      '\'AutoScalingGroup\'',
-  'AwsConfigConformancePack.templateS3Uri': '\'s3://leftover-bucket/leftover\'',
-  'AwsConfigOrganizationCustomPolicyRule.triggerTypes':
-      '[\'ConfigurationItemChangeNotification\']',
-  'AwsConfigOrganizationCustomRule.triggerTypes':
-      '[\'ConfigurationItemChangeNotification\']',
-  'AwsConfigRemediationConfiguration.targetType': '\'SSM_DOCUMENT\'',
-  'AwsConnectInstance.identityManagementType': '\'SAML\'',
-  'AwsConnectInstanceStorageConfig.resourceType': '\'CHAT_TRANSCRIPTS\'',
-  'AwsConnectPhoneNumber.countryCode': '\'AF\'',
-  'AwsConnectPhoneNumber.type': '\'TOLL_FREE\'',
-  'AwsConnectVocabulary.languageCode': '\'ar-AE\'',
-  'AwsControltowerControl.controlIdentifier': 'arn',
-  'AwsControltowerControl.targetIdentifier': 'arn',
-  'AwsControltowerLandingZone.manifestJson': 'policy',
-  'AwsCurReportDefinition.additionalSchemaElements': '[\'RESOURCES\']',
-  'AwsCurReportDefinition.compression': '\'ZIP\'',
-  'AwsCurReportDefinition.format': '\'textORcsv\'',
-  'AwsCurReportDefinition.timeUnit': '\'HOURLY\'',
-  'AwsCustomerGateway.type': '\'ipsec.1\'',
-  'AwsDataexchangeDataSet.assetType': '\'S3_SNAPSHOT\'',
-  'AwsDatasyncLocationAzureBlob.authenticationType': '\'SAS\'',
-  'AwsDatazoneDomain.domainExecutionRole': 'arn',
-  'AwsDatazoneFormType.domainIdentifier': '\'dzd-xRc\'',
-  'AwsDatazonePolicyGrant.entityType': '\'DOMAIN_UNIT\'',
-  'AwsDatazonePolicyGrant.policyType': '\'CREATE_DOMAIN_UNIT\'',
-  'AwsDatazoneProject.domainIdentifier': '\'dzd-xRc\'',
-  'AwsDbEventSubscription.snsTopic': 'arn',
-  'AwsDbProxy.engineFamily': '\'MYSQL\'',
-  'AwsDevicefarmUpload.type': '\'ANDROID_APP\'',
-  'AwsDevopsguruResourceCollection.type': '\'AWS_CLOUD_FORMATION\'',
-  'AwsDirectoryServiceConditionalForwarder.remoteDomainName': '\'example.com\'',
-  'AwsDirectoryServiceDirectory.name': '\'example.com\'',
-  'AwsDirectoryServiceRadiusSettings.authenticationProtocol': '\'PAP\'',
-  'AwsDirectoryServiceRadiusSettings.radiusRetries': '0',
-  'AwsDirectoryServiceRadiusSettings.radiusTimeout': '1',
-  'AwsDirectoryServiceRegion.regionName': '\'us-east-1\'',
-  'AwsDirectoryServiceTrust.remoteDomainName': '\'example.com\'',
-  'AwsDirectoryServiceTrust.trustDirection': '\'Two-Way\'',
-  'AwsDlmLifecyclePolicy.defaultPolicy': '\'VOLUME\'',
-  'AwsDmsDataProvider.engine': '\'aurora\'',
-  'AwsDmsEndpoint.endpointType': '\'source\'',
-  'AwsDmsEndpoint.engineName': '\'aurora\'',
-  'AwsDmsEventSubscription.sourceType': '\'replication-instance\'',
-  'AwsDmsReplicationConfig.replicationType': '\'full-load\'',
-  'AwsDmsReplicationConfig.tableMappings': 'policy',
-  'AwsDmsReplicationTask.migrationType': '\'full-load\'',
-  'AwsDmsReplicationTask.tableMappings': 'policy',
-  'AwsDmsS3Endpoint.endpointType': '\'source\'',
-  'AwsDocdbGlobalCluster.engine': '\'docdb\'',
-  'AwsDocdbelasticCluster.authType': '\'PLAIN_TEXT\'',
-  'AwsDocdbelasticCluster.shardCount': '1',
-  'AwsDrsReplicationConfigurationTemplate.dataPlaneRouting': '\'PRIVATE_IP\'',
-  'AwsDrsReplicationConfigurationTemplate.defaultLargeStagingDiskType':
-      '\'GP2\'',
-  'AwsDrsReplicationConfigurationTemplate.ebsEncryption': '\'DEFAULT\'',
-  'AwsDsqlClusterPolicy.identifier': '\'abcdefghijklmnopqrstuvwxyz\'',
-  'AwsDxBgpPeer.addressFamily': '\'ipv4\'',
-  'AwsDxConnection.bandwidth': '\'1Gbps\'',
-  'AwsDxGateway.amazonSideAsn': '\'64512\'',
-  'AwsDxHostedConnection.bandwidth': '\'1Gbps\'',
-  'AwsDxHostedPrivateVirtualInterface.addressFamily': '\'ipv4\'',
-  'AwsDxHostedPublicVirtualInterface.addressFamily': '\'ipv4\'',
-  'AwsDxHostedTransitVirtualInterface.addressFamily': '\'ipv4\'',
-  'AwsDxLag.connectionsBandwidth': '\'1Gbps\'',
-  'AwsDxMacsecKeyAssociation.secretArn':
-      '\'arn:aws:secretsmanager:us-east-1:123456789012:secret:leftover\'',
-  'AwsDxPrivateVirtualInterface.addressFamily': '\'ipv4\'',
-  'AwsDxPublicVirtualInterface.addressFamily': '\'ipv4\'',
-  'AwsDxTransitVirtualInterface.addressFamily': '\'ipv4\'',
-  'AwsDynamodbTableItem.item': '\'{"pk": {"S": "leftover"}}\'',
-  'AwsEbsSnapshotBlockPublicAccess.state': '\'block-all-sharing\'',
-  'AwsEc2AllowedImagesSettings.state': '\'enabled\'',
-  'AwsEc2AvailabilityZoneGroup.optInStatus': '\'opted-in\'',
-  'AwsEc2CapacityBlockReservation.instancePlatform': '\'Linux/UNIX\'',
-  'AwsEc2CapacityReservation.instancePlatform': '\'Linux/UNIX\'',
-  'AwsEc2DefaultCreditSpecification.cpuCredits': '\'standard\'',
-  'AwsEc2DefaultCreditSpecification.instanceFamily': '\'t2\'',
-  'AwsEc2ImageBlockPublicAccess.state': '\'block-new-sharing\'',
-  'AwsEc2InstanceMetadataDefaults.httpEndpoint': '\'disabled\'',
-  'AwsEc2InstanceMetadataDefaults.httpPutResponseHopLimit': '1',
-  'AwsEc2InstanceState.state': '\'running\'',
-  'AwsEc2LocalGatewayRouteTable.mode': '\'direct-vpc-routing\'',
-  'AwsEc2ManagedPrefixList.addressFamily': '\'IPv4\'',
-  'AwsEc2NetworkInsightsPath.protocol': '\'tcp\'',
-  'AwsEc2SecondaryNetwork.networkType': '\'rdma\'',
-  'AwsEc2SubnetCidrReservation.reservationType': '\'prefix\'',
-  'AwsEc2TrafficMirrorFilterRule.ruleAction': '\'accept\'',
-  'AwsEc2TrafficMirrorFilterRule.trafficDirection': '\'ingress\'',
-  'AwsEc2TransitGatewayConnectPeer.insideCidrBlocks': '[\'169.254.100.0/29\']',
-  'AwsEc2TransitGatewayConnectPeer.peerAddress': '\'10.0.0.1\'',
-  'AwsEc2TransitGatewayMeteringPolicyEntry.meteredAccount':
-      '\'source-attachment-owner\'',
-  'AwsEc2TransitGatewayMulticastGroupMember.groupIpAddress': '\'224.0.0.1\'',
-  'AwsEc2TransitGatewayMulticastGroupSource.groupIpAddress': '\'224.0.0.1\'',
-  'AwsEcrAccountSetting.name': '\'BASIC_SCAN_TYPE_VERSION\'',
-  'AwsEcrAccountSetting.value': '\'AWS_NATIVE\'',
-  'AwsEcrRegistryScanningConfiguration.scanType': '\'BASIC\'',
-  'AwsEcrRepositoryCreationTemplate.appliedFor': '[\'REPLICATION\']',
-  'AwsEcsAccountSettingDefault.name': '\'serviceLongArnFormat\'',
-  'AwsEcsTaskDefinition.containerDefinitions':
-      '\'[{"name": "leftover", "image": "public.ecr.aws/nginx/nginx:latest", "essential": true}]\'',
-  'AwsEksCapability.deletePropagationPolicy': '\'RETAIN\'',
-  'AwsEksCapability.type': '\'ACK\'',
-  'AwsElasticacheCluster.engine': '\'memcached\'',
-  'AwsElasticacheUser.engine': '\'redis\'',
-  'AwsElasticacheUserGroup.engine': '\'redis\'',
-  'AwsElasticsearchDomainPolicy.accessPolicies': 'policy',
-  'AwsElastictranscoderPipeline.role': 'arn',
-  'AwsElastictranscoderPreset.container': '\'flac\'',
-  'AwsEmrSecurityConfiguration.configuration': 'policy',
-  'AwsEmrStudio.authMode': '\'SSO\'',
-  'AwsEmrStudio.serviceRole': 'arn',
-  'AwsEmrStudioSessionMapping.identityType': '\'USER\'',
-  'AwsEvidentlySegment.pattern': 'policy',
-  'AwsFinspaceKxCluster.azMode': '\'SINGLE\'',
-  'AwsFinspaceKxCluster.type': '\'HDB\'',
-  'AwsFinspaceKxDataview.azMode': '\'SINGLE\'',
-  'AwsFinspaceKxEnvironment.kmsKeyId': 'arn',
-  'AwsFinspaceKxUser.iamRole': 'arn',
-  'AwsFinspaceKxVolume.azMode': '\'SINGLE\'',
-  'AwsFinspaceKxVolume.type': '\'NAS_1\'',
-  'AwsFsxDataRepositoryAssociation.dataRepositoryPath':
-      '\'s3://leftover-bucket/leftover\'',
-  'AwsFsxDataRepositoryAssociation.fileSystemId': '\'fs-0123456789abcdef0\'',
-  'AwsFsxDataRepositoryAssociation.fileSystemPath': '\'/leftover\'',
-  'AwsFsxFileCache.fileCacheType': '\'LUSTRE\'',
-  'AwsFsxFileCache.fileCacheTypeVersion': '\'2.12\'',
-  'AwsFsxOntapFileSystem.deploymentType': '\'MULTI_AZ_1\'',
-  'AwsFsxOntapFileSystem.storageCapacity': '1024',
-  'AwsFsxOntapFileSystem.throughputCapacity': '128',
-  'AwsFsxOntapStorageVirtualMachine.fileSystemId': '\'fs-0123456789abcdef0\'',
-  'AwsFsxOntapVolume.sizeInBytes': '\'64512\'',
-  'AwsFsxOntapVolume.storageVirtualMachineId': '\'svm-0123456789abcdef0\'',
-  'AwsFsxOpenzfsFileSystem.deploymentType': '\'SINGLE_AZ_1\'',
-  'AwsFsxOpenzfsSnapshot.volumeId': '\'fsvol-0123456789abcdef0\'',
-  'AwsFsxOpenzfsVolume.parentVolumeId': '\'fsvol-0123456789abcdef0\'',
-  'AwsFsxS3AccessPointAttachment.type': '\'OPENZFS\'',
-  'AwsFsxWindowsFileSystem.throughputCapacity': '8',
-  'AwsGameliftBuild.operatingSystem': '\'WINDOWS_2012\'',
-  'AwsGameliftFleet.ec2InstanceType': '\'t2.micro\'',
-  'AwsGameliftGameServerGroup.instanceDefinition':
-      '[GameliftGameServerGroupInstanceDefinition(instanceType: GameliftGameServerGroupInstanceType.c5Large,), GameliftGameServerGroupInstanceDefinition(instanceType: GameliftGameServerGroupInstanceType.c5Xlarge,),]',
-  'AwsGlobalacceleratorListener.protocol': '\'TCP\'',
-  'AwsGlueCatalogTableOptimizer.type': '\'compaction\'',
-  'AwsGlueSchema.compatibility': '\'NONE\'',
-  'AwsGlueSchema.dataFormat': '\'AVRO\'',
-  'AwsGlueTrigger.type': '\'SCHEDULED\'',
-  'AwsGlueUserDefinedFunction.ownerType': '\'USER\'',
-  'AwsGrafanaLicenseAssociation.licenseType': '\'ENTERPRISE\'',
-  'AwsGrafanaWorkspace.accountAccessType': '\'CURRENT_ACCOUNT\'',
-  'AwsGrafanaWorkspace.authenticationProviders': '[\'AWS_SSO\']',
-  'AwsGrafanaWorkspace.permissionType': '\'CUSTOMER_MANAGED\'',
-  'AwsGrafanaWorkspaceApiKey.keyRole': '\'ADMIN\'',
-  'AwsGrafanaWorkspaceServiceAccount.grafanaRole': '\'ADMIN\'',
-  'AwsGuarddutyDetectorFeature.name': '\'S3_DATA_EVENTS\'',
-  'AwsGuarddutyDetectorFeature.status': '\'ENABLED\'',
-  'AwsGuarddutyFilter.action': '\'NOOP\'',
-  'AwsGuarddutyIpset.format': '\'TXT\'',
-  'AwsGuarddutyMalwareProtectionPlan.role': 'arn',
-  'AwsGuarddutyMemberDetectorFeature.name': '\'S3_DATA_EVENTS\'',
-  'AwsGuarddutyMemberDetectorFeature.status': '\'ENABLED\'',
-  'AwsGuarddutyOrganizationConfiguration.autoEnableOrganizationMembers':
-      '\'NEW\'',
-  'AwsGuarddutyOrganizationConfigurationFeature.autoEnable': '\'NEW\'',
-  'AwsGuarddutyOrganizationConfigurationFeature.name': '\'S3_DATA_EVENTS\'',
-  'AwsGuarddutyThreatintelset.format': '\'TXT\'',
-  'AwsIamSamlProvider.samlMetadataDocument': 'leftover * 130',
-  'AwsIamSecurityTokenServicePreferences.globalEndpointTokenVersion':
-      '\'v1Token\'',
-  'AwsIamServiceLinkedRole.awsServiceName':
-      '\'elasticbeanstalk.amazonaws.com\'',
-  'AwsIamUserSshKey.encoding': '\'SSH\'',
-  'AwsImagebuilderComponent.platform': '\'Windows\'',
-  'AwsImagebuilderContainerRecipe.containerType': '\'DOCKER\'',
-  'AwsImagebuilderImagePipeline.containerRecipeArn':
-      '\'arn:aws:imagebuilder:us-east-1:123456789012:container-recipe/leftover/1.0.0\'',
-  'AwsImagebuilderImagePipeline.infrastructureConfigurationArn':
-      '\'arn:aws:imagebuilder:us-east-1:123456789012:infrastructure-configuration/leftover\'',
-  'AwsImagebuilderLifecyclePolicy.executionRole': 'arn',
-  'AwsImagebuilderLifecyclePolicy.resourceType': '\'AMI_IMAGE\'',
-  'AwsImagebuilderWorkflow.type': '\'BUILD\'',
-  'AwsImagebuilderWorkflow.version': '\'1.0.0\'',
-  'AwsInspector2Enabler.accountIds': '[\'123456789012\']',
-  'AwsInspector2Enabler.resourceTypes': '[\'EC2\']',
-  'AwsInspector2Filter.action': '\'NONE\'',
-  'AwsInternetmonitorMonitor.trafficPercentageToMonitor': '1',
-  'AwsIotEventConfigurations.eventConfigurations': '{\'THING\': true}',
-  'AwsIotLoggingOptions.defaultLogLevel': '\'DEBUG\'',
-  'AwsIotProvisioningTemplate.templateBody': 'policy',
-  'AwsKendraDataSource.indexId': '\'12345678-1234-1234-1234-123456789012\'',
-  'AwsKendraDataSource.type': '\'S3\'',
-  'AwsKendraFaq.indexId': '\'12345678-1234-1234-1234-123456789012\'',
-  'AwsKinesisFirehoseDeliveryStream.destination': '\'elasticsearch\'',
-  'AwsKinesisanalyticsv2Application.runtimeEnvironment': '\'SQL-1_0\'',
-  'AwsKinesisanalyticsv2Application.serviceExecutionRole': 'arn',
-  'AwsKmsGrant.granteePrincipal': 'arn',
-  'AwsKmsGrant.operations': '[\'Decrypt\']',
-  'AwsLakeformationPermissions.permissions': '[\'ALL\']',
-  'AwsLakeformationPermissions.principal': 'arn',
-  'AwsLambdaFunctionRecursionConfig.recursiveLoop': '\'Allow\'',
-  'AwsLambdaFunctionScalingConfig.qualifier': '\'1\'',
-  'AwsLambdaInvocation.input': 'policy',
-  'AwsLambdacoreNetworkConnector.operatorRole': 'arn',
-  'AwsLexBotAlias.botVersion': '\'\\\$LATEST\'',
-  'AwsLexv2modelsBotVersion.localeSpecification':
-      '{\'en_US\': {\'source_bot_version\': \'DRAFT\'}}',
-  'AwsLicensemanagerGrant.allowedOperations': '[\'CreateGrant\']',
-  'AwsLicensemanagerGrant.principal': 'arn',
-  'AwsLicensemanagerLicenseConfiguration.licenseCountingType': '\'vCPU\'',
-  'AwsLightsailContainerService.power': '\'nano\'',
-  'AwsLightsailContainerService.scale': '1',
-  'AwsLightsailDomainEntry.type': '\'A\'',
-  'AwsM2Application.engineType': '\'microfocus\'',
-  'AwsM2Environment.engineType': '\'microfocus\'',
-  'AwsMacie2ClassificationJob.jobType': '\'ONE_TIME\'',
-  'AwsMacie2FindingsFilter.action': '\'ARCHIVE\'',
-  'AwsMailmanagerIngressPoint.type': '\'OPEN\'',
-  'AwsMailmanagerTrafficPolicy.defaultAction': '\'ALLOW\'',
-  'AwsMedialiveChannel.channelClass': '\'STANDARD\'',
-  'AwsMedialiveInput.type': '\'UDP_PUSH\'',
-  'AwsMqBroker.engineType': '\'ACTIVEMQ\'',
-  'AwsMqConfiguration.engineType': '\'ACTIVEMQ\'',
-  'AwsMskScramSecretAssociation.secretArnList': '[arn]',
-  'AwsMskconnectCustomPlugin.contentType': '\'JAR\'',
-  'AwsNeptuneClusterEndpoint.endpointType': '\'ANY\'',
-  'AwsNeptuneGlobalCluster.engine': '\'neptune\'',
-  'AwsNeptunegraphGraph.provisionedMemory': '8',
-  'AwsNetworkAclRule.protocol': '\'tcp\'',
-  'AwsNetworkAclRule.ruleAction': '\'allow\'',
-  'AwsNetworkInterfacePermission.permission': '\'INSTANCE-ATTACH\'',
-  'AwsNetworkfirewallContainerAssociation.type': '\'ECS\'',
-  'AwsNetworkfirewallRuleGroup.type': '\'STATELESS\'',
-  'AwsNetworkmanagerAttachmentAccepter.attachmentType': '\'CONNECT\'',
-  'AwsNetworkmanagerConnectAttachment.coreNetworkId':
-      '\'core-network-0123456789abcdef0\'',
-  'AwsNetworkmanagerConnectAttachment.transportAttachmentId':
-      '\'attachment-0123456789abcdef0\'',
-  'AwsNetworkmanagerConnectPeer.connectAttachmentId':
-      '\'attachment-0123456789abcdef0\'',
-  'AwsNetworkmanagerCoreNetworkPolicyAttachment.coreNetworkId':
-      '\'core-network-0123456789abcdef0\'',
-  'AwsNetworkmanagerSiteToSiteVpnAttachment.vpnConnectionArn':
-      '\'arn:aws:ec2:us-east-1:123456789012:vpn-connection/vpn-0123456789abcdef0\'',
-  'AwsNetworkmonitorProbe.protocol': '\'TCP\'',
-  'AwsNotificationsEventRule.source': '\'awsO1avdq40u4icn\'',
-  'AwsNotificationsManagedNotificationAccountContactAssociation.contactIdentifier':
-      '\'ACCOUNT_PRIMARY\'',
-  'AwsOamLink.resourceTypes': '[\'AWS::CloudWatch::Metric\']',
-  'AwsOdbCloudVmCluster.giVersion': '\'19.0.0.0\'',
-  'AwsOdbNetwork.s3Access': '\'ENABLED\'',
-  'AwsOdbNetwork.zeroEtlAccess': '\'ENABLED\'',
-  'AwsOpensearchDomainPolicy.accessPolicies': 'policy',
-  'AwsOpensearchPackage.packageType': '\'TXT-DICTIONARY\'',
-  'AwsOpensearchserverlessAccessPolicy.type': '\'data\'',
-  'AwsOpensearchserverlessCollectionGroup.standbyReplicas': '\'ENABLED\'',
-  'AwsOpensearchserverlessLifecyclePolicy.type': '\'retention\'',
-  'AwsOpensearchserverlessSecurityConfig.type': '\'saml\'',
-  'AwsOpensearchserverlessSecurityPolicy.type': '\'encryption\'',
-  'AwsOrganizationsAwsServiceAccess.servicePrincipal': '\'ec2.amazonaws.com\'',
-  'AwsOrganizationsOrganizationalUnit.parentId': '\'r-ab12\'',
-  'AwsOrganizationsPolicy.content': 'policy',
-  'AwsOrganizationsResourcePolicy.content': 'policy',
-  'AwsPaymentcryptographyKeyAlias.aliasName': '\'alias/leftover\'',
-  'AwsPinpointEmailChannel.identity': 'arn',
-  'AwsPinpointsmsvoicev2Keyword.keyword': '\'LEFTOVER\'',
-  'AwsPinpointsmsvoicev2PhoneNumber.isoCountryCode': '\'US\'',
-  'AwsPinpointsmsvoicev2PhoneNumber.messageType': '\'TRANSACTIONAL\'',
-  'AwsPinpointsmsvoicev2PhoneNumber.numberType': '\'LONG_CODE\'',
-  'AwsPinpointsmsvoicev2Pool.messageType': '\'TRANSACTIONAL\'',
-  'AwsPinpointsmsvoicev2SenderId.isoCountryCode': '\'US\'',
-  'AwsPinpointsmsvoicev2SenderId.senderId': '\'LEFTOVER\'',
-  'AwsPipesPipe.source': 'arn',
-  'AwsPipesPipe.target': 'arn',
-  'AwsPlacementGroup.strategy': '\'cluster\'',
-  'AwsProxyProtocolPolicy.instancePorts': '[\'64512\']',
-  'AwsQldbLedger.permissionsMode': '\'ALLOW_ALL\'',
-  'AwsQldbStream.inclusiveStartTime': '\'2026-01-01T00:00:00Z\'',
-  'AwsQuicksightAccountSubscription.authenticationMethod':
-      '\'IAM_AND_QUICKSIGHT\'',
-  'AwsQuicksightAccountSubscription.edition': '\'STANDARD\'',
-  'AwsQuicksightDataSet.importMode': '\'SPICE\'',
-  'AwsQuicksightDataSource.type': '\'ADOBE_ANALYTICS\'',
-  'AwsQuicksightFolderMembership.memberType': '\'DASHBOARD\'',
-  'AwsQuicksightIamPolicyAssignment.assignmentStatus': '\'ENABLED\'',
-  'AwsQuicksightIngestion.ingestionType': '\'INCREMENTAL_REFRESH\'',
-  'AwsQuicksightRoleCustomPermission.role': '\'ADMIN\'',
-  'AwsQuicksightRoleMembership.role': '\'ADMIN\'',
-  'AwsQuicksightUser.identityType': '\'IAM\'',
-  'AwsQuicksightUser.userRole': '\'ADMIN\'',
-  'AwsQuicksightVpcConnection.securityGroupIds': '[\'sg-tq\']',
-  'AwsQuicksightVpcConnection.subnetIds':
-      '[\'subnet-0123456789abcdef0\', \'subnet-0123456789abcdef1\',]',
-  'AwsRamPrincipalAssociation.principal': 'arn',
-  'AwsRbinRule.resourceType': '\'EBS_SNAPSHOT\'',
-  'AwsRdsCluster.engine': '\'aurora-mysql\'',
-  'AwsRdsClusterActivityStream.mode': '\'sync\'',
-  'AwsRdsClusterEndpoint.customEndpointType': '\'READER\'',
-  'AwsRdsClusterInstance.engine': '\'aurora-mysql\'',
-  'AwsRdsCustomDbEngineVersion.engine': '\'custom-oracle-ee\'',
-  'AwsRdsInstanceState.state': '\'available\'',
-  'AwsRedshiftAuthenticationProfile.authenticationProfileContent': 'policy',
-  'AwsRedshiftEndpointAuthorization.account': '\'123456789012\'',
-  'AwsRedshiftUsageLimit.featureType': '\'spectrum\'',
-  'AwsRedshiftUsageLimit.limitType': '\'time\'',
-  'AwsRedshiftserverlessUsageLimit.usageType': '\'serverless-compute\'',
-  'AwsResiliencehubResiliencyPolicy.tier': '\'MissionCritical\'',
-  'AwsResiliencehubv2Service.regions': '[\'us-east-1\']',
-  'AwsResiliencehubv2ServiceFunction.criticality': '\'PRIMARY\'',
-  'AwsResourceexplorer2Index.type': '\'LOCAL\'',
-  'AwsRoute53HealthCheck.type': '\'HTTP\'',
-  'AwsRoute53ResolverConfig.autodefinedReverseFlag': '\'ENABLE\'',
-  'AwsRoute53ResolverEndpoint.direction': '\'INBOUND\'',
-  'AwsRoute53ResolverFirewallRule.action': '\'ALLOW\'',
-  'AwsRoute53ResolverRule.ruleType': '\'FORWARD\'',
-  'AwsRumMetricsDestination.destination': '\'CloudWatch\'',
-  'AwsS3BucketAccelerateConfiguration.status': '\'Enabled\'',
-  'AwsS3BucketInventory.includedObjectVersions': '\'All\'',
-  'AwsS3BucketReplicationConfiguration.role': 'arn',
-  'AwsS3BucketRequestPaymentConfiguration.payer': '\'Requester\'',
-  'AwsS3DirectoryBucket.bucket': '\'leftover--use1-az4--x-s3\'',
-  'AwsS3controlAccessGrant.permission': '\'READ\'',
-  'AwsS3controlBucketLifecycleConfiguration.bucket': 'arn',
-  'AwsS3controlBucketPolicy.bucket': 'arn',
-  'AwsS3controlDirectoryBucketAccessPointScope.name':
-      '\'leftover--use1-az4--xa-s3\'',
-  'AwsS3tablesTable.format': '\'ICEBERG\'',
-  'AwsS3tablesTableBucketReplication.role': 'arn',
-  'AwsS3tablesTableReplication.role': 'arn',
-  'AwsS3vectorsIndex.dataType': '\'float32\'',
-  'AwsS3vectorsIndex.distanceMetric': '\'euclidean\'',
-  'AwsSagemakerApp.appType': '\'JupyterServer\'',
-  'AwsSagemakerDomain.authMode': '\'SSO\'',
-  'AwsSagemakerModelCard.content': 'policy',
-  'AwsSagemakerModelCard.modelCardStatus': '\'Draft\'',
-  'AwsSagemakerNotebookInstance.instanceType': '\'ml.t2.medium\'',
-  'AwsSagemakerPipeline.pipelineDefinition': 'policy',
-  'AwsSagemakerServicecatalogPortfolioStatus.status': '\'Enabled\'',
-  'AwsSagemakerStudioLifecycleConfig.studioLifecycleConfigAppType':
-      '\'JupyterServer\'',
-  'AwsSchemasSchema.type': '\'OpenApi3\'',
-  'AwsSecurityGroupRule.type': '\'egress\'',
-  'AwsSecurityhubConfigurationPolicyAssociation.policyId':
-      '\'SELF_MANAGED_SECURITY_HUB\'',
-  'AwsSecurityhubConfigurationPolicyAssociation.targetId': '\'123456789012\'',
-  'AwsSecurityhubFeatureV2.featureName': '\'NETWORK_SCANNING\'',
-  'AwsSecurityhubFeatureV2.featureStatus': '\'ENABLED\'',
-  'AwsSecurityhubFindingAggregator.linkingMode': '\'ALL_REGIONS\'',
-  'AwsSecurityhubStandardsControl.controlStatus': '\'ENABLED\'',
-  'AwsSecurityhubStandardsControlAssociation.associationStatus': '\'ENABLED\'',
-  'AwsServerlessapplicationrepositoryCloudformationStack.applicationId': 'arn',
-  'AwsServicecatalogConstraint.parameters': 'policy',
-  'AwsServicecatalogConstraint.type': '\'LAUNCH\'',
-  'AwsServicecatalogPortfolioShare.principalId': '\'123456789012\'',
-  'AwsServicecatalogPortfolioShare.type': '\'ACCOUNT\'',
-  'AwsServicecatalogProduct.type': '\'CLOUD_FORMATION_TEMPLATE\'',
-  'AwsServicecatalogappregistryAttributeGroup.attributes': 'policy',
-  'AwsServicequotasAutoManagement.optInLevel': '\'ACCOUNT\'',
-  'AwsServicequotasAutoManagement.optInType': '\'NotifyOnly\'',
-  'AwsSesEventDestination.matchingTypes': '[\'send\']',
-  'AwsSesIdentityNotificationTopic.notificationType': '\'Bounce\'',
-  'AwsSesReceiptFilter.policy': '\'Block\'',
-  'AwsSesv2AccountSuppressionAttributes.suppressedReasons': '[\'BOUNCE\']',
-  'AwsSesv2AccountVdmAttributes.vdmEnabled': '\'ENABLED\'',
-  'AwsShieldApplicationLayerAutomaticResponse.action': '\'BLOCK\'',
-  'AwsShieldProtectionGroup.aggregation': '\'SUM\'',
-  'AwsShieldProtectionGroup.pattern': '\'ALL\'',
-  'AwsSignerSigningProfile.platformId': '\'AWSLambda-SHA384-ECDSA\'',
-  'AwsSignerSigningProfilePermission.action': '\'signer:StartSigningJob\'',
-  'AwsSnsSmsPreferences.defaultSmsType': '\'Promotional\'',
-  'AwsSnsTopicSubscription.protocol': '\'application\'',
-  'AwsSpotFleetRequest.iamFleetRole': 'arn',
-  'AwsSsmDefaultPatchBaseline.baselineId': '\'pb-0123456789abcdef0\'',
-  'AwsSsmDefaultPatchBaseline.operatingSystem': '\'WINDOWS\'',
-  'AwsSsmDocument.documentType': '\'Command\'',
-  'AwsSsmMaintenanceWindowTarget.resourceType': '\'INSTANCE\'',
-  'AwsSsmMaintenanceWindowTask.taskType': '\'RUN_COMMAND\'',
-  'AwsSsmParameter.type': '\'String\'',
-  'AwsSsmServiceSetting.settingId': 'arn',
-  'AwsSsoadminAccountAssignment.principalId':
-      '\'12345678-1234-1234-1234-123456789012\'',
-  'AwsSsoadminAccountAssignment.principalType': '\'USER\'',
-  'AwsSsoadminAccountAssignment.targetId': '\'123456789012\'',
-  'AwsSsoadminAccountAssignment.targetType': '\'AWS_ACCOUNT\'',
-  'AwsSsoadminApplicationAssignment.principalType': '\'USER\'',
-  'AwsSsoadminRegion.regionName': '\'us-east-1\'',
-  'AwsSsoadminTrustedTokenIssuer.trustedTokenIssuerType': '\'OIDC_JWT\'',
-  'AwsStoragegatewayGateway.gatewayTimezone': '\'GMT+9:47\'',
-  'AwsStoragegatewayNfsFileShare.clientList': '[\'10.0.0.0/16\']',
-  'AwsStoragegatewayTapePool.storageClass': '\'DEEP_ARCHIVE\'',
-  'AwsSwfDomain.workflowExecutionRetentionPeriodInDays': '\'30\'',
-  'AwsTimestreaminfluxdbDbCluster.dbInstanceType': '\'db.influx.medium\'',
-  'AwsTimestreaminfluxdbDbCluster.vpcSecurityGroupIds': '[\'sg-huetvnpt7rr\']',
-  'AwsTimestreaminfluxdbDbCluster.vpcSubnetIds': '[\'subnet-d7c56hy72wj\']',
-  'AwsTimestreaminfluxdbDbInstance.dbInstanceType': '\'db.influx.medium\'',
-  'AwsTimestreaminfluxdbDbInstance.vpcSecurityGroupIds': '[\'sg-huetvnpt7rr\']',
-  'AwsTimestreaminfluxdbDbInstance.vpcSubnetIds': '[\'subnet-d7c56hy72wj\']',
-  'AwsTranscribeLanguageModel.baseModelName': '\'NarrowBand\'',
-  'AwsTranscribeLanguageModel.languageCode': '\'af-ZA\'',
-  'AwsTranscribeMedicalVocabulary.languageCode': '\'en-US\'',
-  'AwsTranscribeVocabulary.languageCode': '\'af-ZA\'',
-  'AwsTranscribeVocabularyFilter.languageCode': '\'af-ZA\'',
-  'AwsTransferAccess.serverId': '\'s-0123456789abcdef0\'',
-  'AwsTransferAgreement.accessRole': 'arn',
-  'AwsTransferCertificate.usage': '\'SIGNING\'',
-  'AwsTransferProfile.profileType': '\'LOCAL\'',
-  'AwsTransferSshKey.serverId': '\'s-0123456789abcdef0\'',
-  'AwsTransferUser.role': 'arn',
-  'AwsTransferUser.serverId': '\'s-0123456789abcdef0\'',
-  'AwsVerifiedaccessEndpoint.attachmentType': '\'vpc\'',
-  'AwsVerifiedaccessEndpoint.endpointType': '\'load-balancer\'',
-  'AwsVerifiedaccessTrustProvider.trustProviderType': '\'user\'',
-  'AwsVpcBlockPublicAccessExclusion.internetGatewayExclusionMode':
-      '\'allow-bidirectional\'',
-  'AwsVpcBlockPublicAccessOptions.internetGatewayBlockMode': '\'off\'',
-  'AwsVpcEncryptionControl.mode': '\'monitor\'',
-  'AwsVpcIpamPool.addressFamily': '\'ipv4\'',
-  'AwsVpclatticeAuthPolicy.resourceIdentifier': 'arn',
-  'AwsVpclatticeListener.protocol': '\'HTTP\'',
-  'AwsVpclatticeListenerRule.priority': '1',
-  'AwsVpclatticeResourceConfiguration.protocol': '\'TCP\'',
-  'AwsVpclatticeTargetGroup.type': '\'IP\'',
-  'AwsVpnConcentrator.type': '\'ipsec.1\'',
-  'AwsVpnConnection.type': '\'ipsec.1\'',
-  'AwsWafv2ApiKey.scope': '\'CLOUDFRONT\'',
-  'AwsWafv2ApiKey.tokenDomains': '[\'example.com\']',
-  'AwsWafv2IpSet.ipAddressVersion': '\'IPV4\'',
-  'AwsWafv2IpSet.scope': '\'CLOUDFRONT\'',
-  'AwsWafv2RegexPatternSet.scope': '\'CLOUDFRONT\'',
-  'AwsWafv2RuleGroup.scope': '\'REGIONAL\'',
-  'AwsWafv2WebAcl.scope': '\'REGIONAL\'',
-  'AwsWafv2WebAclLoggingConfiguration.logDestinationConfigs': '[arn]',
-  'AwsWorkspacesPool.bundleId': '\'wsb-leftover1\'',
-  'AwsWorkspacesPool.directoryId': '\'wsd-leftover1\'',
-  'AwsWorkspacesPool.runningMode': '\'AUTO_STOP\'',
-  'AwsWorkspaceswebIdentityProvider.identityProviderType': '\'SAML\'',
-  'AwsWorkspaceswebUserSettings.copyAllowed': '\'Disabled\'',
-  'AwsWorkspaceswebUserSettings.downloadAllowed': '\'Disabled\'',
-  'AwsWorkspaceswebUserSettings.pasteAllowed': '\'Disabled\'',
-  'AwsWorkspaceswebUserSettings.printAllowed': '\'Disabled\'',
-  'AwsWorkspaceswebUserSettings.uploadAllowed': '\'Disabled\'',
-  'AwsXrayEncryptionConfig.type': '\'NONE\'',
-  'AwsXrayTraceSegmentDestination.destination': '\'XRay\'',
-  'BackupReportPlanReportSetting.reportTemplate': '\'BACKUP_JOB_REPORT\'',
-  'BackupRestoreTestingPlanRecoveryPointSelection.algorithm':
-      '\'LATEST_WITHIN_WINDOW\'',
-  'BackupRestoreTestingPlanRecoveryPointSelection.includeVaults': '[\'*\']',
-  'BedrockCustomModelOutputDataConfig.s3Uri':
-      '\'s3://leftover-bucket/leftover\'',
-  'BedrockCustomModelTrainingDataConfig.s3Uri':
-      '\'s3://leftover-bucket/leftover\'',
-  'BedrockEvaluationJobDatasetMetricConfig.taskType': '\'Summarization\'',
-  'BedrockEvaluationJobOutputDataConfig.s3Uri':
-      '\'s3://leftover-bucket/leftover\'',
-  'BedrockModelInvocationJobS3InputDataConfig.s3Uri':
-      '\'s3://leftover-bucket/leftover\'',
-  'BedrockModelInvocationJobS3OutputDataConfig.s3Uri':
-      '\'s3://leftover-bucket/leftover\'',
-  'BedrockagentDataSourceConfiguration.type': '\'S3\'',
-  'BedrockagentKnowledgeBaseConfiguration.type': '\'VECTOR\'',
-  'BedrockagentcoreAgentRuntimeCodeConfiguration.runtime': '\'PYTHON_3_10\'',
-  'BedrockagentcoreAgentRuntimeNetworkConfiguration.networkMode': '\'PUBLIC\'',
-  'BedrockagentcoreBrowserNetworkConfiguration.networkMode': '\'PUBLIC\'',
-  'BedrockagentcoreCodeInterpreterNetworkConfiguration.networkMode':
-      '\'PUBLIC\'',
-  'BedrockagentcoreOnlineEvaluationConfigEvaluator.evaluatorId':
-      '\'Builtin.Helpfulness\'',
-  'BedrockagentcoreOnlineEvaluationConfigSamplingConfig.samplingPercentage':
-      '50',
-  'BedrockagentcoreTokenVaultCmkKmsConfiguration.keyType':
-      '\'CustomerManagedKey\'',
-  'BudgetsBudgetActionThreshold.actionThresholdType': '\'PERCENTAGE\'',
-  'BudgetsBudgetActionSubscriber.subscriptionType': '\'SNS\'',
-  'CeAnomalySubscriptionSubscriber.type': '\'EMAIL\'',
-  'CeCostCategoryRule.type': '\'REGULAR\'',
-  'ChimeVoiceConnectorOriginationRoute.host': '\'10.0.0.1\'',
-  'ChimeVoiceConnectorOriginationRoute.priority': '1',
-  'ChimeVoiceConnectorOriginationRoute.protocol': '\'TCP\'',
-  'ChimeVoiceConnectorOriginationRoute.weight': '1',
-  'ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElements.type':
-      '\'AmazonTranscribeCallAnalyticsProcessor\'',
-  'CloudfrontCachePolicyCookiesConfig.cookieBehavior': '\'none\'',
-  'CloudfrontCachePolicyHeadersConfig.headerBehavior': '\'none\'',
-  'CloudfrontCachePolicyQueryStringsConfig.queryStringBehavior': '\'none\'',
-  'CloudfrontConnectionFunctionConfig.runtime': '\'cloudfront-js-1.0\'',
-  'CloudfrontFieldLevelEncryptionConfigContentTypeProfilesItems.format':
-      '\'URLEncoded\'',
-  'CloudfrontMonitoringSubscriptionRealtimeMetricsSubscriptionConfig.realtimeMetricsSubscriptionStatus':
-      '\'Enabled\'',
-  'CloudfrontMultitenantDistributionDefaultCacheBehavior.viewerProtocolPolicy':
-      '\'allow-all\'',
-  'CloudfrontMultitenantDistributionAllowedMethods.cachedMethods': '[\'GET\']',
-  'CloudfrontMultitenantDistributionAllowedMethods.items': '[\'GET\']',
-  'CloudfrontOriginRequestPolicyCookiesConfig.cookieBehavior': '\'none\'',
-  'CloudfrontOriginRequestPolicyHeadersConfig.headerBehavior': '\'none\'',
-  'CloudfrontOriginRequestPolicyQueryStringsConfig.queryStringBehavior':
-      '\'none\'',
-  'CloudfrontRealtimeLogConfigEndpoint.streamType': '\'Kinesis\'',
-  'CloudfrontResponseHeadersPolicyServerTimingHeadersConfig.samplingRate': '0',
-  'CloudfrontVpcOriginEndpointConfig.originProtocolPolicy': '\'http-only\'',
-  'CloudfrontVpcOriginSslProtocols.items': '[\'SSLv3\']',
-  'CloudwatchEventEndpointPrimary.healthCheck': 'arn',
-  'CloudwatchEventEndpointSecondary.route': '\'us-east-1\'',
-  'CodebuildProjectArtifacts.type': '\'CODEPIPELINE\'',
-  'CodebuildProjectEnvironment.computeType': '\'BUILD_GENERAL1_SMALL\'',
-  'CodebuildProjectEnvironment.type': '\'WINDOWS_CONTAINER\'',
-  'CodebuildProjectSource.type': '\'CODECOMMIT\'',
-  'CodebuildReportGroupExportConfig.type': '\'S3\'',
-  'CodecommitTrigger.events': '[\'all\']',
-  'CodepipelineArtifactStore.type': '\'S3\'',
-  'CodepipelineCustomActionTypeInputArtifactDetails.maximumCount': '0',
-  'CodepipelineCustomActionTypeInputArtifactDetails.minimumCount': '0',
-  'CodepipelineCustomActionTypeOutputArtifactDetails.maximumCount': '0',
-  'CodepipelineCustomActionTypeOutputArtifactDetails.minimumCount': '0',
-  'CodepipelineAction.category': '\'Source\'',
-  'CodepipelineAction.owner': '\'AWS\'',
-  'CognitoLogDeliveryConfigurationLogConfigurations.eventSource':
-      '\'userNotification\'',
-  'CognitoLogDeliveryConfigurationLogConfigurations.logLevel': '\'ERROR\'',
-  'CognitoRiskConfigurationHighAction.eventAction': '\'BLOCK\'',
-  'CognitoRiskConfigurationCompromisedCredentialsRiskConfigurationActions.eventAction':
-      '\'BLOCK\'',
-  'ComputeoptimizerRecommendationPreferencesExternalMetricsPreference.source':
-      '\'Datadog\'',
-  'ComputeoptimizerRecommendationPreferencesScope.name': '\'Organization\'',
-  'ConfigConfigRuleSource.owner': '\'CUSTOM_LAMBDA\'',
-  'ConnectHoursOfOperationConfig.day': '\'SUNDAY\'',
-  'ConnectInstanceStorageConfig.storageType': '\'S3\'',
-  'ConnectQuickConnectConfig.quickConnectType': '\'USER\'',
-  'ConnectRoutingProfileMediaConcurrencies.channel': '\'VOICE\'',
-  'ConnectRoutingProfileMediaConcurrencies.concurrency': '1',
-  'ConnectUserPhoneConfig.phoneType': '\'SOFT_PHONE\'',
-  'DataAwsApiGatewayExport.exportType': '\'oas30\'',
-  'DataAwsApiGatewaySdk.sdkType': '\'java\'',
-  'DataAwsApigatewayv2Export.outputType': '\'JSON\'',
-  'DataAwsApigatewayv2Export.specification': '\'OAS30\'',
-  'DataAwsAuditmanagerControl.type': '\'Standard\'',
-  'DataAwsAuditmanagerFramework.frameworkType': '\'Standard\'',
-  'DataAwsBedrockFoundationModelAgreementOffers.modelId':
-      '\'2e.lzvycjp-i167ebv/zatu8l86d38a\'',
-  'DataAwsCloudcontrolapiResource.typeName': '\'AWS::S3::Bucket\'',
-  'DataAwsCloudfrontFunction.stage': '\'DEVELOPMENT\'',
-  'DataAwsCodeartifactRepositoryEndpoint.format': '\'npm\'',
-  'DataAwsConnectInstanceStorageConfig.resourceType': '\'CHAT_TRANSCRIPTS\'',
-  'DataAwsControltowerControls.targetIdentifier': 'arn',
-  'DataAwsDevopsguruResourceCollection.type': '\'AWS_CLOUD_FORMATION\'',
-  'DataAwsDynamodbTableItem.key': '\'{"pk": {"S": "leftover"}}\'',
-  'DataAwsElasticacheReservedCacheNodeOffering.offeringType':
-      '\'Light Utilization\'',
-  'DataAwsElasticacheReservedCacheNodeOffering.productDescription':
-      '\'memcached\'',
-  'DataAwsIamUserSshKey.encoding': '\'SSH\'',
-  'DataAwsIdentitystoreGroup.groupId':
-      '\'12345678-1234-1234-1234-123456789012\'',
-  'DataAwsIdentitystoreUser.userId': '\'12345678-1234-1234-1234-123456789012\'',
-  'DataAwsKendraExperience.indexId': '\'12345678-1234-1234-1234-123456789012\'',
-  'DataAwsKendraFaq.indexId': '\'12345678-1234-1234-1234-123456789012\'',
-  'DataAwsKendraIndex.id': '\'12345678-1234-1234-1234-123456789012\'',
-  'DataAwsKendraQuerySuggestionsBlockList.indexId':
-      '\'12345678-1234-1234-1234-123456789012\'',
-  'DataAwsKendraQuerySuggestionsBlockList.querySuggestionsBlockListId':
-      '\'12345678-1234-1234-1234-123456789012\'',
-  'DataAwsKendraThesaurus.indexId': '\'12345678-1234-1234-1234-123456789012\'',
-  'DataAwsKmsAlias.name': '\'alias/leftover\'',
-  'DataAwsKmsKey.keyId': '\'alias/leftover\'',
-  'DataAwsKmsPublicKey.keyId': '\'alias/leftover\'',
-  'DataAwsLakeformationPermissions.principal': 'arn',
-  'DataAwsLambdaInvocation.input': 'policy',
-  'DataAwsOpensearchserverlessAccessPolicy.type': '\'data\'',
-  'DataAwsOpensearchserverlessLifecyclePolicy.type': '\'retention\'',
-  'DataAwsOpensearchserverlessSecurityPolicy.type': '\'encryption\'',
-  'DataAwsOpensearchserverlessVpcEndpoint.vpcEndpointId':
-      '\'vpce-0123456789abcdef0\'',
-  'DataAwsOrganizationsEntityPath.entityId': '\'ou-ab12-cd34ef56\'',
-  'DataAwsOrganizationsOrganizationalUnit.parentId': '\'r-ab12\'',
-  'DataAwsRamResourceShare.resourceOwner': '\'SELF\'',
-  'DataAwsRdsReservedInstanceOffering.offeringType': '\'Partial Upfront\'',
-  'DataAwsSagemakerPrebuiltEcrImage.repositoryName': '\'autogluon-training\'',
-  'DataAwsServerlessapplicationrepositoryApplication.applicationId': 'arn',
-  'DataAwsServiceDiscoveryDnsNamespace.type': '\'DNS_PUBLIC\'',
-  'DataAwsSsoadminPrincipalApplicationAssignments.principalType': '\'USER\'',
-  'DataAwsVpclatticeAuthPolicy.resourceIdentifier': 'arn',
-  'DataAwsWafv2IpSet.scope': '\'CLOUDFRONT\'',
-  'DataAwsWafv2ManagedRuleGroup.scope': '\'CLOUDFRONT\'',
-  'DataAwsWafv2RegexPatternSet.scope': '\'CLOUDFRONT\'',
-  'DataAwsWafv2RuleGroup.scope': '\'CLOUDFRONT\'',
-  'DataAwsWafv2WebAcl.scope': '\'CLOUDFRONT\'',
-  'DataEcrLifecyclePolicyDocumentSelection.countType': '\'imageCountMoreThan\'',
-  'DataEcrLifecyclePolicyDocumentSelection.tagStatus': '\'any\'',
-  'DataNetworkmanagerCoreNetworkPolicyDocumentEdgeLocations.location':
-      '\'us-east-1\'',
-  'DatasyncLocationEfsEc2Config.securityGroupArns': '[arn]',
-  'DatasyncLocationFsxOntapFileSystemNfsMountOptions.version': '\'NFS3\'',
-  'DatasyncLocationFsxOpenzfsFileSystemMountOptions.version': '\'AUTOMATIC\'',
-  'DatasyncLocationNfsOnPremConfig.agentArns': '[arn]',
-  'DatazonePolicyGrantDomainUnit.domainUnitDesignation': '\'OWNER\'',
-  'DevicefarmDevicePoolRule.attribute': '\'ARN\'',
-  'DevopsguruEventSourcesConfigAmazonCodeGuruProfiler.status': '\'ENABLED\'',
-  'DevopsguruServiceIntegrationLogsAnomalyDetection.optInStatus': '\'ENABLED\'',
-  'DevopsguruServiceIntegrationOpsCenter.optInStatus': '\'ENABLED\'',
-  'DynamodbGlobalSecondaryIndexKeySchema.attributeType': '\'S\'',
-  'DynamodbGlobalSecondaryIndexKeySchema.keyType': '\'HASH\'',
-  'EbsSnapshotImportDiskContainer.format': '\'VMDK\'',
-  'Ec2ClientVpnEndpointAuthenticationOptions.type':
-      '\'certificate-authentication\'',
-  'Ec2FleetTargetCapacitySpecification.defaultTargetCapacityType': '\'spot\'',
-  'EfsBackupPolicy.status': '\'DISABLED\'',
-  'ElbListener.instanceProtocol': '\'HTTP\'',
-  'ElbListener.lbProtocol': '\'HTTP\'',
-  'EmrManagedScalingPolicyComputeLimits.unitType': '\'InstanceFleetUnits\'',
-  'EmrcontainersVirtualClusterContainerProvider.type': '\'EKS\'',
-  'EvidentlyFeatureValue.boolValue': '\'true\'',
-  'FinspaceKxClusterVpcConfiguration.ipAddressType': '\'IP_V4\'',
-  'FisExperimentTemplateAction.actionId': '\'aws:ec2:stop-instances\'',
-  'FisExperimentTemplateStopCondition.source': '\'aws:cloudwatch:alarm\'',
-  'FsxS3AccessPointAttachmentFileSystemIdentity.type': '\'POSIX\'',
-  'GameliftAliasRoutingStrategy.type': '\'SIMPLE\'',
-  'GameliftGameServerGroupLaunchTemplate.id': '\'lt-0123456789abcdef0\'',
-  'GlobalacceleratorCustomRoutingEndpointGroupDestinationConfiguration.protocols':
-      '[\'TCP\']',
-  'GlueCrawlerHudiTarget.maximumTraversalDepth': '1',
-  'GlueCrawlerIcebergTarget.maximumTraversalDepth': '1',
-  'GlueDataCatalogEncryptionSettingsEncryptionAtRest.catalogEncryptionMode':
-      '\'DISABLED\'',
-  'GlueMlTransformParameters.transformType': '\'FIND_MATCHES\'',
-  'GlueMlTransformFindMatchesParameters.accuracyCostTradeOff': '1',
-  'GlueSecurityConfigurationCloudwatchEncryption.cloudwatchEncryptionMode':
-      '\'DISABLED\'',
-  'GlueSecurityConfigurationJobBookmarksEncryption.jobBookmarksEncryptionMode':
-      '\'DISABLED\'',
-  'ImagebuilderContainerRecipeTargetRepository.service': '\'ECR\'',
-  'ImagebuilderLifecyclePolicyAction.type': '\'DELETE\'',
-  'ImagebuilderLifecyclePolicyFilter.type': '\'AGE\'',
-  'ImagebuilderLifecyclePolicyFilter.unit': '\'DAYS\'',
-  'ImagebuilderLifecyclePolicyFilter.value': '1',
-  'Inspector2FilterAwsAccountId.comparison': '\'EQUALS\'',
-  'InstanceLaunchTemplate.id': '\'lt-0123456789abcdef0\'',
-  'IotIndexingConfigurationThingGroupIndexingConfiguration.thingGroupIndexingMode':
-      '\'OFF\'',
-  'IotIndexingConfigurationThingIndexingConfiguration.thingIndexingMode':
-      '\'OFF\'',
-  'LambdaCodeSigningConfigAllowedPublishers.signingProfileVersionArns': '[arn]',
-  'LambdacoreNetworkConnectorVpcEgressConfiguration.associatedComputeResourceTypes':
-      '[\'MicroVm\']',
-  'LbListenerDefaultAction.type': '\'forward\'',
-  'LbListenerRuleAction.type': '\'forward\'',
-  'LexBotMessage.contentType': '\'PlainText\'',
-  'LexBotIntent.intentVersion': '\'\\\$LATEST\'',
-  'LexIntentFulfillmentActivity.type': '\'ReturnIntent\'',
-  'Lexv2modelsSlotValueElicitationSetting.slotConstraint': '\'Required\'',
-  'LightsailDistributionDefaultCacheBehavior.behavior': '\'dont-cache\'',
-  'LightsailDistributionOrigin.regionName': '\'us-east-1\'',
-  'LightsailInstancePublicPortsPortInfo.protocol': '\'tcp\'',
-  'Macie2ClassificationJobSimpleCriterion.comparator': '\'EQ\'',
-  'MedialiveChannelTimecodeConfig.source': '\'EMBEDDED\'',
-  'MedialiveChannelInputSpecification.codec': '\'MPEG2\'',
-  'MedialiveChannelInputSpecification.inputResolution': '\'SD\'',
-  'MedialiveChannelInputSpecification.maximumBitrate': '\'MAX_10_MBPS\'',
-  'MemorydbUserAuthenticationMode.type': '\'password\'',
-  'MskChannelRecordConverter.valueConverter': '\'BYTE_ARRAY\'',
-  'MskconnectConnectorAutoscaling.maxWorkerCount': '1',
-  'MskconnectConnectorAutoscaling.minWorkerCount': '1',
-  'MskconnectConnectorKafkaClusterClientAuthentication.authenticationType':
-      '\'NONE\'',
-  'MskconnectConnectorKafkaClusterEncryptionInTransit.encryptionType':
-      '\'PLAINTEXT\'',
-  'NetworkfirewallLoggingConfigurationLogDestinationConfig.logDestination':
-      '{\'bucketName\': leftover}',
-  'NetworkfirewallLoggingConfigurationLogDestinationConfig.logDestinationType':
-      '\'S3\'',
-  'NetworkfirewallLoggingConfigurationLogDestinationConfig.logType': '\'FLOW\'',
-  'NetworkfirewallTlsInspectionConfigurationServerCertificateConfiguration.certificateAuthorityArn':
-      'arn',
-  'NetworkfirewallTlsInspectionConfigurationScope.protocols': '[6]',
-  'NetworkfirewallTlsInspectionConfigurationDestination.addressDefinition':
-      '\'10.0.0.0/16\'',
-  'NetworkflowmonitorMonitorLocalResource.type': '\'AWS::EC2::VPC\'',
-  'NetworkflowmonitorScopeTargetIdentifier.targetType': '\'ACCOUNT\'',
-  'NetworkflowmonitorScopeTargetId.accountId': '\'123456789012\'',
-  'NetworkmanagerConnectAttachmentOptions.protocol': '\'GRE\'',
-  'ObservabilityadminCentralizationRuleForOrganizationDestination.account':
-      '\'123456789012\'',
-  'ObservabilityadminCentralizationRuleForOrganizationSource.regions':
-      '[\'us-east-1\']',
-  'ObservabilityadminS3TableIntegrationEncryption.sseAlgorithm': '\'aws:kms\'',
-  'ObservabilityadminTelemetryRuleForOrganizationRule.telemetryType':
-      '\'Logs\'',
-  'ObservabilityadminTelemetryRule.telemetryType': '\'Logs\'',
-  'OdbCloudAutonomousVmClusterMaintenanceWindow.preference':
-      '\'NO_PREFERENCE\'',
-  'OdbCloudExadataInfrastructureMaintenanceWindow.patchingMode': '\'ROLLING\'',
-  'OdbCloudExadataInfrastructureMaintenanceWindow.preference':
-      '\'NO_PREFERENCE\'',
-  'PrometheusQueryLoggingConfigurationCloudwatchLogs.logGroupArn':
-      '\'arn:aws:logs:us-east-1:123456789012:log-group:leftover:*\'',
-  'PrometheusScraperLoggingConfigurationCloudwatchLogs.logGroupArn':
-      '\'arn:aws:logs:us-east-1:123456789012:log-group:leftover:*\'',
-  'QbusinessApplicationAttachmentsConfiguration.attachmentsControlMode':
-      '\'ENABLED\'',
-  'QuicksightCustomPermissionsCapabilities.addOrRunAnomalyDetectionForAnalyses':
-      '\'DENY\'',
-  'QuicksightRefreshSchedule.refreshType': '\'INCREMENTAL_REFRESH\'',
-  'QuicksightRefreshScheduleFrequency.interval': '\'MINUTE15\'',
-  'RbinRuleRetentionPeriod.retentionPeriodUnit': '\'DAYS\'',
-  'RekognitionStreamProcessorConnectedHome.labels': '[\'PERSON\']',
-  'Resiliencehubv2PolicyMultiAz.disasterRecoveryApproach': '\'ACTIVE_ACTIVE\'',
-  'RolesanywhereTrustAnchorSource.sourceType': '\'AWS_ACM_PCA\'',
-  'Route53recoverycontrolconfigSafetyRuleConfig.type': '\'ATLEAST\'',
-  'S3BucketIntelligentTieringConfigurationTiering.accessTier':
-      '\'ARCHIVE_ACCESS\'',
-  'S3BucketInventoryDestinationBucket.format': '\'CSV\'',
-  'S3BucketInventorySchedule.frequency': '\'Daily\'',
-  'S3BucketMetadataConfigurationInventoryTableConfiguration.configurationState':
-      '\'ENABLED\'',
-  'S3BucketMetadataConfigurationRecordExpiration.expiration': '\'ENABLED\'',
-  'S3BucketOwnershipControlsRule.objectOwnership': '\'BucketOwnerPreferred\'',
-  'S3BucketReplicationConfigurationRule.status': '\'Enabled\'',
-  'S3BucketReplicationConfigurationDestination.bucket': 'arn',
-  'S3BucketServerSideEncryptionConfigurationRule.blockedEncryptionTypes':
-      '[\'NONE\']',
-  'S3BucketVersioningConfiguration.status': '\'Enabled\'',
-  'S3controlAccessGrantGrantee.granteeType': '\'DIRECTORY_USER\'',
-  'S3controlDirectoryBucketAccessPointScope.permissions': '[\'GetObject\']',
-  'S3controlMultiRegionAccessPointRoutesRoute.trafficDialPercentage': '100',
-  'S3controlObjectLambdaAccessPointConfiguration.supportingAccessPoint': 'arn',
-  'S3controlObjectLambdaAccessPointTransformationConfiguration.actions':
-      '[\'GetObject\']',
-  'SagemakerAlgorithmTrainingSpecification.supportedTrainingInstanceTypes':
-      '[\'ml.m4.xlarge\']',
-  'SagemakerAlgorithmTrainingChannels.supportedInputModes': '[\'Pipe\']',
-  'SagemakerDataQualityJobDefinitionClusterConfig.instanceType':
-      '\'ml.t3.medium\'',
-  'SagemakerDomainDefaultUserSettings.executionRole': 'arn',
-  'SagemakerEndpointConfigurationProductionVariants.acceleratorType':
-      '\'ml.eia1.medium\'',
-  'SagemakerFeatureGroupFeatureDefinition.collectionType': '\'List\'',
-  'SagemakerFlowDefinitionHumanLoopConfig.taskCount': '1',
-  'SagemakerFlowDefinitionOutputConfig.s3OutputPath':
-      '\'s3://leftover-bucket/leftover\'',
-  'SagemakerHyperParameterTuningJobConfig.strategy': '\'Bayesian\'',
-  'SagemakerLabelingJobHumanTaskConfig.numberOfHumanWorkersPerDataObject': '1',
-  'SagemakerLabelingJobOutputConfig.s3OutputPath':
-      '\'s3://leftover-bucket/leftover\'',
-  'SagemakerModelCardExportJobOutputConfig.s3OutputPath':
-      '\'s3://leftover-bucket/leftover\'',
-  'SagemakerMonitoringScheduleConfig.monitoringType': '\'DataQuality\'',
-  'SchedulerScheduleFlexibleTimeWindow.mode': '\'OFF\'',
-  'SecurityhubAutomationRuleActions.type': '\'FINDING_FIELDS_UPDATE\'',
-  'SecurityhubAutomationRuleAwsAccountId.comparison': '\'EQUALS\'',
-  'SecurityhubAutomationRuleV2Action.type': '\'FINDING_FIELDS_UPDATE\'',
-  'SecurityhubAutomationRuleV2Criteria.ocsfFindingCriteriaJson': 'policy',
-  'SecurityhubInsightAwsAccountId.comparison': '\'EQUALS\'',
-  'SecuritylakeSubscriberAwsLogSourceResource.sourceName': '\'ROUTE53\'',
-  'Sesv2ConfigurationSetEventDestination.matchingEventTypes': '[\'SEND\']',
-  'Sesv2ConfigurationSetEventDestinationDimensionConfiguration.dimensionValueSource':
-      '\'MESSAGE_TAG\'',
-  'SpotInstanceRequestLaunchTemplate.id': '\'lt-0123456789abcdef0\'',
-  'SsoadminTrustedTokenIssuerOidcJwtConfiguration.jwksRetrievalOption':
-      '\'OPEN_ID_DISCOVERY\'',
-  'TimestreamqueryScheduledQueryDimensionMapping.dimensionValueType':
-      '\'VARCHAR\'',
-  'TransferWorkflowSteps.type': '\'COPY\'',
-  'VerifiedpermissionsPolicyStoreValidationSettings.mode': '\'OFF\'',
-  'VerifiedpermissionsSchemaDefinition.value': 'policy',
-  'VpcIpamOperatingRegions.regionName': '\'us-east-1\'',
-  'VpcIpamResourceDiscoveryOperatingRegions.regionName': '\'us-east-1\'',
-  'WafregionalWebAclDefaultAction.type': '\'BLOCK\'',
-  'Wafv2WebAclRuleAsnMatchStatement.asnList': '[64512]',
-  'WorkspaceswebSessionLoggerEventFilter.include': '[\'WebsiteInteract\']',
-  'WorkspaceswebSessionLoggerS3.folderStructure': '\'Flat\'',
-  'WorkspaceswebSessionLoggerS3.logFileFormat': '\'JSONLines\'',
-};
-
-/// Lists the provider wants longer than one element, keyed like
-/// [_literalByKey].
+/// Lists the provider wants longer than one element, keyed by
+/// `Owner.param`.
 const _listCounts = <String, int>{
   'AwsArcregionswitchPlan.regions': 2,
   'AwsCloudwatchEventEndpoint.eventBus': 2,
@@ -2336,37 +1467,12 @@ String _repeat(String listExpr, int count) {
   return wrap('[${[for (var i = 0; i < count; i++) vary(i)].join(', ')},]');
 }
 
-String? _lookup(String key) {
-  final value = _literalByKey[key];
-  if (value != null) _usedKeys.add(key);
-  return value;
-}
-
 const _policyJson =
     r"""'{"Version":"2012-10-17","Statement":[{"Effect":"Allow","Action":"s3:GetObject","Resource":"*"}]}'""";
 
-String _stringLiteral(String name, {String owner = ''}) {
-  final value = _lookup(name);
-  if (value != null) return value;
-  final n = name.toLowerCase();
-  if (n.endsWith('arn') || n.endsWith('arns')) return 'arn';
-  if (n == 'accountid' || n.endsWith('accountid')) return "'$_accountId'";
-  if (n.endsWith('policy') || n.endsWith('policydocument')) return 'policy';
-  if (n == 'region' || n.endsWith('region')) return "'us-east-1'";
-  if (n.contains('availabilityzone')) return "'us-east-1a'";
-  if (n == 'vpcid') return "'vpc-0123456789abcdef0'";
-  if (n == 'subnetid') return "'subnet-0123456789abcdef0'";
-  if (n == 'securitygroupid') return "'sg-0123456789abcdef0'";
-  if (n == 'instanceid') return "'i-0123456789abcdef0'";
-  // Directory Service `directory_id` matches `^d-[0-9a-f]{10}$`.
-  if (n == 'directoryid' && owner.toLowerCase().contains('directoryservice')) {
-    return "'d-1234567890'";
-  }
-  if (n.contains('email')) return "'leftover@example.com'";
-  if (n.endsWith('url') || n.endsWith('uri')) return "'https://example.com'";
-  if (n.contains('cidr')) return "'10.0.0.0/16'";
-  if (n.endsWith('ipaddress') || n == 'ip') return "'10.0.0.1'";
-  return 'leftover';
+String _stringValue(String name, {String owner = ''}) {
+  final value = _dummies.valueFor(owner, name);
+  return value != null && value.isString ? value.dart : 'leftover';
 }
 
 /// Whether the value being built sits inside a helper or a sealed variant,

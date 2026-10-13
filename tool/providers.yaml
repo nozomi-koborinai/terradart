@@ -96,8 +96,10 @@
 #                                every schema type that lacks one
 #     rideAlong:     (optional) a lane re-extracted and regenerated at the
 #                    same version inside this lane's bump (google-beta)
-#     exampleGenerator: (optional) a tool/ script the bump reruns after a
-#                    regenerate (the lane's leftover example)
+#     exampleGenerator: (optional) the tool/ library that renders the lane's
+#                    leftover example (its coverage stack); the bump runs
+#                    `dart tool/coverage_stack.dart --lane <name>` after a
+#                    regenerate, which renders and validates it
 #     exampleCovers: (optional, needs exampleGenerator) which new factories
 #                    that example covers, so tool/bump_new_factories.dart
 #                    record writes `awaiting-example:` for the rest:

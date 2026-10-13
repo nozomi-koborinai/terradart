@@ -60,4 +60,18 @@ void main() {
     }
     expect(required, kNotOnOpenTofuRegistry);
   });
+
+  test('the CI Validate step runs kValidateLeg', () {
+    final ci = File('.github/workflows/ci.yml').readAsStringSync();
+    final step = RegExp(
+      r'- name: Validate\n(?:.*\n)*?\s+run: \|\n((?:\s{10}.*\n)+)',
+    ).firstMatch(ci);
+    expect(step, isNotNull, reason: 'ci.yml has no Validate step');
+    final commands = [
+      for (final line in step![1]!.split('\n'))
+        if (RegExp(r'^\s*"\$ENGINE" (.+)$').firstMatch(line) case final m?)
+          if (m[1] != 'version') m[1]!.split(' '),
+    ];
+    expect(commands, kValidateLeg);
+  });
 }

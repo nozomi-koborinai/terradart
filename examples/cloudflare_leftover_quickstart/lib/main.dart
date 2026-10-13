@@ -1,4 +1,4 @@
-// GENERATED — dart run tool/generate_cloudflare_leftover_example.dart
+// GENERATED — dart tool/coverage_stack.dart --lane cloudflare
 // ignore_for_file: unused_element
 
 /// Coverage stack for leftover Cloudflare factories at the current pin.

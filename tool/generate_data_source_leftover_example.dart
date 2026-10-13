@@ -1,14 +1,14 @@
-// ignore_for_file: avoid_print
-//
-// Regenerates examples/data_source_leftover_quickstart/lib/main.dart from
-// the generated data-source wrappers. Run after `terradart wrap`.
+// Renders examples/data_source_leftover_quickstart/lib/main.dart from the
+// generated data-source wrappers, for tool/coverage_stack.dart, which writes
+// and validates it. Literal values live in tool/coverage_dummies/google.yaml.
 
 import 'dart:io';
 
 import 'catalog_class_names.dart';
+import 'coverage_dummies.dart';
+import 'coverage_stack.dart';
 
 const _dataDir = 'packages/terradart_google/lib/src/data';
-const _outPath = 'examples/data_source_leftover_quickstart/lib/main.dart';
 
 /// The constructor's required `TfArg<T>`, `Sensitive<T>` and `RefTo<T>`
 /// parameters, in order; [ref] marks a `RefTo`.
@@ -46,135 +46,155 @@ _requiredCtorParams(String ctor) {
   return out;
 }
 
-void main() {
-  final catalogued = catalogClassNames('packages/terradart_google/lib/src');
-  final files =
-      Directory(_dataDir)
-          .listSync()
-          .whereType<File>()
-          .where((f) => f.path.endsWith('.dart'))
-          .toList()
-        ..sort((a, b) => a.path.compareTo(b.path));
+/// The google lane's coverage stack: one call per catalogued GA data source.
+const googleDataSourceStack = _GoogleDataSourceStack();
 
-  final calls = <String>[];
-  final usedLocal = <String>{};
+final class _GoogleDataSourceStack implements CoverageStackGenerator {
+  const _GoogleDataSourceStack();
 
-  for (final file in files) {
-    final src = file.readAsStringSync();
-    final classMatch = RegExp(
-      r'final class (\w+)\s+extends Data \{',
-    ).firstMatch(src);
-    final typeMatch = RegExp(
-      r"static const String tfType =\s*'([^']+)';",
-    ).firstMatch(src);
-    if (classMatch == null || typeMatch == null) {
-      throw StateError('unparseable wrapper: ${file.path}');
-    }
-    final className = classMatch.group(1)!;
-    if (!catalogued.contains(className)) continue;
-    final tfType = typeMatch.group(1)!;
-    final localName = _uniqueLocal(tfType, usedLocal);
+  @override
+  String get slug => 'data_source_leftover';
 
-    final ctorStart = src.indexOf(
-      RegExp('${RegExp.escape(className)}\\(\\s*super\\.localName, \\{'),
-    );
-    if (ctorStart < 0) {
-      throw StateError('no constructor in ${file.path}');
-    }
-    final ctorEnd = src.indexOf('})', ctorStart);
-    final ctor = src.substring(ctorStart, ctorEnd);
-    final args = <String>[];
-    for (final param in _requiredCtorParams(ctor)) {
-      final value = param.sensitive
-          ? _sensitiveValue
-          : _literal(className, param.name, param.dartType);
-      args.add(
-        '      ${param.name}: '
-        '${param.ref ? value.replaceFirst('TfArg.', 'RefTo.') : value},',
-      );
-    }
-    for (final m in RegExp(r'required (\w+) (\w+),').allMatches(ctor)) {
-      final helperType = m.group(1)!;
-      final value = _requiredHelpers[helperType];
-      if (value == null) {
-        stderr.writeln(
-          '$className.${m.group(2)} takes a required $helperType: add a '
-          'dummy value to _requiredHelpers',
-        );
-        exit(1);
+  @override
+  Set<String> get bindings => const {
+    'projectId',
+    'saEmail',
+    'saId',
+    'kmsVersion',
+    'leftover',
+  };
+
+  @override
+  RenderedStack render(
+    CoverageDummies dummies, {
+    required Set<String> exclude,
+  }) {
+    final catalogued = catalogClassNames('packages/terradart_google/lib/src');
+    final files =
+        Directory(_dataDir)
+            .listSync()
+            .whereType<File>()
+            .where((f) => f.path.endsWith('.dart'))
+            .toList()
+          ..sort((a, b) => a.path.compareTo(b.path));
+
+    final calls = <String>[];
+    final usedLocal = <String>{};
+    final unplaceable = <String, String>{};
+
+    for (final file in files) {
+      final src = file.readAsStringSync();
+      final classMatch = RegExp(
+        r'final class (\w+)\s+extends Data \{',
+      ).firstMatch(src);
+      final typeMatch = RegExp(
+        r"static const String tfType =\s*'([^']+)';",
+      ).firstMatch(src);
+      if (classMatch == null || typeMatch == null) {
+        throw StateError('unparseable wrapper: ${file.path}');
       }
-      args.add('      ${m.group(2)}: $value,');
+      final className = classMatch.group(1)!;
+      if (!catalogued.contains(className) || exclude.contains(className)) {
+        continue;
+      }
+      final tfType = typeMatch.group(1)!;
+
+      final ctorStart = src.indexOf(
+        RegExp('${RegExp.escape(className)}\\(\\s*super\\.localName, \\{'),
+      );
+      if (ctorStart < 0) {
+        throw StateError('no constructor in ${file.path}');
+      }
+      final ctorEnd = src.indexOf('})', ctorStart);
+      final ctor = src.substring(ctorStart, ctorEnd);
+      final args = <String>[];
+      for (final param in _requiredCtorParams(ctor)) {
+        final value = param.sensitive
+            ? _sensitiveValue
+            : _literal(dummies, className, param.name, param.dartType);
+        args.add(
+          '      ${param.name}: '
+          '${param.ref ? value.replaceFirst('TfArg.', 'RefTo.') : value},',
+        );
+      }
+      String? missing;
+      for (final m in RegExp(r'required (\w+) (\w+),').allMatches(ctor)) {
+        final helperType = m.group(1)!;
+        final value = _requiredHelpers[helperType];
+        if (value == null) {
+          missing ??=
+              '$className.${m.group(2)} takes a required $helperType: add a '
+              'dummy value to _requiredHelpers';
+          continue;
+        }
+        args.add('      ${m.group(2)}: $value,');
+      }
+      if (missing != null) {
+        unplaceable[className] = missing;
+        continue;
+      }
+      final extras = _extraOptionals[className] ?? const {};
+      extras.forEach((name, value) {
+        args.add('      $name: $value,');
+      });
+
+      final localName = _uniqueLocal(tfType, usedLocal);
+      final buf = StringBuffer()
+        ..writeln('    add(')
+        ..writeln('      $className(')
+        ..writeln("        '$localName',");
+      for (final a in args) {
+        buf.writeln(a);
+      }
+      buf.writeln('      ),');
+      buf.writeln('    );');
+      calls.add(buf.toString());
     }
-    final extras = _extraOptionals[className] ?? const {};
-    extras.forEach((name, value) {
-      args.add('      $name: $value,');
-    });
 
-    final buf = StringBuffer()
-      ..writeln('    add(')
-      ..writeln('      $className(')
-      ..writeln("        '$localName',");
-    for (final a in args) {
-      buf.writeln(a);
+    final out = StringBuffer()
+      ..writeln(
+        '/// Data-source leftover quickstart — remaining GA data sources.',
+      )
+      ..writeln('///')
+      ..writeln(
+        '/// Coverage stack with dummy ids; synth + `terraform validate` only.',
+      )
+      ..writeln('/// Never apply.')
+      ..writeln('library;')
+      ..writeln()
+      ..writeln("import 'package:terradart_google/data.dart';")
+      ..writeln("import 'package:terradart_google/provider.dart';")
+      ..writeln()
+      ..writeln('final class DataSourceLeftoverStack extends Stack {')
+      ..writeln('  DataSourceLeftoverStack({required String projectId})')
+      ..writeln('      : super(')
+      ..writeln('          providers: [')
+      ..writeln(
+        "            GoogleProvider(project: projectId, region: 'us-central1'),",
+      )
+      ..writeln('          ],')
+      ..writeln('        ) {')
+      ..writeln('    // Dummy ids only — this stack is never applied.')
+      ..writeln("    const leftover = 'terradart-leftover';")
+      ..writeln(
+        "    final saEmail = 'terradart@\$projectId.iam.gserviceaccount.com';",
+      )
+      ..writeln(
+        "    final saId = 'projects/\$projectId/serviceAccounts/\$saEmail';",
+      )
+      ..writeln('    final kmsVersion =')
+      ..writeln(
+        "        'projects/\$projectId/locations/us-central1/keyRings/terradart/'",
+      )
+      ..writeln("        'cryptoKeys/terradart/cryptoKeyVersions/1';")
+      ..writeln();
+    for (final call in calls) {
+      out.writeln(call);
     }
-    buf.writeln('      ),');
-    buf.writeln('    );');
-    calls.add(buf.toString());
+    out.writeln('  }');
+    out.writeln('}');
+    return RenderedStack(out.toString(), unplaceable: unplaceable);
   }
-
-  final out = StringBuffer()
-    ..writeln(
-      '/// Data-source leftover quickstart — remaining GA data sources.',
-    )
-    ..writeln('///')
-    ..writeln(
-      '/// Coverage stack with dummy ids; synth + `terraform validate` only.',
-    )
-    ..writeln('/// Never apply.')
-    ..writeln('library;')
-    ..writeln()
-    ..writeln("import 'package:terradart_google/data.dart';")
-    ..writeln("import 'package:terradart_google/provider.dart';")
-    ..writeln()
-    ..writeln('final class DataSourceLeftoverStack extends Stack {')
-    ..writeln('  DataSourceLeftoverStack({required String projectId})')
-    ..writeln('      : super(')
-    ..writeln('          providers: [')
-    ..writeln(
-      "            GoogleProvider(project: projectId, region: 'us-central1'),",
-    )
-    ..writeln('          ],')
-    ..writeln('        ) {')
-    ..writeln('    // Dummy ids only — this stack is never applied.')
-    ..writeln("    const leftover = 'terradart-leftover';")
-    ..writeln(
-      "    final saEmail = 'terradart@\$projectId.iam.gserviceaccount.com';",
-    )
-    ..writeln(
-      "    final saId = 'projects/\$projectId/serviceAccounts/\$saEmail';",
-    )
-    ..writeln('    final kmsVersion =')
-    ..writeln(
-      "        'projects/\$projectId/locations/us-central1/keyRings/terradart/'",
-    )
-    ..writeln("        'cryptoKeys/terradart/cryptoKeyVersions/1';")
-    ..writeln();
-  for (final call in calls) {
-    out.writeln(call);
-  }
-  out.writeln('  }');
-  out.writeln('}');
-
-  File(_outPath).writeAsStringSync(out.toString());
-  final fmt = Process.runSync(Platform.resolvedExecutable, [
-    'format',
-    _outPath,
-  ]);
-  if (fmt.exitCode != 0) {
-    stderr.writeln('dart format failed on $_outPath:\n${fmt.stderr}');
-    exit(fmt.exitCode);
-  }
-  print('wrote $_outPath (${calls.length} data sources)');
 }
 
 String _uniqueLocal(String tfType, Set<String> used) {
@@ -220,42 +240,14 @@ const _requiredHelpers = <String, String>{
       'DataCloudIdentityGroupLookupGroupKey(id: .literal(leftover))',
 };
 
-String _literal(String className, String name, String dartType) {
-  if (name == 'project' || name == 'projectId') {
-    return 'TfArg.literal(projectId)';
-  }
-  if (name == 'network') {
-    return "TfArg.literal('projects/\$projectId/global/networks/terradart')";
-  }
-  if (name == 'ciphertext') {
-    return "TfArg.literal('dGVycmFkYXJ0')";
-  }
-  if (name == 'cryptoKeyVersion') {
-    return 'TfArg.literal(kmsVersion)';
-  }
-  if (name == 'targetServiceAccount') {
-    return 'TfArg.literal(saEmail)';
-  }
-  if (name == 'serviceAccountId') {
-    return 'TfArg.literal(saId)';
-  }
-  if (name == 'managedFolder') {
-    return "TfArg.literal('terradart-leftover/')";
-  }
-  if (name == 'type' && className.contains('SiteVerification')) {
-    return "TfArg.literal('INET_DOMAIN')";
-  }
-  if (name == 'verificationMethod') {
-    return "TfArg.literal('DNS_TXT')";
-  }
-  if (name == 'name' && className == 'DataGoogleServiceAccountKey') {
-    return "TfArg.literal('\$saId/keys/1')";
-  }
-  // The provider parses resource_name as a URL and rejects a value with no host.
-  if (name == 'resourceName' &&
-      className == 'DataGoogleIamWorkloadIdentityPoolJwks') {
-    return "TfArg.literal('https://example.com/.well-known/jwks.json')";
-  }
+String _literal(
+  CoverageDummies dummies,
+  String className,
+  String name,
+  String dartType,
+) {
+  final value = dummies.valueFor(className, name);
+  if (value != null) return 'TfArg.literal(${value.dart})';
   if (dartType.startsWith('List<String>')) {
     return 'TfArg.literal([leftover])';
   }

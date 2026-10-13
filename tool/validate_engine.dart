@@ -25,6 +25,16 @@ const kNotOnOpenTofuRegistry = {
   'appwrite/appwrite',
 };
 
+/// What the CI `validate (<slug>)` leg runs in `tf-out` after synth, in
+/// order. `tool/validate_engine_test.dart` fails when the Validate step of
+/// `.github/workflows/ci.yml` runs anything else. `tool/coverage_stack.dart`
+/// adds `-json` to `validate`, which changes only the output format.
+const kValidateLeg = <List<String>>[
+  ['fmt', '-check'],
+  ['init', '-backend=false', '-input=false'],
+  ['validate'],
+];
+
 /// The `required_providers` sources of [mainTfJson] that
 /// [kNotOnOpenTofuRegistry] lists.
 Set<String> providersNotOnOpenTofu(Map<String, dynamic> mainTfJson) {
