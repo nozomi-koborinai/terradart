@@ -1,0 +1,35 @@
+{
+  "format_version": "1.0",
+  "valid": false,
+  "error_count": 1,
+  "warning_count": 0,
+  "diagnostics": [
+    {
+      "severity": "error",
+      "summary": "Invalid Attribute Value Match",
+      "detail": "Attribute directory_id must be a valid Directory Service Directory ID, got: leftover",
+      "address": "aws_directory_service_ip_route.route",
+      "range": {
+        "filename": "main.tf.json",
+        "start": {
+          "line": 18,
+          "column": 25,
+          "byte": 311
+        },
+        "end": {
+          "line": 18,
+          "column": 35,
+          "byte": 321
+        }
+      },
+      "snippet": {
+        "context": "resource.aws_directory_service_ip_route.route",
+        "code": "        \"directory_id\": \"leftover\",",
+        "start_line": 18,
+        "highlight_start_offset": 24,
+        "highlight_end_offset": 34,
+        "values": []
+      }
+    }
+  ]
+}

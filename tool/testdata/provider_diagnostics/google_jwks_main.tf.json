@@ -1,0 +1,22 @@
+{
+  "terraform": {
+    "required_providers": {
+      "google": {
+        "source": "hashicorp/google",
+        "version": "~> 8.0"
+      }
+    }
+  },
+  "provider": {
+    "google": [{
+      "project": "ci-test-project-id"
+    }]
+  },
+  "data": {
+    "google_iam_workload_identity_pool_jwks": {
+      "jwks": {
+        "resource_name": "terradart-leftover"
+      }
+    }
+  }
+}

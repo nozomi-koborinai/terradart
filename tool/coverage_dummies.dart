@@ -84,6 +84,17 @@ final class DartDummy extends DummyValue {
   bool get isString => false;
 }
 
+/// A value worth trying where the provider rejected one, and where it came
+/// from.
+final class Candidate {
+  const Candidate(this.value, this.source);
+
+  final LiteralDummy value;
+
+  /// `family url-host`, `sibling AwsDirectoryServiceTrust.directoryId`.
+  final String source;
+}
+
 /// One lane's ledger, parsed and validated.
 final class CoverageDummies {
   CoverageDummies._(this.path, this._header, this._entries, this._manifest)
