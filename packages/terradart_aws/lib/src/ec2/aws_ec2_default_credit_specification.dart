@@ -52,12 +52,16 @@ extension type const Ec2DefaultCreditSpecificationInstanceFamily._(
   static const t4g = Ec2DefaultCreditSpecificationInstanceFamily._(
     TfArgLiteral('t4g'),
   );
+  static const t8i = Ec2DefaultCreditSpecificationInstanceFamily._(
+    TfArgLiteral('t8i'),
+  );
 
   static const List<Ec2DefaultCreditSpecificationInstanceFamily> values = [
     t2,
     t3,
     t3a,
     t4g,
+    t8i,
   ];
 }
 

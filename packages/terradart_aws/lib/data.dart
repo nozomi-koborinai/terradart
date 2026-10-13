@@ -709,6 +709,8 @@ export 'src/data/aws_lambda_function_url.dart' show DataAwsLambdaFunctionUrl;
 export 'src/data/aws_lambda_functions.dart' show DataAwsLambdaFunctions;
 export 'src/data/aws_lambda_invocation.dart' show DataAwsLambdaInvocation;
 export 'src/data/aws_lambda_layer_version.dart' show DataAwsLambdaLayerVersion;
+export 'src/data/aws_lambdamicrovms_image_version.dart'
+    show DataAwsLambdamicrovmsImageVersion;
 export 'src/data/aws_launch_configuration.dart' show DataAwsLaunchConfiguration;
 export 'src/data/aws_launch_template.dart'
     show DataAwsLaunchTemplate, DataLaunchTemplateFilter;
@@ -859,6 +861,8 @@ export 'src/data/aws_oam_link.dart' show DataAwsOamLink;
 export 'src/data/aws_oam_links.dart' show DataAwsOamLinks;
 export 'src/data/aws_oam_sink.dart' show DataAwsOamSink;
 export 'src/data/aws_oam_sinks.dart' show DataAwsOamSinks;
+export 'src/data/aws_odb_autonomous_database.dart'
+    show DataAwsOdbAutonomousDatabase;
 export 'src/data/aws_odb_cloud_autonomous_vm_cluster.dart'
     show DataAwsOdbCloudAutonomousVmCluster;
 export 'src/data/aws_odb_cloud_autonomous_vm_clusters.dart'

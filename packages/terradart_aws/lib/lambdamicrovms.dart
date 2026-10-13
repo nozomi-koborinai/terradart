@@ -4,6 +4,8 @@
 library;
 
 export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_lambdamicrovms_image_version.dart'
+    show DataAwsLambdamicrovmsImageVersion;
 export 'src/lambdamicrovms/aws_lambdamicrovms_image.dart'
     show
         AwsLambdamicrovmsImage,

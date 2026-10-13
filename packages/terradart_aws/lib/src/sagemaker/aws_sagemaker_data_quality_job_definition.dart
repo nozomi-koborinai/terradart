@@ -794,6 +794,258 @@ extension type const SagemakerDataQualityJobDefinitionInstanceType._(
   static const mlG7p48xlarge = SagemakerDataQualityJobDefinitionInstanceType._(
     TfArgLiteral('ml.g7.48xlarge'),
   );
+  static const mlR6iLarge = SagemakerDataQualityJobDefinitionInstanceType._(
+    TfArgLiteral('ml.r6i.large'),
+  );
+  static const mlR6iXlarge = SagemakerDataQualityJobDefinitionInstanceType._(
+    TfArgLiteral('ml.r6i.xlarge'),
+  );
+  static const mlR6i2xlarge = SagemakerDataQualityJobDefinitionInstanceType._(
+    TfArgLiteral('ml.r6i.2xlarge'),
+  );
+  static const mlR6i4xlarge = SagemakerDataQualityJobDefinitionInstanceType._(
+    TfArgLiteral('ml.r6i.4xlarge'),
+  );
+  static const mlR6i8xlarge = SagemakerDataQualityJobDefinitionInstanceType._(
+    TfArgLiteral('ml.r6i.8xlarge'),
+  );
+  static const mlR6i12xlarge = SagemakerDataQualityJobDefinitionInstanceType._(
+    TfArgLiteral('ml.r6i.12xlarge'),
+  );
+  static const mlR6i16xlarge = SagemakerDataQualityJobDefinitionInstanceType._(
+    TfArgLiteral('ml.r6i.16xlarge'),
+  );
+  static const mlR6i24xlarge = SagemakerDataQualityJobDefinitionInstanceType._(
+    TfArgLiteral('ml.r6i.24xlarge'),
+  );
+  static const mlR6i32xlarge = SagemakerDataQualityJobDefinitionInstanceType._(
+    TfArgLiteral('ml.r6i.32xlarge'),
+  );
+  static const mlM8iLarge = SagemakerDataQualityJobDefinitionInstanceType._(
+    TfArgLiteral('ml.m8i.large'),
+  );
+  static const mlM8iXlarge = SagemakerDataQualityJobDefinitionInstanceType._(
+    TfArgLiteral('ml.m8i.xlarge'),
+  );
+  static const mlM8i2xlarge = SagemakerDataQualityJobDefinitionInstanceType._(
+    TfArgLiteral('ml.m8i.2xlarge'),
+  );
+  static const mlM8i4xlarge = SagemakerDataQualityJobDefinitionInstanceType._(
+    TfArgLiteral('ml.m8i.4xlarge'),
+  );
+  static const mlM8i8xlarge = SagemakerDataQualityJobDefinitionInstanceType._(
+    TfArgLiteral('ml.m8i.8xlarge'),
+  );
+  static const mlM8i12xlarge = SagemakerDataQualityJobDefinitionInstanceType._(
+    TfArgLiteral('ml.m8i.12xlarge'),
+  );
+  static const mlM8i16xlarge = SagemakerDataQualityJobDefinitionInstanceType._(
+    TfArgLiteral('ml.m8i.16xlarge'),
+  );
+  static const mlM8i24xlarge = SagemakerDataQualityJobDefinitionInstanceType._(
+    TfArgLiteral('ml.m8i.24xlarge'),
+  );
+  static const mlM8i32xlarge = SagemakerDataQualityJobDefinitionInstanceType._(
+    TfArgLiteral('ml.m8i.32xlarge'),
+  );
+  static const mlM8i48xlarge = SagemakerDataQualityJobDefinitionInstanceType._(
+    TfArgLiteral('ml.m8i.48xlarge'),
+  );
+  static const mlM8i96xlarge = SagemakerDataQualityJobDefinitionInstanceType._(
+    TfArgLiteral('ml.m8i.96xlarge'),
+  );
+  static const mlC8iXlarge = SagemakerDataQualityJobDefinitionInstanceType._(
+    TfArgLiteral('ml.c8i.xlarge'),
+  );
+  static const mlC8i2xlarge = SagemakerDataQualityJobDefinitionInstanceType._(
+    TfArgLiteral('ml.c8i.2xlarge'),
+  );
+  static const mlC8i4xlarge = SagemakerDataQualityJobDefinitionInstanceType._(
+    TfArgLiteral('ml.c8i.4xlarge'),
+  );
+  static const mlC8i8xlarge = SagemakerDataQualityJobDefinitionInstanceType._(
+    TfArgLiteral('ml.c8i.8xlarge'),
+  );
+  static const mlC8i12xlarge = SagemakerDataQualityJobDefinitionInstanceType._(
+    TfArgLiteral('ml.c8i.12xlarge'),
+  );
+  static const mlC8i16xlarge = SagemakerDataQualityJobDefinitionInstanceType._(
+    TfArgLiteral('ml.c8i.16xlarge'),
+  );
+  static const mlC8i24xlarge = SagemakerDataQualityJobDefinitionInstanceType._(
+    TfArgLiteral('ml.c8i.24xlarge'),
+  );
+  static const mlC8i32xlarge = SagemakerDataQualityJobDefinitionInstanceType._(
+    TfArgLiteral('ml.c8i.32xlarge'),
+  );
+  static const mlC8i48xlarge = SagemakerDataQualityJobDefinitionInstanceType._(
+    TfArgLiteral('ml.c8i.48xlarge'),
+  );
+  static const mlC8i96xlarge = SagemakerDataQualityJobDefinitionInstanceType._(
+    TfArgLiteral('ml.c8i.96xlarge'),
+  );
+  static const mlR8iLarge = SagemakerDataQualityJobDefinitionInstanceType._(
+    TfArgLiteral('ml.r8i.large'),
+  );
+  static const mlR8iXlarge = SagemakerDataQualityJobDefinitionInstanceType._(
+    TfArgLiteral('ml.r8i.xlarge'),
+  );
+  static const mlR8i2xlarge = SagemakerDataQualityJobDefinitionInstanceType._(
+    TfArgLiteral('ml.r8i.2xlarge'),
+  );
+  static const mlR8i4xlarge = SagemakerDataQualityJobDefinitionInstanceType._(
+    TfArgLiteral('ml.r8i.4xlarge'),
+  );
+  static const mlR8i8xlarge = SagemakerDataQualityJobDefinitionInstanceType._(
+    TfArgLiteral('ml.r8i.8xlarge'),
+  );
+  static const mlR8i12xlarge = SagemakerDataQualityJobDefinitionInstanceType._(
+    TfArgLiteral('ml.r8i.12xlarge'),
+  );
+  static const mlR8i16xlarge = SagemakerDataQualityJobDefinitionInstanceType._(
+    TfArgLiteral('ml.r8i.16xlarge'),
+  );
+  static const mlR8i24xlarge = SagemakerDataQualityJobDefinitionInstanceType._(
+    TfArgLiteral('ml.r8i.24xlarge'),
+  );
+  static const mlR8i32xlarge = SagemakerDataQualityJobDefinitionInstanceType._(
+    TfArgLiteral('ml.r8i.32xlarge'),
+  );
+  static const mlR8i48xlarge = SagemakerDataQualityJobDefinitionInstanceType._(
+    TfArgLiteral('ml.r8i.48xlarge'),
+  );
+  static const mlR8i96xlarge = SagemakerDataQualityJobDefinitionInstanceType._(
+    TfArgLiteral('ml.r8i.96xlarge'),
+  );
+  static const mlM7iFlexLarge = SagemakerDataQualityJobDefinitionInstanceType._(
+    TfArgLiteral('ml.m7i-flex.large'),
+  );
+  static const mlM7iFlexXlarge =
+      SagemakerDataQualityJobDefinitionInstanceType._(
+        TfArgLiteral('ml.m7i-flex.xlarge'),
+      );
+  static const mlM7iFlex2xlarge =
+      SagemakerDataQualityJobDefinitionInstanceType._(
+        TfArgLiteral('ml.m7i-flex.2xlarge'),
+      );
+  static const mlM7iFlex4xlarge =
+      SagemakerDataQualityJobDefinitionInstanceType._(
+        TfArgLiteral('ml.m7i-flex.4xlarge'),
+      );
+  static const mlM7iFlex8xlarge =
+      SagemakerDataQualityJobDefinitionInstanceType._(
+        TfArgLiteral('ml.m7i-flex.8xlarge'),
+      );
+  static const mlM7iFlex12xlarge =
+      SagemakerDataQualityJobDefinitionInstanceType._(
+        TfArgLiteral('ml.m7i-flex.12xlarge'),
+      );
+  static const mlM7iFlex16xlarge =
+      SagemakerDataQualityJobDefinitionInstanceType._(
+        TfArgLiteral('ml.m7i-flex.16xlarge'),
+      );
+  static const mlC7iFlexXlarge =
+      SagemakerDataQualityJobDefinitionInstanceType._(
+        TfArgLiteral('ml.c7i-flex.xlarge'),
+      );
+  static const mlC7iFlex2xlarge =
+      SagemakerDataQualityJobDefinitionInstanceType._(
+        TfArgLiteral('ml.c7i-flex.2xlarge'),
+      );
+  static const mlC7iFlex4xlarge =
+      SagemakerDataQualityJobDefinitionInstanceType._(
+        TfArgLiteral('ml.c7i-flex.4xlarge'),
+      );
+  static const mlC7iFlex8xlarge =
+      SagemakerDataQualityJobDefinitionInstanceType._(
+        TfArgLiteral('ml.c7i-flex.8xlarge'),
+      );
+  static const mlC7iFlex12xlarge =
+      SagemakerDataQualityJobDefinitionInstanceType._(
+        TfArgLiteral('ml.c7i-flex.12xlarge'),
+      );
+  static const mlC7iFlex16xlarge =
+      SagemakerDataQualityJobDefinitionInstanceType._(
+        TfArgLiteral('ml.c7i-flex.16xlarge'),
+      );
+  static const mlM8iFlexLarge = SagemakerDataQualityJobDefinitionInstanceType._(
+    TfArgLiteral('ml.m8i-flex.large'),
+  );
+  static const mlM8iFlexXlarge =
+      SagemakerDataQualityJobDefinitionInstanceType._(
+        TfArgLiteral('ml.m8i-flex.xlarge'),
+      );
+  static const mlM8iFlex2xlarge =
+      SagemakerDataQualityJobDefinitionInstanceType._(
+        TfArgLiteral('ml.m8i-flex.2xlarge'),
+      );
+  static const mlM8iFlex4xlarge =
+      SagemakerDataQualityJobDefinitionInstanceType._(
+        TfArgLiteral('ml.m8i-flex.4xlarge'),
+      );
+  static const mlM8iFlex8xlarge =
+      SagemakerDataQualityJobDefinitionInstanceType._(
+        TfArgLiteral('ml.m8i-flex.8xlarge'),
+      );
+  static const mlM8iFlex12xlarge =
+      SagemakerDataQualityJobDefinitionInstanceType._(
+        TfArgLiteral('ml.m8i-flex.12xlarge'),
+      );
+  static const mlM8iFlex16xlarge =
+      SagemakerDataQualityJobDefinitionInstanceType._(
+        TfArgLiteral('ml.m8i-flex.16xlarge'),
+      );
+  static const mlC8iFlexXlarge =
+      SagemakerDataQualityJobDefinitionInstanceType._(
+        TfArgLiteral('ml.c8i-flex.xlarge'),
+      );
+  static const mlC8iFlex2xlarge =
+      SagemakerDataQualityJobDefinitionInstanceType._(
+        TfArgLiteral('ml.c8i-flex.2xlarge'),
+      );
+  static const mlC8iFlex4xlarge =
+      SagemakerDataQualityJobDefinitionInstanceType._(
+        TfArgLiteral('ml.c8i-flex.4xlarge'),
+      );
+  static const mlC8iFlex8xlarge =
+      SagemakerDataQualityJobDefinitionInstanceType._(
+        TfArgLiteral('ml.c8i-flex.8xlarge'),
+      );
+  static const mlC8iFlex12xlarge =
+      SagemakerDataQualityJobDefinitionInstanceType._(
+        TfArgLiteral('ml.c8i-flex.12xlarge'),
+      );
+  static const mlC8iFlex16xlarge =
+      SagemakerDataQualityJobDefinitionInstanceType._(
+        TfArgLiteral('ml.c8i-flex.16xlarge'),
+      );
+  static const mlR8iFlexLarge = SagemakerDataQualityJobDefinitionInstanceType._(
+    TfArgLiteral('ml.r8i-flex.large'),
+  );
+  static const mlR8iFlexXlarge =
+      SagemakerDataQualityJobDefinitionInstanceType._(
+        TfArgLiteral('ml.r8i-flex.xlarge'),
+      );
+  static const mlR8iFlex2xlarge =
+      SagemakerDataQualityJobDefinitionInstanceType._(
+        TfArgLiteral('ml.r8i-flex.2xlarge'),
+      );
+  static const mlR8iFlex4xlarge =
+      SagemakerDataQualityJobDefinitionInstanceType._(
+        TfArgLiteral('ml.r8i-flex.4xlarge'),
+      );
+  static const mlR8iFlex8xlarge =
+      SagemakerDataQualityJobDefinitionInstanceType._(
+        TfArgLiteral('ml.r8i-flex.8xlarge'),
+      );
+  static const mlR8iFlex12xlarge =
+      SagemakerDataQualityJobDefinitionInstanceType._(
+        TfArgLiteral('ml.r8i-flex.12xlarge'),
+      );
+  static const mlR8iFlex16xlarge =
+      SagemakerDataQualityJobDefinitionInstanceType._(
+        TfArgLiteral('ml.r8i-flex.16xlarge'),
+      );
 
   static const List<SagemakerDataQualityJobDefinitionInstanceType> values = [
     mlT3Medium,
@@ -929,6 +1181,80 @@ extension type const SagemakerDataQualityJobDefinitionInstanceType._(
     mlG7p12xlarge,
     mlG7p24xlarge,
     mlG7p48xlarge,
+    mlR6iLarge,
+    mlR6iXlarge,
+    mlR6i2xlarge,
+    mlR6i4xlarge,
+    mlR6i8xlarge,
+    mlR6i12xlarge,
+    mlR6i16xlarge,
+    mlR6i24xlarge,
+    mlR6i32xlarge,
+    mlM8iLarge,
+    mlM8iXlarge,
+    mlM8i2xlarge,
+    mlM8i4xlarge,
+    mlM8i8xlarge,
+    mlM8i12xlarge,
+    mlM8i16xlarge,
+    mlM8i24xlarge,
+    mlM8i32xlarge,
+    mlM8i48xlarge,
+    mlM8i96xlarge,
+    mlC8iXlarge,
+    mlC8i2xlarge,
+    mlC8i4xlarge,
+    mlC8i8xlarge,
+    mlC8i12xlarge,
+    mlC8i16xlarge,
+    mlC8i24xlarge,
+    mlC8i32xlarge,
+    mlC8i48xlarge,
+    mlC8i96xlarge,
+    mlR8iLarge,
+    mlR8iXlarge,
+    mlR8i2xlarge,
+    mlR8i4xlarge,
+    mlR8i8xlarge,
+    mlR8i12xlarge,
+    mlR8i16xlarge,
+    mlR8i24xlarge,
+    mlR8i32xlarge,
+    mlR8i48xlarge,
+    mlR8i96xlarge,
+    mlM7iFlexLarge,
+    mlM7iFlexXlarge,
+    mlM7iFlex2xlarge,
+    mlM7iFlex4xlarge,
+    mlM7iFlex8xlarge,
+    mlM7iFlex12xlarge,
+    mlM7iFlex16xlarge,
+    mlC7iFlexXlarge,
+    mlC7iFlex2xlarge,
+    mlC7iFlex4xlarge,
+    mlC7iFlex8xlarge,
+    mlC7iFlex12xlarge,
+    mlC7iFlex16xlarge,
+    mlM8iFlexLarge,
+    mlM8iFlexXlarge,
+    mlM8iFlex2xlarge,
+    mlM8iFlex4xlarge,
+    mlM8iFlex8xlarge,
+    mlM8iFlex12xlarge,
+    mlM8iFlex16xlarge,
+    mlC8iFlexXlarge,
+    mlC8iFlex2xlarge,
+    mlC8iFlex4xlarge,
+    mlC8iFlex8xlarge,
+    mlC8iFlex12xlarge,
+    mlC8iFlex16xlarge,
+    mlR8iFlexLarge,
+    mlR8iFlexXlarge,
+    mlR8iFlex2xlarge,
+    mlR8iFlex4xlarge,
+    mlR8iFlex8xlarge,
+    mlR8iFlex12xlarge,
+    mlR8iFlex16xlarge,
   ];
 }
 

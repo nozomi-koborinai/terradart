@@ -57,11 +57,15 @@ extension type const CloudfrontOriginAccessControlSigningBehavior._(
   static const noOverride = CloudfrontOriginAccessControlSigningBehavior._(
     TfArgLiteral('no-override'),
   );
+  static const alwaysAmzAuth = CloudfrontOriginAccessControlSigningBehavior._(
+    TfArgLiteral('always-amz-auth'),
+  );
 
   static const List<CloudfrontOriginAccessControlSigningBehavior> values = [
     never,
     always,
     noOverride,
+    alwaysAmzAuth,
   ];
 }
 

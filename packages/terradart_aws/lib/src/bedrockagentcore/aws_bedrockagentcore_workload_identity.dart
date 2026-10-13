@@ -15,6 +15,7 @@ final class AwsBedrockagentcoreWorkloadIdentity extends Resource {
     TfArg<List<String>>? allowedResourceOauth2ReturnUrls,
     required TfArg<String> name,
     TfArg<String>? region,
+    TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -26,6 +27,7 @@ final class AwsBedrockagentcoreWorkloadIdentity extends Resource {
                ?allowedResourceOauth2ReturnUrls,
            'name': name,
            'region': ?region,
+           'tags': ?tags,
          },
        );
 
@@ -40,6 +42,10 @@ final class AwsBedrockagentcoreWorkloadIdentity extends Resource {
   /// Reference to `name` attribute.
   TfRef<String> get name => TfRef.attribute<String>(this, 'name');
 
+  /// Reference to `tags_all` attribute.
+  TfRef<Map<String, String>> get tagsAll =>
+      TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
   /// Reference to `workload_identity_arn` attribute.
   TfRef<String> get workloadIdentityArn =>
       TfRef.attribute<String>(this, 'workload_identity_arn');
@@ -53,4 +59,8 @@ final class AwsBedrockagentcoreWorkloadIdentity extends Resource {
 
   /// Reference to `region` attribute.
   TfRef<String> get region => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tags =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

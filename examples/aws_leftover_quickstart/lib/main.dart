@@ -4376,6 +4376,21 @@ final class AwsLeftoverStack extends Stack {
     );
 
     add(
+      AwsDirectoryServiceIpRoute(
+        'directory_service_ip_route',
+        cidr: .cidrIp(.literal('10.0.0.0/16')),
+        directoryId: .literal(leftover),
+      ),
+    );
+
+    add(
+      AwsDirectoryServiceIpRoutesExclusive(
+        'directory_service_ip_routes_exclusive',
+        directoryId: .literal(leftover),
+      ),
+    );
+
+    add(
       AwsDirectoryServiceLogSubscription(
         'directory_service_log_subscription',
         directoryId: .literal(leftover),
@@ -4431,6 +4446,14 @@ final class AwsLeftoverStack extends Stack {
         remoteDomainName: .literal('example.com'),
         trustDirection: .twoWay,
         trustPassword: .literal(leftover),
+      ),
+    );
+
+    add(
+      AwsDirectoryservicedataUser(
+        'directoryservicedata_user',
+        directoryId: .literal(leftover),
+        samAccountName: .literal(leftover),
       ),
     );
 
@@ -9516,6 +9539,14 @@ final class AwsLeftoverStack extends Stack {
             telemetryType: .logs,
           ),
         ],
+      ),
+    );
+
+    add(AwsOdbAutonomousDatabase('odb_autonomous_database'));
+
+    add(
+      AwsOdbAutonomousDatabaseSecretsManagerIntegration(
+        'odb_autonomous_database_secrets_manager_integrat',
       ),
     );
 
@@ -16981,6 +17012,14 @@ final class AwsLeftoverStack extends Stack {
     add(DataAwsLambdaLayerVersion('d_lambda_layer_version'));
 
     add(
+      DataAwsLambdamicrovmsImageVersion(
+        'd_lambdamicrovms_image_version',
+        imageIdentifier: .literal(leftover),
+        imageVersion: .literal(leftover),
+      ),
+    );
+
+    add(
       DataAwsLaunchConfiguration(
         'd_launch_configuration',
         name: .literal(leftover),
@@ -17309,6 +17348,13 @@ final class AwsLeftoverStack extends Stack {
     add(DataAwsOamSink('d_oam_sink', sinkIdentifier: .literal(leftover)));
 
     add(DataAwsOamSinks('d_oam_sinks'));
+
+    add(
+      DataAwsOdbAutonomousDatabase(
+        'd_odb_autonomous_database',
+        id: .literal(leftover),
+      ),
+    );
 
     add(
       DataAwsOdbCloudAutonomousVmCluster(

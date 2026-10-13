@@ -164,6 +164,7 @@ export 'detective.dart';
 export 'devicefarm.dart';
 export 'devopsguru.dart';
 export 'directory_service.dart';
+export 'directoryservicedata.dart';
 export 'dlm.dart';
 export 'dms.dart';
 export 'docdb.dart';

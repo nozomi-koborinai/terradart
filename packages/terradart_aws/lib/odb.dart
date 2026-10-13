@@ -4,6 +4,8 @@
 library;
 
 export 'package:terradart_core/terradart_core.dart';
+export 'src/data/aws_odb_autonomous_database.dart'
+    show DataAwsOdbAutonomousDatabase;
 export 'src/data/aws_odb_cloud_autonomous_vm_cluster.dart'
     show DataAwsOdbCloudAutonomousVmCluster;
 export 'src/data/aws_odb_cloud_autonomous_vm_clusters.dart'
@@ -28,6 +30,38 @@ export 'src/data/aws_odb_network_peering_connection.dart'
 export 'src/data/aws_odb_network_peering_connections.dart'
     show DataAwsOdbNetworkPeeringConnections;
 export 'src/data/aws_odb_networks.dart' show DataAwsOdbNetworks;
+export 'src/odb/aws_odb_autonomous_database.dart'
+    show
+        AwsOdbAutonomousDatabase,
+        OdbAutonomousDatabaseAdminPassword,
+        OdbAutonomousDatabaseAdminPasswordChoice,
+        OdbAutonomousDatabaseAdminPasswordSource,
+        OdbAutonomousDatabaseAdminPasswordSourceChoice,
+        OdbAutonomousDatabaseAdminPasswordWo,
+        OdbAutonomousDatabaseClone,
+        OdbAutonomousDatabaseCloneToRefreshable,
+        OdbAutonomousDatabaseCloneToRefreshableMode,
+        OdbAutonomousDatabaseCloneToRefreshableOpenMode,
+        OdbAutonomousDatabaseCloneType,
+        OdbAutonomousDatabaseCrossRegionDataGuard,
+        OdbAutonomousDatabaseCrossRegionDisasterRecovery,
+        OdbAutonomousDatabaseCustomerContactsToSendToOci,
+        OdbAutonomousDatabaseCustomerManagedAwsSecret,
+        OdbAutonomousDatabaseDayOfWeek,
+        OdbAutonomousDatabaseDbToolsDetails,
+        OdbAutonomousDatabaseEncryptionKeyProvider,
+        OdbAutonomousDatabaseExternalIdType,
+        OdbAutonomousDatabaseLongTermBackupSchedule,
+        OdbAutonomousDatabasePointInTimeRestore,
+        OdbAutonomousDatabaseRemoteDisasterRecoveryType,
+        OdbAutonomousDatabaseRepeatCadence,
+        OdbAutonomousDatabaseResourcePoolSummary,
+        OdbAutonomousDatabaseRestoreFromBackup,
+        OdbAutonomousDatabaseScheduledOperations,
+        OdbAutonomousDatabaseSourceConfiguration,
+        OdbAutonomousDatabaseTransportableTablespace;
+export 'src/odb/aws_odb_autonomous_database_secrets_manager_integration.dart'
+    show AwsOdbAutonomousDatabaseSecretsManagerIntegration;
 export 'src/odb/aws_odb_cloud_autonomous_vm_cluster.dart'
     show
         AwsOdbCloudAutonomousVmCluster,

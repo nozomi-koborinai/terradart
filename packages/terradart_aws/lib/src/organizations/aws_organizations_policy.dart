@@ -51,6 +51,9 @@ extension type const OrganizationsPolicyType._(TfArg<String> _)
   static const networkSecurityDirectorPolicy = OrganizationsPolicyType._(
     TfArgLiteral('NETWORK_SECURITY_DIRECTOR_POLICY'),
   );
+  static const guarddutyPolicy = OrganizationsPolicyType._(
+    TfArgLiteral('GUARDDUTY_POLICY'),
+  );
 
   static const List<OrganizationsPolicyType> values = [
     serviceControlPolicy,
@@ -66,6 +69,7 @@ extension type const OrganizationsPolicyType._(TfArg<String> _)
     bedrockPolicy,
     s3Policy,
     networkSecurityDirectorPolicy,
+    guarddutyPolicy,
   ];
 }
 

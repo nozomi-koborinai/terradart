@@ -45,6 +45,7 @@ extension type const VpcEndpointType._(TfArg<String> _)
   static const servicenetwork = VpcEndpointType._(
     TfArgLiteral('ServiceNetwork'),
   );
+  static const tunnel = VpcEndpointType._(TfArgLiteral('Tunnel'));
 
   static const List<VpcEndpointType> values = [
     interface,
@@ -52,6 +53,7 @@ extension type const VpcEndpointType._(TfArg<String> _)
     gatewayloadbalancer,
     resource,
     servicenetwork,
+    tunnel,
   ];
 }
 

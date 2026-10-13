@@ -33,6 +33,7 @@ final class AwsSnsTopic extends Resource {
     TfArg<String>? lambdaFailureFeedbackRoleArn,
     TfArg<String>? lambdaSuccessFeedbackRoleArn,
     TfArg<num>? lambdaSuccessFeedbackSampleRate,
+    TfArg<num>? maximumMessageSize,
     TfArg<String>? name,
     TfArg<String>? namePrefix,
     TfArg<String>? policy,
@@ -76,6 +77,7 @@ final class AwsSnsTopic extends Resource {
            'lambda_success_feedback_role_arn': ?lambdaSuccessFeedbackRoleArn,
            'lambda_success_feedback_sample_rate':
                ?lambdaSuccessFeedbackSampleRate,
+           'maximum_message_size': ?maximumMessageSize,
            'name': ?name,
            'name_prefix': ?namePrefix,
            'policy': ?policy,
@@ -186,6 +188,10 @@ final class AwsSnsTopic extends Resource {
   /// Reference to `lambda_success_feedback_sample_rate` attribute.
   TfRef<num> get lambdaSuccessFeedbackSampleRate =>
       TfRef.attribute<num>(this, 'lambda_success_feedback_sample_rate');
+
+  /// Reference to `maximum_message_size` attribute.
+  TfRef<num> get maximumMessageSize =>
+      TfRef.attribute<num>(this, 'maximum_message_size');
 
   /// Reference to `name_prefix` attribute.
   TfRef<String> get namePrefix => TfRef.attribute<String>(this, 'name_prefix');

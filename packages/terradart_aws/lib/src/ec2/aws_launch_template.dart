@@ -2528,6 +2528,10 @@ extension type const LaunchTemplateResourceType._(TfArg<String> _)
   static const applicationStatusCheck = LaunchTemplateResourceType._(
     TfArgLiteral('application-status-check'),
   );
+  static const capacityReservationModificationQuote =
+      LaunchTemplateResourceType._(
+        TfArgLiteral('capacity-reservation-modification-quote'),
+      );
 
   static const List<LaunchTemplateResourceType> values = [
     capacityReservation,
@@ -2641,6 +2645,7 @@ extension type const LaunchTemplateResourceType._(TfArg<String> _)
     ipamPoolAllocation,
     capacityReservationCancellationQuote,
     applicationStatusCheck,
+    capacityReservationModificationQuote,
   ];
 }
 
