@@ -1,7 +1,6 @@
-# Dummy values for the aws coverage stack
-# (examples/aws_leftover_quickstart), and the only place
-# its literal values live. The generator asks for a value by Dart owner
-# and parameter (`CoverageDummies.valueFor`);
+# Dummy values for constructor arguments in the aws coverage stack
+# (examples/aws_leftover_quickstart). The generator asks for a value by
+# Dart owner and parameter (`CoverageDummies.valueFor`);
 # `dart tool/coverage_stack.dart --lane aws` renders the stack from this
 # file, validates it as required CI does, and writes back each value the
 # provider asked for, with the diagnostic it answered as `why:`.
