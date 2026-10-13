@@ -1,4 +1,4 @@
-// GENERATED — dart run tool/generate_aws_leftover_example.dart
+// GENERATED — dart tool/coverage_stack.dart --lane aws
 // ignore_for_file: unused_element
 
 /// Coverage stack for leftover AWS factories at the current pin.

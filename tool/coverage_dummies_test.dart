@@ -4,9 +4,10 @@ import 'package:terradart_migrate/terradart_migrate.dart';
 import 'package:test/test.dart';
 
 import 'coverage_dummies.dart';
-import 'generate_aws_leftover_example.dart' as aws;
-import 'generate_cloudflare_leftover_example.dart' as cloudflare;
-import 'generate_data_source_leftover_example.dart' as google;
+import 'generate_aws_leftover_example.dart';
+import 'generate_cloudflare_leftover_example.dart';
+import 'generate_data_source_leftover_example.dart';
+import 'provider_diagnostics.dart' show AttrPath, TfAddress;
 
 const _manifest = MigrateManifest(
   package: 'terradart_example',
@@ -41,12 +42,9 @@ CoverageDummies _parse(String source, {Set<String> bindings = const {}}) =>
 
 void main() {
   final lanes = {
-    'google': (googleMigrateManifest, google.googleStackBindings),
-    'aws': (awsMigrateManifest, aws.awsStackBindings),
-    'cloudflare': (
-      cloudflareMigrateManifest,
-      cloudflare.cloudflareStackBindings,
-    ),
+    'google': (googleMigrateManifest, googleDataSourceStack.bindings),
+    'aws': (awsMigrateManifest, awsLeftoverStack.bindings),
+    'cloudflare': (cloudflareMigrateManifest, cloudflareLeftoverStack.bindings),
   };
 
   for (final MapEntry(key: lane, value: (manifest, bindings))
@@ -166,5 +164,118 @@ ExampleQueue.queueName: 'renamed-away'
 ExampleQueueScope.zoneId: 'unjudged'
 ''');
     expect(dummies.stale.map((k) => k.value), ['ExampleQueue.queueName']);
+  });
+
+  group('keyAt', () {
+    const manifest = MigrateManifest(
+      package: 'terradart_example',
+      entries: [
+        MigrateEntry(
+          tfType: 'example_route',
+          className: 'ExampleRoute',
+          barrel: 'example',
+          kind: CatalogKind.resource,
+          slots: [
+            MigrateSlot(
+              tfName: '',
+              dartName: 'cidr',
+              kind: MigrateSlotKind.sealed,
+              required: true,
+              merged: true,
+              variants: {'cidr_ip': 'ExampleRouteCidrIp'},
+            ),
+            MigrateSlot(
+              tfName: 'config',
+              dartName: 'config',
+              kind: MigrateSlotKind.helper,
+              required: false,
+              repeated: true,
+              helper: 'ExampleRouteConfig',
+            ),
+            MigrateSlot(
+              tfName: 'labels',
+              dartName: 'labels',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'Map<String, String>',
+            ),
+            MigrateSlot(
+              tfName: 'subnet_ids',
+              dartName: 'subnetIds',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'List<String>',
+            ),
+          ],
+          getters: [],
+        ),
+      ],
+      helpers: {
+        'ExampleRouteCidrIp': MigrateHelper(
+          className: 'ExampleRouteCidrIp',
+          slots: [
+            MigrateSlot(
+              tfName: 'cidr_ip',
+              dartName: 'cidrIp',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+          ],
+        ),
+        'ExampleRouteConfig': MigrateHelper(
+          className: 'ExampleRouteConfig',
+          slots: [
+            MigrateSlot(
+              tfName: 'mode',
+              dartName: 'mode',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+          ],
+        ),
+      },
+      enums: {},
+    );
+    final dummies = CoverageDummies.parse(
+      "ExampleRouteConfig.mode: 'STANDARD'\n",
+      path: 'example.yaml',
+      manifest: manifest,
+      bindings: const {},
+    );
+    final route = TfAddress.parse('example_route.route')!;
+    String? keyAt(List<Object> path) =>
+        dummies.keyAt(route, AttrPath(path))?.value;
+
+    test('names the class holding the slot the path ends at', () {
+      expect(keyAt(['config', 0, 'mode']), 'ExampleRouteConfig.mode');
+      expect(keyAt(['cidr_ip']), 'ExampleRouteCidrIp.cidrIp');
+      expect(keyAt(['subnet_ids', 1]), 'ExampleRoute.subnetIds');
+    });
+
+    test('is null where no ledger value was written', () {
+      expect(keyAt(['labels', 'k']), isNull);
+      expect(
+        dummies.keyAt(
+          TfAddress.parse('data.example_route.route')!,
+          const AttrPath(['config', 0, 'mode']),
+        ),
+        isNull,
+      );
+    });
+
+    test('a value learned for a list slot is saved as a list', () {
+      final learned = dummies.revised({
+        dummies.keyAt(route, const AttrPath(['subnet_ids', 0]))!: LearnedDummy(
+          Candidate(LiteralDummy('subnet-1'), 'sibling X.subnetIds'),
+          'evidence',
+        ),
+      });
+      expect(
+        learned.valueFor('ExampleRoute', 'subnetIds')?.dart,
+        "['subnet-1']",
+      );
+    });
   });
 }

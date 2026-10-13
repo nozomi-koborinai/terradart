@@ -3,14 +3,18 @@
 /// factory argument.
 ///
 /// Generators read it by Dart owner and parameter ([CoverageDummies.valueFor]).
-/// The key scheme (`Owner.param`, bare `param`, `*` globs of either) is
-/// private to this file, so no caller builds a key.
+/// `tool/coverage_stack.dart` reaches it by Terraform address and attribute
+/// path ([CoverageDummies.keyAt]). The key scheme (`Owner.param`, bare
+/// `param`, `*` globs of either) and the manifest walk between the two faces
+/// are private to this file, so no caller builds a key.
 library;
 
 import 'dart:io';
 
 import 'package:terradart_migrate/terradart_migrate.dart';
 import 'package:yaml/yaml.dart';
+
+import 'provider_diagnostics.dart' show AttrPath, TfAddress;
 
 /// A dummy as the ledger holds it.
 sealed class DummyValue {
@@ -95,6 +99,17 @@ final class Candidate {
   final String source;
 }
 
+/// A candidate the provider accepted, and the diagnostic it answered.
+final class LearnedDummy {
+  const LearnedDummy(this.candidate, this.evidence);
+
+  final Candidate candidate;
+
+  /// `<address>.<path> rejected <value>: <message> (<source>)`, saved as the
+  /// entry's `why:`.
+  final String evidence;
+}
+
 /// One lane's ledger, parsed and validated.
 final class CoverageDummies {
   CoverageDummies._(this.path, this._header, this._entries, this._manifest)
@@ -171,6 +186,77 @@ final class CoverageDummies {
   /// key or glob that would match any owner.
   bool ownsValue(String owner, String param) =>
       _exact.containsKey('$owner.$param');
+
+  /// The exact key for the value the generator wrote at [path] of the block
+  /// [address]: the class holding the slot (factory, helper or sealed
+  /// variant) and the slot's Dart name. Null where the manifest cannot say (a
+  /// passthrough map, a manual slot, an entry inside a scalar map), so the
+  /// factory is left out rather than learned.
+  DummyKey? keyAt(TfAddress address, AttrPath path) {
+    final entry = _manifest.entryFor(
+      address.type,
+      address.dataSource ? CatalogKind.dataSource : CatalogKind.resource,
+    );
+    if (entry == null) return null;
+    final key = _keyIn(_manifest, entry.className, entry.slots, path.segments);
+    return key == null ? null : DummyKey._(key);
+  }
+
+  /// Literal values other entries give a parameter named like [key]'s,
+  /// closest owner first (longest shared owner-name prefix), deduplicated,
+  /// at most five. Bound and Dart values are never candidates.
+  List<Candidate> siblingsOf(DummyKey key) {
+    final (owner, param) = _split(key);
+    final scored = <(int, _Entry)>[
+      for (final e in _entries)
+        if (e.value is LiteralDummy && e.key.text != key.value)
+          if (_closeness(e.key, owner, param) case final c?) (c, e),
+    ];
+    scored.sort(
+      (a, b) => a.$1 != b.$1
+          ? b.$1.compareTo(a.$1)
+          : a.$2.key.text.compareTo(b.$2.key.text),
+    );
+    final seen = <LiteralDummy>{};
+    return [
+      for (final (_, e) in scored)
+        if (seen.add(e.value as LiteralDummy))
+          Candidate(e.value as LiteralDummy, 'sibling ${e.key.text}'),
+    ].take(5).toList();
+  }
+
+  /// A copy with each of [learned] under its exact key, with the evidence as
+  /// `why:`, and with [stale] keys removed. A list slot takes a scalar
+  /// candidate as a one-element list. Pure.
+  CoverageDummies revised(Map<DummyKey, LearnedDummy> learned) {
+    final drop = {...stale, ...learned.keys};
+    return CoverageDummies._(path, _header, [
+      for (final e in _entries)
+        if (!drop.contains(DummyKey._(e.key.text))) e,
+      for (final MapEntry(key: k, value: l) in learned.entries)
+        if (_split(k) case (final owner, final param))
+          _Entry(
+            _ExactKey(k.value, owner, param),
+            _shapedFor(owner, param, l.candidate.value),
+            l.evidence,
+          ),
+    ], _manifest);
+  }
+
+  LiteralDummy _shapedFor(String owner, String param, LiteralDummy value) {
+    final slots = [
+      ...?_manifest.helpers[owner]?.slots,
+      for (final e in _manifest.entries)
+        if (e.className == owner) ...e.slots,
+    ];
+    final slot = slots.where((s) => s.dartName == param).firstOrNull;
+    final list =
+        slot != null &&
+        (slot.repeated ||
+            (slot.dartType?.startsWith('List<') ?? false) ||
+            (slot.dartType?.startsWith('Set<') ?? false));
+    return list && value.json is! List ? LiteralDummy([value.json]) : value;
+  }
 
   /// Exact keys whose owner class the lane's manifest knows but whose
   /// parameter it does not: a renamed or removed slot. A key whose owner the
@@ -358,6 +444,106 @@ Map<String, Set<String>> _paramsByOwner(MigrateManifest manifest) {
     for (final e in manifest.entries) e.className: params(e.slots),
     for (final h in manifest.helpers.values) h.className: params(h.slots),
   };
+}
+
+(String, String) _split(DummyKey key) {
+  final dot = key.value.indexOf('.');
+  return (key.value.substring(0, dot), key.value.substring(dot + 1));
+}
+
+/// How close an entry keyed [key] sits to (`owner`, `param`): the length of
+/// the owner name an exact key shares with [owner], 0 for a bare key or a
+/// glob that answers [param], null when the entry names another parameter.
+int? _closeness(_Key key, String owner, String param) => switch (key) {
+  _ExactKey(owner: final o, param: final p) when p == param => _sharedPrefix(
+    o,
+    owner,
+  ),
+  _BareKey(param: final p) when p == param => 0,
+  _GlobKey(param: final p) when p.hasMatch(param) => 0,
+  _ => null,
+};
+
+int _sharedPrefix(String a, String b) {
+  var n = 0;
+  while (n < a.length && n < b.length && a[n] == b[n]) {
+    n++;
+  }
+  return n;
+}
+
+/// The key of the slot under [owner]'s [slots] that encodes [path]. A merged
+/// slot contributes its helper's keys, or its variants' block keys, at this
+/// level.
+String? _keyIn(
+  MigrateManifest m,
+  String owner,
+  List<MigrateSlot> slots,
+  List<Object> path,
+) {
+  path = _skipIndices(path);
+  if (path.isEmpty) return null;
+  for (final slot in slots) {
+    if (slot.merged) {
+      final key = switch (slot.kind) {
+        MigrateSlotKind.helper => _inHelper(m, slot.helper, path),
+        MigrateSlotKind.sealed => _inVariant(m, slot, path),
+        _ => null,
+      };
+      if (key != null) return key;
+      continue;
+    }
+    final names = slot.tfName.split('.');
+    if (path.length < names.length) continue;
+    var matches = true;
+    for (var k = 0; k < names.length && matches; k++) {
+      matches = path[k] == names[k];
+    }
+    if (!matches) continue;
+    var rest = _skipIndices(path.sublist(names.length));
+    if (slot.keyed) {
+      if (rest.isEmpty) return null;
+      rest = rest.sublist(1);
+    }
+    return switch (slot.kind) {
+      MigrateSlotKind.scalar ||
+      MigrateSlotKind.enumValue ||
+      MigrateSlotKind.reference =>
+        rest.isEmpty ? '$owner.${slot.dartName}' : null,
+      MigrateSlotKind.helper => _inHelper(m, slot.helper, rest),
+      MigrateSlotKind.sealed => _inVariant(m, slot, rest),
+      _ => null,
+    };
+  }
+  return null;
+}
+
+String? _inHelper(MigrateManifest m, String? helper, List<Object> path) {
+  final h = m.helpers[helper];
+  return h == null ? null : _keyIn(m, h.className, h.slots, path);
+}
+
+/// The variant a sealed slot's block key picks. The variant's slots read the
+/// key's own level when its `encode()` wrote the key, else the block under
+/// it.
+String? _inVariant(MigrateManifest m, MigrateSlot slot, List<Object> path) {
+  path = _skipIndices(path);
+  if (path.isEmpty || path.first is! String) return null;
+  final key = path.first as String;
+  final v = m.helpers[slot.variants?[key]];
+  if (v == null) return null;
+  final writesKey = v.slots.any(
+    (s) => s.tfName == key || s.tfName.startsWith('$key.'),
+  );
+  return _keyIn(m, v.className, v.slots, writesKey ? path : path.sublist(1));
+}
+
+List<Object> _skipIndices(List<Object> path) {
+  var i = 0;
+  while (i < path.length && path[i] is int) {
+    i++;
+  }
+  return path.sublist(i);
 }
 
 bool _isLiteral(Object json) =>

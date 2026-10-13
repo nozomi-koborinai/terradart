@@ -1,20 +1,16 @@
-#!/usr/bin/env dart
-
-// Generates examples/aws_leftover_quickstart/lib/main.dart: one constructor
+// Renders examples/aws_leftover_quickstart/lib/main.dart, for
+// tool/coverage_stack.dart, which writes and validates it: one constructor
 // call per AWS factory (resource or data source) that no other example
 // covers. Dummy values satisfy the Dart types and the provider's
 // validate-time checks, so synth + terraform validate cover the filled
 // catalog. Live apply is out of scope. Literal values live in
 // tool/coverage_dummies/aws.yaml.
-//
-// Regenerates from generated wrappers; do not hand-edit main.dart.
 
 import 'dart:io';
 
-import 'package:terradart_migrate/terradart_migrate.dart';
-
 import 'catalog_class_names.dart';
 import 'coverage_dummies.dart';
+import 'coverage_stack.dart';
 import 'dot_shorthands.dart';
 
 const _skipResourceTypes = {
@@ -58,7 +54,6 @@ const _skipDataTypes = {
 };
 
 const _srcRoot = 'packages/terradart_aws/lib/src';
-const _outPath = 'examples/aws_leftover_quickstart/lib/main.dart';
 
 /// Terraform variable backing every sensitive leaf in the generated
 /// stack. Declared by the generator so the reference resolves at synth.
@@ -75,172 +70,175 @@ String _secretFor(String type) {
       : "Sensitive.variable('$_secretVar')";
 }
 
-/// Names the stack's preamble declares, which a ledger value may read.
-const awsStackBindings = {'arn', 'policy', 'leftover'};
+/// The aws lane's coverage stack.
+const awsLeftoverStack = _AwsLeftoverStack();
 
-late CoverageDummies _dummies;
+final class _AwsLeftoverStack implements CoverageStackGenerator {
+  const _AwsLeftoverStack();
 
-void main() {
-  _dummies = CoverageDummies.load(
-    'aws',
-    manifest: awsMigrateManifest,
-    bindings: awsStackBindings,
-  );
-  final catalogued = catalogClassNames(_srcRoot);
-  final files =
-      Directory(_srcRoot)
-          .listSync(recursive: true)
-          .whereType<File>()
-          .where(
-            (f) =>
-                f.path.endsWith('.dart') &&
-                !f.path.endsWith('_catalog.g.dart') &&
-                !f.path.endsWith('catalog_entry.dart'),
-          )
-          .toList()
-        ..sort((a, b) => a.path.compareTo(b.path));
+  @override
+  String get slug => 'aws_leftover';
 
-  final parsedFiles = <String, _ParsedFile>{};
-  for (final file in files) {
-    parsedFiles[file.path] = _parseFile(file);
-    _collectEnums(file.readAsStringSync());
-  }
+  @override
+  Set<String> get bindings => const {'arn', 'policy', 'leftover'};
 
-  final helpers = <String, _ClassInfo>{};
-  final factories = <_Factory>[];
-  for (final parsed in parsedFiles.values) {
-    for (final cls in parsed.classes.values) {
-      if (cls.kind == _Kind.helper) {
-        helpers[cls.name] = cls;
-      } else if (cls.kind == _Kind.resource || cls.kind == _Kind.data) {
-        if (cls.tfType == null || !catalogued.contains(cls.name)) continue;
-        if (cls.kind == _Kind.resource &&
-            _skipResourceTypes.contains(cls.tfType)) {
-          continue;
+  @override
+  RenderedStack render(
+    CoverageDummies dummies, {
+    required Set<String> exclude,
+  }) {
+    _dummies = dummies;
+    _sealedVariants.clear();
+    _enums.clear();
+    _usedKeys.clear();
+    _insideHelper = false;
+    final catalogued = catalogClassNames(_srcRoot);
+    final files =
+        Directory(_srcRoot)
+            .listSync(recursive: true)
+            .whereType<File>()
+            .where(
+              (f) =>
+                  f.path.endsWith('.dart') &&
+                  !f.path.endsWith('_catalog.g.dart') &&
+                  !f.path.endsWith('catalog_entry.dart'),
+            )
+            .toList()
+          ..sort((a, b) => a.path.compareTo(b.path));
+
+    final parsedFiles = <String, _ParsedFile>{};
+    for (final file in files) {
+      parsedFiles[file.path] = _parseFile(file);
+      _collectEnums(file.readAsStringSync());
+    }
+
+    final helpers = <String, _ClassInfo>{};
+    final factories = <_Factory>[];
+    final leftOut = <String>{};
+    for (final parsed in parsedFiles.values) {
+      for (final cls in parsed.classes.values) {
+        if (cls.kind == _Kind.helper) {
+          helpers[cls.name] = cls;
+        } else if (cls.kind == _Kind.resource || cls.kind == _Kind.data) {
+          if (cls.tfType == null || !catalogued.contains(cls.name)) continue;
+          if (cls.kind == _Kind.resource &&
+              _skipResourceTypes.contains(cls.tfType)) {
+            continue;
+          }
+          if (cls.kind == _Kind.data && _skipDataTypes.contains(cls.tfType)) {
+            continue;
+          }
+          if (exclude.contains(cls.name)) {
+            leftOut.add(cls.name);
+            continue;
+          }
+          factories.add(
+            _Factory(
+              type: cls.tfType!,
+              className: cls.name,
+              kind: cls.kind,
+              requiredParams: cls.requiredParams,
+              optionalParams: cls.optionalParams,
+              filePath: parsed.path,
+              sensitiveLeaves: parsed.sensitiveLeaves,
+            ),
+          );
         }
-        if (cls.kind == _Kind.data && _skipDataTypes.contains(cls.tfType)) {
-          continue;
-        }
-        factories.add(
-          _Factory(
-            type: cls.tfType!,
-            className: cls.name,
-            kind: cls.kind,
-            requiredParams: cls.requiredParams,
-            optionalParams: cls.optionalParams,
-            filePath: parsed.path,
-            sensitiveLeaves: parsed.sensitiveLeaves,
-          ),
+      }
+    }
+    factories.sort((a, b) {
+      final k = a.kind.index.compareTo(b.kind.index);
+      if (k != 0) return k;
+      return a.type.compareTo(b.type);
+    });
+
+    final usedLocals = <String>{};
+    final buf = StringBuffer()
+      ..writeln('// GENERATED — dart tool/coverage_stack.dart --lane aws')
+      ..writeln('// ignore_for_file: unused_element')
+      ..writeln()
+      ..writeln(
+        '/// Coverage stack for leftover AWS factories at the current pin.',
+      )
+      ..writeln(
+        '/// Dummy constructor values; synth + terraform validate only.',
+      )
+      ..writeln('/// Never apply.')
+      ..writeln('library;')
+      ..writeln()
+      ..writeln("import 'package:terradart_aws/terradart_aws.dart';")
+      ..writeln()
+      ..writeln('final class AwsLeftoverStack extends Stack {')
+      ..writeln('  AwsLeftoverStack()')
+      ..writeln(
+        "      : super(providers: [const AwsProvider(region: 'us-east-1')]) {",
+      )
+      ..writeln("    const leftover = 'leftover';")
+      ..writeln("    const arn = 'arn:aws:iam::$_accountId:role/leftover';")
+      ..writeln('    const policy =')
+      ..writeln('        $_policyJson;')
+      ..writeln();
+
+    // Body first: the preamble can only decide whether to declare the
+    // secret variable once it knows a factory actually referenced it.
+    final body = StringBuffer();
+    for (final f in factories) {
+      final local = _uniqueLocal(f.type, f.kind, usedLocals);
+      body.writeln('    add(');
+      body.writeln('      ${f.className}(');
+      body.writeln("        '$local',");
+      for (final p in f.requiredParams) {
+        body.writeln(
+          '        ${p.name}: ${_dummy(p, helpers, sensitive: f.sensitiveLeaves, depth: 0, owner: f.className)},',
+        );
+      }
+      for (final extra in _extras(f, helpers)) {
+        body.writeln('        ${extra.name}: ${extra.value},');
+      }
+      body.writeln('      ),');
+      body.writeln('    );');
+      body.writeln();
+    }
+
+    // Sensitive leaves read the variable's handle, and synth
+    // rejects a reference with no matching declaration — so the declaration
+    // is generated too, not hand-added to this generated file.
+    if (body.toString().contains(_secretVarRef)) {
+      buf.writeln(
+        "    final $_secretVarRef = variable<String>('$_secretVar', "
+        'sensitive: true);',
+      );
+      buf.writeln();
+    }
+    buf.write(body);
+
+    buf.writeln('  }');
+    buf.writeln('}');
+
+    // A left-out factory leaves its knobs unread, so only a render that left
+    // none out can tell a stale knob.
+    if (leftOut.isEmpty) {
+      final stale = {
+        ..._extraParams.keys,
+        ..._listCounts.keys,
+      }.difference(_usedKeys).toList()..sort();
+      if (stale.isNotEmpty) {
+        throw StateError(
+          'Unused _extraParams / _listCounts keys:\n  ${stale.join('\n  ')}',
         );
       }
     }
-  }
-  factories.sort((a, b) {
-    final k = a.kind.index.compareTo(b.kind.index);
-    if (k != 0) return k;
-    return a.type.compareTo(b.type);
-  });
 
-  final usedLocals = <String>{};
-  final buf = StringBuffer()
-    ..writeln('// GENERATED — dart run tool/generate_aws_leftover_example.dart')
-    ..writeln('// ignore_for_file: unused_element')
-    ..writeln()
-    ..writeln(
-      '/// Coverage stack for leftover AWS factories at the current pin.',
-    )
-    ..writeln('/// Dummy constructor values; synth + terraform validate only.')
-    ..writeln('/// Never apply.')
-    ..writeln('library;')
-    ..writeln()
-    ..writeln("import 'package:terradart_aws/terradart_aws.dart';")
-    ..writeln()
-    ..writeln('final class AwsLeftoverStack extends Stack {')
-    ..writeln('  AwsLeftoverStack()')
-    ..writeln(
-      "      : super(providers: [const AwsProvider(region: 'us-east-1')]) {",
-    )
-    ..writeln("    const leftover = 'leftover';")
-    ..writeln("    const arn = 'arn:aws:iam::$_accountId:role/leftover';")
-    ..writeln('    const policy =')
-    ..writeln('        $_policyJson;')
-    ..writeln();
-
-  // Body first: the preamble can only decide whether to declare the
-  // secret variable once it knows a factory actually referenced it.
-  final body = StringBuffer();
-  for (final f in factories) {
-    final local = _uniqueLocal(f.type, f.kind, usedLocals);
-    body.writeln('    add(');
-    body.writeln('      ${f.className}(');
-    body.writeln("        '$local',");
-    for (final p in f.requiredParams) {
-      body.writeln(
-        '        ${p.name}: ${_dummy(p, helpers, sensitive: f.sensitiveLeaves, depth: 0, owner: f.className)},',
-      );
-    }
-    for (final extra in _extras(f, helpers)) {
-      body.writeln('        ${extra.name}: ${extra.value},');
-    }
-    body.writeln('      ),');
-    body.writeln('    );');
-    body.writeln();
-  }
-
-  // Sensitive leaves read the variable's handle, and synth
-  // rejects a reference with no matching declaration — so the declaration
-  // is generated too, not hand-added to this generated file.
-  if (body.toString().contains(_secretVarRef)) {
-    buf.writeln(
-      "    final $_secretVarRef = variable<String>('$_secretVar', "
-      'sensitive: true);',
-    );
-    buf.writeln();
-  }
-  buf.write(body);
-
-  buf.writeln('  }');
-  buf.writeln('}');
-
-  final stale = {
-    ..._extraParams.keys,
-    ..._listCounts.keys,
-  }.difference(_usedKeys).toList()..sort();
-  if (stale.isNotEmpty) {
-    stderr.writeln(
-      'Unused _extraParams / _listCounts keys:\n  '
-      '${stale.join('\n  ')}',
-    );
-    exit(1);
-  }
-
-  File(_outPath)
-    ..createSync(recursive: true)
-    ..writeAsStringSync(
+    return RenderedStack(
       dotShorthands(
         buf.toString(),
         packageEnums('packages/terradart_aws/lib/src'),
       ),
     );
-  // dart format splits long literals without the trailing commas
-  // `require_trailing_commas` wants, so fix between two format passes.
-  _run(['format', _outPath]);
-  _run(['fix', '--apply', '--code=require_trailing_commas', _outPath]);
-  _run(['format', _outPath]);
-  stdout.writeln(
-    'Wrote leftover example: ${factories.length} factories '
-    '(${factories.where((f) => f.kind == _Kind.resource).length} resources + '
-    '${factories.where((f) => f.kind == _Kind.data).length} data)',
-  );
-}
-
-void _run(List<String> args) {
-  final r = Process.runSync('dart', args);
-  if (r.exitCode != 0) {
-    stderr.writeln('dart ${args.join(' ')} failed:\n${r.stdout}${r.stderr}');
-    exit(r.exitCode);
   }
 }
+
+late CoverageDummies _dummies;
 
 enum _Kind { resource, data, helper }
 
@@ -923,7 +921,11 @@ String _sealedChoice(
         ? throw StateError('$sealed declares no variants')
         : variants.first,
   );
-  if (_dummies.ownsValue(sealed, member.name)) owner = sealed;
+  if (_dummies.ownsValue(variant, member.name)) {
+    owner = variant;
+  } else if (_dummies.ownsValue(sealed, member.name)) {
+    owner = sealed;
+  }
   final outer = _insideHelper;
   _insideHelper = true;
   final value = _dummy(
@@ -1236,7 +1238,7 @@ String _dummyForType(
   if (t.endsWith('?')) t = t.substring(0, t.length - 1).trim();
 
   if (t.startsWith('RefTo<')) {
-    return 'RefTo.literal(${_stringLiteral(name, owner: owner)})';
+    return 'RefTo.literal(${_stringValue(name, owner: owner)})';
   }
   if (t.startsWith('Sensitive<')) return _secretFor(t);
   if (t.startsWith('TfArg<') && t.endsWith('>')) {
@@ -1307,14 +1309,14 @@ String _literalInner(
 }) {
   var t = inner.trim();
   if (t.endsWith('?')) t = t.substring(0, t.length - 1).trim();
-  if (t == 'String') return _stringLiteral(name, owner: owner);
+  if (t == 'String') return _stringValue(name, owner: owner);
   if (_enums.containsKey(t)) return _enumMember(t, name, owner: owner);
   if (t == 'num' || t == 'int' || t == 'double') return '200';
   if (t == 'bool') return 'true';
   if (t.startsWith('List<') && t.endsWith('>')) {
     final listInner = t.substring(5, t.length - 1).trim().replaceAll('?', '');
     if (listInner.startsWith('RefTo<')) {
-      return '[RefTo.literal(${_stringLiteral(name, owner: owner)})]';
+      return '[RefTo.literal(${_stringValue(name, owner: owner)})]';
     }
     if (helpers.containsKey(listInner)) {
       return '[${_constructHelper(listInner, helpers, depth: depth + 1, sensitive: sensitive)},]';
@@ -1326,7 +1328,7 @@ String _literalInner(
       return '[200]';
     }
     if (listInner.contains('bool')) return '[true]';
-    if (listInner == 'String') return '[${_stringLiteral(name, owner: owner)}]';
+    if (listInner == 'String') return '[${_stringValue(name, owner: owner)}]';
     return '[leftover]';
   }
   if (t.startsWith('Map<') || t == 'Map') {
@@ -1385,10 +1387,10 @@ String _enumFor(String enumName, String literal) {
   return '$enumName.${pick.$1}';
 }
 
-/// The member whose value [_stringLiteral] would have written for the slot
+/// The member whose value [_stringValue] would have written for the slot
 /// (the value its provider validator accepts), else the first member.
 String _enumMember(String enumName, String name, {required String owner}) =>
-    _enumFor(enumName, _stringLiteral(name, owner: owner));
+    _enumFor(enumName, _stringValue(name, owner: owner));
 
 /// Deeper than any typed helper chain in the catalog; the heavy
 /// resources take their nested blocks as maps.
@@ -1468,7 +1470,7 @@ String _repeat(String listExpr, int count) {
 const _policyJson =
     r"""'{"Version":"2012-10-17","Statement":[{"Effect":"Allow","Action":"s3:GetObject","Resource":"*"}]}'""";
 
-String _stringLiteral(String name, {String owner = ''}) {
+String _stringValue(String name, {String owner = ''}) {
   final value = _dummies.valueFor(owner, name);
   return value != null && value.isString ? value.dart : 'leftover';
 }
