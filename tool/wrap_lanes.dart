@@ -9,7 +9,11 @@
 //   dart tool/wrap_lanes.dart --gate regen --lane aws  # terradart wrap (writes)
 //   dart tool/wrap_lanes.dart --lane cloudflare  # one lane
 // `regen` rewrites the lane's generated files (the schema bump runs it after
-// refreshing a fixture), so it only runs when named. On a `providerEnums`
+// refreshing a fixture), so it only runs when named. It first retires
+// overrides whose type the fixture no longer has
+// (tool/retire_removed_overrides.dart), so a removed upstream type does not
+// abort the wrap that writes the provider pin and the new factories.
+// `wrap --check` still fails on an override the schema lacks. On a `providerEnums`
 // lane whose hints were extracted at another provider version than
 // `<schemaDir>/provider_version.txt`, regen first re-extracts them from the
 // `bump.repo` source (tool/extract_provider_hints.dart, network). On an
@@ -29,6 +33,8 @@ import 'package:terradart_codegen/src/cli/lint_override_command.dart';
 import 'package:terradart_codegen/src/codegen/sealed_name_debt.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_overrides/_registry.dart';
 import 'package:yaml/yaml.dart';
+
+import 'retire_removed_overrides.dart';
 
 const providersPath = 'tool/providers.yaml';
 
@@ -549,6 +555,23 @@ Future<void> main(List<String> args) async {
             failed.add('${lane.name} (mm sync, exit $code)');
             continue;
           }
+        }
+      }
+      if (gate == WrapGate.regen) {
+        final schemaDir = p.join(repoRoot, lane.schemaDir);
+        final retired = retireRemovedOverrides(
+          schemaPath: p.join(schemaDir, 'schema.json'),
+          overridesRoot: p.join(repoRoot, lane.overridesRoot),
+          barrelsManifest: p.join(repoRoot, lane.barrelsManifest),
+        );
+        if (!retired.isEmpty) {
+          print(
+            '>> retire removed overrides (${lane.name}): '
+            'resources ${retired.resources} '
+            'data sources ${retired.dataSources} '
+            'barrels ${retired.barrels} '
+            'hints ${retired.hints}',
+          );
         }
       }
       print('>> ${gate.label} (${lane.name})');

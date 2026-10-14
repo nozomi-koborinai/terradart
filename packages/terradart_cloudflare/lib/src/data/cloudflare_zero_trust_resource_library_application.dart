@@ -18,6 +18,7 @@ final class DataZeroTrustResourceLibraryApplicationFilter {
     this.fields,
     this.filter,
     this.limit,
+    this.lookup,
     this.offset,
     this.orderBy,
     this.search,
@@ -28,6 +29,8 @@ final class DataZeroTrustResourceLibraryApplicationFilter {
   final TfArg<String>? filter;
 
   final TfArg<num>? limit;
+
+  final TfArg<String>? lookup;
 
   final TfArg<num>? offset;
 
@@ -40,6 +43,7 @@ final class DataZeroTrustResourceLibraryApplicationFilter {
     'fields': ?fields?.toTfJson(),
     'filter': ?filter?.toTfJson(),
     'limit': ?limit?.toTfJson(),
+    'lookup': ?lookup?.toTfJson(),
     'offset': ?offset?.toTfJson(),
     'order_by': ?orderBy?.toTfJson(),
     'search': ?search?.toTfJson(),

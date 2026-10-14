@@ -182,6 +182,39 @@ const terradartCatalog = <CatalogEntry>[
       ]);
     });
 
+    test('a later note fills an entry recorded without one', () {
+      final filled = appendCurationEntries(
+        existing: const [
+          {
+            'resource': 'aws_new',
+            'detected_at': '2026-10-19',
+            'provider_version': '6.69.0',
+          },
+        ],
+        resources: ['aws_new'],
+        detectedAt: '2026-10-19',
+        providerVersion: '6.69.0',
+        note: 'factory generated',
+      );
+      expect(filled.single['note'], 'factory generated');
+
+      final kept = appendCurationEntries(
+        existing: const [
+          {
+            'resource': 'aws_new',
+            'detected_at': '2026-10-19',
+            'provider_version': '6.69.0',
+            'note': 'keep me',
+          },
+        ],
+        resources: ['aws_new'],
+        detectedAt: '2026-10-19',
+        providerVersion: '6.69.0',
+        note: 'factory generated',
+      );
+      expect(kept.single['note'], 'keep me');
+    });
+
     test('the left-out backlog note survives the backlog file', () {
       final yaml = formatBacklogYaml(
         header: '# backlog',

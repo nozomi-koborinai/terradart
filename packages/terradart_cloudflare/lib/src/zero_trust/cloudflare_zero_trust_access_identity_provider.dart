@@ -66,6 +66,9 @@ extension type const ZeroTrustAccessIdentityProviderType._(TfArg<String> _)
   static const cloudflare = ZeroTrustAccessIdentityProviderType._(
     TfArgLiteral('cloudflare'),
   );
+  static const passkeys = ZeroTrustAccessIdentityProviderType._(
+    TfArgLiteral('passkeys'),
+  );
 
   static const List<ZeroTrustAccessIdentityProviderType> values = [
     onetimepin,
@@ -83,6 +86,7 @@ extension type const ZeroTrustAccessIdentityProviderType._(TfArg<String> _)
     pingone,
     yandex,
     cloudflare,
+    passkeys,
   ];
 }
 
@@ -109,6 +113,7 @@ final class ZeroTrustAccessIdentityProviderConfig {
     this.forceAuthn,
     this.idpPublicCerts,
     this.issuerUrl,
+    this.loginPageAutoPrompt,
     this.maxSsoUrlLength,
     this.oktaAccount,
     this.oneloginAccount,
@@ -161,6 +166,8 @@ final class ZeroTrustAccessIdentityProviderConfig {
 
   final TfArg<String>? issuerUrl;
 
+  final TfArg<bool>? loginPageAutoPrompt;
+
   final TfArg<num>? maxSsoUrlLength;
 
   final TfArg<String>? oktaAccount;
@@ -209,6 +216,7 @@ final class ZeroTrustAccessIdentityProviderConfig {
     'force_authn': ?forceAuthn?.toTfJson(),
     'idp_public_certs': ?idpPublicCerts?.toTfJson(),
     'issuer_url': ?issuerUrl?.toTfJson(),
+    'login_page_auto_prompt': ?loginPageAutoPrompt?.toTfJson(),
     'max_sso_url_length': ?maxSsoUrlLength?.toTfJson(),
     'okta_account': ?oktaAccount?.toTfJson(),
     'onelogin_account': ?oneloginAccount?.toTfJson(),

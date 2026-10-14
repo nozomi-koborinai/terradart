@@ -263,6 +263,7 @@ final class WorkerVersionBindings {
     this.versionId,
     this.workflowName,
     this.outbound,
+    this.retry,
     this.simple,
   });
 
@@ -352,6 +353,8 @@ final class WorkerVersionBindings {
 
   final WorkerVersionOutbound? outbound;
 
+  final WorkerVersionRetry? retry;
+
   final WorkerVersionSimple? simple;
 
   @internal
@@ -399,6 +402,7 @@ final class WorkerVersionBindings {
     'version_id': ?versionId?.toTfJson(),
     'workflow_name': ?workflowName?.toTfJson(),
     'outbound': ?outbound?.encode(),
+    'retry': ?retry?.encode(),
     'simple': ?simple?.encode(),
   };
 }
@@ -480,6 +484,9 @@ extension type const WorkerVersionBindingsType._(TfArg<String> _)
   static const analyticsEngine = WorkerVersionBindingsType._(
     TfArgLiteral('analytics_engine'),
   );
+  static const artifacts = WorkerVersionBindingsType._(
+    TfArgLiteral('artifacts'),
+  );
   static const assets = WorkerVersionBindingsType._(TfArgLiteral('assets'));
   static const browser = WorkerVersionBindingsType._(TfArgLiteral('browser'));
   static const d1 = WorkerVersionBindingsType._(TfArgLiteral('d1'));
@@ -559,6 +566,7 @@ extension type const WorkerVersionBindingsType._(TfArg<String> _)
     aiSearchNamespace,
     messaging,
     analyticsEngine,
+    artifacts,
     assets,
     browser,
     d1,
@@ -640,6 +648,23 @@ final class WorkerVersionWorker {
     'entrypoint': ?entrypoint?.toTfJson(),
     'environment': ?environment?.toTfJson(),
     'service': ?service?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `bindings.retry` block of
+/// `cloudflare_worker_version` (derived from provider schema).
+@immutable
+final class WorkerVersionRetry {
+  const WorkerVersionRetry({this.maxAttempts, this.timeoutMs});
+
+  final TfArg<num>? maxAttempts;
+
+  final TfArg<num>? timeoutMs;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'max_attempts': ?maxAttempts?.toTfJson(),
+    'timeout_ms': ?timeoutMs?.toTfJson(),
   };
 }
 

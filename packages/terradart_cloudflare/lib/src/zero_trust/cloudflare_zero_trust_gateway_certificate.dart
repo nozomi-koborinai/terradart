@@ -66,6 +66,9 @@ final class CloudflareZeroTrustGatewayCertificate extends Resource {
   /// Reference to `issuer_raw` attribute.
   TfRef<String> get issuerRaw => TfRef.attribute<String>(this, 'issuer_raw');
 
+  /// Reference to `region` attribute.
+  TfRef<String> get region => TfRef.attribute<String>(this, 'region');
+
   /// Reference to `type` attribute.
   TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 

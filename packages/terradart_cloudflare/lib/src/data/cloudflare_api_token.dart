@@ -75,6 +75,10 @@ final class DataCloudflareApiToken extends Data {
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
+  /// Reference to `creator_email_at_creation` attribute.
+  TfRef<String> get creatorEmailAtCreation =>
+      TfRef.attribute<String>(this, 'creator_email_at_creation');
+
   /// Reference to `expires_on` attribute.
   TfRef<String> get expiresOn => TfRef.attribute<String>(this, 'expires_on');
 
@@ -89,6 +93,14 @@ final class DataCloudflareApiToken extends Data {
 
   /// Reference to `not_before` attribute.
   TfRef<String> get notBefore => TfRef.attribute<String>(this, 'not_before');
+
+  /// Reference to `provisioner_id` attribute.
+  TfRef<String> get provisionerId =>
+      TfRef.attribute<String>(this, 'provisioner_id');
+
+  /// Reference to `provisioner_type` attribute.
+  TfRef<String> get provisionerType =>
+      TfRef.attribute<String>(this, 'provisioner_type');
 
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');

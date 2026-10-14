@@ -15,7 +15,7 @@ const Set<String> _cloudflareFlagshipFlagSensitive = <String>{};
 final class DataFlagshipFlagFilter {
   const DataFlagshipFlagFilter({this.limit});
 
-  final TfArg<String>? limit;
+  final TfArg<num>? limit;
 
   @internal
   Map<String, Object?> encode() => {'limit': ?limit?.toTfJson()};

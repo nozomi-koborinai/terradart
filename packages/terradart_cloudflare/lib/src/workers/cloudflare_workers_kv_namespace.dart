@@ -26,6 +26,19 @@ extension type const WorkersKvNamespaceJurisdiction._(TfArg<String> _)
   static const List<WorkersKvNamespaceJurisdiction> values = [eu, fedramp, us];
 }
 
+/// Workers Kv Namespace enum for `mode`.
+extension type const WorkersKvNamespaceMode._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkersKvNamespaceMode.variable(String name) : this._(TfArg.variable(name));
+  WorkersKvNamespaceMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkersKvNamespaceMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const instant = WorkersKvNamespaceMode._(TfArgLiteral('instant'));
+
+  static const List<WorkersKvNamespaceMode> values = [instant];
+}
+
 /// Factory wrapper for `cloudflare_workers_kv_namespace`.
 ///
 /// Accepted Permissions
@@ -38,6 +51,7 @@ final class CloudflareWorkersKvNamespace extends Resource {
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
     WorkersKvNamespaceJurisdiction? jurisdiction,
+    WorkersKvNamespaceMode? mode,
     required TfArg<String> title,
     super.lifecycle,
     super.dependsOn,
@@ -48,6 +62,7 @@ final class CloudflareWorkersKvNamespace extends Resource {
          argMap: {
            'account_id': accountId.encodeAs('id'),
            'jurisdiction': ?jurisdiction,
+           'mode': ?mode,
            'title': title,
          },
        );
@@ -72,6 +87,9 @@ final class CloudflareWorkersKvNamespace extends Resource {
   /// Reference to `jurisdiction` attribute.
   TfRef<String> get jurisdiction =>
       TfRef.attribute<String>(this, 'jurisdiction');
+
+  /// Reference to `mode` attribute.
+  TfRef<String> get mode => TfRef.attribute<String>(this, 'mode');
 
   /// Reference to `title` attribute.
   TfRef<String> get title => TfRef.attribute<String>(this, 'title');

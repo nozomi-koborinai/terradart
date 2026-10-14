@@ -175,17 +175,65 @@ final class AiSearchInstanceMetadata {
   const AiSearchInstanceMetadata({
     this.createdFromAisearchWizard,
     this.workerDomain,
+    this.createdFromEmdashPlugin,
   });
 
   final TfArg<bool>? createdFromAisearchWizard;
 
   final TfArg<String>? workerDomain;
 
+  final AiSearchInstanceCreatedFromEmdashPlugin? createdFromEmdashPlugin;
+
   @internal
   Map<String, Object?> encode() => {
     'created_from_aisearch_wizard': ?createdFromAisearchWizard?.toTfJson(),
     'worker_domain': ?workerDomain?.toTfJson(),
+    'created_from_emdash_plugin': ?createdFromEmdashPlugin?.encode(),
   };
+}
+
+/// Typed helper for the `metadata.created_from_emdash_plugin` block of
+/// `cloudflare_ai_search_instance` (derived from provider schema).
+@immutable
+final class AiSearchInstanceCreatedFromEmdashPlugin {
+  const AiSearchInstanceCreatedFromEmdashPlugin({
+    required this.type,
+    required this.version,
+  });
+
+  final AiSearchInstanceCreatedFromEmdashPluginType type;
+
+  final TfArg<String> version;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'type': type.toTfJson(),
+    'version': version.toTfJson(),
+  };
+}
+
+/// `type` — derived from the provider schema description.
+extension type const AiSearchInstanceCreatedFromEmdashPluginType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AiSearchInstanceCreatedFromEmdashPluginType.variable(String name)
+    : this._(TfArg.variable(name));
+  AiSearchInstanceCreatedFromEmdashPluginType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AiSearchInstanceCreatedFromEmdashPluginType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const native = AiSearchInstanceCreatedFromEmdashPluginType._(
+    TfArgLiteral('native'),
+  );
+  static const rest = AiSearchInstanceCreatedFromEmdashPluginType._(
+    TfArgLiteral('rest'),
+  );
+
+  static const List<AiSearchInstanceCreatedFromEmdashPluginType> values = [
+    native,
+    rest,
+  ];
 }
 
 /// Typed helper for the `public_endpoint_params` block of

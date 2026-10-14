@@ -95,6 +95,9 @@ final class DataCloudflareWorkersKvNamespace extends Data {
   TfRef<String> get jurisdiction =>
       TfRef.attribute<String>(this, 'jurisdiction');
 
+  /// Reference to `mode` attribute.
+  TfRef<String> get mode => TfRef.attribute<String>(this, 'mode');
+
   /// Reference to `supports_url_encoding` attribute.
   TfRef<bool> get supportsUrlEncoding =>
       TfRef.attribute<bool>(this, 'supports_url_encoding');

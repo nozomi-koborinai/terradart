@@ -70,6 +70,15 @@ export 'src/data/cloudflare_zero_trust_access_tag.dart'
     show DataCloudflareZeroTrustAccessTag;
 export 'src/data/cloudflare_zero_trust_access_tags.dart'
     show DataCloudflareZeroTrustAccessTags;
+export 'src/data/cloudflare_zero_trust_casb_integration.dart'
+    show
+        DataCloudflareZeroTrustCasbIntegration,
+        DataZeroTrustCasbIntegrationDirection,
+        DataZeroTrustCasbIntegrationFilter,
+        DataZeroTrustCasbIntegrationFilterStatus,
+        DataZeroTrustCasbIntegrationOrder;
+export 'src/data/cloudflare_zero_trust_casb_integrations.dart'
+    show DataCloudflareZeroTrustCasbIntegrations;
 export 'src/data/cloudflare_zero_trust_casb_policies.dart'
     show DataCloudflareZeroTrustCasbPolicies;
 export 'src/data/cloudflare_zero_trust_casb_policy.dart'
@@ -339,7 +348,6 @@ export 'src/zero_trust/cloudflare_zero_trust_access_application.dart'
         ZeroTrustAccessApplicationEmailDomain,
         ZeroTrustAccessApplicationEmailList,
         ZeroTrustAccessApplicationEveryone,
-        ZeroTrustAccessApplicationExclude,
         ZeroTrustAccessApplicationExternalEvaluation,
         ZeroTrustAccessApplicationFooterLinks,
         ZeroTrustAccessApplicationGeo,
@@ -349,7 +357,6 @@ export 'src/zero_trust/cloudflare_zero_trust_access_application.dart'
         ZeroTrustAccessApplicationGroup,
         ZeroTrustAccessApplicationGsuite,
         ZeroTrustAccessApplicationHybridAndImplicitOptions,
-        ZeroTrustAccessApplicationInclude,
         ZeroTrustAccessApplicationIp,
         ZeroTrustAccessApplicationIpList,
         ZeroTrustAccessApplicationL4Protocol,
@@ -369,7 +376,10 @@ export 'src/zero_trust/cloudflare_zero_trust_access_application.dart'
         ZeroTrustAccessApplicationOperations,
         ZeroTrustAccessApplicationOrigins,
         ZeroTrustAccessApplicationPolicies,
+        ZeroTrustAccessApplicationPoliciesExclude,
+        ZeroTrustAccessApplicationPoliciesInclude,
         ZeroTrustAccessApplicationPoliciesMfaConfig,
+        ZeroTrustAccessApplicationPoliciesRequire,
         ZeroTrustAccessApplicationPolicy,
         ZeroTrustAccessApplicationPolicyId,
         ZeroTrustAccessApplicationPolicyInclude,
@@ -379,7 +389,6 @@ export 'src/zero_trust/cloudflare_zero_trust_access_application.dart'
         ZeroTrustAccessApplicationRequestHeaders,
         ZeroTrustAccessApplicationRequestHeadersAllowAllHeaders,
         ZeroTrustAccessApplicationRequestHeadersAllowedHeaders,
-        ZeroTrustAccessApplicationRequire,
         ZeroTrustAccessApplicationSaasApp,
         ZeroTrustAccessApplicationSaml,
         ZeroTrustAccessApplicationScheme,
@@ -389,7 +398,11 @@ export 'src/zero_trust/cloudflare_zero_trust_access_application.dart'
         ZeroTrustAccessApplicationServiceToken,
         ZeroTrustAccessApplicationSsh,
         ZeroTrustAccessApplicationStrictness,
+        ZeroTrustAccessApplicationTargetAttributes,
         ZeroTrustAccessApplicationTargetCriteria,
+        ZeroTrustAccessApplicationTargetCriteriaExclude,
+        ZeroTrustAccessApplicationTargetCriteriaInclude,
+        ZeroTrustAccessApplicationTargetCriteriaRequire,
         ZeroTrustAccessApplicationTargets,
         ZeroTrustAccessApplicationTargetsDestinations,
         ZeroTrustAccessApplicationTargetsSelfHostedDomains,
@@ -499,6 +512,25 @@ export 'src/zero_trust/cloudflare_zero_trust_access_short_lived_certificate.dart
     show CloudflareZeroTrustAccessShortLivedCertificate;
 export 'src/zero_trust/cloudflare_zero_trust_access_tag.dart'
     show CloudflareZeroTrustAccessTag;
+export 'src/zero_trust/cloudflare_zero_trust_casb_integration.dart'
+    show
+        CloudflareZeroTrustCasbIntegration,
+        ZeroTrustCasbIntegrationAnthropic,
+        ZeroTrustCasbIntegrationAnthropicAdminApiKey,
+        ZeroTrustCasbIntegrationAnthropicComplianceApiKey,
+        ZeroTrustCasbIntegrationAnthropicWorkspaceApiKey,
+        ZeroTrustCasbIntegrationAws,
+        ZeroTrustCasbIntegrationAwsIamRole,
+        ZeroTrustCasbIntegrationBox,
+        ZeroTrustCasbIntegrationBoxServerAuthentication,
+        ZeroTrustCasbIntegrationChatgptComplianceApiKey,
+        ZeroTrustCasbIntegrationChatgptStandardApiKey,
+        ZeroTrustCasbIntegrationGoogleCloudPlatform,
+        ZeroTrustCasbIntegrationGoogleCloudPlatformServiceAccount,
+        ZeroTrustCasbIntegrationGoogleDomainWideDelegationServiceAccount,
+        ZeroTrustCasbIntegrationGoogleWorkspace,
+        ZeroTrustCasbIntegrationOpenai,
+        ZeroTrustCasbIntegrationUseCases;
 export 'src/zero_trust/cloudflare_zero_trust_casb_policy.dart'
     show
         CloudflareZeroTrustCasbPolicy,
@@ -744,7 +776,7 @@ export 'src/zero_trust/cloudflare_zero_trust_organization.dart'
         ZeroTrustOrganizationCustomPages,
         ZeroTrustOrganizationLoginDesign,
         ZeroTrustOrganizationMfaConfig,
-        ZeroTrustOrganizationMfaSshPivKeyRequirements,
+        ZeroTrustOrganizationMfaPivKeyRequirements,
         ZeroTrustOrganizationPinPolicy,
         ZeroTrustOrganizationServiceTokenInactivity,
         ZeroTrustOrganizationSshKeyType,

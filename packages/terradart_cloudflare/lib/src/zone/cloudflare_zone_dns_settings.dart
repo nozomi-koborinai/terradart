@@ -46,16 +46,23 @@ final class ZoneDnsSettingsInternalDns {
 /// `cloudflare_zone_dns_settings` (derived from provider schema).
 @immutable
 final class ZoneDnsSettingsNameservers {
-  const ZoneDnsSettingsNameservers({this.nsSet, this.type});
+  const ZoneDnsSettingsNameservers({
+    this.nameserverSetId,
+    this.nsSet,
+    required this.type,
+  });
+
+  final TfArg<String>? nameserverSetId;
 
   final TfArg<num>? nsSet;
 
-  final ZoneDnsSettingsType? type;
+  final ZoneDnsSettingsType type;
 
   @internal
   Map<String, Object?> encode() => {
+    'nameserver_set_id': ?nameserverSetId?.toTfJson(),
     'ns_set': ?nsSet?.toTfJson(),
-    'type': ?type?.toTfJson(),
+    'type': type.toTfJson(),
   };
 }
 
@@ -70,6 +77,9 @@ extension type const ZoneDnsSettingsType._(TfArg<String> _)
   static const cloudflareStandard = ZoneDnsSettingsType._(
     TfArgLiteral('cloudflare.standard'),
   );
+  static const cloudflareAdvanced = ZoneDnsSettingsType._(
+    TfArgLiteral('cloudflare.advanced'),
+  );
   static const customAccount = ZoneDnsSettingsType._(
     TfArgLiteral('custom.account'),
   );
@@ -77,12 +87,15 @@ extension type const ZoneDnsSettingsType._(TfArg<String> _)
     TfArgLiteral('custom.tenant'),
   );
   static const customZone = ZoneDnsSettingsType._(TfArgLiteral('custom.zone'));
+  static const custom = ZoneDnsSettingsType._(TfArgLiteral('custom'));
 
   static const List<ZoneDnsSettingsType> values = [
     cloudflareStandard,
+    cloudflareAdvanced,
     customAccount,
     customTenant,
     customZone,
+    custom,
   ];
 }
 

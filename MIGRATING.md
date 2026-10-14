@@ -91,6 +91,65 @@ applies to the folders and organizations helpers. Replace
 | `IamProjectsPolicyBindingTarget(principalSet: .literal('//cloudresourcemanager.googleapis.com/projects/123'))` | `IamProjectsPolicyBindingTarget(principalSetOrResource: .principalSet(.literal('//cloudresourcemanager.googleapis.com/projects/123')))` |
 | *(not available)* | `IamProjectsPolicyBindingTarget(principalSetOrResource: .resource(.literal('//cloudresourcemanager.googleapis.com/projects/123')))` |
 
+### `terradart_cloudflare` follows `cloudflare/cloudflare` 5.28.0
+
+**Breaking (`terradart_cloudflare`)** — the provider pin moves from `5.26.0`
+to `5.28.0`, and the factories follow the provider schema. Synth output now
+pins `version = "5.28.0"`. Run `terraform init -upgrade`. Upstream breaking
+notes are in the provider
+[CHANGELOG](https://github.com/cloudflare/terraform-provider-cloudflare/blob/v5.28.0/CHANGELOG.md).
+
+`cloudflare/cloudflare` 5.28.0 removes `cloudflare_registrar_domain`, the
+data source of the same name, and `cloudflare_registrar_domains`. These
+factories are gone, and so is `package:terradart_cloudflare/registrar.dart`.
+There is no replacement factory. Delete the resources from the stack. If
+state still tracks them, run `terraform state rm <address>` for each one
+before you upgrade, or the new provider cannot refresh them.
+
+| Removed factory | Terraform type |
+|---|---|
+| `CloudflareRegistrarDomain` | `cloudflare_registrar_domain` |
+| `DataCloudflareRegistrarDomain` | `cloudflare_registrar_domain` |
+| `DataCloudflareRegistrarDomains` | `cloudflare_registrar_domains` |
+
+Access-application policy blocks use a helper named for the `policies`
+block. The fields of each helper are unchanged.
+
+| Before | After |
+|---|---|
+| `ZeroTrustAccessApplicationExclude(...)` | `ZeroTrustAccessApplicationPoliciesExclude(...)` |
+| `ZeroTrustAccessApplicationRequire(...)` | `ZeroTrustAccessApplicationPoliciesRequire(...)` |
+| `ZeroTrustAccessApplicationInclude(...)` | `ZeroTrustAccessApplicationPoliciesInclude(...)` |
+
+`ZeroTrustAccessApplicationPolicyInclude.include` takes
+`ZeroTrustAccessApplicationPoliciesInclude`.
+
+These arguments are now required. A call that omitted them does not compile.
+
+| Factory | Now required |
+|---|---|
+| `CloudflareApiShieldDiscoveryOperation` | `discoveryId`, `zoneId` |
+| `CloudflareCloudConnectorRules` | `rules` |
+| `CloudflareEmailSecurityTrustedDomains` | `isRecent`, `isRegex`, `isSimilarity` |
+| `ZoneDnsSettingsNameservers` | `type` (`ZoneDnsSettingsType`, for example `.cloudflareStandard`) |
+
+These members are gone or retyped.
+
+| Before | After |
+|---|---|
+| `CloudflareApiShieldDiscoveryOperation(operationId: ...)` and `.id` / `.operationId` | `discoveryId:` is the identity. `.id` and `.operationId` are gone |
+| `CloudflareApiShieldOperation(feature: ..., withSchemas: ...)` and `ApiShieldOperationFeature` | both arguments and the enum are gone |
+| `CloudflareZeroTrustOrganization(mfaSshPivKeyRequirements: ZeroTrustOrganizationMfaSshPivKeyRequirements(...))` | the argument and the helper are gone |
+| `DataCloudflareFlagshipFlags.limit` and `DataFlagshipFlagFilter.limit` as `TfArg<String>` | `TfArg<num>` |
+| `.wordList` on the Zero Trust DLP entry factories and data sources (`CloudflareZeroTrustDlpEntry`, `CloudflareZeroTrustDlpCustomEntry`, `CloudflareZeroTrustDlpIntegrationEntry`, `CloudflareZeroTrustDlpPredefinedEntry`, and the `DataCloudflareZeroTrustDlp*` twins) | `TfRef<List<String>>` |
+
+5.28.0 also adds `CloudflareMonetizationRules`,
+`DataCloudflareMonetizationRules`, `CloudflareZeroTrustCasbIntegration`,
+`DataCloudflareZeroTrustCasbIntegration`, and
+`DataCloudflareZeroTrustCasbIntegrations`. The monetization factories live
+in `package:terradart_cloudflare/monetization.dart`. The CASB factories stay
+in `package:terradart_cloudflare/zero_trust.dart`.
+
 ## 0.34.x → 0.35.0
 
 ### `terradart` asks only on a terminal, and stops with exit code 3 when it cannot

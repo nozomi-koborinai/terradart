@@ -51,6 +51,10 @@ final class DataCloudflareMagicTransitSiteWan extends Data {
   TfRef<String> get healthCheckRate =>
       TfRef.attribute<String>(this, 'health_check_rate');
 
+  /// Reference to `load_balance_inner_flows` attribute.
+  TfRef<bool> get loadBalanceInnerFlows =>
+      TfRef.attribute<bool>(this, 'load_balance_inner_flows');
+
   /// Reference to `physport` attribute.
   TfRef<num> get physport => TfRef.attribute<num>(this, 'physport');
 

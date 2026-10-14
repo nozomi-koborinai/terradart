@@ -14,6 +14,7 @@ final class DataCloudflareAiSearchInstances extends Data {
   DataCloudflareAiSearchInstances(
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
+    TfArg<String>? hostname,
     TfArg<num>? maxItems,
     TfArg<String>? namespace,
     TfArg<String>? orderBy,
@@ -25,6 +26,7 @@ final class DataCloudflareAiSearchInstances extends Data {
          terraformType: tfType,
          argMap: {
            'account_id': ?accountId?.encodeAs('id'),
+           'hostname': ?hostname,
            'max_items': ?maxItems,
            'namespace': ?namespace,
            'order_by': ?orderBy,
@@ -38,6 +40,9 @@ final class DataCloudflareAiSearchInstances extends Data {
 
   /// Reference to `account_id` attribute.
   TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `hostname` attribute.
+  TfRef<String> get hostname => TfRef.attribute<String>(this, 'hostname');
 
   /// Reference to `max_items` attribute.
   TfRef<num> get maxItems => TfRef.attribute<num>(this, 'max_items');

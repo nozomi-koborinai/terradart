@@ -96,7 +96,7 @@ final class CloudflareCloudConnectorRules extends Resource {
   CloudflareCloudConnectorRules(
     super.localName, {
     required RefTo<CloudflareZone> zoneId,
-    List<CloudConnectorRules>? rules,
+    required List<CloudConnectorRules> rules,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -105,8 +105,7 @@ final class CloudflareCloudConnectorRules extends Resource {
          terraformType: tfType,
          argMap: {
            'zone_id': zoneId.encodeAs('id'),
-           if (rules != null)
-             'rules': TfArg.literal([for (final e in rules) e.encode()]),
+           'rules': TfArg.literal([for (final e in rules) e.encode()]),
          },
        );
 

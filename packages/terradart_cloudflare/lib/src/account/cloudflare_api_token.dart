@@ -147,6 +147,10 @@ final class CloudflareApiToken extends Resource {
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
+  /// Reference to `creator_email_at_creation` attribute.
+  TfRef<String> get creatorEmailAtCreation =>
+      TfRef.attribute<String>(this, 'creator_email_at_creation');
+
   /// Reference to `issued_on` attribute.
   TfRef<String> get issuedOn => TfRef.attribute<String>(this, 'issued_on');
 
@@ -155,6 +159,14 @@ final class CloudflareApiToken extends Resource {
 
   /// Reference to `modified_on` attribute.
   TfRef<String> get modifiedOn => TfRef.attribute<String>(this, 'modified_on');
+
+  /// Reference to `provisioner_id` attribute.
+  TfRef<String> get provisionerId =>
+      TfRef.attribute<String>(this, 'provisioner_id');
+
+  /// Reference to `provisioner_type` attribute.
+  TfRef<String> get provisionerType =>
+      TfRef.attribute<String>(this, 'provisioner_type');
 
   /// Reference to `value` attribute.
   TfRef<String> get value => TfRef.attribute<String>(this, 'value');

@@ -746,6 +746,10 @@ String _enumMember(String enumName, String name, {required String owner}) {
 const _optionalExtras = <String, List<String>>{
   'CloudflareCustomSsl': ['customCsrId'],
   'CloudflareWorkersScript': ['content'],
+  // The provider requires exactly one vendor block. The schema does not
+  // mark the set ExactlyOneOf, so wrap leaves the blocks optional and the
+  // stack has to set one or validate rejects the resource.
+  'CloudflareZeroTrustCasbIntegration': ['anthropic'],
 };
 
 String _stringValue(String name, {String owner = ''}) {

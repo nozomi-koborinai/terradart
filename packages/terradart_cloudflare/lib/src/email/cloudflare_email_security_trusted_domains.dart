@@ -20,9 +20,9 @@ final class CloudflareEmailSecurityTrustedDomains extends Resource {
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? comments,
-    TfArg<bool>? isRecent,
-    TfArg<bool>? isRegex,
-    TfArg<bool>? isSimilarity,
+    required TfArg<bool> isRecent,
+    required TfArg<bool> isRegex,
+    required TfArg<bool> isSimilarity,
     required TfArg<String> pattern,
     super.lifecycle,
     super.dependsOn,
@@ -33,9 +33,9 @@ final class CloudflareEmailSecurityTrustedDomains extends Resource {
          argMap: {
            'account_id': accountId.encodeAs('id'),
            'comments': ?comments,
-           'is_recent': ?isRecent,
-           'is_regex': ?isRegex,
-           'is_similarity': ?isSimilarity,
+           'is_recent': isRecent,
+           'is_regex': isRegex,
+           'is_similarity': isSimilarity,
            'pattern': pattern,
          },
        );

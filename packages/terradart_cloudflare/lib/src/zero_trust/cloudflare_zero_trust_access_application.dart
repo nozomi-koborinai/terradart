@@ -742,11 +742,11 @@ final class ZeroTrustAccessApplicationPolicies {
 
   final ZeroTrustAccessApplicationConnectionRules? connectionRules;
 
-  final List<ZeroTrustAccessApplicationExclude>? exclude;
+  final List<ZeroTrustAccessApplicationPoliciesExclude>? exclude;
 
   final ZeroTrustAccessApplicationPoliciesMfaConfig? mfaConfig;
 
-  final List<ZeroTrustAccessApplicationRequire>? require;
+  final List<ZeroTrustAccessApplicationPoliciesRequire>? require;
 
   @internal
   Map<String, Object?> encode() => {
@@ -774,7 +774,7 @@ sealed class ZeroTrustAccessApplicationPolicy {
 
   /// Sets `include`.
   const factory ZeroTrustAccessApplicationPolicy.include(
-    List<ZeroTrustAccessApplicationInclude> include,
+    List<ZeroTrustAccessApplicationPoliciesInclude> include,
   ) = ZeroTrustAccessApplicationPolicyInclude;
 
   /// The Terraform argument this choice sets.
@@ -806,7 +806,7 @@ final class ZeroTrustAccessApplicationPolicyInclude
     extends ZeroTrustAccessApplicationPolicy {
   const ZeroTrustAccessApplicationPolicyInclude(this.include);
 
-  final List<ZeroTrustAccessApplicationInclude> include;
+  final List<ZeroTrustAccessApplicationPoliciesInclude> include;
 
   @internal
   @override
@@ -975,8 +975,8 @@ final class ZeroTrustAccessApplicationSsh {
 /// Typed helper for the `policies.exclude` block of
 /// `cloudflare_zero_trust_access_application` (derived from provider schema).
 @immutable
-final class ZeroTrustAccessApplicationExclude {
-  const ZeroTrustAccessApplicationExclude({
+final class ZeroTrustAccessApplicationPoliciesExclude {
+  const ZeroTrustAccessApplicationPoliciesExclude({
     this.anyValidServiceToken,
     this.authContext,
     this.authMethod,
@@ -1471,8 +1471,8 @@ final class ZeroTrustAccessApplicationServiceToken {
 /// Typed helper for the `policies.include` block of
 /// `cloudflare_zero_trust_access_application` (derived from provider schema).
 @immutable
-final class ZeroTrustAccessApplicationInclude {
-  const ZeroTrustAccessApplicationInclude({
+final class ZeroTrustAccessApplicationPoliciesInclude {
+  const ZeroTrustAccessApplicationPoliciesInclude({
     this.anyValidServiceToken,
     this.authContext,
     this.authMethod,
@@ -1641,8 +1641,8 @@ extension type const ZeroTrustAccessApplicationMfaConfigAllowedAuthenticators._(
 /// Typed helper for the `policies.require` block of
 /// `cloudflare_zero_trust_access_application` (derived from provider schema).
 @immutable
-final class ZeroTrustAccessApplicationRequire {
-  const ZeroTrustAccessApplicationRequire({
+final class ZeroTrustAccessApplicationPoliciesRequire {
+  const ZeroTrustAccessApplicationPoliciesRequire({
     this.anyValidServiceToken,
     this.authContext,
     this.authMethod,
@@ -2366,20 +2366,32 @@ final class ZeroTrustAccessApplicationTargetCriteria {
   const ZeroTrustAccessApplicationTargetCriteria({
     required this.port,
     required this.protocol,
-    required this.targetAttributes,
+    this.targetAttributes,
+    this.exclude,
+    this.include,
+    this.require,
   });
 
   final TfArg<num> port;
 
   final ZeroTrustAccessApplicationProtocol protocol;
 
-  final TfArg<Map<String, dynamic>> targetAttributes;
+  final TfArg<Map<String, dynamic>>? targetAttributes;
+
+  final ZeroTrustAccessApplicationTargetCriteriaExclude? exclude;
+
+  final ZeroTrustAccessApplicationTargetCriteriaInclude? include;
+
+  final ZeroTrustAccessApplicationTargetCriteriaRequire? require;
 
   @internal
   Map<String, Object?> encode() => {
     'port': port.toTfJson(),
     'protocol': protocol.toTfJson(),
-    'target_attributes': targetAttributes.toTfJson(),
+    'target_attributes': ?targetAttributes?.toTfJson(),
+    'exclude': ?exclude?.encode(),
+    'include': ?include?.encode(),
+    'require': ?require?.encode(),
   };
 }
 
@@ -2396,6 +2408,79 @@ extension type const ZeroTrustAccessApplicationProtocol._(TfArg<String> _)
   static const rdp = ZeroTrustAccessApplicationProtocol._(TfArgLiteral('RDP'));
 
   static const List<ZeroTrustAccessApplicationProtocol> values = [ssh, rdp];
+}
+
+/// Typed helper for the `target_criteria.exclude` block of
+/// `cloudflare_zero_trust_access_application` (derived from provider schema).
+@immutable
+final class ZeroTrustAccessApplicationTargetCriteriaExclude {
+  const ZeroTrustAccessApplicationTargetCriteriaExclude({
+    this.tags,
+    this.targetAttributes,
+  });
+
+  final TfArg<Map<String, dynamic>>? tags;
+
+  final ZeroTrustAccessApplicationTargetAttributes? targetAttributes;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'tags': ?tags?.toTfJson(),
+    'target_attributes': ?targetAttributes?.encode(),
+  };
+}
+
+/// Typed helper for the `target_criteria.exclude.target_attributes` block of
+/// `cloudflare_zero_trust_access_application` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
+@immutable
+final class ZeroTrustAccessApplicationTargetAttributes {
+  const ZeroTrustAccessApplicationTargetAttributes({required this.hostname});
+
+  final TfArg<List<String>> hostname;
+
+  @internal
+  Map<String, Object?> encode() => {'hostname': hostname.toTfJson()};
+}
+
+/// Typed helper for the `target_criteria.include` block of
+/// `cloudflare_zero_trust_access_application` (derived from provider schema).
+@immutable
+final class ZeroTrustAccessApplicationTargetCriteriaInclude {
+  const ZeroTrustAccessApplicationTargetCriteriaInclude({
+    this.tags,
+    this.targetAttributes,
+  });
+
+  final TfArg<Map<String, dynamic>>? tags;
+
+  final ZeroTrustAccessApplicationTargetAttributes? targetAttributes;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'tags': ?tags?.toTfJson(),
+    'target_attributes': ?targetAttributes?.encode(),
+  };
+}
+
+/// Typed helper for the `target_criteria.require` block of
+/// `cloudflare_zero_trust_access_application` (derived from provider schema).
+@immutable
+final class ZeroTrustAccessApplicationTargetCriteriaRequire {
+  const ZeroTrustAccessApplicationTargetCriteriaRequire({
+    this.tags,
+    this.targetAttributes,
+  });
+
+  final TfArg<Map<String, dynamic>>? tags;
+
+  final ZeroTrustAccessApplicationTargetAttributes? targetAttributes;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'tags': ?tags?.toTfJson(),
+    'target_attributes': ?targetAttributes?.encode(),
+  };
 }
 
 /// Factory wrapper for `cloudflare_zero_trust_access_application`.
