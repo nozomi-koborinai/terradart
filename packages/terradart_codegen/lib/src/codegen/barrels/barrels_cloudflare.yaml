@@ -180,6 +180,9 @@ barrels:
   magic:
     doc: |-
       /// Cloudflare Magic WAN, Magic Transit, and Magic Network Monitoring.
+  monetization:
+    doc: |-
+      /// `monetization` factories, added by the weekly schema bump.
   moq:
     doc: |-
       /// Cloudflare Media over QUIC relays.
