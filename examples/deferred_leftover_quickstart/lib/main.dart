@@ -191,6 +191,7 @@ final class DeferredLeftoverStack extends Stack {
         cloudControlId: .literal('terradart-leftover'),
         deletionPolicy: .literal('DELETE'),
         location: .literal('us-central1'),
+        parent: .literal('organizations/123456789'),
       ),
     );
 
@@ -200,6 +201,7 @@ final class DeferredLeftoverStack extends Stack {
         deletionPolicy: .literal('DELETE'),
         frameworkId: .literal('terradart-leftover'),
         location: .literal('us-central1'),
+        parent: .literal('organizations/123456789'),
       ),
     );
 
@@ -208,6 +210,7 @@ final class DeferredLeftoverStack extends Stack {
         'complianceframeworkdeploymen',
         deletionPolicy: .literal('DELETE'),
         frameworkDeploymentId: .literal('terradart-leftover'),
+        parent: .literal('organizations/123456789'),
         cloudControlMetadata: [
           CloudSecurityComplianceFrameworkDeploymentCloudControlMetadata(
             enforcementMode: .literal('terradart-leftover'),
