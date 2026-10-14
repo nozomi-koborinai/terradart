@@ -157,7 +157,7 @@ String dropYamlSectionKeys(String source, String section, Set<String> keys) {
 ({Set<String> resources, Set<String>? dataSources}) _schemaTypes(String json) {
   final decoded = jsonDecode(json);
   if (decoded is! Map) {
-    throw FormatException('schema.json: top level must be an object');
+    throw const FormatException('schema.json: top level must be an object');
   }
   final providers = decoded['provider_schemas'];
   if (providers is! Map || providers.length != 1) {
@@ -168,11 +168,15 @@ String dropYamlSectionKeys(String source, String section, Set<String> keys) {
   }
   final provider = providers.values.single;
   if (provider is! Map) {
-    throw FormatException('schema.json: provider schema must be an object');
+    throw const FormatException(
+      'schema.json: provider schema must be an object',
+    );
   }
   final resources = provider['resource_schemas'];
   if (resources is! Map) {
-    throw FormatException('schema.json: resource_schemas must be an object');
+    throw const FormatException(
+      'schema.json: resource_schemas must be an object',
+    );
   }
   final data = provider['data_source_schemas'];
   return (
