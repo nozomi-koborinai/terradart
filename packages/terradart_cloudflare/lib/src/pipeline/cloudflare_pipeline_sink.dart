@@ -24,8 +24,13 @@ extension type const PipelineSinkType._(TfArg<String> _)
   static const r2DataCatalog = PipelineSinkType._(
     TfArgLiteral('r2_data_catalog'),
   );
+  static const basinCatalog = PipelineSinkType._(TfArgLiteral('basin_catalog'));
 
-  static const List<PipelineSinkType> values = [r2, r2DataCatalog];
+  static const List<PipelineSinkType> values = [
+    r2,
+    r2DataCatalog,
+    basinCatalog,
+  ];
 }
 
 /// Typed helper for the `config` block of

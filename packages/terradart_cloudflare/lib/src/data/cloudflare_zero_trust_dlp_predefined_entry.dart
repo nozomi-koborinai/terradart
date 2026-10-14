@@ -78,7 +78,8 @@ final class DataCloudflareZeroTrustDlpPredefinedEntry extends Data {
       TfRef.attribute<String>(this, 'upload_status');
 
   /// Reference to `word_list` attribute.
-  TfRef<String> get wordList => TfRef.attribute<String>(this, 'word_list');
+  TfRef<List<String>> get wordList =>
+      TfRef.attribute<List<String>>(this, 'word_list');
 
   /// Reference to `account_id` attribute.
   TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');

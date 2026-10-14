@@ -85,7 +85,10 @@ export 'src/magic/cloudflare_magic_transit_site_lan.dart'
         MagicTransitSiteLanStaticAddressing,
         MagicTransitSiteLanType;
 export 'src/magic/cloudflare_magic_transit_site_wan.dart'
-    show CloudflareMagicTransitSiteWan, MagicTransitSiteWanStaticAddressing;
+    show
+        CloudflareMagicTransitSiteWan,
+        MagicTransitSiteWanHealthCheckRate,
+        MagicTransitSiteWanStaticAddressing;
 export 'src/magic/cloudflare_magic_wan_bgp_filter_profile.dart'
     show
         CloudflareMagicWanBgpFilterProfile,

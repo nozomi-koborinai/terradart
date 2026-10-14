@@ -151,7 +151,7 @@ final class CloudflareLeftoverStack extends Stack {
     add(
       CloudflareApiShieldDiscoveryOperation(
         'api_shield_discovery_operation',
-        operationId: .literal('00000000000000000000000000000001'),
+        discoveryId: .literal('00000000000000000000000000000001'),
         zoneId: .literal(zoneId),
       ),
     );
@@ -309,6 +309,7 @@ final class CloudflareLeftoverStack extends Stack {
       CloudflareCloudConnectorRules(
         'cloud_connector_rules',
         zoneId: .literal(zoneId),
+        rules: [CloudConnectorRules(cloudConnectorRulesProvider: .awsS3)],
       ),
     );
 
@@ -606,6 +607,9 @@ final class CloudflareLeftoverStack extends Stack {
       CloudflareEmailSecurityTrustedDomains(
         'email_security_trusted_domains',
         accountId: .literal(accountId),
+        isRecent: .literal(true),
+        isRegex: .literal(true),
+        isSimilarity: .literal(true),
         pattern: .literal(leftover),
       ),
     );
@@ -968,6 +972,20 @@ final class CloudflareLeftoverStack extends Stack {
     );
 
     add(
+      CloudflareMonetizationRules(
+        'monetization_rules',
+        zoneId: .literal(zoneId),
+        rules: [
+          MonetizationRules(
+            address: .literal('192.0.2.1'),
+            expression: .literal(leftover),
+            scheme: .exact,
+          ),
+        ],
+      ),
+    );
+
+    add(
       CloudflareMoqRelay(
         'moq_relay',
         accountId: .literal(accountId),
@@ -1263,14 +1281,6 @@ final class CloudflareLeftoverStack extends Stack {
       CloudflareRegionalTieredCache(
         'regional_tiered_cache',
         zoneId: .literal(zoneId),
-      ),
-    );
-
-    add(
-      CloudflareRegistrarDomain(
-        'registrar_domain',
-        accountId: .literal(accountId),
-        domainName: .literal(leftover),
       ),
     );
 
@@ -1916,6 +1926,18 @@ final class CloudflareLeftoverStack extends Stack {
         'zero_trust_access_tag',
         accountId: .literal(accountId),
         name: .literal(leftover),
+      ),
+    );
+
+    add(
+      CloudflareZeroTrustCasbIntegration(
+        'zero_trust_casb_integration',
+        accountId: .literal(accountId),
+        name: .literal(leftover),
+        paused: .literal(true),
+        anthropic: ZeroTrustCasbIntegrationAnthropic(
+          anthropicAdminApiKey: .new(apiKey: leftoverSecret),
+        ),
       ),
     );
 
@@ -2614,7 +2636,7 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareAiSearchInstance(
         'd_ai_search_instance',
         accountId: .literal(accountId),
-        filter: DataAiSearchInstanceFilter(namespace: .literal(leftover)),
+        filter: DataAiSearchInstanceFilter(hostname: .literal(leftover)),
       ),
     );
 
@@ -3350,7 +3372,7 @@ final class CloudflareLeftoverStack extends Stack {
         'd_flagship_flag',
         accountId: .literal(accountId),
         appId: .literal('00000000000000000000000000000001'),
-        filter: DataFlagshipFlagFilter(limit: .literal(leftover)),
+        filter: DataFlagshipFlagFilter(limit: .literal(200)),
       ),
     );
 
@@ -3750,6 +3772,13 @@ final class CloudflareLeftoverStack extends Stack {
     add(
       DataCloudflareManagedTransforms(
         'd_managed_transforms',
+        zoneId: .literal(zoneId),
+      ),
+    );
+
+    add(
+      DataCloudflareMonetizationRules(
+        'd_monetization_rules',
         zoneId: .literal(zoneId),
       ),
     );
@@ -4159,21 +4188,6 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareRegionalTieredCache(
         'd_regional_tiered_cache',
         zoneId: .literal(zoneId),
-      ),
-    );
-
-    add(
-      DataCloudflareRegistrarDomain(
-        'd_registrar_domain',
-        accountId: .literal(accountId),
-        domainName: .literal(leftover),
-      ),
-    );
-
-    add(
-      DataCloudflareRegistrarDomains(
-        'd_registrar_domains',
-        accountId: .literal(accountId),
       ),
     );
 
@@ -5029,6 +5043,23 @@ final class CloudflareLeftoverStack extends Stack {
     add(
       DataCloudflareZeroTrustAccessTags(
         'd_zero_trust_access_tags',
+        accountId: .literal(accountId),
+      ),
+    );
+
+    add(
+      DataCloudflareZeroTrustCasbIntegration(
+        'd_zero_trust_casb_integration',
+        accountId: .literal(accountId),
+        filter: DataZeroTrustCasbIntegrationFilter(
+          application: .literal(leftover),
+        ),
+      ),
+    );
+
+    add(
+      DataCloudflareZeroTrustCasbIntegrations(
+        'd_zero_trust_casb_integrations',
         accountId: .literal(accountId),
       ),
     );

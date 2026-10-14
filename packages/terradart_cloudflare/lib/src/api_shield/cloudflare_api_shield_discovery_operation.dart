@@ -40,9 +40,9 @@ final class CloudflareApiShieldDiscoveryOperation extends Resource {
 
   CloudflareApiShieldDiscoveryOperation(
     super.localName, {
-    required TfArg<String> operationId,
+    required TfArg<String> discoveryId,
     ApiShieldDiscoveryOperationState? state,
-    RefTo<CloudflareZone>? zoneId,
+    required RefTo<CloudflareZone> zoneId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -50,9 +50,9 @@ final class CloudflareApiShieldDiscoveryOperation extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'operation_id': operationId,
+           'discovery_id': discoveryId,
            'state': ?state,
-           'zone_id': ?zoneId?.encodeAs('id'),
+           'zone_id': zoneId.encodeAs('id'),
          },
        );
 
@@ -64,12 +64,9 @@ final class CloudflareApiShieldDiscoveryOperation extends Resource {
   /// `RefTo<CloudflareApiShieldDiscoveryOperation>`.
   RefTo<CloudflareApiShieldDiscoveryOperation> get ref => RefTo.of(this);
 
-  /// Reference to `id` attribute.
-  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `operation_id` attribute.
-  TfRef<String> get operationId =>
-      TfRef.attribute<String>(this, 'operation_id');
+  /// Reference to `discovery_id` attribute.
+  TfRef<String> get discoveryId =>
+      TfRef.attribute<String>(this, 'discovery_id');
 
   /// Reference to `state` attribute.
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');

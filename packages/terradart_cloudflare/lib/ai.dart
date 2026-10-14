@@ -65,6 +65,8 @@ export 'src/ai/cloudflare_ai_search_instance.dart'
         AiSearchInstanceCacheThreshold,
         AiSearchInstanceChatCompletionsEndpoint,
         AiSearchInstanceContentSelector,
+        AiSearchInstanceCreatedFromEmdashPlugin,
+        AiSearchInstanceCreatedFromEmdashPluginType,
         AiSearchInstanceCustomMetadata,
         AiSearchInstanceDataType,
         AiSearchInstanceDirection,

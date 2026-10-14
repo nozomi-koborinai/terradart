@@ -216,9 +216,6 @@ barrels:
   regional:
     doc: |-
       /// Cloudflare regional hostnames.
-  registrar:
-    doc: |-
-      /// Cloudflare Registrar domains.
   rules:
     doc: |-
       /// Cloudflare rulesets, page rules, lists, and filters.

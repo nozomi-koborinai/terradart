@@ -19,7 +19,7 @@ final class DataCloudflareFlagshipFlags extends Data {
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
     required TfArg<String> appId,
-    TfArg<String>? limit,
+    TfArg<num>? limit,
     TfArg<num>? maxItems,
     super.provider,
     super.timeouts,
@@ -43,7 +43,7 @@ final class DataCloudflareFlagshipFlags extends Data {
   TfRef<String> get appId => TfRef.attribute<String>(this, 'app_id');
 
   /// Reference to `limit` attribute.
-  TfRef<String> get limit => TfRef.attribute<String>(this, 'limit');
+  TfRef<num> get limit => TfRef.attribute<num>(this, 'limit');
 
   /// Reference to `max_items` attribute.
   TfRef<num> get maxItems => TfRef.attribute<num>(this, 'max_items');

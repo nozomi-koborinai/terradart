@@ -160,7 +160,20 @@ List<Map<String, String>> appendCurationEntries({
     ('data_source', dataSources),
   ]) {
     for (final name in names) {
-      if (!seen.add('$kind:$name')) continue;
+      final key = '$kind:$name';
+      if (!seen.add(key)) {
+        // The append step records a type with no note when wrap did not
+        // run. A later record, once the factory exists, fills that note
+        // and leaves a note a person already wrote.
+        if (note != null && note.isNotEmpty) {
+          final i = out.indexWhere((e) => _entryKey(e) == key);
+          final current = i < 0 ? null : out[i]['note'];
+          if (i >= 0 && (current == null || current.isEmpty)) {
+            out[i] = {...out[i], 'note': note};
+          }
+        }
+        continue;
+      }
       out.add({
         kind: name,
         'detected_at': detectedAt,

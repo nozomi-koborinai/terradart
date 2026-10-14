@@ -78,6 +78,10 @@ final class DataCloudflareZeroTrustOrganization extends Data {
   TfRef<String> get sessionDuration =>
       TfRef.attribute<String>(this, 'session_duration');
 
+  /// Reference to `strict_service_token_auth` attribute.
+  TfRef<bool> get strictServiceTokenAuth =>
+      TfRef.attribute<bool>(this, 'strict_service_token_auth');
+
   /// Reference to `trusted_accounts` attribute.
   TfRef<List<String>> get trustedAccounts =>
       TfRef.attribute<List<String>>(this, 'trusted_accounts');

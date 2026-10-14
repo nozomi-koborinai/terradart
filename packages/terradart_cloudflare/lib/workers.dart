@@ -97,6 +97,7 @@ export 'src/workers/cloudflare_worker_version.dart'
         WorkerVersionParams,
         WorkerVersionPlacement,
         WorkerVersionRenamedClasses,
+        WorkerVersionRetry,
         WorkerVersionSimple,
         WorkerVersionState,
         WorkerVersionSteps,
@@ -119,7 +120,10 @@ export 'src/workers/cloudflare_workers_for_platforms_dispatch_namespace.dart'
     show CloudflareWorkersForPlatformsDispatchNamespace;
 export 'src/workers/cloudflare_workers_kv.dart' show CloudflareWorkersKv;
 export 'src/workers/cloudflare_workers_kv_namespace.dart'
-    show CloudflareWorkersKvNamespace, WorkersKvNamespaceJurisdiction;
+    show
+        CloudflareWorkersKvNamespace,
+        WorkersKvNamespaceJurisdiction,
+        WorkersKvNamespaceMode;
 export 'src/workers/cloudflare_workers_route.dart' show CloudflareWorkersRoute;
 export 'src/workers/cloudflare_workers_script.dart'
     show
@@ -127,6 +131,7 @@ export 'src/workers/cloudflare_workers_script.dart'
         WorkersScriptAnnotations,
         WorkersScriptAssets,
         WorkersScriptBindings,
+        WorkersScriptBindingsInherit,
         WorkersScriptCache,
         WorkersScriptCacheOptions,
         WorkersScriptConfig,
@@ -154,6 +159,7 @@ export 'src/workers/cloudflare_workers_script.dart'
         WorkersScriptPlacement,
         WorkersScriptPropagationPolicy,
         WorkersScriptRenamedClasses,
+        WorkersScriptRetry,
         WorkersScriptSimple,
         WorkersScriptSource,
         WorkersScriptSourceDirectory,

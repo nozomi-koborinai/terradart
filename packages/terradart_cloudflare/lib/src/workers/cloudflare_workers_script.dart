@@ -14,6 +14,20 @@ const Set<String> _cloudflareWorkersScriptSensitive = <String>{
   'bindings.text',
 };
 
+/// Workers Script Bindings enum for `bindings_inherit`.
+extension type const WorkersScriptBindingsInherit._(TfArg<String> _)
+    implements TfArg<String> {
+  WorkersScriptBindingsInherit.variable(String name)
+    : this._(TfArg.variable(name));
+  WorkersScriptBindingsInherit.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkersScriptBindingsInherit.arg(TfArg<String> arg) : this._(arg);
+
+  static const strict = WorkersScriptBindingsInherit._(TfArgLiteral('strict'));
+
+  static const List<WorkersScriptBindingsInherit> values = [strict];
+}
+
 /// Workers Script Content enum for `content_type`.
 extension type const WorkersScriptContentType._(TfArg<String> _)
     implements TfArg<String> {
@@ -360,6 +374,7 @@ final class WorkersScriptBindings {
     this.versionId,
     this.workflowName,
     this.outbound,
+    this.retry,
     this.simple,
   });
 
@@ -447,6 +462,8 @@ final class WorkersScriptBindings {
 
   final WorkersScriptOutbound? outbound;
 
+  final WorkersScriptRetry? retry;
+
   final WorkersScriptSimple? simple;
 
   @internal
@@ -493,6 +510,7 @@ final class WorkersScriptBindings {
     'version_id': ?versionId?.toTfJson(),
     'workflow_name': ?workflowName?.toTfJson(),
     'outbound': ?outbound?.encode(),
+    'retry': ?retry?.encode(),
     'simple': ?simple?.encode(),
   };
 }
@@ -548,9 +566,11 @@ extension type const WorkersScriptType._(TfArg<String> _)
   static const aiSearchNamespace = WorkersScriptType._(
     TfArgLiteral('ai_search_namespace'),
   );
+  static const messaging = WorkersScriptType._(TfArgLiteral('messaging'));
   static const analyticsEngine = WorkersScriptType._(
     TfArgLiteral('analytics_engine'),
   );
+  static const artifacts = WorkersScriptType._(TfArgLiteral('artifacts'));
   static const assets = WorkersScriptType._(TfArgLiteral('assets'));
   static const browser = WorkersScriptType._(TfArgLiteral('browser'));
   static const d1 = WorkersScriptType._(TfArgLiteral('d1'));
@@ -572,6 +592,7 @@ extension type const WorkersScriptType._(TfArg<String> _)
   );
   static const plainText = WorkersScriptType._(TfArgLiteral('plain_text'));
   static const pipelines = WorkersScriptType._(TfArgLiteral('pipelines'));
+  static const k2 = WorkersScriptType._(TfArgLiteral('k2'));
   static const queue = WorkersScriptType._(TfArgLiteral('queue'));
   static const ratelimit = WorkersScriptType._(TfArgLiteral('ratelimit'));
   static const r2Bucket = WorkersScriptType._(TfArgLiteral('r2_bucket'));
@@ -589,6 +610,7 @@ extension type const WorkersScriptType._(TfArg<String> _)
   static const secretsStoreSecret = WorkersScriptType._(
     TfArgLiteral('secrets_store_secret'),
   );
+  static const flagship = WorkersScriptType._(TfArgLiteral('flagship'));
   static const secretKey = WorkersScriptType._(TfArgLiteral('secret_key'));
   static const workflow = WorkersScriptType._(TfArgLiteral('workflow'));
   static const wasmModule = WorkersScriptType._(TfArgLiteral('wasm_module'));
@@ -599,7 +621,9 @@ extension type const WorkersScriptType._(TfArg<String> _)
     ai,
     aiSearch,
     aiSearchNamespace,
+    messaging,
     analyticsEngine,
+    artifacts,
     assets,
     browser,
     d1,
@@ -615,6 +639,7 @@ extension type const WorkersScriptType._(TfArg<String> _)
     mtlsCertificate,
     plainText,
     pipelines,
+    k2,
     queue,
     ratelimit,
     r2Bucket,
@@ -626,6 +651,7 @@ extension type const WorkersScriptType._(TfArg<String> _)
     vectorize,
     versionMetadata,
     secretsStoreSecret,
+    flagship,
     secretKey,
     workflow,
     wasmModule,
@@ -694,6 +720,23 @@ final class WorkersScriptWorker {
   Map<String, Object?> encode() => {
     'environment': ?environment?.toTfJson(),
     'service': ?service?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `bindings.retry` block of
+/// `cloudflare_workers_script` (derived from provider schema).
+@immutable
+final class WorkersScriptRetry {
+  const WorkersScriptRetry({this.maxAttempts, this.timeoutMs});
+
+  final TfArg<num>? maxAttempts;
+
+  final TfArg<num>? timeoutMs;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'max_attempts': ?maxAttempts?.toTfJson(),
+    'timeout_ms': ?timeoutMs?.toTfJson(),
   };
 }
 
@@ -1190,6 +1233,7 @@ final class CloudflareWorkersScript extends Resource {
   CloudflareWorkersScript(
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
+    WorkersScriptBindingsInherit? bindingsInherit,
     TfArg<String>? bodyPart,
     TfArg<String>? compatibilityDate,
     TfArg<List<String>>? compatibilityFlags,
@@ -1223,6 +1267,7 @@ final class CloudflareWorkersScript extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
+           'bindings_inherit': ?bindingsInherit,
            'body_part': ?bodyPart,
            'compatibility_date': ?compatibilityDate,
            'compatibility_flags': ?compatibilityFlags,
@@ -1319,6 +1364,10 @@ final class CloudflareWorkersScript extends Resource {
 
   /// Reference to `account_id` attribute.
   TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `bindings_inherit` attribute.
+  TfRef<String> get bindingsInherit =>
+      TfRef.attribute<String>(this, 'bindings_inherit');
 
   /// Reference to `body_part` attribute.
   TfRef<String> get bodyPart => TfRef.attribute<String>(this, 'body_part');

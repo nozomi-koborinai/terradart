@@ -450,6 +450,8 @@ export 'src/data/cloudflare_magic_wan_static_route.dart'
     show DataCloudflareMagicWanStaticRoute;
 export 'src/data/cloudflare_managed_transforms.dart'
     show DataCloudflareManagedTransforms;
+export 'src/data/cloudflare_monetization_rules.dart'
+    show DataCloudflareMonetizationRules;
 export 'src/data/cloudflare_moq_relay.dart'
     show DataCloudflareMoqRelay, DataMoqRelayFilter;
 export 'src/data/cloudflare_moq_relays.dart' show DataCloudflareMoqRelays;
@@ -558,10 +560,6 @@ export 'src/data/cloudflare_regional_hostnames.dart'
     show DataCloudflareRegionalHostnames;
 export 'src/data/cloudflare_regional_tiered_cache.dart'
     show DataCloudflareRegionalTieredCache;
-export 'src/data/cloudflare_registrar_domain.dart'
-    show DataCloudflareRegistrarDomain;
-export 'src/data/cloudflare_registrar_domains.dart'
-    show DataCloudflareRegistrarDomains;
 export 'src/data/cloudflare_resource_group.dart'
     show DataCloudflareResourceGroup;
 export 'src/data/cloudflare_resource_groups.dart'
@@ -834,6 +832,15 @@ export 'src/data/cloudflare_zero_trust_access_tag.dart'
     show DataCloudflareZeroTrustAccessTag;
 export 'src/data/cloudflare_zero_trust_access_tags.dart'
     show DataCloudflareZeroTrustAccessTags;
+export 'src/data/cloudflare_zero_trust_casb_integration.dart'
+    show
+        DataCloudflareZeroTrustCasbIntegration,
+        DataZeroTrustCasbIntegrationDirection,
+        DataZeroTrustCasbIntegrationFilter,
+        DataZeroTrustCasbIntegrationFilterStatus,
+        DataZeroTrustCasbIntegrationOrder;
+export 'src/data/cloudflare_zero_trust_casb_integrations.dart'
+    show DataCloudflareZeroTrustCasbIntegrations;
 export 'src/data/cloudflare_zero_trust_casb_policies.dart'
     show DataCloudflareZeroTrustCasbPolicies;
 export 'src/data/cloudflare_zero_trust_casb_policy.dart'

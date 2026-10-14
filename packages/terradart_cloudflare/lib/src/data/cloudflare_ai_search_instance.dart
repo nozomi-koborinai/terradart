@@ -14,11 +14,14 @@ const Set<String> _cloudflareAiSearchInstanceSensitive = <String>{};
 @immutable
 final class DataAiSearchInstanceFilter {
   const DataAiSearchInstanceFilter({
+    this.hostname,
     this.namespace,
     this.orderBy,
     this.orderByDirection,
     this.search,
   });
+
+  final TfArg<String>? hostname;
 
   final TfArg<String>? namespace;
 
@@ -30,6 +33,7 @@ final class DataAiSearchInstanceFilter {
 
   @internal
   Map<String, Object?> encode() => {
+    'hostname': ?hostname?.toTfJson(),
     'namespace': ?namespace?.toTfJson(),
     'order_by': ?orderBy?.toTfJson(),
     'order_by_direction': ?orderByDirection?.toTfJson(),

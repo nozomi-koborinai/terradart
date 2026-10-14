@@ -126,11 +126,11 @@ extension type const ZeroTrustOrganizationAllowedAuthenticators._(
   ];
 }
 
-/// Typed helper for the `mfa_ssh_piv_key_requirements` block of
+/// Typed helper for the `mfa_piv_key_requirements` block of
 /// `cloudflare_zero_trust_organization` (derived from provider schema).
 @immutable
-final class ZeroTrustOrganizationMfaSshPivKeyRequirements {
-  const ZeroTrustOrganizationMfaSshPivKeyRequirements({
+final class ZeroTrustOrganizationMfaPivKeyRequirements {
+  const ZeroTrustOrganizationMfaPivKeyRequirements({
     this.pinPolicy,
     this.requireFipsDevice,
     this.sshKeySize,
@@ -291,6 +291,7 @@ final class CloudflareZeroTrustOrganization extends Resource {
     TfArg<bool>? mfaRequiredForAllApps,
     TfArg<String>? name,
     TfArg<String>? sessionDuration,
+    TfArg<bool>? strictServiceTokenAuth,
     TfArg<String>? uiReadOnlyToggleReason,
     TfArg<String>? userSeatExpirationInactiveTime,
     TfArg<bool>? warpAuthNonBrowser401,
@@ -299,7 +300,7 @@ final class CloudflareZeroTrustOrganization extends Resource {
     ZeroTrustOrganizationCustomPages? customPages,
     ZeroTrustOrganizationLoginDesign? loginDesign,
     ZeroTrustOrganizationMfaConfig? mfaConfig,
-    ZeroTrustOrganizationMfaSshPivKeyRequirements? mfaSshPivKeyRequirements,
+    ZeroTrustOrganizationMfaPivKeyRequirements? mfaPivKeyRequirements,
     ZeroTrustOrganizationServiceTokenInactivity? serviceTokenInactivity,
     super.lifecycle,
     super.dependsOn,
@@ -320,6 +321,7 @@ final class CloudflareZeroTrustOrganization extends Resource {
            'mfa_required_for_all_apps': ?mfaRequiredForAllApps,
            'name': ?name,
            'session_duration': ?sessionDuration,
+           'strict_service_token_auth': ?strictServiceTokenAuth,
            'ui_read_only_toggle_reason': ?uiReadOnlyToggleReason,
            'user_seat_expiration_inactive_time':
                ?userSeatExpirationInactiveTime,
@@ -332,9 +334,9 @@ final class CloudflareZeroTrustOrganization extends Resource {
              'login_design': TfArg.literal(loginDesign.encode()),
            if (mfaConfig != null)
              'mfa_config': TfArg.literal(mfaConfig.encode()),
-           if (mfaSshPivKeyRequirements != null)
-             'mfa_ssh_piv_key_requirements': TfArg.literal(
-               mfaSshPivKeyRequirements.encode(),
+           if (mfaPivKeyRequirements != null)
+             'mfa_piv_key_requirements': TfArg.literal(
+               mfaPivKeyRequirements.encode(),
              ),
            if (serviceTokenInactivity != null)
              'service_token_inactivity': TfArg.literal(
@@ -397,6 +399,10 @@ final class CloudflareZeroTrustOrganization extends Resource {
   /// Reference to `session_duration` attribute.
   TfRef<String> get sessionDuration =>
       TfRef.attribute<String>(this, 'session_duration');
+
+  /// Reference to `strict_service_token_auth` attribute.
+  TfRef<bool> get strictServiceTokenAuth =>
+      TfRef.attribute<bool>(this, 'strict_service_token_auth');
 
   /// Reference to `ui_read_only_toggle_reason` attribute.
   TfRef<String> get uiReadOnlyToggleReason =>

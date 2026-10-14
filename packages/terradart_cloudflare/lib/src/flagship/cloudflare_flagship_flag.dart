@@ -125,6 +125,8 @@ extension type const FlagshipFlagOperator._(TfArg<String> _)
   static const endsWith = FlagshipFlagOperator._(TfArgLiteral('ends_with'));
   static const inCase = FlagshipFlagOperator._(TfArgLiteral('in'));
   static const notIn = FlagshipFlagOperator._(TfArgLiteral('not_in'));
+  static const has = FlagshipFlagOperator._(TfArgLiteral('has'));
+  static const notHas = FlagshipFlagOperator._(TfArgLiteral('not_has'));
 
   static const List<FlagshipFlagOperator> values = [
     equals,
@@ -138,6 +140,8 @@ extension type const FlagshipFlagOperator._(TfArg<String> _)
     endsWith,
     inCase,
     notIn,
+    has,
+    notHas,
   ];
 }
 

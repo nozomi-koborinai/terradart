@@ -9,6 +9,28 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 /// Sensitive field paths for `cloudflare_magic_transit_site_wan`.
 const Set<String> _cloudflareMagicTransitSiteWanSensitive = <String>{};
 
+/// Magic Transit Site Wan Health Check enum for `health_check_rate`.
+extension type const MagicTransitSiteWanHealthCheckRate._(TfArg<String> _)
+    implements TfArg<String> {
+  MagicTransitSiteWanHealthCheckRate.variable(String name)
+    : this._(TfArg.variable(name));
+  MagicTransitSiteWanHealthCheckRate.expression(String template)
+    : this._(TfArg.expression(template));
+  const MagicTransitSiteWanHealthCheckRate.arg(TfArg<String> arg) : this._(arg);
+
+  static const low = MagicTransitSiteWanHealthCheckRate._(TfArgLiteral('low'));
+  static const mid = MagicTransitSiteWanHealthCheckRate._(TfArgLiteral('mid'));
+  static const high = MagicTransitSiteWanHealthCheckRate._(
+    TfArgLiteral('high'),
+  );
+
+  static const List<MagicTransitSiteWanHealthCheckRate> values = [
+    low,
+    mid,
+    high,
+  ];
+}
+
 /// Typed helper for the `static_addressing` block of
 /// `cloudflare_magic_transit_site_wan` (derived from provider schema).
 @immutable
@@ -45,6 +67,8 @@ final class CloudflareMagicTransitSiteWan extends Resource {
   CloudflareMagicTransitSiteWan(
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
+    MagicTransitSiteWanHealthCheckRate? healthCheckRate,
+    TfArg<bool>? loadBalanceInnerFlows,
     TfArg<String>? name,
     required TfArg<num> physport,
     TfArg<num>? priority,
@@ -59,6 +83,8 @@ final class CloudflareMagicTransitSiteWan extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
+           'health_check_rate': ?healthCheckRate,
+           'load_balance_inner_flows': ?loadBalanceInnerFlows,
            'name': ?name,
            'physport': physport,
            'priority': ?priority,
@@ -82,12 +108,16 @@ final class CloudflareMagicTransitSiteWan extends Resource {
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
+
   /// Reference to `health_check_rate` attribute.
   TfRef<String> get healthCheckRate =>
       TfRef.attribute<String>(this, 'health_check_rate');
 
-  /// Reference to `account_id` attribute.
-  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
+  /// Reference to `load_balance_inner_flows` attribute.
+  TfRef<bool> get loadBalanceInnerFlows =>
+      TfRef.attribute<bool>(this, 'load_balance_inner_flows');
 
   /// Reference to `physport` attribute.
   TfRef<num> get physport => TfRef.attribute<num>(this, 'physport');

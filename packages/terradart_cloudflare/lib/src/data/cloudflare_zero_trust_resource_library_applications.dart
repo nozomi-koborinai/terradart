@@ -19,6 +19,7 @@ final class DataCloudflareZeroTrustResourceLibraryApplications extends Data {
     TfArg<String>? fields,
     TfArg<String>? filter,
     TfArg<num>? limit,
+    TfArg<String>? lookup,
     TfArg<num>? maxItems,
     TfArg<num>? offset,
     TfArg<String>? orderBy,
@@ -32,6 +33,7 @@ final class DataCloudflareZeroTrustResourceLibraryApplications extends Data {
            'fields': ?fields,
            'filter': ?filter,
            'limit': ?limit,
+           'lookup': ?lookup,
            'max_items': ?maxItems,
            'offset': ?offset,
            'order_by': ?orderBy,
@@ -54,6 +56,9 @@ final class DataCloudflareZeroTrustResourceLibraryApplications extends Data {
 
   /// Reference to `limit` attribute.
   TfRef<num> get limit => TfRef.attribute<num>(this, 'limit');
+
+  /// Reference to `lookup` attribute.
+  TfRef<String> get lookup => TfRef.attribute<String>(this, 'lookup');
 
   /// Reference to `max_items` attribute.
   TfRef<num> get maxItems => TfRef.attribute<num>(this, 'max_items');
