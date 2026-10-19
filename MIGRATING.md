@@ -33,6 +33,26 @@ not write the secret into synth output.
 `AppwriteProvider` gains optional `maxRetries` (`max_retries`, provider
 default 5). `api_key` and `organization_api_key` stay off the class.
 
+### User password, webhook password, and function schedule
+
+**Breaking (`terradart_appwrite`)** — the same pin seals three more
+slots. `password` and `authPassword` stay optional. `schedule` is no
+longer its own argument.
+
+| Before | After |
+|---|---|
+| `AppwriteAuthUser('demo', password: password)` | `AppwriteAuthUser('demo', password: .password(password))` |
+| *(not available)* | `AppwriteAuthUser('demo', password: .passwordWo(password))` |
+| `AppwriteWebhook('hook', authPassword: password, ...)` | `AppwriteWebhook('hook', authPassword: .authPassword(password), ...)` |
+| *(not available)* | `AppwriteWebhook('hook', authPassword: .authPasswordWo(password), ...)` |
+| `AppwriteFunction('fn', schedule: .literal('0 2 * * *'), ...)` | `AppwriteFunction('fn', intervalOrSchedule: .schedule(.literal('0 2 * * *')), ...)` |
+| *(not available)* | `AppwriteFunction('fn', intervalOrSchedule: .interval(.literal(60)), ...)` |
+
+`password` is `variable<String>('password', sensitive: true)`.
+`passwordWoVersion` and `authPasswordWoVersion` bump a write-only value.
+`interval` is minutes. The provider rejects setting both `interval` and
+`schedule`.
+
 ### Provider 8.7.0 dropped conflicts on thirteen slots
 
 **Breaking (`terradart_google`)** — Magic Modules no longer marks these
