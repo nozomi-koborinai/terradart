@@ -1430,6 +1430,33 @@ resource "appwrite_project" "demo" {
       expect(sidecar, isNot(contains('org_secret')));
     });
 
+    test('Appwrite max_retries maps onto maxRetries', () {
+      final r = _migrateHcl('''
+terraform {
+  required_providers {
+    appwrite = {
+      source  = "appwrite/appwrite"
+      version = "$kAppwriteProviderVersionConstraint"
+    }
+  }
+}
+provider "appwrite" {
+  endpoint    = "https://cloud.appwrite.io/v1"
+  max_retries = 0
+}
+resource "appwrite_project" "demo" {
+  name = "demo"
+}
+''');
+      expect(
+        r.stackSource,
+        contains(
+          "const AppwriteProvider(endpoint: 'https://cloud.appwrite.io/v1', maxRetries: 0)",
+        ),
+      );
+      expect(r.report.warnings, isEmpty);
+    });
+
     test('a nested credential block is stripped from the sidecar', () {
       final r = _migrateHcl('''
 terraform {
