@@ -24,6 +24,22 @@ void main() {
     expect(days, hasLength(lanes.length));
   });
 
+  test('a quickstart that did not synth does not fail the bump job', () {
+    // render_coverage_page exits 1 when any quickstart has no tf-out, so a
+    // partial page cannot blank that example's factories (PR #277). The docs
+    // step still has to finish: run 38658573829 died on that exit, and the
+    // appwrite 2.0.0-beta.1 to 2.3.0 bump never opened a PR. CI's
+    // `render_coverage_page --check` stays the strict gate.
+    final workflow = File(
+      '.github/workflows/schema-bump.yml',
+    ).readAsStringSync();
+    expect(workflow, contains('if dart tool/render_coverage_page.dart'));
+    expect(
+      workflow,
+      isNot(contains('\n          dart tool/render_coverage_page.dart\n')),
+    );
+  });
+
   test(
     'schema-bump commits with git add -A and does not name .schema-bump',
     () {
