@@ -15,8 +15,19 @@ void main() {
       lane.name: lane,
   };
 
-  test('google runs the universal invariants in terradart_codegen', () {
+  test('google runs the universal invariants and its CI lane gates', () {
     expect(laneGates(lanes['google']!).map((g) => '$g'), [
+      'universal QA gates: (cd packages/terradart_codegen && dart test '
+          'test/codegen/universal_invariants_test.dart -r expanded)',
+      'google enum gaps: (cd . && dart tool/check_google_enum_gaps.dart '
+          '--strict-nested)',
+      'google MM upstream fingerprint: (cd . && dart '
+          'tool/check_google_mm_fingerprint.dart)',
+    ]);
+  });
+
+  test('google-beta runs the universal invariants in terradart_codegen', () {
+    expect(laneGates(lanes['google-beta']!).map((g) => '$g'), [
       'universal QA gates: (cd packages/terradart_codegen && dart test '
           'test/codegen/universal_invariants_test.dart -r expanded)',
     ]);

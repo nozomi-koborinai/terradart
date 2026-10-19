@@ -1657,6 +1657,13 @@ final class DataSourceLeftoverStack extends Stack {
     add(DataGoogleFolders('folders', parentId: TfArg.literal(leftover)));
 
     add(
+      DataGoogleGeminiDataAnalyticsDataAgentIamPolicy(
+        'gemini_data_analytics_data_agent_iam_policy',
+        dataAgentId: TfArg.literal(leftover),
+      ),
+    );
+
+    add(
       DataGoogleGeminiRepositoryGroupIamPolicy(
         'gemini_repository_group_iam_policy',
         codeRepositoryIndex: RefTo.literal(leftover),

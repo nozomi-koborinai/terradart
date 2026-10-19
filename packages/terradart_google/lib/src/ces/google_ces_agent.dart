@@ -193,17 +193,45 @@ final class CesAgentLlmAgent {
 /// `google_ces_agent` (derived from provider schema).
 @immutable
 final class CesAgentModelSettings {
-  const CesAgentModelSettings({this.model, this.temperature});
+  const CesAgentModelSettings({
+    this.model,
+    this.temperature,
+    this.thinkingLevel,
+  });
 
   final TfArg<String>? model;
 
   final TfArg<num>? temperature;
 
+  final CesAgentThinkingLevel? thinkingLevel;
+
   @internal
   Map<String, Object?> encode() => {
     'model': ?model?.toTfJson(),
     'temperature': ?temperature?.toTfJson(),
+    'thinking_level': ?thinkingLevel?.toTfJson(),
   };
+}
+
+/// `thinking_level` — derived from the provider schema description.
+extension type const CesAgentThinkingLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  CesAgentThinkingLevel.variable(String name) : this._(TfArg.variable(name));
+  CesAgentThinkingLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const CesAgentThinkingLevel.arg(TfArg<String> arg) : this._(arg);
+
+  static const defaultCase = CesAgentThinkingLevel._(TfArgLiteral('DEFAULT'));
+  static const low = CesAgentThinkingLevel._(TfArgLiteral('LOW'));
+  static const medium = CesAgentThinkingLevel._(TfArgLiteral('MEDIUM'));
+  static const high = CesAgentThinkingLevel._(TfArgLiteral('HIGH'));
+
+  static const List<CesAgentThinkingLevel> values = [
+    defaultCase,
+    low,
+    medium,
+    high,
+  ];
 }
 
 /// Typed helper for the `remote_a2a_agent` block of

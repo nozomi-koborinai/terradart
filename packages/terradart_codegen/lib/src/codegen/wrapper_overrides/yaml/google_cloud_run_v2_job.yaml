@@ -32,7 +32,6 @@ exactlyOneOf:
 sealedNames:
   "template.template.containers.env.value, template.template.containers.env.value_source": source
   "template.template.volumes.cloud_sql_instance, template.template.volumes.empty_dir, template.template.volumes.gcs, template.template.volumes.nfs, template.template.volumes.secret": source
-  "binary_authorization.policy, binary_authorization.use_default": policy
 
 paramOrder:
   - name

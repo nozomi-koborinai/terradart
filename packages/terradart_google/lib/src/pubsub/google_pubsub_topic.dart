@@ -68,135 +68,35 @@ extension type const PubsubTopicPlatformLogsSeverity._(TfArg<String> _)
 @immutable
 final class PubsubTopicIngestionDataSourceSettings {
   const PubsubTopicIngestionDataSourceSettings({
-    this.source,
+    this.awsKinesis,
+    this.awsMsk,
+    this.azureEventHubs,
+    this.cloudStorage,
+    this.confluentCloud,
     this.platformLogsSettings,
   });
 
-  final PubsubTopicSource? source;
+  final PubsubTopicAwsKinesis? awsKinesis;
+
+  final PubsubTopicAwsMsk? awsMsk;
+
+  final PubsubTopicAzureEventHubs? azureEventHubs;
+
+  final PubsubTopicCloudStorage? cloudStorage;
+
+  final PubsubTopicConfluentCloud? confluentCloud;
 
   final PubsubTopicPlatformLogsSettings? platformLogsSettings;
 
   @internal
   Map<String, Object?> encode() => {
-    ...?source?.encode(),
+    'aws_kinesis': ?awsKinesis?.encode(),
+    'aws_msk': ?awsMsk?.encode(),
+    'azure_event_hubs': ?azureEventHubs?.encode(),
+    'cloud_storage': ?cloudStorage?.encode(),
+    'confluent_cloud': ?confluentCloud?.encode(),
     'platform_logs_settings': ?platformLogsSettings?.encode(),
   };
-}
-
-/// At most one of `aws_kinesis`, `cloud_storage`, `azure_event_hubs`, `aws_msk`, `confluent_cloud` on the `ingestion_data_source_settings` block of `google_pubsub_topic`: the provider rejects
-/// more than one, so each variant sets one of them and a
-/// null choice sets none.
-///
-/// Pick one with a dot shorthand: `.awsKinesis(...)`.
-sealed class PubsubTopicSource {
-  const PubsubTopicSource();
-
-  /// Sets `aws_kinesis`.
-  const factory PubsubTopicSource.awsKinesis(PubsubTopicAwsKinesis awsKinesis) =
-      PubsubTopicSourceAwsKinesis;
-
-  /// Sets `cloud_storage`.
-  const factory PubsubTopicSource.cloudStorage(
-    PubsubTopicCloudStorage cloudStorage,
-  ) = PubsubTopicSourceCloudStorage;
-
-  /// Sets `azure_event_hubs`.
-  const factory PubsubTopicSource.azureEventHubs(
-    PubsubTopicAzureEventHubs azureEventHubs,
-  ) = PubsubTopicSourceAzureEventHubs;
-
-  /// Sets `aws_msk`.
-  const factory PubsubTopicSource.awsMsk(PubsubTopicAwsMsk awsMsk) =
-      PubsubTopicSourceAwsMsk;
-
-  /// Sets `confluent_cloud`.
-  const factory PubsubTopicSource.confluentCloud(
-    PubsubTopicConfluentCloud confluentCloud,
-  ) = PubsubTopicSourceConfluentCloud;
-
-  /// The Terraform argument this choice sets.
-  @internal
-  String get blockKey;
-
-  @internal
-  Map<String, Object?> encode();
-}
-
-/// The [PubsubTopicSource.awsKinesis] choice: sets `aws_kinesis`.
-final class PubsubTopicSourceAwsKinesis extends PubsubTopicSource {
-  const PubsubTopicSourceAwsKinesis(this.awsKinesis);
-
-  final PubsubTopicAwsKinesis awsKinesis;
-
-  @internal
-  @override
-  String get blockKey => 'aws_kinesis';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'aws_kinesis': awsKinesis.encode()};
-}
-
-/// The [PubsubTopicSource.cloudStorage] choice: sets `cloud_storage`.
-final class PubsubTopicSourceCloudStorage extends PubsubTopicSource {
-  const PubsubTopicSourceCloudStorage(this.cloudStorage);
-
-  final PubsubTopicCloudStorage cloudStorage;
-
-  @internal
-  @override
-  String get blockKey => 'cloud_storage';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'cloud_storage': cloudStorage.encode()};
-}
-
-/// The [PubsubTopicSource.azureEventHubs] choice: sets `azure_event_hubs`.
-final class PubsubTopicSourceAzureEventHubs extends PubsubTopicSource {
-  const PubsubTopicSourceAzureEventHubs(this.azureEventHubs);
-
-  final PubsubTopicAzureEventHubs azureEventHubs;
-
-  @internal
-  @override
-  String get blockKey => 'azure_event_hubs';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {
-    'azure_event_hubs': azureEventHubs.encode(),
-  };
-}
-
-/// The [PubsubTopicSource.awsMsk] choice: sets `aws_msk`.
-final class PubsubTopicSourceAwsMsk extends PubsubTopicSource {
-  const PubsubTopicSourceAwsMsk(this.awsMsk);
-
-  final PubsubTopicAwsMsk awsMsk;
-
-  @internal
-  @override
-  String get blockKey => 'aws_msk';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'aws_msk': awsMsk.encode()};
-}
-
-/// The [PubsubTopicSource.confluentCloud] choice: sets `confluent_cloud`.
-final class PubsubTopicSourceConfluentCloud extends PubsubTopicSource {
-  const PubsubTopicSourceConfluentCloud(this.confluentCloud);
-
-  final PubsubTopicConfluentCloud confluentCloud;
-
-  @internal
-  @override
-  String get blockKey => 'confluent_cloud';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'confluent_cloud': confluentCloud.encode()};
 }
 
 /// Typed helper for the `ingestion_data_source_settings.aws_kinesis` block of

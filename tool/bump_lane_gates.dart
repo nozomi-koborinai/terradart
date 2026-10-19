@@ -61,7 +61,22 @@ bool _dependsOn(String pubspecYaml, String package) {
 @visibleForTesting
 List<LaneGate> laneGates(WrapLane lane, {List<String> examples = const []}) =>
     switch (lane.name) {
-      'google' || 'google-beta' => const [
+      'google' => const [
+        LaneGate('universal QA gates', codegenDir, [
+          'test',
+          'test/codegen/universal_invariants_test.dart',
+          '-r',
+          'expanded',
+        ]),
+        LaneGate('google enum gaps', '.', [
+          'tool/check_google_enum_gaps.dart',
+          '--strict-nested',
+        ]),
+        LaneGate('google MM upstream fingerprint', '.', [
+          'tool/check_google_mm_fingerprint.dart',
+        ]),
+      ],
+      'google-beta' => const [
         LaneGate('universal QA gates', codegenDir, [
           'test',
           'test/codegen/universal_invariants_test.dart',

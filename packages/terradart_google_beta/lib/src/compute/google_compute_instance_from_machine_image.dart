@@ -128,6 +128,7 @@ final class ComputeInstanceFromMachineImageNetworkInterface {
     this.nicType,
     this.queueCount,
     this.securityPolicy,
+    this.serviceClassId,
     this.stackType,
     this.subnetwork,
     this.subnetworkProject,
@@ -158,6 +159,8 @@ final class ComputeInstanceFromMachineImageNetworkInterface {
 
   final TfArg<String>? securityPolicy;
 
+  final TfArg<String>? serviceClassId;
+
   final TfArg<String>? stackType;
 
   final RefTo<GoogleComputeSubnetwork>? subnetwork;
@@ -186,6 +189,7 @@ final class ComputeInstanceFromMachineImageNetworkInterface {
     'nic_type': ?nicType?.toTfJson(),
     'queue_count': ?queueCount?.toTfJson(),
     'security_policy': ?securityPolicy?.toTfJson(),
+    'service_class_id': ?serviceClassId?.toTfJson(),
     'stack_type': ?stackType?.toTfJson(),
     'subnetwork': ?subnetwork?.encodeAs('id').toTfJson(),
     'subnetwork_project': ?subnetworkProject?.toTfJson(),

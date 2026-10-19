@@ -576,6 +576,7 @@ final class ComputeInstanceNetworkInterface {
     this.networkIp,
     this.nicType,
     this.queueCount,
+    this.serviceClassId,
     this.stackType,
     this.subnetwork,
     this.subnetworkProject,
@@ -603,6 +604,8 @@ final class ComputeInstanceNetworkInterface {
 
   final TfArg<num>? queueCount;
 
+  final TfArg<String>? serviceClassId;
+
   final TfArg<String>? stackType;
 
   final RefTo<GoogleComputeSubnetwork>? subnetwork;
@@ -628,6 +631,7 @@ final class ComputeInstanceNetworkInterface {
     'network_ip': ?networkIp?.toTfJson(),
     'nic_type': ?nicType?.toTfJson(),
     'queue_count': ?queueCount?.toTfJson(),
+    'service_class_id': ?serviceClassId?.toTfJson(),
     'stack_type': ?stackType?.toTfJson(),
     'subnetwork': ?subnetwork?.encodeAs('id').toTfJson(),
     'subnetwork_project': ?subnetworkProject?.toTfJson(),
@@ -806,6 +810,7 @@ final class ComputeInstanceScheduling {
     this.maxRunDuration,
     this.nodeAffinities,
     this.onInstanceStopAction,
+    this.preemptionNoticeDuration,
   });
 
   final TfArg<bool>? automaticRestart;
@@ -834,6 +839,8 @@ final class ComputeInstanceScheduling {
 
   final ComputeInstanceOnInstanceStopAction? onInstanceStopAction;
 
+  final ComputeInstancePreemptionNoticeDuration? preemptionNoticeDuration;
+
   @internal
   Map<String, Object?> encode() => {
     'automatic_restart': ?automaticRestart?.toTfJson(),
@@ -850,6 +857,7 @@ final class ComputeInstanceScheduling {
     if (nodeAffinities != null)
       'node_affinities': [for (final e in nodeAffinities!) e.encode()],
     'on_instance_stop_action': ?onInstanceStopAction?.encode(),
+    'preemption_notice_duration': ?preemptionNoticeDuration?.encode(),
   };
 }
 
@@ -925,6 +933,26 @@ final class ComputeInstanceOnInstanceStopAction {
   @internal
   Map<String, Object?> encode() => {
     'discard_local_ssd': ?discardLocalSsd?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `scheduling.preemption_notice_duration` block of
+/// `google_compute_instance` (derived from provider schema).
+@immutable
+final class ComputeInstancePreemptionNoticeDuration {
+  const ComputeInstancePreemptionNoticeDuration({
+    this.nanos,
+    required this.seconds,
+  });
+
+  final TfArg<num>? nanos;
+
+  final TfArg<num> seconds;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'nanos': ?nanos?.toTfJson(),
+    'seconds': seconds.toTfJson(),
   };
 }
 

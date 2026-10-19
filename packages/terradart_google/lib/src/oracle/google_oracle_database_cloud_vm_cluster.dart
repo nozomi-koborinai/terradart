@@ -65,6 +65,8 @@ final class OracleDatabaseCloudVmClusterProperties {
     this.ocpuCount,
     this.sparseDiskgroupEnabled,
     this.sshPublicKeys,
+    this.vmBackupStorageType,
+    this.vmFileSystemStorageType,
     this.diagnosticsDataCollectionOptions,
     this.timeZone,
   });
@@ -99,6 +101,10 @@ final class OracleDatabaseCloudVmClusterProperties {
 
   final TfArg<List<String>>? sshPublicKeys;
 
+  final TfArg<String>? vmBackupStorageType;
+
+  final TfArg<String>? vmFileSystemStorageType;
+
   final OracleDatabaseCloudVmClusterDiagnosticsDataCollectionOptions?
   diagnosticsDataCollectionOptions;
 
@@ -121,6 +127,8 @@ final class OracleDatabaseCloudVmClusterProperties {
     'ocpu_count': ?ocpuCount?.toTfJson(),
     'sparse_diskgroup_enabled': ?sparseDiskgroupEnabled?.toTfJson(),
     'ssh_public_keys': ?sshPublicKeys?.toTfJson(),
+    'vm_backup_storage_type': ?vmBackupStorageType?.toTfJson(),
+    'vm_file_system_storage_type': ?vmFileSystemStorageType?.toTfJson(),
     'diagnostics_data_collection_options': ?diagnosticsDataCollectionOptions
         ?.encode(),
     'time_zone': ?timeZone?.encode(),

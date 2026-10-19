@@ -276,9 +276,13 @@ export 'src/dialogflow/google_dialogflow_fulfillment.dart'
         GoogleDialogflowFulfillment;
 export 'src/dialogflow/google_dialogflow_generator.dart'
     show
+        DialogflowGeneratorAgentCoachingContext,
+        DialogflowGeneratorFreeFormContext,
         DialogflowGeneratorInferenceParameter,
+        DialogflowGeneratorInstructions,
         DialogflowGeneratorSummarizationContext,
         DialogflowGeneratorTriggerEvent,
+        DialogflowGeneratorTriggeringEvent,
         GoogleDialogflowGenerator;
 export 'src/dialogflow/google_dialogflow_intent.dart'
     show DialogflowIntentWebhookState, GoogleDialogflowIntent;

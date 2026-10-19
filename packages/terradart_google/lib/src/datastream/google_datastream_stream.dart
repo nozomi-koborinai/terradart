@@ -1855,8 +1855,9 @@ final class DatastreamStreamMysqlSourceConfig {
   const DatastreamStreamMysqlSourceConfig({
     this.maxConcurrentBackfillTasks,
     this.maxConcurrentCdcTasks,
-    this.cdcMethod,
+    this.binaryLogPosition,
     this.excludeObjects,
+    this.gtid,
     this.includeObjects,
   });
 
@@ -1864,9 +1865,11 @@ final class DatastreamStreamMysqlSourceConfig {
 
   final TfArg<num>? maxConcurrentCdcTasks;
 
-  final DatastreamStreamCdcMethod? cdcMethod;
+  final DatastreamStreamBinaryLogPosition? binaryLogPosition;
 
   final DatastreamStreamMysqlSourceConfigExcludeObjects? excludeObjects;
+
+  final DatastreamStreamGtid? gtid;
 
   final DatastreamStreamMysqlSourceConfigIncludeObjects? includeObjects;
 
@@ -1874,72 +1877,11 @@ final class DatastreamStreamMysqlSourceConfig {
   Map<String, Object?> encode() => {
     'max_concurrent_backfill_tasks': ?maxConcurrentBackfillTasks?.toTfJson(),
     'max_concurrent_cdc_tasks': ?maxConcurrentCdcTasks?.toTfJson(),
-    ...?cdcMethod?.encode(),
+    'binary_log_position': ?binaryLogPosition?.encode(),
     'exclude_objects': ?excludeObjects?.encode(),
+    'gtid': ?gtid?.encode(),
     'include_objects': ?includeObjects?.encode(),
   };
-}
-
-/// At most one of `binary_log_position`, `gtid` on the `source_config.mysql_source_config` block of `google_datastream_stream`: the provider rejects
-/// more than one, so each variant sets one of them and a
-/// null choice sets none.
-///
-/// Pick one with a dot shorthand: `.binaryLogPosition(...)`.
-sealed class DatastreamStreamCdcMethod {
-  const DatastreamStreamCdcMethod();
-
-  /// Sets `binary_log_position`.
-  const factory DatastreamStreamCdcMethod.binaryLogPosition([
-    DatastreamStreamBinaryLogPosition binaryLogPosition,
-  ]) = DatastreamStreamCdcMethodBinaryLogPosition;
-
-  /// Sets `gtid`.
-  const factory DatastreamStreamCdcMethod.gtid([DatastreamStreamGtid gtid]) =
-      DatastreamStreamCdcMethodGtid;
-
-  /// The Terraform argument this choice sets.
-  @internal
-  String get blockKey;
-
-  @internal
-  Map<String, Object?> encode();
-}
-
-/// The [DatastreamStreamCdcMethod.binaryLogPosition] choice: sets `binary_log_position`.
-final class DatastreamStreamCdcMethodBinaryLogPosition
-    extends DatastreamStreamCdcMethod {
-  const DatastreamStreamCdcMethodBinaryLogPosition([
-    this.binaryLogPosition = const DatastreamStreamBinaryLogPosition(),
-  ]);
-
-  final DatastreamStreamBinaryLogPosition binaryLogPosition;
-
-  @internal
-  @override
-  String get blockKey => 'binary_log_position';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {
-    'binary_log_position': binaryLogPosition.encode(),
-  };
-}
-
-/// The [DatastreamStreamCdcMethod.gtid] choice: sets `gtid`.
-final class DatastreamStreamCdcMethodGtid extends DatastreamStreamCdcMethod {
-  const DatastreamStreamCdcMethodGtid([
-    this.gtid = const DatastreamStreamGtid(),
-  ]);
-
-  final DatastreamStreamGtid gtid;
-
-  @internal
-  @override
-  String get blockKey => 'gtid';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'gtid': gtid.encode()};
 }
 
 /// Typed helper for the `source_config.mysql_source_config.binary_log_position` block of

@@ -212,71 +212,21 @@ final class CloudRunV2ServiceBinaryAuthorization {
   const CloudRunV2ServiceBinaryAuthorization({
     this.breakglassJustification,
     this.policy,
+    this.useDefault,
   });
 
   final TfArg<String>? breakglassJustification;
 
-  final CloudRunV2ServicePolicy? policy;
+  final TfArg<String>? policy;
+
+  final TfArg<bool>? useDefault;
 
   @internal
   Map<String, Object?> encode() => {
     'breakglass_justification': ?breakglassJustification?.toTfJson(),
-    ...?policy?.encode(),
+    'policy': ?policy?.toTfJson(),
+    'use_default': ?useDefault?.toTfJson(),
   };
-}
-
-/// At most one of `use_default`, `policy` on the `binary_authorization` block of `google_cloud_run_v2_service`: the provider rejects
-/// more than one, so each variant sets one of them and a
-/// null choice sets none.
-///
-/// Pick one with a dot shorthand: `.useDefault(...)`.
-sealed class CloudRunV2ServicePolicy {
-  const CloudRunV2ServicePolicy();
-
-  /// Sets `use_default`.
-  const factory CloudRunV2ServicePolicy.useDefault(TfArg<bool> useDefault) =
-      CloudRunV2ServicePolicyUseDefault;
-
-  /// Sets `policy`.
-  const factory CloudRunV2ServicePolicy.policy(TfArg<String> policy) =
-      CloudRunV2ServicePolicyChoice;
-
-  /// The Terraform argument this choice sets.
-  @internal
-  String get blockKey;
-
-  @internal
-  Map<String, Object?> encode();
-}
-
-/// The [CloudRunV2ServicePolicy.useDefault] choice: sets `use_default`.
-final class CloudRunV2ServicePolicyUseDefault extends CloudRunV2ServicePolicy {
-  const CloudRunV2ServicePolicyUseDefault(this.useDefault);
-
-  final TfArg<bool> useDefault;
-
-  @internal
-  @override
-  String get blockKey => 'use_default';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'use_default': useDefault.toTfJson()};
-}
-
-/// The [CloudRunV2ServicePolicy.policy] choice: sets `policy`.
-final class CloudRunV2ServicePolicyChoice extends CloudRunV2ServicePolicy {
-  const CloudRunV2ServicePolicyChoice(this.policy);
-
-  final TfArg<String> policy;
-
-  @internal
-  @override
-  String get blockKey => 'policy';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'policy': policy.toTfJson()};
 }
 
 /// Typed helper for the `build_config` block of

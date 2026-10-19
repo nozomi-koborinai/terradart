@@ -44,6 +44,26 @@ final class ContainerNodePoolAutoscaling {
   };
 }
 
+/// Typed helper for the `best_effort_provisioning` block of
+/// `google_container_node_pool` (derived from provider schema).
+@immutable
+final class ContainerNodePoolBestEffortProvisioning {
+  const ContainerNodePoolBestEffortProvisioning({
+    required this.enabled,
+    this.minProvisionNodes,
+  });
+
+  final TfArg<bool> enabled;
+
+  final TfArg<num>? minProvisionNodes;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'enabled': enabled.toTfJson(),
+    'min_provision_nodes': ?minProvisionNodes?.toTfJson(),
+  };
+}
+
 /// Typed helper for the `maintenance_policy` block of
 /// `google_container_node_pool` (derived from provider schema).
 @immutable

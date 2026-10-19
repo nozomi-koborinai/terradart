@@ -117,6 +117,12 @@ Map<String, String> _githubHeaders() {
   };
 }
 
+Future<List<String>> githubTreePaths(String repo, String tag) =>
+    _treePaths(repo, tag);
+
+Future<String> githubRaw(String repo, String ref, String path) =>
+    _raw(repo, ref, path);
+
 Future<List<String>> _treePaths(String repo, String tag) async {
   final r = await http.get(
     Uri.https('api.github.com', '/repos/$repo/git/trees/$tag', {

@@ -12198,6 +12198,13 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
+          tfName: 'service_class_id',
+          dartName: 'serviceClassId',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
           tfName: 'stack_type',
           dartName: 'stackType',
           kind: MigrateSlotKind.scalar,

@@ -176,6 +176,7 @@ final class CloudSecurityComplianceCloudControlOneofValueParameterValue {
   const CloudSecurityComplianceCloudControlOneofValueParameterValue({
     this.boolValue,
     this.numberValue,
+    this.oneofValue,
     this.stringValue,
     this.stringListValue,
   });
@@ -183,6 +184,8 @@ final class CloudSecurityComplianceCloudControlOneofValueParameterValue {
   final TfArg<bool>? boolValue;
 
   final TfArg<num>? numberValue;
+
+  final TfArg<String>? oneofValue;
 
   final TfArg<String>? stringValue;
 
@@ -192,6 +195,7 @@ final class CloudSecurityComplianceCloudControlOneofValueParameterValue {
   Map<String, Object?> encode() => {
     'bool_value': ?boolValue?.toTfJson(),
     'number_value': ?numberValue?.toTfJson(),
+    'oneof_value': ?oneofValue?.toTfJson(),
     'string_value': ?stringValue?.toTfJson(),
     'string_list_value': ?stringListValue?.encode(),
   };
@@ -273,6 +277,7 @@ final class CloudSecurityComplianceCloudControlSubParametersSubParameters {
     this.displayName,
     required this.isRequired,
     required this.name,
+    this.subParameters,
     required this.valueType,
     this.defaultValue,
     this.substitutionRules,
@@ -286,6 +291,8 @@ final class CloudSecurityComplianceCloudControlSubParametersSubParameters {
   final TfArg<bool> isRequired;
 
   final TfArg<String> name;
+
+  final TfArg<String>? subParameters;
 
   final TfArg<String> valueType;
 
@@ -303,6 +310,7 @@ final class CloudSecurityComplianceCloudControlSubParametersSubParameters {
     'display_name': ?displayName?.toTfJson(),
     'is_required': isRequired.toTfJson(),
     'name': name.toTfJson(),
+    'sub_parameters': ?subParameters?.toTfJson(),
     'value_type': valueType.toTfJson(),
     'default_value': ?defaultValue?.encode(),
     if (substitutionRules != null)

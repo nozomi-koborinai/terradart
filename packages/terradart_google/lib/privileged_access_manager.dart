@@ -20,9 +20,6 @@ export 'src/privileged_access_manager/google_privileged_access_manager_entitleme
         PrivilegedAccessManagerEntitlementNotMandatory,
         PrivilegedAccessManagerEntitlementPrivilegedAccess,
         PrivilegedAccessManagerEntitlementRequesterJustificationConfig,
-        PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequirement,
-        PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequirementNotMandatory,
-        PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequirementUnstructured,
         PrivilegedAccessManagerEntitlementRoleBindings,
         PrivilegedAccessManagerEntitlementSteps,
         PrivilegedAccessManagerEntitlementUnstructured;

@@ -179,80 +179,19 @@ final class PrivilegedAccessManagerEntitlementRoleBindings {
 @immutable
 final class PrivilegedAccessManagerEntitlementRequesterJustificationConfig {
   const PrivilegedAccessManagerEntitlementRequesterJustificationConfig({
-    this.requirement,
+    this.notMandatory,
+    this.unstructured,
   });
 
-  final PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequirement?
-  requirement;
+  final PrivilegedAccessManagerEntitlementNotMandatory? notMandatory;
+
+  final PrivilegedAccessManagerEntitlementUnstructured? unstructured;
 
   @internal
-  Map<String, Object?> encode() => {...?requirement?.encode()};
-}
-
-/// At most one of `not_mandatory`, `unstructured` on the `requester_justification_config` block of `google_privileged_access_manager_entitlement`: the provider rejects
-/// more than one, so each variant sets one of them and a
-/// null choice sets none.
-///
-/// Pick one with a dot shorthand: `.notMandatory(...)`.
-sealed class PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequirement {
-  const PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequirement();
-
-  /// Sets `not_mandatory`.
-  const factory PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequirement.notMandatory([
-    PrivilegedAccessManagerEntitlementNotMandatory notMandatory,
-  ]) =
-      PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequirementNotMandatory;
-
-  /// Sets `unstructured`.
-  const factory PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequirement.unstructured([
-    PrivilegedAccessManagerEntitlementUnstructured unstructured,
-  ]) =
-      PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequirementUnstructured;
-
-  /// The Terraform argument this choice sets.
-  @internal
-  String get blockKey;
-
-  @internal
-  Map<String, Object?> encode();
-}
-
-/// The [PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequirement.notMandatory] choice: sets `not_mandatory`.
-final class PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequirementNotMandatory
-    extends
-        PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequirement {
-  const PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequirementNotMandatory([
-    this.notMandatory = const PrivilegedAccessManagerEntitlementNotMandatory(),
-  ]);
-
-  final PrivilegedAccessManagerEntitlementNotMandatory notMandatory;
-
-  @internal
-  @override
-  String get blockKey => 'not_mandatory';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'not_mandatory': notMandatory.encode()};
-}
-
-/// The [PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequirement.unstructured] choice: sets `unstructured`.
-final class PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequirementUnstructured
-    extends
-        PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequirement {
-  const PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequirementUnstructured([
-    this.unstructured = const PrivilegedAccessManagerEntitlementUnstructured(),
-  ]);
-
-  final PrivilegedAccessManagerEntitlementUnstructured unstructured;
-
-  @internal
-  @override
-  String get blockKey => 'unstructured';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'unstructured': unstructured.encode()};
+  Map<String, Object?> encode() => {
+    'not_mandatory': ?notMandatory?.encode(),
+    'unstructured': ?unstructured?.encode(),
+  };
 }
 
 /// Typed helper for the `requester_justification_config.not_mandatory` block of
@@ -328,9 +267,7 @@ final class PrivilegedAccessManagerEntitlementUnstructured {
 ///   ),
 ///   requesterJustificationConfig:
 ///       PrivilegedAccessManagerEntitlementRequesterJustificationConfig(
-///     requirement: .unstructured(
-///       const .new(),
-///     ),
+///     unstructured: const .new(),
 ///   ),
 ///   deletionPolicy: TfArg.literal('DELETE'),
 /// );

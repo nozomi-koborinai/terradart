@@ -2857,6 +2857,16 @@ files:
     upstream: mmv1/products/resourcemanagerv3/CapabilityConfig.yaml
   google_vertex_ai_semantic_governance_policy:
     upstream: mmv1/products/vertexai/SemanticGovernancePolicy.yaml
+  google_gemini_data_analytics_data_agent:
+    upstream: mmv1/products/geminidataanalytics/DataAgent.yaml
+  google_gemini_data_analytics_data_agent_iam_binding:
+    upstream: null  # schema bump: no mmv1 YAML at the guessed paths; probe upstream by hand
+  google_gemini_data_analytics_data_agent_iam_member:
+    upstream: null  # schema bump: no mmv1 YAML at the guessed paths; probe upstream by hand
+  google_gemini_data_analytics_data_agent_iam_policy:
+    upstream: null  # schema bump: no mmv1 YAML at the guessed paths; probe upstream by hand
+  google_vertex_ai_online_evaluator:
+    upstream: mmv1/products/vertexai/OnlineEvaluator.yaml
   data_google_access_approval_folder_service_account:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
   data_google_access_approval_organization_service_account:
@@ -3357,6 +3367,8 @@ files:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
   data_google_folders:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_gemini_data_analytics_data_agent_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (schema bump)
   data_google_gemini_repository_group_iam_policy:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
   data_google_gke_backup_backup_plan_iam_policy:

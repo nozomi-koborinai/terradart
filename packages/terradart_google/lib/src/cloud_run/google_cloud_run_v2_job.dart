@@ -226,71 +226,21 @@ final class CloudRunV2JobBinaryAuthorization {
   const CloudRunV2JobBinaryAuthorization({
     this.breakglassJustification,
     this.policy,
+    this.useDefault,
   });
 
   final TfArg<String>? breakglassJustification;
 
-  final CloudRunV2JobPolicy? policy;
+  final TfArg<String>? policy;
+
+  final TfArg<bool>? useDefault;
 
   @internal
   Map<String, Object?> encode() => {
     'breakglass_justification': ?breakglassJustification?.toTfJson(),
-    ...?policy?.encode(),
+    'policy': ?policy?.toTfJson(),
+    'use_default': ?useDefault?.toTfJson(),
   };
-}
-
-/// At most one of `use_default`, `policy` on the `binary_authorization` block of `google_cloud_run_v2_job`: the provider rejects
-/// more than one, so each variant sets one of them and a
-/// null choice sets none.
-///
-/// Pick one with a dot shorthand: `.useDefault(...)`.
-sealed class CloudRunV2JobPolicy {
-  const CloudRunV2JobPolicy();
-
-  /// Sets `use_default`.
-  const factory CloudRunV2JobPolicy.useDefault(TfArg<bool> useDefault) =
-      CloudRunV2JobPolicyUseDefault;
-
-  /// Sets `policy`.
-  const factory CloudRunV2JobPolicy.policy(TfArg<String> policy) =
-      CloudRunV2JobPolicyChoice;
-
-  /// The Terraform argument this choice sets.
-  @internal
-  String get blockKey;
-
-  @internal
-  Map<String, Object?> encode();
-}
-
-/// The [CloudRunV2JobPolicy.useDefault] choice: sets `use_default`.
-final class CloudRunV2JobPolicyUseDefault extends CloudRunV2JobPolicy {
-  const CloudRunV2JobPolicyUseDefault(this.useDefault);
-
-  final TfArg<bool> useDefault;
-
-  @internal
-  @override
-  String get blockKey => 'use_default';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'use_default': useDefault.toTfJson()};
-}
-
-/// The [CloudRunV2JobPolicy.policy] choice: sets `policy`.
-final class CloudRunV2JobPolicyChoice extends CloudRunV2JobPolicy {
-  const CloudRunV2JobPolicyChoice(this.policy);
-
-  final TfArg<String> policy;
-
-  @internal
-  @override
-  String get blockKey => 'policy';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'policy': policy.toTfJson()};
 }
 
 /// Typed helper for the `template` block of

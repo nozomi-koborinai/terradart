@@ -57,6 +57,117 @@ final class DialogflowGeneratorSummarizationContext {
   };
 }
 
+/// Typed helper for the `agent_coaching_context` block of
+/// `google_dialogflow_generator` (derived from provider schema).
+@immutable
+final class DialogflowGeneratorAgentCoachingContext {
+  const DialogflowGeneratorAgentCoachingContext({
+    this.outputLanguageCode,
+    this.overarchingGuidance,
+    this.version,
+    this.instructions,
+  });
+
+  final TfArg<String>? outputLanguageCode;
+
+  final TfArg<String>? overarchingGuidance;
+
+  final TfArg<String>? version;
+
+  final List<DialogflowGeneratorInstructions>? instructions;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'output_language_code': ?outputLanguageCode?.toTfJson(),
+    'overarching_guidance': ?overarchingGuidance?.toTfJson(),
+    'version': ?version?.toTfJson(),
+    if (instructions != null)
+      'instructions': [for (final e in instructions!) e.encode()],
+  };
+}
+
+/// Typed helper for the `agent_coaching_context.instructions` block of
+/// `google_dialogflow_generator` (derived from provider schema).
+@immutable
+final class DialogflowGeneratorInstructions {
+  const DialogflowGeneratorInstructions({
+    this.agentAction,
+    this.condition,
+    this.displayDetails,
+    this.displayName,
+    this.systemAction,
+    this.triggeringEvent,
+  });
+
+  final TfArg<String>? agentAction;
+
+  final TfArg<String>? condition;
+
+  final TfArg<String>? displayDetails;
+
+  final TfArg<String>? displayName;
+
+  final TfArg<String>? systemAction;
+
+  final DialogflowGeneratorTriggeringEvent? triggeringEvent;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'agent_action': ?agentAction?.toTfJson(),
+    'condition': ?condition?.toTfJson(),
+    'display_details': ?displayDetails?.toTfJson(),
+    'display_name': ?displayName?.toTfJson(),
+    'system_action': ?systemAction?.toTfJson(),
+    'triggering_event': ?triggeringEvent?.toTfJson(),
+  };
+}
+
+/// `triggering_event` — derived from the provider schema description.
+extension type const DialogflowGeneratorTriggeringEvent._(TfArg<String> _)
+    implements TfArg<String> {
+  DialogflowGeneratorTriggeringEvent.variable(String name)
+    : this._(TfArg.variable(name));
+  DialogflowGeneratorTriggeringEvent.expression(String template)
+    : this._(TfArg.expression(template));
+  const DialogflowGeneratorTriggeringEvent.arg(TfArg<String> arg) : this._(arg);
+
+  static const endOfUtterance = DialogflowGeneratorTriggeringEvent._(
+    TfArgLiteral('END_OF_UTTERANCE'),
+  );
+  static const manualCall = DialogflowGeneratorTriggeringEvent._(
+    TfArgLiteral('MANUAL_CALL'),
+  );
+  static const customerMessage = DialogflowGeneratorTriggeringEvent._(
+    TfArgLiteral('CUSTOMER_MESSAGE'),
+  );
+  static const agentMessage = DialogflowGeneratorTriggeringEvent._(
+    TfArgLiteral('AGENT_MESSAGE'),
+  );
+  static const toolCallCompletion = DialogflowGeneratorTriggeringEvent._(
+    TfArgLiteral('TOOL_CALL_COMPLETION'),
+  );
+
+  static const List<DialogflowGeneratorTriggeringEvent> values = [
+    endOfUtterance,
+    manualCall,
+    customerMessage,
+    agentMessage,
+    toolCallCompletion,
+  ];
+}
+
+/// Typed helper for the `free_form_context` block of
+/// `google_dialogflow_generator` (derived from provider schema).
+@immutable
+final class DialogflowGeneratorFreeFormContext {
+  const DialogflowGeneratorFreeFormContext({this.text});
+
+  final TfArg<String>? text;
+
+  @internal
+  Map<String, Object?> encode() => {'text': ?text?.toTfJson()};
+}
+
 /// Typed helper for the `inference_parameter` block of
 /// `google_dialogflow_generator` (derived from provider schema).
 @immutable
@@ -186,6 +297,9 @@ final class GoogleDialogflowGenerator extends Resource {
   /// Reference to `published_model` attribute.
   TfRef<String> get publishedModel =>
       TfRef.attribute<String>(this, 'published_model');
+
+  /// Reference to `tools` attribute.
+  TfRef<List<String>> get tools => TfRef.attribute<List<String>>(this, 'tools');
 
   /// Reference to `trigger_event` attribute.
   TfRef<String> get triggerEvent =>

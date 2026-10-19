@@ -21,9 +21,6 @@ curatedDoc: |-
   /// );
   /// ```
 
-sealedNames:
-  "ingestion_data_source_settings.aws_kinesis, ingestion_data_source_settings.aws_msk, ingestion_data_source_settings.azure_event_hubs, ingestion_data_source_settings.cloud_storage, ingestion_data_source_settings.confluent_cloud": source
-
 paramOrder:
   - name
   - kms_key_name

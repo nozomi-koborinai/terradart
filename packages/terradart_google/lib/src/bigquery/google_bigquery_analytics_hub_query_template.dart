@@ -4,9 +4,27 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_bigquery_analytics_hub_query_template`.
 const Set<String> _googleBigqueryAnalyticsHubQueryTemplateSensitive =
     <String>{};
+
+/// Typed helper for the `encryption_configuration` block of
+/// `google_bigquery_analytics_hub_query_template` (derived from provider schema).
+@immutable
+final class BigqueryAnalyticsHubQueryTemplateEncryptionConfiguration {
+  const BigqueryAnalyticsHubQueryTemplateEncryptionConfiguration({
+    required this.kmsKeyName,
+  });
+
+  final RefTo<GoogleKmsCryptoKey> kmsKeyName;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'kms_key_name': kmsKeyName.encodeAs('id').toTfJson(),
+  };
+}
 
 /// Typed helper for the `routine` block of
 /// `google_bigquery_analytics_hub_query_template` (derived from provider schema).

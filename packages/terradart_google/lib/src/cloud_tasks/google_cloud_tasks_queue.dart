@@ -62,7 +62,8 @@ final class CloudTasksQueueHttpTarget {
   const CloudTasksQueueHttpTarget({
     this.httpMethod,
     this.headerOverrides,
-    this.token,
+    this.oauthToken,
+    this.oidcToken,
     this.uriOverride,
   });
 
@@ -70,7 +71,9 @@ final class CloudTasksQueueHttpTarget {
 
   final List<CloudTasksQueueHeaderOverrides>? headerOverrides;
 
-  final CloudTasksQueueToken? token;
+  final CloudTasksQueueOauthToken? oauthToken;
+
+  final CloudTasksQueueOidcToken? oidcToken;
 
   final CloudTasksQueueUriOverride? uriOverride;
 
@@ -79,65 +82,10 @@ final class CloudTasksQueueHttpTarget {
     'http_method': ?httpMethod?.toTfJson(),
     if (headerOverrides != null)
       'header_overrides': [for (final e in headerOverrides!) e.encode()],
-    ...?token?.encode(),
+    'oauth_token': ?oauthToken?.encode(),
+    'oidc_token': ?oidcToken?.encode(),
     'uri_override': ?uriOverride?.encode(),
   };
-}
-
-/// At most one of `oauth_token`, `oidc_token` on the `http_target` block of `google_cloud_tasks_queue`: the provider rejects
-/// more than one, so each variant sets one of them and a
-/// null choice sets none.
-///
-/// Pick one with a dot shorthand: `.oauthToken(...)`.
-sealed class CloudTasksQueueToken {
-  const CloudTasksQueueToken();
-
-  /// Sets `oauth_token`.
-  const factory CloudTasksQueueToken.oauthToken(
-    CloudTasksQueueOauthToken oauthToken,
-  ) = CloudTasksQueueOauthTokenChoice;
-
-  /// Sets `oidc_token`.
-  const factory CloudTasksQueueToken.oidcToken(
-    CloudTasksQueueOidcToken oidcToken,
-  ) = CloudTasksQueueOidcTokenChoice;
-
-  /// The Terraform argument this choice sets.
-  @internal
-  String get blockKey;
-
-  @internal
-  Map<String, Object?> encode();
-}
-
-/// The [CloudTasksQueueToken.oauthToken] choice: sets `oauth_token`.
-final class CloudTasksQueueOauthTokenChoice extends CloudTasksQueueToken {
-  const CloudTasksQueueOauthTokenChoice(this.oauthToken);
-
-  final CloudTasksQueueOauthToken oauthToken;
-
-  @internal
-  @override
-  String get blockKey => 'oauth_token';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'oauth_token': oauthToken.encode()};
-}
-
-/// The [CloudTasksQueueToken.oidcToken] choice: sets `oidc_token`.
-final class CloudTasksQueueOidcTokenChoice extends CloudTasksQueueToken {
-  const CloudTasksQueueOidcTokenChoice(this.oidcToken);
-
-  final CloudTasksQueueOidcToken oidcToken;
-
-  @internal
-  @override
-  String get blockKey => 'oidc_token';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'oidc_token': oidcToken.encode()};
 }
 
 /// `http_method` — derived from the provider schema description.

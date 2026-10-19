@@ -289,6 +289,7 @@ final class ComputeRegionInstanceTemplateNetworkInterface {
     this.networkIp,
     this.nicType,
     this.queueCount,
+    this.serviceClassId,
     this.stackType,
     this.subnetwork,
     this.subnetworkProject,
@@ -316,6 +317,8 @@ final class ComputeRegionInstanceTemplateNetworkInterface {
 
   final TfArg<num>? queueCount;
 
+  final TfArg<String>? serviceClassId;
+
   final TfArg<String>? stackType;
 
   final RefTo<GoogleComputeSubnetwork>? subnetwork;
@@ -341,6 +344,7 @@ final class ComputeRegionInstanceTemplateNetworkInterface {
     'network_ip': ?networkIp?.toTfJson(),
     'nic_type': ?nicType?.toTfJson(),
     'queue_count': ?queueCount?.toTfJson(),
+    'service_class_id': ?serviceClassId?.toTfJson(),
     'stack_type': ?stackType?.toTfJson(),
     'subnetwork': ?subnetwork?.encodeAs('id').toTfJson(),
     'subnetwork_project': ?subnetworkProject?.toTfJson(),
@@ -539,6 +543,7 @@ final class ComputeRegionInstanceTemplateScheduling {
     this.maxRunDuration,
     this.nodeAffinities,
     this.onInstanceStopAction,
+    this.preemptionNoticeDuration,
   });
 
   final TfArg<bool>? automaticRestart;
@@ -568,6 +573,9 @@ final class ComputeRegionInstanceTemplateScheduling {
 
   final ComputeRegionInstanceTemplateOnInstanceStopAction? onInstanceStopAction;
 
+  final ComputeRegionInstanceTemplatePreemptionNoticeDuration?
+  preemptionNoticeDuration;
+
   @internal
   Map<String, Object?> encode() => {
     'automatic_restart': ?automaticRestart?.toTfJson(),
@@ -587,6 +595,7 @@ final class ComputeRegionInstanceTemplateScheduling {
     if (nodeAffinities != null)
       'node_affinities': [for (final e in nodeAffinities!) e.encode()],
     'on_instance_stop_action': ?onInstanceStopAction?.encode(),
+    'preemption_notice_duration': ?preemptionNoticeDuration?.encode(),
   };
 }
 
@@ -667,6 +676,26 @@ final class ComputeRegionInstanceTemplateOnInstanceStopAction {
   @internal
   Map<String, Object?> encode() => {
     'discard_local_ssd': ?discardLocalSsd?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `scheduling.preemption_notice_duration` block of
+/// `google_compute_region_instance_template` (derived from provider schema).
+@immutable
+final class ComputeRegionInstanceTemplatePreemptionNoticeDuration {
+  const ComputeRegionInstanceTemplatePreemptionNoticeDuration({
+    this.nanos,
+    required this.seconds,
+  });
+
+  final TfArg<num>? nanos;
+
+  final TfArg<num> seconds;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'nanos': ?nanos?.toTfJson(),
+    'seconds': seconds.toTfJson(),
   };
 }
 

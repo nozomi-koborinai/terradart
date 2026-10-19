@@ -2867,6 +2867,7 @@ final class ContainerClusterNodePool {
     this.nodeLocations,
     this.version,
     this.autoscaling,
+    this.bestEffortProvisioning,
     this.maintenancePolicy,
     this.management,
     this.networkConfig,
@@ -2895,6 +2896,8 @@ final class ContainerClusterNodePool {
 
   final ContainerClusterNodePoolAutoscaling? autoscaling;
 
+  final ContainerClusterBestEffortProvisioning? bestEffortProvisioning;
+
   final List<ContainerClusterNodePoolMaintenancePolicy>? maintenancePolicy;
 
   final ContainerClusterManagement? management;
@@ -2922,6 +2925,7 @@ final class ContainerClusterNodePool {
     'node_locations': ?nodeLocations?.toTfJson(),
     'version': ?version?.toTfJson(),
     'autoscaling': ?autoscaling?.encode(),
+    'best_effort_provisioning': ?bestEffortProvisioning?.encode(),
     if (maintenancePolicy != null)
       'maintenance_policy': [for (final e in maintenancePolicy!) e.encode()],
     'management': ?management?.encode(),
@@ -2964,6 +2968,26 @@ final class ContainerClusterNodePoolAutoscaling {
     'min_node_count': ?minNodeCount?.toTfJson(),
     'total_max_node_count': ?totalMaxNodeCount?.toTfJson(),
     'total_min_node_count': ?totalMinNodeCount?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `node_pool.best_effort_provisioning` block of
+/// `google_container_cluster` (derived from provider schema).
+@immutable
+final class ContainerClusterBestEffortProvisioning {
+  const ContainerClusterBestEffortProvisioning({
+    required this.enabled,
+    this.minProvisionNodes,
+  });
+
+  final TfArg<bool> enabled;
+
+  final TfArg<num>? minProvisionNodes;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'enabled': enabled.toTfJson(),
+    'min_provision_nodes': ?minProvisionNodes?.toTfJson(),
   };
 }
 

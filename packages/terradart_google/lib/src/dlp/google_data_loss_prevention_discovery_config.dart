@@ -1686,69 +1686,23 @@ final class DataLossPreventionDiscoveryConfigIncludeTags {
   };
 }
 
-/// At most one of `namespaced_tag_value`, `namespaced_tag_key` on the `targets.cloud_storage_target.filter.collection.include_tags.tag_filters` block of `google_data_loss_prevention_discovery_config`: the provider rejects
-/// more than one, so each variant sets one of them and a
-/// null choice sets none.
-///
-/// Pick one with a dot shorthand: `.namespacedTagValue(...)`.
-sealed class DataLossPreventionDiscoveryConfigTagFilters {
-  const DataLossPreventionDiscoveryConfigTagFilters();
-
-  /// Sets `namespaced_tag_value`.
-  const factory DataLossPreventionDiscoveryConfigTagFilters.namespacedTagValue(
-    TfArg<String> namespacedTagValue,
-  ) = DataLossPreventionDiscoveryConfigTagFiltersNamespacedTagValue;
-
-  /// Sets `namespaced_tag_key`.
-  const factory DataLossPreventionDiscoveryConfigTagFilters.namespacedTagKey(
-    TfArg<String> namespacedTagKey,
-  ) = DataLossPreventionDiscoveryConfigTagFiltersNamespacedTagKey;
-
-  /// The Terraform argument this choice sets.
-  @internal
-  String get blockKey;
-
-  @internal
-  Map<String, Object?> encode();
-}
-
-/// The [DataLossPreventionDiscoveryConfigTagFilters.namespacedTagValue] choice: sets `namespaced_tag_value`.
-final class DataLossPreventionDiscoveryConfigTagFiltersNamespacedTagValue
-    extends DataLossPreventionDiscoveryConfigTagFilters {
-  const DataLossPreventionDiscoveryConfigTagFiltersNamespacedTagValue(
-    this.namespacedTagValue,
-  );
-
-  final TfArg<String> namespacedTagValue;
-
-  @internal
-  @override
-  String get blockKey => 'namespaced_tag_value';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {
-    'namespaced_tag_value': namespacedTagValue.toTfJson(),
-  };
-}
-
-/// The [DataLossPreventionDiscoveryConfigTagFilters.namespacedTagKey] choice: sets `namespaced_tag_key`.
-final class DataLossPreventionDiscoveryConfigTagFiltersNamespacedTagKey
-    extends DataLossPreventionDiscoveryConfigTagFilters {
-  const DataLossPreventionDiscoveryConfigTagFiltersNamespacedTagKey(
+/// Typed helper for the `targets.cloud_storage_target.filter.collection.include_tags.tag_filters` block of
+/// `google_data_loss_prevention_discovery_config` (derived from provider schema).
+@immutable
+final class DataLossPreventionDiscoveryConfigTagFilters {
+  const DataLossPreventionDiscoveryConfigTagFilters({
     this.namespacedTagKey,
-  );
+    this.namespacedTagValue,
+  });
 
-  final TfArg<String> namespacedTagKey;
+  final TfArg<String>? namespacedTagKey;
+
+  final TfArg<String>? namespacedTagValue;
 
   @internal
-  @override
-  String get blockKey => 'namespaced_tag_key';
-
-  @internal
-  @override
   Map<String, Object?> encode() => {
-    'namespaced_tag_key': namespacedTagKey.toTfJson(),
+    'namespaced_tag_key': ?namespacedTagKey?.toTfJson(),
+    'namespaced_tag_value': ?namespacedTagValue?.toTfJson(),
   };
 }
 

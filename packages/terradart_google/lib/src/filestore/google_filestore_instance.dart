@@ -381,62 +381,21 @@ final class FilestoreInstancePscConfig {
   };
 }
 
-/// At most one of `iops_per_tb`, `fixed_iops` on the `performance_config` block of `google_filestore_instance`: the provider rejects
-/// more than one, so each variant sets one of them and a
-/// null choice sets none.
-///
-/// Pick one with a dot shorthand: `.iopsPerTb(...)`.
-sealed class FilestoreInstancePerformanceConfig {
-  const FilestoreInstancePerformanceConfig();
+/// Typed helper for the `performance_config` block of
+/// `google_filestore_instance` (derived from provider schema).
+@immutable
+final class FilestoreInstancePerformanceConfig {
+  const FilestoreInstancePerformanceConfig({this.fixedIops, this.iopsPerTb});
 
-  /// Sets `iops_per_tb`.
-  const factory FilestoreInstancePerformanceConfig.iopsPerTb(
-    FilestoreInstanceIopsPerTb iopsPerTb,
-  ) = FilestoreInstancePerformanceConfigIopsPerTb;
+  final FilestoreInstanceFixedIops? fixedIops;
 
-  /// Sets `fixed_iops`.
-  const factory FilestoreInstancePerformanceConfig.fixedIops(
-    FilestoreInstanceFixedIops fixedIops,
-  ) = FilestoreInstancePerformanceConfigFixedIops;
-
-  /// The Terraform argument this choice sets.
-  @internal
-  String get blockKey;
+  final FilestoreInstanceIopsPerTb? iopsPerTb;
 
   @internal
-  Map<String, Object?> encode();
-}
-
-/// The [FilestoreInstancePerformanceConfig.iopsPerTb] choice: sets `iops_per_tb`.
-final class FilestoreInstancePerformanceConfigIopsPerTb
-    extends FilestoreInstancePerformanceConfig {
-  const FilestoreInstancePerformanceConfigIopsPerTb(this.iopsPerTb);
-
-  final FilestoreInstanceIopsPerTb iopsPerTb;
-
-  @internal
-  @override
-  String get blockKey => 'iops_per_tb';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'iops_per_tb': iopsPerTb.encode()};
-}
-
-/// The [FilestoreInstancePerformanceConfig.fixedIops] choice: sets `fixed_iops`.
-final class FilestoreInstancePerformanceConfigFixedIops
-    extends FilestoreInstancePerformanceConfig {
-  const FilestoreInstancePerformanceConfigFixedIops(this.fixedIops);
-
-  final FilestoreInstanceFixedIops fixedIops;
-
-  @internal
-  @override
-  String get blockKey => 'fixed_iops';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'fixed_iops': fixedIops.encode()};
+  Map<String, Object?> encode() => {
+    'fixed_iops': ?fixedIops?.encode(),
+    'iops_per_tb': ?iopsPerTb?.encode(),
+  };
 }
 
 /// Typed helper for the `performance_config.fixed_iops` block of

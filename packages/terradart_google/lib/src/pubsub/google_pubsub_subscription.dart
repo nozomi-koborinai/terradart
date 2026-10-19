@@ -136,7 +136,8 @@ final class PubsubSubscriptionBigqueryConfig {
     this.dropUnknownFields,
     this.serviceAccountEmail,
     required this.table,
-    this.schema,
+    this.useTableSchema,
+    this.useTopicSchema,
     this.writeMetadata,
   });
 
@@ -146,7 +147,9 @@ final class PubsubSubscriptionBigqueryConfig {
 
   final TfArg<String> table;
 
-  final PubsubSubscriptionSchema? schema;
+  final TfArg<bool>? useTableSchema;
+
+  final TfArg<bool>? useTopicSchema;
 
   final TfArg<bool>? writeMetadata;
 
@@ -155,68 +158,9 @@ final class PubsubSubscriptionBigqueryConfig {
     'drop_unknown_fields': ?dropUnknownFields?.toTfJson(),
     'service_account_email': ?serviceAccountEmail?.encodeAs('email').toTfJson(),
     'table': table.toTfJson(),
-    ...?schema?.encode(),
+    'use_table_schema': ?useTableSchema?.toTfJson(),
+    'use_topic_schema': ?useTopicSchema?.toTfJson(),
     'write_metadata': ?writeMetadata?.toTfJson(),
-  };
-}
-
-/// At most one of `use_topic_schema`, `use_table_schema` on the `bigquery_config` block of `google_pubsub_subscription`: the provider rejects
-/// more than one, so each variant sets one of them and a
-/// null choice sets none.
-///
-/// Pick one with a dot shorthand: `.useTopicSchema(...)`.
-sealed class PubsubSubscriptionSchema {
-  const PubsubSubscriptionSchema();
-
-  /// Sets `use_topic_schema`.
-  const factory PubsubSubscriptionSchema.useTopicSchema(
-    TfArg<bool> useTopicSchema,
-  ) = PubsubSubscriptionUseTopicSchema;
-
-  /// Sets `use_table_schema`.
-  const factory PubsubSubscriptionSchema.useTableSchema(
-    TfArg<bool> useTableSchema,
-  ) = PubsubSubscriptionUseTableSchema;
-
-  /// The Terraform argument this choice sets.
-  @internal
-  String get blockKey;
-
-  @internal
-  Map<String, Object?> encode();
-}
-
-/// The [PubsubSubscriptionSchema.useTopicSchema] choice: sets `use_topic_schema`.
-final class PubsubSubscriptionUseTopicSchema extends PubsubSubscriptionSchema {
-  const PubsubSubscriptionUseTopicSchema(this.useTopicSchema);
-
-  final TfArg<bool> useTopicSchema;
-
-  @internal
-  @override
-  String get blockKey => 'use_topic_schema';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {
-    'use_topic_schema': useTopicSchema.toTfJson(),
-  };
-}
-
-/// The [PubsubSubscriptionSchema.useTableSchema] choice: sets `use_table_schema`.
-final class PubsubSubscriptionUseTableSchema extends PubsubSubscriptionSchema {
-  const PubsubSubscriptionUseTableSchema(this.useTableSchema);
-
-  final TfArg<bool> useTableSchema;
-
-  @internal
-  @override
-  String get blockKey => 'use_table_schema';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {
-    'use_table_schema': useTableSchema.toTfJson(),
   };
 }
 
