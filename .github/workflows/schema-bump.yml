@@ -319,16 +319,17 @@ jobs:
             echo "::warning::example synth gates fail; coverage pages render only when every quickstart synthed."
             tail -n 40 /tmp/synth_gates.txt
           fi
-          # render_coverage_page exits 1 when any quickstart has no tf-out.
-          # A partial page would blank the factories that example covers
-          # (PR #277), so leave the committed pages. The bump PR still opens.
-          # `render_coverage_page --check` in CI stays the strict gate.
-          if dart tool/render_coverage_page.dart > /tmp/coverage_pages.txt 2>&1; then
+          set +e
+          dart tool/render_coverage_page.dart > /tmp/coverage_pages.txt 2>&1
+          rc=$?
+          set -e
+          cat /tmp/coverage_pages.txt
+          if [ "$rc" -eq 0 ]; then
             echo "Coverage pages refreshed."
-            cat /tmp/coverage_pages.txt
-          else
+          elif [ "$rc" -eq 2 ]; then
             echo "::warning::coverage pages were not refreshed."
-            cat /tmp/coverage_pages.txt
+          else
+            exit "$rc"
           fi
 
       - name: Refresh the ride-along lane's fixture + regenerate
