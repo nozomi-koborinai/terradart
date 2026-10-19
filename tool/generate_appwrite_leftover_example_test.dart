@@ -11,14 +11,17 @@ void main() {
   final lane = CoverageLane.read('appwrite');
 
   test(
-    'appwrite_quickstart covers every factory the debt ledger does not list',
+    'leftover places every factory the quickstart and the debt ledger leave out',
     () {
       final rendered = lane.generator.render(
         lane.dummies,
         exclude: lane.debtListed,
       );
-      expect(rendered.source, isNot(contains('add(')));
       expect(rendered.unplaceable, isEmpty);
+      expect(rendered.source, contains('AppwriteDocumentsdb('));
+      expect(rendered.source, contains('AppwriteVectorsdb('));
+      expect(rendered.source, contains('DataAppwriteDocumentsdb('));
+      expect(rendered.source, contains('DataAppwriteVectorsdb('));
     },
   );
 
@@ -74,9 +77,10 @@ void main() {
       expect(
         rendered.source,
         contains(
-          r'''value: Sensitive.expression(r'${sensitive("leftover")}')''',
+          r'''value: .value(Sensitive.expression(r'${sensitive("leftover")}'))''',
         ),
       );
+      expect(rendered.source, isNot(contains('.valueWo(')));
       expect(rendered.source, isNot(contains('value: .literal(')));
       expect(rendered.source, isNot(contains('value: TfArg.literal(')));
     },

@@ -1,12 +1,82 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../project/appwrite_project.dart' show AppwriteProject;
 
 /// Sensitive field paths for `appwrite_function`.
 const Set<String> _appwriteFunctionSensitive = <String>{};
+
+/// At most one of `interval`, `schedule` on `appwrite_function`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.interval(...)`.
+sealed class FunctionIntervalOrSchedule {
+  const FunctionIntervalOrSchedule();
+
+  /// Sets `interval`.
+  const factory FunctionIntervalOrSchedule.interval(TfArg<num> interval) =
+      FunctionIntervalOrScheduleInterval;
+
+  /// Sets `schedule`.
+  const factory FunctionIntervalOrSchedule.schedule(TfArg<String> schedule) =
+      FunctionIntervalOrScheduleChoice;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [FunctionIntervalOrSchedule.interval] choice: sets `interval`.
+final class FunctionIntervalOrScheduleInterval
+    extends FunctionIntervalOrSchedule {
+  const FunctionIntervalOrScheduleInterval(this.interval);
+
+  final TfArg<num> interval;
+
+  @internal
+  @override
+  String get blockKey => 'interval';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'interval': interval.toTfJson()};
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'interval': interval};
+}
+
+/// The [FunctionIntervalOrSchedule.schedule] choice: sets `schedule`.
+final class FunctionIntervalOrScheduleChoice
+    extends FunctionIntervalOrSchedule {
+  const FunctionIntervalOrScheduleChoice(this.schedule);
+
+  final TfArg<String> schedule;
+
+  @internal
+  @override
+  String get blockKey => 'schedule';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'schedule': schedule.toTfJson()};
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'schedule': schedule};
+}
 
 /// Factory wrapper for `appwrite_function`.
 ///
@@ -24,6 +94,7 @@ final class AppwriteFunction extends Resource {
     TfArg<List<String>>? events,
     TfArg<List<String>>? execute,
     TfArg<String>? installationId,
+    FunctionIntervalOrSchedule? intervalOrSchedule,
     TfArg<bool>? logging,
     required TfArg<String> name,
     RefTo<AppwriteProject>? projectId,
@@ -33,7 +104,6 @@ final class AppwriteFunction extends Resource {
     TfArg<bool>? providerSilentMode,
     required TfArg<String> runtime,
     TfArg<String>? runtimeSpecification,
-    TfArg<String>? schedule,
     TfArg<List<String>>? scopes,
     TfArg<num>? timeout,
     super.lifecycle,
@@ -51,6 +121,7 @@ final class AppwriteFunction extends Resource {
            'events': ?events,
            'execute': ?execute,
            'installation_id': ?installationId,
+           ...?intervalOrSchedule?.argMap,
            'logging': ?logging,
            'name': name,
            'project_id': ?projectId?.encodeAs('id'),
@@ -60,7 +131,6 @@ final class AppwriteFunction extends Resource {
            'provider_silent_mode': ?providerSilentMode,
            'runtime': runtime,
            'runtime_specification': ?runtimeSpecification,
-           'schedule': ?schedule,
            'scopes': ?scopes,
            'timeout': ?timeout,
          },
@@ -117,6 +187,9 @@ final class AppwriteFunction extends Resource {
   /// Reference to `installation_id` attribute.
   TfRef<String> get installationId =>
       TfRef.attribute<String>(this, 'installation_id');
+
+  /// Reference to `interval` attribute.
+  TfRef<num> get interval => TfRef.attribute<num>(this, 'interval');
 
   /// Reference to `logging` attribute.
   TfRef<bool> get logging => TfRef.attribute<bool>(this, 'logging');

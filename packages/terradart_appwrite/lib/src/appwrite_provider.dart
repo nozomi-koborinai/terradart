@@ -34,6 +34,7 @@ final class AppwriteProvider implements StackProvider {
     this.organizationId,
     this.selfSigned,
     this.httpTimeoutSeconds,
+    this.maxRetries,
   });
 
   /// Provider alias (`provider "appwrite" { alias = "eu" }`), or `null` for
@@ -58,6 +59,10 @@ final class AppwriteProvider implements StackProvider {
   /// Per-request API timeout override in seconds (provider default 120).
   final int? httpTimeoutSeconds;
 
+  /// How many times to retry a request that failed for a transient reason
+  /// (provider default 5). `0` disables retries.
+  final int? maxRetries;
+
   @override
   String get providerName => 'appwrite';
 
@@ -76,5 +81,6 @@ final class AppwriteProvider implements StackProvider {
     if (organizationId != null) 'organization_id': organizationId,
     if (selfSigned != null) 'self_signed': selfSigned,
     if (httpTimeoutSeconds != null) 'http_timeout_seconds': httpTimeoutSeconds,
+    if (maxRetries != null) 'max_retries': maxRetries,
   };
 }

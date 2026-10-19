@@ -216,6 +216,7 @@ const _providerRecipes = <String, _ProviderRecipe>{
     'organization_id': _Scalar('organizationId'),
     'self_signed': _Scalar('selfSigned'),
     'http_timeout_seconds': _Scalar('httpTimeoutSeconds'),
+    'max_retries': _Scalar('maxRetries'),
   }, kAppwriteProviderVersionConstraint),
   'cloudflare': _ProviderRecipe('terradart_cloudflare', 'CloudflareProvider', {
     'base_url': _Scalar('baseUrl'),

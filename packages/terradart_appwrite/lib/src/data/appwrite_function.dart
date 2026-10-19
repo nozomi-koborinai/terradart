@@ -63,6 +63,9 @@ final class DataAppwriteFunction extends Data {
   TfRef<List<String>> get execute =>
       TfRef.attribute<List<String>>(this, 'execute');
 
+  /// Reference to `interval` attribute.
+  TfRef<num> get interval => TfRef.attribute<num>(this, 'interval');
+
   /// Reference to `logging` attribute.
   TfRef<bool> get logging => TfRef.attribute<bool>(this, 'logging');
 

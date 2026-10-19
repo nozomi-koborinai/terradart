@@ -230,7 +230,7 @@ final class AppwriteDemoStack extends Stack {
         'api_url',
         functionId: fn.ref,
         key: .literal('API_URL'),
-        value: functionApiUrl,
+        value: .value(functionApiUrl),
       ),
     );
     add(
@@ -261,7 +261,7 @@ final class AppwriteDemoStack extends Stack {
         'public_api',
         siteId: site.ref,
         key: .literal('NEXT_PUBLIC_API_URL'),
-        value: siteApiUrl,
+        value: .value(siteApiUrl),
       ),
     );
     add(

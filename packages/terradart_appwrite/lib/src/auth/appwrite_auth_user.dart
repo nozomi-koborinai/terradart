@@ -1,12 +1,83 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../project/appwrite_project.dart' show AppwriteProject;
 
 /// Sensitive field paths for `appwrite_auth_user`.
-const Set<String> _appwriteAuthUserSensitive = <String>{'password'};
+const Set<String> _appwriteAuthUserSensitive = <String>{
+  'password',
+  'password_wo',
+};
+
+/// At most one of `password`, `password_wo` on `appwrite_auth_user`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.password(...)`.
+sealed class AuthUserPassword {
+  const AuthUserPassword();
+
+  /// Sets `password`.
+  const factory AuthUserPassword.password(Sensitive<String> password) =
+      AuthUserPasswordChoice;
+
+  /// Sets `password_wo`.
+  const factory AuthUserPassword.passwordWo(Sensitive<String> passwordWo) =
+      AuthUserPasswordWo;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [AuthUserPassword.password] choice: sets `password`.
+final class AuthUserPasswordChoice extends AuthUserPassword {
+  const AuthUserPasswordChoice(this.password);
+
+  final Sensitive<String> password;
+
+  @internal
+  @override
+  String get blockKey => 'password';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'password': password.toTfJson()};
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'password': password};
+}
+
+/// The [AuthUserPassword.passwordWo] choice: sets `password_wo`.
+final class AuthUserPasswordWo extends AuthUserPassword {
+  const AuthUserPasswordWo(this.passwordWo);
+
+  final Sensitive<String> passwordWo;
+
+  @internal
+  @override
+  String get blockKey => 'password_wo';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'password_wo': passwordWo.toTfJson()};
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'password_wo': passwordWo};
+}
 
 /// Factory wrapper for `appwrite_auth_user`.
 ///
@@ -20,7 +91,8 @@ final class AppwriteAuthUser extends Resource {
     TfArg<bool>? emailVerification,
     TfArg<List<String>>? labels,
     TfArg<String>? name,
-    Sensitive<String>? password,
+    AuthUserPassword? password,
+    TfArg<num>? passwordWoVersion,
     TfArg<String>? phone,
     TfArg<bool>? phoneVerification,
     RefTo<AppwriteProject>? projectId,
@@ -36,7 +108,8 @@ final class AppwriteAuthUser extends Resource {
            'email_verification': ?emailVerification,
            'labels': ?labels,
            'name': ?name,
-           'password': ?password,
+           ...?password?.argMap,
+           'password_wo_version': ?passwordWoVersion,
            'phone': ?phone,
            'phone_verification': ?phoneVerification,
            'project_id': ?projectId?.encodeAs('id'),
@@ -76,6 +149,10 @@ final class AppwriteAuthUser extends Resource {
 
   /// Reference to `password` attribute.
   TfRef<String> get password => TfRef.attribute<String>(this, 'password');
+
+  /// Reference to `password_wo_version` attribute.
+  TfRef<num> get passwordWoVersion =>
+      TfRef.attribute<num>(this, 'password_wo_version');
 
   /// Reference to `phone` attribute.
   TfRef<String> get phone => TfRef.attribute<String>(this, 'phone');

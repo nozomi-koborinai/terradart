@@ -7,6 +7,52 @@ and `terradart_google_beta` follow that pin. These are the breaking Dart API
 changes. Synth output stays the same except `GoogleStorageFtpUser`, where
 `user_credentials` is now a list.
 
+The weekly `appwrite/appwrite` pin moved from 2.0.0-beta.1 to 2.3.0.
+`terradart_appwrite` follows that pin.
+
+### Function and site variables seal `value`
+
+**Breaking (`terradart_appwrite`)** — provider 2.3.0 rejects setting both
+`value` and `value_wo`, and rejects setting neither, on
+`appwrite_function_variable` and `appwrite_site_variable`. Each pair is one
+required sealed argument. Pass the secret on `.value`. `.valueWo` sets the
+write-only attribute. `apiUrl` is
+`variable<String>('api_url', sensitive: true)`.
+
+| Before | After |
+|---|---|
+| `AppwriteFunctionVariable('api_url', functionId: fn.ref, key: .literal('API_URL'), value: apiUrl)` | `AppwriteFunctionVariable('api_url', functionId: fn.ref, key: .literal('API_URL'), value: .value(apiUrl))` |
+| `AppwriteSiteVariable('public_api', siteId: site.ref, key: .literal('NEXT_PUBLIC_API_URL'), value: apiUrl)` | `AppwriteSiteVariable('public_api', siteId: site.ref, key: .literal('NEXT_PUBLIC_API_URL'), value: .value(apiUrl))` |
+| *(not available)* | `AppwriteFunctionVariable('api_url', functionId: fn.ref, key: .literal('API_URL'), value: .valueWo(apiUrl))` |
+
+The provider stores `value` in state. Its description says to prefer
+`value_wo` when the secret must not be stored, and to bump `valueWoVersion`
+when that write-only value changes. A `Sensitive` variable on `.value` does
+not write the secret into synth output.
+
+`AppwriteProvider` gains optional `maxRetries` (`max_retries`, provider
+default 5). `api_key` and `organization_api_key` stay off the class.
+
+### User password, webhook password, and function schedule
+
+**Breaking (`terradart_appwrite`)** — the same pin seals three more
+slots. `password` and `authPassword` stay optional. `schedule` is no
+longer its own argument.
+
+| Before | After |
+|---|---|
+| `AppwriteAuthUser('demo', password: password)` | `AppwriteAuthUser('demo', password: .password(password))` |
+| *(not available)* | `AppwriteAuthUser('demo', password: .passwordWo(password))` |
+| `AppwriteWebhook('hook', authPassword: password, ...)` | `AppwriteWebhook('hook', authPassword: .authPassword(password), ...)` |
+| *(not available)* | `AppwriteWebhook('hook', authPassword: .authPasswordWo(password), ...)` |
+| `AppwriteFunction('fn', schedule: .literal('0 2 * * *'), ...)` | `AppwriteFunction('fn', intervalOrSchedule: .schedule(.literal('0 2 * * *')), ...)` |
+| *(not available)* | `AppwriteFunction('fn', intervalOrSchedule: .interval(.literal(60)), ...)` |
+
+`password` is `variable<String>('password', sensitive: true)`.
+`passwordWoVersion` and `authPasswordWoVersion` bump a write-only value.
+`interval` is minutes. The provider rejects setting both `interval` and
+`schedule`.
+
 ### Provider 8.7.0 dropped conflicts on thirteen slots
 
 **Breaking (`terradart_google`)** — Magic Modules no longer marks these

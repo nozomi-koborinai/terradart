@@ -24,6 +24,10 @@ final class _TestStack extends Stack {
   }
 }
 
+final class _RetryStack extends Stack {
+  _RetryStack() : super(providers: [const AppwriteProvider(maxRetries: 0)]);
+}
+
 final class _PermissionStack extends Stack {
   _PermissionStack()
     : super(providers: [const AppwriteProvider(endpoint: 'https://x/v1')]) {
@@ -122,6 +126,15 @@ void main() {
     expect(providerBlock.keys, isNot(contains('api_key')));
     expect(providerBlock.keys, isNot(contains('organization_api_key')));
     expect(providerBlock['endpoint'], 'https://cloud.appwrite.io/v1');
+    expect(providerBlock.containsKey('max_retries'), isFalse);
+  });
+
+  test('maxRetries is the provider max_retries attribute', () {
+    final json = _RetryStack().synth().tfJson;
+    final providerBlock =
+        (json['provider'] as Map<String, dynamic>)['appwrite']
+            as Map<String, dynamic>;
+    expect(providerBlock['max_retries'], 0);
   });
 
   test('permissions synthesize to the provider strings', () {

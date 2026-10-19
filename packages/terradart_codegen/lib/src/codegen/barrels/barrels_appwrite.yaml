@@ -89,6 +89,9 @@ umbrellaExtraExports:
   - "export 'provider.dart';"
 
 barrels:
+  documentsdb:
+    doc: |-
+      /// `documentsdb` factories, added by the weekly schema bump.
   project:
     doc: |-
       /// Appwrite projects and project API keys (organization-scoped).
@@ -126,6 +129,9 @@ barrels:
   messaging:
     doc: |-
       /// Appwrite Messaging — providers, topics, and subscribers.
+  vectorsdb:
+    doc: |-
+      /// `vectorsdb` factories, added by the weekly schema bump.
   webhooks:
     doc: |-
       /// Appwrite webhooks.
