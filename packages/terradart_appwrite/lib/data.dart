@@ -9,6 +9,9 @@ library;
 export 'package:terradart_core/terradart_core.dart';
 export 'src/data/appwrite_auth_team.dart' show DataAppwriteAuthTeam;
 export 'src/data/appwrite_auth_user.dart' show DataAppwriteAuthUser;
+export 'src/data/appwrite_documentsdb.dart' show DataAppwriteDocumentsdb;
+export 'src/data/appwrite_documentsdb_specifications.dart'
+    show DataAppwriteDocumentsdbSpecifications;
 export 'src/data/appwrite_function.dart' show DataAppwriteFunction;
 export 'src/data/appwrite_messaging_topic.dart' show DataAppwriteMessagingTopic;
 export 'src/data/appwrite_mongo_backups.dart' show DataAppwriteMongoBackups;
@@ -40,4 +43,7 @@ export 'src/data/appwrite_postgresql_specifications.dart'
 export 'src/data/appwrite_site.dart' show DataAppwriteSite;
 export 'src/data/appwrite_storage_bucket.dart' show DataAppwriteStorageBucket;
 export 'src/data/appwrite_tablesdb.dart' show DataAppwriteTablesdb;
+export 'src/data/appwrite_vectorsdb.dart' show DataAppwriteVectorsdb;
+export 'src/data/appwrite_vectorsdb_specifications.dart'
+    show DataAppwriteVectorsdbSpecifications;
 export 'src/data/appwrite_webhook.dart' show DataAppwriteWebhook;
