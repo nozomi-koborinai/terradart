@@ -294,7 +294,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>['value', 'value_wo'],
     docComment:
-        'Factory wrapper for `appwrite_function_variable`.\n\nManages an Appwrite function environment variable.\n\nFunction environment variable. [value] is sensitive — pass\n`TfArg.variable` so the secret never enters synth output.',
+        'Factory wrapper for `appwrite_function_variable`.\n\nManages an Appwrite function environment variable.\n\nFunction environment variable. [value] sets exactly one of `value`\nand `value_wo`. Pass `.value(TfArg.variable(\'name\'))` so the secret\nnever enters synth output.',
   ),
   CatalogEntry(
     tfType: 'appwrite_messaging_provider',
@@ -1113,7 +1113,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>['value', 'value_wo'],
     docComment:
-        'Factory wrapper for `appwrite_site_variable`.\n\nManages an Appwrite site environment variable.\n\nSite environment variable. [value] is sensitive — pass\n`TfArg.variable` so the secret never enters synth output.',
+        'Factory wrapper for `appwrite_site_variable`.\n\nManages an Appwrite site environment variable.\n\nSite environment variable. [value] sets exactly one of `value` and\n`value_wo`. Pass `.value(TfArg.variable(\'name\'))` so the secret never\nenters synth output.',
   ),
   CatalogEntry(
     tfType: 'appwrite_storage_bucket',

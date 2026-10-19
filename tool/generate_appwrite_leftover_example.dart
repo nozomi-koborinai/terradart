@@ -26,6 +26,7 @@ final class AppwriteLeftoverGenerator implements CoverageStackGenerator {
     required Set<String> exclude,
   }) {
     final enums = _parseEnums(_srcRoot);
+    final sealed = _parseSealed(_srcRoot);
     final all = _parseFactories(_srcRoot);
     final covered = _constructedIn(omitConstructedIn, {
       for (final factory in all) factory.className,
@@ -50,7 +51,7 @@ final class AppwriteLeftoverGenerator implements CoverageStackGenerator {
       final args = <(_Param, _Written)>[];
       var blocked = false;
       for (final param in factory.required) {
-        switch (_argument(factory, param, dummies, enums)) {
+        switch (_argument(factory, param, dummies, enums, sealed)) {
           case final _Unplaceable arg:
             unplaceable[factory.className] = arg.reason;
             blocked = true;
@@ -221,14 +222,54 @@ Set<String> _constructedIn(String dir, Set<String> classNames) {
   return found;
 }
 
+final class _SealedMember {
+  const _SealedMember(this.name, this.type);
+
+  final String name;
+  final String type;
+}
+
+Map<String, _SealedMember> _parseSealed(String srcRoot) {
+  final variant = RegExp(
+    r'final class (\w+) extends (\w+) \{\s*'
+    r'const \1\(this\.(\w+)\);\s*'
+    r'final ([^;]+?) \3;',
+  );
+  final out = <String, _SealedMember>{};
+  for (final file in _dartFiles(srcRoot)) {
+    final src = file.readAsStringSync();
+    for (final match in variant.allMatches(src)) {
+      out.putIfAbsent(
+        match.group(2)!,
+        () => _SealedMember(match.group(3)!, match.group(4)!.trim()),
+      );
+    }
+  }
+  return out;
+}
+
 _Arg _argument(
   _Factory factory,
   _Param param,
   CoverageDummies dummies,
   _Enums enums,
+  Map<String, _SealedMember> sealed,
 ) {
   final value = dummies.valueFor(factory.className, param.name);
   final type = param.type;
+  if (sealed[type] case final member?) {
+    final inner = _argument(
+      factory,
+      _Param(member.name, member.type),
+      dummies,
+      enums,
+      sealed,
+    );
+    return switch (inner) {
+      _Unplaceable() => inner,
+      _Written(:final dart) => _Written('.${member.name}($dart)'),
+    };
+  }
   if (type == 'Sensitive<String>') {
     if (value is DartDummy) {
       return _Written('Sensitive.expression(${value.dart})');

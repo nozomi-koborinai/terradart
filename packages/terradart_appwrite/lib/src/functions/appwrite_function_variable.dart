@@ -83,8 +83,9 @@ final class FunctionVariableValueWo extends FunctionVariableValue {
 ///
 /// Manages an Appwrite function environment variable.
 ///
-/// Function environment variable. [value] is sensitive — pass
-/// `TfArg.variable` so the secret never enters synth output.
+/// Function environment variable. [value] sets exactly one of `value`
+/// and `value_wo`. Pass `.value(TfArg.variable('name'))` so the secret
+/// never enters synth output.
 final class AppwriteFunctionVariable extends Resource {
   static const String tfType = 'appwrite_function_variable';
 

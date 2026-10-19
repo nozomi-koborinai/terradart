@@ -83,8 +83,9 @@ final class SiteVariableValueWo extends SiteVariableValue {
 ///
 /// Manages an Appwrite site environment variable.
 ///
-/// Site environment variable. [value] is sensitive — pass
-/// `TfArg.variable` so the secret never enters synth output.
+/// Site environment variable. [value] sets exactly one of `value` and
+/// `value_wo`. Pass `.value(TfArg.variable('name'))` so the secret never
+/// enters synth output.
 final class AppwriteSiteVariable extends Resource {
   static const String tfType = 'appwrite_site_variable';
 
