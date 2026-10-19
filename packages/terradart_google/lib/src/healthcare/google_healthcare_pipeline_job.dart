@@ -139,12 +139,15 @@ final class HealthcarePipelineJobBackfillPipelineJob {
 @immutable
 final class HealthcarePipelineJobMappingPipelineJob {
   const HealthcarePipelineJobMappingPipelineJob({
-    this.destination,
+    this.fhirStoreDestination,
+    this.reconciliationDestination,
     this.fhirStreamingSource,
     required this.mappingConfig,
   });
 
-  final HealthcarePipelineJobDestination? destination;
+  final TfArg<String>? fhirStoreDestination;
+
+  final TfArg<bool>? reconciliationDestination;
 
   final HealthcarePipelineJobFhirStreamingSource? fhirStreamingSource;
 
@@ -152,73 +155,10 @@ final class HealthcarePipelineJobMappingPipelineJob {
 
   @internal
   Map<String, Object?> encode() => {
-    ...?destination?.encode(),
+    'fhir_store_destination': ?fhirStoreDestination?.toTfJson(),
+    'reconciliation_destination': ?reconciliationDestination?.toTfJson(),
     'fhir_streaming_source': ?fhirStreamingSource?.encode(),
     'mapping_config': mappingConfig.encode(),
-  };
-}
-
-/// At most one of `fhir_store_destination`, `reconciliation_destination` on the `mapping_pipeline_job` block of `google_healthcare_pipeline_job`: the provider rejects
-/// more than one, so each variant sets one of them and a
-/// null choice sets none.
-///
-/// Pick one with a dot shorthand: `.fhirStoreDestination(...)`.
-sealed class HealthcarePipelineJobDestination {
-  const HealthcarePipelineJobDestination();
-
-  /// Sets `fhir_store_destination`.
-  const factory HealthcarePipelineJobDestination.fhirStoreDestination(
-    TfArg<String> fhirStoreDestination,
-  ) = HealthcarePipelineJobFhirStoreDestination;
-
-  /// Sets `reconciliation_destination`.
-  const factory HealthcarePipelineJobDestination.reconciliationDestination(
-    TfArg<bool> reconciliationDestination,
-  ) = HealthcarePipelineJobReconciliationDestination;
-
-  /// The Terraform argument this choice sets.
-  @internal
-  String get blockKey;
-
-  @internal
-  Map<String, Object?> encode();
-}
-
-/// The [HealthcarePipelineJobDestination.fhirStoreDestination] choice: sets `fhir_store_destination`.
-final class HealthcarePipelineJobFhirStoreDestination
-    extends HealthcarePipelineJobDestination {
-  const HealthcarePipelineJobFhirStoreDestination(this.fhirStoreDestination);
-
-  final TfArg<String> fhirStoreDestination;
-
-  @internal
-  @override
-  String get blockKey => 'fhir_store_destination';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {
-    'fhir_store_destination': fhirStoreDestination.toTfJson(),
-  };
-}
-
-/// The [HealthcarePipelineJobDestination.reconciliationDestination] choice: sets `reconciliation_destination`.
-final class HealthcarePipelineJobReconciliationDestination
-    extends HealthcarePipelineJobDestination {
-  const HealthcarePipelineJobReconciliationDestination(
-    this.reconciliationDestination,
-  );
-
-  final TfArg<bool> reconciliationDestination;
-
-  @internal
-  @override
-  String get blockKey => 'reconciliation_destination';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {
-    'reconciliation_destination': reconciliationDestination.toTfJson(),
   };
 }
 

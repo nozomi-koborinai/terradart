@@ -147,7 +147,7 @@ void main() {
     test('PubsubSubscriptionBigqueryConfig snake_case keys', () {
       final cfg = const PubsubSubscriptionBigqueryConfig(
         table: .literal('p:d.t'),
-        schema: .useTopicSchema(.literal(true)),
+        useTopicSchema: .literal(true),
         dropUnknownFields: .literal(false),
       );
       expect(

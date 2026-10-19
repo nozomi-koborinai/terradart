@@ -235,6 +235,10 @@ final class GoogleNetworkServicesAgentConnectivityTemplate extends Resource {
   TfRef<List<String>> get accessTypes =>
       TfRef.attribute<List<String>>(this, 'access_types');
 
+  /// Reference to `agent_compute` attribute.
+  TfRef<String> get agentCompute =>
+      TfRef.attribute<String>(this, 'agent_compute');
+
   /// Reference to `agent_connectivity_template_id` attribute.
   TfRef<String> get agentConnectivityTemplateId =>
       TfRef.attribute<String>(this, 'agent_connectivity_template_id');
@@ -242,6 +246,10 @@ final class GoogleNetworkServicesAgentConnectivityTemplate extends Resource {
   /// Reference to `deletion_policy` attribute.
   TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `deployment_model` attribute.
+  TfRef<String> get deploymentModel =>
+      TfRef.attribute<String>(this, 'deployment_model');
 
   /// Reference to `description` attribute.
   TfRef<String> get description => TfRef.attribute<String>(this, 'description');

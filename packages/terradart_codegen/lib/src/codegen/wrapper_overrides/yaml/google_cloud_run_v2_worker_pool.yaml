@@ -83,4 +83,3 @@ exactlyOneOf:
 sealedNames:
   "template.containers.env.value, template.containers.env.value_source": source
   "template.volumes.cloud_sql_instance, template.volumes.empty_dir, template.volumes.gcs, template.volumes.nfs, template.volumes.secret": source
-  "binary_authorization.policy, binary_authorization.use_default": policy

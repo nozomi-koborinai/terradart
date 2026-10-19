@@ -243,8 +243,6 @@ export 'src/dlp/google_data_loss_prevention_discovery_config.dart'
         DataLossPreventionDiscoveryConfigTag,
         DataLossPreventionDiscoveryConfigTagConditions,
         DataLossPreventionDiscoveryConfigTagFilters,
-        DataLossPreventionDiscoveryConfigTagFiltersNamespacedTagKey,
-        DataLossPreventionDiscoveryConfigTagFiltersNamespacedTagValue,
         DataLossPreventionDiscoveryConfigTagResources,
         DataLossPreventionDiscoveryConfigTargets,
         DataLossPreventionDiscoveryConfigTypeCollection,

@@ -40,11 +40,8 @@ export 'src/pubsub/google_pubsub_subscription.dart'
         PubsubSubscriptionOidcToken,
         PubsubSubscriptionPushConfig,
         PubsubSubscriptionRetryPolicy,
-        PubsubSubscriptionSchema,
         PubsubSubscriptionTextConfig,
-        PubsubSubscriptionUnstructuredInference,
-        PubsubSubscriptionUseTableSchema,
-        PubsubSubscriptionUseTopicSchema;
+        PubsubSubscriptionUnstructuredInference;
 export 'src/pubsub/google_pubsub_subscription_iam_binding.dart'
     show
         GooglePubsubSubscriptionIamBinding,
@@ -77,12 +74,6 @@ export 'src/pubsub/google_pubsub_topic.dart'
         PubsubTopicPubsubAvroFormatChoice,
         PubsubTopicSchemaEncoding,
         PubsubTopicSchemaSettings,
-        PubsubTopicSource,
-        PubsubTopicSourceAwsKinesis,
-        PubsubTopicSourceAwsMsk,
-        PubsubTopicSourceAzureEventHubs,
-        PubsubTopicSourceCloudStorage,
-        PubsubTopicSourceConfluentCloud,
         PubsubTopicTextFormat,
         PubsubTopicTextFormatChoice,
         PubsubTopicUnstructuredInference;

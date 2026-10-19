@@ -499,11 +499,40 @@ files:
           '    upstream: mmv1/products/compute/FooBar.yaml\n'
           '  google_unknown_thing:\n'
           '    upstream: null  # schema bump: no mmv1 YAML at the guessed '
-          'paths; probe upstream by hand\n'
+          'paths or in the provider Go header; probe upstream by hand\n'
           '  data_google_compute_network:',
         ),
       );
       expect(addMmSourceRows(next, upstreams), next);
+    });
+
+    test('reads the provider Go header when every guess misses', () async {
+      final dir = Directory.systemTemp.createTempSync('mm-header');
+      addTearDown(() => dir.deleteSync(recursive: true));
+      const header = '''
+// Configuration: https://github.com/GoogleCloudPlatform/magic-modules/tree/main/mmv1/products/geminidataanalytics/DataAgent.yaml
+''';
+      final upstreams = await resolveMmUpstreams(
+        ['google_gemini_data_analytics_data_agent'],
+        mmSources: sources,
+        mmDir: dir.path,
+        fetch: (path) async =>
+            path.endsWith('/geminidataanalytics/DataAgent.yaml')
+            ? 'name: DataAgent\n'
+            : null,
+        goHeader: (type) async =>
+            type == 'google_gemini_data_analytics_data_agent' ? header : null,
+      );
+      expect(upstreams, {
+        'google_gemini_data_analytics_data_agent':
+            'mmv1/products/geminidataanalytics/DataAgent.yaml',
+      });
+      expect(
+        File(
+          '${dir.path}/google_gemini_data_analytics_data_agent.yaml',
+        ).readAsStringSync(),
+        'name: DataAgent\n',
+      );
     });
 
     test('adds a data-source row per new data source, in key order', () {

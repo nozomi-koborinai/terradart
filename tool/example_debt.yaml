@@ -950,3 +950,8 @@ DataCloudflareFirewallRule: provider bug — every configuration fails validate 
 GoogleDialogflowTool: awaiting-example: google_dialogflow_tool added in hashicorp/google 8.6.0 (schema bump 2026-10-12)
 GoogleResourceManagerCapabilityConfig: awaiting-example: google_resource_manager_capability_config added in hashicorp/google 8.6.0 (schema bump 2026-10-12)
 GoogleVertexAiSemanticGovernancePolicy: awaiting-example: google_vertex_ai_semantic_governance_policy added in hashicorp/google 8.6.0 (schema bump 2026-10-12)
+GoogleGeminiDataAnalyticsDataAgent: awaiting-example: google_gemini_data_analytics_data_agent added in hashicorp/google 8.7.0 (schema bump 2026-10-18)
+GoogleGeminiDataAnalyticsDataAgentIamBinding: awaiting-example: google_gemini_data_analytics_data_agent_iam_binding added in hashicorp/google 8.7.0 (schema bump 2026-10-18)
+GoogleGeminiDataAnalyticsDataAgentIamMember: awaiting-example: google_gemini_data_analytics_data_agent_iam_member added in hashicorp/google 8.7.0 (schema bump 2026-10-18)
+GoogleGeminiDataAnalyticsDataAgentIamPolicy: awaiting-example: google_gemini_data_analytics_data_agent_iam_policy added in hashicorp/google 8.7.0 (schema bump 2026-10-18)
+GoogleVertexAiOnlineEvaluator: awaiting-example: google_vertex_ai_online_evaluator added in hashicorp/google 8.7.0 (schema bump 2026-10-18)

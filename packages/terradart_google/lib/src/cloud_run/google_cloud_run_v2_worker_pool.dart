@@ -104,73 +104,21 @@ final class CloudRunV2WorkerPoolBinaryAuthorization {
   const CloudRunV2WorkerPoolBinaryAuthorization({
     this.breakglassJustification,
     this.policy,
+    this.useDefault,
   });
 
   final TfArg<String>? breakglassJustification;
 
-  final CloudRunV2WorkerPoolPolicy? policy;
+  final TfArg<String>? policy;
+
+  final TfArg<bool>? useDefault;
 
   @internal
   Map<String, Object?> encode() => {
     'breakglass_justification': ?breakglassJustification?.toTfJson(),
-    ...?policy?.encode(),
+    'policy': ?policy?.toTfJson(),
+    'use_default': ?useDefault?.toTfJson(),
   };
-}
-
-/// At most one of `use_default`, `policy` on the `binary_authorization` block of `google_cloud_run_v2_worker_pool`: the provider rejects
-/// more than one, so each variant sets one of them and a
-/// null choice sets none.
-///
-/// Pick one with a dot shorthand: `.useDefault(...)`.
-sealed class CloudRunV2WorkerPoolPolicy {
-  const CloudRunV2WorkerPoolPolicy();
-
-  /// Sets `use_default`.
-  const factory CloudRunV2WorkerPoolPolicy.useDefault(TfArg<bool> useDefault) =
-      CloudRunV2WorkerPoolPolicyUseDefault;
-
-  /// Sets `policy`.
-  const factory CloudRunV2WorkerPoolPolicy.policy(TfArg<String> policy) =
-      CloudRunV2WorkerPoolPolicyChoice;
-
-  /// The Terraform argument this choice sets.
-  @internal
-  String get blockKey;
-
-  @internal
-  Map<String, Object?> encode();
-}
-
-/// The [CloudRunV2WorkerPoolPolicy.useDefault] choice: sets `use_default`.
-final class CloudRunV2WorkerPoolPolicyUseDefault
-    extends CloudRunV2WorkerPoolPolicy {
-  const CloudRunV2WorkerPoolPolicyUseDefault(this.useDefault);
-
-  final TfArg<bool> useDefault;
-
-  @internal
-  @override
-  String get blockKey => 'use_default';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'use_default': useDefault.toTfJson()};
-}
-
-/// The [CloudRunV2WorkerPoolPolicy.policy] choice: sets `policy`.
-final class CloudRunV2WorkerPoolPolicyChoice
-    extends CloudRunV2WorkerPoolPolicy {
-  const CloudRunV2WorkerPoolPolicyChoice(this.policy);
-
-  final TfArg<String> policy;
-
-  @internal
-  @override
-  String get blockKey => 'policy';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'policy': policy.toTfJson()};
 }
 
 /// Typed helper for the `instance_splits` block of

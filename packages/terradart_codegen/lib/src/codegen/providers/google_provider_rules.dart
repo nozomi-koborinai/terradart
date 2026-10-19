@@ -33,6 +33,9 @@ base class GoogleProviderRules extends ProviderRules {
   @override
   bool get exactlyOneDefaults => true;
 
+  @override
+  bool get typedNestedDefaults => true;
+
   /// Google provider alias map. Bootstrap entries derived from the 13 yaml
   /// files shipped in Phase 4.1; extend during Phase 4.5 wave rollout when
   /// new MM products land.

@@ -137,6 +137,8 @@ export 'src/vertex_ai/google_vertex_ai_index_endpoint_deployed_index.dart'
         VertexAiIndexEndpointDeployedIndexAutomaticResources,
         VertexAiIndexEndpointDeployedIndexDedicatedResources,
         VertexAiIndexEndpointDeployedIndexMachineSpec;
+export 'src/vertex_ai/google_vertex_ai_online_evaluator.dart'
+    show GoogleVertexAiOnlineEvaluator;
 export 'src/vertex_ai/google_vertex_ai_persistent_resource.dart'
     show
         GoogleVertexAiPersistentResource,

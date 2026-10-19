@@ -56,9 +56,7 @@ curatedDoc: |-
   ///   ),
   ///   requesterJustificationConfig:
   ///       PrivilegedAccessManagerEntitlementRequesterJustificationConfig(
-  ///     requirement: .unstructured(
-  ///       const .new(),
-  ///     ),
+  ///     unstructured: const .new(),
   ///   ),
   ///   deletionPolicy: TfArg.literal('DELETE'),
   /// );
@@ -75,6 +73,3 @@ paramOrder:
   - approval_workflow
   - additional_notification_targets
   - deletion_policy
-
-sealedNames:
-  "requester_justification_config.not_mandatory, requester_justification_config.unstructured": requirement

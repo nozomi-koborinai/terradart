@@ -71,6 +71,7 @@ export 'src/bigquery/google_bigquery_analytics_hub_listing_subscription.dart'
         GoogleBigqueryAnalyticsHubListingSubscription;
 export 'src/bigquery/google_bigquery_analytics_hub_query_template.dart'
     show
+        BigqueryAnalyticsHubQueryTemplateEncryptionConfiguration,
         BigqueryAnalyticsHubQueryTemplateRoutine,
         GoogleBigqueryAnalyticsHubQueryTemplate;
 export 'src/bigquery/google_bigquery_bi_reservation.dart'

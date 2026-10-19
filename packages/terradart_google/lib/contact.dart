@@ -14,9 +14,6 @@ export 'src/contact/google_contact_center_insights_analysis_rule.dart'
         GoogleContactCenterInsightsAnalysisRule;
 export 'src/contact/google_contact_center_insights_assessment_rule.dart'
     show
-        ContactCenterInsightsAssessmentRuleAmount,
-        ContactCenterInsightsAssessmentRuleAmountSamplePercentage,
-        ContactCenterInsightsAssessmentRuleAmountSampleRow,
         ContactCenterInsightsAssessmentRuleSampleRule,
         ContactCenterInsightsAssessmentRuleScheduleInfo,
         GoogleContactCenterInsightsAssessmentRule;

@@ -6,6 +6,8 @@
 library;
 
 export 'package:terradart_core/terradart_core.dart';
+export 'src/data/google_gemini_data_analytics_data_agent_iam_policy.dart'
+    show DataGoogleGeminiDataAnalyticsDataAgentIamPolicy;
 export 'src/data/google_gemini_repository_group_iam_policy.dart'
     show DataGoogleGeminiRepositoryGroupIamPolicy;
 export 'src/gemini/google_gemini_code_repository_index.dart'
@@ -19,6 +21,31 @@ export 'src/gemini/google_gemini_code_tools_setting_binding.dart'
     show
         GeminiCodeToolsSettingBindingProduct,
         GoogleGeminiCodeToolsSettingBinding;
+export 'src/gemini/google_gemini_data_analytics_data_agent.dart'
+    show
+        GeminiDataAnalyticsDataAgentAnalysis,
+        GeminiDataAnalyticsDataAgentBq,
+        GeminiDataAnalyticsDataAgentDataAnalyticsAgent,
+        GeminiDataAnalyticsDataAgentDatasource,
+        GeminiDataAnalyticsDataAgentDatasourceReferences,
+        GeminiDataAnalyticsDataAgentExampleQueries,
+        GeminiDataAnalyticsDataAgentGlossaryTerms,
+        GeminiDataAnalyticsDataAgentLeftSchemaPaths,
+        GeminiDataAnalyticsDataAgentOptions,
+        GeminiDataAnalyticsDataAgentPublishedContext,
+        GeminiDataAnalyticsDataAgentPython,
+        GeminiDataAnalyticsDataAgentRightSchemaPaths,
+        GeminiDataAnalyticsDataAgentSchemaRelationships,
+        GeminiDataAnalyticsDataAgentSources,
+        GeminiDataAnalyticsDataAgentStagingContext,
+        GeminiDataAnalyticsDataAgentTableReferences,
+        GoogleGeminiDataAnalyticsDataAgent;
+export 'src/gemini/google_gemini_data_analytics_data_agent_iam_binding.dart'
+    show GoogleGeminiDataAnalyticsDataAgentIamBinding;
+export 'src/gemini/google_gemini_data_analytics_data_agent_iam_member.dart'
+    show GoogleGeminiDataAnalyticsDataAgentIamMember;
+export 'src/gemini/google_gemini_data_analytics_data_agent_iam_policy.dart'
+    show GoogleGeminiDataAnalyticsDataAgentIamPolicy;
 export 'src/gemini/google_gemini_data_sharing_with_google_setting.dart'
     show GoogleGeminiDataSharingWithGoogleSetting;
 export 'src/gemini/google_gemini_data_sharing_with_google_setting_binding.dart'

@@ -2,10 +2,64 @@
 
 ## Unreleased
 
-The weekly `hashicorp/google` pin moved from 8.4.0 to 8.6.0. `terradart_google`
+The weekly `hashicorp/google` pin moved from 8.4.0 to 8.7.0. `terradart_google`
 and `terradart_google_beta` follow that pin. These are the breaking Dart API
 changes. Synth output stays the same except `GoogleStorageFtpUser`, where
 `user_credentials` is now a list.
+
+### Provider 8.7.0 dropped conflicts on thirteen slots
+
+**Breaking (`terradart_google`)** — Magic Modules no longer marks these
+members as `conflicts`. Each sealed argument is the member fields again.
+Pass the value on the field. The Terraform JSON is unchanged.
+
+| Before | After |
+|---|---|
+| `CloudRunV2ServiceBinaryAuthorization(policy: .useDefault(.literal(true)))` | `CloudRunV2ServiceBinaryAuthorization(useDefault: .literal(true))` |
+| `CloudRunV2ServiceBinaryAuthorization(policy: .policy(.literal('projects/p/platforms/cloudRun/my-policy')))` | `CloudRunV2ServiceBinaryAuthorization(policy: .literal('projects/p/platforms/cloudRun/my-policy'))` |
+| `CloudRunV2JobBinaryAuthorization(policy: .useDefault(.literal(true)))` | `CloudRunV2JobBinaryAuthorization(useDefault: .literal(true))` |
+| `CloudRunV2JobBinaryAuthorization(policy: .policy(.literal('projects/p/platforms/cloudRun/my-policy')))` | `CloudRunV2JobBinaryAuthorization(policy: .literal('projects/p/platforms/cloudRun/my-policy'))` |
+| `CloudRunV2WorkerPoolBinaryAuthorization(policy: .useDefault(.literal(true)))` | `CloudRunV2WorkerPoolBinaryAuthorization(useDefault: .literal(true))` |
+| `CloudRunV2WorkerPoolBinaryAuthorization(policy: .policy(.literal('projects/p/platforms/cloudRun/my-policy')))` | `CloudRunV2WorkerPoolBinaryAuthorization(policy: .literal('projects/p/platforms/cloudRun/my-policy'))` |
+| `ContactCenterInsightsAssessmentRuleSampleRule(amount: .samplePercentage(.literal(0)))` | `ContactCenterInsightsAssessmentRuleSampleRule(samplePercentage: .literal(0))` |
+| `ContactCenterInsightsAssessmentRuleSampleRule(amount: .sampleRow(.literal(1)))` | `ContactCenterInsightsAssessmentRuleSampleRule(sampleRow: .literal(1))` |
+| `DatastreamStreamMysqlSourceConfig(cdcMethod: .binaryLogPosition())` | `DatastreamStreamMysqlSourceConfig(binaryLogPosition: .new())` |
+| `DatastreamStreamMysqlSourceConfig(cdcMethod: .gtid())` | `DatastreamStreamMysqlSourceConfig(gtid: .new())` |
+| `PrivilegedAccessManagerEntitlementRequesterJustificationConfig(requirement: .unstructured())` | `PrivilegedAccessManagerEntitlementRequesterJustificationConfig(unstructured: .new())` |
+| `PrivilegedAccessManagerEntitlementRequesterJustificationConfig(requirement: .notMandatory())` | `PrivilegedAccessManagerEntitlementRequesterJustificationConfig(notMandatory: .new())` |
+| `PubsubTopicIngestionDataSourceSettings(source: .awsKinesis(kinesis))` | `PubsubTopicIngestionDataSourceSettings(awsKinesis: kinesis)` |
+| `PubsubTopicIngestionDataSourceSettings(source: .awsMsk(msk))` | `PubsubTopicIngestionDataSourceSettings(awsMsk: msk)` |
+| `PubsubTopicIngestionDataSourceSettings(source: .azureEventHubs(hubs))` | `PubsubTopicIngestionDataSourceSettings(azureEventHubs: hubs)` |
+| `PubsubTopicIngestionDataSourceSettings(source: .cloudStorage(storage))` | `PubsubTopicIngestionDataSourceSettings(cloudStorage: storage)` |
+| `PubsubTopicIngestionDataSourceSettings(source: .confluentCloud(cloud))` | `PubsubTopicIngestionDataSourceSettings(confluentCloud: cloud)` |
+| `CesToolDataStoreTool(source: .dataStoreSource(store))` | `CesToolDataStoreTool(dataStoreSource: store)` |
+| `CesToolDataStoreTool(source: .engineSource(engine))` | `CesToolDataStoreTool(engineSource: engine)` |
+| `CloudTasksQueueHttpTarget(token: .oauthToken(oauth))` | `CloudTasksQueueHttpTarget(oauthToken: oauth)` |
+| `CloudTasksQueueHttpTarget(token: .oidcToken(oidc))` | `CloudTasksQueueHttpTarget(oidcToken: oidc)` |
+| `DataLossPreventionDiscoveryConfigTagFilters.namespacedTagKey(key)` | `DataLossPreventionDiscoveryConfigTagFilters(namespacedTagKey: key)` |
+| `DataLossPreventionDiscoveryConfigTagFilters.namespacedTagValue(value)` | `DataLossPreventionDiscoveryConfigTagFilters(namespacedTagValue: value)` |
+| `FilestoreInstancePerformanceConfig.iopsPerTb(iops)` | `FilestoreInstancePerformanceConfig(iopsPerTb: iops)` |
+| `FilestoreInstancePerformanceConfig.fixedIops(iops)` | `FilestoreInstancePerformanceConfig(fixedIops: iops)` |
+| `HealthcarePipelineJobMappingPipelineJob(destination: .fhirStoreDestination(store))` | `HealthcarePipelineJobMappingPipelineJob(fhirStoreDestination: store)` |
+| `HealthcarePipelineJobMappingPipelineJob(destination: .reconciliationDestination(dest))` | `HealthcarePipelineJobMappingPipelineJob(reconciliationDestination: dest)` |
+| `PubsubSubscriptionBigqueryConfig(schema: .useTopicSchema(.literal(true)))` | `PubsubSubscriptionBigqueryConfig(useTopicSchema: .literal(true))` |
+| `PubsubSubscriptionBigqueryConfig(schema: .useTableSchema(.literal(true)))` | `PubsubSubscriptionBigqueryConfig(useTableSchema: .literal(true))` |
+
+`CloudRunV2JobBinaryAuthorization` and
+`CloudRunV2WorkerPoolBinaryAuthorization` follow the service helper. The
+removed types are `CloudRunV2ServicePolicy`, `CloudRunV2JobPolicy`,
+`CloudRunV2WorkerPoolPolicy`, `ContactCenterInsightsAssessmentRuleAmount`,
+`DatastreamStreamCdcMethod`,
+`PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequirement`,
+`PubsubTopicSource`, `CesToolSource`, `CloudTasksQueueToken`,
+`HealthcarePipelineJobDestination`, and `PubsubSubscriptionSchema`, plus
+each variant class. `DataLossPreventionDiscoveryConfigTagFilters` and
+`FilestoreInstancePerformanceConfig` keep their names and take both members
+as fields.
+
+`NetworkSecurityAuthzPolicyNotOperations` is
+`NetworkSecurityAuthzPolicyHttpRulesNotOperations`. Network rules gained
+their own `notOperations` helper, so the HTTP helper takes the parent name.
 
 ### Disk encryption keys are sealed
 

@@ -1078,6 +1078,7 @@ final class DataprocWorkflowTemplateAttachedDiskConfig {
     this.diskType,
     this.provisionedIops,
     this.provisionedThroughput,
+    this.type,
   });
 
   final TfArg<num>? diskSizeGb;
@@ -1088,12 +1089,15 @@ final class DataprocWorkflowTemplateAttachedDiskConfig {
 
   final TfArg<num>? provisionedThroughput;
 
+  final TfArg<String>? type;
+
   @internal
   Map<String, Object?> encode() => {
     'disk_size_gb': ?diskSizeGb?.toTfJson(),
     'disk_type': ?diskType?.toTfJson(),
     'provisioned_iops': ?provisionedIops?.toTfJson(),
     'provisioned_throughput': ?provisionedThroughput?.toTfJson(),
+    'type': ?type?.toTfJson(),
   };
 }
 

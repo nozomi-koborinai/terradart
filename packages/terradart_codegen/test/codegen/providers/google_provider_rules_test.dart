@@ -190,7 +190,8 @@ void main() {
       expect(rules.derivedEnumDefaults, isTrue);
       expect(rules.exactlyOneDefaults, isTrue);
       expect(const GoogleProviderRules().exactlyOneDefaults, isTrue);
-      expect(const GoogleProviderRules().typedNestedDefaults, isFalse);
+      expect(const GoogleProviderRules().typedNestedDefaults, isTrue);
+      expect(const GoogleProviderRules().derivedEnumDefaults, isFalse);
     });
   });
 }

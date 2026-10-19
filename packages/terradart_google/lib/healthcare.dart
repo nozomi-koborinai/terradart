@@ -94,13 +94,10 @@ export 'src/healthcare/google_healthcare_pipeline_job.dart'
     show
         GoogleHealthcarePipelineJob,
         HealthcarePipelineJobBackfillPipelineJob,
-        HealthcarePipelineJobDestination,
-        HealthcarePipelineJobFhirStoreDestination,
         HealthcarePipelineJobFhirStreamingSource,
         HealthcarePipelineJobMappingConfig,
         HealthcarePipelineJobMappingPipelineJob,
         HealthcarePipelineJobMergeConfig,
-        HealthcarePipelineJobReconciliationDestination,
         HealthcarePipelineJobReconciliationPipelineJob,
         HealthcarePipelineJobTask,
         HealthcarePipelineJobTaskBackfillPipelineJob,

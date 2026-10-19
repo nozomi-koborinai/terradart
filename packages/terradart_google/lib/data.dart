@@ -474,6 +474,8 @@ export 'src/data/google_folder_iam_policy.dart' show DataGoogleFolderIamPolicy;
 export 'src/data/google_folder_organization_policy.dart'
     show DataGoogleFolderOrganizationPolicy;
 export 'src/data/google_folders.dart' show DataGoogleFolders;
+export 'src/data/google_gemini_data_analytics_data_agent_iam_policy.dart'
+    show DataGoogleGeminiDataAnalyticsDataAgentIamPolicy;
 export 'src/data/google_gemini_repository_group_iam_policy.dart'
     show DataGoogleGeminiRepositoryGroupIamPolicy;
 export 'src/data/google_gke_backup_backup_plan_iam_policy.dart'

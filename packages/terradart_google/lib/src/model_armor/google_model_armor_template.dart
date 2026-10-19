@@ -210,6 +210,7 @@ final class ModelArmorTemplateMetadata {
     this.ignorePartialInvocationFailures,
     this.logSanitizeOperations,
     this.logTemplateOperations,
+    this.modalities,
     this.filterVersionSelector,
     this.multiLanguageDetection,
   });
@@ -230,6 +231,8 @@ final class ModelArmorTemplateMetadata {
 
   final TfArg<bool>? logTemplateOperations;
 
+  final TfArg<List<String>>? modalities;
+
   final ModelArmorTemplateFilterVersionSelector? filterVersionSelector;
 
   final ModelArmorTemplateMultiLanguageDetection? multiLanguageDetection;
@@ -248,6 +251,7 @@ final class ModelArmorTemplateMetadata {
         ?.toTfJson(),
     'log_sanitize_operations': ?logSanitizeOperations?.toTfJson(),
     'log_template_operations': ?logTemplateOperations?.toTfJson(),
+    'modalities': ?modalities?.toTfJson(),
     'filter_version_selector': ?filterVersionSelector?.encode(),
     'multi_language_detection': ?multiLanguageDetection?.encode(),
   };

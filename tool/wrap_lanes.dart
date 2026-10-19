@@ -12,8 +12,10 @@
 // refreshing a fixture), so it only runs when named. It first retires
 // overrides whose type the fixture no longer has
 // (tool/retire_removed_overrides.dart), so a removed upstream type does not
-// abort the wrap that writes the provider pin and the new factories.
-// `wrap --check` still fails on an override the schema lacks. On a `providerEnums`
+// abort the wrap that writes the provider pin and the new factories. A
+// `sealedNames` key that matches no group is dropped and wrap is retried
+// once (tool/retire_stale_sealed_names.dart); `wrap --check` still fails on
+// that key. On a `providerEnums`
 // lane whose hints were extracted at another provider version than
 // `<schemaDir>/provider_version.txt`, regen first re-extracts them from the
 // `bump.repo` source (tool/extract_provider_hints.dart, network). On an
@@ -35,6 +37,7 @@ import 'package:terradart_codegen/src/codegen/wrapper_overrides/_registry.dart';
 import 'package:yaml/yaml.dart';
 
 import 'retire_removed_overrides.dart';
+import 'retire_stale_sealed_names.dart';
 
 const providersPath = 'tool/providers.yaml';
 
@@ -575,14 +578,27 @@ Future<void> main(List<String> args) async {
         }
       }
       print('>> ${gate.label} (${lane.name})');
-      final process = await Process.start(
-        Platform.resolvedExecutable,
-        ['run', 'bin/terradart.dart', ...gate.args(lane)],
-        workingDirectory: p.join(repoRoot, codegenDir),
-        mode: ProcessStartMode.inheritStdio,
-      );
-      final code = await process.exitCode;
-      if (code != 0) failed.add('${lane.name} (${gate.name}, exit $code)');
+      final codegen = p.join(repoRoot, codegenDir);
+      final args = ['run', 'bin/terradart.dart', ...gate.args(lane)];
+      final capture = gate == WrapGate.regen;
+      var run = await _runDart(args, codegen, captureLog: capture);
+      if (run.code != 0 && capture) {
+        final dropped = retireStaleSealedNames(
+          p.join(repoRoot, lane.overridesRoot),
+          staleSealedNamesIn(run.log),
+        );
+        if (dropped.isNotEmpty) {
+          print(
+            '>> retire stale sealedNames (${lane.name}): '
+            '${dropped.join('; ')}',
+          );
+          print('>> ${gate.label} (${lane.name}) retry');
+          run = await _runDart(args, codegen, captureLog: true);
+        }
+      }
+      if (run.code != 0) {
+        failed.add('${lane.name} (${gate.name}, exit ${run.code})');
+      }
     }
   }
   if (gates.contains(WrapGate.lint)) {
@@ -596,4 +612,40 @@ Future<void> main(List<String> args) async {
     exit(1);
   }
   print('wrap_lanes: OK (${lanes.map((l) => l.name).join(', ')})');
+}
+
+/// Streams are read while the process runs so a full google wrap cannot
+/// fill the pipe and stall.
+Future<({int code, String log})> _runDart(
+  List<String> args,
+  String workingDirectory, {
+  required bool captureLog,
+}) async {
+  if (!captureLog) {
+    final process = await Process.start(
+      Platform.resolvedExecutable,
+      args,
+      workingDirectory: workingDirectory,
+      mode: ProcessStartMode.inheritStdio,
+    );
+    return (code: await process.exitCode, log: '');
+  }
+  final process = await Process.start(
+    Platform.resolvedExecutable,
+    args,
+    workingDirectory: workingDirectory,
+  );
+  final log = StringBuffer();
+  final stdoutDone = process.stdout.transform(utf8.decoder).forEach((chunk) {
+    stdout.write(chunk);
+    log.write(chunk);
+  });
+  final stderrDone = process.stderr.transform(utf8.decoder).forEach((chunk) {
+    stderr.write(chunk);
+    log.write(chunk);
+  });
+  final code = await process.exitCode;
+  await stdoutDone;
+  await stderrDone;
+  return (code: code, log: log.toString());
 }

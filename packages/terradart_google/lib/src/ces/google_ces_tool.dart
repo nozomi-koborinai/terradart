@@ -244,7 +244,8 @@ final class CesToolDataStoreTool {
     this.maxResults,
     required this.name,
     this.boostSpecs,
-    this.source,
+    this.dataStoreSource,
+    this.engineSource,
     this.modalityConfigs,
   });
 
@@ -258,7 +259,9 @@ final class CesToolDataStoreTool {
 
   final List<CesToolBoostSpecs>? boostSpecs;
 
-  final CesToolSource? source;
+  final CesToolDataStoreSource? dataStoreSource;
+
+  final CesToolEngineSource? engineSource;
 
   final List<CesToolModalityConfigs>? modalityConfigs;
 
@@ -270,67 +273,11 @@ final class CesToolDataStoreTool {
     'name': name.toTfJson(),
     if (boostSpecs != null)
       'boost_specs': [for (final e in boostSpecs!) e.encode()],
-    ...?source?.encode(),
+    'data_store_source': ?dataStoreSource?.encode(),
+    'engine_source': ?engineSource?.encode(),
     if (modalityConfigs != null)
       'modality_configs': [for (final e in modalityConfigs!) e.encode()],
   };
-}
-
-/// At most one of `data_store_source`, `engine_source` on the `data_store_tool` block of `google_ces_tool`: the provider rejects
-/// more than one, so each variant sets one of them and a
-/// null choice sets none.
-///
-/// Pick one with a dot shorthand: `.dataStoreSource(...)`.
-sealed class CesToolSource {
-  const CesToolSource();
-
-  /// Sets `data_store_source`.
-  const factory CesToolSource.dataStoreSource(
-    CesToolDataStoreSource dataStoreSource,
-  ) = CesToolDataStoreSourceChoice;
-
-  /// Sets `engine_source`.
-  const factory CesToolSource.engineSource(CesToolEngineSource engineSource) =
-      CesToolEngineSourceChoice;
-
-  /// The Terraform argument this choice sets.
-  @internal
-  String get blockKey;
-
-  @internal
-  Map<String, Object?> encode();
-}
-
-/// The [CesToolSource.dataStoreSource] choice: sets `data_store_source`.
-final class CesToolDataStoreSourceChoice extends CesToolSource {
-  const CesToolDataStoreSourceChoice(this.dataStoreSource);
-
-  final CesToolDataStoreSource dataStoreSource;
-
-  @internal
-  @override
-  String get blockKey => 'data_store_source';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {
-    'data_store_source': dataStoreSource.encode(),
-  };
-}
-
-/// The [CesToolSource.engineSource] choice: sets `engine_source`.
-final class CesToolEngineSourceChoice extends CesToolSource {
-  const CesToolEngineSourceChoice(this.engineSource);
-
-  final CesToolEngineSource engineSource;
-
-  @internal
-  @override
-  String get blockKey => 'engine_source';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'engine_source': engineSource.encode()};
 }
 
 /// `filter_parameter_behavior` — derived from the provider schema description.

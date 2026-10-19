@@ -23,8 +23,6 @@ export 'src/filestore/google_filestore_instance.dart'
         FilestoreInstanceNfsExportOptions,
         FilestoreInstanceNfsSquashMode,
         FilestoreInstancePerformanceConfig,
-        FilestoreInstancePerformanceConfigFixedIops,
-        FilestoreInstancePerformanceConfigIopsPerTb,
         FilestoreInstanceProtocol,
         FilestoreInstancePscConfig,
         FilestoreInstanceReplicas,

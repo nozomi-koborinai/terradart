@@ -2858,7 +2858,7 @@ files:
   google_vertex_ai_semantic_governance_policy:
     upstream: mmv1/products/vertexai/SemanticGovernancePolicy.yaml
   google_gemini_data_analytics_data_agent:
-    upstream: null  # schema bump: no mmv1 YAML at the guessed paths; probe upstream by hand
+    upstream: mmv1/products/geminidataanalytics/DataAgent.yaml
   google_gemini_data_analytics_data_agent_iam_binding:
     upstream: null  # schema bump: no mmv1 YAML at the guessed paths; probe upstream by hand
   google_gemini_data_analytics_data_agent_iam_member:

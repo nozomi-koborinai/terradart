@@ -55,6 +55,13 @@ import 'batch_data_source_overrides.dart'
     show dataSourceOverrideYaml, dataSourceParamOrder;
 import 'bump_plan.dart';
 import 'coverage_verdict.dart';
+import 'sync_lane_mm_yaml.dart'
+    show
+        githubRaw,
+        githubTreePaths,
+        mmPathFromGoHeader,
+        resourceGoFileName,
+        resourceGoFiles;
 import 'sync_mm_yaml.dart' show Manifest, parseManifest, recordedUpstreamRef;
 import 'wrap_lanes.dart';
 
@@ -149,7 +156,7 @@ String addMmSourceRows(String mmSources, Map<String, String?> upstreams) {
       ..writeln(
         upstream == null
             ? '    upstream: null  # schema bump: no mmv1 YAML at the guessed '
-                  'paths; probe upstream by hand'
+                  'paths or in the provider Go header; probe upstream by hand'
             : '    upstream: $upstream',
       );
   }
@@ -227,30 +234,64 @@ MmFetch mmFetchAt(Manifest manifest, String ref) => (upstreamPath) async {
   }
 };
 
+typedef GoHeaderLookup = Future<String?> Function(String type);
+
 /// Gives every type of [resources] a tool/mm_yaml_sources.yaml row (every
 /// curated override needs one) and, when a guessed path resolves, its MM
-/// fixture under [mmDir] — so wrap-init sees the MM hints.
+/// fixture under [mmDir] — so wrap-init sees the MM hints. A miss falls
+/// through to [goHeader].
 @visibleForTesting
 Future<Map<String, String?>> resolveMmUpstreams(
   List<String> resources, {
   required String mmSources,
   required String mmDir,
   required MmFetch fetch,
+  GoHeaderLookup? goHeader,
 }) async {
   final out = <String, String?>{};
   for (final type in resources) {
     out[type] = null;
-    for (final path in guessMmUpstreams(type, mmSources)) {
+    Future<bool> take(String path) async {
       final body = await fetch(path);
-      if (body == null) continue;
+      if (body == null) return false;
       File(p.join(mmDir, '$type.yaml'))
         ..createSync(recursive: true)
         ..writeAsStringSync(body);
       out[type] = path;
-      break;
+      return true;
     }
+
+    for (final path in guessMmUpstreams(type, mmSources)) {
+      if (await take(path)) break;
+    }
+    if (out[type] != null || goHeader == null) continue;
+    final header = mmPathFromGoHeader(await goHeader(type) ?? '');
+    if (header != null) await take(header);
   }
   return out;
+}
+
+GoHeaderLookup? googleGoHeader(WrapLane lane) {
+  final repo = lane.hintsRepo;
+  if (lane.source != 'hashicorp/google' || repo == null) return null;
+  final version = File(
+    p.join(lane.schemaDir, 'provider_version.txt'),
+  ).readAsStringSync().trim();
+  const servicesDir = 'google/services';
+  Map<String, String>? goFiles;
+  return (type) async {
+    try {
+      goFiles ??= resourceGoFiles(
+        await githubTreePaths(repo, 'v$version'),
+        servicesDir,
+      );
+      final path = goFiles![resourceGoFileName(type)];
+      if (path == null) return null;
+      return await githubRaw(repo, 'v$version', path);
+    } on Exception {
+      return null;
+    }
+  };
 }
 
 /// Every `outputDir` the override YAMLs under [overridesRoot] name.
@@ -547,6 +588,7 @@ Future<ProcessResult> _wrapInit(
         mmSources: sources.readAsStringSync(),
         mmDir: p.join(lane.lane.schemaDir, 'mm'),
         fetch: mmFetchAt(manifest, recordedUpstreamRef(manifest)),
+        goHeader: googleGoHeader(lane.lane),
       );
       print('MM upstreams: $upstreams');
       sources.writeAsStringSync(
