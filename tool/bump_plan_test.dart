@@ -5,6 +5,7 @@
 import 'dart:io';
 
 import 'package:test/test.dart';
+import 'package:yaml/yaml.dart';
 
 import 'bump_plan.dart';
 import 'wrap_lanes.dart';
@@ -22,6 +23,30 @@ void main() {
     expect(crons.toSet(), hasLength(lanes.length));
     final days = crons.map((c) => c.split(' ').last).toSet();
     expect(days, hasLength(lanes.length));
+  });
+
+  test('the bump docs step continues only for a partial coverage render', () {
+    final tool = File('tool/render_coverage_page.dart').readAsStringSync();
+    final partialExit = int.parse(
+      RegExp(
+        r'const incompleteQuickstartTfOutExit = (\d+);',
+      ).firstMatch(tool)!.group(1)!,
+    );
+    expect(tool, contains('exit(incompleteQuickstartTfOutExit)'));
+    expect(partialExit, isNot(1));
+
+    final script = _docsStepRun();
+    final refreshed = _runRenderTail(script, toolExit: 0);
+    expect(refreshed.exitCode, 0);
+    expect(refreshed.stdout, contains('Coverage pages refreshed.'));
+
+    final partial = _runRenderTail(script, toolExit: partialExit);
+    expect(partial.exitCode, 0);
+    expect(partial.stdout, contains('coverage pages were not refreshed.'));
+    expect(partial.stdout, isNot(contains('Coverage pages refreshed.')));
+
+    expect(_runRenderTail(script, toolExit: 1).exitCode, 1);
+    expect(_runRenderTail(script, toolExit: 255).exitCode, 255);
   });
 
   test(
@@ -213,4 +238,35 @@ providers:
 ''';
     expect(() => parseBumpLanes(yaml), throwsFormatException);
   });
+}
+
+String _docsStepRun() {
+  final doc =
+      loadYaml(File('.github/workflows/schema-bump.yml').readAsStringSync())
+          as YamlMap;
+  final steps =
+      ((doc['jobs'] as YamlMap)['bump'] as YamlMap)['steps'] as YamlList;
+  final step = steps.cast<YamlMap>().singleWhere(
+    (s) => s['name'] == 'Sync catalog counts and coverage pages in the docs',
+  );
+  return step['run'] as String;
+}
+
+ProcessResult _runRenderTail(String script, {required int toolExit}) {
+  final lines = script.split('\n');
+  final renderAt = lines.indexWhere(
+    (line) => line.contains('dart tool/render_coverage_page.dart'),
+  );
+  final start = lines.lastIndexWhere(
+    (line) => line.contains('set +e'),
+    renderAt,
+  );
+  final tail = lines
+      .sublist(start)
+      .join('\n')
+      .replaceAll(
+        'dart tool/render_coverage_page.dart',
+        "sh -c 'exit $toolExit'",
+      );
+  return Process.runSync('bash', ['-e', '-c', tail]);
 }

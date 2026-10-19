@@ -316,10 +316,21 @@ jobs:
           if dart tool/example_synth_gates.dart --skip-validate > /tmp/synth_gates.txt 2>&1; then
             echo "Synth gates green."
           else
-            echo "::warning::example synth gates fail; the coverage pages render from what synthed."
+            echo "::warning::example synth gates fail; coverage pages render only when every quickstart synthed."
             tail -n 40 /tmp/synth_gates.txt
           fi
-          dart tool/render_coverage_page.dart
+          set +e
+          dart tool/render_coverage_page.dart > /tmp/coverage_pages.txt 2>&1
+          rc=$?
+          set -e
+          cat /tmp/coverage_pages.txt
+          if [ "$rc" -eq 0 ]; then
+            echo "Coverage pages refreshed."
+          elif [ "$rc" -eq 2 ]; then
+            echo "::warning::coverage pages were not refreshed."
+          else
+            exit "$rc"
+          fi
 
       - name: Refresh the ride-along lane's fixture + regenerate
         if: matrix.ride_along != ''

@@ -27,6 +27,8 @@ import 'package:terradart_cloudflare/catalog.dart' as cloudflare;
 import 'package:terradart_google/catalog.dart' as google;
 import 'package:terradart_google_beta/catalog.dart' as google_beta;
 
+const incompleteQuickstartTfOutExit = 2;
+
 const _outputDir = 'website/src/content/docs/docs/coverage';
 
 typedef CatalogItem = ({
@@ -352,7 +354,7 @@ Map<String, List<String>> _walkTfOuts() {
       '--skip-validate` first (missing: ${missing.take(5).join(', ')}'
       '${missing.length > 5 ? ', …' : ''}).',
     );
-    exit(1);
+    exit(incompleteQuickstartTfOutExit);
   }
   return {
     for (final entry in map.entries) entry.key: entry.value.toList()..sort(),
