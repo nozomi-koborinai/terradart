@@ -678,6 +678,7 @@ final class AwsRdsCluster extends Resource {
     TfArg<num>? port,
     TfArg<String>? preferredBackupWindow,
     TfArg<String>? preferredMaintenanceWindow,
+    TfArg<bool>? publiclyAccessible,
     TfArg<String>? region,
     TfArg<String>? replicationSourceIdentifier,
     TfArg<bool>? skipFinalSnapshot,
@@ -756,6 +757,7 @@ final class AwsRdsCluster extends Resource {
            'port': ?port,
            'preferred_backup_window': ?preferredBackupWindow,
            'preferred_maintenance_window': ?preferredMaintenanceWindow,
+           'publicly_accessible': ?publiclyAccessible,
            'region': ?region,
            'replication_source_identifier': ?replicationSourceIdentifier,
            'skip_final_snapshot': ?skipFinalSnapshot,
@@ -1029,6 +1031,10 @@ final class AwsRdsCluster extends Resource {
   /// Reference to `preferred_maintenance_window` attribute.
   TfRef<String> get preferredMaintenanceWindow =>
       TfRef.attribute<String>(this, 'preferred_maintenance_window');
+
+  /// Reference to `publicly_accessible` attribute.
+  TfRef<bool> get publiclyAccessible =>
+      TfRef.attribute<bool>(this, 'publicly_accessible');
 
   /// Reference to `region` attribute.
   TfRef<String> get region => TfRef.attribute<String>(this, 'region');

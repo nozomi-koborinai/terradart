@@ -168,11 +168,20 @@ extension type const GuarddutyOrganizationConfigurationFeatureAdditionalConfigur
       GuarddutyOrganizationConfigurationFeatureAdditionalConfigurationName._(
         TfArgLiteral('EC2_AGENT_MANAGEMENT'),
       );
+  static const rdsDataRisk =
+      GuarddutyOrganizationConfigurationFeatureAdditionalConfigurationName._(
+        TfArgLiteral('RDS_DATA_RISK'),
+      );
 
   static const List<
     GuarddutyOrganizationConfigurationFeatureAdditionalConfigurationName
   >
-  values = [eksAddonManagement, ecsFargateAgentManagement, ec2AgentManagement];
+  values = [
+    eksAddonManagement,
+    ecsFargateAgentManagement,
+    ec2AgentManagement,
+    rdsDataRisk,
+  ];
 }
 
 /// Factory wrapper for `aws_guardduty_organization_configuration_feature`.

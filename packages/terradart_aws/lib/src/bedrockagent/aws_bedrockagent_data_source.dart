@@ -326,6 +326,7 @@ final class BedrockagentDataSourceManagedKnowledgeBaseConnectorConfiguration {
     this.connectorParameters,
     this.deletionProtectionConfiguration,
     this.mediaExtractionConfiguration,
+    this.syncSchedule,
   });
 
   final TfArg<String>? connectorParameters;
@@ -335,6 +336,8 @@ final class BedrockagentDataSourceManagedKnowledgeBaseConnectorConfiguration {
 
   final List<BedrockagentDataSourceMediaExtractionConfiguration>?
   mediaExtractionConfiguration;
+
+  final List<BedrockagentDataSourceSyncSchedule>? syncSchedule;
 
   @internal
   Map<String, Object?> encode() => {
@@ -347,6 +350,8 @@ final class BedrockagentDataSourceManagedKnowledgeBaseConnectorConfiguration {
       'media_extraction_configuration': [
         for (final e in mediaExtractionConfiguration!) e.encode(),
       ],
+    if (syncSchedule != null)
+      'sync_schedule': [for (final e in syncSchedule!) e.encode()],
   };
 }
 
@@ -547,6 +552,137 @@ extension type const BedrockagentDataSourceVideoExtractionStatus._(
   static const List<BedrockagentDataSourceVideoExtractionStatus> values = [
     enabled,
     disabled,
+  ];
+}
+
+/// Typed helper for the `data_source_configuration.managed_knowledge_base_connector_configuration.sync_schedule` block of
+/// `aws_bedrockagent_data_source` (derived from provider schema).
+@immutable
+final class BedrockagentDataSourceSyncSchedule {
+  const BedrockagentDataSourceSyncSchedule({
+    this.daily,
+    this.monthly,
+    this.weekly,
+  });
+
+  final List<BedrockagentDataSourceDaily>? daily;
+
+  final List<BedrockagentDataSourceMonthly>? monthly;
+
+  final List<BedrockagentDataSourceWeekly>? weekly;
+
+  @internal
+  Map<String, Object?> encode() => {
+    if (daily != null) 'daily': [for (final e in daily!) e.encode()],
+    if (monthly != null) 'monthly': [for (final e in monthly!) e.encode()],
+    if (weekly != null) 'weekly': [for (final e in weekly!) e.encode()],
+  };
+}
+
+/// Typed helper for the `data_source_configuration.managed_knowledge_base_connector_configuration.sync_schedule.daily` block of
+/// `aws_bedrockagent_data_source` (derived from provider schema).
+@immutable
+final class BedrockagentDataSourceDaily {
+  const BedrockagentDataSourceDaily();
+
+  @internal
+  Map<String, Object?> encode() => {};
+}
+
+/// Typed helper for the `data_source_configuration.managed_knowledge_base_connector_configuration.sync_schedule.monthly` block of
+/// `aws_bedrockagent_data_source` (derived from provider schema).
+@immutable
+final class BedrockagentDataSourceMonthly {
+  const BedrockagentDataSourceMonthly({this.dayOfMonth});
+
+  final List<BedrockagentDataSourceDayOfMonth>? dayOfMonth;
+
+  @internal
+  Map<String, Object?> encode() => {
+    if (dayOfMonth != null)
+      'day_of_month': [for (final e in dayOfMonth!) e.encode()],
+  };
+}
+
+/// Typed helper for the `data_source_configuration.managed_knowledge_base_connector_configuration.sync_schedule.monthly.day_of_month` block of
+/// `aws_bedrockagent_data_source` (derived from provider schema).
+@immutable
+final class BedrockagentDataSourceDayOfMonth {
+  const BedrockagentDataSourceDayOfMonth({this.dayNumber, this.lastDayOfMonth});
+
+  final TfArg<num>? dayNumber;
+
+  final List<BedrockagentDataSourceLastDayOfMonth>? lastDayOfMonth;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'day_number': ?dayNumber?.toTfJson(),
+    if (lastDayOfMonth != null)
+      'last_day_of_month': [for (final e in lastDayOfMonth!) e.encode()],
+  };
+}
+
+/// Typed helper for the `data_source_configuration.managed_knowledge_base_connector_configuration.sync_schedule.monthly.day_of_month.last_day_of_month` block of
+/// `aws_bedrockagent_data_source` (derived from provider schema).
+@immutable
+final class BedrockagentDataSourceLastDayOfMonth {
+  const BedrockagentDataSourceLastDayOfMonth();
+
+  @internal
+  Map<String, Object?> encode() => {};
+}
+
+/// Typed helper for the `data_source_configuration.managed_knowledge_base_connector_configuration.sync_schedule.weekly` block of
+/// `aws_bedrockagent_data_source` (derived from provider schema).
+@immutable
+final class BedrockagentDataSourceWeekly {
+  const BedrockagentDataSourceWeekly({required this.dayOfWeek});
+
+  final BedrockagentDataSourceDayOfWeek dayOfWeek;
+
+  @internal
+  Map<String, Object?> encode() => {'day_of_week': dayOfWeek.toTfJson()};
+}
+
+/// `day_of_week` — derived from the provider schema description.
+extension type const BedrockagentDataSourceDayOfWeek._(TfArg<String> _)
+    implements TfArg<String> {
+  BedrockagentDataSourceDayOfWeek.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentDataSourceDayOfWeek.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentDataSourceDayOfWeek.arg(TfArg<String> arg) : this._(arg);
+
+  static const sunday = BedrockagentDataSourceDayOfWeek._(
+    TfArgLiteral('SUNDAY'),
+  );
+  static const monday = BedrockagentDataSourceDayOfWeek._(
+    TfArgLiteral('MONDAY'),
+  );
+  static const tuesday = BedrockagentDataSourceDayOfWeek._(
+    TfArgLiteral('TUESDAY'),
+  );
+  static const wednesday = BedrockagentDataSourceDayOfWeek._(
+    TfArgLiteral('WEDNESDAY'),
+  );
+  static const thursday = BedrockagentDataSourceDayOfWeek._(
+    TfArgLiteral('THURSDAY'),
+  );
+  static const friday = BedrockagentDataSourceDayOfWeek._(
+    TfArgLiteral('FRIDAY'),
+  );
+  static const saturday = BedrockagentDataSourceDayOfWeek._(
+    TfArgLiteral('SATURDAY'),
+  );
+
+  static const List<BedrockagentDataSourceDayOfWeek> values = [
+    sunday,
+    monday,
+    tuesday,
+    wednesday,
+    thursday,
+    friday,
+    saturday,
   ];
 }
 
@@ -924,12 +1060,16 @@ final class BedrockagentDataSourceServerSideEncryptionConfiguration {
 final class BedrockagentDataSourceVectorIngestionConfiguration {
   const BedrockagentDataSourceVectorIngestionConfiguration({
     this.chunkingConfiguration,
+    this.contextEnrichmentConfiguration,
     this.customTransformationConfiguration,
     this.parsingConfiguration,
   });
 
   final List<BedrockagentDataSourceChunkingConfiguration>?
   chunkingConfiguration;
+
+  final List<BedrockagentDataSourceContextEnrichmentConfiguration>?
+  contextEnrichmentConfiguration;
 
   final List<BedrockagentDataSourceCustomTransformationConfiguration>?
   customTransformationConfiguration;
@@ -941,6 +1081,10 @@ final class BedrockagentDataSourceVectorIngestionConfiguration {
     if (chunkingConfiguration != null)
       'chunking_configuration': [
         for (final e in chunkingConfiguration!) e.encode(),
+      ],
+    if (contextEnrichmentConfiguration != null)
+      'context_enrichment_configuration': [
+        for (final e in contextEnrichmentConfiguration!) e.encode(),
       ],
     if (customTransformationConfiguration != null)
       'custom_transformation_configuration': [
@@ -1184,6 +1328,110 @@ final class BedrockagentDataSourceSemanticChunkingConfiguration {
   };
 }
 
+/// Typed helper for the `vector_ingestion_configuration.context_enrichment_configuration` block of
+/// `aws_bedrockagent_data_source` (derived from provider schema).
+@immutable
+final class BedrockagentDataSourceContextEnrichmentConfiguration {
+  const BedrockagentDataSourceContextEnrichmentConfiguration({
+    required this.type,
+    this.bedrockFoundationModelConfiguration,
+  });
+
+  final BedrockagentDataSourceContextEnrichmentConfigurationType type;
+
+  final List<
+    BedrockagentDataSourceContextEnrichmentConfigurationBedrockFoundationModelConfiguration
+  >?
+  bedrockFoundationModelConfiguration;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'type': type.toTfJson(),
+    if (bedrockFoundationModelConfiguration != null)
+      'bedrock_foundation_model_configuration': [
+        for (final e in bedrockFoundationModelConfiguration!) e.encode(),
+      ],
+  };
+}
+
+/// `type` — derived from the provider schema description.
+extension type const BedrockagentDataSourceContextEnrichmentConfigurationType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BedrockagentDataSourceContextEnrichmentConfigurationType.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentDataSourceContextEnrichmentConfigurationType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const BedrockagentDataSourceContextEnrichmentConfigurationType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const bedrockFoundationModel =
+      BedrockagentDataSourceContextEnrichmentConfigurationType._(
+        TfArgLiteral('BEDROCK_FOUNDATION_MODEL'),
+      );
+
+  static const List<BedrockagentDataSourceContextEnrichmentConfigurationType>
+  values = [bedrockFoundationModel];
+}
+
+/// Typed helper for the `vector_ingestion_configuration.context_enrichment_configuration.bedrock_foundation_model_configuration` block of
+/// `aws_bedrockagent_data_source` (derived from provider schema).
+@immutable
+final class BedrockagentDataSourceContextEnrichmentConfigurationBedrockFoundationModelConfiguration {
+  const BedrockagentDataSourceContextEnrichmentConfigurationBedrockFoundationModelConfiguration({
+    required this.modelArn,
+    this.enrichmentStrategyConfiguration,
+  });
+
+  final TfArg<String> modelArn;
+
+  final List<BedrockagentDataSourceEnrichmentStrategyConfiguration>?
+  enrichmentStrategyConfiguration;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'model_arn': modelArn.toTfJson(),
+    if (enrichmentStrategyConfiguration != null)
+      'enrichment_strategy_configuration': [
+        for (final e in enrichmentStrategyConfiguration!) e.encode(),
+      ],
+  };
+}
+
+/// Typed helper for the `vector_ingestion_configuration.context_enrichment_configuration.bedrock_foundation_model_configuration.enrichment_strategy_configuration` block of
+/// `aws_bedrockagent_data_source` (derived from provider schema).
+@immutable
+final class BedrockagentDataSourceEnrichmentStrategyConfiguration {
+  const BedrockagentDataSourceEnrichmentStrategyConfiguration({
+    required this.method,
+  });
+
+  final BedrockagentDataSourceMethod method;
+
+  @internal
+  Map<String, Object?> encode() => {'method': method.toTfJson()};
+}
+
+/// `method` — derived from the provider schema description.
+extension type const BedrockagentDataSourceMethod._(TfArg<String> _)
+    implements TfArg<String> {
+  BedrockagentDataSourceMethod.variable(String name)
+    : this._(TfArg.variable(name));
+  BedrockagentDataSourceMethod.expression(String template)
+    : this._(TfArg.expression(template));
+  const BedrockagentDataSourceMethod.arg(TfArg<String> arg) : this._(arg);
+
+  static const chunkEntityExtraction = BedrockagentDataSourceMethod._(
+    TfArgLiteral('CHUNK_ENTITY_EXTRACTION'),
+  );
+
+  static const List<BedrockagentDataSourceMethod> values = [
+    chunkEntityExtraction,
+  ];
+}
+
 /// Typed helper for the `vector_ingestion_configuration.custom_transformation_configuration` block of
 /// `aws_bedrockagent_data_source` (derived from provider schema).
 @immutable
@@ -1326,7 +1574,9 @@ final class BedrockagentDataSourceParsingConfiguration {
   final List<BedrockagentDataSourceBedrockDataAutomationConfiguration>?
   bedrockDataAutomationConfiguration;
 
-  final List<BedrockagentDataSourceBedrockFoundationModelConfiguration>?
+  final List<
+    BedrockagentDataSourceParsingConfigurationBedrockFoundationModelConfiguration
+  >?
   bedrockFoundationModelConfiguration;
 
   @internal
@@ -1412,8 +1662,8 @@ extension type const BedrockagentDataSourceParsingModality._(TfArg<String> _)
 /// Typed helper for the `vector_ingestion_configuration.parsing_configuration.bedrock_foundation_model_configuration` block of
 /// `aws_bedrockagent_data_source` (derived from provider schema).
 @immutable
-final class BedrockagentDataSourceBedrockFoundationModelConfiguration {
-  const BedrockagentDataSourceBedrockFoundationModelConfiguration({
+final class BedrockagentDataSourceParsingConfigurationBedrockFoundationModelConfiguration {
+  const BedrockagentDataSourceParsingConfigurationBedrockFoundationModelConfiguration({
     required this.modelArn,
     this.parsingModality,
     this.parsingPrompt,

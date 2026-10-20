@@ -348,11 +348,15 @@ extension type const LambdaEventSourceMappingAccessConfigType._(TfArg<String> _)
       LambdaEventSourceMappingAccessConfigType._(
         TfArgLiteral('SERVER_ROOT_CA_CERTIFICATE'),
       );
+  static const oauthbearerAuth = LambdaEventSourceMappingAccessConfigType._(
+    TfArgLiteral('OAUTHBEARER_AUTH'),
+  );
 
   static const List<LambdaEventSourceMappingAccessConfigType> values = [
     basicAuth,
     clientCertificateTlsAuth,
     serverRootCaCertificate,
+    oauthbearerAuth,
   ];
 }
 
@@ -650,6 +654,27 @@ extension type const LambdaEventSourceMappingType._(TfArg<String> _)
   static const serverRootCaCertificate = LambdaEventSourceMappingType._(
     TfArgLiteral('SERVER_ROOT_CA_CERTIFICATE'),
   );
+  static const oauthbearerAuth = LambdaEventSourceMappingType._(
+    TfArgLiteral('OAUTHBEARER_AUTH'),
+  );
+  static const oauthbearerScope = LambdaEventSourceMappingType._(
+    TfArgLiteral('OAUTHBEARER_SCOPE'),
+  );
+  static const oauthbearerAudience = LambdaEventSourceMappingType._(
+    TfArgLiteral('OAUTHBEARER_AUDIENCE'),
+  );
+  static const oauthbearerLogicalCluster = LambdaEventSourceMappingType._(
+    TfArgLiteral('OAUTHBEARER_LOGICAL_CLUSTER'),
+  );
+  static const oauthbearerIdentityPool = LambdaEventSourceMappingType._(
+    TfArgLiteral('OAUTHBEARER_IDENTITY_POOL'),
+  );
+  static const iamAuth = LambdaEventSourceMappingType._(
+    TfArgLiteral('IAM_AUTH'),
+  );
+  static const iamOauthbearerAuth = LambdaEventSourceMappingType._(
+    TfArgLiteral('IAM_OAUTHBEARER_AUTH'),
+  );
 
   static const List<LambdaEventSourceMappingType> values = [
     basicAuth,
@@ -660,6 +685,13 @@ extension type const LambdaEventSourceMappingType._(TfArg<String> _)
     virtualHost,
     clientCertificateTlsAuth,
     serverRootCaCertificate,
+    oauthbearerAuth,
+    oauthbearerScope,
+    oauthbearerAudience,
+    oauthbearerLogicalCluster,
+    oauthbearerIdentityPool,
+    iamAuth,
+    iamOauthbearerAuth,
   ];
 }
 

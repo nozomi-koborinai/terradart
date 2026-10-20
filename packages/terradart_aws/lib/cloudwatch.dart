@@ -219,6 +219,7 @@ export 'src/cloudwatch/aws_cloudwatch_metric_alarm.dart'
         CloudwatchMetricAlarmComparisonOperator,
         CloudwatchMetricAlarmEvaluateLowSampleCountPercentiles,
         CloudwatchMetricAlarmEvaluationCriteria,
+        CloudwatchMetricAlarmEvaluationWindow,
         CloudwatchMetricAlarmMetric,
         CloudwatchMetricAlarmMetricQuery,
         CloudwatchMetricAlarmMetricUnit,
@@ -234,6 +235,7 @@ export 'src/cloudwatch/aws_cloudwatch_metric_alarm.dart'
         CloudwatchMetricAlarmThresholdMetricId,
         CloudwatchMetricAlarmTreatMissingData,
         CloudwatchMetricAlarmUnit,
+        CloudwatchMetricAlarmWallClockWindow,
         CloudwatchMetricAlarmWarmUpConfiguration;
 export 'src/cloudwatch/aws_cloudwatch_metric_stream.dart'
     show
@@ -250,9 +252,16 @@ export 'src/cloudwatch/aws_cloudwatch_metric_stream.dart'
         CloudwatchMetricStreamOutputFormat,
         CloudwatchMetricStreamStatisticsConfiguration;
 export 'src/cloudwatch/aws_cloudwatch_otel_enrichment.dart'
-    show AwsCloudwatchOtelEnrichment;
+    show
+        AwsCloudwatchOtelEnrichment,
+        CloudwatchOtelEnrichmentExcludeFilter,
+        CloudwatchOtelEnrichmentIncludeFilter;
 export 'src/cloudwatch/aws_cloudwatch_query_definition.dart'
     show AwsCloudwatchQueryDefinition;
+export 'src/cloudwatch/aws_cloudwatch_resource_metrics_configuration.dart'
+    show
+        AwsCloudwatchResourceMetricsConfiguration,
+        CloudwatchResourceMetricsConfigurationMetricSelection;
 export 'src/data/aws_cloudwatch_contributor_managed_insight_rules.dart'
     show DataAwsCloudwatchContributorManagedInsightRules;
 export 'src/data/aws_cloudwatch_event_bus.dart' show DataAwsCloudwatchEventBus;

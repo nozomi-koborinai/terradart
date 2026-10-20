@@ -2958,6 +2958,30 @@ final class AwsLeftoverStack extends Stack {
     );
 
     add(
+      AwsCloudwatchResourceMetricsConfiguration(
+        'cloudwatch_resource_metrics_configuration',
+        resourceArn: .literal(arn),
+      ),
+    );
+
+    add(
+      AwsCloudwatchomniDomain(
+        'cloudwatchomni_domain',
+        identityProviders: [.iam],
+        name: .literal(leftover),
+      ),
+    );
+
+    add(
+      AwsCloudwatchomniSpace(
+        'cloudwatchomni_space',
+        dataAccessRoleArn: .literal(arn),
+        domainId: .literal(leftover),
+        name: .literal(leftover),
+      ),
+    );
+
+    add(
       AwsCodeartifactDomain('codeartifact_domain', domain: .literal(leftover)),
     );
 
@@ -4311,6 +4335,13 @@ final class AwsLeftoverStack extends Stack {
         name: .literal(leftover),
         projectArn: .literal(arn),
         type: .androidApp,
+      ),
+    );
+
+    add(
+      AwsDevopsagentAgentSpace(
+        'devopsagent_agent_space',
+        name: .literal(leftover),
       ),
     );
 
@@ -10076,6 +10107,15 @@ final class AwsLeftoverStack extends Stack {
     );
 
     add(
+      AwsPricingplanmanagerSubscription(
+        'pricingplanmanager_subscription',
+        planFamily: .literal(leftover),
+        planTier: .literal(leftover),
+        resourceArns: .literal([arn]),
+      ),
+    );
+
+    add(
       AwsPrometheusAlertManagerDefinition(
         'prometheus_alert_manager_definition',
         definition: .literal(leftover),
@@ -10245,9 +10285,7 @@ final class AwsLeftoverStack extends Stack {
         'quicksight_custom_permissions',
         customPermissionsName: .literal(leftover),
         capabilities: [
-          QuicksightCustomPermissionsCapabilities(
-            addOrRunAnomalyDetectionForAnalyses: .literal('DENY'),
-          ),
+          QuicksightCustomPermissionsCapabilities(action: .literal('ALLOW')),
         ],
       ),
     );

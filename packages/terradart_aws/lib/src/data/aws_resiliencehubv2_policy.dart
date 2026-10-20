@@ -52,6 +52,10 @@ final class DataAwsResiliencehubv2Policy extends Data {
   TfRef<List<Map<String, Object?>>> get multiRegion =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'multi_region');
 
+  /// Reference to `sharing_enabled` attribute.
+  TfRef<bool> get sharingEnabled =>
+      TfRef.attribute<bool>(this, 'sharing_enabled');
+
   /// Reference to `tags` attribute.
   TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');

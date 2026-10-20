@@ -398,6 +398,9 @@ extension type const CeAnomalySubscriptionKey._(TfArg<String> _)
   static const anomalyTotalImpactPercentage = CeAnomalySubscriptionKey._(
     TfArgLiteral('ANOMALY_TOTAL_IMPACT_PERCENTAGE'),
   );
+  static const productAttribute = CeAnomalySubscriptionKey._(
+    TfArgLiteral('PRODUCT_ATTRIBUTE'),
+  );
 
   static const List<CeAnomalySubscriptionKey> values = [
     az,
@@ -435,6 +438,7 @@ extension type const CeAnomalySubscriptionKey._(TfArg<String> _)
     invoicingEntity,
     anomalyTotalImpactAbsolute,
     anomalyTotalImpactPercentage,
+    productAttribute,
   ];
 }
 

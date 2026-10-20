@@ -101,6 +101,14 @@ extension type const ApiGatewayRestApiSecurityPolicy._(TfArg<String> _)
       ApiGatewayRestApiSecurityPolicy._(
         TfArgLiteral('SecurityPolicy_TLS13_1_2_FIPS_PFS_PQ_2025_09'),
       );
+  static const securitypolicyTls1312Ext2Pq202509 =
+      ApiGatewayRestApiSecurityPolicy._(
+        TfArgLiteral('SecurityPolicy_TLS13_1_2_Ext2_PQ_2025_09'),
+      );
+  static const securitypolicyTls1312Ext2FipsPq202509 =
+      ApiGatewayRestApiSecurityPolicy._(
+        TfArgLiteral('SecurityPolicy_TLS13_1_2_Ext2_FIPS_PQ_2025_09'),
+      );
   static const securitypolicyTls1312Pq202509 =
       ApiGatewayRestApiSecurityPolicy._(
         TfArgLiteral('SecurityPolicy_TLS13_1_2_PQ_2025_09'),
@@ -127,6 +135,8 @@ extension type const ApiGatewayRestApiSecurityPolicy._(TfArg<String> _)
     securitypolicyTls1312PfsPq202509,
     securitypolicyTls1312FipsPq202509,
     securitypolicyTls1312FipsPfsPq202509,
+    securitypolicyTls1312Ext2Pq202509,
+    securitypolicyTls1312Ext2FipsPq202509,
     securitypolicyTls1312Pq202509,
     securitypolicyTls1312202106,
     securitypolicyTls132025Edge,

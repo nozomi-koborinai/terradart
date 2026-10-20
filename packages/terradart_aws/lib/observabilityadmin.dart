@@ -32,9 +32,17 @@ export 'src/observabilityadmin/aws_observabilityadmin_s3_table_integration.dart'
 export 'src/observabilityadmin/aws_observabilityadmin_telemetry_enrichment.dart'
     show AwsObservabilityadminTelemetryEnrichment;
 export 'src/observabilityadmin/aws_observabilityadmin_telemetry_evaluation.dart'
-    show AwsObservabilityadminTelemetryEvaluation;
+    show
+        AwsObservabilityadminTelemetryEvaluation,
+        ObservabilityadminTelemetryEvaluationAllRegionsOrRegions,
+        ObservabilityadminTelemetryEvaluationAllRegionsOrRegionsAllRegions,
+        ObservabilityadminTelemetryEvaluationAllRegionsOrRegionsChoice;
 export 'src/observabilityadmin/aws_observabilityadmin_telemetry_evaluation_for_organization.dart'
-    show AwsObservabilityadminTelemetryEvaluationForOrganization;
+    show
+        AwsObservabilityadminTelemetryEvaluationForOrganization,
+        ObservabilityadminTelemetryEvaluationForOrganizationAllRegionsOrRegions,
+        ObservabilityadminTelemetryEvaluationForOrganizationAllRegionsOrRegionsAllRegions,
+        ObservabilityadminTelemetryEvaluationForOrganizationAllRegionsOrRegionsChoice;
 export 'src/observabilityadmin/aws_observabilityadmin_telemetry_pipeline.dart'
     show
         AwsObservabilityadminTelemetryPipeline,

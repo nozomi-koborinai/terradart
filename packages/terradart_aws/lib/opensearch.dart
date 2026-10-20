@@ -55,7 +55,6 @@ export 'src/opensearch/aws_opensearch_domain.dart'
         OpensearchDomainUnit,
         OpensearchDomainVolumeType,
         OpensearchDomainVpcOptions,
-        OpensearchDomainWarmType,
         OpensearchDomainWindowStartTime,
         OpensearchDomainZoneAwarenessConfig;
 export 'src/opensearch/aws_opensearch_domain_policy.dart'

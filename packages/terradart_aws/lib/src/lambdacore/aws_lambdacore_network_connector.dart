@@ -76,9 +76,13 @@ extension type const LambdacoreNetworkConnectorAssociatedComputeResourceTypes._(
       LambdacoreNetworkConnectorAssociatedComputeResourceTypes._(
         TfArgLiteral('MicroVm'),
       );
+  static const webfunction =
+      LambdacoreNetworkConnectorAssociatedComputeResourceTypes._(
+        TfArgLiteral('WebFunction'),
+      );
 
   static const List<LambdacoreNetworkConnectorAssociatedComputeResourceTypes>
-  values = [microvm];
+  values = [microvm, webfunction];
 }
 
 /// `network_protocol` — derived from the provider schema description.

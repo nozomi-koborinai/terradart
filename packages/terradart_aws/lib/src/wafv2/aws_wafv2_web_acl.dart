@@ -409,6 +409,78 @@ final class Wafv2WebAclCustomResponse {
   };
 }
 
+/// Typed helper for the `monetization_config` block of
+/// `aws_wafv2_web_acl` (derived from provider schema).
+@immutable
+final class Wafv2WebAclMonetizationConfig {
+  const Wafv2WebAclMonetizationConfig({this.currencyMode, this.cryptoConfig});
+
+  final TfArg<String>? currencyMode;
+
+  final Wafv2WebAclCryptoConfig? cryptoConfig;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'currency_mode': ?currencyMode?.toTfJson(),
+    'crypto_config': ?cryptoConfig?.encode(),
+  };
+}
+
+/// Typed helper for the `monetization_config.crypto_config` block of
+/// `aws_wafv2_web_acl` (derived from provider schema).
+@immutable
+final class Wafv2WebAclCryptoConfig {
+  const Wafv2WebAclCryptoConfig({required this.paymentNetwork});
+
+  final List<Wafv2WebAclPaymentNetwork> paymentNetwork;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'payment_network': [for (final e in paymentNetwork) e.encode()],
+  };
+}
+
+/// Typed helper for the `monetization_config.crypto_config.payment_network` block of
+/// `aws_wafv2_web_acl` (derived from provider schema).
+@immutable
+final class Wafv2WebAclPaymentNetwork {
+  const Wafv2WebAclPaymentNetwork({
+    required this.chain,
+    required this.walletAddress,
+    required this.prices,
+  });
+
+  final TfArg<String> chain;
+
+  final TfArg<String> walletAddress;
+
+  final Wafv2WebAclPrices prices;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'chain': chain.toTfJson(),
+    'wallet_address': walletAddress.toTfJson(),
+    'prices': prices.encode(),
+  };
+}
+
+/// Typed helper for the `monetization_config.crypto_config.payment_network.prices` block of
+/// `aws_wafv2_web_acl` (derived from provider schema).
+@immutable
+final class Wafv2WebAclPrices {
+  const Wafv2WebAclPrices({required this.amount, required this.currency});
+
+  final TfArg<String> amount;
+
+  final TfArg<String> currency;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'amount': amount.toTfJson(),
+    'currency': currency.toTfJson(),
+  };
+}
+
 /// Typed helper for the `visibility_config` block of
 /// `aws_wafv2_web_acl` (derived from provider schema).
 @immutable
@@ -452,6 +524,7 @@ final class AwsWafv2WebAcl extends Resource {
     List<Wafv2WebAclCustomResponseBody>? customResponseBody,
     Wafv2WebAclDataProtectionConfig? dataProtectionConfig,
     required Wafv2WebAclDefaultAction defaultAction,
+    Wafv2WebAclMonetizationConfig? monetizationConfig,
     TfArg<List<Map<String, dynamic>>>? rule,
     required Wafv2WebAclVisibilityConfig visibilityConfig,
     super.lifecycle,
@@ -483,6 +556,8 @@ final class AwsWafv2WebAcl extends Resource {
                dataProtectionConfig.encode(),
              ),
            'default_action': TfArg.literal(defaultAction.encode()),
+           if (monetizationConfig != null)
+             'monetization_config': TfArg.literal(monetizationConfig.encode()),
            'rule': ?rule,
            'visibility_config': TfArg.literal(visibilityConfig.encode()),
          },
