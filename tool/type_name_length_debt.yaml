@@ -27,3 +27,8 @@ DataLossPreventionDeidentifyTemplateInfoTypeTransformationsPrimitiveTransformati
 DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentRoutingPolicyRulesConditions: >-
   collision: conditions names differently shaped blocks under several rule
   blocks of the policy document
+BedrockagentDataSourceContextEnrichmentConfigurationBedrockFoundationModelConfiguration: >-
+  collision: bedrock_foundation_model_configuration differs under
+  vector_ingestion_configuration.context_enrichment_configuration and
+  vector_ingestion_configuration.parsing_configuration, so each keeps its
+  parent
