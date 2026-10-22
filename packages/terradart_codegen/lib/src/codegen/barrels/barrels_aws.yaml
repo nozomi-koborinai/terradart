@@ -238,6 +238,9 @@ barrels:
   cloudwatch:
     doc: |-
       /// AWS CloudWatch (alarms, dashboards, logs, and events).
+  cloudwatchomni:
+    doc: |-
+      /// `cloudwatchomni` factories, added by the weekly schema bump.
   codeartifact:
     doc: |-
       /// AWS CodeArtifact.
@@ -329,6 +332,9 @@ barrels:
   devicefarm:
     doc: |-
       /// AWS Device Farm.
+  devopsagent:
+    doc: |-
+      /// `devopsagent` factories, added by the weekly schema bump.
   devopsguru:
     doc: |-
       /// AWS DevOps Guru.
@@ -599,6 +605,9 @@ barrels:
   pipes:
     doc: |-
       /// AWS EventBridge Pipes.
+  pricingplanmanager:
+    doc: |-
+      /// `pricingplanmanager` factories, added by the weekly schema bump.
   prometheus:
     doc: |-
       /// AWS Managed Service for Prometheus.

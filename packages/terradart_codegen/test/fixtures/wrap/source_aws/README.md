@@ -1,6 +1,6 @@
 # Schema fixture — hashicorp/aws
 
-Full catalog at the current pin (`6.68.0`): every resource and data source.
+Full catalog at the current pin (`6.69.1`): every resource and data source.
 The keys of `schema.json` are the single source of truth for the set, and
 `provider_version.txt` records the extraction version. Never hand-edit
 either file. Re-extract the SAME set at the pinned version with:

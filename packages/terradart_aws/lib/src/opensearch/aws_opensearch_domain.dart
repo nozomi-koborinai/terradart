@@ -347,7 +347,7 @@ final class OpensearchDomainClusterConfig {
 
   final TfArg<bool>? warmEnabled;
 
-  final OpensearchDomainWarmType? warmType;
+  final TfArg<String>? warmType;
 
   final TfArg<bool>? zoneAwarenessEnabled;
 
@@ -374,31 +374,6 @@ final class OpensearchDomainClusterConfig {
       'node_options': [for (final e in nodeOptions!) e.encode()],
     'zone_awareness_config': ?zoneAwarenessConfig?.encode(),
   };
-}
-
-/// `warm_type` — derived from the provider schema description.
-extension type const OpensearchDomainWarmType._(TfArg<String> _)
-    implements TfArg<String> {
-  OpensearchDomainWarmType.variable(String name) : this._(TfArg.variable(name));
-  OpensearchDomainWarmType.expression(String template)
-    : this._(TfArg.expression(template));
-  const OpensearchDomainWarmType.arg(TfArg<String> arg) : this._(arg);
-
-  static const ultrawarm1MediumSearch = OpensearchDomainWarmType._(
-    TfArgLiteral('ultrawarm1.medium.search'),
-  );
-  static const ultrawarm1LargeSearch = OpensearchDomainWarmType._(
-    TfArgLiteral('ultrawarm1.large.search'),
-  );
-  static const ultrawarm1XlargeSearch = OpensearchDomainWarmType._(
-    TfArgLiteral('ultrawarm1.xlarge.search'),
-  );
-
-  static const List<OpensearchDomainWarmType> values = [
-    ultrawarm1MediumSearch,
-    ultrawarm1LargeSearch,
-    ultrawarm1XlargeSearch,
-  ];
 }
 
 /// Typed helper for the `cluster_config.cold_storage_options` block of

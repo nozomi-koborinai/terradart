@@ -172,6 +172,10 @@ extension type const ObservabilityadminTelemetryRuleForOrganizationResourceType.
       ObservabilityadminTelemetryRuleForOrganizationResourceType._(
         TfArgLiteral('AWS::Bedrock::KnowledgeBase'),
       );
+  static const awsXrayTransactionsearchconfig =
+      ObservabilityadminTelemetryRuleForOrganizationResourceType._(
+        TfArgLiteral('AWS::XRay::TransactionSearchConfig'),
+      );
 
   static const List<ObservabilityadminTelemetryRuleForOrganizationResourceType>
   values = [
@@ -197,6 +201,7 @@ extension type const ObservabilityadminTelemetryRuleForOrganizationResourceType.
     awsMskCluster,
     awsS3Bucket,
     awsBedrockKnowledgebase,
+    awsXrayTransactionsearchconfig,
   ];
 }
 

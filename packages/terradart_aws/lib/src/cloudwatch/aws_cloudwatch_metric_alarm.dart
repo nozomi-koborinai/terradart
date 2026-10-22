@@ -536,6 +536,32 @@ final class CloudwatchMetricAlarmPromqlCriteria {
   };
 }
 
+/// Typed helper for the `evaluation_window` block of
+/// `aws_cloudwatch_metric_alarm` (derived from provider schema).
+@immutable
+final class CloudwatchMetricAlarmEvaluationWindow {
+  const CloudwatchMetricAlarmEvaluationWindow({required this.wallClockWindow});
+
+  final CloudwatchMetricAlarmWallClockWindow wallClockWindow;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'wall_clock_window': wallClockWindow.encode(),
+  };
+}
+
+/// Typed helper for the `evaluation_window.wall_clock_window` block of
+/// `aws_cloudwatch_metric_alarm` (derived from provider schema).
+@immutable
+final class CloudwatchMetricAlarmWallClockWindow {
+  const CloudwatchMetricAlarmWallClockWindow({this.timezone});
+
+  final TfArg<String>? timezone;
+
+  @internal
+  Map<String, Object?> encode() => {'timezone': ?timezone?.toTfJson()};
+}
+
 /// Typed helper for the `metric_query` block of
 /// `aws_cloudwatch_metric_alarm` (derived from provider schema).
 @immutable
@@ -802,6 +828,7 @@ final class AwsCloudwatchMetricAlarm extends Resource {
     CloudwatchMetricAlarmThreshold? threshold,
     CloudwatchMetricAlarmTreatMissingData? treatMissingData,
     CloudwatchMetricAlarmUnit? unit,
+    CloudwatchMetricAlarmEvaluationWindow? evaluationWindow,
     CloudwatchMetricAlarmWarmUpConfiguration? warmUpConfiguration,
     super.lifecycle,
     super.dependsOn,
@@ -832,6 +859,8 @@ final class AwsCloudwatchMetricAlarm extends Resource {
            ...?threshold?.argMap,
            'treat_missing_data': ?treatMissingData,
            'unit': ?unit,
+           if (evaluationWindow != null)
+             'evaluation_window': TfArg.literal(evaluationWindow.encode()),
            if (warmUpConfiguration != null)
              'warm_up_configuration': TfArg.literal(
                warmUpConfiguration.encode(),

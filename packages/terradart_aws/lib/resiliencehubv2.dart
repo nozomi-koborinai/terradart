@@ -16,6 +16,9 @@ export 'src/resiliencehubv2/aws_resiliencehubv2_input_source.dart'
     show
         AwsResiliencehubv2InputSource,
         Resiliencehubv2InputSourceEks,
+        Resiliencehubv2InputSourceLabelSelector,
+        Resiliencehubv2InputSourceMatchExpressions,
+        Resiliencehubv2InputSourceOperator,
         Resiliencehubv2InputSourceResourceConfiguration,
         Resiliencehubv2InputSourceResourceTag;
 export 'src/resiliencehubv2/aws_resiliencehubv2_policy.dart'

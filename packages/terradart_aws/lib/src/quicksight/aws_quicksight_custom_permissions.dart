@@ -12,32 +12,54 @@ const Set<String> _awsQuicksightCustomPermissionsSensitive = <String>{};
 @immutable
 final class QuicksightCustomPermissionsCapabilities {
   const QuicksightCustomPermissionsCapabilities({
+    this.action,
     this.addOrRunAnomalyDetectionForAnalyses,
+    this.analysis,
+    this.automate,
+    this.chatAgent,
     this.createAndUpdateDashboardEmailReports,
     this.createAndUpdateDataSources,
     this.createAndUpdateDatasets,
     this.createAndUpdateThemes,
     this.createAndUpdateThresholdAlerts,
+    this.createChatAgents,
     this.createSharedFolders,
     this.createSpiceDataset,
+    this.dashboard,
     this.exportToCsv,
     this.exportToCsvInScheduledReports,
     this.exportToExcel,
     this.exportToExcelInScheduledReports,
     this.exportToPdf,
     this.exportToPdfInScheduledReports,
+    this.flow,
     this.includeContentInScheduledReportsEmail,
+    this.knowledgeBase,
+    this.performFlowUiTask,
     this.printReports,
+    this.publishWithoutApproval,
     this.renameSharedFolders,
+    this.research,
     this.shareAnalyses,
     this.shareDashboards,
     this.shareDataSources,
     this.shareDatasets,
+    this.space,
     this.subscribeDashboardEmailReports,
+    this.useAgentWebSearch,
+    this.useBedrockModels,
     this.viewAccountSpiceCapacity,
   });
 
+  final TfArg<String>? action;
+
   final TfArg<String>? addOrRunAnomalyDetectionForAnalyses;
+
+  final TfArg<String>? analysis;
+
+  final TfArg<String>? automate;
+
+  final TfArg<String>? chatAgent;
 
   final TfArg<String>? createAndUpdateDashboardEmailReports;
 
@@ -49,9 +71,13 @@ final class QuicksightCustomPermissionsCapabilities {
 
   final TfArg<String>? createAndUpdateThresholdAlerts;
 
+  final TfArg<String>? createChatAgents;
+
   final TfArg<String>? createSharedFolders;
 
   final TfArg<String>? createSpiceDataset;
+
+  final TfArg<String>? dashboard;
 
   final TfArg<String>? exportToCsv;
 
@@ -65,11 +91,21 @@ final class QuicksightCustomPermissionsCapabilities {
 
   final TfArg<String>? exportToPdfInScheduledReports;
 
+  final TfArg<String>? flow;
+
   final TfArg<String>? includeContentInScheduledReportsEmail;
+
+  final TfArg<String>? knowledgeBase;
+
+  final TfArg<String>? performFlowUiTask;
 
   final TfArg<String>? printReports;
 
+  final TfArg<String>? publishWithoutApproval;
+
   final TfArg<String>? renameSharedFolders;
+
+  final TfArg<String>? research;
 
   final TfArg<String>? shareAnalyses;
 
@@ -79,14 +115,24 @@ final class QuicksightCustomPermissionsCapabilities {
 
   final TfArg<String>? shareDatasets;
 
+  final TfArg<String>? space;
+
   final TfArg<String>? subscribeDashboardEmailReports;
+
+  final TfArg<String>? useAgentWebSearch;
+
+  final TfArg<String>? useBedrockModels;
 
   final TfArg<String>? viewAccountSpiceCapacity;
 
   @internal
   Map<String, Object?> encode() => {
+    'action': ?action?.toTfJson(),
     'add_or_run_anomaly_detection_for_analyses':
         ?addOrRunAnomalyDetectionForAnalyses?.toTfJson(),
+    'analysis': ?analysis?.toTfJson(),
+    'automate': ?automate?.toTfJson(),
+    'chat_agent': ?chatAgent?.toTfJson(),
     'create_and_update_dashboard_email_reports':
         ?createAndUpdateDashboardEmailReports?.toTfJson(),
     'create_and_update_data_sources': ?createAndUpdateDataSources?.toTfJson(),
@@ -94,8 +140,10 @@ final class QuicksightCustomPermissionsCapabilities {
     'create_and_update_themes': ?createAndUpdateThemes?.toTfJson(),
     'create_and_update_threshold_alerts': ?createAndUpdateThresholdAlerts
         ?.toTfJson(),
+    'create_chat_agents': ?createChatAgents?.toTfJson(),
     'create_shared_folders': ?createSharedFolders?.toTfJson(),
     'create_spice_dataset': ?createSpiceDataset?.toTfJson(),
+    'dashboard': ?dashboard?.toTfJson(),
     'export_to_csv': ?exportToCsv?.toTfJson(),
     'export_to_csv_in_scheduled_reports': ?exportToCsvInScheduledReports
         ?.toTfJson(),
@@ -105,16 +153,24 @@ final class QuicksightCustomPermissionsCapabilities {
     'export_to_pdf': ?exportToPdf?.toTfJson(),
     'export_to_pdf_in_scheduled_reports': ?exportToPdfInScheduledReports
         ?.toTfJson(),
+    'flow': ?flow?.toTfJson(),
     'include_content_in_scheduled_reports_email':
         ?includeContentInScheduledReportsEmail?.toTfJson(),
+    'knowledge_base': ?knowledgeBase?.toTfJson(),
+    'perform_flow_ui_task': ?performFlowUiTask?.toTfJson(),
     'print_reports': ?printReports?.toTfJson(),
+    'publish_without_approval': ?publishWithoutApproval?.toTfJson(),
     'rename_shared_folders': ?renameSharedFolders?.toTfJson(),
+    'research': ?research?.toTfJson(),
     'share_analyses': ?shareAnalyses?.toTfJson(),
     'share_dashboards': ?shareDashboards?.toTfJson(),
     'share_data_sources': ?shareDataSources?.toTfJson(),
     'share_datasets': ?shareDatasets?.toTfJson(),
+    'space': ?space?.toTfJson(),
     'subscribe_dashboard_email_reports': ?subscribeDashboardEmailReports
         ?.toTfJson(),
+    'use_agent_web_search': ?useAgentWebSearch?.toTfJson(),
+    'use_bedrock_models': ?useBedrockModels?.toTfJson(),
     'view_account_spice_capacity': ?viewAccountSpiceCapacity?.toTfJson(),
   };
 }

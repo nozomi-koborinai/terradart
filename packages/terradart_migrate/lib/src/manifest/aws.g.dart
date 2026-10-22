@@ -36069,6 +36069,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           dartType: 'CloudwatchMetricAlarmUnit',
         ),
         MigrateSlot(
+          tfName: 'evaluation_window',
+          dartName: 'evaluationWindow',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'CloudwatchMetricAlarmEvaluationWindow',
+        ),
+        MigrateSlot(
           tfName: 'warm_up_configuration',
           dartName: 'warmUpConfiguration',
           kind: MigrateSlotKind.helper,
@@ -36329,6 +36337,24 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           required: false,
           dartType: 'String',
         ),
+        MigrateSlot(
+          tfName: 'exclude_filter',
+          dartName: 'excludeFilter',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'CloudwatchOtelEnrichmentExcludeFilter',
+        ),
+        MigrateSlot(
+          tfName: 'include_filter',
+          dartName: 'includeFilter',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'CloudwatchOtelEnrichmentIncludeFilter',
+        ),
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
@@ -36387,6 +36413,201 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'query_string',
           dartName: 'queryString',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'region', dartName: 'region', dartType: 'String'),
+      ],
+    ),
+    MigrateEntry(
+      tfType: 'aws_cloudwatch_resource_metrics_configuration',
+      className: 'AwsCloudwatchResourceMetricsConfiguration',
+      barrel: 'cloudwatch',
+      kind: CatalogKind.resource,
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'region',
+          dartName: 'region',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'resource_arn',
+          dartName: 'resourceArn',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'metric_selection',
+          dartName: 'metricSelection',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'CloudwatchResourceMetricsConfigurationMetricSelection',
+        ),
+      ],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'region', dartName: 'region', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'resource_arn',
+          dartName: 'resourceArn',
+          dartType: 'String',
+        ),
+      ],
+    ),
+    MigrateEntry(
+      tfType: 'aws_cloudwatchomni_domain',
+      className: 'AwsCloudwatchomniDomain',
+      barrel: 'cloudwatchomni',
+      kind: CatalogKind.resource,
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'identity_providers',
+          dartName: 'identityProviders',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          repeated: true,
+          dartType: 'CloudwatchomniDomainIdentityProviders',
+        ),
+        MigrateSlot(
+          tfName: 'name',
+          dartName: 'name',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'region',
+          dartName: 'region',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'identity_provider_configuration',
+          dartName: 'identityProviderConfiguration',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'CloudwatchomniDomainIdentityProviderConfiguration',
+        ),
+      ],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'name', dartName: 'name', dartType: 'String'),
+        MigrateGetter(tfName: 'arn', dartName: 'arn', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'custom_endpoint_urls',
+          dartName: 'customEndpointUrls',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'domain_endpoint_url',
+          dartName: 'domainEndpointUrl',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'domain_id',
+          dartName: 'domainId',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'identity_center_application_arn',
+          dartName: 'identityCenterApplicationArn',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'identity_providers',
+          dartName: 'identityProviders',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(tfName: 'region', dartName: 'region', dartType: 'String'),
+      ],
+    ),
+    MigrateEntry(
+      tfType: 'aws_cloudwatchomni_space',
+      className: 'AwsCloudwatchomniSpace',
+      barrel: 'cloudwatchomni',
+      kind: CatalogKind.resource,
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'agent_core_evaluation_role_arn',
+          dartName: 'agentCoreEvaluationRoleArn',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'data_access_role_arn',
+          dartName: 'dataAccessRoleArn',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'domain_id',
+          dartName: 'domainId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'name',
+          dartName: 'name',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'region',
+          dartName: 'region',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'encryption_configuration',
+          dartName: 'encryptionConfiguration',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'CloudwatchomniSpaceEncryptionConfiguration',
+        ),
+      ],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'name', dartName: 'name', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'domain_arn',
+          dartName: 'domainArn',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'space_arn',
+          dartName: 'spaceArn',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'space_id',
+          dartName: 'spaceId',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'status', dartName: 'status', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'agent_core_evaluation_role_arn',
+          dartName: 'agentCoreEvaluationRoleArn',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'data_access_role_arn',
+          dartName: 'dataAccessRoleArn',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'domain_id',
+          dartName: 'domainId',
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'region', dartName: 'region', dartType: 'String'),
@@ -55575,6 +55796,98 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateGetter(tfName: 'region', dartName: 'region', dartType: 'String'),
         MigrateGetter(tfName: 'type', dartName: 'type', dartType: 'String'),
+      ],
+    ),
+    MigrateEntry(
+      tfType: 'aws_devopsagent_agent_space',
+      className: 'AwsDevopsagentAgentSpace',
+      barrel: 'devopsagent',
+      kind: CatalogKind.resource,
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'description',
+          dartName: 'description',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'kms_key_arn',
+          dartName: 'kmsKeyArn',
+          kind: MigrateSlotKind.reference,
+          required: false,
+          dartType: 'AwsKmsKey',
+          attribute: 'arn',
+        ),
+        MigrateSlot(
+          tfName: 'locale',
+          dartName: 'locale',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'name',
+          dartName: 'name',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'region',
+          dartName: 'region',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'tags',
+          dartName: 'tags',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'Map<String, String>',
+        ),
+      ],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'name', dartName: 'name', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'agent_space_id',
+          dartName: 'agentSpaceId',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'arn', dartName: 'arn', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'created_at',
+          dartName: 'createdAt',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'tags_all',
+          dartName: 'tagsAll',
+          dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(
+          tfName: 'updated_at',
+          dartName: 'updatedAt',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'description',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'kms_key_arn',
+          dartName: 'kmsKeyArn',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'locale', dartName: 'locale', dartType: 'String'),
+        MigrateGetter(tfName: 'region', dartName: 'region', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'tags',
+          dartName: 'tags',
+          dartType: 'Map<String, String>',
+        ),
       ],
     ),
     MigrateEntry(
@@ -137227,6 +137540,20 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       kind: CatalogKind.resource,
       slots: <MigrateSlot>[
         MigrateSlot(
+          tfName: '',
+          dartName: 'allRegionsOrRegions',
+          kind: MigrateSlotKind.sealed,
+          required: false,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'all_regions':
+                'ObservabilityadminTelemetryEvaluationAllRegionsOrRegionsAllRegions',
+            'regions':
+                'ObservabilityadminTelemetryEvaluationAllRegionsOrRegionsChoice',
+          },
+        ),
+        MigrateSlot(
           tfName: 'region',
           dartName: 'region',
           kind: MigrateSlotKind.scalar,
@@ -137242,7 +137569,17 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'status', dartName: 'status', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'all_regions',
+          dartName: 'allRegions',
+          dartType: 'bool',
+        ),
         MigrateGetter(tfName: 'region', dartName: 'region', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'regions',
+          dartName: 'regions',
+          dartType: 'List<String>',
+        ),
       ],
     ),
     MigrateEntry(
@@ -137252,11 +137589,18 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       kind: CatalogKind.resource,
       slots: <MigrateSlot>[
         MigrateSlot(
-          tfName: 'all_regions',
-          dartName: 'allRegions',
-          kind: MigrateSlotKind.scalar,
+          tfName: '',
+          dartName: 'allRegionsOrRegions',
+          kind: MigrateSlotKind.sealed,
           required: false,
-          dartType: 'bool',
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'all_regions':
+                'ObservabilityadminTelemetryEvaluationForOrganizationAllRegionsOrRegionsAllRegions',
+            'regions':
+                'ObservabilityadminTelemetryEvaluationForOrganizationAllRegionsOrRegionsChoice',
+          },
         ),
         MigrateSlot(
           tfName: 'region',
@@ -137264,13 +137608,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'regions',
-          dartName: 'regions',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'List<String>',
         ),
       ],
       getters: <MigrateGetter>[
@@ -147558,6 +147895,89 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
     ),
     MigrateEntry(
+      tfType: 'aws_pricingplanmanager_subscription',
+      className: 'AwsPricingplanmanagerSubscription',
+      barrel: 'pricingplanmanager',
+      kind: CatalogKind.resource,
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'approval_mode',
+          dartName: 'approvalMode',
+          kind: MigrateSlotKind.enumValue,
+          required: false,
+          dartType: 'PricingplanmanagerSubscriptionApprovalMode',
+        ),
+        MigrateSlot(
+          tfName: 'plan_family',
+          dartName: 'planFamily',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'plan_tier',
+          dartName: 'planTier',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'resource_arns',
+          dartName: 'resourceArns',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'List<String>',
+        ),
+        MigrateSlot(
+          tfName: 'usage_level',
+          dartName: 'usageLevel',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'arn', dartName: 'arn', dartType: 'String'),
+        MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'scheduled_change',
+          dartName: 'scheduledChange',
+          dartType: 'List<Map<String, Object?>>',
+        ),
+        MigrateGetter(tfName: 'status', dartName: 'status', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'status_reason',
+          dartName: 'statusReason',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'approval_mode',
+          dartName: 'approvalMode',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'plan_family',
+          dartName: 'planFamily',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'plan_tier',
+          dartName: 'planTier',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'resource_arns',
+          dartName: 'resourceArns',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'usage_level',
+          dartName: 'usageLevel',
+          dartType: 'String',
+        ),
+      ],
+    ),
+    MigrateEntry(
       tfType: 'aws_prometheus_alert_manager_definition',
       className: 'AwsPrometheusAlertManagerDefinition',
       barrel: 'prometheus',
@@ -152569,6 +152989,13 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
+          tfName: 'publicly_accessible',
+          dartName: 'publiclyAccessible',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
           tfName: 'region',
           dartName: 'region',
           kind: MigrateSlotKind.scalar,
@@ -152959,6 +153386,11 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           tfName: 'preferred_maintenance_window',
           dartName: 'preferredMaintenanceWindow',
           dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'publicly_accessible',
+          dartName: 'publiclyAccessible',
+          dartType: 'bool',
         ),
         MigrateGetter(tfName: 'region', dartName: 'region', dartType: 'String'),
         MigrateGetter(
@@ -160437,6 +160869,13 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
+          tfName: 'sharing_enabled',
+          dartName: 'sharingEnabled',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
           tfName: 'tags',
           dartName: 'tags',
           kind: MigrateSlotKind.scalar,
@@ -160500,6 +160939,11 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateGetter(tfName: 'region', dartName: 'region', dartType: 'String'),
         MigrateGetter(
+          tfName: 'sharing_enabled',
+          dartName: 'sharingEnabled',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
           tfName: 'tags',
           dartName: 'tags',
           dartType: 'Map<String, String>',
@@ -160558,6 +161002,11 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           tfName: 'multi_region',
           dartName: 'multiRegion',
           dartType: 'List<Map<String, Object?>>',
+        ),
+        MigrateGetter(
+          tfName: 'sharing_enabled',
+          dartName: 'sharingEnabled',
+          dartType: 'bool',
         ),
         MigrateGetter(
           tfName: 'tags',
@@ -208432,6 +208881,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           helper: 'Wafv2RuleGroupCustomResponseBody',
         ),
         MigrateSlot(
+          tfName: 'monetization_config',
+          dartName: 'monetizationConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'Wafv2RuleGroupMonetizationConfig',
+        ),
+        MigrateSlot(
           tfName: 'visibility_config',
           dartName: 'visibilityConfig',
           kind: MigrateSlotKind.helper,
@@ -208627,6 +209084,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           required: true,
           wrapped: false,
           helper: 'Wafv2WebAclDefaultAction',
+        ),
+        MigrateSlot(
+          tfName: 'monetization_config',
+          dartName: 'monetizationConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'Wafv2WebAclMonetizationConfig',
         ),
         MigrateSlot(
           tfName: 'rule',
@@ -232386,34 +232851,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'BedrockagentDataSourceBedrockFoundationModelConfiguration': MigrateHelper(
-      className: 'BedrockagentDataSourceBedrockFoundationModelConfiguration',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'model_arn',
-          dartName: 'modelArn',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'parsing_modality',
-          dartName: 'parsingModality',
-          kind: MigrateSlotKind.enumValue,
-          required: false,
-          dartType: 'BedrockagentDataSourceParsingModality',
-        ),
-        MigrateSlot(
-          tfName: 'parsing_prompt',
-          dartName: 'parsingPrompt',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          repeated: true,
-          wrapped: false,
-          helper: 'BedrockagentDataSourceParsingPrompt',
-        ),
-      ],
-    ),
     'BedrockagentDataSourceChunkingConfiguration': MigrateHelper(
       className: 'BedrockagentDataSourceChunkingConfiguration',
       slots: <MigrateSlot>[
@@ -232585,6 +233022,51 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
             ),
           ],
         ),
+    'BedrockagentDataSourceContextEnrichmentConfiguration': MigrateHelper(
+      className: 'BedrockagentDataSourceContextEnrichmentConfiguration',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'type',
+          dartName: 'type',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          dartType: 'BedrockagentDataSourceContextEnrichmentConfigurationType',
+        ),
+        MigrateSlot(
+          tfName: 'bedrock_foundation_model_configuration',
+          dartName: 'bedrockFoundationModelConfiguration',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper:
+              'BedrockagentDataSourceContextEnrichmentConfigurationBedrockFoundationModelConfiguration',
+        ),
+      ],
+    ),
+    'BedrockagentDataSourceContextEnrichmentConfigurationBedrockFoundationModelConfiguration':
+        MigrateHelper(
+          className:
+              'BedrockagentDataSourceContextEnrichmentConfigurationBedrockFoundationModelConfiguration',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'model_arn',
+              dartName: 'modelArn',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'enrichment_strategy_configuration',
+              dartName: 'enrichmentStrategyConfiguration',
+              kind: MigrateSlotKind.helper,
+              required: false,
+              repeated: true,
+              wrapped: false,
+              helper: 'BedrockagentDataSourceEnrichmentStrategyConfiguration',
+            ),
+          ],
+        ),
     'BedrockagentDataSourceCrawlerLimits': MigrateHelper(
       className: 'BedrockagentDataSourceCrawlerLimits',
       slots: <MigrateSlot>[
@@ -232627,6 +233109,31 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'BedrockagentDataSourceDaily': MigrateHelper(
+      className: 'BedrockagentDataSourceDaily',
+      slots: <MigrateSlot>[],
+    ),
+    'BedrockagentDataSourceDayOfMonth': MigrateHelper(
+      className: 'BedrockagentDataSourceDayOfMonth',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'day_number',
+          dartName: 'dayNumber',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'last_day_of_month',
+          dartName: 'lastDayOfMonth',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'BedrockagentDataSourceLastDayOfMonth',
+        ),
+      ],
+    ),
     'BedrockagentDataSourceDeletionProtectionConfiguration': MigrateHelper(
       className: 'BedrockagentDataSourceDeletionProtectionConfiguration',
       slots: <MigrateSlot>[
@@ -232643,6 +233150,18 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'num',
+        ),
+      ],
+    ),
+    'BedrockagentDataSourceEnrichmentStrategyConfiguration': MigrateHelper(
+      className: 'BedrockagentDataSourceEnrichmentStrategyConfiguration',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'method',
+          dartName: 'method',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          dartType: 'BedrockagentDataSourceMethod',
         ),
       ],
     ),
@@ -232759,6 +233278,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'BedrockagentDataSourceLastDayOfMonth': MigrateHelper(
+      className: 'BedrockagentDataSourceLastDayOfMonth',
+      slots: <MigrateSlot>[],
+    ),
     'BedrockagentDataSourceLevelConfiguration': MigrateHelper(
       className: 'BedrockagentDataSourceLevelConfiguration',
       slots: <MigrateSlot>[
@@ -232801,6 +233324,15 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
               wrapped: false,
               helper: 'BedrockagentDataSourceMediaExtractionConfiguration',
             ),
+            MigrateSlot(
+              tfName: 'sync_schedule',
+              dartName: 'syncSchedule',
+              kind: MigrateSlotKind.helper,
+              required: false,
+              repeated: true,
+              wrapped: false,
+              helper: 'BedrockagentDataSourceSyncSchedule',
+            ),
           ],
         ),
     'BedrockagentDataSourceMediaExtractionConfiguration': MigrateHelper(
@@ -232835,6 +233367,20 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'BedrockagentDataSourceMonthly': MigrateHelper(
+      className: 'BedrockagentDataSourceMonthly',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'day_of_month',
+          dartName: 'dayOfMonth',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'BedrockagentDataSourceDayOfMonth',
+        ),
+      ],
+    ),
     'BedrockagentDataSourceParsingConfiguration': MigrateHelper(
       className: 'BedrockagentDataSourceParsingConfiguration',
       slots: <MigrateSlot>[
@@ -232861,10 +233407,41 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           required: false,
           repeated: true,
           wrapped: false,
-          helper: 'BedrockagentDataSourceBedrockFoundationModelConfiguration',
+          helper:
+              'BedrockagentDataSourceParsingConfigurationBedrockFoundationModelConfiguration',
         ),
       ],
     ),
+    'BedrockagentDataSourceParsingConfigurationBedrockFoundationModelConfiguration':
+        MigrateHelper(
+          className:
+              'BedrockagentDataSourceParsingConfigurationBedrockFoundationModelConfiguration',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'model_arn',
+              dartName: 'modelArn',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'parsing_modality',
+              dartName: 'parsingModality',
+              kind: MigrateSlotKind.enumValue,
+              required: false,
+              dartType: 'BedrockagentDataSourceParsingModality',
+            ),
+            MigrateSlot(
+              tfName: 'parsing_prompt',
+              dartName: 'parsingPrompt',
+              kind: MigrateSlotKind.helper,
+              required: false,
+              repeated: true,
+              wrapped: false,
+              helper: 'BedrockagentDataSourceParsingPrompt',
+            ),
+          ],
+        ),
     'BedrockagentDataSourceParsingPrompt': MigrateHelper(
       className: 'BedrockagentDataSourceParsingPrompt',
       slots: <MigrateSlot>[
@@ -233162,6 +233739,38 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           ],
           shorthand: 'semanticChunkingConfiguration',
         ),
+    'BedrockagentDataSourceSyncSchedule': MigrateHelper(
+      className: 'BedrockagentDataSourceSyncSchedule',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'daily',
+          dartName: 'daily',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'BedrockagentDataSourceDaily',
+        ),
+        MigrateSlot(
+          tfName: 'monthly',
+          dartName: 'monthly',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'BedrockagentDataSourceMonthly',
+        ),
+        MigrateSlot(
+          tfName: 'weekly',
+          dartName: 'weekly',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'BedrockagentDataSourceWeekly',
+        ),
+      ],
+    ),
     'BedrockagentDataSourceTransformation': MigrateHelper(
       className: 'BedrockagentDataSourceTransformation',
       slots: <MigrateSlot>[
@@ -233235,6 +233844,15 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           repeated: true,
           wrapped: false,
           helper: 'BedrockagentDataSourceChunkingConfiguration',
+        ),
+        MigrateSlot(
+          tfName: 'context_enrichment_configuration',
+          dartName: 'contextEnrichmentConfiguration',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'BedrockagentDataSourceContextEnrichmentConfiguration',
         ),
         MigrateSlot(
           tfName: 'custom_transformation_configuration',
@@ -233344,6 +233962,18 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           repeated: true,
           wrapped: false,
           helper: 'BedrockagentDataSourceUrlConfiguration',
+        ),
+      ],
+    ),
+    'BedrockagentDataSourceWeekly': MigrateHelper(
+      className: 'BedrockagentDataSourceWeekly',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'day_of_week',
+          dartName: 'dayOfWeek',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          dartType: 'BedrockagentDataSourceDayOfWeek',
         ),
       ],
     ),
@@ -251772,6 +252402,19 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'CloudwatchMetricAlarmEvaluationWindow': MigrateHelper(
+      className: 'CloudwatchMetricAlarmEvaluationWindow',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'wall_clock_window',
+          dartName: 'wallClockWindow',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'CloudwatchMetricAlarmWallClockWindow',
+        ),
+      ],
+    ),
     'CloudwatchMetricAlarmMetric': MigrateHelper(
       className: 'CloudwatchMetricAlarmMetric',
       slots: <MigrateSlot>[
@@ -251973,6 +252616,18 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'thresholdMetricId',
     ),
+    'CloudwatchMetricAlarmWallClockWindow': MigrateHelper(
+      className: 'CloudwatchMetricAlarmWallClockWindow',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'timezone',
+          dartName: 'timezone',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
     'CloudwatchMetricAlarmWarmUpConfiguration': MigrateHelper(
       className: 'CloudwatchMetricAlarmWarmUpConfiguration',
       slots: <MigrateSlot>[
@@ -252127,6 +252782,102 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           repeated: true,
           wrapped: false,
           helper: 'CloudwatchMetricStreamIncludeMetric',
+        ),
+      ],
+    ),
+    'CloudwatchOtelEnrichmentExcludeFilter': MigrateHelper(
+      className: 'CloudwatchOtelEnrichmentExcludeFilter',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'metric_names',
+          dartName: 'metricNames',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<String>',
+        ),
+        MigrateSlot(
+          tfName: 'namespace',
+          dartName: 'namespace',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'CloudwatchOtelEnrichmentIncludeFilter': MigrateHelper(
+      className: 'CloudwatchOtelEnrichmentIncludeFilter',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'metric_names',
+          dartName: 'metricNames',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<String>',
+        ),
+        MigrateSlot(
+          tfName: 'namespace',
+          dartName: 'namespace',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'CloudwatchResourceMetricsConfigurationMetricSelection': MigrateHelper(
+      className: 'CloudwatchResourceMetricsConfigurationMetricSelection',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'include_metrics',
+          dartName: 'includeMetrics',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'List<String>',
+        ),
+      ],
+    ),
+    'CloudwatchomniDomainIdentityCenterConfiguration': MigrateHelper(
+      className: 'CloudwatchomniDomainIdentityCenterConfiguration',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'identity_center_instance_arn',
+          dartName: 'identityCenterInstanceArn',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'CloudwatchomniDomainIdentityProviderConfiguration': MigrateHelper(
+      className: 'CloudwatchomniDomainIdentityProviderConfiguration',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'identity_center_configuration',
+          dartName: 'identityCenterConfiguration',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'CloudwatchomniDomainIdentityCenterConfiguration',
+        ),
+      ],
+    ),
+    'CloudwatchomniSpaceEncryptionConfiguration': MigrateHelper(
+      className: 'CloudwatchomniSpaceEncryptionConfiguration',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'encryption_strategy',
+          dartName: 'encryptionStrategy',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          dartType: 'CloudwatchomniSpaceEncryptionStrategy',
+        ),
+        MigrateSlot(
+          tfName: 'kms_key_arn',
+          dartName: 'kmsKeyArn',
+          kind: MigrateSlotKind.reference,
+          required: false,
+          dartType: 'AwsKmsKey',
+          attribute: 'arn',
         ),
       ],
     ),
@@ -318333,6 +319084,70 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'ObservabilityadminTelemetryEvaluationAllRegionsOrRegionsAllRegions':
+        MigrateHelper(
+          className:
+              'ObservabilityadminTelemetryEvaluationAllRegionsOrRegionsAllRegions',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'all_regions',
+              dartName: 'allRegions',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              positional: true,
+              dartType: 'bool',
+            ),
+          ],
+          shorthand: 'allRegions',
+        ),
+    'ObservabilityadminTelemetryEvaluationAllRegionsOrRegionsChoice':
+        MigrateHelper(
+          className:
+              'ObservabilityadminTelemetryEvaluationAllRegionsOrRegionsChoice',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'regions',
+              dartName: 'regions',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              positional: true,
+              dartType: 'List<String>',
+            ),
+          ],
+          shorthand: 'regions',
+        ),
+    'ObservabilityadminTelemetryEvaluationForOrganizationAllRegionsOrRegionsAllRegions':
+        MigrateHelper(
+          className:
+              'ObservabilityadminTelemetryEvaluationForOrganizationAllRegionsOrRegionsAllRegions',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'all_regions',
+              dartName: 'allRegions',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              positional: true,
+              dartType: 'bool',
+            ),
+          ],
+          shorthand: 'allRegions',
+        ),
+    'ObservabilityadminTelemetryEvaluationForOrganizationAllRegionsOrRegionsChoice':
+        MigrateHelper(
+          className:
+              'ObservabilityadminTelemetryEvaluationForOrganizationAllRegionsOrRegionsChoice',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'regions',
+              dartName: 'regions',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              positional: true,
+              dartType: 'List<String>',
+            ),
+          ],
+          shorthand: 'regions',
+        ),
     'ObservabilityadminTelemetryPipelineConfiguration': MigrateHelper(
       className: 'ObservabilityadminTelemetryPipelineConfiguration',
       slots: <MigrateSlot>[
@@ -320195,9 +321010,9 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'warm_type',
           dartName: 'warmType',
-          kind: MigrateSlotKind.enumValue,
+          kind: MigrateSlotKind.scalar,
           required: false,
-          dartType: 'OpensearchDomainWarmType',
+          dartType: 'String',
         ),
         MigrateSlot(
           tfName: 'zone_awareness_enabled',
@@ -337019,8 +337834,36 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       className: 'QuicksightCustomPermissionsCapabilities',
       slots: <MigrateSlot>[
         MigrateSlot(
+          tfName: 'action',
+          dartName: 'action',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
           tfName: 'add_or_run_anomaly_detection_for_analyses',
           dartName: 'addOrRunAnomalyDetectionForAnalyses',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'analysis',
+          dartName: 'analysis',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'automate',
+          dartName: 'automate',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'chat_agent',
+          dartName: 'chatAgent',
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
@@ -337061,6 +337904,13 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
+          tfName: 'create_chat_agents',
+          dartName: 'createChatAgents',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
           tfName: 'create_shared_folders',
           dartName: 'createSharedFolders',
           kind: MigrateSlotKind.scalar,
@@ -337070,6 +337920,13 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'create_spice_dataset',
           dartName: 'createSpiceDataset',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'dashboard',
+          dartName: 'dashboard',
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
@@ -337117,8 +337974,29 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
+          tfName: 'flow',
+          dartName: 'flow',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
           tfName: 'include_content_in_scheduled_reports_email',
           dartName: 'includeContentInScheduledReportsEmail',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'knowledge_base',
+          dartName: 'knowledgeBase',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'perform_flow_ui_task',
+          dartName: 'performFlowUiTask',
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
@@ -337131,8 +338009,22 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
+          tfName: 'publish_without_approval',
+          dartName: 'publishWithoutApproval',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
           tfName: 'rename_shared_folders',
           dartName: 'renameSharedFolders',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'research',
+          dartName: 'research',
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
@@ -337166,8 +338058,29 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
+          tfName: 'space',
+          dartName: 'space',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
           tfName: 'subscribe_dashboard_email_reports',
           dartName: 'subscribeDashboardEmailReports',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'use_agent_web_search',
+          dartName: 'useAgentWebSearch',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'use_bedrock_models',
+          dartName: 'useBedrockModels',
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
@@ -366995,6 +367908,62 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           dartName: 'namespaces',
           kind: MigrateSlotKind.scalar,
           required: true,
+          dartType: 'List<String>',
+        ),
+        MigrateSlot(
+          tfName: 'label_selector',
+          dartName: 'labelSelector',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'Resiliencehubv2InputSourceLabelSelector',
+        ),
+      ],
+    ),
+    'Resiliencehubv2InputSourceLabelSelector': MigrateHelper(
+      className: 'Resiliencehubv2InputSourceLabelSelector',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'match_labels',
+          dartName: 'matchLabels',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'Map<String, String>',
+        ),
+        MigrateSlot(
+          tfName: 'match_expressions',
+          dartName: 'matchExpressions',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'Resiliencehubv2InputSourceMatchExpressions',
+        ),
+      ],
+    ),
+    'Resiliencehubv2InputSourceMatchExpressions': MigrateHelper(
+      className: 'Resiliencehubv2InputSourceMatchExpressions',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'key',
+          dartName: 'key',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'operator',
+          dartName: 'operator',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          dartType: 'Resiliencehubv2InputSourceOperator',
+        ),
+        MigrateSlot(
+          tfName: 'values',
+          dartName: 'values',
+          kind: MigrateSlotKind.scalar,
+          required: false,
           dartType: 'List<String>',
         ),
       ],
@@ -397556,6 +398525,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           wrapped: false,
           helper: 'Wafv2RuleGroupAllow',
         ),
+        MigrateSlot(
+          tfName: 'monetize',
+          dartName: 'monetize',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'Wafv2RuleGroupMonetize',
+        ),
       ],
     ),
     'Wafv2RuleGroupAllQueryArguments': MigrateHelper(
@@ -397888,6 +398865,20 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           required: false,
           wrapped: false,
           helper: 'Wafv2RuleGroupAllQueryArguments',
+        ),
+      ],
+    ),
+    'Wafv2RuleGroupCryptoConfig': MigrateHelper(
+      className: 'Wafv2RuleGroupCryptoConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'payment_network',
+          dartName: 'paymentNetwork',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          repeated: true,
+          wrapped: false,
+          helper: 'Wafv2RuleGroupPaymentNetwork',
         ),
       ],
     ),
@@ -398458,6 +399449,38 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'Wafv2RuleGroupMonetizationConfig': MigrateHelper(
+      className: 'Wafv2RuleGroupMonetizationConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'currency_mode',
+          dartName: 'currencyMode',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'crypto_config',
+          dartName: 'cryptoConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'Wafv2RuleGroupCryptoConfig',
+        ),
+      ],
+    ),
+    'Wafv2RuleGroupMonetize': MigrateHelper(
+      className: 'Wafv2RuleGroupMonetize',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'price_multiplier',
+          dartName: 'priceMultiplier',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
     'Wafv2RuleGroupNameChoice': MigrateHelper(
       className: 'Wafv2RuleGroupNameChoice',
       slots: <MigrateSlot>[
@@ -398486,6 +399509,33 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'namePrefix',
     ),
+    'Wafv2RuleGroupPaymentNetwork': MigrateHelper(
+      className: 'Wafv2RuleGroupPaymentNetwork',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'chain',
+          dartName: 'chain',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'wallet_address',
+          dartName: 'walletAddress',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'prices',
+          dartName: 'prices',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'Wafv2RuleGroupPrices',
+        ),
+      ],
+    ),
     'Wafv2RuleGroupPreParseTextTransformation': MigrateHelper(
       className: 'Wafv2RuleGroupPreParseTextTransformation',
       slots: <MigrateSlot>[
@@ -398499,6 +399549,25 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'Wafv2RuleGroupPrices': MigrateHelper(
+      className: 'Wafv2RuleGroupPrices',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'amount',
+          dartName: 'amount',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'currency',
+          dartName: 'currency',
           kind: MigrateSlotKind.scalar,
           required: true,
           dartType: 'String',
@@ -399290,6 +400359,20 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'Wafv2WebAclCryptoConfig': MigrateHelper(
+      className: 'Wafv2WebAclCryptoConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'payment_network',
+          dartName: 'paymentNetwork',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          repeated: true,
+          wrapped: false,
+          helper: 'Wafv2WebAclPaymentNetwork',
+        ),
+      ],
+    ),
     'Wafv2WebAclCustomRequestHandling': MigrateHelper(
       className: 'Wafv2WebAclCustomRequestHandling',
       slots: <MigrateSlot>[
@@ -399632,6 +400715,26 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       className: 'Wafv2WebAclLoggingConfigurationUriPath',
       slots: <MigrateSlot>[],
     ),
+    'Wafv2WebAclMonetizationConfig': MigrateHelper(
+      className: 'Wafv2WebAclMonetizationConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'currency_mode',
+          dartName: 'currencyMode',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'crypto_config',
+          dartName: 'cryptoConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'Wafv2WebAclCryptoConfig',
+        ),
+      ],
+    ),
     'Wafv2WebAclNameChoice': MigrateHelper(
       className: 'Wafv2WebAclNameChoice',
       slots: <MigrateSlot>[
@@ -399659,6 +400762,52 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
       shorthand: 'namePrefix',
+    ),
+    'Wafv2WebAclPaymentNetwork': MigrateHelper(
+      className: 'Wafv2WebAclPaymentNetwork',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'chain',
+          dartName: 'chain',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'wallet_address',
+          dartName: 'walletAddress',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'prices',
+          dartName: 'prices',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'Wafv2WebAclPrices',
+        ),
+      ],
+    ),
+    'Wafv2WebAclPrices': MigrateHelper(
+      className: 'Wafv2WebAclPrices',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'amount',
+          dartName: 'amount',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'currency',
+          dartName: 'currency',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
     ),
     'Wafv2WebAclRequestBody': MigrateHelper(
       className: 'Wafv2WebAclRequestBody',
@@ -404401,6 +405550,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
             'securitypolicyTls1312FipsPq202509',
         'SecurityPolicy_TLS13_1_2_FIPS_PFS_PQ_2025_09':
             'securitypolicyTls1312FipsPfsPq202509',
+        'SecurityPolicy_TLS13_1_2_Ext2_PQ_2025_09':
+            'securitypolicyTls1312Ext2Pq202509',
+        'SecurityPolicy_TLS13_1_2_Ext2_FIPS_PQ_2025_09':
+            'securitypolicyTls1312Ext2FipsPq202509',
         'SecurityPolicy_TLS13_1_2_PQ_2025_09': 'securitypolicyTls1312Pq202509',
         'SecurityPolicy_TLS13_1_2_2021_06': 'securitypolicyTls1312202106',
         'SecurityPolicy_TLS13_2025_EDGE': 'securitypolicyTls132025Edge',
@@ -404486,6 +405639,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
             'securitypolicyTls1312FipsPq202509',
         'SecurityPolicy_TLS13_1_2_FIPS_PFS_PQ_2025_09':
             'securitypolicyTls1312FipsPfsPq202509',
+        'SecurityPolicy_TLS13_1_2_Ext2_PQ_2025_09':
+            'securitypolicyTls1312Ext2Pq202509',
+        'SecurityPolicy_TLS13_1_2_Ext2_FIPS_PQ_2025_09':
+            'securitypolicyTls1312Ext2FipsPq202509',
         'SecurityPolicy_TLS13_1_2_PQ_2025_09': 'securitypolicyTls1312Pq202509',
         'SecurityPolicy_TLS13_1_2_2021_06': 'securitypolicyTls1312202106',
         'SecurityPolicy_TLS13_2025_EDGE': 'securitypolicyTls132025Edge',
@@ -406596,9 +407753,27 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       name: 'BedrockagentDataSourceConfluenceConfigurationHostType',
       members: <String, String>{'SAAS': 'saas'},
     ),
+    'BedrockagentDataSourceContextEnrichmentConfigurationType': MigrateEnum(
+      name: 'BedrockagentDataSourceContextEnrichmentConfigurationType',
+      members: <String, String>{
+        'BEDROCK_FOUNDATION_MODEL': 'bedrockFoundationModel',
+      },
+    ),
     'BedrockagentDataSourceDataDeletionPolicy': MigrateEnum(
       name: 'BedrockagentDataSourceDataDeletionPolicy',
       members: <String, String>{'RETAIN': 'retain', 'DELETE': 'delete'},
+    ),
+    'BedrockagentDataSourceDayOfWeek': MigrateEnum(
+      name: 'BedrockagentDataSourceDayOfWeek',
+      members: <String, String>{
+        'SUNDAY': 'sunday',
+        'MONDAY': 'monday',
+        'TUESDAY': 'tuesday',
+        'WEDNESDAY': 'wednesday',
+        'THURSDAY': 'thursday',
+        'FRIDAY': 'friday',
+        'SATURDAY': 'saturday',
+      },
     ),
     'BedrockagentDataSourceDeletionProtectionStatus': MigrateEnum(
       name: 'BedrockagentDataSourceDeletionProtectionStatus',
@@ -406607,6 +407782,12 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     'BedrockagentDataSourceImageExtractionStatus': MigrateEnum(
       name: 'BedrockagentDataSourceImageExtractionStatus',
       members: <String, String>{'ENABLED': 'enabled', 'DISABLED': 'disabled'},
+    ),
+    'BedrockagentDataSourceMethod': MigrateEnum(
+      name: 'BedrockagentDataSourceMethod',
+      members: <String, String>{
+        'CHUNK_ENTITY_EXTRACTION': 'chunkEntityExtraction',
+      },
     ),
     'BedrockagentDataSourceParsingModality': MigrateEnum(
       name: 'BedrockagentDataSourceParsingModality',
@@ -407471,6 +408652,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         'INVOICING_ENTITY': 'invoicingEntity',
         'ANOMALY_TOTAL_IMPACT_ABSOLUTE': 'anomalyTotalImpactAbsolute',
         'ANOMALY_TOTAL_IMPACT_PERCENTAGE': 'anomalyTotalImpactPercentage',
+        'PRODUCT_ATTRIBUTE': 'productAttribute',
       },
     ),
     'CeAnomalySubscriptionMatchOptions': MigrateEnum(
@@ -407539,6 +408721,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         'INVOICING_ENTITY': 'invoicingEntity',
         'ANOMALY_TOTAL_IMPACT_ABSOLUTE': 'anomalyTotalImpactAbsolute',
         'ANOMALY_TOTAL_IMPACT_PERCENTAGE': 'anomalyTotalImpactPercentage',
+        'PRODUCT_ATTRIBUTE': 'productAttribute',
       },
     ),
     'CeCostCategoryMatchOptions': MigrateEnum(
@@ -408691,6 +409874,17 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         'json': 'json',
         'opentelemetry0.7': 'opentelemetry0p7',
         'opentelemetry1.0': 'opentelemetry1p0',
+      },
+    ),
+    'CloudwatchomniDomainIdentityProviders': MigrateEnum(
+      name: 'CloudwatchomniDomainIdentityProviders',
+      members: <String, String>{'IAM': 'iam', 'IDC': 'idc'},
+    ),
+    'CloudwatchomniSpaceEncryptionStrategy': MigrateEnum(
+      name: 'CloudwatchomniSpaceEncryptionStrategy',
+      members: <String, String>{
+        'AWS_OWNED': 'awsOwned',
+        'CUSTOMER_MANAGED': 'customerManaged',
       },
     ),
     'CodebuildFleetComputeType': MigrateEnum(
@@ -414757,6 +415951,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         'EKS_ADDON_MANAGEMENT': 'eksAddonManagement',
         'ECS_FARGATE_AGENT_MANAGEMENT': 'ecsFargateAgentManagement',
         'EC2_AGENT_MANAGEMENT': 'ec2AgentManagement',
+        'RDS_DATA_RISK': 'rdsDataRisk',
       },
     ),
     'GuarddutyDetectorFeatureAdditionalConfigurationStatus': MigrateEnum(
@@ -414810,6 +416005,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         'EKS_ADDON_MANAGEMENT': 'eksAddonManagement',
         'ECS_FARGATE_AGENT_MANAGEMENT': 'ecsFargateAgentManagement',
         'EC2_AGENT_MANAGEMENT': 'ec2AgentManagement',
+        'RDS_DATA_RISK': 'rdsDataRisk',
       },
     ),
     'GuarddutyMemberDetectorFeatureAdditionalConfigurationStatus': MigrateEnum(
@@ -414861,6 +416057,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
             'EKS_ADDON_MANAGEMENT': 'eksAddonManagement',
             'ECS_FARGATE_AGENT_MANAGEMENT': 'ecsFargateAgentManagement',
             'EC2_AGENT_MANAGEMENT': 'ec2AgentManagement',
+            'RDS_DATA_RISK': 'rdsDataRisk',
           },
         ),
     'GuarddutyOrganizationConfigurationFeatureAutoEnable': MigrateEnum(
@@ -415880,6 +417077,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         'BASIC_AUTH': 'basicAuth',
         'CLIENT_CERTIFICATE_TLS_AUTH': 'clientCertificateTlsAuth',
         'SERVER_ROOT_CA_CERTIFICATE': 'serverRootCaCertificate',
+        'OAUTHBEARER_AUTH': 'oauthbearerAuth',
       },
     ),
     'LambdaEventSourceMappingAttribute': MigrateEnum(
@@ -415930,6 +417128,13 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         'VIRTUAL_HOST': 'virtualHost',
         'CLIENT_CERTIFICATE_TLS_AUTH': 'clientCertificateTlsAuth',
         'SERVER_ROOT_CA_CERTIFICATE': 'serverRootCaCertificate',
+        'OAUTHBEARER_AUTH': 'oauthbearerAuth',
+        'OAUTHBEARER_SCOPE': 'oauthbearerScope',
+        'OAUTHBEARER_AUDIENCE': 'oauthbearerAudience',
+        'OAUTHBEARER_LOGICAL_CLUSTER': 'oauthbearerLogicalCluster',
+        'OAUTHBEARER_IDENTITY_POOL': 'oauthbearerIdentityPool',
+        'IAM_AUTH': 'iamAuth',
+        'IAM_OAUTHBEARER_AUTH': 'iamOauthbearerAuth',
       },
     ),
     'LambdaFunctionApplicationLogLevel': MigrateEnum(
@@ -416134,7 +417339,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     ),
     'LambdacoreNetworkConnectorAssociatedComputeResourceTypes': MigrateEnum(
       name: 'LambdacoreNetworkConnectorAssociatedComputeResourceTypes',
-      members: <String, String>{'MicroVm': 'microvm'},
+      members: <String, String>{
+        'MicroVm': 'microvm',
+        'WebFunction': 'webfunction',
+      },
     ),
     'LambdacoreNetworkConnectorNetworkProtocol': MigrateEnum(
       name: 'LambdacoreNetworkConnectorNetworkProtocol',
@@ -418094,6 +419302,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         'AWS::MSK::Cluster': 'awsMskCluster',
         'AWS::S3::Bucket': 'awsS3Bucket',
         'AWS::Bedrock::KnowledgeBase': 'awsBedrockKnowledgebase',
+        'AWS::XRay::TransactionSearchConfig': 'awsXrayTransactionsearchconfig',
       },
     ),
     'ObservabilityadminTelemetryRuleForOrganizationTelemetrySourceTypes':
@@ -418177,6 +419386,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         'AWS::MSK::Cluster': 'awsMskCluster',
         'AWS::S3::Bucket': 'awsS3Bucket',
         'AWS::Bedrock::KnowledgeBase': 'awsBedrockKnowledgebase',
+        'AWS::XRay::TransactionSearchConfig': 'awsXrayTransactionsearchconfig',
       },
     ),
     'ObservabilityadminTelemetryRuleTelemetrySourceTypes': MigrateEnum(
@@ -418372,14 +419582,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         'gp2': 'gp2',
         'io1': 'io1',
         'gp3': 'gp3',
-      },
-    ),
-    'OpensearchDomainWarmType': MigrateEnum(
-      name: 'OpensearchDomainWarmType',
-      members: <String, String>{
-        'ultrawarm1.medium.search': 'ultrawarm1MediumSearch',
-        'ultrawarm1.large.search': 'ultrawarm1LargeSearch',
-        'ultrawarm1.xlarge.search': 'ultrawarm1XlargeSearch',
       },
     ),
     'OpensearchOutboundConnectionMode': MigrateEnum(
@@ -418806,6 +420008,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         'partition': 'partition',
         'precision-time': 'precisionTime',
       },
+    ),
+    'PricingplanmanagerSubscriptionApprovalMode': MigrateEnum(
+      name: 'PricingplanmanagerSubscriptionApprovalMode',
+      members: <String, String>{'MANUAL': 'manual', 'IMMEDIATE': 'immediate'},
     ),
     'PrometheusScraperLoggingConfigurationScraperComponents': MigrateEnum(
       name: 'PrometheusScraperLoggingConfigurationScraperComponents',
@@ -419273,6 +420479,15 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         'CoreServices': 'coreservices',
         'NonCritical': 'noncritical',
         'NotApplicable': 'notapplicable',
+      },
+    ),
+    'Resiliencehubv2InputSourceOperator': MigrateEnum(
+      name: 'Resiliencehubv2InputSourceOperator',
+      members: <String, String>{
+        'IN': 'inCase',
+        'NOT_IN': 'notIn',
+        'EXISTS': 'exists',
+        'DOES_NOT_EXIST': 'doesNotExist',
       },
     ),
     'Resiliencehubv2PolicyDisasterRecoveryApproach': MigrateEnum(

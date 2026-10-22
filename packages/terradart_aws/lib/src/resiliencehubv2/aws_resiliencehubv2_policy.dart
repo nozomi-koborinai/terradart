@@ -132,6 +132,7 @@ final class AwsResiliencehubv2Policy extends Resource {
     RefTo<AwsKmsKey>? kmsKeyId,
     required TfArg<String> name,
     TfArg<String>? region,
+    TfArg<bool>? sharingEnabled,
     TfArg<Map<String, String>>? tags,
     List<Resiliencehubv2PolicyAvailabilitySlo>? availabilitySlo,
     List<Resiliencehubv2PolicyDataRecovery>? dataRecovery,
@@ -148,6 +149,7 @@ final class AwsResiliencehubv2Policy extends Resource {
            'kms_key_id': ?kmsKeyId?.encodeAs('arn'),
            'name': name,
            'region': ?region,
+           'sharing_enabled': ?sharingEnabled,
            'tags': ?tags,
            if (availabilitySlo != null)
              'availability_slo': TfArg.literal([
@@ -191,6 +193,10 @@ final class AwsResiliencehubv2Policy extends Resource {
 
   /// Reference to `region` attribute.
   TfRef<String> get region => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `sharing_enabled` attribute.
+  TfRef<bool> get sharingEnabled =>
+      TfRef.attribute<bool>(this, 'sharing_enabled');
 
   /// Reference to `tags` attribute.
   TfRef<Map<String, String>> get tags =>

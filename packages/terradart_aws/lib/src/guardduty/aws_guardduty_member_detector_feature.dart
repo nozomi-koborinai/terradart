@@ -122,9 +122,18 @@ extension type const GuarddutyMemberDetectorFeatureAdditionalConfigurationName._
       GuarddutyMemberDetectorFeatureAdditionalConfigurationName._(
         TfArgLiteral('EC2_AGENT_MANAGEMENT'),
       );
+  static const rdsDataRisk =
+      GuarddutyMemberDetectorFeatureAdditionalConfigurationName._(
+        TfArgLiteral('RDS_DATA_RISK'),
+      );
 
   static const List<GuarddutyMemberDetectorFeatureAdditionalConfigurationName>
-  values = [eksAddonManagement, ecsFargateAgentManagement, ec2AgentManagement];
+  values = [
+    eksAddonManagement,
+    ecsFargateAgentManagement,
+    ec2AgentManagement,
+    rdsDataRisk,
+  ];
 }
 
 /// `status` — derived from the provider schema description.

@@ -463,6 +463,9 @@ extension type const CeCostCategoryKey._(TfArg<String> _)
   static const anomalyTotalImpactPercentage = CeCostCategoryKey._(
     TfArgLiteral('ANOMALY_TOTAL_IMPACT_PERCENTAGE'),
   );
+  static const productAttribute = CeCostCategoryKey._(
+    TfArgLiteral('PRODUCT_ATTRIBUTE'),
+  );
 
   static const List<CeCostCategoryKey> values = [
     az,
@@ -500,6 +503,7 @@ extension type const CeCostCategoryKey._(TfArg<String> _)
     invoicingEntity,
     anomalyTotalImpactAbsolute,
     anomalyTotalImpactPercentage,
+    productAttribute,
   ];
 }
 

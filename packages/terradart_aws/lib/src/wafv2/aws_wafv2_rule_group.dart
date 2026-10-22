@@ -183,6 +183,81 @@ final class Wafv2RuleGroupCustomResponseBody {
   };
 }
 
+/// Typed helper for the `monetization_config` block of
+/// `aws_wafv2_rule_group` (derived from provider schema).
+@immutable
+final class Wafv2RuleGroupMonetizationConfig {
+  const Wafv2RuleGroupMonetizationConfig({
+    this.currencyMode,
+    this.cryptoConfig,
+  });
+
+  final TfArg<String>? currencyMode;
+
+  final Wafv2RuleGroupCryptoConfig? cryptoConfig;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'currency_mode': ?currencyMode?.toTfJson(),
+    'crypto_config': ?cryptoConfig?.encode(),
+  };
+}
+
+/// Typed helper for the `monetization_config.crypto_config` block of
+/// `aws_wafv2_rule_group` (derived from provider schema).
+@immutable
+final class Wafv2RuleGroupCryptoConfig {
+  const Wafv2RuleGroupCryptoConfig({required this.paymentNetwork});
+
+  final List<Wafv2RuleGroupPaymentNetwork> paymentNetwork;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'payment_network': [for (final e in paymentNetwork) e.encode()],
+  };
+}
+
+/// Typed helper for the `monetization_config.crypto_config.payment_network` block of
+/// `aws_wafv2_rule_group` (derived from provider schema).
+@immutable
+final class Wafv2RuleGroupPaymentNetwork {
+  const Wafv2RuleGroupPaymentNetwork({
+    required this.chain,
+    required this.walletAddress,
+    required this.prices,
+  });
+
+  final TfArg<String> chain;
+
+  final TfArg<String> walletAddress;
+
+  final Wafv2RuleGroupPrices prices;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'chain': chain.toTfJson(),
+    'wallet_address': walletAddress.toTfJson(),
+    'prices': prices.encode(),
+  };
+}
+
+/// Typed helper for the `monetization_config.crypto_config.payment_network.prices` block of
+/// `aws_wafv2_rule_group` (derived from provider schema).
+@immutable
+final class Wafv2RuleGroupPrices {
+  const Wafv2RuleGroupPrices({required this.amount, required this.currency});
+
+  final TfArg<String> amount;
+
+  final TfArg<String> currency;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'amount': amount.toTfJson(),
+    'currency': currency.toTfJson(),
+  };
+}
+
 /// Typed helper for the `rule` block of
 /// `aws_wafv2_rule_group` (derived from provider schema).
 @immutable
@@ -234,6 +309,7 @@ final class Wafv2RuleGroupAction {
     this.captcha,
     this.challenge,
     this.count,
+    this.monetize,
   });
 
   final Wafv2RuleGroupAllow? allow;
@@ -246,6 +322,8 @@ final class Wafv2RuleGroupAction {
 
   final Wafv2RuleGroupAllow? count;
 
+  final Wafv2RuleGroupMonetize? monetize;
+
   @internal
   Map<String, Object?> encode() => {
     'allow': ?allow?.encode(),
@@ -253,6 +331,7 @@ final class Wafv2RuleGroupAction {
     'captcha': ?captcha?.encode(),
     'challenge': ?challenge?.encode(),
     'count': ?count?.encode(),
+    'monetize': ?monetize?.encode(),
   };
 }
 
@@ -340,6 +419,20 @@ final class Wafv2RuleGroupCustomResponse {
     'response_code': responseCode.toTfJson(),
     if (responseHeader != null)
       'response_header': [for (final e in responseHeader!) e.encode()],
+  };
+}
+
+/// Typed helper for the `rule.action.monetize` block of
+/// `aws_wafv2_rule_group` (derived from provider schema).
+@immutable
+final class Wafv2RuleGroupMonetize {
+  const Wafv2RuleGroupMonetize({this.priceMultiplier});
+
+  final TfArg<String>? priceMultiplier;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'price_multiplier': ?priceMultiplier?.toTfJson(),
   };
 }
 
@@ -1539,6 +1632,7 @@ final class AwsWafv2RuleGroup extends Resource {
     required Wafv2RuleGroupScope scope,
     TfArg<Map<String, String>>? tags,
     List<Wafv2RuleGroupCustomResponseBody>? customResponseBody,
+    Wafv2RuleGroupMonetizationConfig? monetizationConfig,
     required Wafv2RuleGroupVisibilityConfig visibilityConfig,
     super.lifecycle,
     super.dependsOn,
@@ -1558,6 +1652,8 @@ final class AwsWafv2RuleGroup extends Resource {
              'custom_response_body': TfArg.literal([
                for (final e in customResponseBody) e.encode(),
              ]),
+           if (monetizationConfig != null)
+             'monetization_config': TfArg.literal(monetizationConfig.encode()),
            'visibility_config': TfArg.literal(visibilityConfig.encode()),
          },
        );
