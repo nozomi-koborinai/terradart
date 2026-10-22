@@ -10,6 +10,50 @@ changes. Synth output stays the same except `GoogleStorageFtpUser`, where
 The weekly `appwrite/appwrite` pin moved from 2.0.0-beta.1 to 2.3.0.
 `terradart_appwrite` follows that pin.
 
+The weekly `hashicorp/aws` pin moved from 6.68.0 to 6.69.1. `terradart_aws`
+follows that pin.
+
+### Bedrock parsing foundation-model helper takes its parent name
+
+**Breaking (`terradart_aws`).** `aws_bedrockagent_data_source` has two
+`bedrock_foundation_model_configuration` blocks, and their fields differ.
+The parsing block's helper is
+`BedrockagentDataSourceParsingConfigurationBedrockFoundationModelConfiguration`.
+`modelArn`, `parsingModality`, and `parsingPrompt` are the same fields on
+that class. `BedrockagentDataSourceBedrockFoundationModelConfiguration` is
+removed. The Terraform JSON is unchanged.
+
+| Before | After |
+|---|---|
+| `BedrockagentDataSourceBedrockFoundationModelConfiguration(modelArn: model, parsingModality: .multimodal, parsingPrompt: prompt)` | `BedrockagentDataSourceParsingConfigurationBedrockFoundationModelConfiguration(modelArn: model, parsingModality: .multimodal, parsingPrompt: prompt)` |
+
+### OpenSearch `warm_type` is a string
+
+**Breaking (`terradart_aws`).** `OpensearchDomainClusterConfig.warmType` is
+`TfArg<String>?`. `OpensearchDomainWarmType` is removed, including
+`ultrawarm1MediumSearch`, `ultrawarm1LargeSearch`, and
+`ultrawarm1XlargeSearch`. Pass the warm node type string the old member
+wrote.
+
+| Before | After |
+|---|---|
+| `warmType: .ultrawarm1MediumSearch` | `warmType: .literal('ultrawarm1.medium.search')` |
+| `warmType: .ultrawarm1LargeSearch` | `warmType: .literal('ultrawarm1.large.search')` |
+| `warmType: .ultrawarm1XlargeSearch` | `warmType: .literal('ultrawarm1.xlarge.search')` |
+
+### Organization telemetry evaluation takes one region choice
+
+**Breaking (`terradart_aws`).**
+`AwsObservabilityadminTelemetryEvaluationForOrganization` no longer takes
+`allRegions` and `regions` as their own arguments. Provider 6.69.1 rejects
+setting both. Pass one choice on `allRegionsOrRegions`. The `allRegions` and
+`regions` getters stay.
+
+| Before | After |
+|---|---|
+| `AwsObservabilityadminTelemetryEvaluationForOrganization('eval', allRegions: .literal(true))` | `AwsObservabilityadminTelemetryEvaluationForOrganization('eval', allRegionsOrRegions: .allRegions(.literal(true)))` |
+| `AwsObservabilityadminTelemetryEvaluationForOrganization('eval', regions: .literal(['us-east-1']))` | `AwsObservabilityadminTelemetryEvaluationForOrganization('eval', allRegionsOrRegions: .regions(.literal(['us-east-1'])))` |
+
 ### Function and site variables seal `value`
 
 **Breaking (`terradart_appwrite`)** — provider 2.3.0 rejects setting both
