@@ -149,6 +149,7 @@ export 'src/vertex_ai/google_vertex_ai_persistent_resource.dart'
         VertexAiPersistentResourceMachineSpec,
         VertexAiPersistentResourcePools,
         VertexAiPersistentResourcePscInterfaceConfig,
+        VertexAiPersistentResourceRaySpec,
         VertexAiPersistentResourceRuntimeSpec,
         VertexAiPersistentResourceServiceAccountSpec;
 export 'src/vertex_ai/google_vertex_ai_rag_corpus.dart'

@@ -24,110 +24,6 @@ const Set<String> _googlePubsubSubscriptionSensitive = <String>{};
 // Factory
 // ===========================================================================
 
-/// At most one of `bigquery_config`, `push_config`, `cloud_storage_config` on `google_pubsub_subscription`: the provider rejects
-/// more than one, so each variant sets one of them and a
-/// null choice sets none.
-///
-/// Pick one with a dot shorthand: `.bigqueryConfig(...)`.
-sealed class PubsubSubscriptionDelivery {
-  const PubsubSubscriptionDelivery();
-
-  /// Sets `bigquery_config`.
-  const factory PubsubSubscriptionDelivery.bigqueryConfig(
-    PubsubSubscriptionBigqueryConfig bigqueryConfig,
-  ) = PubsubSubscriptionDeliveryBigqueryConfig;
-
-  /// Sets `push_config`.
-  const factory PubsubSubscriptionDelivery.pushConfig(
-    PubsubSubscriptionPushConfig pushConfig,
-  ) = PubsubSubscriptionDeliveryPushConfig;
-
-  /// Sets `cloud_storage_config`.
-  const factory PubsubSubscriptionDelivery.cloudStorageConfig(
-    PubsubSubscriptionCloudStorageConfig cloudStorageConfig,
-  ) = PubsubSubscriptionDeliveryCloudStorageConfig;
-
-  /// The Terraform argument this choice sets.
-  @internal
-  String get blockKey;
-
-  @internal
-  Map<String, Object?> encode();
-
-  /// The resource arguments behind [encode], as the caller's
-  /// [TfArg]s.
-  @internal
-  Map<String, TfArg<Object?>> get argMap;
-}
-
-/// The [PubsubSubscriptionDelivery.bigqueryConfig] choice: sets `bigquery_config`.
-final class PubsubSubscriptionDeliveryBigqueryConfig
-    extends PubsubSubscriptionDelivery {
-  const PubsubSubscriptionDeliveryBigqueryConfig(this.bigqueryConfig);
-
-  final PubsubSubscriptionBigqueryConfig bigqueryConfig;
-
-  @internal
-  @override
-  String get blockKey => 'bigquery_config';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'bigquery_config': bigqueryConfig.encode()};
-
-  @internal
-  @override
-  Map<String, TfArg<Object?>> get argMap => {
-    'bigquery_config': TfArg.literal(bigqueryConfig.encode()),
-  };
-}
-
-/// The [PubsubSubscriptionDelivery.pushConfig] choice: sets `push_config`.
-final class PubsubSubscriptionDeliveryPushConfig
-    extends PubsubSubscriptionDelivery {
-  const PubsubSubscriptionDeliveryPushConfig(this.pushConfig);
-
-  final PubsubSubscriptionPushConfig pushConfig;
-
-  @internal
-  @override
-  String get blockKey => 'push_config';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {'push_config': pushConfig.encode()};
-
-  @internal
-  @override
-  Map<String, TfArg<Object?>> get argMap => {
-    'push_config': TfArg.literal(pushConfig.encode()),
-  };
-}
-
-/// The [PubsubSubscriptionDelivery.cloudStorageConfig] choice: sets `cloud_storage_config`.
-final class PubsubSubscriptionDeliveryCloudStorageConfig
-    extends PubsubSubscriptionDelivery {
-  const PubsubSubscriptionDeliveryCloudStorageConfig(this.cloudStorageConfig);
-
-  final PubsubSubscriptionCloudStorageConfig cloudStorageConfig;
-
-  @internal
-  @override
-  String get blockKey => 'cloud_storage_config';
-
-  @internal
-  @override
-  Map<String, Object?> encode() => {
-    'cloud_storage_config': cloudStorageConfig.encode(),
-  };
-
-  @internal
-  @override
-  Map<String, TfArg<Object?>> get argMap => {
-    'cloud_storage_config': TfArg.literal(cloudStorageConfig.encode()),
-  };
-}
-
 /// Typed helper for the `bigquery_config` block of
 /// `google_pubsub_subscription` (derived from provider schema).
 @immutable
@@ -162,6 +58,128 @@ final class PubsubSubscriptionBigqueryConfig {
     'use_topic_schema': ?useTopicSchema?.toTfJson(),
     'write_metadata': ?writeMetadata?.toTfJson(),
   };
+}
+
+/// Typed helper for the `bigtable_config` block of
+/// `google_pubsub_subscription` (derived from provider schema).
+@immutable
+final class PubsubSubscriptionBigtableConfig {
+  const PubsubSubscriptionBigtableConfig({
+    this.appProfileId,
+    this.serviceAccountEmail,
+    required this.table,
+    this.writeMetadata,
+    this.columnFamilyMapping,
+  });
+
+  final TfArg<String>? appProfileId;
+
+  final RefTo<GoogleServiceAccount>? serviceAccountEmail;
+
+  final TfArg<String> table;
+
+  final TfArg<bool>? writeMetadata;
+
+  final PubsubSubscriptionColumnFamilyMapping? columnFamilyMapping;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'app_profile_id': ?appProfileId?.toTfJson(),
+    'service_account_email': ?serviceAccountEmail?.encodeAs('email').toTfJson(),
+    'table': table.toTfJson(),
+    'write_metadata': ?writeMetadata?.toTfJson(),
+    'column_family_mapping': ?columnFamilyMapping?.encode(),
+  };
+}
+
+/// At most one of `row_key_schema`, `delimited_key` on the `bigtable_config.column_family_mapping` block of `google_pubsub_subscription`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.rowKeySchema(...)`.
+sealed class PubsubSubscriptionColumnFamilyMapping {
+  const PubsubSubscriptionColumnFamilyMapping();
+
+  /// Sets `row_key_schema`.
+  const factory PubsubSubscriptionColumnFamilyMapping.rowKeySchema([
+    PubsubSubscriptionRowKeySchema rowKeySchema,
+  ]) = PubsubSubscriptionColumnFamilyMappingRowKeySchema;
+
+  /// Sets `delimited_key`.
+  const factory PubsubSubscriptionColumnFamilyMapping.delimitedKey(
+    PubsubSubscriptionDelimitedKey delimitedKey,
+  ) = PubsubSubscriptionColumnFamilyMappingDelimitedKey;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [PubsubSubscriptionColumnFamilyMapping.rowKeySchema] choice: sets `row_key_schema`.
+final class PubsubSubscriptionColumnFamilyMappingRowKeySchema
+    extends PubsubSubscriptionColumnFamilyMapping {
+  const PubsubSubscriptionColumnFamilyMappingRowKeySchema([
+    this.rowKeySchema = const PubsubSubscriptionRowKeySchema(),
+  ]);
+
+  final PubsubSubscriptionRowKeySchema rowKeySchema;
+
+  @internal
+  @override
+  String get blockKey => 'row_key_schema';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'row_key_schema': rowKeySchema.encode()};
+}
+
+/// The [PubsubSubscriptionColumnFamilyMapping.delimitedKey] choice: sets `delimited_key`.
+final class PubsubSubscriptionColumnFamilyMappingDelimitedKey
+    extends PubsubSubscriptionColumnFamilyMapping {
+  const PubsubSubscriptionColumnFamilyMappingDelimitedKey(this.delimitedKey);
+
+  final PubsubSubscriptionDelimitedKey delimitedKey;
+
+  @internal
+  @override
+  String get blockKey => 'delimited_key';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'delimited_key': delimitedKey.encode()};
+}
+
+/// Typed helper for the `bigtable_config.column_family_mapping.delimited_key` block of
+/// `google_pubsub_subscription` (derived from provider schema).
+@immutable
+final class PubsubSubscriptionDelimitedKey {
+  const PubsubSubscriptionDelimitedKey({
+    this.delimiter,
+    required this.keyFields,
+  });
+
+  final TfArg<String>? delimiter;
+
+  final TfArg<List<String>> keyFields;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'delimiter': ?delimiter?.toTfJson(),
+    'key_fields': keyFields.toTfJson(),
+  };
+}
+
+/// Typed helper for the `bigtable_config.column_family_mapping.row_key_schema` block of
+/// `google_pubsub_subscription` (derived from provider schema).
+@immutable
+final class PubsubSubscriptionRowKeySchema {
+  const PubsubSubscriptionRowKeySchema();
+
+  @internal
+  Map<String, Object?> encode() => {};
 }
 
 /// Typed helper for the `cloud_storage_config` block of
@@ -464,7 +482,9 @@ final class GooglePubsubSubscription extends Resource {
     required TfArg<String> name,
     required RefTo<GooglePubsubTopic> topic,
     TfArg<Map<String, String>>? labels,
-    PubsubSubscriptionDelivery? delivery,
+    PubsubSubscriptionBigqueryConfig? bigqueryConfig,
+    PubsubSubscriptionCloudStorageConfig? cloudStorageConfig,
+    PubsubSubscriptionPushConfig? pushConfig,
     TfArg<int>? ackDeadlineSeconds,
     TfArg<String>? messageRetentionDuration,
     TfArg<bool>? retainAckedMessages,
@@ -487,7 +507,12 @@ final class GooglePubsubSubscription extends Resource {
            'name': name,
            'topic': topic.encodeAs('id'),
            'labels': ?labels,
-           ...?delivery?.argMap,
+           if (bigqueryConfig != null)
+             'bigquery_config': TfArg.literal(bigqueryConfig.encode()),
+           if (cloudStorageConfig != null)
+             'cloud_storage_config': TfArg.literal(cloudStorageConfig.encode()),
+           if (pushConfig != null)
+             'push_config': TfArg.literal(pushConfig.encode()),
            'ack_deadline_seconds': ?ackDeadlineSeconds,
            'message_retention_duration': ?messageRetentionDuration,
            'retain_acked_messages': ?retainAckedMessages,

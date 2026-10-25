@@ -34,6 +34,7 @@ final class GoogleSaasRuntimeUnit extends Resource {
   GoogleSaasRuntimeUnit(
     super.localName, {
     TfArg<Map<String, String>>? annotations,
+    TfArg<String>? application,
     TfArg<String>? deletionPolicy,
     TfArg<Map<String, String>>? labels,
     required TfArg<String> location,
@@ -51,6 +52,7 @@ final class GoogleSaasRuntimeUnit extends Resource {
          terraformType: tfType,
          argMap: {
            'annotations': ?annotations,
+           'application': ?application,
            'deletion_policy': ?deletionPolicy,
            'labels': ?labels,
            'location': location,
@@ -150,6 +152,9 @@ final class GoogleSaasRuntimeUnit extends Resource {
   /// Reference to `annotations` attribute.
   TfRef<Map<String, String>> get annotations =>
       TfRef.attribute<Map<String, String>>(this, 'annotations');
+
+  /// Reference to `application` attribute.
+  TfRef<String> get application => TfRef.attribute<String>(this, 'application');
 
   /// Reference to `deletion_policy` attribute.
   TfRef<String> get deletionPolicy =>

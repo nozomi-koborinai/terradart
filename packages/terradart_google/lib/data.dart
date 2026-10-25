@@ -185,6 +185,8 @@ export 'src/data/google_cloud_run_locations.dart'
 export 'src/data/google_cloud_run_service.dart' show DataGoogleCloudRunService;
 export 'src/data/google_cloud_run_service_iam_policy.dart'
     show DataGoogleCloudRunServiceIamPolicy;
+export 'src/data/google_cloud_run_v2_instance_iam_policy.dart'
+    show DataGoogleCloudRunV2InstanceIamPolicy;
 export 'src/data/google_cloud_run_v2_job.dart' show DataGoogleCloudRunV2Job;
 export 'src/data/google_cloud_run_v2_job_iam_policy.dart'
     show DataGoogleCloudRunV2JobIamPolicy;

@@ -62,6 +62,3 @@ prelude: |
   // Factory
   // ===========================================================================
 
-
-sealedNames:
-  "bigquery_config, cloud_storage_config, push_config": delivery

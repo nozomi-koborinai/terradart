@@ -327,17 +327,48 @@ extension type const CesGuardrailPolicyScope._(TfArg<String> _)
 /// Shared by every block of this shape in the resource.
 @immutable
 final class CesGuardrailModelSettings {
-  const CesGuardrailModelSettings({this.model, this.temperature});
+  const CesGuardrailModelSettings({
+    this.model,
+    this.temperature,
+    this.thinkingLevel,
+  });
 
   final TfArg<String>? model;
 
   final TfArg<num>? temperature;
 
+  final CesGuardrailThinkingLevel? thinkingLevel;
+
   @internal
   Map<String, Object?> encode() => {
     'model': ?model?.toTfJson(),
     'temperature': ?temperature?.toTfJson(),
+    'thinking_level': ?thinkingLevel?.toTfJson(),
   };
+}
+
+/// `thinking_level` — derived from the provider schema description.
+extension type const CesGuardrailThinkingLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  CesGuardrailThinkingLevel.variable(String name)
+    : this._(TfArg.variable(name));
+  CesGuardrailThinkingLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const CesGuardrailThinkingLevel.arg(TfArg<String> arg) : this._(arg);
+
+  static const defaultCase = CesGuardrailThinkingLevel._(
+    TfArgLiteral('DEFAULT'),
+  );
+  static const low = CesGuardrailThinkingLevel._(TfArgLiteral('LOW'));
+  static const medium = CesGuardrailThinkingLevel._(TfArgLiteral('MEDIUM'));
+  static const high = CesGuardrailThinkingLevel._(TfArgLiteral('HIGH'));
+
+  static const List<CesGuardrailThinkingLevel> values = [
+    defaultCase,
+    low,
+    medium,
+    high,
+  ];
 }
 
 /// Typed helper for the `llm_prompt_security` block of

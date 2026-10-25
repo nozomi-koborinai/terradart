@@ -28,11 +28,15 @@ extension type const RedisClusterAuthorizationMode._(TfArg<String> _)
   static const authModeDisabled = RedisClusterAuthorizationMode._(
     TfArgLiteral('AUTH_MODE_DISABLED'),
   );
+  static const authModeTokenAuth = RedisClusterAuthorizationMode._(
+    TfArgLiteral('AUTH_MODE_TOKEN_AUTH'),
+  );
 
   static const List<RedisClusterAuthorizationMode> values = [
     authModeUnspecified,
     authModeIamAuth,
     authModeDisabled,
+    authModeTokenAuth,
   ];
 }
 

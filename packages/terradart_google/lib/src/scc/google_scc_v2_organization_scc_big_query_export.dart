@@ -87,6 +87,10 @@ final class GoogleSccV2OrganizationSccBigQueryExport extends Resource {
   /// Reference to `dataset` attribute.
   TfRef<String> get dataset => TfRef.attribute<String>(this, 'dataset');
 
+  /// Reference to `deletion_notifications_enabled` attribute.
+  TfRef<bool> get deletionNotificationsEnabled =>
+      TfRef.attribute<bool>(this, 'deletion_notifications_enabled');
+
   /// Reference to `deletion_policy` attribute.
   TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');

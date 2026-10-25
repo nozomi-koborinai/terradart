@@ -1303,6 +1303,18 @@ final class ContainerClusterRecurringWindow {
   };
 }
 
+/// Typed helper for the `managed_opentelemetry_config` block of
+/// `google_container_cluster` (derived from provider schema).
+@immutable
+final class ContainerClusterManagedOpentelemetryConfig {
+  const ContainerClusterManagedOpentelemetryConfig({this.scope});
+
+  final TfArg<String>? scope;
+
+  @internal
+  Map<String, Object?> encode() => {'scope': ?scope?.toTfJson()};
+}
+
 /// Typed helper for the `master_auth` block of
 /// `google_container_cluster` (derived from provider schema).
 @immutable

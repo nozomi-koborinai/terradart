@@ -110,6 +110,10 @@ final class GoogleSccV2ProjectNotificationConfig extends Resource {
   /// Reference to `config_id` attribute.
   TfRef<String> get configId => TfRef.attribute<String>(this, 'config_id');
 
+  /// Reference to `deletion_notifications_enabled` attribute.
+  TfRef<bool> get deletionNotificationsEnabled =>
+      TfRef.attribute<bool>(this, 'deletion_notifications_enabled');
+
   /// Reference to `deletion_policy` attribute.
   TfRef<String> get deletionPolicy =>
       TfRef.attribute<String>(this, 'deletion_policy');

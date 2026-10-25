@@ -143,6 +143,13 @@ final class GoogleSaasRuntimeRelease extends Resource {
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
+  /// Reference to `application_template_component` attribute.
+  TfRef<List<Map<String, Object?>>> get applicationTemplateComponent =>
+      TfRef.attribute<List<Map<String, Object?>>>(
+        this,
+        'application_template_component',
+      );
+
   /// Reference to `create_time` attribute.
   TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
 

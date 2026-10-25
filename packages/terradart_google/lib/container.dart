@@ -99,6 +99,7 @@ export 'src/container/google_container_cluster.dart'
         ContainerClusterLustreCsiDriverConfig,
         ContainerClusterMaintenanceExclusion,
         ContainerClusterMaintenancePolicy,
+        ContainerClusterManagedOpentelemetryConfig,
         ContainerClusterManagedPrometheus,
         ContainerClusterManagement,
         ContainerClusterMasterAuth,

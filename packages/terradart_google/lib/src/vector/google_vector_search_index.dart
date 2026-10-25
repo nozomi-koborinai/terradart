@@ -265,6 +265,9 @@ final class GoogleVectorSearchIndex extends Resource {
   /// Reference to `project` attribute.
   TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 
+  /// Reference to `skip_wait` attribute.
+  TfRef<bool> get skipWait => TfRef.attribute<bool>(this, 'skip_wait');
+
   /// Reference to `store_fields` attribute.
   TfRef<List<String>> get storeFields =>
       TfRef.attribute<List<String>>(this, 'store_fields');

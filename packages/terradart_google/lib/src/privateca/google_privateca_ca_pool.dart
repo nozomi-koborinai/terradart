@@ -38,7 +38,7 @@ final class PrivatecaCaPoolEncryptionSpec {
 @immutable
 final class PrivatecaCaPoolIssuancePolicy {
   const PrivatecaCaPoolIssuancePolicy({
-    this.backdateDuration,
+    this.backdateDurationOrAllowRequesterSpecifiedNotBeforeTime,
     this.maximumLifetime,
     this.allowedIssuanceModes,
     this.allowedKeyTypes,
@@ -46,7 +46,8 @@ final class PrivatecaCaPoolIssuancePolicy {
     this.identityConstraints,
   });
 
-  final TfArg<String>? backdateDuration;
+  final PrivatecaCaPoolIssuancePolicyBackdateDurationOrAllowRequesterSpecifiedNotBeforeTime?
+  backdateDurationOrAllowRequesterSpecifiedNotBeforeTime;
 
   final TfArg<String>? maximumLifetime;
 
@@ -60,13 +61,82 @@ final class PrivatecaCaPoolIssuancePolicy {
 
   @internal
   Map<String, Object?> encode() => {
-    'backdate_duration': ?backdateDuration?.toTfJson(),
+    ...?backdateDurationOrAllowRequesterSpecifiedNotBeforeTime?.encode(),
     'maximum_lifetime': ?maximumLifetime?.toTfJson(),
     'allowed_issuance_modes': ?allowedIssuanceModes?.encode(),
     if (allowedKeyTypes != null)
       'allowed_key_types': [for (final e in allowedKeyTypes!) e.encode()],
     'baseline_values': ?baselineValues?.encode(),
     'identity_constraints': ?identityConstraints?.encode(),
+  };
+}
+
+/// At most one of `backdate_duration`, `allow_requester_specified_not_before_time` on the `issuance_policy` block of `google_privateca_ca_pool`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.backdateDuration(...)`.
+sealed class PrivatecaCaPoolIssuancePolicyBackdateDurationOrAllowRequesterSpecifiedNotBeforeTime {
+  const PrivatecaCaPoolIssuancePolicyBackdateDurationOrAllowRequesterSpecifiedNotBeforeTime();
+
+  /// Sets `backdate_duration`.
+  const factory PrivatecaCaPoolIssuancePolicyBackdateDurationOrAllowRequesterSpecifiedNotBeforeTime.backdateDuration(
+    TfArg<String> backdateDuration,
+  ) = PrivatecaCaPoolIssuancePolicyBackdateDurationOrAllowRequesterSpecifiedNotBeforeTimeBackdateDuration;
+
+  /// Sets `allow_requester_specified_not_before_time`.
+  const factory PrivatecaCaPoolIssuancePolicyBackdateDurationOrAllowRequesterSpecifiedNotBeforeTime.allowRequesterSpecifiedNotBeforeTime(
+    TfArg<bool> allowRequesterSpecifiedNotBeforeTime,
+  ) = PrivatecaCaPoolIssuancePolicyBackdateDurationOrAllowRequesterSpecifiedNotBeforeTimeChoice;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [PrivatecaCaPoolIssuancePolicyBackdateDurationOrAllowRequesterSpecifiedNotBeforeTime.backdateDuration] choice: sets `backdate_duration`.
+final class PrivatecaCaPoolIssuancePolicyBackdateDurationOrAllowRequesterSpecifiedNotBeforeTimeBackdateDuration
+    extends
+        PrivatecaCaPoolIssuancePolicyBackdateDurationOrAllowRequesterSpecifiedNotBeforeTime {
+  const PrivatecaCaPoolIssuancePolicyBackdateDurationOrAllowRequesterSpecifiedNotBeforeTimeBackdateDuration(
+    this.backdateDuration,
+  );
+
+  final TfArg<String> backdateDuration;
+
+  @internal
+  @override
+  String get blockKey => 'backdate_duration';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'backdate_duration': backdateDuration.toTfJson(),
+  };
+}
+
+/// The [PrivatecaCaPoolIssuancePolicyBackdateDurationOrAllowRequesterSpecifiedNotBeforeTime.allowRequesterSpecifiedNotBeforeTime] choice: sets `allow_requester_specified_not_before_time`.
+final class PrivatecaCaPoolIssuancePolicyBackdateDurationOrAllowRequesterSpecifiedNotBeforeTimeChoice
+    extends
+        PrivatecaCaPoolIssuancePolicyBackdateDurationOrAllowRequesterSpecifiedNotBeforeTime {
+  const PrivatecaCaPoolIssuancePolicyBackdateDurationOrAllowRequesterSpecifiedNotBeforeTimeChoice(
+    this.allowRequesterSpecifiedNotBeforeTime,
+  );
+
+  final TfArg<bool> allowRequesterSpecifiedNotBeforeTime;
+
+  @internal
+  @override
+  String get blockKey => 'allow_requester_specified_not_before_time';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'allow_requester_specified_not_before_time':
+        allowRequesterSpecifiedNotBeforeTime.toTfJson(),
   };
 }
 

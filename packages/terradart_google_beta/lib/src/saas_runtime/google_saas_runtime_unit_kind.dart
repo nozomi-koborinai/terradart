@@ -7,6 +7,79 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_saas_runtime_unit_kind`.
 const Set<String> _googleSaasRuntimeUnitKindSensitive = <String>{};
 
+/// Typed helper for the `app_params` block of
+/// `google_saas_runtime_unit_kind` (derived from provider schema).
+@immutable
+final class SaasRuntimeUnitKindAppParams {
+  const SaasRuntimeUnitKindAppParams({this.group, this.scope});
+
+  final TfArg<String>? group;
+
+  final SaasRuntimeUnitKindScope? scope;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'group': ?group?.toTfJson(),
+    'scope': ?scope?.encode(),
+  };
+}
+
+/// Typed helper for the `app_params.scope` block of
+/// `google_saas_runtime_unit_kind` (derived from provider schema).
+@immutable
+final class SaasRuntimeUnitKindScope {
+  const SaasRuntimeUnitKindScope({required this.type});
+
+  final TfArg<String> type;
+
+  @internal
+  Map<String, Object?> encode() => {'type': type.toTfJson()};
+}
+
+/// Typed helper for the `application_template_component` block of
+/// `google_saas_runtime_unit_kind` (derived from provider schema).
+@immutable
+final class SaasRuntimeUnitKindApplicationTemplateComponent {
+  const SaasRuntimeUnitKindApplicationTemplateComponent({
+    this.component,
+    this.revision,
+    this.compositeRef,
+  });
+
+  final TfArg<String>? component;
+
+  final TfArg<String>? revision;
+
+  final SaasRuntimeUnitKindCompositeRef? compositeRef;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'component': ?component?.toTfJson(),
+    'revision': ?revision?.toTfJson(),
+    'composite_ref': ?compositeRef?.encode(),
+  };
+}
+
+/// Typed helper for the `application_template_component.composite_ref` block of
+/// `google_saas_runtime_unit_kind` (derived from provider schema).
+@immutable
+final class SaasRuntimeUnitKindCompositeRef {
+  const SaasRuntimeUnitKindCompositeRef({
+    required this.applicationTemplate,
+    this.revision,
+  });
+
+  final TfArg<String> applicationTemplate;
+
+  final TfArg<String>? revision;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'application_template': applicationTemplate.toTfJson(),
+    'revision': ?revision?.toTfJson(),
+  };
+}
+
 /// Typed helper for the `dependencies` block of
 /// `google_saas_runtime_unit_kind` (derived from provider schema).
 @immutable
@@ -139,6 +212,9 @@ final class GoogleSaasRuntimeUnitKind extends Resource {
     TfArg<String>? project,
     required TfArg<String> saas,
     required TfArg<String> unitKindId,
+    SaasRuntimeUnitKindAppParams? appParams,
+    SaasRuntimeUnitKindApplicationTemplateComponent?
+    applicationTemplateComponent,
     List<SaasRuntimeUnitKindDependencies>? dependencies,
     List<SaasRuntimeUnitKindInputVariableMappings>? inputVariableMappings,
     List<SaasRuntimeUnitKindOutputVariableMappings>? outputVariableMappings,
@@ -157,6 +233,12 @@ final class GoogleSaasRuntimeUnitKind extends Resource {
            'project': ?project,
            'saas': saas,
            'unit_kind_id': unitKindId,
+           if (appParams != null)
+             'app_params': TfArg.literal(appParams.encode()),
+           if (applicationTemplateComponent != null)
+             'application_template_component': TfArg.literal(
+               applicationTemplateComponent.encode(),
+             ),
            if (dependencies != null)
              'dependencies': TfArg.literal([
                for (final e in dependencies) e.encode(),

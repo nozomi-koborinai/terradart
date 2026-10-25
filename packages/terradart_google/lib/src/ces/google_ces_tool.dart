@@ -558,30 +558,61 @@ final class CesToolRewriterConfig {
 /// Shared by every block of this shape in the resource.
 @immutable
 final class CesToolModelSettings {
-  const CesToolModelSettings({this.model, this.temperature});
+  const CesToolModelSettings({
+    this.model,
+    this.temperature,
+    this.thinkingLevel,
+  });
 
   final TfArg<String>? model;
 
   final TfArg<num>? temperature;
 
+  final CesToolThinkingLevel? thinkingLevel;
+
   @internal
   Map<String, Object?> encode() => {
     'model': ?model?.toTfJson(),
     'temperature': ?temperature?.toTfJson(),
+    'thinking_level': ?thinkingLevel?.toTfJson(),
   };
+}
+
+/// `thinking_level` — derived from the provider schema description.
+extension type const CesToolThinkingLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  CesToolThinkingLevel.variable(String name) : this._(TfArg.variable(name));
+  CesToolThinkingLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const CesToolThinkingLevel.arg(TfArg<String> arg) : this._(arg);
+
+  static const defaultCase = CesToolThinkingLevel._(TfArgLiteral('DEFAULT'));
+  static const low = CesToolThinkingLevel._(TfArgLiteral('LOW'));
+  static const medium = CesToolThinkingLevel._(TfArgLiteral('MEDIUM'));
+  static const high = CesToolThinkingLevel._(TfArgLiteral('HIGH'));
+
+  static const List<CesToolThinkingLevel> values = [
+    defaultCase,
+    low,
+    medium,
+    high,
+  ];
 }
 
 /// Typed helper for the `data_store_tool.modality_configs.snippets_config` block of
 /// `google_ces_tool` (derived from provider schema).
 @immutable
 final class CesToolSnippetsConfig {
-  const CesToolSnippetsConfig({this.enableSnippets});
+  const CesToolSnippetsConfig({this.enableSnippets, this.maxSnippets});
 
   final TfArg<bool>? enableSnippets;
+
+  final TfArg<num>? maxSnippets;
 
   @internal
   Map<String, Object?> encode() => {
     'enable_snippets': ?enableSnippets?.toTfJson(),
+    'max_snippets': ?maxSnippets?.toTfJson(),
   };
 }
 

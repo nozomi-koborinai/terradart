@@ -700,6 +700,13 @@ final class DataSourceLeftoverStack extends Stack {
     );
 
     add(
+      DataGoogleCloudRunV2InstanceIamPolicy(
+        'cloud_run_v2_instance_iam_policy',
+        name: TfArg.literal(leftover),
+      ),
+    );
+
+    add(
       DataGoogleCloudRunV2Job(
         'cloud_run_v2_job',
         name: TfArg.literal(leftover),

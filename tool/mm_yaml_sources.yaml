@@ -2867,6 +2867,18 @@ files:
     upstream: null  # schema bump: no mmv1 YAML at the guessed paths; probe upstream by hand
   google_vertex_ai_online_evaluator:
     upstream: mmv1/products/vertexai/OnlineEvaluator.yaml
+  google_cloud_run_v2_instance:
+    upstream: mmv1/products/cloudrunv2/Instance.yaml
+  google_cloud_run_v2_instance_iam_binding:
+    upstream: null  # schema bump: no mmv1 YAML at the guessed paths or in the provider Go header; probe upstream by hand
+  google_cloud_run_v2_instance_iam_member:
+    upstream: null  # schema bump: no mmv1 YAML at the guessed paths or in the provider Go header; probe upstream by hand
+  google_cloud_run_v2_instance_iam_policy:
+    upstream: null  # schema bump: no mmv1 YAML at the guessed paths or in the provider Go header; probe upstream by hand
+  google_dns_outbound_endpoint:
+    upstream: mmv1/products/dns/OutboundEndpoint.yaml
+  google_document_ai_schema_version:
+    upstream: mmv1/products/documentai/SchemaVersion.yaml
   data_google_access_approval_folder_service_account:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
   data_google_access_approval_organization_service_account:
@@ -3055,6 +3067,8 @@ files:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
   data_google_cloud_run_service_iam_policy:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_cloud_run_v2_instance_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (schema bump)
   data_google_cloud_run_v2_job:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
   data_google_cloud_run_v2_job_iam_policy:

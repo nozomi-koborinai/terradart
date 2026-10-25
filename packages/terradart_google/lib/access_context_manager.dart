@@ -79,6 +79,7 @@ export 'src/access_context_manager/google_access_context_manager_gcp_user_access
         AccessContextManagerGcpUserAccessBindingDryRunSettings,
         AccessContextManagerGcpUserAccessBindingPrincipal,
         AccessContextManagerGcpUserAccessBindingRestrictedClientApplication,
+        AccessContextManagerGcpUserAccessBindingRestrictedProject,
         AccessContextManagerGcpUserAccessBindingScope,
         AccessContextManagerGcpUserAccessBindingScopedAccessSettings,
         AccessContextManagerGcpUserAccessBindingSessionReauthMethod,
