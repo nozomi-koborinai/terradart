@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 import mdx from "@astrojs/mdx";
+import { unified } from "@astrojs/markdown-remark";
 import rehypeMermaid from "rehype-mermaid";
 import starlightLlmsTxt from "starlight-llms-txt";
 import { SITE, ogImageUrl } from "./src/lib/og-image.mjs";
@@ -141,9 +142,9 @@ export default defineConfig({
     define: { "import.meta.env.OG_IMAGE_URL": JSON.stringify(ogImageUrl) },
   },
   markdown: {
-    rehypePlugins: [
-      [rehypeMermaid, { strategy: "pre-mermaid" }],
-    ],
+    processor: unified({
+      rehypePlugins: [[rehypeMermaid, { strategy: "pre-mermaid" }]],
+    }),
   },
   redirects: {
     "/docs/aws/": "/docs/providers/aws/",
