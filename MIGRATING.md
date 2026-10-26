@@ -2,10 +2,63 @@
 
 ## Unreleased
 
-The weekly `hashicorp/google` pin moved from 8.4.0 to 8.7.0. `terradart_google`
-and `terradart_google_beta` follow that pin. These are the breaking Dart API
-changes. Synth output stays the same except `GoogleStorageFtpUser`, where
-`user_credentials` is now a list.
+The weekly `hashicorp/google` pin moved from 8.4.0 to 8.7.0, and then to
+8.8.1. `terradart_google` and `terradart_google_beta` follow that pin. These
+are the Dart API changes. Synth output stays the same except
+`GoogleStorageFtpUser`, where `user_credentials` is now a list.
+
+### Pub/Sub subscription delivery gains Bigtable
+
+**Additive (`terradart_google`).** Provider 8.8.1 adds `bigtable_config` to
+the set that already rejects more than one of `push_config`,
+`bigquery_config`, and `cloud_storage_config`. `delivery` gains
+`.bigtableConfig`. The three existing variants stay, and so do
+`PubsubSubscriptionDelivery`, `PubsubSubscriptionDeliveryPushConfig`,
+`PubsubSubscriptionDeliveryBigqueryConfig`, and
+`PubsubSubscriptionDeliveryCloudStorageConfig`.
+`PubsubSubscriptionDeliveryBigtableConfig` is new. Its slot is
+`bigtableConfig`.
+
+The weekly bump dropped the three-member `sealedNames` key because it
+matched no group after `bigtable_config` joined. That removed `delivery`
+and the variant types above. This bump puts the four-member group back on
+`delivery`, so those removals do not ship.
+
+| Before | After |
+|---|---|
+| `GooglePubsubSubscription('push', name: name, topic: topic.ref, delivery: .pushConfig(push))` | `GooglePubsubSubscription('push', name: name, topic: topic.ref, delivery: .pushConfig(push))` |
+| `GooglePubsubSubscription('bq', name: name, topic: topic.ref, delivery: .bigqueryConfig(bq))` | `GooglePubsubSubscription('bq', name: name, topic: topic.ref, delivery: .bigqueryConfig(bq))` |
+| `GooglePubsubSubscription('gcs', name: name, topic: topic.ref, delivery: .cloudStorageConfig(storage))` | `GooglePubsubSubscription('gcs', name: name, topic: topic.ref, delivery: .cloudStorageConfig(storage))` |
+| *(not available)* | `GooglePubsubSubscription('bt', name: name, topic: topic.ref, delivery: .bigtableConfig(.new(table: .literal('projects/p/instances/i/tables/t'))))` |
+| `PubsubSubscriptionDeliveryPushConfig(pushConfig: push)` | `PubsubSubscriptionDeliveryPushConfig(pushConfig: push)` |
+| `PubsubSubscriptionDeliveryBigqueryConfig(bigqueryConfig: bq)` | `PubsubSubscriptionDeliveryBigqueryConfig(bigqueryConfig: bq)` |
+| `PubsubSubscriptionDeliveryCloudStorageConfig(cloudStorageConfig: storage)` | `PubsubSubscriptionDeliveryCloudStorageConfig(cloudStorageConfig: storage)` |
+
+`push` is a `PubsubSubscriptionPushConfig`. `bq` is a
+`PubsubSubscriptionBigqueryConfig`. `storage` is a
+`PubsubSubscriptionCloudStorageConfig`.
+
+### CA pool issuance policy seals not-before
+
+**Breaking (`terradart_google`).** Magic Modules 8.8.1 marks
+`issuance_policy.backdate_duration` and
+`issuance_policy.allow_requester_specified_not_before_time` as `conflicts`.
+`PrivatecaCaPoolIssuancePolicy.backdateDuration` is removed. Pass one choice
+on `backdateDurationOrAllowRequesterSpecifiedNotBeforeTime`. The provider
+rejects setting both. A null choice sets neither. The Terraform JSON for
+`backdate_duration` is unchanged.
+
+| Before | After |
+|---|---|
+| `PrivatecaCaPoolIssuancePolicy(backdateDuration: .literal('3600s'))` | `PrivatecaCaPoolIssuancePolicy(backdateDurationOrAllowRequesterSpecifiedNotBeforeTime: .backdateDuration(.literal('3600s')))` |
+| *(not available)* | `PrivatecaCaPoolIssuancePolicy(backdateDurationOrAllowRequesterSpecifiedNotBeforeTime: .allowRequesterSpecifiedNotBeforeTime(.literal(true)))` |
+
+The sealed type is
+`PrivatecaCaPoolIssuancePolicyBackdateDurationOrAllowRequesterSpecifiedNotBeforeTime`.
+`.backdateDuration` is
+`PrivatecaCaPoolIssuancePolicyBackdateDurationOrAllowRequesterSpecifiedNotBeforeTimeBackdateDuration`.
+`.allowRequesterSpecifiedNotBeforeTime` is
+`PrivatecaCaPoolIssuancePolicyBackdateDurationOrAllowRequesterSpecifiedNotBeforeTimeChoice`.
 
 The weekly `appwrite/appwrite` pin moved from 2.0.0-beta.1 to 2.3.0.
 `terradart_appwrite` follows that pin.

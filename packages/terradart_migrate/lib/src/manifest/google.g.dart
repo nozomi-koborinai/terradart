@@ -149878,28 +149878,19 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'Map<String, String>',
         ),
         MigrateSlot(
-          tfName: 'bigquery_config',
-          dartName: 'bigqueryConfig',
-          kind: MigrateSlotKind.helper,
+          tfName: '',
+          dartName: 'delivery',
+          kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
-          helper: 'PubsubSubscriptionBigqueryConfig',
-        ),
-        MigrateSlot(
-          tfName: 'cloud_storage_config',
-          dartName: 'cloudStorageConfig',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'PubsubSubscriptionCloudStorageConfig',
-        ),
-        MigrateSlot(
-          tfName: 'push_config',
-          dartName: 'pushConfig',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'PubsubSubscriptionPushConfig',
+          merged: true,
+          variants: <String, String>{
+            'bigquery_config': 'PubsubSubscriptionDeliveryBigqueryConfig',
+            'push_config': 'PubsubSubscriptionDeliveryPushConfig',
+            'cloud_storage_config':
+                'PubsubSubscriptionDeliveryCloudStorageConfig',
+            'bigtable_config': 'PubsubSubscriptionDeliveryBigtableConfig',
+          },
         ),
         MigrateSlot(
           tfName: 'ack_deadline_seconds',
@@ -310058,6 +310049,66 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
       ],
+    ),
+    'PubsubSubscriptionDeliveryBigqueryConfig': MigrateHelper(
+      className: 'PubsubSubscriptionDeliveryBigqueryConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'bigquery_config',
+          dartName: 'bigqueryConfig',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'PubsubSubscriptionBigqueryConfig',
+        ),
+      ],
+      shorthand: 'bigqueryConfig',
+    ),
+    'PubsubSubscriptionDeliveryBigtableConfig': MigrateHelper(
+      className: 'PubsubSubscriptionDeliveryBigtableConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'bigtable_config',
+          dartName: 'bigtableConfig',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'PubsubSubscriptionBigtableConfig',
+        ),
+      ],
+      shorthand: 'bigtableConfig',
+    ),
+    'PubsubSubscriptionDeliveryCloudStorageConfig': MigrateHelper(
+      className: 'PubsubSubscriptionDeliveryCloudStorageConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'cloud_storage_config',
+          dartName: 'cloudStorageConfig',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'PubsubSubscriptionCloudStorageConfig',
+        ),
+      ],
+      shorthand: 'cloudStorageConfig',
+    ),
+    'PubsubSubscriptionDeliveryPushConfig': MigrateHelper(
+      className: 'PubsubSubscriptionDeliveryPushConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'push_config',
+          dartName: 'pushConfig',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'PubsubSubscriptionPushConfig',
+        ),
+      ],
+      shorthand: 'pushConfig',
     ),
     'PubsubSubscriptionExpirationPolicy': MigrateHelper(
       className: 'PubsubSubscriptionExpirationPolicy',

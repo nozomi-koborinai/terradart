@@ -53,6 +53,88 @@ final class PubsubSubscriptionBigqueryConfig {
   };
 }
 
+/// Typed helper for the `bigtable_config` block of
+/// `google_pubsub_subscription` (derived from provider schema).
+@immutable
+final class PubsubSubscriptionBigtableConfig {
+  const PubsubSubscriptionBigtableConfig({
+    this.appProfileId,
+    this.serviceAccountEmail,
+    required this.table,
+    this.writeMetadata,
+    this.columnFamilyMapping,
+  });
+
+  final TfArg<String>? appProfileId;
+
+  final TfArg<String>? serviceAccountEmail;
+
+  final TfArg<String> table;
+
+  final TfArg<bool>? writeMetadata;
+
+  final PubsubSubscriptionColumnFamilyMapping? columnFamilyMapping;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'app_profile_id': ?appProfileId?.toTfJson(),
+    'service_account_email': ?serviceAccountEmail?.toTfJson(),
+    'table': table.toTfJson(),
+    'write_metadata': ?writeMetadata?.toTfJson(),
+    'column_family_mapping': ?columnFamilyMapping?.encode(),
+  };
+}
+
+/// Typed helper for the `bigtable_config.column_family_mapping` block of
+/// `google_pubsub_subscription` (derived from provider schema).
+@immutable
+final class PubsubSubscriptionColumnFamilyMapping {
+  const PubsubSubscriptionColumnFamilyMapping({
+    this.delimitedKey,
+    this.rowKeySchema,
+  });
+
+  final PubsubSubscriptionDelimitedKey? delimitedKey;
+
+  final PubsubSubscriptionRowKeySchema? rowKeySchema;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'delimited_key': ?delimitedKey?.encode(),
+    'row_key_schema': ?rowKeySchema?.encode(),
+  };
+}
+
+/// Typed helper for the `bigtable_config.column_family_mapping.delimited_key` block of
+/// `google_pubsub_subscription` (derived from provider schema).
+@immutable
+final class PubsubSubscriptionDelimitedKey {
+  const PubsubSubscriptionDelimitedKey({
+    this.delimiter,
+    required this.keyFields,
+  });
+
+  final TfArg<String>? delimiter;
+
+  final TfArg<List<String>> keyFields;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'delimiter': ?delimiter?.toTfJson(),
+    'key_fields': keyFields.toTfJson(),
+  };
+}
+
+/// Typed helper for the `bigtable_config.column_family_mapping.row_key_schema` block of
+/// `google_pubsub_subscription` (derived from provider schema).
+@immutable
+final class PubsubSubscriptionRowKeySchema {
+  const PubsubSubscriptionRowKeySchema();
+
+  @internal
+  Map<String, Object?> encode() => {};
+}
+
 /// Typed helper for the `cloud_storage_config` block of
 /// `google_pubsub_subscription` (derived from provider schema).
 @immutable
@@ -351,6 +433,7 @@ final class GooglePubsubSubscription extends Resource {
     required TfArg<String> topic,
     TfArg<Map<String, String>>? labels,
     PubsubSubscriptionBigqueryConfig? bigqueryConfig,
+    PubsubSubscriptionBigtableConfig? bigtableConfig,
     PubsubSubscriptionCloudStorageConfig? cloudStorageConfig,
     PubsubSubscriptionPushConfig? pushConfig,
     TfArg<int>? ackDeadlineSeconds,
@@ -377,6 +460,8 @@ final class GooglePubsubSubscription extends Resource {
            'labels': ?labels,
            if (bigqueryConfig != null)
              'bigquery_config': TfArg.literal(bigqueryConfig.encode()),
+           if (bigtableConfig != null)
+             'bigtable_config': TfArg.literal(bigtableConfig.encode()),
            if (cloudStorageConfig != null)
              'cloud_storage_config': TfArg.literal(cloudStorageConfig.encode()),
            if (pushConfig != null)
