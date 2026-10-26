@@ -47,6 +47,10 @@ final class DataGooglePubsubSubscription extends Data {
   TfRef<List<Map<String, Object?>>> get bigqueryConfig =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'bigquery_config');
 
+  /// Reference to `bigtable_config` attribute.
+  TfRef<List<Map<String, Object?>>> get bigtableConfig =>
+      TfRef.attribute<List<Map<String, Object?>>>(this, 'bigtable_config');
+
   /// Reference to `cloud_storage_config` attribute.
   TfRef<List<Map<String, Object?>>> get cloudStorageConfig =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'cloud_storage_config');

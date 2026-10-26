@@ -27,6 +27,7 @@ paramOrder:
   - topic
   - labels
   - bigquery_config
+  - bigtable_config
   - cloud_storage_config
   - push_config
   - ack_deadline_seconds
@@ -62,6 +63,6 @@ prelude: |
   // Factory
   // ===========================================================================
 
-
 sealedNames:
-  "bigquery_config, cloud_storage_config, push_config": delivery
+  "bigquery_config, bigtable_config, cloud_storage_config, push_config": delivery
+

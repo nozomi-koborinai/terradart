@@ -11,6 +11,16 @@ export 'src/document_ai/google_document_ai_processor_default_version.dart'
     show GoogleDocumentAiProcessorDefaultVersion;
 export 'src/document_ai/google_document_ai_schema.dart'
     show GoogleDocumentAiSchema;
+export 'src/document_ai/google_document_ai_schema_version.dart'
+    show
+        DocumentAiSchemaVersionEntityTypes,
+        DocumentAiSchemaVersionEnumValues,
+        DocumentAiSchemaVersionMetadata,
+        DocumentAiSchemaVersionMethod,
+        DocumentAiSchemaVersionOccurrenceType,
+        DocumentAiSchemaVersionProperties,
+        DocumentAiSchemaVersionSchema,
+        GoogleDocumentAiSchemaVersion;
 export 'src/document_ai/google_document_ai_warehouse_document_schema.dart'
     show
         DocumentAiWarehouseDocumentSchemaDateTimeTypeOptions,

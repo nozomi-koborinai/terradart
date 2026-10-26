@@ -258,6 +258,13 @@ final class DataGoogleContainerCluster extends Data {
   TfRef<List<Map<String, Object?>>> get maintenancePolicy =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'maintenance_policy');
 
+  /// Reference to `managed_opentelemetry_config` attribute.
+  TfRef<List<Map<String, Object?>>> get managedOpentelemetryConfig =>
+      TfRef.attribute<List<Map<String, Object?>>>(
+        this,
+        'managed_opentelemetry_config',
+      );
+
   /// Reference to `master_auth` attribute.
   TfRef<List<Map<String, Object?>>> get masterAuth =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'master_auth');

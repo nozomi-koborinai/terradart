@@ -710,7 +710,9 @@ final class DialogflowConversationProfileSttConfig {
     this.model,
     this.sampleRateHertz,
     this.speechModelVariant,
+    this.useGeminiAsr,
     this.useTimeoutBasedEndpointing,
+    this.geminiAsrConfig,
   });
 
   final DialogflowConversationProfileAudioEncoding? audioEncoding;
@@ -725,7 +727,11 @@ final class DialogflowConversationProfileSttConfig {
 
   final DialogflowConversationProfileSpeechModelVariant? speechModelVariant;
 
+  final TfArg<bool>? useGeminiAsr;
+
   final TfArg<bool>? useTimeoutBasedEndpointing;
+
+  final DialogflowConversationProfileGeminiAsrConfig? geminiAsrConfig;
 
   @internal
   Map<String, Object?> encode() => {
@@ -735,7 +741,9 @@ final class DialogflowConversationProfileSttConfig {
     'model': ?model?.toTfJson(),
     'sample_rate_hertz': ?sampleRateHertz?.toTfJson(),
     'speech_model_variant': ?speechModelVariant?.toTfJson(),
+    'use_gemini_asr': ?useGeminiAsr?.toTfJson(),
     'use_timeout_based_endpointing': ?useTimeoutBasedEndpointing?.toTfJson(),
+    'gemini_asr_config': ?geminiAsrConfig?.encode(),
   };
 }
 
@@ -825,6 +833,92 @@ extension type const DialogflowConversationProfileSpeechModelVariant._(
     useStandard,
     useEnhanced,
   ];
+}
+
+/// Typed helper for the `stt_config.gemini_asr_config` block of
+/// `google_dialogflow_conversation_profile` (derived from provider schema).
+@immutable
+final class DialogflowConversationProfileGeminiAsrConfig {
+  const DialogflowConversationProfileGeminiAsrConfig({
+    this.endOfSpeechSensitivity,
+    this.modelId,
+    this.prefixPaddingMs,
+    this.silenceDurationMs,
+    this.startOfSpeechSensitivity,
+  });
+
+  final DialogflowConversationProfileEndOfSpeechSensitivity?
+  endOfSpeechSensitivity;
+
+  final TfArg<String>? modelId;
+
+  final TfArg<num>? prefixPaddingMs;
+
+  final TfArg<num>? silenceDurationMs;
+
+  final DialogflowConversationProfileStartOfSpeechSensitivity?
+  startOfSpeechSensitivity;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'end_of_speech_sensitivity': ?endOfSpeechSensitivity?.toTfJson(),
+    'model_id': ?modelId?.toTfJson(),
+    'prefix_padding_ms': ?prefixPaddingMs?.toTfJson(),
+    'silence_duration_ms': ?silenceDurationMs?.toTfJson(),
+    'start_of_speech_sensitivity': ?startOfSpeechSensitivity?.toTfJson(),
+  };
+}
+
+/// `end_of_speech_sensitivity` — derived from the provider schema description.
+extension type const DialogflowConversationProfileEndOfSpeechSensitivity._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DialogflowConversationProfileEndOfSpeechSensitivity.variable(String name)
+    : this._(TfArg.variable(name));
+  DialogflowConversationProfileEndOfSpeechSensitivity.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const DialogflowConversationProfileEndOfSpeechSensitivity.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const endSensitivityHigh =
+      DialogflowConversationProfileEndOfSpeechSensitivity._(
+        TfArgLiteral('END_SENSITIVITY_HIGH'),
+      );
+  static const endSensitivityLow =
+      DialogflowConversationProfileEndOfSpeechSensitivity._(
+        TfArgLiteral('END_SENSITIVITY_LOW'),
+      );
+
+  static const List<DialogflowConversationProfileEndOfSpeechSensitivity>
+  values = [endSensitivityHigh, endSensitivityLow];
+}
+
+/// `start_of_speech_sensitivity` — derived from the provider schema description.
+extension type const DialogflowConversationProfileStartOfSpeechSensitivity._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DialogflowConversationProfileStartOfSpeechSensitivity.variable(String name)
+    : this._(TfArg.variable(name));
+  DialogflowConversationProfileStartOfSpeechSensitivity.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const DialogflowConversationProfileStartOfSpeechSensitivity.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const startSensitivityHigh =
+      DialogflowConversationProfileStartOfSpeechSensitivity._(
+        TfArgLiteral('START_SENSITIVITY_HIGH'),
+      );
+  static const startSensitivityLow =
+      DialogflowConversationProfileStartOfSpeechSensitivity._(
+        TfArgLiteral('START_SENSITIVITY_LOW'),
+      );
+
+  static const List<DialogflowConversationProfileStartOfSpeechSensitivity>
+  values = [startSensitivityHigh, startSensitivityLow];
 }
 
 /// Typed helper for the `tts_config` block of

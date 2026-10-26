@@ -163,6 +163,9 @@ final class GoogleNetworkConnectivityTransport extends Resource {
   TfRef<List<String>> get advertisedRoutes =>
       TfRef.attribute<List<String>>(this, 'advertised_routes');
 
+  /// Reference to `auto_accept` attribute.
+  TfRef<bool> get autoAccept => TfRef.attribute<bool>(this, 'auto_accept');
+
   /// Reference to `bandwidth` attribute.
   TfRef<String> get bandwidth => TfRef.attribute<String>(this, 'bandwidth');
 
@@ -172,6 +175,9 @@ final class GoogleNetworkConnectivityTransport extends Resource {
 
   /// Reference to `description` attribute.
   TfRef<String> get description => TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `hub` attribute.
+  TfRef<String> get hub => TfRef.attribute<String>(this, 'hub');
 
   /// Reference to `labels` attribute.
   TfRef<Map<String, String>> get labels =>
@@ -189,6 +195,10 @@ final class GoogleNetworkConnectivityTransport extends Resource {
   /// Reference to `provided_activation_key` attribute.
   TfRef<String> get providedActivationKey =>
       TfRef.attribute<String>(this, 'provided_activation_key');
+
+  /// Reference to `psc_routing_enabled` attribute.
+  TfRef<bool> get pscRoutingEnabled =>
+      TfRef.attribute<bool>(this, 'psc_routing_enabled');
 
   /// Reference to `region` attribute.
   TfRef<String> get region => TfRef.attribute<String>(this, 'region');

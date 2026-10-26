@@ -60,6 +60,40 @@ export 'src/cloud_run/google_cloud_run_service_iam_member.dart'
     show CloudRunServiceIamMemberCondition, GoogleCloudRunServiceIamMember;
 export 'src/cloud_run/google_cloud_run_service_iam_policy.dart'
     show GoogleCloudRunServiceIamPolicy;
+export 'src/cloud_run/google_cloud_run_v2_instance.dart'
+    show
+        CloudRunV2InstanceCloudSqlInstance,
+        CloudRunV2InstanceContainers,
+        CloudRunV2InstanceEmptyDir,
+        CloudRunV2InstanceEnv,
+        CloudRunV2InstanceGcs,
+        CloudRunV2InstanceGrpc,
+        CloudRunV2InstanceHttpGet,
+        CloudRunV2InstanceHttpHeaders,
+        CloudRunV2InstanceItems,
+        CloudRunV2InstanceLivenessProbe,
+        CloudRunV2InstanceMedium,
+        CloudRunV2InstanceNfs,
+        CloudRunV2InstancePorts,
+        CloudRunV2InstanceResources,
+        CloudRunV2InstanceSecret,
+        CloudRunV2InstanceSecretKeyRef,
+        CloudRunV2InstanceStartupProbe,
+        CloudRunV2InstanceTcpSocket,
+        CloudRunV2InstanceValueSource,
+        CloudRunV2InstanceVolumeMounts,
+        CloudRunV2InstanceVolumes,
+        GoogleCloudRunV2Instance;
+export 'src/cloud_run/google_cloud_run_v2_instance_iam_binding.dart'
+    show
+        CloudRunV2InstanceIamBindingCondition,
+        GoogleCloudRunV2InstanceIamBinding;
+export 'src/cloud_run/google_cloud_run_v2_instance_iam_member.dart'
+    show
+        CloudRunV2InstanceIamMemberCondition,
+        GoogleCloudRunV2InstanceIamMember;
+export 'src/cloud_run/google_cloud_run_v2_instance_iam_policy.dart'
+    show GoogleCloudRunV2InstanceIamPolicy;
 export 'src/cloud_run/google_cloud_run_v2_job.dart'
     show
         CloudRunV2JobBinaryAuthorization,
@@ -235,6 +269,8 @@ export 'src/data/google_cloud_run_locations.dart'
 export 'src/data/google_cloud_run_service.dart' show DataGoogleCloudRunService;
 export 'src/data/google_cloud_run_service_iam_policy.dart'
     show DataGoogleCloudRunServiceIamPolicy;
+export 'src/data/google_cloud_run_v2_instance_iam_policy.dart'
+    show DataGoogleCloudRunV2InstanceIamPolicy;
 export 'src/data/google_cloud_run_v2_job.dart' show DataGoogleCloudRunV2Job;
 export 'src/data/google_cloud_run_v2_job_iam_policy.dart'
     show DataGoogleCloudRunV2JobIamPolicy;

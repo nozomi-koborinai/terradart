@@ -78,6 +78,10 @@ final class GoogleGeminiGeminiGcpEnablementSetting extends Resource {
   TfRef<bool> get enableCustomerDataSharing =>
       TfRef.attribute<bool>(this, 'enable_customer_data_sharing');
 
+  /// Reference to `gemini_enterprise_project` attribute.
+  TfRef<String> get geminiEnterpriseProject =>
+      TfRef.attribute<String>(this, 'gemini_enterprise_project');
+
   /// Reference to `gemini_gcp_enablement_setting_id` attribute.
   TfRef<String> get geminiGcpEnablementSettingId =>
       TfRef.attribute<String>(this, 'gemini_gcp_enablement_setting_id');
@@ -95,6 +99,10 @@ final class GoogleGeminiGeminiGcpEnablementSetting extends Resource {
 
   /// Reference to `project` attribute.
   TfRef<String> get project => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `release_channel` attribute.
+  TfRef<String> get releaseChannel =>
+      TfRef.attribute<String>(this, 'release_channel');
 
   /// Reference to `web_grounding_type` attribute.
   TfRef<String> get webGroundingType =>

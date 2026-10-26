@@ -169,14 +169,32 @@ final class VertexAiPersistentResourceMachineSpec {
 /// `google_vertex_ai_persistent_resource` (derived from provider schema).
 @immutable
 final class VertexAiPersistentResourceRuntimeSpec {
-  const VertexAiPersistentResourceRuntimeSpec({this.serviceAccountSpec});
+  const VertexAiPersistentResourceRuntimeSpec({
+    this.raySpec,
+    this.serviceAccountSpec,
+  });
+
+  final VertexAiPersistentResourceRaySpec? raySpec;
 
   final VertexAiPersistentResourceServiceAccountSpec? serviceAccountSpec;
 
   @internal
   Map<String, Object?> encode() => {
+    'ray_spec': ?raySpec?.encode(),
     'service_account_spec': ?serviceAccountSpec?.encode(),
   };
+}
+
+/// Typed helper for the `resource_runtime_spec.ray_spec` block of
+/// `google_vertex_ai_persistent_resource` (derived from provider schema).
+@immutable
+final class VertexAiPersistentResourceRaySpec {
+  const VertexAiPersistentResourceRaySpec({this.imageUri});
+
+  final TfArg<String>? imageUri;
+
+  @internal
+  Map<String, Object?> encode() => {'image_uri': ?imageUri?.toTfJson()};
 }
 
 /// Typed helper for the `resource_runtime_spec.service_account_spec` block of

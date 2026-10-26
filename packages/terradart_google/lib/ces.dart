@@ -67,6 +67,7 @@ export 'src/ces/google_ces_app.dart'
         CesAppSchema,
         CesAppSecuritySettings,
         CesAppSynthesizeSpeechConfigs,
+        CesAppThinkingLevel,
         CesAppTimeZoneSettings,
         CesAppToolMatchingSettings,
         CesAppTurnLevelMetricsThresholds,
@@ -129,6 +130,7 @@ export 'src/ces/google_ces_guardrail.dart'
         CesGuardrailRespondImmediately,
         CesGuardrailResponses,
         CesGuardrailSafetySettings,
+        CesGuardrailThinkingLevel,
         CesGuardrailThreshold,
         CesGuardrailTransferAgent,
         GoogleCesGuardrail;
@@ -167,6 +169,7 @@ export 'src/ces/google_ces_tool.dart'
         CesToolSpec,
         CesToolSummarizationConfig,
         CesToolTextResponseConfig,
+        CesToolThinkingLevel,
         CesToolType,
         CesToolWidgetTool,
         CesToolWidgetType,

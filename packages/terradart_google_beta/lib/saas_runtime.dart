@@ -17,7 +17,10 @@ export 'src/saas_runtime/google_saas_runtime_rollout_kind.dart'
         SaasRuntimeRolloutKindErrorBudget,
         SaasRuntimeRolloutKindUpdateUnitKindStrategy;
 export 'src/saas_runtime/google_saas_runtime_saas.dart'
-    show GoogleSaasRuntimeSaas, SaasRuntimeSaasLocations;
+    show
+        GoogleSaasRuntimeSaas,
+        SaasRuntimeSaasApplicationTemplate,
+        SaasRuntimeSaasLocations;
 export 'src/saas_runtime/google_saas_runtime_tenant.dart'
     show GoogleSaasRuntimeTenant;
 export 'src/saas_runtime/google_saas_runtime_unit.dart'
@@ -25,10 +28,14 @@ export 'src/saas_runtime/google_saas_runtime_unit.dart'
 export 'src/saas_runtime/google_saas_runtime_unit_kind.dart'
     show
         GoogleSaasRuntimeUnitKind,
+        SaasRuntimeUnitKindAppParams,
+        SaasRuntimeUnitKindApplicationTemplateComponent,
+        SaasRuntimeUnitKindCompositeRef,
         SaasRuntimeUnitKindDependencies,
         SaasRuntimeUnitKindFrom,
         SaasRuntimeUnitKindInputVariableMappings,
         SaasRuntimeUnitKindOutputVariableMappings,
+        SaasRuntimeUnitKindScope,
         SaasRuntimeUnitKindTo;
 export 'src/saas_runtime/google_saas_runtime_unit_operation.dart'
     show

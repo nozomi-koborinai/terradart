@@ -680,17 +680,41 @@ final class CesAppRedactionConfig {
 /// `google_ces_app` (derived from provider schema).
 @immutable
 final class CesAppModelSettings {
-  const CesAppModelSettings({this.model, this.temperature});
+  const CesAppModelSettings({this.model, this.temperature, this.thinkingLevel});
 
   final TfArg<String>? model;
 
   final TfArg<num>? temperature;
 
+  final CesAppThinkingLevel? thinkingLevel;
+
   @internal
   Map<String, Object?> encode() => {
     'model': ?model?.toTfJson(),
     'temperature': ?temperature?.toTfJson(),
+    'thinking_level': ?thinkingLevel?.toTfJson(),
   };
+}
+
+/// `thinking_level` — derived from the provider schema description.
+extension type const CesAppThinkingLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  CesAppThinkingLevel.variable(String name) : this._(TfArg.variable(name));
+  CesAppThinkingLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const CesAppThinkingLevel.arg(TfArg<String> arg) : this._(arg);
+
+  static const defaultCase = CesAppThinkingLevel._(TfArgLiteral('DEFAULT'));
+  static const low = CesAppThinkingLevel._(TfArgLiteral('LOW'));
+  static const medium = CesAppThinkingLevel._(TfArgLiteral('MEDIUM'));
+  static const high = CesAppThinkingLevel._(TfArgLiteral('HIGH'));
+
+  static const List<CesAppThinkingLevel> values = [
+    defaultCase,
+    low,
+    medium,
+    high,
+  ];
 }
 
 /// Typed helper for the `time_zone_settings` block of

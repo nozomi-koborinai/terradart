@@ -90,9 +90,12 @@ final class AccessContextManagerGcpUserAccessBindingSubjectPrincipal
 @immutable
 final class AccessContextManagerGcpUserAccessBindingPrincipal {
   const AccessContextManagerGcpUserAccessBindingPrincipal({
+    this.federatedPrincipal,
     this.serviceAccount,
     this.serviceAccountProjectNumber,
   });
+
+  final TfArg<String>? federatedPrincipal;
 
   final RefTo<GoogleServiceAccount>? serviceAccount;
 
@@ -100,6 +103,7 @@ final class AccessContextManagerGcpUserAccessBindingPrincipal {
 
   @internal
   Map<String, Object?> encode() => {
+    'federated_principal': ?federatedPrincipal?.toTfJson(),
     'service_account': ?serviceAccount?.encodeAs('email').toTfJson(),
     'service_account_project_number': ?serviceAccountProjectNumber?.toTfJson(),
   };
@@ -247,14 +251,19 @@ final class AccessContextManagerGcpUserAccessBindingScope {
 final class AccessContextManagerGcpUserAccessBindingClientScope {
   const AccessContextManagerGcpUserAccessBindingClientScope({
     this.restrictedClientApplication,
+    this.restrictedProject,
   });
 
   final AccessContextManagerGcpUserAccessBindingRestrictedClientApplication?
   restrictedClientApplication;
 
+  final AccessContextManagerGcpUserAccessBindingRestrictedProject?
+  restrictedProject;
+
   @internal
   Map<String, Object?> encode() => {
     'restricted_client_application': ?restrictedClientApplication?.encode(),
+    'restricted_project': ?restrictedProject?.encode(),
   };
 }
 
@@ -276,6 +285,20 @@ final class AccessContextManagerGcpUserAccessBindingRestrictedClientApplication 
     'client_id': ?clientId?.toTfJson(),
     'name': ?name?.toTfJson(),
   };
+}
+
+/// Typed helper for the `scoped_access_settings.scope.client_scope.restricted_project` block of
+/// `google_access_context_manager_gcp_user_access_binding` (derived from provider schema).
+@immutable
+final class AccessContextManagerGcpUserAccessBindingRestrictedProject {
+  const AccessContextManagerGcpUserAccessBindingRestrictedProject({
+    required this.name,
+  });
+
+  final TfArg<String> name;
+
+  @internal
+  Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 
 /// Factory wrapper for `google_access_context_manager_gcp_user_access_binding`.

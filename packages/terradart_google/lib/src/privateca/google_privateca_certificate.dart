@@ -691,4 +691,8 @@ final class GooglePrivatecaCertificate extends Resource {
 
   /// Reference to `project` attribute.
   TfRef<String> get project => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `requested_not_before_time` attribute.
+  TfRef<String> get requestedNotBeforeTime =>
+      TfRef.attribute<String>(this, 'requested_not_before_time');
 }

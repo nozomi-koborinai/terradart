@@ -7,6 +7,26 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_saas_runtime_saas`.
 const Set<String> _googleSaasRuntimeSaasSensitive = <String>{};
 
+/// Typed helper for the `application_template` block of
+/// `google_saas_runtime_saas` (derived from provider schema).
+@immutable
+final class SaasRuntimeSaasApplicationTemplate {
+  const SaasRuntimeSaasApplicationTemplate({
+    required this.applicationTemplate,
+    this.revision,
+  });
+
+  final TfArg<String> applicationTemplate;
+
+  final TfArg<String>? revision;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'application_template': applicationTemplate.toTfJson(),
+    'revision': ?revision?.toTfJson(),
+  };
+}
+
 /// Typed helper for the `locations` block of
 /// `google_saas_runtime_saas` (derived from provider schema).
 @immutable
@@ -35,6 +55,7 @@ final class GoogleSaasRuntimeSaas extends Resource {
     required TfArg<String> location,
     TfArg<String>? project,
     required TfArg<String> saasId,
+    SaasRuntimeSaasApplicationTemplate? applicationTemplate,
     List<SaasRuntimeSaasLocations>? locations,
     super.lifecycle,
     super.dependsOn,
@@ -49,6 +70,10 @@ final class GoogleSaasRuntimeSaas extends Resource {
            'location': location,
            'project': ?project,
            'saas_id': saasId,
+           if (applicationTemplate != null)
+             'application_template': TfArg.literal(
+               applicationTemplate.encode(),
+             ),
            if (locations != null)
              'locations': TfArg.literal([
                for (final e in locations) e.encode(),
@@ -72,6 +97,14 @@ final class GoogleSaasRuntimeSaas extends Resource {
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
+  /// Reference to `blueprint_repo` attribute.
+  TfRef<String> get blueprintRepo =>
+      TfRef.attribute<String>(this, 'blueprint_repo');
+
+  /// Reference to `conditions` attribute.
+  TfRef<List<Map<String, Object?>>> get conditions =>
+      TfRef.attribute<List<Map<String, Object?>>>(this, 'conditions');
+
   /// Reference to `create_time` attribute.
   TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
 
@@ -83,8 +116,15 @@ final class GoogleSaasRuntimeSaas extends Resource {
   TfRef<Map<String, String>> get effectiveLabels =>
       TfRef.attribute<Map<String, String>>(this, 'effective_labels');
 
+  /// Reference to `error` attribute.
+  TfRef<List<Map<String, Object?>>> get error =>
+      TfRef.attribute<List<Map<String, Object?>>>(this, 'error');
+
   /// Reference to `etag` attribute.
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `state` attribute.
+  TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 
   /// Reference to `terraform_labels` attribute.
   TfRef<Map<String, String>> get terraformLabels =>

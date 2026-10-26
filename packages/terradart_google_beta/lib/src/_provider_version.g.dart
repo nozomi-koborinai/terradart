@@ -2,4 +2,4 @@
 // Run `terradart wrap` to regenerate.
 
 /// The provider release this package was generated from.
-const String terradartProviderVersion = '8.7.0';
+const String terradartProviderVersion = '8.8.1';

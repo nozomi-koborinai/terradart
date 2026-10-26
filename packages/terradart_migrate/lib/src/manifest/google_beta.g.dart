@@ -7178,6 +7178,11 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateGetter(tfName: 'name', dartName: 'name', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(
+          tfName: 'application_template_component',
+          dartName: 'applicationTemplateComponent',
+          dartType: 'List<Map<String, Object?>>',
+        ),
+        MigrateGetter(
           tfName: 'create_time',
           dartName: 'createTime',
           dartType: 'String',
@@ -7466,6 +7471,14 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
+          tfName: 'application_template',
+          dartName: 'applicationTemplate',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'SaasRuntimeSaasApplicationTemplate',
+        ),
+        MigrateSlot(
           tfName: 'locations',
           dartName: 'locations',
           kind: MigrateSlotKind.helper,
@@ -7478,6 +7491,16 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'name', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'blueprint_repo',
+          dartName: 'blueprintRepo',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'conditions',
+          dartName: 'conditions',
+          dartType: 'List<Map<String, Object?>>',
+        ),
         MigrateGetter(
           tfName: 'create_time',
           dartName: 'createTime',
@@ -7493,7 +7516,13 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           dartName: 'effectiveLabels',
           dartType: 'Map<String, String>',
         ),
+        MigrateGetter(
+          tfName: 'error',
+          dartName: 'error',
+          dartType: 'List<Map<String, Object?>>',
+        ),
         MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(tfName: 'state', dartName: 'state', dartType: 'String'),
         MigrateGetter(
           tfName: 'terraform_labels',
           dartName: 'terraformLabels',
@@ -7681,6 +7710,13 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           dartType: 'Map<String, String>',
         ),
         MigrateSlot(
+          tfName: 'application',
+          dartName: 'application',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
           tfName: 'deletion_policy',
           dartName: 'deletionPolicy',
           kind: MigrateSlotKind.scalar,
@@ -7836,6 +7872,11 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           dartType: 'Map<String, String>',
         ),
         MigrateGetter(
+          tfName: 'application',
+          dartName: 'application',
+          dartType: 'String',
+        ),
+        MigrateGetter(
           tfName: 'deletion_policy',
           dartName: 'deletionPolicy',
           dartType: 'String',
@@ -7934,6 +7975,22 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: true,
           dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'app_params',
+          dartName: 'appParams',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'SaasRuntimeUnitKindAppParams',
+        ),
+        MigrateSlot(
+          tfName: 'application_template_component',
+          dartName: 'applicationTemplateComponent',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'SaasRuntimeUnitKindApplicationTemplateComponent',
         ),
         MigrateSlot(
           tfName: 'dependencies',
@@ -14743,12 +14800,97 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'SaasRuntimeSaasApplicationTemplate': MigrateHelper(
+      className: 'SaasRuntimeSaasApplicationTemplate',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'application_template',
+          dartName: 'applicationTemplate',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'revision',
+          dartName: 'revision',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
     'SaasRuntimeSaasLocations': MigrateHelper(
       className: 'SaasRuntimeSaasLocations',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'name',
           dartName: 'name',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'SaasRuntimeUnitKindAppParams': MigrateHelper(
+      className: 'SaasRuntimeUnitKindAppParams',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'group',
+          dartName: 'group',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'scope',
+          dartName: 'scope',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'SaasRuntimeUnitKindScope',
+        ),
+      ],
+    ),
+    'SaasRuntimeUnitKindApplicationTemplateComponent': MigrateHelper(
+      className: 'SaasRuntimeUnitKindApplicationTemplateComponent',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'component',
+          dartName: 'component',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'revision',
+          dartName: 'revision',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'composite_ref',
+          dartName: 'compositeRef',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'SaasRuntimeUnitKindCompositeRef',
+        ),
+      ],
+    ),
+    'SaasRuntimeUnitKindCompositeRef': MigrateHelper(
+      className: 'SaasRuntimeUnitKindCompositeRef',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'application_template',
+          dartName: 'applicationTemplate',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'revision',
+          dartName: 'revision',
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
@@ -14846,6 +14988,18 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           required: false,
           wrapped: false,
           helper: 'SaasRuntimeUnitKindTo',
+        ),
+      ],
+    ),
+    'SaasRuntimeUnitKindScope': MigrateHelper(
+      className: 'SaasRuntimeUnitKindScope',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'type',
+          dartName: 'type',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
         ),
       ],
     ),

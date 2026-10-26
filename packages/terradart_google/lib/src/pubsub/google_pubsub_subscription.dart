@@ -24,7 +24,7 @@ const Set<String> _googlePubsubSubscriptionSensitive = <String>{};
 // Factory
 // ===========================================================================
 
-/// At most one of `bigquery_config`, `push_config`, `cloud_storage_config` on `google_pubsub_subscription`: the provider rejects
+/// At most one of `bigquery_config`, `push_config`, `cloud_storage_config`, `bigtable_config` on `google_pubsub_subscription`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
 ///
@@ -46,6 +46,11 @@ sealed class PubsubSubscriptionDelivery {
   const factory PubsubSubscriptionDelivery.cloudStorageConfig(
     PubsubSubscriptionCloudStorageConfig cloudStorageConfig,
   ) = PubsubSubscriptionDeliveryCloudStorageConfig;
+
+  /// Sets `bigtable_config`.
+  const factory PubsubSubscriptionDelivery.bigtableConfig(
+    PubsubSubscriptionBigtableConfig bigtableConfig,
+  ) = PubsubSubscriptionDeliveryBigtableConfig;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -128,6 +133,28 @@ final class PubsubSubscriptionDeliveryCloudStorageConfig
   };
 }
 
+/// The [PubsubSubscriptionDelivery.bigtableConfig] choice: sets `bigtable_config`.
+final class PubsubSubscriptionDeliveryBigtableConfig
+    extends PubsubSubscriptionDelivery {
+  const PubsubSubscriptionDeliveryBigtableConfig(this.bigtableConfig);
+
+  final PubsubSubscriptionBigtableConfig bigtableConfig;
+
+  @internal
+  @override
+  String get blockKey => 'bigtable_config';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'bigtable_config': bigtableConfig.encode()};
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'bigtable_config': TfArg.literal(bigtableConfig.encode()),
+  };
+}
+
 /// Typed helper for the `bigquery_config` block of
 /// `google_pubsub_subscription` (derived from provider schema).
 @immutable
@@ -162,6 +189,128 @@ final class PubsubSubscriptionBigqueryConfig {
     'use_topic_schema': ?useTopicSchema?.toTfJson(),
     'write_metadata': ?writeMetadata?.toTfJson(),
   };
+}
+
+/// Typed helper for the `bigtable_config` block of
+/// `google_pubsub_subscription` (derived from provider schema).
+@immutable
+final class PubsubSubscriptionBigtableConfig {
+  const PubsubSubscriptionBigtableConfig({
+    this.appProfileId,
+    this.serviceAccountEmail,
+    required this.table,
+    this.writeMetadata,
+    this.columnFamilyMapping,
+  });
+
+  final TfArg<String>? appProfileId;
+
+  final RefTo<GoogleServiceAccount>? serviceAccountEmail;
+
+  final TfArg<String> table;
+
+  final TfArg<bool>? writeMetadata;
+
+  final PubsubSubscriptionColumnFamilyMapping? columnFamilyMapping;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'app_profile_id': ?appProfileId?.toTfJson(),
+    'service_account_email': ?serviceAccountEmail?.encodeAs('email').toTfJson(),
+    'table': table.toTfJson(),
+    'write_metadata': ?writeMetadata?.toTfJson(),
+    'column_family_mapping': ?columnFamilyMapping?.encode(),
+  };
+}
+
+/// At most one of `row_key_schema`, `delimited_key` on the `bigtable_config.column_family_mapping` block of `google_pubsub_subscription`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.rowKeySchema(...)`.
+sealed class PubsubSubscriptionColumnFamilyMapping {
+  const PubsubSubscriptionColumnFamilyMapping();
+
+  /// Sets `row_key_schema`.
+  const factory PubsubSubscriptionColumnFamilyMapping.rowKeySchema([
+    PubsubSubscriptionRowKeySchema rowKeySchema,
+  ]) = PubsubSubscriptionColumnFamilyMappingRowKeySchema;
+
+  /// Sets `delimited_key`.
+  const factory PubsubSubscriptionColumnFamilyMapping.delimitedKey(
+    PubsubSubscriptionDelimitedKey delimitedKey,
+  ) = PubsubSubscriptionColumnFamilyMappingDelimitedKey;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [PubsubSubscriptionColumnFamilyMapping.rowKeySchema] choice: sets `row_key_schema`.
+final class PubsubSubscriptionColumnFamilyMappingRowKeySchema
+    extends PubsubSubscriptionColumnFamilyMapping {
+  const PubsubSubscriptionColumnFamilyMappingRowKeySchema([
+    this.rowKeySchema = const PubsubSubscriptionRowKeySchema(),
+  ]);
+
+  final PubsubSubscriptionRowKeySchema rowKeySchema;
+
+  @internal
+  @override
+  String get blockKey => 'row_key_schema';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'row_key_schema': rowKeySchema.encode()};
+}
+
+/// The [PubsubSubscriptionColumnFamilyMapping.delimitedKey] choice: sets `delimited_key`.
+final class PubsubSubscriptionColumnFamilyMappingDelimitedKey
+    extends PubsubSubscriptionColumnFamilyMapping {
+  const PubsubSubscriptionColumnFamilyMappingDelimitedKey(this.delimitedKey);
+
+  final PubsubSubscriptionDelimitedKey delimitedKey;
+
+  @internal
+  @override
+  String get blockKey => 'delimited_key';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'delimited_key': delimitedKey.encode()};
+}
+
+/// Typed helper for the `bigtable_config.column_family_mapping.delimited_key` block of
+/// `google_pubsub_subscription` (derived from provider schema).
+@immutable
+final class PubsubSubscriptionDelimitedKey {
+  const PubsubSubscriptionDelimitedKey({
+    this.delimiter,
+    required this.keyFields,
+  });
+
+  final TfArg<String>? delimiter;
+
+  final TfArg<List<String>> keyFields;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'delimiter': ?delimiter?.toTfJson(),
+    'key_fields': keyFields.toTfJson(),
+  };
+}
+
+/// Typed helper for the `bigtable_config.column_family_mapping.row_key_schema` block of
+/// `google_pubsub_subscription` (derived from provider schema).
+@immutable
+final class PubsubSubscriptionRowKeySchema {
+  const PubsubSubscriptionRowKeySchema();
+
+  @internal
+  Map<String, Object?> encode() => {};
 }
 
 /// Typed helper for the `cloud_storage_config` block of
