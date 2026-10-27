@@ -43,23 +43,23 @@ extension type const KubernetesFluxConfigurationScope._(TfArg<String> _)
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.blobStorage(...)`.
-sealed class KubernetesFluxConfigurationBlobStorageOrBucketOrGitRepository {
-  const KubernetesFluxConfigurationBlobStorageOrBucketOrGitRepository();
+sealed class KubernetesFluxConfigurationSource {
+  const KubernetesFluxConfigurationSource();
 
   /// Sets `blob_storage`.
-  const factory KubernetesFluxConfigurationBlobStorageOrBucketOrGitRepository.blobStorage(
+  const factory KubernetesFluxConfigurationSource.blobStorage(
     KubernetesFluxConfigurationBlobStorage blobStorage,
-  ) = KubernetesFluxConfigurationBlobStorageOrBucketOrGitRepositoryBlobStorage;
+  ) = KubernetesFluxConfigurationSourceBlobStorage;
 
   /// Sets `bucket`.
-  const factory KubernetesFluxConfigurationBlobStorageOrBucketOrGitRepository.bucket(
+  const factory KubernetesFluxConfigurationSource.bucket(
     KubernetesFluxConfigurationBucket bucket,
-  ) = KubernetesFluxConfigurationBlobStorageOrBucketOrGitRepositoryBucket;
+  ) = KubernetesFluxConfigurationSourceBucket;
 
   /// Sets `git_repository`.
-  const factory KubernetesFluxConfigurationBlobStorageOrBucketOrGitRepository.gitRepository(
+  const factory KubernetesFluxConfigurationSource.gitRepository(
     KubernetesFluxConfigurationGitRepository gitRepository,
-  ) = KubernetesFluxConfigurationBlobStorageOrBucketOrGitRepositoryChoice;
+  ) = KubernetesFluxConfigurationSourceGitRepository;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -74,12 +74,10 @@ sealed class KubernetesFluxConfigurationBlobStorageOrBucketOrGitRepository {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [KubernetesFluxConfigurationBlobStorageOrBucketOrGitRepository.blobStorage] choice: sets `blob_storage`.
-final class KubernetesFluxConfigurationBlobStorageOrBucketOrGitRepositoryBlobStorage
-    extends KubernetesFluxConfigurationBlobStorageOrBucketOrGitRepository {
-  const KubernetesFluxConfigurationBlobStorageOrBucketOrGitRepositoryBlobStorage(
-    this.blobStorage,
-  );
+/// The [KubernetesFluxConfigurationSource.blobStorage] choice: sets `blob_storage`.
+final class KubernetesFluxConfigurationSourceBlobStorage
+    extends KubernetesFluxConfigurationSource {
+  const KubernetesFluxConfigurationSourceBlobStorage(this.blobStorage);
 
   final KubernetesFluxConfigurationBlobStorage blobStorage;
 
@@ -98,12 +96,10 @@ final class KubernetesFluxConfigurationBlobStorageOrBucketOrGitRepositoryBlobSto
   };
 }
 
-/// The [KubernetesFluxConfigurationBlobStorageOrBucketOrGitRepository.bucket] choice: sets `bucket`.
-final class KubernetesFluxConfigurationBlobStorageOrBucketOrGitRepositoryBucket
-    extends KubernetesFluxConfigurationBlobStorageOrBucketOrGitRepository {
-  const KubernetesFluxConfigurationBlobStorageOrBucketOrGitRepositoryBucket(
-    this.bucket,
-  );
+/// The [KubernetesFluxConfigurationSource.bucket] choice: sets `bucket`.
+final class KubernetesFluxConfigurationSourceBucket
+    extends KubernetesFluxConfigurationSource {
+  const KubernetesFluxConfigurationSourceBucket(this.bucket);
 
   final KubernetesFluxConfigurationBucket bucket;
 
@@ -122,12 +118,10 @@ final class KubernetesFluxConfigurationBlobStorageOrBucketOrGitRepositoryBucket
   };
 }
 
-/// The [KubernetesFluxConfigurationBlobStorageOrBucketOrGitRepository.gitRepository] choice: sets `git_repository`.
-final class KubernetesFluxConfigurationBlobStorageOrBucketOrGitRepositoryChoice
-    extends KubernetesFluxConfigurationBlobStorageOrBucketOrGitRepository {
-  const KubernetesFluxConfigurationBlobStorageOrBucketOrGitRepositoryChoice(
-    this.gitRepository,
-  );
+/// The [KubernetesFluxConfigurationSource.gitRepository] choice: sets `git_repository`.
+final class KubernetesFluxConfigurationSourceGitRepository
+    extends KubernetesFluxConfigurationSource {
+  const KubernetesFluxConfigurationSourceGitRepository(this.gitRepository);
 
   final KubernetesFluxConfigurationGitRepository gitRepository;
 
@@ -151,14 +145,13 @@ final class KubernetesFluxConfigurationBlobStorageOrBucketOrGitRepositoryChoice
 @immutable
 final class KubernetesFluxConfigurationBlobStorage {
   const KubernetesFluxConfigurationBlobStorage({
-    required this.accountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipal,
+    required this.credentials,
     required this.containerId,
     this.syncIntervalInSeconds,
     this.timeoutInSeconds,
   });
 
-  final KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipal
-  accountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipal;
+  final KubernetesFluxConfigurationBlobStorageCredentials credentials;
 
   final TfArg<String> containerId;
 
@@ -168,8 +161,7 @@ final class KubernetesFluxConfigurationBlobStorage {
 
   @internal
   Map<String, Object?> encode() => {
-    ...accountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipal
-        .encode(),
+    ...credentials.encode(),
     'container_id': containerId.toTfJson(),
     'sync_interval_in_seconds': ?syncIntervalInSeconds?.toTfJson(),
     'timeout_in_seconds': ?timeoutInSeconds?.toTfJson(),
@@ -180,33 +172,33 @@ final class KubernetesFluxConfigurationBlobStorage {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.accountKey(...)`.
-sealed class KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipal {
-  const KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipal();
+sealed class KubernetesFluxConfigurationBlobStorageCredentials {
+  const KubernetesFluxConfigurationBlobStorageCredentials();
 
   /// Sets `account_key`.
-  const factory KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipal.accountKey(
+  const factory KubernetesFluxConfigurationBlobStorageCredentials.accountKey(
     Sensitive<String> accountKey,
-  ) = KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipalAccountKey;
+  ) = KubernetesFluxConfigurationBlobStorageCredentialsAccountKey;
 
   /// Sets `local_auth_reference`.
-  const factory KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipal.localAuthReference(
+  const factory KubernetesFluxConfigurationBlobStorageCredentials.localAuthReference(
     TfArg<String> localAuthReference,
-  ) = KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipalLocalAuthReference;
+  ) = KubernetesFluxConfigurationBlobStorageCredentialsLocalAuthReference;
 
   /// Sets `managed_identity`.
-  const factory KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipal.managedIdentity(
+  const factory KubernetesFluxConfigurationBlobStorageCredentials.managedIdentity(
     KubernetesFluxConfigurationManagedIdentity managedIdentity,
-  ) = KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipalManagedIdentity;
+  ) = KubernetesFluxConfigurationBlobStorageCredentialsManagedIdentity;
 
   /// Sets `sas_token`.
-  const factory KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipal.sasToken(
+  const factory KubernetesFluxConfigurationBlobStorageCredentials.sasToken(
     Sensitive<String> sasToken,
-  ) = KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipalSasToken;
+  ) = KubernetesFluxConfigurationBlobStorageCredentialsSasToken;
 
   /// Sets `service_principal`.
-  const factory KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipal.servicePrincipal(
+  const factory KubernetesFluxConfigurationBlobStorageCredentials.servicePrincipal(
     KubernetesFluxConfigurationServicePrincipal servicePrincipal,
-  ) = KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipalChoice;
+  ) = KubernetesFluxConfigurationBlobStorageCredentialsServicePrincipal;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -216,11 +208,10 @@ sealed class KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenc
   Map<String, Object?> encode();
 }
 
-/// The [KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipal.accountKey] choice: sets `account_key`.
-final class KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipalAccountKey
-    extends
-        KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipal {
-  const KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipalAccountKey(
+/// The [KubernetesFluxConfigurationBlobStorageCredentials.accountKey] choice: sets `account_key`.
+final class KubernetesFluxConfigurationBlobStorageCredentialsAccountKey
+    extends KubernetesFluxConfigurationBlobStorageCredentials {
+  const KubernetesFluxConfigurationBlobStorageCredentialsAccountKey(
     this.accountKey,
   );
 
@@ -235,11 +226,10 @@ final class KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReference
   Map<String, Object?> encode() => {'account_key': accountKey.toTfJson()};
 }
 
-/// The [KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipal.localAuthReference] choice: sets `local_auth_reference`.
-final class KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipalLocalAuthReference
-    extends
-        KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipal {
-  const KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipalLocalAuthReference(
+/// The [KubernetesFluxConfigurationBlobStorageCredentials.localAuthReference] choice: sets `local_auth_reference`.
+final class KubernetesFluxConfigurationBlobStorageCredentialsLocalAuthReference
+    extends KubernetesFluxConfigurationBlobStorageCredentials {
+  const KubernetesFluxConfigurationBlobStorageCredentialsLocalAuthReference(
     this.localAuthReference,
   );
 
@@ -256,11 +246,10 @@ final class KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReference
   };
 }
 
-/// The [KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipal.managedIdentity] choice: sets `managed_identity`.
-final class KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipalManagedIdentity
-    extends
-        KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipal {
-  const KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipalManagedIdentity(
+/// The [KubernetesFluxConfigurationBlobStorageCredentials.managedIdentity] choice: sets `managed_identity`.
+final class KubernetesFluxConfigurationBlobStorageCredentialsManagedIdentity
+    extends KubernetesFluxConfigurationBlobStorageCredentials {
+  const KubernetesFluxConfigurationBlobStorageCredentialsManagedIdentity(
     this.managedIdentity,
   );
 
@@ -277,11 +266,10 @@ final class KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReference
   };
 }
 
-/// The [KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipal.sasToken] choice: sets `sas_token`.
-final class KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipalSasToken
-    extends
-        KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipal {
-  const KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipalSasToken(
+/// The [KubernetesFluxConfigurationBlobStorageCredentials.sasToken] choice: sets `sas_token`.
+final class KubernetesFluxConfigurationBlobStorageCredentialsSasToken
+    extends KubernetesFluxConfigurationBlobStorageCredentials {
+  const KubernetesFluxConfigurationBlobStorageCredentialsSasToken(
     this.sasToken,
   );
 
@@ -296,11 +284,10 @@ final class KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReference
   Map<String, Object?> encode() => {'sas_token': sasToken.toTfJson()};
 }
 
-/// The [KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipal.servicePrincipal] choice: sets `service_principal`.
-final class KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipalChoice
-    extends
-        KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipal {
-  const KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipalChoice(
+/// The [KubernetesFluxConfigurationBlobStorageCredentials.servicePrincipal] choice: sets `service_principal`.
+final class KubernetesFluxConfigurationBlobStorageCredentialsServicePrincipal
+    extends KubernetesFluxConfigurationBlobStorageCredentials {
+  const KubernetesFluxConfigurationBlobStorageCredentialsServicePrincipal(
     this.servicePrincipal,
   );
 
@@ -427,7 +414,7 @@ final class KubernetesFluxConfigurationClientSecret
 @immutable
 final class KubernetesFluxConfigurationBucket {
   const KubernetesFluxConfigurationBucket({
-    required this.accessKeyOrLocalAuthReference,
+    required this.credentials,
     required this.bucketName,
     this.secretKeyBase64,
     this.syncIntervalInSeconds,
@@ -436,8 +423,7 @@ final class KubernetesFluxConfigurationBucket {
     required this.url,
   });
 
-  final KubernetesFluxConfigurationBucketAccessKeyOrLocalAuthReference
-  accessKeyOrLocalAuthReference;
+  final KubernetesFluxConfigurationBucketCredentials credentials;
 
   final TfArg<String> bucketName;
 
@@ -453,7 +439,7 @@ final class KubernetesFluxConfigurationBucket {
 
   @internal
   Map<String, Object?> encode() => {
-    ...accessKeyOrLocalAuthReference.encode(),
+    ...credentials.encode(),
     'bucket_name': bucketName.toTfJson(),
     'secret_key_base64': ?secretKeyBase64?.toTfJson(),
     'sync_interval_in_seconds': ?syncIntervalInSeconds?.toTfJson(),
@@ -467,18 +453,18 @@ final class KubernetesFluxConfigurationBucket {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.accessKey(...)`.
-sealed class KubernetesFluxConfigurationBucketAccessKeyOrLocalAuthReference {
-  const KubernetesFluxConfigurationBucketAccessKeyOrLocalAuthReference();
+sealed class KubernetesFluxConfigurationBucketCredentials {
+  const KubernetesFluxConfigurationBucketCredentials();
 
   /// Sets `access_key`.
-  const factory KubernetesFluxConfigurationBucketAccessKeyOrLocalAuthReference.accessKey(
+  const factory KubernetesFluxConfigurationBucketCredentials.accessKey(
     TfArg<String> accessKey,
-  ) = KubernetesFluxConfigurationBucketAccessKeyOrLocalAuthReferenceAccessKey;
+  ) = KubernetesFluxConfigurationBucketCredentialsAccessKey;
 
   /// Sets `local_auth_reference`.
-  const factory KubernetesFluxConfigurationBucketAccessKeyOrLocalAuthReference.localAuthReference(
+  const factory KubernetesFluxConfigurationBucketCredentials.localAuthReference(
     TfArg<String> localAuthReference,
-  ) = KubernetesFluxConfigurationBucketAccessKeyOrLocalAuthReferenceChoice;
+  ) = KubernetesFluxConfigurationBucketCredentialsLocalAuthReference;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -488,12 +474,10 @@ sealed class KubernetesFluxConfigurationBucketAccessKeyOrLocalAuthReference {
   Map<String, Object?> encode();
 }
 
-/// The [KubernetesFluxConfigurationBucketAccessKeyOrLocalAuthReference.accessKey] choice: sets `access_key`.
-final class KubernetesFluxConfigurationBucketAccessKeyOrLocalAuthReferenceAccessKey
-    extends KubernetesFluxConfigurationBucketAccessKeyOrLocalAuthReference {
-  const KubernetesFluxConfigurationBucketAccessKeyOrLocalAuthReferenceAccessKey(
-    this.accessKey,
-  );
+/// The [KubernetesFluxConfigurationBucketCredentials.accessKey] choice: sets `access_key`.
+final class KubernetesFluxConfigurationBucketCredentialsAccessKey
+    extends KubernetesFluxConfigurationBucketCredentials {
+  const KubernetesFluxConfigurationBucketCredentialsAccessKey(this.accessKey);
 
   final TfArg<String> accessKey;
 
@@ -506,10 +490,10 @@ final class KubernetesFluxConfigurationBucketAccessKeyOrLocalAuthReferenceAccess
   Map<String, Object?> encode() => {'access_key': accessKey.toTfJson()};
 }
 
-/// The [KubernetesFluxConfigurationBucketAccessKeyOrLocalAuthReference.localAuthReference] choice: sets `local_auth_reference`.
-final class KubernetesFluxConfigurationBucketAccessKeyOrLocalAuthReferenceChoice
-    extends KubernetesFluxConfigurationBucketAccessKeyOrLocalAuthReference {
-  const KubernetesFluxConfigurationBucketAccessKeyOrLocalAuthReferenceChoice(
+/// The [KubernetesFluxConfigurationBucketCredentials.localAuthReference] choice: sets `local_auth_reference`.
+final class KubernetesFluxConfigurationBucketCredentialsLocalAuthReference
+    extends KubernetesFluxConfigurationBucketCredentials {
+  const KubernetesFluxConfigurationBucketCredentialsLocalAuthReference(
     this.localAuthReference,
   );
 
@@ -721,8 +705,7 @@ final class AzurermKubernetesFluxConfiguration extends Resource {
     required TfArg<String> name,
     required TfArg<String> namespace,
     KubernetesFluxConfigurationScope? scope,
-    required KubernetesFluxConfigurationBlobStorageOrBucketOrGitRepository
-    blobStorageOrBucketOrGitRepository,
+    required KubernetesFluxConfigurationSource source,
     required List<KubernetesFluxConfigurationKustomizations> kustomizations,
     super.lifecycle,
     super.dependsOn,
@@ -737,7 +720,7 @@ final class AzurermKubernetesFluxConfiguration extends Resource {
            'name': name,
            'namespace': namespace,
            'scope': ?scope,
-           ...blobStorageOrBucketOrGitRepository.argMap,
+           ...source.argMap,
            'kustomizations': TfArg.literal([
              for (final e in kustomizations) e.encode(),
            ]),

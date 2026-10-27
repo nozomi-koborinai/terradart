@@ -30,9 +30,9 @@ export 'src/machine_learning/azurerm_machine_learning_datastore_datalake_gen2.da
 export 'src/machine_learning/azurerm_machine_learning_datastore_fileshare.dart'
     show
         AzurermMachineLearningDatastoreFileshare,
-        MachineLearningDatastoreFileshareAccountKeyOrSharedAccessSignature,
-        MachineLearningDatastoreFileshareAccountKeyOrSharedAccessSignatureAccountKey,
-        MachineLearningDatastoreFileshareAccountKeyOrSharedAccessSignatureChoice,
+        MachineLearningDatastoreFileshareCredentials,
+        MachineLearningDatastoreFileshareCredentialsAccountKey,
+        MachineLearningDatastoreFileshareCredentialsSharedAccessSignature,
         MachineLearningDatastoreFileshareServiceDataIdentity;
 export 'src/machine_learning/azurerm_machine_learning_inference_cluster.dart'
     show

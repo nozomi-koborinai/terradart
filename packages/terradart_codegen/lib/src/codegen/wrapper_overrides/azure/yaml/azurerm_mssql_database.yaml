@@ -4,3 +4,7 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 deriveExactlyOne: true
+
+sealedNames:
+  "create_mode, import": creation
+  "elastic_pool_id, maintenance_configuration_name": service_configuration

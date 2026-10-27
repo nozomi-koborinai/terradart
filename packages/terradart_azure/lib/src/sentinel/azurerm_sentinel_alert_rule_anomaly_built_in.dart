@@ -34,18 +34,18 @@ extension type const SentinelAlertRuleAnomalyBuiltInMode._(TfArg<String> _)
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.displayName(...)`.
-sealed class SentinelAlertRuleAnomalyBuiltInDisplayNameOrName {
-  const SentinelAlertRuleAnomalyBuiltInDisplayNameOrName();
+sealed class SentinelAlertRuleAnomalyBuiltInIdentifier {
+  const SentinelAlertRuleAnomalyBuiltInIdentifier();
 
   /// Sets `display_name`.
-  const factory SentinelAlertRuleAnomalyBuiltInDisplayNameOrName.displayName(
+  const factory SentinelAlertRuleAnomalyBuiltInIdentifier.displayName(
     TfArg<String> displayName,
-  ) = SentinelAlertRuleAnomalyBuiltInDisplayNameOrNameDisplayName;
+  ) = SentinelAlertRuleAnomalyBuiltInIdentifierDisplayName;
 
   /// Sets `name`.
-  const factory SentinelAlertRuleAnomalyBuiltInDisplayNameOrName.name(
+  const factory SentinelAlertRuleAnomalyBuiltInIdentifier.name(
     TfArg<String> name,
-  ) = SentinelAlertRuleAnomalyBuiltInDisplayNameOrNameChoice;
+  ) = SentinelAlertRuleAnomalyBuiltInIdentifierName;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -60,12 +60,10 @@ sealed class SentinelAlertRuleAnomalyBuiltInDisplayNameOrName {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [SentinelAlertRuleAnomalyBuiltInDisplayNameOrName.displayName] choice: sets `display_name`.
-final class SentinelAlertRuleAnomalyBuiltInDisplayNameOrNameDisplayName
-    extends SentinelAlertRuleAnomalyBuiltInDisplayNameOrName {
-  const SentinelAlertRuleAnomalyBuiltInDisplayNameOrNameDisplayName(
-    this.displayName,
-  );
+/// The [SentinelAlertRuleAnomalyBuiltInIdentifier.displayName] choice: sets `display_name`.
+final class SentinelAlertRuleAnomalyBuiltInIdentifierDisplayName
+    extends SentinelAlertRuleAnomalyBuiltInIdentifier {
+  const SentinelAlertRuleAnomalyBuiltInIdentifierDisplayName(this.displayName);
 
   final TfArg<String> displayName;
 
@@ -82,10 +80,10 @@ final class SentinelAlertRuleAnomalyBuiltInDisplayNameOrNameDisplayName
   Map<String, TfArg<Object?>> get argMap => {'display_name': displayName};
 }
 
-/// The [SentinelAlertRuleAnomalyBuiltInDisplayNameOrName.name] choice: sets `name`.
-final class SentinelAlertRuleAnomalyBuiltInDisplayNameOrNameChoice
-    extends SentinelAlertRuleAnomalyBuiltInDisplayNameOrName {
-  const SentinelAlertRuleAnomalyBuiltInDisplayNameOrNameChoice(this.name);
+/// The [SentinelAlertRuleAnomalyBuiltInIdentifier.name] choice: sets `name`.
+final class SentinelAlertRuleAnomalyBuiltInIdentifierName
+    extends SentinelAlertRuleAnomalyBuiltInIdentifier {
+  const SentinelAlertRuleAnomalyBuiltInIdentifierName(this.name);
 
   final TfArg<String> name;
 
@@ -108,7 +106,7 @@ final class AzurermSentinelAlertRuleAnomalyBuiltIn extends Resource {
 
   AzurermSentinelAlertRuleAnomalyBuiltIn(
     super.localName, {
-    required SentinelAlertRuleAnomalyBuiltInDisplayNameOrName displayNameOrName,
+    required SentinelAlertRuleAnomalyBuiltInIdentifier identifier,
     required TfArg<bool> enabled,
     required TfArg<String> logAnalyticsWorkspaceId,
     required SentinelAlertRuleAnomalyBuiltInMode mode,
@@ -119,7 +117,7 @@ final class AzurermSentinelAlertRuleAnomalyBuiltIn extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...displayNameOrName.argMap,
+           ...identifier.argMap,
            'enabled': enabled,
            'log_analytics_workspace_id': logAnalyticsWorkspaceId,
            'mode': mode,

@@ -13,18 +13,18 @@ const Set<String> _azurermNginxConfigurationSensitive = <String>{
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.configFile(...)`.
-sealed class NginxConfigurationConfigFileOrPackageData {
-  const NginxConfigurationConfigFileOrPackageData();
+sealed class NginxConfigurationContent {
+  const NginxConfigurationContent();
 
   /// Sets `config_file`.
-  const factory NginxConfigurationConfigFileOrPackageData.configFile(
+  const factory NginxConfigurationContent.configFile(
     List<NginxConfigurationConfigFile> configFile,
-  ) = NginxConfigurationConfigFileOrPackageDataConfigFile;
+  ) = NginxConfigurationContentConfigFile;
 
   /// Sets `package_data`.
-  const factory NginxConfigurationConfigFileOrPackageData.packageData(
+  const factory NginxConfigurationContent.packageData(
     TfArg<String> packageData,
-  ) = NginxConfigurationConfigFileOrPackageDataChoice;
+  ) = NginxConfigurationContentPackageData;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -39,10 +39,10 @@ sealed class NginxConfigurationConfigFileOrPackageData {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [NginxConfigurationConfigFileOrPackageData.configFile] choice: sets `config_file`.
-final class NginxConfigurationConfigFileOrPackageDataConfigFile
-    extends NginxConfigurationConfigFileOrPackageData {
-  const NginxConfigurationConfigFileOrPackageDataConfigFile(this.configFile);
+/// The [NginxConfigurationContent.configFile] choice: sets `config_file`.
+final class NginxConfigurationContentConfigFile
+    extends NginxConfigurationContent {
+  const NginxConfigurationContentConfigFile(this.configFile);
 
   final List<NginxConfigurationConfigFile> configFile;
 
@@ -63,10 +63,10 @@ final class NginxConfigurationConfigFileOrPackageDataConfigFile
   };
 }
 
-/// The [NginxConfigurationConfigFileOrPackageData.packageData] choice: sets `package_data`.
-final class NginxConfigurationConfigFileOrPackageDataChoice
-    extends NginxConfigurationConfigFileOrPackageData {
-  const NginxConfigurationConfigFileOrPackageDataChoice(this.packageData);
+/// The [NginxConfigurationContent.packageData] choice: sets `package_data`.
+final class NginxConfigurationContentPackageData
+    extends NginxConfigurationContent {
+  const NginxConfigurationContentPackageData(this.packageData);
 
   final TfArg<String> packageData;
 
@@ -130,7 +130,7 @@ final class AzurermNginxConfiguration extends Resource {
   AzurermNginxConfiguration(
     super.localName, {
     required TfArg<String> nginxDeploymentId,
-    required NginxConfigurationConfigFileOrPackageData configFileOrPackageData,
+    required NginxConfigurationContent content,
     required TfArg<String> rootFile,
     List<NginxConfigurationProtectedFile>? protectedFile,
     super.lifecycle,
@@ -141,7 +141,7 @@ final class AzurermNginxConfiguration extends Resource {
          terraformType: tfType,
          argMap: {
            'nginx_deployment_id': nginxDeploymentId,
-           ...configFileOrPackageData.argMap,
+           ...content.argMap,
            'root_file': rootFile,
            if (protectedFile != null)
              'protected_file': TfArg.literal([

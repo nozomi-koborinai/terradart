@@ -136,18 +136,17 @@ extension type const MssqlDatabaseStorageAccountType._(TfArg<String> _)
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.createMode(...)`.
-sealed class MssqlDatabaseCreateModeOrImport {
-  const MssqlDatabaseCreateModeOrImport();
+sealed class MssqlDatabaseCreation {
+  const MssqlDatabaseCreation();
 
   /// Sets `create_mode`.
-  const factory MssqlDatabaseCreateModeOrImport.createMode(
+  const factory MssqlDatabaseCreation.createMode(
     MssqlDatabaseCreateMode createMode,
-  ) = MssqlDatabaseCreateModeOrImportCreateMode;
+  ) = MssqlDatabaseCreationCreateMode;
 
   /// Sets `import`.
-  const factory MssqlDatabaseCreateModeOrImport.import(
-    MssqlDatabaseImport import,
-  ) = MssqlDatabaseCreateModeOrImportChoice;
+  const factory MssqlDatabaseCreation.import(MssqlDatabaseImport import) =
+      MssqlDatabaseCreationImport;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -162,10 +161,9 @@ sealed class MssqlDatabaseCreateModeOrImport {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [MssqlDatabaseCreateModeOrImport.createMode] choice: sets `create_mode`.
-final class MssqlDatabaseCreateModeOrImportCreateMode
-    extends MssqlDatabaseCreateModeOrImport {
-  const MssqlDatabaseCreateModeOrImportCreateMode(this.createMode);
+/// The [MssqlDatabaseCreation.createMode] choice: sets `create_mode`.
+final class MssqlDatabaseCreationCreateMode extends MssqlDatabaseCreation {
+  const MssqlDatabaseCreationCreateMode(this.createMode);
 
   final MssqlDatabaseCreateMode createMode;
 
@@ -182,10 +180,9 @@ final class MssqlDatabaseCreateModeOrImportCreateMode
   Map<String, TfArg<Object?>> get argMap => {'create_mode': createMode};
 }
 
-/// The [MssqlDatabaseCreateModeOrImport.import] choice: sets `import`.
-final class MssqlDatabaseCreateModeOrImportChoice
-    extends MssqlDatabaseCreateModeOrImport {
-  const MssqlDatabaseCreateModeOrImportChoice(this.import);
+/// The [MssqlDatabaseCreation.import] choice: sets `import`.
+final class MssqlDatabaseCreationImport extends MssqlDatabaseCreation {
+  const MssqlDatabaseCreationImport(this.import);
 
   final MssqlDatabaseImport import;
 
@@ -209,18 +206,18 @@ final class MssqlDatabaseCreateModeOrImportChoice
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.elasticPoolId(...)`.
-sealed class MssqlDatabaseElasticPoolIdOrMaintenanceConfigurationName {
-  const MssqlDatabaseElasticPoolIdOrMaintenanceConfigurationName();
+sealed class MssqlDatabaseServiceConfiguration {
+  const MssqlDatabaseServiceConfiguration();
 
   /// Sets `elastic_pool_id`.
-  const factory MssqlDatabaseElasticPoolIdOrMaintenanceConfigurationName.elasticPoolId(
+  const factory MssqlDatabaseServiceConfiguration.elasticPoolId(
     TfArg<String> elasticPoolId,
-  ) = MssqlDatabaseElasticPoolIdOrMaintenanceConfigurationNameElasticPoolId;
+  ) = MssqlDatabaseServiceConfigurationElasticPoolId;
 
   /// Sets `maintenance_configuration_name`.
-  const factory MssqlDatabaseElasticPoolIdOrMaintenanceConfigurationName.maintenanceConfigurationName(
+  const factory MssqlDatabaseServiceConfiguration.maintenanceConfigurationName(
     TfArg<String> maintenanceConfigurationName,
-  ) = MssqlDatabaseElasticPoolIdOrMaintenanceConfigurationNameChoice;
+  ) = MssqlDatabaseServiceConfigurationMaintenanceConfigurationName;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -235,12 +232,10 @@ sealed class MssqlDatabaseElasticPoolIdOrMaintenanceConfigurationName {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [MssqlDatabaseElasticPoolIdOrMaintenanceConfigurationName.elasticPoolId] choice: sets `elastic_pool_id`.
-final class MssqlDatabaseElasticPoolIdOrMaintenanceConfigurationNameElasticPoolId
-    extends MssqlDatabaseElasticPoolIdOrMaintenanceConfigurationName {
-  const MssqlDatabaseElasticPoolIdOrMaintenanceConfigurationNameElasticPoolId(
-    this.elasticPoolId,
-  );
+/// The [MssqlDatabaseServiceConfiguration.elasticPoolId] choice: sets `elastic_pool_id`.
+final class MssqlDatabaseServiceConfigurationElasticPoolId
+    extends MssqlDatabaseServiceConfiguration {
+  const MssqlDatabaseServiceConfigurationElasticPoolId(this.elasticPoolId);
 
   final TfArg<String> elasticPoolId;
 
@@ -259,10 +254,10 @@ final class MssqlDatabaseElasticPoolIdOrMaintenanceConfigurationNameElasticPoolI
   Map<String, TfArg<Object?>> get argMap => {'elastic_pool_id': elasticPoolId};
 }
 
-/// The [MssqlDatabaseElasticPoolIdOrMaintenanceConfigurationName.maintenanceConfigurationName] choice: sets `maintenance_configuration_name`.
-final class MssqlDatabaseElasticPoolIdOrMaintenanceConfigurationNameChoice
-    extends MssqlDatabaseElasticPoolIdOrMaintenanceConfigurationName {
-  const MssqlDatabaseElasticPoolIdOrMaintenanceConfigurationNameChoice(
+/// The [MssqlDatabaseServiceConfiguration.maintenanceConfigurationName] choice: sets `maintenance_configuration_name`.
+final class MssqlDatabaseServiceConfigurationMaintenanceConfigurationName
+    extends MssqlDatabaseServiceConfiguration {
+  const MssqlDatabaseServiceConfigurationMaintenanceConfigurationName(
     this.maintenanceConfigurationName,
   );
 
@@ -496,10 +491,9 @@ final class AzurermMssqlDatabase extends Resource {
     super.localName, {
     TfArg<num>? autoPauseDelayInMinutes,
     TfArg<String>? collation,
-    MssqlDatabaseCreateModeOrImport? createModeOrImport,
+    MssqlDatabaseCreation? creation,
     TfArg<String>? creationSourceDatabaseId,
-    MssqlDatabaseElasticPoolIdOrMaintenanceConfigurationName?
-    elasticPoolIdOrMaintenanceConfigurationName,
+    MssqlDatabaseServiceConfiguration? serviceConfiguration,
     MssqlDatabaseEnclaveType? enclaveType,
     TfArg<bool>? geoBackupEnabled,
     TfArg<bool>? ledgerEnabled,
@@ -537,9 +531,9 @@ final class AzurermMssqlDatabase extends Resource {
          argMap: {
            'auto_pause_delay_in_minutes': ?autoPauseDelayInMinutes,
            'collation': ?collation,
-           ...?createModeOrImport?.argMap,
+           ...?creation?.argMap,
            'creation_source_database_id': ?creationSourceDatabaseId,
-           ...?elasticPoolIdOrMaintenanceConfigurationName?.argMap,
+           ...?serviceConfiguration?.argMap,
            'enclave_type': ?enclaveType,
            'geo_backup_enabled': ?geoBackupEnabled,
            'ledger_enabled': ?ledgerEnabled,

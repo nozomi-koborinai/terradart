@@ -13,18 +13,18 @@ const Set<String> _azurermKustoClusterCustomerManagedKeySensitive = <String>{};
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.keyVaultId(...)`.
-sealed class KustoClusterCustomerManagedKeyVaultIdOrManagedHsmKeyId {
-  const KustoClusterCustomerManagedKeyVaultIdOrManagedHsmKeyId();
+sealed class KustoClusterCustomerManagedKeyIdentifier {
+  const KustoClusterCustomerManagedKeyIdentifier();
 
   /// Sets `key_vault_id`.
-  const factory KustoClusterCustomerManagedKeyVaultIdOrManagedHsmKeyId.keyVaultId(
+  const factory KustoClusterCustomerManagedKeyIdentifier.keyVaultId(
     RefTo<AzurermKeyVault> keyVaultId,
-  ) = KustoClusterCustomerManagedKeyVaultIdOrManagedHsmKeyIdKeyVaultId;
+  ) = KustoClusterCustomerManagedKeyIdentifierKeyVaultId;
 
   /// Sets `managed_hsm_key_id`.
-  const factory KustoClusterCustomerManagedKeyVaultIdOrManagedHsmKeyId.managedHsmKeyId(
+  const factory KustoClusterCustomerManagedKeyIdentifier.managedHsmKeyId(
     TfArg<String> managedHsmKeyId,
-  ) = KustoClusterCustomerManagedKeyVaultIdOrManagedHsmKeyIdChoice;
+  ) = KustoClusterCustomerManagedKeyIdentifierManagedHsmKeyId;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -39,12 +39,10 @@ sealed class KustoClusterCustomerManagedKeyVaultIdOrManagedHsmKeyId {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [KustoClusterCustomerManagedKeyVaultIdOrManagedHsmKeyId.keyVaultId] choice: sets `key_vault_id`.
-final class KustoClusterCustomerManagedKeyVaultIdOrManagedHsmKeyIdKeyVaultId
-    extends KustoClusterCustomerManagedKeyVaultIdOrManagedHsmKeyId {
-  const KustoClusterCustomerManagedKeyVaultIdOrManagedHsmKeyIdKeyVaultId(
-    this.keyVaultId,
-  );
+/// The [KustoClusterCustomerManagedKeyIdentifier.keyVaultId] choice: sets `key_vault_id`.
+final class KustoClusterCustomerManagedKeyIdentifierKeyVaultId
+    extends KustoClusterCustomerManagedKeyIdentifier {
+  const KustoClusterCustomerManagedKeyIdentifierKeyVaultId(this.keyVaultId);
 
   final RefTo<AzurermKeyVault> keyVaultId;
 
@@ -65,10 +63,10 @@ final class KustoClusterCustomerManagedKeyVaultIdOrManagedHsmKeyIdKeyVaultId
   };
 }
 
-/// The [KustoClusterCustomerManagedKeyVaultIdOrManagedHsmKeyId.managedHsmKeyId] choice: sets `managed_hsm_key_id`.
-final class KustoClusterCustomerManagedKeyVaultIdOrManagedHsmKeyIdChoice
-    extends KustoClusterCustomerManagedKeyVaultIdOrManagedHsmKeyId {
-  const KustoClusterCustomerManagedKeyVaultIdOrManagedHsmKeyIdChoice(
+/// The [KustoClusterCustomerManagedKeyIdentifier.managedHsmKeyId] choice: sets `managed_hsm_key_id`.
+final class KustoClusterCustomerManagedKeyIdentifierManagedHsmKeyId
+    extends KustoClusterCustomerManagedKeyIdentifier {
+  const KustoClusterCustomerManagedKeyIdentifierManagedHsmKeyId(
     this.managedHsmKeyId,
   );
 
@@ -99,8 +97,7 @@ final class AzurermKustoClusterCustomerManagedKey extends Resource {
     super.localName, {
     required TfArg<String> clusterId,
     TfArg<String>? keyName,
-    required KustoClusterCustomerManagedKeyVaultIdOrManagedHsmKeyId
-    keyVaultIdOrManagedHsmKeyId,
+    required KustoClusterCustomerManagedKeyIdentifier keyIdentifier,
     TfArg<String>? keyVersion,
     TfArg<String>? userIdentity,
     super.lifecycle,
@@ -112,7 +109,7 @@ final class AzurermKustoClusterCustomerManagedKey extends Resource {
          argMap: {
            'cluster_id': clusterId,
            'key_name': ?keyName,
-           ...keyVaultIdOrManagedHsmKeyId.argMap,
+           ...keyIdentifier.argMap,
            'key_version': ?keyVersion,
            'user_identity': ?userIdentity,
          },

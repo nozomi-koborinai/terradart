@@ -12,18 +12,18 @@ const Set<String> _azurermNetworkManagerIpamPoolStaticCidrSensitive =
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.addressPrefixes(...)`.
-sealed class NetworkManagerIpamPoolStaticCidrAddressPrefixesOrNumberOfIpAddressesToAllocate {
-  const NetworkManagerIpamPoolStaticCidrAddressPrefixesOrNumberOfIpAddressesToAllocate();
+sealed class NetworkManagerIpamPoolStaticCidrAllocation {
+  const NetworkManagerIpamPoolStaticCidrAllocation();
 
   /// Sets `address_prefixes`.
-  const factory NetworkManagerIpamPoolStaticCidrAddressPrefixesOrNumberOfIpAddressesToAllocate.addressPrefixes(
+  const factory NetworkManagerIpamPoolStaticCidrAllocation.addressPrefixes(
     TfArg<List<String>> addressPrefixes,
-  ) = NetworkManagerIpamPoolStaticCidrAddressPrefixesOrNumberOfIpAddressesToAllocateAddressPrefixes;
+  ) = NetworkManagerIpamPoolStaticCidrAllocationAddressPrefixes;
 
   /// Sets `number_of_ip_addresses_to_allocate`.
-  const factory NetworkManagerIpamPoolStaticCidrAddressPrefixesOrNumberOfIpAddressesToAllocate.numberOfIpAddressesToAllocate(
+  const factory NetworkManagerIpamPoolStaticCidrAllocation.numberOfIpAddressesToAllocate(
     TfArg<String> numberOfIpAddressesToAllocate,
-  ) = NetworkManagerIpamPoolStaticCidrAddressPrefixesOrNumberOfIpAddressesToAllocateChoice;
+  ) = NetworkManagerIpamPoolStaticCidrAllocationNumberOfIpAddressesToAllocate;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -38,11 +38,10 @@ sealed class NetworkManagerIpamPoolStaticCidrAddressPrefixesOrNumberOfIpAddresse
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [NetworkManagerIpamPoolStaticCidrAddressPrefixesOrNumberOfIpAddressesToAllocate.addressPrefixes] choice: sets `address_prefixes`.
-final class NetworkManagerIpamPoolStaticCidrAddressPrefixesOrNumberOfIpAddressesToAllocateAddressPrefixes
-    extends
-        NetworkManagerIpamPoolStaticCidrAddressPrefixesOrNumberOfIpAddressesToAllocate {
-  const NetworkManagerIpamPoolStaticCidrAddressPrefixesOrNumberOfIpAddressesToAllocateAddressPrefixes(
+/// The [NetworkManagerIpamPoolStaticCidrAllocation.addressPrefixes] choice: sets `address_prefixes`.
+final class NetworkManagerIpamPoolStaticCidrAllocationAddressPrefixes
+    extends NetworkManagerIpamPoolStaticCidrAllocation {
+  const NetworkManagerIpamPoolStaticCidrAllocationAddressPrefixes(
     this.addressPrefixes,
   );
 
@@ -65,11 +64,10 @@ final class NetworkManagerIpamPoolStaticCidrAddressPrefixesOrNumberOfIpAddresses
   };
 }
 
-/// The [NetworkManagerIpamPoolStaticCidrAddressPrefixesOrNumberOfIpAddressesToAllocate.numberOfIpAddressesToAllocate] choice: sets `number_of_ip_addresses_to_allocate`.
-final class NetworkManagerIpamPoolStaticCidrAddressPrefixesOrNumberOfIpAddressesToAllocateChoice
-    extends
-        NetworkManagerIpamPoolStaticCidrAddressPrefixesOrNumberOfIpAddressesToAllocate {
-  const NetworkManagerIpamPoolStaticCidrAddressPrefixesOrNumberOfIpAddressesToAllocateChoice(
+/// The [NetworkManagerIpamPoolStaticCidrAllocation.numberOfIpAddressesToAllocate] choice: sets `number_of_ip_addresses_to_allocate`.
+final class NetworkManagerIpamPoolStaticCidrAllocationNumberOfIpAddressesToAllocate
+    extends NetworkManagerIpamPoolStaticCidrAllocation {
+  const NetworkManagerIpamPoolStaticCidrAllocationNumberOfIpAddressesToAllocate(
     this.numberOfIpAddressesToAllocate,
   );
 
@@ -99,8 +97,7 @@ final class AzurermNetworkManagerIpamPoolStaticCidr extends Resource {
 
   AzurermNetworkManagerIpamPoolStaticCidr(
     super.localName, {
-    required NetworkManagerIpamPoolStaticCidrAddressPrefixesOrNumberOfIpAddressesToAllocate
-    addressPrefixesOrNumberOfIpAddressesToAllocate,
+    required NetworkManagerIpamPoolStaticCidrAllocation allocation,
     required TfArg<String> ipamPoolId,
     required TfArg<String> name,
     super.lifecycle,
@@ -110,7 +107,7 @@ final class AzurermNetworkManagerIpamPoolStaticCidr extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...addressPrefixesOrNumberOfIpAddressesToAllocate.argMap,
+           ...allocation.argMap,
            'ipam_pool_id': ipamPoolId,
            'name': name,
          },

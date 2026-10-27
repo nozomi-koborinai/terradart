@@ -12,18 +12,18 @@ const Set<String> _azurermContainerAppEnvironmentCertificateSensitive =
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.certificateBlobBase64(...)`.
-sealed class ContainerAppEnvironmentCertificateBlobBase64OrCertificateKeyVault {
-  const ContainerAppEnvironmentCertificateBlobBase64OrCertificateKeyVault();
+sealed class ContainerAppEnvironmentCertificateSource {
+  const ContainerAppEnvironmentCertificateSource();
 
   /// Sets `certificate_blob_base64`.
-  const factory ContainerAppEnvironmentCertificateBlobBase64OrCertificateKeyVault.certificateBlobBase64(
+  const factory ContainerAppEnvironmentCertificateSource.certificateBlobBase64(
     TfArg<String> certificateBlobBase64,
-  ) = ContainerAppEnvironmentCertificateBlobBase64OrCertificateKeyVaultCertificateBlobBase64;
+  ) = ContainerAppEnvironmentCertificateSourceCertificateBlobBase64;
 
   /// Sets `certificate_key_vault`.
-  const factory ContainerAppEnvironmentCertificateBlobBase64OrCertificateKeyVault.certificateKeyVault(
+  const factory ContainerAppEnvironmentCertificateSource.certificateKeyVault(
     ContainerAppEnvironmentCertificateKeyVault certificateKeyVault,
-  ) = ContainerAppEnvironmentCertificateBlobBase64OrCertificateKeyVaultChoice;
+  ) = ContainerAppEnvironmentCertificateSourceCertificateKeyVault;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -38,10 +38,10 @@ sealed class ContainerAppEnvironmentCertificateBlobBase64OrCertificateKeyVault {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [ContainerAppEnvironmentCertificateBlobBase64OrCertificateKeyVault.certificateBlobBase64] choice: sets `certificate_blob_base64`.
-final class ContainerAppEnvironmentCertificateBlobBase64OrCertificateKeyVaultCertificateBlobBase64
-    extends ContainerAppEnvironmentCertificateBlobBase64OrCertificateKeyVault {
-  const ContainerAppEnvironmentCertificateBlobBase64OrCertificateKeyVaultCertificateBlobBase64(
+/// The [ContainerAppEnvironmentCertificateSource.certificateBlobBase64] choice: sets `certificate_blob_base64`.
+final class ContainerAppEnvironmentCertificateSourceCertificateBlobBase64
+    extends ContainerAppEnvironmentCertificateSource {
+  const ContainerAppEnvironmentCertificateSourceCertificateBlobBase64(
     this.certificateBlobBase64,
   );
 
@@ -64,10 +64,10 @@ final class ContainerAppEnvironmentCertificateBlobBase64OrCertificateKeyVaultCer
   };
 }
 
-/// The [ContainerAppEnvironmentCertificateBlobBase64OrCertificateKeyVault.certificateKeyVault] choice: sets `certificate_key_vault`.
-final class ContainerAppEnvironmentCertificateBlobBase64OrCertificateKeyVaultChoice
-    extends ContainerAppEnvironmentCertificateBlobBase64OrCertificateKeyVault {
-  const ContainerAppEnvironmentCertificateBlobBase64OrCertificateKeyVaultChoice(
+/// The [ContainerAppEnvironmentCertificateSource.certificateKeyVault] choice: sets `certificate_key_vault`.
+final class ContainerAppEnvironmentCertificateSourceCertificateKeyVault
+    extends ContainerAppEnvironmentCertificateSource {
+  const ContainerAppEnvironmentCertificateSourceCertificateKeyVault(
     this.certificateKeyVault,
   );
 
@@ -116,8 +116,7 @@ final class AzurermContainerAppEnvironmentCertificate extends Resource {
 
   AzurermContainerAppEnvironmentCertificate(
     super.localName, {
-    required ContainerAppEnvironmentCertificateBlobBase64OrCertificateKeyVault
-    certificateBlobBase64OrCertificateKeyVault,
+    required ContainerAppEnvironmentCertificateSource source,
     Sensitive<String>? certificatePassword,
     required TfArg<String> containerAppEnvironmentId,
     required TfArg<String> name,
@@ -129,7 +128,7 @@ final class AzurermContainerAppEnvironmentCertificate extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...certificateBlobBase64OrCertificateKeyVault.argMap,
+           ...source.argMap,
            'certificate_password': ?certificatePassword,
            'container_app_environment_id': containerAppEnvironmentId,
            'name': name,

@@ -10,15 +10,15 @@ export 'src/backup/azurerm_backup_policy_file_share.dart'
     show
         AzurermBackupPolicyFileShare,
         BackupPolicyFileShareBackup,
-        BackupPolicyFileShareBackupHourlyOrTime,
-        BackupPolicyFileShareBackupHourlyOrTimeChoice,
-        BackupPolicyFileShareBackupHourlyOrTimeHourly,
         BackupPolicyFileShareBackupTier,
         BackupPolicyFileShareHourly,
         BackupPolicyFileShareRetentionDaily,
         BackupPolicyFileShareRetentionMonthly,
         BackupPolicyFileShareRetentionWeekly,
-        BackupPolicyFileShareRetentionYearly;
+        BackupPolicyFileShareRetentionYearly,
+        BackupPolicyFileShareSchedule,
+        BackupPolicyFileShareScheduleHourly,
+        BackupPolicyFileShareScheduleTime;
 export 'src/backup/azurerm_backup_policy_vm.dart'
     show
         AzurermBackupPolicyVm,

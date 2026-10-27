@@ -17,18 +17,17 @@ const Set<String> _azurermAppServiceCertificateSensitive = <String>{
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.keyVaultSecretId(...)`.
-sealed class AppServiceCertificateKeyVaultSecretIdOrPfxBlob {
-  const AppServiceCertificateKeyVaultSecretIdOrPfxBlob();
+sealed class AppServiceCertificateSource {
+  const AppServiceCertificateSource();
 
   /// Sets `key_vault_secret_id`.
-  const factory AppServiceCertificateKeyVaultSecretIdOrPfxBlob.keyVaultSecretId(
+  const factory AppServiceCertificateSource.keyVaultSecretId(
     TfArg<String> keyVaultSecretId,
-  ) = AppServiceCertificateKeyVaultSecretIdOrPfxBlobKeyVaultSecretId;
+  ) = AppServiceCertificateSourceKeyVaultSecretId;
 
   /// Sets `pfx_blob`.
-  const factory AppServiceCertificateKeyVaultSecretIdOrPfxBlob.pfxBlob(
-    Sensitive<String> pfxBlob,
-  ) = AppServiceCertificateKeyVaultSecretIdOrPfxBlobChoice;
+  const factory AppServiceCertificateSource.pfxBlob(Sensitive<String> pfxBlob) =
+      AppServiceCertificateSourcePfxBlob;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -43,12 +42,10 @@ sealed class AppServiceCertificateKeyVaultSecretIdOrPfxBlob {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [AppServiceCertificateKeyVaultSecretIdOrPfxBlob.keyVaultSecretId] choice: sets `key_vault_secret_id`.
-final class AppServiceCertificateKeyVaultSecretIdOrPfxBlobKeyVaultSecretId
-    extends AppServiceCertificateKeyVaultSecretIdOrPfxBlob {
-  const AppServiceCertificateKeyVaultSecretIdOrPfxBlobKeyVaultSecretId(
-    this.keyVaultSecretId,
-  );
+/// The [AppServiceCertificateSource.keyVaultSecretId] choice: sets `key_vault_secret_id`.
+final class AppServiceCertificateSourceKeyVaultSecretId
+    extends AppServiceCertificateSource {
+  const AppServiceCertificateSourceKeyVaultSecretId(this.keyVaultSecretId);
 
   final TfArg<String> keyVaultSecretId;
 
@@ -69,10 +66,10 @@ final class AppServiceCertificateKeyVaultSecretIdOrPfxBlobKeyVaultSecretId
   };
 }
 
-/// The [AppServiceCertificateKeyVaultSecretIdOrPfxBlob.pfxBlob] choice: sets `pfx_blob`.
-final class AppServiceCertificateKeyVaultSecretIdOrPfxBlobChoice
-    extends AppServiceCertificateKeyVaultSecretIdOrPfxBlob {
-  const AppServiceCertificateKeyVaultSecretIdOrPfxBlobChoice(this.pfxBlob);
+/// The [AppServiceCertificateSource.pfxBlob] choice: sets `pfx_blob`.
+final class AppServiceCertificateSourcePfxBlob
+    extends AppServiceCertificateSource {
+  const AppServiceCertificateSourcePfxBlob(this.pfxBlob);
 
   final Sensitive<String> pfxBlob;
 
@@ -97,8 +94,7 @@ final class AzurermAppServiceCertificate extends Resource {
     super.localName, {
     TfArg<String>? appServicePlanId,
     RefTo<AzurermKeyVault>? keyVaultId,
-    required AppServiceCertificateKeyVaultSecretIdOrPfxBlob
-    keyVaultSecretIdOrPfxBlob,
+    required AppServiceCertificateSource source,
     required TfArg<String> location,
     required TfArg<String> name,
     Sensitive<String>? password,
@@ -113,7 +109,7 @@ final class AzurermAppServiceCertificate extends Resource {
          argMap: {
            'app_service_plan_id': ?appServicePlanId,
            'key_vault_id': ?keyVaultId?.encodeAs('id'),
-           ...keyVaultSecretIdOrPfxBlob.argMap,
+           ...source.argMap,
            'location': location,
            'name': name,
            'password': ?password,

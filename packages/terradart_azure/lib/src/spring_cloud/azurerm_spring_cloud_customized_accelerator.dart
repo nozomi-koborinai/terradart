@@ -39,7 +39,7 @@ extension type const SpringCloudCustomizedAcceleratorType._(TfArg<String> _)
 @immutable
 final class SpringCloudCustomizedAcceleratorGitRepository {
   const SpringCloudCustomizedAcceleratorGitRepository({
-    required this.branchOrCommitOrGitTag,
+    required this.reference,
     this.caCertificateId,
     this.intervalInSeconds,
     this.path,
@@ -47,8 +47,7 @@ final class SpringCloudCustomizedAcceleratorGitRepository {
     this.auth,
   });
 
-  final SpringCloudCustomizedAcceleratorGitRepositoryBranchOrCommitOrGitTag
-  branchOrCommitOrGitTag;
+  final SpringCloudCustomizedAcceleratorReference reference;
 
   final TfArg<String>? caCertificateId;
 
@@ -62,7 +61,7 @@ final class SpringCloudCustomizedAcceleratorGitRepository {
 
   @internal
   Map<String, Object?> encode() => {
-    ...branchOrCommitOrGitTag.encode(),
+    ...reference.encode(),
     'ca_certificate_id': ?caCertificateId?.toTfJson(),
     'interval_in_seconds': ?intervalInSeconds?.toTfJson(),
     'path': ?path?.toTfJson(),
@@ -75,23 +74,23 @@ final class SpringCloudCustomizedAcceleratorGitRepository {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.branch(...)`.
-sealed class SpringCloudCustomizedAcceleratorGitRepositoryBranchOrCommitOrGitTag {
-  const SpringCloudCustomizedAcceleratorGitRepositoryBranchOrCommitOrGitTag();
+sealed class SpringCloudCustomizedAcceleratorReference {
+  const SpringCloudCustomizedAcceleratorReference();
 
   /// Sets `branch`.
-  const factory SpringCloudCustomizedAcceleratorGitRepositoryBranchOrCommitOrGitTag.branch(
+  const factory SpringCloudCustomizedAcceleratorReference.branch(
     TfArg<String> branch,
-  ) = SpringCloudCustomizedAcceleratorGitRepositoryBranchOrCommitOrGitTagBranch;
+  ) = SpringCloudCustomizedAcceleratorReferenceBranch;
 
   /// Sets `commit`.
-  const factory SpringCloudCustomizedAcceleratorGitRepositoryBranchOrCommitOrGitTag.commit(
+  const factory SpringCloudCustomizedAcceleratorReference.commit(
     TfArg<String> commit,
-  ) = SpringCloudCustomizedAcceleratorGitRepositoryBranchOrCommitOrGitTagCommit;
+  ) = SpringCloudCustomizedAcceleratorReferenceCommit;
 
   /// Sets `git_tag`.
-  const factory SpringCloudCustomizedAcceleratorGitRepositoryBranchOrCommitOrGitTag.gitTag(
+  const factory SpringCloudCustomizedAcceleratorReference.gitTag(
     TfArg<String> gitTag,
-  ) = SpringCloudCustomizedAcceleratorGitRepositoryBranchOrCommitOrGitTagChoice;
+  ) = SpringCloudCustomizedAcceleratorReferenceGitTag;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -101,13 +100,10 @@ sealed class SpringCloudCustomizedAcceleratorGitRepositoryBranchOrCommitOrGitTag
   Map<String, Object?> encode();
 }
 
-/// The [SpringCloudCustomizedAcceleratorGitRepositoryBranchOrCommitOrGitTag.branch] choice: sets `branch`.
-final class SpringCloudCustomizedAcceleratorGitRepositoryBranchOrCommitOrGitTagBranch
-    extends
-        SpringCloudCustomizedAcceleratorGitRepositoryBranchOrCommitOrGitTag {
-  const SpringCloudCustomizedAcceleratorGitRepositoryBranchOrCommitOrGitTagBranch(
-    this.branch,
-  );
+/// The [SpringCloudCustomizedAcceleratorReference.branch] choice: sets `branch`.
+final class SpringCloudCustomizedAcceleratorReferenceBranch
+    extends SpringCloudCustomizedAcceleratorReference {
+  const SpringCloudCustomizedAcceleratorReferenceBranch(this.branch);
 
   final TfArg<String> branch;
 
@@ -120,13 +116,10 @@ final class SpringCloudCustomizedAcceleratorGitRepositoryBranchOrCommitOrGitTagB
   Map<String, Object?> encode() => {'branch': branch.toTfJson()};
 }
 
-/// The [SpringCloudCustomizedAcceleratorGitRepositoryBranchOrCommitOrGitTag.commit] choice: sets `commit`.
-final class SpringCloudCustomizedAcceleratorGitRepositoryBranchOrCommitOrGitTagCommit
-    extends
-        SpringCloudCustomizedAcceleratorGitRepositoryBranchOrCommitOrGitTag {
-  const SpringCloudCustomizedAcceleratorGitRepositoryBranchOrCommitOrGitTagCommit(
-    this.commit,
-  );
+/// The [SpringCloudCustomizedAcceleratorReference.commit] choice: sets `commit`.
+final class SpringCloudCustomizedAcceleratorReferenceCommit
+    extends SpringCloudCustomizedAcceleratorReference {
+  const SpringCloudCustomizedAcceleratorReferenceCommit(this.commit);
 
   final TfArg<String> commit;
 
@@ -139,13 +132,10 @@ final class SpringCloudCustomizedAcceleratorGitRepositoryBranchOrCommitOrGitTagC
   Map<String, Object?> encode() => {'commit': commit.toTfJson()};
 }
 
-/// The [SpringCloudCustomizedAcceleratorGitRepositoryBranchOrCommitOrGitTag.gitTag] choice: sets `git_tag`.
-final class SpringCloudCustomizedAcceleratorGitRepositoryBranchOrCommitOrGitTagChoice
-    extends
-        SpringCloudCustomizedAcceleratorGitRepositoryBranchOrCommitOrGitTag {
-  const SpringCloudCustomizedAcceleratorGitRepositoryBranchOrCommitOrGitTagChoice(
-    this.gitTag,
-  );
+/// The [SpringCloudCustomizedAcceleratorReference.gitTag] choice: sets `git_tag`.
+final class SpringCloudCustomizedAcceleratorReferenceGitTag
+    extends SpringCloudCustomizedAcceleratorReference {
+  const SpringCloudCustomizedAcceleratorReferenceGitTag(this.gitTag);
 
   final TfArg<String> gitTag;
 

@@ -27,9 +27,9 @@ export 'src/lb/azurerm_lb_backend_address_pool.dart'
 export 'src/lb/azurerm_lb_backend_address_pool_address.dart'
     show
         AzurermLbBackendAddressPoolAddress,
-        LbBackendAddressPoolAddressBackendAddressIpConfigurationIdOrVirtualNetworkId,
-        LbBackendAddressPoolAddressBackendAddressIpConfigurationIdOrVirtualNetworkIdBackendAddressIpConfigurationId,
-        LbBackendAddressPoolAddressBackendAddressIpConfigurationIdOrVirtualNetworkIdChoice;
+        LbBackendAddressPoolAddressAttachment,
+        LbBackendAddressPoolAddressAttachmentBackendAddressIpConfigurationId,
+        LbBackendAddressPoolAddressAttachmentVirtualNetworkId;
 export 'src/lb/azurerm_lb_nat_pool.dart' show AzurermLbNatPool;
 export 'src/lb/azurerm_lb_nat_rule.dart' show AzurermLbNatRule;
 export 'src/lb/azurerm_lb_outbound_rule.dart'

@@ -51,27 +51,27 @@ export 'src/iothub/azurerm_iothub_endpoint_cosmosdb_account.dart'
 export 'src/iothub/azurerm_iothub_endpoint_eventhub.dart'
     show
         AzurermIothubEndpointEventhub,
-        IothubEndpointEventhubConnectionStringOrEndpointUri,
-        IothubEndpointEventhubConnectionStringOrEndpointUriChoice,
-        IothubEndpointEventhubConnectionStringOrEndpointUriConnectionString;
+        IothubEndpointEventhubConnection,
+        IothubEndpointEventhubConnectionEndpointUri,
+        IothubEndpointEventhubConnectionString;
 export 'src/iothub/azurerm_iothub_endpoint_servicebus_queue.dart'
     show
         AzurermIothubEndpointServicebusQueue,
-        IothubEndpointServicebusQueueConnectionStringOrEndpointUri,
-        IothubEndpointServicebusQueueConnectionStringOrEndpointUriChoice,
-        IothubEndpointServicebusQueueConnectionStringOrEndpointUriConnectionString;
+        IothubEndpointServicebusQueueConnection,
+        IothubEndpointServicebusQueueConnectionEndpointUri,
+        IothubEndpointServicebusQueueConnectionString;
 export 'src/iothub/azurerm_iothub_endpoint_servicebus_topic.dart'
     show
         AzurermIothubEndpointServicebusTopic,
-        IothubEndpointServicebusTopicConnectionStringOrEndpointUri,
-        IothubEndpointServicebusTopicConnectionStringOrEndpointUriChoice,
-        IothubEndpointServicebusTopicConnectionStringOrEndpointUriConnectionString;
+        IothubEndpointServicebusTopicConnection,
+        IothubEndpointServicebusTopicConnectionEndpointUri,
+        IothubEndpointServicebusTopicConnectionString;
 export 'src/iothub/azurerm_iothub_endpoint_storage_container.dart'
     show
         AzurermIothubEndpointStorageContainer,
-        IothubEndpointStorageContainerConnectionStringOrEndpointUri,
-        IothubEndpointStorageContainerConnectionStringOrEndpointUriChoice,
-        IothubEndpointStorageContainerConnectionStringOrEndpointUriConnectionString;
+        IothubEndpointStorageContainerConnection,
+        IothubEndpointStorageContainerConnectionEndpointUri,
+        IothubEndpointStorageContainerConnectionString;
 export 'src/iothub/azurerm_iothub_enrichment.dart' show AzurermIothubEnrichment;
 export 'src/iothub/azurerm_iothub_fallback_route.dart'
     show AzurermIothubFallbackRoute;

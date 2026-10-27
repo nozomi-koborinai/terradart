@@ -67,9 +67,9 @@ export 'src/key_vault/azurerm_key_vault_key.dart'
     show
         AzurermKeyVaultKey,
         KeyVaultKeyAutomatic,
-        KeyVaultKeyCurveOrKeySize,
-        KeyVaultKeyCurveOrKeySizeChoice,
-        KeyVaultKeyCurveOrKeySizeCurve,
+        KeyVaultKeyParameter,
+        KeyVaultKeyParameterCurve,
+        KeyVaultKeyParameterKeySize,
         KeyVaultKeyReleasePolicy,
         KeyVaultKeyRotationPolicy;
 export 'src/key_vault/azurerm_key_vault_managed_hardware_security_module.dart'

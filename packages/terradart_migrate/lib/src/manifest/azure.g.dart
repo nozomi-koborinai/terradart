@@ -1907,16 +1907,14 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'oauth2AuthorizationOrOpenidAuthentication',
+          dartName: 'auth',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'oauth2_authorization':
-                'ApiManagementApiOauth2AuthorizationOrOpenidAuthenticationOauth2Authorization',
-            'openid_authentication':
-                'ApiManagementApiOauth2AuthorizationOrOpenidAuthenticationChoice',
+            'oauth2_authorization': 'ApiManagementApiAuthOauth2Authorization',
+            'openid_authentication': 'ApiManagementApiAuthOpenidAuthentication',
           },
         ),
         MigrateSlot(
@@ -2701,18 +2699,15 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'componentsOrDefinitionsOrValue',
+          dartName: 'document',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'components':
-                'ApiManagementApiSchemaComponentsOrDefinitionsOrValueComponents',
-            'definitions':
-                'ApiManagementApiSchemaComponentsOrDefinitionsOrValueDefinitions',
-            'value':
-                'ApiManagementApiSchemaComponentsOrDefinitionsOrValueChoice',
+            'components': 'ApiManagementApiSchemaDocumentComponents',
+            'definitions': 'ApiManagementApiSchemaDocumentDefinitions',
+            'value': 'ApiManagementApiSchemaDocumentValue',
           },
         ),
         MigrateSlot(
@@ -3425,15 +3420,15 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'dataOrKeyVaultSecretId',
+          dartName: 'source',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'data': 'ApiManagementCertificateDataOrKeyVaultSecretIdData',
+            'data': 'ApiManagementCertificateSourceData',
             'key_vault_secret_id':
-                'ApiManagementCertificateDataOrKeyVaultSecretIdChoice',
+                'ApiManagementCertificateSourceKeyVaultSecretId',
           },
         ),
         MigrateSlot(
@@ -5023,16 +5018,15 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'applicationInsightsOrEventhub',
+          dartName: 'target',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'application_insights':
-                'ApiManagementLoggerApplicationInsightsOrEventhubApplicationInsights',
-            'eventhub':
-                'ApiManagementLoggerApplicationInsightsOrEventhubChoice',
+                'ApiManagementLoggerTargetApplicationInsights',
+            'eventhub': 'ApiManagementLoggerTargetEventhub',
           },
         ),
       ],
@@ -5117,15 +5111,15 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'valueOrValueFromKeyVault',
+          dartName: 'source',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'value': 'ApiManagementNamedValueOrValueFromKeyVaultValue',
+            'value': 'ApiManagementNamedValueSourceValue',
             'value_from_key_vault':
-                'ApiManagementNamedValueOrValueFromKeyVaultChoice',
+                'ApiManagementNamedValueSourceValueFromKeyVault',
           },
         ),
       ],
@@ -6089,14 +6083,14 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'apiIdOrProductId',
+          dartName: 'scope',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'api_id': 'ApiManagementSubscriptionApiIdOrProductIdApiId',
-            'product_id': 'ApiManagementSubscriptionApiIdOrProductIdChoice',
+            'api_id': 'ApiManagementSubscriptionScopeApiId',
+            'product_id': 'ApiManagementSubscriptionScopeProductId',
           },
         ),
         MigrateSlot(
@@ -6701,16 +6695,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'certificateDataBase64OrKeyVaultSecretId',
+          dartName: 'source',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'certificate_data_base64':
-                'ApiManagementWorkspaceCertificateDataBase64OrKeyVaultSecretIdCertificateDataBase64',
+                'ApiManagementWorkspaceCertificateSourceCertificateDataBase64',
             'key_vault_secret_id':
-                'ApiManagementWorkspaceCertificateDataBase64OrKeyVaultSecretIdChoice',
+                'ApiManagementWorkspaceCertificateSourceKeyVaultSecretId',
           },
         ),
         MigrateSlot(
@@ -6823,15 +6817,15 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'valueOrValueFromKeyVault',
+          dartName: 'source',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'value': 'ApiManagementWorkspaceNamedValueOrValueFromKeyVaultValue',
+            'value': 'ApiManagementWorkspaceNamedValueSourceValue',
             'value_from_key_vault':
-                'ApiManagementWorkspaceNamedValueOrValueFromKeyVaultChoice',
+                'ApiManagementWorkspaceNamedValueSourceValueFromKeyVault',
           },
         ),
       ],
@@ -7471,15 +7465,14 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'valueOrVaultKeyReference',
+          dartName: 'source',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'value': 'AppConfigurationKeyValueOrVaultKeyReferenceValue',
-            'vault_key_reference':
-                'AppConfigurationKeyValueOrVaultKeyReferenceChoice',
+            'value': 'AppConfigurationKeySourceValue',
+            'vault_key_reference': 'AppConfigurationKeySourceVaultKeyReference',
           },
         ),
       ],
@@ -7638,15 +7631,15 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'keyVaultSecretIdOrPfxBlob',
+          dartName: 'source',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'key_vault_secret_id':
-                'AppServiceCertificateKeyVaultSecretIdOrPfxBlobKeyVaultSecretId',
-            'pfx_blob': 'AppServiceCertificateKeyVaultSecretIdOrPfxBlobChoice',
+                'AppServiceCertificateSourceKeyVaultSecretId',
+            'pfx_blob': 'AppServiceCertificateSourcePfxBlob',
           },
         ),
         MigrateSlot(
@@ -7924,15 +7917,15 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'csrOrDistinguishedName',
+          dartName: 'request',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'csr': 'AppServiceCertificateOrderCsrOrDistinguishedNameCsr',
+            'csr': 'AppServiceCertificateOrderRequestCsr',
             'distinguished_name':
-                'AppServiceCertificateOrderCsrOrDistinguishedNameChoice',
+                'AppServiceCertificateOrderRequestDistinguishedName',
           },
         ),
         MigrateSlot(
@@ -8349,16 +8342,15 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'dedicatedHostCountOrZoneRedundant',
+          dartName: 'placement',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'dedicated_host_count':
-                'AppServiceEnvironmentV3DedicatedHostCountOrZoneRedundantDedicatedHostCount',
-            'zone_redundant':
-                'AppServiceEnvironmentV3DedicatedHostCountOrZoneRedundantChoice',
+                'AppServiceEnvironmentV3PlacementDedicatedHostCount',
+            'zone_redundant': 'AppServiceEnvironmentV3PlacementZoneRedundant',
           },
         ),
         MigrateSlot(
@@ -11321,18 +11313,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'blobStorageOrBucketOrGitRepository',
+          dartName: 'source',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'blob_storage':
-                'ArcKubernetesFluxConfigurationBlobStorageOrBucketOrGitRepositoryBlobStorage',
-            'bucket':
-                'ArcKubernetesFluxConfigurationBlobStorageOrBucketOrGitRepositoryBucket',
+            'blob_storage': 'ArcKubernetesFluxConfigurationSourceBlobStorage',
+            'bucket': 'ArcKubernetesFluxConfigurationSourceBucket',
             'git_repository':
-                'ArcKubernetesFluxConfigurationBlobStorageOrBucketOrGitRepositoryChoice',
+                'ArcKubernetesFluxConfigurationSourceGitRepository',
           },
         ),
         MigrateSlot(
@@ -24546,16 +24536,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'certificateBlobBase64OrCertificateKeyVault',
+          dartName: 'source',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'certificate_blob_base64':
-                'ContainerAppEnvironmentCertificateBlobBase64OrCertificateKeyVaultCertificateBlobBase64',
+                'ContainerAppEnvironmentCertificateSourceCertificateBlobBase64',
             'certificate_key_vault':
-                'ContainerAppEnvironmentCertificateBlobBase64OrCertificateKeyVaultChoice',
+                'ContainerAppEnvironmentCertificateSourceCertificateKeyVault',
           },
         ),
         MigrateSlot(
@@ -24952,16 +24942,15 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'accountNameOrNfsServerUrl',
+          dartName: 'backend',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'account_name':
-                'ContainerAppEnvironmentStorageAccountNameOrNfsServerUrlAccountName',
+            'account_name': 'ContainerAppEnvironmentStorageBackendAccountName',
             'nfs_server_url':
-                'ContainerAppEnvironmentStorageAccountNameOrNfsServerUrlChoice',
+                'ContainerAppEnvironmentStorageBackendNfsServerUrl',
           },
         ),
         MigrateSlot(
@@ -36237,16 +36226,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'connectionStringOrKeyVaultConnectionString',
+          dartName: 'connectionString',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'connection_string':
-                'DataFactoryLinkedServiceSqlManagedInstanceConnectionStringOrKeyVaultConnectionStringChoice',
+                'DataFactoryLinkedServiceSqlManagedInstanceConnectionStringChoice',
             'key_vault_connection_string':
-                'DataFactoryLinkedServiceSqlManagedInstanceConnectionStringOrKeyVaultConnectionStringOption',
+                'DataFactoryLinkedServiceSqlManagedInstanceKeyVaultConnectionStringChoice',
           },
         ),
         MigrateSlot(
@@ -44544,14 +44533,14 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'recordsOrTargetResourceId',
+          dartName: 'target',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'records': 'DnsARecordRecordsOrTargetResourceIdRecords',
-            'target_resource_id': 'DnsARecordRecordsOrTargetResourceIdChoice',
+            'records': 'DnsARecordTargetRecords',
+            'target_resource_id': 'DnsARecordTargetResourceId',
           },
         ),
         MigrateSlot(
@@ -44692,15 +44681,14 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'recordsOrTargetResourceId',
+          dartName: 'target',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'records': 'DnsAaaaRecordRecordsOrTargetResourceIdRecords',
-            'target_resource_id':
-                'DnsAaaaRecordRecordsOrTargetResourceIdChoice',
+            'records': 'DnsAaaaRecordTargetRecords',
+            'target_resource_id': 'DnsAaaaRecordTargetResourceId',
           },
         ),
         MigrateSlot(
@@ -44971,14 +44959,14 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'recordOrTargetResourceId',
+          dartName: 'target',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'record': 'DnsCnameRecordOrTargetResourceIdRecord',
-            'target_resource_id': 'DnsCnameRecordOrTargetResourceIdChoice',
+            'record': 'DnsCnameRecordTargetRecord',
+            'target_resource_id': 'DnsCnameRecordTargetResourceId',
           },
         ),
         MigrateSlot(
@@ -58054,16 +58042,14 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'connectionStringOrEndpointUri',
+          dartName: 'connection',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'connection_string':
-                'IothubEndpointEventhubConnectionStringOrEndpointUriConnectionString',
-            'endpoint_uri':
-                'IothubEndpointEventhubConnectionStringOrEndpointUriChoice',
+            'connection_string': 'IothubEndpointEventhubConnectionString',
+            'endpoint_uri': 'IothubEndpointEventhubConnectionEndpointUri',
           },
         ),
         MigrateSlot(
@@ -58170,16 +58156,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'connectionStringOrEndpointUri',
+          dartName: 'connection',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'connection_string':
-                'IothubEndpointServicebusQueueConnectionStringOrEndpointUriConnectionString',
+                'IothubEndpointServicebusQueueConnectionString',
             'endpoint_uri':
-                'IothubEndpointServicebusQueueConnectionStringOrEndpointUriChoice',
+                'IothubEndpointServicebusQueueConnectionEndpointUri',
           },
         ),
         MigrateSlot(
@@ -58286,16 +58272,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'connectionStringOrEndpointUri',
+          dartName: 'connection',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'connection_string':
-                'IothubEndpointServicebusTopicConnectionStringOrEndpointUriConnectionString',
+                'IothubEndpointServicebusTopicConnectionString',
             'endpoint_uri':
-                'IothubEndpointServicebusTopicConnectionStringOrEndpointUriChoice',
+                'IothubEndpointServicebusTopicConnectionEndpointUri',
           },
         ),
         MigrateSlot(
@@ -58409,16 +58395,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'connectionStringOrEndpointUri',
+          dartName: 'connection',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'connection_string':
-                'IothubEndpointStorageContainerConnectionStringOrEndpointUriConnectionString',
+                'IothubEndpointStorageContainerConnectionString',
             'endpoint_uri':
-                'IothubEndpointStorageContainerConnectionStringOrEndpointUriChoice',
+                'IothubEndpointStorageContainerConnectionEndpointUri',
           },
         ),
         MigrateSlot(
@@ -60289,14 +60275,14 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'curveOrKeySize',
+          dartName: 'keyParameter',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'curve': 'KeyVaultKeyCurveOrKeySizeCurve',
-            'key_size': 'KeyVaultKeyCurveOrKeySizeChoice',
+            'curve': 'KeyVaultKeyParameterCurve',
+            'key_size': 'KeyVaultKeyParameterKeySize',
           },
         ),
         MigrateSlot(
@@ -62888,15 +62874,14 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'releaseTrainOrVersion',
+          dartName: 'release',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'release_train':
-                'KubernetesClusterExtensionReleaseTrainOrVersionReleaseTrain',
-            'version': 'KubernetesClusterExtensionReleaseTrainOrVersionChoice',
+            'release_train': 'KubernetesClusterExtensionReleaseTrain',
+            'version': 'KubernetesClusterExtensionReleaseVersion',
           },
         ),
         MigrateSlot(
@@ -63840,16 +63825,15 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'fleetUpdateStrategyIdOrStage',
+          dartName: 'strategy',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'fleet_update_strategy_id':
-                'KubernetesFleetUpdateRunFleetUpdateStrategyIdOrStageFleetUpdateStrategyId',
-            'stage':
-                'KubernetesFleetUpdateRunFleetUpdateStrategyIdOrStageChoice',
+                'KubernetesFleetUpdateRunStrategyFleetUpdateStrategyId',
+            'stage': 'KubernetesFleetUpdateRunStrategyStage',
           },
         ),
         MigrateSlot(
@@ -63973,18 +63957,15 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'blobStorageOrBucketOrGitRepository',
+          dartName: 'source',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'blob_storage':
-                'KubernetesFluxConfigurationBlobStorageOrBucketOrGitRepositoryBlobStorage',
-            'bucket':
-                'KubernetesFluxConfigurationBlobStorageOrBucketOrGitRepositoryBucket',
-            'git_repository':
-                'KubernetesFluxConfigurationBlobStorageOrBucketOrGitRepositoryChoice',
+            'blob_storage': 'KubernetesFluxConfigurationSourceBlobStorage',
+            'bucket': 'KubernetesFluxConfigurationSourceBucket',
+            'git_repository': 'KubernetesFluxConfigurationSourceGitRepository',
           },
         ),
         MigrateSlot(
@@ -64151,16 +64132,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'databaseNameOverrideOrDatabaseNamePrefix',
+          dartName: 'databaseNaming',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'database_name_override':
-                'KustoAttachedDatabaseConfigurationDatabaseNameOverrideOrDatabaseNamePrefixDatabaseNameOverride',
+                'KustoAttachedDatabaseConfigurationDatabaseNamingDatabaseNameOverride',
             'database_name_prefix':
-                'KustoAttachedDatabaseConfigurationDatabaseNameOverrideOrDatabaseNamePrefixChoice',
+                'KustoAttachedDatabaseConfigurationDatabaseNamingDatabaseNamePrefix',
           },
         ),
         MigrateSlot(
@@ -64566,16 +64547,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'keyVaultIdOrManagedHsmKeyId',
+          dartName: 'keyIdentifier',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'key_vault_id':
-                'KustoClusterCustomerManagedKeyVaultIdOrManagedHsmKeyIdKeyVaultId',
+                'KustoClusterCustomerManagedKeyIdentifierKeyVaultId',
             'managed_hsm_key_id':
-                'KustoClusterCustomerManagedKeyVaultIdOrManagedHsmKeyIdChoice',
+                'KustoClusterCustomerManagedKeyIdentifierManagedHsmKeyId',
           },
         ),
         MigrateSlot(
@@ -65786,14 +65767,14 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'scriptContentOrUrl',
+          dartName: 'content',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'script_content': 'KustoScriptContentOrUrlScriptContent',
-            'url': 'KustoScriptContentOrUrlChoice',
+            'script_content': 'KustoScriptContentChoice',
+            'url': 'KustoScriptContentUrl',
           },
         ),
         MigrateSlot(
@@ -66159,16 +66140,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'backendAddressIpConfigurationIdOrVirtualNetworkId',
+          dartName: 'attachment',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'backend_address_ip_configuration_id':
-                'LbBackendAddressPoolAddressBackendAddressIpConfigurationIdOrVirtualNetworkIdBackendAddressIpConfigurationId',
+                'LbBackendAddressPoolAddressAttachmentBackendAddressIpConfigurationId',
             'virtual_network_id':
-                'LbBackendAddressPoolAddressBackendAddressIpConfigurationIdOrVirtualNetworkIdChoice',
+                'LbBackendAddressPoolAddressAttachmentVirtualNetworkId',
           },
         ),
         MigrateSlot(
@@ -67336,16 +67317,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'storageAccountAccessKeyOrStorageUsesManagedIdentity',
+          dartName: 'storageAccess',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'storage_account_access_key':
-                'LinuxFunctionAppStorageAccountAccessKeyOrStorageUsesManagedIdentityStorageAccountAccessKey',
+                'LinuxFunctionAppStorageAccessStorageAccountAccessKey',
             'storage_uses_managed_identity':
-                'LinuxFunctionAppStorageAccountAccessKeyOrStorageUsesManagedIdentityChoice',
+                'LinuxFunctionAppStorageAccessStorageUsesManagedIdentity',
           },
         ),
         MigrateSlot(
@@ -67994,16 +67975,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'storageAccountAccessKeyOrStorageUsesManagedIdentity',
+          dartName: 'storageAccess',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'storage_account_access_key':
-                'LinuxFunctionAppSlotStorageAccountAccessKeyOrStorageUsesManagedIdentityStorageAccountAccessKey',
+                'LinuxFunctionAppSlotStorageAccessStorageAccountAccessKey',
             'storage_uses_managed_identity':
-                'LinuxFunctionAppSlotStorageAccountAccessKeyOrStorageUsesManagedIdentityChoice',
+                'LinuxFunctionAppSlotStorageAccessStorageUsesManagedIdentity',
           },
         ),
         MigrateSlot(
@@ -70550,15 +70531,14 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'gatewayAddressOrGatewayFqdn',
+          dartName: 'address',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'gateway_address':
-                'LocalNetworkGatewayAddressOrGatewayFqdnGatewayAddress',
-            'gateway_fqdn': 'LocalNetworkGatewayAddressOrGatewayFqdnChoice',
+            'gateway_address': 'LocalNetworkGatewayAddressChoice',
+            'gateway_fqdn': 'LocalNetworkGatewayAddressGatewayFqdn',
           },
         ),
         MigrateSlot(
@@ -74701,16 +74681,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'accountKeyOrSharedAccessSignature',
+          dartName: 'credentials',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'account_key':
-                'MachineLearningDatastoreFileshareAccountKeyOrSharedAccessSignatureAccountKey',
+                'MachineLearningDatastoreFileshareCredentialsAccountKey',
             'shared_access_signature':
-                'MachineLearningDatastoreFileshareAccountKeyOrSharedAccessSignatureChoice',
+                'MachineLearningDatastoreFileshareCredentialsSharedAccessSignature',
           },
         ),
         MigrateSlot(
@@ -80782,19 +80762,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName:
-              'applicationInsightsWebTestLocationAvailabilityCriteriaOrCriteriaOrDynamicCriteria',
+          dartName: 'signal',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'application_insights_web_test_location_availability_criteria':
-                'MonitorMetricAlertApplicationInsightsWebTestLocationAvailabilityCriteriaOrCriteriaOrDynamicCriteriaApplicationInsightsWebTestLocationAvailabilityCriteria',
-            'criteria':
-                'MonitorMetricAlertApplicationInsightsWebTestLocationAvailabilityCriteriaOrCriteriaOrDynamicCriteriaChoice',
-            'dynamic_criteria':
-                'MonitorMetricAlertApplicationInsightsWebTestLocationAvailabilityCriteriaOrCriteriaOrDynamicCriteriaOption',
+                'MonitorMetricAlertSignalApplicationInsightsWebTestLocationAvailabilityCriteria',
+            'criteria': 'MonitorMetricAlertSignalCriteria',
+            'dynamic_criteria': 'MonitorMetricAlertSignalDynamicCriteria',
           },
         ),
       ],
@@ -80993,16 +80970,15 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'autoMitigationEnabledOrThrottling',
+          dartName: 'resolution',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'auto_mitigation_enabled':
-                'MonitorScheduledQueryRulesAlertAutoMitigationEnabledOrThrottlingAutoMitigationEnabled',
-            'throttling':
-                'MonitorScheduledQueryRulesAlertAutoMitigationEnabledOrThrottlingChoice',
+                'MonitorScheduledQueryRulesAlertResolutionAutoMitigationEnabled',
+            'throttling': 'MonitorScheduledQueryRulesAlertResolutionThrottling',
           },
         ),
         MigrateSlot(
@@ -81987,14 +81963,14 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'createModeOrImport',
+          dartName: 'creation',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'create_mode': 'MssqlDatabaseCreateModeOrImportCreateMode',
-            'import': 'MssqlDatabaseCreateModeOrImportChoice',
+            'create_mode': 'MssqlDatabaseCreationCreateMode',
+            'import': 'MssqlDatabaseCreationImport',
           },
         ),
         MigrateSlot(
@@ -82006,16 +81982,15 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'elasticPoolIdOrMaintenanceConfigurationName',
+          dartName: 'serviceConfiguration',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'elastic_pool_id':
-                'MssqlDatabaseElasticPoolIdOrMaintenanceConfigurationNameElasticPoolId',
+            'elastic_pool_id': 'MssqlDatabaseServiceConfigurationElasticPoolId',
             'maintenance_configuration_name':
-                'MssqlDatabaseElasticPoolIdOrMaintenanceConfigurationNameChoice',
+                'MssqlDatabaseServiceConfigurationMaintenanceConfigurationName',
           },
         ),
         MigrateSlot(
@@ -85587,16 +85562,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'loadBalancerConfigurationOrMultiSubnetIpConfiguration',
+          dartName: 'network',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'load_balancer_configuration':
-                'MssqlVirtualMachineAvailabilityGroupListenerLoadBalancerConfigurationOrMultiSubnetIpConfigurationLoadBalancerConfiguration',
+                'MssqlVirtualMachineAvailabilityGroupListenerNetworkLoadBalancerConfiguration',
             'multi_subnet_ip_configuration':
-                'MssqlVirtualMachineAvailabilityGroupListenerLoadBalancerConfigurationOrMultiSubnetIpConfigurationChoice',
+                'MssqlVirtualMachineAvailabilityGroupListenerNetworkMultiSubnetIpConfiguration',
           },
         ),
         MigrateSlot(
@@ -86834,16 +86809,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'systemAssignedIdentityPrincipalIdOrUserAssignedIdentityId',
+          dartName: 'identity',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'system_assigned_identity_principal_id':
-                'NetappAccountEncryptionSystemAssignedIdentityPrincipalIdOrUserAssignedIdentityIdSystemAssignedIdentityPrincipalId',
+                'NetappAccountEncryptionIdentitySystemAssignedIdentityPrincipalId',
             'user_assigned_identity_id':
-                'NetappAccountEncryptionSystemAssignedIdentityPrincipalIdOrUserAssignedIdentityIdChoice',
+                'NetappAccountEncryptionIdentityUserAssignedIdentityId',
           },
         ),
       ],
@@ -90775,16 +90750,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'addressPrefixesOrNumberOfIpAddressesToAllocate',
+          dartName: 'allocation',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'address_prefixes':
-                'NetworkManagerIpamPoolStaticCidrAddressPrefixesOrNumberOfIpAddressesToAllocateAddressPrefixes',
+                'NetworkManagerIpamPoolStaticCidrAllocationAddressPrefixes',
             'number_of_ip_addresses_to_allocate':
-                'NetworkManagerIpamPoolStaticCidrAddressPrefixesOrNumberOfIpAddressesToAllocateChoice',
+                'NetworkManagerIpamPoolStaticCidrAllocationNumberOfIpAddressesToAllocate',
           },
         ),
         MigrateSlot(
@@ -91827,20 +91802,19 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'addressPrefixesOrFqdnsOrServiceTagsOrSubscriptionIds',
+          dartName: 'source',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'address_prefixes':
-                'NetworkSecurityPerimeterAccessRuleAddressPrefixesOrFqdnsOrServiceTagsOrSubscriptionIdsAddressPrefixes',
-            'fqdns':
-                'NetworkSecurityPerimeterAccessRuleAddressPrefixesOrFqdnsOrServiceTagsOrSubscriptionIdsFqdns',
+                'NetworkSecurityPerimeterAccessRuleSourceAddressPrefixes',
+            'fqdns': 'NetworkSecurityPerimeterAccessRuleSourceFqdns',
             'service_tags':
-                'NetworkSecurityPerimeterAccessRuleAddressPrefixesOrFqdnsOrServiceTagsOrSubscriptionIdsServiceTags',
+                'NetworkSecurityPerimeterAccessRuleSourceServiceTags',
             'subscription_ids':
-                'NetworkSecurityPerimeterAccessRuleAddressPrefixesOrFqdnsOrServiceTagsOrSubscriptionIdsChoice',
+                'NetworkSecurityPerimeterAccessRuleSourceSubscriptionIds',
           },
         ),
         MigrateSlot(
@@ -92986,15 +92960,14 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'configFileOrPackageData',
+          dartName: 'content',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'config_file':
-                'NginxConfigurationConfigFileOrPackageDataConfigFile',
-            'package_data': 'NginxConfigurationConfigFileOrPackageDataChoice',
+            'config_file': 'NginxConfigurationContentConfigFile',
+            'package_data': 'NginxConfigurationContentPackageData',
           },
         ),
         MigrateSlot(
@@ -93091,15 +93064,14 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'autoScaleProfileOrCapacity',
+          dartName: 'scale',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'auto_scale_profile':
-                'NginxDeploymentAutoScaleProfileOrCapacityAutoScaleProfile',
-            'capacity': 'NginxDeploymentAutoScaleProfileOrCapacityChoice',
+            'auto_scale_profile': 'NginxDeploymentScaleAutoScaleProfile',
+            'capacity': 'NginxDeploymentScaleCapacity',
           },
         ),
         MigrateSlot(
@@ -94609,16 +94581,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'allowedIpAddressesOrVirtualNetworkId',
+          dartName: 'networkAccess',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'allowed_ip_addresses':
-                'OracleAutonomousDatabaseCloneFromBackupAllowedIpAddressesOrVirtualNetworkIdAllowedIpAddresses',
+                'OracleAutonomousDatabaseCloneFromBackupNetworkAccessAllowedIpAddresses',
             'virtual_network_id':
-                'OracleAutonomousDatabaseCloneFromBackupAllowedIpAddressesOrVirtualNetworkIdChoice',
+                'OracleAutonomousDatabaseCloneFromBackupNetworkAccessVirtualNetworkId',
           },
         ),
         MigrateSlot(
@@ -95247,16 +95219,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'allowedIpAddressesOrVirtualNetworkId',
+          dartName: 'networkAccess',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'allowed_ip_addresses':
-                'OracleAutonomousDatabaseCloneFromDatabaseAllowedIpAddressesOrVirtualNetworkIdAllowedIpAddresses',
+                'OracleAutonomousDatabaseCloneFromDatabaseNetworkAccessAllowedIpAddresses',
             'virtual_network_id':
-                'OracleAutonomousDatabaseCloneFromDatabaseAllowedIpAddressesOrVirtualNetworkIdChoice',
+                'OracleAutonomousDatabaseCloneFromDatabaseNetworkAccessVirtualNetworkId',
           },
         ),
         MigrateSlot(
@@ -98650,16 +98622,15 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'keyVaultCertificateIdOrSelfSigned',
+          dartName: 'source',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'key_vault_certificate_id':
-                'PaloAltoLocalRulestackCertificateKeyVaultCertificateIdOrSelfSignedKeyVaultCertificateId',
-            'self_signed':
-                'PaloAltoLocalRulestackCertificateKeyVaultCertificateIdOrSelfSignedChoice',
+                'PaloAltoLocalRulestackCertificateSourceKeyVaultCertificateId',
+            'self_signed': 'PaloAltoLocalRulestackCertificateSourceSelfSigned',
           },
         ),
         MigrateSlot(
@@ -104089,17 +104060,15 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName:
-              'destinationIpAddressOrLoadBalancerFrontendIpConfigurationIds',
+          dartName: 'destination',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'destination_ip_address':
-                'PrivateLinkServiceDestinationIpAddressOrLoadBalancerFrontendIpConfigurationIdsDestinationIpAddress',
+            'destination_ip_address': 'PrivateLinkServiceDestinationIpAddress',
             'load_balancer_frontend_ip_configuration_ids':
-                'PrivateLinkServiceDestinationIpAddressOrLoadBalancerFrontendIpConfigurationIdsChoice',
+                'PrivateLinkServiceDestinationLoadBalancerFrontendIpConfigurationIds',
           },
         ),
         MigrateSlot(
@@ -105679,16 +105648,15 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'identityOrServicePrincipal',
+          dartName: 'credentials',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'identity':
-                'RedhatOpenshiftClusterIdentityOrServicePrincipalIdentity',
+            'identity': 'RedhatOpenshiftClusterCredentialsIdentity',
             'service_principal':
-                'RedhatOpenshiftClusterIdentityOrServicePrincipalChoice',
+                'RedhatOpenshiftClusterCredentialsServicePrincipal',
           },
         ),
         MigrateSlot(
@@ -110724,15 +110692,15 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'displayNameOrName',
+          dartName: 'identifier',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'display_name':
-                'SentinelAlertRuleAnomalyBuiltInDisplayNameOrNameDisplayName',
-            'name': 'SentinelAlertRuleAnomalyBuiltInDisplayNameOrNameChoice',
+                'SentinelAlertRuleAnomalyBuiltInIdentifierDisplayName',
+            'name': 'SentinelAlertRuleAnomalyBuiltInIdentifierName',
           },
         ),
         MigrateSlot(
@@ -113670,16 +113638,15 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'certificateOrCertificateCommonNames',
+          dartName: 'certificates',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'certificate':
-                'ServiceFabricClusterCertificateOrCertificateCommonNamesCertificate',
+            'certificate': 'ServiceFabricClusterCertificatesCertificate',
             'certificate_common_names':
-                'ServiceFabricClusterCertificateOrCertificateCommonNamesChoice',
+                'ServiceFabricClusterCertificatesCertificateCommonNames',
           },
         ),
         MigrateSlot(
@@ -113728,17 +113695,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName:
-              'reverseProxyCertificateOrReverseProxyCertificateCommonNames',
+          dartName: 'reverseProxyCertificates',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'reverse_proxy_certificate':
-                'ServiceFabricClusterReverseProxyCertificateOrReverseProxyCertificateCommonNamesReverseProxyCertificate',
+                'ServiceFabricClusterReverseProxyCertificatesReverseProxyCertificate',
             'reverse_proxy_certificate_common_names':
-                'ServiceFabricClusterReverseProxyCertificateOrReverseProxyCertificateCommonNamesChoice',
+                'ServiceFabricClusterReverseProxyCertificatesReverseProxyCertificateCommonNames',
           },
         ),
         MigrateSlot(
@@ -118936,16 +118902,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'defaultLogStorageAccountIdOrManagedDisk',
+          dartName: 'diskReplication',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'default_log_storage_account_id':
-                'SiteRecoveryVmwareReplicatedVmDefaultLogStorageAccountIdOrManagedDiskDefaultLogStorageAccountId',
+                'SiteRecoveryVmwareReplicatedVmDiskReplicationDefaultLogStorageAccountId',
             'managed_disk':
-                'SiteRecoveryVmwareReplicatedVmDefaultLogStorageAccountIdOrManagedDiskChoice',
+                'SiteRecoveryVmwareReplicatedVmDiskReplicationManagedDisk',
           },
         ),
         MigrateSlot(
@@ -131076,15 +131042,14 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'addressPrefixesOrIpAddressPool',
+          dartName: 'addressing',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'address_prefixes':
-                'SubnetAddressPrefixesOrIpAddressPoolAddressPrefixes',
-            'ip_address_pool': 'SubnetAddressPrefixesOrIpAddressPoolChoice',
+            'address_prefixes': 'SubnetAddressingAddressPrefixes',
+            'ip_address_pool': 'SubnetAddressingIpAddressPool',
           },
         ),
         MigrateSlot(
@@ -131529,16 +131494,14 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'billingScopeIdOrSubscriptionId',
+          dartName: 'source',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'billing_scope_id':
-                'SubscriptionBillingScopeIdOrSubscriptionIdBillingScopeId',
-            'subscription_id':
-                'SubscriptionBillingScopeIdOrSubscriptionIdChoice',
+            'billing_scope_id': 'SubscriptionSourceBillingScopeId',
+            'subscription_id': 'SubscriptionSourceSubscriptionId',
           },
         ),
         MigrateSlot(
@@ -132967,14 +132930,14 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'autoScaleOrNodeCount',
+          dartName: 'scale',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'auto_scale': 'SynapseSparkPoolAutoScaleOrNodeCountAutoScale',
-            'node_count': 'SynapseSparkPoolAutoScaleOrNodeCountChoice',
+            'auto_scale': 'SynapseSparkPoolAutoScaleChoice',
+            'node_count': 'SynapseSparkPoolScaleNodeCount',
           },
         ),
         MigrateSlot(
@@ -133176,15 +133139,14 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'recoveryDatabaseIdOrRestore',
+          dartName: 'recovery',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'recovery_database_id':
-                'SynapseSqlPoolRecoveryDatabaseIdOrRestoreRecoveryDatabaseId',
-            'restore': 'SynapseSqlPoolRecoveryDatabaseIdOrRestoreChoice',
+            'recovery_database_id': 'SynapseSqlPoolRecoveryDatabaseId',
+            'restore': 'SynapseSqlPoolRecoveryRestore',
           },
         ),
         MigrateSlot(
@@ -138023,15 +137985,14 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'availabilitySetIdOrZones',
+          dartName: 'placement',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'availability_set_id':
-                'VirtualMachineAvailabilitySetIdOrZonesAvailabilitySetId',
-            'zones': 'VirtualMachineAvailabilitySetIdOrZonesChoice',
+            'availability_set_id': 'VirtualMachinePlacementAvailabilitySetId',
+            'zones': 'VirtualMachinePlacementZones',
           },
         ),
         MigrateSlot(
@@ -138146,16 +138107,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'osProfileLinuxConfigOrOsProfileWindowsConfig',
+          dartName: 'osConfiguration',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'os_profile_linux_config':
-                'VirtualMachineOsProfileLinuxConfigOrOsProfileWindowsConfigOsProfileLinuxConfig',
+                'VirtualMachineOsConfigurationOsProfileLinuxConfig',
             'os_profile_windows_config':
-                'VirtualMachineOsProfileLinuxConfigOrOsProfileWindowsConfigChoice',
+                'VirtualMachineOsConfigurationOsProfileWindowsConfig',
           },
         ),
         MigrateSlot(
@@ -139848,16 +139809,14 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'addressSpaceOrIpAddressPool',
+          dartName: 'addressing',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'address_space':
-                'VirtualNetworkAddressSpaceOrIpAddressPoolAddressSpace',
-            'ip_address_pool':
-                'VirtualNetworkAddressSpaceOrIpAddressPoolChoice',
+            'address_space': 'VirtualNetworkAddressingAddressSpace',
+            'ip_address_pool': 'VirtualNetworkAddressingIpAddressPool',
           },
         ),
         MigrateSlot(
@@ -143800,16 +143759,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'storageAccountAccessKeyOrStorageUsesManagedIdentity',
+          dartName: 'storageAccess',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'storage_account_access_key':
-                'WindowsFunctionAppStorageAccountAccessKeyOrStorageUsesManagedIdentityStorageAccountAccessKey',
+                'WindowsFunctionAppStorageAccessStorageAccountAccessKey',
             'storage_uses_managed_identity':
-                'WindowsFunctionAppStorageAccountAccessKeyOrStorageUsesManagedIdentityChoice',
+                'WindowsFunctionAppStorageAccessStorageUsesManagedIdentity',
           },
         ),
         MigrateSlot(
@@ -144452,16 +144411,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'storageAccountAccessKeyOrStorageUsesManagedIdentity',
+          dartName: 'storageAccess',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'storage_account_access_key':
-                'WindowsFunctionAppSlotStorageAccountAccessKeyOrStorageUsesManagedIdentityStorageAccountAccessKey',
+                'WindowsFunctionAppSlotStorageAccessStorageAccountAccessKey',
             'storage_uses_managed_identity':
-                'WindowsFunctionAppSlotStorageAccountAccessKeyOrStorageUsesManagedIdentityChoice',
+                'WindowsFunctionAppSlotStorageAccessStorageUsesManagedIdentity',
           },
         ),
         MigrateSlot(
@@ -147634,6 +147593,36 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'ApiManagementApiAuthOauth2Authorization': MigrateHelper(
+      className: 'ApiManagementApiAuthOauth2Authorization',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'oauth2_authorization',
+          dartName: 'oauth2Authorization',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ApiManagementApiOauth2Authorization',
+        ),
+      ],
+      shorthand: 'oauth2Authorization',
+    ),
+    'ApiManagementApiAuthOpenidAuthentication': MigrateHelper(
+      className: 'ApiManagementApiAuthOpenidAuthentication',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'openid_authentication',
+          dartName: 'openidAuthentication',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ApiManagementApiOpenidAuthentication',
+        ),
+      ],
+      shorthand: 'openidAuthentication',
+    ),
     'ApiManagementApiContact': MigrateHelper(
       className: 'ApiManagementApiContact',
       slots: <MigrateSlot>[
@@ -147894,40 +147883,6 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'ApiManagementApiOauth2AuthorizationOrOpenidAuthenticationChoice':
-        MigrateHelper(
-          className:
-              'ApiManagementApiOauth2AuthorizationOrOpenidAuthenticationChoice',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'openid_authentication',
-              dartName: 'openidAuthentication',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ApiManagementApiOpenidAuthentication',
-            ),
-          ],
-          shorthand: 'openidAuthentication',
-        ),
-    'ApiManagementApiOauth2AuthorizationOrOpenidAuthenticationOauth2Authorization':
-        MigrateHelper(
-          className:
-              'ApiManagementApiOauth2AuthorizationOrOpenidAuthenticationOauth2Authorization',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'oauth2_authorization',
-              dartName: 'oauth2Authorization',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ApiManagementApiOauth2Authorization',
-            ),
-          ],
-          shorthand: 'oauth2Authorization',
-        ),
     'ApiManagementApiOpenidAuthentication': MigrateHelper(
       className: 'ApiManagementApiOpenidAuthentication',
       slots: <MigrateSlot>[
@@ -148444,8 +148399,36 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       ],
       shorthand: 'xmlLink',
     ),
-    'ApiManagementApiSchemaComponentsOrDefinitionsOrValueChoice': MigrateHelper(
-      className: 'ApiManagementApiSchemaComponentsOrDefinitionsOrValueChoice',
+    'ApiManagementApiSchemaDocumentComponents': MigrateHelper(
+      className: 'ApiManagementApiSchemaDocumentComponents',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'components',
+          dartName: 'components',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'components',
+    ),
+    'ApiManagementApiSchemaDocumentDefinitions': MigrateHelper(
+      className: 'ApiManagementApiSchemaDocumentDefinitions',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'definitions',
+          dartName: 'definitions',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'definitions',
+    ),
+    'ApiManagementApiSchemaDocumentValue': MigrateHelper(
+      className: 'ApiManagementApiSchemaDocumentValue',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'value',
@@ -148458,38 +148441,6 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       ],
       shorthand: 'value',
     ),
-    'ApiManagementApiSchemaComponentsOrDefinitionsOrValueComponents':
-        MigrateHelper(
-          className:
-              'ApiManagementApiSchemaComponentsOrDefinitionsOrValueComponents',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'components',
-              dartName: 'components',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'components',
-        ),
-    'ApiManagementApiSchemaComponentsOrDefinitionsOrValueDefinitions':
-        MigrateHelper(
-          className:
-              'ApiManagementApiSchemaComponentsOrDefinitionsOrValueDefinitions',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'definitions',
-              dartName: 'definitions',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'definitions',
-        ),
     'ApiManagementApiSubscriptionKeyParameterNames': MigrateHelper(
       className: 'ApiManagementApiSubscriptionKeyParameterNames',
       slots: <MigrateSlot>[
@@ -148667,16 +148618,14 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'countOrPercentage',
+          dartName: 'threshold',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'count':
-                'ApiManagementBackendFailureConditionCountOrPercentageCount',
-            'percentage':
-                'ApiManagementBackendFailureConditionCountOrPercentageChoice',
+            'count': 'ApiManagementBackendThresholdCount',
+            'percentage': 'ApiManagementBackendThresholdPercentage',
           },
         ),
         MigrateSlot(
@@ -148703,36 +148652,6 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           helper: 'ApiManagementBackendStatusCodeRange',
         ),
       ],
-    ),
-    'ApiManagementBackendFailureConditionCountOrPercentageChoice':
-        MigrateHelper(
-          className:
-              'ApiManagementBackendFailureConditionCountOrPercentageChoice',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'percentage',
-              dartName: 'percentage',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'num',
-            ),
-          ],
-          shorthand: 'percentage',
-        ),
-    'ApiManagementBackendFailureConditionCountOrPercentageCount': MigrateHelper(
-      className: 'ApiManagementBackendFailureConditionCountOrPercentageCount',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'count',
-          dartName: 'count',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          positional: true,
-          dartType: 'num',
-        ),
-      ],
-      shorthand: 'count',
     ),
     'ApiManagementBackendProxy': MigrateHelper(
       className: 'ApiManagementBackendProxy',
@@ -148874,6 +148793,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'ApiManagementBackendThresholdCount': MigrateHelper(
+      className: 'ApiManagementBackendThresholdCount',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'count',
+          dartName: 'count',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'num',
+        ),
+      ],
+      shorthand: 'count',
+    ),
+    'ApiManagementBackendThresholdPercentage': MigrateHelper(
+      className: 'ApiManagementBackendThresholdPercentage',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'percentage',
+          dartName: 'percentage',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'num',
+        ),
+      ],
+      shorthand: 'percentage',
+    ),
     'ApiManagementBackendTls': MigrateHelper(
       className: 'ApiManagementBackendTls',
       slots: <MigrateSlot>[
@@ -148919,22 +148866,8 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'ApiManagementCertificateDataOrKeyVaultSecretIdChoice': MigrateHelper(
-      className: 'ApiManagementCertificateDataOrKeyVaultSecretIdChoice',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'key_vault_secret_id',
-          dartName: 'keyVaultSecretId',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          positional: true,
-          dartType: 'String',
-        ),
-      ],
-      shorthand: 'keyVaultSecretId',
-    ),
-    'ApiManagementCertificateDataOrKeyVaultSecretIdData': MigrateHelper(
-      className: 'ApiManagementCertificateDataOrKeyVaultSecretIdData',
+    'ApiManagementCertificateSourceData': MigrateHelper(
+      className: 'ApiManagementCertificateSourceData',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'data',
@@ -148946,6 +148879,20 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
       shorthand: 'data',
+    ),
+    'ApiManagementCertificateSourceKeyVaultSecretId': MigrateHelper(
+      className: 'ApiManagementCertificateSourceKeyVaultSecretId',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'key_vault_secret_id',
+          dartName: 'keyVaultSecretId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'keyVaultSecretId',
     ),
     'ApiManagementCustomDomainDeveloperPortal': MigrateHelper(
       className: 'ApiManagementCustomDomainDeveloperPortal',
@@ -149545,16 +149492,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'connectionStringOrInstrumentationKey',
+          dartName: 'credentials',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'connection_string':
-                'ApiManagementLoggerApplicationInsightsConnectionStringOrInstrumentationKeyConnectionString',
+                'ApiManagementLoggerCredentialsConnectionString',
             'instrumentation_key':
-                'ApiManagementLoggerApplicationInsightsConnectionStringOrInstrumentationKeyChoice',
+                'ApiManagementLoggerCredentialsInstrumentationKey',
           },
         ),
         MigrateSlot(
@@ -149566,85 +149513,75 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'ApiManagementLoggerApplicationInsightsConnectionStringOrInstrumentationKeyChoice':
-        MigrateHelper(
-          className:
-              'ApiManagementLoggerApplicationInsightsConnectionStringOrInstrumentationKeyChoice',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'instrumentation_key',
-              dartName: 'instrumentationKey',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'instrumentationKey',
-        ),
-    'ApiManagementLoggerApplicationInsightsConnectionStringOrInstrumentationKeyConnectionString':
-        MigrateHelper(
-          className:
-              'ApiManagementLoggerApplicationInsightsConnectionStringOrInstrumentationKeyConnectionString',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'connection_string',
-              dartName: 'connectionString',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'connectionString',
-        ),
-    'ApiManagementLoggerApplicationInsightsOrEventhubApplicationInsights':
-        MigrateHelper(
-          className:
-              'ApiManagementLoggerApplicationInsightsOrEventhubApplicationInsights',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'application_insights',
-              dartName: 'applicationInsights',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ApiManagementLoggerApplicationInsights',
-            ),
-          ],
-          shorthand: 'applicationInsights',
-        ),
-    'ApiManagementLoggerApplicationInsightsOrEventhubChoice': MigrateHelper(
-      className: 'ApiManagementLoggerApplicationInsightsOrEventhubChoice',
+    'ApiManagementLoggerConnectionEndpointUri': MigrateHelper(
+      className: 'ApiManagementLoggerConnectionEndpointUri',
       slots: <MigrateSlot>[
         MigrateSlot(
-          tfName: 'eventhub',
-          dartName: 'eventhub',
-          kind: MigrateSlotKind.helper,
+          tfName: 'endpoint_uri',
+          dartName: 'endpointUri',
+          kind: MigrateSlotKind.scalar,
           required: true,
-          wrapped: false,
           positional: true,
-          helper: 'ApiManagementLoggerEventhub',
+          dartType: 'String',
         ),
       ],
-      shorthand: 'eventhub',
+      shorthand: 'endpointUri',
+    ),
+    'ApiManagementLoggerConnectionString': MigrateHelper(
+      className: 'ApiManagementLoggerConnectionString',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'connection_string',
+          dartName: 'connectionString',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'connectionString',
+    ),
+    'ApiManagementLoggerCredentialsConnectionString': MigrateHelper(
+      className: 'ApiManagementLoggerCredentialsConnectionString',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'connection_string',
+          dartName: 'connectionString',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'connectionString',
+    ),
+    'ApiManagementLoggerCredentialsInstrumentationKey': MigrateHelper(
+      className: 'ApiManagementLoggerCredentialsInstrumentationKey',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'instrumentation_key',
+          dartName: 'instrumentationKey',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'instrumentationKey',
     ),
     'ApiManagementLoggerEventhub': MigrateHelper(
       className: 'ApiManagementLoggerEventhub',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'connectionStringOrEndpointUri',
+          dartName: 'connection',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'connection_string':
-                'ApiManagementLoggerEventhubConnectionStringOrEndpointUriConnectionString',
-            'endpoint_uri':
-                'ApiManagementLoggerEventhubConnectionStringOrEndpointUriChoice',
+            'connection_string': 'ApiManagementLoggerConnectionString',
+            'endpoint_uri': 'ApiManagementLoggerConnectionEndpointUri',
           },
         ),
         MigrateSlot(
@@ -149663,38 +149600,36 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'ApiManagementLoggerEventhubConnectionStringOrEndpointUriChoice':
-        MigrateHelper(
-          className:
-              'ApiManagementLoggerEventhubConnectionStringOrEndpointUriChoice',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'endpoint_uri',
-              dartName: 'endpointUri',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'endpointUri',
+    'ApiManagementLoggerTargetApplicationInsights': MigrateHelper(
+      className: 'ApiManagementLoggerTargetApplicationInsights',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'application_insights',
+          dartName: 'applicationInsights',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ApiManagementLoggerApplicationInsights',
         ),
-    'ApiManagementLoggerEventhubConnectionStringOrEndpointUriConnectionString':
-        MigrateHelper(
-          className:
-              'ApiManagementLoggerEventhubConnectionStringOrEndpointUriConnectionString',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'connection_string',
-              dartName: 'connectionString',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'connectionString',
+      ],
+      shorthand: 'applicationInsights',
+    ),
+    'ApiManagementLoggerTargetEventhub': MigrateHelper(
+      className: 'ApiManagementLoggerTargetEventhub',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'eventhub',
+          dartName: 'eventhub',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ApiManagementLoggerEventhub',
         ),
+      ],
+      shorthand: 'eventhub',
+    ),
     'ApiManagementNamedValueFromKeyVault': MigrateHelper(
       className: 'ApiManagementNamedValueFromKeyVault',
       slots: <MigrateSlot>[
@@ -149714,8 +149649,22 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'ApiManagementNamedValueOrValueFromKeyVaultChoice': MigrateHelper(
-      className: 'ApiManagementNamedValueOrValueFromKeyVaultChoice',
+    'ApiManagementNamedValueSourceValue': MigrateHelper(
+      className: 'ApiManagementNamedValueSourceValue',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'value',
+          dartName: 'value',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'value',
+    ),
+    'ApiManagementNamedValueSourceValueFromKeyVault': MigrateHelper(
+      className: 'ApiManagementNamedValueSourceValueFromKeyVault',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'value_from_key_vault',
@@ -149728,20 +149677,6 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
       shorthand: 'valueFromKeyVault',
-    ),
-    'ApiManagementNamedValueOrValueFromKeyVaultValue': MigrateHelper(
-      className: 'ApiManagementNamedValueOrValueFromKeyVaultValue',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'value',
-          dartName: 'value',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          positional: true,
-          dartType: 'String',
-        ),
-      ],
-      shorthand: 'value',
     ),
     'ApiManagementPolicyXmlContent': MigrateHelper(
       className: 'ApiManagementPolicyXmlContent',
@@ -150134,8 +150069,8 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'ApiManagementSubscriptionApiIdOrProductIdApiId': MigrateHelper(
-      className: 'ApiManagementSubscriptionApiIdOrProductIdApiId',
+    'ApiManagementSubscriptionScopeApiId': MigrateHelper(
+      className: 'ApiManagementSubscriptionScopeApiId',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'api_id',
@@ -150148,8 +150083,8 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       ],
       shorthand: 'apiId',
     ),
-    'ApiManagementSubscriptionApiIdOrProductIdChoice': MigrateHelper(
-      className: 'ApiManagementSubscriptionApiIdOrProductIdChoice',
+    'ApiManagementSubscriptionScopeProductId': MigrateHelper(
+      className: 'ApiManagementSubscriptionScopeProductId',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'product_id',
@@ -150240,10 +150175,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       ],
       shorthand: 'versionQueryName',
     ),
-    'ApiManagementWorkspaceCertificateDataBase64OrKeyVaultSecretIdCertificateDataBase64':
+    'ApiManagementWorkspaceCertificateSourceCertificateDataBase64':
         MigrateHelper(
           className:
-              'ApiManagementWorkspaceCertificateDataBase64OrKeyVaultSecretIdCertificateDataBase64',
+              'ApiManagementWorkspaceCertificateSourceCertificateDataBase64',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'certificate_data_base64',
@@ -150256,22 +150191,20 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           ],
           shorthand: 'certificateDataBase64',
         ),
-    'ApiManagementWorkspaceCertificateDataBase64OrKeyVaultSecretIdChoice':
-        MigrateHelper(
-          className:
-              'ApiManagementWorkspaceCertificateDataBase64OrKeyVaultSecretIdChoice',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'key_vault_secret_id',
-              dartName: 'keyVaultSecretId',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'keyVaultSecretId',
+    'ApiManagementWorkspaceCertificateSourceKeyVaultSecretId': MigrateHelper(
+      className: 'ApiManagementWorkspaceCertificateSourceKeyVaultSecretId',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'key_vault_secret_id',
+          dartName: 'keyVaultSecretId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
+      ],
+      shorthand: 'keyVaultSecretId',
+    ),
     'ApiManagementWorkspaceNamedValueFromKeyVault': MigrateHelper(
       className: 'ApiManagementWorkspaceNamedValueFromKeyVault',
       slots: <MigrateSlot>[
@@ -150291,8 +150224,22 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'ApiManagementWorkspaceNamedValueOrValueFromKeyVaultChoice': MigrateHelper(
-      className: 'ApiManagementWorkspaceNamedValueOrValueFromKeyVaultChoice',
+    'ApiManagementWorkspaceNamedValueSourceValue': MigrateHelper(
+      className: 'ApiManagementWorkspaceNamedValueSourceValue',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'value',
+          dartName: 'value',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'value',
+    ),
+    'ApiManagementWorkspaceNamedValueSourceValueFromKeyVault': MigrateHelper(
+      className: 'ApiManagementWorkspaceNamedValueSourceValueFromKeyVault',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'value_from_key_vault',
@@ -150305,20 +150252,6 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
       shorthand: 'valueFromKeyVault',
-    ),
-    'ApiManagementWorkspaceNamedValueOrValueFromKeyVaultValue': MigrateHelper(
-      className: 'ApiManagementWorkspaceNamedValueOrValueFromKeyVaultValue',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'value',
-          dartName: 'value',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          positional: true,
-          dartType: 'String',
-        ),
-      ],
-      shorthand: 'value',
     ),
     'ApiManagementWorkspacePolicyXmlContent': MigrateHelper(
       className: 'ApiManagementWorkspacePolicyXmlContent',
@@ -150471,22 +150404,8 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'AppConfigurationKeyValueOrVaultKeyReferenceChoice': MigrateHelper(
-      className: 'AppConfigurationKeyValueOrVaultKeyReferenceChoice',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'vault_key_reference',
-          dartName: 'vaultKeyReference',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          positional: true,
-          dartType: 'String',
-        ),
-      ],
-      shorthand: 'vaultKeyReference',
-    ),
-    'AppConfigurationKeyValueOrVaultKeyReferenceValue': MigrateHelper(
-      className: 'AppConfigurationKeyValueOrVaultKeyReferenceValue',
+    'AppConfigurationKeySourceValue': MigrateHelper(
+      className: 'AppConfigurationKeySourceValue',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'value',
@@ -150498,6 +150417,20 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
       shorthand: 'value',
+    ),
+    'AppConfigurationKeySourceVaultKeyReference': MigrateHelper(
+      className: 'AppConfigurationKeySourceVaultKeyReference',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'vault_key_reference',
+          dartName: 'vaultKeyReference',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'vaultKeyReference',
     ),
     'AppConfigurationReplica': MigrateHelper(
       className: 'AppConfigurationReplica',
@@ -150518,38 +150451,22 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'AppServiceCertificateKeyVaultSecretIdOrPfxBlobChoice': MigrateHelper(
-      className: 'AppServiceCertificateKeyVaultSecretIdOrPfxBlobChoice',
+    'AppServiceCertificateOrderRequestCsr': MigrateHelper(
+      className: 'AppServiceCertificateOrderRequestCsr',
       slots: <MigrateSlot>[
         MigrateSlot(
-          tfName: 'pfx_blob',
-          dartName: 'pfxBlob',
+          tfName: 'csr',
+          dartName: 'csr',
           kind: MigrateSlotKind.scalar,
           required: true,
           positional: true,
           dartType: 'String',
         ),
       ],
-      shorthand: 'pfxBlob',
+      shorthand: 'csr',
     ),
-    'AppServiceCertificateKeyVaultSecretIdOrPfxBlobKeyVaultSecretId':
-        MigrateHelper(
-          className:
-              'AppServiceCertificateKeyVaultSecretIdOrPfxBlobKeyVaultSecretId',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'key_vault_secret_id',
-              dartName: 'keyVaultSecretId',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'keyVaultSecretId',
-        ),
-    'AppServiceCertificateOrderCsrOrDistinguishedNameChoice': MigrateHelper(
-      className: 'AppServiceCertificateOrderCsrOrDistinguishedNameChoice',
+    'AppServiceCertificateOrderRequestDistinguishedName': MigrateHelper(
+      className: 'AppServiceCertificateOrderRequestDistinguishedName',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'distinguished_name',
@@ -150562,19 +150479,33 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       ],
       shorthand: 'distinguishedName',
     ),
-    'AppServiceCertificateOrderCsrOrDistinguishedNameCsr': MigrateHelper(
-      className: 'AppServiceCertificateOrderCsrOrDistinguishedNameCsr',
+    'AppServiceCertificateSourceKeyVaultSecretId': MigrateHelper(
+      className: 'AppServiceCertificateSourceKeyVaultSecretId',
       slots: <MigrateSlot>[
         MigrateSlot(
-          tfName: 'csr',
-          dartName: 'csr',
+          tfName: 'key_vault_secret_id',
+          dartName: 'keyVaultSecretId',
           kind: MigrateSlotKind.scalar,
           required: true,
           positional: true,
           dartType: 'String',
         ),
       ],
-      shorthand: 'csr',
+      shorthand: 'keyVaultSecretId',
+    ),
+    'AppServiceCertificateSourcePfxBlob': MigrateHelper(
+      className: 'AppServiceCertificateSourcePfxBlob',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'pfx_blob',
+          dartName: 'pfxBlob',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'pfxBlob',
     ),
     'AppServiceConnectionAuthentication': MigrateHelper(
       className: 'AppServiceConnectionAuthentication',
@@ -150661,38 +150592,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'AppServiceEnvironmentV3DedicatedHostCountOrZoneRedundantChoice':
-        MigrateHelper(
-          className:
-              'AppServiceEnvironmentV3DedicatedHostCountOrZoneRedundantChoice',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'zone_redundant',
-              dartName: 'zoneRedundant',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'bool',
-            ),
-          ],
-          shorthand: 'zoneRedundant',
+    'AppServiceEnvironmentV3PlacementDedicatedHostCount': MigrateHelper(
+      className: 'AppServiceEnvironmentV3PlacementDedicatedHostCount',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'dedicated_host_count',
+          dartName: 'dedicatedHostCount',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'num',
         ),
-    'AppServiceEnvironmentV3DedicatedHostCountOrZoneRedundantDedicatedHostCount':
-        MigrateHelper(
-          className:
-              'AppServiceEnvironmentV3DedicatedHostCountOrZoneRedundantDedicatedHostCount',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'dedicated_host_count',
-              dartName: 'dedicatedHostCount',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'num',
-            ),
-          ],
-          shorthand: 'dedicatedHostCount',
+      ],
+      shorthand: 'dedicatedHostCount',
+    ),
+    'AppServiceEnvironmentV3PlacementZoneRedundant': MigrateHelper(
+      className: 'AppServiceEnvironmentV3PlacementZoneRedundant',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'zone_redundant',
+          dartName: 'zoneRedundant',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'bool',
         ),
+      ],
+      shorthand: 'zoneRedundant',
+    ),
     'AppServiceSourceControlCodeConfiguration': MigrateHelper(
       className: 'AppServiceSourceControlCodeConfiguration',
       slots: <MigrateSlot>[
@@ -152536,21 +152463,20 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName:
-              'accountKeyOrLocalAuthReferenceOrSasTokenOrServicePrincipal',
+          dartName: 'credentials',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'account_key':
-                'ArcKubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrSasTokenOrServicePrincipalAccountKey',
+                'ArcKubernetesFluxConfigurationBlobStorageCredentialsAccountKey',
             'local_auth_reference':
-                'ArcKubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrSasTokenOrServicePrincipalLocalAuthReference',
+                'ArcKubernetesFluxConfigurationBlobStorageCredentialsLocalAuthReference',
             'sas_token':
-                'ArcKubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrSasTokenOrServicePrincipalSasToken',
+                'ArcKubernetesFluxConfigurationBlobStorageCredentialsSasToken',
             'service_principal':
-                'ArcKubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrSasTokenOrServicePrincipalChoice',
+                'ArcKubernetesFluxConfigurationBlobStorageCredentialsServicePrincipal',
           },
         ),
         MigrateSlot(
@@ -152576,10 +152502,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'ArcKubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrSasTokenOrServicePrincipalAccountKey':
+    'ArcKubernetesFluxConfigurationBlobStorageCredentialsAccountKey':
         MigrateHelper(
           className:
-              'ArcKubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrSasTokenOrServicePrincipalAccountKey',
+              'ArcKubernetesFluxConfigurationBlobStorageCredentialsAccountKey',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'account_key',
@@ -152592,10 +152518,42 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           ],
           shorthand: 'accountKey',
         ),
-    'ArcKubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrSasTokenOrServicePrincipalChoice':
+    'ArcKubernetesFluxConfigurationBlobStorageCredentialsLocalAuthReference':
         MigrateHelper(
           className:
-              'ArcKubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrSasTokenOrServicePrincipalChoice',
+              'ArcKubernetesFluxConfigurationBlobStorageCredentialsLocalAuthReference',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'local_auth_reference',
+              dartName: 'localAuthReference',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              positional: true,
+              dartType: 'String',
+            ),
+          ],
+          shorthand: 'localAuthReference',
+        ),
+    'ArcKubernetesFluxConfigurationBlobStorageCredentialsSasToken':
+        MigrateHelper(
+          className:
+              'ArcKubernetesFluxConfigurationBlobStorageCredentialsSasToken',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'sas_token',
+              dartName: 'sasToken',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              positional: true,
+              dartType: 'String',
+            ),
+          ],
+          shorthand: 'sasToken',
+        ),
+    'ArcKubernetesFluxConfigurationBlobStorageCredentialsServicePrincipal':
+        MigrateHelper(
+          className:
+              'ArcKubernetesFluxConfigurationBlobStorageCredentialsServicePrincipal',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'service_principal',
@@ -152609,104 +152567,21 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           ],
           shorthand: 'servicePrincipal',
         ),
-    'ArcKubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrSasTokenOrServicePrincipalLocalAuthReference':
-        MigrateHelper(
-          className:
-              'ArcKubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrSasTokenOrServicePrincipalLocalAuthReference',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'local_auth_reference',
-              dartName: 'localAuthReference',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'localAuthReference',
-        ),
-    'ArcKubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrSasTokenOrServicePrincipalSasToken':
-        MigrateHelper(
-          className:
-              'ArcKubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrSasTokenOrServicePrincipalSasToken',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'sas_token',
-              dartName: 'sasToken',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'sasToken',
-        ),
-    'ArcKubernetesFluxConfigurationBlobStorageOrBucketOrGitRepositoryBlobStorage':
-        MigrateHelper(
-          className:
-              'ArcKubernetesFluxConfigurationBlobStorageOrBucketOrGitRepositoryBlobStorage',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'blob_storage',
-              dartName: 'blobStorage',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ArcKubernetesFluxConfigurationBlobStorage',
-            ),
-          ],
-          shorthand: 'blobStorage',
-        ),
-    'ArcKubernetesFluxConfigurationBlobStorageOrBucketOrGitRepositoryBucket':
-        MigrateHelper(
-          className:
-              'ArcKubernetesFluxConfigurationBlobStorageOrBucketOrGitRepositoryBucket',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'bucket',
-              dartName: 'bucket',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ArcKubernetesFluxConfigurationBucket',
-            ),
-          ],
-          shorthand: 'bucket',
-        ),
-    'ArcKubernetesFluxConfigurationBlobStorageOrBucketOrGitRepositoryChoice':
-        MigrateHelper(
-          className:
-              'ArcKubernetesFluxConfigurationBlobStorageOrBucketOrGitRepositoryChoice',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'git_repository',
-              dartName: 'gitRepository',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ArcKubernetesFluxConfigurationGitRepository',
-            ),
-          ],
-          shorthand: 'gitRepository',
-        ),
     'ArcKubernetesFluxConfigurationBucket': MigrateHelper(
       className: 'ArcKubernetesFluxConfigurationBucket',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'accessKeyOrLocalAuthReference',
+          dartName: 'credentials',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'access_key':
-                'ArcKubernetesFluxConfigurationBucketAccessKeyOrLocalAuthReferenceAccessKey',
+                'ArcKubernetesFluxConfigurationBucketCredentialsAccessKey',
             'local_auth_reference':
-                'ArcKubernetesFluxConfigurationBucketAccessKeyOrLocalAuthReferenceChoice',
+                'ArcKubernetesFluxConfigurationBucketCredentialsLocalAuthReference',
           },
         ),
         MigrateSlot(
@@ -152753,26 +152628,24 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'ArcKubernetesFluxConfigurationBucketAccessKeyOrLocalAuthReferenceAccessKey':
-        MigrateHelper(
-          className:
-              'ArcKubernetesFluxConfigurationBucketAccessKeyOrLocalAuthReferenceAccessKey',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'access_key',
-              dartName: 'accessKey',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'accessKey',
+    'ArcKubernetesFluxConfigurationBucketCredentialsAccessKey': MigrateHelper(
+      className: 'ArcKubernetesFluxConfigurationBucketCredentialsAccessKey',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'access_key',
+          dartName: 'accessKey',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'ArcKubernetesFluxConfigurationBucketAccessKeyOrLocalAuthReferenceChoice':
+      ],
+      shorthand: 'accessKey',
+    ),
+    'ArcKubernetesFluxConfigurationBucketCredentialsLocalAuthReference':
         MigrateHelper(
           className:
-              'ArcKubernetesFluxConfigurationBucketAccessKeyOrLocalAuthReferenceChoice',
+              'ArcKubernetesFluxConfigurationBucketCredentialsLocalAuthReference',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'local_auth_reference',
@@ -153001,6 +152874,51 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+    ),
+    'ArcKubernetesFluxConfigurationSourceBlobStorage': MigrateHelper(
+      className: 'ArcKubernetesFluxConfigurationSourceBlobStorage',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'blob_storage',
+          dartName: 'blobStorage',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ArcKubernetesFluxConfigurationBlobStorage',
+        ),
+      ],
+      shorthand: 'blobStorage',
+    ),
+    'ArcKubernetesFluxConfigurationSourceBucket': MigrateHelper(
+      className: 'ArcKubernetesFluxConfigurationSourceBucket',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'bucket',
+          dartName: 'bucket',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ArcKubernetesFluxConfigurationBucket',
+        ),
+      ],
+      shorthand: 'bucket',
+    ),
+    'ArcKubernetesFluxConfigurationSourceGitRepository': MigrateHelper(
+      className: 'ArcKubernetesFluxConfigurationSourceGitRepository',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'git_repository',
+          dartName: 'gitRepository',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ArcKubernetesFluxConfigurationGitRepository',
+        ),
+      ],
+      shorthand: 'gitRepository',
     ),
     'ArcKubernetesProvisionedClusterAzureActiveDirectory': MigrateHelper(
       className: 'ArcKubernetesProvisionedClusterAzureActiveDirectory',
@@ -153668,46 +153586,17 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'hourlyOrTime',
+          dartName: 'schedule',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'hourly': 'BackupPolicyFileShareBackupHourlyOrTimeHourly',
-            'time': 'BackupPolicyFileShareBackupHourlyOrTimeChoice',
+            'hourly': 'BackupPolicyFileShareScheduleHourly',
+            'time': 'BackupPolicyFileShareScheduleTime',
           },
         ),
       ],
-    ),
-    'BackupPolicyFileShareBackupHourlyOrTimeChoice': MigrateHelper(
-      className: 'BackupPolicyFileShareBackupHourlyOrTimeChoice',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'time',
-          dartName: 'time',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          positional: true,
-          dartType: 'String',
-        ),
-      ],
-      shorthand: 'time',
-    ),
-    'BackupPolicyFileShareBackupHourlyOrTimeHourly': MigrateHelper(
-      className: 'BackupPolicyFileShareBackupHourlyOrTimeHourly',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'hourly',
-          dartName: 'hourly',
-          kind: MigrateSlotKind.helper,
-          required: true,
-          wrapped: false,
-          positional: true,
-          helper: 'BackupPolicyFileShareHourly',
-        ),
-      ],
-      shorthand: 'hourly',
     ),
     'BackupPolicyFileShareHourly': MigrateHelper(
       className: 'BackupPolicyFileShareHourly',
@@ -153852,6 +153741,35 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
       ],
+    ),
+    'BackupPolicyFileShareScheduleHourly': MigrateHelper(
+      className: 'BackupPolicyFileShareScheduleHourly',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'hourly',
+          dartName: 'hourly',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'BackupPolicyFileShareHourly',
+        ),
+      ],
+      shorthand: 'hourly',
+    ),
+    'BackupPolicyFileShareScheduleTime': MigrateHelper(
+      className: 'BackupPolicyFileShareScheduleTime',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'time',
+          dartName: 'time',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'time',
     ),
     'BackupPolicyVmArchivedRestorePoint': MigrateHelper(
       className: 'BackupPolicyVmArchivedRestorePoint',
@@ -160174,39 +160092,6 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'ContainerAppEnvironmentCertificateBlobBase64OrCertificateKeyVaultCertificateBlobBase64':
-        MigrateHelper(
-          className:
-              'ContainerAppEnvironmentCertificateBlobBase64OrCertificateKeyVaultCertificateBlobBase64',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'certificate_blob_base64',
-              dartName: 'certificateBlobBase64',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'certificateBlobBase64',
-        ),
-    'ContainerAppEnvironmentCertificateBlobBase64OrCertificateKeyVaultChoice':
-        MigrateHelper(
-          className:
-              'ContainerAppEnvironmentCertificateBlobBase64OrCertificateKeyVaultChoice',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'certificate_key_vault',
-              dartName: 'certificateKeyVault',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ContainerAppEnvironmentCertificateKeyVault',
-            ),
-          ],
-          shorthand: 'certificateKeyVault',
-        ),
     'ContainerAppEnvironmentCertificateKeyVault': MigrateHelper(
       className: 'ContainerAppEnvironmentCertificateKeyVault',
       slots: <MigrateSlot>[
@@ -160226,6 +160111,39 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'ContainerAppEnvironmentCertificateSourceCertificateBlobBase64':
+        MigrateHelper(
+          className:
+              'ContainerAppEnvironmentCertificateSourceCertificateBlobBase64',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'certificate_blob_base64',
+              dartName: 'certificateBlobBase64',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              positional: true,
+              dartType: 'String',
+            ),
+          ],
+          shorthand: 'certificateBlobBase64',
+        ),
+    'ContainerAppEnvironmentCertificateSourceCertificateKeyVault':
+        MigrateHelper(
+          className:
+              'ContainerAppEnvironmentCertificateSourceCertificateKeyVault',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'certificate_key_vault',
+              dartName: 'certificateKeyVault',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              positional: true,
+              helper: 'ContainerAppEnvironmentCertificateKeyVault',
+            ),
+          ],
+          shorthand: 'certificateKeyVault',
+        ),
     'ContainerAppEnvironmentDaprComponentMetadata': MigrateHelper(
       className: 'ContainerAppEnvironmentDaprComponentMetadata',
       slots: <MigrateSlot>[
@@ -160304,38 +160222,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'ContainerAppEnvironmentStorageAccountNameOrNfsServerUrlAccountName':
-        MigrateHelper(
-          className:
-              'ContainerAppEnvironmentStorageAccountNameOrNfsServerUrlAccountName',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'account_name',
-              dartName: 'accountName',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'accountName',
+    'ContainerAppEnvironmentStorageBackendAccountName': MigrateHelper(
+      className: 'ContainerAppEnvironmentStorageBackendAccountName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'account_name',
+          dartName: 'accountName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'ContainerAppEnvironmentStorageAccountNameOrNfsServerUrlChoice':
-        MigrateHelper(
-          className:
-              'ContainerAppEnvironmentStorageAccountNameOrNfsServerUrlChoice',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'nfs_server_url',
-              dartName: 'nfsServerUrl',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'nfsServerUrl',
+      ],
+      shorthand: 'accountName',
+    ),
+    'ContainerAppEnvironmentStorageBackendNfsServerUrl': MigrateHelper(
+      className: 'ContainerAppEnvironmentStorageBackendNfsServerUrl',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'nfs_server_url',
+          dartName: 'nfsServerUrl',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
+      ],
+      shorthand: 'nfsServerUrl',
+    ),
     'ContainerAppEnvironmentWorkloadProfile': MigrateHelper(
       className: 'ContainerAppEnvironmentWorkloadProfile',
       slots: <MigrateSlot>[
@@ -166433,10 +166347,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'DataFactoryLinkedServiceSqlManagedInstanceConnectionStringOrKeyVaultConnectionStringChoice':
+    'DataFactoryLinkedServiceSqlManagedInstanceConnectionStringChoice':
         MigrateHelper(
           className:
-              'DataFactoryLinkedServiceSqlManagedInstanceConnectionStringOrKeyVaultConnectionStringChoice',
+              'DataFactoryLinkedServiceSqlManagedInstanceConnectionStringChoice',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'connection_string',
@@ -166448,24 +166362,6 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
             ),
           ],
           shorthand: 'connectionString',
-        ),
-    'DataFactoryLinkedServiceSqlManagedInstanceConnectionStringOrKeyVaultConnectionStringOption':
-        MigrateHelper(
-          className:
-              'DataFactoryLinkedServiceSqlManagedInstanceConnectionStringOrKeyVaultConnectionStringOption',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'key_vault_connection_string',
-              dartName: 'keyVaultConnectionString',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper:
-                  'DataFactoryLinkedServiceSqlManagedInstanceKeyVaultConnectionString',
-            ),
-          ],
-          shorthand: 'keyVaultConnectionString',
         ),
     'DataFactoryLinkedServiceSqlManagedInstanceKeyVaultConnectionString':
         MigrateHelper(
@@ -166487,6 +166383,24 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
               dartType: 'String',
             ),
           ],
+        ),
+    'DataFactoryLinkedServiceSqlManagedInstanceKeyVaultConnectionStringChoice':
+        MigrateHelper(
+          className:
+              'DataFactoryLinkedServiceSqlManagedInstanceKeyVaultConnectionStringChoice',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'key_vault_connection_string',
+              dartName: 'keyVaultConnectionString',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              positional: true,
+              helper:
+                  'DataFactoryLinkedServiceSqlManagedInstanceKeyVaultConnectionString',
+            ),
+          ],
+          shorthand: 'keyVaultConnectionString',
         ),
     'DataFactoryLinkedServiceSqlManagedInstanceKeyVaultPassword': MigrateHelper(
       className: 'DataFactoryLinkedServiceSqlManagedInstanceKeyVaultPassword',
@@ -168632,22 +168546,8 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'DnsARecordRecordsOrTargetResourceIdChoice': MigrateHelper(
-      className: 'DnsARecordRecordsOrTargetResourceIdChoice',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'target_resource_id',
-          dartName: 'targetResourceId',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          positional: true,
-          dartType: 'String',
-        ),
-      ],
-      shorthand: 'targetResourceId',
-    ),
-    'DnsARecordRecordsOrTargetResourceIdRecords': MigrateHelper(
-      className: 'DnsARecordRecordsOrTargetResourceIdRecords',
+    'DnsARecordTargetRecords': MigrateHelper(
+      className: 'DnsARecordTargetRecords',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'records',
@@ -168660,8 +168560,8 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       ],
       shorthand: 'records',
     ),
-    'DnsAaaaRecordRecordsOrTargetResourceIdChoice': MigrateHelper(
-      className: 'DnsAaaaRecordRecordsOrTargetResourceIdChoice',
+    'DnsARecordTargetResourceId': MigrateHelper(
+      className: 'DnsARecordTargetResourceId',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'target_resource_id',
@@ -168674,8 +168574,8 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       ],
       shorthand: 'targetResourceId',
     ),
-    'DnsAaaaRecordRecordsOrTargetResourceIdRecords': MigrateHelper(
-      className: 'DnsAaaaRecordRecordsOrTargetResourceIdRecords',
+    'DnsAaaaRecordTargetRecords': MigrateHelper(
+      className: 'DnsAaaaRecordTargetRecords',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'records',
@@ -168687,6 +168587,20 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
       shorthand: 'records',
+    ),
+    'DnsAaaaRecordTargetResourceId': MigrateHelper(
+      className: 'DnsAaaaRecordTargetResourceId',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'target_resource_id',
+          dartName: 'targetResourceId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'targetResourceId',
     ),
     'DnsCaaRecord': MigrateHelper(
       className: 'DnsCaaRecord',
@@ -168714,22 +168628,8 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'DnsCnameRecordOrTargetResourceIdChoice': MigrateHelper(
-      className: 'DnsCnameRecordOrTargetResourceIdChoice',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'target_resource_id',
-          dartName: 'targetResourceId',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          positional: true,
-          dartType: 'String',
-        ),
-      ],
-      shorthand: 'targetResourceId',
-    ),
-    'DnsCnameRecordOrTargetResourceIdRecord': MigrateHelper(
-      className: 'DnsCnameRecordOrTargetResourceIdRecord',
+    'DnsCnameRecordTargetRecord': MigrateHelper(
+      className: 'DnsCnameRecordTargetRecord',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'record',
@@ -168741,6 +168641,20 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
       shorthand: 'record',
+    ),
+    'DnsCnameRecordTargetResourceId': MigrateHelper(
+      className: 'DnsCnameRecordTargetResourceId',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'target_resource_id',
+          dartName: 'targetResourceId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'targetResourceId',
     ),
     'DnsMxRecord': MigrateHelper(
       className: 'DnsMxRecord',
@@ -179650,8 +179564,8 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'IothubEndpointEventhubConnectionStringOrEndpointUriChoice': MigrateHelper(
-      className: 'IothubEndpointEventhubConnectionStringOrEndpointUriChoice',
+    'IothubEndpointEventhubConnectionEndpointUri': MigrateHelper(
+      className: 'IothubEndpointEventhubConnectionEndpointUri',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'endpoint_uri',
@@ -179664,118 +179578,104 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       ],
       shorthand: 'endpointUri',
     ),
-    'IothubEndpointEventhubConnectionStringOrEndpointUriConnectionString':
-        MigrateHelper(
-          className:
-              'IothubEndpointEventhubConnectionStringOrEndpointUriConnectionString',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'connection_string',
-              dartName: 'connectionString',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'connectionString',
+    'IothubEndpointEventhubConnectionString': MigrateHelper(
+      className: 'IothubEndpointEventhubConnectionString',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'connection_string',
+          dartName: 'connectionString',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'IothubEndpointServicebusQueueConnectionStringOrEndpointUriChoice':
-        MigrateHelper(
-          className:
-              'IothubEndpointServicebusQueueConnectionStringOrEndpointUriChoice',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'endpoint_uri',
-              dartName: 'endpointUri',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'endpointUri',
+      ],
+      shorthand: 'connectionString',
+    ),
+    'IothubEndpointServicebusQueueConnectionEndpointUri': MigrateHelper(
+      className: 'IothubEndpointServicebusQueueConnectionEndpointUri',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'endpoint_uri',
+          dartName: 'endpointUri',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'IothubEndpointServicebusQueueConnectionStringOrEndpointUriConnectionString':
-        MigrateHelper(
-          className:
-              'IothubEndpointServicebusQueueConnectionStringOrEndpointUriConnectionString',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'connection_string',
-              dartName: 'connectionString',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'connectionString',
+      ],
+      shorthand: 'endpointUri',
+    ),
+    'IothubEndpointServicebusQueueConnectionString': MigrateHelper(
+      className: 'IothubEndpointServicebusQueueConnectionString',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'connection_string',
+          dartName: 'connectionString',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'IothubEndpointServicebusTopicConnectionStringOrEndpointUriChoice':
-        MigrateHelper(
-          className:
-              'IothubEndpointServicebusTopicConnectionStringOrEndpointUriChoice',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'endpoint_uri',
-              dartName: 'endpointUri',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'endpointUri',
+      ],
+      shorthand: 'connectionString',
+    ),
+    'IothubEndpointServicebusTopicConnectionEndpointUri': MigrateHelper(
+      className: 'IothubEndpointServicebusTopicConnectionEndpointUri',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'endpoint_uri',
+          dartName: 'endpointUri',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'IothubEndpointServicebusTopicConnectionStringOrEndpointUriConnectionString':
-        MigrateHelper(
-          className:
-              'IothubEndpointServicebusTopicConnectionStringOrEndpointUriConnectionString',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'connection_string',
-              dartName: 'connectionString',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'connectionString',
+      ],
+      shorthand: 'endpointUri',
+    ),
+    'IothubEndpointServicebusTopicConnectionString': MigrateHelper(
+      className: 'IothubEndpointServicebusTopicConnectionString',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'connection_string',
+          dartName: 'connectionString',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'IothubEndpointStorageContainerConnectionStringOrEndpointUriChoice':
-        MigrateHelper(
-          className:
-              'IothubEndpointStorageContainerConnectionStringOrEndpointUriChoice',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'endpoint_uri',
-              dartName: 'endpointUri',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'endpointUri',
+      ],
+      shorthand: 'connectionString',
+    ),
+    'IothubEndpointStorageContainerConnectionEndpointUri': MigrateHelper(
+      className: 'IothubEndpointStorageContainerConnectionEndpointUri',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'endpoint_uri',
+          dartName: 'endpointUri',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'IothubEndpointStorageContainerConnectionStringOrEndpointUriConnectionString':
-        MigrateHelper(
-          className:
-              'IothubEndpointStorageContainerConnectionStringOrEndpointUriConnectionString',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'connection_string',
-              dartName: 'connectionString',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'connectionString',
+      ],
+      shorthand: 'endpointUri',
+    ),
+    'IothubEndpointStorageContainerConnectionString': MigrateHelper(
+      className: 'IothubEndpointStorageContainerConnectionString',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'connection_string',
+          dartName: 'connectionString',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
+      ],
+      shorthand: 'connectionString',
+    ),
     'IothubFallbackRoute': MigrateHelper(
       className: 'IothubFallbackRoute',
       slots: <MigrateSlot>[
@@ -180321,22 +180221,8 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'KeyVaultKeyCurveOrKeySizeChoice': MigrateHelper(
-      className: 'KeyVaultKeyCurveOrKeySizeChoice',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'key_size',
-          dartName: 'keySize',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          positional: true,
-          dartType: 'num',
-        ),
-      ],
-      shorthand: 'keySize',
-    ),
-    'KeyVaultKeyCurveOrKeySizeCurve': MigrateHelper(
-      className: 'KeyVaultKeyCurveOrKeySizeCurve',
+    'KeyVaultKeyParameterCurve': MigrateHelper(
+      className: 'KeyVaultKeyParameterCurve',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'curve',
@@ -180348,6 +180234,20 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
       shorthand: 'curve',
+    ),
+    'KeyVaultKeyParameterKeySize': MigrateHelper(
+      className: 'KeyVaultKeyParameterKeySize',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'key_size',
+          dartName: 'keySize',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'num',
+        ),
+      ],
+      shorthand: 'keySize',
     ),
     'KeyVaultKeyReleasePolicy': MigrateHelper(
       className: 'KeyVaultKeyReleasePolicy',
@@ -181393,8 +181293,22 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       ],
       shorthand: 'releaseNamespace',
     ),
-    'KubernetesClusterExtensionReleaseTrainOrVersionChoice': MigrateHelper(
-      className: 'KubernetesClusterExtensionReleaseTrainOrVersionChoice',
+    'KubernetesClusterExtensionReleaseTrain': MigrateHelper(
+      className: 'KubernetesClusterExtensionReleaseTrain',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'release_train',
+          dartName: 'releaseTrain',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'releaseTrain',
+    ),
+    'KubernetesClusterExtensionReleaseVersion': MigrateHelper(
+      className: 'KubernetesClusterExtensionReleaseVersion',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'version',
@@ -181407,22 +181321,6 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       ],
       shorthand: 'version',
     ),
-    'KubernetesClusterExtensionReleaseTrainOrVersionReleaseTrain':
-        MigrateHelper(
-          className:
-              'KubernetesClusterExtensionReleaseTrainOrVersionReleaseTrain',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'release_train',
-              dartName: 'releaseTrain',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'releaseTrain',
-        ),
     'KubernetesClusterExtensionTargetNamespace': MigrateHelper(
       className: 'KubernetesClusterExtensionTargetNamespace',
       slots: <MigrateSlot>[
@@ -183099,38 +182997,6 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'KubernetesFleetUpdateRunFleetUpdateStrategyIdOrStageChoice': MigrateHelper(
-      className: 'KubernetesFleetUpdateRunFleetUpdateStrategyIdOrStageChoice',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'stage',
-          dartName: 'stage',
-          kind: MigrateSlotKind.helper,
-          required: true,
-          repeated: true,
-          wrapped: false,
-          positional: true,
-          helper: 'KubernetesFleetUpdateRunStage',
-        ),
-      ],
-      shorthand: 'stage',
-    ),
-    'KubernetesFleetUpdateRunFleetUpdateStrategyIdOrStageFleetUpdateStrategyId':
-        MigrateHelper(
-          className:
-              'KubernetesFleetUpdateRunFleetUpdateStrategyIdOrStageFleetUpdateStrategyId',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'fleet_update_strategy_id',
-              dartName: 'fleetUpdateStrategyId',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'fleetUpdateStrategyId',
-        ),
     'KubernetesFleetUpdateRunGroup': MigrateHelper(
       className: 'KubernetesFleetUpdateRunGroup',
       slots: <MigrateSlot>[
@@ -183204,6 +183070,36 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'KubernetesFleetUpdateRunStrategyFleetUpdateStrategyId': MigrateHelper(
+      className: 'KubernetesFleetUpdateRunStrategyFleetUpdateStrategyId',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'fleet_update_strategy_id',
+          dartName: 'fleetUpdateStrategyId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'fleetUpdateStrategyId',
+    ),
+    'KubernetesFleetUpdateRunStrategyStage': MigrateHelper(
+      className: 'KubernetesFleetUpdateRunStrategyStage',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'stage',
+          dartName: 'stage',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          repeated: true,
+          wrapped: false,
+          positional: true,
+          helper: 'KubernetesFleetUpdateRunStage',
+        ),
+      ],
+      shorthand: 'stage',
+    ),
     'KubernetesFleetUpdateRunUpgrade': MigrateHelper(
       className: 'KubernetesFleetUpdateRunUpgrade',
       slots: <MigrateSlot>[
@@ -183268,23 +183164,22 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName:
-              'accountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipal',
+          dartName: 'credentials',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'account_key':
-                'KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipalAccountKey',
+                'KubernetesFluxConfigurationBlobStorageCredentialsAccountKey',
             'local_auth_reference':
-                'KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipalLocalAuthReference',
+                'KubernetesFluxConfigurationBlobStorageCredentialsLocalAuthReference',
             'managed_identity':
-                'KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipalManagedIdentity',
+                'KubernetesFluxConfigurationBlobStorageCredentialsManagedIdentity',
             'sas_token':
-                'KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipalSasToken',
+                'KubernetesFluxConfigurationBlobStorageCredentialsSasToken',
             'service_principal':
-                'KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipalChoice',
+                'KubernetesFluxConfigurationBlobStorageCredentialsServicePrincipal',
           },
         ),
         MigrateSlot(
@@ -183310,10 +183205,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipalAccountKey':
+    'KubernetesFluxConfigurationBlobStorageCredentialsAccountKey':
         MigrateHelper(
           className:
-              'KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipalAccountKey',
+              'KubernetesFluxConfigurationBlobStorageCredentialsAccountKey',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'account_key',
@@ -183326,27 +183221,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           ],
           shorthand: 'accountKey',
         ),
-    'KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipalChoice':
+    'KubernetesFluxConfigurationBlobStorageCredentialsLocalAuthReference':
         MigrateHelper(
           className:
-              'KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipalChoice',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'service_principal',
-              dartName: 'servicePrincipal',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'KubernetesFluxConfigurationServicePrincipal',
-            ),
-          ],
-          shorthand: 'servicePrincipal',
-        ),
-    'KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipalLocalAuthReference':
-        MigrateHelper(
-          className:
-              'KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipalLocalAuthReference',
+              'KubernetesFluxConfigurationBlobStorageCredentialsLocalAuthReference',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'local_auth_reference',
@@ -183359,10 +183237,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           ],
           shorthand: 'localAuthReference',
         ),
-    'KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipalManagedIdentity':
+    'KubernetesFluxConfigurationBlobStorageCredentialsManagedIdentity':
         MigrateHelper(
           className:
-              'KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipalManagedIdentity',
+              'KubernetesFluxConfigurationBlobStorageCredentialsManagedIdentity',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'managed_identity',
@@ -183376,88 +183254,52 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           ],
           shorthand: 'managedIdentity',
         ),
-    'KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipalSasToken':
-        MigrateHelper(
-          className:
-              'KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipalSasToken',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'sas_token',
-              dartName: 'sasToken',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'sasToken',
+    'KubernetesFluxConfigurationBlobStorageCredentialsSasToken': MigrateHelper(
+      className: 'KubernetesFluxConfigurationBlobStorageCredentialsSasToken',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'sas_token',
+          dartName: 'sasToken',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'KubernetesFluxConfigurationBlobStorageOrBucketOrGitRepositoryBlobStorage':
+      ],
+      shorthand: 'sasToken',
+    ),
+    'KubernetesFluxConfigurationBlobStorageCredentialsServicePrincipal':
         MigrateHelper(
           className:
-              'KubernetesFluxConfigurationBlobStorageOrBucketOrGitRepositoryBlobStorage',
+              'KubernetesFluxConfigurationBlobStorageCredentialsServicePrincipal',
           slots: <MigrateSlot>[
             MigrateSlot(
-              tfName: 'blob_storage',
-              dartName: 'blobStorage',
+              tfName: 'service_principal',
+              dartName: 'servicePrincipal',
               kind: MigrateSlotKind.helper,
               required: true,
               wrapped: false,
               positional: true,
-              helper: 'KubernetesFluxConfigurationBlobStorage',
+              helper: 'KubernetesFluxConfigurationServicePrincipal',
             ),
           ],
-          shorthand: 'blobStorage',
-        ),
-    'KubernetesFluxConfigurationBlobStorageOrBucketOrGitRepositoryBucket':
-        MigrateHelper(
-          className:
-              'KubernetesFluxConfigurationBlobStorageOrBucketOrGitRepositoryBucket',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'bucket',
-              dartName: 'bucket',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'KubernetesFluxConfigurationBucket',
-            ),
-          ],
-          shorthand: 'bucket',
-        ),
-    'KubernetesFluxConfigurationBlobStorageOrBucketOrGitRepositoryChoice':
-        MigrateHelper(
-          className:
-              'KubernetesFluxConfigurationBlobStorageOrBucketOrGitRepositoryChoice',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'git_repository',
-              dartName: 'gitRepository',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'KubernetesFluxConfigurationGitRepository',
-            ),
-          ],
-          shorthand: 'gitRepository',
+          shorthand: 'servicePrincipal',
         ),
     'KubernetesFluxConfigurationBucket': MigrateHelper(
       className: 'KubernetesFluxConfigurationBucket',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'accessKeyOrLocalAuthReference',
+          dartName: 'credentials',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'access_key':
-                'KubernetesFluxConfigurationBucketAccessKeyOrLocalAuthReferenceAccessKey',
+                'KubernetesFluxConfigurationBucketCredentialsAccessKey',
             'local_auth_reference':
-                'KubernetesFluxConfigurationBucketAccessKeyOrLocalAuthReferenceChoice',
+                'KubernetesFluxConfigurationBucketCredentialsLocalAuthReference',
           },
         ),
         MigrateSlot(
@@ -183504,26 +183346,24 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'KubernetesFluxConfigurationBucketAccessKeyOrLocalAuthReferenceAccessKey':
-        MigrateHelper(
-          className:
-              'KubernetesFluxConfigurationBucketAccessKeyOrLocalAuthReferenceAccessKey',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'access_key',
-              dartName: 'accessKey',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'accessKey',
+    'KubernetesFluxConfigurationBucketCredentialsAccessKey': MigrateHelper(
+      className: 'KubernetesFluxConfigurationBucketCredentialsAccessKey',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'access_key',
+          dartName: 'accessKey',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'KubernetesFluxConfigurationBucketAccessKeyOrLocalAuthReferenceChoice':
+      ],
+      shorthand: 'accessKey',
+    ),
+    'KubernetesFluxConfigurationBucketCredentialsLocalAuthReference':
         MigrateHelper(
           className:
-              'KubernetesFluxConfigurationBucketAccessKeyOrLocalAuthReferenceChoice',
+              'KubernetesFluxConfigurationBucketCredentialsLocalAuthReference',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'local_auth_reference',
@@ -183808,6 +183648,51 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'KubernetesFluxConfigurationSourceBlobStorage': MigrateHelper(
+      className: 'KubernetesFluxConfigurationSourceBlobStorage',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'blob_storage',
+          dartName: 'blobStorage',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'KubernetesFluxConfigurationBlobStorage',
+        ),
+      ],
+      shorthand: 'blobStorage',
+    ),
+    'KubernetesFluxConfigurationSourceBucket': MigrateHelper(
+      className: 'KubernetesFluxConfigurationSourceBucket',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'bucket',
+          dartName: 'bucket',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'KubernetesFluxConfigurationBucket',
+        ),
+      ],
+      shorthand: 'bucket',
+    ),
+    'KubernetesFluxConfigurationSourceGitRepository': MigrateHelper(
+      className: 'KubernetesFluxConfigurationSourceGitRepository',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'git_repository',
+          dartName: 'gitRepository',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'KubernetesFluxConfigurationGitRepository',
+        ),
+      ],
+      shorthand: 'gitRepository',
+    ),
     'KubernetesFluxConfigurationSubstituteFrom': MigrateHelper(
       className: 'KubernetesFluxConfigurationSubstituteFrom',
       slots: <MigrateSlot>[
@@ -183834,26 +183719,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'KustoAttachedDatabaseConfigurationDatabaseNameOverrideOrDatabaseNamePrefixChoice':
+    'KustoAttachedDatabaseConfigurationDatabaseNamingDatabaseNameOverride':
         MigrateHelper(
           className:
-              'KustoAttachedDatabaseConfigurationDatabaseNameOverrideOrDatabaseNamePrefixChoice',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'database_name_prefix',
-              dartName: 'databaseNamePrefix',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'databaseNamePrefix',
-        ),
-    'KustoAttachedDatabaseConfigurationDatabaseNameOverrideOrDatabaseNamePrefixDatabaseNameOverride':
-        MigrateHelper(
-          className:
-              'KustoAttachedDatabaseConfigurationDatabaseNameOverrideOrDatabaseNamePrefixDatabaseNameOverride',
+              'KustoAttachedDatabaseConfigurationDatabaseNamingDatabaseNameOverride',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'database_name_override',
@@ -183865,6 +183734,22 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
             ),
           ],
           shorthand: 'databaseNameOverride',
+        ),
+    'KustoAttachedDatabaseConfigurationDatabaseNamingDatabaseNamePrefix':
+        MigrateHelper(
+          className:
+              'KustoAttachedDatabaseConfigurationDatabaseNamingDatabaseNamePrefix',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'database_name_prefix',
+              dartName: 'databaseNamePrefix',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              positional: true,
+              dartType: 'String',
+            ),
+          ],
+          shorthand: 'databaseNamePrefix',
         ),
     'KustoAttachedDatabaseConfigurationSharing': MigrateHelper(
       className: 'KustoAttachedDatabaseConfigurationSharing',
@@ -183927,39 +183812,35 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'KustoClusterCustomerManagedKeyVaultIdOrManagedHsmKeyIdChoice':
-        MigrateHelper(
-          className:
-              'KustoClusterCustomerManagedKeyVaultIdOrManagedHsmKeyIdChoice',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'managed_hsm_key_id',
-              dartName: 'managedHsmKeyId',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'managedHsmKeyId',
+    'KustoClusterCustomerManagedKeyIdentifierKeyVaultId': MigrateHelper(
+      className: 'KustoClusterCustomerManagedKeyIdentifierKeyVaultId',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'key_vault_id',
+          dartName: 'keyVaultId',
+          kind: MigrateSlotKind.reference,
+          required: true,
+          positional: true,
+          dartType: 'AzurermKeyVault',
+          attribute: 'id',
         ),
-    'KustoClusterCustomerManagedKeyVaultIdOrManagedHsmKeyIdKeyVaultId':
-        MigrateHelper(
-          className:
-              'KustoClusterCustomerManagedKeyVaultIdOrManagedHsmKeyIdKeyVaultId',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'key_vault_id',
-              dartName: 'keyVaultId',
-              kind: MigrateSlotKind.reference,
-              required: true,
-              positional: true,
-              dartType: 'AzurermKeyVault',
-              attribute: 'id',
-            ),
-          ],
-          shorthand: 'keyVaultId',
+      ],
+      shorthand: 'keyVaultId',
+    ),
+    'KustoClusterCustomerManagedKeyIdentifierManagedHsmKeyId': MigrateHelper(
+      className: 'KustoClusterCustomerManagedKeyIdentifierManagedHsmKeyId',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'managed_hsm_key_id',
+          dartName: 'managedHsmKeyId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
+      ],
+      shorthand: 'managedHsmKeyId',
+    ),
     'KustoClusterIdentity': MigrateHelper(
       className: 'KustoClusterIdentity',
       slots: <MigrateSlot>[
@@ -184036,22 +183917,8 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'KustoScriptContentOrUrlChoice': MigrateHelper(
-      className: 'KustoScriptContentOrUrlChoice',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'url',
-          dartName: 'url',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          positional: true,
-          dartType: 'String',
-        ),
-      ],
-      shorthand: 'url',
-    ),
-    'KustoScriptContentOrUrlScriptContent': MigrateHelper(
-      className: 'KustoScriptContentOrUrlScriptContent',
+    'KustoScriptContentChoice': MigrateHelper(
+      className: 'KustoScriptContentChoice',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'script_content',
@@ -184064,10 +183931,24 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       ],
       shorthand: 'scriptContent',
     ),
-    'LbBackendAddressPoolAddressBackendAddressIpConfigurationIdOrVirtualNetworkIdBackendAddressIpConfigurationId':
+    'KustoScriptContentUrl': MigrateHelper(
+      className: 'KustoScriptContentUrl',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'url',
+          dartName: 'url',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'url',
+    ),
+    'LbBackendAddressPoolAddressAttachmentBackendAddressIpConfigurationId':
         MigrateHelper(
           className:
-              'LbBackendAddressPoolAddressBackendAddressIpConfigurationIdOrVirtualNetworkIdBackendAddressIpConfigurationId',
+              'LbBackendAddressPoolAddressAttachmentBackendAddressIpConfigurationId',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'backend_address_ip_configuration_id',
@@ -184080,23 +183961,21 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           ],
           shorthand: 'backendAddressIpConfigurationId',
         ),
-    'LbBackendAddressPoolAddressBackendAddressIpConfigurationIdOrVirtualNetworkIdChoice':
-        MigrateHelper(
-          className:
-              'LbBackendAddressPoolAddressBackendAddressIpConfigurationIdOrVirtualNetworkIdChoice',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'virtual_network_id',
-              dartName: 'virtualNetworkId',
-              kind: MigrateSlotKind.reference,
-              required: true,
-              positional: true,
-              dartType: 'AzurermVirtualNetwork',
-              attribute: 'id',
-            ),
-          ],
-          shorthand: 'virtualNetworkId',
+    'LbBackendAddressPoolAddressAttachmentVirtualNetworkId': MigrateHelper(
+      className: 'LbBackendAddressPoolAddressAttachmentVirtualNetworkId',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'virtual_network_id',
+          dartName: 'virtualNetworkId',
+          kind: MigrateSlotKind.reference,
+          required: true,
+          positional: true,
+          dartType: 'AzurermVirtualNetwork',
+          attribute: 'id',
         ),
+      ],
+      shorthand: 'virtualNetworkId',
+    ),
     'LbBackendAddressPoolTunnelInterface': MigrateHelper(
       className: 'LbBackendAddressPoolTunnelInterface',
       slots: <MigrateSlot>[
@@ -187292,6 +187171,36 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'LinuxFunctionAppSlotStorageAccessStorageAccountAccessKey': MigrateHelper(
+      className: 'LinuxFunctionAppSlotStorageAccessStorageAccountAccessKey',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'storage_account_access_key',
+          dartName: 'storageAccountAccessKey',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'storageAccountAccessKey',
+    ),
+    'LinuxFunctionAppSlotStorageAccessStorageUsesManagedIdentity':
+        MigrateHelper(
+          className:
+              'LinuxFunctionAppSlotStorageAccessStorageUsesManagedIdentity',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'storage_uses_managed_identity',
+              dartName: 'storageUsesManagedIdentity',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              positional: true,
+              dartType: 'bool',
+            ),
+          ],
+          shorthand: 'storageUsesManagedIdentity',
+        ),
     'LinuxFunctionAppSlotStorageAccount': MigrateHelper(
       className: 'LinuxFunctionAppSlotStorageAccount',
       slots: <MigrateSlot>[
@@ -187339,38 +187248,6 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'LinuxFunctionAppSlotStorageAccountAccessKeyOrStorageUsesManagedIdentityChoice':
-        MigrateHelper(
-          className:
-              'LinuxFunctionAppSlotStorageAccountAccessKeyOrStorageUsesManagedIdentityChoice',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'storage_uses_managed_identity',
-              dartName: 'storageUsesManagedIdentity',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'bool',
-            ),
-          ],
-          shorthand: 'storageUsesManagedIdentity',
-        ),
-    'LinuxFunctionAppSlotStorageAccountAccessKeyOrStorageUsesManagedIdentityStorageAccountAccessKey':
-        MigrateHelper(
-          className:
-              'LinuxFunctionAppSlotStorageAccountAccessKeyOrStorageUsesManagedIdentityStorageAccountAccessKey',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'storage_account_access_key',
-              dartName: 'storageAccountAccessKey',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'storageAccountAccessKey',
-        ),
     'LinuxFunctionAppSlotStorageAccountName': MigrateHelper(
       className: 'LinuxFunctionAppSlotStorageAccountName',
       slots: <MigrateSlot>[
@@ -187464,6 +187341,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'LinuxFunctionAppStorageAccessStorageAccountAccessKey': MigrateHelper(
+      className: 'LinuxFunctionAppStorageAccessStorageAccountAccessKey',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'storage_account_access_key',
+          dartName: 'storageAccountAccessKey',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'storageAccountAccessKey',
+    ),
+    'LinuxFunctionAppStorageAccessStorageUsesManagedIdentity': MigrateHelper(
+      className: 'LinuxFunctionAppStorageAccessStorageUsesManagedIdentity',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'storage_uses_managed_identity',
+          dartName: 'storageUsesManagedIdentity',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'bool',
+        ),
+      ],
+      shorthand: 'storageUsesManagedIdentity',
+    ),
     'LinuxFunctionAppStorageAccount': MigrateHelper(
       className: 'LinuxFunctionAppStorageAccount',
       slots: <MigrateSlot>[
@@ -187511,38 +187416,6 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'LinuxFunctionAppStorageAccountAccessKeyOrStorageUsesManagedIdentityChoice':
-        MigrateHelper(
-          className:
-              'LinuxFunctionAppStorageAccountAccessKeyOrStorageUsesManagedIdentityChoice',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'storage_uses_managed_identity',
-              dartName: 'storageUsesManagedIdentity',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'bool',
-            ),
-          ],
-          shorthand: 'storageUsesManagedIdentity',
-        ),
-    'LinuxFunctionAppStorageAccountAccessKeyOrStorageUsesManagedIdentityStorageAccountAccessKey':
-        MigrateHelper(
-          className:
-              'LinuxFunctionAppStorageAccountAccessKeyOrStorageUsesManagedIdentityStorageAccountAccessKey',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'storage_account_access_key',
-              dartName: 'storageAccountAccessKey',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'storageAccountAccessKey',
-        ),
     'LinuxFunctionAppStorageAccountName': MigrateHelper(
       className: 'LinuxFunctionAppStorageAccountName',
       slots: <MigrateSlot>[
@@ -192501,22 +192374,8 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'LocalNetworkGatewayAddressOrGatewayFqdnChoice': MigrateHelper(
-      className: 'LocalNetworkGatewayAddressOrGatewayFqdnChoice',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'gateway_fqdn',
-          dartName: 'gatewayFqdn',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          positional: true,
-          dartType: 'String',
-        ),
-      ],
-      shorthand: 'gatewayFqdn',
-    ),
-    'LocalNetworkGatewayAddressOrGatewayFqdnGatewayAddress': MigrateHelper(
-      className: 'LocalNetworkGatewayAddressOrGatewayFqdnGatewayAddress',
+    'LocalNetworkGatewayAddressChoice': MigrateHelper(
+      className: 'LocalNetworkGatewayAddressChoice',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'gateway_address',
@@ -192528,6 +192387,20 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
       shorthand: 'gatewayAddress',
+    ),
+    'LocalNetworkGatewayAddressGatewayFqdn': MigrateHelper(
+      className: 'LocalNetworkGatewayAddressGatewayFqdn',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'gateway_fqdn',
+          dartName: 'gatewayFqdn',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'gatewayFqdn',
     ),
     'LocalNetworkGatewayBgpSettings': MigrateHelper(
       className: 'LocalNetworkGatewayBgpSettings',
@@ -193648,26 +193521,24 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'MachineLearningDatastoreFileshareAccountKeyOrSharedAccessSignatureAccountKey':
-        MigrateHelper(
-          className:
-              'MachineLearningDatastoreFileshareAccountKeyOrSharedAccessSignatureAccountKey',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'account_key',
-              dartName: 'accountKey',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'accountKey',
+    'MachineLearningDatastoreFileshareCredentialsAccountKey': MigrateHelper(
+      className: 'MachineLearningDatastoreFileshareCredentialsAccountKey',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'account_key',
+          dartName: 'accountKey',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'MachineLearningDatastoreFileshareAccountKeyOrSharedAccessSignatureChoice':
+      ],
+      shorthand: 'accountKey',
+    ),
+    'MachineLearningDatastoreFileshareCredentialsSharedAccessSignature':
         MigrateHelper(
           className:
-              'MachineLearningDatastoreFileshareAccountKeyOrSharedAccessSignatureChoice',
+              'MachineLearningDatastoreFileshareCredentialsSharedAccessSignature',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'shared_access_signature',
@@ -194955,19 +194826,18 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName:
-              'geoReplicationGroupNameOrPersistenceAppendOnlyFileBackupFrequencyOrPersistenceRedisDatabaseBackupFrequency',
+          dartName: 'durability',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'geo_replication_group_name':
-                'ManagedRedisDefaultDatabaseGeoReplicationGroupNameOrPersistenceAppendOnlyFileBackupFrequencyOrPersistenceRedisDatabaseBackupFrequencyGeoReplicationGroupName',
+                'ManagedRedisDurabilityGeoReplicationGroupName',
             'persistence_append_only_file_backup_frequency':
-                'ManagedRedisDefaultDatabaseGeoReplicationGroupNameOrPersistenceAppendOnlyFileBackupFrequencyOrPersistenceRedisDatabaseBackupFrequencyPersistenceAppendOnlyFileBackupFrequency',
+                'ManagedRedisDurabilityPersistenceAppendOnlyFileBackupFrequency',
             'persistence_redis_database_backup_frequency':
-                'ManagedRedisDefaultDatabaseGeoReplicationGroupNameOrPersistenceAppendOnlyFileBackupFrequencyOrPersistenceRedisDatabaseBackupFrequencyChoice',
+                'ManagedRedisDurabilityPersistenceRedisDatabaseBackupFrequency',
           },
         ),
         MigrateSlot(
@@ -194981,42 +194851,24 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'ManagedRedisDefaultDatabaseGeoReplicationGroupNameOrPersistenceAppendOnlyFileBackupFrequencyOrPersistenceRedisDatabaseBackupFrequencyChoice':
-        MigrateHelper(
-          className:
-              'ManagedRedisDefaultDatabaseGeoReplicationGroupNameOrPersistenceAppendOnlyFileBackupFrequencyOrPersistenceRedisDatabaseBackupFrequencyChoice',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'persistence_redis_database_backup_frequency',
-              dartName: 'persistenceRedisDatabaseBackupFrequency',
-              kind: MigrateSlotKind.enumValue,
-              required: true,
-              positional: true,
-              dartType: 'ManagedRedisPersistenceRedisDatabaseBackupFrequency',
-            ),
-          ],
-          shorthand: 'persistenceRedisDatabaseBackupFrequency',
+    'ManagedRedisDurabilityGeoReplicationGroupName': MigrateHelper(
+      className: 'ManagedRedisDurabilityGeoReplicationGroupName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'geo_replication_group_name',
+          dartName: 'geoReplicationGroupName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'ManagedRedisDefaultDatabaseGeoReplicationGroupNameOrPersistenceAppendOnlyFileBackupFrequencyOrPersistenceRedisDatabaseBackupFrequencyGeoReplicationGroupName':
+      ],
+      shorthand: 'geoReplicationGroupName',
+    ),
+    'ManagedRedisDurabilityPersistenceAppendOnlyFileBackupFrequency':
         MigrateHelper(
           className:
-              'ManagedRedisDefaultDatabaseGeoReplicationGroupNameOrPersistenceAppendOnlyFileBackupFrequencyOrPersistenceRedisDatabaseBackupFrequencyGeoReplicationGroupName',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'geo_replication_group_name',
-              dartName: 'geoReplicationGroupName',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'geoReplicationGroupName',
-        ),
-    'ManagedRedisDefaultDatabaseGeoReplicationGroupNameOrPersistenceAppendOnlyFileBackupFrequencyOrPersistenceRedisDatabaseBackupFrequencyPersistenceAppendOnlyFileBackupFrequency':
-        MigrateHelper(
-          className:
-              'ManagedRedisDefaultDatabaseGeoReplicationGroupNameOrPersistenceAppendOnlyFileBackupFrequencyOrPersistenceRedisDatabaseBackupFrequencyPersistenceAppendOnlyFileBackupFrequency',
+              'ManagedRedisDurabilityPersistenceAppendOnlyFileBackupFrequency',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'persistence_append_only_file_backup_frequency',
@@ -195028,6 +194880,22 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
             ),
           ],
           shorthand: 'persistenceAppendOnlyFileBackupFrequency',
+        ),
+    'ManagedRedisDurabilityPersistenceRedisDatabaseBackupFrequency':
+        MigrateHelper(
+          className:
+              'ManagedRedisDurabilityPersistenceRedisDatabaseBackupFrequency',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'persistence_redis_database_backup_frequency',
+              dartName: 'persistenceRedisDatabaseBackupFrequency',
+              kind: MigrateSlotKind.enumValue,
+              required: true,
+              positional: true,
+              dartType: 'ManagedRedisPersistenceRedisDatabaseBackupFrequency',
+            ),
+          ],
+          shorthand: 'persistenceRedisDatabaseBackupFrequency',
         ),
     'ManagedRedisIdentity': MigrateHelper(
       className: 'ManagedRedisIdentity',
@@ -195896,18 +195764,15 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'callerOrResourceHealthOrServiceHealth',
+          dartName: 'detail',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'caller':
-                'MonitorActivityLogAlertCriteriaCallerOrResourceHealthOrServiceHealthCaller',
-            'resource_health':
-                'MonitorActivityLogAlertCriteriaCallerOrResourceHealthOrServiceHealthResourceHealth',
-            'service_health':
-                'MonitorActivityLogAlertCriteriaCallerOrResourceHealthOrServiceHealthChoice',
+            'caller': 'MonitorActivityLogAlertDetailCaller',
+            'resource_health': 'MonitorActivityLogAlertDetailResourceHealth',
+            'service_health': 'MonitorActivityLogAlertDetailServiceHealth',
           },
         ),
         MigrateSlot(
@@ -196011,14 +195876,14 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'statusOrStatuses',
+          dartName: 'status',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'status': 'MonitorActivityLogAlertCriteriaStatusOrStatusesStatus',
-            'statuses': 'MonitorActivityLogAlertCriteriaStatusOrStatusesChoice',
+            'status': 'MonitorActivityLogAlertStatusChoice',
+            'statuses': 'MonitorActivityLogAlertStatusStatuses',
           },
         ),
         MigrateSlot(
@@ -196035,56 +195900,6 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'MonitorActivityLogAlertCriteriaCallerOrResourceHealthOrServiceHealthCaller':
-        MigrateHelper(
-          className:
-              'MonitorActivityLogAlertCriteriaCallerOrResourceHealthOrServiceHealthCaller',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'caller',
-              dartName: 'caller',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'caller',
-        ),
-    'MonitorActivityLogAlertCriteriaCallerOrResourceHealthOrServiceHealthChoice':
-        MigrateHelper(
-          className:
-              'MonitorActivityLogAlertCriteriaCallerOrResourceHealthOrServiceHealthChoice',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'service_health',
-              dartName: 'serviceHealth',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'MonitorActivityLogAlertServiceHealth',
-            ),
-          ],
-          shorthand: 'serviceHealth',
-        ),
-    'MonitorActivityLogAlertCriteriaCallerOrResourceHealthOrServiceHealthResourceHealth':
-        MigrateHelper(
-          className:
-              'MonitorActivityLogAlertCriteriaCallerOrResourceHealthOrServiceHealthResourceHealth',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'resource_health',
-              dartName: 'resourceHealth',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'MonitorActivityLogAlertResourceHealth',
-            ),
-          ],
-          shorthand: 'resourceHealth',
-        ),
     'MonitorActivityLogAlertCriteriaLevelChoice': MigrateHelper(
       className: 'MonitorActivityLogAlertCriteriaLevelChoice',
       slots: <MigrateSlot>[
@@ -196114,33 +195929,49 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       ],
       shorthand: 'levels',
     ),
-    'MonitorActivityLogAlertCriteriaStatusOrStatusesChoice': MigrateHelper(
-      className: 'MonitorActivityLogAlertCriteriaStatusOrStatusesChoice',
+    'MonitorActivityLogAlertDetailCaller': MigrateHelper(
+      className: 'MonitorActivityLogAlertDetailCaller',
       slots: <MigrateSlot>[
         MigrateSlot(
-          tfName: 'statuses',
-          dartName: 'statuses',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          positional: true,
-          dartType: 'List<String>',
-        ),
-      ],
-      shorthand: 'statuses',
-    ),
-    'MonitorActivityLogAlertCriteriaStatusOrStatusesStatus': MigrateHelper(
-      className: 'MonitorActivityLogAlertCriteriaStatusOrStatusesStatus',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'status',
-          dartName: 'status',
+          tfName: 'caller',
+          dartName: 'caller',
           kind: MigrateSlotKind.scalar,
           required: true,
           positional: true,
           dartType: 'String',
         ),
       ],
-      shorthand: 'status',
+      shorthand: 'caller',
+    ),
+    'MonitorActivityLogAlertDetailResourceHealth': MigrateHelper(
+      className: 'MonitorActivityLogAlertDetailResourceHealth',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'resource_health',
+          dartName: 'resourceHealth',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'MonitorActivityLogAlertResourceHealth',
+        ),
+      ],
+      shorthand: 'resourceHealth',
+    ),
+    'MonitorActivityLogAlertDetailServiceHealth': MigrateHelper(
+      className: 'MonitorActivityLogAlertDetailServiceHealth',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'service_health',
+          dartName: 'serviceHealth',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'MonitorActivityLogAlertServiceHealth',
+        ),
+      ],
+      shorthand: 'serviceHealth',
     ),
     'MonitorActivityLogAlertResourceGroupChoice': MigrateHelper(
       className: 'MonitorActivityLogAlertResourceGroupChoice',
@@ -196309,6 +196140,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
       ],
+    ),
+    'MonitorActivityLogAlertStatusChoice': MigrateHelper(
+      className: 'MonitorActivityLogAlertStatusChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'status',
+          dartName: 'status',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'status',
+    ),
+    'MonitorActivityLogAlertStatusStatuses': MigrateHelper(
+      className: 'MonitorActivityLogAlertStatusStatuses',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'statuses',
+          dartName: 'statuses',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'List<String>',
+        ),
+      ],
+      shorthand: 'statuses',
     ),
     'MonitorActivityLogAlertSubStatus': MigrateHelper(
       className: 'MonitorActivityLogAlertSubStatus',
@@ -198605,61 +198464,6 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
             ),
           ],
         ),
-    'MonitorMetricAlertApplicationInsightsWebTestLocationAvailabilityCriteriaOrCriteriaOrDynamicCriteriaApplicationInsightsWebTestLocationAvailabilityCriteria':
-        MigrateHelper(
-          className:
-              'MonitorMetricAlertApplicationInsightsWebTestLocationAvailabilityCriteriaOrCriteriaOrDynamicCriteriaApplicationInsightsWebTestLocationAvailabilityCriteria',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName:
-                  'application_insights_web_test_location_availability_criteria',
-              dartName:
-                  'applicationInsightsWebTestLocationAvailabilityCriteria',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper:
-                  'MonitorMetricAlertApplicationInsightsWebTestLocationAvailabilityCriteria',
-            ),
-          ],
-          shorthand: 'applicationInsightsWebTestLocationAvailabilityCriteria',
-        ),
-    'MonitorMetricAlertApplicationInsightsWebTestLocationAvailabilityCriteriaOrCriteriaOrDynamicCriteriaChoice':
-        MigrateHelper(
-          className:
-              'MonitorMetricAlertApplicationInsightsWebTestLocationAvailabilityCriteriaOrCriteriaOrDynamicCriteriaChoice',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'criteria',
-              dartName: 'criteria',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              repeated: true,
-              wrapped: false,
-              positional: true,
-              helper: 'MonitorMetricAlertCriteria',
-            ),
-          ],
-          shorthand: 'criteria',
-        ),
-    'MonitorMetricAlertApplicationInsightsWebTestLocationAvailabilityCriteriaOrCriteriaOrDynamicCriteriaOption':
-        MigrateHelper(
-          className:
-              'MonitorMetricAlertApplicationInsightsWebTestLocationAvailabilityCriteriaOrCriteriaOrDynamicCriteriaOption',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'dynamic_criteria',
-              dartName: 'dynamicCriteria',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'MonitorMetricAlertDynamicCriteria',
-            ),
-          ],
-          shorthand: 'dynamicCriteria',
-        ),
     'MonitorMetricAlertCriteria': MigrateHelper(
       className: 'MonitorMetricAlertCriteria',
       slots: <MigrateSlot>[
@@ -198819,6 +198623,57 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'MonitorMetricAlertSignalApplicationInsightsWebTestLocationAvailabilityCriteria':
+        MigrateHelper(
+          className:
+              'MonitorMetricAlertSignalApplicationInsightsWebTestLocationAvailabilityCriteria',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName:
+                  'application_insights_web_test_location_availability_criteria',
+              dartName:
+                  'applicationInsightsWebTestLocationAvailabilityCriteria',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              positional: true,
+              helper:
+                  'MonitorMetricAlertApplicationInsightsWebTestLocationAvailabilityCriteria',
+            ),
+          ],
+          shorthand: 'applicationInsightsWebTestLocationAvailabilityCriteria',
+        ),
+    'MonitorMetricAlertSignalCriteria': MigrateHelper(
+      className: 'MonitorMetricAlertSignalCriteria',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'criteria',
+          dartName: 'criteria',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          repeated: true,
+          wrapped: false,
+          positional: true,
+          helper: 'MonitorMetricAlertCriteria',
+        ),
+      ],
+      shorthand: 'criteria',
+    ),
+    'MonitorMetricAlertSignalDynamicCriteria': MigrateHelper(
+      className: 'MonitorMetricAlertSignalDynamicCriteria',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'dynamic_criteria',
+          dartName: 'dynamicCriteria',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'MonitorMetricAlertDynamicCriteria',
+        ),
+      ],
+      shorthand: 'dynamicCriteria',
+    ),
     'MonitorScheduledQueryRulesAlertAction': MigrateHelper(
       className: 'MonitorScheduledQueryRulesAlertAction',
       slots: <MigrateSlot>[
@@ -198845,38 +198700,6 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'MonitorScheduledQueryRulesAlertAutoMitigationEnabledOrThrottlingAutoMitigationEnabled':
-        MigrateHelper(
-          className:
-              'MonitorScheduledQueryRulesAlertAutoMitigationEnabledOrThrottlingAutoMitigationEnabled',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'auto_mitigation_enabled',
-              dartName: 'autoMitigationEnabled',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'bool',
-            ),
-          ],
-          shorthand: 'autoMitigationEnabled',
-        ),
-    'MonitorScheduledQueryRulesAlertAutoMitigationEnabledOrThrottlingChoice':
-        MigrateHelper(
-          className:
-              'MonitorScheduledQueryRulesAlertAutoMitigationEnabledOrThrottlingChoice',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'throttling',
-              dartName: 'throttling',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'num',
-            ),
-          ],
-          shorthand: 'throttling',
-        ),
     'MonitorScheduledQueryRulesAlertMetricTrigger': MigrateHelper(
       className: 'MonitorScheduledQueryRulesAlertMetricTrigger',
       slots: <MigrateSlot>[
@@ -198909,6 +198732,36 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
+    ),
+    'MonitorScheduledQueryRulesAlertResolutionAutoMitigationEnabled':
+        MigrateHelper(
+          className:
+              'MonitorScheduledQueryRulesAlertResolutionAutoMitigationEnabled',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'auto_mitigation_enabled',
+              dartName: 'autoMitigationEnabled',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              positional: true,
+              dartType: 'bool',
+            ),
+          ],
+          shorthand: 'autoMitigationEnabled',
+        ),
+    'MonitorScheduledQueryRulesAlertResolutionThrottling': MigrateHelper(
+      className: 'MonitorScheduledQueryRulesAlertResolutionThrottling',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'throttling',
+          dartName: 'throttling',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'num',
+        ),
+      ],
+      shorthand: 'throttling',
     ),
     'MonitorScheduledQueryRulesAlertTrigger': MigrateHelper(
       className: 'MonitorScheduledQueryRulesAlertTrigger',
@@ -199164,8 +199017,22 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'MssqlDatabaseCreateModeOrImportChoice': MigrateHelper(
-      className: 'MssqlDatabaseCreateModeOrImportChoice',
+    'MssqlDatabaseCreationCreateMode': MigrateHelper(
+      className: 'MssqlDatabaseCreationCreateMode',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'create_mode',
+          dartName: 'createMode',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          positional: true,
+          dartType: 'MssqlDatabaseCreateMode',
+        ),
+      ],
+      shorthand: 'createMode',
+    ),
+    'MssqlDatabaseCreationImport': MigrateHelper(
+      className: 'MssqlDatabaseCreationImport',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'import',
@@ -199179,52 +199046,6 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       ],
       shorthand: 'import',
     ),
-    'MssqlDatabaseCreateModeOrImportCreateMode': MigrateHelper(
-      className: 'MssqlDatabaseCreateModeOrImportCreateMode',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'create_mode',
-          dartName: 'createMode',
-          kind: MigrateSlotKind.enumValue,
-          required: true,
-          positional: true,
-          dartType: 'MssqlDatabaseCreateMode',
-        ),
-      ],
-      shorthand: 'createMode',
-    ),
-    'MssqlDatabaseElasticPoolIdOrMaintenanceConfigurationNameChoice':
-        MigrateHelper(
-          className:
-              'MssqlDatabaseElasticPoolIdOrMaintenanceConfigurationNameChoice',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'maintenance_configuration_name',
-              dartName: 'maintenanceConfigurationName',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'maintenanceConfigurationName',
-        ),
-    'MssqlDatabaseElasticPoolIdOrMaintenanceConfigurationNameElasticPoolId':
-        MigrateHelper(
-          className:
-              'MssqlDatabaseElasticPoolIdOrMaintenanceConfigurationNameElasticPoolId',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'elastic_pool_id',
-              dartName: 'elasticPoolId',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'elasticPoolId',
-        ),
     'MssqlDatabaseIdentity': MigrateHelper(
       className: 'MssqlDatabaseIdentity',
       slots: <MigrateSlot>[
@@ -199331,6 +199152,36 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'MssqlDatabaseServiceConfigurationElasticPoolId': MigrateHelper(
+      className: 'MssqlDatabaseServiceConfigurationElasticPoolId',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'elastic_pool_id',
+          dartName: 'elasticPoolId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'elasticPoolId',
+    ),
+    'MssqlDatabaseServiceConfigurationMaintenanceConfigurationName':
+        MigrateHelper(
+          className:
+              'MssqlDatabaseServiceConfigurationMaintenanceConfigurationName',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'maintenance_configuration_name',
+              dartName: 'maintenanceConfigurationName',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              positional: true,
+              dartType: 'String',
+            ),
+          ],
+          shorthand: 'maintenanceConfigurationName',
+        ),
     'MssqlDatabaseShortTermRetentionPolicy': MigrateHelper(
       className: 'MssqlDatabaseShortTermRetentionPolicy',
       slots: <MigrateSlot>[
@@ -200088,43 +199939,6 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
             ),
           ],
         ),
-    'MssqlVirtualMachineAvailabilityGroupListenerLoadBalancerConfigurationOrMultiSubnetIpConfigurationChoice':
-        MigrateHelper(
-          className:
-              'MssqlVirtualMachineAvailabilityGroupListenerLoadBalancerConfigurationOrMultiSubnetIpConfigurationChoice',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'multi_subnet_ip_configuration',
-              dartName: 'multiSubnetIpConfiguration',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              repeated: true,
-              wrapped: false,
-              positional: true,
-              helper:
-                  'MssqlVirtualMachineAvailabilityGroupListenerMultiSubnetIpConfiguration',
-            ),
-          ],
-          shorthand: 'multiSubnetIpConfiguration',
-        ),
-    'MssqlVirtualMachineAvailabilityGroupListenerLoadBalancerConfigurationOrMultiSubnetIpConfigurationLoadBalancerConfiguration':
-        MigrateHelper(
-          className:
-              'MssqlVirtualMachineAvailabilityGroupListenerLoadBalancerConfigurationOrMultiSubnetIpConfigurationLoadBalancerConfiguration',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'load_balancer_configuration',
-              dartName: 'loadBalancerConfiguration',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper:
-                  'MssqlVirtualMachineAvailabilityGroupListenerLoadBalancerConfiguration',
-            ),
-          ],
-          shorthand: 'loadBalancerConfiguration',
-        ),
     'MssqlVirtualMachineAvailabilityGroupListenerMultiSubnetIpConfiguration':
         MigrateHelper(
           className:
@@ -200152,6 +199966,43 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
               dartType: 'String',
             ),
           ],
+        ),
+    'MssqlVirtualMachineAvailabilityGroupListenerNetworkLoadBalancerConfiguration':
+        MigrateHelper(
+          className:
+              'MssqlVirtualMachineAvailabilityGroupListenerNetworkLoadBalancerConfiguration',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'load_balancer_configuration',
+              dartName: 'loadBalancerConfiguration',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              positional: true,
+              helper:
+                  'MssqlVirtualMachineAvailabilityGroupListenerLoadBalancerConfiguration',
+            ),
+          ],
+          shorthand: 'loadBalancerConfiguration',
+        ),
+    'MssqlVirtualMachineAvailabilityGroupListenerNetworkMultiSubnetIpConfiguration':
+        MigrateHelper(
+          className:
+              'MssqlVirtualMachineAvailabilityGroupListenerNetworkMultiSubnetIpConfiguration',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'multi_subnet_ip_configuration',
+              dartName: 'multiSubnetIpConfiguration',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              repeated: true,
+              wrapped: false,
+              positional: true,
+              helper:
+                  'MssqlVirtualMachineAvailabilityGroupListenerMultiSubnetIpConfiguration',
+            ),
+          ],
+          shorthand: 'multiSubnetIpConfiguration',
         ),
     'MssqlVirtualMachineAvailabilityGroupListenerReplica': MigrateHelper(
       className: 'MssqlVirtualMachineAvailabilityGroupListenerReplica',
@@ -200852,26 +200703,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'NetappAccountEncryptionSystemAssignedIdentityPrincipalIdOrUserAssignedIdentityIdChoice':
+    'NetappAccountEncryptionIdentitySystemAssignedIdentityPrincipalId':
         MigrateHelper(
           className:
-              'NetappAccountEncryptionSystemAssignedIdentityPrincipalIdOrUserAssignedIdentityIdChoice',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'user_assigned_identity_id',
-              dartName: 'userAssignedIdentityId',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'userAssignedIdentityId',
-        ),
-    'NetappAccountEncryptionSystemAssignedIdentityPrincipalIdOrUserAssignedIdentityIdSystemAssignedIdentityPrincipalId':
-        MigrateHelper(
-          className:
-              'NetappAccountEncryptionSystemAssignedIdentityPrincipalIdOrUserAssignedIdentityIdSystemAssignedIdentityPrincipalId',
+              'NetappAccountEncryptionIdentitySystemAssignedIdentityPrincipalId',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'system_assigned_identity_principal_id',
@@ -200884,6 +200719,20 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           ],
           shorthand: 'systemAssignedIdentityPrincipalId',
         ),
+    'NetappAccountEncryptionIdentityUserAssignedIdentityId': MigrateHelper(
+      className: 'NetappAccountEncryptionIdentityUserAssignedIdentityId',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'user_assigned_identity_id',
+          dartName: 'userAssignedIdentityId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'userAssignedIdentityId',
+    ),
     'NetappAccountIdentity': MigrateHelper(
       className: 'NetappAccountIdentity',
       slots: <MigrateSlot>[
@@ -202348,26 +202197,24 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'NetworkManagerIpamPoolStaticCidrAddressPrefixesOrNumberOfIpAddressesToAllocateAddressPrefixes':
-        MigrateHelper(
-          className:
-              'NetworkManagerIpamPoolStaticCidrAddressPrefixesOrNumberOfIpAddressesToAllocateAddressPrefixes',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'address_prefixes',
-              dartName: 'addressPrefixes',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'List<String>',
-            ),
-          ],
-          shorthand: 'addressPrefixes',
+    'NetworkManagerIpamPoolStaticCidrAllocationAddressPrefixes': MigrateHelper(
+      className: 'NetworkManagerIpamPoolStaticCidrAllocationAddressPrefixes',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'address_prefixes',
+          dartName: 'addressPrefixes',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'List<String>',
         ),
-    'NetworkManagerIpamPoolStaticCidrAddressPrefixesOrNumberOfIpAddressesToAllocateChoice':
+      ],
+      shorthand: 'addressPrefixes',
+    ),
+    'NetworkManagerIpamPoolStaticCidrAllocationNumberOfIpAddressesToAllocate':
         MigrateHelper(
           className:
-              'NetworkManagerIpamPoolStaticCidrAddressPrefixesOrNumberOfIpAddressesToAllocateChoice',
+              'NetworkManagerIpamPoolStaticCidrAllocationNumberOfIpAddressesToAllocate',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'number_of_ip_addresses_to_allocate',
@@ -202521,70 +202368,62 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'NetworkSecurityPerimeterAccessRuleAddressPrefixesOrFqdnsOrServiceTagsOrSubscriptionIdsAddressPrefixes':
-        MigrateHelper(
-          className:
-              'NetworkSecurityPerimeterAccessRuleAddressPrefixesOrFqdnsOrServiceTagsOrSubscriptionIdsAddressPrefixes',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'address_prefixes',
-              dartName: 'addressPrefixes',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'List<String>',
-            ),
-          ],
-          shorthand: 'addressPrefixes',
+    'NetworkSecurityPerimeterAccessRuleSourceAddressPrefixes': MigrateHelper(
+      className: 'NetworkSecurityPerimeterAccessRuleSourceAddressPrefixes',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'address_prefixes',
+          dartName: 'addressPrefixes',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'List<String>',
         ),
-    'NetworkSecurityPerimeterAccessRuleAddressPrefixesOrFqdnsOrServiceTagsOrSubscriptionIdsChoice':
-        MigrateHelper(
-          className:
-              'NetworkSecurityPerimeterAccessRuleAddressPrefixesOrFqdnsOrServiceTagsOrSubscriptionIdsChoice',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'subscription_ids',
-              dartName: 'subscriptionIds',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'List<String>',
-            ),
-          ],
-          shorthand: 'subscriptionIds',
+      ],
+      shorthand: 'addressPrefixes',
+    ),
+    'NetworkSecurityPerimeterAccessRuleSourceFqdns': MigrateHelper(
+      className: 'NetworkSecurityPerimeterAccessRuleSourceFqdns',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'fqdns',
+          dartName: 'fqdns',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'List<String>',
         ),
-    'NetworkSecurityPerimeterAccessRuleAddressPrefixesOrFqdnsOrServiceTagsOrSubscriptionIdsFqdns':
-        MigrateHelper(
-          className:
-              'NetworkSecurityPerimeterAccessRuleAddressPrefixesOrFqdnsOrServiceTagsOrSubscriptionIdsFqdns',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'fqdns',
-              dartName: 'fqdns',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'List<String>',
-            ),
-          ],
-          shorthand: 'fqdns',
+      ],
+      shorthand: 'fqdns',
+    ),
+    'NetworkSecurityPerimeterAccessRuleSourceServiceTags': MigrateHelper(
+      className: 'NetworkSecurityPerimeterAccessRuleSourceServiceTags',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'service_tags',
+          dartName: 'serviceTags',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'List<String>',
         ),
-    'NetworkSecurityPerimeterAccessRuleAddressPrefixesOrFqdnsOrServiceTagsOrSubscriptionIdsServiceTags':
-        MigrateHelper(
-          className:
-              'NetworkSecurityPerimeterAccessRuleAddressPrefixesOrFqdnsOrServiceTagsOrSubscriptionIdsServiceTags',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'service_tags',
-              dartName: 'serviceTags',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'List<String>',
-            ),
-          ],
-          shorthand: 'serviceTags',
+      ],
+      shorthand: 'serviceTags',
+    ),
+    'NetworkSecurityPerimeterAccessRuleSourceSubscriptionIds': MigrateHelper(
+      className: 'NetworkSecurityPerimeterAccessRuleSourceSubscriptionIds',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'subscription_ids',
+          dartName: 'subscriptionIds',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'List<String>',
         ),
+      ],
+      shorthand: 'subscriptionIds',
+    ),
     'NetworkSecurityRuleDestinationAddressPrefix': MigrateHelper(
       className: 'NetworkSecurityRuleDestinationAddressPrefix',
       slots: <MigrateSlot>[
@@ -202935,22 +202774,8 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'NginxConfigurationConfigFileOrPackageDataChoice': MigrateHelper(
-      className: 'NginxConfigurationConfigFileOrPackageDataChoice',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'package_data',
-          dartName: 'packageData',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          positional: true,
-          dartType: 'String',
-        ),
-      ],
-      shorthand: 'packageData',
-    ),
-    'NginxConfigurationConfigFileOrPackageDataConfigFile': MigrateHelper(
-      className: 'NginxConfigurationConfigFileOrPackageDataConfigFile',
+    'NginxConfigurationContentConfigFile': MigrateHelper(
+      className: 'NginxConfigurationContentConfigFile',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'config_file',
@@ -202964,6 +202789,20 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
       shorthand: 'configFile',
+    ),
+    'NginxConfigurationContentPackageData': MigrateHelper(
+      className: 'NginxConfigurationContentPackageData',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'package_data',
+          dartName: 'packageData',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'packageData',
     ),
     'NginxConfigurationProtectedFile': MigrateHelper(
       className: 'NginxConfigurationProtectedFile',
@@ -203009,36 +202848,6 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-    ),
-    'NginxDeploymentAutoScaleProfileOrCapacityAutoScaleProfile': MigrateHelper(
-      className: 'NginxDeploymentAutoScaleProfileOrCapacityAutoScaleProfile',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'auto_scale_profile',
-          dartName: 'autoScaleProfile',
-          kind: MigrateSlotKind.helper,
-          required: true,
-          repeated: true,
-          wrapped: false,
-          positional: true,
-          helper: 'NginxDeploymentAutoScaleProfile',
-        ),
-      ],
-      shorthand: 'autoScaleProfile',
-    ),
-    'NginxDeploymentAutoScaleProfileOrCapacityChoice': MigrateHelper(
-      className: 'NginxDeploymentAutoScaleProfileOrCapacityChoice',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'capacity',
-          dartName: 'capacity',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          positional: true,
-          dartType: 'num',
-        ),
-      ],
-      shorthand: 'capacity',
     ),
     'NginxDeploymentFrontendPrivate': MigrateHelper(
       className: 'NginxDeploymentFrontendPrivate',
@@ -203140,6 +202949,36 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'NginxDeploymentScaleAutoScaleProfile': MigrateHelper(
+      className: 'NginxDeploymentScaleAutoScaleProfile',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'auto_scale_profile',
+          dartName: 'autoScaleProfile',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          repeated: true,
+          wrapped: false,
+          positional: true,
+          helper: 'NginxDeploymentAutoScaleProfile',
+        ),
+      ],
+      shorthand: 'autoScaleProfile',
+    ),
+    'NginxDeploymentScaleCapacity': MigrateHelper(
+      className: 'NginxDeploymentScaleCapacity',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'capacity',
+          dartName: 'capacity',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'num',
+        ),
+      ],
+      shorthand: 'capacity',
+    ),
     'NginxDeploymentWebApplicationFirewall': MigrateHelper(
       className: 'NginxDeploymentWebApplicationFirewall',
       slots: <MigrateSlot>[
@@ -203230,10 +203069,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'OracleAutonomousDatabaseCloneFromBackupAllowedIpAddressesOrVirtualNetworkIdAllowedIpAddresses':
+    'OracleAutonomousDatabaseCloneFromBackupNetworkAccessAllowedIpAddresses':
         MigrateHelper(
           className:
-              'OracleAutonomousDatabaseCloneFromBackupAllowedIpAddressesOrVirtualNetworkIdAllowedIpAddresses',
+              'OracleAutonomousDatabaseCloneFromBackupNetworkAccessAllowedIpAddresses',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'allowed_ip_addresses',
@@ -203246,10 +203085,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           ],
           shorthand: 'allowedIpAddresses',
         ),
-    'OracleAutonomousDatabaseCloneFromBackupAllowedIpAddressesOrVirtualNetworkIdChoice':
+    'OracleAutonomousDatabaseCloneFromBackupNetworkAccessVirtualNetworkId':
         MigrateHelper(
           className:
-              'OracleAutonomousDatabaseCloneFromBackupAllowedIpAddressesOrVirtualNetworkIdChoice',
+              'OracleAutonomousDatabaseCloneFromBackupNetworkAccessVirtualNetworkId',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'virtual_network_id',
@@ -203263,10 +203102,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           ],
           shorthand: 'virtualNetworkId',
         ),
-    'OracleAutonomousDatabaseCloneFromDatabaseAllowedIpAddressesOrVirtualNetworkIdAllowedIpAddresses':
+    'OracleAutonomousDatabaseCloneFromDatabaseNetworkAccessAllowedIpAddresses':
         MigrateHelper(
           className:
-              'OracleAutonomousDatabaseCloneFromDatabaseAllowedIpAddressesOrVirtualNetworkIdAllowedIpAddresses',
+              'OracleAutonomousDatabaseCloneFromDatabaseNetworkAccessAllowedIpAddresses',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'allowed_ip_addresses',
@@ -203279,10 +203118,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           ],
           shorthand: 'allowedIpAddresses',
         ),
-    'OracleAutonomousDatabaseCloneFromDatabaseAllowedIpAddressesOrVirtualNetworkIdChoice':
+    'OracleAutonomousDatabaseCloneFromDatabaseNetworkAccessVirtualNetworkId':
         MigrateHelper(
           className:
-              'OracleAutonomousDatabaseCloneFromDatabaseAllowedIpAddressesOrVirtualNetworkIdChoice',
+              'OracleAutonomousDatabaseCloneFromDatabaseNetworkAccessVirtualNetworkId',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'virtual_network_id',
@@ -204491,26 +204330,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'PaloAltoLocalRulestackCertificateKeyVaultCertificateIdOrSelfSignedChoice':
+    'PaloAltoLocalRulestackCertificateSourceKeyVaultCertificateId':
         MigrateHelper(
           className:
-              'PaloAltoLocalRulestackCertificateKeyVaultCertificateIdOrSelfSignedChoice',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'self_signed',
-              dartName: 'selfSigned',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'bool',
-            ),
-          ],
-          shorthand: 'selfSigned',
-        ),
-    'PaloAltoLocalRulestackCertificateKeyVaultCertificateIdOrSelfSignedKeyVaultCertificateId':
-        MigrateHelper(
-          className:
-              'PaloAltoLocalRulestackCertificateKeyVaultCertificateIdOrSelfSignedKeyVaultCertificateId',
+              'PaloAltoLocalRulestackCertificateSourceKeyVaultCertificateId',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'key_vault_certificate_id',
@@ -204523,6 +204346,20 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           ],
           shorthand: 'keyVaultCertificateId',
         ),
+    'PaloAltoLocalRulestackCertificateSourceSelfSigned': MigrateHelper(
+      className: 'PaloAltoLocalRulestackCertificateSourceSelfSigned',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'self_signed',
+          dartName: 'selfSigned',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'bool',
+        ),
+      ],
+      shorthand: 'selfSigned',
+    ),
     'PaloAltoLocalRulestackRuleCategory': MigrateHelper(
       className: 'PaloAltoLocalRulestackRuleCategory',
       slots: <MigrateSlot>[
@@ -206488,10 +206325,24 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'PrivateLinkServiceDestinationIpAddressOrLoadBalancerFrontendIpConfigurationIdsChoice':
+    'PrivateLinkServiceDestinationIpAddress': MigrateHelper(
+      className: 'PrivateLinkServiceDestinationIpAddress',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'destination_ip_address',
+          dartName: 'destinationIpAddress',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'destinationIpAddress',
+    ),
+    'PrivateLinkServiceDestinationLoadBalancerFrontendIpConfigurationIds':
         MigrateHelper(
           className:
-              'PrivateLinkServiceDestinationIpAddressOrLoadBalancerFrontendIpConfigurationIdsChoice',
+              'PrivateLinkServiceDestinationLoadBalancerFrontendIpConfigurationIds',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'load_balancer_frontend_ip_configuration_ids',
@@ -206503,22 +206354,6 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
             ),
           ],
           shorthand: 'loadBalancerFrontendIpConfigurationIds',
-        ),
-    'PrivateLinkServiceDestinationIpAddressOrLoadBalancerFrontendIpConfigurationIdsDestinationIpAddress':
-        MigrateHelper(
-          className:
-              'PrivateLinkServiceDestinationIpAddressOrLoadBalancerFrontendIpConfigurationIdsDestinationIpAddress',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'destination_ip_address',
-              dartName: 'destinationIpAddress',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'destinationIpAddress',
         ),
     'PrivateLinkServiceNatIpConfiguration': MigrateHelper(
       className: 'PrivateLinkServiceNatIpConfiguration',
@@ -206683,6 +206518,36 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'RedhatOpenshiftClusterCredentialsIdentity': MigrateHelper(
+      className: 'RedhatOpenshiftClusterCredentialsIdentity',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'identity',
+          dartName: 'identity',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'RedhatOpenshiftClusterIdentity',
+        ),
+      ],
+      shorthand: 'identity',
+    ),
+    'RedhatOpenshiftClusterCredentialsServicePrincipal': MigrateHelper(
+      className: 'RedhatOpenshiftClusterCredentialsServicePrincipal',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'service_principal',
+          dartName: 'servicePrincipal',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'RedhatOpenshiftClusterServicePrincipal',
+        ),
+      ],
+      shorthand: 'servicePrincipal',
+    ),
     'RedhatOpenshiftClusterIdentity': MigrateHelper(
       className: 'RedhatOpenshiftClusterIdentity',
       slots: <MigrateSlot>[
@@ -206701,36 +206566,6 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-    ),
-    'RedhatOpenshiftClusterIdentityOrServicePrincipalChoice': MigrateHelper(
-      className: 'RedhatOpenshiftClusterIdentityOrServicePrincipalChoice',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'service_principal',
-          dartName: 'servicePrincipal',
-          kind: MigrateSlotKind.helper,
-          required: true,
-          wrapped: false,
-          positional: true,
-          helper: 'RedhatOpenshiftClusterServicePrincipal',
-        ),
-      ],
-      shorthand: 'servicePrincipal',
-    ),
-    'RedhatOpenshiftClusterIdentityOrServicePrincipalIdentity': MigrateHelper(
-      className: 'RedhatOpenshiftClusterIdentityOrServicePrincipalIdentity',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'identity',
-          dartName: 'identity',
-          kind: MigrateSlotKind.helper,
-          required: true,
-          wrapped: false,
-          positional: true,
-          helper: 'RedhatOpenshiftClusterIdentity',
-        ),
-      ],
-      shorthand: 'identity',
     ),
     'RedhatOpenshiftClusterIngressProfile': MigrateHelper(
       className: 'RedhatOpenshiftClusterIngressProfile',
@@ -207825,17 +207660,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName:
-              'requireMultifactorAuthenticationOrRequiredConditionalAccessAuthenticationContext',
+          dartName: 'authentication',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'require_multifactor_authentication':
-                'RoleManagementPolicyActivationRulesRequireMultifactorAuthenticationOrRequiredConditionalAccessAuthenticationContextRequireMultifactorAuthentication',
+                'RoleManagementPolicyRequireMultifactorAuthentication',
             'required_conditional_access_authentication_context':
-                'RoleManagementPolicyActivationRulesRequireMultifactorAuthenticationOrRequiredConditionalAccessAuthenticationContextChoice',
+                'RoleManagementPolicyAuthenticationRequiredConditionalAccessAuthenticationContext',
           },
         ),
         MigrateSlot(
@@ -207855,38 +207689,6 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'RoleManagementPolicyActivationRulesRequireMultifactorAuthenticationOrRequiredConditionalAccessAuthenticationContextChoice':
-        MigrateHelper(
-          className:
-              'RoleManagementPolicyActivationRulesRequireMultifactorAuthenticationOrRequiredConditionalAccessAuthenticationContextChoice',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'required_conditional_access_authentication_context',
-              dartName: 'requiredConditionalAccessAuthenticationContext',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'requiredConditionalAccessAuthenticationContext',
-        ),
-    'RoleManagementPolicyActivationRulesRequireMultifactorAuthenticationOrRequiredConditionalAccessAuthenticationContextRequireMultifactorAuthentication':
-        MigrateHelper(
-          className:
-              'RoleManagementPolicyActivationRulesRequireMultifactorAuthenticationOrRequiredConditionalAccessAuthenticationContextRequireMultifactorAuthentication',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'require_multifactor_authentication',
-              dartName: 'requireMultifactorAuthentication',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'bool',
-            ),
-          ],
-          shorthand: 'requireMultifactorAuthentication',
-        ),
     'RoleManagementPolicyActiveAssignmentRules': MigrateHelper(
       className: 'RoleManagementPolicyActiveAssignmentRules',
       slots: <MigrateSlot>[
@@ -208048,6 +207850,22 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'RoleManagementPolicyAuthenticationRequiredConditionalAccessAuthenticationContext':
+        MigrateHelper(
+          className:
+              'RoleManagementPolicyAuthenticationRequiredConditionalAccessAuthenticationContext',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'required_conditional_access_authentication_context',
+              dartName: 'requiredConditionalAccessAuthenticationContext',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              positional: true,
+              dartType: 'String',
+            ),
+          ],
+          shorthand: 'requiredConditionalAccessAuthenticationContext',
+        ),
     'RoleManagementPolicyEligibleActivations': MigrateHelper(
       className: 'RoleManagementPolicyEligibleActivations',
       slots: <MigrateSlot>[
@@ -208198,6 +208016,20 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'RoleManagementPolicyType',
         ),
       ],
+    ),
+    'RoleManagementPolicyRequireMultifactorAuthentication': MigrateHelper(
+      className: 'RoleManagementPolicyRequireMultifactorAuthentication',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'require_multifactor_authentication',
+          dartName: 'requireMultifactorAuthentication',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'bool',
+        ),
+      ],
+      shorthand: 'requireMultifactorAuthentication',
     ),
     'RouteMapAction': MigrateHelper(
       className: 'RouteMapAction',
@@ -208481,8 +208313,22 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'SentinelAlertRuleAnomalyBuiltInDisplayNameOrNameChoice': MigrateHelper(
-      className: 'SentinelAlertRuleAnomalyBuiltInDisplayNameOrNameChoice',
+    'SentinelAlertRuleAnomalyBuiltInIdentifierDisplayName': MigrateHelper(
+      className: 'SentinelAlertRuleAnomalyBuiltInIdentifierDisplayName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'display_name',
+          dartName: 'displayName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'displayName',
+    ),
+    'SentinelAlertRuleAnomalyBuiltInIdentifierName': MigrateHelper(
+      className: 'SentinelAlertRuleAnomalyBuiltInIdentifierName',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'name',
@@ -208495,22 +208341,6 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       ],
       shorthand: 'name',
     ),
-    'SentinelAlertRuleAnomalyBuiltInDisplayNameOrNameDisplayName':
-        MigrateHelper(
-          className:
-              'SentinelAlertRuleAnomalyBuiltInDisplayNameOrNameDisplayName',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'display_name',
-              dartName: 'displayName',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'displayName',
-        ),
     'SentinelAlertRuleAnomalyDuplicateMultiSelectObservation': MigrateHelper(
       className: 'SentinelAlertRuleAnomalyDuplicateMultiSelectObservation',
       slots: <MigrateSlot>[
@@ -209426,40 +209256,36 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'ServiceFabricClusterCertificateOrCertificateCommonNamesCertificate':
-        MigrateHelper(
-          className:
-              'ServiceFabricClusterCertificateOrCertificateCommonNamesCertificate',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'certificate',
-              dartName: 'certificate',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ServiceFabricClusterCertificate',
-            ),
-          ],
-          shorthand: 'certificate',
+    'ServiceFabricClusterCertificatesCertificate': MigrateHelper(
+      className: 'ServiceFabricClusterCertificatesCertificate',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'certificate',
+          dartName: 'certificate',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ServiceFabricClusterCertificate',
         ),
-    'ServiceFabricClusterCertificateOrCertificateCommonNamesChoice':
-        MigrateHelper(
-          className:
-              'ServiceFabricClusterCertificateOrCertificateCommonNamesChoice',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'certificate_common_names',
-              dartName: 'certificateCommonNames',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ServiceFabricClusterCertificateCommonNames',
-            ),
-          ],
-          shorthand: 'certificateCommonNames',
+      ],
+      shorthand: 'certificate',
+    ),
+    'ServiceFabricClusterCertificatesCertificateCommonNames': MigrateHelper(
+      className: 'ServiceFabricClusterCertificatesCertificateCommonNames',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'certificate_common_names',
+          dartName: 'certificateCommonNames',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ServiceFabricClusterCertificateCommonNames',
         ),
+      ],
+      shorthand: 'certificateCommonNames',
+    ),
     'ServiceFabricClusterClientCertificateCommonName': MigrateHelper(
       className: 'ServiceFabricClusterClientCertificateCommonName',
       slots: <MigrateSlot>[
@@ -209792,27 +209618,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'ServiceFabricClusterReverseProxyCertificateOrReverseProxyCertificateCommonNamesChoice':
+    'ServiceFabricClusterReverseProxyCertificatesReverseProxyCertificate':
         MigrateHelper(
           className:
-              'ServiceFabricClusterReverseProxyCertificateOrReverseProxyCertificateCommonNamesChoice',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'reverse_proxy_certificate_common_names',
-              dartName: 'reverseProxyCertificateCommonNames',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ServiceFabricClusterReverseProxyCertificateCommonNames',
-            ),
-          ],
-          shorthand: 'reverseProxyCertificateCommonNames',
-        ),
-    'ServiceFabricClusterReverseProxyCertificateOrReverseProxyCertificateCommonNamesReverseProxyCertificate':
-        MigrateHelper(
-          className:
-              'ServiceFabricClusterReverseProxyCertificateOrReverseProxyCertificateCommonNamesReverseProxyCertificate',
+              'ServiceFabricClusterReverseProxyCertificatesReverseProxyCertificate',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'reverse_proxy_certificate',
@@ -209825,6 +209634,23 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
             ),
           ],
           shorthand: 'reverseProxyCertificate',
+        ),
+    'ServiceFabricClusterReverseProxyCertificatesReverseProxyCertificateCommonNames':
+        MigrateHelper(
+          className:
+              'ServiceFabricClusterReverseProxyCertificatesReverseProxyCertificateCommonNames',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'reverse_proxy_certificate_common_names',
+              dartName: 'reverseProxyCertificateCommonNames',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              positional: true,
+              helper: 'ServiceFabricClusterReverseProxyCertificateCommonNames',
+            ),
+          ],
+          shorthand: 'reverseProxyCertificateCommonNames',
         ),
     'ServiceFabricClusterUpgradePolicy': MigrateHelper(
       className: 'ServiceFabricClusterUpgradePolicy',
@@ -211183,28 +211009,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'SiteRecoveryVmwareReplicatedVmDefaultLogStorageAccountIdOrManagedDiskChoice':
+    'SiteRecoveryVmwareReplicatedVmDiskReplicationDefaultLogStorageAccountId':
         MigrateHelper(
           className:
-              'SiteRecoveryVmwareReplicatedVmDefaultLogStorageAccountIdOrManagedDiskChoice',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'managed_disk',
-              dartName: 'managedDisk',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              repeated: true,
-              wrapped: false,
-              positional: true,
-              helper: 'SiteRecoveryVmwareReplicatedVmManagedDisk',
-            ),
-          ],
-          shorthand: 'managedDisk',
-        ),
-    'SiteRecoveryVmwareReplicatedVmDefaultLogStorageAccountIdOrManagedDiskDefaultLogStorageAccountId':
-        MigrateHelper(
-          className:
-              'SiteRecoveryVmwareReplicatedVmDefaultLogStorageAccountIdOrManagedDiskDefaultLogStorageAccountId',
+              'SiteRecoveryVmwareReplicatedVmDiskReplicationDefaultLogStorageAccountId',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'default_log_storage_account_id',
@@ -211217,6 +211025,22 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           ],
           shorthand: 'defaultLogStorageAccountId',
         ),
+    'SiteRecoveryVmwareReplicatedVmDiskReplicationManagedDisk': MigrateHelper(
+      className: 'SiteRecoveryVmwareReplicatedVmDiskReplicationManagedDisk',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'managed_disk',
+          dartName: 'managedDisk',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          repeated: true,
+          wrapped: false,
+          positional: true,
+          helper: 'SiteRecoveryVmwareReplicatedVmManagedDisk',
+        ),
+      ],
+      shorthand: 'managedDisk',
+    ),
     'SiteRecoveryVmwareReplicatedVmManagedDisk': MigrateHelper(
       className: 'SiteRecoveryVmwareReplicatedVmManagedDisk',
       slots: <MigrateSlot>[
@@ -211817,18 +211641,15 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'branchOrCommitOrGitTag',
+          dartName: 'reference',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'branch':
-                'SpringCloudCustomizedAcceleratorGitRepositoryBranchOrCommitOrGitTagBranch',
-            'commit':
-                'SpringCloudCustomizedAcceleratorGitRepositoryBranchOrCommitOrGitTagCommit',
-            'git_tag':
-                'SpringCloudCustomizedAcceleratorGitRepositoryBranchOrCommitOrGitTagChoice',
+            'branch': 'SpringCloudCustomizedAcceleratorReferenceBranch',
+            'commit': 'SpringCloudCustomizedAcceleratorReferenceCommit',
+            'git_tag': 'SpringCloudCustomizedAcceleratorReferenceGitTag',
           },
         ),
         MigrateSlot(
@@ -211873,54 +211694,48 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'SpringCloudCustomizedAcceleratorGitRepositoryBranchOrCommitOrGitTagBranch':
-        MigrateHelper(
-          className:
-              'SpringCloudCustomizedAcceleratorGitRepositoryBranchOrCommitOrGitTagBranch',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'branch',
-              dartName: 'branch',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'branch',
+    'SpringCloudCustomizedAcceleratorReferenceBranch': MigrateHelper(
+      className: 'SpringCloudCustomizedAcceleratorReferenceBranch',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'branch',
+          dartName: 'branch',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'SpringCloudCustomizedAcceleratorGitRepositoryBranchOrCommitOrGitTagChoice':
-        MigrateHelper(
-          className:
-              'SpringCloudCustomizedAcceleratorGitRepositoryBranchOrCommitOrGitTagChoice',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'git_tag',
-              dartName: 'gitTag',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'gitTag',
+      ],
+      shorthand: 'branch',
+    ),
+    'SpringCloudCustomizedAcceleratorReferenceCommit': MigrateHelper(
+      className: 'SpringCloudCustomizedAcceleratorReferenceCommit',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'commit',
+          dartName: 'commit',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'SpringCloudCustomizedAcceleratorGitRepositoryBranchOrCommitOrGitTagCommit':
-        MigrateHelper(
-          className:
-              'SpringCloudCustomizedAcceleratorGitRepositoryBranchOrCommitOrGitTagCommit',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'commit',
-              dartName: 'commit',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'commit',
+      ],
+      shorthand: 'commit',
+    ),
+    'SpringCloudCustomizedAcceleratorReferenceGitTag': MigrateHelper(
+      className: 'SpringCloudCustomizedAcceleratorReferenceGitTag',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'git_tag',
+          dartName: 'gitTag',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
+      ],
+      shorthand: 'gitTag',
+    ),
     'SpringCloudCustomizedAcceleratorSshAuth': MigrateHelper(
       className: 'SpringCloudCustomizedAcceleratorSshAuth',
       slots: <MigrateSlot>[
@@ -215228,8 +215043,8 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'SubnetAddressPrefixesOrIpAddressPoolAddressPrefixes': MigrateHelper(
-      className: 'SubnetAddressPrefixesOrIpAddressPoolAddressPrefixes',
+    'SubnetAddressingAddressPrefixes': MigrateHelper(
+      className: 'SubnetAddressingAddressPrefixes',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'address_prefixes',
@@ -215242,8 +215057,8 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       ],
       shorthand: 'addressPrefixes',
     ),
-    'SubnetAddressPrefixesOrIpAddressPoolChoice': MigrateHelper(
-      className: 'SubnetAddressPrefixesOrIpAddressPoolChoice',
+    'SubnetAddressingIpAddressPool': MigrateHelper(
+      className: 'SubnetAddressingIpAddressPool',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'ip_address_pool',
@@ -215367,34 +215182,6 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
       ],
-    ),
-    'SubscriptionBillingScopeIdOrSubscriptionIdBillingScopeId': MigrateHelper(
-      className: 'SubscriptionBillingScopeIdOrSubscriptionIdBillingScopeId',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'billing_scope_id',
-          dartName: 'billingScopeId',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          positional: true,
-          dartType: 'String',
-        ),
-      ],
-      shorthand: 'billingScopeId',
-    ),
-    'SubscriptionBillingScopeIdOrSubscriptionIdChoice': MigrateHelper(
-      className: 'SubscriptionBillingScopeIdOrSubscriptionIdChoice',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'subscription_id',
-          dartName: 'subscriptionId',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          positional: true,
-          dartType: 'String',
-        ),
-      ],
-      shorthand: 'subscriptionId',
     ),
     'SubscriptionCostManagementExportDataOptions': MigrateHelper(
       className: 'SubscriptionCostManagementExportDataOptions',
@@ -215693,6 +215480,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'SubscriptionSourceBillingScopeId': MigrateHelper(
+      className: 'SubscriptionSourceBillingScopeId',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'billing_scope_id',
+          dartName: 'billingScopeId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'billingScopeId',
+    ),
+    'SubscriptionSourceSubscriptionId': MigrateHelper(
+      className: 'SubscriptionSourceSubscriptionId',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'subscription_id',
+          dartName: 'subscriptionId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'subscriptionId',
+    ),
     'SubscriptionTemplateDeploymentTemplateContent': MigrateHelper(
       className: 'SubscriptionTemplateDeploymentTemplateContent',
       slots: <MigrateSlot>[
@@ -215799,8 +215614,8 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'SynapseSparkPoolAutoScaleOrNodeCountAutoScale': MigrateHelper(
-      className: 'SynapseSparkPoolAutoScaleOrNodeCountAutoScale',
+    'SynapseSparkPoolAutoScaleChoice': MigrateHelper(
+      className: 'SynapseSparkPoolAutoScaleChoice',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'auto_scale',
@@ -215813,20 +215628,6 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
       shorthand: 'autoScale',
-    ),
-    'SynapseSparkPoolAutoScaleOrNodeCountChoice': MigrateHelper(
-      className: 'SynapseSparkPoolAutoScaleOrNodeCountChoice',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'node_count',
-          dartName: 'nodeCount',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          positional: true,
-          dartType: 'num',
-        ),
-      ],
-      shorthand: 'nodeCount',
     ),
     'SynapseSparkPoolLibraryRequirement': MigrateHelper(
       className: 'SynapseSparkPoolLibraryRequirement',
@@ -215847,6 +215648,20 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'SynapseSparkPoolScaleNodeCount': MigrateHelper(
+      className: 'SynapseSparkPoolScaleNodeCount',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'node_count',
+          dartName: 'nodeCount',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'num',
+        ),
+      ],
+      shorthand: 'nodeCount',
+    ),
     'SynapseSparkPoolSparkConfig': MigrateHelper(
       className: 'SynapseSparkPoolSparkConfig',
       slots: <MigrateSlot>[
@@ -215866,8 +215681,22 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'SynapseSqlPoolRecoveryDatabaseIdOrRestoreChoice': MigrateHelper(
-      className: 'SynapseSqlPoolRecoveryDatabaseIdOrRestoreChoice',
+    'SynapseSqlPoolRecoveryDatabaseId': MigrateHelper(
+      className: 'SynapseSqlPoolRecoveryDatabaseId',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'recovery_database_id',
+          dartName: 'recoveryDatabaseId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'recoveryDatabaseId',
+    ),
+    'SynapseSqlPoolRecoveryRestore': MigrateHelper(
+      className: 'SynapseSqlPoolRecoveryRestore',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'restore',
@@ -215881,22 +215710,6 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       ],
       shorthand: 'restore',
     ),
-    'SynapseSqlPoolRecoveryDatabaseIdOrRestoreRecoveryDatabaseId':
-        MigrateHelper(
-          className:
-              'SynapseSqlPoolRecoveryDatabaseIdOrRestoreRecoveryDatabaseId',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'recovery_database_id',
-              dartName: 'recoveryDatabaseId',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'recoveryDatabaseId',
-        ),
     'SynapseSqlPoolRestore': MigrateHelper(
       className: 'SynapseSqlPoolRestore',
       slots: <MigrateSlot>[
@@ -217110,34 +216923,6 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'VirtualMachineAvailabilitySetIdOrZonesAvailabilitySetId': MigrateHelper(
-      className: 'VirtualMachineAvailabilitySetIdOrZonesAvailabilitySetId',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'availability_set_id',
-          dartName: 'availabilitySetId',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          positional: true,
-          dartType: 'String',
-        ),
-      ],
-      shorthand: 'availabilitySetId',
-    ),
-    'VirtualMachineAvailabilitySetIdOrZonesChoice': MigrateHelper(
-      className: 'VirtualMachineAvailabilitySetIdOrZonesChoice',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'zones',
-          dartName: 'zones',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          positional: true,
-          dartType: 'List<String>',
-        ),
-      ],
-      shorthand: 'zones',
-    ),
     'VirtualMachineBootDiagnostics': MigrateHelper(
       className: 'VirtualMachineBootDiagnostics',
       slots: <MigrateSlot>[
@@ -217195,6 +216980,36 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'VirtualMachineOsConfigurationOsProfileLinuxConfig': MigrateHelper(
+      className: 'VirtualMachineOsConfigurationOsProfileLinuxConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'os_profile_linux_config',
+          dartName: 'osProfileLinuxConfig',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'VirtualMachineOsProfileLinuxConfig',
+        ),
+      ],
+      shorthand: 'osProfileLinuxConfig',
+    ),
+    'VirtualMachineOsConfigurationOsProfileWindowsConfig': MigrateHelper(
+      className: 'VirtualMachineOsConfigurationOsProfileWindowsConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'os_profile_windows_config',
+          dartName: 'osProfileWindowsConfig',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'VirtualMachineOsProfileWindowsConfig',
+        ),
+      ],
+      shorthand: 'osProfileWindowsConfig',
+    ),
     'VirtualMachineOsProfile': MigrateHelper(
       className: 'VirtualMachineOsProfile',
       slots: <MigrateSlot>[
@@ -217249,40 +217064,6 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'VirtualMachineOsProfileLinuxConfigOrOsProfileWindowsConfigChoice':
-        MigrateHelper(
-          className:
-              'VirtualMachineOsProfileLinuxConfigOrOsProfileWindowsConfigChoice',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'os_profile_windows_config',
-              dartName: 'osProfileWindowsConfig',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'VirtualMachineOsProfileWindowsConfig',
-            ),
-          ],
-          shorthand: 'osProfileWindowsConfig',
-        ),
-    'VirtualMachineOsProfileLinuxConfigOrOsProfileWindowsConfigOsProfileLinuxConfig':
-        MigrateHelper(
-          className:
-              'VirtualMachineOsProfileLinuxConfigOrOsProfileWindowsConfigOsProfileLinuxConfig',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'os_profile_linux_config',
-              dartName: 'osProfileLinuxConfig',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'VirtualMachineOsProfileLinuxConfig',
-            ),
-          ],
-          shorthand: 'osProfileLinuxConfig',
-        ),
     'VirtualMachineOsProfileSecrets': MigrateHelper(
       className: 'VirtualMachineOsProfileSecrets',
       slots: <MigrateSlot>[
@@ -217406,6 +217187,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+    ),
+    'VirtualMachinePlacementAvailabilitySetId': MigrateHelper(
+      className: 'VirtualMachinePlacementAvailabilitySetId',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'availability_set_id',
+          dartName: 'availabilitySetId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'availabilitySetId',
+    ),
+    'VirtualMachinePlacementZones': MigrateHelper(
+      className: 'VirtualMachinePlacementZones',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'zones',
+          dartName: 'zones',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'List<String>',
+        ),
+      ],
+      shorthand: 'zones',
     ),
     'VirtualMachinePlan': MigrateHelper(
       className: 'VirtualMachinePlan',
@@ -217560,18 +217369,15 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'commandIdOrScriptOrScriptUri',
+          dartName: 'command',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'command_id':
-                'VirtualMachineRunCommandSourceCommandIdOrScriptOrScriptUriCommandId',
-            'script':
-                'VirtualMachineRunCommandSourceCommandIdOrScriptOrScriptUriScript',
-            'script_uri':
-                'VirtualMachineRunCommandSourceCommandIdOrScriptOrScriptUriChoice',
+            'command_id': 'VirtualMachineRunCommandSourceCommandId',
+            'script': 'VirtualMachineRunCommandSourceCommandScript',
+            'script_uri': 'VirtualMachineRunCommandSourceCommandScriptUri',
           },
         ),
         MigrateSlot(
@@ -217589,54 +217395,48 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'VirtualMachineRunCommandSourceCommandIdOrScriptOrScriptUriChoice':
-        MigrateHelper(
-          className:
-              'VirtualMachineRunCommandSourceCommandIdOrScriptOrScriptUriChoice',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'script_uri',
-              dartName: 'scriptUri',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'scriptUri',
+    'VirtualMachineRunCommandSourceCommandId': MigrateHelper(
+      className: 'VirtualMachineRunCommandSourceCommandId',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'command_id',
+          dartName: 'commandId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'VirtualMachineRunCommandSourceCommandIdOrScriptOrScriptUriCommandId':
-        MigrateHelper(
-          className:
-              'VirtualMachineRunCommandSourceCommandIdOrScriptOrScriptUriCommandId',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'command_id',
-              dartName: 'commandId',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'commandId',
+      ],
+      shorthand: 'commandId',
+    ),
+    'VirtualMachineRunCommandSourceCommandScript': MigrateHelper(
+      className: 'VirtualMachineRunCommandSourceCommandScript',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'script',
+          dartName: 'script',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'VirtualMachineRunCommandSourceCommandIdOrScriptOrScriptUriScript':
-        MigrateHelper(
-          className:
-              'VirtualMachineRunCommandSourceCommandIdOrScriptOrScriptUriScript',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'script',
-              dartName: 'script',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'script',
+      ],
+      shorthand: 'script',
+    ),
+    'VirtualMachineRunCommandSourceCommandScriptUri': MigrateHelper(
+      className: 'VirtualMachineRunCommandSourceCommandScriptUri',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'script_uri',
+          dartName: 'scriptUri',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
+      ],
+      shorthand: 'scriptUri',
+    ),
     'VirtualMachineScaleSetAdditionalUnattendConfig': MigrateHelper(
       className: 'VirtualMachineScaleSetAdditionalUnattendConfig',
       slots: <MigrateSlot>[
@@ -218685,8 +218485,8 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'VirtualNetworkAddressSpaceOrIpAddressPoolAddressSpace': MigrateHelper(
-      className: 'VirtualNetworkAddressSpaceOrIpAddressPoolAddressSpace',
+    'VirtualNetworkAddressingAddressSpace': MigrateHelper(
+      className: 'VirtualNetworkAddressingAddressSpace',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'address_space',
@@ -218699,8 +218499,8 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       ],
       shorthand: 'addressSpace',
     ),
-    'VirtualNetworkAddressSpaceOrIpAddressPoolChoice': MigrateHelper(
-      className: 'VirtualNetworkAddressSpaceOrIpAddressPoolChoice',
+    'VirtualNetworkAddressingIpAddressPool': MigrateHelper(
+      className: 'VirtualNetworkAddressingIpAddressPool',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'ip_address_pool',
@@ -223532,6 +223332,36 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'WindowsFunctionAppSlotStorageAccessStorageAccountAccessKey': MigrateHelper(
+      className: 'WindowsFunctionAppSlotStorageAccessStorageAccountAccessKey',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'storage_account_access_key',
+          dartName: 'storageAccountAccessKey',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'storageAccountAccessKey',
+    ),
+    'WindowsFunctionAppSlotStorageAccessStorageUsesManagedIdentity':
+        MigrateHelper(
+          className:
+              'WindowsFunctionAppSlotStorageAccessStorageUsesManagedIdentity',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'storage_uses_managed_identity',
+              dartName: 'storageUsesManagedIdentity',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              positional: true,
+              dartType: 'bool',
+            ),
+          ],
+          shorthand: 'storageUsesManagedIdentity',
+        ),
     'WindowsFunctionAppSlotStorageAccount': MigrateHelper(
       className: 'WindowsFunctionAppSlotStorageAccount',
       slots: <MigrateSlot>[
@@ -223579,38 +223409,6 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'WindowsFunctionAppSlotStorageAccountAccessKeyOrStorageUsesManagedIdentityChoice':
-        MigrateHelper(
-          className:
-              'WindowsFunctionAppSlotStorageAccountAccessKeyOrStorageUsesManagedIdentityChoice',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'storage_uses_managed_identity',
-              dartName: 'storageUsesManagedIdentity',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'bool',
-            ),
-          ],
-          shorthand: 'storageUsesManagedIdentity',
-        ),
-    'WindowsFunctionAppSlotStorageAccountAccessKeyOrStorageUsesManagedIdentityStorageAccountAccessKey':
-        MigrateHelper(
-          className:
-              'WindowsFunctionAppSlotStorageAccountAccessKeyOrStorageUsesManagedIdentityStorageAccountAccessKey',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'storage_account_access_key',
-              dartName: 'storageAccountAccessKey',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'storageAccountAccessKey',
-        ),
     'WindowsFunctionAppSlotStorageAccountName': MigrateHelper(
       className: 'WindowsFunctionAppSlotStorageAccountName',
       slots: <MigrateSlot>[
@@ -223704,6 +223502,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'WindowsFunctionAppStorageAccessStorageAccountAccessKey': MigrateHelper(
+      className: 'WindowsFunctionAppStorageAccessStorageAccountAccessKey',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'storage_account_access_key',
+          dartName: 'storageAccountAccessKey',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'storageAccountAccessKey',
+    ),
+    'WindowsFunctionAppStorageAccessStorageUsesManagedIdentity': MigrateHelper(
+      className: 'WindowsFunctionAppStorageAccessStorageUsesManagedIdentity',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'storage_uses_managed_identity',
+          dartName: 'storageUsesManagedIdentity',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'bool',
+        ),
+      ],
+      shorthand: 'storageUsesManagedIdentity',
+    ),
     'WindowsFunctionAppStorageAccount': MigrateHelper(
       className: 'WindowsFunctionAppStorageAccount',
       slots: <MigrateSlot>[
@@ -223751,38 +223577,6 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'WindowsFunctionAppStorageAccountAccessKeyOrStorageUsesManagedIdentityChoice':
-        MigrateHelper(
-          className:
-              'WindowsFunctionAppStorageAccountAccessKeyOrStorageUsesManagedIdentityChoice',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'storage_uses_managed_identity',
-              dartName: 'storageUsesManagedIdentity',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'bool',
-            ),
-          ],
-          shorthand: 'storageUsesManagedIdentity',
-        ),
-    'WindowsFunctionAppStorageAccountAccessKeyOrStorageUsesManagedIdentityStorageAccountAccessKey':
-        MigrateHelper(
-          className:
-              'WindowsFunctionAppStorageAccountAccessKeyOrStorageUsesManagedIdentityStorageAccountAccessKey',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'storage_account_access_key',
-              dartName: 'storageAccountAccessKey',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'storageAccountAccessKey',
-        ),
     'WindowsFunctionAppStorageAccountName': MigrateHelper(
       className: 'WindowsFunctionAppStorageAccountName',
       slots: <MigrateSlot>[

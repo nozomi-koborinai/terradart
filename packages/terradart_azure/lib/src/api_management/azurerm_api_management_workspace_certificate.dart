@@ -14,18 +14,18 @@ const Set<String> _azurermApiManagementWorkspaceCertificateSensitive = <String>{
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.certificateDataBase64(...)`.
-sealed class ApiManagementWorkspaceCertificateDataBase64OrKeyVaultSecretId {
-  const ApiManagementWorkspaceCertificateDataBase64OrKeyVaultSecretId();
+sealed class ApiManagementWorkspaceCertificateSource {
+  const ApiManagementWorkspaceCertificateSource();
 
   /// Sets `certificate_data_base64`.
-  const factory ApiManagementWorkspaceCertificateDataBase64OrKeyVaultSecretId.certificateDataBase64(
+  const factory ApiManagementWorkspaceCertificateSource.certificateDataBase64(
     Sensitive<String> certificateDataBase64,
-  ) = ApiManagementWorkspaceCertificateDataBase64OrKeyVaultSecretIdCertificateDataBase64;
+  ) = ApiManagementWorkspaceCertificateSourceCertificateDataBase64;
 
   /// Sets `key_vault_secret_id`.
-  const factory ApiManagementWorkspaceCertificateDataBase64OrKeyVaultSecretId.keyVaultSecretId(
+  const factory ApiManagementWorkspaceCertificateSource.keyVaultSecretId(
     TfArg<String> keyVaultSecretId,
-  ) = ApiManagementWorkspaceCertificateDataBase64OrKeyVaultSecretIdChoice;
+  ) = ApiManagementWorkspaceCertificateSourceKeyVaultSecretId;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -40,10 +40,10 @@ sealed class ApiManagementWorkspaceCertificateDataBase64OrKeyVaultSecretId {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [ApiManagementWorkspaceCertificateDataBase64OrKeyVaultSecretId.certificateDataBase64] choice: sets `certificate_data_base64`.
-final class ApiManagementWorkspaceCertificateDataBase64OrKeyVaultSecretIdCertificateDataBase64
-    extends ApiManagementWorkspaceCertificateDataBase64OrKeyVaultSecretId {
-  const ApiManagementWorkspaceCertificateDataBase64OrKeyVaultSecretIdCertificateDataBase64(
+/// The [ApiManagementWorkspaceCertificateSource.certificateDataBase64] choice: sets `certificate_data_base64`.
+final class ApiManagementWorkspaceCertificateSourceCertificateDataBase64
+    extends ApiManagementWorkspaceCertificateSource {
+  const ApiManagementWorkspaceCertificateSourceCertificateDataBase64(
     this.certificateDataBase64,
   );
 
@@ -66,10 +66,10 @@ final class ApiManagementWorkspaceCertificateDataBase64OrKeyVaultSecretIdCertifi
   };
 }
 
-/// The [ApiManagementWorkspaceCertificateDataBase64OrKeyVaultSecretId.keyVaultSecretId] choice: sets `key_vault_secret_id`.
-final class ApiManagementWorkspaceCertificateDataBase64OrKeyVaultSecretIdChoice
-    extends ApiManagementWorkspaceCertificateDataBase64OrKeyVaultSecretId {
-  const ApiManagementWorkspaceCertificateDataBase64OrKeyVaultSecretIdChoice(
+/// The [ApiManagementWorkspaceCertificateSource.keyVaultSecretId] choice: sets `key_vault_secret_id`.
+final class ApiManagementWorkspaceCertificateSourceKeyVaultSecretId
+    extends ApiManagementWorkspaceCertificateSource {
+  const ApiManagementWorkspaceCertificateSourceKeyVaultSecretId(
     this.keyVaultSecretId,
   );
 
@@ -99,8 +99,7 @@ final class AzurermApiManagementWorkspaceCertificate extends Resource {
   AzurermApiManagementWorkspaceCertificate(
     super.localName, {
     required TfArg<String> apiManagementWorkspaceId,
-    required ApiManagementWorkspaceCertificateDataBase64OrKeyVaultSecretId
-    certificateDataBase64OrKeyVaultSecretId,
+    required ApiManagementWorkspaceCertificateSource source,
     required TfArg<String> name,
     Sensitive<String>? password,
     TfArg<String>? userAssignedIdentityClientId,
@@ -112,7 +111,7 @@ final class AzurermApiManagementWorkspaceCertificate extends Resource {
          terraformType: tfType,
          argMap: {
            'api_management_workspace_id': apiManagementWorkspaceId,
-           ...certificateDataBase64OrKeyVaultSecretId.argMap,
+           ...source.argMap,
            'name': name,
            'password': ?password,
            'user_assigned_identity_client_id': ?userAssignedIdentityClientId,

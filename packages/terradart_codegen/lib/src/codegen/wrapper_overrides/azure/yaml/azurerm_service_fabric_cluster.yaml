@@ -4,3 +4,7 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 deriveExactlyOne: true
+
+sealedNames:
+  "certificate, certificate_common_names": certificates
+  "reverse_proxy_certificate, reverse_proxy_certificate_common_names": reverse_proxy_certificates

@@ -55,18 +55,17 @@ extension type const ApiManagementSubscriptionState._(TfArg<String> _)
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.apiId(...)`.
-sealed class ApiManagementSubscriptionApiIdOrProductId {
-  const ApiManagementSubscriptionApiIdOrProductId();
+sealed class ApiManagementSubscriptionScope {
+  const ApiManagementSubscriptionScope();
 
   /// Sets `api_id`.
-  const factory ApiManagementSubscriptionApiIdOrProductId.apiId(
-    TfArg<String> apiId,
-  ) = ApiManagementSubscriptionApiIdOrProductIdApiId;
+  const factory ApiManagementSubscriptionScope.apiId(TfArg<String> apiId) =
+      ApiManagementSubscriptionScopeApiId;
 
   /// Sets `product_id`.
-  const factory ApiManagementSubscriptionApiIdOrProductId.productId(
+  const factory ApiManagementSubscriptionScope.productId(
     TfArg<String> productId,
-  ) = ApiManagementSubscriptionApiIdOrProductIdChoice;
+  ) = ApiManagementSubscriptionScopeProductId;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -81,10 +80,10 @@ sealed class ApiManagementSubscriptionApiIdOrProductId {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [ApiManagementSubscriptionApiIdOrProductId.apiId] choice: sets `api_id`.
-final class ApiManagementSubscriptionApiIdOrProductIdApiId
-    extends ApiManagementSubscriptionApiIdOrProductId {
-  const ApiManagementSubscriptionApiIdOrProductIdApiId(this.apiId);
+/// The [ApiManagementSubscriptionScope.apiId] choice: sets `api_id`.
+final class ApiManagementSubscriptionScopeApiId
+    extends ApiManagementSubscriptionScope {
+  const ApiManagementSubscriptionScopeApiId(this.apiId);
 
   final TfArg<String> apiId;
 
@@ -101,10 +100,10 @@ final class ApiManagementSubscriptionApiIdOrProductIdApiId
   Map<String, TfArg<Object?>> get argMap => {'api_id': apiId};
 }
 
-/// The [ApiManagementSubscriptionApiIdOrProductId.productId] choice: sets `product_id`.
-final class ApiManagementSubscriptionApiIdOrProductIdChoice
-    extends ApiManagementSubscriptionApiIdOrProductId {
-  const ApiManagementSubscriptionApiIdOrProductIdChoice(this.productId);
+/// The [ApiManagementSubscriptionScope.productId] choice: sets `product_id`.
+final class ApiManagementSubscriptionScopeProductId
+    extends ApiManagementSubscriptionScope {
+  const ApiManagementSubscriptionScopeProductId(this.productId);
 
   final TfArg<String> productId;
 
@@ -128,7 +127,7 @@ final class AzurermApiManagementSubscription extends Resource {
   AzurermApiManagementSubscription(
     super.localName, {
     TfArg<bool>? allowTracing,
-    ApiManagementSubscriptionApiIdOrProductId? apiIdOrProductId,
+    ApiManagementSubscriptionScope? scope,
     required TfArg<String> apiManagementName,
     required TfArg<String> displayName,
     Sensitive<String>? primaryKey,
@@ -145,7 +144,7 @@ final class AzurermApiManagementSubscription extends Resource {
          terraformType: tfType,
          argMap: {
            'allow_tracing': ?allowTracing,
-           ...?apiIdOrProductId?.argMap,
+           ...?scope?.argMap,
            'api_management_name': apiManagementName,
            'display_name': displayName,
            'primary_key': ?primaryKey,

@@ -52,18 +52,18 @@ extension type const ApiManagementApiProtocols._(TfArg<String> _)
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.oauth2Authorization(...)`.
-sealed class ApiManagementApiOauth2AuthorizationOrOpenidAuthentication {
-  const ApiManagementApiOauth2AuthorizationOrOpenidAuthentication();
+sealed class ApiManagementApiAuth {
+  const ApiManagementApiAuth();
 
   /// Sets `oauth2_authorization`.
-  const factory ApiManagementApiOauth2AuthorizationOrOpenidAuthentication.oauth2Authorization(
+  const factory ApiManagementApiAuth.oauth2Authorization(
     ApiManagementApiOauth2Authorization oauth2Authorization,
-  ) = ApiManagementApiOauth2AuthorizationOrOpenidAuthenticationOauth2Authorization;
+  ) = ApiManagementApiAuthOauth2Authorization;
 
   /// Sets `openid_authentication`.
-  const factory ApiManagementApiOauth2AuthorizationOrOpenidAuthentication.openidAuthentication(
+  const factory ApiManagementApiAuth.openidAuthentication(
     ApiManagementApiOpenidAuthentication openidAuthentication,
-  ) = ApiManagementApiOauth2AuthorizationOrOpenidAuthenticationChoice;
+  ) = ApiManagementApiAuthOpenidAuthentication;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -78,12 +78,10 @@ sealed class ApiManagementApiOauth2AuthorizationOrOpenidAuthentication {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [ApiManagementApiOauth2AuthorizationOrOpenidAuthentication.oauth2Authorization] choice: sets `oauth2_authorization`.
-final class ApiManagementApiOauth2AuthorizationOrOpenidAuthenticationOauth2Authorization
-    extends ApiManagementApiOauth2AuthorizationOrOpenidAuthentication {
-  const ApiManagementApiOauth2AuthorizationOrOpenidAuthenticationOauth2Authorization(
-    this.oauth2Authorization,
-  );
+/// The [ApiManagementApiAuth.oauth2Authorization] choice: sets `oauth2_authorization`.
+final class ApiManagementApiAuthOauth2Authorization
+    extends ApiManagementApiAuth {
+  const ApiManagementApiAuthOauth2Authorization(this.oauth2Authorization);
 
   final ApiManagementApiOauth2Authorization oauth2Authorization;
 
@@ -104,12 +102,10 @@ final class ApiManagementApiOauth2AuthorizationOrOpenidAuthenticationOauth2Autho
   };
 }
 
-/// The [ApiManagementApiOauth2AuthorizationOrOpenidAuthentication.openidAuthentication] choice: sets `openid_authentication`.
-final class ApiManagementApiOauth2AuthorizationOrOpenidAuthenticationChoice
-    extends ApiManagementApiOauth2AuthorizationOrOpenidAuthentication {
-  const ApiManagementApiOauth2AuthorizationOrOpenidAuthenticationChoice(
-    this.openidAuthentication,
-  );
+/// The [ApiManagementApiAuth.openidAuthentication] choice: sets `openid_authentication`.
+final class ApiManagementApiAuthOpenidAuthentication
+    extends ApiManagementApiAuth {
+  const ApiManagementApiAuthOpenidAuthentication(this.openidAuthentication);
 
   final ApiManagementApiOpenidAuthentication openidAuthentication;
 
@@ -326,8 +322,7 @@ final class AzurermApiManagementApi extends Resource {
     ApiManagementApiContact? contact,
     ApiManagementApiImport? import,
     ApiManagementApiLicense? license,
-    ApiManagementApiOauth2AuthorizationOrOpenidAuthentication?
-    oauth2AuthorizationOrOpenidAuthentication,
+    ApiManagementApiAuth? auth,
     ApiManagementApiSubscriptionKeyParameterNames?
     subscriptionKeyParameterNames,
     super.lifecycle,
@@ -360,7 +355,7 @@ final class AzurermApiManagementApi extends Resource {
            if (contact != null) 'contact': TfArg.literal(contact.encode()),
            if (import != null) 'import': TfArg.literal(import.encode()),
            if (license != null) 'license': TfArg.literal(license.encode()),
-           ...?oauth2AuthorizationOrOpenidAuthentication?.argMap,
+           ...?auth?.argMap,
            if (subscriptionKeyParameterNames != null)
              'subscription_key_parameter_names': TfArg.literal(
                subscriptionKeyParameterNames.encode(),

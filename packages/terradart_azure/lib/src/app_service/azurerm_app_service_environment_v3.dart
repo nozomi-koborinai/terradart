@@ -15,18 +15,18 @@ const Set<String> _azurermAppServiceEnvironmentV3Sensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.dedicatedHostCount(...)`.
-sealed class AppServiceEnvironmentV3DedicatedHostCountOrZoneRedundant {
-  const AppServiceEnvironmentV3DedicatedHostCountOrZoneRedundant();
+sealed class AppServiceEnvironmentV3Placement {
+  const AppServiceEnvironmentV3Placement();
 
   /// Sets `dedicated_host_count`.
-  const factory AppServiceEnvironmentV3DedicatedHostCountOrZoneRedundant.dedicatedHostCount(
+  const factory AppServiceEnvironmentV3Placement.dedicatedHostCount(
     TfArg<num> dedicatedHostCount,
-  ) = AppServiceEnvironmentV3DedicatedHostCountOrZoneRedundantDedicatedHostCount;
+  ) = AppServiceEnvironmentV3PlacementDedicatedHostCount;
 
   /// Sets `zone_redundant`.
-  const factory AppServiceEnvironmentV3DedicatedHostCountOrZoneRedundant.zoneRedundant(
+  const factory AppServiceEnvironmentV3Placement.zoneRedundant(
     TfArg<bool> zoneRedundant,
-  ) = AppServiceEnvironmentV3DedicatedHostCountOrZoneRedundantChoice;
+  ) = AppServiceEnvironmentV3PlacementZoneRedundant;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -41,10 +41,10 @@ sealed class AppServiceEnvironmentV3DedicatedHostCountOrZoneRedundant {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [AppServiceEnvironmentV3DedicatedHostCountOrZoneRedundant.dedicatedHostCount] choice: sets `dedicated_host_count`.
-final class AppServiceEnvironmentV3DedicatedHostCountOrZoneRedundantDedicatedHostCount
-    extends AppServiceEnvironmentV3DedicatedHostCountOrZoneRedundant {
-  const AppServiceEnvironmentV3DedicatedHostCountOrZoneRedundantDedicatedHostCount(
+/// The [AppServiceEnvironmentV3Placement.dedicatedHostCount] choice: sets `dedicated_host_count`.
+final class AppServiceEnvironmentV3PlacementDedicatedHostCount
+    extends AppServiceEnvironmentV3Placement {
+  const AppServiceEnvironmentV3PlacementDedicatedHostCount(
     this.dedicatedHostCount,
   );
 
@@ -67,12 +67,10 @@ final class AppServiceEnvironmentV3DedicatedHostCountOrZoneRedundantDedicatedHos
   };
 }
 
-/// The [AppServiceEnvironmentV3DedicatedHostCountOrZoneRedundant.zoneRedundant] choice: sets `zone_redundant`.
-final class AppServiceEnvironmentV3DedicatedHostCountOrZoneRedundantChoice
-    extends AppServiceEnvironmentV3DedicatedHostCountOrZoneRedundant {
-  const AppServiceEnvironmentV3DedicatedHostCountOrZoneRedundantChoice(
-    this.zoneRedundant,
-  );
+/// The [AppServiceEnvironmentV3Placement.zoneRedundant] choice: sets `zone_redundant`.
+final class AppServiceEnvironmentV3PlacementZoneRedundant
+    extends AppServiceEnvironmentV3Placement {
+  const AppServiceEnvironmentV3PlacementZoneRedundant(this.zoneRedundant);
 
   final TfArg<bool> zoneRedundant;
 
@@ -116,8 +114,7 @@ final class AzurermAppServiceEnvironmentV3 extends Resource {
   AzurermAppServiceEnvironmentV3(
     super.localName, {
     TfArg<bool>? allowNewPrivateEndpointConnections,
-    AppServiceEnvironmentV3DedicatedHostCountOrZoneRedundant?
-    dedicatedHostCountOrZoneRedundant,
+    AppServiceEnvironmentV3Placement? placement,
     TfArg<String>? internalLoadBalancingMode,
     required TfArg<String> name,
     TfArg<bool>? remoteDebuggingEnabled,
@@ -134,7 +131,7 @@ final class AzurermAppServiceEnvironmentV3 extends Resource {
          argMap: {
            'allow_new_private_endpoint_connections':
                ?allowNewPrivateEndpointConnections,
-           ...?dedicatedHostCountOrZoneRedundant?.argMap,
+           ...?placement?.argMap,
            'internal_load_balancing_mode': ?internalLoadBalancingMode,
            'name': name,
            'remote_debugging_enabled': ?remoteDebuggingEnabled,

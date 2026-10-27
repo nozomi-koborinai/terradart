@@ -4,3 +4,6 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 deriveExactlyOne: true
+
+sealedNames:
+  "activation_rules.require_multifactor_authentication, activation_rules.required_conditional_access_authentication_context": authentication

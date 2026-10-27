@@ -13,17 +13,17 @@ const Set<String> _azurermDnsCnameRecordSensitive = <String>{};
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.record(...)`.
-sealed class DnsCnameRecordOrTargetResourceId {
-  const DnsCnameRecordOrTargetResourceId();
+sealed class DnsCnameRecordTarget {
+  const DnsCnameRecordTarget();
 
   /// Sets `record`.
-  const factory DnsCnameRecordOrTargetResourceId.record(TfArg<String> record) =
-      DnsCnameRecordOrTargetResourceIdRecord;
+  const factory DnsCnameRecordTarget.record(TfArg<String> record) =
+      DnsCnameRecordTargetRecord;
 
   /// Sets `target_resource_id`.
-  const factory DnsCnameRecordOrTargetResourceId.targetResourceId(
+  const factory DnsCnameRecordTarget.targetResourceId(
     TfArg<String> targetResourceId,
-  ) = DnsCnameRecordOrTargetResourceIdChoice;
+  ) = DnsCnameRecordTargetResourceId;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -38,10 +38,9 @@ sealed class DnsCnameRecordOrTargetResourceId {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [DnsCnameRecordOrTargetResourceId.record] choice: sets `record`.
-final class DnsCnameRecordOrTargetResourceIdRecord
-    extends DnsCnameRecordOrTargetResourceId {
-  const DnsCnameRecordOrTargetResourceIdRecord(this.record);
+/// The [DnsCnameRecordTarget.record] choice: sets `record`.
+final class DnsCnameRecordTargetRecord extends DnsCnameRecordTarget {
+  const DnsCnameRecordTargetRecord(this.record);
 
   final TfArg<String> record;
 
@@ -58,10 +57,9 @@ final class DnsCnameRecordOrTargetResourceIdRecord
   Map<String, TfArg<Object?>> get argMap => {'record': record};
 }
 
-/// The [DnsCnameRecordOrTargetResourceId.targetResourceId] choice: sets `target_resource_id`.
-final class DnsCnameRecordOrTargetResourceIdChoice
-    extends DnsCnameRecordOrTargetResourceId {
-  const DnsCnameRecordOrTargetResourceIdChoice(this.targetResourceId);
+/// The [DnsCnameRecordTarget.targetResourceId] choice: sets `target_resource_id`.
+final class DnsCnameRecordTargetResourceId extends DnsCnameRecordTarget {
+  const DnsCnameRecordTargetResourceId(this.targetResourceId);
 
   final TfArg<String> targetResourceId;
 
@@ -89,7 +87,7 @@ final class AzurermDnsCnameRecord extends Resource {
   AzurermDnsCnameRecord(
     super.localName, {
     required TfArg<String> name,
-    required DnsCnameRecordOrTargetResourceId recordOrTargetResourceId,
+    required DnsCnameRecordTarget target,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<Map<String, String>>? tags,
     required TfArg<num> ttl,
@@ -102,7 +100,7 @@ final class AzurermDnsCnameRecord extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           ...recordOrTargetResourceId.argMap,
+           ...target.argMap,
            'resource_group_name': resourceGroupName.encodeAs('name'),
            'tags': ?tags,
            'ttl': ttl,

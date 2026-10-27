@@ -14,18 +14,18 @@ const Set<String> _azurermLbBackendAddressPoolAddressSensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.backendAddressIpConfigurationId(...)`.
-sealed class LbBackendAddressPoolAddressBackendAddressIpConfigurationIdOrVirtualNetworkId {
-  const LbBackendAddressPoolAddressBackendAddressIpConfigurationIdOrVirtualNetworkId();
+sealed class LbBackendAddressPoolAddressAttachment {
+  const LbBackendAddressPoolAddressAttachment();
 
   /// Sets `backend_address_ip_configuration_id`.
-  const factory LbBackendAddressPoolAddressBackendAddressIpConfigurationIdOrVirtualNetworkId.backendAddressIpConfigurationId(
+  const factory LbBackendAddressPoolAddressAttachment.backendAddressIpConfigurationId(
     TfArg<String> backendAddressIpConfigurationId,
-  ) = LbBackendAddressPoolAddressBackendAddressIpConfigurationIdOrVirtualNetworkIdBackendAddressIpConfigurationId;
+  ) = LbBackendAddressPoolAddressAttachmentBackendAddressIpConfigurationId;
 
   /// Sets `virtual_network_id`.
-  const factory LbBackendAddressPoolAddressBackendAddressIpConfigurationIdOrVirtualNetworkId.virtualNetworkId(
+  const factory LbBackendAddressPoolAddressAttachment.virtualNetworkId(
     RefTo<AzurermVirtualNetwork> virtualNetworkId,
-  ) = LbBackendAddressPoolAddressBackendAddressIpConfigurationIdOrVirtualNetworkIdChoice;
+  ) = LbBackendAddressPoolAddressAttachmentVirtualNetworkId;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -40,11 +40,10 @@ sealed class LbBackendAddressPoolAddressBackendAddressIpConfigurationIdOrVirtual
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [LbBackendAddressPoolAddressBackendAddressIpConfigurationIdOrVirtualNetworkId.backendAddressIpConfigurationId] choice: sets `backend_address_ip_configuration_id`.
-final class LbBackendAddressPoolAddressBackendAddressIpConfigurationIdOrVirtualNetworkIdBackendAddressIpConfigurationId
-    extends
-        LbBackendAddressPoolAddressBackendAddressIpConfigurationIdOrVirtualNetworkId {
-  const LbBackendAddressPoolAddressBackendAddressIpConfigurationIdOrVirtualNetworkIdBackendAddressIpConfigurationId(
+/// The [LbBackendAddressPoolAddressAttachment.backendAddressIpConfigurationId] choice: sets `backend_address_ip_configuration_id`.
+final class LbBackendAddressPoolAddressAttachmentBackendAddressIpConfigurationId
+    extends LbBackendAddressPoolAddressAttachment {
+  const LbBackendAddressPoolAddressAttachmentBackendAddressIpConfigurationId(
     this.backendAddressIpConfigurationId,
   );
 
@@ -68,11 +67,10 @@ final class LbBackendAddressPoolAddressBackendAddressIpConfigurationIdOrVirtualN
   };
 }
 
-/// The [LbBackendAddressPoolAddressBackendAddressIpConfigurationIdOrVirtualNetworkId.virtualNetworkId] choice: sets `virtual_network_id`.
-final class LbBackendAddressPoolAddressBackendAddressIpConfigurationIdOrVirtualNetworkIdChoice
-    extends
-        LbBackendAddressPoolAddressBackendAddressIpConfigurationIdOrVirtualNetworkId {
-  const LbBackendAddressPoolAddressBackendAddressIpConfigurationIdOrVirtualNetworkIdChoice(
+/// The [LbBackendAddressPoolAddressAttachment.virtualNetworkId] choice: sets `virtual_network_id`.
+final class LbBackendAddressPoolAddressAttachmentVirtualNetworkId
+    extends LbBackendAddressPoolAddressAttachment {
+  const LbBackendAddressPoolAddressAttachmentVirtualNetworkId(
     this.virtualNetworkId,
   );
 
@@ -101,8 +99,7 @@ final class AzurermLbBackendAddressPoolAddress extends Resource {
 
   AzurermLbBackendAddressPoolAddress(
     super.localName, {
-    LbBackendAddressPoolAddressBackendAddressIpConfigurationIdOrVirtualNetworkId?
-    backendAddressIpConfigurationIdOrVirtualNetworkId,
+    LbBackendAddressPoolAddressAttachment? attachment,
     required TfArg<String> backendAddressPoolId,
     TfArg<String>? ipAddress,
     required TfArg<String> name,
@@ -113,7 +110,7 @@ final class AzurermLbBackendAddressPoolAddress extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...?backendAddressIpConfigurationIdOrVirtualNetworkId?.argMap,
+           ...?attachment?.argMap,
            'backend_address_pool_id': backendAddressPoolId,
            'ip_address': ?ipAddress,
            'name': name,

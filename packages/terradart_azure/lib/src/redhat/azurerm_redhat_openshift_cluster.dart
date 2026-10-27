@@ -16,18 +16,18 @@ const Set<String> _azurermRedhatOpenshiftClusterSensitive = <String>{
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.identity(...)`.
-sealed class RedhatOpenshiftClusterIdentityOrServicePrincipal {
-  const RedhatOpenshiftClusterIdentityOrServicePrincipal();
+sealed class RedhatOpenshiftClusterCredentials {
+  const RedhatOpenshiftClusterCredentials();
 
   /// Sets `identity`.
-  const factory RedhatOpenshiftClusterIdentityOrServicePrincipal.identity(
+  const factory RedhatOpenshiftClusterCredentials.identity(
     RedhatOpenshiftClusterIdentity identity,
-  ) = RedhatOpenshiftClusterIdentityOrServicePrincipalIdentity;
+  ) = RedhatOpenshiftClusterCredentialsIdentity;
 
   /// Sets `service_principal`.
-  const factory RedhatOpenshiftClusterIdentityOrServicePrincipal.servicePrincipal(
+  const factory RedhatOpenshiftClusterCredentials.servicePrincipal(
     RedhatOpenshiftClusterServicePrincipal servicePrincipal,
-  ) = RedhatOpenshiftClusterIdentityOrServicePrincipalChoice;
+  ) = RedhatOpenshiftClusterCredentialsServicePrincipal;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -42,10 +42,10 @@ sealed class RedhatOpenshiftClusterIdentityOrServicePrincipal {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [RedhatOpenshiftClusterIdentityOrServicePrincipal.identity] choice: sets `identity`.
-final class RedhatOpenshiftClusterIdentityOrServicePrincipalIdentity
-    extends RedhatOpenshiftClusterIdentityOrServicePrincipal {
-  const RedhatOpenshiftClusterIdentityOrServicePrincipalIdentity(this.identity);
+/// The [RedhatOpenshiftClusterCredentials.identity] choice: sets `identity`.
+final class RedhatOpenshiftClusterCredentialsIdentity
+    extends RedhatOpenshiftClusterCredentials {
+  const RedhatOpenshiftClusterCredentialsIdentity(this.identity);
 
   final RedhatOpenshiftClusterIdentity identity;
 
@@ -64,10 +64,10 @@ final class RedhatOpenshiftClusterIdentityOrServicePrincipalIdentity
   };
 }
 
-/// The [RedhatOpenshiftClusterIdentityOrServicePrincipal.servicePrincipal] choice: sets `service_principal`.
-final class RedhatOpenshiftClusterIdentityOrServicePrincipalChoice
-    extends RedhatOpenshiftClusterIdentityOrServicePrincipal {
-  const RedhatOpenshiftClusterIdentityOrServicePrincipalChoice(
+/// The [RedhatOpenshiftClusterCredentials.servicePrincipal] choice: sets `service_principal`.
+final class RedhatOpenshiftClusterCredentialsServicePrincipal
+    extends RedhatOpenshiftClusterCredentials {
+  const RedhatOpenshiftClusterCredentialsServicePrincipal(
     this.servicePrincipal,
   );
 
@@ -398,8 +398,7 @@ final class AzurermRedhatOpenshiftCluster extends Resource {
     TfArg<Map<String, String>>? tags,
     required RedhatOpenshiftClusterApiServerProfile apiServerProfile,
     required RedhatOpenshiftClusterProfile clusterProfile,
-    required RedhatOpenshiftClusterIdentityOrServicePrincipal
-    identityOrServicePrincipal,
+    required RedhatOpenshiftClusterCredentials credentials,
     required RedhatOpenshiftClusterIngressProfile ingressProfile,
     required RedhatOpenshiftClusterMainProfile mainProfile,
     required RedhatOpenshiftClusterNetworkProfile networkProfile,
@@ -419,7 +418,7 @@ final class AzurermRedhatOpenshiftCluster extends Resource {
            'tags': ?tags,
            'api_server_profile': TfArg.literal(apiServerProfile.encode()),
            'cluster_profile': TfArg.literal(clusterProfile.encode()),
-           ...identityOrServicePrincipal.argMap,
+           ...credentials.argMap,
            'ingress_profile': TfArg.literal(ingressProfile.encode()),
            'main_profile': TfArg.literal(mainProfile.encode()),
            'network_profile': TfArg.literal(networkProfile.encode()),

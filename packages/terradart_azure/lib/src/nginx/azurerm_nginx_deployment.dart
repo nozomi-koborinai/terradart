@@ -37,18 +37,17 @@ extension type const NginxDeploymentAutomaticUpgradeChannel._(TfArg<String> _)
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.autoScaleProfile(...)`.
-sealed class NginxDeploymentAutoScaleProfileOrCapacity {
-  const NginxDeploymentAutoScaleProfileOrCapacity();
+sealed class NginxDeploymentScale {
+  const NginxDeploymentScale();
 
   /// Sets `auto_scale_profile`.
-  const factory NginxDeploymentAutoScaleProfileOrCapacity.autoScaleProfile(
+  const factory NginxDeploymentScale.autoScaleProfile(
     List<NginxDeploymentAutoScaleProfile> autoScaleProfile,
-  ) = NginxDeploymentAutoScaleProfileOrCapacityAutoScaleProfile;
+  ) = NginxDeploymentScaleAutoScaleProfile;
 
   /// Sets `capacity`.
-  const factory NginxDeploymentAutoScaleProfileOrCapacity.capacity(
-    TfArg<num> capacity,
-  ) = NginxDeploymentAutoScaleProfileOrCapacityChoice;
+  const factory NginxDeploymentScale.capacity(TfArg<num> capacity) =
+      NginxDeploymentScaleCapacity;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -63,12 +62,9 @@ sealed class NginxDeploymentAutoScaleProfileOrCapacity {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [NginxDeploymentAutoScaleProfileOrCapacity.autoScaleProfile] choice: sets `auto_scale_profile`.
-final class NginxDeploymentAutoScaleProfileOrCapacityAutoScaleProfile
-    extends NginxDeploymentAutoScaleProfileOrCapacity {
-  const NginxDeploymentAutoScaleProfileOrCapacityAutoScaleProfile(
-    this.autoScaleProfile,
-  );
+/// The [NginxDeploymentScale.autoScaleProfile] choice: sets `auto_scale_profile`.
+final class NginxDeploymentScaleAutoScaleProfile extends NginxDeploymentScale {
+  const NginxDeploymentScaleAutoScaleProfile(this.autoScaleProfile);
 
   final List<NginxDeploymentAutoScaleProfile> autoScaleProfile;
 
@@ -91,10 +87,9 @@ final class NginxDeploymentAutoScaleProfileOrCapacityAutoScaleProfile
   };
 }
 
-/// The [NginxDeploymentAutoScaleProfileOrCapacity.capacity] choice: sets `capacity`.
-final class NginxDeploymentAutoScaleProfileOrCapacityChoice
-    extends NginxDeploymentAutoScaleProfileOrCapacity {
-  const NginxDeploymentAutoScaleProfileOrCapacityChoice(this.capacity);
+/// The [NginxDeploymentScale.capacity] choice: sets `capacity`.
+final class NginxDeploymentScaleCapacity extends NginxDeploymentScale {
+  const NginxDeploymentScaleCapacity(this.capacity);
 
   final TfArg<num> capacity;
 
@@ -321,7 +316,7 @@ final class AzurermNginxDeployment extends Resource {
   AzurermNginxDeployment(
     super.localName, {
     NginxDeploymentAutomaticUpgradeChannel? automaticUpgradeChannel,
-    NginxDeploymentAutoScaleProfileOrCapacity? autoScaleProfileOrCapacity,
+    NginxDeploymentScale? scale,
     TfArg<String>? email,
     required TfArg<String> location,
     required TfArg<String> name,
@@ -340,7 +335,7 @@ final class AzurermNginxDeployment extends Resource {
          terraformType: tfType,
          argMap: {
            'automatic_upgrade_channel': ?automaticUpgradeChannel,
-           ...?autoScaleProfileOrCapacity?.argMap,
+           ...?scale?.argMap,
            'email': ?email,
            'location': location,
            'name': name,

@@ -6,18 +6,18 @@ library;
 export 'package:terradart_core/terradart_core.dart';
 export 'src/app_service/azurerm_app_service_certificate.dart'
     show
-        AppServiceCertificateKeyVaultSecretIdOrPfxBlob,
-        AppServiceCertificateKeyVaultSecretIdOrPfxBlobChoice,
-        AppServiceCertificateKeyVaultSecretIdOrPfxBlobKeyVaultSecretId,
+        AppServiceCertificateSource,
+        AppServiceCertificateSourceKeyVaultSecretId,
+        AppServiceCertificateSourcePfxBlob,
         AzurermAppServiceCertificate;
 export 'src/app_service/azurerm_app_service_certificate_binding.dart'
     show AzurermAppServiceCertificateBinding;
 export 'src/app_service/azurerm_app_service_certificate_order.dart'
     show
-        AppServiceCertificateOrderCsrOrDistinguishedName,
-        AppServiceCertificateOrderCsrOrDistinguishedNameChoice,
-        AppServiceCertificateOrderCsrOrDistinguishedNameCsr,
         AppServiceCertificateOrderProductType,
+        AppServiceCertificateOrderRequest,
+        AppServiceCertificateOrderRequestCsr,
+        AppServiceCertificateOrderRequestDistinguishedName,
         AzurermAppServiceCertificateOrder;
 export 'src/app_service/azurerm_app_service_connection.dart'
     show
@@ -30,9 +30,9 @@ export 'src/app_service/azurerm_app_service_custom_hostname_binding.dart'
 export 'src/app_service/azurerm_app_service_environment_v3.dart'
     show
         AppServiceEnvironmentV3ClusterSetting,
-        AppServiceEnvironmentV3DedicatedHostCountOrZoneRedundant,
-        AppServiceEnvironmentV3DedicatedHostCountOrZoneRedundantChoice,
-        AppServiceEnvironmentV3DedicatedHostCountOrZoneRedundantDedicatedHostCount,
+        AppServiceEnvironmentV3Placement,
+        AppServiceEnvironmentV3PlacementDedicatedHostCount,
+        AppServiceEnvironmentV3PlacementZoneRedundant,
         AzurermAppServiceEnvironmentV3;
 export 'src/app_service/azurerm_app_service_managed_certificate.dart'
     show AzurermAppServiceManagedCertificate;
@@ -139,10 +139,10 @@ export 'src/app_service/azurerm_linux_function_app.dart'
         LinuxFunctionAppSiteConfig,
         LinuxFunctionAppStickySettings,
         LinuxFunctionAppStorage,
+        LinuxFunctionAppStorageAccess,
+        LinuxFunctionAppStorageAccessStorageAccountAccessKey,
+        LinuxFunctionAppStorageAccessStorageUsesManagedIdentity,
         LinuxFunctionAppStorageAccount,
-        LinuxFunctionAppStorageAccountAccessKeyOrStorageUsesManagedIdentity,
-        LinuxFunctionAppStorageAccountAccessKeyOrStorageUsesManagedIdentityChoice,
-        LinuxFunctionAppStorageAccountAccessKeyOrStorageUsesManagedIdentityStorageAccountAccessKey,
         LinuxFunctionAppStorageAccountName,
         LinuxFunctionAppStorageKeyVaultSecretId,
         LinuxFunctionAppTwitter,
@@ -179,10 +179,10 @@ export 'src/app_service/azurerm_linux_function_app_slot.dart'
         LinuxFunctionAppSlotScmIpRestriction,
         LinuxFunctionAppSlotSiteConfig,
         LinuxFunctionAppSlotStorage,
+        LinuxFunctionAppSlotStorageAccess,
+        LinuxFunctionAppSlotStorageAccessStorageAccountAccessKey,
+        LinuxFunctionAppSlotStorageAccessStorageUsesManagedIdentity,
         LinuxFunctionAppSlotStorageAccount,
-        LinuxFunctionAppSlotStorageAccountAccessKeyOrStorageUsesManagedIdentity,
-        LinuxFunctionAppSlotStorageAccountAccessKeyOrStorageUsesManagedIdentityChoice,
-        LinuxFunctionAppSlotStorageAccountAccessKeyOrStorageUsesManagedIdentityStorageAccountAccessKey,
         LinuxFunctionAppSlotStorageAccountName,
         LinuxFunctionAppSlotStorageKeyVaultSecretId,
         LinuxFunctionAppSlotTwitter,
@@ -312,10 +312,10 @@ export 'src/app_service/azurerm_windows_function_app.dart'
         WindowsFunctionAppSiteConfig,
         WindowsFunctionAppStickySettings,
         WindowsFunctionAppStorage,
+        WindowsFunctionAppStorageAccess,
+        WindowsFunctionAppStorageAccessStorageAccountAccessKey,
+        WindowsFunctionAppStorageAccessStorageUsesManagedIdentity,
         WindowsFunctionAppStorageAccount,
-        WindowsFunctionAppStorageAccountAccessKeyOrStorageUsesManagedIdentity,
-        WindowsFunctionAppStorageAccountAccessKeyOrStorageUsesManagedIdentityChoice,
-        WindowsFunctionAppStorageAccountAccessKeyOrStorageUsesManagedIdentityStorageAccountAccessKey,
         WindowsFunctionAppStorageAccountName,
         WindowsFunctionAppStorageKeyVaultSecretId,
         WindowsFunctionAppTwitter,
@@ -351,10 +351,10 @@ export 'src/app_service/azurerm_windows_function_app_slot.dart'
         WindowsFunctionAppSlotScmIpRestriction,
         WindowsFunctionAppSlotSiteConfig,
         WindowsFunctionAppSlotStorage,
+        WindowsFunctionAppSlotStorageAccess,
+        WindowsFunctionAppSlotStorageAccessStorageAccountAccessKey,
+        WindowsFunctionAppSlotStorageAccessStorageUsesManagedIdentity,
         WindowsFunctionAppSlotStorageAccount,
-        WindowsFunctionAppSlotStorageAccountAccessKeyOrStorageUsesManagedIdentity,
-        WindowsFunctionAppSlotStorageAccountAccessKeyOrStorageUsesManagedIdentityChoice,
-        WindowsFunctionAppSlotStorageAccountAccessKeyOrStorageUsesManagedIdentityStorageAccountAccessKey,
         WindowsFunctionAppSlotStorageAccountName,
         WindowsFunctionAppSlotStorageKeyVaultSecretId,
         WindowsFunctionAppSlotTwitter,

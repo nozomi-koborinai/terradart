@@ -96,18 +96,18 @@ extension type const OracleAutonomousDatabaseCloneFromBackupLicenseModel._(
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.allowedIpAddresses(...)`.
-sealed class OracleAutonomousDatabaseCloneFromBackupAllowedIpAddressesOrVirtualNetworkId {
-  const OracleAutonomousDatabaseCloneFromBackupAllowedIpAddressesOrVirtualNetworkId();
+sealed class OracleAutonomousDatabaseCloneFromBackupNetworkAccess {
+  const OracleAutonomousDatabaseCloneFromBackupNetworkAccess();
 
   /// Sets `allowed_ip_addresses`.
-  const factory OracleAutonomousDatabaseCloneFromBackupAllowedIpAddressesOrVirtualNetworkId.allowedIpAddresses(
+  const factory OracleAutonomousDatabaseCloneFromBackupNetworkAccess.allowedIpAddresses(
     TfArg<List<String>> allowedIpAddresses,
-  ) = OracleAutonomousDatabaseCloneFromBackupAllowedIpAddressesOrVirtualNetworkIdAllowedIpAddresses;
+  ) = OracleAutonomousDatabaseCloneFromBackupNetworkAccessAllowedIpAddresses;
 
   /// Sets `virtual_network_id`.
-  const factory OracleAutonomousDatabaseCloneFromBackupAllowedIpAddressesOrVirtualNetworkId.virtualNetworkId(
+  const factory OracleAutonomousDatabaseCloneFromBackupNetworkAccess.virtualNetworkId(
     RefTo<AzurermVirtualNetwork> virtualNetworkId,
-  ) = OracleAutonomousDatabaseCloneFromBackupAllowedIpAddressesOrVirtualNetworkIdChoice;
+  ) = OracleAutonomousDatabaseCloneFromBackupNetworkAccessVirtualNetworkId;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -122,11 +122,10 @@ sealed class OracleAutonomousDatabaseCloneFromBackupAllowedIpAddressesOrVirtualN
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [OracleAutonomousDatabaseCloneFromBackupAllowedIpAddressesOrVirtualNetworkId.allowedIpAddresses] choice: sets `allowed_ip_addresses`.
-final class OracleAutonomousDatabaseCloneFromBackupAllowedIpAddressesOrVirtualNetworkIdAllowedIpAddresses
-    extends
-        OracleAutonomousDatabaseCloneFromBackupAllowedIpAddressesOrVirtualNetworkId {
-  const OracleAutonomousDatabaseCloneFromBackupAllowedIpAddressesOrVirtualNetworkIdAllowedIpAddresses(
+/// The [OracleAutonomousDatabaseCloneFromBackupNetworkAccess.allowedIpAddresses] choice: sets `allowed_ip_addresses`.
+final class OracleAutonomousDatabaseCloneFromBackupNetworkAccessAllowedIpAddresses
+    extends OracleAutonomousDatabaseCloneFromBackupNetworkAccess {
+  const OracleAutonomousDatabaseCloneFromBackupNetworkAccessAllowedIpAddresses(
     this.allowedIpAddresses,
   );
 
@@ -149,11 +148,10 @@ final class OracleAutonomousDatabaseCloneFromBackupAllowedIpAddressesOrVirtualNe
   };
 }
 
-/// The [OracleAutonomousDatabaseCloneFromBackupAllowedIpAddressesOrVirtualNetworkId.virtualNetworkId] choice: sets `virtual_network_id`.
-final class OracleAutonomousDatabaseCloneFromBackupAllowedIpAddressesOrVirtualNetworkIdChoice
-    extends
-        OracleAutonomousDatabaseCloneFromBackupAllowedIpAddressesOrVirtualNetworkId {
-  const OracleAutonomousDatabaseCloneFromBackupAllowedIpAddressesOrVirtualNetworkIdChoice(
+/// The [OracleAutonomousDatabaseCloneFromBackupNetworkAccess.virtualNetworkId] choice: sets `virtual_network_id`.
+final class OracleAutonomousDatabaseCloneFromBackupNetworkAccessVirtualNetworkId
+    extends OracleAutonomousDatabaseCloneFromBackupNetworkAccess {
+  const OracleAutonomousDatabaseCloneFromBackupNetworkAccessVirtualNetworkId(
     this.virtualNetworkId,
   );
 
@@ -184,8 +182,7 @@ final class AzurermOracleAutonomousDatabaseCloneFromBackup extends Resource {
   AzurermOracleAutonomousDatabaseCloneFromBackup(
     super.localName, {
     required Sensitive<String> adminPassword,
-    required OracleAutonomousDatabaseCloneFromBackupAllowedIpAddressesOrVirtualNetworkId
-    allowedIpAddressesOrVirtualNetworkId,
+    required OracleAutonomousDatabaseCloneFromBackupNetworkAccess networkAccess,
     required TfArg<bool> autoScalingEnabled,
     required TfArg<bool> autoScalingForStorageEnabled,
     required TfArg<num> backupRetentionPeriodInDays,
@@ -217,7 +214,7 @@ final class AzurermOracleAutonomousDatabaseCloneFromBackup extends Resource {
          terraformType: tfType,
          argMap: {
            'admin_password': adminPassword,
-           ...allowedIpAddressesOrVirtualNetworkId.argMap,
+           ...networkAccess.argMap,
            'auto_scaling_enabled': autoScalingEnabled,
            'auto_scaling_for_storage_enabled': autoScalingForStorageEnabled,
            'backup_retention_period_in_days': backupRetentionPeriodInDays,

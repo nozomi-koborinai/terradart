@@ -182,19 +182,18 @@ final class VirtualMachineRunCommandProtectedParameter {
 @immutable
 final class VirtualMachineRunCommandSource {
   const VirtualMachineRunCommandSource({
-    required this.commandIdOrScriptOrScriptUri,
+    required this.command,
     this.scriptUriManagedIdentity,
   });
 
-  final VirtualMachineRunCommandSourceCommandIdOrScriptOrScriptUri
-  commandIdOrScriptOrScriptUri;
+  final VirtualMachineRunCommandSourceCommand command;
 
   final VirtualMachineRunCommandScriptUriManagedIdentity?
   scriptUriManagedIdentity;
 
   @internal
   Map<String, Object?> encode() => {
-    ...commandIdOrScriptOrScriptUri.encode(),
+    ...command.encode(),
     'script_uri_managed_identity': ?scriptUriManagedIdentity?.encode(),
   };
 }
@@ -203,23 +202,23 @@ final class VirtualMachineRunCommandSource {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.commandId(...)`.
-sealed class VirtualMachineRunCommandSourceCommandIdOrScriptOrScriptUri {
-  const VirtualMachineRunCommandSourceCommandIdOrScriptOrScriptUri();
+sealed class VirtualMachineRunCommandSourceCommand {
+  const VirtualMachineRunCommandSourceCommand();
 
   /// Sets `command_id`.
-  const factory VirtualMachineRunCommandSourceCommandIdOrScriptOrScriptUri.commandId(
+  const factory VirtualMachineRunCommandSourceCommand.commandId(
     TfArg<String> commandId,
-  ) = VirtualMachineRunCommandSourceCommandIdOrScriptOrScriptUriCommandId;
+  ) = VirtualMachineRunCommandSourceCommandId;
 
   /// Sets `script`.
-  const factory VirtualMachineRunCommandSourceCommandIdOrScriptOrScriptUri.script(
+  const factory VirtualMachineRunCommandSourceCommand.script(
     TfArg<String> script,
-  ) = VirtualMachineRunCommandSourceCommandIdOrScriptOrScriptUriScript;
+  ) = VirtualMachineRunCommandSourceCommandScript;
 
   /// Sets `script_uri`.
-  const factory VirtualMachineRunCommandSourceCommandIdOrScriptOrScriptUri.scriptUri(
+  const factory VirtualMachineRunCommandSourceCommand.scriptUri(
     TfArg<String> scriptUri,
-  ) = VirtualMachineRunCommandSourceCommandIdOrScriptOrScriptUriChoice;
+  ) = VirtualMachineRunCommandSourceCommandScriptUri;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -229,12 +228,10 @@ sealed class VirtualMachineRunCommandSourceCommandIdOrScriptOrScriptUri {
   Map<String, Object?> encode();
 }
 
-/// The [VirtualMachineRunCommandSourceCommandIdOrScriptOrScriptUri.commandId] choice: sets `command_id`.
-final class VirtualMachineRunCommandSourceCommandIdOrScriptOrScriptUriCommandId
-    extends VirtualMachineRunCommandSourceCommandIdOrScriptOrScriptUri {
-  const VirtualMachineRunCommandSourceCommandIdOrScriptOrScriptUriCommandId(
-    this.commandId,
-  );
+/// The [VirtualMachineRunCommandSourceCommand.commandId] choice: sets `command_id`.
+final class VirtualMachineRunCommandSourceCommandId
+    extends VirtualMachineRunCommandSourceCommand {
+  const VirtualMachineRunCommandSourceCommandId(this.commandId);
 
   final TfArg<String> commandId;
 
@@ -247,12 +244,10 @@ final class VirtualMachineRunCommandSourceCommandIdOrScriptOrScriptUriCommandId
   Map<String, Object?> encode() => {'command_id': commandId.toTfJson()};
 }
 
-/// The [VirtualMachineRunCommandSourceCommandIdOrScriptOrScriptUri.script] choice: sets `script`.
-final class VirtualMachineRunCommandSourceCommandIdOrScriptOrScriptUriScript
-    extends VirtualMachineRunCommandSourceCommandIdOrScriptOrScriptUri {
-  const VirtualMachineRunCommandSourceCommandIdOrScriptOrScriptUriScript(
-    this.script,
-  );
+/// The [VirtualMachineRunCommandSourceCommand.script] choice: sets `script`.
+final class VirtualMachineRunCommandSourceCommandScript
+    extends VirtualMachineRunCommandSourceCommand {
+  const VirtualMachineRunCommandSourceCommandScript(this.script);
 
   final TfArg<String> script;
 
@@ -265,12 +260,10 @@ final class VirtualMachineRunCommandSourceCommandIdOrScriptOrScriptUriScript
   Map<String, Object?> encode() => {'script': script.toTfJson()};
 }
 
-/// The [VirtualMachineRunCommandSourceCommandIdOrScriptOrScriptUri.scriptUri] choice: sets `script_uri`.
-final class VirtualMachineRunCommandSourceCommandIdOrScriptOrScriptUriChoice
-    extends VirtualMachineRunCommandSourceCommandIdOrScriptOrScriptUri {
-  const VirtualMachineRunCommandSourceCommandIdOrScriptOrScriptUriChoice(
-    this.scriptUri,
-  );
+/// The [VirtualMachineRunCommandSourceCommand.scriptUri] choice: sets `script_uri`.
+final class VirtualMachineRunCommandSourceCommandScriptUri
+    extends VirtualMachineRunCommandSourceCommand {
+  const VirtualMachineRunCommandSourceCommandScriptUri(this.scriptUri);
 
   final TfArg<String> scriptUri;
 

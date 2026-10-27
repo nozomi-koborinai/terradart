@@ -4,3 +4,8 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 deriveExactlyOne: true
+
+sealedNames:
+  "application_insights, eventhub": target
+  "application_insights.connection_string, application_insights.instrumentation_key": credentials
+  "eventhub.connection_string, eventhub.endpoint_uri": connection
