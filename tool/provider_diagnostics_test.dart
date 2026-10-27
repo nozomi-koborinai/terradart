@@ -162,6 +162,118 @@ void main() {
         ),
         [('STANDARD', 'family one-of')],
       );
+      expect(shapes('expected vcores to be one of [4 6 8], got 200'), [
+        (4, 'family one-of'),
+      ]);
+    });
+
+    test('an Azure resource id example in the parse error is a candidate', () {
+      expect(
+        shapes(
+          'parsing "/subscriptions/00000000-0000-0000-0000-000000000000/'
+          'resourceGroups/leftover": parsing the Factory ID: the number of '
+          'segments didn\'t match\n\n'
+          'Expected a Factory ID that matched (containing 8 segments):\n\n'
+          '> /subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/'
+          'example-resource-group/providers/Microsoft.DataFactory/factories/'
+          'factoryName\n',
+        ),
+        [
+          (
+            '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/'
+                'example-resource-group/providers/Microsoft.DataFactory/'
+                'factories/factoryName',
+            'family azure-resource-id',
+          ),
+        ],
+      );
+    });
+
+    test('a go-azure-sdk sample path is a candidate, subscription or not', () {
+      expect(
+        shapes(
+          'Expected a ManagementGroup ID that matched:\n\n'
+          '> /providers/Microsoft.Management/managementGroups/groupIdValue\n',
+        ),
+        [
+          (
+            '/providers/Microsoft.Management/managementGroups/groupIdValue',
+            'family azure-resource-id',
+          ),
+          (
+            '/providers/Microsoft.Management/managementGroups/leftover',
+            'family management-group-id',
+          ),
+        ],
+      );
+    });
+
+    test('a UUID or duration message names a value of that shape', () {
+      expect(shapes('expected "tenant_id" to be a valid UUID, got leftover'), [
+        ('11111111-1111-1111-1111-111111111111', 'family uuid'),
+      ]);
+      expect(shapes("leftover: expected 'P' period mark at the start"), [
+        ('P1D', 'family iso8601-duration'),
+      ]);
+      expect(
+        shapes(
+          'invalid value for cluster_version (must be a version in the '
+          'format `x.y` or `a.b.c.d`)',
+        ),
+        [('1.1', 'family dotted-version')],
+      );
+      expect(
+        shapes(
+          'expected "expiry_time" to be a valid RFC3339 date, got "leftover"',
+        ),
+        [('2024-01-01T00:00:00Z', 'family rfc3339')],
+      );
+      expect(
+        shapes(
+          'expected "address_prefixes.0" to be a valid CIDR Value, got leftover',
+        ),
+        [('10.0.0.0/24', 'family cidr')],
+      );
+      expect(
+        shapes(
+          'expected end_ip_address to contain a valid IPv4 address, got: leftover',
+        ),
+        [('10.0.0.1', 'family ipv4')],
+      );
+      expect(
+        shapes(
+          'expected backup_retention_period_in_days to be in the range (1 - 60), got 200',
+        ),
+        [(1, 'family int-range')],
+      );
+      expect(
+        shapes(
+          'cannot parse Azure ID: parse "leftover": invalid URI for request',
+        ),
+        [
+          (
+            '/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/leftover',
+            'family azure-id-uri',
+          ),
+        ],
+      );
+      expect(
+        shapes(
+          'expected 2 or 3 path segments, found 4 segment(s) in `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover`',
+        ),
+        [
+          (
+            '/subscriptions/11111111-1111-1111-1111-111111111111',
+            'family path-segments',
+          ),
+        ],
+      );
+      expect(
+        shapes(
+          '"product_id" may only contain alphanumeric characters, underscores and dashes up to 80 characters in length',
+        ),
+        [('leftover', 'family alphanumeric-token')],
+      );
     });
 
     test('regex gives a sample of the pattern, framework or Go quoting', () {

@@ -235,8 +235,9 @@ final class DiagnosticFamily {
 ///
 /// `url-host`: SDKv2 `IsURLWithHTTPorHTTPS` ("to have a host") and the
 /// framework URL validators ("contains no host"). `one-of`: "must be one of:
-/// [..]" and "to be one of [..]", giving the first member. `regex`: "match
-/// regular expression '..'" (or Go-quoted), giving [sampleRegex] of it.
+/// [..]" and "to be one of [..]", giving the first member.
+/// `regex`: "match regular expression '..'" (or Go-quoted), giving
+/// [sampleRegex] of it.
 final List<DiagnosticFamily> kDiagnosticFamilies = [
   DiagnosticFamily(
     'url-host',
@@ -248,8 +249,76 @@ final List<DiagnosticFamily> kDiagnosticFamilies = [
     RegExp(r'(?:must be one of:?|to be one of)\s*\[([^\]]*)\]'),
     (m) => [
       if (_oneOfMembers(m[1]!).firstOrNull case final first?)
-        LiteralDummy(first),
+        LiteralDummy(_oneOfLiteral(m[1]!, first)),
     ],
+  ),
+  DiagnosticFamily(
+    'azure-resource-id',
+    RegExp(r'>\s*(/\S+)'),
+    (m) => [LiteralDummy(m[1]!)],
+  ),
+  DiagnosticFamily(
+    'management-group-id',
+    RegExp('Management Group ID|ManagementGroup ID'),
+    (_) => [
+      LiteralDummy('/providers/Microsoft.Management/managementGroups/leftover'),
+    ],
+  ),
+  DiagnosticFamily(
+    'uuid',
+    RegExp('valid UUID'),
+    (_) => [LiteralDummy('11111111-1111-1111-1111-111111111111')],
+  ),
+  DiagnosticFamily(
+    'iso8601-duration',
+    RegExp("expected 'P' period mark"),
+    (_) => [LiteralDummy('P1D')],
+  ),
+  DiagnosticFamily(
+    'rfc3339',
+    RegExp('valid RFC3339|invalid ISO8601 date'),
+    (_) => [LiteralDummy('2024-01-01T00:00:00Z')],
+  ),
+  DiagnosticFamily(
+    'cidr',
+    RegExp('valid CIDR'),
+    (_) => [LiteralDummy('10.0.0.0/24')],
+  ),
+  DiagnosticFamily(
+    'ipv4',
+    RegExp('valid IPv4'),
+    (_) => [LiteralDummy('10.0.0.1')],
+  ),
+  DiagnosticFamily(
+    'int-range',
+    RegExp(r'in the range \((\d+) - (\d+)\)'),
+    (m) => [LiteralDummy(int.parse(m[1]!))],
+  ),
+  DiagnosticFamily(
+    'azure-id-uri',
+    RegExp('invalid URI for request'),
+    (_) => [
+      LiteralDummy(
+        '/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/leftover',
+      ),
+    ],
+  ),
+  DiagnosticFamily(
+    'path-segments',
+    RegExp('expected 2 or 3 path segments'),
+    (_) => [
+      LiteralDummy('/subscriptions/11111111-1111-1111-1111-111111111111'),
+    ],
+  ),
+  DiagnosticFamily(
+    'alphanumeric-token',
+    RegExp('alphanumeric characters, underscores and dashes'),
+    (_) => [LiteralDummy('leftover')],
+  ),
+  DiagnosticFamily(
+    'dotted-version',
+    RegExp(r'must be a version in the format `([a-z](?:\.[a-z])*)`'),
+    (m) => [LiteralDummy(m[1]!.replaceAll(RegExp('[a-z]'), '1'))],
   ),
   DiagnosticFamily(
     'regex',
@@ -401,6 +470,12 @@ final class _RegexSampler {
     if (i < p.length && p[i] == '?') i++;
     return count;
   }
+}
+
+Object _oneOfLiteral(String list, String member) {
+  if (list.contains('"')) return member;
+  if (RegExp(r'^-?\d+$').hasMatch(member)) return int.parse(member);
+  return member;
 }
 
 List<String> _oneOfMembers(String list) {

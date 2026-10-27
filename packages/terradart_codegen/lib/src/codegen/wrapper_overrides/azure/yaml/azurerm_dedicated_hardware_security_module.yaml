@@ -1,0 +1,6 @@
+outputDir: key_vault
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+deriveExactlyOne: true

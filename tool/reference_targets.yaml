@@ -798,3 +798,26 @@ hashicorp/google-beta:
     exclude:
       # A dataset the subscription creates.
       - google_bigquery_analytics_hub_data_exchange_subscription.destination_dataset.dataset_reference.dataset_id
+
+hashicorp/azurerm:
+  - target: azurerm_resource_group
+    attribute: name
+    slots: '(^|\\.)resource_group_name$'
+  - target: azurerm_subnet
+    attribute: id
+    slots: '(^|\\.)subnet_id$'
+  - target: azurerm_virtual_network
+    attribute: id
+    slots: '(^|\\.)virtual_network_id$'
+  - target: azurerm_network_security_group
+    attribute: id
+    slots: '(^|\\.)network_security_group_id$'
+  - target: azurerm_key_vault
+    attribute: id
+    slots: '(^|\\.)key_vault_id$'
+  - target: azurerm_storage_account
+    attribute: name
+    slots: '(^|\\.)storage_account_name$'
+  - target: azurerm_storage_account
+    attribute: id
+    slots: '(^|\\.)storage_account_id$'

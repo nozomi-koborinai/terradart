@@ -1,0 +1,19 @@
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
+/// Azure Resource Manager dashboard resources.
+library;
+
+export 'package:terradart_core/terradart_core.dart';
+export 'src/dashboard/azurerm_dashboard_grafana.dart'
+    show
+        AzurermDashboardGrafana,
+        DashboardGrafanaAzureMonitorWorkspaceIntegrations,
+        DashboardGrafanaIdentity,
+        DashboardGrafanaMajorVersion,
+        DashboardGrafanaSkuSize,
+        DashboardGrafanaSmtp,
+        DashboardGrafanaStartTlsPolicy;
+export 'src/dashboard/azurerm_dashboard_grafana_managed_private_endpoint.dart'
+    show AzurermDashboardGrafanaManagedPrivateEndpoint;
+export 'src/data/azurerm_dashboard_grafana.dart'
+    show DataAzurermDashboardGrafana, DataDashboardGrafanaIdentity;

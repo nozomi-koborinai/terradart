@@ -9,6 +9,7 @@ void main() {
       'terradart_appwrite',
       'terradart_cloudflare',
       'terradart_aws',
+      'terradart_azure',
       'terradart_time',
     ]);
     expect(manifestForPackage('terradart_time'), timeMigrateManifest);
@@ -17,6 +18,7 @@ void main() {
       cloudflareMigrateManifest,
     );
     expect(manifestForPackage('terradart_aws'), awsMigrateManifest);
+    expect(manifestForPackage('terradart_azure'), azureMigrateManifest);
     expect(manifestForPackage('terradart_nope'), isNull);
   });
 
@@ -46,6 +48,7 @@ void main() {
           'terradart_appwrite' => 'appwrite_',
           'terradart_cloudflare' => 'cloudflare_',
           'terradart_aws' => 'aws_',
+          'terradart_azure' => 'azurerm_',
           'terradart_time' => 'time_',
           _ => throw StateError(manifest.package),
         };
@@ -157,10 +160,13 @@ void main() {
     expect(fn.entry.className, 'AwsLambdaFunction');
     expect(fn.entry.barrel, 'lambda');
 
-    expect(
-      findMigrateEntry('azurerm_resource_group', CatalogKind.resource),
-      isNull,
+    final group = findMigrateEntry(
+      'azurerm_resource_group',
+      CatalogKind.resource,
     );
+    expect(group, isNotNull);
+    expect(group!.manifest.package, 'terradart_azure');
+    expect(group.entry.className, 'AzurermResourceGroup');
     expect(
       googleMigrateManifest.entryFor(
         'google_pubsub_topic',

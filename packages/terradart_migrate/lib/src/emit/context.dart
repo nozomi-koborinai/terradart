@@ -3,6 +3,7 @@ library;
 
 import 'package:terradart_appwrite/catalog.dart' as appwrite;
 import 'package:terradart_aws/catalog.dart' as aws;
+import 'package:terradart_azure/catalog.dart' as azure;
 import 'package:terradart_cloudflare/catalog.dart' as cloudflare;
 import 'package:terradart_google/catalog.dart' as google;
 import 'package:terradart_google_beta/catalog.dart' as beta;
@@ -95,6 +96,10 @@ final class SensitiveIndex {
     ]);
     addAll('terradart_aws', [
       for (final e in aws.terradartCatalog)
+        (tfType: e.tfType, kind: e.kind.name, sensitive: e.sensitiveFields),
+    ]);
+    addAll('terradart_azure', [
+      for (final e in azure.terradartCatalog)
         (tfType: e.tfType, kind: e.kind.name, sensitive: e.sensitiveFields),
     ]);
     return SensitiveIndex._(out);

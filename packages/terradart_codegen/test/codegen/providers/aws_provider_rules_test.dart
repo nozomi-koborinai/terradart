@@ -51,6 +51,7 @@ void main() {
         'appwrite/appwrite': 'appwrite/appwrite',
         'cloudflare/cloudflare': 'cloudflare/cloudflare',
         'hashicorp/aws': 'hashicorp/aws',
+        'hashicorp/azurerm': 'hashicorp/azurerm',
       },
     );
   });

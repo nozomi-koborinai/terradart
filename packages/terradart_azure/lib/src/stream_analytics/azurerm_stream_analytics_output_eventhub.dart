@@ -1,0 +1,129 @@
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
+// ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
+import 'package:terradart_core/terradart_core.dart';
+
+import '../resource/azurerm_resource_group.dart' show AzurermResourceGroup;
+
+/// Sensitive field paths for `azurerm_stream_analytics_output_eventhub`.
+const Set<String> _azurermStreamAnalyticsOutputEventhubSensitive = <String>{
+  'shared_access_policy_key',
+};
+
+/// Typed helper for the `serialization` block of
+/// `azurerm_stream_analytics_output_eventhub` (derived from provider schema).
+@immutable
+final class StreamAnalyticsOutputEventhubSerialization {
+  const StreamAnalyticsOutputEventhubSerialization({
+    this.encoding,
+    this.fieldDelimiter,
+    this.format,
+    required this.type,
+  });
+
+  final TfArg<String>? encoding;
+
+  final TfArg<String>? fieldDelimiter;
+
+  final TfArg<String>? format;
+
+  final TfArg<String> type;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'encoding': ?encoding?.toTfJson(),
+    'field_delimiter': ?fieldDelimiter?.toTfJson(),
+    'format': ?format?.toTfJson(),
+    'type': type.toTfJson(),
+  };
+}
+
+/// Factory wrapper for `azurerm_stream_analytics_output_eventhub`.
+final class AzurermStreamAnalyticsOutputEventhub extends Resource {
+  static const String tfType = 'azurerm_stream_analytics_output_eventhub';
+
+  AzurermStreamAnalyticsOutputEventhub(
+    super.localName, {
+    TfArg<String>? authenticationMode,
+    required TfArg<String> eventhubName,
+    required TfArg<String> name,
+    TfArg<String>? partitionKey,
+    TfArg<List<String>>? propertyColumns,
+    required RefTo<AzurermResourceGroup> resourceGroupName,
+    required TfArg<String> servicebusNamespace,
+    Sensitive<String>? sharedAccessPolicyKey,
+    TfArg<String>? sharedAccessPolicyName,
+    required TfArg<String> streamAnalyticsJobName,
+    required StreamAnalyticsOutputEventhubSerialization serialization,
+    super.lifecycle,
+    super.dependsOn,
+    super.provider,
+    super.timeouts,
+  }) : super(
+         terraformType: tfType,
+         argMap: {
+           'authentication_mode': ?authenticationMode,
+           'eventhub_name': eventhubName,
+           'name': name,
+           'partition_key': ?partitionKey,
+           'property_columns': ?propertyColumns,
+           'resource_group_name': resourceGroupName.encodeAs('name'),
+           'servicebus_namespace': servicebusNamespace,
+           'shared_access_policy_key': ?sharedAccessPolicyKey,
+           'shared_access_policy_name': ?sharedAccessPolicyName,
+           'stream_analytics_job_name': streamAnalyticsJobName,
+           'serialization': TfArg.literal(serialization.encode()),
+         },
+       );
+
+  @override
+  Set<String> get sensitiveFields =>
+      _azurermStreamAnalyticsOutputEventhubSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AzurermStreamAnalyticsOutputEventhub>`.
+  RefTo<AzurermStreamAnalyticsOutputEventhub> get ref => RefTo.of(this);
+
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `authentication_mode` attribute.
+  TfRef<String> get authenticationMode =>
+      TfRef.attribute<String>(this, 'authentication_mode');
+
+  /// Reference to `eventhub_name` attribute.
+  TfRef<String> get eventhubName =>
+      TfRef.attribute<String>(this, 'eventhub_name');
+
+  /// Reference to `partition_key` attribute.
+  TfRef<String> get partitionKey =>
+      TfRef.attribute<String>(this, 'partition_key');
+
+  /// Reference to `property_columns` attribute.
+  TfRef<List<String>> get propertyColumns =>
+      TfRef.attribute<List<String>>(this, 'property_columns');
+
+  /// Reference to `resource_group_name` attribute.
+  TfRef<String> get resourceGroupName =>
+      TfRef.attribute<String>(this, 'resource_group_name');
+
+  /// Reference to `servicebus_namespace` attribute.
+  TfRef<String> get servicebusNamespace =>
+      TfRef.attribute<String>(this, 'servicebus_namespace');
+
+  /// Reference to `shared_access_policy_key` attribute.
+  TfRef<String> get sharedAccessPolicyKey =>
+      TfRef.attribute<String>(this, 'shared_access_policy_key');
+
+  /// Reference to `shared_access_policy_name` attribute.
+  TfRef<String> get sharedAccessPolicyName =>
+      TfRef.attribute<String>(this, 'shared_access_policy_name');
+
+  /// Reference to `stream_analytics_job_name` attribute.
+  TfRef<String> get streamAnalyticsJobName =>
+      TfRef.attribute<String>(this, 'stream_analytics_job_name');
+}

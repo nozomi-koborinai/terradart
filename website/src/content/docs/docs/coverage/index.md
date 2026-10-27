@@ -14,5 +14,6 @@ Each provider package wraps its provider's catalog at the pinned release. Its pa
 | [Appwrite](/docs/coverage/appwrite/) | `terradart_appwrite` | 46 | 28 | 73 |
 | [Cloudflare](/docs/coverage/cloudflare/) | `terradart_cloudflare` | 272 | 468 | 739 |
 | [AWS](/docs/coverage/aws/) | `terradart_aws` | 1742 | 685 | 2427 |
+| [Azure](/docs/coverage/azure/) | `terradart_azure` | 1107 | 397 | 1305 |
 
 A factory without an example is recorded with a reason in [`tool/example_debt.yaml`](https://github.com/nozomi-koborinai/terradart/blob/main/tool/example_debt.yaml).

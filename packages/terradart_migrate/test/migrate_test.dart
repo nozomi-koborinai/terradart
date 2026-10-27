@@ -473,13 +473,13 @@ resource "aws_s3_bucket" "logs" {
 
     test('a type outside every catalog', () {
       final r = _migrateJson(
-        module({'name': 'x'}, type: 'azurerm_resource_group'),
+        module({'name': 'x'}, type: 'azuread_application'),
       );
       expect(
-        reasonOf(r, 'azurerm_resource_group.x'),
+        reasonOf(r, 'azuread_application.x'),
         contains('no curated factory'),
       );
-      expect(r.stackSource, isNot(contains('azurerm_resource_group')));
+      expect(r.stackSource, isNot(contains('azuread_application')));
     });
 
     test('a kept block the Stack reads is declared external', () {
@@ -1068,10 +1068,10 @@ resource "google_pubsub_topic" "x" {
     });
 
     test('a provider with no TerraDart factory', () {
-      final r = _migrateJson(module({'name': 'x', 'provider': 'azurerm'}));
+      final r = _migrateJson(module({'name': 'x', 'provider': 'azuread'}));
       expect(
         reasonOf(r, 'google_pubsub_topic.x'),
-        contains('provider "azurerm" has no TerraDart factory'),
+        contains('provider "azuread" has no TerraDart factory'),
       );
     });
 

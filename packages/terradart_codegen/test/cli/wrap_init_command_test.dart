@@ -63,7 +63,7 @@ void main() {
     });
 
     test(
-      '--provider hashicorp/azurerm → usage error with registry-driven message',
+      '--provider hashicorp/azuread → usage error with registry-driven message',
       () {
         final runner = buildCliRunner();
         expect(
@@ -71,7 +71,7 @@ void main() {
             'wrap-init',
             'google_pubsub_topic',
             '--provider',
-            'hashicorp/azurerm',
+            'hashicorp/azuread',
             '--source',
             '/tmp',
             '--output',
@@ -82,7 +82,7 @@ void main() {
               (e) => e.message,
               'message',
               allOf(
-                contains('hashicorp/azurerm'),
+                contains('hashicorp/azuread'),
                 contains('not supported'),
                 contains('Available: hashicorp/google'),
               ),

@@ -41,9 +41,12 @@ env:
 # which has been indexed since Phase 2's wait — no extra sleep needed).
 # Phase 6 publishes terradart_cloudflare (same shape and rationale).
 # Phase 7 publishes terradart_aws (same shape and rationale).
-# Phase 8 waits again, then publishes terradart_migrate, which depends on
-# terradart_hcl and every provider package (terradart_aws was just published).
-# Phase 9 waits again, then publishes terradart_cli. It depends on
+# Phase 8 publishes terradart_azure (same shape and rationale). Its first
+# release is still a manual `dart pub publish`; the job is a no-op until
+# the package exists on pub.dev.
+# Phase 9 waits again, then publishes terradart_migrate, which depends on
+# terradart_hcl and every provider package (terradart_azure was just published).
+# Phase 10 waits again, then publishes terradart_cli. It depends on
 # terradart_migrate (`terradart migrate` calls the library), so it cannot
 # ship in Phase 1.
 # NOTE: pub.dev's OIDC automated publishing only works for packages that
@@ -455,14 +458,60 @@ jobs:
         run: dart pub publish --force
         working-directory: packages/terradart_aws
 
+  publish-azure:
+    name: publish terradart_azure
+    needs: publish-aws
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+      - name: Install yq
+        run: |
+          sudo wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.44.3/yq_linux_amd64
+          echo "a2c097180dd884a8d50c956ee16a9cec070f30a7947cf4ebf87d5f36213e9ed7  /usr/local/bin/yq" | sha256sum -c -
+          sudo chmod +x /usr/local/bin/yq
+          yq --version
+      - run: dart pub get
+
+      - name: Verify generated wrapper files
+        run: |
+          # Source of truth: the azure override registry.
+          yaml_count=$(find packages/terradart_codegen/lib/src/codegen/wrapper_overrides/azure/yaml -name '*.yaml' | wc -l | tr -d ' ')
+          # Count wrap output only: hand-written files under lib/src can share the
+          # prefix but lack wrap's header.
+          wrapper_count=$(find packages/terradart_azure/lib/src -mindepth 2 -name 'azurerm_*.dart' -exec head -qn1 {} + | grep -cxF '// GENERATED FILE - DO NOT EDIT' || true)
+          echo "yaml=$yaml_count wrapper=$wrapper_count"
+          [ "$yaml_count" -eq "$wrapper_count" ] || { echo "::error::wrapper count ($wrapper_count) != yaml count ($yaml_count)"; exit 1; }
+
+      - name: Pre-publish pubspec mutations
+        run: tool/prepare_publish.sh "${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }}" terradart_azure
+
+      - name: Check if already on pub.dev
+        id: pub
+        run: |
+          TAG="${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }}"
+          VERSION="${TAG#v}"
+          if tool/skip_if_published.sh terradart_azure "$VERSION"; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Publish to pub.dev
+        if: steps.pub.outputs.skip != 'true'
+        run: dart pub publish --force
+        working-directory: packages/terradart_azure
+
   publish-migrate:
     name: publish terradart_migrate
-    needs: [publish-hcl, publish-aws]
+    needs: [publish-hcl, publish-azure]
     runs-on: ubuntu-latest
     steps:
       - name: Wait for pub.dev index propagation
         run: |
-          echo "Waiting 5 minutes for pub.dev to index terradart_aws before publishing terradart_migrate..."
+          echo "Waiting 5 minutes for pub.dev to index terradart_azure before publishing terradart_migrate..."
           sleep 300
 
       - uses: actions/checkout@v6

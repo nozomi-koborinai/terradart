@@ -1,0 +1,6 @@
+outputDir: aadb2c
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+deriveExactlyOne: true

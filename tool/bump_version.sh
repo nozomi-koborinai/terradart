@@ -16,16 +16,17 @@
 #   - packages/terradart_appwrite/pubspec.yaml    (version: + terradart_core caret)
 #   - packages/terradart_cloudflare/pubspec.yaml  (version: + terradart_core caret)
 #   - packages/terradart_aws/pubspec.yaml         (version: + terradart_core caret)
+#   - packages/terradart_azure/pubspec.yaml       (version: + terradart_core caret)
 #   - packages/terradart_time/pubspec.yaml        (version: + terradart_core caret)
 #   - packages/terradart_hcl/pubspec.yaml         (version: line)
-#   - packages/terradart_migrate/pubspec.yaml     (version: + terradart_{core,google,google_beta,appwrite,cloudflare,aws,hcl,time} carets)
+#   - packages/terradart_migrate/pubspec.yaml     (version: + terradart_{core,google,google_beta,appwrite,cloudflare,aws,azure,hcl,time} carets)
 #   - packages/terradart_cli/pubspec.yaml         (version: line)
 #   - packages/terradart_migrate/lib/src/version.dart (packageVersion const — the caret `terradart init` scaffolds and `terradart migrate` pins into generated pubspecs, and the `--version` it prints)
 #   - packages/terradart_cli/lib/src/version.dart (cliVersion const)
 #   - skills/terradart/SKILL.md                   (metadata terradart-version; then `dart tool/sync_bundled_skill.dart --fix`
 #     + packages/terradart_cli/lib/src/assets/skill_md.g.dart   re-hashes it and regenerates the CLI's bundled copy)
 #   - README.md, packages/terradart_cli/README.md, website docs cli.md + start/ai-agent.md (`npx skills add nozomi-koborinai/terradart#vX.Y.Z`)
-#   - examples/*/pubspec.yaml                     (terradart_core + terradart_google + terradart_google_beta + terradart_appwrite + terradart_cloudflare + terradart_aws + terradart_time carets)
+#   - examples/*/pubspec.yaml                     (terradart_core + terradart_google + terradart_google_beta + terradart_appwrite + terradart_cloudflare + terradart_aws + terradart_azure + terradart_time carets)
 #   - cookbook/*/pubspec.yaml,                    (terradart_core + terradart_google + terradart_time carets on
 #     cookbook/*/*/pubspec.yaml                    workspace-member cookbook recipes)
 #   - README.md                                   (Quickstart pubspec sample + `dart pub global activate terradart_codegen ^...` line + status blurb)
@@ -37,6 +38,7 @@
 #   - packages/terradart_appwrite/README.md       (pubspec sample carets)
 #   - packages/terradart_cloudflare/README.md     (pubspec sample carets)
 #   - packages/terradart_aws/README.md            (pubspec sample carets)
+#   - packages/terradart_azure/README.md          (pubspec sample carets)
 #   - packages/terradart_time/README.md           (pubspec sample carets)
 #   - packages/terradart_codegen/README.md        (`dart pub global activate` caret)
 #   - packages/terradart_codegen/example/main.dart (`dart pub global activate` caret)
@@ -122,7 +124,7 @@ sed_inplace() {
 
 # 1. `version:` field on the package pubspecs.
 echo "  Package versions:"
-for pkg in terradart_core terradart_codegen terradart_google terradart_google_beta terradart_appwrite terradart_cloudflare terradart_aws terradart_time terradart_hcl terradart_migrate terradart_cli; do
+for pkg in terradart_core terradart_codegen terradart_google terradart_google_beta terradart_appwrite terradart_cloudflare terradart_aws terradart_azure terradart_time terradart_hcl terradart_migrate terradart_cli; do
   sed_inplace "s#^version: ${OLD_RE}\$#version: ${NEW}#" "packages/$pkg/pubspec.yaml"
   echo "    - packages/$pkg/pubspec.yaml -> $NEW"
 done
@@ -132,8 +134,8 @@ done
 echo "  Inter-package carets:"
 sed_inplace "s#^( *terradart_core): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_codegen/pubspec.yaml
 echo "    - terradart_codegen.dependencies.terradart_core: ^${NEW}"
-sed_inplace "s#^( *terradart_(core|google|google_beta|appwrite|cloudflare|aws|hcl|time)): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_migrate/pubspec.yaml
-echo "    - terradart_migrate.dependencies.terradart_{core,google,google_beta,appwrite,cloudflare,aws,hcl,time}: ^${NEW}"
+sed_inplace "s#^( *terradart_(core|google|google_beta|appwrite|cloudflare|aws|azure|hcl|time)): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_migrate/pubspec.yaml
+echo "    - terradart_migrate.dependencies.terradart_{core,google,google_beta,appwrite,cloudflare,aws,azure,hcl,time}: ^${NEW}"
 sed_inplace "s#^( *terradart_(core|time)): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_google/pubspec.yaml
 echo "    - terradart_google.dependencies.terradart_{core,time}: ^${NEW}"
 sed_inplace "s#^( *terradart_codegen): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_google/pubspec.yaml
@@ -146,6 +148,8 @@ sed_inplace "s#^( *terradart_core): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terra
 echo "    - terradart_cloudflare.dependencies.terradart_core: ^${NEW}"
 sed_inplace "s#^( *terradart_core): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_aws/pubspec.yaml
 echo "    - terradart_aws.dependencies.terradart_core: ^${NEW}"
+sed_inplace "s#^( *terradart_core): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_azure/pubspec.yaml
+echo "    - terradart_azure.dependencies.terradart_core: ^${NEW}"
 sed_inplace "s#^( *terradart_core): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_time/pubspec.yaml
 echo "    - terradart_time.dependencies.terradart_core: ^${NEW}"
 sed_inplace "s#^( *terradart_(hcl|migrate)): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_cli/pubspec.yaml
@@ -176,10 +180,10 @@ done
 echo "  Example pubspecs:"
 EXAMPLE_COUNT=0
 for f in examples/*/pubspec.yaml; do
-  sed_inplace "s#^( *terradart_(core|google|google_beta|appwrite|cloudflare|aws|time)): \\^${OLD_RE}\$#\\1: ^${NEW}#" "$f"
+  sed_inplace "s#^( *terradart_(core|google|google_beta|appwrite|cloudflare|aws|azure|time)): \\^${OLD_RE}\$#\\1: ^${NEW}#" "$f"
   EXAMPLE_COUNT=$((EXAMPLE_COUNT + 1))
 done
-echo "    - bumped $EXAMPLE_COUNT examples to terradart_{core,google,google_beta,appwrite,cloudflare,aws,time}: ^$NEW"
+echo "    - bumped $EXAMPLE_COUNT examples to terradart_{core,google,google_beta,appwrite,cloudflare,aws,azure,time}: ^$NEW"
 
 # 3b. Cookbook recipe pubspecs (workspace members under cookbook/, one or two
 #     levels deep — e.g. cookbook/single-project-app/ and
@@ -266,6 +270,7 @@ for f in README.md \
          packages/terradart_appwrite/README.md \
          packages/terradart_cloudflare/README.md \
          packages/terradart_aws/README.md \
+         packages/terradart_azure/README.md \
          packages/terradart_time/README.md \
          packages/terradart_codegen/README.md \
          packages/terradart_codegen/example/main.dart; do
@@ -306,7 +311,7 @@ echo "==> Verifying no stale '$OLD' references remain"
 set +e
 STALE=$(
   grep -nE "^version: ${OLD_RE}\$" packages/*/pubspec.yaml 2>/dev/null
-  grep -nE "terradart_(core|codegen|google|google_beta|appwrite|cloudflare|aws|time|hcl|migrate): \\^${OLD_RE}([^0-9A-Za-z.-]|\$)" \
+  grep -nE "terradart_(core|codegen|google|google_beta|appwrite|cloudflare|aws|azure|time|hcl|migrate): \\^${OLD_RE}([^0-9A-Za-z.-]|\$)" \
     packages/*/pubspec.yaml examples/*/pubspec.yaml \
     cookbook/*/pubspec.yaml cookbook/*/*/pubspec.yaml 2>/dev/null
   grep -nE "packageVersion = '${OLD_RE}'" packages/terradart_migrate/lib/src/version.dart 2>/dev/null
@@ -334,6 +339,7 @@ STALE=$(
       packages/terradart_appwrite/README.md \
       packages/terradart_cloudflare/README.md \
       packages/terradart_aws/README.md \
+      packages/terradart_azure/README.md \
       packages/terradart_time/README.md \
       packages/terradart_codegen/README.md 2>/dev/null
     grep -nE "pre-1\\.0 \\(${OLD_MINOR_RE}\\.x\\)" README.md 2>/dev/null

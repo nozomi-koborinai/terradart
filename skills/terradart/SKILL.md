@@ -1,9 +1,9 @@
 ---
 name: terradart
-description: Write TerraDart infrastructure code (Dart that synthesizes Terraform JSON). Use when a task mentions TerraDart, a Dart `Stack`, `terradart_google` / `terradart_aws` / `terradart_cloudflare` / `terradart_appwrite` / `terradart_google_beta`, or translating Terraform (`.tf`) into Dart.
+description: Write TerraDart infrastructure code (Dart that synthesizes Terraform JSON). Use when a task mentions TerraDart, a Dart `Stack`, `terradart_google` / `terradart_aws` / `terradart_azure` / `terradart_cloudflare` / `terradart_appwrite` / `terradart_google_beta`, or translating Terraform (`.tf`) into Dart.
 metadata:
   terradart-version: "0.35.0"
-  terradart-sha256: "27ef5e7eef199e7302362a2c90e9ae80ebb13ee08e4dbd39b53c88ac47b76221"
+  terradart-sha256: "a7bbcc1cd7b60b5f5c01548abfa246950c0e5160384967a31f47ecc994adfe4c"
 ---
 
 # TerraDart
@@ -28,6 +28,7 @@ For a bucket that already holds the state, pass `--state-bucket <name>` (or `<en
 | `google_*` | `terradart_google` | `package:terradart_google/<barrel>.dart` |
 | `google_*` that exists only in `hashicorp/google-beta` | `terradart_google_beta` | `package:terradart_google_beta/<barrel>.dart` |
 | `aws_*` | `terradart_aws` | `package:terradart_aws/<barrel>.dart` |
+| `azurerm_*` | `terradart_azure` | `package:terradart_azure/<barrel>.dart` |
 | `cloudflare_*` | `terradart_cloudflare` | `package:terradart_cloudflare/<barrel>.dart` |
 | `appwrite_*` | `terradart_appwrite` | `package:terradart_appwrite/<barrel>.dart` |
 | `time_sleep` (`TimeSleep`, with `TimeProvider`) | `terradart_time` | `package:terradart_time/terradart_time.dart` |

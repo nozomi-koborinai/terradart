@@ -18,7 +18,7 @@ terraform {
   required_version = ">= 1.11.0"
   required_providers {
     google = { source = "hashicorp/google", version = "~> 8.0" }
-    azurerm = { source = "hashicorp/azurerm", version = "~> 4.0" }
+    azuread = { source = "hashicorp/azuread", version = "~> 3.0" }
   }
   backend "azurerm" {
     container_name = "tfstate"
@@ -63,7 +63,7 @@ resource "google_pubsub_subscription" "many" {
   topic = google_pubsub_topic.t.name
 } # trailing
 
-resource "azurerm_resource_group" "logs" {
+resource "azuread_application" "logs" {
   name = "logs"
 }
 
@@ -113,7 +113,7 @@ output "label" {
         leftover,
         isNot(contains('resource "google_pubsub_subscription" "many"')),
       );
-      expect(leftover, contains('resource "azurerm_resource_group" "logs" {'));
+      expect(leftover, contains('resource "azuread_application" "logs" {'));
       expect(leftover, isNot(contains('moved {')));
       expect(
         r.stackSource,
@@ -163,8 +163,8 @@ output "label" {
           '  }\n'
           '\n'
           '  required_providers {\n'
-          '    # terradart-migrate: provider "azurerm" has no TerraDart factory\n'
-          '    azurerm = { source = "hashicorp/azurerm", version = "~> 4.0" }\n'
+          '    # terradart-migrate: provider "azuread" has no TerraDart factory\n'
+          '    azuread = { source = "hashicorp/azuread", version = "~> 3.0" }\n'
           '  }\n'
           '}',
         ),
@@ -173,10 +173,10 @@ output "label" {
       expect(backend, isNot(contains('required_version')));
       expect(sidecar.placements['terraform.backend'], backendFileName);
       expect(
-        sidecar.placements['terraform.required_providers.azurerm'],
+        sidecar.placements['terraform.required_providers.azuread'],
         backendFileName,
       );
-      expect(sidecar.placements['provider.azurerm'], backendFileName);
+      expect(sidecar.placements['provider.azuread'], backendFileName);
       for (final k in r.report.kept) {
         expect(
           sidecar.placements[k.address],
@@ -297,12 +297,12 @@ variable "name" {
   type = string
 }
 
-resource "azurerm_resource_group" "logs" {
+resource "azuread_application" "logs" {
   name = var.name
 }
 
 output "id" {
-  value = azurerm_resource_group.logs.id
+  value = azuread_application.logs.id
 }
 ''';
     final r = _hcl(hcl);
@@ -317,7 +317,7 @@ output "id" {
         'terraform.required_version',
         'terraform.backend',
         'variable.name',
-        'azurerm_resource_group.logs',
+        'azuread_application.logs',
         'output.id',
       ]),
     );

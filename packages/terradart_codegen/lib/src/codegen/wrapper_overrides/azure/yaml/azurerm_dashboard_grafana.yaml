@@ -1,0 +1,6 @@
+outputDir: dashboard
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+deriveExactlyOne: true

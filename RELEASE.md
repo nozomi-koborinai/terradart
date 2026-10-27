@@ -52,7 +52,7 @@ git tag v0.X.Y
 git push origin v0.X.Y
 ```
 
-Watch `publish.yml` on GitHub Actions. The workflow ships the 11 packages in 9 phases; a phase whose dependencies were published by the phase just before it waits 5 minutes for pub.dev index propagation first:
+Watch `publish.yml` on GitHub Actions. The workflow ships the 12 packages in 10 phases; a phase whose dependencies were published by the phase just before it waits 5 minutes for pub.dev index propagation first:
 
 1. **`publish-no-deps`** job: `terradart_core`, in parallel with the **`publish-hcl`** job: `terradart_hcl` (neither has terradart_* dependencies; `terradart_hcl` has a job of its own so a failure there holds back only `terradart_migrate`).
 2. **`publish-codegen`** job: `terradart_codegen` (depends on `terradart_core`), in parallel with the **`publish-time`** job: `terradart_time` (depends on `terradart_core`).
@@ -61,8 +61,9 @@ Watch `publish.yml` on GitHub Actions. The workflow ships the 11 packages in 9 p
 5. **`publish-appwrite`** job: `terradart_appwrite` (depends on `terradart_core`).
 6. **`publish-cloudflare`** job: `terradart_cloudflare` (depends on `terradart_core`).
 7. **`publish-aws`** job: `terradart_aws` (depends on `terradart_core`).
-8. **`publish-migrate`** job: `terradart_migrate` (depends on `terradart_hcl`, `terradart_time` and every provider package; waits for both `publish-hcl` and `publish-aws`).
-9. **`publish-cli`** job: `terradart_cli` (depends on `terradart_migrate`, which `terradart migrate` calls).
+8. **`publish-azure`** job: `terradart_azure` (depends on `terradart_core`).
+9. **`publish-migrate`** job: `terradart_migrate` (depends on `terradart_hcl`, `terradart_time` and every provider package; waits for both `publish-hcl` and `publish-azure`).
+10. **`publish-cli`** job: `terradart_cli` (depends on `terradart_migrate`, which `terradart migrate` calls).
 
 `prepare_publish.sh` runs in CI and:
 
@@ -74,7 +75,7 @@ Watch `publish.yml` on GitHub Actions. The workflow ships the 11 packages in 9 p
 
 pub.dev's OIDC trusted publisher only works for **previously published** packages. The first publish of a new package must be done manually with `dart pub publish` (interactive auth via `dart pub token add`); `skip_if_published.sh` then turns that package's `publish.yml` job into a no-op for the version already on pub.dev.
 
-All 11 packages are on pub.dev with automated publishing set up, so no release needs this today. A package added later does: it can only be published by hand after the tag's job for the phase it depends on has gone green. For that release:
+`terradart_azure` is not on pub.dev yet. Its first publish is the manual step below, after the phase it depends on (`publish-aws`, which publishes `terradart_core`'s dependents) is green. The other 11 packages already have automated publishing. For that first publish:
 
 ```bash
 # 1. Push the tag. publish.yml ships every existing package;
@@ -108,7 +109,7 @@ If a phase succeeds for some packages but fails for the next (e.g. `publish-code
 
 ## Post-flight
 
-- [ ] All 11 listings on pub.dev show the correct version
+- [ ] All 12 listings on pub.dev show the correct version
 - [ ] GitHub Release created (`gh release create v0.X.Y --notes ...`)
 - [ ] Verified publisher badge appears on all 11 pub.dev pages
 - [ ] `terradart` install verified on a clean machine: `dart pub global activate terradart_cli && terradart migrate --version`, then one real tree migrates and plans with *No changes* per [Migrating from HCL](https://terradart.dev/docs/migrate-from-hcl/)
