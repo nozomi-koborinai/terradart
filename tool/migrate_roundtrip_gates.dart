@@ -25,6 +25,8 @@ import 'package:terradart_migrate/terradart_migrate.dart';
 import 'package:yaml/yaml.dart';
 
 import 'example_synth_gates.dart' show synthExample;
+import 'lane_surface.dart';
+import 'wrap_lanes.dart';
 
 const _ledgerPath = 'tool/migrate_roundtrip_debt.yaml';
 
@@ -161,15 +163,9 @@ Future<bool> runMigrateRoundtripGates(
   for (final p in packages.toList()..sort()) {
     deps.writeln('  $p: ^$packageVersion');
   }
-  for (final p in const [
-    'terradart_core',
-    'terradart_google',
-    'terradart_google_beta',
-    'terradart_appwrite',
-    'terradart_cloudflare',
-    'terradart_aws',
-    'terradart_time',
-  ]) {
+  for (final p in migrateGatePackages(
+    parseWrapLanes(File(providersPath).readAsStringSync()),
+  )) {
     overrides.writeln('  $p:');
     overrides.writeln('    path: $repoRoot/packages/$p');
   }

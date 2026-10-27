@@ -4,6 +4,7 @@ import 'package:test/test.dart';
 
 import 'lane_surface.dart';
 import 'render_coverage_page.dart';
+import 'sync_argument_rules.dart';
 import 'wrap_lanes.dart';
 
 void main() {
@@ -100,6 +101,23 @@ providers:
     expect(hits.single.pinConstant, 'kFakeProviderVersionConstraint');
     expect(hits.single.fixtureDir, 'fixtures/fake');
   });
+
+  test(
+    'migrator gate packages and argument-rule copies follow the lane entry',
+    () {
+      final lanes = parseWrapLanes(fakeLane);
+      expect(migrateGatePackages(lanes), [
+        'terradart_core',
+        'terradart_fake',
+        'terradart_plain',
+        'terradart_time',
+      ]);
+      expect(
+        argumentRulesCopiesFor(lanes),
+        containsAll(['barrels_fake.yaml', 'barrels_plain.yaml']),
+      );
+    },
+  );
 
   test('doc-snippet barrels follow the lane entry', () {
     final barrels = docSnippetBarrels(parseWrapLanes(fakeLane));

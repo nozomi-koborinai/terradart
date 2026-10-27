@@ -85,20 +85,24 @@ These follow the entry, with no second list.
 - The CI `test` and `pub publish --dry-run` matrices. They list every workspace member under `packages/` in the root `pubspec.yaml`.
 - The format hook's provider packages and generated-file globs, from `outputPackage` and `typePrefix`.
 - Doc-snippet sandbox packages, from that same workspace list, except `terradart_codegen` and `terradart_cli`. A fence with no imports also receives each lane's umbrella library.
+- Argument-rule copies in each lane's barrels manifest (`tool/sync_argument_rules.dart`). The fixed copies (README, getting started, the skill, `TfArg`, `RefTo`) stay listed there.
+- Migrator-gate path overrides (`tool/migrate_fixture_gates.dart`, `tool/migrate_moved_gates.dart`, `tool/migrate_roundtrip_gates.dart`). The set is `terradart_core`, every lane package, and `terradart_time`.
 
 A resource class whose name is the PascalCase Terraform type may be longer than 80 characters. A helper more than one Terraform segment past the type it is named after may not. The gate is `tool/type_name_length_test.dart`, and it already reads every lane.
 
 These stay hand-edited. The agreement test fails if the lane is missing from the ones it can see.
 
 - The package itself, its provider class, and a `ProviderRules` class registered in `provider_registry.dart`. `shortResourcePascal` strips `terraformTypePrefix`. Set `typePrefix` to that same string. The agreement test fails when the two differ.
-- The import list in `packages/terradart_migrate/lib/src/manifests.dart`, the provider recipe in `stack_emitter.dart`, and the catalog imports in `emit/context.dart` (sensitive argument paths). Dropped credential arguments belong in `provider_secrets.dart` when the provider class leaves them out.
-- A publish phase in `.github/workflows/publish.yml`. Order follows pub.dev dependencies, so this is not a flat copy of the yaml.
+- The package's hand-written `catalog_entry.dart`. The generated catalog imports it. Cloudflare's ship commit omitted it and the next commit added it (`86493be80`).
+- The import list in `packages/terradart_migrate/lib/src/manifests.dart` (google before google-beta, because both use `google_`), the dependency in that package's `pubspec.yaml`, the provider recipe in `stack_emitter.dart`, and the catalog imports in `emit/context.dart`. `packages/terradart_migrate/test/manifest_test.dart` locks the lookup order. Dropped credential arguments belong in `provider_secrets.dart` when the provider class leaves them out.
+- A publish phase in `.github/workflows/publish.yml`, and the version loop plus the per-package caret lines in `tool/bump_version.sh`. Publish order follows pub.dev dependencies, so it is not a flat copy of the yaml. Appwrite's release wiring is `0f03f16b6` (#611). Cloudflare's is `1209bf90e` (#621). Those landed after the ship commits.
 - A block in `.github/labeler.yml` for the package, the override directory, and the schema fixture.
 - The `cron` and the `workflow_dispatch` choice in `.github/workflows/schema-bump.yml`, when the lane has `bump:`.
 - A coverage-stack generator when `bump.exampleGenerator` is set. `tool/coverage_stack_test.dart` already requires that path to be a key of `kCoverageStacks`.
 - A provider guide under `website/src/content/docs/docs/providers/`, the sidebar in `website/astro.config.mjs`, and `website/src/components/landing/providers.ts` when the lane has a guide. The coverage sidebar entry is required for every lane.
 - The package name in `README.md`, this file's catalog paragraph, `AGENTS.md`, and `skills/terradart/SKILL.md`.
-- `kNotOnOpenTofuRegistry` in `tool/validate_engine.dart`, when the OpenTofu registry does not host the provider.
+- `kNotOnOpenTofuRegistry` in `tool/validate_engine.dart` and `kTerraformOnlyProviders` in `packages/terradart_cli/lib/src/engine.dart`, when the OpenTofu registry does not host the provider. Today both sets are `appwrite/appwrite`.
+- `InitProvider` in `packages/terradart_cli/lib/src/init_templates.dart`, when `terradart init` should scaffold that provider. google-beta and time are not in that enum.
 
 Debt files such as `tool/type_name_length_debt.yaml` and `tool/example_debt.yaml` are shared. A new lane does not edit them until a generated name or a missing example trips a gate.
 

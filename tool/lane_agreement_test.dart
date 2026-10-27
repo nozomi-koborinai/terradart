@@ -54,6 +54,16 @@ void main() {
     }
   });
 
+  test('the release bump and the migrator pubspec name every lane package', () {
+    for (final lane in lanes) {
+      expectMentions('tool/bump_version.sh', packageOf(lane));
+      expectMentions(
+        'packages/terradart_migrate/pubspec.yaml',
+        packageOf(lane),
+      );
+    }
+  });
+
   test('labeler.yml covers each lane path from the yaml', () {
     final labeler = File('.github/labeler.yml').readAsStringSync();
     final globs = [

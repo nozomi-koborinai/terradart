@@ -18,21 +18,31 @@ import 'dart:io';
 
 import 'package:path/path.dart' as p;
 
+import 'wrap_lanes.dart';
+
 const argumentRulesSource = 'website/src/content/docs/docs/arguments.md';
 
-/// Every file that carries a copy, relative to the repo root.
-const argumentRulesCopies = [
+/// Copies that are not a lane barrels manifest.
+const argumentRulesFixedCopies = [
   'README.md',
   'website/src/content/docs/docs/getting-started.mdx',
   'skills/terradart/SKILL.md',
   'packages/terradart_core/lib/src/tf_arg.dart',
   'packages/terradart_core/lib/src/ref_to.dart',
-  'packages/terradart_codegen/lib/src/codegen/barrels/barrels.yaml',
-  'packages/terradart_codegen/lib/src/codegen/barrels/barrels_google_beta.yaml',
-  'packages/terradart_codegen/lib/src/codegen/barrels/barrels_aws.yaml',
-  'packages/terradart_codegen/lib/src/codegen/barrels/barrels_cloudflare.yaml',
-  'packages/terradart_codegen/lib/src/codegen/barrels/barrels_appwrite.yaml',
 ];
+
+/// Every file that carries a copy, relative to the repo root.
+///
+/// Each lane's [WrapLane.barrelsManifest] is included. The umbrella doc in
+/// that file is where the lane's copy of the rules lives.
+List<String> argumentRulesCopiesFor(List<WrapLane> lanes) => [
+  ...argumentRulesFixedCopies,
+  for (final lane in lanes) lane.barrelsManifest,
+];
+
+final List<String> argumentRulesCopies = argumentRulesCopiesFor(
+  parseWrapLanes(File(providersPath).readAsStringSync()),
+);
 
 final _start = RegExp(
   r'^(.*?)(?:<!--|\{/\*)\s*argument-rules:start\s*(?:-->|\*/\})\s*$',
@@ -62,7 +72,10 @@ String withArgumentRules(String text, String file, List<String> block) {
   ].join('\n');
 }
 
-({int start, int end, String prefix}) _markers(List<String> lines, String file) {
+({int start, int end, String prefix}) _markers(
+  List<String> lines,
+  String file,
+) {
   final starts = [
     for (var i = 0; i < lines.length; i++)
       if (_start.hasMatch(lines[i])) i,
@@ -105,7 +118,9 @@ void main(List<String> args) {
   final fix = args.contains('--fix');
   final stale = syncArgumentRules(Directory.current.path, fix: fix);
   if (stale.isEmpty) {
-    stdout.writeln('sync_argument_rules: OK (${argumentRulesCopies.length} copies)');
+    stdout.writeln(
+      'sync_argument_rules: OK (${argumentRulesCopies.length} copies)',
+    );
     return;
   }
   for (final copy in stale) {

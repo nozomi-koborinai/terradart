@@ -32,6 +32,9 @@ import 'dart:io';
 import 'package:path/path.dart' as p;
 import 'package:terradart_migrate/terradart_migrate.dart';
 
+import 'lane_surface.dart';
+import 'wrap_lanes.dart';
+
 const _fixtures = [
   'config_tree',
   'real_plan_src',
@@ -61,15 +64,9 @@ const _terraformInit = [
   '-no-color',
 ];
 
-const _workspacePackages = [
-  'terradart_core',
-  'terradart_google',
-  'terradart_google_beta',
-  'terradart_appwrite',
-  'terradart_cloudflare',
-  'terradart_aws',
-  'terradart_time',
-];
+final List<String> _workspacePackages = migrateGatePackages(
+  parseWrapLanes(File(providersPath).readAsStringSync()),
+);
 
 Future<void> main(List<String> args) async {
   final skipValidate = args.contains('--skip-validate');
@@ -200,8 +197,9 @@ Future<bool> _build(
       ..writeln('  $pkg:')
       ..writeln('    path: ${p.join(repoRoot, 'packages', pkg)}');
   }
-  File(p.join(temp.path, 'pubspec.yaml'))
-      .writeAsStringSync(overrides.toString(), mode: FileMode.append);
+  File(
+    p.join(temp.path, 'pubspec.yaml'),
+  ).writeAsStringSync(overrides.toString(), mode: FileMode.append);
   for (final step in const [
     ['dart', 'pub', 'get', '--offline'],
     ['dart', 'analyze', '--fatal-infos', '--fatal-warnings', 'lib', 'bin'],
@@ -283,8 +281,9 @@ Future<bool> _gate(
         ..writeln('  $pkg:')
         ..writeln('    path: ${p.join(repoRoot, 'packages', pkg)}');
     }
-    File(p.join(temp.path, 'pubspec.yaml'))
-        .writeAsStringSync(overrides.toString(), mode: FileMode.append);
+    File(
+      p.join(temp.path, 'pubspec.yaml'),
+    ).writeAsStringSync(overrides.toString(), mode: FileMode.append);
 
     final steps = <List<String>>[
       ['dart', 'pub', 'get', '--offline'],

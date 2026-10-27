@@ -98,6 +98,14 @@ List<String> docSnippetPackages(String pubspec) => [
     if (name != 'terradart_codegen' && name != 'terradart_cli') name,
 ];
 
+/// Packages a migrator gate's temporary pubspec path-overrides: `terradart_core`,
+/// every lane package, then `terradart_time`.
+List<String> migrateGatePackages(List<WrapLane> lanes) => [
+  'terradart_core',
+  for (final lane in lanes) lane.outputPackage.split('/').last,
+  'terradart_time',
+];
+
 /// Default imports for a fence that has none. One umbrella per lane, plus
 /// `terradart_core` and `terradart_time`.
 List<String> docSnippetBarrels(List<WrapLane> lanes) {
