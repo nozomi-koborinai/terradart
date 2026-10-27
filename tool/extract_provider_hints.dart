@@ -79,6 +79,7 @@ import 'dart:io';
 import 'package:path/path.dart' as p;
 import 'package:terradart_codegen/src/codegen/exclusive_groups.dart';
 
+import 'http_retry.dart';
 import 'provider_hints_aws.dart';
 
 const _exitUsage = 64;
@@ -731,7 +732,7 @@ Future<Directory> _download(String repo, String version) async {
   );
   final client = HttpClient();
   try {
-    final response = await (await client.getUrl(url)).close();
+    final response = await getRetryingTransient(client, url);
     if (response.statusCode != 200) {
       _fail(_exitFetch, 'GET $url: HTTP ${response.statusCode}');
     }
