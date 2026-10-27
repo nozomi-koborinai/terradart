@@ -75,11 +75,12 @@ Watch `publish.yml` on GitHub Actions. The workflow ships the 12 packages in 10 
 
 pub.dev's OIDC trusted publisher only works for **previously published** packages. The first publish of a new package must be done manually with `dart pub publish` (interactive auth via `dart pub token add`); `skip_if_published.sh` then turns that package's `publish.yml` job into a no-op for the version already on pub.dev.
 
-`terradart_azure` is not on pub.dev yet. Its first publish is the manual step below, after the phase it depends on (`publish-aws`, which publishes `terradart_core`'s dependents) is green. The other 11 packages already have automated publishing. For that first publish:
+`terradart_azure` is not on pub.dev yet. Its first publish is the manual step below, after `publish-aws` is green. `terradart_azure` depends only on `terradart_core`. The job waits for `publish-aws` because that phase runs first. The other 11 packages already have automated publishing. For that first publish:
 
 ```bash
-# 1. Push the tag. publish.yml ships every existing package;
-#    the new package's job fails because it is not on pub.dev yet.
+# 1. Push the tag. publish.yml ships the packages that do not wait on
+#    terradart_azure. The new package's job fails because it is not on
+#    pub.dev yet, and publish-migrate and publish-cli wait for it.
 git tag v0.X.Y && git push origin v0.X.Y
 
 # 2. Once the phase it depends on is green (and pub.dev lists those
@@ -88,9 +89,10 @@ tool/prepare_publish.sh v0.X.Y <pkg>
 (cd packages/<pkg> && dart pub publish)
 git checkout packages/*/pubspec.yaml
 
-# 3. Re-run publish.yml. The new package's job skips the version now on
-#    pub.dev. Jobs that waited on it, including publish-migrate and
-#    publish-cli for terradart_azure, then run.
+# 3. Re-run the failed jobs on the tag's workflow run. A fresh
+#    workflow_dispatch checks out the ref you dispatch, not the tag.
+#    The new package's job skips the version now on pub.dev. Jobs that
+#    waited on it, including publish-migrate and publish-cli, then run.
 ```
 
 After a new package exists on pub.dev, set up its trusted publisher:
