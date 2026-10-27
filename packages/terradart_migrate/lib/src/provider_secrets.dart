@@ -1,8 +1,3 @@
-/// Credential arguments a provider class leaves out on purpose.
-///
-/// A migrated configuration never copies these into Dart or into the
-/// leftover sidecar. Apply reads them from the provider's environment
-/// instead.
 const droppedProviderArguments = <String, Set<String>>{
   'google': {'credentials', 'access_token', 'external_credentials'},
   'google-beta': {'credentials', 'access_token', 'external_credentials'},
@@ -20,8 +15,6 @@ const droppedProviderArguments = <String, Set<String>>{
     'oidc_token',
     'oidc_token_file_path',
     'ado_pipeline_service_connection_id',
-    // The state backend's storage key and SAS token. The provider block
-    // has neither. Apply reads ARM_ACCESS_KEY and ARM_SAS_TOKEN.
     'access_key',
     'sas_token',
   },

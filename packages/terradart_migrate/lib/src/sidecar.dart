@@ -96,18 +96,9 @@ final class _SidecarBuilder {
   /// written no longer exists in the directory.
   late final _rewriter = ReferenceRewriter(report.expanded);
 
-  /// [p] as written, with credential arguments removed.
-  ///
-  /// Those names never reach Dart and must not reach the sidecar either.
-  /// A block that sets none of them is copied verbatim.
   String _providerText(ProviderBlock p) =>
       _credentialFree(p.file, p.block, droppedProviderArguments[p.name]);
 
-  /// [block] as written, without attributes [dropped] names.
-  ///
-  /// A block that sets none of them is copied verbatim, so formatting of an
-  /// ordinary provider or backend is unchanged. [level] indents a backend
-  /// nested inside `terraform { }`.
   String _credentialFree(
     HclFile file,
     Block block,
