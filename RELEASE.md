@@ -87,6 +87,10 @@ git tag v0.X.Y && git push origin v0.X.Y
 tool/prepare_publish.sh v0.X.Y <pkg>
 (cd packages/<pkg> && dart pub publish)
 git checkout packages/*/pubspec.yaml
+
+# 3. Re-run publish.yml. The new package's job skips the version now on
+#    pub.dev. Jobs that waited on it, including publish-migrate and
+#    publish-cli for terradart_azure, then run.
 ```
 
 After a new package exists on pub.dev, set up its trusted publisher:
