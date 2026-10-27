@@ -34,7 +34,7 @@ void main() {
       final response = await getRetryingTransient(
         client,
         url(),
-        delay: (_) => Duration.zero,
+        waitAfterFailure: (_) => Duration.zero,
       );
       expect(response.statusCode, 200);
       expect(await response.transform(utf8.decoder).join(), body);
@@ -51,7 +51,7 @@ void main() {
       final response = await getRetryingTransient(
         client,
         url(),
-        delay: (_) => Duration.zero,
+        waitAfterFailure: (_) => Duration.zero,
       );
       expect(response.statusCode, 404);
       await response.drain<void>();
