@@ -286,7 +286,9 @@ final List<DiagnosticFamily> kDiagnosticFamilies = [
   ),
   DiagnosticFamily(
     'ipv4',
-    RegExp('valid IPv4'),
+    // "valid IP" also matches "valid IPv4". Azure firewall rules use the
+    // shorter sentence; both accept the same dotted address.
+    RegExp('valid IP'),
     (_) => [LiteralDummy('10.0.0.1')],
   ),
   DiagnosticFamily(
@@ -305,9 +307,18 @@ final List<DiagnosticFamily> kDiagnosticFamilies = [
   ),
   DiagnosticFamily(
     'path-segments',
+    // go-azure-helpers ParseNestedItemID. The path is keys, secrets, or
+    // certificates, then a name, then an optional version. A subscription
+    // id has two segments and then fails the item-type check, so it is
+    // not a candidate. Six values is the coverage search round cap.
     RegExp('expected 2 or 3 path segments'),
     (_) => [
-      LiteralDummy('/subscriptions/11111111-1111-1111-1111-111111111111'),
+      LiteralDummy('https://example.com/keys/leftover'),
+      LiteralDummy('https://example.com/keys/leftover/v'),
+      LiteralDummy('https://example.com/secrets/leftover'),
+      LiteralDummy('https://example.com/certificates/leftover'),
+      LiteralDummy('https://example.com/secrets/leftover/v'),
+      LiteralDummy('https://example.com/certificates/leftover/v'),
     ],
   ),
   DiagnosticFamily(

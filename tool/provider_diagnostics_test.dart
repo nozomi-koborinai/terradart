@@ -241,6 +241,10 @@ void main() {
         [('10.0.0.1', 'family ipv4')],
       );
       expect(
+        shapes('expected end_ip_address to contain a valid IP, got: leftover'),
+        [('10.0.0.1', 'family ipv4')],
+      );
+      expect(
         shapes(
           'expected backup_retention_period_in_days to be in the range (1 - 60), got 200',
         ),
@@ -262,8 +266,13 @@ void main() {
           'expected 2 or 3 path segments, found 4 segment(s) in `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover`',
         ),
         [
+          ('https://example.com/keys/leftover', 'family path-segments'),
+          ('https://example.com/keys/leftover/v', 'family path-segments'),
+          ('https://example.com/secrets/leftover', 'family path-segments'),
+          ('https://example.com/certificates/leftover', 'family path-segments'),
+          ('https://example.com/secrets/leftover/v', 'family path-segments'),
           (
-            '/subscriptions/11111111-1111-1111-1111-111111111111',
+            'https://example.com/certificates/leftover/v',
             'family path-segments',
           ),
         ],
