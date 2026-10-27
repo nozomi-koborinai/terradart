@@ -3,9 +3,10 @@
 # The provider-parameterization ledger: each entry records where a
 # provider's schema fixture lives, which package `terradart wrap` emits
 # into, and which override registry / barrels manifest / provider
-# meta-argument the wrap invocation uses. Adding a provider means adding
-# an entry here plus its directories: tool/wrap_lanes.dart reads every
-# entry and runs `terradart wrap --check` and `terradart lint-override`
+# meta-argument the wrap invocation uses. Adding a provider starts with an
+# entry here. CONTRIBUTING.md ("Adding a provider lane") lists what the
+# entry drives and what is still a hand edit. tool/wrap_lanes.dart reads
+# every entry and runs `terradart wrap --check` and `terradart lint-override`
 # for it, and both tool/agent_verify.sh and the CI wrap_check /
 # override_lint jobs run that script. .github/workflows/schema-bump.yml
 # reads the `bump:` entries through tool/bump_plan.dart, so a lane's weekly
@@ -24,6 +25,13 @@
 #                               fixture's README)
 #   mm:              whether Magic Modules YAML enriches the merged IR
 #   outputPackage:   the package wrap emits into
+#   typePrefix:      (optional) Terraform type prefix (`aws_`). The format
+#                    hook builds generated-file globs from it. Nested-type
+#                    names use ProviderRules.terraformTypePrefix.
+#                    tool/lane_agreement_test.dart requires the field on
+#                    every committed lane and checks the two strings match.
+#   siteTitle:       (optional) coverage-page heading. The coverage renderer
+#                    requires it on every committed lane.
 #   overridesRoot:   wrapper-override YAML registry (wrap --overrides-root)
 #   barrelsManifest: authored barrels manifest (wrap --barrels-manifest)
 #   resourceProvider: value for wrap --resource-provider, or null for the
@@ -115,6 +123,8 @@ providers:
     mm: true
     mmGroups: true
     outputPackage: packages/terradart_google
+    typePrefix: google_
+    siteTitle: Google Cloud
     overridesRoot: packages/terradart_codegen/lib/src/codegen/wrapper_overrides/yaml
     barrelsManifest: packages/terradart_codegen/lib/src/codegen/barrels/barrels.yaml
     resourceProvider: null
@@ -141,6 +151,8 @@ providers:
       providerRepo: hashicorp/terraform-provider-google-beta
       servicesDir: google-beta/services
     outputPackage: packages/terradart_google_beta
+    typePrefix: google_
+    siteTitle: 'Google Cloud (beta-only)'
     overridesRoot: packages/terradart_codegen/lib/src/codegen/wrapper_overrides/google_beta/yaml
     barrelsManifest: packages/terradart_codegen/lib/src/codegen/barrels/barrels_google_beta.yaml
     resourceProvider: google-beta
@@ -153,6 +165,8 @@ providers:
     schemaMode: filtered
     mm: false
     outputPackage: packages/terradart_appwrite
+    typePrefix: appwrite_
+    siteTitle: Appwrite
     overridesRoot: packages/terradart_codegen/lib/src/codegen/wrapper_overrides/appwrite/yaml
     barrelsManifest: packages/terradart_codegen/lib/src/codegen/barrels/barrels_appwrite.yaml
     resourceProvider: null # appwrite_ prefix collides with nothing
@@ -174,6 +188,8 @@ providers:
     schemaMode: filtered
     mm: false
     outputPackage: packages/terradart_cloudflare
+    typePrefix: cloudflare_
+    siteTitle: Cloudflare
     overridesRoot: packages/terradart_codegen/lib/src/codegen/wrapper_overrides/cloudflare/yaml
     barrelsManifest: packages/terradart_codegen/lib/src/codegen/barrels/barrels_cloudflare.yaml
     resourceProvider: null # cloudflare_ prefix collides with nothing
@@ -195,6 +211,8 @@ providers:
     schemaMode: full
     mm: false
     outputPackage: packages/terradart_aws
+    typePrefix: aws_
+    siteTitle: AWS
     overridesRoot: packages/terradart_codegen/lib/src/codegen/wrapper_overrides/aws/yaml
     barrelsManifest: packages/terradart_codegen/lib/src/codegen/barrels/barrels_aws.yaml
     resourceProvider: null # aws_ prefix collides with nothing

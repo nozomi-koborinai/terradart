@@ -1,4 +1,5 @@
 import 'package:terradart_codegen/src/codegen/naming.dart';
+import 'package:terradart_codegen/src/codegen/providers/provider_registry.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -47,11 +48,35 @@ void main() {
     });
 
     test(
-      'shortResourcePascal leaves a non-google_ type untouched (Pascal)',
+      'shortResourcePascal leaves an unregistered prefix in the Pascal name',
       () {
         expect(shortResourcePascal('foo_bar'), 'FooBar');
       },
     );
+
+    test('shortResourcePascal strips every registered provider prefix', () {
+      for (final rules in providerRulesById.values) {
+        expect(
+          shortResourcePascal('${rules.terraformTypePrefix}widget'),
+          'Widget',
+          reason: rules.providerId,
+        );
+      }
+    });
+
+    test('shortResourcePascal strips a prefix passed by the caller', () {
+      expect(
+        shortResourcePascal('azurerm_resource_group', prefixes: ['azurerm_']),
+        'ResourceGroup',
+      );
+      expect(
+        shortResourcePascal(
+          'google_beta_widget',
+          prefixes: ['google_', 'google_beta_'],
+        ),
+        'Widget',
+      );
+    });
 
     test(
       'enumName builds Pascal name and screaming-snake to camel members',

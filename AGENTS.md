@@ -213,6 +213,7 @@ Targeted checks when `agent_verify.sh` is too broad:
 dart tool/batch_wrap_init.dart --resources=google_foo,google_bar  # maintainer: batch wrap-init
 dart tool/check_docs_consistency.dart
 dart tool/wrap_lanes.dart --lane aws --gate wrap  # wrap --check for one tool/providers.yaml lane
+dart test tool/lane_agreement_test.dart tool/lane_surface_test.dart  # a new lane is missing from a hand list, or a derived surface ignored the yaml
 ```
 
 ## Cloud Agent Runbooks

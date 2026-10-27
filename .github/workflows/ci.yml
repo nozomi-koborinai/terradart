@@ -50,6 +50,20 @@ jobs:
           echo "examples=$json" >> "$GITHUB_OUTPUT"
           echo "selected=$json"
 
+  workspace_packages:
+    name: list workspace packages
+    runs-on: ubuntu-latest
+    outputs:
+      packages: ${{ steps.list.outputs.packages }}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+      - run: dart pub get
+      - id: list
+        run: echo "packages=$(dart tool/ci_packages.dart)" >> "$GITHUB_OUTPUT"
+
   plugin_cache_key:
     name: plugin cache key
     runs-on: ubuntu-latest
@@ -119,10 +133,11 @@ jobs:
   test:
     name: test (${{ matrix.package }})
     runs-on: ubuntu-latest
+    needs: workspace_packages
     strategy:
       fail-fast: false
       matrix:
-        package: [terradart_core, terradart_codegen, terradart_google, terradart_google_beta, terradart_appwrite, terradart_cloudflare, terradart_aws, terradart_time, terradart_hcl, terradart_migrate, terradart_cli]
+        package: ${{ fromJson(needs.workspace_packages.outputs.packages) }}
     steps:
       - uses: actions/checkout@v6
       - uses: dart-lang/setup-dart@v1
@@ -220,7 +235,7 @@ jobs:
   publish_dry_run:
     name: pub publish --dry-run (${{ matrix.package }})
     runs-on: ubuntu-latest
-    needs: test
+    needs: [test, workspace_packages]
     # Pre-merge dry-run catches what previously broke publish AFTER merge:
     # MM/cert fixtures tripping pub.dev's secret scanner (fixed reactively in
     # 0.12.5 and 0.12.11 by adding false_secrets). Every package publish.yml
@@ -228,7 +243,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        package: [terradart_core, terradart_codegen, terradart_time, terradart_google, terradart_google_beta, terradart_appwrite, terradart_cloudflare, terradart_aws, terradart_hcl, terradart_migrate, terradart_cli]
+        package: ${{ fromJson(needs.workspace_packages.outputs.packages) }}
     steps:
       - uses: actions/checkout@v6
       - uses: dart-lang/setup-dart@v1

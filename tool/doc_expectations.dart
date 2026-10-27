@@ -11,6 +11,9 @@ library;
 
 import 'dart:io';
 
+import 'lane_surface.dart';
+import 'wrap_lanes.dart';
+
 final _CatalogCounts _counts = _readCatalogCounts();
 
 /// Total catalog entries (curated factories + data sources).
@@ -152,20 +155,11 @@ class ExactPinLane {
   }
 }
 
-const exactPinLanes = [
-  ExactPinLane(
-    'terradart_appwrite',
-    'packages/terradart_codegen/test/fixtures/wrap/source_appwrite',
-    'kAppwriteProviderVersionConstraint',
-  ),
-  ExactPinLane(
-    'terradart_aws',
-    'packages/terradart_codegen/test/fixtures/wrap/source_aws',
-    'kAwsProviderVersionConstraint',
-  ),
-  ExactPinLane(
-    'terradart_cloudflare',
-    'packages/terradart_codegen/test/fixtures/wrap/source_cloudflare',
-    'kCloudflareProviderVersionConstraint',
-  ),
+/// Lanes whose provider class aliases the generated pin
+/// (`const String k… = terradartProviderVersion`).
+final List<ExactPinLane> exactPinLanes = [
+  for (final hit in discoverExactPins(
+    parseWrapLanes(File(providersPath).readAsStringSync()),
+  ))
+    ExactPinLane(hit.package, hit.fixtureDir, hit.pinConstant),
 ];

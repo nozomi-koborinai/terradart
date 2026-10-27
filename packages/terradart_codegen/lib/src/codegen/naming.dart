@@ -1,3 +1,5 @@
+import 'providers/provider_registry.dart';
+
 /// snake_case → camelCase.
 String snakeToCamel(String s) {
   final parts = s.split('_');
@@ -51,22 +53,24 @@ class EnumName {
   });
 }
 
-/// Strips a known provider prefix (`google_`, `cloudflare_`, `appwrite_`,
-/// `aws_`) from [terraformType], then converts the remainder to PascalCase —
-/// e.g. `google_app_engine_domain_mapping` → `AppEngineDomainMapping`,
-/// `cloudflare_zone` → `Zone`.
+/// Strips the provider type prefix from [terraformType], then converts the
+/// remainder to PascalCase. `google_app_engine_domain_mapping` becomes
+/// `AppEngineDomainMapping`. `cloudflare_zone` becomes `Zone`.
 ///
-/// This is the shared "short resource name" both [enumName] (top-level
-/// derived enum names, e.g. `PubsubTopicEncoding` rather than
-/// `GooglePubsubTopicEncoding`) and the `deriveNestedTypes` collector wiring
-/// in `wrapper_emitter.dart` (nested-type class name prefixes, e.g.
-/// `AppEngineDomainMappingSslSettings`) build their generated names from —
-/// dropping the prefix keeps generated names readable in user code.
-String shortResourcePascal(String terraformType) {
-  const providerPrefixes = ['google_', 'cloudflare_', 'appwrite_', 'aws_'];
+/// The default prefix list is every [ProviderRules.terraformTypePrefix].
+/// [prefixes] replaces that list. Either list is tried longest first.
+String shortResourcePascal(String terraformType, {Iterable<String>? prefixes}) {
+  final known =
+      (prefixes ??
+              [
+                for (final rules in providerRulesById.values)
+                  rules.terraformTypePrefix,
+              ])
+          .toList()
+        ..sort((a, b) => b.length.compareTo(a.length));
   var short = terraformType;
-  for (final prefix in providerPrefixes) {
-    if (short.startsWith(prefix)) {
+  for (final prefix in known) {
+    if (prefix.isNotEmpty && short.startsWith(prefix)) {
       short = short.substring(prefix.length);
       break;
     }

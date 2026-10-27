@@ -88,6 +88,8 @@ class WrapLane {
     this.hintsRepo,
     this.references,
     this.referenceLane,
+    this.typePrefix,
+    this.siteTitle,
   });
 
   final String name;
@@ -126,6 +128,14 @@ class WrapLane {
   /// `inherit:` rules target (google for google-beta), or null.
   final WrapLane? referenceLane;
 
+  /// Terraform type prefix (`aws_`, `google_`). The format hook builds its
+  /// generated-file globs from this. [ProviderRules.terraformTypePrefix] is
+  /// the same string. `tool/lane_agreement_test.dart` fails when they differ.
+  final String? typePrefix;
+
+  /// Heading on the site's coverage page (`AWS`, `Google Cloud (beta-only)`).
+  final String? siteTitle;
+
   WrapLane _withReferenceLane(WrapLane lane) => WrapLane(
     name: name,
     source: source,
@@ -142,6 +152,8 @@ class WrapLane {
     hintsRepo: hintsRepo,
     references: references,
     referenceLane: lane,
+    typePrefix: typePrefix,
+    siteTitle: siteTitle,
   );
 
   /// Paths that must exist before any gate can say something meaningful.
@@ -295,6 +307,13 @@ WrapLane _parseLane(String name, Object? entry) {
   };
   final bump = entry['bump'];
   final hintsRepo = bump is YamlMap ? bump['repo'] : null;
+  String? optionalString(String key) {
+    final value = entry[key];
+    if (value == null) return null;
+    if (value is String && value.isNotEmpty) return value;
+    throw FormatException('lane $name: $key must be a non-empty string');
+  }
+
   return WrapLane(
     name: name,
     source: field('source'),
@@ -310,6 +329,8 @@ WrapLane _parseLane(String name, Object? entry) {
     mmSync: mmSync,
     hintsRepo: hintsRepo is String ? hintsRepo : null,
     references: references,
+    typePrefix: optionalString('typePrefix'),
+    siteTitle: optionalString('siteTitle'),
   );
 }
 

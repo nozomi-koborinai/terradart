@@ -129,7 +129,7 @@ routine work does not depend on the maintainer being present.
   code={`flowchart LR
   cron["Weekly schedule"] --> pr["Provider bump PR<br/>(opened automatically)"]
   pr --> report{"Drift report<br/>new resources? breaking API?"}
-  report -- "routine (Google, AWS)" --> gate{"Full CI"}
+  report -- "routine (Google, AWS, Appwrite)" --> gate{"Full CI"}
   report -- "needs design judgment" --> human["Maintainer"]
   gate -- "green" --> merge["Auto-merged"]
   human --> merge`}
@@ -137,12 +137,12 @@ routine work does not depend on the maintainer being present.
 
 - **The update loop runs on a schedule.** Provider schema updates arrive as
   automatic weekly pull requests, one per provider: Google (with google-beta)
-  on Sundays, AWS on Mondays, Cloudflare on Tuesdays. A new resource type
-  arrives as a generated factory queued for API polish. On Google and AWS, a
-  bump with no removed type and no breaking change to the generated Dart API
-  enables auto-merge and lands once the full CI battery is green, without
-  waiting on anyone's availability. Cloudflare bumps always wait for review,
-  and the Appwrite pin moves by hand.
+  on Sundays, AWS on Mondays, Cloudflare on Tuesdays, Appwrite on Wednesdays.
+  A new resource type arrives as a generated factory queued for API polish.
+  On Google, AWS, and Appwrite, a bump with no removed type and no breaking
+  change to the generated Dart API enables auto-merge and lands once the full
+  CI battery is green, without waiting on anyone's availability. Cloudflare
+  bumps always wait for review (`bump.mode: pr-only` in `tool/providers.yaml`).
 - **The repository is deliberately maintainable by others — human or AI.** A
   single agent guide is the source of truth for how to work on the codebase;
   the ledgers make every standing decision explicit; determinism makes every
