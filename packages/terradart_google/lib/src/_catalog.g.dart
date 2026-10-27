@@ -27844,9 +27844,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[
       'IamFoldersPolicyBindingCondition',
       'IamFoldersPolicyBindingTarget',
-      'IamFoldersPolicyBindingTargetPrincipalSetOrResource',
-      'IamFoldersPolicyBindingTargetPrincipalSetOrResourcePrincipalSet',
-      'IamFoldersPolicyBindingTargetPrincipalSetOrResourceChoice',
+      'IamFoldersPolicyBindingTargetPrincipalSet',
+      'IamFoldersPolicyBindingTargetResource',
     ],
     sensitiveFields: <String>[],
     docComment:
@@ -27947,9 +27946,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[
       'IamOrganizationsPolicyBindingCondition',
       'IamOrganizationsPolicyBindingTarget',
-      'IamOrganizationsPolicyBindingTargetPrincipalSetOrResource',
-      'IamOrganizationsPolicyBindingTargetPrincipalSetOrResourcePrincipalSet',
-      'IamOrganizationsPolicyBindingTargetPrincipalSetOrResourceChoice',
+      'IamOrganizationsPolicyBindingTargetPrincipalSet',
+      'IamOrganizationsPolicyBindingTargetResource',
     ],
     sensitiveFields: <String>[],
     docComment:
@@ -28046,9 +28044,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[
       'IamProjectsPolicyBindingCondition',
       'IamProjectsPolicyBindingTarget',
-      'IamProjectsPolicyBindingTargetPrincipalSetOrResource',
-      'IamProjectsPolicyBindingTargetPrincipalSetOrResourcePrincipalSet',
-      'IamProjectsPolicyBindingTargetPrincipalSetOrResourceChoice',
+      'IamProjectsPolicyBindingTargetPrincipalSet',
+      'IamProjectsPolicyBindingTargetResource',
     ],
     sensitiveFields: <String>[],
     docComment:
@@ -36713,9 +36710,9 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'PrivatecaCaPoolTier',
       'PrivatecaCaPoolEncryptionSpec',
       'PrivatecaCaPoolIssuancePolicy',
-      'PrivatecaCaPoolIssuancePolicyBackdateDurationOrAllowRequesterSpecifiedNotBeforeTime',
-      'PrivatecaCaPoolIssuancePolicyBackdateDurationOrAllowRequesterSpecifiedNotBeforeTimeBackdateDuration',
-      'PrivatecaCaPoolIssuancePolicyBackdateDurationOrAllowRequesterSpecifiedNotBeforeTimeChoice',
+      'PrivatecaCaPoolNotBefore',
+      'PrivatecaCaPoolNotBeforeBackdateDuration',
+      'PrivatecaCaPoolNotBeforeAllowRequesterSpecifiedNotBeforeTime',
       'PrivatecaCaPoolAllowedIssuanceModes',
       'PrivatecaCaPoolAllowedKeyTypes',
       'PrivatecaCaPoolEllipticCurve',

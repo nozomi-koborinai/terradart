@@ -35,36 +35,21 @@ final class IamFoldersPolicyBindingCondition {
   };
 }
 
-/// Typed helper for the `target` block of
-/// `google_iam_folders_policy_binding` (derived from provider schema).
-@immutable
-final class IamFoldersPolicyBindingTarget {
-  const IamFoldersPolicyBindingTarget({this.principalSetOrResource});
-
-  final IamFoldersPolicyBindingTargetPrincipalSetOrResource?
-  principalSetOrResource;
-
-  @internal
-  Map<String, Object?> encode() => {...?principalSetOrResource?.encode()};
-}
-
-/// At most one of `principal_set`, `resource` on the `target` block of `google_iam_folders_policy_binding`: the provider rejects
-/// more than one, so each variant sets one of them and a
-/// null choice sets none.
+/// Exactly one of `principal_set`, `resource` on the `target` block of `google_iam_folders_policy_binding`: the provider rejects
+/// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.principalSet(...)`.
-sealed class IamFoldersPolicyBindingTargetPrincipalSetOrResource {
-  const IamFoldersPolicyBindingTargetPrincipalSetOrResource();
+sealed class IamFoldersPolicyBindingTarget {
+  const IamFoldersPolicyBindingTarget();
 
   /// Sets `principal_set`.
-  const factory IamFoldersPolicyBindingTargetPrincipalSetOrResource.principalSet(
+  const factory IamFoldersPolicyBindingTarget.principalSet(
     TfArg<String> principalSet,
-  ) = IamFoldersPolicyBindingTargetPrincipalSetOrResourcePrincipalSet;
+  ) = IamFoldersPolicyBindingTargetPrincipalSet;
 
   /// Sets `resource`.
-  const factory IamFoldersPolicyBindingTargetPrincipalSetOrResource.resource(
-    TfArg<String> resource,
-  ) = IamFoldersPolicyBindingTargetPrincipalSetOrResourceChoice;
+  const factory IamFoldersPolicyBindingTarget.resource(TfArg<String> resource) =
+      IamFoldersPolicyBindingTargetResource;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -74,12 +59,10 @@ sealed class IamFoldersPolicyBindingTargetPrincipalSetOrResource {
   Map<String, Object?> encode();
 }
 
-/// The [IamFoldersPolicyBindingTargetPrincipalSetOrResource.principalSet] choice: sets `principal_set`.
-final class IamFoldersPolicyBindingTargetPrincipalSetOrResourcePrincipalSet
-    extends IamFoldersPolicyBindingTargetPrincipalSetOrResource {
-  const IamFoldersPolicyBindingTargetPrincipalSetOrResourcePrincipalSet(
-    this.principalSet,
-  );
+/// The [IamFoldersPolicyBindingTarget.principalSet] choice: sets `principal_set`.
+final class IamFoldersPolicyBindingTargetPrincipalSet
+    extends IamFoldersPolicyBindingTarget {
+  const IamFoldersPolicyBindingTargetPrincipalSet(this.principalSet);
 
   final TfArg<String> principalSet;
 
@@ -92,12 +75,10 @@ final class IamFoldersPolicyBindingTargetPrincipalSetOrResourcePrincipalSet
   Map<String, Object?> encode() => {'principal_set': principalSet.toTfJson()};
 }
 
-/// The [IamFoldersPolicyBindingTargetPrincipalSetOrResource.resource] choice: sets `resource`.
-final class IamFoldersPolicyBindingTargetPrincipalSetOrResourceChoice
-    extends IamFoldersPolicyBindingTargetPrincipalSetOrResource {
-  const IamFoldersPolicyBindingTargetPrincipalSetOrResourceChoice(
-    this.resource,
-  );
+/// The [IamFoldersPolicyBindingTarget.resource] choice: sets `resource`.
+final class IamFoldersPolicyBindingTargetResource
+    extends IamFoldersPolicyBindingTarget {
+  const IamFoldersPolicyBindingTargetResource(this.resource);
 
   final TfArg<String> resource;
 
