@@ -1,4 +1,6 @@
 import 'package:terradart_aws/provider.dart' show kAwsProviderVersionConstraint;
+import 'package:terradart_azure/provider.dart'
+    show kAzureProviderVersionConstraint;
 import 'package:terradart_hcl/terradart_hcl.dart';
 import 'package:terradart_migrate/terradart_migrate.dart';
 import 'package:test/test.dart';
@@ -385,6 +387,45 @@ resource "unknown_thing" "x" {
       expect(m.isMerged, isFalse);
       expect(m.refusal, contains('nothing translates in envs/prod'));
     });
+  });
+
+  test('merge-envs does not lift azurerm credentials', () {
+    String root(String secret, String accessKey) =>
+        '''
+terraform {
+  required_providers {
+    azurerm = { source = "hashicorp/azurerm", version = "$kAzureProviderVersionConstraint" }
+  }
+  backend "azurerm" {
+    storage_account_name = "tfstate"
+    container_name       = "state"
+    key                  = "prod.tfstate"
+    access_key           = "$accessKey"
+  }
+}
+provider "azurerm" {
+  features {}
+  client_secret = "$secret"
+}
+resource "azurerm_resource_group" "app" {
+  name     = "app"
+  location = "eastus"
+}
+''';
+    final merged = _merge(
+      {
+        'dev': root('DEV-SECRET-VALUE', 'DEV-SECRET-VALUE-STORAGE-KEY'),
+        'prod': root('PROD-SECRET-VALUE', 'PROD-SECRET-VALUE-STORAGE-KEY'),
+      },
+      raw: const {'dev', 'prod'},
+    );
+    expect(merged.refusal, isNull);
+    expect(merged.envSource, isNot(contains('DEV-SECRET-VALUE')));
+    expect(merged.envSource, isNot(contains('PROD-SECRET-VALUE')));
+    expect(merged.envSource, isNot(contains('client_secret')));
+    expect(merged.envSource, isNot(contains('access_key')));
+    expect(merged.source, isNot(contains('DEV-SECRET-VALUE')));
+    expect(merged.source, isNot(contains('PROD-SECRET-VALUE')));
   });
 
   group('merge-envs with --lift-workspace', () {

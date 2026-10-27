@@ -13,6 +13,7 @@ import 'dart:convert';
 import 'package:terradart_core/internal.dart' show hasTemplateSequence;
 import 'package:terradart_hcl/terradart_hcl.dart';
 
+import '../provider_secrets.dart';
 import 'body_map.dart';
 import 'naming.dart';
 import 'tf_expr.dart';
@@ -273,6 +274,18 @@ final class _Block {
 /// Everything of [m] the environments are compared over.
 List<_Block> _blocksOf(TfModule m) {
   Map<String, Expr> args(Body body) => objectMap(bodyAsObject(body)) ?? {};
+  // Credential arguments are dropped from the migrated provider and from a
+  // kept backend. Leave them out of the comparison too, or a per-environment
+  // secret becomes a field on the generated Env enum.
+  Map<String, Expr> withoutSecrets(String? type, Map<String, Expr> a) {
+    final dropped = droppedProviderArguments[type] ?? const <String>{};
+    if (dropped.isEmpty) return a;
+    return {
+      for (final e in a.entries)
+        if (!dropped.contains(e.key)) e.key: e.value,
+    };
+  }
+
   // A resource's own arguments are all liftable; its meta-arguments are
   // structure, not values, and the merge refuses when they differ.
   const meta = {
@@ -346,7 +359,7 @@ List<_Block> _blocksOf(TfModule m) {
     );
   }
   for (final p in m.providers) {
-    final a = args(p.body);
+    final a = withoutSecrets(p.name, args(p.body));
     final alias = p.alias;
     out.add(
       _Block(
@@ -360,7 +373,8 @@ List<_Block> _blocksOf(TfModule m) {
   }
   final backend = m.backend;
   if (backend != null) {
-    final a = args(backend.body);
+    final type = backend.labels.isEmpty ? '' : backend.labels.first.text;
+    final a = withoutSecrets(type, args(backend.body));
     out.add(
       _Block(
         address: 'terraform.backend',

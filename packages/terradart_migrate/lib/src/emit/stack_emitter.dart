@@ -910,6 +910,16 @@ final class StackEmitter {
     for (final name in providerNames) {
       final recipe = _providerRecipes[name];
       if (recipe == null) {
+        final dropped = droppedProviderArguments[name] ?? const <String>{};
+        for (final p in module.providers.where((p) => p.name == name)) {
+          final values = objectMap(bodyAsObject(p.body)) ?? {};
+          for (final key in values.keys.where(dropped.contains)) {
+            _warnings.add(
+              'provider "$name": argument "$key" has no TerraDart '
+              'parameter and was dropped',
+            );
+          }
+        }
         _keep('provider.$name', 'provider "$name" has no TerraDart factory');
         continue;
       }
