@@ -261,11 +261,15 @@ extension type const ObservabilityadminTelemetryRuleTelemetryType._(
   static const traces = ObservabilityadminTelemetryRuleTelemetryType._(
     TfArgLiteral('Traces'),
   );
+  static const insights = ObservabilityadminTelemetryRuleTelemetryType._(
+    TfArgLiteral('Insights'),
+  );
 
   static const List<ObservabilityadminTelemetryRuleTelemetryType> values = [
     logs,
     metrics,
     traces,
+    insights,
   ];
 }
 

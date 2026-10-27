@@ -34,12 +34,14 @@ extension type const DatasyncLocationNfsVersion._(TfArg<String> _)
   static const nfs3 = DatasyncLocationNfsVersion._(TfArgLiteral('NFS3'));
   static const nfs40 = DatasyncLocationNfsVersion._(TfArgLiteral('NFS4_0'));
   static const nfs41 = DatasyncLocationNfsVersion._(TfArgLiteral('NFS4_1'));
+  static const nfs42 = DatasyncLocationNfsVersion._(TfArgLiteral('NFS4_2'));
 
   static const List<DatasyncLocationNfsVersion> values = [
     automatic,
     nfs3,
     nfs40,
     nfs41,
+    nfs42,
   ];
 }
 

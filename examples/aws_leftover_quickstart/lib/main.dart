@@ -1553,6 +1553,14 @@ final class AwsLeftoverStack extends Stack {
     );
 
     add(
+      AwsBedrockEnforcedGuardrailConfiguration(
+        'bedrock_enforced_guardrail_configuration',
+        guardrailArn: .literal(arn),
+        guardrailVersion: .literal(leftover),
+      ),
+    );
+
+    add(
       AwsBedrockEvaluationJob(
         'bedrock_evaluation_job',
         jobName: .literal(leftover),
@@ -2965,6 +2973,30 @@ final class AwsLeftoverStack extends Stack {
     );
 
     add(
+      AwsCloudwatchomniAccessGrant(
+        'cloudwatchomni_access_grant',
+        domainId: .literal('d-leftover'),
+        name: .literal(leftover),
+        permission: .spaceAdmin,
+        spaceId: .literal('12345678-1234-1234-1234-123456789012'),
+        principal: [
+          CloudwatchomniAccessGrantPrincipal(
+            principalType: .idcUser,
+            principalId: .literal('123456789012'),
+          ),
+        ],
+      ),
+    );
+
+    add(
+      AwsCloudwatchomniAccessProfile(
+        'cloudwatchomni_access_profile',
+        name: .literal(leftover),
+        spaceId: .literal(leftover),
+      ),
+    );
+
+    add(
       AwsCloudwatchomniDomain(
         'cloudwatchomni_domain',
         identityProviders: [.iam],
@@ -2978,6 +3010,14 @@ final class AwsLeftoverStack extends Stack {
         dataAccessRoleArn: .literal(arn),
         domainId: .literal(leftover),
         name: .literal(leftover),
+      ),
+    );
+
+    add(
+      AwsCloudwatchomniView(
+        'cloudwatchomni_view',
+        definition: .literal(leftover),
+        name: .literal('view.leftover'),
       ),
     );
 
@@ -4407,6 +4447,15 @@ final class AwsLeftoverStack extends Stack {
     );
 
     add(
+      AwsDirectoryServiceDirectorySetting(
+        'directory_service_directory_setting',
+        directoryId: .literal('d-1234567890'),
+        name: .literal(leftover),
+        value: .literal(leftover),
+      ),
+    );
+
+    add(
       AwsDirectoryServiceIpRoute(
         'directory_service_ip_route',
         cidr: .cidrIp(.literal('10.0.0.0/16')),
@@ -4477,6 +4526,14 @@ final class AwsLeftoverStack extends Stack {
         remoteDomainName: .literal('example.com'),
         trustDirection: .twoWay,
         trustPassword: .literal(leftover),
+      ),
+    );
+
+    add(
+      AwsDirectoryservicedataGroup(
+        'directoryservicedata_group',
+        directoryId: .literal('d-1234567890'),
+        samAccountName: .literal(leftover),
       ),
     );
 
@@ -11287,6 +11344,13 @@ final class AwsLeftoverStack extends Stack {
       AwsRoute53domainsDelegationSignerRecord(
         'route53domains_delegation_signer_record',
         domainName: .literal(leftover),
+        signingAttributes: [
+          Route53domainsDelegationSignerRecordSigningAttributes(
+            algorithm: .literal(200),
+            flags: .literal(200),
+            publicKey: .literal(leftover),
+          ),
+        ],
       ),
     );
 
@@ -12162,6 +12226,17 @@ final class AwsLeftoverStack extends Stack {
         'sagemaker_image_version',
         baseImage: .literal(leftover),
         imageName: .literal(leftover),
+      ),
+    );
+
+    add(
+      AwsSagemakerInferenceComponent(
+        'sagemaker_inference_component',
+        endpointName: .literal(leftover),
+        name: .literal(leftover),
+        specificationOrSpecifications: .specification([
+          .new(baseInferenceComponentName: .literal(leftover)),
+        ]),
       ),
     );
 

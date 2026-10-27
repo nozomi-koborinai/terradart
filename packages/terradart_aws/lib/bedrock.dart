@@ -13,6 +13,13 @@ export 'src/bedrock/aws_bedrock_custom_model.dart'
         BedrockCustomModelValidationDataConfig,
         BedrockCustomModelValidator,
         BedrockCustomModelVpcConfig;
+export 'src/bedrock/aws_bedrock_enforced_guardrail_configuration.dart'
+    show
+        AwsBedrockEnforcedGuardrailConfiguration,
+        BedrockEnforcedGuardrailConfigurationMessages,
+        BedrockEnforcedGuardrailConfigurationModelEnforcement,
+        BedrockEnforcedGuardrailConfigurationSelectiveContentGuarding,
+        BedrockEnforcedGuardrailConfigurationSystem;
 export 'src/bedrock/aws_bedrock_evaluation_job.dart'
     show
         AwsBedrockEvaluationJob,

@@ -336,6 +336,33 @@ export 'src/sagemaker/aws_sagemaker_image_version.dart'
         SagemakerImageVersionJobType,
         SagemakerImageVersionProcessor,
         SagemakerImageVersionVendorGuidance;
+export 'src/sagemaker/aws_sagemaker_inference_component.dart'
+    show
+        AwsSagemakerInferenceComponent,
+        SagemakerInferenceComponentAlarms,
+        SagemakerInferenceComponentAutoRollbackConfiguration,
+        SagemakerInferenceComponentAvailabilityZoneBalance,
+        SagemakerInferenceComponentComputeResourceRequirements,
+        SagemakerInferenceComponentContainer,
+        SagemakerInferenceComponentContainerMetricsConfig,
+        SagemakerInferenceComponentDataCacheConfig,
+        SagemakerInferenceComponentDeploymentConfig,
+        SagemakerInferenceComponentEnforcementMode,
+        SagemakerInferenceComponentInstanceType,
+        SagemakerInferenceComponentMaximumBatchSize,
+        SagemakerInferenceComponentMetricsEndpoint,
+        SagemakerInferenceComponentPlacementStrategy,
+        SagemakerInferenceComponentRollbackMaximumBatchSize,
+        SagemakerInferenceComponentRollingUpdatePolicy,
+        SagemakerInferenceComponentRuntimeConfig,
+        SagemakerInferenceComponentSchedulingConfig,
+        SagemakerInferenceComponentSpecification,
+        SagemakerInferenceComponentSpecificationOrSpecifications,
+        SagemakerInferenceComponentSpecificationOrSpecificationsChoice,
+        SagemakerInferenceComponentSpecificationOrSpecificationsSpecification,
+        SagemakerInferenceComponentSpecifications,
+        SagemakerInferenceComponentStartupParameters,
+        SagemakerInferenceComponentType;
 export 'src/sagemaker/aws_sagemaker_labeling_job.dart'
     show
         AwsSagemakerLabelingJob,

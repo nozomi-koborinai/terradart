@@ -305,6 +305,7 @@ final class ArcregionswitchPlanStep {
     this.parallelConfig,
     this.rdsCreateCrossRegionReadReplicaConfig,
     this.rdsPromoteReadReplicaConfig,
+    this.rdsSwitchoverReadReplicaConfig,
     this.regionSwitchPlanConfig,
     this.route53HealthCheckConfig,
   });
@@ -356,6 +357,9 @@ final class ArcregionswitchPlanStep {
 
   final List<ArcregionswitchPlanRdsPromoteReadReplicaConfig>?
   rdsPromoteReadReplicaConfig;
+
+  final List<ArcregionswitchPlanRdsSwitchoverReadReplicaConfig>?
+  rdsSwitchoverReadReplicaConfig;
 
   final List<ArcregionswitchPlanRegionSwitchPlanConfig>? regionSwitchPlanConfig;
 
@@ -420,6 +424,10 @@ final class ArcregionswitchPlanStep {
     if (rdsPromoteReadReplicaConfig != null)
       'rds_promote_read_replica_config': [
         for (final e in rdsPromoteReadReplicaConfig!) e.encode(),
+      ],
+    if (rdsSwitchoverReadReplicaConfig != null)
+      'rds_switchover_read_replica_config': [
+        for (final e in rdsSwitchoverReadReplicaConfig!) e.encode(),
       ],
     if (regionSwitchPlanConfig != null)
       'region_switch_plan_config': [
@@ -501,6 +509,9 @@ extension type const ArcregionswitchPlanExecutionBlockType._(TfArg<String> _)
       ArcregionswitchPlanExecutionBlockType._(
         TfArgLiteral('RdsSwitchoverReadReplica'),
       );
+  static const ssmsendcommand = ArcregionswitchPlanExecutionBlockType._(
+    TfArgLiteral('SSMSendCommand'),
+  );
 
   static const List<ArcregionswitchPlanExecutionBlockType> values = [
     customactionlambda,
@@ -521,6 +532,7 @@ extension type const ArcregionswitchPlanExecutionBlockType._(TfArg<String> _)
     auroraprovisionedscaling,
     neptuneglobaldatabase,
     rdsswitchoverreadreplica,
+    ssmsendcommand,
   ];
 }
 
@@ -882,29 +894,32 @@ final class ArcregionswitchPlanDocumentDbConfigUngraceful {
     required this.ungraceful,
   });
 
-  final ArcregionswitchPlanUngracefulUngraceful ungraceful;
+  final ArcregionswitchPlanDocumentDbConfigUngracefulUngraceful ungraceful;
 
   @internal
   Map<String, Object?> encode() => {'ungraceful': ungraceful.toTfJson()};
 }
 
 /// `ungraceful` — derived from the provider schema description.
-extension type const ArcregionswitchPlanUngracefulUngraceful._(TfArg<String> _)
-    implements TfArg<String> {
-  ArcregionswitchPlanUngracefulUngraceful.variable(String name)
+extension type const ArcregionswitchPlanDocumentDbConfigUngracefulUngraceful._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ArcregionswitchPlanDocumentDbConfigUngracefulUngraceful.variable(String name)
     : this._(TfArg.variable(name));
-  ArcregionswitchPlanUngracefulUngraceful.expression(String template)
-    : this._(TfArg.expression(template));
-  const ArcregionswitchPlanUngracefulUngraceful.arg(TfArg<String> arg)
-    : this._(arg);
+  ArcregionswitchPlanDocumentDbConfigUngracefulUngraceful.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ArcregionswitchPlanDocumentDbConfigUngracefulUngraceful.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
 
-  static const failover = ArcregionswitchPlanUngracefulUngraceful._(
-    TfArgLiteral('failover'),
-  );
+  static const failover =
+      ArcregionswitchPlanDocumentDbConfigUngracefulUngraceful._(
+        TfArgLiteral('failover'),
+      );
 
-  static const List<ArcregionswitchPlanUngracefulUngraceful> values = [
-    failover,
-  ];
+  static const List<ArcregionswitchPlanDocumentDbConfigUngracefulUngraceful>
+  values = [failover];
 }
 
 /// Typed helper for the `workflow.step.ec2_asg_capacity_increase_config` block of
@@ -1509,6 +1524,7 @@ final class ArcregionswitchPlanParallelConfigStep {
     this.neptuneGlobalDatabaseConfig,
     this.rdsCreateCrossRegionReadReplicaConfig,
     this.rdsPromoteReadReplicaConfig,
+    this.rdsSwitchoverReadReplicaConfig,
     this.regionSwitchPlanConfig,
     this.route53HealthCheckConfig,
   });
@@ -1558,6 +1574,9 @@ final class ArcregionswitchPlanParallelConfigStep {
 
   final List<ArcregionswitchPlanRdsPromoteReadReplicaConfig>?
   rdsPromoteReadReplicaConfig;
+
+  final List<ArcregionswitchPlanRdsSwitchoverReadReplicaConfig>?
+  rdsSwitchoverReadReplicaConfig;
 
   final List<ArcregionswitchPlanRegionSwitchPlanConfig>? regionSwitchPlanConfig;
 
@@ -1620,6 +1639,10 @@ final class ArcregionswitchPlanParallelConfigStep {
     if (rdsPromoteReadReplicaConfig != null)
       'rds_promote_read_replica_config': [
         for (final e in rdsPromoteReadReplicaConfig!) e.encode(),
+      ],
+    if (rdsSwitchoverReadReplicaConfig != null)
+      'rds_switchover_read_replica_config': [
+        for (final e in rdsSwitchoverReadReplicaConfig!) e.encode(),
       ],
     if (regionSwitchPlanConfig != null)
       'region_switch_plan_config': [
@@ -1688,6 +1711,82 @@ final class ArcregionswitchPlanRdsPromoteReadReplicaConfig {
     'external_id': ?externalId?.toTfJson(),
     'timeout_minutes': ?timeoutMinutes?.toTfJson(),
   };
+}
+
+/// Typed helper for the `workflow.step.rds_switchover_read_replica_config` block of
+/// `aws_arcregionswitch_plan` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
+@immutable
+final class ArcregionswitchPlanRdsSwitchoverReadReplicaConfig {
+  const ArcregionswitchPlanRdsSwitchoverReadReplicaConfig({
+    this.crossAccountRole,
+    required this.dbInstanceArnMap,
+    this.externalId,
+    this.timeoutMinutes,
+    this.ungraceful,
+  });
+
+  final TfArg<String>? crossAccountRole;
+
+  final TfArg<Map<String, String>> dbInstanceArnMap;
+
+  final TfArg<String>? externalId;
+
+  final TfArg<num>? timeoutMinutes;
+
+  final List<ArcregionswitchPlanRdsSwitchoverReadReplicaConfigUngraceful>?
+  ungraceful;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'cross_account_role': ?crossAccountRole?.toTfJson(),
+    'db_instance_arn_map': dbInstanceArnMap.toTfJson(),
+    'external_id': ?externalId?.toTfJson(),
+    'timeout_minutes': ?timeoutMinutes?.toTfJson(),
+    if (ungraceful != null)
+      'ungraceful': [for (final e in ungraceful!) e.encode()],
+  };
+}
+
+/// Typed helper for the `workflow.step.rds_switchover_read_replica_config.ungraceful` block of
+/// `aws_arcregionswitch_plan` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
+@immutable
+final class ArcregionswitchPlanRdsSwitchoverReadReplicaConfigUngraceful {
+  const ArcregionswitchPlanRdsSwitchoverReadReplicaConfigUngraceful({
+    required this.ungraceful,
+  });
+
+  final ArcregionswitchPlanRdsSwitchoverReadReplicaConfigUngracefulUngraceful
+  ungraceful;
+
+  @internal
+  Map<String, Object?> encode() => {'ungraceful': ungraceful.toTfJson()};
+}
+
+/// `ungraceful` — derived from the provider schema description.
+extension type const ArcregionswitchPlanRdsSwitchoverReadReplicaConfigUngracefulUngraceful._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ArcregionswitchPlanRdsSwitchoverReadReplicaConfigUngracefulUngraceful.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  ArcregionswitchPlanRdsSwitchoverReadReplicaConfigUngracefulUngraceful.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ArcregionswitchPlanRdsSwitchoverReadReplicaConfigUngracefulUngraceful.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const promotereadreplica =
+      ArcregionswitchPlanRdsSwitchoverReadReplicaConfigUngracefulUngraceful._(
+        TfArgLiteral('promoteReadReplica'),
+      );
+
+  static const List<
+    ArcregionswitchPlanRdsSwitchoverReadReplicaConfigUngracefulUngraceful
+  >
+  values = [promotereadreplica];
 }
 
 /// Typed helper for the `workflow.step.region_switch_plan_config` block of

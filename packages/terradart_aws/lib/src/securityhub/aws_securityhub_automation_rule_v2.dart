@@ -77,10 +77,14 @@ extension type const SecurityhubAutomationRuleV2Type._(TfArg<String> _)
   static const externalIntegration = SecurityhubAutomationRuleV2Type._(
     TfArgLiteral('EXTERNAL_INTEGRATION'),
   );
+  static const resourceFieldsUpdate = SecurityhubAutomationRuleV2Type._(
+    TfArgLiteral('RESOURCE_FIELDS_UPDATE'),
+  );
 
   static const List<SecurityhubAutomationRuleV2Type> values = [
     findingFieldsUpdate,
     externalIntegration,
+    resourceFieldsUpdate,
   ];
 }
 

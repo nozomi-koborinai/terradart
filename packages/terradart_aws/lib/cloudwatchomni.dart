@@ -4,6 +4,21 @@
 library;
 
 export 'package:terradart_core/terradart_core.dart';
+export 'src/cloudwatchomni/aws_cloudwatchomni_access_grant.dart'
+    show
+        AwsCloudwatchomniAccessGrant,
+        CloudwatchomniAccessGrantOperator,
+        CloudwatchomniAccessGrantPermission,
+        CloudwatchomniAccessGrantPrincipal,
+        CloudwatchomniAccessGrantPrincipalAttribute,
+        CloudwatchomniAccessGrantPrincipalType,
+        CloudwatchomniAccessGrantResource,
+        CloudwatchomniAccessGrantRowScope,
+        CloudwatchomniAccessGrantRowScopeGroup,
+        CloudwatchomniAccessGrantScopedAction,
+        CloudwatchomniAccessGrantSignalTypes;
+export 'src/cloudwatchomni/aws_cloudwatchomni_access_profile.dart'
+    show AwsCloudwatchomniAccessProfile;
 export 'src/cloudwatchomni/aws_cloudwatchomni_domain.dart'
     show
         AwsCloudwatchomniDomain,
@@ -15,3 +30,5 @@ export 'src/cloudwatchomni/aws_cloudwatchomni_space.dart'
         AwsCloudwatchomniSpace,
         CloudwatchomniSpaceEncryptionConfiguration,
         CloudwatchomniSpaceEncryptionStrategy;
+export 'src/cloudwatchomni/aws_cloudwatchomni_view.dart'
+    show AwsCloudwatchomniView;

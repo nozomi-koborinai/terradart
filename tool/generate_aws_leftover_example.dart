@@ -516,6 +516,8 @@ const _extraParams = <String, List<String>>{
   'AwsCloudwatchLogS3TableIntegrationSource': ['dataSource'],
   'AwsCloudwatchLogTransformer': ['transformerConfig'],
   'AwsCloudwatchMetricAlarm': ['metricName'],
+  'AwsCloudwatchomniAccessGrant': ['principal'],
+  'CloudwatchomniAccessGrantPrincipal': ['principalId'],
   'AwsCodeguruprofilerProfilingGroup': ['agentOrchestrationConfig'],
   'AwsCognitoLogDeliveryConfiguration': ['logConfigurations'],
   'AwsCognitoManagedLoginBranding': ['settings'],
@@ -673,6 +675,7 @@ const _extraParams = <String, List<String>>{
   'AwsResiliencehubv2Policy': ['multiAz'],
   'AwsResiliencehubv2Service': ['permissionModel'],
   'AwsRoute': ['destinationCidrBlock', 'carrierGatewayId'],
+  'AwsRoute53domainsDelegationSignerRecord': ['signingAttributes'],
   'AwsRoute53domainsDomain': [
     'adminContact',
     'registrantContact',
