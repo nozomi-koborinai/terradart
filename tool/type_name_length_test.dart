@@ -1,11 +1,12 @@
 // Every type `terradart wrap` declares in the package of a tool/providers.yaml
 // lane stays at or under [maxTypeNameLength] characters, unless its name is
-// already as short as the naming rules allow: one Terraform segment (and an
-// optional `Choice` collision suffix) past the type it is named after — see
-// [irreducibleTypes]. Only that prefix is long there, and Terraform chose it.
-// Any other name over the limit needs a reasoned entry in
-// tool/type_name_length_debt.yaml, and an entry that no longer names such a
-// type fails as stale.
+// already as short as the naming rules allow. That set is the resource class
+// (the PascalCase Terraform type), the data-source class (`Data` plus that
+// name), or one Terraform segment, plus an optional `Choice` collision
+// suffix, past the type it is named after. See [irreducibleNames]. Terraform
+// chose the type name. Any other name over the limit needs a reasoned entry
+// in tool/type_name_length_debt.yaml, and an entry that no longer names such
+// a type fails as stale.
 
 import 'dart:io';
 
@@ -78,9 +79,29 @@ Set<String> _segments(MigrateManifest manifest) {
   return out;
 }
 
-/// A declared type: its name, the file declaring it, and whether it is one
-/// segment past the type it is named after (see [irreducibleTypes]).
+/// A declared type: its name, the file declaring it, and whether it is
+/// already as short as the naming rules allow (see [irreducibleNames]).
 typedef TypeName = ({String name, String file, bool irreducible});
+
+/// Names the naming rules cannot shorten for [terraformType]. The resource
+/// class is [snakeToPascal] of the Terraform type, and the data-source class
+/// is `Data` plus that name. A helper, enum, sealed type, or variant is one
+/// segment past the short stem [shortResourcePascal] returns. The resource
+/// and data-source class names are included even when [src] does not declare
+/// them.
+Set<String> irreducibleNames(
+  String src,
+  String terraformType,
+  Set<String> segments,
+) {
+  final full = snakeToPascal(terraformType);
+  final short = shortResourcePascal(terraformType);
+  return {
+    ...irreducibleTypes(src, [short, 'Data$short'], segments),
+    full,
+    'Data$full',
+  };
+}
 
 /// The types [src] declares whose name is one of [segments] (plus an
 /// optional `Choice`) past the type it is named after, where:
@@ -152,10 +173,8 @@ List<TypeName> declaredTypes(String package, Set<String> segments) {
   for (final f in files) {
     final src = f.readAsStringSync();
     if (!src.startsWith(_header)) continue;
-    final short = shortResourcePascal(
-      f.uri.pathSegments.last.replaceAll('.dart', ''),
-    );
-    final irreducible = irreducibleTypes(src, [short, 'Data$short'], segments);
+    final terraformType = f.uri.pathSegments.last.replaceAll('.dart', '');
+    final irreducible = irreducibleNames(src, terraformType, segments);
     for (final m in _decl.allMatches(src)) {
       out.add((
         name: m[1]!,
@@ -258,6 +277,17 @@ sealed class LambdaFunctionImageUriTarget {}
       );
     });
   }
+
+  test('a resource class as long as its terraform type stays irreducible', () {
+    const type =
+        'azurerm_abcdefghijklmnopqrstuvwxyz_abcdefghijklmnopqrstuvwxyz_abcdefghijklmnopqrstuvwxyz';
+    final full = snakeToPascal(type);
+    expect(full.length, greaterThan(maxTypeNameLength));
+    final src = 'class $full {}\nclass ${full}Extra {}\n';
+    final irreducible = irreducibleNames(src, type, const {});
+    expect(irreducible, contains(full));
+    expect(irreducible, isNot(contains('${full}Extra')));
+  });
 
   test('lanes are read from tool/providers.yaml', () {
     expect(

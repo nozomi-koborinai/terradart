@@ -25,6 +25,9 @@ import 'dart:io';
 import 'package:path/path.dart' as p;
 import 'package:terradart_migrate/terradart_migrate.dart';
 
+import 'lane_surface.dart';
+import 'wrap_lanes.dart';
+
 const _fixture = 'moved_state';
 
 /// Every move the plan must report: `previous_address` → `address`.
@@ -36,15 +39,9 @@ const _expectedMoves = <String, String>{
   'google_pubsub_topic.old': 'google_pubsub_topic.single',
 };
 
-const _workspacePackages = [
-  'terradart_core',
-  'terradart_google',
-  'terradart_google_beta',
-  'terradart_appwrite',
-  'terradart_cloudflare',
-  'terradart_aws',
-  'terradart_time',
-];
+final List<String> _workspacePackages = migrateGatePackages(
+  parseWrapLanes(File(providersPath).readAsStringSync()),
+);
 
 Future<void> main(List<String> args) async {
   final keep = args.contains('--keep');

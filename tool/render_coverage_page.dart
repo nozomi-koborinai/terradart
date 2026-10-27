@@ -1,11 +1,11 @@
 // render_coverage_page.dart — generate the site's /docs/coverage/ pages.
 //
 // Renders website/src/content/docs/docs/coverage/: an overview (index.md)
-// plus one page per provider package, each from that package's
-// wrap-generated catalog (package:terradart_<provider>/catalog.dart) and a
-// tfType → example back-reference map walked out of synthed
-// examples/*_quickstart/tf-out/main.tf.json files. The committed pages are
-// GENERATED artifacts: humans edit this generator, never the markdown.
+// plus one page per tool/providers.yaml lane, each from that package's
+// wrap-generated `_catalog.g.dart` and a tfType to example back-reference
+// map walked out of synthed examples/*_quickstart/tf-out/main.tf.json
+// files. The committed pages are GENERATED artifacts: humans edit this
+// generator, never the markdown.
 //
 // Usage:
 //   dart tool/example_synth_gates.dart --skip-validate   # populate tf-out
@@ -21,11 +21,8 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:terradart_appwrite/catalog.dart' as appwrite;
-import 'package:terradart_aws/catalog.dart' as aws;
-import 'package:terradart_cloudflare/catalog.dart' as cloudflare;
-import 'package:terradart_google/catalog.dart' as google;
-import 'package:terradart_google_beta/catalog.dart' as google_beta;
+import 'lane_surface.dart';
+import 'wrap_lanes.dart';
 
 const incompleteQuickstartTfOutExit = 2;
 
@@ -57,84 +54,43 @@ typedef CoverageProvider = ({
   List<CatalogItem> catalog,
 });
 
-/// Every provider package with a catalog, in the order the site lists them.
-final List<CoverageProvider> providers = [
-  (
-    slug: 'google',
-    title: 'Google Cloud',
-    package: 'terradart_google',
-    source: 'hashicorp/google',
-    catalog: [
-      for (final e in google.terradartCatalog)
-        (
-          tfType: e.tfType,
-          className: e.className,
-          barrel: e.barrel,
-          kind: e.kind.name,
-        ),
-    ],
-  ),
-  (
-    slug: 'google-beta',
-    title: 'Google Cloud (beta-only)',
-    package: 'terradart_google_beta',
-    source: 'hashicorp/google-beta',
-    catalog: [
-      for (final e in google_beta.terradartCatalog)
-        (
-          tfType: e.tfType,
-          className: e.className,
-          barrel: e.barrel,
-          kind: e.kind.name,
-        ),
-    ],
-  ),
-  (
-    slug: 'aws',
-    title: 'AWS',
-    package: 'terradart_aws',
-    source: 'hashicorp/aws',
-    catalog: [
-      for (final e in aws.terradartCatalog)
-        (
-          tfType: e.tfType,
-          className: e.className,
-          barrel: e.barrel,
-          kind: e.kind.name,
-        ),
-    ],
-  ),
-  (
-    slug: 'cloudflare',
-    title: 'Cloudflare',
-    package: 'terradart_cloudflare',
-    source: 'cloudflare/cloudflare',
-    catalog: [
-      for (final e in cloudflare.terradartCatalog)
-        (
-          tfType: e.tfType,
-          className: e.className,
-          barrel: e.barrel,
-          kind: e.kind.name,
-        ),
-    ],
-  ),
-  (
-    slug: 'appwrite',
-    title: 'Appwrite',
-    package: 'terradart_appwrite',
-    source: 'appwrite/appwrite',
-    catalog: [
-      for (final e in appwrite.terradartCatalog)
-        (
-          tfType: e.tfType,
-          className: e.className,
-          barrel: e.barrel,
-          kind: e.kind.name,
-        ),
-    ],
-  ),
+/// One coverage page per lane, in `tool/providers.yaml` order.
+///
+/// [readCatalog] supplies the text of that lane's `_catalog.g.dart`.
+/// A lane without [WrapLane.siteTitle] cannot render.
+List<CoverageProvider> coverageProviders(
+  List<WrapLane> lanes,
+  String Function(String path) readCatalog,
+) => [
+  for (final lane in lanes)
+    (
+      slug: lane.name,
+      title:
+          lane.siteTitle ??
+          (throw StateError(
+            'lane ${lane.name}: set siteTitle in $providersPath',
+          )),
+      package: lane.outputPackage.split('/').last,
+      source: lane.source,
+      catalog: [
+        for (final entry in parseCatalogEntries(
+          readCatalog('${lane.outputPackage}/lib/src/_catalog.g.dart'),
+        ))
+          (
+            tfType: entry.tfType,
+            className: entry.className,
+            barrel: entry.barrel,
+            kind: entry.kind,
+          ),
+      ],
+    ),
 ];
+
+/// The committed lanes, read from disk.
+final List<CoverageProvider> providers = coverageProviders(
+  parseWrapLanes(File(providersPath).readAsStringSync()),
+  (path) => File(path).readAsStringSync(),
+);
 
 /// Joins catalog items with their example back-references, sorted by barrel
 /// then tfType (deterministic regardless of input order).

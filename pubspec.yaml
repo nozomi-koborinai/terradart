@@ -153,15 +153,17 @@ workspace:
   - cookbook/lunch-concierge/infra
 dev_dependencies:
   args: any
+  crypto: any
   meta: any
   pub_semver: any
   http: any
   path: any
   test: any
   yaml: any
+  # tool/terraform_api_requirements.dart re-exports the Google API table.
+  # tool/plugin_cache_key.dart reads each curated provider constraint.
   terradart_google:
     path: packages/terradart_google
-  # tool/render_coverage_page.dart reads every provider package's catalog.
   terradart_google_beta:
     path: packages/terradart_google_beta
   terradart_aws:
@@ -177,6 +179,9 @@ dev_dependencies:
     path: packages/terradart_hcl
   terradart_migrate:
     path: packages/terradart_migrate
+  # tool/plugin_cache_key.dart reads the time provider constraint.
+  terradart_time:
+    path: packages/terradart_time
   # tool/example_synth_gates.dart and the CI validate matrix run the OpenTofu
   # `terradart engine --engine tofu` resolves — the one users get;
   # tool/sync_bundled_skill.dart writes the CLI's skill marker.

@@ -16,10 +16,10 @@ void main() {
     String wrap(String lane) => WrapGate.wrap.args(lanes[lane]!).join(' ');
     String lint(String lane) => WrapGate.lint.args(lanes[lane]!).join(' ');
 
-    test('declares the five lanes in order', () {
+    test('declares the committed lanes', () {
       expect(
         lanes.keys,
-        equals(['google', 'google-beta', 'appwrite', 'cloudflare', 'aws']),
+        containsAll(['google', 'google-beta', 'appwrite', 'cloudflare', 'aws']),
       );
     });
 
