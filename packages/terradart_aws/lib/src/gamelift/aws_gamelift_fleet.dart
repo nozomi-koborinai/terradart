@@ -1543,6 +1543,12 @@ extension type const GameliftFleetEc2InstanceType._(TfArg<String> _)
   static const c8a2xlarge = GameliftFleetEc2InstanceType._(
     TfArgLiteral('c8a.2xlarge'),
   );
+  static const c8a4xlarge = GameliftFleetEc2InstanceType._(
+    TfArgLiteral('c8a.4xlarge'),
+  );
+  static const c8a8xlarge = GameliftFleetEc2InstanceType._(
+    TfArgLiteral('c8a.8xlarge'),
+  );
   static const c8iLarge = GameliftFleetEc2InstanceType._(
     TfArgLiteral('c8i.large'),
   );
@@ -1551,6 +1557,12 @@ extension type const GameliftFleetEc2InstanceType._(TfArg<String> _)
   );
   static const c8i2xlarge = GameliftFleetEc2InstanceType._(
     TfArgLiteral('c8i.2xlarge'),
+  );
+  static const c8i4xlarge = GameliftFleetEc2InstanceType._(
+    TfArgLiteral('c8i.4xlarge'),
+  );
+  static const c8i8xlarge = GameliftFleetEc2InstanceType._(
+    TfArgLiteral('c8i.8xlarge'),
   );
   static const c9gMedium = GameliftFleetEc2InstanceType._(
     TfArgLiteral('c9g.medium'),
@@ -1564,6 +1576,12 @@ extension type const GameliftFleetEc2InstanceType._(TfArg<String> _)
   static const c9g2xlarge = GameliftFleetEc2InstanceType._(
     TfArgLiteral('c9g.2xlarge'),
   );
+  static const c9g4xlarge = GameliftFleetEc2InstanceType._(
+    TfArgLiteral('c9g.4xlarge'),
+  );
+  static const c9g8xlarge = GameliftFleetEc2InstanceType._(
+    TfArgLiteral('c9g.8xlarge'),
+  );
   static const m8aMedium = GameliftFleetEc2InstanceType._(
     TfArgLiteral('m8a.medium'),
   );
@@ -1576,6 +1594,12 @@ extension type const GameliftFleetEc2InstanceType._(TfArg<String> _)
   static const m8a2xlarge = GameliftFleetEc2InstanceType._(
     TfArgLiteral('m8a.2xlarge'),
   );
+  static const m8a4xlarge = GameliftFleetEc2InstanceType._(
+    TfArgLiteral('m8a.4xlarge'),
+  );
+  static const m8a8xlarge = GameliftFleetEc2InstanceType._(
+    TfArgLiteral('m8a.8xlarge'),
+  );
   static const m8iLarge = GameliftFleetEc2InstanceType._(
     TfArgLiteral('m8i.large'),
   );
@@ -1585,6 +1609,15 @@ extension type const GameliftFleetEc2InstanceType._(TfArg<String> _)
   static const m8i2xlarge = GameliftFleetEc2InstanceType._(
     TfArgLiteral('m8i.2xlarge'),
   );
+  static const m8i4xlarge = GameliftFleetEc2InstanceType._(
+    TfArgLiteral('m8i.4xlarge'),
+  );
+  static const m8i8xlarge = GameliftFleetEc2InstanceType._(
+    TfArgLiteral('m8i.8xlarge'),
+  );
+  static const m9gMedium = GameliftFleetEc2InstanceType._(
+    TfArgLiteral('m9g.medium'),
+  );
   static const m9gLarge = GameliftFleetEc2InstanceType._(
     TfArgLiteral('m9g.large'),
   );
@@ -1593,6 +1626,12 @@ extension type const GameliftFleetEc2InstanceType._(TfArg<String> _)
   );
   static const m9g2xlarge = GameliftFleetEc2InstanceType._(
     TfArgLiteral('m9g.2xlarge'),
+  );
+  static const m9g4xlarge = GameliftFleetEc2InstanceType._(
+    TfArgLiteral('m9g.4xlarge'),
+  );
+  static const m9g8xlarge = GameliftFleetEc2InstanceType._(
+    TfArgLiteral('m9g.8xlarge'),
   );
 
   static const List<GameliftFleetEc2InstanceType> values = [
@@ -2105,23 +2144,36 @@ extension type const GameliftFleetEc2InstanceType._(TfArg<String> _)
     c8aLarge,
     c8aXlarge,
     c8a2xlarge,
+    c8a4xlarge,
+    c8a8xlarge,
     c8iLarge,
     c8iXlarge,
     c8i2xlarge,
+    c8i4xlarge,
+    c8i8xlarge,
     c9gMedium,
     c9gLarge,
     c9gXlarge,
     c9g2xlarge,
+    c9g4xlarge,
+    c9g8xlarge,
     m8aMedium,
     m8aLarge,
     m8aXlarge,
     m8a2xlarge,
+    m8a4xlarge,
+    m8a8xlarge,
     m8iLarge,
     m8iXlarge,
     m8i2xlarge,
+    m8i4xlarge,
+    m8i8xlarge,
+    m9gMedium,
     m9gLarge,
     m9gXlarge,
     m9g2xlarge,
+    m9g4xlarge,
+    m9g8xlarge,
   ];
 }
 

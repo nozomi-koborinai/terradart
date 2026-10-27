@@ -16,6 +16,7 @@ export 'src/neptune/aws_neptune_cluster.dart'
         NeptuneClusterIdentifier,
         NeptuneClusterIdentifierChoice,
         NeptuneClusterIdentifierPrefix,
+        NeptuneClusterNetworkType,
         NeptuneClusterServerlessV2ScalingConfiguration,
         NeptuneClusterStorageType;
 export 'src/neptune/aws_neptune_cluster_endpoint.dart'

@@ -345,6 +345,15 @@ providers:
       expect(aws.hintsRepo, 'hashicorp/terraform-provider-aws');
       expect(staleHints(aws.schemaDir), isEmpty);
     });
+
+    test('every hints lane pins its hints to the fixture version', () {
+      for (final lane in parseWrapLanes(
+        File(providersPath).readAsStringSync(),
+      )) {
+        if (!lane.providerEnums) continue;
+        expect(staleHints(lane.schemaDir), isEmpty, reason: lane.name);
+      }
+    });
   });
 
   group('staleHints', () {

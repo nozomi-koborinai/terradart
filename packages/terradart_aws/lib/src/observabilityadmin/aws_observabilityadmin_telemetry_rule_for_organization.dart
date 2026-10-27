@@ -288,9 +288,13 @@ extension type const ObservabilityadminTelemetryRuleForOrganizationTelemetryType
       ObservabilityadminTelemetryRuleForOrganizationTelemetryType._(
         TfArgLiteral('Traces'),
       );
+  static const insights =
+      ObservabilityadminTelemetryRuleForOrganizationTelemetryType._(
+        TfArgLiteral('Insights'),
+      );
 
   static const List<ObservabilityadminTelemetryRuleForOrganizationTelemetryType>
-  values = [logs, metrics, traces];
+  values = [logs, metrics, traces, insights];
 }
 
 /// Typed helper for the `rule.destination_configuration` block of

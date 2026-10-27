@@ -219,12 +219,12 @@ final class _AwsLeftoverStack implements CoverageStackGenerator {
     // none out can tell a stale knob.
     if (leftOut.isEmpty) {
       final stale = {
-        ..._extraParams.keys,
+        ..._requiredAtValidate.keys,
         ..._listCounts.keys,
       }.difference(_usedKeys).toList()..sort();
       if (stale.isNotEmpty) {
         throw StateError(
-          'Unused _extraParams / _listCounts keys:\n  ${stale.join('\n  ')}',
+          'Unused _requiredAtValidate / _listCounts keys:\n  ${stale.join('\n  ')}',
         );
       }
     }
@@ -429,10 +429,7 @@ class _Extra {
   final String value;
 }
 
-/// Optional parameters a factory needs anyway, because the provider
-/// enforces an `exactly_one_of` / `at_least_one_of` group (or a lookup key
-/// on a data source) at validate time.
-const _extraParams = <String, List<String>>{
+const _requiredAtValidate = <String, List<String>>{
   'AccountaccessEntitlementPrincipalRole': ['principal'],
   'AgentregistryRegistryDiscoveryConfiguration': ['authorizerConfiguration'],
   'AgentregistryRegistryCustomJwtAuthorizer': ['allowedAudience'],
@@ -516,6 +513,8 @@ const _extraParams = <String, List<String>>{
   'AwsCloudwatchLogS3TableIntegrationSource': ['dataSource'],
   'AwsCloudwatchLogTransformer': ['transformerConfig'],
   'AwsCloudwatchMetricAlarm': ['metricName'],
+  'AwsCloudwatchomniAccessGrant': ['principal'],
+  'CloudwatchomniAccessGrantPrincipal': ['principalId'],
   'AwsCodeguruprofilerProfilingGroup': ['agentOrchestrationConfig'],
   'AwsCognitoLogDeliveryConfiguration': ['logConfigurations'],
   'AwsCognitoManagedLoginBranding': ['settings'],
@@ -673,6 +672,7 @@ const _extraParams = <String, List<String>>{
   'AwsResiliencehubv2Policy': ['multiAz'],
   'AwsResiliencehubv2Service': ['permissionModel'],
   'AwsRoute': ['destinationCidrBlock', 'carrierGatewayId'],
+  'AwsRoute53domainsDelegationSignerRecord': ['signingAttributes'],
   'AwsRoute53domainsDomain': [
     'adminContact',
     'registrantContact',
@@ -897,10 +897,10 @@ const _extraParams = <String, List<String>>{
   'WorkspaceswebSessionLoggerEventFilter': ['include'],
 };
 
-/// The variant of sealed type [sealed] to construct: the one whose member
-/// `_extraParams` entry of [sealed] (a block that collapsed into its sealed
-/// type) or of [owner] names, else the first. A collapsed block keeps its
-/// ledger entries under its own class name.
+/// The variant of sealed type [sealed] to construct: the member a
+/// `_requiredAtValidate` entry of [sealed] (a block that collapsed into its
+/// sealed type) or of [owner] names, else the first. A collapsed block
+/// keeps its ledger entries under its own class name.
 String _sealedChoice(
   String sealed,
   Map<String, _ClassInfo> helpers, {
@@ -908,9 +908,9 @@ String _sealedChoice(
   required Set<String> sensitive,
   required String owner,
 }) {
-  final ownExtras = _extraParams[sealed];
+  final ownExtras = _requiredAtValidate[sealed];
   if (ownExtras != null) _usedKeys.add(sealed);
-  final extras = ownExtras ?? _extraParams[owner] ?? const <String>[];
+  final extras = ownExtras ?? _requiredAtValidate[owner] ?? const <String>[];
   final variants = [
     for (final v in _sealedVariants[sealed]!)
       (v, helpers[v]!.requiredParams.single),
@@ -940,7 +940,7 @@ String _sealedChoice(
 }
 
 /// Whether [name] is a variant member of one of the sealed [params], which
-/// an `_extraParams` entry names to pick that variant.
+/// an `_requiredAtValidate` entry names to pick that variant.
 bool _isSealedMember(
   List<_Param> params,
   String name,
@@ -982,7 +982,7 @@ List<_Param> _extraSlots(
 }
 
 List<_Extra> _extras(_Factory f, Map<String, _ClassInfo> helpers) {
-  final extras = _extraParams[f.className];
+  final extras = _requiredAtValidate[f.className];
   if (extras == null) return const [];
   _usedKeys.add(f.className);
   return [
@@ -1490,7 +1490,7 @@ String _constructHelper(
   if (depth > _maxDepth) return '$ctor()';
   final info = helpers[className];
   if (info == null) return '$ctor()';
-  final extras = _extraParams[className];
+  final extras = _requiredAtValidate[className];
   if (extras != null) _usedKeys.add(className);
   final params = [
     ...info.requiredParams,

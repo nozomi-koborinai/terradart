@@ -67,12 +67,16 @@ extension type const DatasyncLocationFsxOpenzfsFileSystemVersion._(
   static const nfs41 = DatasyncLocationFsxOpenzfsFileSystemVersion._(
     TfArgLiteral('NFS4_1'),
   );
+  static const nfs42 = DatasyncLocationFsxOpenzfsFileSystemVersion._(
+    TfArgLiteral('NFS4_2'),
+  );
 
   static const List<DatasyncLocationFsxOpenzfsFileSystemVersion> values = [
     automatic,
     nfs3,
     nfs40,
     nfs41,
+    nfs42,
   ];
 }
 

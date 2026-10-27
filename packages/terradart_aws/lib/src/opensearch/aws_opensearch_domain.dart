@@ -575,12 +575,16 @@ extension type const OpensearchDomainTlsSecurityPolicy._(TfArg<String> _)
       OpensearchDomainTlsSecurityPolicy._(
         TfArgLiteral('Policy-Min-TLS-1-2-RFC9151-FIPS-2024-08'),
       );
+  static const policyMinTls12FipsPq202610 = OpensearchDomainTlsSecurityPolicy._(
+    TfArgLiteral('Policy-Min-TLS-1-2-FIPS-PQ-2026-10'),
+  );
 
   static const List<OpensearchDomainTlsSecurityPolicy> values = [
     policyMinTls10201907,
     policyMinTls12201907,
     policyMinTls12Pfs202310,
     policyMinTls12Rfc9151Fips202408,
+    policyMinTls12FipsPq202610,
   ];
 }
 

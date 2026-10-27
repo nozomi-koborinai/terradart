@@ -63,8 +63,23 @@ The sealed type is
 The weekly `appwrite/appwrite` pin moved from 2.0.0-beta.1 to 2.3.0.
 `terradart_appwrite` follows that pin.
 
-The weekly `hashicorp/aws` pin moved from 6.68.0 to 6.69.1. `terradart_aws`
-follows that pin.
+The weekly `hashicorp/aws` pin moved from 6.68.0 to 6.69.1, and then to
+6.70.0. `terradart_aws` follows that pin.
+
+### DocumentDB ungraceful enum takes its block name
+
+**Breaking (`terradart_aws`).** Provider 6.70.0 adds
+`workflow.step.rds_switchover_read_replica_config.ungraceful`, whose only
+value is `promoteReadReplica`. The DocumentDB `ungraceful` input stays
+`failover`, so the two enums no longer share a type.
+`ArcregionswitchPlanUngracefulUngraceful` is removed.
+`ArcregionswitchPlanDocumentDbConfigUngraceful.ungraceful` is
+`ArcregionswitchPlanDocumentDbConfigUngracefulUngraceful`. `.failover` is
+that type's member. The Terraform JSON is unchanged.
+
+| Before | After |
+|---|---|
+| `ArcregionswitchPlanUngracefulUngraceful.failover` | `ArcregionswitchPlanDocumentDbConfigUngracefulUngraceful.failover` |
 
 ### Bedrock parsing foundation-model helper takes its parent name
 

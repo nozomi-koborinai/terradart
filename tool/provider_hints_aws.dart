@@ -33,6 +33,7 @@ import 'package:path/path.dart' as p;
 import 'package:terradart_codegen/src/codegen/exclusive_groups.dart';
 
 import 'extract_provider_hints.dart';
+import 'http_retry.dart';
 
 /// Whether [root] is a hashicorp/aws source tree.
 bool isAwsProviderSource(Directory root) =>
@@ -794,7 +795,7 @@ Future<void> downloadAwsSdkEnums(
           'https://raw.githubusercontent.com/aws/aws-sdk-go-v2/'
           '$sub/${e.value.version}/$sub/types/enums.go',
         );
-        final response = await (await client.getUrl(url)).close();
+        final response = await getRetryingTransient(client, url);
         if (response.statusCode == 404) {
           await response.drain<void>();
           continue;

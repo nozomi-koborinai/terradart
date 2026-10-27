@@ -4,7 +4,10 @@
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `aws_dx_macsec_key_association`.
-const Set<String> _awsDxMacsecKeyAssociationSensitive = <String>{};
+const Set<String> _awsDxMacsecKeyAssociationSensitive = <String>{
+  'cak_wo',
+  'ckn_wo',
+};
 
 /// Factory wrapper for `aws_dx_macsec_key_association`.
 final class AwsDxMacsecKeyAssociation extends Resource {
@@ -13,7 +16,11 @@ final class AwsDxMacsecKeyAssociation extends Resource {
   AwsDxMacsecKeyAssociation(
     super.localName, {
     TfArg<String>? cak,
+    Sensitive<String>? cakWo,
+    TfArg<num>? cakWoVersion,
     TfArg<String>? ckn,
+    Sensitive<String>? cknWo,
+    TfArg<num>? cknWoVersion,
     required TfArg<String> connectionId,
     TfArg<String>? region,
     TfArg<String>? secretArn,
@@ -25,7 +32,11 @@ final class AwsDxMacsecKeyAssociation extends Resource {
          terraformType: tfType,
          argMap: {
            'cak': ?cak,
+           'cak_wo': ?cakWo,
+           'cak_wo_version': ?cakWoVersion,
            'ckn': ?ckn,
+           'ckn_wo': ?cknWo,
+           'ckn_wo_version': ?cknWoVersion,
            'connection_id': connectionId,
            'region': ?region,
            'secret_arn': ?secretArn,
@@ -51,8 +62,14 @@ final class AwsDxMacsecKeyAssociation extends Resource {
   /// Reference to `cak` attribute.
   TfRef<String> get cak => TfRef.attribute<String>(this, 'cak');
 
+  /// Reference to `cak_wo_version` attribute.
+  TfRef<num> get cakWoVersion => TfRef.attribute<num>(this, 'cak_wo_version');
+
   /// Reference to `ckn` attribute.
   TfRef<String> get ckn => TfRef.attribute<String>(this, 'ckn');
+
+  /// Reference to `ckn_wo_version` attribute.
+  TfRef<num> get cknWoVersion => TfRef.attribute<num>(this, 'ckn_wo_version');
 
   /// Reference to `connection_id` attribute.
   TfRef<String> get connectionId =>

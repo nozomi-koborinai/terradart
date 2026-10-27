@@ -47,6 +47,21 @@ extension type const NeptuneClusterEngine._(TfArg<String> _)
   static const List<NeptuneClusterEngine> values = [neptune];
 }
 
+/// Neptune Cluster Network enum for `network_type`.
+extension type const NeptuneClusterNetworkType._(TfArg<String> _)
+    implements TfArg<String> {
+  NeptuneClusterNetworkType.variable(String name)
+    : this._(TfArg.variable(name));
+  NeptuneClusterNetworkType.expression(String template)
+    : this._(TfArg.expression(template));
+  const NeptuneClusterNetworkType.arg(TfArg<String> arg) : this._(arg);
+
+  static const dual = NeptuneClusterNetworkType._(TfArgLiteral('DUAL'));
+  static const ipv4 = NeptuneClusterNetworkType._(TfArgLiteral('IPV4'));
+
+  static const List<NeptuneClusterNetworkType> values = [dual, ipv4];
+}
+
 /// Neptune Cluster Storage enum for `storage_type`.
 extension type const NeptuneClusterStorageType._(TfArg<String> _)
     implements TfArg<String> {
@@ -184,6 +199,7 @@ final class AwsNeptuneCluster extends Resource {
     TfArg<String>? neptuneClusterParameterGroupName,
     TfArg<String>? neptuneInstanceParameterGroupName,
     TfArg<String>? neptuneSubnetGroupName,
+    NeptuneClusterNetworkType? networkType,
     TfArg<num>? port,
     TfArg<String>? preferredBackupWindow,
     TfArg<String>? preferredMaintenanceWindow,
@@ -228,6 +244,7 @@ final class AwsNeptuneCluster extends Resource {
            'neptune_instance_parameter_group_name':
                ?neptuneInstanceParameterGroupName,
            'neptune_subnet_group_name': ?neptuneSubnetGroupName,
+           'network_type': ?networkType,
            'port': ?port,
            'preferred_backup_window': ?preferredBackupWindow,
            'preferred_maintenance_window': ?preferredMaintenanceWindow,
@@ -354,6 +371,10 @@ final class AwsNeptuneCluster extends Resource {
   /// Reference to `neptune_subnet_group_name` attribute.
   TfRef<String> get neptuneSubnetGroupName =>
       TfRef.attribute<String>(this, 'neptune_subnet_group_name');
+
+  /// Reference to `network_type` attribute.
+  TfRef<String> get networkType =>
+      TfRef.attribute<String>(this, 'network_type');
 
   /// Reference to `port` attribute.
   TfRef<num> get port => TfRef.attribute<num>(this, 'port');
