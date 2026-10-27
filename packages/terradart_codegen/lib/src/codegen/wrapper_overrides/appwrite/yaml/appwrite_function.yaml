@@ -3,3 +3,6 @@ deriveClassDoc: true
 deriveOutputGetters: true
 deriveEnums: true
 deriveExactlyOne: true
+
+sealedNames:
+  "interval, schedule": schedule

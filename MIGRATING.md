@@ -148,8 +148,9 @@ default 5). `api_key` and `organization_api_key` stay off the class.
 ### User password, webhook password, and function schedule
 
 **Breaking (`terradart_appwrite`)** — the same pin seals three more
-slots. `password` and `authPassword` stay optional. `schedule` is no
-longer its own argument.
+slots. `password` and `authPassword` stay optional. `schedule` stays
+the argument. It is now the sealed choice `FunctionSchedule`.
+`.schedule` wraps the CRON string. `.interval` is minutes.
 
 | Before | After |
 |---|---|
@@ -157,13 +158,12 @@ longer its own argument.
 | *(not available)* | `AppwriteAuthUser('demo', password: .passwordWo(password))` |
 | `AppwriteWebhook('hook', authPassword: password, ...)` | `AppwriteWebhook('hook', authPassword: .authPassword(password), ...)` |
 | *(not available)* | `AppwriteWebhook('hook', authPassword: .authPasswordWo(password), ...)` |
-| `AppwriteFunction('fn', schedule: .literal('0 2 * * *'), ...)` | `AppwriteFunction('fn', intervalOrSchedule: .schedule(.literal('0 2 * * *')), ...)` |
-| *(not available)* | `AppwriteFunction('fn', intervalOrSchedule: .interval(.literal(60)), ...)` |
+| `AppwriteFunction('fn', schedule: .literal('0 2 * * *'), ...)` | `AppwriteFunction('fn', schedule: .schedule(.literal('0 2 * * *')), ...)` |
+| *(not available)* | `AppwriteFunction('fn', schedule: .interval(.literal(60)), ...)` |
 
 `password` is `variable<String>('password', sensitive: true)`.
 `passwordWoVersion` and `authPasswordWoVersion` bump a write-only value.
-`interval` is minutes. The provider rejects setting both `interval` and
-`schedule`.
+The provider rejects setting both `interval` and `schedule`.
 
 ### Provider 8.7.0 dropped conflicts on thirteen slots
 

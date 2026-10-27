@@ -7,8 +7,6 @@
 # `sealedNames: {"<members>": <concept>}` to the override and
 # re-running wrap, which drops the entry. `wrap --check` fails
 # on a missing or stale entry.
-appwrite_function:
-  "interval, schedule": "awaiting-name: appwrite/appwrite 2.3.0"
 aws_observabilityadmin_telemetry_evaluation:
   "all_regions, regions": "awaiting-name: hashicorp/aws 6.69.1"
 aws_observabilityadmin_telemetry_evaluation_for_organization:
