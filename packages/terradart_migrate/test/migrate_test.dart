@@ -1402,7 +1402,7 @@ resource "azurerm_resource_group" "app" {
           },
           'provider': {
             'azurerm': {
-              'features': [{}],
+              'features': [<String, Object?>{}],
             },
           },
           'resource': {
