@@ -6,6 +6,8 @@ import 'dart:convert';
 import 'package:terradart_appwrite/provider.dart'
     show kAppwriteProviderVersionConstraint;
 import 'package:terradart_aws/provider.dart' show kAwsProviderVersionConstraint;
+import 'package:terradart_azure/provider.dart'
+    show kAzureProviderVersionConstraint;
 import 'package:terradart_cloudflare/provider.dart'
     show kCloudflareProviderVersionConstraint;
 import 'package:terradart_core/internal.dart'
@@ -259,6 +261,199 @@ const _providerRecipes = <String, _ProviderRecipe>{
     'use_fips_endpoint': _Scalar('useFipsEndpoint'),
     'use_dualstack_endpoint': _Scalar('useDualstackEndpoint'),
   }, kAwsProviderVersionConstraint),
+  'azurerm': _ProviderRecipe('terradart_azure', 'AzureProvider', {
+    'subscription_id': _Scalar('subscriptionId'),
+    'tenant_id': _Scalar('tenantId'),
+    'auxiliary_tenant_ids': _Strings('auxiliaryTenantIds'),
+    'environment': _Scalar('environment'),
+    'metadata_host': _Scalar('metadataHost'),
+    'use_oidc': _Scalar('useOidc'),
+    'use_msi': _Scalar('useMsi'),
+    'msi_endpoint': _Scalar('msiEndpoint'),
+    'msi_api_version': _Scalar('msiApiVersion'),
+    'use_cli': _Scalar('useCli'),
+    'use_aks_workload_identity': _Scalar('useAksWorkloadIdentity'),
+    'partner_id': _Scalar('partnerId'),
+    'disable_correlation_request_id': _Scalar('disableCorrelationRequestId'),
+    'disable_terraform_partner_id': _Scalar('disableTerraformPartnerId'),
+    'resource_provider_registrations': _Scalar('resourceProviderRegistrations'),
+    'resource_providers_to_register': _Strings('resourceProvidersToRegister'),
+    'storage_use_azuread': _Scalar('storageUseAzuread'),
+    'features': _Blocks('features', 'AzureFeatures', {
+      'persist_id_on_create_before_polling_for_completion': _Scalar(
+        'persistIdOnCreateBeforePollingForCompletion',
+      ),
+      'skip_import_check_on_create_and_allow_overwriting_existing_resources':
+          _Scalar(
+            'skipImportCheckOnCreateAndAllowOverwritingExistingResources',
+          ),
+      'enhanced_validation':
+          _Blocks('enhancedValidation', 'AzureEnhancedValidationFeatures', {
+            'locations': _Scalar('locations'),
+            'resource_providers': _Scalar('resourceProviders'),
+            'preflight_enabled': _Scalar('preflightEnabled'),
+            'preflight_location_fallback': _Scalar('preflightLocationFallback'),
+          }, repeated: false),
+      'api_management': _Blocks('apiManagement', 'AzureApiManagementFeatures', {
+        'purge_soft_delete_on_destroy': _Scalar('purgeSoftDeleteOnDestroy'),
+        'recover_soft_deleted': _Scalar('recoverSoftDeleted'),
+      }, repeated: false),
+      'app_configuration':
+          _Blocks('appConfiguration', 'AzureAppConfigurationFeatures', {
+            'purge_soft_delete_on_destroy': _Scalar('purgeSoftDeleteOnDestroy'),
+            'recover_soft_deleted': _Scalar('recoverSoftDeleted'),
+          }, repeated: false),
+      'application_insights': _Blocks(
+        'applicationInsights',
+        'AzureApplicationInsightsFeatures',
+        {'disable_generated_rule': _Scalar('disableGeneratedRule')},
+        repeated: false,
+      ),
+      'cognitive_account': _Blocks(
+        'cognitiveAccount',
+        'AzureCognitiveAccountFeatures',
+        {'purge_soft_delete_on_destroy': _Scalar('purgeSoftDeleteOnDestroy')},
+        repeated: false,
+      ),
+      'key_vault': _Blocks('keyVault', 'AzureKeyVaultFeatures', {
+        'purge_soft_delete_on_destroy': _Scalar('purgeSoftDeleteOnDestroy'),
+        'purge_soft_deleted_certificates_on_destroy': _Scalar(
+          'purgeSoftDeletedCertificatesOnDestroy',
+        ),
+        'purge_soft_deleted_keys_on_destroy': _Scalar(
+          'purgeSoftDeletedKeysOnDestroy',
+        ),
+        'purge_soft_deleted_secrets_on_destroy': _Scalar(
+          'purgeSoftDeletedSecretsOnDestroy',
+        ),
+        'purge_soft_deleted_hardware_security_modules_on_destroy': _Scalar(
+          'purgeSoftDeletedHardwareSecurityModulesOnDestroy',
+        ),
+        'purge_soft_deleted_hardware_security_module_keys_on_destroy': _Scalar(
+          'purgeSoftDeletedHardwareSecurityModuleKeysOnDestroy',
+        ),
+        'recover_soft_deleted_certificates': _Scalar(
+          'recoverSoftDeletedCertificates',
+        ),
+        'recover_soft_deleted_key_vaults': _Scalar(
+          'recoverSoftDeletedKeyVaults',
+        ),
+        'recover_soft_deleted_keys': _Scalar('recoverSoftDeletedKeys'),
+        'recover_soft_deleted_secrets': _Scalar('recoverSoftDeletedSecrets'),
+        'recover_soft_deleted_hardware_security_module_keys': _Scalar(
+          'recoverSoftDeletedHardwareSecurityModuleKeys',
+        ),
+      }, repeated: false),
+      'log_analytics_workspace': _Blocks(
+        'logAnalyticsWorkspace',
+        'AzureLogAnalyticsWorkspaceFeatures',
+        {
+          'permanently_delete_on_destroy': _Scalar(
+            'permanentlyDeleteOnDestroy',
+          ),
+        },
+        repeated: false,
+      ),
+      'template_deployment':
+          _Blocks('templateDeployment', 'AzureTemplateDeploymentFeatures', {
+            'delete_nested_items_during_deletion': _Scalar(
+              'deleteNestedItemsDuringDeletion',
+            ),
+          }, repeated: false),
+      'virtual_machine':
+          _Blocks('virtualMachine', 'AzureVirtualMachineFeatures', {
+            'detach_implicit_data_disk_on_deletion': _Scalar(
+              'detachImplicitDataDiskOnDeletion',
+            ),
+            'delete_os_disk_on_deletion': _Scalar('deleteOsDiskOnDeletion'),
+            'skip_shutdown_and_force_delete': _Scalar(
+              'skipShutdownAndForceDelete',
+            ),
+          }, repeated: false),
+      'virtual_machine_scale_set': _Blocks(
+        'virtualMachineScaleSet',
+        'AzureVirtualMachineScaleSetFeatures',
+        {
+          'force_delete': _Scalar('forceDelete'),
+          'reimage_on_manual_upgrade': _Scalar('reimageOnManualUpgrade'),
+          'roll_instances_when_required': _Scalar('rollInstancesWhenRequired'),
+          'scale_to_zero_before_deletion': _Scalar('scaleToZeroBeforeDeletion'),
+        },
+        repeated: false,
+      ),
+      'resource_group': _Blocks('resourceGroup', 'AzureResourceGroupFeatures', {
+        'prevent_deletion_if_contains_resources': _Scalar(
+          'preventDeletionIfContainsResources',
+        ),
+      }, repeated: false),
+      'recovery_services_vaults': _Blocks(
+        'recoveryServicesVaults',
+        'AzureRecoveryServicesVaultsFeatures',
+        {
+          'recover_soft_deleted_backup_protected_vm': _Scalar(
+            'recoverSoftDeletedBackupProtectedVm',
+          ),
+        },
+        repeated: false,
+      ),
+      'managed_disk': _Blocks('managedDisk', 'AzureManagedDiskFeatures', {
+        'expand_without_downtime': _Scalar('expandWithoutDowntime'),
+      }, repeated: false),
+      'storage': _Blocks('storage', 'AzureStorageFeatures', {
+        'data_plane_available': _Scalar('dataPlaneAvailable'),
+      }, repeated: false),
+      'subscription': _Blocks('subscription', 'AzureSubscriptionFeatures', {
+        'prevent_cancellation_on_destroy': _Scalar(
+          'preventCancellationOnDestroy',
+        ),
+      }, repeated: false),
+      'postgresql_flexible_server': _Blocks(
+        'postgresqlFlexibleServer',
+        'AzurePostgresqlFlexibleServerFeatures',
+        {
+          'restart_server_on_configuration_value_change': _Scalar(
+            'restartServerOnConfigurationValueChange',
+          ),
+        },
+        repeated: false,
+      ),
+      'machine_learning':
+          _Blocks('machineLearning', 'AzureMachineLearningFeatures', {
+            'purge_soft_deleted_workspace_on_destroy': _Scalar(
+              'purgeSoftDeletedWorkspaceOnDestroy',
+            ),
+          }, repeated: false),
+      'recovery_service':
+          _Blocks('recoveryService', 'AzureRecoveryServiceFeatures', {
+            'vm_backup_stop_protection_and_retain_data_on_destroy': _Scalar(
+              'vmBackupStopProtectionAndRetainDataOnDestroy',
+            ),
+            'vm_backup_suspend_protection_and_retain_data_on_destroy': _Scalar(
+              'vmBackupSuspendProtectionAndRetainDataOnDestroy',
+            ),
+            'purge_protected_items_from_vault_on_destroy': _Scalar(
+              'purgeProtectedItemsFromVaultOnDestroy',
+            ),
+          }, repeated: false),
+      'netapp': _Blocks('netapp', 'AzureNetappFeatures', {
+        'delete_backups_on_backup_vault_destroy': _Scalar(
+          'deleteBackupsOnBackupVaultDestroy',
+        ),
+        'prevent_volume_destruction': _Scalar('preventVolumeDestruction'),
+      }, repeated: false),
+      'databricks_workspace': _Blocks(
+        'databricksWorkspace',
+        'AzureDatabricksWorkspaceFeatures',
+        {'force_delete': _Scalar('forceDelete')},
+        repeated: false,
+      ),
+      'servicebus': _Blocks('servicebus', 'AzureServicebusFeatures', {
+        'auto_delete_subscription_default_rule': _Scalar(
+          'autoDeleteSubscriptionDefaultRule',
+        ),
+      }, repeated: false),
+    }, repeated: false),
+  }, kAzureProviderVersionConstraint),
   'time': _ProviderRecipe(
     'terradart_time',
     'TimeProvider',

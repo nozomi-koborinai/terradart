@@ -81,6 +81,7 @@ import 'package:terradart_codegen/src/codegen/exclusive_groups.dart';
 
 import 'http_retry.dart';
 import 'provider_hints_aws.dart';
+import 'provider_hints_azurerm.dart';
 
 const _exitUsage = 64;
 const _exitData = 65;
@@ -665,17 +666,21 @@ String? groupSkipReason(Map<String, dynamic> block, List<List<String>> group) {
 String _readme({
   required String repo,
   required String schemaDir,
-  required bool aws,
+  required _HintDialect dialect,
 }) =>
     '''
 # Provider enum hints — $repo
 
 One file per resource type: the enum value sets the provider's Go source
-enforces (${aws ? _awsSources : _frameworkSources}), as a Magic Modules YAML subset
+enforces (${switch (dialect) {
+      _HintDialect.aws => _awsSources,
+      _HintDialect.azurerm => _azurermSources,
+      _HintDialect.framework => _frameworkSources,
+    }}), as a Magic Modules YAML subset
 (`properties[].api_name` / `enum_values`). `terradart wrap
 --provider-enums` merges them into the schema IR (top-level attributes)
 and the nested helper types. `provider_version` must match
-`../provider_version.txt`; `wrap` fails otherwise.${aws ? _awsGroups : _frameworkGroups}
+`../provider_version.txt`; `wrap` fails otherwise.${dialect == _HintDialect.framework ? _frameworkGroups : _awsGroups}
 
 Never hand-edit. Re-extract at the fixture's pin with:
 
@@ -712,6 +717,14 @@ const _awsGroups =
     'conflict with nothing else): the provider accepts none of them, so\n'
     '`wrap` turns each into a nullable sealed type. A conflict neither\n'
     'expresses is listed on stdout.';
+
+enum _HintDialect { framework, aws, azurerm }
+
+const _azurermSources =
+    '`validation.StringInSlice` in the resource schemas under\n'
+    '`internal/services/`, including `PossibleValuesFor*()` sets from the\n'
+    'vendored `go-azure-sdk`';
+
 const _awsSources =
     '`enum.Validate[T]`, `fwtypes.StringEnumType[T]`,\n'
     '`validation.StringInSlice` and `stringvalidator.OneOf` in the resource\n'
@@ -793,6 +806,7 @@ Future<void> main(List<String> args) async {
       ? Directory(sourceDir)
       : await _download(repo, version);
   final aws = isAwsProviderSource(root);
+  final azurerm = !aws && isAzurermProviderSource(root);
   final found = <String, AwsTypeHints>{};
   final unsealed = <String>[];
   var groupValidators = 0;
@@ -819,6 +833,18 @@ Future<void> main(List<String> args) async {
       'extract_provider_hints: ${scan.groupValidators} exactly-one '
       'validator(s), ${scan.unresolvedGroups} relation validator(s) not '
       'evaluable (dropped)',
+    );
+  } else if (azurerm) {
+    final scan = scanAzurermProvider(root);
+    found.addAll(scan.byType);
+    unsealed.addAll(scan.unsealed);
+    print(
+      'extract_provider_hints: ${scan.validators} value-set validator(s) '
+      'in resource schemas, ${scan.unresolved} not evaluable (dropped)',
+    );
+    print(
+      'extract_provider_hints: ${scan.groupValidators} relation '
+      'validator(s), ${scan.unresolvedGroups} not evaluable (dropped)',
     );
   } else {
     final services = Directory(p.join(root.path, 'internal', 'services'));
@@ -939,9 +965,17 @@ Future<void> main(List<String> args) async {
   for (final s in unsealed) {
     print('conflict not sealed: $s');
   }
-  File(
-    p.join(out.path, 'README.md'),
-  ).writeAsStringSync(_readme(repo: repo, schemaDir: schemaDir, aws: aws));
+  File(p.join(out.path, 'README.md')).writeAsStringSync(
+    _readme(
+      repo: repo,
+      schemaDir: schemaDir,
+      dialect: aws
+          ? _HintDialect.aws
+          : azurerm
+          ? _HintDialect.azurerm
+          : _HintDialect.framework,
+    ),
+  );
   print(
     'extract_provider_hints: wrote $hintCount enum hint(s), '
     '$groupCount exactly-one group(s) and $atMostOneCount at-most-one '

@@ -29,7 +29,7 @@ environment:
   sdk: ^3.10.0
 dependencies:
   terradart_core: ^0.35.0
-  terradart_google: ^0.35.0  # or terradart_aws / terradart_cloudflare / terradart_appwrite
+  terradart_google: ^0.35.0  # or terradart_aws / terradart_azure / terradart_cloudflare / terradart_appwrite
 ```
 
 A `Stack` is one Terraform root module, written as a Dart class. This one runs an API on Cloud Run that publishes to a Pub/Sub topic, and tells the app which topic that is:
@@ -226,6 +226,7 @@ Each package wraps an official Terraform provider: one generated factory per res
 | [`terradart_google`](packages/terradart_google) | `hashicorp/google` | **1380 curated resource factories + 472 data sources** (1852 catalog entries) | [![pub](https://img.shields.io/pub/v/terradart_google.svg)](https://pub.dev/packages/terradart_google) |
 | [`terradart_google_beta`](packages/terradart_google_beta) | `hashicorp/google-beta` | the beta-only types (**112 resource factories**); everything also in GA stays in `terradart_google` | [![pub](https://img.shields.io/pub/v/terradart_google_beta.svg)](https://pub.dev/packages/terradart_google_beta) |
 | [`terradart_aws`](packages/terradart_aws) | `hashicorp/aws` | every resource and data source at the pinned provider version | [![pub](https://img.shields.io/pub/v/terradart_aws.svg)](https://pub.dev/packages/terradart_aws) |
+| [`terradart_azure`](packages/terradart_azure) | `hashicorp/azurerm` | every resource and data source at the pinned provider version | [![pub](https://img.shields.io/pub/v/terradart_azure.svg)](https://pub.dev/packages/terradart_azure) |
 | [`terradart_cloudflare`](packages/terradart_cloudflare) | `cloudflare/cloudflare` | every resource and data source at the pinned provider version | [![pub](https://img.shields.io/pub/v/terradart_cloudflare.svg)](https://pub.dev/packages/terradart_cloudflare) |
 | [`terradart_appwrite`](packages/terradart_appwrite) | `appwrite/appwrite` | every resource and data source at the pinned provider version | [![pub](https://img.shields.io/pub/v/terradart_appwrite.svg)](https://pub.dev/packages/terradart_appwrite) |
 | [`terradart_time`](packages/terradart_time) | `hashicorp/time` | `TimeSleep`, the propagation wait for a stack on any provider | [![pub](https://img.shields.io/pub/v/terradart_time.svg)](https://pub.dev/packages/terradart_time) |

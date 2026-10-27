@@ -1,0 +1,6 @@
+outputDir: site_recovery
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+deriveExactlyOne: true

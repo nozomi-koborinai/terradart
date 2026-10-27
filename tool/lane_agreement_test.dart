@@ -95,12 +95,13 @@ void main() {
     }
   });
 
-  test('the migrator has a provider recipe for every lane', () {
+  test('the migrator recipe key is the registry source name', () {
     final emitter = File(
       'packages/terradart_migrate/lib/src/emit/stack_emitter.dart',
     ).readAsStringSync();
     for (final lane in lanes) {
-      expect(emitter, contains("'${lane.name}':"), reason: lane.name);
+      final block = lane.source.split('/').last;
+      expect(emitter, contains("'$block':"), reason: lane.name);
     }
   });
 

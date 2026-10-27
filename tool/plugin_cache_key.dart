@@ -23,6 +23,8 @@ import 'package:terradart_appwrite/provider.dart'
     show kAppwriteProviderSource, kAppwriteProviderVersionConstraint;
 import 'package:terradart_aws/provider.dart'
     show kAwsProviderSource, kAwsProviderVersionConstraint;
+import 'package:terradart_azure/provider.dart'
+    show kAzureProviderSource, kAzureProviderVersionConstraint;
 import 'package:terradart_cloudflare/provider.dart'
     show kCloudflareProviderSource, kCloudflareProviderVersionConstraint;
 import 'package:terradart_google/provider.dart'
@@ -81,6 +83,7 @@ final providerPins = <ProviderPin>[
   const ProviderPin(kProviderSource, kProviderVersionConstraint),
   const ProviderPin(kBetaProviderSource, kBetaProviderVersionConstraint),
   const ProviderPin(kAwsProviderSource, kAwsProviderVersionConstraint),
+  const ProviderPin(kAzureProviderSource, kAzureProviderVersionConstraint),
   const ProviderPin(
     kCloudflareProviderSource,
     kCloudflareProviderVersionConstraint,

@@ -1,5 +1,6 @@
 import 'manifest/appwrite.g.dart';
 import 'manifest/aws.g.dart';
+import 'manifest/azure.g.dart';
 import 'manifest/cloudflare.g.dart';
 import 'manifest/google.g.dart';
 import 'manifest/google_beta.g.dart';
@@ -8,6 +9,7 @@ import 'migrate_manifest.dart';
 
 export 'manifest/appwrite.g.dart';
 export 'manifest/aws.g.dart';
+export 'manifest/azure.g.dart';
 export 'manifest/cloudflare.g.dart';
 export 'manifest/google.g.dart';
 export 'manifest/google_beta.g.dart';
@@ -22,6 +24,7 @@ const List<MigrateManifest> allMigrateManifests = [
   appwriteMigrateManifest,
   cloudflareMigrateManifest,
   awsMigrateManifest,
+  azureMigrateManifest,
   timeMigrateManifest,
 ];
 

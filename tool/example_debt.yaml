@@ -961,3 +961,207 @@ GoogleCloudRunV2InstanceIamMember: awaiting-example: google_cloud_run_v2_instanc
 GoogleCloudRunV2InstanceIamPolicy: awaiting-example: google_cloud_run_v2_instance_iam_policy added in hashicorp/google 8.8.1 (schema bump 2026-10-25)
 GoogleDnsOutboundEndpoint: awaiting-example: google_dns_outbound_endpoint added in hashicorp/google 8.8.1 (schema bump 2026-10-25)
 GoogleDocumentAiSchemaVersion: awaiting-example: google_document_ai_schema_version added in hashicorp/google 8.8.1 (schema bump 2026-10-25)
+
+# Azure factories examples/azure_leftover_quickstart does not construct.
+# terraform validate rejected the generated configuration. The reason is
+# the provider's message. Values the learner could apply are in
+# tool/coverage_dummies/azure.yaml.
+AzurermActiveDirectoryDomainService: provider rejected the coverage stack: invalid value for domain_name (must be a valid FQDN and the first element must be 15 or fewer characters)
+AzurermActiveDirectoryDomainServiceReplicaSet: provider rejected the coverage stack: ID was missing the `domainServices` element
+AzurermActiveDirectoryDomainServiceTrust: provider rejected the coverage stack: Attribute trusted_domain_dns_ips requires 2 item minimum, but config has only 1 declared.
+AzurermApiManagement: provider rejected the coverage stack: invalid value for sku_name (This is not a valid Api Management sku name.)
+AzurermApiManagementCustomDomain: provider rejected the coverage stack: "developer_portal": one of `developer_portal,gateway,management,portal,scm` must be specified
+AzurermApiManagementIdentityProviderGoogle: provider rejected the coverage stack: invalid value for client_id (must start with an identifier containing alphanumeric characters and hyphens and end with '.apps.googleusercontent.com')
+AzurermApiManagementUser: provider rejected the coverage stack: invalid value for user_id (may only contain alphanumeric characters and dashes up to 80 characters in length)
+AzurermAppServiceCertificate: provider rejected the coverage stack: expected 2 or 3 path segments, found 4 segment(s) in `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover`
+AzurermApplicationGateway: provider rejected the coverage stack: "backend": one of `backend,backend_http_settings` must be specified
+AzurermApplicationInsightsWorkbook: provider rejected the coverage stack: "data_json" contains an invalid JSON: invalid character 'l' looking for beginning of value
+AzurermApplicationInsightsWorkbookTemplate: provider rejected the coverage stack: "template_data" contains an invalid JSON: invalid character 'l' looking for beginning of value
+AzurermAutomationRunbook: provider rejected the coverage stack: "content": one of `content,draft,publish_content_link` must be specified
+AzurermBackupPolicyFileShare: provider rejected the coverage stack: invalid value for backup.0.hourly.0.start_time (Time of day must match the format HH:mm where HH is 00-23 and mm is 00 or 30)
+AzurermBackupPolicyVm: provider rejected the coverage stack: invalid value for backup.0.time (Time of day must match the format HH:mm where HH is 00-23 and mm is 00 or 30)
+AzurermBackupPolicyVmWorkload: provider rejected the coverage stack: expected protection_policy.0.backup.0.frequency to be one of ["Daily" "Weekly"], got leftover
+AzurermBlueprintAssignment: provider rejected the coverage stack: parsing "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover": parsing scope prefix: unable to find the scope prefix from the value "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover" with the regex "^((.){1,})/providers/Microsoft.Blueprint/blueprints/(.){1,}/versions/(.){1,}"
+AzurermBotChannelDirectLineSpeech: provider rejected the coverage stack: "cognitive_account_id": one of `cognitive_account_id,cognitive_service_access_key` must be specified
+AzurermBotChannelEmail: provider rejected the coverage stack: "email_password": one of `email_password,magic_code` must be specified
+AzurermCdnFrontdoorBatchRuleSet: provider rejected the coverage stack: expected rule.0.actions.0.modify_request_header.0.operator to be one of ["Append" "Delete" "Overwrite"], got leftover
+AzurermCdnFrontdoorCustomDomain: provider rejected the coverage stack: invalid value for host_name (must be a valid fully qualified domain name)
+AzurermCdnFrontdoorRoute: provider rejected the coverage stack: expected supported_protocols.0 to be one of ["Http" "Https"], got leftover
+AzurermCdnFrontdoorSecret: provider rejected the coverage stack: expected 2 or 3 path segments, found 4 segment(s) in `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover`
+AzurermCdnFrontdoorSecurityPolicy: provider rejected the coverage stack: expected security_policies.0.firewall.0.association.0.patterns_to_match.0 to be one of ["/*"], got leftover
+AzurermChaosStudioCapability: provider rejected the coverage stack: parsing "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover": parsing scope prefix: unable to find the scope prefix from the value "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover" with the regex "^((.){1,})/providers/Microsoft.Chaos/targets/(.){1,}"
+AzurermChaosStudioExperiment: provider rejected the coverage stack: expected steps.0.branch.0.actions.0.action_type to be one of ["continuous" "delay" "discrete"], got leftover
+AzurermCognitiveAccountCustomerManagedKey: provider rejected the coverage stack: expected 2 or 3 path segments, found 4 segment(s) in `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover`
+AzurermConsumptionBudgetManagementGroup: provider rejected the coverage stack: cannot parse "management_group_id" as a management group id: unable to parse Management Group ID "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover"
+AzurermConsumptionBudgetResourceGroup: provider rejected the coverage stack: expected "time_period.0.start_date" to be a valid RFC3339 date, got "leftover": parsing time "leftover" as "2006-01-02T15:04:05Z07:00": cannot parse "leftover" as "2006"
+AzurermConsumptionBudgetSubscription: provider rejected the coverage stack: expected "time_period.0.start_date" to be a valid RFC3339 date, got "leftover": parsing time "leftover" as "2006-01-02T15:04:05Z07:00": cannot parse "leftover" as "2006"
+AzurermContainerAppEnvironmentCertificate: provider rejected the coverage stack: "certificate_blob_base64": all of `certificate_blob_base64,certificate_password` must be specified
+AzurermContainerRegistryCredentialSet: provider rejected the coverage stack: expected 2 or 3 path segments, found 4 segment(s) in `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover`
+AzurermContainerRegistryWebhook: provider rejected the coverage stack: expected actions.0 to be one of ["chart_delete" "chart_push" "delete" "push" "quarantine"], got leftover
+AzurermCustomProvider: provider rejected the coverage stack: "action": one of `action,resource_type` must be specified
+AzurermDataFactoryCustomerManagedKey: provider rejected the coverage stack: expected 2 or 3 path segments, found 4 segment(s) in `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover`
+AzurermDataFactoryDataFlow: provider rejected the coverage stack: "script": one of `script,script_lines` must be specified
+AzurermDataFactoryDatasetAzureSqlTable: provider rejected the coverage stack: ID was missing the `factories` element
+AzurermDataFactoryDatasetDelimitedText: provider rejected the coverage stack: "azure_blob_fs_location": one of `azure_blob_fs_location,azure_blob_storage_location,http_server_location` must be specified
+AzurermDataFactoryDatasetParquet: provider rejected the coverage stack: "azure_blob_fs_location": one of `azure_blob_fs_location,azure_blob_storage_location,http_server_location` must be specified
+AzurermDataFactoryFlowletDataFlow: provider rejected the coverage stack: "script": one of `script,script_lines` must be specified
+AzurermDataFactoryLinkedServiceAzureBlobStorage: provider rejected the coverage stack: "connection_string": one of `connection_string,connection_string_insecure,sas_uri,service_endpoint` must be specified
+AzurermDataFactoryLinkedServiceAzureDatabricks: provider rejected the coverage stack: "access_token": one of `access_token,key_vault_password,msi_workspace_id` must be specified
+AzurermDataFactoryLinkedServiceAzureFunction: provider rejected the coverage stack: "key": one of `key,key_vault_key` must be specified
+AzurermDataFactoryLinkedServiceAzureSqlDatabase: provider rejected the coverage stack: "connection_string": one of `connection_string,key_vault_connection_string` must be specified
+AzurermDataFactoryLinkedServiceDataLakeStorageGen2: provider rejected the coverage stack: "service_principal_id": one of `service_principal_id,service_principal_key,storage_account_key,tenant,use_managed_identity` must be specified
+AzurermDataFactoryLinkedServiceKusto: provider rejected the coverage stack: "service_principal_id": one of `service_principal_id,use_managed_identity` must be specified
+AzurermDataFactoryLinkedServiceSqlServer: provider rejected the coverage stack: "connection_string": one of `connection_string,key_vault_connection_string` must be specified
+AzurermDataFactoryTriggerBlobEvent: provider rejected the coverage stack: "blob_path_begins_with": one of `blob_path_begins_with,blob_path_ends_with` must be specified
+AzurermDataFactoryTriggerSchedule: provider rejected the coverage stack: "pipeline": one of `pipeline,pipeline_name` must be specified
+AzurermDataProtectionBackupPolicyBlobStorage: provider rejected the coverage stack: "operational_default_retention_duration": one of `operational_default_retention_duration,vault_default_retention_duration` must be specified
+AzurermDataProtectionBackupPolicyCosmosdbAccount: provider rejected the coverage stack: backup_schedule must start with 'R/'
+AzurermDataProtectionBackupPolicyDataLakeStorage: provider rejected the coverage stack: backup_schedule.0 must start with 'R/'
+AzurermDataProtectionBackupPolicyMysqlFlexibleServer: provider rejected the coverage stack: backup_repeating_time_intervals.0 must start with 'R/'
+AzurermDataProtectionBackupVaultCustomerManagedKey: provider rejected the coverage stack: expected 2 or 3 path segments, found 4 segment(s) in `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover`
+AzurermDataboxEdgeDevice: provider rejected the coverage stack: expected "sku_name" "name" segment to be one of ["EP2_128_GPU1_Mx1_W" "EP2_128_1T4_Mx1_W" "EP2_64_Mx1_W" "EP2_64_1VPU_W" "EP2_256_GPU2_Mx1" "EP2_256_2T4_W" "Edge" "EdgeMR_Mini" "EdgeMR_TCP" "EdgeP_Base" "EdgeP_High" "EdgePR_Base" "EdgePR_Base_UPS" "GPU" "Gateway" "Management" "RCA_Large" "RCA_Small" "RDC" "TCA_Large" "TCA_Small" "TDC" "TEA_4Node_Heater" "TEA...
+AzurermDatabricksWorkspaceRootDbfsCustomerManagedKey: provider rejected the coverage stack: expected 2 or 3 path segments, found 4 segment(s) in `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover`
+AzurermDevCenterProjectEnvironmentType: provider rejected the coverage stack: parsing "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover": unexpected segment "resourceGroups/leftover" present at the end of the URI (input "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover")
+AzurermDevTestGlobalVmShutdownSchedule: provider rejected the coverage stack: invalid value for daily_recurrence_time (Time of day must match the format HHmm where HH is 00-23 and mm is 00-59)
+AzurermDiskEncryptionSet: provider rejected the coverage stack: expected 2 or 3 path segments, found 4 segment(s) in `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover`
+AzurermEventhub: provider rejected the coverage stack: "message_retention": one of `message_retention,retention_description` must be specified
+AzurermEventhubCluster: provider rejected the coverage stack: invalid value for sku_name (SKU name must match /^Dedicated_[1-9][0-9]*$/.)
+AzurermEventhubNamespaceCustomerManagedKey: provider rejected the coverage stack: expected 2 or 3 path segments, found 1 segment(s) in `leftover`
+AzurermExtendedLocationCustomLocation: provider rejected the coverage stack: parsing "leftover": parsing scope prefix: unable to find the scope prefix from the value "leftover" with the regex "^((.){1,})/providers/Microsoft.KubernetesConfiguration/extensions/(.){1,}"
+AzurermFunctionAppFunction: provider rejected the coverage stack: "config_json" contains an invalid JSON: invalid character 'l' looking for beginning of value
+AzurermIotSecurityDeviceGroup: provider rejected the coverage stack: ID was missing the `iotHubs` element
+AzurermIotSecuritySolution: provider rejected the coverage stack: parsing "leftover" as an IotHub ID: parsing Azure ID: parse "leftover": invalid URI for request
+AzurermIotcentralOrganization: provider rejected the coverage stack: invalid value for organization_id (iot central organizationId is invalid, regex pattern: ^(?!-)[a-z0-9-]{1,48}[a-z0-9]$)
+AzurermIothubDeviceUpdateInstance: provider rejected the coverage stack: ID was missing the `iotHubs` element
+AzurermIothubEndpointCosmosdbAccount: provider rejected the coverage stack: ID was missing the `iotHubs` element
+AzurermIothubEndpointEventhub: provider rejected the coverage stack: ID was missing the `iotHubs` element
+AzurermIothubEndpointServicebusQueue: provider rejected the coverage stack: ID was missing the `iotHubs` element
+AzurermIothubEndpointServicebusTopic: provider rejected the coverage stack: ID was missing the `iotHubs` element
+AzurermIothubEndpointStorageContainer: provider rejected the coverage stack: ID was missing the `iotHubs` element
+AzurermIothubFileUpload: provider rejected the coverage stack: ID was missing the `iotHubs` element
+AzurermKeyVaultCertificate: provider rejected the coverage stack: "certificate": one of `certificate,certificate_policy` must be specified
+AzurermKeyVaultManagedHardwareSecurityModule: provider rejected the coverage stack: expected "admin_object_ids.0" to be a valid UUID, got leftover
+AzurermKeyVaultManagedHardwareSecurityModuleKey: provider rejected the coverage stack: "curve": one of `curve,key_size` must be specified
+AzurermKeyVaultManagedHardwareSecurityModuleKeyRotationPolicy: provider rejected the coverage stack: leftover: expected 'P' period mark at the start
+AzurermKeyVaultManagedHardwareSecurityModuleRoleAssignment: provider rejected the coverage stack: invalid value for scope (scope should be one of `/`, `/keys', `/keys/<key_name>`)
+AzurermKeyVaultManagedStorageAccountSasTokenDefinition: provider rejected the coverage stack: expected 2 or 3 path segments, found 4 segment(s) in `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover`
+AzurermKubernetesCluster: provider rejected the coverage stack: "dns_prefix": one of `dns_prefix,dns_prefix_private_cluster` must be specified
+AzurermKustoIothubDataConnection: provider rejected the coverage stack: ID was missing the `iotHubs` element
+AzurermLighthouseAssignment: provider rejected the coverage stack: parsing "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover": parsing scope prefix: unable to find the scope prefix from the value "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover" with the regex "^((.){1,})/providers/Microsoft.ManagedServices/registrationDefinitions/(.){1,}"
+AzurermLighthouseDefinition: provider rejected the coverage stack: expected "authorization.0.principal_id" to be a valid UUID, got /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover
+AzurermLinuxVirtualMachine: provider rejected the coverage stack: "admin_username": one of `admin_username,os_managed_disk_id` must be specified
+AzurermLinuxVirtualMachineScaleSet: provider rejected the coverage stack: "source_image_id": one of `source_image_id,source_image_reference` must be specified
+AzurermLogAnalyticsClusterCustomerManagedKey: provider rejected the coverage stack: expected 2 or 3 path segments, found 4 segment(s) in `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover`
+AzurermLogAnalyticsLinkedStorageAccount: provider rejected the coverage stack: parsing "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover": parsing the Workspace ID: the number of segments didn't match Expected a Workspace ID that matched (containing 8 segments): > /subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceName...
+AzurermLogAnalyticsWorkspaceTableCustomLog: provider rejected the coverage stack: invalid value for name (must end with '_CL'.)
+AzurermLogicAppActionCustom: provider rejected the coverage stack: "body" contains an invalid JSON: invalid character 'l' looking for beginning of value
+AzurermLogicAppIntegrationAccountAgreement: provider rejected the coverage stack: "content" contains an invalid JSON: invalid character 'l' looking for beginning of value
+AzurermLogicAppIntegrationAccountAssembly: provider rejected the coverage stack: "content": one of `content,content_link_uri` must be specified
+AzurermLogicAppIntegrationAccountCertificate: provider rejected the coverage stack: "key_vault_key": one of `key_vault_key,public_certificate` must be specified
+AzurermLogicAppIntegrationAccountSession: provider rejected the coverage stack: "content" contains an invalid JSON: invalid character 'l' looking for beginning of value
+AzurermLogicAppStandard: provider rejected the coverage stack: "storage_account_name": all of `storage_account_access_key,storage_account_name` must be specified
+AzurermLogicAppTriggerCustom: provider rejected the coverage stack: "body" contains an invalid JSON: invalid character 'l' looking for beginning of value
+AzurermLogicAppTriggerHttpRequest: provider rejected the coverage stack: "schema" contains an invalid JSON: invalid character 'l' looking for beginning of value
+AzurermMachineLearningSynapseSpark: provider rejected the coverage stack: ID was missing the `workspaces` element
+AzurermManagedDevopsPool: provider rejected the coverage stack: "stateful_agent.0.grace_period_time_span" is not a valid timespan (expected format: dd.hh:mm:ss or hh:mm:ss): value "leftover" does not match expected format dd.hh:mm:ss or hh:mm:ss
+AzurermManagedLustreFileSystem: provider rejected the coverage stack: invalid value for maintenance_window.0.time_of_day_in_utc (must match the format HHmm where HH is 00-23 and mm is 00-59)
+AzurermManagedRedisGeoReplication: provider rejected the coverage stack: parsing "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover": parsing the RedisEnterprise ID: the number of segments didn't match Expected a RedisEnterprise ID that matched (containing 8 segments): > /subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cache/redisEnterprise/redisEnterpriseName...
+AzurermManagementGroupPolicyAssignment: provider rejected the coverage stack: cannot parse "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover" as a Policy Set Definition ID: unable to parse Policy Set Definition ID "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover"
+AzurermManagementGroupPolicyExemption: provider rejected the coverage stack: cannot parse "policy_assignment_id" as a Policy Assignment ID: unable to parse Policy Assignment ID "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover"
+AzurermManagementGroupPolicyRemediation: provider rejected the coverage stack: cannot parse "policy_assignment_id" as a Policy Assignment ID: unable to parse Policy Assignment ID "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover"
+AzurermManagementGroupPolicySetDefinition: provider rejected the coverage stack: cannot parse "policy_definition_reference.0.policy_definition_id" as a Policy Definition ID: unable to parse Policy Definition ID "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover"
+AzurermManagementGroupSubscriptionAssociation: provider rejected the coverage stack: parsing "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover": unexpected segment "resourceGroups/leftover" present at the end of the URI (input "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover")
+AzurermMonitorAadDiagnosticSetting: provider rejected the coverage stack: "eventhub_authorization_rule_id": one of `eventhub_authorization_rule_id,log_analytics_workspace_id,storage_account_id` must be specified
+AzurermMonitorDiagnosticSetting: provider rejected the coverage stack: "enabled_log": one of `enabled_log,enabled_metric` must be specified
+AzurermMonitorMetricAlert: provider rejected the coverage stack: cannot parse "scopes.0" as a resource id: cannot parse Azure ID: parse "leftover": invalid URI for request
+AzurermMonitorSmartDetectorAlertRule: provider rejected the coverage stack: cannot parse "scope_resource_ids.0" as a resource id: cannot parse Azure ID: parse "leftover": invalid URI for request
+AzurermMssqlDatabaseVulnerabilityAssessmentRuleBaseline: provider rejected the coverage stack: ID was missing the `servers` element
+AzurermMssqlFirewallRule: provider rejected the coverage stack: expected end_ip_address to contain a valid IP, got: leftover
+AzurermMssqlManagedInstance: provider rejected the coverage stack: "administrator_login": one of `administrator_login,azure_active_directory_administrator` must be specified
+AzurermMssqlServer: provider rejected the coverage stack: "administrator_login": one of `administrator_login,azuread_administrator.0.azuread_authentication_only` must be specified
+AzurermMssqlVirtualMachineAvailabilityGroupListener: provider rejected the coverage stack: ID was missing the `virtualNetworks` element
+AzurermMssqlVirtualMachineGroup: provider rejected the coverage stack: invalid value for sql_image_offer (should be in the form SQL<SQLversion>-WS<OSversion>, for example SQL2019-WS2019)
+AzurermNetappAccountEncryption: provider rejected the coverage stack: expected 2 or 3 path segments, found 1 segment(s) in `leftover`
+AzurermNetappVolumeBucket: provider rejected the coverage stack: "file_system_cifs_username": one of `file_system_cifs_username,file_system_nfs_user` must be specified
+AzurermNetappVolumeBucketWithServer: provider rejected the coverage stack: "file_system_cifs_username": one of `file_system_cifs_username,file_system_nfs_user` must be specified
+AzurermNetappVolumeGroupSapHana: provider rejected the coverage stack: expected length of application_identifier to be in the range (1 - 3), got leftover
+AzurermNetworkInterfaceApplicationGatewayBackendAddressPoolAssociation: provider rejected the coverage stack: ID was missing the `applicationGateways` element
+AzurermNetworkManagerSubscriptionConnection: provider rejected the coverage stack: parsing "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover": unexpected segment "resourceGroups/leftover" present at the end of the URI (input "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover")
+AzurermNetworkManagerVerifierWorkspaceReachabilityAnalysisIntent: provider rejected the coverage stack: "ip_traffic.0.destination_ports.0" must be a single port between `0` and `65535` or a range in the format `start-end`, or wildcard(`*`)
+AzurermNginxApiKey: provider rejected the coverage stack: expected "end_date_time" to be a valid RFC3339 date, got "leftover": parsing time "leftover" as "2006-01-02T15:04:05Z07:00": cannot parse "leftover" as "2006"
+AzurermNginxCertificate: provider rejected the coverage stack: expected 2 or 3 path segments, found 4 segment(s) in `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover`
+AzurermOracleAutonomousDatabase: provider rejected the coverage stack: compute_model must be ECPU or OCPU
+AzurermOracleAutonomousDatabaseCloneFromBackup: provider rejected the coverage stack: compute_model must be ECPU or OCPU
+AzurermOracleAutonomousDatabaseCloneFromDatabase: provider rejected the coverage stack: compute_model must be ECPU or OCPU
+AzurermPaloAltoLocalRulestackCertificate: provider rejected the coverage stack: expected 2 or 3 path segments, found 4 segment(s) in `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover`
+AzurermPointToSiteVpnGateway: provider rejected the coverage stack: invalid value for connection_configuration.0.vpn_client_address_pool.0.address_prefixes.0 (must start with IPV4 address and/or slash, number of bits (0-32) as prefix. Example: 127.0.0.1/8)
+AzurermPolicySetDefinition: provider rejected the coverage stack: cannot parse "policy_definition_reference.0.policy_definition_id" as a Policy Definition ID: unable to parse Policy Definition ID "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover"
+AzurermPortalDashboard: provider rejected the coverage stack: parsing JSON: invalid character 'l' looking for beginning of value
+AzurermPowerbiEmbedded: provider rejected the coverage stack: expected "administrators.0" to be a valid UUID, got leftover
+AzurermPrivateEndpoint: provider rejected the coverage stack: invalid value for private_service_connection.0.private_connection_resource_alias (expected to have suffix `.azure.privatelinkservice`)
+AzurermRedhatOpenshiftCluster: provider rejected the coverage stack: "identity": all of `identity,platform_workload_identity_profile` must be specified
+AzurermRedisFirewallRule: provider rejected the coverage stack: expected end_ip to contain a valid IP, got: leftover
+AzurermResourceDeploymentScriptAzureCli: provider rejected the coverage stack: "primary_script_uri": one of `primary_script_uri,script_content` must be specified
+AzurermResourceDeploymentScriptAzurePowerShell: provider rejected the coverage stack: "primary_script_uri": one of `primary_script_uri,script_content` must be specified
+AzurermResourceGroupPolicyAssignment: provider rejected the coverage stack: cannot parse "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover" as a Policy Set Definition ID: unable to parse Policy Set Definition ID "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover"
+AzurermResourceGroupPolicyExemption: provider rejected the coverage stack: cannot parse "policy_assignment_id" as a Policy Assignment ID: unable to parse Policy Assignment ID "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover"
+AzurermResourceGroupPolicyRemediation: provider rejected the coverage stack: cannot parse "policy_assignment_id" as a Policy Assignment ID: unable to parse Policy Assignment ID "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover"
+AzurermResourcePolicyAssignment: provider rejected the coverage stack: ID cannot be a Resource Group ID
+AzurermResourcePolicyExemption: provider rejected the coverage stack: cannot parse "policy_assignment_id" as a Policy Assignment ID: unable to parse Policy Assignment ID "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover"
+AzurermResourcePolicyRemediation: provider rejected the coverage stack: cannot parse "policy_assignment_id" as a Policy Assignment ID: unable to parse Policy Assignment ID "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover"
+AzurermRoleAssignment: provider rejected the coverage stack: "role_definition_id": one of `role_definition_id,role_definition_name` must be specified
+AzurermRoleDefinition: provider rejected the coverage stack: expect scope to start with one of /subscriptions/, /providers/Microsoft.Management/managementGroups/, got "leftover"
+AzurermSentinelAutomationRule: provider rejected the coverage stack: "action_incident": one of `action_incident,action_playbook` must be specified
+AzurermSentinelDataConnectorAwsCloudTrail: provider rejected the coverage stack: invalid ARN
+AzurermSentinelDataConnectorAwsS3: provider rejected the coverage stack: invalid ARN
+AzurermServicebusNamespaceCustomerManagedKey: provider rejected the coverage stack: expected 2 or 3 path segments, found 4 segment(s) in `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover`
+AzurermSharedImageVersion: provider rejected the coverage stack: "blob_uri": one of `blob_uri,managed_image_id,os_disk_snapshot_id` must be specified
+AzurermSignalrServiceCustomCertificate: provider rejected the coverage stack: expected 2 or 3 path segments, found 4 segment(s) in `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover`
+AzurermSiteRecoveryVmwareReplicatedVm: provider rejected the coverage stack: "default_recovery_disk_type": one of `default_recovery_disk_type,managed_disk` must be specified
+AzurermSpringCloudCertificate: provider rejected the coverage stack: "certificate_content": one of `certificate_content,key_vault_certificate_id` must be specified
+AzurermSpringCloudCustomDomain: provider rejected the coverage stack: invalid value for name (should be a valid domain name)
+AzurermSshPublicKey: provider rejected the coverage stack: "public_key" is not a complete SSH2 Public Key
+AzurermStackHciDeploymentSetting: provider rejected the coverage stack: expected scale_unit.0.infrastructure_network.0.ip_pool.0.ending_address to contain a valid IPv4 address, got: leftover
+AzurermStorageAccountCustomerManagedKey: provider rejected the coverage stack: expected 2 or 3 path segments, found 4 segment(s) in `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover`
+AzurermStorageAccountLocalUser: provider rejected the coverage stack: "ssh_key_enabled": one of `ssh_key_enabled,ssh_password_enabled` must be specified
+AzurermStorageAccountQueueProperties: provider rejected the coverage stack: "cors_rule": one of `cors_rule,hour_metrics,logging,minute_metrics` must be specified
+AzurermStorageAccountStaticWebsite: provider rejected the coverage stack: "error_404_document": one of `error_404_document,index_document` must be specified
+AzurermStorageAccountTableProperties: provider rejected the coverage stack: "cors_rule": one of `cors_rule,hour_metrics,logging,minute_metrics` must be specified
+AzurermStorageDiscoveryWorkspace: provider rejected the coverage stack: expected scope.0.resource_types.0 to be one of ["Microsoft.Storage/storageAccounts"], got leftover
+AzurermStorageShareDirectory: provider rejected the coverage stack: expected "storage_share_url" to have a non empty path got https://example.com
+AzurermStorageShareFile: provider rejected the coverage stack: expected "storage_share_url" to have a non empty path got https://example.com
+AzurermStreamAnalyticsCluster: provider rejected the coverage stack: expected streaming_capacity to be divisible by 36, got: 200
+AzurermSubscription: provider rejected the coverage stack: the ID was missing the `billingAccounts` element
+AzurermSubscriptionCostManagementExport: provider rejected the coverage stack: parsing "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover": unexpected segment "resourceGroups/leftover" present at the end of the URI (input "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover")
+AzurermSubscriptionCostManagementView: provider rejected the coverage stack: parsing "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover": unexpected segment "resourceGroups/leftover" present at the end of the URI (input "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover")
+AzurermSubscriptionPolicyAssignment: provider rejected the coverage stack: cannot parse "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover" as a Policy Set Definition ID: unable to parse Policy Set Definition ID "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover"
+AzurermSubscriptionPolicyExemption: provider rejected the coverage stack: cannot parse "policy_assignment_id" as a Policy Assignment ID: unable to parse Policy Assignment ID "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover"
+AzurermSubscriptionPolicyRemediation: provider rejected the coverage stack: cannot parse "policy_assignment_id" as a Policy Assignment ID: unable to parse Policy Assignment ID "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover"
+AzurermSynapseRoleAssignment: provider rejected the coverage stack: ID was missing the `workspaces` element
+AzurermSynapseSqlPoolExtendedAuditingPolicy: provider rejected the coverage stack: ID was missing the `workspaces` element
+AzurermSynapseSqlPoolSecurityAlertPolicy: provider rejected the coverage stack: ID was missing the `workspaces` element
+AzurermSynapseSqlPoolVulnerabilityAssessment: provider rejected the coverage stack: parsing "https://example.com" as an SqlPoolSecurityAlertPolicy ID: the number of path segments is not divisible by 2 in ""
+AzurermSynapseSqlPoolVulnerabilityAssessmentBaseline: provider rejected the coverage stack: ID was missing the `workspaces` element
+AzurermSynapseSqlPoolWorkloadClassifier: provider rejected the coverage stack: ID was missing the `workspaces` element
+AzurermSynapseSqlPoolWorkloadGroup: provider rejected the coverage stack: ID was missing the `workspaces` element
+AzurermSynapseWorkspaceVulnerabilityAssessment: provider rejected the coverage stack: parsing "https://example.com" as an WorkspaceSecurityAlertPolicy ID: the number of path segments is not divisible by 2 in ""
+AzurermSystemCenterVirtualMachineManagerVirtualMachineInstance: provider rejected the coverage stack: "infrastructure.0.system_center_virtual_machine_manager_cloud_id": one of `infrastructure.0.system_center_virtual_machine_manager_cloud_id,infrastructure.0.system_center_virtual_machine_manager_inventory_item_id,infrastructure.0.system_center_virtual_machine_manager_template_id,infrastructure.0.system_center_virtual_machine_manager_virtual_machine_server_id`...
+AzurermVirtualDesktopScalingPlan: provider rejected the coverage stack: invalid value for schedule.0.off_peak_start_time (The time must be in the format HH:MM.)
+AzurermVirtualMachinePacketCapture: provider rejected the coverage stack: invalid value for storage_location.0.file_path (must end with extension name '.cap')
+AzurermVirtualMachineScaleSetPacketCapture: provider rejected the coverage stack: invalid value for storage_location.0.file_path (must end with extension name '.cap')
+AzurermVirtualNetworkGateway: provider rejected the coverage stack: parsing "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover": parsing the Subnet ID: the number of segments didn't match Expected a Subnet ID that matched (containing 10 segments): > /subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualNetworks/virtualNetworksValue/subnets/subnetValue...
+AzurermWebPubsubCustomCertificate: provider rejected the coverage stack: expected 2 or 3 path segments, found 4 segment(s) in `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover`
+AzurermWindowsVirtualMachine: provider rejected the coverage stack: "admin_username": one of `admin_username,os_managed_disk_id` must be specified
+AzurermWindowsVirtualMachineScaleSet: provider rejected the coverage stack: "source_image_id": one of `source_image_id,source_image_reference` must be specified
+AzurermWorkloadsSapDiscoveryVirtualInstance: provider rejected the coverage stack: invalid value for name (must have three characters. The first character must be alphabetic. The second and third characters must be alphanumerical. All alphabetic characters should be uppercase)
+AzurermWorkloadsSapSingleNodeVirtualInstance: provider rejected the coverage stack: invalid value for name (must have three characters. The first character must be alphabetic. The second and third characters must be alphanumerical. All alphabetic characters should be uppercase)
+AzurermWorkloadsSapThreeTierVirtualInstance: provider rejected the coverage stack: invalid value for name (must have three characters. The first character must be alphabetic. The second and third characters must be alphanumerical. All alphabetic characters should be uppercase)
+DataAzurermApiManagementUser: provider rejected the coverage stack: invalid value for user_id (may only contain alphanumeric characters and dashes up to 80 characters in length)
+DataAzurermImage: provider rejected the coverage stack: "name": one of `name,name_regex` must be specified
+DataAzurermKeyVaultEncryptedValue: provider rejected the coverage stack: expected 2 or 3 path segments, found 4 segment(s) in `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover`
+DataAzurermPortalDashboard: provider rejected the coverage stack: "display_name": one of `display_name,name` must be specified
+DataAzurermRoleManagementPolicy: provider rejected the coverage stack: invalid value for role_definition_id (should be in the format /providers/Microsoft.Authorization/roleDefinitions/00000000-0000-0000-0000-000000000000)
+DataAzurermSentinelAlertRuleAnomaly: provider rejected the coverage stack: "display_name": one of `display_name,name` must be specified
+DataAzurermSentinelAlertRuleTemplate: provider rejected the coverage stack: "display_name": one of `display_name,name` must be specified
+DataAzurermServicebusQueueAuthorizationRule: provider rejected the coverage stack: "namespace_name": one of `namespace_name,queue_id,queue_name,resource_group_name` must be specified
+DataAzurermServicebusTopicAuthorizationRule: provider rejected the coverage stack: "namespace_name": one of `namespace_name,queue_name,resource_group_name,topic_id` must be specified

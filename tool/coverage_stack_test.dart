@@ -405,6 +405,52 @@ String _literal(String className, String name) {
       ], isEmpty);
     });
   });
+
+  test('trial patches keep a nested path and defer the path around it', () {
+    final chosen = trialPatches({
+      'parent': (
+        json: 'whole',
+        paths: [
+          ['resource', 'volume'],
+        ],
+      ),
+      'child': (
+        json: 'leaf',
+        paths: [
+          ['resource', 'volume', 0, 'id'],
+        ],
+      ),
+    });
+    expect(chosen.deferred, {'parent'});
+    expect(chosen.patches, hasLength(1));
+    expect(chosen.patches.single.$1, ['resource', 'volume', 0, 'id']);
+    expect(chosen.patches.single.$2, 'leaf');
+  });
+
+  test('trial patches a path the same key reports twice only once', () {
+    const path = [
+      'resource',
+      'azurerm_stack_hci_deployment_setting',
+      'setting',
+      'scale_unit',
+      0,
+      'infrastructure_network',
+      0,
+      'ip_pool',
+      0,
+      'ending_address',
+    ];
+    final chosen = trialPatches({
+      'AzurermStackHciDeploymentSetting.endingAddress': (
+        json: '10.0.0.2',
+        paths: [path, path],
+      ),
+    });
+    expect(chosen.deferred, isEmpty);
+    expect(chosen.patches, hasLength(1));
+    expect(chosen.patches.single.$1, path);
+    expect(chosen.patches.single.$2, '10.0.0.2');
+  });
 }
 
 /// What a coverage-stack generator may not do: declare `main` (only

@@ -1,0 +1,249 @@
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
+// ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
+import 'package:terradart_core/terradart_core.dart';
+
+import '../key_vault/azurerm_key_vault.dart' show AzurermKeyVault;
+
+/// Sensitive field paths for `azurerm_key_vault_key`.
+const Set<String> _azurermKeyVaultKeySensitive = <String>{};
+
+/// At most one of `curve`, `key_size` on `azurerm_key_vault_key`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.curve(...)`.
+sealed class KeyVaultKeyCurveOrKeySize {
+  const KeyVaultKeyCurveOrKeySize();
+
+  /// Sets `curve`.
+  const factory KeyVaultKeyCurveOrKeySize.curve(TfArg<String> curve) =
+      KeyVaultKeyCurveOrKeySizeCurve;
+
+  /// Sets `key_size`.
+  const factory KeyVaultKeyCurveOrKeySize.keySize(TfArg<num> keySize) =
+      KeyVaultKeyCurveOrKeySizeChoice;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [KeyVaultKeyCurveOrKeySize.curve] choice: sets `curve`.
+final class KeyVaultKeyCurveOrKeySizeCurve extends KeyVaultKeyCurveOrKeySize {
+  const KeyVaultKeyCurveOrKeySizeCurve(this.curve);
+
+  final TfArg<String> curve;
+
+  @internal
+  @override
+  String get blockKey => 'curve';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'curve': curve.toTfJson()};
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'curve': curve};
+}
+
+/// The [KeyVaultKeyCurveOrKeySize.keySize] choice: sets `key_size`.
+final class KeyVaultKeyCurveOrKeySizeChoice extends KeyVaultKeyCurveOrKeySize {
+  const KeyVaultKeyCurveOrKeySizeChoice(this.keySize);
+
+  final TfArg<num> keySize;
+
+  @internal
+  @override
+  String get blockKey => 'key_size';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'key_size': keySize.toTfJson()};
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'key_size': keySize};
+}
+
+/// Typed helper for the `release_policy` block of
+/// `azurerm_key_vault_key` (derived from provider schema).
+@immutable
+final class KeyVaultKeyReleasePolicy {
+  const KeyVaultKeyReleasePolicy({this.immutable, required this.json});
+
+  final TfArg<bool>? immutable;
+
+  final TfArg<String> json;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'immutable': ?immutable?.toTfJson(),
+    'json': json.toTfJson(),
+  };
+}
+
+/// Typed helper for the `rotation_policy` block of
+/// `azurerm_key_vault_key` (derived from provider schema).
+@immutable
+final class KeyVaultKeyRotationPolicy {
+  const KeyVaultKeyRotationPolicy({
+    this.expireAfter,
+    this.notifyBeforeExpiry,
+    this.automatic,
+  });
+
+  final TfArg<String>? expireAfter;
+
+  final TfArg<String>? notifyBeforeExpiry;
+
+  final KeyVaultKeyAutomatic? automatic;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'expire_after': ?expireAfter?.toTfJson(),
+    'notify_before_expiry': ?notifyBeforeExpiry?.toTfJson(),
+    'automatic': ?automatic?.encode(),
+  };
+}
+
+/// Typed helper for the `rotation_policy.automatic` block of
+/// `azurerm_key_vault_key` (derived from provider schema).
+@immutable
+final class KeyVaultKeyAutomatic {
+  const KeyVaultKeyAutomatic({this.timeAfterCreation, this.timeBeforeExpiry});
+
+  final TfArg<String>? timeAfterCreation;
+
+  final TfArg<String>? timeBeforeExpiry;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'time_after_creation': ?timeAfterCreation?.toTfJson(),
+    'time_before_expiry': ?timeBeforeExpiry?.toTfJson(),
+  };
+}
+
+/// Factory wrapper for `azurerm_key_vault_key`.
+final class AzurermKeyVaultKey extends Resource {
+  static const String tfType = 'azurerm_key_vault_key';
+
+  AzurermKeyVaultKey(
+    super.localName, {
+    KeyVaultKeyCurveOrKeySize? curveOrKeySize,
+    TfArg<String>? expirationDate,
+    required TfArg<List<String>> keyOpts,
+    required TfArg<String> keyType,
+    required RefTo<AzurermKeyVault> keyVaultId,
+    required TfArg<String> name,
+    TfArg<String>? notBeforeDate,
+    TfArg<Map<String, String>>? tags,
+    KeyVaultKeyReleasePolicy? releasePolicy,
+    KeyVaultKeyRotationPolicy? rotationPolicy,
+    super.lifecycle,
+    super.dependsOn,
+    super.provider,
+    super.timeouts,
+  }) : super(
+         terraformType: tfType,
+         argMap: {
+           ...?curveOrKeySize?.argMap,
+           'expiration_date': ?expirationDate,
+           'key_opts': keyOpts,
+           'key_type': keyType,
+           'key_vault_id': keyVaultId.encodeAs('id'),
+           'name': name,
+           'not_before_date': ?notBeforeDate,
+           'tags': ?tags,
+           if (releasePolicy != null)
+             'release_policy': TfArg.literal(releasePolicy.encode()),
+           if (rotationPolicy != null)
+             'rotation_policy': TfArg.literal(rotationPolicy.encode()),
+         },
+       );
+
+  @override
+  Set<String> get sensitiveFields => _azurermKeyVaultKeySensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AzurermKeyVaultKey>`.
+  RefTo<AzurermKeyVaultKey> get ref => RefTo.of(this);
+
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `e` attribute.
+  TfRef<String> get e => TfRef.attribute<String>(this, 'e');
+
+  /// Reference to `n` attribute.
+  TfRef<String> get n => TfRef.attribute<String>(this, 'n');
+
+  /// Reference to `public_key_openssh` attribute.
+  TfRef<String> get publicKeyOpenssh =>
+      TfRef.attribute<String>(this, 'public_key_openssh');
+
+  /// Reference to `public_key_pem` attribute.
+  TfRef<String> get publicKeyPem =>
+      TfRef.attribute<String>(this, 'public_key_pem');
+
+  /// Reference to `resource_id` attribute.
+  TfRef<String> get resourceId => TfRef.attribute<String>(this, 'resource_id');
+
+  /// Reference to `resource_versionless_id` attribute.
+  TfRef<String> get resourceVersionlessId =>
+      TfRef.attribute<String>(this, 'resource_versionless_id');
+
+  /// Reference to `version` attribute.
+  TfRef<String> get version => TfRef.attribute<String>(this, 'version');
+
+  /// Reference to `versionless_id` attribute.
+  TfRef<String> get versionlessId =>
+      TfRef.attribute<String>(this, 'versionless_id');
+
+  /// Reference to `x` attribute.
+  TfRef<String> get x => TfRef.attribute<String>(this, 'x');
+
+  /// Reference to `y` attribute.
+  TfRef<String> get y => TfRef.attribute<String>(this, 'y');
+
+  /// Reference to `curve` attribute.
+  TfRef<String> get curve => TfRef.attribute<String>(this, 'curve');
+
+  /// Reference to `expiration_date` attribute.
+  TfRef<String> get expirationDate =>
+      TfRef.attribute<String>(this, 'expiration_date');
+
+  /// Reference to `key_opts` attribute.
+  TfRef<List<String>> get keyOpts =>
+      TfRef.attribute<List<String>>(this, 'key_opts');
+
+  /// Reference to `key_size` attribute.
+  TfRef<num> get keySize => TfRef.attribute<num>(this, 'key_size');
+
+  /// Reference to `key_type` attribute.
+  TfRef<String> get keyType => TfRef.attribute<String>(this, 'key_type');
+
+  /// Reference to `key_vault_id` attribute.
+  TfRef<String> get keyVaultId => TfRef.attribute<String>(this, 'key_vault_id');
+
+  /// Reference to `not_before_date` attribute.
+  TfRef<String> get notBeforeDate =>
+      TfRef.attribute<String>(this, 'not_before_date');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tags =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+}

@@ -1,0 +1,6 @@
+outputDir: iothub
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+deriveExactlyOne: true

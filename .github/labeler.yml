@@ -47,6 +47,14 @@
           - 'packages/terradart_codegen/test/fixtures/wrap/source_aws/**'
           - 'examples/aws_*_quickstart/**'
 
+'area:azure':
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'packages/terradart_azure/**'
+          - 'packages/terradart_codegen/lib/src/codegen/wrapper_overrides/azure/**'
+          - 'packages/terradart_codegen/test/fixtures/wrap/source_azure/**'
+          - 'examples/azure_*_quickstart/**'
+
 'area:agent':
   - changed-files:
       - any-glob-to-any-file:

@@ -403,14 +403,25 @@ Future<Map<DummyKey, LearnedDummy>> search(
         if (q.isNotEmpty) key: q.removeAt(0),
     };
     if (trial.isEmpty) break;
+    final chosen = trialPatches({
+      for (final MapEntry(:key, value: c) in trial.entries)
+        key.value: (
+          json: c.value.json,
+          paths: [for (final r in groups[key]!) r.jsonPath],
+        ),
+    });
+    for (final MapEntry(:key, value: c) in trial.entries) {
+      if (chosen.deferred.contains(key.value)) queues[key]!.insert(0, c);
+    }
+    if (chosen.patches.isEmpty) break;
     final left = await oracle.revalidate(
       slug,
       patchJson(mainTfJson, {
-        for (final MapEntry(:key, value: c) in trial.entries)
-          for (final r in groups[key]!) r.jsonPath: c.value.json,
+        for (final (path, json) in chosen.patches) path: json,
       }),
     );
     for (final MapEntry(:key, value: c) in trial.entries) {
+      if (chosen.deferred.contains(key.value)) continue;
       final at = groups[key]!;
       final paths = {for (final r in at) r.at};
       final blocks = {for (final r in at) r.address};
@@ -432,6 +443,66 @@ Future<Map<DummyKey, LearnedDummy>> search(
     }
   }
   return learned;
+}
+
+({List<(List<Object> path, Object json)> patches, Set<String> deferred})
+trialPatches(Map<String, ({Object json, List<List<Object>> paths})> trial) {
+  final patches = <(List<Object>, Object)>[];
+  final deferred = <String>{};
+  bool overlaps(List<Object> path) =>
+      patches.any((kept) => _pathsOverlap(kept.$1, path));
+  final entries = trial.entries.toList()
+    ..sort((a, b) {
+      int longest(List<List<Object>> paths) =>
+          paths.fold<int>(0, (n, p) => p.length > n ? p.length : n);
+      return longest(b.value.paths).compareTo(longest(a.value.paths));
+    });
+  for (final MapEntry(:key, :value) in entries) {
+    final specific = _uniquePaths(_specificPaths(value.paths));
+    if (specific.isEmpty || specific.any(overlaps)) {
+      deferred.add(key);
+      continue;
+    }
+    for (final path in specific) {
+      patches.add((path, value.json));
+    }
+  }
+  if (patches.isEmpty && entries.isNotEmpty) {
+    final first = entries.first;
+    final longest = first.value.paths.reduce(
+      (a, b) => a.length >= b.length ? a : b,
+    );
+    return (
+      patches: [(longest, first.value.json)],
+      deferred: {for (final e in entries.skip(1)) e.key},
+    );
+  }
+  return (patches: patches, deferred: deferred);
+}
+
+List<List<Object>> _specificPaths(List<List<Object>> paths) => [
+  for (final path in paths)
+    if (!paths.any(
+      (other) => other.length > path.length && _pathsOverlap(path, other),
+    ))
+      path,
+];
+
+List<List<Object>> _uniquePaths(List<List<Object>> paths) {
+  final kept = <List<Object>>[];
+  for (final path in paths) {
+    if (kept.any((other) => _pathsOverlap(path, other))) continue;
+    kept.add(path);
+  }
+  return kept;
+}
+
+bool _pathsOverlap(List<Object> a, List<Object> b) {
+  final n = a.length < b.length ? a.length : b.length;
+  for (var i = 0; i < n; i++) {
+    if (a[i] != b[i]) return false;
+  }
+  return true;
 }
 
 ProviderRejected _cause(Rejection r) => switch (r) {

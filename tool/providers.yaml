@@ -228,3 +228,17 @@ providers:
       dataSources: true
       scaffold: lane
       exampleGenerator: tool/generate_aws_leftover_example.dart
+  azure:
+    source: hashicorp/azurerm
+    schemaDir: packages/terradart_codegen/test/fixtures/wrap/source_azure
+    schemaMode: filtered
+    mm: false
+    outputPackage: packages/terradart_azure
+    typePrefix: azurerm_
+    siteTitle: Azure
+    overridesRoot: packages/terradart_codegen/lib/src/codegen/wrapper_overrides/azure/yaml
+    barrelsManifest: packages/terradart_codegen/lib/src/codegen/barrels/barrels_azure.yaml
+    resourceProvider: null # azurerm_ prefix collides with nothing
+    migrateManifest: packages/terradart_migrate/lib/src/manifest/azure.g.dart
+    providerEnums: true
+    references: typed

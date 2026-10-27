@@ -1,0 +1,6 @@
+outputDir: stack_hci
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+deriveExactlyOne: true

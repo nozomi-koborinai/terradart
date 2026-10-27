@@ -204,7 +204,7 @@ void main() {
     );
     Directory(p.join(input.path, 'modules/m')).createSync(recursive: true);
     File(p.join(input.path, 'modules/m/main.tf')).writeAsStringSync(
-      'resource "azurerm_resource_group" "logs" { name = "logs" }\n',
+      'resource "azuread_application" "logs" { name = "logs" }\n',
     );
     final out = p.join(tmp.path, 'out');
     final r = await _run(['--dir', input.path, '--out', out, '--json']);
@@ -230,7 +230,7 @@ void main() {
       File(
         p.join(out, 'tf-out/modules/m/$leftoverFileName'),
       ).readAsStringSync(),
-      contains('resource "azurerm_resource_group" "logs"'),
+      contains('resource "azuread_application" "logs"'),
     );
     expect(
       File(p.join(out, 'MIGRATION.md')).readAsStringSync(),
@@ -273,7 +273,7 @@ void main() {
     ).writeAsStringSync('resource "google_pubsub_topic" "t" { name = "t" }\n');
     Directory(p.join(input.path, weird)).createSync();
     File(p.join(input.path, weird, 'main.tf')).writeAsStringSync(
-      'resource "azurerm_resource_group" "logs" { name = "logs" }\n',
+      'resource "azuread_application" "logs" { name = "logs" }\n',
     );
     final out = p.join(tmp.path, 'out');
     final r = await _run(['--dir', input.path, '--out', out, '--json']);

@@ -1,0 +1,306 @@
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
+// ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
+import 'package:terradart_core/terradart_core.dart';
+
+/// Sensitive field paths for `azurerm_data_factory_flowlet_data_flow`.
+const Set<String> _azurermDataFactoryFlowletDataFlowSensitive = <String>{};
+
+/// Typed helper for the `sink` block of
+/// `azurerm_data_factory_flowlet_data_flow` (derived from provider schema).
+@immutable
+final class DataFactoryFlowletDataFlowSink {
+  const DataFactoryFlowletDataFlowSink({
+    this.description,
+    required this.name,
+    this.dataset,
+    this.flowlet,
+    this.linkedService,
+    this.rejectedLinkedService,
+    this.schemaLinkedService,
+  });
+
+  final TfArg<String>? description;
+
+  final TfArg<String> name;
+
+  final DataFactoryFlowletDataFlowDataset? dataset;
+
+  final DataFactoryFlowletDataFlowFlowlet? flowlet;
+
+  final DataFactoryFlowletDataFlowLinkedService? linkedService;
+
+  final DataFactoryFlowletDataFlowRejectedLinkedService? rejectedLinkedService;
+
+  final DataFactoryFlowletDataFlowSchemaLinkedService? schemaLinkedService;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'description': ?description?.toTfJson(),
+    'name': name.toTfJson(),
+    'dataset': ?dataset?.encode(),
+    'flowlet': ?flowlet?.encode(),
+    'linked_service': ?linkedService?.encode(),
+    'rejected_linked_service': ?rejectedLinkedService?.encode(),
+    'schema_linked_service': ?schemaLinkedService?.encode(),
+  };
+}
+
+/// Typed helper for the `sink.dataset` block of
+/// `azurerm_data_factory_flowlet_data_flow` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
+@immutable
+final class DataFactoryFlowletDataFlowDataset {
+  const DataFactoryFlowletDataFlowDataset({
+    required this.name,
+    this.parameters,
+  });
+
+  final TfArg<String> name;
+
+  final TfArg<Map<String, String>>? parameters;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'name': name.toTfJson(),
+    'parameters': ?parameters?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `sink.flowlet` block of
+/// `azurerm_data_factory_flowlet_data_flow` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
+@immutable
+final class DataFactoryFlowletDataFlowFlowlet {
+  const DataFactoryFlowletDataFlowFlowlet({
+    this.datasetParameters,
+    required this.name,
+    this.parameters,
+  });
+
+  final TfArg<String>? datasetParameters;
+
+  final TfArg<String> name;
+
+  final TfArg<Map<String, String>>? parameters;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'dataset_parameters': ?datasetParameters?.toTfJson(),
+    'name': name.toTfJson(),
+    'parameters': ?parameters?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `sink.linked_service` block of
+/// `azurerm_data_factory_flowlet_data_flow` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
+@immutable
+final class DataFactoryFlowletDataFlowLinkedService {
+  const DataFactoryFlowletDataFlowLinkedService({
+    required this.name,
+    this.parameters,
+  });
+
+  final TfArg<String> name;
+
+  final TfArg<Map<String, String>>? parameters;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'name': name.toTfJson(),
+    'parameters': ?parameters?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `sink.rejected_linked_service` block of
+/// `azurerm_data_factory_flowlet_data_flow` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
+@immutable
+final class DataFactoryFlowletDataFlowRejectedLinkedService {
+  const DataFactoryFlowletDataFlowRejectedLinkedService({
+    required this.name,
+    this.parameters,
+  });
+
+  final TfArg<String> name;
+
+  final TfArg<Map<String, String>>? parameters;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'name': name.toTfJson(),
+    'parameters': ?parameters?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `sink.schema_linked_service` block of
+/// `azurerm_data_factory_flowlet_data_flow` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
+@immutable
+final class DataFactoryFlowletDataFlowSchemaLinkedService {
+  const DataFactoryFlowletDataFlowSchemaLinkedService({
+    required this.name,
+    this.parameters,
+  });
+
+  final TfArg<String> name;
+
+  final TfArg<Map<String, String>>? parameters;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'name': name.toTfJson(),
+    'parameters': ?parameters?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `source` block of
+/// `azurerm_data_factory_flowlet_data_flow` (derived from provider schema).
+@immutable
+final class DataFactoryFlowletDataFlowSource {
+  const DataFactoryFlowletDataFlowSource({
+    this.description,
+    required this.name,
+    this.dataset,
+    this.flowlet,
+    this.linkedService,
+    this.rejectedLinkedService,
+    this.schemaLinkedService,
+  });
+
+  final TfArg<String>? description;
+
+  final TfArg<String> name;
+
+  final DataFactoryFlowletDataFlowDataset? dataset;
+
+  final DataFactoryFlowletDataFlowFlowlet? flowlet;
+
+  final DataFactoryFlowletDataFlowLinkedService? linkedService;
+
+  final DataFactoryFlowletDataFlowRejectedLinkedService? rejectedLinkedService;
+
+  final DataFactoryFlowletDataFlowSchemaLinkedService? schemaLinkedService;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'description': ?description?.toTfJson(),
+    'name': name.toTfJson(),
+    'dataset': ?dataset?.encode(),
+    'flowlet': ?flowlet?.encode(),
+    'linked_service': ?linkedService?.encode(),
+    'rejected_linked_service': ?rejectedLinkedService?.encode(),
+    'schema_linked_service': ?schemaLinkedService?.encode(),
+  };
+}
+
+/// Typed helper for the `transformation` block of
+/// `azurerm_data_factory_flowlet_data_flow` (derived from provider schema).
+@immutable
+final class DataFactoryFlowletDataFlowTransformation {
+  const DataFactoryFlowletDataFlowTransformation({
+    this.description,
+    required this.name,
+    this.dataset,
+    this.flowlet,
+    this.linkedService,
+  });
+
+  final TfArg<String>? description;
+
+  final TfArg<String> name;
+
+  final DataFactoryFlowletDataFlowDataset? dataset;
+
+  final DataFactoryFlowletDataFlowFlowlet? flowlet;
+
+  final DataFactoryFlowletDataFlowLinkedService? linkedService;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'description': ?description?.toTfJson(),
+    'name': name.toTfJson(),
+    'dataset': ?dataset?.encode(),
+    'flowlet': ?flowlet?.encode(),
+    'linked_service': ?linkedService?.encode(),
+  };
+}
+
+/// Factory wrapper for `azurerm_data_factory_flowlet_data_flow`.
+final class AzurermDataFactoryFlowletDataFlow extends Resource {
+  static const String tfType = 'azurerm_data_factory_flowlet_data_flow';
+
+  AzurermDataFactoryFlowletDataFlow(
+    super.localName, {
+    TfArg<List<String>>? annotations,
+    required TfArg<String> dataFactoryId,
+    TfArg<String>? description,
+    TfArg<String>? folder,
+    required TfArg<String> name,
+    TfArg<String>? script,
+    TfArg<List<String>>? scriptLines,
+    List<DataFactoryFlowletDataFlowSink>? sink,
+    List<DataFactoryFlowletDataFlowSource>? source,
+    List<DataFactoryFlowletDataFlowTransformation>? transformation,
+    super.lifecycle,
+    super.dependsOn,
+    super.provider,
+    super.timeouts,
+  }) : super(
+         terraformType: tfType,
+         argMap: {
+           'annotations': ?annotations,
+           'data_factory_id': dataFactoryId,
+           'description': ?description,
+           'folder': ?folder,
+           'name': name,
+           'script': ?script,
+           'script_lines': ?scriptLines,
+           if (sink != null)
+             'sink': TfArg.literal([for (final e in sink) e.encode()]),
+           if (source != null)
+             'source': TfArg.literal([for (final e in source) e.encode()]),
+           if (transformation != null)
+             'transformation': TfArg.literal([
+               for (final e in transformation) e.encode(),
+             ]),
+         },
+       );
+
+  @override
+  Set<String> get sensitiveFields =>
+      _azurermDataFactoryFlowletDataFlowSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AzurermDataFactoryFlowletDataFlow>`.
+  RefTo<AzurermDataFactoryFlowletDataFlow> get ref => RefTo.of(this);
+
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `annotations` attribute.
+  TfRef<List<String>> get annotations =>
+      TfRef.attribute<List<String>>(this, 'annotations');
+
+  /// Reference to `data_factory_id` attribute.
+  TfRef<String> get dataFactoryId =>
+      TfRef.attribute<String>(this, 'data_factory_id');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `folder` attribute.
+  TfRef<String> get folder => TfRef.attribute<String>(this, 'folder');
+
+  /// Reference to `script` attribute.
+  TfRef<String> get script => TfRef.attribute<String>(this, 'script');
+
+  /// Reference to `script_lines` attribute.
+  TfRef<List<String>> get scriptLines =>
+      TfRef.attribute<List<String>>(this, 'script_lines');
+}

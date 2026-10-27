@@ -1,0 +1,514 @@
+# Authored barrel manifest for terradart_azure — the human-decided
+# axes of the generated barrels under terradart_azure/lib/.
+# Same contract as barrels.yaml (fail-closed both directions); consumed via
+# `terradart wrap --barrels-manifest`.
+
+umbrellaFile: terradart_azure
+
+umbrellaDoc: |-
+  /// Curated **Azure** surface for TerraDart (official
+  /// `hashicorp/azurerm` Terraform provider).
+  ///
+  /// The catalog at the current provider pin
+  /// (`kAzureProviderVersionConstraint`) is filled — every resource and
+  /// data source in that schema has a factory. Credentials never appear
+  /// in synth output: authentication happens at apply time via `ARM_*`
+  /// environment variables.
+  ///
+  /// This umbrella re-exports every per-service barrel. Prefer the
+  /// per-service imports in new code.
+  ///
+  /// ## Writing arguments
+  ///
+  /// <!-- argument-rules:start -->
+  /// Pick the form by where the value comes from. The argument's type tells you which forms it takes, and a dot shorthand (`.literal`, `.new`, `.providedAl2023`) names the constructor of that type.
+  ///
+  /// | The value is | Write | Example |
+  /// |---|---|---|
+  /// | known when you synth | `.literal(...)` | `functionName: .literal('hello')` |
+  /// | another resource of this Stack (a `RefTo<R>` input) | its `ref` | `role: role.ref` |
+  /// | one attribute of another block | its getter | `assumeRolePolicy: trust.json` |
+  /// | a resource outside this Stack (a `RefTo<R>` input) | `.literal(id)` | `zoneId: .literal('023e105f4ecef8ad9ca31a8372d0c353')` |
+  /// | one of a fixed set (an enum) | the member | `runtime: .providedAl2023` |
+  /// | one of several exclusive arguments (a sealed type) | the variant | `code: .filename(.literal('build/fn.zip'))` |
+  /// | a nested block | its helper class; `.new(...)` inside another block or a variant | `environment: LambdaFunctionEnvironment(...)` |
+  /// | a Terraform variable | the handle `variable<T>()` returns | `memorySize: memory` |
+  /// | a variable in an enum or `RefTo<R>` input | `.arg(handle)` | `runtime: .arg(runtimeName)` |
+  /// | a secret (a `Sensitive<T>` input) | a sensitive variable, never a literal | `value: .value(dbPassword)` |
+  /// | a reference inside a literal list or map | the getter's `.interpolation` | `{'ROLE_ARN': role.arn.interpolation}` |
+  /// | anything else Terraform evaluates | `.expression(...)` | `.expression(r'${file("trust.json")}')` |
+  ///
+  /// ```dart
+  /// final memory = variable<num>('memory_mb');
+  /// final runtimeName = variable<String>('runtime');
+  /// final dbPassword = variable<String>('db_password', sensitive: true);
+  ///
+  /// final trust = add(
+  ///   DataAwsIamPolicyDocument(
+  ///     'trust',
+  ///     statement: [
+  ///       DataIamPolicyDocumentStatement(
+  ///         actions: .literal(['sts:AssumeRole']),
+  ///         principals: [
+  ///           .new(
+  ///             type: .literal('Service'),
+  ///             identifiers: .literal(['lambda.amazonaws.com']),
+  ///           ),
+  ///         ],
+  ///       ),
+  ///     ],
+  ///   ),
+  /// );
+  /// final role = add(AwsIamRole('hello', assumeRolePolicy: trust.json));
+  /// add(
+  ///   AwsLambdaFunction(
+  ///     'hello',
+  ///     functionName: .literal('hello'),
+  ///     role: role.ref,
+  ///     runtime: .arg(runtimeName),
+  ///     code: .filename(.literal('build/fn.zip')),
+  ///     memorySize: memory,
+  ///     environment: LambdaFunctionEnvironment(
+  ///       variables: .literal({'ROLE_ARN': role.arn.interpolation}),
+  ///     ),
+  ///   ),
+  /// );
+  /// add(
+  ///   AwsSsmParameter(
+  ///     'db_password',
+  ///     name: .literal('/hello/db_password'),
+  ///     type: .securestring,
+  ///     value: .value(dbPassword),
+  ///   ),
+  /// );
+  /// ```
+  /// <!-- argument-rules:end -->
+
+umbrellaExtraExports:
+  - "export 'provider.dart';"
+
+barrels:
+
+  aadb2c:
+    doc: |-
+      /// Azure Resource Manager aadb2c resources.
+  active_directory:
+    doc: |-
+      /// Azure Resource Manager active directory resources.
+  advanced:
+    doc: |-
+      /// Azure Resource Manager advanced resources.
+  advisor:
+    doc: |-
+      /// Azure Resource Manager advisor resources.
+  ai:
+    doc: |-
+      /// Azure Resource Manager ai resources.
+  analysis:
+    doc: |-
+      /// Azure Resource Manager analysis resources.
+  api_management:
+    doc: |-
+      /// Azure Resource Manager api management resources.
+  app_configuration:
+    doc: |-
+      /// Azure Resource Manager app configuration resources.
+  app_service:
+    doc: |-
+      /// Azure App Service plans, web apps, and function apps.
+  application_insights:
+    doc: |-
+      /// Azure Resource Manager application insights resources.
+  arc:
+    doc: |-
+      /// Azure Resource Manager arc resources.
+  attestation:
+    doc: |-
+      /// Azure Resource Manager attestation resources.
+  automanage:
+    doc: |-
+      /// Azure Resource Manager automanage resources.
+  automation:
+    doc: |-
+      /// Azure Resource Manager automation resources.
+  backup:
+    doc: |-
+      /// Azure Resource Manager backup resources.
+  bastion:
+    doc: |-
+      /// Azure Resource Manager bastion resources.
+  batch:
+    doc: |-
+      /// Azure Resource Manager batch resources.
+  billing:
+    doc: |-
+      /// Azure Resource Manager billing resources.
+  blueprint:
+    doc: |-
+      /// Azure Resource Manager blueprint resources.
+  bot:
+    doc: |-
+      /// Azure Resource Manager bot resources.
+  cdn:
+    doc: |-
+      /// Azure Resource Manager cdn resources.
+  chaos:
+    doc: |-
+      /// Azure Resource Manager chaos resources.
+  cognitive:
+    doc: |-
+      /// Azure Resource Manager cognitive resources.
+  communication:
+    doc: |-
+      /// Azure Resource Manager communication resources.
+  compute:
+    doc: |-
+      /// Azure virtual machines, disks, galleries, images, and snapshots.
+  confidential:
+    doc: |-
+      /// Azure Resource Manager confidential resources.
+  consumption:
+    doc: |-
+      /// Azure Resource Manager consumption resources.
+  container_app:
+    doc: |-
+      /// Azure Resource Manager container app resources.
+  container_group:
+    doc: |-
+      /// Azure Resource Manager container group resources.
+  container_registry:
+    doc: |-
+      /// Azure Resource Manager container registry resources.
+  cosmosdb:
+    doc: |-
+      /// Azure Resource Manager cosmosdb resources.
+  cost:
+    doc: |-
+      /// Azure Resource Manager cost resources.
+  custom_provider:
+    doc: |-
+      /// Azure Resource Manager custom provider resources.
+  dashboard:
+    doc: |-
+      /// Azure Resource Manager dashboard resources.
+  data:
+    doc: |-
+      /// Read-only Azure Resource Manager data sources.
+      ///
+      /// Every data source is also exported from its service barrel.
+      /// Import this barrel for data sources of several services.
+  data_factory:
+    doc: |-
+      /// Azure Resource Manager data factory resources.
+  data_protection:
+    doc: |-
+      /// Azure Resource Manager data protection resources.
+  data_share:
+    doc: |-
+      /// Azure Resource Manager data share resources.
+  database:
+    doc: |-
+      /// Azure Resource Manager database resources.
+  databox:
+    doc: |-
+      /// Azure Resource Manager databox resources.
+  databricks:
+    doc: |-
+      /// Azure Resource Manager databricks resources.
+  datadog:
+    doc: |-
+      /// Azure Resource Manager datadog resources.
+  dev_center:
+    doc: |-
+      /// Azure Resource Manager dev center resources.
+  dev_test:
+    doc: |-
+      /// Azure Resource Manager dev test resources.
+  digital:
+    doc: |-
+      /// Azure Resource Manager digital resources.
+  dns:
+    doc: |-
+      /// Azure Resource Manager dns resources.
+  dynatrace:
+    doc: |-
+      /// Azure Resource Manager dynatrace resources.
+  elastic:
+    doc: |-
+      /// Azure Resource Manager elastic resources.
+  email:
+    doc: |-
+      /// Azure Resource Manager email resources.
+  eventgrid:
+    doc: |-
+      /// Azure Resource Manager eventgrid resources.
+  eventhub:
+    doc: |-
+      /// Azure Resource Manager eventhub resources.
+  express:
+    doc: |-
+      /// Azure Resource Manager express resources.
+  extended:
+    doc: |-
+      /// Azure Resource Manager extended resources.
+  fabric:
+    doc: |-
+      /// Azure Resource Manager fabric resources.
+  federated:
+    doc: |-
+      /// Azure Resource Manager federated resources.
+  firewall:
+    doc: |-
+      /// Azure Resource Manager firewall resources.
+  fluid:
+    doc: |-
+      /// Azure Resource Manager fluid resources.
+  frontdoor:
+    doc: |-
+      /// Azure Resource Manager frontdoor resources.
+  graph:
+    doc: |-
+      /// Azure Resource Manager graph resources.
+  hdinsight:
+    doc: |-
+      /// Azure Resource Manager hdinsight resources.
+  healthbot:
+    doc: |-
+      /// Azure Resource Manager healthbot resources.
+  healthcare:
+    doc: |-
+      /// Azure Resource Manager healthcare resources.
+  identity:
+    doc: |-
+      /// Azure user-assigned managed identities.
+  iot:
+    doc: |-
+      /// Azure Resource Manager iot resources.
+  iotcentral:
+    doc: |-
+      /// Azure Resource Manager iotcentral resources.
+  iothub:
+    doc: |-
+      /// Azure Resource Manager iothub resources.
+  ip:
+    doc: |-
+      /// Azure Resource Manager ip resources.
+  key_vault:
+    doc: |-
+      /// Azure Resource Manager key vault resources.
+  kubernetes:
+    doc: |-
+      /// Azure Resource Manager kubernetes resources.
+  kusto:
+    doc: |-
+      /// Azure Resource Manager kusto resources.
+  lb:
+    doc: |-
+      /// Azure Resource Manager lb resources.
+  lighthouse:
+    doc: |-
+      /// Azure Resource Manager lighthouse resources.
+  load_test:
+    doc: |-
+      /// Azure Resource Manager load test resources.
+  log_analytics:
+    doc: |-
+      /// Azure Resource Manager log analytics resources.
+  logic:
+    doc: |-
+      /// Azure Resource Manager logic resources.
+  machine_learning:
+    doc: |-
+      /// Azure Resource Manager machine learning resources.
+  maintenance:
+    doc: |-
+      /// Azure Resource Manager maintenance resources.
+  managed_application:
+    doc: |-
+      /// Azure Resource Manager managed application resources.
+  managed_devops:
+    doc: |-
+      /// Azure Resource Manager managed devops resources.
+  managed_lustre:
+    doc: |-
+      /// Azure Resource Manager managed lustre resources.
+  managed_redis:
+    doc: |-
+      /// Azure Resource Manager managed redis resources.
+  management:
+    doc: |-
+      /// Azure Resource Manager management resources.
+  maps:
+    doc: |-
+      /// Azure Resource Manager maps resources.
+  marketplace:
+    doc: |-
+      /// Azure Resource Manager marketplace resources.
+  mongo:
+    doc: |-
+      /// Azure Resource Manager mongo resources.
+  monitor:
+    doc: |-
+      /// Azure Resource Manager monitor resources.
+  mssql:
+    doc: |-
+      /// Azure Resource Manager mssql resources.
+  mysql:
+    doc: |-
+      /// Azure Resource Manager mysql resources.
+  nat:
+    doc: |-
+      /// Azure Resource Manager nat resources.
+  netapp:
+    doc: |-
+      /// Azure Resource Manager netapp resources.
+  network:
+    doc: |-
+      /// Azure virtual networks, subnets, public IPs, and load-balancing neighbors that share this barrel.
+  new_relic:
+    doc: |-
+      /// Azure Resource Manager new relic resources.
+  nginx:
+    doc: |-
+      /// Azure Resource Manager nginx resources.
+  notification:
+    doc: |-
+      /// Azure Resource Manager notification resources.
+  oracle:
+    doc: |-
+      /// Azure Resource Manager oracle resources.
+  palo_alto:
+    doc: |-
+      /// Azure Resource Manager palo alto resources.
+  pim:
+    doc: |-
+      /// Azure Resource Manager pim resources.
+  playwright:
+    doc: |-
+      /// Azure Resource Manager playwright resources.
+  policy:
+    doc: |-
+      /// Azure Resource Manager policy resources.
+  portal:
+    doc: |-
+      /// Azure Resource Manager portal resources.
+  postgresql:
+    doc: |-
+      /// Azure Resource Manager postgresql resources.
+  powerbi:
+    doc: |-
+      /// Azure Resource Manager powerbi resources.
+  private_dns:
+    doc: |-
+      /// Azure Resource Manager private dns resources.
+  purview:
+    doc: |-
+      /// Azure Resource Manager purview resources.
+  qumulo:
+    doc: |-
+      /// Azure Resource Manager qumulo resources.
+  recovery:
+    doc: |-
+      /// Azure Resource Manager recovery resources.
+  redhat:
+    doc: |-
+      /// Azure Resource Manager redhat resources.
+  redis:
+    doc: |-
+      /// Azure Resource Manager redis resources.
+  relay:
+    doc: |-
+      /// Azure Resource Manager relay resources.
+  resource:
+    doc: |-
+      /// Azure resource groups, deployments, and policy assignments at the resource scope.
+  role:
+    doc: |-
+      /// Azure Resource Manager role resources.
+  route:
+    doc: |-
+      /// Azure Resource Manager route resources.
+  search:
+    doc: |-
+      /// Azure Resource Manager search resources.
+  security:
+    doc: |-
+      /// Azure Resource Manager security resources.
+  sentinel:
+    doc: |-
+      /// Azure Resource Manager sentinel resources.
+  service_fabric:
+    doc: |-
+      /// Azure Resource Manager service fabric resources.
+  servicebus:
+    doc: |-
+      /// Azure Resource Manager servicebus resources.
+  signalr:
+    doc: |-
+      /// Azure Resource Manager signalr resources.
+  site_recovery:
+    doc: |-
+      /// Azure Resource Manager site recovery resources.
+  source_control:
+    doc: |-
+      /// Azure Resource Manager source control resources.
+  spring_cloud:
+    doc: |-
+      /// Azure Resource Manager spring cloud resources.
+  stack_hci:
+    doc: |-
+      /// Azure Resource Manager stack hci resources.
+  static_web_app:
+    doc: |-
+      /// Azure Resource Manager static web app resources.
+  storage:
+    doc: |-
+      /// Azure Resource Manager storage resources.
+  stream_analytics:
+    doc: |-
+      /// Azure Resource Manager stream analytics resources.
+  subnet:
+    doc: |-
+      /// Azure Resource Manager subnet resources.
+  subscription:
+    doc: |-
+      /// Azure Resource Manager subscription resources.
+  synapse:
+    doc: |-
+      /// Azure Resource Manager synapse resources.
+  system_center:
+    doc: |-
+      /// Azure Resource Manager system center resources.
+  tenant:
+    doc: |-
+      /// Azure Resource Manager tenant resources.
+  traffic:
+    doc: |-
+      /// Azure Resource Manager traffic resources.
+  trusted:
+    doc: |-
+      /// Azure Resource Manager trusted resources.
+  video:
+    doc: |-
+      /// Azure Resource Manager video resources.
+  virtual_desktop:
+    doc: |-
+      /// Azure Resource Manager virtual desktop resources.
+  virtual_wan:
+    doc: |-
+      /// Azure Resource Manager virtual wan resources.
+  vmware:
+    doc: |-
+      /// Azure Resource Manager vmware resources.
+  vpn:
+    doc: |-
+      /// Azure Resource Manager vpn resources.
+  web:
+    doc: |-
+      /// Azure Resource Manager web resources.
+  web_pubsub:
+    doc: |-
+      /// Azure Resource Manager web pubsub resources.
+  workloads:
+    doc: |-
+      /// Azure Resource Manager workloads resources.

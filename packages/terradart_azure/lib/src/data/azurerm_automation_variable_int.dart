@@ -1,0 +1,61 @@
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
+// ignore_for_file: prefer_relative_imports
+import 'package:terradart_core/terradart_core.dart';
+import '../automation/azurerm_automation_variable_int.dart';
+import '../resource/azurerm_resource_group.dart' show AzurermResourceGroup;
+
+/// Sensitive field paths for `azurerm_automation_variable_int`.
+const Set<String> _azurermAutomationVariableIntSensitive = <String>{};
+
+/// Factory wrapper for `azurerm_automation_variable_int`.
+final class DataAzurermAutomationVariableInt extends Data {
+  static const String tfType = 'azurerm_automation_variable_int';
+
+  DataAzurermAutomationVariableInt(
+    super.localName, {
+    required TfArg<String> automationAccountName,
+    required TfArg<String> name,
+    required RefTo<AzurermResourceGroup> resourceGroupName,
+    super.provider,
+    super.timeouts,
+  }) : super(
+         terraformType: tfType,
+         argMap: {
+           'automation_account_name': automationAccountName,
+           'name': name,
+           'resource_group_name': resourceGroupName.encodeAs('name'),
+         },
+       );
+
+  @override
+  Set<String> get sensitiveFields => _azurermAutomationVariableIntSensitive;
+
+  /// A reference to the `azurerm_automation_variable_int` this data source reads, for
+  /// arguments typed `RefTo<AzurermAutomationVariableInt>`.
+  RefTo<AzurermAutomationVariableInt> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
+
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `encrypted` attribute.
+  TfRef<bool> get encrypted => TfRef.attribute<bool>(this, 'encrypted');
+
+  /// Reference to `value` attribute.
+  TfRef<num> get value => TfRef.attribute<num>(this, 'value');
+
+  /// Reference to `automation_account_name` attribute.
+  TfRef<String> get automationAccountName =>
+      TfRef.attribute<String>(this, 'automation_account_name');
+
+  /// Reference to `resource_group_name` attribute.
+  TfRef<String> get resourceGroupName =>
+      TfRef.attribute<String>(this, 'resource_group_name');
+}

@@ -4,6 +4,8 @@ import 'dart:io';
 import 'package:terradart_appwrite/provider.dart'
     show kAppwriteProviderVersionConstraint;
 import 'package:terradart_aws/provider.dart' show kAwsProviderVersionConstraint;
+import 'package:terradart_azure/provider.dart'
+    show kAzureProviderVersionConstraint;
 import 'package:terradart_cloudflare/provider.dart'
     show kCloudflareProviderVersionConstraint;
 import 'package:terradart_hcl/terradart_hcl.dart';
@@ -473,13 +475,13 @@ resource "aws_s3_bucket" "logs" {
 
     test('a type outside every catalog', () {
       final r = _migrateJson(
-        module({'name': 'x'}, type: 'azurerm_resource_group'),
+        module({'name': 'x'}, type: 'azuread_application'),
       );
       expect(
-        reasonOf(r, 'azurerm_resource_group.x'),
+        reasonOf(r, 'azuread_application.x'),
         contains('no curated factory'),
       );
-      expect(r.stackSource, isNot(contains('azurerm_resource_group')));
+      expect(r.stackSource, isNot(contains('azuread_application')));
     });
 
     test('a kept block the Stack reads is declared external', () {
@@ -1068,10 +1070,10 @@ resource "google_pubsub_topic" "x" {
     });
 
     test('a provider with no TerraDart factory', () {
-      final r = _migrateJson(module({'name': 'x', 'provider': 'azurerm'}));
+      final r = _migrateJson(module({'name': 'x', 'provider': 'azuread'}));
       expect(
         reasonOf(r, 'google_pubsub_topic.x'),
-        contains('provider "azurerm" has no TerraDart factory'),
+        contains('provider "azuread" has no TerraDart factory'),
       );
     });
 
@@ -1292,6 +1294,45 @@ resource "aws_cloudwatch_log_group" "fn" {
       expect(r.report.warnings, hasLength(2));
       expect(r.report.warnings.join('\n'), contains('"access_key"'));
       expect(r.report.warnings.join('\n'), contains('"secret_key"'));
+    });
+
+    test('azure provider settings translate, credentials never do', () {
+      final r = _migrateHcl('''
+terraform {
+  required_providers {
+    azurerm = { source = "hashicorp/azurerm", version = "$kAzureProviderVersionConstraint" }
+  }
+}
+provider "azurerm" {
+  subscription_id = "00000000-0000-0000-0000-000000000000"
+  client_id       = "11111111-1111-1111-1111-111111111111"
+  client_secret   = "secret-value"
+  features {
+    key_vault {
+      purge_soft_delete_on_destroy = false
+    }
+  }
+}
+resource "azurerm_resource_group" "app" {
+  name     = "app"
+  location = "eastus"
+}
+''');
+      expect(
+        r.stackSource,
+        contains(
+          "const AzureProvider(subscriptionId: '00000000-0000-0000-0000-000000000000', "
+          'features: AzureFeatures(keyVault: AzureKeyVaultFeatures('
+          'purgeSoftDeleteOnDestroy: false)))',
+        ),
+      );
+      expect(r.stackSource, isNot(contains('secret-value')));
+      expect(
+        r.stackSource,
+        isNot(contains('11111111-1111-1111-1111-111111111111')),
+      );
+      expect(r.report.warnings.join('\n'), contains('"client_id"'));
+      expect(r.report.warnings.join('\n'), contains('"client_secret"'));
     });
 
     test('repeated aws endpoints blocks merge into one map', () {

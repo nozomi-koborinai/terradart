@@ -80,6 +80,7 @@ export default defineConfig({
                 { label: "Google Cloud", slug: "docs/coverage/google" },
                 { label: "Google Cloud (beta-only)", slug: "docs/coverage/google-beta" },
                 { label: "AWS", slug: "docs/coverage/aws" },
+                { label: "Azure", slug: "docs/coverage/azure" },
                 { label: "Cloudflare", slug: "docs/coverage/cloudflare" },
                 { label: "Appwrite", slug: "docs/coverage/appwrite" },
               ],

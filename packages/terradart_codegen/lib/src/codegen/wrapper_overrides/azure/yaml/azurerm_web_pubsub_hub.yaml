@@ -1,0 +1,6 @@
+outputDir: web_pubsub
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+deriveExactlyOne: true
