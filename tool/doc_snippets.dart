@@ -6,8 +6,8 @@
 // Run from repo root: dart tool/doc_snippets.dart
 // tool/doc_snippets_test.dart runs the same check (CI: `dart test tool/`).
 //
-// Each document gets a sandbox package named `my_app` that depends on every
-// provider package by path. Within it:
+// Each document gets a sandbox package named `my_app` that depends on the
+// workspace packages under `packages/`, except codegen and the CLI. Within it:
 //
 // - A fence whose first line is a path comment (`// lib/orders_stack.dart`)
 //   is written to that path, so fences of one document can import each
@@ -41,6 +41,9 @@
 import 'dart:io';
 
 import 'package:path/path.dart' as p;
+
+import 'lane_surface.dart';
+import 'wrap_lanes.dart';
 
 /// The documents whose Dart fences must compile, relative to the repo root:
 /// the README, the user-facing agent skill, the website docs, and the
@@ -237,17 +240,9 @@ const _ignores =
     '// ignore_for_file: unused_import, unused_local_variable, '
     'unused_element, unused_field, dead_code';
 
-const _barrels = [
-  "import 'dart:convert';",
-  "import 'dart:io';",
-  "import 'package:terradart_core/terradart_core.dart';",
-  "import 'package:terradart_google/terradart_google.dart';",
-  "import 'package:terradart_google_beta/terradart_google_beta.dart';",
-  "import 'package:terradart_aws/terradart_aws.dart';",
-  "import 'package:terradart_cloudflare/terradart_cloudflare.dart';",
-  "import 'package:terradart_appwrite/terradart_appwrite.dart';",
-  "import 'package:terradart_time/terradart_time.dart';",
-];
+final List<String> _barrels = docSnippetBarrels(
+  parseWrapLanes(File(providersPath).readAsStringSync()),
+);
 
 /// The sandbox file for the [index]-th fence of a document.
 SnippetFile renderSnippet(Snippet s, int index) {
@@ -273,17 +268,9 @@ SnippetFile renderSnippet(Snippet s, int index) {
   );
 }
 
-const _packages = [
-  'terradart_core',
-  'terradart_google',
-  'terradart_google_beta',
-  'terradart_aws',
-  'terradart_cloudflare',
-  'terradart_appwrite',
-  'terradart_time',
-  'terradart_hcl',
-  'terradart_migrate',
-];
+final List<String> _packages = docSnippetPackages(
+  File('pubspec.yaml').readAsStringSync(),
+);
 
 String _pubspec(String root) {
   final b = StringBuffer()

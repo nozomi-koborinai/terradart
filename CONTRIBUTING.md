@@ -71,6 +71,39 @@ Before opening a PR:
 - [ ] Breaking API changes include `MIGRATING.md` and updated examples in the same PR.
 - [ ] README **Examples** list matches `examples/` (the CI `terraform_validate` matrix derives from `examples/` automatically via `tool/select_changed_examples.dart`; nothing to wire).
 
+## Adding a provider lane
+
+A lane starts as one entry in [`tool/providers.yaml`](tool/providers.yaml). `dart test tool/lane_surface_test.dart` registers a fake lane and checks the steps that follow that entry alone. `dart test tool/lane_agreement_test.dart` fails when a real lane is missing from a list that is still edited by hand.
+
+These follow the entry, with no second list.
+
+- `terradart wrap` and `lint-override`, through `tool/wrap_lanes.dart`.
+- The weekly schema bump's lane plan. The workflow file still needs one `cron` line per `bump.cron`, and the `workflow_dispatch` choice has to name the bump lanes. `tool/bump_plan_test.dart` and the agreement test keep those two in step.
+- Example-synth catalog paths.
+- The exact-pin doc check, once the provider class aliases the generated pin (`const String kSomeProviderVersionConstraint = terradartProviderVersion`). `kProviderVersionConstraint` and `kBetaProviderVersionConstraint` stay hand-written `~> 8.0`, so google and google-beta are not in that check.
+- Coverage pages, from `siteTitle` plus the generated catalog. Regenerate with `dart tool/render_coverage_page.dart` after a synth.
+- The CI `test` and `pub publish --dry-run` matrices. They list every workspace member under `packages/` in the root `pubspec.yaml`.
+- The format hook's provider packages and generated-file globs, from `outputPackage` and `typePrefix`.
+- Doc-snippet sandbox packages, from that same workspace list, except `terradart_codegen` and `terradart_cli`. A fence with no imports also receives each lane's umbrella library.
+
+A resource class whose name is the PascalCase Terraform type may be longer than 80 characters. A helper more than one Terraform segment past the type it is named after may not. The gate is `tool/type_name_length_test.dart`, and it already reads every lane.
+
+These stay hand-edited. The agreement test fails if the lane is missing from the ones it can see.
+
+- The package itself, its provider class, and a `ProviderRules` class registered in `provider_registry.dart`. `shortResourcePascal` strips `terraformTypePrefix`. Set `typePrefix` to that same string. The agreement test fails when the two differ.
+- The import list in `packages/terradart_migrate/lib/src/manifests.dart`, the provider recipe in `stack_emitter.dart`, and the catalog imports in `emit/context.dart` (sensitive argument paths). Dropped credential arguments belong in `provider_secrets.dart` when the provider class leaves them out.
+- A publish phase in `.github/workflows/publish.yml`. Order follows pub.dev dependencies, so this is not a flat copy of the yaml.
+- A block in `.github/labeler.yml` for the package, the override directory, and the schema fixture.
+- The `cron` and the `workflow_dispatch` choice in `.github/workflows/schema-bump.yml`, when the lane has `bump:`.
+- A coverage-stack generator when `bump.exampleGenerator` is set. `tool/coverage_stack_test.dart` already requires that path to be a key of `kCoverageStacks`.
+- A provider guide under `website/src/content/docs/docs/providers/`, the sidebar in `website/astro.config.mjs`, and `website/src/components/landing/providers.ts` when the lane has a guide. The coverage sidebar entry is required for every lane.
+- The package name in `README.md`, this file's catalog paragraph, `AGENTS.md`, and `skills/terradart/SKILL.md`.
+- `kNotOnOpenTofuRegistry` in `tool/validate_engine.dart`, when the OpenTofu registry does not host the provider.
+
+Debt files such as `tool/type_name_length_debt.yaml` and `tool/example_debt.yaml` are shared. A new lane does not edit them until a generated name or a missing example trips a gate.
+
+Google-only checks stay Google-only. `tool/check_google_enum_gaps.dart` and `tool/check_google_mm_fingerprint.dart` exist because the GA lane hand-promotes enums and records Magic Modules paths. `tool/provider_hints_aws.dart` resolves aws-sdk-go-v2 enums. The hint extractor selects it by the shape of the provider tree, not by the lane name.
+
 ## Review cadence
 
 terradart is a single-maintainer project (alpha). Issue triage and PR

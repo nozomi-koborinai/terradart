@@ -14,8 +14,9 @@ void main() {
   final lanes = parseBumpLanes(File(providersPath).readAsStringSync());
   String names(List<BumpLane> l) => l.map((b) => b.lane.name).join(',');
 
-  test('google, appwrite, cloudflare and aws bump; google-beta does not', () {
-    expect(names(lanes), 'google,appwrite,cloudflare,aws');
+  test('google-beta has no bump of its own', () {
+    expect(names(lanes), isNot(contains('google-beta')));
+    expect(names(lanes), contains('google'));
   });
 
   test('each lane has its own cron, on different days', () {
@@ -82,10 +83,7 @@ void main() {
 
   test('a manual run plans one lane or all of them', () {
     expect(names(planLanes(lanes, lane: 'cloudflare')), 'cloudflare');
-    expect(
-      names(planLanes(lanes, lane: 'all')),
-      'google,appwrite,cloudflare,aws',
-    );
+    expect(names(planLanes(lanes, lane: 'all')), names(lanes));
     expect(() => planLanes(lanes, lane: 'google-beta'), throwsFormatException);
   });
 
