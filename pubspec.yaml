@@ -153,6 +153,7 @@ workspace:
   - cookbook/lunch-concierge/infra
 dev_dependencies:
   args: any
+  crypto: any
   meta: any
   pub_semver: any
   http: any
@@ -177,6 +178,9 @@ dev_dependencies:
     path: packages/terradart_hcl
   terradart_migrate:
     path: packages/terradart_migrate
+  # tool/plugin_cache_key.dart reads the time provider constraint.
+  terradart_time:
+    path: packages/terradart_time
   # tool/example_synth_gates.dart and the CI validate matrix run the OpenTofu
   # `terradart engine --engine tofu` resolves — the one users get;
   # tool/sync_bundled_skill.dart writes the CLI's skill marker.
