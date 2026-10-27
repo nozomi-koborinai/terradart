@@ -258,6 +258,12 @@ void main() {
       );
       expect(
         shapes(
+          'expected length of application_identifier to be in the range (1 - 3), got leftover',
+        ),
+        isEmpty,
+      );
+      expect(
+        shapes(
           'cannot parse Azure ID: parse "leftover": invalid URI for request',
         ),
         [

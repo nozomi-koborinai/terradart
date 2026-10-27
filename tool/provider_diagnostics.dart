@@ -292,7 +292,9 @@ final List<DiagnosticFamily> kDiagnosticFamilies = [
   DiagnosticFamily(
     'int-range',
     RegExp(r'in the range \((\d+) - (\d+)\)'),
-    (m) => [LiteralDummy(int.parse(m[1]!))],
+    (m) => m.input.contains('length')
+        ? const []
+        : [LiteralDummy(int.parse(m[1]!))],
   ),
   DiagnosticFamily(
     'azure-id-uri',
