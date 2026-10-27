@@ -64,6 +64,72 @@ jobs:
       - id: list
         run: echo "packages=$(dart tool/ci_packages.dart)" >> "$GITHUB_OUTPUT"
 
+  plugin_cache_key:
+    name: plugin cache key
+    runs-on: ubuntu-latest
+    outputs:
+      tofu: ${{ steps.key.outputs.tofu }}
+      terraform: ${{ steps.key.outputs.terraform }}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+      - run: dart pub get
+      - name: Resolve provider sets
+        id: key
+        # tool/plugin_cache_key.dart hashes the releases init will download.
+        # Hashing the constraint text does not move when ~> 8.0 floats, and
+        # a cache entry cannot be replaced, so the download would repeat.
+        run: |
+          tofu="$(dart tool/plugin_cache_key.dart --registry opentofu)"
+          terraform="$(dart tool/plugin_cache_key.dart --registry terraform)"
+          echo "tofu=$tofu" >> "$GITHUB_OUTPUT"
+          echo "terraform=$terraform" >> "$GITHUB_OUTPUT"
+
+  tofu_plugin_cache:
+    name: OpenTofu provider cache
+    runs-on: ubuntu-latest
+    needs: [changes, plugin_cache_key]
+    if: needs.changes.outputs.examples != '[]'
+    env:
+      TF_PLUGIN_CACHE_DIR: ${{ github.workspace }}/.terraform-plugin-cache
+      TF_PLUGIN_CACHE_MAY_BREAK_DEPENDENCY_LOCK_FILE: "1"
+    steps:
+      - uses: actions/checkout@v6
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+      - run: dart pub get
+      - name: Restore managed OpenTofu
+        uses: actions/cache/restore@v4
+        with:
+          path: ~/.cache/terradart/opentofu
+          key: opentofu-${{ runner.os }}-${{ hashFiles('packages/terradart_cli/lib/src/opentofu.dart') }}
+      - name: Restore OpenTofu providers
+        id: plugins
+        uses: actions/cache/restore@v4
+        with:
+          path: ${{ env.TF_PLUGIN_CACHE_DIR }}
+          key: tofuplugins-${{ runner.os }}-${{ needs.plugin_cache_key.outputs.tofu }}
+          restore-keys: tofuplugins-${{ runner.os }}-
+      - name: Install the OpenTofu provider set
+        run: |
+          mkdir -p "$TF_PLUGIN_CACHE_DIR"
+          got="$(dart tool/plugin_cache_key.dart --registry opentofu --tf "$RUNNER_TEMP/tofu-providers/main.tf.json")"
+          if [ "$got" != "${{ needs.plugin_cache_key.outputs.tofu }}" ]; then
+            echo "::error::provider set changed while the cache key was resolved"
+            exit 1
+          fi
+          engine="$(dart run terradart_cli:terradart engine --engine tofu)"
+          (cd "$RUNNER_TEMP/tofu-providers" && "$engine" init -backend=false -input=false)
+      - name: Save OpenTofu providers
+        if: steps.plugins.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: ${{ env.TF_PLUGIN_CACHE_DIR }}
+          key: ${{ steps.plugins.outputs.cache-primary-key }}
+
   test:
     name: test (${{ matrix.package }})
     runs-on: ubuntu-latest
@@ -242,7 +308,7 @@ jobs:
   terraform_validate:
     name: validate (${{ matrix.example }})
     runs-on: ubuntu-latest
-    needs: [test, changes]
+    needs: [test, changes, plugin_cache_key, tofu_plugin_cache]
     # Validates with OpenTofu, the engine `terradart` gives users: the release
     # terradart_cli pins (kOpenTofuVersion), resolved and checksum-verified by
     # `terradart engine --engine tofu`, so the pin has one source. The job id
@@ -285,20 +351,11 @@ jobs:
           path: ~/.cache/terradart/opentofu
           # opentofu.dart holds the pin and its SHA-256s.
           key: opentofu-${{ runner.os }}-${{ hashFiles('packages/terradart_cli/lib/src/opentofu.dart') }}
-      - name: Cache OpenTofu providers
-        uses: actions/cache@v4
+      - name: Restore OpenTofu providers
+        uses: actions/cache/restore@v4
         with:
           path: ${{ env.TF_PLUGIN_CACHE_DIR }}
-          # A cache entry is immutable per key, and google synth writes the
-          # floating constraint `~> 7.0`, so `tofu init` resolves the
-          # NEWEST provider release while a key derived from the pinned metadata
-          # never changed: the entry went stale on the first upstream release
-          # and every leg then restored it, missed, downloaded, and could not
-          # save ("Cache hit occurred on the primary key, not saving"). Key on
-          # the run instead: each run saves what it downloaded (the first leg
-          # to finish wins), and the next run restores the newest entry via
-          # the prefix, so a provider release costs one run of downloads.
-          key: tofuplugins-${{ runner.os }}-${{ github.run_id }}
+          key: tofuplugins-${{ runner.os }}-${{ needs.plugin_cache_key.outputs.tofu }}
           restore-keys: tofuplugins-${{ runner.os }}-
       - name: Ensure plugin cache dir exists
         run: mkdir -p "$TF_PLUGIN_CACHE_DIR"
@@ -351,6 +408,13 @@ jobs:
         with:
           terraform_version: "1.15.2"
           terraform_wrapper: false
+      - name: Restore Terraform providers
+        if: steps.engine.outputs.kind == 'terraform'
+        uses: actions/cache/restore@v4
+        with:
+          path: ${{ env.TF_PLUGIN_CACHE_DIR }}
+          key: tfplugins-${{ runner.os }}-${{ needs.plugin_cache_key.outputs.terraform }}
+          restore-keys: tfplugins-${{ runner.os }}-
 
       - name: Validate
         id: tf_validate
@@ -443,7 +507,7 @@ jobs:
   migrate_fixtures:
     name: migrate fixture gate
     runs-on: ubuntu-latest
-    needs: test
+    needs: [test, plugin_cache_key]
     env:
       TF_PLUGIN_CACHE_DIR: ${{ github.workspace }}/.terraform-plugin-cache
     # The migrator's end-to-end acceptance (#661): terradart-migrate the
@@ -467,22 +531,29 @@ jobs:
           # The locals gate parses `terraform show -json`; the wrapper
           # decorates the output it would read.
           terraform_wrapper: false
-      - name: Cache Terraform providers
-        uses: actions/cache@v4
+      - name: Restore Terraform providers
+        id: plugins
+        uses: actions/cache/restore@v4
         with:
           path: ${{ env.TF_PLUGIN_CACHE_DIR }}
-          key: tfplugins-${{ runner.os }}-${{ github.run_id }}
+          key: tfplugins-${{ runner.os }}-${{ needs.plugin_cache_key.outputs.terraform }}
           restore-keys: tfplugins-${{ runner.os }}-
       - name: Ensure plugin cache dir exists
         run: mkdir -p "$TF_PLUGIN_CACHE_DIR"
       - run: dart pub get
       - name: Migrate, synthesize and validate the fixtures
         run: dart tool/migrate_fixture_gates.dart
+      - name: Save Terraform providers
+        if: steps.plugins.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: ${{ env.TF_PLUGIN_CACHE_DIR }}
+          key: ${{ steps.plugins.outputs.cache-primary-key }}
 
   migrate_moved:
     name: migrate moved gate
     runs-on: ubuntu-latest
-    needs: test
+    needs: [test, plugin_cache_key]
     env:
       TF_PLUGIN_CACHE_DIR: ${{ github.workspace }}/.terraform-plugin-cache
     # The acceptance check for count / for_each unrolling (#663): migrate
@@ -501,11 +572,11 @@ jobs:
         with:
           terraform_version: "1.15.2"
           terraform_wrapper: false
-      - name: Cache Terraform providers
-        uses: actions/cache@v4
+      - name: Restore Terraform providers
+        uses: actions/cache/restore@v4
         with:
           path: ${{ env.TF_PLUGIN_CACHE_DIR }}
-          key: tfplugins-${{ runner.os }}-${{ github.run_id }}
+          key: tfplugins-${{ runner.os }}-${{ needs.plugin_cache_key.outputs.terraform }}
           restore-keys: tfplugins-${{ runner.os }}-
       - name: Ensure plugin cache dir exists
         run: mkdir -p "$TF_PLUGIN_CACHE_DIR"

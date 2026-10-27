@@ -102,6 +102,7 @@ These stay hand-edited. The agreement test fails if the lane is missing from the
 - A provider guide under `website/src/content/docs/docs/providers/`, the sidebar in `website/astro.config.mjs`, and `website/src/components/landing/providers.ts` when the lane has a guide. The coverage sidebar entry is required for every lane.
 - The package name in `README.md`, this file's catalog paragraph, `AGENTS.md`, and `skills/terradart/SKILL.md`.
 - `kNotOnOpenTofuRegistry` in `tool/validate_engine.dart` and `kTerraformOnlyProviders` in `packages/terradart_cli/lib/src/engine.dart`, when the OpenTofu registry does not host the provider. Today both sets are `appwrite/appwrite`.
+- `providerPins` in `tool/plugin_cache_key.dart`, plus the path dev dependency in the root `pubspec.yaml`. The constraints are Dart constants on the provider classes, so the list cannot come from `tool/providers.yaml`. `hashicorp/time` is an extra pin because it is not a wrap lane. `tool/plugin_cache_key_test.dart` fails when a yaml `source` has no pin. The cache-key job does not name lanes.
 - `InitProvider` in `packages/terradart_cli/lib/src/init_templates.dart`, when `terradart init` should scaffold that provider. google-beta and time are not in that enum.
 
 Debt files such as `tool/type_name_length_debt.yaml` and `tool/example_debt.yaml` are shared. A new lane does not edit them until a generated name or a missing example trips a gate.
