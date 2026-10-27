@@ -41,9 +41,11 @@ env:
 # which has been indexed since Phase 2's wait — no extra sleep needed).
 # Phase 6 publishes terradart_cloudflare (same shape and rationale).
 # Phase 7 publishes terradart_aws (same shape and rationale).
-# Phase 8 publishes terradart_azure (same shape and rationale). Its first
-# release is still a manual `dart pub publish`; the job is a no-op until
-# the package exists on pub.dev.
+# Phase 8 publishes terradart_azure (same shape and rationale). The package
+# is not on pub.dev yet. The first tag's job fails, and publish-migrate
+# and publish-cli wait on it. Publish the package by hand, then re-run
+# the workflow (RELEASE.md). Once that version is on pub.dev,
+# skip_if_published skips it.
 # Phase 9 waits again, then publishes terradart_migrate, which depends on
 # terradart_hcl and every provider package (terradart_azure was just published).
 # Phase 10 waits again, then publishes terradart_cli. It depends on
@@ -52,8 +54,8 @@ env:
 # NOTE: pub.dev's OIDC automated publishing only works for packages that
 # already exist there, so a NEW package's FIRST release is a manual
 # `dart pub publish` by the maintainer (then enable automated publishing in
-# the pub.dev admin UI); skip_if_published keeps these jobs a no-op until
-# the workflow takes over.
+# the pub.dev admin UI). Until that publish, the job fails. Once the
+# version is on pub.dev, skip_if_published skips it.
 #
 # Previous shape (matrix of all 3 leaves in parallel) raced terradart_codegen
 # against terradart_core's index propagation and intermittently failed
