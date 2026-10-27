@@ -136,18 +136,18 @@ final class WindowsFunctionAppStorageKeyVaultSecretId
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.storageAccountAccessKey(...)`.
-sealed class WindowsFunctionAppStorageAccountAccessKeyOrStorageUsesManagedIdentity {
-  const WindowsFunctionAppStorageAccountAccessKeyOrStorageUsesManagedIdentity();
+sealed class WindowsFunctionAppStorageAccess {
+  const WindowsFunctionAppStorageAccess();
 
   /// Sets `storage_account_access_key`.
-  const factory WindowsFunctionAppStorageAccountAccessKeyOrStorageUsesManagedIdentity.storageAccountAccessKey(
+  const factory WindowsFunctionAppStorageAccess.storageAccountAccessKey(
     Sensitive<String> storageAccountAccessKey,
-  ) = WindowsFunctionAppStorageAccountAccessKeyOrStorageUsesManagedIdentityStorageAccountAccessKey;
+  ) = WindowsFunctionAppStorageAccessStorageAccountAccessKey;
 
   /// Sets `storage_uses_managed_identity`.
-  const factory WindowsFunctionAppStorageAccountAccessKeyOrStorageUsesManagedIdentity.storageUsesManagedIdentity(
+  const factory WindowsFunctionAppStorageAccess.storageUsesManagedIdentity(
     TfArg<bool> storageUsesManagedIdentity,
-  ) = WindowsFunctionAppStorageAccountAccessKeyOrStorageUsesManagedIdentityChoice;
+  ) = WindowsFunctionAppStorageAccessStorageUsesManagedIdentity;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -162,11 +162,10 @@ sealed class WindowsFunctionAppStorageAccountAccessKeyOrStorageUsesManagedIdenti
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [WindowsFunctionAppStorageAccountAccessKeyOrStorageUsesManagedIdentity.storageAccountAccessKey] choice: sets `storage_account_access_key`.
-final class WindowsFunctionAppStorageAccountAccessKeyOrStorageUsesManagedIdentityStorageAccountAccessKey
-    extends
-        WindowsFunctionAppStorageAccountAccessKeyOrStorageUsesManagedIdentity {
-  const WindowsFunctionAppStorageAccountAccessKeyOrStorageUsesManagedIdentityStorageAccountAccessKey(
+/// The [WindowsFunctionAppStorageAccess.storageAccountAccessKey] choice: sets `storage_account_access_key`.
+final class WindowsFunctionAppStorageAccessStorageAccountAccessKey
+    extends WindowsFunctionAppStorageAccess {
+  const WindowsFunctionAppStorageAccessStorageAccountAccessKey(
     this.storageAccountAccessKey,
   );
 
@@ -189,11 +188,10 @@ final class WindowsFunctionAppStorageAccountAccessKeyOrStorageUsesManagedIdentit
   };
 }
 
-/// The [WindowsFunctionAppStorageAccountAccessKeyOrStorageUsesManagedIdentity.storageUsesManagedIdentity] choice: sets `storage_uses_managed_identity`.
-final class WindowsFunctionAppStorageAccountAccessKeyOrStorageUsesManagedIdentityChoice
-    extends
-        WindowsFunctionAppStorageAccountAccessKeyOrStorageUsesManagedIdentity {
-  const WindowsFunctionAppStorageAccountAccessKeyOrStorageUsesManagedIdentityChoice(
+/// The [WindowsFunctionAppStorageAccess.storageUsesManagedIdentity] choice: sets `storage_uses_managed_identity`.
+final class WindowsFunctionAppStorageAccessStorageUsesManagedIdentity
+    extends WindowsFunctionAppStorageAccess {
+  const WindowsFunctionAppStorageAccessStorageUsesManagedIdentity(
     this.storageUsesManagedIdentity,
   );
 
@@ -1362,8 +1360,7 @@ final class AzurermWindowsFunctionApp extends Resource {
     TfArg<bool>? publicNetworkAccessEnabled,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     required TfArg<String> servicePlanId,
-    WindowsFunctionAppStorageAccountAccessKeyOrStorageUsesManagedIdentity?
-    storageAccountAccessKeyOrStorageUsesManagedIdentity,
+    WindowsFunctionAppStorageAccess? storageAccess,
     required WindowsFunctionAppStorage storage,
     TfArg<Map<String, String>>? tags,
     TfArg<bool>? virtualNetworkBackupRestoreEnabled,
@@ -1406,7 +1403,7 @@ final class AzurermWindowsFunctionApp extends Resource {
            'public_network_access_enabled': ?publicNetworkAccessEnabled,
            'resource_group_name': resourceGroupName.encodeAs('name'),
            'service_plan_id': servicePlanId,
-           ...?storageAccountAccessKeyOrStorageUsesManagedIdentity?.argMap,
+           ...?storageAccess?.argMap,
            ...storage.argMap,
            'tags': ?tags,
            'virtual_network_backup_restore_enabled':

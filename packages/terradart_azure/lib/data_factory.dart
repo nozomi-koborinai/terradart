@@ -193,10 +193,10 @@ export 'src/data_factory/azurerm_data_factory_linked_service_snowflake.dart'
 export 'src/data_factory/azurerm_data_factory_linked_service_sql_managed_instance.dart'
     show
         AzurermDataFactoryLinkedServiceSqlManagedInstance,
-        DataFactoryLinkedServiceSqlManagedInstanceConnectionStringOrKeyVaultConnectionString,
-        DataFactoryLinkedServiceSqlManagedInstanceConnectionStringOrKeyVaultConnectionStringChoice,
-        DataFactoryLinkedServiceSqlManagedInstanceConnectionStringOrKeyVaultConnectionStringOption,
+        DataFactoryLinkedServiceSqlManagedInstanceConnectionString,
+        DataFactoryLinkedServiceSqlManagedInstanceConnectionStringChoice,
         DataFactoryLinkedServiceSqlManagedInstanceKeyVaultConnectionString,
+        DataFactoryLinkedServiceSqlManagedInstanceKeyVaultConnectionStringChoice,
         DataFactoryLinkedServiceSqlManagedInstanceKeyVaultPassword;
 export 'src/data_factory/azurerm_data_factory_linked_service_sql_server.dart'
     show

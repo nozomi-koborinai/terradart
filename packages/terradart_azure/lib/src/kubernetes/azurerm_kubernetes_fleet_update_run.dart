@@ -12,18 +12,18 @@ const Set<String> _azurermKubernetesFleetUpdateRunSensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.fleetUpdateStrategyId(...)`.
-sealed class KubernetesFleetUpdateRunFleetUpdateStrategyIdOrStage {
-  const KubernetesFleetUpdateRunFleetUpdateStrategyIdOrStage();
+sealed class KubernetesFleetUpdateRunStrategy {
+  const KubernetesFleetUpdateRunStrategy();
 
   /// Sets `fleet_update_strategy_id`.
-  const factory KubernetesFleetUpdateRunFleetUpdateStrategyIdOrStage.fleetUpdateStrategyId(
+  const factory KubernetesFleetUpdateRunStrategy.fleetUpdateStrategyId(
     TfArg<String> fleetUpdateStrategyId,
-  ) = KubernetesFleetUpdateRunFleetUpdateStrategyIdOrStageFleetUpdateStrategyId;
+  ) = KubernetesFleetUpdateRunStrategyFleetUpdateStrategyId;
 
   /// Sets `stage`.
-  const factory KubernetesFleetUpdateRunFleetUpdateStrategyIdOrStage.stage(
+  const factory KubernetesFleetUpdateRunStrategy.stage(
     List<KubernetesFleetUpdateRunStage> stage,
-  ) = KubernetesFleetUpdateRunFleetUpdateStrategyIdOrStageChoice;
+  ) = KubernetesFleetUpdateRunStrategyStage;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -38,10 +38,10 @@ sealed class KubernetesFleetUpdateRunFleetUpdateStrategyIdOrStage {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [KubernetesFleetUpdateRunFleetUpdateStrategyIdOrStage.fleetUpdateStrategyId] choice: sets `fleet_update_strategy_id`.
-final class KubernetesFleetUpdateRunFleetUpdateStrategyIdOrStageFleetUpdateStrategyId
-    extends KubernetesFleetUpdateRunFleetUpdateStrategyIdOrStage {
-  const KubernetesFleetUpdateRunFleetUpdateStrategyIdOrStageFleetUpdateStrategyId(
+/// The [KubernetesFleetUpdateRunStrategy.fleetUpdateStrategyId] choice: sets `fleet_update_strategy_id`.
+final class KubernetesFleetUpdateRunStrategyFleetUpdateStrategyId
+    extends KubernetesFleetUpdateRunStrategy {
+  const KubernetesFleetUpdateRunStrategyFleetUpdateStrategyId(
     this.fleetUpdateStrategyId,
   );
 
@@ -64,10 +64,10 @@ final class KubernetesFleetUpdateRunFleetUpdateStrategyIdOrStageFleetUpdateStrat
   };
 }
 
-/// The [KubernetesFleetUpdateRunFleetUpdateStrategyIdOrStage.stage] choice: sets `stage`.
-final class KubernetesFleetUpdateRunFleetUpdateStrategyIdOrStageChoice
-    extends KubernetesFleetUpdateRunFleetUpdateStrategyIdOrStage {
-  const KubernetesFleetUpdateRunFleetUpdateStrategyIdOrStageChoice(this.stage);
+/// The [KubernetesFleetUpdateRunStrategy.stage] choice: sets `stage`.
+final class KubernetesFleetUpdateRunStrategyStage
+    extends KubernetesFleetUpdateRunStrategy {
+  const KubernetesFleetUpdateRunStrategyStage(this.stage);
 
   final List<KubernetesFleetUpdateRunStage> stage;
 
@@ -182,8 +182,7 @@ final class AzurermKubernetesFleetUpdateRun extends Resource {
 
   AzurermKubernetesFleetUpdateRun(
     super.localName, {
-    KubernetesFleetUpdateRunFleetUpdateStrategyIdOrStage?
-    fleetUpdateStrategyIdOrStage,
+    KubernetesFleetUpdateRunStrategy? strategy,
     required TfArg<String> kubernetesFleetManagerId,
     required TfArg<String> name,
     required KubernetesFleetUpdateRunManagedClusterUpdate managedClusterUpdate,
@@ -194,7 +193,7 @@ final class AzurermKubernetesFleetUpdateRun extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...?fleetUpdateStrategyIdOrStage?.argMap,
+           ...?strategy?.argMap,
            'kubernetes_fleet_manager_id': kubernetesFleetManagerId,
            'name': name,
            'managed_cluster_update': TfArg.literal(

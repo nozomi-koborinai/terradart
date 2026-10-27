@@ -10,9 +10,9 @@ export 'src/data/azurerm_subscription_template_deployment.dart'
 export 'src/subscription/azurerm_subscription.dart'
     show
         AzurermSubscription,
-        SubscriptionBillingScopeIdOrSubscriptionId,
-        SubscriptionBillingScopeIdOrSubscriptionIdBillingScopeId,
-        SubscriptionBillingScopeIdOrSubscriptionIdChoice,
+        SubscriptionSource,
+        SubscriptionSourceBillingScopeId,
+        SubscriptionSourceSubscriptionId,
         SubscriptionWorkload;
 export 'src/subscription/azurerm_subscription_cost_management_export.dart'
     show

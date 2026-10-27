@@ -39,18 +39,17 @@ extension type const VirtualMachineLicenseType._(TfArg<String> _)
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.availabilitySetId(...)`.
-sealed class VirtualMachineAvailabilitySetIdOrZones {
-  const VirtualMachineAvailabilitySetIdOrZones();
+sealed class VirtualMachinePlacement {
+  const VirtualMachinePlacement();
 
   /// Sets `availability_set_id`.
-  const factory VirtualMachineAvailabilitySetIdOrZones.availabilitySetId(
+  const factory VirtualMachinePlacement.availabilitySetId(
     TfArg<String> availabilitySetId,
-  ) = VirtualMachineAvailabilitySetIdOrZonesAvailabilitySetId;
+  ) = VirtualMachinePlacementAvailabilitySetId;
 
   /// Sets `zones`.
-  const factory VirtualMachineAvailabilitySetIdOrZones.zones(
-    TfArg<List<String>> zones,
-  ) = VirtualMachineAvailabilitySetIdOrZonesChoice;
+  const factory VirtualMachinePlacement.zones(TfArg<List<String>> zones) =
+      VirtualMachinePlacementZones;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -65,12 +64,10 @@ sealed class VirtualMachineAvailabilitySetIdOrZones {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [VirtualMachineAvailabilitySetIdOrZones.availabilitySetId] choice: sets `availability_set_id`.
-final class VirtualMachineAvailabilitySetIdOrZonesAvailabilitySetId
-    extends VirtualMachineAvailabilitySetIdOrZones {
-  const VirtualMachineAvailabilitySetIdOrZonesAvailabilitySetId(
-    this.availabilitySetId,
-  );
+/// The [VirtualMachinePlacement.availabilitySetId] choice: sets `availability_set_id`.
+final class VirtualMachinePlacementAvailabilitySetId
+    extends VirtualMachinePlacement {
+  const VirtualMachinePlacementAvailabilitySetId(this.availabilitySetId);
 
   final TfArg<String> availabilitySetId;
 
@@ -91,10 +88,9 @@ final class VirtualMachineAvailabilitySetIdOrZonesAvailabilitySetId
   };
 }
 
-/// The [VirtualMachineAvailabilitySetIdOrZones.zones] choice: sets `zones`.
-final class VirtualMachineAvailabilitySetIdOrZonesChoice
-    extends VirtualMachineAvailabilitySetIdOrZones {
-  const VirtualMachineAvailabilitySetIdOrZonesChoice(this.zones);
+/// The [VirtualMachinePlacement.zones] choice: sets `zones`.
+final class VirtualMachinePlacementZones extends VirtualMachinePlacement {
+  const VirtualMachinePlacementZones(this.zones);
 
   final TfArg<List<String>> zones;
 
@@ -116,18 +112,18 @@ final class VirtualMachineAvailabilitySetIdOrZonesChoice
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.osProfileLinuxConfig(...)`.
-sealed class VirtualMachineOsProfileLinuxConfigOrOsProfileWindowsConfig {
-  const VirtualMachineOsProfileLinuxConfigOrOsProfileWindowsConfig();
+sealed class VirtualMachineOsConfiguration {
+  const VirtualMachineOsConfiguration();
 
   /// Sets `os_profile_linux_config`.
-  const factory VirtualMachineOsProfileLinuxConfigOrOsProfileWindowsConfig.osProfileLinuxConfig(
+  const factory VirtualMachineOsConfiguration.osProfileLinuxConfig(
     VirtualMachineOsProfileLinuxConfig osProfileLinuxConfig,
-  ) = VirtualMachineOsProfileLinuxConfigOrOsProfileWindowsConfigOsProfileLinuxConfig;
+  ) = VirtualMachineOsConfigurationOsProfileLinuxConfig;
 
   /// Sets `os_profile_windows_config`.
-  const factory VirtualMachineOsProfileLinuxConfigOrOsProfileWindowsConfig.osProfileWindowsConfig(
+  const factory VirtualMachineOsConfiguration.osProfileWindowsConfig(
     VirtualMachineOsProfileWindowsConfig osProfileWindowsConfig,
-  ) = VirtualMachineOsProfileLinuxConfigOrOsProfileWindowsConfigChoice;
+  ) = VirtualMachineOsConfigurationOsProfileWindowsConfig;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -142,10 +138,10 @@ sealed class VirtualMachineOsProfileLinuxConfigOrOsProfileWindowsConfig {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [VirtualMachineOsProfileLinuxConfigOrOsProfileWindowsConfig.osProfileLinuxConfig] choice: sets `os_profile_linux_config`.
-final class VirtualMachineOsProfileLinuxConfigOrOsProfileWindowsConfigOsProfileLinuxConfig
-    extends VirtualMachineOsProfileLinuxConfigOrOsProfileWindowsConfig {
-  const VirtualMachineOsProfileLinuxConfigOrOsProfileWindowsConfigOsProfileLinuxConfig(
+/// The [VirtualMachineOsConfiguration.osProfileLinuxConfig] choice: sets `os_profile_linux_config`.
+final class VirtualMachineOsConfigurationOsProfileLinuxConfig
+    extends VirtualMachineOsConfiguration {
+  const VirtualMachineOsConfigurationOsProfileLinuxConfig(
     this.osProfileLinuxConfig,
   );
 
@@ -168,10 +164,10 @@ final class VirtualMachineOsProfileLinuxConfigOrOsProfileWindowsConfigOsProfileL
   };
 }
 
-/// The [VirtualMachineOsProfileLinuxConfigOrOsProfileWindowsConfig.osProfileWindowsConfig] choice: sets `os_profile_windows_config`.
-final class VirtualMachineOsProfileLinuxConfigOrOsProfileWindowsConfigChoice
-    extends VirtualMachineOsProfileLinuxConfigOrOsProfileWindowsConfig {
-  const VirtualMachineOsProfileLinuxConfigOrOsProfileWindowsConfigChoice(
+/// The [VirtualMachineOsConfiguration.osProfileWindowsConfig] choice: sets `os_profile_windows_config`.
+final class VirtualMachineOsConfigurationOsProfileWindowsConfig
+    extends VirtualMachineOsConfiguration {
+  const VirtualMachineOsConfigurationOsProfileWindowsConfig(
     this.osProfileWindowsConfig,
   );
 
@@ -643,7 +639,7 @@ final class AzurermVirtualMachine extends Resource {
 
   AzurermVirtualMachine(
     super.localName, {
-    VirtualMachineAvailabilitySetIdOrZones? availabilitySetIdOrZones,
+    VirtualMachinePlacement? placement,
     TfArg<bool>? deleteDataDisksOnTermination,
     TfArg<bool>? deleteOsDiskOnTermination,
     VirtualMachineLicenseType? licenseType,
@@ -659,8 +655,7 @@ final class AzurermVirtualMachine extends Resource {
     VirtualMachineBootDiagnostics? bootDiagnostics,
     VirtualMachineIdentity? identity,
     VirtualMachineOsProfile? osProfile,
-    VirtualMachineOsProfileLinuxConfigOrOsProfileWindowsConfig?
-    osProfileLinuxConfigOrOsProfileWindowsConfig,
+    VirtualMachineOsConfiguration? osConfiguration,
     List<VirtualMachineOsProfileSecrets>? osProfileSecrets,
     VirtualMachinePlan? plan,
     List<VirtualMachineStorageDataDisk>? storageDataDisk,
@@ -673,7 +668,7 @@ final class AzurermVirtualMachine extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...?availabilitySetIdOrZones?.argMap,
+           ...?placement?.argMap,
            'delete_data_disks_on_termination': ?deleteDataDisksOnTermination,
            'delete_os_disk_on_termination': ?deleteOsDiskOnTermination,
            'license_type': ?licenseType,
@@ -694,7 +689,7 @@ final class AzurermVirtualMachine extends Resource {
            if (identity != null) 'identity': TfArg.literal(identity.encode()),
            if (osProfile != null)
              'os_profile': TfArg.literal(osProfile.encode()),
-           ...?osProfileLinuxConfigOrOsProfileWindowsConfig?.argMap,
+           ...?osConfiguration?.argMap,
            if (osProfileSecrets != null)
              'os_profile_secrets': TfArg.literal([
                for (final e in osProfileSecrets) e.encode(),

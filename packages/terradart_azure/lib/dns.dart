@@ -18,23 +18,23 @@ export 'src/data/azurerm_dns_zone.dart' show DataAzurermDnsZone;
 export 'src/dns/azurerm_dns_a_record.dart'
     show
         AzurermDnsARecord,
-        DnsARecordRecordsOrTargetResourceId,
-        DnsARecordRecordsOrTargetResourceIdChoice,
-        DnsARecordRecordsOrTargetResourceIdRecords;
+        DnsARecordTarget,
+        DnsARecordTargetRecords,
+        DnsARecordTargetResourceId;
 export 'src/dns/azurerm_dns_aaaa_record.dart'
     show
         AzurermDnsAaaaRecord,
-        DnsAaaaRecordRecordsOrTargetResourceId,
-        DnsAaaaRecordRecordsOrTargetResourceIdChoice,
-        DnsAaaaRecordRecordsOrTargetResourceIdRecords;
+        DnsAaaaRecordTarget,
+        DnsAaaaRecordTargetRecords,
+        DnsAaaaRecordTargetResourceId;
 export 'src/dns/azurerm_dns_caa_record.dart'
     show AzurermDnsCaaRecord, DnsCaaRecord, DnsCaaRecordTag;
 export 'src/dns/azurerm_dns_cname_record.dart'
     show
         AzurermDnsCnameRecord,
-        DnsCnameRecordOrTargetResourceId,
-        DnsCnameRecordOrTargetResourceIdChoice,
-        DnsCnameRecordOrTargetResourceIdRecord;
+        DnsCnameRecordTarget,
+        DnsCnameRecordTargetRecord,
+        DnsCnameRecordTargetResourceId;
 export 'src/dns/azurerm_dns_mx_record.dart'
     show AzurermDnsMxRecord, DnsMxRecord;
 export 'src/dns/azurerm_dns_ns_record.dart' show AzurermDnsNsRecord;

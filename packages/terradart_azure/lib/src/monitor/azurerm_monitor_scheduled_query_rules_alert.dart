@@ -37,18 +37,18 @@ extension type const MonitorScheduledQueryRulesAlertQueryType._(TfArg<String> _)
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.autoMitigationEnabled(...)`.
-sealed class MonitorScheduledQueryRulesAlertAutoMitigationEnabledOrThrottling {
-  const MonitorScheduledQueryRulesAlertAutoMitigationEnabledOrThrottling();
+sealed class MonitorScheduledQueryRulesAlertResolution {
+  const MonitorScheduledQueryRulesAlertResolution();
 
   /// Sets `auto_mitigation_enabled`.
-  const factory MonitorScheduledQueryRulesAlertAutoMitigationEnabledOrThrottling.autoMitigationEnabled(
+  const factory MonitorScheduledQueryRulesAlertResolution.autoMitigationEnabled(
     TfArg<bool> autoMitigationEnabled,
-  ) = MonitorScheduledQueryRulesAlertAutoMitigationEnabledOrThrottlingAutoMitigationEnabled;
+  ) = MonitorScheduledQueryRulesAlertResolutionAutoMitigationEnabled;
 
   /// Sets `throttling`.
-  const factory MonitorScheduledQueryRulesAlertAutoMitigationEnabledOrThrottling.throttling(
+  const factory MonitorScheduledQueryRulesAlertResolution.throttling(
     TfArg<num> throttling,
-  ) = MonitorScheduledQueryRulesAlertAutoMitigationEnabledOrThrottlingChoice;
+  ) = MonitorScheduledQueryRulesAlertResolutionThrottling;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -63,10 +63,10 @@ sealed class MonitorScheduledQueryRulesAlertAutoMitigationEnabledOrThrottling {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [MonitorScheduledQueryRulesAlertAutoMitigationEnabledOrThrottling.autoMitigationEnabled] choice: sets `auto_mitigation_enabled`.
-final class MonitorScheduledQueryRulesAlertAutoMitigationEnabledOrThrottlingAutoMitigationEnabled
-    extends MonitorScheduledQueryRulesAlertAutoMitigationEnabledOrThrottling {
-  const MonitorScheduledQueryRulesAlertAutoMitigationEnabledOrThrottlingAutoMitigationEnabled(
+/// The [MonitorScheduledQueryRulesAlertResolution.autoMitigationEnabled] choice: sets `auto_mitigation_enabled`.
+final class MonitorScheduledQueryRulesAlertResolutionAutoMitigationEnabled
+    extends MonitorScheduledQueryRulesAlertResolution {
+  const MonitorScheduledQueryRulesAlertResolutionAutoMitigationEnabled(
     this.autoMitigationEnabled,
   );
 
@@ -89,12 +89,10 @@ final class MonitorScheduledQueryRulesAlertAutoMitigationEnabledOrThrottlingAuto
   };
 }
 
-/// The [MonitorScheduledQueryRulesAlertAutoMitigationEnabledOrThrottling.throttling] choice: sets `throttling`.
-final class MonitorScheduledQueryRulesAlertAutoMitigationEnabledOrThrottlingChoice
-    extends MonitorScheduledQueryRulesAlertAutoMitigationEnabledOrThrottling {
-  const MonitorScheduledQueryRulesAlertAutoMitigationEnabledOrThrottlingChoice(
-    this.throttling,
-  );
+/// The [MonitorScheduledQueryRulesAlertResolution.throttling] choice: sets `throttling`.
+final class MonitorScheduledQueryRulesAlertResolutionThrottling
+    extends MonitorScheduledQueryRulesAlertResolution {
+  const MonitorScheduledQueryRulesAlertResolutionThrottling(this.throttling);
 
   final TfArg<num> throttling;
 
@@ -253,8 +251,7 @@ final class AzurermMonitorScheduledQueryRulesAlert extends Resource {
   AzurermMonitorScheduledQueryRulesAlert(
     super.localName, {
     TfArg<List<String>>? authorizedResourceIds,
-    MonitorScheduledQueryRulesAlertAutoMitigationEnabledOrThrottling?
-    autoMitigationEnabledOrThrottling,
+    MonitorScheduledQueryRulesAlertResolution? resolution,
     required TfArg<String> dataSourceId,
     TfArg<String>? description,
     TfArg<bool>? enabled,
@@ -277,7 +274,7 @@ final class AzurermMonitorScheduledQueryRulesAlert extends Resource {
          terraformType: tfType,
          argMap: {
            'authorized_resource_ids': ?authorizedResourceIds,
-           ...?autoMitigationEnabledOrThrottling?.argMap,
+           ...?resolution?.argMap,
            'data_source_id': dataSourceId,
            'description': ?description,
            'enabled': ?enabled,

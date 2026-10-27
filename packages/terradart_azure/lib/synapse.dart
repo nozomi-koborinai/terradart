@@ -31,20 +31,20 @@ export 'src/synapse/azurerm_synapse_spark_pool.dart'
         AzurermSynapseSparkPool,
         SynapseSparkPoolAutoPause,
         SynapseSparkPoolAutoScale,
-        SynapseSparkPoolAutoScaleOrNodeCount,
-        SynapseSparkPoolAutoScaleOrNodeCountAutoScale,
-        SynapseSparkPoolAutoScaleOrNodeCountChoice,
+        SynapseSparkPoolAutoScaleChoice,
         SynapseSparkPoolLibraryRequirement,
         SynapseSparkPoolNodeSize,
         SynapseSparkPoolNodeSizeFamily,
+        SynapseSparkPoolScale,
+        SynapseSparkPoolScaleNodeCount,
         SynapseSparkPoolSparkConfig,
         SynapseSparkPoolSparkVersion;
 export 'src/synapse/azurerm_synapse_sql_pool.dart'
     show
         AzurermSynapseSqlPool,
-        SynapseSqlPoolRecoveryDatabaseIdOrRestore,
-        SynapseSqlPoolRecoveryDatabaseIdOrRestoreChoice,
-        SynapseSqlPoolRecoveryDatabaseIdOrRestoreRecoveryDatabaseId,
+        SynapseSqlPoolRecovery,
+        SynapseSqlPoolRecoveryDatabaseId,
+        SynapseSqlPoolRecoveryRestore,
         SynapseSqlPoolRestore,
         SynapseSqlPoolSkuName;
 export 'src/synapse/azurerm_synapse_sql_pool_extended_auditing_policy.dart'

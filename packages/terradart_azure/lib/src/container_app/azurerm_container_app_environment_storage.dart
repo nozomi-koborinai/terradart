@@ -37,18 +37,18 @@ extension type const ContainerAppEnvironmentStorageAccessMode._(TfArg<String> _)
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.accountName(...)`.
-sealed class ContainerAppEnvironmentStorageAccountNameOrNfsServerUrl {
-  const ContainerAppEnvironmentStorageAccountNameOrNfsServerUrl();
+sealed class ContainerAppEnvironmentStorageBackend {
+  const ContainerAppEnvironmentStorageBackend();
 
   /// Sets `account_name`.
-  const factory ContainerAppEnvironmentStorageAccountNameOrNfsServerUrl.accountName(
+  const factory ContainerAppEnvironmentStorageBackend.accountName(
     TfArg<String> accountName,
-  ) = ContainerAppEnvironmentStorageAccountNameOrNfsServerUrlAccountName;
+  ) = ContainerAppEnvironmentStorageBackendAccountName;
 
   /// Sets `nfs_server_url`.
-  const factory ContainerAppEnvironmentStorageAccountNameOrNfsServerUrl.nfsServerUrl(
+  const factory ContainerAppEnvironmentStorageBackend.nfsServerUrl(
     TfArg<String> nfsServerUrl,
-  ) = ContainerAppEnvironmentStorageAccountNameOrNfsServerUrlChoice;
+  ) = ContainerAppEnvironmentStorageBackendNfsServerUrl;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -63,12 +63,10 @@ sealed class ContainerAppEnvironmentStorageAccountNameOrNfsServerUrl {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [ContainerAppEnvironmentStorageAccountNameOrNfsServerUrl.accountName] choice: sets `account_name`.
-final class ContainerAppEnvironmentStorageAccountNameOrNfsServerUrlAccountName
-    extends ContainerAppEnvironmentStorageAccountNameOrNfsServerUrl {
-  const ContainerAppEnvironmentStorageAccountNameOrNfsServerUrlAccountName(
-    this.accountName,
-  );
+/// The [ContainerAppEnvironmentStorageBackend.accountName] choice: sets `account_name`.
+final class ContainerAppEnvironmentStorageBackendAccountName
+    extends ContainerAppEnvironmentStorageBackend {
+  const ContainerAppEnvironmentStorageBackendAccountName(this.accountName);
 
   final TfArg<String> accountName;
 
@@ -85,12 +83,10 @@ final class ContainerAppEnvironmentStorageAccountNameOrNfsServerUrlAccountName
   Map<String, TfArg<Object?>> get argMap => {'account_name': accountName};
 }
 
-/// The [ContainerAppEnvironmentStorageAccountNameOrNfsServerUrl.nfsServerUrl] choice: sets `nfs_server_url`.
-final class ContainerAppEnvironmentStorageAccountNameOrNfsServerUrlChoice
-    extends ContainerAppEnvironmentStorageAccountNameOrNfsServerUrl {
-  const ContainerAppEnvironmentStorageAccountNameOrNfsServerUrlChoice(
-    this.nfsServerUrl,
-  );
+/// The [ContainerAppEnvironmentStorageBackend.nfsServerUrl] choice: sets `nfs_server_url`.
+final class ContainerAppEnvironmentStorageBackendNfsServerUrl
+    extends ContainerAppEnvironmentStorageBackend {
+  const ContainerAppEnvironmentStorageBackendNfsServerUrl(this.nfsServerUrl);
 
   final TfArg<String> nfsServerUrl;
 
@@ -115,8 +111,7 @@ final class AzurermContainerAppEnvironmentStorage extends Resource {
     super.localName, {
     Sensitive<String>? accessKey,
     required ContainerAppEnvironmentStorageAccessMode accessMode,
-    ContainerAppEnvironmentStorageAccountNameOrNfsServerUrl?
-    accountNameOrNfsServerUrl,
+    ContainerAppEnvironmentStorageBackend? backend,
     required TfArg<String> containerAppEnvironmentId,
     required TfArg<String> name,
     required TfArg<String> shareName,
@@ -129,7 +124,7 @@ final class AzurermContainerAppEnvironmentStorage extends Resource {
          argMap: {
            'access_key': ?accessKey,
            'access_mode': accessMode,
-           ...?accountNameOrNfsServerUrl?.argMap,
+           ...?backend?.argMap,
            'container_app_environment_id': containerAppEnvironmentId,
            'name': name,
            'share_name': shareName,

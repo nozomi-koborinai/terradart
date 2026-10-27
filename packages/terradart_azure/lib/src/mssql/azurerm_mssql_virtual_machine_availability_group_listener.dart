@@ -12,20 +12,20 @@ _azurermMssqlVirtualMachineAvailabilityGroupListenerSensitive = <String>{};
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.loadBalancerConfiguration(...)`.
-sealed class MssqlVirtualMachineAvailabilityGroupListenerLoadBalancerConfigurationOrMultiSubnetIpConfiguration {
-  const MssqlVirtualMachineAvailabilityGroupListenerLoadBalancerConfigurationOrMultiSubnetIpConfiguration();
+sealed class MssqlVirtualMachineAvailabilityGroupListenerNetwork {
+  const MssqlVirtualMachineAvailabilityGroupListenerNetwork();
 
   /// Sets `load_balancer_configuration`.
-  const factory MssqlVirtualMachineAvailabilityGroupListenerLoadBalancerConfigurationOrMultiSubnetIpConfiguration.loadBalancerConfiguration(
+  const factory MssqlVirtualMachineAvailabilityGroupListenerNetwork.loadBalancerConfiguration(
     MssqlVirtualMachineAvailabilityGroupListenerLoadBalancerConfiguration
     loadBalancerConfiguration,
-  ) = MssqlVirtualMachineAvailabilityGroupListenerLoadBalancerConfigurationOrMultiSubnetIpConfigurationLoadBalancerConfiguration;
+  ) = MssqlVirtualMachineAvailabilityGroupListenerNetworkLoadBalancerConfiguration;
 
   /// Sets `multi_subnet_ip_configuration`.
-  const factory MssqlVirtualMachineAvailabilityGroupListenerLoadBalancerConfigurationOrMultiSubnetIpConfiguration.multiSubnetIpConfiguration(
+  const factory MssqlVirtualMachineAvailabilityGroupListenerNetwork.multiSubnetIpConfiguration(
     List<MssqlVirtualMachineAvailabilityGroupListenerMultiSubnetIpConfiguration>
     multiSubnetIpConfiguration,
-  ) = MssqlVirtualMachineAvailabilityGroupListenerLoadBalancerConfigurationOrMultiSubnetIpConfigurationChoice;
+  ) = MssqlVirtualMachineAvailabilityGroupListenerNetworkMultiSubnetIpConfiguration;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -40,11 +40,10 @@ sealed class MssqlVirtualMachineAvailabilityGroupListenerLoadBalancerConfigurati
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [MssqlVirtualMachineAvailabilityGroupListenerLoadBalancerConfigurationOrMultiSubnetIpConfiguration.loadBalancerConfiguration] choice: sets `load_balancer_configuration`.
-final class MssqlVirtualMachineAvailabilityGroupListenerLoadBalancerConfigurationOrMultiSubnetIpConfigurationLoadBalancerConfiguration
-    extends
-        MssqlVirtualMachineAvailabilityGroupListenerLoadBalancerConfigurationOrMultiSubnetIpConfiguration {
-  const MssqlVirtualMachineAvailabilityGroupListenerLoadBalancerConfigurationOrMultiSubnetIpConfigurationLoadBalancerConfiguration(
+/// The [MssqlVirtualMachineAvailabilityGroupListenerNetwork.loadBalancerConfiguration] choice: sets `load_balancer_configuration`.
+final class MssqlVirtualMachineAvailabilityGroupListenerNetworkLoadBalancerConfiguration
+    extends MssqlVirtualMachineAvailabilityGroupListenerNetwork {
+  const MssqlVirtualMachineAvailabilityGroupListenerNetworkLoadBalancerConfiguration(
     this.loadBalancerConfiguration,
   );
 
@@ -70,11 +69,10 @@ final class MssqlVirtualMachineAvailabilityGroupListenerLoadBalancerConfiguratio
   };
 }
 
-/// The [MssqlVirtualMachineAvailabilityGroupListenerLoadBalancerConfigurationOrMultiSubnetIpConfiguration.multiSubnetIpConfiguration] choice: sets `multi_subnet_ip_configuration`.
-final class MssqlVirtualMachineAvailabilityGroupListenerLoadBalancerConfigurationOrMultiSubnetIpConfigurationChoice
-    extends
-        MssqlVirtualMachineAvailabilityGroupListenerLoadBalancerConfigurationOrMultiSubnetIpConfiguration {
-  const MssqlVirtualMachineAvailabilityGroupListenerLoadBalancerConfigurationOrMultiSubnetIpConfigurationChoice(
+/// The [MssqlVirtualMachineAvailabilityGroupListenerNetwork.multiSubnetIpConfiguration] choice: sets `multi_subnet_ip_configuration`.
+final class MssqlVirtualMachineAvailabilityGroupListenerNetworkMultiSubnetIpConfiguration
+    extends MssqlVirtualMachineAvailabilityGroupListenerNetwork {
+  const MssqlVirtualMachineAvailabilityGroupListenerNetworkMultiSubnetIpConfiguration(
     this.multiSubnetIpConfiguration,
   );
 
@@ -313,8 +311,7 @@ final class AzurermMssqlVirtualMachineAvailabilityGroupListener
     required TfArg<String> name,
     TfArg<num>? port,
     required TfArg<String> sqlVirtualMachineGroupId,
-    required MssqlVirtualMachineAvailabilityGroupListenerLoadBalancerConfigurationOrMultiSubnetIpConfiguration
-    loadBalancerConfigurationOrMultiSubnetIpConfiguration,
+    required MssqlVirtualMachineAvailabilityGroupListenerNetwork network,
     required List<MssqlVirtualMachineAvailabilityGroupListenerReplica> replica,
     super.lifecycle,
     super.dependsOn,
@@ -327,7 +324,7 @@ final class AzurermMssqlVirtualMachineAvailabilityGroupListener
            'name': name,
            'port': ?port,
            'sql_virtual_machine_group_id': sqlVirtualMachineGroupId,
-           ...loadBalancerConfigurationOrMultiSubnetIpConfiguration.argMap,
+           ...network.argMap,
            'replica': TfArg.literal([for (final e in replica) e.encode()]),
          },
        );

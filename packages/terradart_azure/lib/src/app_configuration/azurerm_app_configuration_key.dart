@@ -12,18 +12,17 @@ const Set<String> _azurermAppConfigurationKeySensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.value(...)`.
-sealed class AppConfigurationKeyValueOrVaultKeyReference {
-  const AppConfigurationKeyValueOrVaultKeyReference();
+sealed class AppConfigurationKeySource {
+  const AppConfigurationKeySource();
 
   /// Sets `value`.
-  const factory AppConfigurationKeyValueOrVaultKeyReference.value(
-    TfArg<String> value,
-  ) = AppConfigurationKeyValueOrVaultKeyReferenceValue;
+  const factory AppConfigurationKeySource.value(TfArg<String> value) =
+      AppConfigurationKeySourceValue;
 
   /// Sets `vault_key_reference`.
-  const factory AppConfigurationKeyValueOrVaultKeyReference.vaultKeyReference(
+  const factory AppConfigurationKeySource.vaultKeyReference(
     TfArg<String> vaultKeyReference,
-  ) = AppConfigurationKeyValueOrVaultKeyReferenceChoice;
+  ) = AppConfigurationKeySourceVaultKeyReference;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -38,10 +37,9 @@ sealed class AppConfigurationKeyValueOrVaultKeyReference {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [AppConfigurationKeyValueOrVaultKeyReference.value] choice: sets `value`.
-final class AppConfigurationKeyValueOrVaultKeyReferenceValue
-    extends AppConfigurationKeyValueOrVaultKeyReference {
-  const AppConfigurationKeyValueOrVaultKeyReferenceValue(this.value);
+/// The [AppConfigurationKeySource.value] choice: sets `value`.
+final class AppConfigurationKeySourceValue extends AppConfigurationKeySource {
+  const AppConfigurationKeySourceValue(this.value);
 
   final TfArg<String> value;
 
@@ -58,12 +56,10 @@ final class AppConfigurationKeyValueOrVaultKeyReferenceValue
   Map<String, TfArg<Object?>> get argMap => {'value': value};
 }
 
-/// The [AppConfigurationKeyValueOrVaultKeyReference.vaultKeyReference] choice: sets `vault_key_reference`.
-final class AppConfigurationKeyValueOrVaultKeyReferenceChoice
-    extends AppConfigurationKeyValueOrVaultKeyReference {
-  const AppConfigurationKeyValueOrVaultKeyReferenceChoice(
-    this.vaultKeyReference,
-  );
+/// The [AppConfigurationKeySource.vaultKeyReference] choice: sets `vault_key_reference`.
+final class AppConfigurationKeySourceVaultKeyReference
+    extends AppConfigurationKeySource {
+  const AppConfigurationKeySourceVaultKeyReference(this.vaultKeyReference);
 
   final TfArg<String> vaultKeyReference;
 
@@ -98,7 +94,7 @@ final class AzurermAppConfigurationKey extends Resource {
     TfArg<bool>? locked,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? type,
-    AppConfigurationKeyValueOrVaultKeyReference? valueOrVaultKeyReference,
+    AppConfigurationKeySource? source,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -114,7 +110,7 @@ final class AzurermAppConfigurationKey extends Resource {
            'locked': ?locked,
            'tags': ?tags,
            'type': ?type,
-           ...?valueOrVaultKeyReference?.argMap,
+           ...?source?.argMap,
          },
        );
 

@@ -13,18 +13,18 @@ const Set<String> _azurermLocalNetworkGatewaySensitive = <String>{};
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.gatewayAddress(...)`.
-sealed class LocalNetworkGatewayAddressOrGatewayFqdn {
-  const LocalNetworkGatewayAddressOrGatewayFqdn();
+sealed class LocalNetworkGatewayAddress {
+  const LocalNetworkGatewayAddress();
 
   /// Sets `gateway_address`.
-  const factory LocalNetworkGatewayAddressOrGatewayFqdn.gatewayAddress(
+  const factory LocalNetworkGatewayAddress.gatewayAddress(
     TfArg<String> gatewayAddress,
-  ) = LocalNetworkGatewayAddressOrGatewayFqdnGatewayAddress;
+  ) = LocalNetworkGatewayAddressChoice;
 
   /// Sets `gateway_fqdn`.
-  const factory LocalNetworkGatewayAddressOrGatewayFqdn.gatewayFqdn(
+  const factory LocalNetworkGatewayAddress.gatewayFqdn(
     TfArg<String> gatewayFqdn,
-  ) = LocalNetworkGatewayAddressOrGatewayFqdnChoice;
+  ) = LocalNetworkGatewayAddressGatewayFqdn;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -39,12 +39,10 @@ sealed class LocalNetworkGatewayAddressOrGatewayFqdn {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [LocalNetworkGatewayAddressOrGatewayFqdn.gatewayAddress] choice: sets `gateway_address`.
-final class LocalNetworkGatewayAddressOrGatewayFqdnGatewayAddress
-    extends LocalNetworkGatewayAddressOrGatewayFqdn {
-  const LocalNetworkGatewayAddressOrGatewayFqdnGatewayAddress(
-    this.gatewayAddress,
-  );
+/// The [LocalNetworkGatewayAddress.gatewayAddress] choice: sets `gateway_address`.
+final class LocalNetworkGatewayAddressChoice
+    extends LocalNetworkGatewayAddress {
+  const LocalNetworkGatewayAddressChoice(this.gatewayAddress);
 
   final TfArg<String> gatewayAddress;
 
@@ -63,10 +61,10 @@ final class LocalNetworkGatewayAddressOrGatewayFqdnGatewayAddress
   Map<String, TfArg<Object?>> get argMap => {'gateway_address': gatewayAddress};
 }
 
-/// The [LocalNetworkGatewayAddressOrGatewayFqdn.gatewayFqdn] choice: sets `gateway_fqdn`.
-final class LocalNetworkGatewayAddressOrGatewayFqdnChoice
-    extends LocalNetworkGatewayAddressOrGatewayFqdn {
-  const LocalNetworkGatewayAddressOrGatewayFqdnChoice(this.gatewayFqdn);
+/// The [LocalNetworkGatewayAddress.gatewayFqdn] choice: sets `gateway_fqdn`.
+final class LocalNetworkGatewayAddressGatewayFqdn
+    extends LocalNetworkGatewayAddress {
+  const LocalNetworkGatewayAddressGatewayFqdn(this.gatewayFqdn);
 
   final TfArg<String> gatewayFqdn;
 
@@ -114,8 +112,7 @@ final class AzurermLocalNetworkGateway extends Resource {
   AzurermLocalNetworkGateway(
     super.localName, {
     TfArg<List<String>>? addressSpace,
-    required LocalNetworkGatewayAddressOrGatewayFqdn
-    gatewayAddressOrGatewayFqdn,
+    required LocalNetworkGatewayAddress address,
     required TfArg<String> location,
     required TfArg<String> name,
     required RefTo<AzurermResourceGroup> resourceGroupName,
@@ -129,7 +126,7 @@ final class AzurermLocalNetworkGateway extends Resource {
          terraformType: tfType,
          argMap: {
            'address_space': ?addressSpace,
-           ...gatewayAddressOrGatewayFqdn.argMap,
+           ...address.argMap,
            'location': location,
            'name': name,
            'resource_group_name': resourceGroupName.encodeAs('name'),

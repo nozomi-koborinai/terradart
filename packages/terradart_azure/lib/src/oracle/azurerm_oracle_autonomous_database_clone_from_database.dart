@@ -120,18 +120,18 @@ extension type const OracleAutonomousDatabaseCloneFromDatabaseRefreshableModel._
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.allowedIpAddresses(...)`.
-sealed class OracleAutonomousDatabaseCloneFromDatabaseAllowedIpAddressesOrVirtualNetworkId {
-  const OracleAutonomousDatabaseCloneFromDatabaseAllowedIpAddressesOrVirtualNetworkId();
+sealed class OracleAutonomousDatabaseCloneFromDatabaseNetworkAccess {
+  const OracleAutonomousDatabaseCloneFromDatabaseNetworkAccess();
 
   /// Sets `allowed_ip_addresses`.
-  const factory OracleAutonomousDatabaseCloneFromDatabaseAllowedIpAddressesOrVirtualNetworkId.allowedIpAddresses(
+  const factory OracleAutonomousDatabaseCloneFromDatabaseNetworkAccess.allowedIpAddresses(
     TfArg<List<String>> allowedIpAddresses,
-  ) = OracleAutonomousDatabaseCloneFromDatabaseAllowedIpAddressesOrVirtualNetworkIdAllowedIpAddresses;
+  ) = OracleAutonomousDatabaseCloneFromDatabaseNetworkAccessAllowedIpAddresses;
 
   /// Sets `virtual_network_id`.
-  const factory OracleAutonomousDatabaseCloneFromDatabaseAllowedIpAddressesOrVirtualNetworkId.virtualNetworkId(
+  const factory OracleAutonomousDatabaseCloneFromDatabaseNetworkAccess.virtualNetworkId(
     RefTo<AzurermVirtualNetwork> virtualNetworkId,
-  ) = OracleAutonomousDatabaseCloneFromDatabaseAllowedIpAddressesOrVirtualNetworkIdChoice;
+  ) = OracleAutonomousDatabaseCloneFromDatabaseNetworkAccessVirtualNetworkId;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -146,11 +146,10 @@ sealed class OracleAutonomousDatabaseCloneFromDatabaseAllowedIpAddressesOrVirtua
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [OracleAutonomousDatabaseCloneFromDatabaseAllowedIpAddressesOrVirtualNetworkId.allowedIpAddresses] choice: sets `allowed_ip_addresses`.
-final class OracleAutonomousDatabaseCloneFromDatabaseAllowedIpAddressesOrVirtualNetworkIdAllowedIpAddresses
-    extends
-        OracleAutonomousDatabaseCloneFromDatabaseAllowedIpAddressesOrVirtualNetworkId {
-  const OracleAutonomousDatabaseCloneFromDatabaseAllowedIpAddressesOrVirtualNetworkIdAllowedIpAddresses(
+/// The [OracleAutonomousDatabaseCloneFromDatabaseNetworkAccess.allowedIpAddresses] choice: sets `allowed_ip_addresses`.
+final class OracleAutonomousDatabaseCloneFromDatabaseNetworkAccessAllowedIpAddresses
+    extends OracleAutonomousDatabaseCloneFromDatabaseNetworkAccess {
+  const OracleAutonomousDatabaseCloneFromDatabaseNetworkAccessAllowedIpAddresses(
     this.allowedIpAddresses,
   );
 
@@ -173,11 +172,10 @@ final class OracleAutonomousDatabaseCloneFromDatabaseAllowedIpAddressesOrVirtual
   };
 }
 
-/// The [OracleAutonomousDatabaseCloneFromDatabaseAllowedIpAddressesOrVirtualNetworkId.virtualNetworkId] choice: sets `virtual_network_id`.
-final class OracleAutonomousDatabaseCloneFromDatabaseAllowedIpAddressesOrVirtualNetworkIdChoice
-    extends
-        OracleAutonomousDatabaseCloneFromDatabaseAllowedIpAddressesOrVirtualNetworkId {
-  const OracleAutonomousDatabaseCloneFromDatabaseAllowedIpAddressesOrVirtualNetworkIdChoice(
+/// The [OracleAutonomousDatabaseCloneFromDatabaseNetworkAccess.virtualNetworkId] choice: sets `virtual_network_id`.
+final class OracleAutonomousDatabaseCloneFromDatabaseNetworkAccessVirtualNetworkId
+    extends OracleAutonomousDatabaseCloneFromDatabaseNetworkAccess {
+  const OracleAutonomousDatabaseCloneFromDatabaseNetworkAccessVirtualNetworkId(
     this.virtualNetworkId,
   );
 
@@ -208,8 +206,8 @@ final class AzurermOracleAutonomousDatabaseCloneFromDatabase extends Resource {
   AzurermOracleAutonomousDatabaseCloneFromDatabase(
     super.localName, {
     required Sensitive<String> adminPassword,
-    required OracleAutonomousDatabaseCloneFromDatabaseAllowedIpAddressesOrVirtualNetworkId
-    allowedIpAddressesOrVirtualNetworkId,
+    required OracleAutonomousDatabaseCloneFromDatabaseNetworkAccess
+    networkAccess,
     required TfArg<bool> autoScalingEnabled,
     required TfArg<bool> autoScalingForStorageEnabled,
     required TfArg<num> backupRetentionPeriodInDays,
@@ -240,7 +238,7 @@ final class AzurermOracleAutonomousDatabaseCloneFromDatabase extends Resource {
          terraformType: tfType,
          argMap: {
            'admin_password': adminPassword,
-           ...allowedIpAddressesOrVirtualNetworkId.argMap,
+           ...networkAccess.argMap,
            'auto_scaling_enabled': autoScalingEnabled,
            'auto_scaling_for_storage_enabled': autoScalingForStorageEnabled,
            'backup_retention_period_in_days': backupRetentionPeriodInDays,

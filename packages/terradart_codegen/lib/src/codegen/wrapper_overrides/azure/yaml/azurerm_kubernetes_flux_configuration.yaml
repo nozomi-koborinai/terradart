@@ -4,3 +4,8 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 deriveExactlyOne: true
+
+sealedNames:
+  "blob_storage, bucket, git_repository": source
+  "blob_storage.account_key, blob_storage.local_auth_reference, blob_storage.managed_identity, blob_storage.sas_token, blob_storage.service_principal": credentials
+  "bucket.access_key, bucket.local_auth_reference": credentials

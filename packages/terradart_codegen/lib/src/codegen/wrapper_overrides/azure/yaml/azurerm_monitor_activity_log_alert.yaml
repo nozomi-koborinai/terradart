@@ -4,3 +4,7 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 deriveExactlyOne: true
+
+sealedNames:
+  "criteria.caller, criteria.resource_health, criteria.service_health": detail
+  "criteria.status, criteria.statuses": status

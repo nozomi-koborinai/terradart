@@ -13,18 +13,18 @@ const Set<String> _azurermApiManagementWorkspaceNamedValueSensitive = <String>{
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.value(...)`.
-sealed class ApiManagementWorkspaceNamedValueOrValueFromKeyVault {
-  const ApiManagementWorkspaceNamedValueOrValueFromKeyVault();
+sealed class ApiManagementWorkspaceNamedValueSource {
+  const ApiManagementWorkspaceNamedValueSource();
 
   /// Sets `value`.
-  const factory ApiManagementWorkspaceNamedValueOrValueFromKeyVault.value(
+  const factory ApiManagementWorkspaceNamedValueSource.value(
     Sensitive<String> value,
-  ) = ApiManagementWorkspaceNamedValueOrValueFromKeyVaultValue;
+  ) = ApiManagementWorkspaceNamedValueSourceValue;
 
   /// Sets `value_from_key_vault`.
-  const factory ApiManagementWorkspaceNamedValueOrValueFromKeyVault.valueFromKeyVault(
+  const factory ApiManagementWorkspaceNamedValueSource.valueFromKeyVault(
     ApiManagementWorkspaceNamedValueFromKeyVault valueFromKeyVault,
-  ) = ApiManagementWorkspaceNamedValueOrValueFromKeyVaultChoice;
+  ) = ApiManagementWorkspaceNamedValueSourceValueFromKeyVault;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -39,10 +39,10 @@ sealed class ApiManagementWorkspaceNamedValueOrValueFromKeyVault {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [ApiManagementWorkspaceNamedValueOrValueFromKeyVault.value] choice: sets `value`.
-final class ApiManagementWorkspaceNamedValueOrValueFromKeyVaultValue
-    extends ApiManagementWorkspaceNamedValueOrValueFromKeyVault {
-  const ApiManagementWorkspaceNamedValueOrValueFromKeyVaultValue(this.value);
+/// The [ApiManagementWorkspaceNamedValueSource.value] choice: sets `value`.
+final class ApiManagementWorkspaceNamedValueSourceValue
+    extends ApiManagementWorkspaceNamedValueSource {
+  const ApiManagementWorkspaceNamedValueSourceValue(this.value);
 
   final Sensitive<String> value;
 
@@ -59,10 +59,10 @@ final class ApiManagementWorkspaceNamedValueOrValueFromKeyVaultValue
   Map<String, TfArg<Object?>> get argMap => {'value': value};
 }
 
-/// The [ApiManagementWorkspaceNamedValueOrValueFromKeyVault.valueFromKeyVault] choice: sets `value_from_key_vault`.
-final class ApiManagementWorkspaceNamedValueOrValueFromKeyVaultChoice
-    extends ApiManagementWorkspaceNamedValueOrValueFromKeyVault {
-  const ApiManagementWorkspaceNamedValueOrValueFromKeyVaultChoice(
+/// The [ApiManagementWorkspaceNamedValueSource.valueFromKeyVault] choice: sets `value_from_key_vault`.
+final class ApiManagementWorkspaceNamedValueSourceValueFromKeyVault
+    extends ApiManagementWorkspaceNamedValueSource {
+  const ApiManagementWorkspaceNamedValueSourceValueFromKeyVault(
     this.valueFromKeyVault,
   );
 
@@ -116,8 +116,7 @@ final class AzurermApiManagementWorkspaceNamedValue extends Resource {
     required TfArg<String> name,
     TfArg<bool>? secret,
     TfArg<List<String>>? tags,
-    required ApiManagementWorkspaceNamedValueOrValueFromKeyVault
-    valueOrValueFromKeyVault,
+    required ApiManagementWorkspaceNamedValueSource source,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -130,7 +129,7 @@ final class AzurermApiManagementWorkspaceNamedValue extends Resource {
            'name': name,
            'secret': ?secret,
            'tags': ?tags,
-           ...valueOrValueFromKeyVault.argMap,
+           ...source.argMap,
          },
        );
 

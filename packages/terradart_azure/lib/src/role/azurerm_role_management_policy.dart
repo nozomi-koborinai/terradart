@@ -15,7 +15,7 @@ final class RoleManagementPolicyActivationRules {
     this.maximumDuration,
     this.requireApproval,
     this.requireJustification,
-    this.requireMultifactorAuthenticationOrRequiredConditionalAccessAuthenticationContext,
+    this.authentication,
     this.requireTicketInfo,
     this.approvalStage,
   });
@@ -26,8 +26,7 @@ final class RoleManagementPolicyActivationRules {
 
   final TfArg<bool>? requireJustification;
 
-  final RoleManagementPolicyActivationRulesRequireMultifactorAuthenticationOrRequiredConditionalAccessAuthenticationContext?
-  requireMultifactorAuthenticationOrRequiredConditionalAccessAuthenticationContext;
+  final RoleManagementPolicyAuthentication? authentication;
 
   final TfArg<bool>? requireTicketInfo;
 
@@ -38,8 +37,7 @@ final class RoleManagementPolicyActivationRules {
     'maximum_duration': ?maximumDuration?.toTfJson(),
     'require_approval': ?requireApproval?.toTfJson(),
     'require_justification': ?requireJustification?.toTfJson(),
-    ...?requireMultifactorAuthenticationOrRequiredConditionalAccessAuthenticationContext
-        ?.encode(),
+    ...?authentication?.encode(),
     'require_ticket_info': ?requireTicketInfo?.toTfJson(),
     'approval_stage': ?approvalStage?.encode(),
   };
@@ -50,18 +48,18 @@ final class RoleManagementPolicyActivationRules {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.requireMultifactorAuthentication(...)`.
-sealed class RoleManagementPolicyActivationRulesRequireMultifactorAuthenticationOrRequiredConditionalAccessAuthenticationContext {
-  const RoleManagementPolicyActivationRulesRequireMultifactorAuthenticationOrRequiredConditionalAccessAuthenticationContext();
+sealed class RoleManagementPolicyAuthentication {
+  const RoleManagementPolicyAuthentication();
 
   /// Sets `require_multifactor_authentication`.
-  const factory RoleManagementPolicyActivationRulesRequireMultifactorAuthenticationOrRequiredConditionalAccessAuthenticationContext.requireMultifactorAuthentication(
+  const factory RoleManagementPolicyAuthentication.requireMultifactorAuthentication(
     TfArg<bool> requireMultifactorAuthentication,
-  ) = RoleManagementPolicyActivationRulesRequireMultifactorAuthenticationOrRequiredConditionalAccessAuthenticationContextRequireMultifactorAuthentication;
+  ) = RoleManagementPolicyRequireMultifactorAuthentication;
 
   /// Sets `required_conditional_access_authentication_context`.
-  const factory RoleManagementPolicyActivationRulesRequireMultifactorAuthenticationOrRequiredConditionalAccessAuthenticationContext.requiredConditionalAccessAuthenticationContext(
+  const factory RoleManagementPolicyAuthentication.requiredConditionalAccessAuthenticationContext(
     TfArg<String> requiredConditionalAccessAuthenticationContext,
-  ) = RoleManagementPolicyActivationRulesRequireMultifactorAuthenticationOrRequiredConditionalAccessAuthenticationContextChoice;
+  ) = RoleManagementPolicyAuthenticationRequiredConditionalAccessAuthenticationContext;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -71,11 +69,10 @@ sealed class RoleManagementPolicyActivationRulesRequireMultifactorAuthentication
   Map<String, Object?> encode();
 }
 
-/// The [RoleManagementPolicyActivationRulesRequireMultifactorAuthenticationOrRequiredConditionalAccessAuthenticationContext.requireMultifactorAuthentication] choice: sets `require_multifactor_authentication`.
-final class RoleManagementPolicyActivationRulesRequireMultifactorAuthenticationOrRequiredConditionalAccessAuthenticationContextRequireMultifactorAuthentication
-    extends
-        RoleManagementPolicyActivationRulesRequireMultifactorAuthenticationOrRequiredConditionalAccessAuthenticationContext {
-  const RoleManagementPolicyActivationRulesRequireMultifactorAuthenticationOrRequiredConditionalAccessAuthenticationContextRequireMultifactorAuthentication(
+/// The [RoleManagementPolicyAuthentication.requireMultifactorAuthentication] choice: sets `require_multifactor_authentication`.
+final class RoleManagementPolicyRequireMultifactorAuthentication
+    extends RoleManagementPolicyAuthentication {
+  const RoleManagementPolicyRequireMultifactorAuthentication(
     this.requireMultifactorAuthentication,
   );
 
@@ -93,11 +90,10 @@ final class RoleManagementPolicyActivationRulesRequireMultifactorAuthenticationO
   };
 }
 
-/// The [RoleManagementPolicyActivationRulesRequireMultifactorAuthenticationOrRequiredConditionalAccessAuthenticationContext.requiredConditionalAccessAuthenticationContext] choice: sets `required_conditional_access_authentication_context`.
-final class RoleManagementPolicyActivationRulesRequireMultifactorAuthenticationOrRequiredConditionalAccessAuthenticationContextChoice
-    extends
-        RoleManagementPolicyActivationRulesRequireMultifactorAuthenticationOrRequiredConditionalAccessAuthenticationContext {
-  const RoleManagementPolicyActivationRulesRequireMultifactorAuthenticationOrRequiredConditionalAccessAuthenticationContextChoice(
+/// The [RoleManagementPolicyAuthentication.requiredConditionalAccessAuthenticationContext] choice: sets `required_conditional_access_authentication_context`.
+final class RoleManagementPolicyAuthenticationRequiredConditionalAccessAuthenticationContext
+    extends RoleManagementPolicyAuthentication {
+  const RoleManagementPolicyAuthenticationRequiredConditionalAccessAuthenticationContext(
     this.requiredConditionalAccessAuthenticationContext,
   );
 

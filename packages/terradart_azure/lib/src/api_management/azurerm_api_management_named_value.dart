@@ -13,18 +13,17 @@ const Set<String> _azurermApiManagementNamedValueSensitive = <String>{'value'};
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.value(...)`.
-sealed class ApiManagementNamedValueOrValueFromKeyVault {
-  const ApiManagementNamedValueOrValueFromKeyVault();
+sealed class ApiManagementNamedValueSource {
+  const ApiManagementNamedValueSource();
 
   /// Sets `value`.
-  const factory ApiManagementNamedValueOrValueFromKeyVault.value(
-    Sensitive<String> value,
-  ) = ApiManagementNamedValueOrValueFromKeyVaultValue;
+  const factory ApiManagementNamedValueSource.value(Sensitive<String> value) =
+      ApiManagementNamedValueSourceValue;
 
   /// Sets `value_from_key_vault`.
-  const factory ApiManagementNamedValueOrValueFromKeyVault.valueFromKeyVault(
+  const factory ApiManagementNamedValueSource.valueFromKeyVault(
     ApiManagementNamedValueFromKeyVault valueFromKeyVault,
-  ) = ApiManagementNamedValueOrValueFromKeyVaultChoice;
+  ) = ApiManagementNamedValueSourceValueFromKeyVault;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -39,10 +38,10 @@ sealed class ApiManagementNamedValueOrValueFromKeyVault {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [ApiManagementNamedValueOrValueFromKeyVault.value] choice: sets `value`.
-final class ApiManagementNamedValueOrValueFromKeyVaultValue
-    extends ApiManagementNamedValueOrValueFromKeyVault {
-  const ApiManagementNamedValueOrValueFromKeyVaultValue(this.value);
+/// The [ApiManagementNamedValueSource.value] choice: sets `value`.
+final class ApiManagementNamedValueSourceValue
+    extends ApiManagementNamedValueSource {
+  const ApiManagementNamedValueSourceValue(this.value);
 
   final Sensitive<String> value;
 
@@ -59,12 +58,10 @@ final class ApiManagementNamedValueOrValueFromKeyVaultValue
   Map<String, TfArg<Object?>> get argMap => {'value': value};
 }
 
-/// The [ApiManagementNamedValueOrValueFromKeyVault.valueFromKeyVault] choice: sets `value_from_key_vault`.
-final class ApiManagementNamedValueOrValueFromKeyVaultChoice
-    extends ApiManagementNamedValueOrValueFromKeyVault {
-  const ApiManagementNamedValueOrValueFromKeyVaultChoice(
-    this.valueFromKeyVault,
-  );
+/// The [ApiManagementNamedValueSource.valueFromKeyVault] choice: sets `value_from_key_vault`.
+final class ApiManagementNamedValueSourceValueFromKeyVault
+    extends ApiManagementNamedValueSource {
+  const ApiManagementNamedValueSourceValueFromKeyVault(this.valueFromKeyVault);
 
   final ApiManagementNamedValueFromKeyVault valueFromKeyVault;
 
@@ -117,8 +114,7 @@ final class AzurermApiManagementNamedValue extends Resource {
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<bool>? secret,
     TfArg<List<String>>? tags,
-    required ApiManagementNamedValueOrValueFromKeyVault
-    valueOrValueFromKeyVault,
+    required ApiManagementNamedValueSource source,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -132,7 +128,7 @@ final class AzurermApiManagementNamedValue extends Resource {
            'resource_group_name': resourceGroupName.encodeAs('name'),
            'secret': ?secret,
            'tags': ?tags,
-           ...valueOrValueFromKeyVault.argMap,
+           ...source.argMap,
          },
        );
 

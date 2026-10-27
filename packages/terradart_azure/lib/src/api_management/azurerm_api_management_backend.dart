@@ -59,13 +59,13 @@ final class ApiManagementBackendCircuitBreakerRule {
 @immutable
 final class ApiManagementBackendFailureCondition {
   const ApiManagementBackendFailureCondition({
-    required this.countOrPercentage,
+    required this.threshold,
     this.errorReasons,
     required this.intervalDuration,
     this.statusCodeRange,
   });
 
-  final ApiManagementBackendFailureConditionCountOrPercentage countOrPercentage;
+  final ApiManagementBackendThreshold threshold;
 
   final TfArg<List<String>>? errorReasons;
 
@@ -75,7 +75,7 @@ final class ApiManagementBackendFailureCondition {
 
   @internal
   Map<String, Object?> encode() => {
-    ...countOrPercentage.encode(),
+    ...threshold.encode(),
     'error_reasons': ?errorReasons?.toTfJson(),
     'interval_duration': intervalDuration.toTfJson(),
     if (statusCodeRange != null)
@@ -87,18 +87,17 @@ final class ApiManagementBackendFailureCondition {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.count(...)`.
-sealed class ApiManagementBackendFailureConditionCountOrPercentage {
-  const ApiManagementBackendFailureConditionCountOrPercentage();
+sealed class ApiManagementBackendThreshold {
+  const ApiManagementBackendThreshold();
 
   /// Sets `count`.
-  const factory ApiManagementBackendFailureConditionCountOrPercentage.count(
-    TfArg<num> count,
-  ) = ApiManagementBackendFailureConditionCountOrPercentageCount;
+  const factory ApiManagementBackendThreshold.count(TfArg<num> count) =
+      ApiManagementBackendThresholdCount;
 
   /// Sets `percentage`.
-  const factory ApiManagementBackendFailureConditionCountOrPercentage.percentage(
+  const factory ApiManagementBackendThreshold.percentage(
     TfArg<num> percentage,
-  ) = ApiManagementBackendFailureConditionCountOrPercentageChoice;
+  ) = ApiManagementBackendThresholdPercentage;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -108,10 +107,10 @@ sealed class ApiManagementBackendFailureConditionCountOrPercentage {
   Map<String, Object?> encode();
 }
 
-/// The [ApiManagementBackendFailureConditionCountOrPercentage.count] choice: sets `count`.
-final class ApiManagementBackendFailureConditionCountOrPercentageCount
-    extends ApiManagementBackendFailureConditionCountOrPercentage {
-  const ApiManagementBackendFailureConditionCountOrPercentageCount(this.count);
+/// The [ApiManagementBackendThreshold.count] choice: sets `count`.
+final class ApiManagementBackendThresholdCount
+    extends ApiManagementBackendThreshold {
+  const ApiManagementBackendThresholdCount(this.count);
 
   final TfArg<num> count;
 
@@ -124,12 +123,10 @@ final class ApiManagementBackendFailureConditionCountOrPercentageCount
   Map<String, Object?> encode() => {'count': count.toTfJson()};
 }
 
-/// The [ApiManagementBackendFailureConditionCountOrPercentage.percentage] choice: sets `percentage`.
-final class ApiManagementBackendFailureConditionCountOrPercentageChoice
-    extends ApiManagementBackendFailureConditionCountOrPercentage {
-  const ApiManagementBackendFailureConditionCountOrPercentageChoice(
-    this.percentage,
-  );
+/// The [ApiManagementBackendThreshold.percentage] choice: sets `percentage`.
+final class ApiManagementBackendThresholdPercentage
+    extends ApiManagementBackendThreshold {
+  const ApiManagementBackendThresholdPercentage(this.percentage);
 
   final TfArg<num> percentage;
 

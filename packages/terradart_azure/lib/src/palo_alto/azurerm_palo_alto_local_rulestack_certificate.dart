@@ -12,18 +12,18 @@ const Set<String> _azurermPaloAltoLocalRulestackCertificateSensitive =
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.keyVaultCertificateId(...)`.
-sealed class PaloAltoLocalRulestackCertificateKeyVaultCertificateIdOrSelfSigned {
-  const PaloAltoLocalRulestackCertificateKeyVaultCertificateIdOrSelfSigned();
+sealed class PaloAltoLocalRulestackCertificateSource {
+  const PaloAltoLocalRulestackCertificateSource();
 
   /// Sets `key_vault_certificate_id`.
-  const factory PaloAltoLocalRulestackCertificateKeyVaultCertificateIdOrSelfSigned.keyVaultCertificateId(
+  const factory PaloAltoLocalRulestackCertificateSource.keyVaultCertificateId(
     TfArg<String> keyVaultCertificateId,
-  ) = PaloAltoLocalRulestackCertificateKeyVaultCertificateIdOrSelfSignedKeyVaultCertificateId;
+  ) = PaloAltoLocalRulestackCertificateSourceKeyVaultCertificateId;
 
   /// Sets `self_signed`.
-  const factory PaloAltoLocalRulestackCertificateKeyVaultCertificateIdOrSelfSigned.selfSigned(
+  const factory PaloAltoLocalRulestackCertificateSource.selfSigned(
     TfArg<bool> selfSigned,
-  ) = PaloAltoLocalRulestackCertificateKeyVaultCertificateIdOrSelfSignedChoice;
+  ) = PaloAltoLocalRulestackCertificateSourceSelfSigned;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -38,10 +38,10 @@ sealed class PaloAltoLocalRulestackCertificateKeyVaultCertificateIdOrSelfSigned 
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [PaloAltoLocalRulestackCertificateKeyVaultCertificateIdOrSelfSigned.keyVaultCertificateId] choice: sets `key_vault_certificate_id`.
-final class PaloAltoLocalRulestackCertificateKeyVaultCertificateIdOrSelfSignedKeyVaultCertificateId
-    extends PaloAltoLocalRulestackCertificateKeyVaultCertificateIdOrSelfSigned {
-  const PaloAltoLocalRulestackCertificateKeyVaultCertificateIdOrSelfSignedKeyVaultCertificateId(
+/// The [PaloAltoLocalRulestackCertificateSource.keyVaultCertificateId] choice: sets `key_vault_certificate_id`.
+final class PaloAltoLocalRulestackCertificateSourceKeyVaultCertificateId
+    extends PaloAltoLocalRulestackCertificateSource {
+  const PaloAltoLocalRulestackCertificateSourceKeyVaultCertificateId(
     this.keyVaultCertificateId,
   );
 
@@ -64,12 +64,10 @@ final class PaloAltoLocalRulestackCertificateKeyVaultCertificateIdOrSelfSignedKe
   };
 }
 
-/// The [PaloAltoLocalRulestackCertificateKeyVaultCertificateIdOrSelfSigned.selfSigned] choice: sets `self_signed`.
-final class PaloAltoLocalRulestackCertificateKeyVaultCertificateIdOrSelfSignedChoice
-    extends PaloAltoLocalRulestackCertificateKeyVaultCertificateIdOrSelfSigned {
-  const PaloAltoLocalRulestackCertificateKeyVaultCertificateIdOrSelfSignedChoice(
-    this.selfSigned,
-  );
+/// The [PaloAltoLocalRulestackCertificateSource.selfSigned] choice: sets `self_signed`.
+final class PaloAltoLocalRulestackCertificateSourceSelfSigned
+    extends PaloAltoLocalRulestackCertificateSource {
+  const PaloAltoLocalRulestackCertificateSourceSelfSigned(this.selfSigned);
 
   final TfArg<bool> selfSigned;
 
@@ -94,8 +92,7 @@ final class AzurermPaloAltoLocalRulestackCertificate extends Resource {
     super.localName, {
     TfArg<String>? auditComment,
     TfArg<String>? description,
-    required PaloAltoLocalRulestackCertificateKeyVaultCertificateIdOrSelfSigned
-    keyVaultCertificateIdOrSelfSigned,
+    required PaloAltoLocalRulestackCertificateSource source,
     required TfArg<String> name,
     required TfArg<String> rulestackId,
     super.lifecycle,
@@ -107,7 +104,7 @@ final class AzurermPaloAltoLocalRulestackCertificate extends Resource {
          argMap: {
            'audit_comment': ?auditComment,
            'description': ?description,
-           ...keyVaultCertificateIdOrSelfSigned.argMap,
+           ...source.argMap,
            'name': name,
            'rulestack_id': rulestackId,
          },

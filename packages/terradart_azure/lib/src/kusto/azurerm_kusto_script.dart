@@ -53,17 +53,17 @@ extension type const KustoScriptLevel._(TfArg<String> _)
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.scriptContent(...)`.
-sealed class KustoScriptContentOrUrl {
-  const KustoScriptContentOrUrl();
+sealed class KustoScriptContent {
+  const KustoScriptContent();
 
   /// Sets `script_content`.
-  const factory KustoScriptContentOrUrl.scriptContent(
+  const factory KustoScriptContent.scriptContent(
     Sensitive<String> scriptContent,
-  ) = KustoScriptContentOrUrlScriptContent;
+  ) = KustoScriptContentChoice;
 
   /// Sets `url`.
-  const factory KustoScriptContentOrUrl.url(TfArg<String> url) =
-      KustoScriptContentOrUrlChoice;
+  const factory KustoScriptContent.url(TfArg<String> url) =
+      KustoScriptContentUrl;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -78,10 +78,9 @@ sealed class KustoScriptContentOrUrl {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [KustoScriptContentOrUrl.scriptContent] choice: sets `script_content`.
-final class KustoScriptContentOrUrlScriptContent
-    extends KustoScriptContentOrUrl {
-  const KustoScriptContentOrUrlScriptContent(this.scriptContent);
+/// The [KustoScriptContent.scriptContent] choice: sets `script_content`.
+final class KustoScriptContentChoice extends KustoScriptContent {
+  const KustoScriptContentChoice(this.scriptContent);
 
   final Sensitive<String> scriptContent;
 
@@ -98,9 +97,9 @@ final class KustoScriptContentOrUrlScriptContent
   Map<String, TfArg<Object?>> get argMap => {'script_content': scriptContent};
 }
 
-/// The [KustoScriptContentOrUrl.url] choice: sets `url`.
-final class KustoScriptContentOrUrlChoice extends KustoScriptContentOrUrl {
-  const KustoScriptContentOrUrlChoice(this.url);
+/// The [KustoScriptContent.url] choice: sets `url`.
+final class KustoScriptContentUrl extends KustoScriptContent {
+  const KustoScriptContentUrl(this.url);
 
   final TfArg<String> url;
 
@@ -129,7 +128,7 @@ final class AzurermKustoScript extends Resource {
     required TfArg<String> name,
     KustoScriptPrincipalPermissionsAction? principalPermissionsAction,
     Sensitive<String>? sasToken,
-    required KustoScriptContentOrUrl scriptContentOrUrl,
+    required KustoScriptContent content,
     KustoScriptLevel? scriptLevel,
     super.lifecycle,
     super.dependsOn,
@@ -144,7 +143,7 @@ final class AzurermKustoScript extends Resource {
            'name': name,
            'principal_permissions_action': ?principalPermissionsAction,
            'sas_token': ?sasToken,
-           ...scriptContentOrUrl.argMap,
+           ...content.argMap,
            'script_level': ?scriptLevel,
          },
        );

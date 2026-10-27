@@ -51,10 +51,10 @@ export 'src/site_recovery/azurerm_site_recovery_services_vault_hyperv_site.dart'
 export 'src/site_recovery/azurerm_site_recovery_vmware_replicated_vm.dart'
     show
         AzurermSiteRecoveryVmwareReplicatedVm,
-        SiteRecoveryVmwareReplicatedVmDefaultLogStorageAccountIdOrManagedDisk,
-        SiteRecoveryVmwareReplicatedVmDefaultLogStorageAccountIdOrManagedDiskChoice,
-        SiteRecoveryVmwareReplicatedVmDefaultLogStorageAccountIdOrManagedDiskDefaultLogStorageAccountId,
         SiteRecoveryVmwareReplicatedVmDefaultRecoveryDiskType,
+        SiteRecoveryVmwareReplicatedVmDiskReplication,
+        SiteRecoveryVmwareReplicatedVmDiskReplicationDefaultLogStorageAccountId,
+        SiteRecoveryVmwareReplicatedVmDiskReplicationManagedDisk,
         SiteRecoveryVmwareReplicatedVmLicenseType,
         SiteRecoveryVmwareReplicatedVmManagedDisk,
         SiteRecoveryVmwareReplicatedVmNetworkInterface,

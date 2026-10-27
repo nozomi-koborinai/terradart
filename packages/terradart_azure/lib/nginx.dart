@@ -16,18 +16,15 @@ export 'src/nginx/azurerm_nginx_configuration.dart'
     show
         AzurermNginxConfiguration,
         NginxConfigurationConfigFile,
-        NginxConfigurationConfigFileOrPackageData,
-        NginxConfigurationConfigFileOrPackageDataChoice,
-        NginxConfigurationConfigFileOrPackageDataConfigFile,
+        NginxConfigurationContent,
+        NginxConfigurationContentConfigFile,
+        NginxConfigurationContentPackageData,
         NginxConfigurationProtectedFile;
 export 'src/nginx/azurerm_nginx_deployment.dart'
     show
         AzurermNginxDeployment,
         NginxDeploymentAllocationMethod,
         NginxDeploymentAutoScaleProfile,
-        NginxDeploymentAutoScaleProfileOrCapacity,
-        NginxDeploymentAutoScaleProfileOrCapacityAutoScaleProfile,
-        NginxDeploymentAutoScaleProfileOrCapacityChoice,
         NginxDeploymentAutomaticUpgradeChannel,
         NginxDeploymentFrontend,
         NginxDeploymentFrontendPrivate,
@@ -36,4 +33,7 @@ export 'src/nginx/azurerm_nginx_deployment.dart'
         NginxDeploymentFrontendPublicChoice,
         NginxDeploymentIdentity,
         NginxDeploymentNetworkInterface,
+        NginxDeploymentScale,
+        NginxDeploymentScaleAutoScaleProfile,
+        NginxDeploymentScaleCapacity,
         NginxDeploymentWebApplicationFirewall;

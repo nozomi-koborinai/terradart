@@ -47,18 +47,18 @@ extension type const MachineLearningDatastoreFileshareServiceDataIdentity._(
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.accountKey(...)`.
-sealed class MachineLearningDatastoreFileshareAccountKeyOrSharedAccessSignature {
-  const MachineLearningDatastoreFileshareAccountKeyOrSharedAccessSignature();
+sealed class MachineLearningDatastoreFileshareCredentials {
+  const MachineLearningDatastoreFileshareCredentials();
 
   /// Sets `account_key`.
-  const factory MachineLearningDatastoreFileshareAccountKeyOrSharedAccessSignature.accountKey(
+  const factory MachineLearningDatastoreFileshareCredentials.accountKey(
     Sensitive<String> accountKey,
-  ) = MachineLearningDatastoreFileshareAccountKeyOrSharedAccessSignatureAccountKey;
+  ) = MachineLearningDatastoreFileshareCredentialsAccountKey;
 
   /// Sets `shared_access_signature`.
-  const factory MachineLearningDatastoreFileshareAccountKeyOrSharedAccessSignature.sharedAccessSignature(
+  const factory MachineLearningDatastoreFileshareCredentials.sharedAccessSignature(
     Sensitive<String> sharedAccessSignature,
-  ) = MachineLearningDatastoreFileshareAccountKeyOrSharedAccessSignatureChoice;
+  ) = MachineLearningDatastoreFileshareCredentialsSharedAccessSignature;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -73,12 +73,10 @@ sealed class MachineLearningDatastoreFileshareAccountKeyOrSharedAccessSignature 
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [MachineLearningDatastoreFileshareAccountKeyOrSharedAccessSignature.accountKey] choice: sets `account_key`.
-final class MachineLearningDatastoreFileshareAccountKeyOrSharedAccessSignatureAccountKey
-    extends MachineLearningDatastoreFileshareAccountKeyOrSharedAccessSignature {
-  const MachineLearningDatastoreFileshareAccountKeyOrSharedAccessSignatureAccountKey(
-    this.accountKey,
-  );
+/// The [MachineLearningDatastoreFileshareCredentials.accountKey] choice: sets `account_key`.
+final class MachineLearningDatastoreFileshareCredentialsAccountKey
+    extends MachineLearningDatastoreFileshareCredentials {
+  const MachineLearningDatastoreFileshareCredentialsAccountKey(this.accountKey);
 
   final Sensitive<String> accountKey;
 
@@ -95,10 +93,10 @@ final class MachineLearningDatastoreFileshareAccountKeyOrSharedAccessSignatureAc
   Map<String, TfArg<Object?>> get argMap => {'account_key': accountKey};
 }
 
-/// The [MachineLearningDatastoreFileshareAccountKeyOrSharedAccessSignature.sharedAccessSignature] choice: sets `shared_access_signature`.
-final class MachineLearningDatastoreFileshareAccountKeyOrSharedAccessSignatureChoice
-    extends MachineLearningDatastoreFileshareAccountKeyOrSharedAccessSignature {
-  const MachineLearningDatastoreFileshareAccountKeyOrSharedAccessSignatureChoice(
+/// The [MachineLearningDatastoreFileshareCredentials.sharedAccessSignature] choice: sets `shared_access_signature`.
+final class MachineLearningDatastoreFileshareCredentialsSharedAccessSignature
+    extends MachineLearningDatastoreFileshareCredentials {
+  const MachineLearningDatastoreFileshareCredentialsSharedAccessSignature(
     this.sharedAccessSignature,
   );
 
@@ -127,8 +125,7 @@ final class AzurermMachineLearningDatastoreFileshare extends Resource {
 
   AzurermMachineLearningDatastoreFileshare(
     super.localName, {
-    required MachineLearningDatastoreFileshareAccountKeyOrSharedAccessSignature
-    accountKeyOrSharedAccessSignature,
+    required MachineLearningDatastoreFileshareCredentials credentials,
     TfArg<String>? description,
     required TfArg<String> name,
     MachineLearningDatastoreFileshareServiceDataIdentity? serviceDataIdentity,
@@ -142,7 +139,7 @@ final class AzurermMachineLearningDatastoreFileshare extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...accountKeyOrSharedAccessSignature.argMap,
+           ...credentials.argMap,
            'description': ?description,
            'name': name,
            'service_data_identity': ?serviceDataIdentity,

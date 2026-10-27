@@ -8,10 +8,10 @@ export 'src/redhat/azurerm_redhat_openshift_cluster.dart'
     show
         AzurermRedhatOpenshiftCluster,
         RedhatOpenshiftClusterApiServerProfile,
+        RedhatOpenshiftClusterCredentials,
+        RedhatOpenshiftClusterCredentialsIdentity,
+        RedhatOpenshiftClusterCredentialsServicePrincipal,
         RedhatOpenshiftClusterIdentity,
-        RedhatOpenshiftClusterIdentityOrServicePrincipal,
-        RedhatOpenshiftClusterIdentityOrServicePrincipalChoice,
-        RedhatOpenshiftClusterIdentityOrServicePrincipalIdentity,
         RedhatOpenshiftClusterIngressProfile,
         RedhatOpenshiftClusterLoadBalancerProfile,
         RedhatOpenshiftClusterMainProfile,

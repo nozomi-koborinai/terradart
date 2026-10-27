@@ -14,16 +14,16 @@ const Set<String> _azurermKeyVaultKeySensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.curve(...)`.
-sealed class KeyVaultKeyCurveOrKeySize {
-  const KeyVaultKeyCurveOrKeySize();
+sealed class KeyVaultKeyParameter {
+  const KeyVaultKeyParameter();
 
   /// Sets `curve`.
-  const factory KeyVaultKeyCurveOrKeySize.curve(TfArg<String> curve) =
-      KeyVaultKeyCurveOrKeySizeCurve;
+  const factory KeyVaultKeyParameter.curve(TfArg<String> curve) =
+      KeyVaultKeyParameterCurve;
 
   /// Sets `key_size`.
-  const factory KeyVaultKeyCurveOrKeySize.keySize(TfArg<num> keySize) =
-      KeyVaultKeyCurveOrKeySizeChoice;
+  const factory KeyVaultKeyParameter.keySize(TfArg<num> keySize) =
+      KeyVaultKeyParameterKeySize;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -38,9 +38,9 @@ sealed class KeyVaultKeyCurveOrKeySize {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [KeyVaultKeyCurveOrKeySize.curve] choice: sets `curve`.
-final class KeyVaultKeyCurveOrKeySizeCurve extends KeyVaultKeyCurveOrKeySize {
-  const KeyVaultKeyCurveOrKeySizeCurve(this.curve);
+/// The [KeyVaultKeyParameter.curve] choice: sets `curve`.
+final class KeyVaultKeyParameterCurve extends KeyVaultKeyParameter {
+  const KeyVaultKeyParameterCurve(this.curve);
 
   final TfArg<String> curve;
 
@@ -57,9 +57,9 @@ final class KeyVaultKeyCurveOrKeySizeCurve extends KeyVaultKeyCurveOrKeySize {
   Map<String, TfArg<Object?>> get argMap => {'curve': curve};
 }
 
-/// The [KeyVaultKeyCurveOrKeySize.keySize] choice: sets `key_size`.
-final class KeyVaultKeyCurveOrKeySizeChoice extends KeyVaultKeyCurveOrKeySize {
-  const KeyVaultKeyCurveOrKeySizeChoice(this.keySize);
+/// The [KeyVaultKeyParameter.keySize] choice: sets `key_size`.
+final class KeyVaultKeyParameterKeySize extends KeyVaultKeyParameter {
+  const KeyVaultKeyParameterKeySize(this.keySize);
 
   final TfArg<num> keySize;
 
@@ -140,7 +140,7 @@ final class AzurermKeyVaultKey extends Resource {
 
   AzurermKeyVaultKey(
     super.localName, {
-    KeyVaultKeyCurveOrKeySize? curveOrKeySize,
+    KeyVaultKeyParameter? keyParameter,
     TfArg<String>? expirationDate,
     required TfArg<List<String>> keyOpts,
     required TfArg<String> keyType,
@@ -157,7 +157,7 @@ final class AzurermKeyVaultKey extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...?curveOrKeySize?.argMap,
+           ...?keyParameter?.argMap,
            'expiration_date': ?expirationDate,
            'key_opts': keyOpts,
            'key_type': keyType,

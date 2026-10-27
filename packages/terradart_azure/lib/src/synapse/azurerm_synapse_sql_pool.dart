@@ -57,18 +57,17 @@ extension type const SynapseSqlPoolSkuName._(TfArg<String> _)
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.recoveryDatabaseId(...)`.
-sealed class SynapseSqlPoolRecoveryDatabaseIdOrRestore {
-  const SynapseSqlPoolRecoveryDatabaseIdOrRestore();
+sealed class SynapseSqlPoolRecovery {
+  const SynapseSqlPoolRecovery();
 
   /// Sets `recovery_database_id`.
-  const factory SynapseSqlPoolRecoveryDatabaseIdOrRestore.recoveryDatabaseId(
+  const factory SynapseSqlPoolRecovery.recoveryDatabaseId(
     TfArg<String> recoveryDatabaseId,
-  ) = SynapseSqlPoolRecoveryDatabaseIdOrRestoreRecoveryDatabaseId;
+  ) = SynapseSqlPoolRecoveryDatabaseId;
 
   /// Sets `restore`.
-  const factory SynapseSqlPoolRecoveryDatabaseIdOrRestore.restore(
-    SynapseSqlPoolRestore restore,
-  ) = SynapseSqlPoolRecoveryDatabaseIdOrRestoreChoice;
+  const factory SynapseSqlPoolRecovery.restore(SynapseSqlPoolRestore restore) =
+      SynapseSqlPoolRecoveryRestore;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -83,12 +82,9 @@ sealed class SynapseSqlPoolRecoveryDatabaseIdOrRestore {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [SynapseSqlPoolRecoveryDatabaseIdOrRestore.recoveryDatabaseId] choice: sets `recovery_database_id`.
-final class SynapseSqlPoolRecoveryDatabaseIdOrRestoreRecoveryDatabaseId
-    extends SynapseSqlPoolRecoveryDatabaseIdOrRestore {
-  const SynapseSqlPoolRecoveryDatabaseIdOrRestoreRecoveryDatabaseId(
-    this.recoveryDatabaseId,
-  );
+/// The [SynapseSqlPoolRecovery.recoveryDatabaseId] choice: sets `recovery_database_id`.
+final class SynapseSqlPoolRecoveryDatabaseId extends SynapseSqlPoolRecovery {
+  const SynapseSqlPoolRecoveryDatabaseId(this.recoveryDatabaseId);
 
   final TfArg<String> recoveryDatabaseId;
 
@@ -109,10 +105,9 @@ final class SynapseSqlPoolRecoveryDatabaseIdOrRestoreRecoveryDatabaseId
   };
 }
 
-/// The [SynapseSqlPoolRecoveryDatabaseIdOrRestore.restore] choice: sets `restore`.
-final class SynapseSqlPoolRecoveryDatabaseIdOrRestoreChoice
-    extends SynapseSqlPoolRecoveryDatabaseIdOrRestore {
-  const SynapseSqlPoolRecoveryDatabaseIdOrRestoreChoice(this.restore);
+/// The [SynapseSqlPoolRecovery.restore] choice: sets `restore`.
+final class SynapseSqlPoolRecoveryRestore extends SynapseSqlPoolRecovery {
+  const SynapseSqlPoolRecoveryRestore(this.restore);
 
   final SynapseSqlPoolRestore restore;
 
@@ -162,7 +157,7 @@ final class AzurermSynapseSqlPool extends Resource {
     TfArg<bool>? dataEncrypted,
     TfArg<bool>? geoBackupPolicyEnabled,
     required TfArg<String> name,
-    SynapseSqlPoolRecoveryDatabaseIdOrRestore? recoveryDatabaseIdOrRestore,
+    SynapseSqlPoolRecovery? recovery,
     required SynapseSqlPoolSkuName skuName,
     required TfArg<String> storageAccountType,
     required TfArg<String> synapseWorkspaceId,
@@ -179,7 +174,7 @@ final class AzurermSynapseSqlPool extends Resource {
            'data_encrypted': ?dataEncrypted,
            'geo_backup_policy_enabled': ?geoBackupPolicyEnabled,
            'name': name,
-           ...?recoveryDatabaseIdOrRestore?.argMap,
+           ...?recovery?.argMap,
            'sku_name': skuName,
            'storage_account_type': storageAccountType,
            'synapse_workspace_id': synapseWorkspaceId,

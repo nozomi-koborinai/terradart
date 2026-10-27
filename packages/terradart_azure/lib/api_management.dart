@@ -28,14 +28,14 @@ export 'src/api_management/azurerm_api_management.dart'
         AzurermApiManagement;
 export 'src/api_management/azurerm_api_management_api.dart'
     show
+        ApiManagementApiAuth,
+        ApiManagementApiAuthOauth2Authorization,
+        ApiManagementApiAuthOpenidAuthentication,
         ApiManagementApiBearerTokenSendingMethods,
         ApiManagementApiContact,
         ApiManagementApiImport,
         ApiManagementApiLicense,
         ApiManagementApiOauth2Authorization,
-        ApiManagementApiOauth2AuthorizationOrOpenidAuthentication,
-        ApiManagementApiOauth2AuthorizationOrOpenidAuthenticationChoice,
-        ApiManagementApiOauth2AuthorizationOrOpenidAuthenticationOauth2Authorization,
         ApiManagementApiOpenidAuthentication,
         ApiManagementApiProtocols,
         ApiManagementApiSubscriptionKeyParameterNames,
@@ -85,10 +85,10 @@ export 'src/api_management/azurerm_api_management_api_release.dart'
     show AzurermApiManagementApiRelease;
 export 'src/api_management/azurerm_api_management_api_schema.dart'
     show
-        ApiManagementApiSchemaComponentsOrDefinitionsOrValue,
-        ApiManagementApiSchemaComponentsOrDefinitionsOrValueChoice,
-        ApiManagementApiSchemaComponentsOrDefinitionsOrValueComponents,
-        ApiManagementApiSchemaComponentsOrDefinitionsOrValueDefinitions,
+        ApiManagementApiSchemaDocument,
+        ApiManagementApiSchemaDocumentComponents,
+        ApiManagementApiSchemaDocumentDefinitions,
+        ApiManagementApiSchemaDocumentValue,
         AzurermApiManagementApiSchema;
 export 'src/api_management/azurerm_api_management_api_tag.dart'
     show AzurermApiManagementApiTag;
@@ -115,9 +115,6 @@ export 'src/api_management/azurerm_api_management_backend.dart'
         ApiManagementBackendCircuitBreakerRule,
         ApiManagementBackendCredentials,
         ApiManagementBackendFailureCondition,
-        ApiManagementBackendFailureConditionCountOrPercentage,
-        ApiManagementBackendFailureConditionCountOrPercentageChoice,
-        ApiManagementBackendFailureConditionCountOrPercentageCount,
         ApiManagementBackendProtocol,
         ApiManagementBackendProxy,
         ApiManagementBackendServer,
@@ -126,13 +123,16 @@ export 'src/api_management/azurerm_api_management_backend.dart'
         ApiManagementBackendServerX509NameChoice,
         ApiManagementBackendServiceFabricCluster,
         ApiManagementBackendStatusCodeRange,
+        ApiManagementBackendThreshold,
+        ApiManagementBackendThresholdCount,
+        ApiManagementBackendThresholdPercentage,
         ApiManagementBackendTls,
         AzurermApiManagementBackend;
 export 'src/api_management/azurerm_api_management_certificate.dart'
     show
-        ApiManagementCertificateDataOrKeyVaultSecretId,
-        ApiManagementCertificateDataOrKeyVaultSecretIdChoice,
-        ApiManagementCertificateDataOrKeyVaultSecretIdData,
+        ApiManagementCertificateSource,
+        ApiManagementCertificateSourceData,
+        ApiManagementCertificateSourceKeyVaultSecretId,
         AzurermApiManagementCertificate;
 export 'src/api_management/azurerm_api_management_custom_domain.dart'
     show
@@ -187,23 +187,23 @@ export 'src/api_management/azurerm_api_management_identity_provider_twitter.dart
 export 'src/api_management/azurerm_api_management_logger.dart'
     show
         ApiManagementLoggerApplicationInsights,
-        ApiManagementLoggerApplicationInsightsConnectionStringOrInstrumentationKey,
-        ApiManagementLoggerApplicationInsightsConnectionStringOrInstrumentationKeyChoice,
-        ApiManagementLoggerApplicationInsightsConnectionStringOrInstrumentationKeyConnectionString,
-        ApiManagementLoggerApplicationInsightsOrEventhub,
-        ApiManagementLoggerApplicationInsightsOrEventhubApplicationInsights,
-        ApiManagementLoggerApplicationInsightsOrEventhubChoice,
+        ApiManagementLoggerConnection,
+        ApiManagementLoggerConnectionEndpointUri,
+        ApiManagementLoggerConnectionString,
+        ApiManagementLoggerCredentials,
+        ApiManagementLoggerCredentialsConnectionString,
+        ApiManagementLoggerCredentialsInstrumentationKey,
         ApiManagementLoggerEventhub,
-        ApiManagementLoggerEventhubConnectionStringOrEndpointUri,
-        ApiManagementLoggerEventhubConnectionStringOrEndpointUriChoice,
-        ApiManagementLoggerEventhubConnectionStringOrEndpointUriConnectionString,
+        ApiManagementLoggerTarget,
+        ApiManagementLoggerTargetApplicationInsights,
+        ApiManagementLoggerTargetEventhub,
         AzurermApiManagementLogger;
 export 'src/api_management/azurerm_api_management_named_value.dart'
     show
         ApiManagementNamedValueFromKeyVault,
-        ApiManagementNamedValueOrValueFromKeyVault,
-        ApiManagementNamedValueOrValueFromKeyVaultChoice,
-        ApiManagementNamedValueOrValueFromKeyVaultValue,
+        ApiManagementNamedValueSource,
+        ApiManagementNamedValueSourceValue,
+        ApiManagementNamedValueSourceValueFromKeyVault,
         AzurermApiManagementNamedValue;
 export 'src/api_management/azurerm_api_management_notification_recipient_email.dart'
     show
@@ -245,9 +245,9 @@ export 'src/api_management/azurerm_api_management_standalone_gateway.dart'
         AzurermApiManagementStandaloneGateway;
 export 'src/api_management/azurerm_api_management_subscription.dart'
     show
-        ApiManagementSubscriptionApiIdOrProductId,
-        ApiManagementSubscriptionApiIdOrProductIdApiId,
-        ApiManagementSubscriptionApiIdOrProductIdChoice,
+        ApiManagementSubscriptionScope,
+        ApiManagementSubscriptionScopeApiId,
+        ApiManagementSubscriptionScopeProductId,
         ApiManagementSubscriptionState,
         AzurermApiManagementSubscription;
 export 'src/api_management/azurerm_api_management_tag.dart'
@@ -265,16 +265,16 @@ export 'src/api_management/azurerm_api_management_workspace_api_version_set.dart
         AzurermApiManagementWorkspaceApiVersionSet;
 export 'src/api_management/azurerm_api_management_workspace_certificate.dart'
     show
-        ApiManagementWorkspaceCertificateDataBase64OrKeyVaultSecretId,
-        ApiManagementWorkspaceCertificateDataBase64OrKeyVaultSecretIdCertificateDataBase64,
-        ApiManagementWorkspaceCertificateDataBase64OrKeyVaultSecretIdChoice,
+        ApiManagementWorkspaceCertificateSource,
+        ApiManagementWorkspaceCertificateSourceCertificateDataBase64,
+        ApiManagementWorkspaceCertificateSourceKeyVaultSecretId,
         AzurermApiManagementWorkspaceCertificate;
 export 'src/api_management/azurerm_api_management_workspace_named_value.dart'
     show
         ApiManagementWorkspaceNamedValueFromKeyVault,
-        ApiManagementWorkspaceNamedValueOrValueFromKeyVault,
-        ApiManagementWorkspaceNamedValueOrValueFromKeyVaultChoice,
-        ApiManagementWorkspaceNamedValueOrValueFromKeyVaultValue,
+        ApiManagementWorkspaceNamedValueSource,
+        ApiManagementWorkspaceNamedValueSourceValue,
+        ApiManagementWorkspaceNamedValueSourceValueFromKeyVault,
         AzurermApiManagementWorkspaceNamedValue;
 export 'src/api_management/azurerm_api_management_workspace_policy.dart'
     show

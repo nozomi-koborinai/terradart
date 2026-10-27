@@ -13,23 +13,22 @@ const Set<String> _azurermApiManagementApiSchemaSensitive = <String>{};
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.components(...)`.
-sealed class ApiManagementApiSchemaComponentsOrDefinitionsOrValue {
-  const ApiManagementApiSchemaComponentsOrDefinitionsOrValue();
+sealed class ApiManagementApiSchemaDocument {
+  const ApiManagementApiSchemaDocument();
 
   /// Sets `components`.
-  const factory ApiManagementApiSchemaComponentsOrDefinitionsOrValue.components(
+  const factory ApiManagementApiSchemaDocument.components(
     TfArg<String> components,
-  ) = ApiManagementApiSchemaComponentsOrDefinitionsOrValueComponents;
+  ) = ApiManagementApiSchemaDocumentComponents;
 
   /// Sets `definitions`.
-  const factory ApiManagementApiSchemaComponentsOrDefinitionsOrValue.definitions(
+  const factory ApiManagementApiSchemaDocument.definitions(
     TfArg<String> definitions,
-  ) = ApiManagementApiSchemaComponentsOrDefinitionsOrValueDefinitions;
+  ) = ApiManagementApiSchemaDocumentDefinitions;
 
   /// Sets `value`.
-  const factory ApiManagementApiSchemaComponentsOrDefinitionsOrValue.value(
-    TfArg<String> value,
-  ) = ApiManagementApiSchemaComponentsOrDefinitionsOrValueChoice;
+  const factory ApiManagementApiSchemaDocument.value(TfArg<String> value) =
+      ApiManagementApiSchemaDocumentValue;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -44,12 +43,10 @@ sealed class ApiManagementApiSchemaComponentsOrDefinitionsOrValue {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [ApiManagementApiSchemaComponentsOrDefinitionsOrValue.components] choice: sets `components`.
-final class ApiManagementApiSchemaComponentsOrDefinitionsOrValueComponents
-    extends ApiManagementApiSchemaComponentsOrDefinitionsOrValue {
-  const ApiManagementApiSchemaComponentsOrDefinitionsOrValueComponents(
-    this.components,
-  );
+/// The [ApiManagementApiSchemaDocument.components] choice: sets `components`.
+final class ApiManagementApiSchemaDocumentComponents
+    extends ApiManagementApiSchemaDocument {
+  const ApiManagementApiSchemaDocumentComponents(this.components);
 
   final TfArg<String> components;
 
@@ -66,12 +63,10 @@ final class ApiManagementApiSchemaComponentsOrDefinitionsOrValueComponents
   Map<String, TfArg<Object?>> get argMap => {'components': components};
 }
 
-/// The [ApiManagementApiSchemaComponentsOrDefinitionsOrValue.definitions] choice: sets `definitions`.
-final class ApiManagementApiSchemaComponentsOrDefinitionsOrValueDefinitions
-    extends ApiManagementApiSchemaComponentsOrDefinitionsOrValue {
-  const ApiManagementApiSchemaComponentsOrDefinitionsOrValueDefinitions(
-    this.definitions,
-  );
+/// The [ApiManagementApiSchemaDocument.definitions] choice: sets `definitions`.
+final class ApiManagementApiSchemaDocumentDefinitions
+    extends ApiManagementApiSchemaDocument {
+  const ApiManagementApiSchemaDocumentDefinitions(this.definitions);
 
   final TfArg<String> definitions;
 
@@ -88,10 +83,10 @@ final class ApiManagementApiSchemaComponentsOrDefinitionsOrValueDefinitions
   Map<String, TfArg<Object?>> get argMap => {'definitions': definitions};
 }
 
-/// The [ApiManagementApiSchemaComponentsOrDefinitionsOrValue.value] choice: sets `value`.
-final class ApiManagementApiSchemaComponentsOrDefinitionsOrValueChoice
-    extends ApiManagementApiSchemaComponentsOrDefinitionsOrValue {
-  const ApiManagementApiSchemaComponentsOrDefinitionsOrValueChoice(this.value);
+/// The [ApiManagementApiSchemaDocument.value] choice: sets `value`.
+final class ApiManagementApiSchemaDocumentValue
+    extends ApiManagementApiSchemaDocument {
+  const ApiManagementApiSchemaDocumentValue(this.value);
 
   final TfArg<String> value;
 
@@ -116,8 +111,7 @@ final class AzurermApiManagementApiSchema extends Resource {
     super.localName, {
     required TfArg<String> apiManagementName,
     required TfArg<String> apiName,
-    required ApiManagementApiSchemaComponentsOrDefinitionsOrValue
-    componentsOrDefinitionsOrValue,
+    required ApiManagementApiSchemaDocument document,
     required TfArg<String> contentType,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     required TfArg<String> schemaId,
@@ -130,7 +124,7 @@ final class AzurermApiManagementApiSchema extends Resource {
          argMap: {
            'api_management_name': apiManagementName,
            'api_name': apiName,
-           ...componentsOrDefinitionsOrValue.argMap,
+           ...document.argMap,
            'content_type': contentType,
            'resource_group_name': resourceGroupName.encodeAs('name'),
            'schema_id': schemaId,
