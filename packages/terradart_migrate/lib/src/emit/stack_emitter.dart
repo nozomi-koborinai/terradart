@@ -2281,6 +2281,13 @@ final class StackEmitter {
           _migrated.add(const MigratedItem(address: 'terraform.backend'));
           return '${isConst ? 'const ' : ''}S3Backend(${args.join(', ')})';
         default:
+          final dropped = droppedProviderArguments[type] ?? const <String>{};
+          for (final key in values.keys.where(dropped.contains)) {
+            _warnings.add(
+              'backend "$type": argument "$key" has no TerraDart '
+              'parameter and was dropped',
+            );
+          }
           throw MigrateBlocker(
             'backend "$type" has no TerraDart type; it stays in backend.tf',
           );

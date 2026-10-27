@@ -20,6 +20,10 @@ const droppedProviderArguments = <String, Set<String>>{
     'oidc_token',
     'oidc_token_file_path',
     'ado_pipeline_service_connection_id',
+    // The state backend's storage key and SAS token. The provider block
+    // has neither. Apply reads ARM_ACCESS_KEY and ARM_SAS_TOKEN.
+    'access_key',
+    'sas_token',
   },
   'cloudflare': {'api_token', 'api_key', 'api_user_service_key'},
   'appwrite': {'api_key', 'organization_api_key'},
