@@ -7,12 +7,6 @@
 # `sealedNames: {"<members>": <concept>}` to the override and
 # re-running wrap, which drops the entry. `wrap --check` fails
 # on a missing or stale entry.
-aws_observabilityadmin_telemetry_evaluation:
-  "all_regions, regions": "awaiting-name: hashicorp/aws 6.69.1"
-aws_observabilityadmin_telemetry_evaluation_for_organization:
-  "all_regions, regions": "awaiting-name: hashicorp/aws 6.69.1"
-aws_sagemaker_inference_component:
-  "specification, specifications": "awaiting-name: hashicorp/aws 6.70.0"
 google_iam_folders_policy_binding:
   "target.principal_set, target.resource": "awaiting-name: hashicorp/google 8.6.0"
 google_iam_organizations_policy_binding:

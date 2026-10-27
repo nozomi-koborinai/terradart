@@ -12234,7 +12234,7 @@ final class AwsLeftoverStack extends Stack {
         'sagemaker_inference_component',
         endpointName: .literal(leftover),
         name: .literal(leftover),
-        specificationOrSpecifications: .specification([
+        spec: .specification([
           .new(baseInferenceComponentName: .literal(leftover)),
         ]),
       ),

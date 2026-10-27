@@ -114,13 +114,15 @@ wrote.
 **Breaking (`terradart_aws`).**
 `AwsObservabilityadminTelemetryEvaluationForOrganization` no longer takes
 `allRegions` and `regions` as their own arguments. Provider 6.69.1 rejects
-setting both. Pass one choice on `allRegionsOrRegions`. The `allRegions` and
+setting both. Pass one choice on `multiRegion`
+(`ObservabilityadminTelemetryEvaluationForOrganizationMultiRegion`).
+`.allRegions` and `.regions` are the variants. The `allRegions` and
 `regions` getters stay.
 
 | Before | After |
 |---|---|
-| `AwsObservabilityadminTelemetryEvaluationForOrganization('eval', allRegions: .literal(true))` | `AwsObservabilityadminTelemetryEvaluationForOrganization('eval', allRegionsOrRegions: .allRegions(.literal(true)))` |
-| `AwsObservabilityadminTelemetryEvaluationForOrganization('eval', regions: .literal(['us-east-1']))` | `AwsObservabilityadminTelemetryEvaluationForOrganization('eval', allRegionsOrRegions: .regions(.literal(['us-east-1'])))` |
+| `AwsObservabilityadminTelemetryEvaluationForOrganization('eval', allRegions: .literal(true))` | `AwsObservabilityadminTelemetryEvaluationForOrganization('eval', multiRegion: .allRegions(.literal(true)))` |
+| `AwsObservabilityadminTelemetryEvaluationForOrganization('eval', regions: .literal(['us-east-1']))` | `AwsObservabilityadminTelemetryEvaluationForOrganization('eval', multiRegion: .regions(.literal(['us-east-1'])))` |
 
 ### Function and site variables seal `value`
 

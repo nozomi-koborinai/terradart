@@ -138025,16 +138025,16 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'allRegionsOrRegions',
+          dartName: 'multiRegion',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'all_regions':
-                'ObservabilityadminTelemetryEvaluationAllRegionsOrRegionsAllRegions',
+                'ObservabilityadminTelemetryEvaluationMultiRegionAllRegions',
             'regions':
-                'ObservabilityadminTelemetryEvaluationAllRegionsOrRegionsChoice',
+                'ObservabilityadminTelemetryEvaluationMultiRegionRegions',
           },
         ),
         MigrateSlot(
@@ -138074,16 +138074,16 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'allRegionsOrRegions',
+          dartName: 'multiRegion',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'all_regions':
-                'ObservabilityadminTelemetryEvaluationForOrganizationAllRegionsOrRegionsAllRegions',
+                'ObservabilityadminTelemetryEvaluationForOrganizationMultiRegionAllRegions',
             'regions':
-                'ObservabilityadminTelemetryEvaluationForOrganizationAllRegionsOrRegionsChoice',
+                'ObservabilityadminTelemetryEvaluationForOrganizationMultiRegionRegions',
           },
         ),
         MigrateSlot(
@@ -175536,16 +175536,14 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'specificationOrSpecifications',
+          dartName: 'spec',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'specification':
-                'SagemakerInferenceComponentSpecificationOrSpecificationsSpecification',
-            'specifications':
-                'SagemakerInferenceComponentSpecificationOrSpecificationsChoice',
+            'specification': 'SagemakerInferenceComponentSpecSpecification',
+            'specifications': 'SagemakerInferenceComponentSpecSpecifications',
           },
         ),
       ],
@@ -319953,10 +319951,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'ObservabilityadminTelemetryEvaluationAllRegionsOrRegionsAllRegions':
+    'ObservabilityadminTelemetryEvaluationForOrganizationMultiRegionAllRegions':
         MigrateHelper(
           className:
-              'ObservabilityadminTelemetryEvaluationAllRegionsOrRegionsAllRegions',
+              'ObservabilityadminTelemetryEvaluationForOrganizationMultiRegionAllRegions',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'all_regions',
@@ -319969,10 +319967,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           ],
           shorthand: 'allRegions',
         ),
-    'ObservabilityadminTelemetryEvaluationAllRegionsOrRegionsChoice':
+    'ObservabilityadminTelemetryEvaluationForOrganizationMultiRegionRegions':
         MigrateHelper(
           className:
-              'ObservabilityadminTelemetryEvaluationAllRegionsOrRegionsChoice',
+              'ObservabilityadminTelemetryEvaluationForOrganizationMultiRegionRegions',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'regions',
@@ -319985,38 +319983,34 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           ],
           shorthand: 'regions',
         ),
-    'ObservabilityadminTelemetryEvaluationForOrganizationAllRegionsOrRegionsAllRegions':
-        MigrateHelper(
-          className:
-              'ObservabilityadminTelemetryEvaluationForOrganizationAllRegionsOrRegionsAllRegions',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'all_regions',
-              dartName: 'allRegions',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'bool',
-            ),
-          ],
-          shorthand: 'allRegions',
+    'ObservabilityadminTelemetryEvaluationMultiRegionAllRegions': MigrateHelper(
+      className: 'ObservabilityadminTelemetryEvaluationMultiRegionAllRegions',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'all_regions',
+          dartName: 'allRegions',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'bool',
         ),
-    'ObservabilityadminTelemetryEvaluationForOrganizationAllRegionsOrRegionsChoice':
-        MigrateHelper(
-          className:
-              'ObservabilityadminTelemetryEvaluationForOrganizationAllRegionsOrRegionsChoice',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'regions',
-              dartName: 'regions',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'List<String>',
-            ),
-          ],
-          shorthand: 'regions',
+      ],
+      shorthand: 'allRegions',
+    ),
+    'ObservabilityadminTelemetryEvaluationMultiRegionRegions': MigrateHelper(
+      className: 'ObservabilityadminTelemetryEvaluationMultiRegionRegions',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'regions',
+          dartName: 'regions',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'List<String>',
         ),
+      ],
+      shorthand: 'regions',
+    ),
     'ObservabilityadminTelemetryPipelineConfiguration': MigrateHelper(
       className: 'ObservabilityadminTelemetryPipelineConfiguration',
       slots: <MigrateSlot>[
@@ -380851,6 +380845,38 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'SagemakerInferenceComponentSpecSpecification': MigrateHelper(
+      className: 'SagemakerInferenceComponentSpecSpecification',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'specification',
+          dartName: 'specification',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          repeated: true,
+          wrapped: false,
+          positional: true,
+          helper: 'SagemakerInferenceComponentSpecification',
+        ),
+      ],
+      shorthand: 'specification',
+    ),
+    'SagemakerInferenceComponentSpecSpecifications': MigrateHelper(
+      className: 'SagemakerInferenceComponentSpecSpecifications',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'specifications',
+          dartName: 'specifications',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          repeated: true,
+          wrapped: false,
+          positional: true,
+          helper: 'SagemakerInferenceComponentSpecifications',
+        ),
+      ],
+      shorthand: 'specifications',
+    ),
     'SagemakerInferenceComponentSpecification': MigrateHelper(
       className: 'SagemakerInferenceComponentSpecification',
       slots: <MigrateSlot>[
@@ -380922,42 +380948,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'SagemakerInferenceComponentSpecificationOrSpecificationsChoice':
-        MigrateHelper(
-          className:
-              'SagemakerInferenceComponentSpecificationOrSpecificationsChoice',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'specifications',
-              dartName: 'specifications',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              repeated: true,
-              wrapped: false,
-              positional: true,
-              helper: 'SagemakerInferenceComponentSpecifications',
-            ),
-          ],
-          shorthand: 'specifications',
-        ),
-    'SagemakerInferenceComponentSpecificationOrSpecificationsSpecification':
-        MigrateHelper(
-          className:
-              'SagemakerInferenceComponentSpecificationOrSpecificationsSpecification',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'specification',
-              dartName: 'specification',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              repeated: true,
-              wrapped: false,
-              positional: true,
-              helper: 'SagemakerInferenceComponentSpecification',
-            ),
-          ],
-          shorthand: 'specification',
-        ),
     'SagemakerInferenceComponentSpecifications': MigrateHelper(
       className: 'SagemakerInferenceComponentSpecifications',
       slots: <MigrateSlot>[

@@ -11,18 +11,18 @@ const Set<String> _awsSagemakerInferenceComponentSensitive = <String>{};
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.specification(...)`.
-sealed class SagemakerInferenceComponentSpecificationOrSpecifications {
-  const SagemakerInferenceComponentSpecificationOrSpecifications();
+sealed class SagemakerInferenceComponentSpec {
+  const SagemakerInferenceComponentSpec();
 
   /// Sets `specification`.
-  const factory SagemakerInferenceComponentSpecificationOrSpecifications.specification(
+  const factory SagemakerInferenceComponentSpec.specification(
     List<SagemakerInferenceComponentSpecification> specification,
-  ) = SagemakerInferenceComponentSpecificationOrSpecificationsSpecification;
+  ) = SagemakerInferenceComponentSpecSpecification;
 
   /// Sets `specifications`.
-  const factory SagemakerInferenceComponentSpecificationOrSpecifications.specifications(
+  const factory SagemakerInferenceComponentSpec.specifications(
     List<SagemakerInferenceComponentSpecifications> specifications,
-  ) = SagemakerInferenceComponentSpecificationOrSpecificationsChoice;
+  ) = SagemakerInferenceComponentSpecSpecifications;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -37,12 +37,10 @@ sealed class SagemakerInferenceComponentSpecificationOrSpecifications {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [SagemakerInferenceComponentSpecificationOrSpecifications.specification] choice: sets `specification`.
-final class SagemakerInferenceComponentSpecificationOrSpecificationsSpecification
-    extends SagemakerInferenceComponentSpecificationOrSpecifications {
-  const SagemakerInferenceComponentSpecificationOrSpecificationsSpecification(
-    this.specification,
-  );
+/// The [SagemakerInferenceComponentSpec.specification] choice: sets `specification`.
+final class SagemakerInferenceComponentSpecSpecification
+    extends SagemakerInferenceComponentSpec {
+  const SagemakerInferenceComponentSpecSpecification(this.specification);
 
   final List<SagemakerInferenceComponentSpecification> specification;
 
@@ -63,12 +61,10 @@ final class SagemakerInferenceComponentSpecificationOrSpecificationsSpecificatio
   };
 }
 
-/// The [SagemakerInferenceComponentSpecificationOrSpecifications.specifications] choice: sets `specifications`.
-final class SagemakerInferenceComponentSpecificationOrSpecificationsChoice
-    extends SagemakerInferenceComponentSpecificationOrSpecifications {
-  const SagemakerInferenceComponentSpecificationOrSpecificationsChoice(
-    this.specifications,
-  );
+/// The [SagemakerInferenceComponentSpec.specifications] choice: sets `specifications`.
+final class SagemakerInferenceComponentSpecSpecifications
+    extends SagemakerInferenceComponentSpec {
+  const SagemakerInferenceComponentSpecSpecifications(this.specifications);
 
   final List<SagemakerInferenceComponentSpecifications> specifications;
 
@@ -1724,8 +1720,7 @@ final class AwsSagemakerInferenceComponent extends Resource {
     TfArg<String>? variantName,
     List<SagemakerInferenceComponentDeploymentConfig>? deploymentConfig,
     List<SagemakerInferenceComponentRuntimeConfig>? runtimeConfig,
-    required SagemakerInferenceComponentSpecificationOrSpecifications
-    specificationOrSpecifications,
+    required SagemakerInferenceComponentSpec spec,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -1746,7 +1741,7 @@ final class AwsSagemakerInferenceComponent extends Resource {
              'runtime_config': TfArg.literal([
                for (final e in runtimeConfig) e.encode(),
              ]),
-           ...specificationOrSpecifications.argMap,
+           ...spec.argMap,
          },
        );
 

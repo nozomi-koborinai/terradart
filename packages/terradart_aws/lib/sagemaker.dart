@@ -356,10 +356,10 @@ export 'src/sagemaker/aws_sagemaker_inference_component.dart'
         SagemakerInferenceComponentRollingUpdatePolicy,
         SagemakerInferenceComponentRuntimeConfig,
         SagemakerInferenceComponentSchedulingConfig,
+        SagemakerInferenceComponentSpec,
+        SagemakerInferenceComponentSpecSpecification,
+        SagemakerInferenceComponentSpecSpecifications,
         SagemakerInferenceComponentSpecification,
-        SagemakerInferenceComponentSpecificationOrSpecifications,
-        SagemakerInferenceComponentSpecificationOrSpecificationsChoice,
-        SagemakerInferenceComponentSpecificationOrSpecificationsSpecification,
         SagemakerInferenceComponentSpecifications,
         SagemakerInferenceComponentStartupParameters,
         SagemakerInferenceComponentType;
