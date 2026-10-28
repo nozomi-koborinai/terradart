@@ -4,3 +4,7 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 deriveExactlyOne: true
+
+sealedNames:
+  "message_retention, retention_description": retention
+  "retention_description.retention_time_in_hours, retention_description.tombstone_retention_time_in_hours": duration

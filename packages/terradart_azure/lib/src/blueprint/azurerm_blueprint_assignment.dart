@@ -7,6 +7,30 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `azurerm_blueprint_assignment`.
 const Set<String> _azurermBlueprintAssignmentSensitive = <String>{};
 
+/// Blueprint Assignment Lock enum for `lock_mode`.
+extension type const BlueprintAssignmentLockMode._(TfArg<String> _)
+    implements TfArg<String> {
+  BlueprintAssignmentLockMode.variable(String name)
+    : this._(TfArg.variable(name));
+  BlueprintAssignmentLockMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const BlueprintAssignmentLockMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const allresourcesdonotdelete = BlueprintAssignmentLockMode._(
+    TfArgLiteral('AllResourcesDoNotDelete'),
+  );
+  static const allresourcesreadonly = BlueprintAssignmentLockMode._(
+    TfArgLiteral('AllResourcesReadOnly'),
+  );
+  static const none = BlueprintAssignmentLockMode._(TfArgLiteral('None'));
+
+  static const List<BlueprintAssignmentLockMode> values = [
+    allresourcesdonotdelete,
+    allresourcesreadonly,
+    none,
+  ];
+}
+
 /// Typed helper for the `identity` block of
 /// `azurerm_blueprint_assignment` (derived from provider schema).
 @immutable
@@ -33,7 +57,7 @@ final class AzurermBlueprintAssignment extends Resource {
     required TfArg<String> location,
     TfArg<List<String>>? lockExcludeActions,
     TfArg<List<String>>? lockExcludePrincipals,
-    TfArg<String>? lockMode,
+    BlueprintAssignmentLockMode? lockMode,
     required TfArg<String> name,
     TfArg<String>? parameterValues,
     TfArg<String>? resourceGroups,

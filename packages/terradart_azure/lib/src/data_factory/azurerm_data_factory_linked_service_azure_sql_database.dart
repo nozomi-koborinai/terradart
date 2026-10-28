@@ -8,6 +8,175 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _azurermDataFactoryLinkedServiceAzureSqlDatabaseSensitive =
     <String>{};
 
+/// Exactly one of `connection_string`, `key_vault_connection_string` on `azurerm_data_factory_linked_service_azure_sql_database`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.connectionString(...)`.
+sealed class DataFactoryLinkedServiceAzureSqlDatabaseConnection {
+  const DataFactoryLinkedServiceAzureSqlDatabaseConnection();
+
+  /// Sets `connection_string`.
+  const factory DataFactoryLinkedServiceAzureSqlDatabaseConnection.connectionString(
+    TfArg<String> connectionString,
+  ) = DataFactoryLinkedServiceAzureSqlDatabaseConnectionString;
+
+  /// Sets `key_vault_connection_string`.
+  const factory DataFactoryLinkedServiceAzureSqlDatabaseConnection.keyVaultConnectionString(
+    DataFactoryLinkedServiceAzureSqlDatabaseKeyVaultConnectionString
+    keyVaultConnectionString,
+  ) = DataFactoryLinkedServiceAzureSqlDatabaseConnectionKeyVaultConnectionString;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [DataFactoryLinkedServiceAzureSqlDatabaseConnection.connectionString] choice: sets `connection_string`.
+final class DataFactoryLinkedServiceAzureSqlDatabaseConnectionString
+    extends DataFactoryLinkedServiceAzureSqlDatabaseConnection {
+  const DataFactoryLinkedServiceAzureSqlDatabaseConnectionString(
+    this.connectionString,
+  );
+
+  final TfArg<String> connectionString;
+
+  @internal
+  @override
+  String get blockKey => 'connection_string';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'connection_string': connectionString.toTfJson(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'connection_string': connectionString,
+  };
+}
+
+/// The [DataFactoryLinkedServiceAzureSqlDatabaseConnection.keyVaultConnectionString] choice: sets `key_vault_connection_string`.
+final class DataFactoryLinkedServiceAzureSqlDatabaseConnectionKeyVaultConnectionString
+    extends DataFactoryLinkedServiceAzureSqlDatabaseConnection {
+  const DataFactoryLinkedServiceAzureSqlDatabaseConnectionKeyVaultConnectionString(
+    this.keyVaultConnectionString,
+  );
+
+  final DataFactoryLinkedServiceAzureSqlDatabaseKeyVaultConnectionString
+  keyVaultConnectionString;
+
+  @internal
+  @override
+  String get blockKey => 'key_vault_connection_string';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'key_vault_connection_string': keyVaultConnectionString.encode(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'key_vault_connection_string': TfArg.literal(
+      keyVaultConnectionString.encode(),
+    ),
+  };
+}
+
+/// At most one of `service_principal_id`, `use_managed_identity` on `azurerm_data_factory_linked_service_azure_sql_database`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.servicePrincipalId(...)`.
+sealed class DataFactoryLinkedServiceAzureSqlDatabaseAuthentication {
+  const DataFactoryLinkedServiceAzureSqlDatabaseAuthentication();
+
+  /// Sets `service_principal_id`.
+  const factory DataFactoryLinkedServiceAzureSqlDatabaseAuthentication.servicePrincipalId(
+    TfArg<String> servicePrincipalId,
+  ) = DataFactoryLinkedServiceAzureSqlDatabaseAuthenticationServicePrincipalId;
+
+  /// Sets `use_managed_identity`.
+  const factory DataFactoryLinkedServiceAzureSqlDatabaseAuthentication.useManagedIdentity(
+    TfArg<bool> useManagedIdentity,
+  ) = DataFactoryLinkedServiceAzureSqlDatabaseAuthenticationUseManagedIdentity;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [DataFactoryLinkedServiceAzureSqlDatabaseAuthentication.servicePrincipalId] choice: sets `service_principal_id`.
+final class DataFactoryLinkedServiceAzureSqlDatabaseAuthenticationServicePrincipalId
+    extends DataFactoryLinkedServiceAzureSqlDatabaseAuthentication {
+  const DataFactoryLinkedServiceAzureSqlDatabaseAuthenticationServicePrincipalId(
+    this.servicePrincipalId,
+  );
+
+  final TfArg<String> servicePrincipalId;
+
+  @internal
+  @override
+  String get blockKey => 'service_principal_id';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'service_principal_id': servicePrincipalId.toTfJson(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'service_principal_id': servicePrincipalId,
+  };
+}
+
+/// The [DataFactoryLinkedServiceAzureSqlDatabaseAuthentication.useManagedIdentity] choice: sets `use_managed_identity`.
+final class DataFactoryLinkedServiceAzureSqlDatabaseAuthenticationUseManagedIdentity
+    extends DataFactoryLinkedServiceAzureSqlDatabaseAuthentication {
+  const DataFactoryLinkedServiceAzureSqlDatabaseAuthenticationUseManagedIdentity(
+    this.useManagedIdentity,
+  );
+
+  final TfArg<bool> useManagedIdentity;
+
+  @internal
+  @override
+  String get blockKey => 'use_managed_identity';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'use_managed_identity': useManagedIdentity.toTfJson(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'use_managed_identity': useManagedIdentity,
+  };
+}
+
 /// Typed helper for the `key_vault_connection_string` block of
 /// `azurerm_data_factory_linked_service_azure_sql_database` (derived from provider schema).
 @immutable
@@ -57,19 +226,16 @@ final class AzurermDataFactoryLinkedServiceAzureSqlDatabase extends Resource {
     super.localName, {
     TfArg<Map<String, String>>? additionalProperties,
     TfArg<List<String>>? annotations,
-    TfArg<String>? connectionString,
+    required DataFactoryLinkedServiceAzureSqlDatabaseConnection connection,
     TfArg<String>? credentialName,
     required TfArg<String> dataFactoryId,
     TfArg<String>? description,
     TfArg<String>? integrationRuntimeName,
     required TfArg<String> name,
     TfArg<Map<String, String>>? parameters,
-    TfArg<String>? servicePrincipalId,
+    DataFactoryLinkedServiceAzureSqlDatabaseAuthentication? authentication,
     TfArg<String>? servicePrincipalKey,
     TfArg<String>? tenantId,
-    TfArg<bool>? useManagedIdentity,
-    DataFactoryLinkedServiceAzureSqlDatabaseKeyVaultConnectionString?
-    keyVaultConnectionString,
     DataFactoryLinkedServiceAzureSqlDatabaseKeyVaultPassword? keyVaultPassword,
     super.lifecycle,
     super.dependsOn,
@@ -80,21 +246,16 @@ final class AzurermDataFactoryLinkedServiceAzureSqlDatabase extends Resource {
          argMap: {
            'additional_properties': ?additionalProperties,
            'annotations': ?annotations,
-           'connection_string': ?connectionString,
+           ...connection.argMap,
            'credential_name': ?credentialName,
            'data_factory_id': dataFactoryId,
            'description': ?description,
            'integration_runtime_name': ?integrationRuntimeName,
            'name': name,
            'parameters': ?parameters,
-           'service_principal_id': ?servicePrincipalId,
+           ...?authentication?.argMap,
            'service_principal_key': ?servicePrincipalKey,
            'tenant_id': ?tenantId,
-           'use_managed_identity': ?useManagedIdentity,
-           if (keyVaultConnectionString != null)
-             'key_vault_connection_string': TfArg.literal(
-               keyVaultConnectionString.encode(),
-             ),
            if (keyVaultPassword != null)
              'key_vault_password': TfArg.literal(keyVaultPassword.encode()),
          },

@@ -9,6 +9,167 @@ import '../resource/azurerm_resource_group.dart' show AzurermResourceGroup;
 /// Sensitive field paths for `azurerm_automation_schedule`.
 const Set<String> _azurermAutomationScheduleSensitive = <String>{};
 
+/// Automation Schedule enum for `frequency`.
+extension type const AutomationScheduleFrequency._(TfArg<String> _)
+    implements TfArg<String> {
+  AutomationScheduleFrequency.variable(String name)
+    : this._(TfArg.variable(name));
+  AutomationScheduleFrequency.expression(String template)
+    : this._(TfArg.expression(template));
+  const AutomationScheduleFrequency.arg(TfArg<String> arg) : this._(arg);
+
+  static const day = AutomationScheduleFrequency._(TfArgLiteral('Day'));
+  static const hour = AutomationScheduleFrequency._(TfArgLiteral('Hour'));
+  static const minute = AutomationScheduleFrequency._(TfArgLiteral('Minute'));
+  static const month = AutomationScheduleFrequency._(TfArgLiteral('Month'));
+  static const onetime = AutomationScheduleFrequency._(TfArgLiteral('OneTime'));
+  static const week = AutomationScheduleFrequency._(TfArgLiteral('Week'));
+
+  static const List<AutomationScheduleFrequency> values = [
+    day,
+    hour,
+    minute,
+    month,
+    onetime,
+    week,
+  ];
+}
+
+/// Automation Schedule Week enum for `week_days`.
+extension type const AutomationScheduleWeekDays._(TfArg<String> _)
+    implements TfArg<String> {
+  AutomationScheduleWeekDays.variable(String name)
+    : this._(TfArg.variable(name));
+  AutomationScheduleWeekDays.expression(String template)
+    : this._(TfArg.expression(template));
+  const AutomationScheduleWeekDays.arg(TfArg<String> arg) : this._(arg);
+
+  static const friday = AutomationScheduleWeekDays._(TfArgLiteral('Friday'));
+  static const monday = AutomationScheduleWeekDays._(TfArgLiteral('Monday'));
+  static const saturday = AutomationScheduleWeekDays._(
+    TfArgLiteral('Saturday'),
+  );
+  static const sunday = AutomationScheduleWeekDays._(TfArgLiteral('Sunday'));
+  static const thursday = AutomationScheduleWeekDays._(
+    TfArgLiteral('Thursday'),
+  );
+  static const tuesday = AutomationScheduleWeekDays._(TfArgLiteral('Tuesday'));
+  static const wednesday = AutomationScheduleWeekDays._(
+    TfArgLiteral('Wednesday'),
+  );
+
+  static const List<AutomationScheduleWeekDays> values = [
+    friday,
+    monday,
+    saturday,
+    sunday,
+    thursday,
+    tuesday,
+    wednesday,
+  ];
+}
+
+/// At most one of `month_days`, `monthly_occurrence`, `week_days` on `azurerm_automation_schedule`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.monthDays(...)`.
+sealed class AutomationScheduleDays {
+  const AutomationScheduleDays();
+
+  /// Sets `month_days`.
+  const factory AutomationScheduleDays.monthDays(TfArg<List<num>> monthDays) =
+      AutomationScheduleMonthDays;
+
+  /// Sets `monthly_occurrence`.
+  const factory AutomationScheduleDays.monthlyOccurrence(
+    AutomationScheduleMonthlyOccurrence monthlyOccurrence,
+  ) = AutomationScheduleDaysMonthlyOccurrence;
+
+  /// Sets `week_days`.
+  const factory AutomationScheduleDays.weekDays(
+    List<AutomationScheduleWeekDays> weekDays,
+  ) = AutomationScheduleWeekDaysChoice;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [AutomationScheduleDays.monthDays] choice: sets `month_days`.
+final class AutomationScheduleMonthDays extends AutomationScheduleDays {
+  const AutomationScheduleMonthDays(this.monthDays);
+
+  final TfArg<List<num>> monthDays;
+
+  @internal
+  @override
+  String get blockKey => 'month_days';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'month_days': monthDays.toTfJson()};
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'month_days': monthDays};
+}
+
+/// The [AutomationScheduleDays.monthlyOccurrence] choice: sets `monthly_occurrence`.
+final class AutomationScheduleDaysMonthlyOccurrence
+    extends AutomationScheduleDays {
+  const AutomationScheduleDaysMonthlyOccurrence(this.monthlyOccurrence);
+
+  final AutomationScheduleMonthlyOccurrence monthlyOccurrence;
+
+  @internal
+  @override
+  String get blockKey => 'monthly_occurrence';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'monthly_occurrence': monthlyOccurrence.encode(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'monthly_occurrence': TfArg.literal(monthlyOccurrence.encode()),
+  };
+}
+
+/// The [AutomationScheduleDays.weekDays] choice: sets `week_days`.
+final class AutomationScheduleWeekDaysChoice extends AutomationScheduleDays {
+  const AutomationScheduleWeekDaysChoice(this.weekDays);
+
+  final List<AutomationScheduleWeekDays> weekDays;
+
+  @internal
+  @override
+  String get blockKey => 'week_days';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'week_days': [for (final e in weekDays) e.toTfJson()],
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'week_days': TfArg.literal([for (final e in weekDays) e.toTfJson()]),
+  };
+}
+
 /// Typed helper for the `monthly_occurrence` block of
 /// `azurerm_automation_schedule` (derived from provider schema).
 @immutable
@@ -18,7 +179,7 @@ final class AutomationScheduleMonthlyOccurrence {
     required this.occurrence,
   });
 
-  final TfArg<String> day;
+  final AutomationScheduleDay day;
 
   final TfArg<num> occurrence;
 
@@ -27,6 +188,33 @@ final class AutomationScheduleMonthlyOccurrence {
     'day': day.toTfJson(),
     'occurrence': occurrence.toTfJson(),
   };
+}
+
+/// `day` — derived from the provider schema description.
+extension type const AutomationScheduleDay._(TfArg<String> _)
+    implements TfArg<String> {
+  AutomationScheduleDay.variable(String name) : this._(TfArg.variable(name));
+  AutomationScheduleDay.expression(String template)
+    : this._(TfArg.expression(template));
+  const AutomationScheduleDay.arg(TfArg<String> arg) : this._(arg);
+
+  static const friday = AutomationScheduleDay._(TfArgLiteral('Friday'));
+  static const monday = AutomationScheduleDay._(TfArgLiteral('Monday'));
+  static const saturday = AutomationScheduleDay._(TfArgLiteral('Saturday'));
+  static const sunday = AutomationScheduleDay._(TfArgLiteral('Sunday'));
+  static const thursday = AutomationScheduleDay._(TfArgLiteral('Thursday'));
+  static const tuesday = AutomationScheduleDay._(TfArgLiteral('Tuesday'));
+  static const wednesday = AutomationScheduleDay._(TfArgLiteral('Wednesday'));
+
+  static const List<AutomationScheduleDay> values = [
+    friday,
+    monday,
+    saturday,
+    sunday,
+    thursday,
+    tuesday,
+    wednesday,
+  ];
 }
 
 /// Factory wrapper for `azurerm_automation_schedule`.
@@ -38,15 +226,13 @@ final class AzurermAutomationSchedule extends Resource {
     required TfArg<String> automationAccountName,
     TfArg<String>? description,
     TfArg<String>? expiryTime,
-    required TfArg<String> frequency,
+    required AutomationScheduleFrequency frequency,
     TfArg<num>? interval,
-    TfArg<List<num>>? monthDays,
+    AutomationScheduleDays? days,
     required TfArg<String> name,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<String>? startTime,
     TfArg<String>? timezone,
-    TfArg<List<String>>? weekDays,
-    AutomationScheduleMonthlyOccurrence? monthlyOccurrence,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -59,14 +245,11 @@ final class AzurermAutomationSchedule extends Resource {
            'expiry_time': ?expiryTime,
            'frequency': frequency,
            'interval': ?interval,
-           'month_days': ?monthDays,
+           ...?days?.argMap,
            'name': name,
            'resource_group_name': resourceGroupName.encodeAs('name'),
            'start_time': ?startTime,
            'timezone': ?timezone,
-           'week_days': ?weekDays,
-           if (monthlyOccurrence != null)
-             'monthly_occurrence': TfArg.literal(monthlyOccurrence.encode()),
          },
        );
 

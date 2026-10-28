@@ -21,7 +21,7 @@ final class DataFactoryDatasetMysqlSchemaColumn {
 
   final TfArg<String> name;
 
-  final TfArg<String>? type;
+  final DataFactoryDatasetMysqlType? type;
 
   @internal
   Map<String, Object?> encode() => {
@@ -29,6 +29,56 @@ final class DataFactoryDatasetMysqlSchemaColumn {
     'name': name.toTfJson(),
     'type': ?type?.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+extension type const DataFactoryDatasetMysqlType._(TfArg<String> _)
+    implements TfArg<String> {
+  DataFactoryDatasetMysqlType.variable(String name)
+    : this._(TfArg.variable(name));
+  DataFactoryDatasetMysqlType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataFactoryDatasetMysqlType.arg(TfArg<String> arg) : this._(arg);
+
+  static const byte = DataFactoryDatasetMysqlType._(TfArgLiteral('Byte'));
+  static const byte2 = DataFactoryDatasetMysqlType._(TfArgLiteral('Byte[]'));
+  static const boolean = DataFactoryDatasetMysqlType._(TfArgLiteral('Boolean'));
+  static const date = DataFactoryDatasetMysqlType._(TfArgLiteral('Date'));
+  static const datetime = DataFactoryDatasetMysqlType._(
+    TfArgLiteral('DateTime'),
+  );
+  static const datetimeoffset = DataFactoryDatasetMysqlType._(
+    TfArgLiteral('DateTimeOffset'),
+  );
+  static const decimal = DataFactoryDatasetMysqlType._(TfArgLiteral('Decimal'));
+  static const double = DataFactoryDatasetMysqlType._(TfArgLiteral('Double'));
+  static const guid = DataFactoryDatasetMysqlType._(TfArgLiteral('Guid'));
+  static const int16 = DataFactoryDatasetMysqlType._(TfArgLiteral('Int16'));
+  static const int32 = DataFactoryDatasetMysqlType._(TfArgLiteral('Int32'));
+  static const int64 = DataFactoryDatasetMysqlType._(TfArgLiteral('Int64'));
+  static const single = DataFactoryDatasetMysqlType._(TfArgLiteral('Single'));
+  static const string = DataFactoryDatasetMysqlType._(TfArgLiteral('String'));
+  static const timespan = DataFactoryDatasetMysqlType._(
+    TfArgLiteral('TimeSpan'),
+  );
+
+  static const List<DataFactoryDatasetMysqlType> values = [
+    byte,
+    byte2,
+    boolean,
+    date,
+    datetime,
+    datetimeoffset,
+    decimal,
+    double,
+    guid,
+    int16,
+    int32,
+    int64,
+    single,
+    string,
+    timespan,
+  ];
 }
 
 /// Factory wrapper for `azurerm_data_factory_dataset_mysql`.

@@ -9,6 +9,36 @@ import '../subnet/azurerm_subnet.dart' show AzurermSubnet;
 /// Sensitive field paths for `azurerm_database_migration_service`.
 const Set<String> _azurermDatabaseMigrationServiceSensitive = <String>{};
 
+/// Database Migration Service Sku enum for `sku_name`.
+extension type const DatabaseMigrationServiceSkuName._(TfArg<String> _)
+    implements TfArg<String> {
+  DatabaseMigrationServiceSkuName.variable(String name)
+    : this._(TfArg.variable(name));
+  DatabaseMigrationServiceSkuName.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatabaseMigrationServiceSkuName.arg(TfArg<String> arg) : this._(arg);
+
+  static const premium4vcores = DatabaseMigrationServiceSkuName._(
+    TfArgLiteral('Premium_4vCores'),
+  );
+  static const standard1vcores = DatabaseMigrationServiceSkuName._(
+    TfArgLiteral('Standard_1vCores'),
+  );
+  static const standard2vcores = DatabaseMigrationServiceSkuName._(
+    TfArgLiteral('Standard_2vCores'),
+  );
+  static const standard4vcores = DatabaseMigrationServiceSkuName._(
+    TfArgLiteral('Standard_4vCores'),
+  );
+
+  static const List<DatabaseMigrationServiceSkuName> values = [
+    premium4vcores,
+    standard1vcores,
+    standard2vcores,
+    standard4vcores,
+  ];
+}
+
 /// Factory wrapper for `azurerm_database_migration_service`.
 final class AzurermDatabaseMigrationService extends Resource {
   static const String tfType = 'azurerm_database_migration_service';
@@ -18,7 +48,7 @@ final class AzurermDatabaseMigrationService extends Resource {
     required TfArg<String> location,
     required TfArg<String> name,
     required RefTo<AzurermResourceGroup> resourceGroupName,
-    required TfArg<String> skuName,
+    required DatabaseMigrationServiceSkuName skuName,
     required RefTo<AzurermSubnet> subnetId,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,

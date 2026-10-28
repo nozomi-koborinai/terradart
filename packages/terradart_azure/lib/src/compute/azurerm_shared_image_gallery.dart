@@ -18,7 +18,7 @@ final class SharedImageGallerySharing {
     this.communityGallery,
   });
 
-  final TfArg<String> permission;
+  final SharedImageGalleryPermission permission;
 
   final SharedImageGalleryCommunityGallery? communityGallery;
 
@@ -27,6 +27,30 @@ final class SharedImageGallerySharing {
     'permission': permission.toTfJson(),
     'community_gallery': ?communityGallery?.encode(),
   };
+}
+
+/// `permission` — derived from the provider schema description.
+extension type const SharedImageGalleryPermission._(TfArg<String> _)
+    implements TfArg<String> {
+  SharedImageGalleryPermission.variable(String name)
+    : this._(TfArg.variable(name));
+  SharedImageGalleryPermission.expression(String template)
+    : this._(TfArg.expression(template));
+  const SharedImageGalleryPermission.arg(TfArg<String> arg) : this._(arg);
+
+  static const community = SharedImageGalleryPermission._(
+    TfArgLiteral('Community'),
+  );
+  static const groups = SharedImageGalleryPermission._(TfArgLiteral('Groups'));
+  static const private = SharedImageGalleryPermission._(
+    TfArgLiteral('Private'),
+  );
+
+  static const List<SharedImageGalleryPermission> values = [
+    community,
+    groups,
+    private,
+  ];
 }
 
 /// Typed helper for the `sharing.community_gallery` block of

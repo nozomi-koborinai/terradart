@@ -5,13 +5,19 @@ library;
 
 export 'package:terradart_core/terradart_core.dart';
 export 'src/application_insights/azurerm_application_insights.dart'
-    show AzurermApplicationInsights;
+    show ApplicationInsightsApplicationType, AzurermApplicationInsights;
 export 'src/application_insights/azurerm_application_insights_analytics_item.dart'
-    show AzurermApplicationInsightsAnalyticsItem;
+    show
+        ApplicationInsightsAnalyticsItemScope,
+        AzurermApplicationInsightsAnalyticsItem;
 export 'src/application_insights/azurerm_application_insights_api_key.dart'
-    show AzurermApplicationInsightsApiKey;
+    show
+        ApplicationInsightsApiKeyReadPermissions,
+        AzurermApplicationInsightsApiKey;
 export 'src/application_insights/azurerm_application_insights_smart_detection_rule.dart'
-    show AzurermApplicationInsightsSmartDetectionRule;
+    show
+        ApplicationInsightsSmartDetectionRuleName,
+        AzurermApplicationInsightsSmartDetectionRule;
 export 'src/application_insights/azurerm_application_insights_standard_web_test.dart'
     show
         ApplicationInsightsStandardWebTestContent,

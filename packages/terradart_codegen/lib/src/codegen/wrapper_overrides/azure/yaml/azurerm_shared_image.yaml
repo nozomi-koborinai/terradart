@@ -4,3 +4,6 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 deriveExactlyOne: true
+
+sealedNames:
+  "confidential_vm_enabled, confidential_vm_supported, trusted_launch_enabled, trusted_launch_supported": security_type

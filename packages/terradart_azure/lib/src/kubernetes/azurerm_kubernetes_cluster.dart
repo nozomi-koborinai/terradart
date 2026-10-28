@@ -17,6 +17,227 @@ const Set<String> _azurermKubernetesClusterSensitive = <String>{
   'windows_profile.admin_password',
 };
 
+/// Kubernetes Cluster Node Os Upgrade enum for `node_os_upgrade_channel`.
+extension type const KubernetesClusterNodeOsUpgradeChannel._(TfArg<String> _)
+    implements TfArg<String> {
+  KubernetesClusterNodeOsUpgradeChannel.variable(String name)
+    : this._(TfArg.variable(name));
+  KubernetesClusterNodeOsUpgradeChannel.expression(String template)
+    : this._(TfArg.expression(template));
+  const KubernetesClusterNodeOsUpgradeChannel.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const nodeimage = KubernetesClusterNodeOsUpgradeChannel._(
+    TfArgLiteral('NodeImage'),
+  );
+  static const none = KubernetesClusterNodeOsUpgradeChannel._(
+    TfArgLiteral('None'),
+  );
+  static const securitypatch = KubernetesClusterNodeOsUpgradeChannel._(
+    TfArgLiteral('SecurityPatch'),
+  );
+  static const unmanaged = KubernetesClusterNodeOsUpgradeChannel._(
+    TfArgLiteral('Unmanaged'),
+  );
+
+  static const List<KubernetesClusterNodeOsUpgradeChannel> values = [
+    nodeimage,
+    none,
+    securitypatch,
+    unmanaged,
+  ];
+}
+
+/// Kubernetes Cluster Sku enum for `sku_tier`.
+extension type const KubernetesClusterSkuTier._(TfArg<String> _)
+    implements TfArg<String> {
+  KubernetesClusterSkuTier.variable(String name) : this._(TfArg.variable(name));
+  KubernetesClusterSkuTier.expression(String template)
+    : this._(TfArg.expression(template));
+  const KubernetesClusterSkuTier.arg(TfArg<String> arg) : this._(arg);
+
+  static const free = KubernetesClusterSkuTier._(TfArgLiteral('Free'));
+  static const premium = KubernetesClusterSkuTier._(TfArgLiteral('Premium'));
+  static const standard = KubernetesClusterSkuTier._(TfArgLiteral('Standard'));
+
+  static const List<KubernetesClusterSkuTier> values = [
+    free,
+    premium,
+    standard,
+  ];
+}
+
+/// Kubernetes Cluster Support enum for `support_plan`.
+extension type const KubernetesClusterSupportPlan._(TfArg<String> _)
+    implements TfArg<String> {
+  KubernetesClusterSupportPlan.variable(String name)
+    : this._(TfArg.variable(name));
+  KubernetesClusterSupportPlan.expression(String template)
+    : this._(TfArg.expression(template));
+  const KubernetesClusterSupportPlan.arg(TfArg<String> arg) : this._(arg);
+
+  static const akslongtermsupport = KubernetesClusterSupportPlan._(
+    TfArgLiteral('AKSLongTermSupport'),
+  );
+  static const kubernetesofficial = KubernetesClusterSupportPlan._(
+    TfArgLiteral('KubernetesOfficial'),
+  );
+
+  static const List<KubernetesClusterSupportPlan> values = [
+    akslongtermsupport,
+    kubernetesofficial,
+  ];
+}
+
+/// Exactly one of `dns_prefix`, `dns_prefix_private_cluster` on `azurerm_kubernetes_cluster`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.dnsPrefix(...)`.
+sealed class KubernetesClusterDnsPrefix {
+  const KubernetesClusterDnsPrefix();
+
+  /// Sets `dns_prefix`.
+  const factory KubernetesClusterDnsPrefix.dnsPrefix(TfArg<String> dnsPrefix) =
+      KubernetesClusterDnsPrefixChoice;
+
+  /// Sets `dns_prefix_private_cluster`.
+  const factory KubernetesClusterDnsPrefix.dnsPrefixPrivateCluster(
+    TfArg<String> dnsPrefixPrivateCluster,
+  ) = KubernetesClusterDnsPrefixPrivateCluster;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [KubernetesClusterDnsPrefix.dnsPrefix] choice: sets `dns_prefix`.
+final class KubernetesClusterDnsPrefixChoice
+    extends KubernetesClusterDnsPrefix {
+  const KubernetesClusterDnsPrefixChoice(this.dnsPrefix);
+
+  final TfArg<String> dnsPrefix;
+
+  @internal
+  @override
+  String get blockKey => 'dns_prefix';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'dns_prefix': dnsPrefix.toTfJson()};
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'dns_prefix': dnsPrefix};
+}
+
+/// The [KubernetesClusterDnsPrefix.dnsPrefixPrivateCluster] choice: sets `dns_prefix_private_cluster`.
+final class KubernetesClusterDnsPrefixPrivateCluster
+    extends KubernetesClusterDnsPrefix {
+  const KubernetesClusterDnsPrefixPrivateCluster(this.dnsPrefixPrivateCluster);
+
+  final TfArg<String> dnsPrefixPrivateCluster;
+
+  @internal
+  @override
+  String get blockKey => 'dns_prefix_private_cluster';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'dns_prefix_private_cluster': dnsPrefixPrivateCluster.toTfJson(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'dns_prefix_private_cluster': dnsPrefixPrivateCluster,
+  };
+}
+
+/// Exactly one of `identity`, `service_principal` on `azurerm_kubernetes_cluster`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.identity(...)`.
+sealed class KubernetesClusterPrincipal {
+  const KubernetesClusterPrincipal();
+
+  /// Sets `identity`.
+  const factory KubernetesClusterPrincipal.identity(
+    KubernetesClusterIdentity identity,
+  ) = KubernetesClusterPrincipalIdentity;
+
+  /// Sets `service_principal`.
+  const factory KubernetesClusterPrincipal.servicePrincipal(
+    KubernetesClusterServicePrincipal servicePrincipal,
+  ) = KubernetesClusterServicePrincipalChoice;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [KubernetesClusterPrincipal.identity] choice: sets `identity`.
+final class KubernetesClusterPrincipalIdentity
+    extends KubernetesClusterPrincipal {
+  const KubernetesClusterPrincipalIdentity(this.identity);
+
+  final KubernetesClusterIdentity identity;
+
+  @internal
+  @override
+  String get blockKey => 'identity';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'identity': identity.encode()};
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'identity': TfArg.literal(identity.encode()),
+  };
+}
+
+/// The [KubernetesClusterPrincipal.servicePrincipal] choice: sets `service_principal`.
+final class KubernetesClusterServicePrincipalChoice
+    extends KubernetesClusterPrincipal {
+  const KubernetesClusterServicePrincipalChoice(this.servicePrincipal);
+
+  final KubernetesClusterServicePrincipal servicePrincipal;
+
+  @internal
+  @override
+  String get blockKey => 'service_principal';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'service_principal': servicePrincipal.encode(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'service_principal': TfArg.literal(servicePrincipal.encode()),
+  };
+}
+
 /// Typed helper for the `aci_connector_linux` block of
 /// `azurerm_kubernetes_cluster` (derived from provider schema).
 @immutable
@@ -89,7 +310,7 @@ final class KubernetesClusterAutoScalerProfile {
 
   final TfArg<String>? emptyBulkDeleteMax;
 
-  final TfArg<String>? expander;
+  final KubernetesClusterExpander? expander;
 
   final TfArg<bool>? ignoreDaemonsetsUtilizationEnabled;
 
@@ -150,6 +371,32 @@ final class KubernetesClusterAutoScalerProfile {
   };
 }
 
+/// `expander` — derived from the provider schema description.
+extension type const KubernetesClusterExpander._(TfArg<String> _)
+    implements TfArg<String> {
+  KubernetesClusterExpander.variable(String name)
+    : this._(TfArg.variable(name));
+  KubernetesClusterExpander.expression(String template)
+    : this._(TfArg.expression(template));
+  const KubernetesClusterExpander.arg(TfArg<String> arg) : this._(arg);
+
+  static const leastWaste = KubernetesClusterExpander._(
+    TfArgLiteral('least-waste'),
+  );
+  static const mostPods = KubernetesClusterExpander._(
+    TfArgLiteral('most-pods'),
+  );
+  static const priority = KubernetesClusterExpander._(TfArgLiteral('priority'));
+  static const random = KubernetesClusterExpander._(TfArgLiteral('random'));
+
+  static const List<KubernetesClusterExpander> values = [
+    leastWaste,
+    mostPods,
+    priority,
+    random,
+  ];
+}
+
 /// Typed helper for the `azure_active_directory_role_based_access_control` block of
 /// `azurerm_kubernetes_cluster` (derived from provider schema).
 @immutable
@@ -183,7 +430,7 @@ final class KubernetesClusterBootstrapProfile {
     this.containerRegistryId,
   });
 
-  final TfArg<String>? artifactSource;
+  final KubernetesClusterArtifactSource? artifactSource;
 
   final TfArg<String>? containerRegistryId;
 
@@ -192,6 +439,23 @@ final class KubernetesClusterBootstrapProfile {
     'artifact_source': ?artifactSource?.toTfJson(),
     'container_registry_id': ?containerRegistryId?.toTfJson(),
   };
+}
+
+/// `artifact_source` — derived from the provider schema description.
+extension type const KubernetesClusterArtifactSource._(TfArg<String> _)
+    implements TfArg<String> {
+  KubernetesClusterArtifactSource.variable(String name)
+    : this._(TfArg.variable(name));
+  KubernetesClusterArtifactSource.expression(String template)
+    : this._(TfArg.expression(template));
+  const KubernetesClusterArtifactSource.arg(TfArg<String> arg) : this._(arg);
+
+  static const cache = KubernetesClusterArtifactSource._(TfArgLiteral('Cache'));
+  static const direct = KubernetesClusterArtifactSource._(
+    TfArgLiteral('Direct'),
+  );
+
+  static const List<KubernetesClusterArtifactSource> values = [cache, direct];
 }
 
 /// Typed helper for the `confidential_computing` block of
@@ -743,13 +1007,36 @@ final class KubernetesClusterKeyManagementService {
 
   final TfArg<String> keyVaultKeyId;
 
-  final TfArg<String>? keyVaultNetworkAccess;
+  final KubernetesClusterKeyVaultNetworkAccess? keyVaultNetworkAccess;
 
   @internal
   Map<String, Object?> encode() => {
     'key_vault_key_id': keyVaultKeyId.toTfJson(),
     'key_vault_network_access': ?keyVaultNetworkAccess?.toTfJson(),
   };
+}
+
+/// `key_vault_network_access` — derived from the provider schema description.
+extension type const KubernetesClusterKeyVaultNetworkAccess._(TfArg<String> _)
+    implements TfArg<String> {
+  KubernetesClusterKeyVaultNetworkAccess.variable(String name)
+    : this._(TfArg.variable(name));
+  KubernetesClusterKeyVaultNetworkAccess.expression(String template)
+    : this._(TfArg.expression(template));
+  const KubernetesClusterKeyVaultNetworkAccess.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const private = KubernetesClusterKeyVaultNetworkAccess._(
+    TfArgLiteral('Private'),
+  );
+  static const public = KubernetesClusterKeyVaultNetworkAccess._(
+    TfArgLiteral('Public'),
+  );
+
+  static const List<KubernetesClusterKeyVaultNetworkAccess> values = [
+    private,
+    public,
+  ];
 }
 
 /// Typed helper for the `key_vault_secrets_provider` block of
@@ -852,7 +1139,7 @@ final class KubernetesClusterMaintenanceWindow {
 final class KubernetesClusterAllowed {
   const KubernetesClusterAllowed({required this.day, required this.hours});
 
-  final TfArg<String> day;
+  final KubernetesClusterDay day;
 
   final TfArg<List<num>> hours;
 
@@ -861,6 +1148,33 @@ final class KubernetesClusterAllowed {
     'day': day.toTfJson(),
     'hours': hours.toTfJson(),
   };
+}
+
+/// `day` — derived from the provider schema description.
+extension type const KubernetesClusterDay._(TfArg<String> _)
+    implements TfArg<String> {
+  KubernetesClusterDay.variable(String name) : this._(TfArg.variable(name));
+  KubernetesClusterDay.expression(String template)
+    : this._(TfArg.expression(template));
+  const KubernetesClusterDay.arg(TfArg<String> arg) : this._(arg);
+
+  static const friday = KubernetesClusterDay._(TfArgLiteral('Friday'));
+  static const monday = KubernetesClusterDay._(TfArgLiteral('Monday'));
+  static const saturday = KubernetesClusterDay._(TfArgLiteral('Saturday'));
+  static const sunday = KubernetesClusterDay._(TfArgLiteral('Sunday'));
+  static const thursday = KubernetesClusterDay._(TfArgLiteral('Thursday'));
+  static const tuesday = KubernetesClusterDay._(TfArgLiteral('Tuesday'));
+  static const wednesday = KubernetesClusterDay._(TfArgLiteral('Wednesday'));
+
+  static const List<KubernetesClusterDay> values = [
+    friday,
+    monday,
+    saturday,
+    sunday,
+    thursday,
+    tuesday,
+    wednesday,
+  ];
 }
 
 /// Typed helper for the `maintenance_window.not_allowed` block of
@@ -900,11 +1214,11 @@ final class KubernetesClusterMaintenanceWindowAutoUpgrade {
 
   final TfArg<num>? dayOfMonth;
 
-  final TfArg<String>? dayOfWeek;
+  final KubernetesClusterDayOfWeek? dayOfWeek;
 
   final TfArg<num> duration;
 
-  final TfArg<String> frequency;
+  final KubernetesClusterMaintenanceWindowAutoUpgradeFrequency frequency;
 
   final TfArg<num> interval;
 
@@ -914,7 +1228,7 @@ final class KubernetesClusterMaintenanceWindowAutoUpgrade {
 
   final TfArg<String>? utcOffset;
 
-  final TfArg<String>? weekIndex;
+  final KubernetesClusterWeekIndex? weekIndex;
 
   final List<KubernetesClusterNotAllowed>? notAllowed;
 
@@ -932,6 +1246,97 @@ final class KubernetesClusterMaintenanceWindowAutoUpgrade {
     if (notAllowed != null)
       'not_allowed': [for (final e in notAllowed!) e.encode()],
   };
+}
+
+/// `day_of_week` — derived from the provider schema description.
+extension type const KubernetesClusterDayOfWeek._(TfArg<String> _)
+    implements TfArg<String> {
+  KubernetesClusterDayOfWeek.variable(String name)
+    : this._(TfArg.variable(name));
+  KubernetesClusterDayOfWeek.expression(String template)
+    : this._(TfArg.expression(template));
+  const KubernetesClusterDayOfWeek.arg(TfArg<String> arg) : this._(arg);
+
+  static const friday = KubernetesClusterDayOfWeek._(TfArgLiteral('Friday'));
+  static const monday = KubernetesClusterDayOfWeek._(TfArgLiteral('Monday'));
+  static const saturday = KubernetesClusterDayOfWeek._(
+    TfArgLiteral('Saturday'),
+  );
+  static const sunday = KubernetesClusterDayOfWeek._(TfArgLiteral('Sunday'));
+  static const thursday = KubernetesClusterDayOfWeek._(
+    TfArgLiteral('Thursday'),
+  );
+  static const tuesday = KubernetesClusterDayOfWeek._(TfArgLiteral('Tuesday'));
+  static const wednesday = KubernetesClusterDayOfWeek._(
+    TfArgLiteral('Wednesday'),
+  );
+
+  static const List<KubernetesClusterDayOfWeek> values = [
+    friday,
+    monday,
+    saturday,
+    sunday,
+    thursday,
+    tuesday,
+    wednesday,
+  ];
+}
+
+/// `frequency` — derived from the provider schema description.
+extension type const KubernetesClusterMaintenanceWindowAutoUpgradeFrequency._(
+  TfArg<String> _
+) implements TfArg<String> {
+  KubernetesClusterMaintenanceWindowAutoUpgradeFrequency.variable(String name)
+    : this._(TfArg.variable(name));
+  KubernetesClusterMaintenanceWindowAutoUpgradeFrequency.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const KubernetesClusterMaintenanceWindowAutoUpgradeFrequency.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const daily = KubernetesClusterMaintenanceWindowAutoUpgradeFrequency._(
+    TfArgLiteral('Daily'),
+  );
+  static const weekly =
+      KubernetesClusterMaintenanceWindowAutoUpgradeFrequency._(
+        TfArgLiteral('Weekly'),
+      );
+  static const relativemonthly =
+      KubernetesClusterMaintenanceWindowAutoUpgradeFrequency._(
+        TfArgLiteral('RelativeMonthly'),
+      );
+  static const absolutemonthly =
+      KubernetesClusterMaintenanceWindowAutoUpgradeFrequency._(
+        TfArgLiteral('AbsoluteMonthly'),
+      );
+
+  static const List<KubernetesClusterMaintenanceWindowAutoUpgradeFrequency>
+  values = [daily, weekly, relativemonthly, absolutemonthly];
+}
+
+/// `week_index` — derived from the provider schema description.
+extension type const KubernetesClusterWeekIndex._(TfArg<String> _)
+    implements TfArg<String> {
+  KubernetesClusterWeekIndex.variable(String name)
+    : this._(TfArg.variable(name));
+  KubernetesClusterWeekIndex.expression(String template)
+    : this._(TfArg.expression(template));
+  const KubernetesClusterWeekIndex.arg(TfArg<String> arg) : this._(arg);
+
+  static const first = KubernetesClusterWeekIndex._(TfArgLiteral('First'));
+  static const fourth = KubernetesClusterWeekIndex._(TfArgLiteral('Fourth'));
+  static const last = KubernetesClusterWeekIndex._(TfArgLiteral('Last'));
+  static const second = KubernetesClusterWeekIndex._(TfArgLiteral('Second'));
+  static const third = KubernetesClusterWeekIndex._(TfArgLiteral('Third'));
+
+  static const List<KubernetesClusterWeekIndex> values = [
+    first,
+    fourth,
+    last,
+    second,
+    third,
+  ];
 }
 
 /// Typed helper for the `maintenance_window_node_os` block of
@@ -953,11 +1358,11 @@ final class KubernetesClusterMaintenanceWindowNodeOs {
 
   final TfArg<num>? dayOfMonth;
 
-  final TfArg<String>? dayOfWeek;
+  final KubernetesClusterDayOfWeek? dayOfWeek;
 
   final TfArg<num> duration;
 
-  final TfArg<String> frequency;
+  final KubernetesClusterMaintenanceWindowNodeOsFrequency frequency;
 
   final TfArg<num> interval;
 
@@ -967,7 +1372,7 @@ final class KubernetesClusterMaintenanceWindowNodeOs {
 
   final TfArg<String>? utcOffset;
 
-  final TfArg<String>? weekIndex;
+  final KubernetesClusterWeekIndex? weekIndex;
 
   final List<KubernetesClusterNotAllowed>? notAllowed;
 
@@ -985,6 +1390,36 @@ final class KubernetesClusterMaintenanceWindowNodeOs {
     if (notAllowed != null)
       'not_allowed': [for (final e in notAllowed!) e.encode()],
   };
+}
+
+/// `frequency` — derived from the provider schema description.
+extension type const KubernetesClusterMaintenanceWindowNodeOsFrequency._(
+  TfArg<String> _
+) implements TfArg<String> {
+  KubernetesClusterMaintenanceWindowNodeOsFrequency.variable(String name)
+    : this._(TfArg.variable(name));
+  KubernetesClusterMaintenanceWindowNodeOsFrequency.expression(String template)
+    : this._(TfArg.expression(template));
+  const KubernetesClusterMaintenanceWindowNodeOsFrequency.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const weekly = KubernetesClusterMaintenanceWindowNodeOsFrequency._(
+    TfArgLiteral('Weekly'),
+  );
+  static const relativemonthly =
+      KubernetesClusterMaintenanceWindowNodeOsFrequency._(
+        TfArgLiteral('RelativeMonthly'),
+      );
+  static const absolutemonthly =
+      KubernetesClusterMaintenanceWindowNodeOsFrequency._(
+        TfArgLiteral('AbsoluteMonthly'),
+      );
+  static const daily = KubernetesClusterMaintenanceWindowNodeOsFrequency._(
+    TfArgLiteral('Daily'),
+  );
+
+  static const List<KubernetesClusterMaintenanceWindowNodeOsFrequency> values =
+      [weekly, relativemonthly, absolutemonthly, daily];
 }
 
 /// Typed helper for the `microsoft_defender` block of
@@ -1048,21 +1483,21 @@ final class KubernetesClusterNetworkProfile {
 
   final TfArg<String>? dnsServiceIp;
 
-  final TfArg<List<String>>? ipVersions;
+  final List<KubernetesClusterIpVersions>? ipVersions;
 
-  final TfArg<String>? loadBalancerSku;
+  final KubernetesClusterLoadBalancerSku? loadBalancerSku;
 
-  final TfArg<String>? networkDataPlane;
+  final KubernetesClusterNetworkDataPlane? networkDataPlane;
 
-  final TfArg<String>? networkMode;
+  final KubernetesClusterNetworkMode? networkMode;
 
-  final TfArg<String> networkPlugin;
+  final KubernetesClusterNetworkPlugin networkPlugin;
 
   final TfArg<String>? networkPluginMode;
 
   final TfArg<String>? networkPolicy;
 
-  final TfArg<String>? outboundType;
+  final KubernetesClusterOutboundType? outboundType;
 
   final TfArg<String>? podCidr;
 
@@ -1081,7 +1516,8 @@ final class KubernetesClusterNetworkProfile {
   @internal
   Map<String, Object?> encode() => {
     'dns_service_ip': ?dnsServiceIp?.toTfJson(),
-    'ip_versions': ?ipVersions?.toTfJson(),
+    if (ipVersions != null)
+      'ip_versions': [for (final e in ipVersions!) e.toTfJson()],
     'load_balancer_sku': ?loadBalancerSku?.toTfJson(),
     'network_data_plane': ?networkDataPlane?.toTfJson(),
     'network_mode': ?networkMode?.toTfJson(),
@@ -1097,6 +1533,136 @@ final class KubernetesClusterNetworkProfile {
     'load_balancer_profile': ?loadBalancerProfile?.encode(),
     'nat_gateway_profile': ?natGatewayProfile?.encode(),
   };
+}
+
+/// `ip_versions` — derived from the provider schema description.
+extension type const KubernetesClusterIpVersions._(TfArg<String> _)
+    implements TfArg<String> {
+  KubernetesClusterIpVersions.variable(String name)
+    : this._(TfArg.variable(name));
+  KubernetesClusterIpVersions.expression(String template)
+    : this._(TfArg.expression(template));
+  const KubernetesClusterIpVersions.arg(TfArg<String> arg) : this._(arg);
+
+  static const ipv4 = KubernetesClusterIpVersions._(TfArgLiteral('IPv4'));
+  static const ipv6 = KubernetesClusterIpVersions._(TfArgLiteral('IPv6'));
+
+  static const List<KubernetesClusterIpVersions> values = [ipv4, ipv6];
+}
+
+/// `load_balancer_sku` — derived from the provider schema description.
+extension type const KubernetesClusterLoadBalancerSku._(TfArg<String> _)
+    implements TfArg<String> {
+  KubernetesClusterLoadBalancerSku.variable(String name)
+    : this._(TfArg.variable(name));
+  KubernetesClusterLoadBalancerSku.expression(String template)
+    : this._(TfArg.expression(template));
+  const KubernetesClusterLoadBalancerSku.arg(TfArg<String> arg) : this._(arg);
+
+  static const basic = KubernetesClusterLoadBalancerSku._(
+    TfArgLiteral('basic'),
+  );
+  static const standard = KubernetesClusterLoadBalancerSku._(
+    TfArgLiteral('standard'),
+  );
+
+  static const List<KubernetesClusterLoadBalancerSku> values = [
+    basic,
+    standard,
+  ];
+}
+
+/// `network_data_plane` — derived from the provider schema description.
+extension type const KubernetesClusterNetworkDataPlane._(TfArg<String> _)
+    implements TfArg<String> {
+  KubernetesClusterNetworkDataPlane.variable(String name)
+    : this._(TfArg.variable(name));
+  KubernetesClusterNetworkDataPlane.expression(String template)
+    : this._(TfArg.expression(template));
+  const KubernetesClusterNetworkDataPlane.arg(TfArg<String> arg) : this._(arg);
+
+  static const azure = KubernetesClusterNetworkDataPlane._(
+    TfArgLiteral('azure'),
+  );
+  static const cilium = KubernetesClusterNetworkDataPlane._(
+    TfArgLiteral('cilium'),
+  );
+
+  static const List<KubernetesClusterNetworkDataPlane> values = [azure, cilium];
+}
+
+/// `network_mode` — derived from the provider schema description.
+extension type const KubernetesClusterNetworkMode._(TfArg<String> _)
+    implements TfArg<String> {
+  KubernetesClusterNetworkMode.variable(String name)
+    : this._(TfArg.variable(name));
+  KubernetesClusterNetworkMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const KubernetesClusterNetworkMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const bridge = KubernetesClusterNetworkMode._(TfArgLiteral('bridge'));
+  static const transparent = KubernetesClusterNetworkMode._(
+    TfArgLiteral('transparent'),
+  );
+
+  static const List<KubernetesClusterNetworkMode> values = [
+    bridge,
+    transparent,
+  ];
+}
+
+/// `network_plugin` — derived from the provider schema description.
+extension type const KubernetesClusterNetworkPlugin._(TfArg<String> _)
+    implements TfArg<String> {
+  KubernetesClusterNetworkPlugin.variable(String name)
+    : this._(TfArg.variable(name));
+  KubernetesClusterNetworkPlugin.expression(String template)
+    : this._(TfArg.expression(template));
+  const KubernetesClusterNetworkPlugin.arg(TfArg<String> arg) : this._(arg);
+
+  static const azure = KubernetesClusterNetworkPlugin._(TfArgLiteral('azure'));
+  static const kubenet = KubernetesClusterNetworkPlugin._(
+    TfArgLiteral('kubenet'),
+  );
+  static const none = KubernetesClusterNetworkPlugin._(TfArgLiteral('none'));
+
+  static const List<KubernetesClusterNetworkPlugin> values = [
+    azure,
+    kubenet,
+    none,
+  ];
+}
+
+/// `outbound_type` — derived from the provider schema description.
+extension type const KubernetesClusterOutboundType._(TfArg<String> _)
+    implements TfArg<String> {
+  KubernetesClusterOutboundType.variable(String name)
+    : this._(TfArg.variable(name));
+  KubernetesClusterOutboundType.expression(String template)
+    : this._(TfArg.expression(template));
+  const KubernetesClusterOutboundType.arg(TfArg<String> arg) : this._(arg);
+
+  static const loadbalancer = KubernetesClusterOutboundType._(
+    TfArgLiteral('loadBalancer'),
+  );
+  static const managednatgateway = KubernetesClusterOutboundType._(
+    TfArgLiteral('managedNATGateway'),
+  );
+  static const none = KubernetesClusterOutboundType._(TfArgLiteral('none'));
+  static const userassignednatgateway = KubernetesClusterOutboundType._(
+    TfArgLiteral('userAssignedNATGateway'),
+  );
+  static const userdefinedrouting = KubernetesClusterOutboundType._(
+    TfArgLiteral('userDefinedRouting'),
+  );
+
+  static const List<KubernetesClusterOutboundType> values = [
+    loadbalancer,
+    managednatgateway,
+    none,
+    userassignednatgateway,
+    userdefinedrouting,
+  ];
 }
 
 /// Typed helper for the `network_profile.advanced_networking` block of
@@ -1133,7 +1699,7 @@ final class KubernetesClusterLoadBalancerProfile {
     this.outboundPortsAllocated,
   });
 
-  final TfArg<String>? backendPoolType;
+  final KubernetesClusterBackendPoolType? backendPoolType;
 
   final TfArg<num>? idleTimeoutInMinutes;
 
@@ -1157,6 +1723,28 @@ final class KubernetesClusterLoadBalancerProfile {
     'outbound_ip_prefix_ids': ?outboundIpPrefixIds?.toTfJson(),
     'outbound_ports_allocated': ?outboundPortsAllocated?.toTfJson(),
   };
+}
+
+/// `backend_pool_type` — derived from the provider schema description.
+extension type const KubernetesClusterBackendPoolType._(TfArg<String> _)
+    implements TfArg<String> {
+  KubernetesClusterBackendPoolType.variable(String name)
+    : this._(TfArg.variable(name));
+  KubernetesClusterBackendPoolType.expression(String template)
+    : this._(TfArg.expression(template));
+  const KubernetesClusterBackendPoolType.arg(TfArg<String> arg) : this._(arg);
+
+  static const nodeip = KubernetesClusterBackendPoolType._(
+    TfArgLiteral('NodeIP'),
+  );
+  static const nodeipconfiguration = KubernetesClusterBackendPoolType._(
+    TfArgLiteral('NodeIPConfiguration'),
+  );
+
+  static const List<KubernetesClusterBackendPoolType> values = [
+    nodeip,
+    nodeipconfiguration,
+  ];
 }
 
 /// Typed helper for the `network_profile.nat_gateway_profile` block of
@@ -1188,15 +1776,44 @@ final class KubernetesClusterNodeProvisioningProfile {
     this.mode,
   });
 
-  final TfArg<String>? defaultNodePools;
+  final KubernetesClusterDefaultNodePools? defaultNodePools;
 
-  final TfArg<String>? mode;
+  final KubernetesClusterMode? mode;
 
   @internal
   Map<String, Object?> encode() => {
     'default_node_pools': ?defaultNodePools?.toTfJson(),
     'mode': ?mode?.toTfJson(),
   };
+}
+
+/// `default_node_pools` — derived from the provider schema description.
+extension type const KubernetesClusterDefaultNodePools._(TfArg<String> _)
+    implements TfArg<String> {
+  KubernetesClusterDefaultNodePools.variable(String name)
+    : this._(TfArg.variable(name));
+  KubernetesClusterDefaultNodePools.expression(String template)
+    : this._(TfArg.expression(template));
+  const KubernetesClusterDefaultNodePools.arg(TfArg<String> arg) : this._(arg);
+
+  static const auto = KubernetesClusterDefaultNodePools._(TfArgLiteral('Auto'));
+  static const none = KubernetesClusterDefaultNodePools._(TfArgLiteral('None'));
+
+  static const List<KubernetesClusterDefaultNodePools> values = [auto, none];
+}
+
+/// `mode` — derived from the provider schema description.
+extension type const KubernetesClusterMode._(TfArg<String> _)
+    implements TfArg<String> {
+  KubernetesClusterMode.variable(String name) : this._(TfArg.variable(name));
+  KubernetesClusterMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const KubernetesClusterMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const auto = KubernetesClusterMode._(TfArgLiteral('Auto'));
+  static const manual = KubernetesClusterMode._(TfArgLiteral('Manual'));
+
+  static const List<KubernetesClusterMode> values = [auto, manual];
 }
 
 /// Typed helper for the `oms_agent` block of
@@ -1366,7 +1983,7 @@ final class KubernetesClusterWebAppRouting {
     required this.dnsZoneIds,
   });
 
-  final TfArg<String>? defaultNginxController;
+  final KubernetesClusterDefaultNginxController? defaultNginxController;
 
   final TfArg<List<String>> dnsZoneIds;
 
@@ -1375,6 +1992,37 @@ final class KubernetesClusterWebAppRouting {
     'default_nginx_controller': ?defaultNginxController?.toTfJson(),
     'dns_zone_ids': dnsZoneIds.toTfJson(),
   };
+}
+
+/// `default_nginx_controller` — derived from the provider schema description.
+extension type const KubernetesClusterDefaultNginxController._(TfArg<String> _)
+    implements TfArg<String> {
+  KubernetesClusterDefaultNginxController.variable(String name)
+    : this._(TfArg.variable(name));
+  KubernetesClusterDefaultNginxController.expression(String template)
+    : this._(TfArg.expression(template));
+  const KubernetesClusterDefaultNginxController.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const annotationcontrolled = KubernetesClusterDefaultNginxController._(
+    TfArgLiteral('AnnotationControlled'),
+  );
+  static const external = KubernetesClusterDefaultNginxController._(
+    TfArgLiteral('External'),
+  );
+  static const internal = KubernetesClusterDefaultNginxController._(
+    TfArgLiteral('Internal'),
+  );
+  static const none = KubernetesClusterDefaultNginxController._(
+    TfArgLiteral('None'),
+  );
+
+  static const List<KubernetesClusterDefaultNginxController> values = [
+    annotationcontrolled,
+    external,
+    internal,
+    none,
+  ];
 }
 
 /// Typed helper for the `windows_profile` block of
@@ -1458,8 +2106,7 @@ final class AzurermKubernetesCluster extends Resource {
     TfArg<bool>? costAnalysisEnabled,
     TfArg<List<String>>? customCaTrustCertificatesBase64,
     TfArg<String>? diskEncryptionSetId,
-    TfArg<String>? dnsPrefix,
-    TfArg<String>? dnsPrefixPrivateCluster,
+    required KubernetesClusterDnsPrefix dnsPrefix,
     TfArg<String>? edgeZone,
     TfArg<bool>? httpApplicationRoutingEnabled,
     TfArg<bool>? imageCleanerEnabled,
@@ -1468,7 +2115,7 @@ final class AzurermKubernetesCluster extends Resource {
     TfArg<bool>? localAccountDisabled,
     required TfArg<String> location,
     required TfArg<String> name,
-    TfArg<String>? nodeOsUpgradeChannel,
+    KubernetesClusterNodeOsUpgradeChannel? nodeOsUpgradeChannel,
     TfArg<String>? nodeResourceGroup,
     TfArg<bool>? oidcIssuerEnabled,
     TfArg<bool>? openServiceMeshEnabled,
@@ -1478,8 +2125,8 @@ final class AzurermKubernetesCluster extends Resource {
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<bool>? roleBasedAccessControlEnabled,
     TfArg<bool>? runCommandEnabled,
-    TfArg<String>? skuTier,
-    TfArg<String>? supportPlan,
+    KubernetesClusterSkuTier? skuTier,
+    KubernetesClusterSupportPlan? supportPlan,
     TfArg<Map<String, String>>? tags,
     TfArg<bool>? workloadIdentityEnabled,
     KubernetesClusterAciConnectorLinux? aciConnectorLinux,
@@ -1491,7 +2138,7 @@ final class AzurermKubernetesCluster extends Resource {
     KubernetesClusterConfidentialComputing? confidentialComputing,
     required KubernetesClusterDefaultNodePool defaultNodePool,
     KubernetesClusterHttpProxyConfig? httpProxyConfig,
-    KubernetesClusterIdentity? identity,
+    required KubernetesClusterPrincipal principal,
     KubernetesClusterIngressApplicationGateway? ingressApplicationGateway,
     KubernetesClusterKeyManagementService? keyManagementService,
     KubernetesClusterKeyVaultSecretsProvider? keyVaultSecretsProvider,
@@ -1506,7 +2153,6 @@ final class AzurermKubernetesCluster extends Resource {
     required KubernetesClusterNodeProvisioningProfile nodeProvisioningProfile,
     KubernetesClusterOmsAgent? omsAgent,
     KubernetesClusterServiceMeshProfile? serviceMeshProfile,
-    KubernetesClusterServicePrincipal? servicePrincipal,
     KubernetesClusterStorageProfile? storageProfile,
     KubernetesClusterUpgradeOverride? upgradeOverride,
     KubernetesClusterWebAppRouting? webAppRouting,
@@ -1526,8 +2172,7 @@ final class AzurermKubernetesCluster extends Resource {
            'custom_ca_trust_certificates_base64':
                ?customCaTrustCertificatesBase64,
            'disk_encryption_set_id': ?diskEncryptionSetId,
-           'dns_prefix': ?dnsPrefix,
-           'dns_prefix_private_cluster': ?dnsPrefixPrivateCluster,
+           ...dnsPrefix.argMap,
            'edge_zone': ?edgeZone,
            'http_application_routing_enabled': ?httpApplicationRoutingEnabled,
            'image_cleaner_enabled': ?imageCleanerEnabled,
@@ -1572,7 +2217,7 @@ final class AzurermKubernetesCluster extends Resource {
            'default_node_pool': TfArg.literal(defaultNodePool.encode()),
            if (httpProxyConfig != null)
              'http_proxy_config': TfArg.literal(httpProxyConfig.encode()),
-           if (identity != null) 'identity': TfArg.literal(identity.encode()),
+           ...principal.argMap,
            if (ingressApplicationGateway != null)
              'ingress_application_gateway': TfArg.literal(
                ingressApplicationGateway.encode(),
@@ -1611,8 +2256,6 @@ final class AzurermKubernetesCluster extends Resource {
            if (omsAgent != null) 'oms_agent': TfArg.literal(omsAgent.encode()),
            if (serviceMeshProfile != null)
              'service_mesh_profile': TfArg.literal(serviceMeshProfile.encode()),
-           if (servicePrincipal != null)
-             'service_principal': TfArg.literal(servicePrincipal.encode()),
            if (storageProfile != null)
              'storage_profile': TfArg.literal(storageProfile.encode()),
            if (upgradeOverride != null)

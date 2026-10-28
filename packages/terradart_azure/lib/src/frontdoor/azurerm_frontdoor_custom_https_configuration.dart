@@ -25,7 +25,7 @@ final class FrontdoorCustomHttpsConfiguration {
 
   final TfArg<String>? azureKeyVaultCertificateVaultId;
 
-  final TfArg<String>? certificateSource;
+  final FrontdoorCustomHttpsConfigurationCertificateSource? certificateSource;
 
   @internal
   Map<String, Object?> encode() => {
@@ -37,6 +37,30 @@ final class FrontdoorCustomHttpsConfiguration {
         ?.toTfJson(),
     'certificate_source': ?certificateSource?.toTfJson(),
   };
+}
+
+/// `certificate_source` — derived from the provider schema description.
+extension type const FrontdoorCustomHttpsConfigurationCertificateSource._(
+  TfArg<String> _
+) implements TfArg<String> {
+  FrontdoorCustomHttpsConfigurationCertificateSource.variable(String name)
+    : this._(TfArg.variable(name));
+  FrontdoorCustomHttpsConfigurationCertificateSource.expression(String template)
+    : this._(TfArg.expression(template));
+  const FrontdoorCustomHttpsConfigurationCertificateSource.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const azurekeyvault =
+      FrontdoorCustomHttpsConfigurationCertificateSource._(
+        TfArgLiteral('AzureKeyVault'),
+      );
+  static const frontdoor = FrontdoorCustomHttpsConfigurationCertificateSource._(
+    TfArgLiteral('FrontDoor'),
+  );
+
+  static const List<FrontdoorCustomHttpsConfigurationCertificateSource> values =
+      [azurekeyvault, frontdoor];
 }
 
 /// Factory wrapper for `azurerm_frontdoor_custom_https_configuration`.

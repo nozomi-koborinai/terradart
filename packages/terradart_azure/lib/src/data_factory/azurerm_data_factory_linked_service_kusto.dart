@@ -1,12 +1,95 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `azurerm_data_factory_linked_service_kusto`.
 const Set<String> _azurermDataFactoryLinkedServiceKustoSensitive = <String>{
   'service_principal_key',
 };
+
+/// Exactly one of `service_principal_id`, `use_managed_identity` on `azurerm_data_factory_linked_service_kusto`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.servicePrincipalId(...)`.
+sealed class DataFactoryLinkedServiceKustoAuthentication {
+  const DataFactoryLinkedServiceKustoAuthentication();
+
+  /// Sets `service_principal_id`.
+  const factory DataFactoryLinkedServiceKustoAuthentication.servicePrincipalId(
+    TfArg<String> servicePrincipalId,
+  ) = DataFactoryLinkedServiceKustoAuthenticationServicePrincipalId;
+
+  /// Sets `use_managed_identity`.
+  const factory DataFactoryLinkedServiceKustoAuthentication.useManagedIdentity(
+    TfArg<bool> useManagedIdentity,
+  ) = DataFactoryLinkedServiceKustoAuthenticationUseManagedIdentity;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [DataFactoryLinkedServiceKustoAuthentication.servicePrincipalId] choice: sets `service_principal_id`.
+final class DataFactoryLinkedServiceKustoAuthenticationServicePrincipalId
+    extends DataFactoryLinkedServiceKustoAuthentication {
+  const DataFactoryLinkedServiceKustoAuthenticationServicePrincipalId(
+    this.servicePrincipalId,
+  );
+
+  final TfArg<String> servicePrincipalId;
+
+  @internal
+  @override
+  String get blockKey => 'service_principal_id';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'service_principal_id': servicePrincipalId.toTfJson(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'service_principal_id': servicePrincipalId,
+  };
+}
+
+/// The [DataFactoryLinkedServiceKustoAuthentication.useManagedIdentity] choice: sets `use_managed_identity`.
+final class DataFactoryLinkedServiceKustoAuthenticationUseManagedIdentity
+    extends DataFactoryLinkedServiceKustoAuthentication {
+  const DataFactoryLinkedServiceKustoAuthenticationUseManagedIdentity(
+    this.useManagedIdentity,
+  );
+
+  final TfArg<bool> useManagedIdentity;
+
+  @internal
+  @override
+  String get blockKey => 'use_managed_identity';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'use_managed_identity': useManagedIdentity.toTfJson(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'use_managed_identity': useManagedIdentity,
+  };
+}
 
 /// Factory wrapper for `azurerm_data_factory_linked_service_kusto`.
 final class AzurermDataFactoryLinkedServiceKusto extends Resource {
@@ -23,10 +106,9 @@ final class AzurermDataFactoryLinkedServiceKusto extends Resource {
     required TfArg<String> kustoEndpoint,
     required TfArg<String> name,
     TfArg<Map<String, String>>? parameters,
-    TfArg<String>? servicePrincipalId,
+    required DataFactoryLinkedServiceKustoAuthentication authentication,
     Sensitive<String>? servicePrincipalKey,
     TfArg<String>? tenant,
-    TfArg<bool>? useManagedIdentity,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -43,10 +125,9 @@ final class AzurermDataFactoryLinkedServiceKusto extends Resource {
            'kusto_endpoint': kustoEndpoint,
            'name': name,
            'parameters': ?parameters,
-           'service_principal_id': ?servicePrincipalId,
+           ...authentication.argMap,
            'service_principal_key': ?servicePrincipalKey,
            'tenant': ?tenant,
-           'use_managed_identity': ?useManagedIdentity,
          },
        );
 

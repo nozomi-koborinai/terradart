@@ -49,7 +49,7 @@ final class DataProtectionBackupPolicyBlobStorageCriteria {
     this.weeksOfMonth,
   });
 
-  final TfArg<String>? absoluteCriteria;
+  final DataProtectionBackupPolicyBlobStorageAbsoluteCriteria? absoluteCriteria;
 
   final TfArg<List<num>>? daysOfMonth;
 
@@ -59,7 +59,7 @@ final class DataProtectionBackupPolicyBlobStorageCriteria {
 
   final TfArg<List<String>>? scheduledBackupTimes;
 
-  final TfArg<List<String>>? weeksOfMonth;
+  final List<DataProtectionBackupPolicyBlobStorageWeeksOfMonth>? weeksOfMonth;
 
   @internal
   Map<String, Object?> encode() => {
@@ -68,8 +68,78 @@ final class DataProtectionBackupPolicyBlobStorageCriteria {
     'days_of_week': ?daysOfWeek?.toTfJson(),
     'months_of_year': ?monthsOfYear?.toTfJson(),
     'scheduled_backup_times': ?scheduledBackupTimes?.toTfJson(),
-    'weeks_of_month': ?weeksOfMonth?.toTfJson(),
+    if (weeksOfMonth != null)
+      'weeks_of_month': [for (final e in weeksOfMonth!) e.toTfJson()],
   };
+}
+
+/// `absolute_criteria` — derived from the provider schema description.
+extension type const DataProtectionBackupPolicyBlobStorageAbsoluteCriteria._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataProtectionBackupPolicyBlobStorageAbsoluteCriteria.variable(String name)
+    : this._(TfArg.variable(name));
+  DataProtectionBackupPolicyBlobStorageAbsoluteCriteria.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const DataProtectionBackupPolicyBlobStorageAbsoluteCriteria.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const allbackup =
+      DataProtectionBackupPolicyBlobStorageAbsoluteCriteria._(
+        TfArgLiteral('AllBackup'),
+      );
+  static const firstofday =
+      DataProtectionBackupPolicyBlobStorageAbsoluteCriteria._(
+        TfArgLiteral('FirstOfDay'),
+      );
+  static const firstofmonth =
+      DataProtectionBackupPolicyBlobStorageAbsoluteCriteria._(
+        TfArgLiteral('FirstOfMonth'),
+      );
+  static const firstofweek =
+      DataProtectionBackupPolicyBlobStorageAbsoluteCriteria._(
+        TfArgLiteral('FirstOfWeek'),
+      );
+  static const firstofyear =
+      DataProtectionBackupPolicyBlobStorageAbsoluteCriteria._(
+        TfArgLiteral('FirstOfYear'),
+      );
+
+  static const List<DataProtectionBackupPolicyBlobStorageAbsoluteCriteria>
+  values = [allbackup, firstofday, firstofmonth, firstofweek, firstofyear];
+}
+
+/// `weeks_of_month` — derived from the provider schema description.
+extension type const DataProtectionBackupPolicyBlobStorageWeeksOfMonth._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataProtectionBackupPolicyBlobStorageWeeksOfMonth.variable(String name)
+    : this._(TfArg.variable(name));
+  DataProtectionBackupPolicyBlobStorageWeeksOfMonth.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataProtectionBackupPolicyBlobStorageWeeksOfMonth.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const first = DataProtectionBackupPolicyBlobStorageWeeksOfMonth._(
+    TfArgLiteral('First'),
+  );
+  static const fourth = DataProtectionBackupPolicyBlobStorageWeeksOfMonth._(
+    TfArgLiteral('Fourth'),
+  );
+  static const last = DataProtectionBackupPolicyBlobStorageWeeksOfMonth._(
+    TfArgLiteral('Last'),
+  );
+  static const second = DataProtectionBackupPolicyBlobStorageWeeksOfMonth._(
+    TfArgLiteral('Second'),
+  );
+  static const third = DataProtectionBackupPolicyBlobStorageWeeksOfMonth._(
+    TfArgLiteral('Third'),
+  );
+
+  static const List<DataProtectionBackupPolicyBlobStorageWeeksOfMonth> values =
+      [first, fourth, last, second, third];
 }
 
 /// Typed helper for the `retention_rule.life_cycle` block of

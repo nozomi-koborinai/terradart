@@ -4,3 +4,8 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 deriveExactlyOne: true
+
+sealedNames:
+  "key_vault_password, password": password
+  "key_vault_private_key_content_base64, private_key_content_base64, private_key_path": private_key
+  "key_vault_private_key_passphrase, private_key_passphrase": passphrase

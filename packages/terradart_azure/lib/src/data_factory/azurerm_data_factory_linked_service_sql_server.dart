@@ -8,6 +8,92 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _azurermDataFactoryLinkedServiceSqlServerSensitive =
     <String>{};
 
+/// Exactly one of `connection_string`, `key_vault_connection_string` on `azurerm_data_factory_linked_service_sql_server`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.connectionString(...)`.
+sealed class DataFactoryLinkedServiceSqlServerConnection {
+  const DataFactoryLinkedServiceSqlServerConnection();
+
+  /// Sets `connection_string`.
+  const factory DataFactoryLinkedServiceSqlServerConnection.connectionString(
+    TfArg<String> connectionString,
+  ) = DataFactoryLinkedServiceSqlServerConnectionString;
+
+  /// Sets `key_vault_connection_string`.
+  const factory DataFactoryLinkedServiceSqlServerConnection.keyVaultConnectionString(
+    DataFactoryLinkedServiceSqlServerKeyVaultConnectionString
+    keyVaultConnectionString,
+  ) = DataFactoryLinkedServiceSqlServerConnectionKeyVaultConnectionString;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [DataFactoryLinkedServiceSqlServerConnection.connectionString] choice: sets `connection_string`.
+final class DataFactoryLinkedServiceSqlServerConnectionString
+    extends DataFactoryLinkedServiceSqlServerConnection {
+  const DataFactoryLinkedServiceSqlServerConnectionString(
+    this.connectionString,
+  );
+
+  final TfArg<String> connectionString;
+
+  @internal
+  @override
+  String get blockKey => 'connection_string';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'connection_string': connectionString.toTfJson(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'connection_string': connectionString,
+  };
+}
+
+/// The [DataFactoryLinkedServiceSqlServerConnection.keyVaultConnectionString] choice: sets `key_vault_connection_string`.
+final class DataFactoryLinkedServiceSqlServerConnectionKeyVaultConnectionString
+    extends DataFactoryLinkedServiceSqlServerConnection {
+  const DataFactoryLinkedServiceSqlServerConnectionKeyVaultConnectionString(
+    this.keyVaultConnectionString,
+  );
+
+  final DataFactoryLinkedServiceSqlServerKeyVaultConnectionString
+  keyVaultConnectionString;
+
+  @internal
+  @override
+  String get blockKey => 'key_vault_connection_string';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'key_vault_connection_string': keyVaultConnectionString.encode(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'key_vault_connection_string': TfArg.literal(
+      keyVaultConnectionString.encode(),
+    ),
+  };
+}
+
 /// Typed helper for the `key_vault_connection_string` block of
 /// `azurerm_data_factory_linked_service_sql_server` (derived from provider schema).
 @immutable
@@ -56,15 +142,13 @@ final class AzurermDataFactoryLinkedServiceSqlServer extends Resource {
     super.localName, {
     TfArg<Map<String, String>>? additionalProperties,
     TfArg<List<String>>? annotations,
-    TfArg<String>? connectionString,
+    required DataFactoryLinkedServiceSqlServerConnection connection,
     required TfArg<String> dataFactoryId,
     TfArg<String>? description,
     TfArg<String>? integrationRuntimeName,
     required TfArg<String> name,
     TfArg<Map<String, String>>? parameters,
     TfArg<String>? userName,
-    DataFactoryLinkedServiceSqlServerKeyVaultConnectionString?
-    keyVaultConnectionString,
     DataFactoryLinkedServiceSqlServerKeyVaultPassword? keyVaultPassword,
     super.lifecycle,
     super.dependsOn,
@@ -75,17 +159,13 @@ final class AzurermDataFactoryLinkedServiceSqlServer extends Resource {
          argMap: {
            'additional_properties': ?additionalProperties,
            'annotations': ?annotations,
-           'connection_string': ?connectionString,
+           ...connection.argMap,
            'data_factory_id': dataFactoryId,
            'description': ?description,
            'integration_runtime_name': ?integrationRuntimeName,
            'name': name,
            'parameters': ?parameters,
            'user_name': ?userName,
-           if (keyVaultConnectionString != null)
-             'key_vault_connection_string': TfArg.literal(
-               keyVaultConnectionString.encode(),
-             ),
            if (keyVaultPassword != null)
              'key_vault_password': TfArg.literal(keyVaultPassword.encode()),
          },

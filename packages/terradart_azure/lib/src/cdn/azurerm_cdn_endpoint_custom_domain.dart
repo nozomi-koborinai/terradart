@@ -7,6 +7,85 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `azurerm_cdn_endpoint_custom_domain`.
 const Set<String> _azurermCdnEndpointCustomDomainSensitive = <String>{};
 
+/// At most one of `cdn_managed_https`, `user_managed_https` on `azurerm_cdn_endpoint_custom_domain`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.cdnManagedHttps(...)`.
+sealed class CdnEndpointCustomDomainManagedHttps {
+  const CdnEndpointCustomDomainManagedHttps();
+
+  /// Sets `cdn_managed_https`.
+  const factory CdnEndpointCustomDomainManagedHttps.cdnManagedHttps(
+    CdnEndpointCustomDomainCdnManagedHttps cdnManagedHttps,
+  ) = CdnEndpointCustomDomainCdnManagedHttpsChoice;
+
+  /// Sets `user_managed_https`.
+  const factory CdnEndpointCustomDomainManagedHttps.userManagedHttps(
+    CdnEndpointCustomDomainUserManagedHttps userManagedHttps,
+  ) = CdnEndpointCustomDomainUserManagedHttpsChoice;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [CdnEndpointCustomDomainManagedHttps.cdnManagedHttps] choice: sets `cdn_managed_https`.
+final class CdnEndpointCustomDomainCdnManagedHttpsChoice
+    extends CdnEndpointCustomDomainManagedHttps {
+  const CdnEndpointCustomDomainCdnManagedHttpsChoice(this.cdnManagedHttps);
+
+  final CdnEndpointCustomDomainCdnManagedHttps cdnManagedHttps;
+
+  @internal
+  @override
+  String get blockKey => 'cdn_managed_https';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'cdn_managed_https': cdnManagedHttps.encode(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'cdn_managed_https': TfArg.literal(cdnManagedHttps.encode()),
+  };
+}
+
+/// The [CdnEndpointCustomDomainManagedHttps.userManagedHttps] choice: sets `user_managed_https`.
+final class CdnEndpointCustomDomainUserManagedHttpsChoice
+    extends CdnEndpointCustomDomainManagedHttps {
+  const CdnEndpointCustomDomainUserManagedHttpsChoice(this.userManagedHttps);
+
+  final CdnEndpointCustomDomainUserManagedHttps userManagedHttps;
+
+  @internal
+  @override
+  String get blockKey => 'user_managed_https';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'user_managed_https': userManagedHttps.encode(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'user_managed_https': TfArg.literal(userManagedHttps.encode()),
+  };
+}
+
 /// Typed helper for the `cdn_managed_https` block of
 /// `azurerm_cdn_endpoint_custom_domain` (derived from provider schema).
 @immutable
@@ -60,8 +139,7 @@ final class AzurermCdnEndpointCustomDomain extends Resource {
     required TfArg<String> cdnEndpointId,
     required TfArg<String> hostName,
     required TfArg<String> name,
-    CdnEndpointCustomDomainCdnManagedHttps? cdnManagedHttps,
-    CdnEndpointCustomDomainUserManagedHttps? userManagedHttps,
+    CdnEndpointCustomDomainManagedHttps? managedHttps,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -72,10 +150,7 @@ final class AzurermCdnEndpointCustomDomain extends Resource {
            'cdn_endpoint_id': cdnEndpointId,
            'host_name': hostName,
            'name': name,
-           if (cdnManagedHttps != null)
-             'cdn_managed_https': TfArg.literal(cdnManagedHttps.encode()),
-           if (userManagedHttps != null)
-             'user_managed_https': TfArg.literal(userManagedHttps.encode()),
+           ...?managedHttps?.argMap,
          },
        );
 

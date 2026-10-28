@@ -7,6 +7,123 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `azurerm_data_factory_dataset_binary`.
 const Set<String> _azurermDataFactoryDatasetBinarySensitive = <String>{};
 
+/// At most one of `azure_blob_storage_location`, `http_server_location`, `sftp_server_location` on `azurerm_data_factory_dataset_binary`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.azureBlobStorageLocation(...)`.
+sealed class DataFactoryDatasetBinaryLocation {
+  const DataFactoryDatasetBinaryLocation();
+
+  /// Sets `azure_blob_storage_location`.
+  const factory DataFactoryDatasetBinaryLocation.azureBlobStorageLocation(
+    DataFactoryDatasetBinaryAzureBlobStorageLocation azureBlobStorageLocation,
+  ) = DataFactoryDatasetBinaryAzureBlobStorageLocationChoice;
+
+  /// Sets `http_server_location`.
+  const factory DataFactoryDatasetBinaryLocation.httpServerLocation(
+    DataFactoryDatasetBinaryHttpServerLocation httpServerLocation,
+  ) = DataFactoryDatasetBinaryHttpServerLocationChoice;
+
+  /// Sets `sftp_server_location`.
+  const factory DataFactoryDatasetBinaryLocation.sftpServerLocation(
+    DataFactoryDatasetBinarySftpServerLocation sftpServerLocation,
+  ) = DataFactoryDatasetBinarySftpServerLocationChoice;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [DataFactoryDatasetBinaryLocation.azureBlobStorageLocation] choice: sets `azure_blob_storage_location`.
+final class DataFactoryDatasetBinaryAzureBlobStorageLocationChoice
+    extends DataFactoryDatasetBinaryLocation {
+  const DataFactoryDatasetBinaryAzureBlobStorageLocationChoice(
+    this.azureBlobStorageLocation,
+  );
+
+  final DataFactoryDatasetBinaryAzureBlobStorageLocation
+  azureBlobStorageLocation;
+
+  @internal
+  @override
+  String get blockKey => 'azure_blob_storage_location';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'azure_blob_storage_location': azureBlobStorageLocation.encode(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'azure_blob_storage_location': TfArg.literal(
+      azureBlobStorageLocation.encode(),
+    ),
+  };
+}
+
+/// The [DataFactoryDatasetBinaryLocation.httpServerLocation] choice: sets `http_server_location`.
+final class DataFactoryDatasetBinaryHttpServerLocationChoice
+    extends DataFactoryDatasetBinaryLocation {
+  const DataFactoryDatasetBinaryHttpServerLocationChoice(
+    this.httpServerLocation,
+  );
+
+  final DataFactoryDatasetBinaryHttpServerLocation httpServerLocation;
+
+  @internal
+  @override
+  String get blockKey => 'http_server_location';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'http_server_location': httpServerLocation.encode(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'http_server_location': TfArg.literal(httpServerLocation.encode()),
+  };
+}
+
+/// The [DataFactoryDatasetBinaryLocation.sftpServerLocation] choice: sets `sftp_server_location`.
+final class DataFactoryDatasetBinarySftpServerLocationChoice
+    extends DataFactoryDatasetBinaryLocation {
+  const DataFactoryDatasetBinarySftpServerLocationChoice(
+    this.sftpServerLocation,
+  );
+
+  final DataFactoryDatasetBinarySftpServerLocation sftpServerLocation;
+
+  @internal
+  @override
+  String get blockKey => 'sftp_server_location';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'sftp_server_location': sftpServerLocation.encode(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'sftp_server_location': TfArg.literal(sftpServerLocation.encode()),
+  };
+}
+
 /// Typed helper for the `azure_blob_storage_location` block of
 /// `azurerm_data_factory_dataset_binary` (derived from provider schema).
 @immutable
@@ -49,7 +166,7 @@ final class DataFactoryDatasetBinaryAzureBlobStorageLocation {
 final class DataFactoryDatasetBinaryCompression {
   const DataFactoryDatasetBinaryCompression({this.level, required this.type});
 
-  final TfArg<String>? level;
+  final DataFactoryDatasetBinaryLevel? level;
 
   final TfArg<String> type;
 
@@ -58,6 +175,25 @@ final class DataFactoryDatasetBinaryCompression {
     'level': ?level?.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `level` — derived from the provider schema description.
+extension type const DataFactoryDatasetBinaryLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  DataFactoryDatasetBinaryLevel.variable(String name)
+    : this._(TfArg.variable(name));
+  DataFactoryDatasetBinaryLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataFactoryDatasetBinaryLevel.arg(TfArg<String> arg) : this._(arg);
+
+  static const optimal = DataFactoryDatasetBinaryLevel._(
+    TfArgLiteral('Optimal'),
+  );
+  static const fastest = DataFactoryDatasetBinaryLevel._(
+    TfArgLiteral('Fastest'),
+  );
+
+  static const List<DataFactoryDatasetBinaryLevel> values = [optimal, fastest];
 }
 
 /// Typed helper for the `http_server_location` block of
@@ -134,10 +270,8 @@ final class AzurermDataFactoryDatasetBinary extends Resource {
     required TfArg<String> linkedServiceName,
     required TfArg<String> name,
     TfArg<Map<String, String>>? parameters,
-    DataFactoryDatasetBinaryAzureBlobStorageLocation? azureBlobStorageLocation,
+    DataFactoryDatasetBinaryLocation? location,
     DataFactoryDatasetBinaryCompression? compression,
-    DataFactoryDatasetBinaryHttpServerLocation? httpServerLocation,
-    DataFactoryDatasetBinarySftpServerLocation? sftpServerLocation,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -153,16 +287,9 @@ final class AzurermDataFactoryDatasetBinary extends Resource {
            'linked_service_name': linkedServiceName,
            'name': name,
            'parameters': ?parameters,
-           if (azureBlobStorageLocation != null)
-             'azure_blob_storage_location': TfArg.literal(
-               azureBlobStorageLocation.encode(),
-             ),
+           ...?location?.argMap,
            if (compression != null)
              'compression': TfArg.literal(compression.encode()),
-           if (httpServerLocation != null)
-             'http_server_location': TfArg.literal(httpServerLocation.encode()),
-           if (sftpServerLocation != null)
-             'sftp_server_location': TfArg.literal(sftpServerLocation.encode()),
          },
        );
 

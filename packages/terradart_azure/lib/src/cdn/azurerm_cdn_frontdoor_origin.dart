@@ -24,7 +24,7 @@ final class CdnFrontdoorOriginPrivateLink {
 
   final TfArg<String>? requestMessage;
 
-  final TfArg<String>? targetType;
+  final CdnFrontdoorOriginTargetType? targetType;
 
   @internal
   Map<String, Object?> encode() => {
@@ -33,6 +33,42 @@ final class CdnFrontdoorOriginPrivateLink {
     'request_message': ?requestMessage?.toTfJson(),
     'target_type': ?targetType?.toTfJson(),
   };
+}
+
+/// `target_type` — derived from the provider schema description.
+extension type const CdnFrontdoorOriginTargetType._(TfArg<String> _)
+    implements TfArg<String> {
+  CdnFrontdoorOriginTargetType.variable(String name)
+    : this._(TfArg.variable(name));
+  CdnFrontdoorOriginTargetType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CdnFrontdoorOriginTargetType.arg(TfArg<String> arg) : this._(arg);
+
+  static const blob = CdnFrontdoorOriginTargetType._(TfArgLiteral('blob'));
+  static const blobSecondary = CdnFrontdoorOriginTargetType._(
+    TfArgLiteral('blob_secondary'),
+  );
+  static const gateway = CdnFrontdoorOriginTargetType._(
+    TfArgLiteral('Gateway'),
+  );
+  static const managedenvironments = CdnFrontdoorOriginTargetType._(
+    TfArgLiteral('managedEnvironments'),
+  );
+  static const sites = CdnFrontdoorOriginTargetType._(TfArgLiteral('sites'));
+  static const web = CdnFrontdoorOriginTargetType._(TfArgLiteral('web'));
+  static const webSecondary = CdnFrontdoorOriginTargetType._(
+    TfArgLiteral('web_secondary'),
+  );
+
+  static const List<CdnFrontdoorOriginTargetType> values = [
+    blob,
+    blobSecondary,
+    gateway,
+    managedenvironments,
+    sites,
+    web,
+    webSecondary,
+  ];
 }
 
 /// Factory wrapper for `azurerm_cdn_frontdoor_origin`.

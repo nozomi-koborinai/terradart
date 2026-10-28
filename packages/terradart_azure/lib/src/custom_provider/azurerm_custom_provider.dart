@@ -40,7 +40,7 @@ final class CustomProviderResourceType {
 
   final TfArg<String> name;
 
-  final TfArg<String>? routingType;
+  final CustomProviderRoutingType? routingType;
 
   @internal
   Map<String, Object?> encode() => {
@@ -48,6 +48,23 @@ final class CustomProviderResourceType {
     'name': name.toTfJson(),
     'routing_type': ?routingType?.toTfJson(),
   };
+}
+
+/// `routing_type` — derived from the provider schema description.
+extension type const CustomProviderRoutingType._(TfArg<String> _)
+    implements TfArg<String> {
+  CustomProviderRoutingType.variable(String name)
+    : this._(TfArg.variable(name));
+  CustomProviderRoutingType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CustomProviderRoutingType.arg(TfArg<String> arg) : this._(arg);
+
+  static const proxy = CustomProviderRoutingType._(TfArgLiteral('Proxy'));
+  static const proxyCache = CustomProviderRoutingType._(
+    TfArgLiteral('Proxy,Cache'),
+  );
+
+  static const List<CustomProviderRoutingType> values = [proxy, proxyCache];
 }
 
 /// Typed helper for the `validation` block of

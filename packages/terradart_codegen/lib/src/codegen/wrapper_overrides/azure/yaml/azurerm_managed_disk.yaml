@@ -4,3 +4,7 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 deriveExactlyOne: true
+
+sealedNames:
+  "disk_encryption_set_id, secure_vm_disk_encryption_set_id": encryption
+  "gallery_image_reference_id, image_reference_id": image

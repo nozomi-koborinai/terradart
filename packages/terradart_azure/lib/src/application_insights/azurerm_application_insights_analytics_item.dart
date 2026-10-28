@@ -7,6 +7,29 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _azurermApplicationInsightsAnalyticsItemSensitive =
     <String>{};
 
+/// Application Insights Analytics Item enum for `scope`.
+extension type const ApplicationInsightsAnalyticsItemScope._(TfArg<String> _)
+    implements TfArg<String> {
+  ApplicationInsightsAnalyticsItemScope.variable(String name)
+    : this._(TfArg.variable(name));
+  ApplicationInsightsAnalyticsItemScope.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApplicationInsightsAnalyticsItemScope.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const shared = ApplicationInsightsAnalyticsItemScope._(
+    TfArgLiteral('shared'),
+  );
+  static const user = ApplicationInsightsAnalyticsItemScope._(
+    TfArgLiteral('user'),
+  );
+
+  static const List<ApplicationInsightsAnalyticsItemScope> values = [
+    shared,
+    user,
+  ];
+}
+
 /// Factory wrapper for `azurerm_application_insights_analytics_item`.
 final class AzurermApplicationInsightsAnalyticsItem extends Resource {
   static const String tfType = 'azurerm_application_insights_analytics_item';
@@ -17,7 +40,7 @@ final class AzurermApplicationInsightsAnalyticsItem extends Resource {
     required TfArg<String> content,
     TfArg<String>? functionAlias,
     required TfArg<String> name,
-    required TfArg<String> scope,
+    required ApplicationInsightsAnalyticsItemScope scope,
     required TfArg<String> type,
     super.lifecycle,
     super.dependsOn,

@@ -7,6 +7,80 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `azurerm_data_factory_trigger_schedule`.
 const Set<String> _azurermDataFactoryTriggerScheduleSensitive = <String>{};
 
+/// Exactly one of `pipeline`, `pipeline_name` on `azurerm_data_factory_trigger_schedule`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.pipeline(...)`.
+sealed class DataFactoryTriggerSchedulePipelineTarget {
+  const DataFactoryTriggerSchedulePipelineTarget();
+
+  /// Sets `pipeline`.
+  const factory DataFactoryTriggerSchedulePipelineTarget.pipeline(
+    List<DataFactoryTriggerSchedulePipeline> pipeline,
+  ) = DataFactoryTriggerSchedulePipelineTargetPipeline;
+
+  /// Sets `pipeline_name`.
+  const factory DataFactoryTriggerSchedulePipelineTarget.pipelineName(
+    TfArg<String> pipelineName,
+  ) = DataFactoryTriggerSchedulePipelineTargetPipelineName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [DataFactoryTriggerSchedulePipelineTarget.pipeline] choice: sets `pipeline`.
+final class DataFactoryTriggerSchedulePipelineTargetPipeline
+    extends DataFactoryTriggerSchedulePipelineTarget {
+  const DataFactoryTriggerSchedulePipelineTargetPipeline(this.pipeline);
+
+  final List<DataFactoryTriggerSchedulePipeline> pipeline;
+
+  @internal
+  @override
+  String get blockKey => 'pipeline';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'pipeline': [for (final e in pipeline) e.encode()],
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'pipeline': TfArg.literal([for (final e in pipeline) e.encode()]),
+  };
+}
+
+/// The [DataFactoryTriggerSchedulePipelineTarget.pipelineName] choice: sets `pipeline_name`.
+final class DataFactoryTriggerSchedulePipelineTargetPipelineName
+    extends DataFactoryTriggerSchedulePipelineTarget {
+  const DataFactoryTriggerSchedulePipelineTargetPipelineName(this.pipelineName);
+
+  final TfArg<String> pipelineName;
+
+  @internal
+  @override
+  String get blockKey => 'pipeline_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'pipeline_name': pipelineName.toTfJson()};
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'pipeline_name': pipelineName};
+}
+
 /// Typed helper for the `pipeline` block of
 /// `azurerm_data_factory_trigger_schedule` (derived from provider schema).
 @immutable
@@ -90,11 +164,10 @@ final class AzurermDataFactoryTriggerSchedule extends Resource {
     TfArg<String>? frequency,
     TfArg<num>? interval,
     required TfArg<String> name,
-    TfArg<String>? pipelineName,
+    required DataFactoryTriggerSchedulePipelineTarget pipelineTarget,
     TfArg<Map<String, String>>? pipelineParameters,
     TfArg<String>? startTime,
     TfArg<String>? timeZone,
-    List<DataFactoryTriggerSchedulePipeline>? pipeline,
     DataFactoryTriggerSchedule? schedule,
     super.lifecycle,
     super.dependsOn,
@@ -111,12 +184,10 @@ final class AzurermDataFactoryTriggerSchedule extends Resource {
            'frequency': ?frequency,
            'interval': ?interval,
            'name': name,
-           'pipeline_name': ?pipelineName,
+           ...pipelineTarget.argMap,
            'pipeline_parameters': ?pipelineParameters,
            'start_time': ?startTime,
            'time_zone': ?timeZone,
-           if (pipeline != null)
-             'pipeline': TfArg.literal([for (final e in pipeline) e.encode()]),
            if (schedule != null) 'schedule': TfArg.literal(schedule.encode()),
          },
        );

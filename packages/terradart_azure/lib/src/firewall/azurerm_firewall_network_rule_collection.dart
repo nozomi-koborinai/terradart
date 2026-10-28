@@ -9,6 +9,26 @@ import '../resource/azurerm_resource_group.dart' show AzurermResourceGroup;
 /// Sensitive field paths for `azurerm_firewall_network_rule_collection`.
 const Set<String> _azurermFirewallNetworkRuleCollectionSensitive = <String>{};
 
+/// Firewall Network Rule Collection enum for `action`.
+extension type const FirewallNetworkRuleCollectionAction._(TfArg<String> _)
+    implements TfArg<String> {
+  FirewallNetworkRuleCollectionAction.variable(String name)
+    : this._(TfArg.variable(name));
+  FirewallNetworkRuleCollectionAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const FirewallNetworkRuleCollectionAction.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const allow = FirewallNetworkRuleCollectionAction._(
+    TfArgLiteral('Allow'),
+  );
+  static const deny = FirewallNetworkRuleCollectionAction._(
+    TfArgLiteral('Deny'),
+  );
+
+  static const List<FirewallNetworkRuleCollectionAction> values = [allow, deny];
+}
+
 /// Typed helper for the `rule` block of
 /// `azurerm_firewall_network_rule_collection` (derived from provider schema).
 @immutable
@@ -37,7 +57,7 @@ final class FirewallNetworkRuleCollectionRule {
 
   final TfArg<String> name;
 
-  final TfArg<List<String>> protocols;
+  final List<FirewallNetworkRuleCollectionProtocols> protocols;
 
   final TfArg<List<String>>? sourceAddresses;
 
@@ -51,10 +71,41 @@ final class FirewallNetworkRuleCollectionRule {
     'destination_ip_groups': ?destinationIpGroups?.toTfJson(),
     'destination_ports': destinationPorts.toTfJson(),
     'name': name.toTfJson(),
-    'protocols': protocols.toTfJson(),
+    'protocols': [for (final e in protocols) e.toTfJson()],
     'source_addresses': ?sourceAddresses?.toTfJson(),
     'source_ip_groups': ?sourceIpGroups?.toTfJson(),
   };
+}
+
+/// `protocols` — derived from the provider schema description.
+extension type const FirewallNetworkRuleCollectionProtocols._(TfArg<String> _)
+    implements TfArg<String> {
+  FirewallNetworkRuleCollectionProtocols.variable(String name)
+    : this._(TfArg.variable(name));
+  FirewallNetworkRuleCollectionProtocols.expression(String template)
+    : this._(TfArg.expression(template));
+  const FirewallNetworkRuleCollectionProtocols.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const any = FirewallNetworkRuleCollectionProtocols._(
+    TfArgLiteral('Any'),
+  );
+  static const icmp = FirewallNetworkRuleCollectionProtocols._(
+    TfArgLiteral('ICMP'),
+  );
+  static const tcp = FirewallNetworkRuleCollectionProtocols._(
+    TfArgLiteral('TCP'),
+  );
+  static const udp = FirewallNetworkRuleCollectionProtocols._(
+    TfArgLiteral('UDP'),
+  );
+
+  static const List<FirewallNetworkRuleCollectionProtocols> values = [
+    any,
+    icmp,
+    tcp,
+    udp,
+  ];
 }
 
 /// Factory wrapper for `azurerm_firewall_network_rule_collection`.
@@ -63,7 +114,7 @@ final class AzurermFirewallNetworkRuleCollection extends Resource {
 
   AzurermFirewallNetworkRuleCollection(
     super.localName, {
-    required TfArg<String> action,
+    required FirewallNetworkRuleCollectionAction action,
     required TfArg<String> azureFirewallName,
     required TfArg<String> name,
     required TfArg<num> priority,

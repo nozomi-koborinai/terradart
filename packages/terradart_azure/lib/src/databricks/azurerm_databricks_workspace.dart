@@ -9,6 +9,51 @@ import '../resource/azurerm_resource_group.dart' show AzurermResourceGroup;
 /// Sensitive field paths for `azurerm_databricks_workspace`.
 const Set<String> _azurermDatabricksWorkspaceSensitive = <String>{};
 
+/// Databricks Workspace Network Security Group Rules enum for `network_security_group_rules_required`.
+extension type const DatabricksWorkspaceNetworkSecurityGroupRulesRequired._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DatabricksWorkspaceNetworkSecurityGroupRulesRequired.variable(String name)
+    : this._(TfArg.variable(name));
+  DatabricksWorkspaceNetworkSecurityGroupRulesRequired.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const DatabricksWorkspaceNetworkSecurityGroupRulesRequired.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const allrules =
+      DatabricksWorkspaceNetworkSecurityGroupRulesRequired._(
+        TfArgLiteral('AllRules'),
+      );
+  static const noazuredatabricksrules =
+      DatabricksWorkspaceNetworkSecurityGroupRulesRequired._(
+        TfArgLiteral('NoAzureDatabricksRules'),
+      );
+  static const noazureservicerules =
+      DatabricksWorkspaceNetworkSecurityGroupRulesRequired._(
+        TfArgLiteral('NoAzureServiceRules'),
+      );
+
+  static const List<DatabricksWorkspaceNetworkSecurityGroupRulesRequired>
+  values = [allrules, noazuredatabricksrules, noazureservicerules];
+}
+
+/// Databricks Workspace enum for `sku`.
+extension type const DatabricksWorkspaceSku._(TfArg<String> _)
+    implements TfArg<String> {
+  DatabricksWorkspaceSku.variable(String name) : this._(TfArg.variable(name));
+  DatabricksWorkspaceSku.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatabricksWorkspaceSku.arg(TfArg<String> arg) : this._(arg);
+
+  static const standard = DatabricksWorkspaceSku._(TfArgLiteral('standard'));
+  static const premium = DatabricksWorkspaceSku._(TfArgLiteral('premium'));
+  static const trial = DatabricksWorkspaceSku._(TfArgLiteral('trial'));
+
+  static const List<DatabricksWorkspaceSku> values = [standard, premium, trial];
+}
+
 /// Typed helper for the `custom_parameters` block of
 /// `azurerm_databricks_workspace` (derived from provider schema).
 @immutable
@@ -86,7 +131,8 @@ final class DatabricksWorkspaceEnhancedSecurityCompliance {
 
   final TfArg<bool>? complianceSecurityProfileEnabled;
 
-  final TfArg<List<String>>? complianceSecurityProfileStandards;
+  final List<DatabricksWorkspaceComplianceSecurityProfileStandards>?
+  complianceSecurityProfileStandards;
 
   final TfArg<bool>? enhancedSecurityMonitoringEnabled;
 
@@ -96,11 +142,98 @@ final class DatabricksWorkspaceEnhancedSecurityCompliance {
         ?.toTfJson(),
     'compliance_security_profile_enabled': ?complianceSecurityProfileEnabled
         ?.toTfJson(),
-    'compliance_security_profile_standards': ?complianceSecurityProfileStandards
-        ?.toTfJson(),
+    if (complianceSecurityProfileStandards != null)
+      'compliance_security_profile_standards': [
+        for (final e in complianceSecurityProfileStandards!) e.toTfJson(),
+      ],
     'enhanced_security_monitoring_enabled': ?enhancedSecurityMonitoringEnabled
         ?.toTfJson(),
   };
+}
+
+/// `compliance_security_profile_standards` — derived from the provider schema description.
+extension type const DatabricksWorkspaceComplianceSecurityProfileStandards._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DatabricksWorkspaceComplianceSecurityProfileStandards.variable(String name)
+    : this._(TfArg.variable(name));
+  DatabricksWorkspaceComplianceSecurityProfileStandards.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const DatabricksWorkspaceComplianceSecurityProfileStandards.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const hipaa = DatabricksWorkspaceComplianceSecurityProfileStandards._(
+    TfArgLiteral('HIPAA'),
+  );
+  static const pciDss = DatabricksWorkspaceComplianceSecurityProfileStandards._(
+    TfArgLiteral('PCI_DSS'),
+  );
+  static const fedrampModerate =
+      DatabricksWorkspaceComplianceSecurityProfileStandards._(
+        TfArgLiteral('FEDRAMP_MODERATE'),
+      );
+  static const irapProtected =
+      DatabricksWorkspaceComplianceSecurityProfileStandards._(
+        TfArgLiteral('IRAP_PROTECTED'),
+      );
+  static const fedrampHigh =
+      DatabricksWorkspaceComplianceSecurityProfileStandards._(
+        TfArgLiteral('FEDRAMP_HIGH'),
+      );
+  static const fedrampIl5 =
+      DatabricksWorkspaceComplianceSecurityProfileStandards._(
+        TfArgLiteral('FEDRAMP_IL5'),
+      );
+  static const itarEar =
+      DatabricksWorkspaceComplianceSecurityProfileStandards._(
+        TfArgLiteral('ITAR_EAR'),
+      );
+  static const cyberEssentialPlus =
+      DatabricksWorkspaceComplianceSecurityProfileStandards._(
+        TfArgLiteral('CYBER_ESSENTIAL_PLUS'),
+      );
+  static const canadaProtectedB =
+      DatabricksWorkspaceComplianceSecurityProfileStandards._(
+        TfArgLiteral('CANADA_PROTECTED_B'),
+      );
+  static const ismap = DatabricksWorkspaceComplianceSecurityProfileStandards._(
+    TfArgLiteral('ISMAP'),
+  );
+  static const hitrust =
+      DatabricksWorkspaceComplianceSecurityProfileStandards._(
+        TfArgLiteral('HITRUST'),
+      );
+  static const kFsi = DatabricksWorkspaceComplianceSecurityProfileStandards._(
+    TfArgLiteral('K_FSI'),
+  );
+  static const germanyC5 =
+      DatabricksWorkspaceComplianceSecurityProfileStandards._(
+        TfArgLiteral('GERMANY_C5'),
+      );
+  static const germanyTisax =
+      DatabricksWorkspaceComplianceSecurityProfileStandards._(
+        TfArgLiteral('GERMANY_TISAX'),
+      );
+
+  static const List<DatabricksWorkspaceComplianceSecurityProfileStandards>
+  values = [
+    hipaa,
+    pciDss,
+    fedrampModerate,
+    irapProtected,
+    fedrampHigh,
+    fedrampIl5,
+    itarEar,
+    cyberEssentialPlus,
+    canadaProtectedB,
+    ismap,
+    hitrust,
+    kFsi,
+    germanyC5,
+    germanyTisax,
+  ];
 }
 
 /// Factory wrapper for `azurerm_databricks_workspace`.
@@ -122,10 +255,11 @@ final class AzurermDatabricksWorkspace extends Resource {
     TfArg<String>? managedServicesCmkKeyVaultId,
     TfArg<String>? managedServicesCmkKeyVaultKeyId,
     required TfArg<String> name,
-    TfArg<String>? networkSecurityGroupRulesRequired,
+    DatabricksWorkspaceNetworkSecurityGroupRulesRequired?
+    networkSecurityGroupRulesRequired,
     TfArg<bool>? publicNetworkAccessEnabled,
     required RefTo<AzurermResourceGroup> resourceGroupName,
-    required TfArg<String> sku,
+    required DatabricksWorkspaceSku sku,
     TfArg<Map<String, String>>? tags,
     DatabricksWorkspaceCustomParameters? customParameters,
     DatabricksWorkspaceEnhancedSecurityCompliance? enhancedSecurityCompliance,

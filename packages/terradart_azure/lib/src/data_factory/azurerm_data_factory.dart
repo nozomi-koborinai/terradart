@@ -9,6 +9,85 @@ import '../resource/azurerm_resource_group.dart' show AzurermResourceGroup;
 /// Sensitive field paths for `azurerm_data_factory`.
 const Set<String> _azurermDataFactorySensitive = <String>{};
 
+/// At most one of `github_configuration`, `vsts_configuration` on `azurerm_data_factory`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.githubConfiguration(...)`.
+sealed class DataFactoryRepository {
+  const DataFactoryRepository();
+
+  /// Sets `github_configuration`.
+  const factory DataFactoryRepository.githubConfiguration(
+    DataFactoryGithubConfiguration githubConfiguration,
+  ) = DataFactoryRepositoryGithubConfiguration;
+
+  /// Sets `vsts_configuration`.
+  const factory DataFactoryRepository.vstsConfiguration(
+    DataFactoryVstsConfiguration vstsConfiguration,
+  ) = DataFactoryRepositoryVstsConfiguration;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [DataFactoryRepository.githubConfiguration] choice: sets `github_configuration`.
+final class DataFactoryRepositoryGithubConfiguration
+    extends DataFactoryRepository {
+  const DataFactoryRepositoryGithubConfiguration(this.githubConfiguration);
+
+  final DataFactoryGithubConfiguration githubConfiguration;
+
+  @internal
+  @override
+  String get blockKey => 'github_configuration';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'github_configuration': githubConfiguration.encode(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'github_configuration': TfArg.literal(githubConfiguration.encode()),
+  };
+}
+
+/// The [DataFactoryRepository.vstsConfiguration] choice: sets `vsts_configuration`.
+final class DataFactoryRepositoryVstsConfiguration
+    extends DataFactoryRepository {
+  const DataFactoryRepositoryVstsConfiguration(this.vstsConfiguration);
+
+  final DataFactoryVstsConfiguration vstsConfiguration;
+
+  @internal
+  @override
+  String get blockKey => 'vsts_configuration';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'vsts_configuration': vstsConfiguration.encode(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'vsts_configuration': TfArg.literal(vstsConfiguration.encode()),
+  };
+}
+
 /// Typed helper for the `github_configuration` block of
 /// `azurerm_data_factory` (derived from provider schema).
 @immutable
@@ -57,7 +136,7 @@ final class DataFactoryGlobalParameter {
 
   final TfArg<String> name;
 
-  final TfArg<String> type;
+  final DataFactoryType type;
 
   final TfArg<String> value;
 
@@ -67,6 +146,31 @@ final class DataFactoryGlobalParameter {
     'type': type.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+extension type const DataFactoryType._(TfArg<String> _)
+    implements TfArg<String> {
+  DataFactoryType.variable(String name) : this._(TfArg.variable(name));
+  DataFactoryType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataFactoryType.arg(TfArg<String> arg) : this._(arg);
+
+  static const array = DataFactoryType._(TfArgLiteral('Array'));
+  static const bool = DataFactoryType._(TfArgLiteral('Bool'));
+  static const float = DataFactoryType._(TfArgLiteral('Float'));
+  static const int = DataFactoryType._(TfArgLiteral('Int'));
+  static const object = DataFactoryType._(TfArgLiteral('Object'));
+  static const string = DataFactoryType._(TfArgLiteral('String'));
+
+  static const List<DataFactoryType> values = [
+    array,
+    bool,
+    float,
+    int,
+    object,
+    string,
+  ];
 }
 
 /// Typed helper for the `identity` block of
@@ -141,10 +245,9 @@ final class AzurermDataFactory extends Resource {
     TfArg<String>? purviewId,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<Map<String, String>>? tags,
-    DataFactoryGithubConfiguration? githubConfiguration,
+    DataFactoryRepository? repository,
     List<DataFactoryGlobalParameter>? globalParameter,
     DataFactoryIdentity? identity,
-    DataFactoryVstsConfiguration? vstsConfiguration,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -161,17 +264,12 @@ final class AzurermDataFactory extends Resource {
            'purview_id': ?purviewId,
            'resource_group_name': resourceGroupName.encodeAs('name'),
            'tags': ?tags,
-           if (githubConfiguration != null)
-             'github_configuration': TfArg.literal(
-               githubConfiguration.encode(),
-             ),
+           ...?repository?.argMap,
            if (globalParameter != null)
              'global_parameter': TfArg.literal([
                for (final e in globalParameter) e.encode(),
              ]),
            if (identity != null) 'identity': TfArg.literal(identity.encode()),
-           if (vstsConfiguration != null)
-             'vsts_configuration': TfArg.literal(vstsConfiguration.encode()),
          },
        );
 

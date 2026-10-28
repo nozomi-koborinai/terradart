@@ -11,13 +11,55 @@ const Set<String> _azurermApplicationInsightsSensitive = <String>{
   'instrumentation_key',
 };
 
+/// Application Insights Application enum for `application_type`.
+extension type const ApplicationInsightsApplicationType._(TfArg<String> _)
+    implements TfArg<String> {
+  ApplicationInsightsApplicationType.variable(String name)
+    : this._(TfArg.variable(name));
+  ApplicationInsightsApplicationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApplicationInsightsApplicationType.arg(TfArg<String> arg) : this._(arg);
+
+  static const web = ApplicationInsightsApplicationType._(TfArgLiteral('web'));
+  static const other = ApplicationInsightsApplicationType._(
+    TfArgLiteral('other'),
+  );
+  static const java = ApplicationInsightsApplicationType._(
+    TfArgLiteral('java'),
+  );
+  static const mobilecenter = ApplicationInsightsApplicationType._(
+    TfArgLiteral('MobileCenter'),
+  );
+  static const phone = ApplicationInsightsApplicationType._(
+    TfArgLiteral('phone'),
+  );
+  static const store = ApplicationInsightsApplicationType._(
+    TfArgLiteral('store'),
+  );
+  static const ios = ApplicationInsightsApplicationType._(TfArgLiteral('ios'));
+  static const nodeJs = ApplicationInsightsApplicationType._(
+    TfArgLiteral('Node.JS'),
+  );
+
+  static const List<ApplicationInsightsApplicationType> values = [
+    web,
+    other,
+    java,
+    mobilecenter,
+    phone,
+    store,
+    ios,
+    nodeJs,
+  ];
+}
+
 /// Factory wrapper for `azurerm_application_insights`.
 final class AzurermApplicationInsights extends Resource {
   static const String tfType = 'azurerm_application_insights';
 
   AzurermApplicationInsights(
     super.localName, {
-    required TfArg<String> applicationType,
+    required ApplicationInsightsApplicationType applicationType,
     TfArg<num>? dailyDataCapInGb,
     TfArg<bool>? dailyDataCapNotificationsEnabled,
     TfArg<bool>? forceCustomerStorageForProfiler,

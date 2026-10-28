@@ -9,7 +9,11 @@ export 'src/data/azurerm_express_route_circuit.dart'
 export 'src/data/azurerm_express_route_circuit_peering.dart'
     show DataAzurermExpressRouteCircuitPeering;
 export 'src/express/azurerm_express_route_circuit.dart'
-    show AzurermExpressRouteCircuit, ExpressRouteCircuitSku;
+    show
+        AzurermExpressRouteCircuit,
+        ExpressRouteCircuitFamily,
+        ExpressRouteCircuitSku,
+        ExpressRouteCircuitTier;
 export 'src/express/azurerm_express_route_circuit_authorization.dart'
     show AzurermExpressRouteCircuitAuthorization;
 export 'src/express/azurerm_express_route_circuit_connection.dart'
@@ -19,7 +23,8 @@ export 'src/express/azurerm_express_route_circuit_peering.dart'
         AzurermExpressRouteCircuitPeering,
         ExpressRouteCircuitPeeringIpv6,
         ExpressRouteCircuitPeeringMicrosoftPeering,
-        ExpressRouteCircuitPeeringMicrosoftPeeringConfig;
+        ExpressRouteCircuitPeeringMicrosoftPeeringConfig,
+        ExpressRouteCircuitPeeringType;
 export 'src/express/azurerm_express_route_connection.dart'
     show
         AzurermExpressRouteConnection,
@@ -30,6 +35,8 @@ export 'src/express/azurerm_express_route_gateway.dart'
 export 'src/express/azurerm_express_route_port.dart'
     show
         AzurermExpressRoutePort,
+        ExpressRoutePortBillingType,
+        ExpressRoutePortEncapsulation,
         ExpressRoutePortIdentity,
         ExpressRoutePortLink1,
         ExpressRoutePortLink2;

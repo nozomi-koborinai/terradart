@@ -7,6 +7,77 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `azurerm_data_share_dataset_blob_storage`.
 const Set<String> _azurermDataShareDatasetBlobStorageSensitive = <String>{};
 
+/// At most one of `file_path`, `folder_path` on `azurerm_data_share_dataset_blob_storage`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.filePath(...)`.
+sealed class DataShareDatasetBlobStoragePath {
+  const DataShareDatasetBlobStoragePath();
+
+  /// Sets `file_path`.
+  const factory DataShareDatasetBlobStoragePath.filePath(
+    TfArg<String> filePath,
+  ) = DataShareDatasetBlobStorageFilePath;
+
+  /// Sets `folder_path`.
+  const factory DataShareDatasetBlobStoragePath.folderPath(
+    TfArg<String> folderPath,
+  ) = DataShareDatasetBlobStorageFolderPath;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [DataShareDatasetBlobStoragePath.filePath] choice: sets `file_path`.
+final class DataShareDatasetBlobStorageFilePath
+    extends DataShareDatasetBlobStoragePath {
+  const DataShareDatasetBlobStorageFilePath(this.filePath);
+
+  final TfArg<String> filePath;
+
+  @internal
+  @override
+  String get blockKey => 'file_path';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'file_path': filePath.toTfJson()};
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'file_path': filePath};
+}
+
+/// The [DataShareDatasetBlobStoragePath.folderPath] choice: sets `folder_path`.
+final class DataShareDatasetBlobStorageFolderPath
+    extends DataShareDatasetBlobStoragePath {
+  const DataShareDatasetBlobStorageFolderPath(this.folderPath);
+
+  final TfArg<String> folderPath;
+
+  @internal
+  @override
+  String get blockKey => 'folder_path';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'folder_path': folderPath.toTfJson()};
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'folder_path': folderPath};
+}
+
 /// Typed helper for the `storage_account` block of
 /// `azurerm_data_share_dataset_blob_storage` (derived from provider schema).
 @immutable
@@ -39,8 +110,7 @@ final class AzurermDataShareDatasetBlobStorage extends Resource {
     super.localName, {
     required TfArg<String> containerName,
     required TfArg<String> dataShareId,
-    TfArg<String>? filePath,
-    TfArg<String>? folderPath,
+    DataShareDatasetBlobStoragePath? path,
     required TfArg<String> name,
     required DataShareDatasetBlobStorageAccount storageAccount,
     super.lifecycle,
@@ -52,8 +122,7 @@ final class AzurermDataShareDatasetBlobStorage extends Resource {
          argMap: {
            'container_name': containerName,
            'data_share_id': dataShareId,
-           'file_path': ?filePath,
-           'folder_path': ?folderPath,
+           ...?path?.argMap,
            'name': name,
            'storage_account': TfArg.literal(storageAccount.encode()),
          },

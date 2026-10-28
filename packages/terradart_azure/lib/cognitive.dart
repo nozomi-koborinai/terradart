@@ -7,10 +7,14 @@ export 'package:terradart_core/terradart_core.dart';
 export 'src/cognitive/azurerm_cognitive_account.dart'
     show
         AzurermCognitiveAccount,
+        CognitiveAccountBypass,
         CognitiveAccountCustomerManagedKey,
+        CognitiveAccountDefaultAction,
         CognitiveAccountIdentity,
+        CognitiveAccountKind,
         CognitiveAccountNetworkAcls,
         CognitiveAccountNetworkInjection,
+        CognitiveAccountSkuName,
         CognitiveAccountStorage,
         CognitiveAccountVirtualNetworkRules;
 export 'src/cognitive/azurerm_cognitive_account_connection_account_key.dart'

@@ -98,9 +98,9 @@ final class FrontdoorBackendPoolHealthProbe {
 
   final TfArg<String>? path;
 
-  final TfArg<String>? probeMethod;
+  final FrontdoorProbeMethod? probeMethod;
 
-  final TfArg<String>? protocol;
+  final FrontdoorProtocol? protocol;
 
   @internal
   Map<String, Object?> encode() => {
@@ -111,6 +111,34 @@ final class FrontdoorBackendPoolHealthProbe {
     'probe_method': ?probeMethod?.toTfJson(),
     'protocol': ?protocol?.toTfJson(),
   };
+}
+
+/// `probe_method` — derived from the provider schema description.
+extension type const FrontdoorProbeMethod._(TfArg<String> _)
+    implements TfArg<String> {
+  FrontdoorProbeMethod.variable(String name) : this._(TfArg.variable(name));
+  FrontdoorProbeMethod.expression(String template)
+    : this._(TfArg.expression(template));
+  const FrontdoorProbeMethod.arg(TfArg<String> arg) : this._(arg);
+
+  static const get = FrontdoorProbeMethod._(TfArgLiteral('GET'));
+  static const head = FrontdoorProbeMethod._(TfArgLiteral('HEAD'));
+
+  static const List<FrontdoorProbeMethod> values = [get, head];
+}
+
+/// `protocol` — derived from the provider schema description.
+extension type const FrontdoorProtocol._(TfArg<String> _)
+    implements TfArg<String> {
+  FrontdoorProtocol.variable(String name) : this._(TfArg.variable(name));
+  FrontdoorProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const FrontdoorProtocol.arg(TfArg<String> arg) : this._(arg);
+
+  static const http = FrontdoorProtocol._(TfArgLiteral('Http'));
+  static const https = FrontdoorProtocol._(TfArgLiteral('Https'));
+
+  static const List<FrontdoorProtocol> values = [http, https];
 }
 
 /// Typed helper for the `backend_pool_load_balancing` block of
@@ -211,7 +239,7 @@ final class FrontdoorRoutingRule {
     this.redirectConfiguration,
   });
 
-  final TfArg<List<String>> acceptedProtocols;
+  final List<FrontdoorAcceptedProtocols> acceptedProtocols;
 
   final TfArg<bool>? enabled;
 
@@ -227,7 +255,7 @@ final class FrontdoorRoutingRule {
 
   @internal
   Map<String, Object?> encode() => {
-    'accepted_protocols': acceptedProtocols.toTfJson(),
+    'accepted_protocols': [for (final e in acceptedProtocols) e.toTfJson()],
     'enabled': ?enabled?.toTfJson(),
     'frontend_endpoints': frontendEndpoints.toTfJson(),
     'name': name.toTfJson(),
@@ -235,6 +263,21 @@ final class FrontdoorRoutingRule {
     'forwarding_configuration': ?forwardingConfiguration?.encode(),
     'redirect_configuration': ?redirectConfiguration?.encode(),
   };
+}
+
+/// `accepted_protocols` — derived from the provider schema description.
+extension type const FrontdoorAcceptedProtocols._(TfArg<String> _)
+    implements TfArg<String> {
+  FrontdoorAcceptedProtocols.variable(String name)
+    : this._(TfArg.variable(name));
+  FrontdoorAcceptedProtocols.expression(String template)
+    : this._(TfArg.expression(template));
+  const FrontdoorAcceptedProtocols.arg(TfArg<String> arg) : this._(arg);
+
+  static const http = FrontdoorAcceptedProtocols._(TfArgLiteral('Http'));
+  static const https = FrontdoorAcceptedProtocols._(TfArgLiteral('Https'));
+
+  static const List<FrontdoorAcceptedProtocols> values = [http, https];
 }
 
 /// Typed helper for the `routing_rule.forwarding_configuration` block of
@@ -258,7 +301,8 @@ final class FrontdoorForwardingConfiguration {
 
   final TfArg<bool>? cacheEnabled;
 
-  final TfArg<String>? cacheQueryParameterStripDirective;
+  final FrontdoorCacheQueryParameterStripDirective?
+  cacheQueryParameterStripDirective;
 
   final TfArg<List<String>>? cacheQueryParameters;
 
@@ -266,7 +310,7 @@ final class FrontdoorForwardingConfiguration {
 
   final TfArg<String>? customForwardingPath;
 
-  final TfArg<String>? forwardingProtocol;
+  final FrontdoorForwardingProtocol? forwardingProtocol;
 
   @internal
   Map<String, Object?> encode() => {
@@ -280,6 +324,64 @@ final class FrontdoorForwardingConfiguration {
     'custom_forwarding_path': ?customForwardingPath?.toTfJson(),
     'forwarding_protocol': ?forwardingProtocol?.toTfJson(),
   };
+}
+
+/// `cache_query_parameter_strip_directive` — derived from the provider schema description.
+extension type const FrontdoorCacheQueryParameterStripDirective._(
+  TfArg<String> _
+) implements TfArg<String> {
+  FrontdoorCacheQueryParameterStripDirective.variable(String name)
+    : this._(TfArg.variable(name));
+  FrontdoorCacheQueryParameterStripDirective.expression(String template)
+    : this._(TfArg.expression(template));
+  const FrontdoorCacheQueryParameterStripDirective.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const stripall = FrontdoorCacheQueryParameterStripDirective._(
+    TfArgLiteral('StripAll'),
+  );
+  static const stripallexcept = FrontdoorCacheQueryParameterStripDirective._(
+    TfArgLiteral('StripAllExcept'),
+  );
+  static const stripnone = FrontdoorCacheQueryParameterStripDirective._(
+    TfArgLiteral('StripNone'),
+  );
+  static const striponly = FrontdoorCacheQueryParameterStripDirective._(
+    TfArgLiteral('StripOnly'),
+  );
+
+  static const List<FrontdoorCacheQueryParameterStripDirective> values = [
+    stripall,
+    stripallexcept,
+    stripnone,
+    striponly,
+  ];
+}
+
+/// `forwarding_protocol` — derived from the provider schema description.
+extension type const FrontdoorForwardingProtocol._(TfArg<String> _)
+    implements TfArg<String> {
+  FrontdoorForwardingProtocol.variable(String name)
+    : this._(TfArg.variable(name));
+  FrontdoorForwardingProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const FrontdoorForwardingProtocol.arg(TfArg<String> arg) : this._(arg);
+
+  static const httponly = FrontdoorForwardingProtocol._(
+    TfArgLiteral('HttpOnly'),
+  );
+  static const httpsonly = FrontdoorForwardingProtocol._(
+    TfArgLiteral('HttpsOnly'),
+  );
+  static const matchrequest = FrontdoorForwardingProtocol._(
+    TfArgLiteral('MatchRequest'),
+  );
+
+  static const List<FrontdoorForwardingProtocol> values = [
+    httponly,
+    httpsonly,
+    matchrequest,
+  ];
 }
 
 /// Typed helper for the `routing_rule.redirect_configuration` block of
@@ -303,9 +405,9 @@ final class FrontdoorRedirectConfiguration {
 
   final TfArg<String>? customQueryString;
 
-  final TfArg<String> redirectProtocol;
+  final FrontdoorRedirectProtocol redirectProtocol;
 
-  final TfArg<String> redirectType;
+  final FrontdoorRedirectType redirectType;
 
   @internal
   Map<String, Object?> encode() => {
@@ -316,6 +418,55 @@ final class FrontdoorRedirectConfiguration {
     'redirect_protocol': redirectProtocol.toTfJson(),
     'redirect_type': redirectType.toTfJson(),
   };
+}
+
+/// `redirect_protocol` — derived from the provider schema description.
+extension type const FrontdoorRedirectProtocol._(TfArg<String> _)
+    implements TfArg<String> {
+  FrontdoorRedirectProtocol.variable(String name)
+    : this._(TfArg.variable(name));
+  FrontdoorRedirectProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const FrontdoorRedirectProtocol.arg(TfArg<String> arg) : this._(arg);
+
+  static const httponly = FrontdoorRedirectProtocol._(TfArgLiteral('HttpOnly'));
+  static const httpsonly = FrontdoorRedirectProtocol._(
+    TfArgLiteral('HttpsOnly'),
+  );
+  static const matchrequest = FrontdoorRedirectProtocol._(
+    TfArgLiteral('MatchRequest'),
+  );
+
+  static const List<FrontdoorRedirectProtocol> values = [
+    httponly,
+    httpsonly,
+    matchrequest,
+  ];
+}
+
+/// `redirect_type` — derived from the provider schema description.
+extension type const FrontdoorRedirectType._(TfArg<String> _)
+    implements TfArg<String> {
+  FrontdoorRedirectType.variable(String name) : this._(TfArg.variable(name));
+  FrontdoorRedirectType.expression(String template)
+    : this._(TfArg.expression(template));
+  const FrontdoorRedirectType.arg(TfArg<String> arg) : this._(arg);
+
+  static const found = FrontdoorRedirectType._(TfArgLiteral('Found'));
+  static const moved = FrontdoorRedirectType._(TfArgLiteral('Moved'));
+  static const permanentredirect = FrontdoorRedirectType._(
+    TfArgLiteral('PermanentRedirect'),
+  );
+  static const temporaryredirect = FrontdoorRedirectType._(
+    TfArgLiteral('TemporaryRedirect'),
+  );
+
+  static const List<FrontdoorRedirectType> values = [
+    found,
+    moved,
+    permanentredirect,
+    temporaryredirect,
+  ];
 }
 
 /// Factory wrapper for `azurerm_frontdoor`.

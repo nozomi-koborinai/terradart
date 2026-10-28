@@ -8,6 +8,7 @@ export 'src/confidential/azurerm_confidential_ledger.dart'
     show
         AzurermConfidentialLedger,
         ConfidentialLedgerAzureadBasedServicePrincipal,
-        ConfidentialLedgerCertificateBasedSecurityPrincipal;
+        ConfidentialLedgerCertificateBasedSecurityPrincipal,
+        ConfidentialLedgerRoleName;
 export 'src/data/azurerm_confidential_ledger.dart'
     show DataAzurermConfidentialLedger;

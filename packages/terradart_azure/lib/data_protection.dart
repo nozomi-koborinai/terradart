@@ -23,9 +23,11 @@ export 'src/data_protection/azurerm_data_protection_backup_instance_postgresql_f
 export 'src/data_protection/azurerm_data_protection_backup_policy_blob_storage.dart'
     show
         AzurermDataProtectionBackupPolicyBlobStorage,
+        DataProtectionBackupPolicyBlobStorageAbsoluteCriteria,
         DataProtectionBackupPolicyBlobStorageCriteria,
         DataProtectionBackupPolicyBlobStorageLifeCycle,
-        DataProtectionBackupPolicyBlobStorageRetentionRule;
+        DataProtectionBackupPolicyBlobStorageRetentionRule,
+        DataProtectionBackupPolicyBlobStorageWeeksOfMonth;
 export 'src/data_protection/azurerm_data_protection_backup_policy_cosmosdb_account.dart'
     show
         AzurermDataProtectionBackupPolicyCosmosdbAccount,
@@ -46,6 +48,7 @@ export 'src/data_protection/azurerm_data_protection_backup_policy_data_lake_stor
 export 'src/data_protection/azurerm_data_protection_backup_policy_disk.dart'
     show
         AzurermDataProtectionBackupPolicyDisk,
+        DataProtectionBackupPolicyDiskAbsoluteCriteria,
         DataProtectionBackupPolicyDiskCriteria,
         DataProtectionBackupPolicyDiskRetentionRule;
 export 'src/data_protection/azurerm_data_protection_backup_policy_kubernetes_cluster.dart'
@@ -80,7 +83,13 @@ export 'src/data_protection/azurerm_data_protection_backup_policy_postgresql_fle
         DataProtectionBackupPolicyPostgresqlFlexibleServerRetentionRule,
         DataProtectionBackupPolicyPostgresqlFlexibleServerWeeksOfMonth;
 export 'src/data_protection/azurerm_data_protection_backup_vault.dart'
-    show AzurermDataProtectionBackupVault, DataProtectionBackupVaultIdentity;
+    show
+        AzurermDataProtectionBackupVault,
+        DataProtectionBackupVaultDatastoreType,
+        DataProtectionBackupVaultIdentity,
+        DataProtectionBackupVaultImmutability,
+        DataProtectionBackupVaultRedundancy,
+        DataProtectionBackupVaultSoftDelete;
 export 'src/data_protection/azurerm_data_protection_backup_vault_customer_managed_key.dart'
     show AzurermDataProtectionBackupVaultCustomerManagedKey;
 export 'src/data_protection/azurerm_data_protection_resource_guard.dart'

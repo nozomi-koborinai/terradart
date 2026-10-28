@@ -63,13 +63,35 @@ final class CdnFrontdoorCustomDomainCustomCiphers {
 
   final TfArg<List<String>>? tls12;
 
-  final TfArg<List<String>>? tls13;
+  final List<CdnFrontdoorCustomDomainTls13>? tls13;
 
   @internal
   Map<String, Object?> encode() => {
     'tls12': ?tls12?.toTfJson(),
-    'tls13': ?tls13?.toTfJson(),
+    if (tls13 != null) 'tls13': [for (final e in tls13!) e.toTfJson()],
   };
+}
+
+/// `tls13` — derived from the provider schema description.
+extension type const CdnFrontdoorCustomDomainTls13._(TfArg<String> _)
+    implements TfArg<String> {
+  CdnFrontdoorCustomDomainTls13.variable(String name)
+    : this._(TfArg.variable(name));
+  CdnFrontdoorCustomDomainTls13.expression(String template)
+    : this._(TfArg.expression(template));
+  const CdnFrontdoorCustomDomainTls13.arg(TfArg<String> arg) : this._(arg);
+
+  static const tlsAes128GcmSha256 = CdnFrontdoorCustomDomainTls13._(
+    TfArgLiteral('TLS_AES_128_GCM_SHA256'),
+  );
+  static const tlsAes256GcmSha384 = CdnFrontdoorCustomDomainTls13._(
+    TfArgLiteral('TLS_AES_256_GCM_SHA384'),
+  );
+
+  static const List<CdnFrontdoorCustomDomainTls13> values = [
+    tlsAes128GcmSha256,
+    tlsAes256GcmSha384,
+  ];
 }
 
 /// Factory wrapper for `azurerm_cdn_frontdoor_custom_domain`.

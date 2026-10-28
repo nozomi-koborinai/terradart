@@ -9,6 +9,110 @@ import '../resource/azurerm_resource_group.dart' show AzurermResourceGroup;
 /// Sensitive field paths for `azurerm_data_protection_backup_vault`.
 const Set<String> _azurermDataProtectionBackupVaultSensitive = <String>{};
 
+/// Data Protection Backup Vault Datastore enum for `datastore_type`.
+extension type const DataProtectionBackupVaultDatastoreType._(TfArg<String> _)
+    implements TfArg<String> {
+  DataProtectionBackupVaultDatastoreType.variable(String name)
+    : this._(TfArg.variable(name));
+  DataProtectionBackupVaultDatastoreType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataProtectionBackupVaultDatastoreType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const archivestore = DataProtectionBackupVaultDatastoreType._(
+    TfArgLiteral('ArchiveStore'),
+  );
+  static const operationalstore = DataProtectionBackupVaultDatastoreType._(
+    TfArgLiteral('OperationalStore'),
+  );
+  static const vaultstore = DataProtectionBackupVaultDatastoreType._(
+    TfArgLiteral('VaultStore'),
+  );
+
+  static const List<DataProtectionBackupVaultDatastoreType> values = [
+    archivestore,
+    operationalstore,
+    vaultstore,
+  ];
+}
+
+/// Data Protection Backup Vault enum for `immutability`.
+extension type const DataProtectionBackupVaultImmutability._(TfArg<String> _)
+    implements TfArg<String> {
+  DataProtectionBackupVaultImmutability.variable(String name)
+    : this._(TfArg.variable(name));
+  DataProtectionBackupVaultImmutability.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataProtectionBackupVaultImmutability.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const disabled = DataProtectionBackupVaultImmutability._(
+    TfArgLiteral('Disabled'),
+  );
+  static const locked = DataProtectionBackupVaultImmutability._(
+    TfArgLiteral('Locked'),
+  );
+  static const unlocked = DataProtectionBackupVaultImmutability._(
+    TfArgLiteral('Unlocked'),
+  );
+
+  static const List<DataProtectionBackupVaultImmutability> values = [
+    disabled,
+    locked,
+    unlocked,
+  ];
+}
+
+/// Data Protection Backup Vault enum for `redundancy`.
+extension type const DataProtectionBackupVaultRedundancy._(TfArg<String> _)
+    implements TfArg<String> {
+  DataProtectionBackupVaultRedundancy.variable(String name)
+    : this._(TfArg.variable(name));
+  DataProtectionBackupVaultRedundancy.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataProtectionBackupVaultRedundancy.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const georedundant = DataProtectionBackupVaultRedundancy._(
+    TfArgLiteral('GeoRedundant'),
+  );
+  static const locallyredundant = DataProtectionBackupVaultRedundancy._(
+    TfArgLiteral('LocallyRedundant'),
+  );
+  static const zoneredundant = DataProtectionBackupVaultRedundancy._(
+    TfArgLiteral('ZoneRedundant'),
+  );
+
+  static const List<DataProtectionBackupVaultRedundancy> values = [
+    georedundant,
+    locallyredundant,
+    zoneredundant,
+  ];
+}
+
+/// Data Protection Backup Vault Soft enum for `soft_delete`.
+extension type const DataProtectionBackupVaultSoftDelete._(TfArg<String> _)
+    implements TfArg<String> {
+  DataProtectionBackupVaultSoftDelete.variable(String name)
+    : this._(TfArg.variable(name));
+  DataProtectionBackupVaultSoftDelete.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataProtectionBackupVaultSoftDelete.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const alwayson = DataProtectionBackupVaultSoftDelete._(
+    TfArgLiteral('AlwaysOn'),
+  );
+  static const off = DataProtectionBackupVaultSoftDelete._(TfArgLiteral('Off'));
+  static const on = DataProtectionBackupVaultSoftDelete._(TfArgLiteral('On'));
+
+  static const List<DataProtectionBackupVaultSoftDelete> values = [
+    alwayson,
+    off,
+    on,
+  ];
+}
+
 /// Typed helper for the `identity` block of
 /// `azurerm_data_protection_backup_vault` (derived from provider schema).
 @immutable
@@ -36,14 +140,14 @@ final class AzurermDataProtectionBackupVault extends Resource {
   AzurermDataProtectionBackupVault(
     super.localName, {
     TfArg<bool>? crossRegionRestoreEnabled,
-    required TfArg<String> datastoreType,
-    TfArg<String>? immutability,
+    required DataProtectionBackupVaultDatastoreType datastoreType,
+    DataProtectionBackupVaultImmutability? immutability,
     required TfArg<String> location,
     required TfArg<String> name,
-    required TfArg<String> redundancy,
+    required DataProtectionBackupVaultRedundancy redundancy,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<num>? retentionDurationInDays,
-    TfArg<String>? softDelete,
+    DataProtectionBackupVaultSoftDelete? softDelete,
     TfArg<Map<String, String>>? tags,
     DataProtectionBackupVaultIdentity? identity,
     super.lifecycle,

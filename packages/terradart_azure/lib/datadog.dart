@@ -11,10 +11,13 @@ export 'src/datadog/azurerm_datadog_monitor.dart'
         DatadogMonitorIdentity,
         DatadogMonitorUser;
 export 'src/datadog/azurerm_datadog_monitor_sso_configuration.dart'
-    show AzurermDatadogMonitorSsoConfiguration;
+    show
+        AzurermDatadogMonitorSsoConfiguration,
+        DatadogMonitorSsoConfigurationSingleSignOn;
 export 'src/datadog/azurerm_datadog_monitor_tag_rule.dart'
     show
         AzurermDatadogMonitorTagRule,
+        DatadogMonitorTagRuleAction,
         DatadogMonitorTagRuleFilter,
         DatadogMonitorTagRuleLog,
         DatadogMonitorTagRuleMetric;

@@ -41,12 +41,48 @@ final class DataProtectionBackupPolicyDiskRetentionRule {
 final class DataProtectionBackupPolicyDiskCriteria {
   const DataProtectionBackupPolicyDiskCriteria({this.absoluteCriteria});
 
-  final TfArg<String>? absoluteCriteria;
+  final DataProtectionBackupPolicyDiskAbsoluteCriteria? absoluteCriteria;
 
   @internal
   Map<String, Object?> encode() => {
     'absolute_criteria': ?absoluteCriteria?.toTfJson(),
   };
+}
+
+/// `absolute_criteria` — derived from the provider schema description.
+extension type const DataProtectionBackupPolicyDiskAbsoluteCriteria._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataProtectionBackupPolicyDiskAbsoluteCriteria.variable(String name)
+    : this._(TfArg.variable(name));
+  DataProtectionBackupPolicyDiskAbsoluteCriteria.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataProtectionBackupPolicyDiskAbsoluteCriteria.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const allbackup = DataProtectionBackupPolicyDiskAbsoluteCriteria._(
+    TfArgLiteral('AllBackup'),
+  );
+  static const firstofday = DataProtectionBackupPolicyDiskAbsoluteCriteria._(
+    TfArgLiteral('FirstOfDay'),
+  );
+  static const firstofmonth = DataProtectionBackupPolicyDiskAbsoluteCriteria._(
+    TfArgLiteral('FirstOfMonth'),
+  );
+  static const firstofweek = DataProtectionBackupPolicyDiskAbsoluteCriteria._(
+    TfArgLiteral('FirstOfWeek'),
+  );
+  static const firstofyear = DataProtectionBackupPolicyDiskAbsoluteCriteria._(
+    TfArgLiteral('FirstOfYear'),
+  );
+
+  static const List<DataProtectionBackupPolicyDiskAbsoluteCriteria> values = [
+    allbackup,
+    firstofday,
+    firstofmonth,
+    firstofweek,
+    firstofyear,
+  ];
 }
 
 /// Factory wrapper for `azurerm_data_protection_backup_policy_disk`.

@@ -9,6 +9,192 @@ import '../resource/azurerm_resource_group.dart' show AzurermResourceGroup;
 /// Sensitive field paths for `azurerm_shared_image`.
 const Set<String> _azurermSharedImageSensitive = <String>{};
 
+/// Shared Image enum for `architecture`.
+extension type const SharedImageArchitecture._(TfArg<String> _)
+    implements TfArg<String> {
+  SharedImageArchitecture.variable(String name) : this._(TfArg.variable(name));
+  SharedImageArchitecture.expression(String template)
+    : this._(TfArg.expression(template));
+  const SharedImageArchitecture.arg(TfArg<String> arg) : this._(arg);
+
+  static const arm64 = SharedImageArchitecture._(TfArgLiteral('Arm64'));
+  static const x64 = SharedImageArchitecture._(TfArgLiteral('x64'));
+
+  static const List<SharedImageArchitecture> values = [arm64, x64];
+}
+
+/// Shared Image Hyper V enum for `hyper_v_generation`.
+extension type const SharedImageHyperVGeneration._(TfArg<String> _)
+    implements TfArg<String> {
+  SharedImageHyperVGeneration.variable(String name)
+    : this._(TfArg.variable(name));
+  SharedImageHyperVGeneration.expression(String template)
+    : this._(TfArg.expression(template));
+  const SharedImageHyperVGeneration.arg(TfArg<String> arg) : this._(arg);
+
+  static const v1 = SharedImageHyperVGeneration._(TfArgLiteral('V1'));
+  static const v2 = SharedImageHyperVGeneration._(TfArgLiteral('V2'));
+
+  static const List<SharedImageHyperVGeneration> values = [v1, v2];
+}
+
+/// Shared Image Os enum for `os_type`.
+extension type const SharedImageOsType._(TfArg<String> _)
+    implements TfArg<String> {
+  SharedImageOsType.variable(String name) : this._(TfArg.variable(name));
+  SharedImageOsType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SharedImageOsType.arg(TfArg<String> arg) : this._(arg);
+
+  static const linux = SharedImageOsType._(TfArgLiteral('Linux'));
+  static const windows = SharedImageOsType._(TfArgLiteral('Windows'));
+
+  static const List<SharedImageOsType> values = [linux, windows];
+}
+
+/// At most one of `confidential_vm_enabled`, `confidential_vm_supported`, `trusted_launch_enabled`, `trusted_launch_supported` on `azurerm_shared_image`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.confidentialVmEnabled(...)`.
+sealed class SharedImageSecurityType {
+  const SharedImageSecurityType();
+
+  /// Sets `confidential_vm_enabled`.
+  const factory SharedImageSecurityType.confidentialVmEnabled(
+    TfArg<bool> confidentialVmEnabled,
+  ) = SharedImageSecurityTypeConfidentialVmEnabled;
+
+  /// Sets `confidential_vm_supported`.
+  const factory SharedImageSecurityType.confidentialVmSupported(
+    TfArg<bool> confidentialVmSupported,
+  ) = SharedImageSecurityTypeConfidentialVmSupported;
+
+  /// Sets `trusted_launch_enabled`.
+  const factory SharedImageSecurityType.trustedLaunchEnabled(
+    TfArg<bool> trustedLaunchEnabled,
+  ) = SharedImageSecurityTypeTrustedLaunchEnabled;
+
+  /// Sets `trusted_launch_supported`.
+  const factory SharedImageSecurityType.trustedLaunchSupported(
+    TfArg<bool> trustedLaunchSupported,
+  ) = SharedImageSecurityTypeTrustedLaunchSupported;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [SharedImageSecurityType.confidentialVmEnabled] choice: sets `confidential_vm_enabled`.
+final class SharedImageSecurityTypeConfidentialVmEnabled
+    extends SharedImageSecurityType {
+  const SharedImageSecurityTypeConfidentialVmEnabled(
+    this.confidentialVmEnabled,
+  );
+
+  final TfArg<bool> confidentialVmEnabled;
+
+  @internal
+  @override
+  String get blockKey => 'confidential_vm_enabled';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'confidential_vm_enabled': confidentialVmEnabled.toTfJson(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'confidential_vm_enabled': confidentialVmEnabled,
+  };
+}
+
+/// The [SharedImageSecurityType.confidentialVmSupported] choice: sets `confidential_vm_supported`.
+final class SharedImageSecurityTypeConfidentialVmSupported
+    extends SharedImageSecurityType {
+  const SharedImageSecurityTypeConfidentialVmSupported(
+    this.confidentialVmSupported,
+  );
+
+  final TfArg<bool> confidentialVmSupported;
+
+  @internal
+  @override
+  String get blockKey => 'confidential_vm_supported';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'confidential_vm_supported': confidentialVmSupported.toTfJson(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'confidential_vm_supported': confidentialVmSupported,
+  };
+}
+
+/// The [SharedImageSecurityType.trustedLaunchEnabled] choice: sets `trusted_launch_enabled`.
+final class SharedImageSecurityTypeTrustedLaunchEnabled
+    extends SharedImageSecurityType {
+  const SharedImageSecurityTypeTrustedLaunchEnabled(this.trustedLaunchEnabled);
+
+  final TfArg<bool> trustedLaunchEnabled;
+
+  @internal
+  @override
+  String get blockKey => 'trusted_launch_enabled';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'trusted_launch_enabled': trustedLaunchEnabled.toTfJson(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'trusted_launch_enabled': trustedLaunchEnabled,
+  };
+}
+
+/// The [SharedImageSecurityType.trustedLaunchSupported] choice: sets `trusted_launch_supported`.
+final class SharedImageSecurityTypeTrustedLaunchSupported
+    extends SharedImageSecurityType {
+  const SharedImageSecurityTypeTrustedLaunchSupported(
+    this.trustedLaunchSupported,
+  );
+
+  final TfArg<bool> trustedLaunchSupported;
+
+  @internal
+  @override
+  String get blockKey => 'trusted_launch_supported';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'trusted_launch_supported': trustedLaunchSupported.toTfJson(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'trusted_launch_supported': trustedLaunchSupported,
+  };
+}
+
 /// Typed helper for the `identifier` block of
 /// `azurerm_shared_image` (derived from provider schema).
 @immutable
@@ -64,9 +250,8 @@ final class AzurermSharedImage extends Resource {
   AzurermSharedImage(
     super.localName, {
     TfArg<bool>? acceleratedNetworkSupportEnabled,
-    TfArg<String>? architecture,
-    TfArg<bool>? confidentialVmEnabled,
-    TfArg<bool>? confidentialVmSupported,
+    SharedImageArchitecture? architecture,
+    SharedImageSecurityType? securityType,
     TfArg<String>? description,
     TfArg<bool>? diskControllerTypeNvmeEnabled,
     TfArg<List<String>>? diskTypesNotAllowed,
@@ -74,21 +259,19 @@ final class AzurermSharedImage extends Resource {
     TfArg<String>? eula,
     required TfArg<String> galleryName,
     TfArg<bool>? hibernationEnabled,
-    TfArg<String>? hyperVGeneration,
+    SharedImageHyperVGeneration? hyperVGeneration,
     required TfArg<String> location,
     TfArg<num>? maxRecommendedMemoryInGb,
     TfArg<num>? maxRecommendedVcpuCount,
     TfArg<num>? minRecommendedMemoryInGb,
     TfArg<num>? minRecommendedVcpuCount,
     required TfArg<String> name,
-    required TfArg<String> osType,
+    required SharedImageOsType osType,
     TfArg<String>? privacyStatementUri,
     TfArg<String>? releaseNoteUri,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<bool>? specialized,
     TfArg<Map<String, String>>? tags,
-    TfArg<bool>? trustedLaunchEnabled,
-    TfArg<bool>? trustedLaunchSupported,
     required SharedImageIdentifier identifier,
     SharedImagePurchasePlan? purchasePlan,
     super.lifecycle,
@@ -101,8 +284,7 @@ final class AzurermSharedImage extends Resource {
            'accelerated_network_support_enabled':
                ?acceleratedNetworkSupportEnabled,
            'architecture': ?architecture,
-           'confidential_vm_enabled': ?confidentialVmEnabled,
-           'confidential_vm_supported': ?confidentialVmSupported,
+           ...?securityType?.argMap,
            'description': ?description,
            'disk_controller_type_nvme_enabled': ?diskControllerTypeNvmeEnabled,
            'disk_types_not_allowed': ?diskTypesNotAllowed,
@@ -123,8 +305,6 @@ final class AzurermSharedImage extends Resource {
            'resource_group_name': resourceGroupName.encodeAs('name'),
            'specialized': ?specialized,
            'tags': ?tags,
-           'trusted_launch_enabled': ?trustedLaunchEnabled,
-           'trusted_launch_supported': ?trustedLaunchSupported,
            'identifier': TfArg.literal(identifier.encode()),
            if (purchasePlan != null)
              'purchase_plan': TfArg.literal(purchasePlan.encode()),

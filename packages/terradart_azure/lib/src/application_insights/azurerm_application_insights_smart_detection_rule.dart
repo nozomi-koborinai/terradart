@@ -7,6 +7,71 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _azurermApplicationInsightsSmartDetectionRuleSensitive =
     <String>{};
 
+/// Application Insights Smart Detection Rule enum for `name`.
+extension type const ApplicationInsightsSmartDetectionRuleName._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ApplicationInsightsSmartDetectionRuleName.variable(String name)
+    : this._(TfArg.variable(name));
+  ApplicationInsightsSmartDetectionRuleName.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApplicationInsightsSmartDetectionRuleName.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const slowPageLoadTime = ApplicationInsightsSmartDetectionRuleName._(
+    TfArgLiteral('Slow page load time'),
+  );
+  static const slowServerResponseTime =
+      ApplicationInsightsSmartDetectionRuleName._(
+        TfArgLiteral('Slow server response time'),
+      );
+  static const longDependencyDuration =
+      ApplicationInsightsSmartDetectionRuleName._(
+        TfArgLiteral('Long dependency duration'),
+      );
+  static const degradationInServerResponseTime =
+      ApplicationInsightsSmartDetectionRuleName._(
+        TfArgLiteral('Degradation in server response time'),
+      );
+  static const degradationInDependencyDuration =
+      ApplicationInsightsSmartDetectionRuleName._(
+        TfArgLiteral('Degradation in dependency duration'),
+      );
+  static const degradationInTraceSeverityRatio =
+      ApplicationInsightsSmartDetectionRuleName._(
+        TfArgLiteral('Degradation in trace severity ratio'),
+      );
+  static const abnormalRiseInExceptionVolume =
+      ApplicationInsightsSmartDetectionRuleName._(
+        TfArgLiteral('Abnormal rise in exception volume'),
+      );
+  static const potentialMemoryLeakDetected =
+      ApplicationInsightsSmartDetectionRuleName._(
+        TfArgLiteral('Potential memory leak detected'),
+      );
+  static const potentialSecurityIssueDetected =
+      ApplicationInsightsSmartDetectionRuleName._(
+        TfArgLiteral('Potential security issue detected'),
+      );
+  static const abnormalRiseInDailyDataVolume =
+      ApplicationInsightsSmartDetectionRuleName._(
+        TfArgLiteral('Abnormal rise in daily data volume'),
+      );
+
+  static const List<ApplicationInsightsSmartDetectionRuleName> values = [
+    slowPageLoadTime,
+    slowServerResponseTime,
+    longDependencyDuration,
+    degradationInServerResponseTime,
+    degradationInDependencyDuration,
+    degradationInTraceSeverityRatio,
+    abnormalRiseInExceptionVolume,
+    potentialMemoryLeakDetected,
+    potentialSecurityIssueDetected,
+    abnormalRiseInDailyDataVolume,
+  ];
+}
+
 /// Factory wrapper for `azurerm_application_insights_smart_detection_rule`.
 final class AzurermApplicationInsightsSmartDetectionRule extends Resource {
   static const String tfType =
@@ -17,7 +82,7 @@ final class AzurermApplicationInsightsSmartDetectionRule extends Resource {
     TfArg<List<String>>? additionalEmailRecipients,
     required TfArg<String> applicationInsightsId,
     TfArg<bool>? enabled,
-    required TfArg<String> name,
+    required ApplicationInsightsSmartDetectionRuleName name,
     TfArg<bool>? sendEmailsToSubscriptionOwners,
     super.lifecycle,
     super.dependsOn,

@@ -18,6 +18,55 @@ const Set<String> _azurermBatchPoolSensitive = <String>{
   'user_accounts.password',
 };
 
+/// Batch Pool Inter Node enum for `inter_node_communication`.
+extension type const BatchPoolInterNodeCommunication._(TfArg<String> _)
+    implements TfArg<String> {
+  BatchPoolInterNodeCommunication.variable(String name)
+    : this._(TfArg.variable(name));
+  BatchPoolInterNodeCommunication.expression(String template)
+    : this._(TfArg.expression(template));
+  const BatchPoolInterNodeCommunication.arg(TfArg<String> arg) : this._(arg);
+
+  static const disabled = BatchPoolInterNodeCommunication._(
+    TfArgLiteral('Disabled'),
+  );
+  static const enabled = BatchPoolInterNodeCommunication._(
+    TfArgLiteral('Enabled'),
+  );
+
+  static const List<BatchPoolInterNodeCommunication> values = [
+    disabled,
+    enabled,
+  ];
+}
+
+/// Batch Pool Target Node Communication enum for `target_node_communication_mode`.
+extension type const BatchPoolTargetNodeCommunicationMode._(TfArg<String> _)
+    implements TfArg<String> {
+  BatchPoolTargetNodeCommunicationMode.variable(String name)
+    : this._(TfArg.variable(name));
+  BatchPoolTargetNodeCommunicationMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const BatchPoolTargetNodeCommunicationMode.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const classic = BatchPoolTargetNodeCommunicationMode._(
+    TfArgLiteral('Classic'),
+  );
+  static const defaultCase = BatchPoolTargetNodeCommunicationMode._(
+    TfArgLiteral('Default'),
+  );
+  static const simplified = BatchPoolTargetNodeCommunicationMode._(
+    TfArgLiteral('Simplified'),
+  );
+
+  static const List<BatchPoolTargetNodeCommunicationMode> values = [
+    classic,
+    defaultCase,
+    simplified,
+  ];
+}
+
 /// Typed helper for the `auto_scale` block of
 /// `azurerm_batch_pool` (derived from provider schema).
 @immutable
@@ -70,7 +119,7 @@ final class BatchPoolDataDisks {
     this.storageAccountType,
   });
 
-  final TfArg<String>? caching;
+  final BatchPoolCaching? caching;
 
   final TfArg<num> diskSizeGb;
 
@@ -87,18 +136,53 @@ final class BatchPoolDataDisks {
   };
 }
 
+/// `caching` — derived from the provider schema description.
+extension type const BatchPoolCaching._(TfArg<String> _)
+    implements TfArg<String> {
+  BatchPoolCaching.variable(String name) : this._(TfArg.variable(name));
+  BatchPoolCaching.expression(String template)
+    : this._(TfArg.expression(template));
+  const BatchPoolCaching.arg(TfArg<String> arg) : this._(arg);
+
+  static const none = BatchPoolCaching._(TfArgLiteral('None'));
+  static const readonly = BatchPoolCaching._(TfArgLiteral('ReadOnly'));
+  static const readwrite = BatchPoolCaching._(TfArgLiteral('ReadWrite'));
+
+  static const List<BatchPoolCaching> values = [none, readonly, readwrite];
+}
+
 /// Typed helper for the `disk_encryption` block of
 /// `azurerm_batch_pool` (derived from provider schema).
 @immutable
 final class BatchPoolDiskEncryption {
   const BatchPoolDiskEncryption({required this.diskEncryptionTarget});
 
-  final TfArg<String> diskEncryptionTarget;
+  final BatchPoolDiskEncryptionTarget diskEncryptionTarget;
 
   @internal
   Map<String, Object?> encode() => {
     'disk_encryption_target': diskEncryptionTarget.toTfJson(),
   };
+}
+
+/// `disk_encryption_target` — derived from the provider schema description.
+extension type const BatchPoolDiskEncryptionTarget._(TfArg<String> _)
+    implements TfArg<String> {
+  BatchPoolDiskEncryptionTarget.variable(String name)
+    : this._(TfArg.variable(name));
+  BatchPoolDiskEncryptionTarget.expression(String template)
+    : this._(TfArg.expression(template));
+  const BatchPoolDiskEncryptionTarget.arg(TfArg<String> arg) : this._(arg);
+
+  static const osdisk = BatchPoolDiskEncryptionTarget._(TfArgLiteral('OsDisk'));
+  static const temporarydisk = BatchPoolDiskEncryptionTarget._(
+    TfArgLiteral('TemporaryDisk'),
+  );
+
+  static const List<BatchPoolDiskEncryptionTarget> values = [
+    osdisk,
+    temporarydisk,
+  ];
 }
 
 /// Typed helper for the `extensions` block of
@@ -160,7 +244,7 @@ final class BatchPoolFixedScale {
     this.targetLowPriorityNodes,
   });
 
-  final TfArg<String>? nodeDeallocationMethod;
+  final BatchPoolNodeDeallocationMethod? nodeDeallocationMethod;
 
   final TfArg<String>? resizeTimeout;
 
@@ -175,6 +259,36 @@ final class BatchPoolFixedScale {
     'target_dedicated_nodes': ?targetDedicatedNodes?.toTfJson(),
     'target_low_priority_nodes': ?targetLowPriorityNodes?.toTfJson(),
   };
+}
+
+/// `node_deallocation_method` — derived from the provider schema description.
+extension type const BatchPoolNodeDeallocationMethod._(TfArg<String> _)
+    implements TfArg<String> {
+  BatchPoolNodeDeallocationMethod.variable(String name)
+    : this._(TfArg.variable(name));
+  BatchPoolNodeDeallocationMethod.expression(String template)
+    : this._(TfArg.expression(template));
+  const BatchPoolNodeDeallocationMethod.arg(TfArg<String> arg) : this._(arg);
+
+  static const requeue = BatchPoolNodeDeallocationMethod._(
+    TfArgLiteral('Requeue'),
+  );
+  static const retaineddata = BatchPoolNodeDeallocationMethod._(
+    TfArgLiteral('RetainedData'),
+  );
+  static const taskcompletion = BatchPoolNodeDeallocationMethod._(
+    TfArgLiteral('TaskCompletion'),
+  );
+  static const terminate = BatchPoolNodeDeallocationMethod._(
+    TfArgLiteral('Terminate'),
+  );
+
+  static const List<BatchPoolNodeDeallocationMethod> values = [
+    requeue,
+    retaineddata,
+    taskcompletion,
+    terminate,
+  ];
 }
 
 /// Typed helper for the `identity` block of
@@ -367,9 +481,9 @@ final class BatchPoolNetworkConfiguration {
 
   final TfArg<bool>? acceleratedNetworkingEnabled;
 
-  final TfArg<String>? dynamicVnetAssignmentScope;
+  final BatchPoolDynamicVnetAssignmentScope? dynamicVnetAssignmentScope;
 
-  final TfArg<String>? publicAddressProvisioningType;
+  final BatchPoolPublicAddressProvisioningType? publicAddressProvisioningType;
 
   final TfArg<List<String>>? publicIps;
 
@@ -392,6 +506,51 @@ final class BatchPoolNetworkConfiguration {
   };
 }
 
+/// `dynamic_vnet_assignment_scope` — derived from the provider schema description.
+extension type const BatchPoolDynamicVnetAssignmentScope._(TfArg<String> _)
+    implements TfArg<String> {
+  BatchPoolDynamicVnetAssignmentScope.variable(String name)
+    : this._(TfArg.variable(name));
+  BatchPoolDynamicVnetAssignmentScope.expression(String template)
+    : this._(TfArg.expression(template));
+  const BatchPoolDynamicVnetAssignmentScope.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const job = BatchPoolDynamicVnetAssignmentScope._(TfArgLiteral('job'));
+  static const none = BatchPoolDynamicVnetAssignmentScope._(
+    TfArgLiteral('none'),
+  );
+
+  static const List<BatchPoolDynamicVnetAssignmentScope> values = [job, none];
+}
+
+/// `public_address_provisioning_type` — derived from the provider schema description.
+extension type const BatchPoolPublicAddressProvisioningType._(TfArg<String> _)
+    implements TfArg<String> {
+  BatchPoolPublicAddressProvisioningType.variable(String name)
+    : this._(TfArg.variable(name));
+  BatchPoolPublicAddressProvisioningType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BatchPoolPublicAddressProvisioningType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const batchmanaged = BatchPoolPublicAddressProvisioningType._(
+    TfArgLiteral('BatchManaged'),
+  );
+  static const nopublicipaddresses = BatchPoolPublicAddressProvisioningType._(
+    TfArgLiteral('NoPublicIPAddresses'),
+  );
+  static const usermanaged = BatchPoolPublicAddressProvisioningType._(
+    TfArgLiteral('UserManaged'),
+  );
+
+  static const List<BatchPoolPublicAddressProvisioningType> values = [
+    batchmanaged,
+    nopublicipaddresses,
+    usermanaged,
+  ];
+}
+
 /// Typed helper for the `network_configuration.endpoint_configuration` block of
 /// `azurerm_batch_pool` (derived from provider schema).
 @immutable
@@ -410,7 +569,7 @@ final class BatchPoolEndpointConfiguration {
 
   final TfArg<String> name;
 
-  final TfArg<String> protocol;
+  final BatchPoolProtocol protocol;
 
   final List<BatchPoolNetworkSecurityGroupRules>? networkSecurityGroupRules;
 
@@ -427,6 +586,20 @@ final class BatchPoolEndpointConfiguration {
   };
 }
 
+/// `protocol` — derived from the provider schema description.
+extension type const BatchPoolProtocol._(TfArg<String> _)
+    implements TfArg<String> {
+  BatchPoolProtocol.variable(String name) : this._(TfArg.variable(name));
+  BatchPoolProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const BatchPoolProtocol.arg(TfArg<String> arg) : this._(arg);
+
+  static const tcp = BatchPoolProtocol._(TfArgLiteral('TCP'));
+  static const udp = BatchPoolProtocol._(TfArgLiteral('UDP'));
+
+  static const List<BatchPoolProtocol> values = [tcp, udp];
+}
+
 /// Typed helper for the `network_configuration.endpoint_configuration.network_security_group_rules` block of
 /// `azurerm_batch_pool` (derived from provider schema).
 @immutable
@@ -438,7 +611,7 @@ final class BatchPoolNetworkSecurityGroupRules {
     this.sourcePortRanges,
   });
 
-  final TfArg<String> access;
+  final BatchPoolAccess access;
 
   final TfArg<num> priority;
 
@@ -455,16 +628,44 @@ final class BatchPoolNetworkSecurityGroupRules {
   };
 }
 
+/// `access` — derived from the provider schema description.
+extension type const BatchPoolAccess._(TfArg<String> _)
+    implements TfArg<String> {
+  BatchPoolAccess.variable(String name) : this._(TfArg.variable(name));
+  BatchPoolAccess.expression(String template)
+    : this._(TfArg.expression(template));
+  const BatchPoolAccess.arg(TfArg<String> arg) : this._(arg);
+
+  static const allow = BatchPoolAccess._(TfArgLiteral('Allow'));
+  static const deny = BatchPoolAccess._(TfArgLiteral('Deny'));
+
+  static const List<BatchPoolAccess> values = [allow, deny];
+}
+
 /// Typed helper for the `node_placement` block of
 /// `azurerm_batch_pool` (derived from provider schema).
 @immutable
 final class BatchPoolNodePlacement {
   const BatchPoolNodePlacement({this.policy});
 
-  final TfArg<String>? policy;
+  final BatchPoolPolicy? policy;
 
   @internal
   Map<String, Object?> encode() => {'policy': ?policy?.toTfJson()};
+}
+
+/// `policy` — derived from the provider schema description.
+extension type const BatchPoolPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  BatchPoolPolicy.variable(String name) : this._(TfArg.variable(name));
+  BatchPoolPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const BatchPoolPolicy.arg(TfArg<String> arg) : this._(arg);
+
+  static const regional = BatchPoolPolicy._(TfArgLiteral('Regional'));
+  static const zonal = BatchPoolPolicy._(TfArgLiteral('Zonal'));
+
+  static const List<BatchPoolPolicy> values = [regional, zonal];
 }
 
 /// Typed helper for the `security_profile` block of
@@ -482,7 +683,7 @@ final class BatchPoolSecurityProfile {
 
   final TfArg<bool>? secureBootEnabled;
 
-  final TfArg<String>? securityType;
+  final BatchPoolSecurityType? securityType;
 
   final TfArg<bool>? vtpmEnabled;
 
@@ -493,6 +694,27 @@ final class BatchPoolSecurityProfile {
     'security_type': ?securityType?.toTfJson(),
     'vtpm_enabled': ?vtpmEnabled?.toTfJson(),
   };
+}
+
+/// `security_type` — derived from the provider schema description.
+extension type const BatchPoolSecurityType._(TfArg<String> _)
+    implements TfArg<String> {
+  BatchPoolSecurityType.variable(String name) : this._(TfArg.variable(name));
+  BatchPoolSecurityType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BatchPoolSecurityType.arg(TfArg<String> arg) : this._(arg);
+
+  static const confidentialvm = BatchPoolSecurityType._(
+    TfArgLiteral('confidentialVM'),
+  );
+  static const trustedlaunch = BatchPoolSecurityType._(
+    TfArgLiteral('trustedLaunch'),
+  );
+
+  static const List<BatchPoolSecurityType> values = [
+    confidentialvm,
+    trustedlaunch,
+  ];
 }
 
 /// Typed helper for the `start_task` block of
@@ -552,7 +774,7 @@ final class BatchPoolContainer {
 
   final TfArg<String>? runOptions;
 
-  final TfArg<String>? workingDirectory;
+  final BatchPoolWorkingDirectory? workingDirectory;
 
   final List<BatchPoolRegistry>? registry;
 
@@ -563,6 +785,28 @@ final class BatchPoolContainer {
     'working_directory': ?workingDirectory?.toTfJson(),
     if (registry != null) 'registry': [for (final e in registry!) e.encode()],
   };
+}
+
+/// `working_directory` — derived from the provider schema description.
+extension type const BatchPoolWorkingDirectory._(TfArg<String> _)
+    implements TfArg<String> {
+  BatchPoolWorkingDirectory.variable(String name)
+    : this._(TfArg.variable(name));
+  BatchPoolWorkingDirectory.expression(String template)
+    : this._(TfArg.expression(template));
+  const BatchPoolWorkingDirectory.arg(TfArg<String> arg) : this._(arg);
+
+  static const containerimagedefault = BatchPoolWorkingDirectory._(
+    TfArgLiteral('ContainerImageDefault'),
+  );
+  static const taskworkingdirectory = BatchPoolWorkingDirectory._(
+    TfArgLiteral('TaskWorkingDirectory'),
+  );
+
+  static const List<BatchPoolWorkingDirectory> values = [
+    containerimagedefault,
+    taskworkingdirectory,
+  ];
 }
 
 /// Typed helper for the `start_task.container.registry` block of
@@ -656,15 +900,43 @@ final class BatchPoolUserIdentity {
 final class BatchPoolAutoUser {
   const BatchPoolAutoUser({this.elevationLevel, this.scope});
 
-  final TfArg<String>? elevationLevel;
+  final BatchPoolElevationLevel? elevationLevel;
 
-  final TfArg<String>? scope;
+  final BatchPoolScope? scope;
 
   @internal
   Map<String, Object?> encode() => {
     'elevation_level': ?elevationLevel?.toTfJson(),
     'scope': ?scope?.toTfJson(),
   };
+}
+
+/// `elevation_level` — derived from the provider schema description.
+extension type const BatchPoolElevationLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  BatchPoolElevationLevel.variable(String name) : this._(TfArg.variable(name));
+  BatchPoolElevationLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const BatchPoolElevationLevel.arg(TfArg<String> arg) : this._(arg);
+
+  static const admin = BatchPoolElevationLevel._(TfArgLiteral('Admin'));
+  static const nonadmin = BatchPoolElevationLevel._(TfArgLiteral('NonAdmin'));
+
+  static const List<BatchPoolElevationLevel> values = [admin, nonadmin];
+}
+
+/// `scope` — derived from the provider schema description.
+extension type const BatchPoolScope._(TfArg<String> _)
+    implements TfArg<String> {
+  BatchPoolScope.variable(String name) : this._(TfArg.variable(name));
+  BatchPoolScope.expression(String template)
+    : this._(TfArg.expression(template));
+  const BatchPoolScope.arg(TfArg<String> arg) : this._(arg);
+
+  static const pool = BatchPoolScope._(TfArgLiteral('Pool'));
+  static const task = BatchPoolScope._(TfArgLiteral('Task'));
+
+  static const List<BatchPoolScope> values = [pool, task];
 }
 
 /// Typed helper for the `storage_image_reference` block of
@@ -705,12 +977,26 @@ final class BatchPoolStorageImageReference {
 final class BatchPoolTaskSchedulingPolicy {
   const BatchPoolTaskSchedulingPolicy({this.nodeFillType});
 
-  final TfArg<String>? nodeFillType;
+  final BatchPoolNodeFillType? nodeFillType;
 
   @internal
   Map<String, Object?> encode() => {
     'node_fill_type': ?nodeFillType?.toTfJson(),
   };
+}
+
+/// `node_fill_type` — derived from the provider schema description.
+extension type const BatchPoolNodeFillType._(TfArg<String> _)
+    implements TfArg<String> {
+  BatchPoolNodeFillType.variable(String name) : this._(TfArg.variable(name));
+  BatchPoolNodeFillType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BatchPoolNodeFillType.arg(TfArg<String> arg) : this._(arg);
+
+  static const pack = BatchPoolNodeFillType._(TfArgLiteral('Pack'));
+  static const spread = BatchPoolNodeFillType._(TfArgLiteral('Spread'));
+
+  static const List<BatchPoolNodeFillType> values = [pack, spread];
 }
 
 /// Typed helper for the `user_accounts` block of
@@ -725,7 +1011,7 @@ final class BatchPoolUserAccounts {
     this.windowsUserConfiguration,
   });
 
-  final TfArg<String> elevationLevel;
+  final BatchPoolElevationLevel elevationLevel;
 
   final TfArg<String> name;
 
@@ -781,10 +1067,24 @@ final class BatchPoolLinuxUserConfiguration {
 final class BatchPoolWindowsUserConfiguration {
   const BatchPoolWindowsUserConfiguration({required this.loginMode});
 
-  final TfArg<String> loginMode;
+  final BatchPoolLoginMode loginMode;
 
   @internal
   Map<String, Object?> encode() => {'login_mode': loginMode.toTfJson()};
+}
+
+/// `login_mode` — derived from the provider schema description.
+extension type const BatchPoolLoginMode._(TfArg<String> _)
+    implements TfArg<String> {
+  BatchPoolLoginMode.variable(String name) : this._(TfArg.variable(name));
+  BatchPoolLoginMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const BatchPoolLoginMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const batch = BatchPoolLoginMode._(TfArgLiteral('Batch'));
+  static const interactive = BatchPoolLoginMode._(TfArgLiteral('Interactive'));
+
+  static const List<BatchPoolLoginMode> values = [batch, interactive];
 }
 
 /// Typed helper for the `windows` block of
@@ -809,7 +1109,7 @@ final class AzurermBatchPool extends Resource {
     super.localName, {
     required TfArg<String> accountName,
     TfArg<String>? displayName,
-    TfArg<String>? interNodeCommunication,
+    BatchPoolInterNodeCommunication? interNodeCommunication,
     TfArg<String>? licenseType,
     TfArg<num>? maxTasksPerNode,
     TfArg<Map<String, String>>? metadata,
@@ -818,7 +1118,7 @@ final class AzurermBatchPool extends Resource {
     TfArg<String>? osDiskPlacement,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<bool>? stopPendingResizeOperation,
-    TfArg<String>? targetNodeCommunicationMode,
+    BatchPoolTargetNodeCommunicationMode? targetNodeCommunicationMode,
     required TfArg<String> vmSize,
     BatchPoolAutoScale? autoScale,
     BatchPoolContainerConfiguration? containerConfiguration,

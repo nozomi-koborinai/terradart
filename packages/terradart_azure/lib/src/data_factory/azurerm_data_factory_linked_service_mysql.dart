@@ -6,6 +6,30 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `azurerm_data_factory_linked_service_mysql`.
 const Set<String> _azurermDataFactoryLinkedServiceMysqlSensitive = <String>{};
 
+/// Data Factory Linked Service Mysql Driver enum for `driver_version`.
+extension type const DataFactoryLinkedServiceMysqlDriverVersion._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataFactoryLinkedServiceMysqlDriverVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  DataFactoryLinkedServiceMysqlDriverVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataFactoryLinkedServiceMysqlDriverVersion.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const v1 = DataFactoryLinkedServiceMysqlDriverVersion._(
+    TfArgLiteral('V1'),
+  );
+  static const v2 = DataFactoryLinkedServiceMysqlDriverVersion._(
+    TfArgLiteral('V2'),
+  );
+
+  static const List<DataFactoryLinkedServiceMysqlDriverVersion> values = [
+    v1,
+    v2,
+  ];
+}
+
 /// Factory wrapper for `azurerm_data_factory_linked_service_mysql`.
 final class AzurermDataFactoryLinkedServiceMysql extends Resource {
   static const String tfType = 'azurerm_data_factory_linked_service_mysql';
@@ -17,7 +41,7 @@ final class AzurermDataFactoryLinkedServiceMysql extends Resource {
     required TfArg<String> connectionString,
     required TfArg<String> dataFactoryId,
     TfArg<String>? description,
-    TfArg<String>? driverVersion,
+    DataFactoryLinkedServiceMysqlDriverVersion? driverVersion,
     TfArg<String>? integrationRuntimeName,
     required TfArg<String> name,
     TfArg<Map<String, String>>? parameters,

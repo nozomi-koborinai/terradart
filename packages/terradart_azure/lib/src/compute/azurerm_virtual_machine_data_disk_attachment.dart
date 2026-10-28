@@ -7,13 +7,40 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _azurermVirtualMachineDataDiskAttachmentSensitive =
     <String>{};
 
+/// Virtual Machine Data Disk Attachment enum for `caching`.
+extension type const VirtualMachineDataDiskAttachmentCaching._(TfArg<String> _)
+    implements TfArg<String> {
+  VirtualMachineDataDiskAttachmentCaching.variable(String name)
+    : this._(TfArg.variable(name));
+  VirtualMachineDataDiskAttachmentCaching.expression(String template)
+    : this._(TfArg.expression(template));
+  const VirtualMachineDataDiskAttachmentCaching.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const none = VirtualMachineDataDiskAttachmentCaching._(
+    TfArgLiteral('None'),
+  );
+  static const readonly = VirtualMachineDataDiskAttachmentCaching._(
+    TfArgLiteral('ReadOnly'),
+  );
+  static const readwrite = VirtualMachineDataDiskAttachmentCaching._(
+    TfArgLiteral('ReadWrite'),
+  );
+
+  static const List<VirtualMachineDataDiskAttachmentCaching> values = [
+    none,
+    readonly,
+    readwrite,
+  ];
+}
+
 /// Factory wrapper for `azurerm_virtual_machine_data_disk_attachment`.
 final class AzurermVirtualMachineDataDiskAttachment extends Resource {
   static const String tfType = 'azurerm_virtual_machine_data_disk_attachment';
 
   AzurermVirtualMachineDataDiskAttachment(
     super.localName, {
-    required TfArg<String> caching,
+    required VirtualMachineDataDiskAttachmentCaching caching,
     TfArg<String>? createOption,
     required TfArg<num> lun,
     required TfArg<String> managedDiskId,

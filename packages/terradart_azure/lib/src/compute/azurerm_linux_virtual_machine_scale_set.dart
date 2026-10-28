@@ -13,6 +13,218 @@ const Set<String> _azurermLinuxVirtualMachineScaleSetSensitive = <String>{
   'extension.protected_settings',
 };
 
+/// Linux Virtual Machine Scale Set Eviction enum for `eviction_policy`.
+extension type const LinuxVirtualMachineScaleSetEvictionPolicy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  LinuxVirtualMachineScaleSetEvictionPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxVirtualMachineScaleSetEvictionPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxVirtualMachineScaleSetEvictionPolicy.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const deallocate = LinuxVirtualMachineScaleSetEvictionPolicy._(
+    TfArgLiteral('Deallocate'),
+  );
+  static const delete = LinuxVirtualMachineScaleSetEvictionPolicy._(
+    TfArgLiteral('Delete'),
+  );
+
+  static const List<LinuxVirtualMachineScaleSetEvictionPolicy> values = [
+    deallocate,
+    delete,
+  ];
+}
+
+/// Linux Virtual Machine Scale Set Upgrade enum for `upgrade_mode`.
+extension type const LinuxVirtualMachineScaleSetUpgradeMode._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxVirtualMachineScaleSetUpgradeMode.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxVirtualMachineScaleSetUpgradeMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxVirtualMachineScaleSetUpgradeMode.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const automatic = LinuxVirtualMachineScaleSetUpgradeMode._(
+    TfArgLiteral('Automatic'),
+  );
+  static const manual = LinuxVirtualMachineScaleSetUpgradeMode._(
+    TfArgLiteral('Manual'),
+  );
+  static const rolling = LinuxVirtualMachineScaleSetUpgradeMode._(
+    TfArgLiteral('Rolling'),
+  );
+
+  static const List<LinuxVirtualMachineScaleSetUpgradeMode> values = [
+    automatic,
+    manual,
+    rolling,
+  ];
+}
+
+/// Exactly one of `source_image_id`, `source_image_reference` on `azurerm_linux_virtual_machine_scale_set`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.sourceImageId(...)`.
+sealed class LinuxVirtualMachineScaleSetSourceImage {
+  const LinuxVirtualMachineScaleSetSourceImage();
+
+  /// Sets `source_image_id`.
+  const factory LinuxVirtualMachineScaleSetSourceImage.sourceImageId(
+    TfArg<String> sourceImageId,
+  ) = LinuxVirtualMachineScaleSetSourceImageId;
+
+  /// Sets `source_image_reference`.
+  const factory LinuxVirtualMachineScaleSetSourceImage.sourceImageReference(
+    LinuxVirtualMachineScaleSetSourceImageReference sourceImageReference,
+  ) = LinuxVirtualMachineScaleSetSourceImageReferenceChoice;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [LinuxVirtualMachineScaleSetSourceImage.sourceImageId] choice: sets `source_image_id`.
+final class LinuxVirtualMachineScaleSetSourceImageId
+    extends LinuxVirtualMachineScaleSetSourceImage {
+  const LinuxVirtualMachineScaleSetSourceImageId(this.sourceImageId);
+
+  final TfArg<String> sourceImageId;
+
+  @internal
+  @override
+  String get blockKey => 'source_image_id';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'source_image_id': sourceImageId.toTfJson(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'source_image_id': sourceImageId};
+}
+
+/// The [LinuxVirtualMachineScaleSetSourceImage.sourceImageReference] choice: sets `source_image_reference`.
+final class LinuxVirtualMachineScaleSetSourceImageReferenceChoice
+    extends LinuxVirtualMachineScaleSetSourceImage {
+  const LinuxVirtualMachineScaleSetSourceImageReferenceChoice(
+    this.sourceImageReference,
+  );
+
+  final LinuxVirtualMachineScaleSetSourceImageReference sourceImageReference;
+
+  @internal
+  @override
+  String get blockKey => 'source_image_reference';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'source_image_reference': sourceImageReference.encode(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'source_image_reference': TfArg.literal(sourceImageReference.encode()),
+  };
+}
+
+/// At most one of `capacity_reservation_group_id`, `proximity_placement_group_id` on `azurerm_linux_virtual_machine_scale_set`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.capacityReservationGroupId(...)`.
+sealed class LinuxVirtualMachineScaleSetGroupId {
+  const LinuxVirtualMachineScaleSetGroupId();
+
+  /// Sets `capacity_reservation_group_id`.
+  const factory LinuxVirtualMachineScaleSetGroupId.capacityReservationGroupId(
+    TfArg<String> capacityReservationGroupId,
+  ) = LinuxVirtualMachineScaleSetCapacityReservationGroupId;
+
+  /// Sets `proximity_placement_group_id`.
+  const factory LinuxVirtualMachineScaleSetGroupId.proximityPlacementGroupId(
+    TfArg<String> proximityPlacementGroupId,
+  ) = LinuxVirtualMachineScaleSetProximityPlacementGroupId;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [LinuxVirtualMachineScaleSetGroupId.capacityReservationGroupId] choice: sets `capacity_reservation_group_id`.
+final class LinuxVirtualMachineScaleSetCapacityReservationGroupId
+    extends LinuxVirtualMachineScaleSetGroupId {
+  const LinuxVirtualMachineScaleSetCapacityReservationGroupId(
+    this.capacityReservationGroupId,
+  );
+
+  final TfArg<String> capacityReservationGroupId;
+
+  @internal
+  @override
+  String get blockKey => 'capacity_reservation_group_id';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'capacity_reservation_group_id': capacityReservationGroupId.toTfJson(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'capacity_reservation_group_id': capacityReservationGroupId,
+  };
+}
+
+/// The [LinuxVirtualMachineScaleSetGroupId.proximityPlacementGroupId] choice: sets `proximity_placement_group_id`.
+final class LinuxVirtualMachineScaleSetProximityPlacementGroupId
+    extends LinuxVirtualMachineScaleSetGroupId {
+  const LinuxVirtualMachineScaleSetProximityPlacementGroupId(
+    this.proximityPlacementGroupId,
+  );
+
+  final TfArg<String> proximityPlacementGroupId;
+
+  @internal
+  @override
+  String get blockKey => 'proximity_placement_group_id';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'proximity_placement_group_id': proximityPlacementGroupId.toTfJson(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'proximity_placement_group_id': proximityPlacementGroupId,
+  };
+}
+
 /// Typed helper for the `additional_capabilities` block of
 /// `azurerm_linux_virtual_machine_scale_set` (derived from provider schema).
 @immutable
@@ -698,14 +910,14 @@ final class AzurermLinuxVirtualMachineScaleSet extends Resource {
     super.localName, {
     Sensitive<String>? adminPassword,
     required TfArg<String> adminUsername,
-    TfArg<String>? capacityReservationGroupId,
+    LinuxVirtualMachineScaleSetGroupId? groupId,
     TfArg<String>? computerNamePrefix,
     Sensitive<String>? customData,
     TfArg<bool>? disablePasswordAuthentication,
     TfArg<bool>? doNotRunExtensionsOnOverprovisionedMachines,
     TfArg<String>? edgeZone,
     TfArg<bool>? encryptionAtHostEnabled,
-    TfArg<String>? evictionPolicy,
+    LinuxVirtualMachineScaleSetEvictionPolicy? evictionPolicy,
     TfArg<bool>? extensionOperationsEnabled,
     TfArg<String>? extensionsTimeBudget,
     TfArg<String>? healthProbeId,
@@ -718,16 +930,15 @@ final class AzurermLinuxVirtualMachineScaleSet extends Resource {
     TfArg<num>? platformFaultDomainCount,
     TfArg<String>? priority,
     TfArg<bool>? provisionVmAgent,
-    TfArg<String>? proximityPlacementGroupId,
     TfArg<bool>? resilientVmCreationEnabled,
     TfArg<bool>? resilientVmDeletionEnabled,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<bool>? secureBootEnabled,
     TfArg<bool>? singlePlacementGroup,
     required TfArg<String> sku,
-    TfArg<String>? sourceImageId,
+    required LinuxVirtualMachineScaleSetSourceImage sourceImage,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? upgradeMode,
+    LinuxVirtualMachineScaleSetUpgradeMode? upgradeMode,
     TfArg<String>? userData,
     TfArg<bool>? vtpmEnabled,
     TfArg<bool>? zoneBalance,
@@ -748,7 +959,6 @@ final class AzurermLinuxVirtualMachineScaleSet extends Resource {
     LinuxVirtualMachineScaleSetRollingUpgradePolicy? rollingUpgradePolicy,
     LinuxVirtualMachineScaleSetScaleIn? scaleIn,
     List<LinuxVirtualMachineScaleSetSecret>? secret,
-    LinuxVirtualMachineScaleSetSourceImageReference? sourceImageReference,
     LinuxVirtualMachineScaleSetSpotRestore? spotRestore,
     LinuxVirtualMachineScaleSetTerminationNotification? terminationNotification,
     super.lifecycle,
@@ -760,7 +970,7 @@ final class AzurermLinuxVirtualMachineScaleSet extends Resource {
          argMap: {
            'admin_password': ?adminPassword,
            'admin_username': adminUsername,
-           'capacity_reservation_group_id': ?capacityReservationGroupId,
+           ...?groupId?.argMap,
            'computer_name_prefix': ?computerNamePrefix,
            'custom_data': ?customData,
            'disable_password_authentication': ?disablePasswordAuthentication,
@@ -781,14 +991,13 @@ final class AzurermLinuxVirtualMachineScaleSet extends Resource {
            'platform_fault_domain_count': ?platformFaultDomainCount,
            'priority': ?priority,
            'provision_vm_agent': ?provisionVmAgent,
-           'proximity_placement_group_id': ?proximityPlacementGroupId,
            'resilient_vm_creation_enabled': ?resilientVmCreationEnabled,
            'resilient_vm_deletion_enabled': ?resilientVmDeletionEnabled,
            'resource_group_name': resourceGroupName.encodeAs('name'),
            'secure_boot_enabled': ?secureBootEnabled,
            'single_placement_group': ?singlePlacementGroup,
            'sku': sku,
-           'source_image_id': ?sourceImageId,
+           ...sourceImage.argMap,
            'tags': ?tags,
            'upgrade_mode': ?upgradeMode,
            'user_data': ?userData,
@@ -836,10 +1045,6 @@ final class AzurermLinuxVirtualMachineScaleSet extends Resource {
            if (scaleIn != null) 'scale_in': TfArg.literal(scaleIn.encode()),
            if (secret != null)
              'secret': TfArg.literal([for (final e in secret) e.encode()]),
-           if (sourceImageReference != null)
-             'source_image_reference': TfArg.literal(
-               sourceImageReference.encode(),
-             ),
            if (spotRestore != null)
              'spot_restore': TfArg.literal(spotRestore.encode()),
            if (terminationNotification != null)

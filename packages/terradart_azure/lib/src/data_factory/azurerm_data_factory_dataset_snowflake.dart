@@ -24,7 +24,7 @@ final class DataFactoryDatasetSnowflakeSchemaColumn {
 
   final TfArg<num>? scale;
 
-  final TfArg<String>? type;
+  final DataFactoryDatasetSnowflakeType? type;
 
   @internal
   Map<String, Object?> encode() => {
@@ -33,6 +33,132 @@ final class DataFactoryDatasetSnowflakeSchemaColumn {
     'scale': ?scale?.toTfJson(),
     'type': ?type?.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+extension type const DataFactoryDatasetSnowflakeType._(TfArg<String> _)
+    implements TfArg<String> {
+  DataFactoryDatasetSnowflakeType.variable(String name)
+    : this._(TfArg.variable(name));
+  DataFactoryDatasetSnowflakeType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataFactoryDatasetSnowflakeType.arg(TfArg<String> arg) : this._(arg);
+
+  static const number = DataFactoryDatasetSnowflakeType._(
+    TfArgLiteral('NUMBER'),
+  );
+  static const decimal = DataFactoryDatasetSnowflakeType._(
+    TfArgLiteral('DECIMAL'),
+  );
+  static const numeric = DataFactoryDatasetSnowflakeType._(
+    TfArgLiteral('NUMERIC'),
+  );
+  static const int = DataFactoryDatasetSnowflakeType._(TfArgLiteral('INT'));
+  static const integer = DataFactoryDatasetSnowflakeType._(
+    TfArgLiteral('INTEGER'),
+  );
+  static const bigint = DataFactoryDatasetSnowflakeType._(
+    TfArgLiteral('BIGINT'),
+  );
+  static const smallint = DataFactoryDatasetSnowflakeType._(
+    TfArgLiteral('SMALLINT'),
+  );
+  static const float = DataFactoryDatasetSnowflakeType._(TfArgLiteral('FLOAT'));
+  static const float4 = DataFactoryDatasetSnowflakeType._(
+    TfArgLiteral('FLOAT4'),
+  );
+  static const float8 = DataFactoryDatasetSnowflakeType._(
+    TfArgLiteral('FLOAT8'),
+  );
+  static const double = DataFactoryDatasetSnowflakeType._(
+    TfArgLiteral('DOUBLE'),
+  );
+  static const doublePrecision = DataFactoryDatasetSnowflakeType._(
+    TfArgLiteral('DOUBLE PRECISION'),
+  );
+  static const real = DataFactoryDatasetSnowflakeType._(TfArgLiteral('REAL'));
+  static const varchar = DataFactoryDatasetSnowflakeType._(
+    TfArgLiteral('VARCHAR'),
+  );
+  static const char = DataFactoryDatasetSnowflakeType._(TfArgLiteral('CHAR'));
+  static const character = DataFactoryDatasetSnowflakeType._(
+    TfArgLiteral('CHARACTER'),
+  );
+  static const string = DataFactoryDatasetSnowflakeType._(
+    TfArgLiteral('STRING'),
+  );
+  static const text = DataFactoryDatasetSnowflakeType._(TfArgLiteral('TEXT'));
+  static const binary = DataFactoryDatasetSnowflakeType._(
+    TfArgLiteral('BINARY'),
+  );
+  static const varbinary = DataFactoryDatasetSnowflakeType._(
+    TfArgLiteral('VARBINARY'),
+  );
+  static const boolean = DataFactoryDatasetSnowflakeType._(
+    TfArgLiteral('BOOLEAN'),
+  );
+  static const date = DataFactoryDatasetSnowflakeType._(TfArgLiteral('DATE'));
+  static const datetime = DataFactoryDatasetSnowflakeType._(
+    TfArgLiteral('DATETIME'),
+  );
+  static const time = DataFactoryDatasetSnowflakeType._(TfArgLiteral('TIME'));
+  static const timestamp = DataFactoryDatasetSnowflakeType._(
+    TfArgLiteral('TIMESTAMP'),
+  );
+  static const timestampLtz = DataFactoryDatasetSnowflakeType._(
+    TfArgLiteral('TIMESTAMP_LTZ'),
+  );
+  static const timestampNtz = DataFactoryDatasetSnowflakeType._(
+    TfArgLiteral('TIMESTAMP_NTZ'),
+  );
+  static const timestampTz = DataFactoryDatasetSnowflakeType._(
+    TfArgLiteral('TIMESTAMP_TZ'),
+  );
+  static const variant = DataFactoryDatasetSnowflakeType._(
+    TfArgLiteral('VARIANT'),
+  );
+  static const object = DataFactoryDatasetSnowflakeType._(
+    TfArgLiteral('OBJECT'),
+  );
+  static const array = DataFactoryDatasetSnowflakeType._(TfArgLiteral('ARRAY'));
+  static const geography = DataFactoryDatasetSnowflakeType._(
+    TfArgLiteral('GEOGRAPHY'),
+  );
+
+  static const List<DataFactoryDatasetSnowflakeType> values = [
+    number,
+    decimal,
+    numeric,
+    int,
+    integer,
+    bigint,
+    smallint,
+    float,
+    float4,
+    float8,
+    double,
+    doublePrecision,
+    real,
+    varchar,
+    char,
+    character,
+    string,
+    text,
+    binary,
+    varbinary,
+    boolean,
+    date,
+    datetime,
+    time,
+    timestamp,
+    timestampLtz,
+    timestampNtz,
+    timestampTz,
+    variant,
+    object,
+    array,
+    geography,
+  ];
 }
 
 /// Factory wrapper for `azurerm_data_factory_dataset_snowflake`.

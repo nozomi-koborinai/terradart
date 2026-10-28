@@ -21,7 +21,7 @@ final class DataFactoryDatasetHttpSchemaColumn {
 
   final TfArg<String> name;
 
-  final TfArg<String>? type;
+  final DataFactoryDatasetHttpType? type;
 
   @internal
   Map<String, Object?> encode() => {
@@ -29,6 +29,56 @@ final class DataFactoryDatasetHttpSchemaColumn {
     'name': name.toTfJson(),
     'type': ?type?.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+extension type const DataFactoryDatasetHttpType._(TfArg<String> _)
+    implements TfArg<String> {
+  DataFactoryDatasetHttpType.variable(String name)
+    : this._(TfArg.variable(name));
+  DataFactoryDatasetHttpType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataFactoryDatasetHttpType.arg(TfArg<String> arg) : this._(arg);
+
+  static const byte = DataFactoryDatasetHttpType._(TfArgLiteral('Byte'));
+  static const byte2 = DataFactoryDatasetHttpType._(TfArgLiteral('Byte[]'));
+  static const boolean = DataFactoryDatasetHttpType._(TfArgLiteral('Boolean'));
+  static const date = DataFactoryDatasetHttpType._(TfArgLiteral('Date'));
+  static const datetime = DataFactoryDatasetHttpType._(
+    TfArgLiteral('DateTime'),
+  );
+  static const datetimeoffset = DataFactoryDatasetHttpType._(
+    TfArgLiteral('DateTimeOffset'),
+  );
+  static const decimal = DataFactoryDatasetHttpType._(TfArgLiteral('Decimal'));
+  static const double = DataFactoryDatasetHttpType._(TfArgLiteral('Double'));
+  static const guid = DataFactoryDatasetHttpType._(TfArgLiteral('Guid'));
+  static const int16 = DataFactoryDatasetHttpType._(TfArgLiteral('Int16'));
+  static const int32 = DataFactoryDatasetHttpType._(TfArgLiteral('Int32'));
+  static const int64 = DataFactoryDatasetHttpType._(TfArgLiteral('Int64'));
+  static const single = DataFactoryDatasetHttpType._(TfArgLiteral('Single'));
+  static const string = DataFactoryDatasetHttpType._(TfArgLiteral('String'));
+  static const timespan = DataFactoryDatasetHttpType._(
+    TfArgLiteral('TimeSpan'),
+  );
+
+  static const List<DataFactoryDatasetHttpType> values = [
+    byte,
+    byte2,
+    boolean,
+    date,
+    datetime,
+    datetimeoffset,
+    decimal,
+    double,
+    guid,
+    int16,
+    int32,
+    int64,
+    single,
+    string,
+    timespan,
+  ];
 }
 
 /// Factory wrapper for `azurerm_data_factory_dataset_http`.

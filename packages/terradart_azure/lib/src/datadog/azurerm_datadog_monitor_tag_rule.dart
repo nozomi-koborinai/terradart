@@ -46,7 +46,7 @@ final class DatadogMonitorTagRuleFilter {
     required this.value,
   });
 
-  final TfArg<String> action;
+  final DatadogMonitorTagRuleAction action;
 
   final TfArg<String> name;
 
@@ -58,6 +58,21 @@ final class DatadogMonitorTagRuleFilter {
     'name': name.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `action` — derived from the provider schema description.
+extension type const DatadogMonitorTagRuleAction._(TfArg<String> _)
+    implements TfArg<String> {
+  DatadogMonitorTagRuleAction.variable(String name)
+    : this._(TfArg.variable(name));
+  DatadogMonitorTagRuleAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatadogMonitorTagRuleAction.arg(TfArg<String> arg) : this._(arg);
+
+  static const exclude = DatadogMonitorTagRuleAction._(TfArgLiteral('Exclude'));
+  static const include = DatadogMonitorTagRuleAction._(TfArgLiteral('Include'));
+
+  static const List<DatadogMonitorTagRuleAction> values = [exclude, include];
 }
 
 /// Typed helper for the `metric` block of

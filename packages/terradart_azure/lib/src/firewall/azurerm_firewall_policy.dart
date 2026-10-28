@@ -9,6 +9,48 @@ import '../resource/azurerm_resource_group.dart' show AzurermResourceGroup;
 /// Sensitive field paths for `azurerm_firewall_policy`.
 const Set<String> _azurermFirewallPolicySensitive = <String>{};
 
+/// Firewall Policy enum for `sku`.
+extension type const FirewallPolicySku._(TfArg<String> _)
+    implements TfArg<String> {
+  FirewallPolicySku.variable(String name) : this._(TfArg.variable(name));
+  FirewallPolicySku.expression(String template)
+    : this._(TfArg.expression(template));
+  const FirewallPolicySku.arg(TfArg<String> arg) : this._(arg);
+
+  static const basic = FirewallPolicySku._(TfArgLiteral('Basic'));
+  static const premium = FirewallPolicySku._(TfArgLiteral('Premium'));
+  static const standard = FirewallPolicySku._(TfArgLiteral('Standard'));
+
+  static const List<FirewallPolicySku> values = [basic, premium, standard];
+}
+
+/// Firewall Policy Threat Intelligence enum for `threat_intelligence_mode`.
+extension type const FirewallPolicyThreatIntelligenceMode._(TfArg<String> _)
+    implements TfArg<String> {
+  FirewallPolicyThreatIntelligenceMode.variable(String name)
+    : this._(TfArg.variable(name));
+  FirewallPolicyThreatIntelligenceMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const FirewallPolicyThreatIntelligenceMode.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const alert = FirewallPolicyThreatIntelligenceMode._(
+    TfArgLiteral('Alert'),
+  );
+  static const deny = FirewallPolicyThreatIntelligenceMode._(
+    TfArgLiteral('Deny'),
+  );
+  static const off = FirewallPolicyThreatIntelligenceMode._(
+    TfArgLiteral('Off'),
+  );
+
+  static const List<FirewallPolicyThreatIntelligenceMode> values = [
+    alert,
+    deny,
+    off,
+  ];
+}
+
 /// Typed helper for the `dns` block of
 /// `azurerm_firewall_policy` (derived from provider schema).
 @immutable
@@ -142,7 +184,7 @@ final class FirewallPolicyIntrusionDetection {
     this.trafficBypass,
   });
 
-  final TfArg<String>? mode;
+  final FirewallPolicyMode? mode;
 
   final TfArg<List<String>>? privateRanges;
 
@@ -161,6 +203,21 @@ final class FirewallPolicyIntrusionDetection {
   };
 }
 
+/// `mode` — derived from the provider schema description.
+extension type const FirewallPolicyMode._(TfArg<String> _)
+    implements TfArg<String> {
+  FirewallPolicyMode.variable(String name) : this._(TfArg.variable(name));
+  FirewallPolicyMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const FirewallPolicyMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const alert = FirewallPolicyMode._(TfArgLiteral('Alert'));
+  static const deny = FirewallPolicyMode._(TfArgLiteral('Deny'));
+  static const off = FirewallPolicyMode._(TfArgLiteral('Off'));
+
+  static const List<FirewallPolicyMode> values = [alert, deny, off];
+}
+
 /// Typed helper for the `intrusion_detection.signature_overrides` block of
 /// `azurerm_firewall_policy` (derived from provider schema).
 @immutable
@@ -169,13 +226,28 @@ final class FirewallPolicySignatureOverrides {
 
   final TfArg<String>? id;
 
-  final TfArg<String>? state;
+  final FirewallPolicyState? state;
 
   @internal
   Map<String, Object?> encode() => {
     'id': ?id?.toTfJson(),
     'state': ?state?.toTfJson(),
   };
+}
+
+/// `state` — derived from the provider schema description.
+extension type const FirewallPolicyState._(TfArg<String> _)
+    implements TfArg<String> {
+  FirewallPolicyState.variable(String name) : this._(TfArg.variable(name));
+  FirewallPolicyState.expression(String template)
+    : this._(TfArg.expression(template));
+  const FirewallPolicyState.arg(TfArg<String> arg) : this._(arg);
+
+  static const alert = FirewallPolicyState._(TfArgLiteral('Alert'));
+  static const deny = FirewallPolicyState._(TfArgLiteral('Deny'));
+  static const off = FirewallPolicyState._(TfArgLiteral('Off'));
+
+  static const List<FirewallPolicyState> values = [alert, deny, off];
 }
 
 /// Typed helper for the `intrusion_detection.traffic_bypass` block of
@@ -203,7 +275,7 @@ final class FirewallPolicyTrafficBypass {
 
   final TfArg<String> name;
 
-  final TfArg<String> protocol;
+  final FirewallPolicyProtocol protocol;
 
   final TfArg<List<String>>? sourceAddresses;
 
@@ -220,6 +292,22 @@ final class FirewallPolicyTrafficBypass {
     'source_addresses': ?sourceAddresses?.toTfJson(),
     'source_ip_groups': ?sourceIpGroups?.toTfJson(),
   };
+}
+
+/// `protocol` — derived from the provider schema description.
+extension type const FirewallPolicyProtocol._(TfArg<String> _)
+    implements TfArg<String> {
+  FirewallPolicyProtocol.variable(String name) : this._(TfArg.variable(name));
+  FirewallPolicyProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const FirewallPolicyProtocol.arg(TfArg<String> arg) : this._(arg);
+
+  static const any = FirewallPolicyProtocol._(TfArgLiteral('ANY'));
+  static const icmp = FirewallPolicyProtocol._(TfArgLiteral('ICMP'));
+  static const tcp = FirewallPolicyProtocol._(TfArgLiteral('TCP'));
+  static const udp = FirewallPolicyProtocol._(TfArgLiteral('UDP'));
+
+  static const List<FirewallPolicyProtocol> values = [any, icmp, tcp, udp];
 }
 
 /// Typed helper for the `threat_intelligence_allowlist` block of
@@ -274,10 +362,10 @@ final class AzurermFirewallPolicy extends Resource {
     required TfArg<String> name,
     TfArg<List<String>>? privateIpRanges,
     required RefTo<AzurermResourceGroup> resourceGroupName,
-    TfArg<String>? sku,
+    FirewallPolicySku? sku,
     TfArg<bool>? sqlRedirectAllowed,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? threatIntelligenceMode,
+    FirewallPolicyThreatIntelligenceMode? threatIntelligenceMode,
     FirewallPolicyDns? dns,
     FirewallPolicyExplicitProxy? explicitProxy,
     FirewallPolicyIdentity? identity,

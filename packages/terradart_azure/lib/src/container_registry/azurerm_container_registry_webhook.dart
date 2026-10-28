@@ -8,13 +8,67 @@ import '../resource/azurerm_resource_group.dart' show AzurermResourceGroup;
 /// Sensitive field paths for `azurerm_container_registry_webhook`.
 const Set<String> _azurermContainerRegistryWebhookSensitive = <String>{};
 
+/// Container Registry Webhook enum for `actions`.
+extension type const ContainerRegistryWebhookActions._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerRegistryWebhookActions.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerRegistryWebhookActions.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerRegistryWebhookActions.arg(TfArg<String> arg) : this._(arg);
+
+  static const chartDelete = ContainerRegistryWebhookActions._(
+    TfArgLiteral('chart_delete'),
+  );
+  static const chartPush = ContainerRegistryWebhookActions._(
+    TfArgLiteral('chart_push'),
+  );
+  static const delete = ContainerRegistryWebhookActions._(
+    TfArgLiteral('delete'),
+  );
+  static const push = ContainerRegistryWebhookActions._(TfArgLiteral('push'));
+  static const quarantine = ContainerRegistryWebhookActions._(
+    TfArgLiteral('quarantine'),
+  );
+
+  static const List<ContainerRegistryWebhookActions> values = [
+    chartDelete,
+    chartPush,
+    delete,
+    push,
+    quarantine,
+  ];
+}
+
+/// Container Registry Webhook enum for `status`.
+extension type const ContainerRegistryWebhookStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerRegistryWebhookStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerRegistryWebhookStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerRegistryWebhookStatus.arg(TfArg<String> arg) : this._(arg);
+
+  static const disabled = ContainerRegistryWebhookStatus._(
+    TfArgLiteral('disabled'),
+  );
+  static const enabled = ContainerRegistryWebhookStatus._(
+    TfArgLiteral('enabled'),
+  );
+
+  static const List<ContainerRegistryWebhookStatus> values = [
+    disabled,
+    enabled,
+  ];
+}
+
 /// Factory wrapper for `azurerm_container_registry_webhook`.
 final class AzurermContainerRegistryWebhook extends Resource {
   static const String tfType = 'azurerm_container_registry_webhook';
 
   AzurermContainerRegistryWebhook(
     super.localName, {
-    required TfArg<List<String>> actions,
+    required List<ContainerRegistryWebhookActions> actions,
     TfArg<Map<String, String>>? customHeaders,
     required TfArg<String> location,
     required TfArg<String> name,
@@ -22,7 +76,7 @@ final class AzurermContainerRegistryWebhook extends Resource {
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<String>? scope,
     required TfArg<String> serviceUri,
-    TfArg<String>? status,
+    ContainerRegistryWebhookStatus? status,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,
@@ -31,7 +85,7 @@ final class AzurermContainerRegistryWebhook extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'actions': actions,
+           'actions': TfArg.literal([for (final e in actions) e.toTfJson()]),
            'custom_headers': ?customHeaders,
            'location': location,
            'name': name,

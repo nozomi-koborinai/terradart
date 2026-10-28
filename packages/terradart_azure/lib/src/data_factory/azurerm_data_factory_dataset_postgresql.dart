@@ -21,7 +21,7 @@ final class DataFactoryDatasetPostgresqlSchemaColumn {
 
   final TfArg<String> name;
 
-  final TfArg<String>? type;
+  final DataFactoryDatasetPostgresqlType? type;
 
   @internal
   Map<String, Object?> encode() => {
@@ -29,6 +29,74 @@ final class DataFactoryDatasetPostgresqlSchemaColumn {
     'name': name.toTfJson(),
     'type': ?type?.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+extension type const DataFactoryDatasetPostgresqlType._(TfArg<String> _)
+    implements TfArg<String> {
+  DataFactoryDatasetPostgresqlType.variable(String name)
+    : this._(TfArg.variable(name));
+  DataFactoryDatasetPostgresqlType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataFactoryDatasetPostgresqlType.arg(TfArg<String> arg) : this._(arg);
+
+  static const byte = DataFactoryDatasetPostgresqlType._(TfArgLiteral('Byte'));
+  static const byte2 = DataFactoryDatasetPostgresqlType._(
+    TfArgLiteral('Byte[]'),
+  );
+  static const boolean = DataFactoryDatasetPostgresqlType._(
+    TfArgLiteral('Boolean'),
+  );
+  static const date = DataFactoryDatasetPostgresqlType._(TfArgLiteral('Date'));
+  static const datetime = DataFactoryDatasetPostgresqlType._(
+    TfArgLiteral('DateTime'),
+  );
+  static const datetimeoffset = DataFactoryDatasetPostgresqlType._(
+    TfArgLiteral('DateTimeOffset'),
+  );
+  static const decimal = DataFactoryDatasetPostgresqlType._(
+    TfArgLiteral('Decimal'),
+  );
+  static const double = DataFactoryDatasetPostgresqlType._(
+    TfArgLiteral('Double'),
+  );
+  static const guid = DataFactoryDatasetPostgresqlType._(TfArgLiteral('Guid'));
+  static const int16 = DataFactoryDatasetPostgresqlType._(
+    TfArgLiteral('Int16'),
+  );
+  static const int32 = DataFactoryDatasetPostgresqlType._(
+    TfArgLiteral('Int32'),
+  );
+  static const int64 = DataFactoryDatasetPostgresqlType._(
+    TfArgLiteral('Int64'),
+  );
+  static const single = DataFactoryDatasetPostgresqlType._(
+    TfArgLiteral('Single'),
+  );
+  static const string = DataFactoryDatasetPostgresqlType._(
+    TfArgLiteral('String'),
+  );
+  static const timespan = DataFactoryDatasetPostgresqlType._(
+    TfArgLiteral('TimeSpan'),
+  );
+
+  static const List<DataFactoryDatasetPostgresqlType> values = [
+    byte,
+    byte2,
+    boolean,
+    date,
+    datetime,
+    datetimeoffset,
+    decimal,
+    double,
+    guid,
+    int16,
+    int32,
+    int64,
+    single,
+    string,
+    timespan,
+  ];
 }
 
 /// Factory wrapper for `azurerm_data_factory_dataset_postgresql`.

@@ -12,6 +12,75 @@ const Set<String> _azurermEventgridTopicSensitive = <String>{
   'secondary_access_key',
 };
 
+/// Eventgrid Topic Data Residency enum for `data_residency_boundary`.
+extension type const EventgridTopicDataResidencyBoundary._(TfArg<String> _)
+    implements TfArg<String> {
+  EventgridTopicDataResidencyBoundary.variable(String name)
+    : this._(TfArg.variable(name));
+  EventgridTopicDataResidencyBoundary.expression(String template)
+    : this._(TfArg.expression(template));
+  const EventgridTopicDataResidencyBoundary.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const withingeopair = EventgridTopicDataResidencyBoundary._(
+    TfArgLiteral('WithinGeopair'),
+  );
+  static const withinregion = EventgridTopicDataResidencyBoundary._(
+    TfArgLiteral('WithinRegion'),
+  );
+
+  static const List<EventgridTopicDataResidencyBoundary> values = [
+    withingeopair,
+    withinregion,
+  ];
+}
+
+/// Eventgrid Topic Input enum for `input_schema`.
+extension type const EventgridTopicInputSchema._(TfArg<String> _)
+    implements TfArg<String> {
+  EventgridTopicInputSchema.variable(String name)
+    : this._(TfArg.variable(name));
+  EventgridTopicInputSchema.expression(String template)
+    : this._(TfArg.expression(template));
+  const EventgridTopicInputSchema.arg(TfArg<String> arg) : this._(arg);
+
+  static const cloudeventschemav10 = EventgridTopicInputSchema._(
+    TfArgLiteral('CloudEventSchemaV1_0'),
+  );
+  static const customeventschema = EventgridTopicInputSchema._(
+    TfArgLiteral('CustomEventSchema'),
+  );
+  static const eventgridschema = EventgridTopicInputSchema._(
+    TfArgLiteral('EventGridSchema'),
+  );
+
+  static const List<EventgridTopicInputSchema> values = [
+    cloudeventschemav10,
+    customeventschema,
+    eventgridschema,
+  ];
+}
+
+/// Eventgrid Topic Minimum Tls enum for `minimum_tls_version`.
+extension type const EventgridTopicMinimumTlsVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  EventgridTopicMinimumTlsVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  EventgridTopicMinimumTlsVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const EventgridTopicMinimumTlsVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const v1p1 = EventgridTopicMinimumTlsVersion._(TfArgLiteral('1.1'));
+  static const v1p2 = EventgridTopicMinimumTlsVersion._(TfArgLiteral('1.2'));
+  static const v1p0 = EventgridTopicMinimumTlsVersion._(TfArgLiteral('1.0'));
+
+  static const List<EventgridTopicMinimumTlsVersion> values = [
+    v1p1,
+    v1p2,
+    v1p0,
+  ];
+}
+
 /// Typed helper for the `identity` block of
 /// `azurerm_eventgrid_topic` (derived from provider schema).
 @immutable
@@ -95,12 +164,12 @@ final class AzurermEventgridTopic extends Resource {
 
   AzurermEventgridTopic(
     super.localName, {
-    TfArg<String>? dataResidencyBoundary,
+    EventgridTopicDataResidencyBoundary? dataResidencyBoundary,
     TfArg<List<Map<String, Object?>>>? inboundIpRule,
-    TfArg<String>? inputSchema,
+    EventgridTopicInputSchema? inputSchema,
     TfArg<bool>? localAuthEnabled,
     required TfArg<String> location,
-    TfArg<String>? minimumTlsVersion,
+    EventgridTopicMinimumTlsVersion? minimumTlsVersion,
     required TfArg<String> name,
     TfArg<bool>? publicNetworkAccessEnabled,
     required RefTo<AzurermResourceGroup> resourceGroupName,

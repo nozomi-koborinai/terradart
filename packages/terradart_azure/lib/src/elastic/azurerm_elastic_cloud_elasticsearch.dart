@@ -48,7 +48,7 @@ final class ElasticCloudElasticsearchFilteringTag {
     required this.value,
   });
 
-  final TfArg<String> action;
+  final ElasticCloudElasticsearchAction action;
 
   final TfArg<String> name;
 
@@ -60,6 +60,28 @@ final class ElasticCloudElasticsearchFilteringTag {
     'name': name.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `action` — derived from the provider schema description.
+extension type const ElasticCloudElasticsearchAction._(TfArg<String> _)
+    implements TfArg<String> {
+  ElasticCloudElasticsearchAction.variable(String name)
+    : this._(TfArg.variable(name));
+  ElasticCloudElasticsearchAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const ElasticCloudElasticsearchAction.arg(TfArg<String> arg) : this._(arg);
+
+  static const exclude = ElasticCloudElasticsearchAction._(
+    TfArgLiteral('Exclude'),
+  );
+  static const include = ElasticCloudElasticsearchAction._(
+    TfArgLiteral('Include'),
+  );
+
+  static const List<ElasticCloudElasticsearchAction> values = [
+    exclude,
+    include,
+  ];
 }
 
 /// Factory wrapper for `azurerm_elastic_cloud_elasticsearch`.

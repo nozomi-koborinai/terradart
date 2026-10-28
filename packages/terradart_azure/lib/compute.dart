@@ -9,12 +9,16 @@ export 'src/compute/azurerm_capacity_reservation.dart'
     show AzurermCapacityReservation, CapacityReservationSku;
 export 'src/compute/azurerm_capacity_reservation_group.dart'
     show AzurermCapacityReservationGroup;
-export 'src/compute/azurerm_dedicated_host.dart' show AzurermDedicatedHost;
+export 'src/compute/azurerm_dedicated_host.dart'
+    show AzurermDedicatedHost, DedicatedHostSkuName;
 export 'src/compute/azurerm_dedicated_host_group.dart'
     show AzurermDedicatedHostGroup;
 export 'src/compute/azurerm_disk_access.dart' show AzurermDiskAccess;
 export 'src/compute/azurerm_disk_encryption_set.dart'
-    show AzurermDiskEncryptionSet, DiskEncryptionSetIdentity;
+    show
+        AzurermDiskEncryptionSet,
+        DiskEncryptionSetEncryptionType,
+        DiskEncryptionSetIdentity;
 export 'src/compute/azurerm_gallery_application.dart'
     show AzurermGalleryApplication, GalleryApplicationSupportedOsType;
 export 'src/compute/azurerm_gallery_application_version.dart'
@@ -25,7 +29,15 @@ export 'src/compute/azurerm_gallery_application_version.dart'
         GalleryApplicationVersionStorageAccountType,
         GalleryApplicationVersionTargetRegion;
 export 'src/compute/azurerm_image.dart'
-    show AzurermImage, ImageDataDisk, ImageOsDisk;
+    show
+        AzurermImage,
+        ImageCaching,
+        ImageDataDisk,
+        ImageHyperVGeneration,
+        ImageOsDisk,
+        ImageOsState,
+        ImageOsType,
+        ImageStorageType;
 export 'src/compute/azurerm_linux_virtual_machine.dart'
     show
         AzurermLinuxVirtualMachine,
@@ -33,11 +45,22 @@ export 'src/compute/azurerm_linux_virtual_machine.dart'
         LinuxVirtualMachineAdminSshKey,
         LinuxVirtualMachineBootDiagnostics,
         LinuxVirtualMachineCertificate,
+        LinuxVirtualMachineDedicatedHost,
+        LinuxVirtualMachineDedicatedHostGroupId,
+        LinuxVirtualMachineDedicatedHostId,
         LinuxVirtualMachineDiffDiskSettings,
+        LinuxVirtualMachineDiskControllerType,
+        LinuxVirtualMachineEvictionPolicy,
         LinuxVirtualMachineGalleryApplication,
         LinuxVirtualMachineIdentity,
+        LinuxVirtualMachineLicenseType,
         LinuxVirtualMachineOsDisk,
         LinuxVirtualMachineOsImageNotification,
+        LinuxVirtualMachineOsProfile,
+        LinuxVirtualMachineOsProfileAdminUsername,
+        LinuxVirtualMachineOsProfileOsManagedDiskId,
+        LinuxVirtualMachinePatchAssessmentMode,
+        LinuxVirtualMachinePatchMode,
         LinuxVirtualMachinePlan,
         LinuxVirtualMachineSecret,
         LinuxVirtualMachineSourceImageReference,
@@ -50,11 +73,14 @@ export 'src/compute/azurerm_linux_virtual_machine_scale_set.dart'
         LinuxVirtualMachineScaleSetAutomaticInstanceRepair,
         LinuxVirtualMachineScaleSetAutomaticOsUpgradePolicy,
         LinuxVirtualMachineScaleSetBootDiagnostics,
+        LinuxVirtualMachineScaleSetCapacityReservationGroupId,
         LinuxVirtualMachineScaleSetCertificate,
         LinuxVirtualMachineScaleSetDataDisk,
         LinuxVirtualMachineScaleSetDiffDiskSettings,
+        LinuxVirtualMachineScaleSetEvictionPolicy,
         LinuxVirtualMachineScaleSetExtension,
         LinuxVirtualMachineScaleSetGalleryApplication,
+        LinuxVirtualMachineScaleSetGroupId,
         LinuxVirtualMachineScaleSetIdentity,
         LinuxVirtualMachineScaleSetIpConfiguration,
         LinuxVirtualMachineScaleSetIpTag,
@@ -62,19 +88,34 @@ export 'src/compute/azurerm_linux_virtual_machine_scale_set.dart'
         LinuxVirtualMachineScaleSetOsDisk,
         LinuxVirtualMachineScaleSetPlan,
         LinuxVirtualMachineScaleSetProtectedSettingsFromKeyVault,
+        LinuxVirtualMachineScaleSetProximityPlacementGroupId,
         LinuxVirtualMachineScaleSetPublicIpAddress,
         LinuxVirtualMachineScaleSetRollingUpgradePolicy,
         LinuxVirtualMachineScaleSetScaleIn,
         LinuxVirtualMachineScaleSetSecret,
+        LinuxVirtualMachineScaleSetSourceImage,
+        LinuxVirtualMachineScaleSetSourceImageId,
         LinuxVirtualMachineScaleSetSourceImageReference,
+        LinuxVirtualMachineScaleSetSourceImageReferenceChoice,
         LinuxVirtualMachineScaleSetSpotRestore,
-        LinuxVirtualMachineScaleSetTerminationNotification;
+        LinuxVirtualMachineScaleSetTerminationNotification,
+        LinuxVirtualMachineScaleSetUpgradeMode;
 export 'src/compute/azurerm_managed_disk.dart'
     show
         AzurermManagedDisk,
+        ManagedDiskEncryption,
         ManagedDiskEncryptionKey,
+        ManagedDiskEncryptionSecureVmDiskEncryptionSetId,
+        ManagedDiskEncryptionSetId,
         ManagedDiskEncryptionSettings,
-        ManagedDiskKeyEncryptionKey;
+        ManagedDiskHyperVGeneration,
+        ManagedDiskImage,
+        ManagedDiskImageGalleryImageReferenceId,
+        ManagedDiskImageReferenceId,
+        ManagedDiskKeyEncryptionKey,
+        ManagedDiskNetworkAccessPolicy,
+        ManagedDiskOsType,
+        ManagedDiskStorageAccountType;
 export 'src/compute/azurerm_managed_disk_sas_token.dart'
     show AzurermManagedDiskSasToken;
 export 'src/compute/azurerm_orchestrated_virtual_machine_scale_set.dart'
@@ -83,28 +124,39 @@ export 'src/compute/azurerm_orchestrated_virtual_machine_scale_set.dart'
         OrchestratedVirtualMachineScaleSetAdditionalCapabilities,
         OrchestratedVirtualMachineScaleSetAdditionalUnattendContent,
         OrchestratedVirtualMachineScaleSetAdminSshKey,
+        OrchestratedVirtualMachineScaleSetAllocationStrategy,
         OrchestratedVirtualMachineScaleSetAutomaticInstanceRepair,
         OrchestratedVirtualMachineScaleSetBootDiagnostics,
+        OrchestratedVirtualMachineScaleSetCapacityReservationGroupId,
         OrchestratedVirtualMachineScaleSetDataDisk,
         OrchestratedVirtualMachineScaleSetDiffDiskSettings,
+        OrchestratedVirtualMachineScaleSetEvictionPolicy,
         OrchestratedVirtualMachineScaleSetExtension,
+        OrchestratedVirtualMachineScaleSetGroupId,
         OrchestratedVirtualMachineScaleSetIdentity,
         OrchestratedVirtualMachineScaleSetIpConfiguration,
         OrchestratedVirtualMachineScaleSetIpTag,
+        OrchestratedVirtualMachineScaleSetLicenseType,
         OrchestratedVirtualMachineScaleSetLinuxConfiguration,
         OrchestratedVirtualMachineScaleSetLinuxConfigurationCertificate,
         OrchestratedVirtualMachineScaleSetLinuxConfigurationSecret,
+        OrchestratedVirtualMachineScaleSetNetworkApiVersion,
         OrchestratedVirtualMachineScaleSetNetworkInterface,
         OrchestratedVirtualMachineScaleSetOsDisk,
         OrchestratedVirtualMachineScaleSetOsProfile,
         OrchestratedVirtualMachineScaleSetPlan,
         OrchestratedVirtualMachineScaleSetPriorityMix,
         OrchestratedVirtualMachineScaleSetProtectedSettingsFromKeyVault,
+        OrchestratedVirtualMachineScaleSetProximityPlacementGroupId,
         OrchestratedVirtualMachineScaleSetPublicIpAddress,
         OrchestratedVirtualMachineScaleSetRollingUpgradePolicy,
         OrchestratedVirtualMachineScaleSetSkuProfile,
+        OrchestratedVirtualMachineScaleSetSourceImage,
+        OrchestratedVirtualMachineScaleSetSourceImageId,
         OrchestratedVirtualMachineScaleSetSourceImageReference,
+        OrchestratedVirtualMachineScaleSetSourceImageReferenceChoice,
         OrchestratedVirtualMachineScaleSetTerminationNotification,
+        OrchestratedVirtualMachineScaleSetUpgradeMode,
         OrchestratedVirtualMachineScaleSetVirtualMachineSize,
         OrchestratedVirtualMachineScaleSetWindowsConfiguration,
         OrchestratedVirtualMachineScaleSetWindowsConfigurationCertificate,
@@ -113,11 +165,23 @@ export 'src/compute/azurerm_orchestrated_virtual_machine_scale_set.dart'
 export 'src/compute/azurerm_proximity_placement_group.dart'
     show AzurermProximityPlacementGroup;
 export 'src/compute/azurerm_shared_image.dart'
-    show AzurermSharedImage, SharedImageIdentifier, SharedImagePurchasePlan;
+    show
+        AzurermSharedImage,
+        SharedImageArchitecture,
+        SharedImageHyperVGeneration,
+        SharedImageIdentifier,
+        SharedImageOsType,
+        SharedImagePurchasePlan,
+        SharedImageSecurityType,
+        SharedImageSecurityTypeConfidentialVmEnabled,
+        SharedImageSecurityTypeConfidentialVmSupported,
+        SharedImageSecurityTypeTrustedLaunchEnabled,
+        SharedImageSecurityTypeTrustedLaunchSupported;
 export 'src/compute/azurerm_shared_image_gallery.dart'
     show
         AzurermSharedImageGallery,
         SharedImageGalleryCommunityGallery,
+        SharedImageGalleryPermission,
         SharedImageGallerySharing;
 export 'src/compute/azurerm_shared_image_version.dart'
     show
@@ -127,6 +191,13 @@ export 'src/compute/azurerm_shared_image_version.dart'
         SharedImageVersionDbx,
         SharedImageVersionKek,
         SharedImageVersionPk,
+        SharedImageVersionReplicationMode,
+        SharedImageVersionSignatureTemplateNames,
+        SharedImageVersionSource,
+        SharedImageVersionSourceBlobUri,
+        SharedImageVersionSourceManagedImageId,
+        SharedImageVersionSourceOsDiskSnapshotId,
+        SharedImageVersionStorageAccountType,
         SharedImageVersionTargetRegion,
         SharedImageVersionUefi;
 export 'src/compute/azurerm_snapshot.dart'
@@ -134,7 +205,8 @@ export 'src/compute/azurerm_snapshot.dart'
         AzurermSnapshot,
         SnapshotDiskEncryptionKey,
         SnapshotEncryptionSettings,
-        SnapshotKeyEncryptionKey;
+        SnapshotKeyEncryptionKey,
+        SnapshotNetworkAccessPolicy;
 export 'src/compute/azurerm_ssh_public_key.dart' show AzurermSshPublicKey;
 export 'src/compute/azurerm_virtual_machine.dart'
     show
@@ -167,11 +239,16 @@ export 'src/compute/azurerm_virtual_machine.dart'
 export 'src/compute/azurerm_virtual_machine_automanage_configuration_assignment.dart'
     show AzurermVirtualMachineAutomanageConfigurationAssignment;
 export 'src/compute/azurerm_virtual_machine_data_disk_attachment.dart'
-    show AzurermVirtualMachineDataDiskAttachment;
+    show
+        AzurermVirtualMachineDataDiskAttachment,
+        VirtualMachineDataDiskAttachmentCaching;
 export 'src/compute/azurerm_virtual_machine_extension.dart'
     show
         AzurermVirtualMachineExtension,
-        VirtualMachineExtensionProtectedSettingsFromKeyVault;
+        VirtualMachineExtensionProtectedSettings,
+        VirtualMachineExtensionProtectedSettingsChoice,
+        VirtualMachineExtensionProtectedSettingsFromKeyVault,
+        VirtualMachineExtensionProtectedSettingsFromKeyVaultChoice;
 export 'src/compute/azurerm_virtual_machine_gallery_application_assignment.dart'
     show AzurermVirtualMachineGalleryApplicationAssignment;
 export 'src/compute/azurerm_virtual_machine_implicit_data_disk_from_source.dart'
@@ -257,11 +334,22 @@ export 'src/compute/azurerm_windows_virtual_machine.dart'
         WindowsVirtualMachineAdditionalUnattendContent,
         WindowsVirtualMachineBootDiagnostics,
         WindowsVirtualMachineCertificate,
+        WindowsVirtualMachineDedicatedHost,
+        WindowsVirtualMachineDedicatedHostGroupId,
+        WindowsVirtualMachineDedicatedHostId,
         WindowsVirtualMachineDiffDiskSettings,
+        WindowsVirtualMachineDiskControllerType,
+        WindowsVirtualMachineEvictionPolicy,
         WindowsVirtualMachineGalleryApplication,
         WindowsVirtualMachineIdentity,
+        WindowsVirtualMachineLicenseType,
         WindowsVirtualMachineOsDisk,
         WindowsVirtualMachineOsImageNotification,
+        WindowsVirtualMachineOsProfile,
+        WindowsVirtualMachineOsProfileAdminUsername,
+        WindowsVirtualMachineOsProfileOsManagedDiskId,
+        WindowsVirtualMachinePatchAssessmentMode,
+        WindowsVirtualMachinePatchMode,
         WindowsVirtualMachinePlan,
         WindowsVirtualMachineSecret,
         WindowsVirtualMachineSourceImageReference,
@@ -275,25 +363,34 @@ export 'src/compute/azurerm_windows_virtual_machine_scale_set.dart'
         WindowsVirtualMachineScaleSetAutomaticInstanceRepair,
         WindowsVirtualMachineScaleSetAutomaticOsUpgradePolicy,
         WindowsVirtualMachineScaleSetBootDiagnostics,
+        WindowsVirtualMachineScaleSetCapacityReservationGroupId,
         WindowsVirtualMachineScaleSetCertificate,
         WindowsVirtualMachineScaleSetDataDisk,
         WindowsVirtualMachineScaleSetDiffDiskSettings,
+        WindowsVirtualMachineScaleSetEvictionPolicy,
         WindowsVirtualMachineScaleSetExtension,
         WindowsVirtualMachineScaleSetGalleryApplication,
+        WindowsVirtualMachineScaleSetGroupId,
         WindowsVirtualMachineScaleSetIdentity,
         WindowsVirtualMachineScaleSetIpConfiguration,
         WindowsVirtualMachineScaleSetIpTag,
+        WindowsVirtualMachineScaleSetLicenseType,
         WindowsVirtualMachineScaleSetNetworkInterface,
         WindowsVirtualMachineScaleSetOsDisk,
         WindowsVirtualMachineScaleSetPlan,
         WindowsVirtualMachineScaleSetProtectedSettingsFromKeyVault,
+        WindowsVirtualMachineScaleSetProximityPlacementGroupId,
         WindowsVirtualMachineScaleSetPublicIpAddress,
         WindowsVirtualMachineScaleSetRollingUpgradePolicy,
         WindowsVirtualMachineScaleSetScaleIn,
         WindowsVirtualMachineScaleSetSecret,
+        WindowsVirtualMachineScaleSetSourceImage,
+        WindowsVirtualMachineScaleSetSourceImageId,
         WindowsVirtualMachineScaleSetSourceImageReference,
+        WindowsVirtualMachineScaleSetSourceImageReferenceChoice,
         WindowsVirtualMachineScaleSetSpotRestore,
         WindowsVirtualMachineScaleSetTerminationNotification,
+        WindowsVirtualMachineScaleSetUpgradeMode,
         WindowsVirtualMachineScaleSetWinrmListener;
 export 'src/data/azurerm_availability_set.dart' show DataAzurermAvailabilitySet;
 export 'src/data/azurerm_dedicated_host.dart' show DataAzurermDedicatedHost;

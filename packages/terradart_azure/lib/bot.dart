@@ -9,13 +9,18 @@ export 'src/bot/azurerm_bot_channel_direct_line_speech.dart'
     show AzurermBotChannelDirectLineSpeech;
 export 'src/bot/azurerm_bot_channel_directline.dart'
     show AzurermBotChannelDirectline, BotChannelDirectlineSite;
-export 'src/bot/azurerm_bot_channel_email.dart' show AzurermBotChannelEmail;
+export 'src/bot/azurerm_bot_channel_email.dart'
+    show
+        AzurermBotChannelEmail,
+        BotChannelEmailCredential,
+        BotChannelEmailCredentialEmailPassword,
+        BotChannelEmailCredentialMagicCode;
 export 'src/bot/azurerm_bot_channel_facebook.dart'
     show AzurermBotChannelFacebook, BotChannelFacebookPage;
 export 'src/bot/azurerm_bot_channel_line.dart'
     show AzurermBotChannelLine, BotChannelLineChannel;
 export 'src/bot/azurerm_bot_channel_ms_teams.dart'
-    show AzurermBotChannelMsTeams;
+    show AzurermBotChannelMsTeams, BotChannelMsTeamsDeploymentEnvironment;
 export 'src/bot/azurerm_bot_channel_slack.dart' show AzurermBotChannelSlack;
 export 'src/bot/azurerm_bot_channel_sms.dart' show AzurermBotChannelSms;
 export 'src/bot/azurerm_bot_channel_web_chat.dart'
