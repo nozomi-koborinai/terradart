@@ -678,11 +678,15 @@ func (r *gadgetResource) ConfigValidators(context.Context) []resource.ConfigVali
             'x_lookup': typeHints({
               'mode': ['fast', 'slow'],
             }),
+            'x_resource_only': typeHints({
+              'kind': ['a'],
+            }),
           },
         ),
         schemas: (
           resources: {
             'x_widget': block({'kind': 'string'}),
+            'x_resource_only': block({'kind': 'string'}),
           },
           dataSources: {
             'x_widget': block({'kind': 'string'}),
@@ -705,7 +709,10 @@ func (r *gadgetResource) ConfigValidators(context.Context) []resource.ConfigVali
         p.join('hints', 'x_widget.yaml'),
       ]);
       expect(report.files, 3);
-      expect(report.skipped, ['data.x_widget.retired (not in schema.json)']);
+      expect(report.skipped, [
+        'data.x_resource_only (not in schema.json)',
+        'data.x_widget.retired (not in schema.json)',
+      ]);
 
       final enums = ProviderEnums.load(dir.path, providerVersion: '1.0.0');
       List<String>? values(String type, WrapperOverride o, String path) =>

@@ -953,7 +953,7 @@ final class HintsWriteReport {
   var groups = 0;
   var atMostOne = 0;
 
-  /// Each hint or group left out, as `<type>.<path> (reason)`
+  /// Each type, hint or group left out, as `<type>.<path> (reason)`
   /// (`data.<type>` for a data source).
   final skipped = <String>[];
 }
@@ -984,7 +984,10 @@ HintsWriteReport writeProviderHints({
     for (final type in kindFound.keys.toList()..sort()) {
       final label = kind.label(type);
       final block = schemas.of(kind)[type];
-      if (block == null) continue;
+      if (block == null) {
+        report.skipped.add('$label (not in schema.json)');
+        continue;
+      }
       final (:sourcePath, :hints, :groups, :atMostOne) = kindFound[type]!;
       List<List<List<String>>> keep(List<List<List<String>>> gs, String rule) {
         final kept = <List<List<String>>>[];
