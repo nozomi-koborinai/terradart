@@ -7,7 +7,9 @@ export 'package:terradart_core/terradart_core.dart';
 export 'src/data/azurerm_express_route_circuit.dart'
     show DataAzurermExpressRouteCircuit;
 export 'src/data/azurerm_express_route_circuit_peering.dart'
-    show DataAzurermExpressRouteCircuitPeering;
+    show
+        DataAzurermExpressRouteCircuitPeering,
+        DataExpressRouteCircuitPeeringType;
 export 'src/express/azurerm_express_route_circuit.dart'
     show
         AzurermExpressRouteCircuit,

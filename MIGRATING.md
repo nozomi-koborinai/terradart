@@ -14,6 +14,15 @@ already belongs to another group: the OS image source on
 and `default_recovery_disk_type` / `managed_disk` on
 `azurerm_site_recovery_vmware_replicated_vm`.
 
+Data source factories read `hints/data/<type>.yaml`, not the resource
+file of the same name. Seventeen data sources gained an enum or a
+sealed argument. `display_name` / `name` is `identifier`.
+`azurerm_role_definition`'s `name` / `role_definition_id` is `lookup`,
+because `definition` would repeat a segment of `DataRoleDefinition`.
+`database_system_shape` / `shape_family` on
+`azurerm_oracle_database_system_versions` is `shape`. `name` /
+`name_regex` on `azurerm_image` derived `name`.
+
 The weekly `hashicorp/google` pin moved from 8.4.0 to 8.7.0, and then to
 8.8.1. `terradart_google` and `terradart_google_beta` follow that pin. These
 are the Dart API changes. Synth output stays the same except

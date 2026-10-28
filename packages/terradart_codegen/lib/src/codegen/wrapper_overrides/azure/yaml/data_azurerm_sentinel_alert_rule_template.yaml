@@ -4,3 +4,8 @@ schemaStubBodyMode: bare
 deriveClassDoc: true
 deriveOutputGetters: true
 deriveNestedTypes: true
+deriveEnums: true
+deriveExactlyOne: true
+
+sealedNames:
+  "display_name, name": identifier

@@ -5,7 +5,9 @@ library;
 
 export 'package:terradart_core/terradart_core.dart';
 export 'src/data/azurerm_system_center_virtual_machine_manager_inventory_items.dart'
-    show DataAzurermSystemCenterVirtualMachineManagerInventoryItems;
+    show
+        DataAzurermSystemCenterVirtualMachineManagerInventoryItems,
+        DataSystemCenterVirtualMachineManagerInventoryItemsInventoryType;
 export 'src/system_center/azurerm_system_center_virtual_machine_manager_availability_set.dart'
     show AzurermSystemCenterVirtualMachineManagerAvailabilitySet;
 export 'src/system_center/azurerm_system_center_virtual_machine_manager_cloud.dart'

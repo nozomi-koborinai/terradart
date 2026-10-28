@@ -399,7 +399,12 @@ export 'src/data/azurerm_dedicated_host_group.dart'
 export 'src/data/azurerm_disk_access.dart' show DataAzurermDiskAccess;
 export 'src/data/azurerm_disk_encryption_set.dart'
     show DataAzurermDiskEncryptionSet;
-export 'src/data/azurerm_image.dart' show DataAzurermImage;
+export 'src/data/azurerm_image.dart'
+    show
+        DataAzurermImage,
+        DataImageName,
+        DataImageNameChoice,
+        DataImageNameRegex;
 export 'src/data/azurerm_managed_disk.dart' show DataAzurermManagedDisk;
 export 'src/data/azurerm_orchestrated_virtual_machine_scale_set.dart'
     show DataAzurermOrchestratedVirtualMachineScaleSet;

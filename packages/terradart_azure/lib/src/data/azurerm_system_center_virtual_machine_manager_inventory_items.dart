@@ -7,6 +7,43 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String>
 _azurermSystemCenterVirtualMachineManagerInventoryItemsSensitive = <String>{};
 
+/// Data System Center Virtual Machine Manager Inventory Items Inventory enum for `inventory_type`.
+extension type const DataSystemCenterVirtualMachineManagerInventoryItemsInventoryType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataSystemCenterVirtualMachineManagerInventoryItemsInventoryType.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  DataSystemCenterVirtualMachineManagerInventoryItemsInventoryType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const DataSystemCenterVirtualMachineManagerInventoryItemsInventoryType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const cloud =
+      DataSystemCenterVirtualMachineManagerInventoryItemsInventoryType._(
+        TfArgLiteral('Cloud'),
+      );
+  static const virtualmachine =
+      DataSystemCenterVirtualMachineManagerInventoryItemsInventoryType._(
+        TfArgLiteral('VirtualMachine'),
+      );
+  static const virtualmachinetemplate =
+      DataSystemCenterVirtualMachineManagerInventoryItemsInventoryType._(
+        TfArgLiteral('VirtualMachineTemplate'),
+      );
+  static const virtualnetwork =
+      DataSystemCenterVirtualMachineManagerInventoryItemsInventoryType._(
+        TfArgLiteral('VirtualNetwork'),
+      );
+
+  static const List<
+    DataSystemCenterVirtualMachineManagerInventoryItemsInventoryType
+  >
+  values = [cloud, virtualmachine, virtualmachinetemplate, virtualnetwork];
+}
+
 /// Factory wrapper for `azurerm_system_center_virtual_machine_manager_inventory_items`.
 final class DataAzurermSystemCenterVirtualMachineManagerInventoryItems
     extends Data {
@@ -15,7 +52,8 @@ final class DataAzurermSystemCenterVirtualMachineManagerInventoryItems
 
   DataAzurermSystemCenterVirtualMachineManagerInventoryItems(
     super.localName, {
-    required TfArg<String> inventoryType,
+    required DataSystemCenterVirtualMachineManagerInventoryItemsInventoryType
+    inventoryType,
     required TfArg<String> systemCenterVirtualMachineManagerServerId,
     super.provider,
     super.timeouts,

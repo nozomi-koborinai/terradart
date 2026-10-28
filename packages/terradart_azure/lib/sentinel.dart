@@ -7,9 +7,17 @@ export 'package:terradart_core/terradart_core.dart';
 export 'src/data/azurerm_sentinel_alert_rule.dart'
     show DataAzurermSentinelAlertRule;
 export 'src/data/azurerm_sentinel_alert_rule_anomaly.dart'
-    show DataAzurermSentinelAlertRuleAnomaly;
+    show
+        DataAzurermSentinelAlertRuleAnomaly,
+        DataSentinelAlertRuleAnomalyIdentifier,
+        DataSentinelAlertRuleAnomalyIdentifierDisplayName,
+        DataSentinelAlertRuleAnomalyIdentifierName;
 export 'src/data/azurerm_sentinel_alert_rule_template.dart'
-    show DataAzurermSentinelAlertRuleTemplate;
+    show
+        DataAzurermSentinelAlertRuleTemplate,
+        DataSentinelAlertRuleTemplateIdentifier,
+        DataSentinelAlertRuleTemplateIdentifierDisplayName,
+        DataSentinelAlertRuleTemplateIdentifierName;
 export 'src/sentinel/azurerm_sentinel_alert_rule_anomaly_built_in.dart'
     show
         AzurermSentinelAlertRuleAnomalyBuiltIn,

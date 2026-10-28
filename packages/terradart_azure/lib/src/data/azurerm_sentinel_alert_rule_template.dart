@@ -1,10 +1,81 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `azurerm_sentinel_alert_rule_template`.
 const Set<String> _azurermSentinelAlertRuleTemplateSensitive = <String>{};
+
+/// Exactly one of `display_name`, `name` on `data.azurerm_sentinel_alert_rule_template`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.displayName(...)`.
+sealed class DataSentinelAlertRuleTemplateIdentifier {
+  const DataSentinelAlertRuleTemplateIdentifier();
+
+  /// Sets `display_name`.
+  const factory DataSentinelAlertRuleTemplateIdentifier.displayName(
+    TfArg<String> displayName,
+  ) = DataSentinelAlertRuleTemplateIdentifierDisplayName;
+
+  /// Sets `name`.
+  const factory DataSentinelAlertRuleTemplateIdentifier.name(
+    TfArg<String> name,
+  ) = DataSentinelAlertRuleTemplateIdentifierName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [DataSentinelAlertRuleTemplateIdentifier.displayName] choice: sets `display_name`.
+final class DataSentinelAlertRuleTemplateIdentifierDisplayName
+    extends DataSentinelAlertRuleTemplateIdentifier {
+  const DataSentinelAlertRuleTemplateIdentifierDisplayName(this.displayName);
+
+  final TfArg<String> displayName;
+
+  @internal
+  @override
+  String get blockKey => 'display_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'display_name': displayName.toTfJson()};
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'display_name': displayName};
+}
+
+/// The [DataSentinelAlertRuleTemplateIdentifier.name] choice: sets `name`.
+final class DataSentinelAlertRuleTemplateIdentifierName
+    extends DataSentinelAlertRuleTemplateIdentifier {
+  const DataSentinelAlertRuleTemplateIdentifierName(this.name);
+
+  final TfArg<String> name;
+
+  @internal
+  @override
+  String get blockKey => 'name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'name': name.toTfJson()};
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name': name};
+}
 
 /// Factory wrapper for `azurerm_sentinel_alert_rule_template`.
 final class DataAzurermSentinelAlertRuleTemplate extends Data {
@@ -12,17 +83,15 @@ final class DataAzurermSentinelAlertRuleTemplate extends Data {
 
   DataAzurermSentinelAlertRuleTemplate(
     super.localName, {
-    TfArg<String>? displayName,
+    required DataSentinelAlertRuleTemplateIdentifier identifier,
     required TfArg<String> logAnalyticsWorkspaceId,
-    TfArg<String>? name,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {
-           'display_name': ?displayName,
+           ...identifier.argMap,
            'log_analytics_workspace_id': logAnalyticsWorkspaceId,
-           'name': ?name,
          },
        );
 

@@ -612,9 +612,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'filter_by_category',
           dartName: 'filterByCategory',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'DataAdvisorRecommendationsFilterByCategory',
         ),
         MigrateSlot(
           tfName: 'filter_by_recommendation_type_guids',
@@ -50456,9 +50457,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'peering_type',
           dartName: 'peeringType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'DataExpressRouteCircuitPeeringType',
         ),
         MigrateSlot(
           tfName: 'resource_group_name',
@@ -56161,18 +56162,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
-          tfName: 'name',
+          tfName: '',
           dartName: 'name',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'name_regex',
-          dartName: 'nameRegex',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'name': 'DataImageNameChoice',
+            'name_regex': 'DataImageNameRegex',
+          },
         ),
         MigrateSlot(
           tfName: 'resource_group_name',
@@ -59595,9 +59594,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'name',
           dartName: 'name',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'DataKeyVaultAccessPolicyName',
         ),
       ],
       getters: <MigrateGetter>[
@@ -77468,18 +77467,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
-          tfName: 'display_name',
-          dartName: 'displayName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'name',
-          dartName: 'name',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          tfName: '',
+          dartName: 'identifier',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'display_name': 'DataManagementGroupIdentifierDisplayName',
+            'name': 'DataManagementGroupIdentifierName',
+          },
         ),
       ],
       getters: <MigrateGetter>[
@@ -96921,24 +96918,23 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'bool',
         ),
         MigrateSlot(
-          tfName: 'database_system_shape',
-          dartName: 'databaseSystemShape',
-          kind: MigrateSlotKind.scalar,
+          tfName: '',
+          dartName: 'shape',
+          kind: MigrateSlotKind.sealed,
           required: false,
-          dartType: 'String',
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'database_system_shape':
+                'DataOracleDatabaseSystemVersionsDatabaseSystemShape',
+            'shape_family': 'DataOracleDatabaseSystemVersionsShapeFamilyChoice',
+          },
         ),
         MigrateSlot(
           tfName: 'location',
           dartName: 'location',
           kind: MigrateSlotKind.scalar,
           required: true,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'shape_family',
-          dartName: 'shapeFamily',
-          kind: MigrateSlotKind.scalar,
-          required: false,
           dartType: 'String',
         ),
         MigrateSlot(
@@ -97695,9 +97691,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'shape',
           dartName: 'shape',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataOracleGiVersionsShape',
         ),
         MigrateSlot(
           tfName: 'zone',
@@ -100409,22 +100405,20 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
-          tfName: 'display_name',
-          dartName: 'displayName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          tfName: '',
+          dartName: 'identifier',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'display_name': 'DataPolicyDefinitionIdentifierDisplayName',
+            'name': 'DataPolicyDefinitionIdentifierName',
+          },
         ),
         MigrateSlot(
           tfName: 'management_group_name',
           dartName: 'managementGroupName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'name',
-          dartName: 'name',
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
@@ -100484,22 +100478,20 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
-          tfName: 'display_name',
-          dartName: 'displayName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          tfName: '',
+          dartName: 'identifier',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'display_name': 'DataPolicyDefinitionBuiltInIdentifierDisplayName',
+            'name': 'DataPolicyDefinitionBuiltInIdentifierName',
+          },
         ),
         MigrateSlot(
           tfName: 'management_group_name',
           dartName: 'managementGroupName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'name',
-          dartName: 'name',
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
@@ -100656,22 +100648,20 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
-          tfName: 'display_name',
-          dartName: 'displayName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          tfName: '',
+          dartName: 'identifier',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'display_name': 'DataPolicySetDefinitionIdentifierDisplayName',
+            'name': 'DataPolicySetDefinitionIdentifierName',
+          },
         ),
         MigrateSlot(
           tfName: 'management_group_name',
           dartName: 'managementGroupName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'name',
-          dartName: 'name',
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
@@ -100934,18 +100924,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'display_name',
-          dartName: 'displayName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'name',
-          dartName: 'name',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          tfName: '',
+          dartName: 'identifier',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'display_name': 'DataPortalDashboardIdentifierDisplayName',
+            'name': 'DataPortalDashboardIdentifierName',
+          },
         ),
         MigrateSlot(
           tfName: 'resource_group_name',
@@ -104877,16 +104865,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'allocation_type',
           dartName: 'allocationType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataPublicIpsAllocationType',
         ),
         MigrateSlot(
           tfName: 'attachment_status',
           dartName: 'attachmentStatus',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataPublicIpsAttachmentStatus',
         ),
         MigrateSlot(
           tfName: 'name_prefix',
@@ -108765,18 +108753,16 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
-          tfName: 'name',
-          dartName: 'name',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'role_definition_id',
-          dartName: 'roleDefinitionId',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          tfName: '',
+          dartName: 'lookup',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'name': 'DataRoleDefinitionLookupName',
+            'role_definition_id': 'DataRoleDefinitionLookupRoleDefinitionId',
+          },
         ),
         MigrateSlot(
           tfName: 'scope',
@@ -110481,24 +110467,22 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
-          tfName: 'display_name',
-          dartName: 'displayName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          tfName: '',
+          dartName: 'identifier',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'display_name': 'DataSentinelAlertRuleAnomalyIdentifierDisplayName',
+            'name': 'DataSentinelAlertRuleAnomalyIdentifierName',
+          },
         ),
         MigrateSlot(
           tfName: 'log_analytics_workspace_id',
           dartName: 'logAnalyticsWorkspaceId',
           kind: MigrateSlotKind.scalar,
           required: true,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'name',
-          dartName: 'name',
-          kind: MigrateSlotKind.scalar,
-          required: false,
           dartType: 'String',
         ),
       ],
@@ -111547,24 +111531,23 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
-          tfName: 'display_name',
-          dartName: 'displayName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          tfName: '',
+          dartName: 'identifier',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'display_name':
+                'DataSentinelAlertRuleTemplateIdentifierDisplayName',
+            'name': 'DataSentinelAlertRuleTemplateIdentifierName',
+          },
         ),
         MigrateSlot(
           tfName: 'log_analytics_workspace_id',
           dartName: 'logAnalyticsWorkspaceId',
           kind: MigrateSlotKind.scalar,
           required: true,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'name',
-          dartName: 'name',
-          kind: MigrateSlotKind.scalar,
-          required: false,
           dartType: 'String',
         ),
       ],
@@ -119427,9 +119410,9 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'DataSourceControlTokenType',
         ),
       ],
       getters: <MigrateGetter>[
@@ -134496,9 +134479,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'inventory_type',
           dartName: 'inventoryType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType:
+              'DataSystemCenterVirtualMachineManagerInventoryItemsInventoryType',
         ),
         MigrateSlot(
           tfName: 'system_center_virtual_machine_manager_server_id',
@@ -167456,6 +167440,62 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'DataImageNameChoice': MigrateHelper(
+      className: 'DataImageNameChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'name',
+          dartName: 'name',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'name',
+    ),
+    'DataImageNameRegex': MigrateHelper(
+      className: 'DataImageNameRegex',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'name_regex',
+          dartName: 'nameRegex',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'nameRegex',
+    ),
+    'DataManagementGroupIdentifierDisplayName': MigrateHelper(
+      className: 'DataManagementGroupIdentifierDisplayName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'display_name',
+          dartName: 'displayName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'displayName',
+    ),
+    'DataManagementGroupIdentifierName': MigrateHelper(
+      className: 'DataManagementGroupIdentifierName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'name',
+          dartName: 'name',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'name',
+    ),
     'DataNetappAccountIdentity': MigrateHelper(
       className: 'DataNetappAccountIdentity',
       slots: <MigrateSlot>[
@@ -167474,6 +167514,146 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+    ),
+    'DataOracleDatabaseSystemVersionsDatabaseSystemShape': MigrateHelper(
+      className: 'DataOracleDatabaseSystemVersionsDatabaseSystemShape',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'database_system_shape',
+          dartName: 'databaseSystemShape',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'databaseSystemShape',
+    ),
+    'DataOracleDatabaseSystemVersionsShapeFamilyChoice': MigrateHelper(
+      className: 'DataOracleDatabaseSystemVersionsShapeFamilyChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'shape_family',
+          dartName: 'shapeFamily',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          positional: true,
+          dartType: 'DataOracleDatabaseSystemVersionsShapeFamily',
+        ),
+      ],
+      shorthand: 'shapeFamily',
+    ),
+    'DataPolicyDefinitionBuiltInIdentifierDisplayName': MigrateHelper(
+      className: 'DataPolicyDefinitionBuiltInIdentifierDisplayName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'display_name',
+          dartName: 'displayName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'displayName',
+    ),
+    'DataPolicyDefinitionBuiltInIdentifierName': MigrateHelper(
+      className: 'DataPolicyDefinitionBuiltInIdentifierName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'name',
+          dartName: 'name',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'name',
+    ),
+    'DataPolicyDefinitionIdentifierDisplayName': MigrateHelper(
+      className: 'DataPolicyDefinitionIdentifierDisplayName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'display_name',
+          dartName: 'displayName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'displayName',
+    ),
+    'DataPolicyDefinitionIdentifierName': MigrateHelper(
+      className: 'DataPolicyDefinitionIdentifierName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'name',
+          dartName: 'name',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'name',
+    ),
+    'DataPolicySetDefinitionIdentifierDisplayName': MigrateHelper(
+      className: 'DataPolicySetDefinitionIdentifierDisplayName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'display_name',
+          dartName: 'displayName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'displayName',
+    ),
+    'DataPolicySetDefinitionIdentifierName': MigrateHelper(
+      className: 'DataPolicySetDefinitionIdentifierName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'name',
+          dartName: 'name',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'name',
+    ),
+    'DataPortalDashboardIdentifierDisplayName': MigrateHelper(
+      className: 'DataPortalDashboardIdentifierDisplayName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'display_name',
+          dartName: 'displayName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'displayName',
+    ),
+    'DataPortalDashboardIdentifierName': MigrateHelper(
+      className: 'DataPortalDashboardIdentifierName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'name',
+          dartName: 'name',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'name',
     ),
     'DataProtectionBackupInstanceKubernetesClusterBackupDatasourceParameters':
         MigrateHelper(
@@ -168197,6 +168377,90 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+    ),
+    'DataRoleDefinitionLookupName': MigrateHelper(
+      className: 'DataRoleDefinitionLookupName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'name',
+          dartName: 'name',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'name',
+    ),
+    'DataRoleDefinitionLookupRoleDefinitionId': MigrateHelper(
+      className: 'DataRoleDefinitionLookupRoleDefinitionId',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'role_definition_id',
+          dartName: 'roleDefinitionId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'roleDefinitionId',
+    ),
+    'DataSentinelAlertRuleAnomalyIdentifierDisplayName': MigrateHelper(
+      className: 'DataSentinelAlertRuleAnomalyIdentifierDisplayName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'display_name',
+          dartName: 'displayName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'displayName',
+    ),
+    'DataSentinelAlertRuleAnomalyIdentifierName': MigrateHelper(
+      className: 'DataSentinelAlertRuleAnomalyIdentifierName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'name',
+          dartName: 'name',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'name',
+    ),
+    'DataSentinelAlertRuleTemplateIdentifierDisplayName': MigrateHelper(
+      className: 'DataSentinelAlertRuleTemplateIdentifierDisplayName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'display_name',
+          dartName: 'displayName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'displayName',
+    ),
+    'DataSentinelAlertRuleTemplateIdentifierName': MigrateHelper(
+      className: 'DataSentinelAlertRuleTemplateIdentifierName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'name',
+          dartName: 'name',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'name',
     ),
     'DataShareAccountIdentity': MigrateHelper(
       className: 'DataShareAccountIdentity',
@@ -232787,6 +233051,24 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         'OpportunisticStartTLS': 'opportunisticstarttls',
       },
     ),
+    'DataAdvisorRecommendationsFilterByCategory': MigrateEnum(
+      name: 'DataAdvisorRecommendationsFilterByCategory',
+      members: <String, String>{
+        'Cost': 'cost',
+        'HighAvailability': 'highavailability',
+        'OperationalExcellence': 'operationalexcellence',
+        'Performance': 'performance',
+        'Security': 'security',
+      },
+    ),
+    'DataExpressRouteCircuitPeeringType': MigrateEnum(
+      name: 'DataExpressRouteCircuitPeeringType',
+      members: <String, String>{
+        'AzurePrivatePeering': 'azureprivatepeering',
+        'AzurePublicPeering': 'azurepublicpeering',
+        'MicrosoftPeering': 'microsoftpeering',
+      },
+    ),
     'DataFactoryDatasetAzureBlobType': MigrateEnum(
       name: 'DataFactoryDatasetAzureBlobType',
       members: <String, String>{
@@ -233224,6 +233506,36 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         'String': 'string',
       },
     ),
+    'DataKeyVaultAccessPolicyName': MigrateEnum(
+      name: 'DataKeyVaultAccessPolicyName',
+      members: <String, String>{
+        'Key Management': 'keyManagement',
+        'Secret Management': 'secretManagement',
+        'Certificate Management': 'certificateManagement',
+        'Key & Secret Management': 'keySecretManagement',
+        'Key & Certificate Management': 'keyCertificateManagement',
+        'Secret & Certificate Management': 'secretCertificateManagement',
+        'Key, Secret, & Certificate Management':
+            'keySecretCertificateManagement',
+      },
+    ),
+    'DataOracleDatabaseSystemVersionsShapeFamily': MigrateEnum(
+      name: 'DataOracleDatabaseSystemVersionsShapeFamily',
+      members: <String, String>{
+        'EXADATA': 'exadata',
+        'EXADB_XS': 'exadbXs',
+        'SINGLENODE': 'singlenode',
+        'VIRTUALMACHINE': 'virtualmachine',
+      },
+    ),
+    'DataOracleGiVersionsShape': MigrateEnum(
+      name: 'DataOracleGiVersionsShape',
+      members: <String, String>{
+        'ExaDbXS': 'exadbxs',
+        'Exadata.X9M': 'exadataX9m',
+        'Exadata.X11M': 'exadataX11m',
+      },
+    ),
     'DataProtectionBackupPolicyBlobStorageAbsoluteCriteria': MigrateEnum(
       name: 'DataProtectionBackupPolicyBlobStorageAbsoluteCriteria',
       members: <String, String>{
@@ -233499,6 +233811,17 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         'On': 'on',
       },
     ),
+    'DataPublicIpsAllocationType': MigrateEnum(
+      name: 'DataPublicIpsAllocationType',
+      members: <String, String>{'Dynamic': 'dynamic', 'Static': 'static'},
+    ),
+    'DataPublicIpsAttachmentStatus': MigrateEnum(
+      name: 'DataPublicIpsAttachmentStatus',
+      members: <String, String>{
+        'Attached': 'attached',
+        'Unattached': 'unattached',
+      },
+    ),
     'DataShareKind': MigrateEnum(
       name: 'DataShareKind',
       members: <String, String>{'CopyBased': 'copybased', 'InPlace': 'inplace'},
@@ -233507,6 +233830,26 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
       name: 'DataShareRecurrence',
       members: <String, String>{'Day': 'day', 'Hour': 'hour'},
     ),
+    'DataSourceControlTokenType': MigrateEnum(
+      name: 'DataSourceControlTokenType',
+      members: <String, String>{
+        'Bitbucket': 'bitbucket',
+        'Dropbox': 'dropbox',
+        'GitHub': 'github',
+        'OneDrive': 'onedrive',
+      },
+    ),
+    'DataSystemCenterVirtualMachineManagerInventoryItemsInventoryType':
+        MigrateEnum(
+          name:
+              'DataSystemCenterVirtualMachineManagerInventoryItemsInventoryType',
+          members: <String, String>{
+            'Cloud': 'cloud',
+            'VirtualMachine': 'virtualmachine',
+            'VirtualMachineTemplate': 'virtualmachinetemplate',
+            'VirtualNetwork': 'virtualnetwork',
+          },
+        ),
     'DatabaseMigrationProjectSourcePlatform': MigrateEnum(
       name: 'DatabaseMigrationProjectSourcePlatform',
       members: <String, String>{

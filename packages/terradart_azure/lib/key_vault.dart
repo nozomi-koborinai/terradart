@@ -6,7 +6,7 @@ library;
 export 'package:terradart_core/terradart_core.dart';
 export 'src/data/azurerm_key_vault.dart' show DataAzurermKeyVault;
 export 'src/data/azurerm_key_vault_access_policy.dart'
-    show DataAzurermKeyVaultAccessPolicy;
+    show DataAzurermKeyVaultAccessPolicy, DataKeyVaultAccessPolicyName;
 export 'src/data/azurerm_key_vault_certificate.dart'
     show DataAzurermKeyVaultCertificate;
 export 'src/data/azurerm_key_vault_certificate_data.dart'

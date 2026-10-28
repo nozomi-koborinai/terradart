@@ -5,7 +5,12 @@ library;
 
 export 'package:terradart_core/terradart_core.dart';
 export 'src/data/azurerm_role_assignments.dart' show DataAzurermRoleAssignments;
-export 'src/data/azurerm_role_definition.dart' show DataAzurermRoleDefinition;
+export 'src/data/azurerm_role_definition.dart'
+    show
+        DataAzurermRoleDefinition,
+        DataRoleDefinitionLookup,
+        DataRoleDefinitionLookupName,
+        DataRoleDefinitionLookupRoleDefinitionId;
 export 'src/data/azurerm_role_management_policy.dart'
     show DataAzurermRoleManagementPolicy;
 export 'src/role/azurerm_role_assignment.dart'

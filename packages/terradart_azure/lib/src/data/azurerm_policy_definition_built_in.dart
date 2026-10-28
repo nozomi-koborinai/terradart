@@ -1,10 +1,80 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `azurerm_policy_definition_built_in`.
 const Set<String> _azurermPolicyDefinitionBuiltInSensitive = <String>{};
+
+/// Exactly one of `display_name`, `name` on `data.azurerm_policy_definition_built_in`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.displayName(...)`.
+sealed class DataPolicyDefinitionBuiltInIdentifier {
+  const DataPolicyDefinitionBuiltInIdentifier();
+
+  /// Sets `display_name`.
+  const factory DataPolicyDefinitionBuiltInIdentifier.displayName(
+    TfArg<String> displayName,
+  ) = DataPolicyDefinitionBuiltInIdentifierDisplayName;
+
+  /// Sets `name`.
+  const factory DataPolicyDefinitionBuiltInIdentifier.name(TfArg<String> name) =
+      DataPolicyDefinitionBuiltInIdentifierName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [DataPolicyDefinitionBuiltInIdentifier.displayName] choice: sets `display_name`.
+final class DataPolicyDefinitionBuiltInIdentifierDisplayName
+    extends DataPolicyDefinitionBuiltInIdentifier {
+  const DataPolicyDefinitionBuiltInIdentifierDisplayName(this.displayName);
+
+  final TfArg<String> displayName;
+
+  @internal
+  @override
+  String get blockKey => 'display_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'display_name': displayName.toTfJson()};
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'display_name': displayName};
+}
+
+/// The [DataPolicyDefinitionBuiltInIdentifier.name] choice: sets `name`.
+final class DataPolicyDefinitionBuiltInIdentifierName
+    extends DataPolicyDefinitionBuiltInIdentifier {
+  const DataPolicyDefinitionBuiltInIdentifierName(this.name);
+
+  final TfArg<String> name;
+
+  @internal
+  @override
+  String get blockKey => 'name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'name': name.toTfJson()};
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name': name};
+}
 
 /// Factory wrapper for `azurerm_policy_definition_built_in`.
 final class DataAzurermPolicyDefinitionBuiltIn extends Data {
@@ -12,17 +82,15 @@ final class DataAzurermPolicyDefinitionBuiltIn extends Data {
 
   DataAzurermPolicyDefinitionBuiltIn(
     super.localName, {
-    TfArg<String>? displayName,
+    required DataPolicyDefinitionBuiltInIdentifier identifier,
     TfArg<String>? managementGroupName,
-    TfArg<String>? name,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {
-           'display_name': ?displayName,
+           ...identifier.argMap,
            'management_group_name': ?managementGroupName,
-           'name': ?name,
          },
        );
 
