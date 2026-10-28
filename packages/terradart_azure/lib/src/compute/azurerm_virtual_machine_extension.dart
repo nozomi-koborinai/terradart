@@ -9,6 +9,91 @@ const Set<String> _azurermVirtualMachineExtensionSensitive = <String>{
   'protected_settings',
 };
 
+/// At most one of `protected_settings`, `protected_settings_from_key_vault` on `azurerm_virtual_machine_extension`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.protectedSettings(...)`.
+sealed class VirtualMachineExtensionProtectedSettings {
+  const VirtualMachineExtensionProtectedSettings();
+
+  /// Sets `protected_settings`.
+  const factory VirtualMachineExtensionProtectedSettings.protectedSettings(
+    Sensitive<String> protectedSettings,
+  ) = VirtualMachineExtensionProtectedSettingsChoice;
+
+  /// Sets `protected_settings_from_key_vault`.
+  const factory VirtualMachineExtensionProtectedSettings.protectedSettingsFromKeyVault(
+    VirtualMachineExtensionProtectedSettingsFromKeyVault
+    protectedSettingsFromKeyVault,
+  ) = VirtualMachineExtensionProtectedSettingsFromKeyVaultChoice;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [VirtualMachineExtensionProtectedSettings.protectedSettings] choice: sets `protected_settings`.
+final class VirtualMachineExtensionProtectedSettingsChoice
+    extends VirtualMachineExtensionProtectedSettings {
+  const VirtualMachineExtensionProtectedSettingsChoice(this.protectedSettings);
+
+  final Sensitive<String> protectedSettings;
+
+  @internal
+  @override
+  String get blockKey => 'protected_settings';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'protected_settings': protectedSettings.toTfJson(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'protected_settings': protectedSettings,
+  };
+}
+
+/// The [VirtualMachineExtensionProtectedSettings.protectedSettingsFromKeyVault] choice: sets `protected_settings_from_key_vault`.
+final class VirtualMachineExtensionProtectedSettingsFromKeyVaultChoice
+    extends VirtualMachineExtensionProtectedSettings {
+  const VirtualMachineExtensionProtectedSettingsFromKeyVaultChoice(
+    this.protectedSettingsFromKeyVault,
+  );
+
+  final VirtualMachineExtensionProtectedSettingsFromKeyVault
+  protectedSettingsFromKeyVault;
+
+  @internal
+  @override
+  String get blockKey => 'protected_settings_from_key_vault';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'protected_settings_from_key_vault': protectedSettingsFromKeyVault.encode(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'protected_settings_from_key_vault': TfArg.literal(
+      protectedSettingsFromKeyVault.encode(),
+    ),
+  };
+}
+
 /// Typed helper for the `protected_settings_from_key_vault` block of
 /// `azurerm_virtual_machine_extension` (derived from provider schema).
 @immutable
@@ -39,7 +124,7 @@ final class AzurermVirtualMachineExtension extends Resource {
     TfArg<bool>? automaticUpgradeEnabled,
     TfArg<bool>? failureSuppressionEnabled,
     required TfArg<String> name,
-    Sensitive<String>? protectedSettings,
+    VirtualMachineExtensionProtectedSettings? protectedSettings,
     TfArg<List<String>>? provisionAfterExtensions,
     required TfArg<String> publisher,
     TfArg<String>? settings,
@@ -47,8 +132,6 @@ final class AzurermVirtualMachineExtension extends Resource {
     required TfArg<String> type,
     required TfArg<String> typeHandlerVersion,
     required TfArg<String> virtualMachineId,
-    VirtualMachineExtensionProtectedSettingsFromKeyVault?
-    protectedSettingsFromKeyVault,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -60,7 +143,7 @@ final class AzurermVirtualMachineExtension extends Resource {
            'automatic_upgrade_enabled': ?automaticUpgradeEnabled,
            'failure_suppression_enabled': ?failureSuppressionEnabled,
            'name': name,
-           'protected_settings': ?protectedSettings,
+           ...?protectedSettings?.argMap,
            'provision_after_extensions': ?provisionAfterExtensions,
            'publisher': publisher,
            'settings': ?settings,
@@ -68,10 +151,6 @@ final class AzurermVirtualMachineExtension extends Resource {
            'type': type,
            'type_handler_version': typeHandlerVersion,
            'virtual_machine_id': virtualMachineId,
-           if (protectedSettingsFromKeyVault != null)
-             'protected_settings_from_key_vault': TfArg.literal(
-               protectedSettingsFromKeyVault.encode(),
-             ),
          },
        );
 

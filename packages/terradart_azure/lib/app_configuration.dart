@@ -6,9 +6,12 @@ library;
 export 'package:terradart_core/terradart_core.dart';
 export 'src/app_configuration/azurerm_app_configuration.dart'
     show
+        AppConfigurationDataPlaneProxyAuthenticationMode,
         AppConfigurationEncryption,
         AppConfigurationIdentity,
+        AppConfigurationPublicNetworkAccess,
         AppConfigurationReplica,
+        AppConfigurationSku,
         AzurermAppConfiguration;
 export 'src/app_configuration/azurerm_app_configuration_feature.dart'
     show

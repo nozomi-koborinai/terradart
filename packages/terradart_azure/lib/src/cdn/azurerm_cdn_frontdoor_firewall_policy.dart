@@ -9,6 +9,28 @@ import '../resource/azurerm_resource_group.dart' show AzurermResourceGroup;
 /// Sensitive field paths for `azurerm_cdn_frontdoor_firewall_policy`.
 const Set<String> _azurermCdnFrontdoorFirewallPolicySensitive = <String>{};
 
+/// Cdn Frontdoor Firewall Policy enum for `mode`.
+extension type const CdnFrontdoorFirewallPolicyMode._(TfArg<String> _)
+    implements TfArg<String> {
+  CdnFrontdoorFirewallPolicyMode.variable(String name)
+    : this._(TfArg.variable(name));
+  CdnFrontdoorFirewallPolicyMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const CdnFrontdoorFirewallPolicyMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const detection = CdnFrontdoorFirewallPolicyMode._(
+    TfArgLiteral('Detection'),
+  );
+  static const prevention = CdnFrontdoorFirewallPolicyMode._(
+    TfArgLiteral('Prevention'),
+  );
+
+  static const List<CdnFrontdoorFirewallPolicyMode> values = [
+    detection,
+    prevention,
+  ];
+}
+
 /// Typed helper for the `custom_rule` block of
 /// `azurerm_cdn_frontdoor_firewall_policy` (derived from provider schema).
 @immutable
@@ -36,7 +58,7 @@ final class CdnFrontdoorFirewallPolicyCustomRule {
 
   final TfArg<num>? rateLimitThreshold;
 
-  final TfArg<String> type;
+  final CdnFrontdoorFirewallPolicyType type;
 
   final List<CdnFrontdoorFirewallPolicyMatchCondition>? matchCondition;
 
@@ -54,6 +76,28 @@ final class CdnFrontdoorFirewallPolicyCustomRule {
   };
 }
 
+/// `type` — derived from the provider schema description.
+extension type const CdnFrontdoorFirewallPolicyType._(TfArg<String> _)
+    implements TfArg<String> {
+  CdnFrontdoorFirewallPolicyType.variable(String name)
+    : this._(TfArg.variable(name));
+  CdnFrontdoorFirewallPolicyType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CdnFrontdoorFirewallPolicyType.arg(TfArg<String> arg) : this._(arg);
+
+  static const matchrule = CdnFrontdoorFirewallPolicyType._(
+    TfArgLiteral('MatchRule'),
+  );
+  static const ratelimitrule = CdnFrontdoorFirewallPolicyType._(
+    TfArgLiteral('RateLimitRule'),
+  );
+
+  static const List<CdnFrontdoorFirewallPolicyType> values = [
+    matchrule,
+    ratelimitrule,
+  ];
+}
+
 /// Typed helper for the `custom_rule.match_condition` block of
 /// `azurerm_cdn_frontdoor_firewall_policy` (derived from provider schema).
 @immutable
@@ -69,15 +113,15 @@ final class CdnFrontdoorFirewallPolicyMatchCondition {
 
   final TfArg<List<String>> matchValues;
 
-  final TfArg<String> matchVariable;
+  final CdnFrontdoorFirewallPolicyMatchConditionMatchVariable matchVariable;
 
   final TfArg<bool>? negationCondition;
 
-  final TfArg<String> operator;
+  final CdnFrontdoorFirewallPolicyMatchConditionOperator operator;
 
   final TfArg<String>? selector;
 
-  final TfArg<List<String>>? transforms;
+  final List<CdnFrontdoorFirewallPolicyTransforms>? transforms;
 
   @internal
   Map<String, Object?> encode() => {
@@ -86,8 +130,178 @@ final class CdnFrontdoorFirewallPolicyMatchCondition {
     'negation_condition': ?negationCondition?.toTfJson(),
     'operator': operator.toTfJson(),
     'selector': ?selector?.toTfJson(),
-    'transforms': ?transforms?.toTfJson(),
+    if (transforms != null)
+      'transforms': [for (final e in transforms!) e.toTfJson()],
   };
+}
+
+/// `match_variable` — derived from the provider schema description.
+extension type const CdnFrontdoorFirewallPolicyMatchConditionMatchVariable._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CdnFrontdoorFirewallPolicyMatchConditionMatchVariable.variable(String name)
+    : this._(TfArg.variable(name));
+  CdnFrontdoorFirewallPolicyMatchConditionMatchVariable.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const CdnFrontdoorFirewallPolicyMatchConditionMatchVariable.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const cookies =
+      CdnFrontdoorFirewallPolicyMatchConditionMatchVariable._(
+        TfArgLiteral('Cookies'),
+      );
+  static const postargs =
+      CdnFrontdoorFirewallPolicyMatchConditionMatchVariable._(
+        TfArgLiteral('PostArgs'),
+      );
+  static const querystring =
+      CdnFrontdoorFirewallPolicyMatchConditionMatchVariable._(
+        TfArgLiteral('QueryString'),
+      );
+  static const remoteaddr =
+      CdnFrontdoorFirewallPolicyMatchConditionMatchVariable._(
+        TfArgLiteral('RemoteAddr'),
+      );
+  static const requestbody =
+      CdnFrontdoorFirewallPolicyMatchConditionMatchVariable._(
+        TfArgLiteral('RequestBody'),
+      );
+  static const requestheader =
+      CdnFrontdoorFirewallPolicyMatchConditionMatchVariable._(
+        TfArgLiteral('RequestHeader'),
+      );
+  static const requestmethod =
+      CdnFrontdoorFirewallPolicyMatchConditionMatchVariable._(
+        TfArgLiteral('RequestMethod'),
+      );
+  static const requesturi =
+      CdnFrontdoorFirewallPolicyMatchConditionMatchVariable._(
+        TfArgLiteral('RequestUri'),
+      );
+  static const socketaddr =
+      CdnFrontdoorFirewallPolicyMatchConditionMatchVariable._(
+        TfArgLiteral('SocketAddr'),
+      );
+
+  static const List<CdnFrontdoorFirewallPolicyMatchConditionMatchVariable>
+  values = [
+    cookies,
+    postargs,
+    querystring,
+    remoteaddr,
+    requestbody,
+    requestheader,
+    requestmethod,
+    requesturi,
+    socketaddr,
+  ];
+}
+
+/// `operator` — derived from the provider schema description.
+extension type const CdnFrontdoorFirewallPolicyMatchConditionOperator._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CdnFrontdoorFirewallPolicyMatchConditionOperator.variable(String name)
+    : this._(TfArg.variable(name));
+  CdnFrontdoorFirewallPolicyMatchConditionOperator.expression(String template)
+    : this._(TfArg.expression(template));
+  const CdnFrontdoorFirewallPolicyMatchConditionOperator.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const any = CdnFrontdoorFirewallPolicyMatchConditionOperator._(
+    TfArgLiteral('Any'),
+  );
+  static const beginswith = CdnFrontdoorFirewallPolicyMatchConditionOperator._(
+    TfArgLiteral('BeginsWith'),
+  );
+  static const contains = CdnFrontdoorFirewallPolicyMatchConditionOperator._(
+    TfArgLiteral('Contains'),
+  );
+  static const endswith = CdnFrontdoorFirewallPolicyMatchConditionOperator._(
+    TfArgLiteral('EndsWith'),
+  );
+  static const equal = CdnFrontdoorFirewallPolicyMatchConditionOperator._(
+    TfArgLiteral('Equal'),
+  );
+  static const geomatch = CdnFrontdoorFirewallPolicyMatchConditionOperator._(
+    TfArgLiteral('GeoMatch'),
+  );
+  static const greaterthan = CdnFrontdoorFirewallPolicyMatchConditionOperator._(
+    TfArgLiteral('GreaterThan'),
+  );
+  static const greaterthanorequal =
+      CdnFrontdoorFirewallPolicyMatchConditionOperator._(
+        TfArgLiteral('GreaterThanOrEqual'),
+      );
+  static const ipmatch = CdnFrontdoorFirewallPolicyMatchConditionOperator._(
+    TfArgLiteral('IPMatch'),
+  );
+  static const lessthan = CdnFrontdoorFirewallPolicyMatchConditionOperator._(
+    TfArgLiteral('LessThan'),
+  );
+  static const lessthanorequal =
+      CdnFrontdoorFirewallPolicyMatchConditionOperator._(
+        TfArgLiteral('LessThanOrEqual'),
+      );
+  static const regex = CdnFrontdoorFirewallPolicyMatchConditionOperator._(
+    TfArgLiteral('RegEx'),
+  );
+
+  static const List<CdnFrontdoorFirewallPolicyMatchConditionOperator> values = [
+    any,
+    beginswith,
+    contains,
+    endswith,
+    equal,
+    geomatch,
+    greaterthan,
+    greaterthanorequal,
+    ipmatch,
+    lessthan,
+    lessthanorequal,
+    regex,
+  ];
+}
+
+/// `transforms` — derived from the provider schema description.
+extension type const CdnFrontdoorFirewallPolicyTransforms._(TfArg<String> _)
+    implements TfArg<String> {
+  CdnFrontdoorFirewallPolicyTransforms.variable(String name)
+    : this._(TfArg.variable(name));
+  CdnFrontdoorFirewallPolicyTransforms.expression(String template)
+    : this._(TfArg.expression(template));
+  const CdnFrontdoorFirewallPolicyTransforms.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const lowercase = CdnFrontdoorFirewallPolicyTransforms._(
+    TfArgLiteral('Lowercase'),
+  );
+  static const removenulls = CdnFrontdoorFirewallPolicyTransforms._(
+    TfArgLiteral('RemoveNulls'),
+  );
+  static const trim = CdnFrontdoorFirewallPolicyTransforms._(
+    TfArgLiteral('Trim'),
+  );
+  static const urldecode = CdnFrontdoorFirewallPolicyTransforms._(
+    TfArgLiteral('UrlDecode'),
+  );
+  static const urlencode = CdnFrontdoorFirewallPolicyTransforms._(
+    TfArgLiteral('UrlEncode'),
+  );
+  static const uppercase = CdnFrontdoorFirewallPolicyTransforms._(
+    TfArgLiteral('Uppercase'),
+  );
+
+  static const List<CdnFrontdoorFirewallPolicyTransforms> values = [
+    lowercase,
+    removenulls,
+    trim,
+    urldecode,
+    urlencode,
+    uppercase,
+  ];
 }
 
 /// Typed helper for the `log_scrubbing` block of
@@ -123,9 +337,9 @@ final class CdnFrontdoorFirewallPolicyScrubbingRule {
 
   final TfArg<bool>? enabled;
 
-  final TfArg<String> matchVariable;
+  final CdnFrontdoorFirewallPolicyScrubbingRuleMatchVariable matchVariable;
 
-  final TfArg<String>? operator;
+  final CdnFrontdoorFirewallPolicyScrubbingRuleOperator? operator;
 
   final TfArg<String>? selector;
 
@@ -136,6 +350,84 @@ final class CdnFrontdoorFirewallPolicyScrubbingRule {
     'operator': ?operator?.toTfJson(),
     'selector': ?selector?.toTfJson(),
   };
+}
+
+/// `match_variable` — derived from the provider schema description.
+extension type const CdnFrontdoorFirewallPolicyScrubbingRuleMatchVariable._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CdnFrontdoorFirewallPolicyScrubbingRuleMatchVariable.variable(String name)
+    : this._(TfArg.variable(name));
+  CdnFrontdoorFirewallPolicyScrubbingRuleMatchVariable.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const CdnFrontdoorFirewallPolicyScrubbingRuleMatchVariable.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const querystringargnames =
+      CdnFrontdoorFirewallPolicyScrubbingRuleMatchVariable._(
+        TfArgLiteral('QueryStringArgNames'),
+      );
+  static const requestbodyjsonargnames =
+      CdnFrontdoorFirewallPolicyScrubbingRuleMatchVariable._(
+        TfArgLiteral('RequestBodyJsonArgNames'),
+      );
+  static const requestbodypostargnames =
+      CdnFrontdoorFirewallPolicyScrubbingRuleMatchVariable._(
+        TfArgLiteral('RequestBodyPostArgNames'),
+      );
+  static const requestcookienames =
+      CdnFrontdoorFirewallPolicyScrubbingRuleMatchVariable._(
+        TfArgLiteral('RequestCookieNames'),
+      );
+  static const requestheadernames =
+      CdnFrontdoorFirewallPolicyScrubbingRuleMatchVariable._(
+        TfArgLiteral('RequestHeaderNames'),
+      );
+  static const requestipaddress =
+      CdnFrontdoorFirewallPolicyScrubbingRuleMatchVariable._(
+        TfArgLiteral('RequestIPAddress'),
+      );
+  static const requesturi =
+      CdnFrontdoorFirewallPolicyScrubbingRuleMatchVariable._(
+        TfArgLiteral('RequestUri'),
+      );
+
+  static const List<CdnFrontdoorFirewallPolicyScrubbingRuleMatchVariable>
+  values = [
+    querystringargnames,
+    requestbodyjsonargnames,
+    requestbodypostargnames,
+    requestcookienames,
+    requestheadernames,
+    requestipaddress,
+    requesturi,
+  ];
+}
+
+/// `operator` — derived from the provider schema description.
+extension type const CdnFrontdoorFirewallPolicyScrubbingRuleOperator._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CdnFrontdoorFirewallPolicyScrubbingRuleOperator.variable(String name)
+    : this._(TfArg.variable(name));
+  CdnFrontdoorFirewallPolicyScrubbingRuleOperator.expression(String template)
+    : this._(TfArg.expression(template));
+  const CdnFrontdoorFirewallPolicyScrubbingRuleOperator.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const equals = CdnFrontdoorFirewallPolicyScrubbingRuleOperator._(
+    TfArgLiteral('Equals'),
+  );
+  static const equalsany = CdnFrontdoorFirewallPolicyScrubbingRuleOperator._(
+    TfArgLiteral('EqualsAny'),
+  );
+
+  static const List<CdnFrontdoorFirewallPolicyScrubbingRuleOperator> values = [
+    equals,
+    equalsany,
+  ];
 }
 
 /// Typed helper for the `managed_rule` block of
@@ -182,9 +474,9 @@ final class CdnFrontdoorFirewallPolicyExclusion {
     required this.selector,
   });
 
-  final TfArg<String> matchVariable;
+  final CdnFrontdoorFirewallPolicyExclusionMatchVariable matchVariable;
 
-  final TfArg<String> operator;
+  final CdnFrontdoorFirewallPolicyExclusionOperator operator;
 
   final TfArg<String> selector;
 
@@ -194,6 +486,83 @@ final class CdnFrontdoorFirewallPolicyExclusion {
     'operator': operator.toTfJson(),
     'selector': selector.toTfJson(),
   };
+}
+
+/// `match_variable` — derived from the provider schema description.
+extension type const CdnFrontdoorFirewallPolicyExclusionMatchVariable._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CdnFrontdoorFirewallPolicyExclusionMatchVariable.variable(String name)
+    : this._(TfArg.variable(name));
+  CdnFrontdoorFirewallPolicyExclusionMatchVariable.expression(String template)
+    : this._(TfArg.expression(template));
+  const CdnFrontdoorFirewallPolicyExclusionMatchVariable.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const querystringargnames =
+      CdnFrontdoorFirewallPolicyExclusionMatchVariable._(
+        TfArgLiteral('QueryStringArgNames'),
+      );
+  static const requestbodyjsonargnames =
+      CdnFrontdoorFirewallPolicyExclusionMatchVariable._(
+        TfArgLiteral('RequestBodyJsonArgNames'),
+      );
+  static const requestbodypostargnames =
+      CdnFrontdoorFirewallPolicyExclusionMatchVariable._(
+        TfArgLiteral('RequestBodyPostArgNames'),
+      );
+  static const requestcookienames =
+      CdnFrontdoorFirewallPolicyExclusionMatchVariable._(
+        TfArgLiteral('RequestCookieNames'),
+      );
+  static const requestheadernames =
+      CdnFrontdoorFirewallPolicyExclusionMatchVariable._(
+        TfArgLiteral('RequestHeaderNames'),
+      );
+
+  static const List<CdnFrontdoorFirewallPolicyExclusionMatchVariable> values = [
+    querystringargnames,
+    requestbodyjsonargnames,
+    requestbodypostargnames,
+    requestcookienames,
+    requestheadernames,
+  ];
+}
+
+/// `operator` — derived from the provider schema description.
+extension type const CdnFrontdoorFirewallPolicyExclusionOperator._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CdnFrontdoorFirewallPolicyExclusionOperator.variable(String name)
+    : this._(TfArg.variable(name));
+  CdnFrontdoorFirewallPolicyExclusionOperator.expression(String template)
+    : this._(TfArg.expression(template));
+  const CdnFrontdoorFirewallPolicyExclusionOperator.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const contains = CdnFrontdoorFirewallPolicyExclusionOperator._(
+    TfArgLiteral('Contains'),
+  );
+  static const endswith = CdnFrontdoorFirewallPolicyExclusionOperator._(
+    TfArgLiteral('EndsWith'),
+  );
+  static const equals = CdnFrontdoorFirewallPolicyExclusionOperator._(
+    TfArgLiteral('Equals'),
+  );
+  static const equalsany = CdnFrontdoorFirewallPolicyExclusionOperator._(
+    TfArgLiteral('EqualsAny'),
+  );
+  static const startswith = CdnFrontdoorFirewallPolicyExclusionOperator._(
+    TfArgLiteral('StartsWith'),
+  );
+
+  static const List<CdnFrontdoorFirewallPolicyExclusionOperator> values = [
+    contains,
+    endswith,
+    equals,
+    equalsany,
+    startswith,
+  ];
 }
 
 /// Typed helper for the `managed_rule.override` block of
@@ -232,7 +601,7 @@ final class CdnFrontdoorFirewallPolicyRule {
     this.exclusion,
   });
 
-  final TfArg<String> action;
+  final CdnFrontdoorFirewallPolicyAction action;
 
   final TfArg<bool>? enabled;
 
@@ -250,6 +619,46 @@ final class CdnFrontdoorFirewallPolicyRule {
   };
 }
 
+/// `action` — derived from the provider schema description.
+extension type const CdnFrontdoorFirewallPolicyAction._(TfArg<String> _)
+    implements TfArg<String> {
+  CdnFrontdoorFirewallPolicyAction.variable(String name)
+    : this._(TfArg.variable(name));
+  CdnFrontdoorFirewallPolicyAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const CdnFrontdoorFirewallPolicyAction.arg(TfArg<String> arg) : this._(arg);
+
+  static const allow = CdnFrontdoorFirewallPolicyAction._(
+    TfArgLiteral('Allow'),
+  );
+  static const anomalyscoring = CdnFrontdoorFirewallPolicyAction._(
+    TfArgLiteral('AnomalyScoring'),
+  );
+  static const block = CdnFrontdoorFirewallPolicyAction._(
+    TfArgLiteral('Block'),
+  );
+  static const captcha = CdnFrontdoorFirewallPolicyAction._(
+    TfArgLiteral('CAPTCHA'),
+  );
+  static const jschallenge = CdnFrontdoorFirewallPolicyAction._(
+    TfArgLiteral('JSChallenge'),
+  );
+  static const log = CdnFrontdoorFirewallPolicyAction._(TfArgLiteral('Log'));
+  static const redirect = CdnFrontdoorFirewallPolicyAction._(
+    TfArgLiteral('Redirect'),
+  );
+
+  static const List<CdnFrontdoorFirewallPolicyAction> values = [
+    allow,
+    anomalyscoring,
+    block,
+    captcha,
+    jschallenge,
+    log,
+    redirect,
+  ];
+}
+
 /// Factory wrapper for `azurerm_cdn_frontdoor_firewall_policy`.
 final class AzurermCdnFrontdoorFirewallPolicy extends Resource {
   static const String tfType = 'azurerm_cdn_frontdoor_firewall_policy';
@@ -261,7 +670,7 @@ final class AzurermCdnFrontdoorFirewallPolicy extends Resource {
     TfArg<num>? customBlockResponseStatusCode,
     TfArg<bool>? enabled,
     TfArg<num>? jsChallengeCookieExpirationInMinutes,
-    required TfArg<String> mode,
+    required CdnFrontdoorFirewallPolicyMode mode,
     required TfArg<String> name,
     TfArg<String>? redirectUrl,
     TfArg<bool>? requestBodyCheckEnabled,

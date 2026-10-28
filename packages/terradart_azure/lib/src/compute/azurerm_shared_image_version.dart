@@ -10,6 +10,124 @@ import '../storage/azurerm_storage_account.dart' show AzurermStorageAccount;
 /// Sensitive field paths for `azurerm_shared_image_version`.
 const Set<String> _azurermSharedImageVersionSensitive = <String>{};
 
+/// Shared Image Version Replication enum for `replication_mode`.
+extension type const SharedImageVersionReplicationMode._(TfArg<String> _)
+    implements TfArg<String> {
+  SharedImageVersionReplicationMode.variable(String name)
+    : this._(TfArg.variable(name));
+  SharedImageVersionReplicationMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const SharedImageVersionReplicationMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const full = SharedImageVersionReplicationMode._(TfArgLiteral('Full'));
+  static const shallow = SharedImageVersionReplicationMode._(
+    TfArgLiteral('Shallow'),
+  );
+
+  static const List<SharedImageVersionReplicationMode> values = [full, shallow];
+}
+
+/// Exactly one of `blob_uri`, `managed_image_id`, `os_disk_snapshot_id` on `azurerm_shared_image_version`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.blobUri(...)`.
+sealed class SharedImageVersionSource {
+  const SharedImageVersionSource();
+
+  /// Sets `blob_uri`.
+  const factory SharedImageVersionSource.blobUri(TfArg<String> blobUri) =
+      SharedImageVersionSourceBlobUri;
+
+  /// Sets `managed_image_id`.
+  const factory SharedImageVersionSource.managedImageId(
+    TfArg<String> managedImageId,
+  ) = SharedImageVersionSourceManagedImageId;
+
+  /// Sets `os_disk_snapshot_id`.
+  const factory SharedImageVersionSource.osDiskSnapshotId(
+    TfArg<String> osDiskSnapshotId,
+  ) = SharedImageVersionSourceOsDiskSnapshotId;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [SharedImageVersionSource.blobUri] choice: sets `blob_uri`.
+final class SharedImageVersionSourceBlobUri extends SharedImageVersionSource {
+  const SharedImageVersionSourceBlobUri(this.blobUri);
+
+  final TfArg<String> blobUri;
+
+  @internal
+  @override
+  String get blockKey => 'blob_uri';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'blob_uri': blobUri.toTfJson()};
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'blob_uri': blobUri};
+}
+
+/// The [SharedImageVersionSource.managedImageId] choice: sets `managed_image_id`.
+final class SharedImageVersionSourceManagedImageId
+    extends SharedImageVersionSource {
+  const SharedImageVersionSourceManagedImageId(this.managedImageId);
+
+  final TfArg<String> managedImageId;
+
+  @internal
+  @override
+  String get blockKey => 'managed_image_id';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'managed_image_id': managedImageId.toTfJson(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'managed_image_id': managedImageId,
+  };
+}
+
+/// The [SharedImageVersionSource.osDiskSnapshotId] choice: sets `os_disk_snapshot_id`.
+final class SharedImageVersionSourceOsDiskSnapshotId
+    extends SharedImageVersionSource {
+  const SharedImageVersionSourceOsDiskSnapshotId(this.osDiskSnapshotId);
+
+  final TfArg<String> osDiskSnapshotId;
+
+  @internal
+  @override
+  String get blockKey => 'os_disk_snapshot_id';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'os_disk_snapshot_id': osDiskSnapshotId.toTfJson(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'os_disk_snapshot_id': osDiskSnapshotId,
+  };
+}
+
 /// Typed helper for the `target_region` block of
 /// `azurerm_shared_image_version` (derived from provider schema).
 @immutable
@@ -30,7 +148,7 @@ final class SharedImageVersionTargetRegion {
 
   final TfArg<num> regionalReplicaCount;
 
-  final TfArg<String>? storageAccountType;
+  final SharedImageVersionStorageAccountType? storageAccountType;
 
   @internal
   Map<String, Object?> encode() => {
@@ -42,6 +160,33 @@ final class SharedImageVersionTargetRegion {
   };
 }
 
+/// `storage_account_type` — derived from the provider schema description.
+extension type const SharedImageVersionStorageAccountType._(TfArg<String> _)
+    implements TfArg<String> {
+  SharedImageVersionStorageAccountType.variable(String name)
+    : this._(TfArg.variable(name));
+  SharedImageVersionStorageAccountType.expression(String template)
+    : this._(TfArg.expression(template));
+  const SharedImageVersionStorageAccountType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const premiumLrs = SharedImageVersionStorageAccountType._(
+    TfArgLiteral('Premium_LRS'),
+  );
+  static const standardLrs = SharedImageVersionStorageAccountType._(
+    TfArgLiteral('Standard_LRS'),
+  );
+  static const standardZrs = SharedImageVersionStorageAccountType._(
+    TfArgLiteral('Standard_ZRS'),
+  );
+
+  static const List<SharedImageVersionStorageAccountType> values = [
+    premiumLrs,
+    standardLrs,
+    standardZrs,
+  ];
+}
+
 /// Typed helper for the `uefi` block of
 /// `azurerm_shared_image_version` (derived from provider schema).
 @immutable
@@ -51,15 +196,46 @@ final class SharedImageVersionUefi {
     this.additionalSignatures,
   });
 
-  final TfArg<List<String>> signatureTemplateNames;
+  final List<SharedImageVersionSignatureTemplateNames> signatureTemplateNames;
 
   final SharedImageVersionAdditionalSignatures? additionalSignatures;
 
   @internal
   Map<String, Object?> encode() => {
-    'signature_template_names': signatureTemplateNames.toTfJson(),
+    'signature_template_names': [
+      for (final e in signatureTemplateNames) e.toTfJson(),
+    ],
     'additional_signatures': ?additionalSignatures?.encode(),
   };
+}
+
+/// `signature_template_names` — derived from the provider schema description.
+extension type const SharedImageVersionSignatureTemplateNames._(TfArg<String> _)
+    implements TfArg<String> {
+  SharedImageVersionSignatureTemplateNames.variable(String name)
+    : this._(TfArg.variable(name));
+  SharedImageVersionSignatureTemplateNames.expression(String template)
+    : this._(TfArg.expression(template));
+  const SharedImageVersionSignatureTemplateNames.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const microsoftueficertificateauthoritytemplate =
+      SharedImageVersionSignatureTemplateNames._(
+        TfArgLiteral('MicrosoftUefiCertificateAuthorityTemplate'),
+      );
+  static const microsoftwindowstemplate =
+      SharedImageVersionSignatureTemplateNames._(
+        TfArgLiteral('MicrosoftWindowsTemplate'),
+      );
+  static const nosignaturetemplate = SharedImageVersionSignatureTemplateNames._(
+    TfArgLiteral('NoSignatureTemplate'),
+  );
+
+  static const List<SharedImageVersionSignatureTemplateNames> values = [
+    microsoftueficertificateauthoritytemplate,
+    microsoftwindowstemplate,
+    nosignaturetemplate,
+  ];
 }
 
 /// Typed helper for the `uefi.additional_signatures` block of
@@ -164,17 +340,15 @@ final class AzurermSharedImageVersion extends Resource {
 
   AzurermSharedImageVersion(
     super.localName, {
-    TfArg<String>? blobUri,
+    required SharedImageVersionSource source,
     TfArg<bool>? deletionOfReplicatedLocationsEnabled,
     TfArg<String>? endOfLifeDate,
     TfArg<bool>? excludeFromLatest,
     required TfArg<String> galleryName,
     required TfArg<String> imageName,
     required TfArg<String> location,
-    TfArg<String>? managedImageId,
     required TfArg<String> name,
-    TfArg<String>? osDiskSnapshotId,
-    TfArg<String>? replicationMode,
+    SharedImageVersionReplicationMode? replicationMode,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     RefTo<AzurermStorageAccount>? storageAccountId,
     TfArg<Map<String, String>>? tags,
@@ -187,7 +361,7 @@ final class AzurermSharedImageVersion extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'blob_uri': ?blobUri,
+           ...source.argMap,
            'deletion_of_replicated_locations_enabled':
                ?deletionOfReplicatedLocationsEnabled,
            'end_of_life_date': ?endOfLifeDate,
@@ -195,9 +369,7 @@ final class AzurermSharedImageVersion extends Resource {
            'gallery_name': galleryName,
            'image_name': imageName,
            'location': location,
-           'managed_image_id': ?managedImageId,
            'name': name,
-           'os_disk_snapshot_id': ?osDiskSnapshotId,
            'replication_mode': ?replicationMode,
            'resource_group_name': resourceGroupName.encodeAs('name'),
            'storage_account_id': ?storageAccountId?.encodeAs('id'),

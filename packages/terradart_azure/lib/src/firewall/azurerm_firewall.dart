@@ -9,6 +9,50 @@ import '../resource/azurerm_resource_group.dart' show AzurermResourceGroup;
 /// Sensitive field paths for `azurerm_firewall`.
 const Set<String> _azurermFirewallSensitive = <String>{};
 
+/// Firewall Sku enum for `sku_name`.
+extension type const FirewallSkuName._(TfArg<String> _)
+    implements TfArg<String> {
+  FirewallSkuName.variable(String name) : this._(TfArg.variable(name));
+  FirewallSkuName.expression(String template)
+    : this._(TfArg.expression(template));
+  const FirewallSkuName.arg(TfArg<String> arg) : this._(arg);
+
+  static const azfwHub = FirewallSkuName._(TfArgLiteral('AZFW_Hub'));
+  static const azfwVnet = FirewallSkuName._(TfArgLiteral('AZFW_VNet'));
+
+  static const List<FirewallSkuName> values = [azfwHub, azfwVnet];
+}
+
+/// Firewall Sku enum for `sku_tier`.
+extension type const FirewallSkuTier._(TfArg<String> _)
+    implements TfArg<String> {
+  FirewallSkuTier.variable(String name) : this._(TfArg.variable(name));
+  FirewallSkuTier.expression(String template)
+    : this._(TfArg.expression(template));
+  const FirewallSkuTier.arg(TfArg<String> arg) : this._(arg);
+
+  static const basic = FirewallSkuTier._(TfArgLiteral('Basic'));
+  static const premium = FirewallSkuTier._(TfArgLiteral('Premium'));
+  static const standard = FirewallSkuTier._(TfArgLiteral('Standard'));
+
+  static const List<FirewallSkuTier> values = [basic, premium, standard];
+}
+
+/// Firewall Threat Intel enum for `threat_intel_mode`.
+extension type const FirewallThreatIntelMode._(TfArg<String> _)
+    implements TfArg<String> {
+  FirewallThreatIntelMode.variable(String name) : this._(TfArg.variable(name));
+  FirewallThreatIntelMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const FirewallThreatIntelMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const alert = FirewallThreatIntelMode._(TfArgLiteral('Alert'));
+  static const deny = FirewallThreatIntelMode._(TfArgLiteral('Deny'));
+  static const off = FirewallThreatIntelMode._(TfArgLiteral('Off'));
+
+  static const List<FirewallThreatIntelMode> values = [alert, deny, off];
+}
+
 /// Typed helper for the `ip_configuration` block of
 /// `azurerm_firewall` (derived from provider schema).
 @immutable
@@ -87,10 +131,10 @@ final class AzurermFirewall extends Resource {
     required TfArg<String> name,
     TfArg<List<String>>? privateIpRanges,
     required RefTo<AzurermResourceGroup> resourceGroupName,
-    required TfArg<String> skuName,
-    required TfArg<String> skuTier,
+    required FirewallSkuName skuName,
+    required FirewallSkuTier skuTier,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? threatIntelMode,
+    FirewallThreatIntelMode? threatIntelMode,
     TfArg<List<String>>? zones,
     List<FirewallIpConfiguration>? ipConfiguration,
     FirewallManagementIpConfiguration? managementIpConfiguration,

@@ -9,6 +9,43 @@ import '../resource/azurerm_resource_group.dart' show AzurermResourceGroup;
 /// Sensitive field paths for `azurerm_express_route_port`.
 const Set<String> _azurermExpressRoutePortSensitive = <String>{};
 
+/// Express Route Port Billing enum for `billing_type`.
+extension type const ExpressRoutePortBillingType._(TfArg<String> _)
+    implements TfArg<String> {
+  ExpressRoutePortBillingType.variable(String name)
+    : this._(TfArg.variable(name));
+  ExpressRoutePortBillingType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ExpressRoutePortBillingType.arg(TfArg<String> arg) : this._(arg);
+
+  static const metereddata = ExpressRoutePortBillingType._(
+    TfArgLiteral('MeteredData'),
+  );
+  static const unlimiteddata = ExpressRoutePortBillingType._(
+    TfArgLiteral('UnlimitedData'),
+  );
+
+  static const List<ExpressRoutePortBillingType> values = [
+    metereddata,
+    unlimiteddata,
+  ];
+}
+
+/// Express Route Port enum for `encapsulation`.
+extension type const ExpressRoutePortEncapsulation._(TfArg<String> _)
+    implements TfArg<String> {
+  ExpressRoutePortEncapsulation.variable(String name)
+    : this._(TfArg.variable(name));
+  ExpressRoutePortEncapsulation.expression(String template)
+    : this._(TfArg.expression(template));
+  const ExpressRoutePortEncapsulation.arg(TfArg<String> arg) : this._(arg);
+
+  static const dot1q = ExpressRoutePortEncapsulation._(TfArgLiteral('Dot1Q'));
+  static const qinq = ExpressRoutePortEncapsulation._(TfArgLiteral('QinQ'));
+
+  static const List<ExpressRoutePortEncapsulation> values = [dot1q, qinq];
+}
+
 /// Typed helper for the `identity` block of
 /// `azurerm_express_route_port` (derived from provider schema).
 @immutable
@@ -97,8 +134,8 @@ final class AzurermExpressRoutePort extends Resource {
   AzurermExpressRoutePort(
     super.localName, {
     required TfArg<num> bandwidthInGbps,
-    TfArg<String>? billingType,
-    required TfArg<String> encapsulation,
+    ExpressRoutePortBillingType? billingType,
+    required ExpressRoutePortEncapsulation encapsulation,
     required TfArg<String> location,
     required TfArg<String> name,
     required TfArg<String> peeringLocation,

@@ -8,7 +8,14 @@ export 'src/data/azurerm_role_assignments.dart' show DataAzurermRoleAssignments;
 export 'src/data/azurerm_role_definition.dart' show DataAzurermRoleDefinition;
 export 'src/data/azurerm_role_management_policy.dart'
     show DataAzurermRoleManagementPolicy;
-export 'src/role/azurerm_role_assignment.dart' show AzurermRoleAssignment;
+export 'src/role/azurerm_role_assignment.dart'
+    show
+        AzurermRoleAssignment,
+        RoleAssignmentConditionVersion,
+        RoleAssignmentPrincipalType,
+        RoleAssignmentRoleDefinition,
+        RoleAssignmentRoleDefinitionId,
+        RoleAssignmentRoleDefinitionName;
 export 'src/role/azurerm_role_definition.dart'
     show AzurermRoleDefinition, RoleDefinitionPermissions;
 export 'src/role/azurerm_role_management_policy.dart'

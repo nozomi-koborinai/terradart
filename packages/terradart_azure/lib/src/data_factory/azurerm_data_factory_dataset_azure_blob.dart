@@ -21,7 +21,7 @@ final class DataFactoryDatasetAzureBlobSchemaColumn {
 
   final TfArg<String> name;
 
-  final TfArg<String>? type;
+  final DataFactoryDatasetAzureBlobType? type;
 
   @internal
   Map<String, Object?> encode() => {
@@ -29,6 +29,68 @@ final class DataFactoryDatasetAzureBlobSchemaColumn {
     'name': name.toTfJson(),
     'type': ?type?.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+extension type const DataFactoryDatasetAzureBlobType._(TfArg<String> _)
+    implements TfArg<String> {
+  DataFactoryDatasetAzureBlobType.variable(String name)
+    : this._(TfArg.variable(name));
+  DataFactoryDatasetAzureBlobType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataFactoryDatasetAzureBlobType.arg(TfArg<String> arg) : this._(arg);
+
+  static const byte = DataFactoryDatasetAzureBlobType._(TfArgLiteral('Byte'));
+  static const byte2 = DataFactoryDatasetAzureBlobType._(
+    TfArgLiteral('Byte[]'),
+  );
+  static const boolean = DataFactoryDatasetAzureBlobType._(
+    TfArgLiteral('Boolean'),
+  );
+  static const date = DataFactoryDatasetAzureBlobType._(TfArgLiteral('Date'));
+  static const datetime = DataFactoryDatasetAzureBlobType._(
+    TfArgLiteral('DateTime'),
+  );
+  static const datetimeoffset = DataFactoryDatasetAzureBlobType._(
+    TfArgLiteral('DateTimeOffset'),
+  );
+  static const decimal = DataFactoryDatasetAzureBlobType._(
+    TfArgLiteral('Decimal'),
+  );
+  static const double = DataFactoryDatasetAzureBlobType._(
+    TfArgLiteral('Double'),
+  );
+  static const guid = DataFactoryDatasetAzureBlobType._(TfArgLiteral('Guid'));
+  static const int16 = DataFactoryDatasetAzureBlobType._(TfArgLiteral('Int16'));
+  static const int32 = DataFactoryDatasetAzureBlobType._(TfArgLiteral('Int32'));
+  static const int64 = DataFactoryDatasetAzureBlobType._(TfArgLiteral('Int64'));
+  static const single = DataFactoryDatasetAzureBlobType._(
+    TfArgLiteral('Single'),
+  );
+  static const string = DataFactoryDatasetAzureBlobType._(
+    TfArgLiteral('String'),
+  );
+  static const timespan = DataFactoryDatasetAzureBlobType._(
+    TfArgLiteral('TimeSpan'),
+  );
+
+  static const List<DataFactoryDatasetAzureBlobType> values = [
+    byte,
+    byte2,
+    boolean,
+    date,
+    datetime,
+    datetimeoffset,
+    decimal,
+    double,
+    guid,
+    int16,
+    int32,
+    int64,
+    single,
+    string,
+    timespan,
+  ];
 }
 
 /// Factory wrapper for `azurerm_data_factory_dataset_azure_blob`.

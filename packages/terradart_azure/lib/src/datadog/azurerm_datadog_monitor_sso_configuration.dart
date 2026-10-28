@@ -6,6 +6,38 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `azurerm_datadog_monitor_sso_configuration`.
 const Set<String> _azurermDatadogMonitorSsoConfigurationSensitive = <String>{};
 
+/// Datadog Monitor Sso Configuration Single Sign enum for `single_sign_on`.
+extension type const DatadogMonitorSsoConfigurationSingleSignOn._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DatadogMonitorSsoConfigurationSingleSignOn.variable(String name)
+    : this._(TfArg.variable(name));
+  DatadogMonitorSsoConfigurationSingleSignOn.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatadogMonitorSsoConfigurationSingleSignOn.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const disable = DatadogMonitorSsoConfigurationSingleSignOn._(
+    TfArgLiteral('Disable'),
+  );
+  static const enable = DatadogMonitorSsoConfigurationSingleSignOn._(
+    TfArgLiteral('Enable'),
+  );
+  static const existing = DatadogMonitorSsoConfigurationSingleSignOn._(
+    TfArgLiteral('Existing'),
+  );
+  static const initial = DatadogMonitorSsoConfigurationSingleSignOn._(
+    TfArgLiteral('Initial'),
+  );
+
+  static const List<DatadogMonitorSsoConfigurationSingleSignOn> values = [
+    disable,
+    enable,
+    existing,
+    initial,
+  ];
+}
+
 /// Factory wrapper for `azurerm_datadog_monitor_sso_configuration`.
 final class AzurermDatadogMonitorSsoConfiguration extends Resource {
   static const String tfType = 'azurerm_datadog_monitor_sso_configuration';
@@ -15,7 +47,7 @@ final class AzurermDatadogMonitorSsoConfiguration extends Resource {
     required TfArg<String> datadogMonitorId,
     required TfArg<String> enterpriseApplicationId,
     TfArg<String>? name,
-    required TfArg<String> singleSignOn,
+    required DatadogMonitorSsoConfigurationSingleSignOn singleSignOn,
     super.lifecycle,
     super.dependsOn,
     super.provider,

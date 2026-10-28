@@ -4,3 +4,7 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 deriveExactlyOne: true
+
+sealedNames:
+  "catalog_info.elastic_pool_name, catalog_info.pricing_tier": capacity
+  "vnet_integration.subnet_id, vnet_integration.vnet_id": network

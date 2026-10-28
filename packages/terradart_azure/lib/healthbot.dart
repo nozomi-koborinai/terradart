@@ -4,4 +4,5 @@
 library;
 
 export 'package:terradart_core/terradart_core.dart';
-export 'src/healthbot/azurerm_healthbot.dart' show AzurermHealthbot;
+export 'src/healthbot/azurerm_healthbot.dart'
+    show AzurermHealthbot, HealthbotSkuName;

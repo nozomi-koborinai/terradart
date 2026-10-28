@@ -13,6 +13,196 @@ const Set<String> _azurermCognitiveAccountSensitive = <String>{
   'secondary_access_key',
 };
 
+/// Cognitive Account enum for `kind`.
+extension type const CognitiveAccountKind._(TfArg<String> _)
+    implements TfArg<String> {
+  CognitiveAccountKind.variable(String name) : this._(TfArg.variable(name));
+  CognitiveAccountKind.expression(String template)
+    : this._(TfArg.expression(template));
+  const CognitiveAccountKind.arg(TfArg<String> arg) : this._(arg);
+
+  static const aiservices = CognitiveAccountKind._(TfArgLiteral('AIServices'));
+  static const academic = CognitiveAccountKind._(TfArgLiteral('Academic'));
+  static const anomalydetector = CognitiveAccountKind._(
+    TfArgLiteral('AnomalyDetector'),
+  );
+  static const bingAutosuggest = CognitiveAccountKind._(
+    TfArgLiteral('Bing.Autosuggest'),
+  );
+  static const bingAutosuggestV7 = CognitiveAccountKind._(
+    TfArgLiteral('Bing.Autosuggest.v7'),
+  );
+  static const bingCustomsearch = CognitiveAccountKind._(
+    TfArgLiteral('Bing.CustomSearch'),
+  );
+  static const bingSearch = CognitiveAccountKind._(TfArgLiteral('Bing.Search'));
+  static const bingSearchV7 = CognitiveAccountKind._(
+    TfArgLiteral('Bing.Search.v7'),
+  );
+  static const bingSpeech = CognitiveAccountKind._(TfArgLiteral('Bing.Speech'));
+  static const bingSpellcheck = CognitiveAccountKind._(
+    TfArgLiteral('Bing.SpellCheck'),
+  );
+  static const bingSpellcheckV7 = CognitiveAccountKind._(
+    TfArgLiteral('Bing.SpellCheck.v7'),
+  );
+  static const cognitiveservices = CognitiveAccountKind._(
+    TfArgLiteral('CognitiveServices'),
+  );
+  static const computervision = CognitiveAccountKind._(
+    TfArgLiteral('ComputerVision'),
+  );
+  static const contentmoderator = CognitiveAccountKind._(
+    TfArgLiteral('ContentModerator'),
+  );
+  static const conversationallanguageunderstanding = CognitiveAccountKind._(
+    TfArgLiteral('ConversationalLanguageUnderstanding'),
+  );
+  static const contentsafety = CognitiveAccountKind._(
+    TfArgLiteral('ContentSafety'),
+  );
+  static const customspeech = CognitiveAccountKind._(
+    TfArgLiteral('CustomSpeech'),
+  );
+  static const customvisionPrediction = CognitiveAccountKind._(
+    TfArgLiteral('CustomVision.Prediction'),
+  );
+  static const customvisionTraining = CognitiveAccountKind._(
+    TfArgLiteral('CustomVision.Training'),
+  );
+  static const emotion = CognitiveAccountKind._(TfArgLiteral('Emotion'));
+  static const face = CognitiveAccountKind._(TfArgLiteral('Face'));
+  static const formrecognizer = CognitiveAccountKind._(
+    TfArgLiteral('FormRecognizer'),
+  );
+  static const immersivereader = CognitiveAccountKind._(
+    TfArgLiteral('ImmersiveReader'),
+  );
+  static const luis = CognitiveAccountKind._(TfArgLiteral('LUIS'));
+  static const luisAuthoring = CognitiveAccountKind._(
+    TfArgLiteral('LUIS.Authoring'),
+  );
+  static const metricsadvisor = CognitiveAccountKind._(
+    TfArgLiteral('MetricsAdvisor'),
+  );
+  static const openai = CognitiveAccountKind._(TfArgLiteral('OpenAI'));
+  static const personalizer = CognitiveAccountKind._(
+    TfArgLiteral('Personalizer'),
+  );
+  static const qnamaker = CognitiveAccountKind._(TfArgLiteral('QnAMaker'));
+  static const recommendations = CognitiveAccountKind._(
+    TfArgLiteral('Recommendations'),
+  );
+  static const speakerrecognition = CognitiveAccountKind._(
+    TfArgLiteral('SpeakerRecognition'),
+  );
+  static const speech = CognitiveAccountKind._(TfArgLiteral('Speech'));
+  static const speechservices = CognitiveAccountKind._(
+    TfArgLiteral('SpeechServices'),
+  );
+  static const speechtranslation = CognitiveAccountKind._(
+    TfArgLiteral('SpeechTranslation'),
+  );
+  static const textanalytics = CognitiveAccountKind._(
+    TfArgLiteral('TextAnalytics'),
+  );
+  static const texttranslation = CognitiveAccountKind._(
+    TfArgLiteral('TextTranslation'),
+  );
+  static const weblm = CognitiveAccountKind._(TfArgLiteral('WebLM'));
+
+  static const List<CognitiveAccountKind> values = [
+    aiservices,
+    academic,
+    anomalydetector,
+    bingAutosuggest,
+    bingAutosuggestV7,
+    bingCustomsearch,
+    bingSearch,
+    bingSearchV7,
+    bingSpeech,
+    bingSpellcheck,
+    bingSpellcheckV7,
+    cognitiveservices,
+    computervision,
+    contentmoderator,
+    conversationallanguageunderstanding,
+    contentsafety,
+    customspeech,
+    customvisionPrediction,
+    customvisionTraining,
+    emotion,
+    face,
+    formrecognizer,
+    immersivereader,
+    luis,
+    luisAuthoring,
+    metricsadvisor,
+    openai,
+    personalizer,
+    qnamaker,
+    recommendations,
+    speakerrecognition,
+    speech,
+    speechservices,
+    speechtranslation,
+    textanalytics,
+    texttranslation,
+    weblm,
+  ];
+}
+
+/// Cognitive Account Sku enum for `sku_name`.
+extension type const CognitiveAccountSkuName._(TfArg<String> _)
+    implements TfArg<String> {
+  CognitiveAccountSkuName.variable(String name) : this._(TfArg.variable(name));
+  CognitiveAccountSkuName.expression(String template)
+    : this._(TfArg.expression(template));
+  const CognitiveAccountSkuName.arg(TfArg<String> arg) : this._(arg);
+
+  static const c2 = CognitiveAccountSkuName._(TfArgLiteral('C2'));
+  static const c3 = CognitiveAccountSkuName._(TfArgLiteral('C3'));
+  static const c4 = CognitiveAccountSkuName._(TfArgLiteral('C4'));
+  static const d3 = CognitiveAccountSkuName._(TfArgLiteral('D3'));
+  static const dc0 = CognitiveAccountSkuName._(TfArgLiteral('DC0'));
+  static const e0 = CognitiveAccountSkuName._(TfArgLiteral('E0'));
+  static const f0 = CognitiveAccountSkuName._(TfArgLiteral('F0'));
+  static const f1 = CognitiveAccountSkuName._(TfArgLiteral('F1'));
+  static const p0 = CognitiveAccountSkuName._(TfArgLiteral('P0'));
+  static const p1 = CognitiveAccountSkuName._(TfArgLiteral('P1'));
+  static const p2 = CognitiveAccountSkuName._(TfArgLiteral('P2'));
+  static const s = CognitiveAccountSkuName._(TfArgLiteral('S'));
+  static const s0 = CognitiveAccountSkuName._(TfArgLiteral('S0'));
+  static const s1 = CognitiveAccountSkuName._(TfArgLiteral('S1'));
+  static const s2 = CognitiveAccountSkuName._(TfArgLiteral('S2'));
+  static const s3 = CognitiveAccountSkuName._(TfArgLiteral('S3'));
+  static const s4 = CognitiveAccountSkuName._(TfArgLiteral('S4'));
+  static const s5 = CognitiveAccountSkuName._(TfArgLiteral('S5'));
+  static const s6 = CognitiveAccountSkuName._(TfArgLiteral('S6'));
+
+  static const List<CognitiveAccountSkuName> values = [
+    c2,
+    c3,
+    c4,
+    d3,
+    dc0,
+    e0,
+    f0,
+    f1,
+    p0,
+    p1,
+    p2,
+    s,
+    s0,
+    s1,
+    s2,
+    s3,
+    s4,
+    s5,
+    s6,
+  ];
+}
+
 /// Typed helper for the `customer_managed_key` block of
 /// `azurerm_cognitive_account` (derived from provider schema).
 @immutable
@@ -61,9 +251,9 @@ final class CognitiveAccountNetworkAcls {
     this.virtualNetworkRules,
   });
 
-  final TfArg<String>? bypass;
+  final CognitiveAccountBypass? bypass;
 
-  final TfArg<String> defaultAction;
+  final CognitiveAccountDefaultAction defaultAction;
 
   final TfArg<List<String>>? ipRules;
 
@@ -79,6 +269,37 @@ final class CognitiveAccountNetworkAcls {
         for (final e in virtualNetworkRules!) e.encode(),
       ],
   };
+}
+
+/// `bypass` — derived from the provider schema description.
+extension type const CognitiveAccountBypass._(TfArg<String> _)
+    implements TfArg<String> {
+  CognitiveAccountBypass.variable(String name) : this._(TfArg.variable(name));
+  CognitiveAccountBypass.expression(String template)
+    : this._(TfArg.expression(template));
+  const CognitiveAccountBypass.arg(TfArg<String> arg) : this._(arg);
+
+  static const azureservices = CognitiveAccountBypass._(
+    TfArgLiteral('AzureServices'),
+  );
+  static const none = CognitiveAccountBypass._(TfArgLiteral('None'));
+
+  static const List<CognitiveAccountBypass> values = [azureservices, none];
+}
+
+/// `default_action` — derived from the provider schema description.
+extension type const CognitiveAccountDefaultAction._(TfArg<String> _)
+    implements TfArg<String> {
+  CognitiveAccountDefaultAction.variable(String name)
+    : this._(TfArg.variable(name));
+  CognitiveAccountDefaultAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const CognitiveAccountDefaultAction.arg(TfArg<String> arg) : this._(arg);
+
+  static const allow = CognitiveAccountDefaultAction._(TfArgLiteral('Allow'));
+  static const deny = CognitiveAccountDefaultAction._(TfArgLiteral('Deny'));
+
+  static const List<CognitiveAccountDefaultAction> values = [allow, deny];
 }
 
 /// Typed helper for the `network_acls.virtual_network_rules` block of
@@ -153,7 +374,7 @@ final class AzurermCognitiveAccount extends Resource {
     TfArg<String>? customSubdomainName,
     TfArg<bool>? dynamicThrottlingEnabled,
     TfArg<List<String>>? fqdns,
-    required TfArg<String> kind,
+    required CognitiveAccountKind kind,
     TfArg<bool>? localAuthEnabled,
     required TfArg<String> location,
     TfArg<String>? metricsAdvisorAadClientId,
@@ -166,7 +387,7 @@ final class AzurermCognitiveAccount extends Resource {
     TfArg<bool>? publicNetworkAccessEnabled,
     TfArg<String>? qnaRuntimeEndpoint,
     required RefTo<AzurermResourceGroup> resourceGroupName,
-    required TfArg<String> skuName,
+    required CognitiveAccountSkuName skuName,
     TfArg<Map<String, String>>? tags,
     CognitiveAccountCustomerManagedKey? customerManagedKey,
     CognitiveAccountIdentity? identity,

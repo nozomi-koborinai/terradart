@@ -11,6 +11,179 @@ const Set<String> _azurermCosmosdbPostgresqlClusterSensitive = <String>{
   'administrator_login_password',
 };
 
+/// Cosmosdb Postgresql Cluster Citus enum for `citus_version`.
+extension type const CosmosdbPostgresqlClusterCitusVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  CosmosdbPostgresqlClusterCitusVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  CosmosdbPostgresqlClusterCitusVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const CosmosdbPostgresqlClusterCitusVersion.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const v8p3 = CosmosdbPostgresqlClusterCitusVersion._(
+    TfArgLiteral('8.3'),
+  );
+  static const v9p0 = CosmosdbPostgresqlClusterCitusVersion._(
+    TfArgLiteral('9.0'),
+  );
+  static const v9p1 = CosmosdbPostgresqlClusterCitusVersion._(
+    TfArgLiteral('9.1'),
+  );
+  static const v9p2 = CosmosdbPostgresqlClusterCitusVersion._(
+    TfArgLiteral('9.2'),
+  );
+  static const v9p3 = CosmosdbPostgresqlClusterCitusVersion._(
+    TfArgLiteral('9.3'),
+  );
+  static const v9p4 = CosmosdbPostgresqlClusterCitusVersion._(
+    TfArgLiteral('9.4'),
+  );
+  static const v9p5 = CosmosdbPostgresqlClusterCitusVersion._(
+    TfArgLiteral('9.5'),
+  );
+  static const v10p0 = CosmosdbPostgresqlClusterCitusVersion._(
+    TfArgLiteral('10.0'),
+  );
+  static const v10p1 = CosmosdbPostgresqlClusterCitusVersion._(
+    TfArgLiteral('10.1'),
+  );
+  static const v10p2 = CosmosdbPostgresqlClusterCitusVersion._(
+    TfArgLiteral('10.2'),
+  );
+  static const v11p0 = CosmosdbPostgresqlClusterCitusVersion._(
+    TfArgLiteral('11.0'),
+  );
+  static const v11p1 = CosmosdbPostgresqlClusterCitusVersion._(
+    TfArgLiteral('11.1'),
+  );
+  static const v11p2 = CosmosdbPostgresqlClusterCitusVersion._(
+    TfArgLiteral('11.2'),
+  );
+  static const v11p3 = CosmosdbPostgresqlClusterCitusVersion._(
+    TfArgLiteral('11.3'),
+  );
+  static const v12p1 = CosmosdbPostgresqlClusterCitusVersion._(
+    TfArgLiteral('12.1'),
+  );
+
+  static const List<CosmosdbPostgresqlClusterCitusVersion> values = [
+    v8p3,
+    v9p0,
+    v9p1,
+    v9p2,
+    v9p3,
+    v9p4,
+    v9p5,
+    v10p0,
+    v10p1,
+    v10p2,
+    v11p0,
+    v11p1,
+    v11p2,
+    v11p3,
+    v12p1,
+  ];
+}
+
+/// Cosmosdb Postgresql Cluster Coordinator Server enum for `coordinator_server_edition`.
+extension type const CosmosdbPostgresqlClusterCoordinatorServerEdition._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CosmosdbPostgresqlClusterCoordinatorServerEdition.variable(String name)
+    : this._(TfArg.variable(name));
+  CosmosdbPostgresqlClusterCoordinatorServerEdition.expression(String template)
+    : this._(TfArg.expression(template));
+  const CosmosdbPostgresqlClusterCoordinatorServerEdition.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const burstablegeneralpurpose =
+      CosmosdbPostgresqlClusterCoordinatorServerEdition._(
+        TfArgLiteral('BurstableGeneralPurpose'),
+      );
+  static const burstablememoryoptimized =
+      CosmosdbPostgresqlClusterCoordinatorServerEdition._(
+        TfArgLiteral('BurstableMemoryOptimized'),
+      );
+  static const generalpurpose =
+      CosmosdbPostgresqlClusterCoordinatorServerEdition._(
+        TfArgLiteral('GeneralPurpose'),
+      );
+  static const memoryoptimized =
+      CosmosdbPostgresqlClusterCoordinatorServerEdition._(
+        TfArgLiteral('MemoryOptimized'),
+      );
+
+  static const List<CosmosdbPostgresqlClusterCoordinatorServerEdition> values =
+      [
+        burstablegeneralpurpose,
+        burstablememoryoptimized,
+        generalpurpose,
+        memoryoptimized,
+      ];
+}
+
+/// Cosmosdb Postgresql Cluster Node Server enum for `node_server_edition`.
+extension type const CosmosdbPostgresqlClusterNodeServerEdition._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CosmosdbPostgresqlClusterNodeServerEdition.variable(String name)
+    : this._(TfArg.variable(name));
+  CosmosdbPostgresqlClusterNodeServerEdition.expression(String template)
+    : this._(TfArg.expression(template));
+  const CosmosdbPostgresqlClusterNodeServerEdition.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const burstablegeneralpurpose =
+      CosmosdbPostgresqlClusterNodeServerEdition._(
+        TfArgLiteral('BurstableGeneralPurpose'),
+      );
+  static const burstablememoryoptimized =
+      CosmosdbPostgresqlClusterNodeServerEdition._(
+        TfArgLiteral('BurstableMemoryOptimized'),
+      );
+  static const generalpurpose = CosmosdbPostgresqlClusterNodeServerEdition._(
+    TfArgLiteral('GeneralPurpose'),
+  );
+  static const memoryoptimized = CosmosdbPostgresqlClusterNodeServerEdition._(
+    TfArgLiteral('MemoryOptimized'),
+  );
+
+  static const List<CosmosdbPostgresqlClusterNodeServerEdition> values = [
+    burstablegeneralpurpose,
+    burstablememoryoptimized,
+    generalpurpose,
+    memoryoptimized,
+  ];
+}
+
+/// Cosmosdb Postgresql Cluster Sql enum for `sql_version`.
+extension type const CosmosdbPostgresqlClusterSqlVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  CosmosdbPostgresqlClusterSqlVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  CosmosdbPostgresqlClusterSqlVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const CosmosdbPostgresqlClusterSqlVersion.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const v11 = CosmosdbPostgresqlClusterSqlVersion._(TfArgLiteral('11'));
+  static const v12 = CosmosdbPostgresqlClusterSqlVersion._(TfArgLiteral('12'));
+  static const v13 = CosmosdbPostgresqlClusterSqlVersion._(TfArgLiteral('13'));
+  static const v14 = CosmosdbPostgresqlClusterSqlVersion._(TfArgLiteral('14'));
+  static const v15 = CosmosdbPostgresqlClusterSqlVersion._(TfArgLiteral('15'));
+  static const v16 = CosmosdbPostgresqlClusterSqlVersion._(TfArgLiteral('16'));
+
+  static const List<CosmosdbPostgresqlClusterSqlVersion> values = [
+    v11,
+    v12,
+    v13,
+    v14,
+    v15,
+    v16,
+  ];
+}
+
 /// Typed helper for the `maintenance_window` block of
 /// `azurerm_cosmosdb_postgresql_cluster` (derived from provider schema).
 @immutable
@@ -42,9 +215,9 @@ final class AzurermCosmosdbPostgresqlCluster extends Resource {
   AzurermCosmosdbPostgresqlCluster(
     super.localName, {
     Sensitive<String>? administratorLoginPassword,
-    TfArg<String>? citusVersion,
+    CosmosdbPostgresqlClusterCitusVersion? citusVersion,
     TfArg<bool>? coordinatorPublicIpAccessEnabled,
-    TfArg<String>? coordinatorServerEdition,
+    CosmosdbPostgresqlClusterCoordinatorServerEdition? coordinatorServerEdition,
     TfArg<num>? coordinatorStorageQuotaInMb,
     TfArg<num>? coordinatorVcoreCount,
     TfArg<bool>? haEnabled,
@@ -52,7 +225,7 @@ final class AzurermCosmosdbPostgresqlCluster extends Resource {
     required TfArg<String> name,
     required TfArg<num> nodeCount,
     TfArg<bool>? nodePublicIpAccessEnabled,
-    TfArg<String>? nodeServerEdition,
+    CosmosdbPostgresqlClusterNodeServerEdition? nodeServerEdition,
     TfArg<num>? nodeStorageQuotaInMb,
     TfArg<num>? nodeVcores,
     TfArg<String>? pointInTimeInUtc,
@@ -61,7 +234,7 @@ final class AzurermCosmosdbPostgresqlCluster extends Resource {
     TfArg<bool>? shardsOnCoordinatorEnabled,
     TfArg<String>? sourceLocation,
     TfArg<String>? sourceResourceId,
-    TfArg<String>? sqlVersion,
+    CosmosdbPostgresqlClusterSqlVersion? sqlVersion,
     TfArg<Map<String, String>>? tags,
     CosmosdbPostgresqlClusterMaintenanceWindow? maintenanceWindow,
     super.lifecycle,

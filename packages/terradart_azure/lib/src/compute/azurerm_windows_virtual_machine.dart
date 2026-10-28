@@ -13,6 +13,278 @@ const Set<String> _azurermWindowsVirtualMachineSensitive = <String>{
   'custom_data',
 };
 
+/// Windows Virtual Machine Disk Controller enum for `disk_controller_type`.
+extension type const WindowsVirtualMachineDiskControllerType._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsVirtualMachineDiskControllerType.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsVirtualMachineDiskControllerType.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsVirtualMachineDiskControllerType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const nvme = WindowsVirtualMachineDiskControllerType._(
+    TfArgLiteral('NVMe'),
+  );
+  static const scsi = WindowsVirtualMachineDiskControllerType._(
+    TfArgLiteral('SCSI'),
+  );
+
+  static const List<WindowsVirtualMachineDiskControllerType> values = [
+    nvme,
+    scsi,
+  ];
+}
+
+/// Windows Virtual Machine Eviction enum for `eviction_policy`.
+extension type const WindowsVirtualMachineEvictionPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsVirtualMachineEvictionPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsVirtualMachineEvictionPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsVirtualMachineEvictionPolicy.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const deallocate = WindowsVirtualMachineEvictionPolicy._(
+    TfArgLiteral('Deallocate'),
+  );
+  static const delete = WindowsVirtualMachineEvictionPolicy._(
+    TfArgLiteral('Delete'),
+  );
+
+  static const List<WindowsVirtualMachineEvictionPolicy> values = [
+    deallocate,
+    delete,
+  ];
+}
+
+/// Windows Virtual Machine License enum for `license_type`.
+extension type const WindowsVirtualMachineLicenseType._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsVirtualMachineLicenseType.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsVirtualMachineLicenseType.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsVirtualMachineLicenseType.arg(TfArg<String> arg) : this._(arg);
+
+  static const none = WindowsVirtualMachineLicenseType._(TfArgLiteral('None'));
+  static const windowsClient = WindowsVirtualMachineLicenseType._(
+    TfArgLiteral('Windows_Client'),
+  );
+  static const windowsServer = WindowsVirtualMachineLicenseType._(
+    TfArgLiteral('Windows_Server'),
+  );
+
+  static const List<WindowsVirtualMachineLicenseType> values = [
+    none,
+    windowsClient,
+    windowsServer,
+  ];
+}
+
+/// Windows Virtual Machine Patch Assessment enum for `patch_assessment_mode`.
+extension type const WindowsVirtualMachinePatchAssessmentMode._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsVirtualMachinePatchAssessmentMode.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsVirtualMachinePatchAssessmentMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsVirtualMachinePatchAssessmentMode.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const automaticbyplatform = WindowsVirtualMachinePatchAssessmentMode._(
+    TfArgLiteral('AutomaticByPlatform'),
+  );
+  static const imagedefault = WindowsVirtualMachinePatchAssessmentMode._(
+    TfArgLiteral('ImageDefault'),
+  );
+
+  static const List<WindowsVirtualMachinePatchAssessmentMode> values = [
+    automaticbyplatform,
+    imagedefault,
+  ];
+}
+
+/// Windows Virtual Machine Patch enum for `patch_mode`.
+extension type const WindowsVirtualMachinePatchMode._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsVirtualMachinePatchMode.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsVirtualMachinePatchMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsVirtualMachinePatchMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const automaticbyos = WindowsVirtualMachinePatchMode._(
+    TfArgLiteral('AutomaticByOS'),
+  );
+  static const automaticbyplatform = WindowsVirtualMachinePatchMode._(
+    TfArgLiteral('AutomaticByPlatform'),
+  );
+  static const manual = WindowsVirtualMachinePatchMode._(
+    TfArgLiteral('Manual'),
+  );
+
+  static const List<WindowsVirtualMachinePatchMode> values = [
+    automaticbyos,
+    automaticbyplatform,
+    manual,
+  ];
+}
+
+/// Exactly one of `admin_username`, `os_managed_disk_id` on `azurerm_windows_virtual_machine`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.adminUsername(...)`.
+sealed class WindowsVirtualMachineOsProfile {
+  const WindowsVirtualMachineOsProfile();
+
+  /// Sets `admin_username`.
+  const factory WindowsVirtualMachineOsProfile.adminUsername(
+    TfArg<String> adminUsername,
+  ) = WindowsVirtualMachineOsProfileAdminUsername;
+
+  /// Sets `os_managed_disk_id`.
+  const factory WindowsVirtualMachineOsProfile.osManagedDiskId(
+    TfArg<String> osManagedDiskId,
+  ) = WindowsVirtualMachineOsProfileOsManagedDiskId;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [WindowsVirtualMachineOsProfile.adminUsername] choice: sets `admin_username`.
+final class WindowsVirtualMachineOsProfileAdminUsername
+    extends WindowsVirtualMachineOsProfile {
+  const WindowsVirtualMachineOsProfileAdminUsername(this.adminUsername);
+
+  final TfArg<String> adminUsername;
+
+  @internal
+  @override
+  String get blockKey => 'admin_username';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'admin_username': adminUsername.toTfJson()};
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'admin_username': adminUsername};
+}
+
+/// The [WindowsVirtualMachineOsProfile.osManagedDiskId] choice: sets `os_managed_disk_id`.
+final class WindowsVirtualMachineOsProfileOsManagedDiskId
+    extends WindowsVirtualMachineOsProfile {
+  const WindowsVirtualMachineOsProfileOsManagedDiskId(this.osManagedDiskId);
+
+  final TfArg<String> osManagedDiskId;
+
+  @internal
+  @override
+  String get blockKey => 'os_managed_disk_id';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'os_managed_disk_id': osManagedDiskId.toTfJson(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'os_managed_disk_id': osManagedDiskId,
+  };
+}
+
+/// At most one of `dedicated_host_group_id`, `dedicated_host_id` on `azurerm_windows_virtual_machine`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.dedicatedHostGroupId(...)`.
+sealed class WindowsVirtualMachineDedicatedHost {
+  const WindowsVirtualMachineDedicatedHost();
+
+  /// Sets `dedicated_host_group_id`.
+  const factory WindowsVirtualMachineDedicatedHost.dedicatedHostGroupId(
+    TfArg<String> dedicatedHostGroupId,
+  ) = WindowsVirtualMachineDedicatedHostGroupId;
+
+  /// Sets `dedicated_host_id`.
+  const factory WindowsVirtualMachineDedicatedHost.dedicatedHostId(
+    TfArg<String> dedicatedHostId,
+  ) = WindowsVirtualMachineDedicatedHostId;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [WindowsVirtualMachineDedicatedHost.dedicatedHostGroupId] choice: sets `dedicated_host_group_id`.
+final class WindowsVirtualMachineDedicatedHostGroupId
+    extends WindowsVirtualMachineDedicatedHost {
+  const WindowsVirtualMachineDedicatedHostGroupId(this.dedicatedHostGroupId);
+
+  final TfArg<String> dedicatedHostGroupId;
+
+  @internal
+  @override
+  String get blockKey => 'dedicated_host_group_id';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'dedicated_host_group_id': dedicatedHostGroupId.toTfJson(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'dedicated_host_group_id': dedicatedHostGroupId,
+  };
+}
+
+/// The [WindowsVirtualMachineDedicatedHost.dedicatedHostId] choice: sets `dedicated_host_id`.
+final class WindowsVirtualMachineDedicatedHostId
+    extends WindowsVirtualMachineDedicatedHost {
+  const WindowsVirtualMachineDedicatedHostId(this.dedicatedHostId);
+
+  final TfArg<String> dedicatedHostId;
+
+  @internal
+  @override
+  String get blockKey => 'dedicated_host_id';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'dedicated_host_id': dedicatedHostId.toTfJson(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'dedicated_host_id': dedicatedHostId,
+  };
+}
+
 /// Typed helper for the `additional_capabilities` block of
 /// `azurerm_windows_virtual_machine` (derived from provider schema).
 @immutable
@@ -341,7 +613,7 @@ final class AzurermWindowsVirtualMachine extends Resource {
   AzurermWindowsVirtualMachine(
     super.localName, {
     Sensitive<String>? adminPassword,
-    TfArg<String>? adminUsername,
+    required WindowsVirtualMachineOsProfile osProfile,
     TfArg<bool>? allowExtensionOperations,
     TfArg<bool>? automaticUpdatesEnabled,
     TfArg<String>? availabilitySetId,
@@ -349,22 +621,20 @@ final class AzurermWindowsVirtualMachine extends Resource {
     TfArg<String>? capacityReservationGroupId,
     TfArg<String>? computerName,
     Sensitive<String>? customData,
-    TfArg<String>? dedicatedHostGroupId,
-    TfArg<String>? dedicatedHostId,
-    TfArg<String>? diskControllerType,
+    WindowsVirtualMachineDedicatedHost? dedicatedHost,
+    WindowsVirtualMachineDiskControllerType? diskControllerType,
     TfArg<String>? edgeZone,
     TfArg<bool>? encryptionAtHostEnabled,
-    TfArg<String>? evictionPolicy,
+    WindowsVirtualMachineEvictionPolicy? evictionPolicy,
     TfArg<String>? extensionsTimeBudget,
     TfArg<bool>? hotpatchingEnabled,
-    TfArg<String>? licenseType,
+    WindowsVirtualMachineLicenseType? licenseType,
     required TfArg<String> location,
     TfArg<num>? maxBidPrice,
     required TfArg<String> name,
     required TfArg<List<String>> networkInterfaceIds,
-    TfArg<String>? osManagedDiskId,
-    TfArg<String>? patchAssessmentMode,
-    TfArg<String>? patchMode,
+    WindowsVirtualMachinePatchAssessmentMode? patchAssessmentMode,
+    WindowsVirtualMachinePatchMode? patchMode,
     TfArg<num>? platformFaultDomain,
     TfArg<String>? priority,
     TfArg<bool>? provisionVmAgent,
@@ -401,7 +671,7 @@ final class AzurermWindowsVirtualMachine extends Resource {
          terraformType: tfType,
          argMap: {
            'admin_password': ?adminPassword,
-           'admin_username': ?adminUsername,
+           ...osProfile.argMap,
            'allow_extension_operations': ?allowExtensionOperations,
            'automatic_updates_enabled': ?automaticUpdatesEnabled,
            'availability_set_id': ?availabilitySetId,
@@ -410,8 +680,7 @@ final class AzurermWindowsVirtualMachine extends Resource {
            'capacity_reservation_group_id': ?capacityReservationGroupId,
            'computer_name': ?computerName,
            'custom_data': ?customData,
-           'dedicated_host_group_id': ?dedicatedHostGroupId,
-           'dedicated_host_id': ?dedicatedHostId,
+           ...?dedicatedHost?.argMap,
            'disk_controller_type': ?diskControllerType,
            'edge_zone': ?edgeZone,
            'encryption_at_host_enabled': ?encryptionAtHostEnabled,
@@ -423,7 +692,6 @@ final class AzurermWindowsVirtualMachine extends Resource {
            'max_bid_price': ?maxBidPrice,
            'name': name,
            'network_interface_ids': networkInterfaceIds,
-           'os_managed_disk_id': ?osManagedDiskId,
            'patch_assessment_mode': ?patchAssessmentMode,
            'patch_mode': ?patchMode,
            'platform_fault_domain': ?platformFaultDomain,

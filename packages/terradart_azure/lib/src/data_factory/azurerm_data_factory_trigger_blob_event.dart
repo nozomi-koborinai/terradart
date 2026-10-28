@@ -9,6 +9,30 @@ import '../storage/azurerm_storage_account.dart' show AzurermStorageAccount;
 /// Sensitive field paths for `azurerm_data_factory_trigger_blob_event`.
 const Set<String> _azurermDataFactoryTriggerBlobEventSensitive = <String>{};
 
+/// Data Factory Trigger Blob Event enum for `events`.
+extension type const DataFactoryTriggerBlobEventEvents._(TfArg<String> _)
+    implements TfArg<String> {
+  DataFactoryTriggerBlobEventEvents.variable(String name)
+    : this._(TfArg.variable(name));
+  DataFactoryTriggerBlobEventEvents.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataFactoryTriggerBlobEventEvents.arg(TfArg<String> arg) : this._(arg);
+
+  static const microsoftStorageBlobcreated =
+      DataFactoryTriggerBlobEventEvents._(
+        TfArgLiteral('Microsoft.Storage.BlobCreated'),
+      );
+  static const microsoftStorageBlobdeleted =
+      DataFactoryTriggerBlobEventEvents._(
+        TfArgLiteral('Microsoft.Storage.BlobDeleted'),
+      );
+
+  static const List<DataFactoryTriggerBlobEventEvents> values = [
+    microsoftStorageBlobcreated,
+    microsoftStorageBlobdeleted,
+  ];
+}
+
 /// Typed helper for the `pipeline` block of
 /// `azurerm_data_factory_trigger_blob_event` (derived from provider schema).
 @immutable
@@ -42,7 +66,7 @@ final class AzurermDataFactoryTriggerBlobEvent extends Resource {
     TfArg<String>? blobPathEndsWith,
     required TfArg<String> dataFactoryId,
     TfArg<String>? description,
-    required TfArg<List<String>> events,
+    required List<DataFactoryTriggerBlobEventEvents> events,
     TfArg<bool>? ignoreEmptyBlobs,
     required TfArg<String> name,
     required RefTo<AzurermStorageAccount> storageAccountId,
@@ -61,7 +85,7 @@ final class AzurermDataFactoryTriggerBlobEvent extends Resource {
            'blob_path_ends_with': ?blobPathEndsWith,
            'data_factory_id': dataFactoryId,
            'description': ?description,
-           'events': events,
+           'events': TfArg.literal([for (final e in events) e.toTfJson()]),
            'ignore_empty_blobs': ?ignoreEmptyBlobs,
            'name': name,
            'storage_account_id': storageAccountId.encodeAs('id'),

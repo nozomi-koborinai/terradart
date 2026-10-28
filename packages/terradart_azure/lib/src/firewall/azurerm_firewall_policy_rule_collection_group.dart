@@ -19,7 +19,7 @@ final class FirewallPolicyRuleCollectionGroupApplicationRuleCollection {
     required this.rule,
   });
 
-  final TfArg<String> action;
+  final FirewallPolicyRuleCollectionGroupAction action;
 
   final TfArg<String> name;
 
@@ -35,6 +35,29 @@ final class FirewallPolicyRuleCollectionGroupApplicationRuleCollection {
     'priority': priority.toTfJson(),
     'rule': [for (final e in rule) e.encode()],
   };
+}
+
+/// `action` — derived from the provider schema description.
+extension type const FirewallPolicyRuleCollectionGroupAction._(TfArg<String> _)
+    implements TfArg<String> {
+  FirewallPolicyRuleCollectionGroupAction.variable(String name)
+    : this._(TfArg.variable(name));
+  FirewallPolicyRuleCollectionGroupAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const FirewallPolicyRuleCollectionGroupAction.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const allow = FirewallPolicyRuleCollectionGroupAction._(
+    TfArgLiteral('Allow'),
+  );
+  static const deny = FirewallPolicyRuleCollectionGroupAction._(
+    TfArgLiteral('Deny'),
+  );
+
+  static const List<FirewallPolicyRuleCollectionGroupAction> values = [
+    allow,
+    deny,
+  ];
 }
 
 /// Typed helper for the `application_rule_collection.rule` block of
@@ -78,7 +101,10 @@ final class FirewallPolicyRuleCollectionGroupApplicationRuleCollectionRule {
 
   final List<FirewallPolicyRuleCollectionGroupHttpHeaders>? httpHeaders;
 
-  final List<FirewallPolicyRuleCollectionGroupProtocols>? protocols;
+  final List<
+    FirewallPolicyRuleCollectionGroupApplicationRuleCollectionProtocols
+  >?
+  protocols;
 
   @internal
   Map<String, Object?> encode() => {
@@ -122,8 +148,8 @@ final class FirewallPolicyRuleCollectionGroupHttpHeaders {
 /// Typed helper for the `application_rule_collection.rule.protocols` block of
 /// `azurerm_firewall_policy_rule_collection_group` (derived from provider schema).
 @immutable
-final class FirewallPolicyRuleCollectionGroupProtocols {
-  const FirewallPolicyRuleCollectionGroupProtocols({
+final class FirewallPolicyRuleCollectionGroupApplicationRuleCollectionProtocols {
+  const FirewallPolicyRuleCollectionGroupApplicationRuleCollectionProtocols({
     required this.port,
     required this.type,
   });
@@ -230,7 +256,7 @@ final class FirewallPolicyRuleCollectionGroupNetworkRuleCollection {
     required this.rule,
   });
 
-  final TfArg<String> action;
+  final FirewallPolicyRuleCollectionGroupAction action;
 
   final TfArg<String> name;
 
@@ -275,7 +301,8 @@ final class FirewallPolicyRuleCollectionGroupNetworkRuleCollectionRule {
 
   final TfArg<String> name;
 
-  final TfArg<List<String>> protocols;
+  final List<FirewallPolicyRuleCollectionGroupNetworkRuleCollectionProtocols>
+  protocols;
 
   final TfArg<List<String>>? sourceAddresses;
 
@@ -289,10 +316,47 @@ final class FirewallPolicyRuleCollectionGroupNetworkRuleCollectionRule {
     'destination_ip_groups': ?destinationIpGroups?.toTfJson(),
     'destination_ports': destinationPorts.toTfJson(),
     'name': name.toTfJson(),
-    'protocols': protocols.toTfJson(),
+    'protocols': [for (final e in protocols) e.toTfJson()],
     'source_addresses': ?sourceAddresses?.toTfJson(),
     'source_ip_groups': ?sourceIpGroups?.toTfJson(),
   };
+}
+
+/// `protocols` — derived from the provider schema description.
+extension type const FirewallPolicyRuleCollectionGroupNetworkRuleCollectionProtocols._(
+  TfArg<String> _
+) implements TfArg<String> {
+  FirewallPolicyRuleCollectionGroupNetworkRuleCollectionProtocols.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  FirewallPolicyRuleCollectionGroupNetworkRuleCollectionProtocols.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const FirewallPolicyRuleCollectionGroupNetworkRuleCollectionProtocols.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const any =
+      FirewallPolicyRuleCollectionGroupNetworkRuleCollectionProtocols._(
+        TfArgLiteral('Any'),
+      );
+  static const icmp =
+      FirewallPolicyRuleCollectionGroupNetworkRuleCollectionProtocols._(
+        TfArgLiteral('ICMP'),
+      );
+  static const tcp =
+      FirewallPolicyRuleCollectionGroupNetworkRuleCollectionProtocols._(
+        TfArgLiteral('TCP'),
+      );
+  static const udp =
+      FirewallPolicyRuleCollectionGroupNetworkRuleCollectionProtocols._(
+        TfArgLiteral('UDP'),
+      );
+
+  static const List<
+    FirewallPolicyRuleCollectionGroupNetworkRuleCollectionProtocols
+  >
+  values = [any, icmp, tcp, udp];
 }
 
 /// Factory wrapper for `azurerm_firewall_policy_rule_collection_group`.

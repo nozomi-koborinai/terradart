@@ -7,6 +7,199 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `azurerm_data_factory_dataset_delimited_text`.
 const Set<String> _azurermDataFactoryDatasetDelimitedTextSensitive = <String>{};
 
+/// Data Factory Dataset Delimited Text Compression enum for `compression_codec`.
+extension type const DataFactoryDatasetDelimitedTextCompressionCodec._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataFactoryDatasetDelimitedTextCompressionCodec.variable(String name)
+    : this._(TfArg.variable(name));
+  DataFactoryDatasetDelimitedTextCompressionCodec.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataFactoryDatasetDelimitedTextCompressionCodec.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const none = DataFactoryDatasetDelimitedTextCompressionCodec._(
+    TfArgLiteral('None'),
+  );
+  static const bzip2 = DataFactoryDatasetDelimitedTextCompressionCodec._(
+    TfArgLiteral('bzip2'),
+  );
+  static const gzip = DataFactoryDatasetDelimitedTextCompressionCodec._(
+    TfArgLiteral('gzip'),
+  );
+  static const deflate = DataFactoryDatasetDelimitedTextCompressionCodec._(
+    TfArgLiteral('deflate'),
+  );
+  static const zipdeflate = DataFactoryDatasetDelimitedTextCompressionCodec._(
+    TfArgLiteral('ZipDeflate'),
+  );
+  static const targzip = DataFactoryDatasetDelimitedTextCompressionCodec._(
+    TfArgLiteral('TarGzip'),
+  );
+  static const tar = DataFactoryDatasetDelimitedTextCompressionCodec._(
+    TfArgLiteral('Tar'),
+  );
+  static const snappy = DataFactoryDatasetDelimitedTextCompressionCodec._(
+    TfArgLiteral('snappy'),
+  );
+  static const lz4 = DataFactoryDatasetDelimitedTextCompressionCodec._(
+    TfArgLiteral('lz4'),
+  );
+
+  static const List<DataFactoryDatasetDelimitedTextCompressionCodec> values = [
+    none,
+    bzip2,
+    gzip,
+    deflate,
+    zipdeflate,
+    targzip,
+    tar,
+    snappy,
+    lz4,
+  ];
+}
+
+/// Data Factory Dataset Delimited Text Compression enum for `compression_level`.
+extension type const DataFactoryDatasetDelimitedTextCompressionLevel._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataFactoryDatasetDelimitedTextCompressionLevel.variable(String name)
+    : this._(TfArg.variable(name));
+  DataFactoryDatasetDelimitedTextCompressionLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataFactoryDatasetDelimitedTextCompressionLevel.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const optimal = DataFactoryDatasetDelimitedTextCompressionLevel._(
+    TfArgLiteral('Optimal'),
+  );
+  static const fastest = DataFactoryDatasetDelimitedTextCompressionLevel._(
+    TfArgLiteral('Fastest'),
+  );
+
+  static const List<DataFactoryDatasetDelimitedTextCompressionLevel> values = [
+    optimal,
+    fastest,
+  ];
+}
+
+/// Exactly one of `azure_blob_fs_location`, `azure_blob_storage_location`, `http_server_location` on `azurerm_data_factory_dataset_delimited_text`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.azureBlobFsLocation(...)`.
+sealed class DataFactoryDatasetDelimitedTextLocation {
+  const DataFactoryDatasetDelimitedTextLocation();
+
+  /// Sets `azure_blob_fs_location`.
+  const factory DataFactoryDatasetDelimitedTextLocation.azureBlobFsLocation(
+    DataFactoryDatasetDelimitedTextAzureBlobFsLocation azureBlobFsLocation,
+  ) = DataFactoryDatasetDelimitedTextAzureBlobFsLocationChoice;
+
+  /// Sets `azure_blob_storage_location`.
+  const factory DataFactoryDatasetDelimitedTextLocation.azureBlobStorageLocation(
+    DataFactoryDatasetDelimitedTextAzureBlobStorageLocation
+    azureBlobStorageLocation,
+  ) = DataFactoryDatasetDelimitedTextAzureBlobStorageLocationChoice;
+
+  /// Sets `http_server_location`.
+  const factory DataFactoryDatasetDelimitedTextLocation.httpServerLocation(
+    DataFactoryDatasetDelimitedTextHttpServerLocation httpServerLocation,
+  ) = DataFactoryDatasetDelimitedTextHttpServerLocationChoice;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [DataFactoryDatasetDelimitedTextLocation.azureBlobFsLocation] choice: sets `azure_blob_fs_location`.
+final class DataFactoryDatasetDelimitedTextAzureBlobFsLocationChoice
+    extends DataFactoryDatasetDelimitedTextLocation {
+  const DataFactoryDatasetDelimitedTextAzureBlobFsLocationChoice(
+    this.azureBlobFsLocation,
+  );
+
+  final DataFactoryDatasetDelimitedTextAzureBlobFsLocation azureBlobFsLocation;
+
+  @internal
+  @override
+  String get blockKey => 'azure_blob_fs_location';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'azure_blob_fs_location': azureBlobFsLocation.encode(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'azure_blob_fs_location': TfArg.literal(azureBlobFsLocation.encode()),
+  };
+}
+
+/// The [DataFactoryDatasetDelimitedTextLocation.azureBlobStorageLocation] choice: sets `azure_blob_storage_location`.
+final class DataFactoryDatasetDelimitedTextAzureBlobStorageLocationChoice
+    extends DataFactoryDatasetDelimitedTextLocation {
+  const DataFactoryDatasetDelimitedTextAzureBlobStorageLocationChoice(
+    this.azureBlobStorageLocation,
+  );
+
+  final DataFactoryDatasetDelimitedTextAzureBlobStorageLocation
+  azureBlobStorageLocation;
+
+  @internal
+  @override
+  String get blockKey => 'azure_blob_storage_location';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'azure_blob_storage_location': azureBlobStorageLocation.encode(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'azure_blob_storage_location': TfArg.literal(
+      azureBlobStorageLocation.encode(),
+    ),
+  };
+}
+
+/// The [DataFactoryDatasetDelimitedTextLocation.httpServerLocation] choice: sets `http_server_location`.
+final class DataFactoryDatasetDelimitedTextHttpServerLocationChoice
+    extends DataFactoryDatasetDelimitedTextLocation {
+  const DataFactoryDatasetDelimitedTextHttpServerLocationChoice(
+    this.httpServerLocation,
+  );
+
+  final DataFactoryDatasetDelimitedTextHttpServerLocation httpServerLocation;
+
+  @internal
+  @override
+  String get blockKey => 'http_server_location';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'http_server_location': httpServerLocation.encode(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'http_server_location': TfArg.literal(httpServerLocation.encode()),
+  };
+}
+
 /// Typed helper for the `azure_blob_fs_location` block of
 /// `azurerm_data_factory_dataset_delimited_text` (derived from provider schema).
 @immutable
@@ -125,7 +318,7 @@ final class DataFactoryDatasetDelimitedTextSchemaColumn {
 
   final TfArg<String> name;
 
-  final TfArg<String>? type;
+  final DataFactoryDatasetDelimitedTextType? type;
 
   @internal
   Map<String, Object?> encode() => {
@@ -133,6 +326,81 @@ final class DataFactoryDatasetDelimitedTextSchemaColumn {
     'name': name.toTfJson(),
     'type': ?type?.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+extension type const DataFactoryDatasetDelimitedTextType._(TfArg<String> _)
+    implements TfArg<String> {
+  DataFactoryDatasetDelimitedTextType.variable(String name)
+    : this._(TfArg.variable(name));
+  DataFactoryDatasetDelimitedTextType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataFactoryDatasetDelimitedTextType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const byte = DataFactoryDatasetDelimitedTextType._(
+    TfArgLiteral('Byte'),
+  );
+  static const byte2 = DataFactoryDatasetDelimitedTextType._(
+    TfArgLiteral('Byte[]'),
+  );
+  static const boolean = DataFactoryDatasetDelimitedTextType._(
+    TfArgLiteral('Boolean'),
+  );
+  static const date = DataFactoryDatasetDelimitedTextType._(
+    TfArgLiteral('Date'),
+  );
+  static const datetime = DataFactoryDatasetDelimitedTextType._(
+    TfArgLiteral('DateTime'),
+  );
+  static const datetimeoffset = DataFactoryDatasetDelimitedTextType._(
+    TfArgLiteral('DateTimeOffset'),
+  );
+  static const decimal = DataFactoryDatasetDelimitedTextType._(
+    TfArgLiteral('Decimal'),
+  );
+  static const double = DataFactoryDatasetDelimitedTextType._(
+    TfArgLiteral('Double'),
+  );
+  static const guid = DataFactoryDatasetDelimitedTextType._(
+    TfArgLiteral('Guid'),
+  );
+  static const int16 = DataFactoryDatasetDelimitedTextType._(
+    TfArgLiteral('Int16'),
+  );
+  static const int32 = DataFactoryDatasetDelimitedTextType._(
+    TfArgLiteral('Int32'),
+  );
+  static const int64 = DataFactoryDatasetDelimitedTextType._(
+    TfArgLiteral('Int64'),
+  );
+  static const single = DataFactoryDatasetDelimitedTextType._(
+    TfArgLiteral('Single'),
+  );
+  static const string = DataFactoryDatasetDelimitedTextType._(
+    TfArgLiteral('String'),
+  );
+  static const timespan = DataFactoryDatasetDelimitedTextType._(
+    TfArgLiteral('TimeSpan'),
+  );
+
+  static const List<DataFactoryDatasetDelimitedTextType> values = [
+    byte,
+    byte2,
+    boolean,
+    date,
+    datetime,
+    datetimeoffset,
+    decimal,
+    double,
+    guid,
+    int16,
+    int32,
+    int64,
+    single,
+    string,
+    timespan,
+  ];
 }
 
 /// Factory wrapper for `azurerm_data_factory_dataset_delimited_text`.
@@ -144,8 +412,8 @@ final class AzurermDataFactoryDatasetDelimitedText extends Resource {
     TfArg<Map<String, String>>? additionalProperties,
     TfArg<List<String>>? annotations,
     TfArg<String>? columnDelimiter,
-    TfArg<String>? compressionCodec,
-    TfArg<String>? compressionLevel,
+    DataFactoryDatasetDelimitedTextCompressionCodec? compressionCodec,
+    DataFactoryDatasetDelimitedTextCompressionLevel? compressionLevel,
     required TfArg<String> dataFactoryId,
     TfArg<String>? description,
     TfArg<String>? encoding,
@@ -158,10 +426,7 @@ final class AzurermDataFactoryDatasetDelimitedText extends Resource {
     TfArg<Map<String, String>>? parameters,
     TfArg<String>? quoteCharacter,
     TfArg<String>? rowDelimiter,
-    DataFactoryDatasetDelimitedTextAzureBlobFsLocation? azureBlobFsLocation,
-    DataFactoryDatasetDelimitedTextAzureBlobStorageLocation?
-    azureBlobStorageLocation,
-    DataFactoryDatasetDelimitedTextHttpServerLocation? httpServerLocation,
+    required DataFactoryDatasetDelimitedTextLocation location,
     List<DataFactoryDatasetDelimitedTextSchemaColumn>? schemaColumn,
     super.lifecycle,
     super.dependsOn,
@@ -187,16 +452,7 @@ final class AzurermDataFactoryDatasetDelimitedText extends Resource {
            'parameters': ?parameters,
            'quote_character': ?quoteCharacter,
            'row_delimiter': ?rowDelimiter,
-           if (azureBlobFsLocation != null)
-             'azure_blob_fs_location': TfArg.literal(
-               azureBlobFsLocation.encode(),
-             ),
-           if (azureBlobStorageLocation != null)
-             'azure_blob_storage_location': TfArg.literal(
-               azureBlobStorageLocation.encode(),
-             ),
-           if (httpServerLocation != null)
-             'http_server_location': TfArg.literal(httpServerLocation.encode()),
+           ...location.argMap,
            if (schemaColumn != null)
              'schema_column': TfArg.literal([
                for (final e in schemaColumn) e.encode(),

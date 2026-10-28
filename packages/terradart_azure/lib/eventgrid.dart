@@ -17,9 +17,12 @@ export 'src/data/azurerm_eventgrid_topic.dart' show DataAzurermEventgridTopic;
 export 'src/eventgrid/azurerm_eventgrid_domain.dart'
     show
         AzurermEventgridDomain,
+        EventgridDomainDataResidencyBoundary,
         EventgridDomainIdentity,
         EventgridDomainInputMappingDefaultValues,
-        EventgridDomainInputMappingFields;
+        EventgridDomainInputMappingFields,
+        EventgridDomainInputSchema,
+        EventgridDomainMinimumTlsVersion;
 export 'src/eventgrid/azurerm_eventgrid_domain_topic.dart'
     show AzurermEventgridDomainTopic;
 export 'src/eventgrid/azurerm_eventgrid_event_subscription.dart'
@@ -114,6 +117,9 @@ export 'src/eventgrid/azurerm_eventgrid_system_topic_event_subscription.dart'
 export 'src/eventgrid/azurerm_eventgrid_topic.dart'
     show
         AzurermEventgridTopic,
+        EventgridTopicDataResidencyBoundary,
         EventgridTopicIdentity,
         EventgridTopicInputMappingDefaultValues,
-        EventgridTopicInputMappingFields;
+        EventgridTopicInputMappingFields,
+        EventgridTopicInputSchema,
+        EventgridTopicMinimumTlsVersion;

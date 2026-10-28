@@ -15,6 +15,10 @@ export 'src/data_factory/azurerm_data_factory.dart'
         DataFactoryGithubConfiguration,
         DataFactoryGlobalParameter,
         DataFactoryIdentity,
+        DataFactoryRepository,
+        DataFactoryRepositoryGithubConfiguration,
+        DataFactoryRepositoryVstsConfiguration,
+        DataFactoryType,
         DataFactoryVstsConfiguration;
 export 'src/data_factory/azurerm_data_factory_credential_service_principal.dart'
     show
@@ -40,7 +44,8 @@ export 'src/data_factory/azurerm_data_factory_data_flow.dart'
 export 'src/data_factory/azurerm_data_factory_dataset_azure_blob.dart'
     show
         AzurermDataFactoryDatasetAzureBlob,
-        DataFactoryDatasetAzureBlobSchemaColumn;
+        DataFactoryDatasetAzureBlobSchemaColumn,
+        DataFactoryDatasetAzureBlobType;
 export 'src/data_factory/azurerm_data_factory_dataset_azure_sql_table.dart'
     show
         AzurermDataFactoryDatasetAzureSqlTable,
@@ -50,49 +55,82 @@ export 'src/data_factory/azurerm_data_factory_dataset_binary.dart'
     show
         AzurermDataFactoryDatasetBinary,
         DataFactoryDatasetBinaryAzureBlobStorageLocation,
+        DataFactoryDatasetBinaryAzureBlobStorageLocationChoice,
         DataFactoryDatasetBinaryCompression,
         DataFactoryDatasetBinaryHttpServerLocation,
-        DataFactoryDatasetBinarySftpServerLocation;
+        DataFactoryDatasetBinaryHttpServerLocationChoice,
+        DataFactoryDatasetBinaryLevel,
+        DataFactoryDatasetBinaryLocation,
+        DataFactoryDatasetBinarySftpServerLocation,
+        DataFactoryDatasetBinarySftpServerLocationChoice;
 export 'src/data_factory/azurerm_data_factory_dataset_cosmosdb_sqlapi.dart'
     show
         AzurermDataFactoryDatasetCosmosdbSqlapi,
-        DataFactoryDatasetCosmosdbSqlapiSchemaColumn;
+        DataFactoryDatasetCosmosdbSqlapiSchemaColumn,
+        DataFactoryDatasetCosmosdbSqlapiType;
 export 'src/data_factory/azurerm_data_factory_dataset_delimited_text.dart'
     show
         AzurermDataFactoryDatasetDelimitedText,
         DataFactoryDatasetDelimitedTextAzureBlobFsLocation,
+        DataFactoryDatasetDelimitedTextAzureBlobFsLocationChoice,
         DataFactoryDatasetDelimitedTextAzureBlobStorageLocation,
+        DataFactoryDatasetDelimitedTextAzureBlobStorageLocationChoice,
+        DataFactoryDatasetDelimitedTextCompressionCodec,
+        DataFactoryDatasetDelimitedTextCompressionLevel,
         DataFactoryDatasetDelimitedTextHttpServerLocation,
-        DataFactoryDatasetDelimitedTextSchemaColumn;
+        DataFactoryDatasetDelimitedTextHttpServerLocationChoice,
+        DataFactoryDatasetDelimitedTextLocation,
+        DataFactoryDatasetDelimitedTextSchemaColumn,
+        DataFactoryDatasetDelimitedTextType;
 export 'src/data_factory/azurerm_data_factory_dataset_http.dart'
-    show AzurermDataFactoryDatasetHttp, DataFactoryDatasetHttpSchemaColumn;
+    show
+        AzurermDataFactoryDatasetHttp,
+        DataFactoryDatasetHttpSchemaColumn,
+        DataFactoryDatasetHttpType;
 export 'src/data_factory/azurerm_data_factory_dataset_json.dart'
     show
         AzurermDataFactoryDatasetJson,
         DataFactoryDatasetJsonAzureBlobStorageLocation,
+        DataFactoryDatasetJsonAzureBlobStorageLocationChoice,
         DataFactoryDatasetJsonHttpServerLocation,
-        DataFactoryDatasetJsonSchemaColumn;
+        DataFactoryDatasetJsonHttpServerLocationChoice,
+        DataFactoryDatasetJsonLocation,
+        DataFactoryDatasetJsonSchemaColumn,
+        DataFactoryDatasetJsonType;
 export 'src/data_factory/azurerm_data_factory_dataset_mysql.dart'
-    show AzurermDataFactoryDatasetMysql, DataFactoryDatasetMysqlSchemaColumn;
+    show
+        AzurermDataFactoryDatasetMysql,
+        DataFactoryDatasetMysqlSchemaColumn,
+        DataFactoryDatasetMysqlType;
 export 'src/data_factory/azurerm_data_factory_dataset_parquet.dart'
     show
         AzurermDataFactoryDatasetParquet,
         DataFactoryDatasetParquetAzureBlobFsLocation,
+        DataFactoryDatasetParquetAzureBlobFsLocationChoice,
         DataFactoryDatasetParquetAzureBlobStorageLocation,
+        DataFactoryDatasetParquetAzureBlobStorageLocationChoice,
+        DataFactoryDatasetParquetCompressionCodec,
+        DataFactoryDatasetParquetCompressionLevel,
         DataFactoryDatasetParquetHttpServerLocation,
-        DataFactoryDatasetParquetSchemaColumn;
+        DataFactoryDatasetParquetHttpServerLocationChoice,
+        DataFactoryDatasetParquetLocation,
+        DataFactoryDatasetParquetSchemaColumn,
+        DataFactoryDatasetParquetType;
 export 'src/data_factory/azurerm_data_factory_dataset_postgresql.dart'
     show
         AzurermDataFactoryDatasetPostgresql,
-        DataFactoryDatasetPostgresqlSchemaColumn;
+        DataFactoryDatasetPostgresqlSchemaColumn,
+        DataFactoryDatasetPostgresqlType;
 export 'src/data_factory/azurerm_data_factory_dataset_snowflake.dart'
     show
         AzurermDataFactoryDatasetSnowflake,
-        DataFactoryDatasetSnowflakeSchemaColumn;
+        DataFactoryDatasetSnowflakeSchemaColumn,
+        DataFactoryDatasetSnowflakeType;
 export 'src/data_factory/azurerm_data_factory_dataset_sql_server_table.dart'
     show
         AzurermDataFactoryDatasetSqlServerTable,
-        DataFactoryDatasetSqlServerTableSchemaColumn;
+        DataFactoryDatasetSqlServerTableSchemaColumn,
+        DataFactoryDatasetSqlServerTableType;
 export 'src/data_factory/azurerm_data_factory_flowlet_data_flow.dart'
     show
         AzurermDataFactoryFlowletDataFlow,
@@ -105,21 +143,33 @@ export 'src/data_factory/azurerm_data_factory_flowlet_data_flow.dart'
         DataFactoryFlowletDataFlowSource,
         DataFactoryFlowletDataFlowTransformation;
 export 'src/data_factory/azurerm_data_factory_integration_runtime_azure.dart'
-    show AzurermDataFactoryIntegrationRuntimeAzure;
+    show
+        AzurermDataFactoryIntegrationRuntimeAzure,
+        DataFactoryIntegrationRuntimeAzureComputeType;
 export 'src/data_factory/azurerm_data_factory_integration_runtime_azure_ssis.dart'
     show
         AzurermDataFactoryIntegrationRuntimeAzureSsis,
+        DataFactoryIntegrationRuntimeAzureSsisCapacity,
+        DataFactoryIntegrationRuntimeAzureSsisCapacityElasticPoolName,
+        DataFactoryIntegrationRuntimeAzureSsisCapacityPricingTier,
         DataFactoryIntegrationRuntimeAzureSsisCatalogInfo,
         DataFactoryIntegrationRuntimeAzureSsisCommandKey,
         DataFactoryIntegrationRuntimeAzureSsisComponent,
         DataFactoryIntegrationRuntimeAzureSsisCopyComputeScale,
         DataFactoryIntegrationRuntimeAzureSsisCustomSetupScript,
+        DataFactoryIntegrationRuntimeAzureSsisEdition,
         DataFactoryIntegrationRuntimeAzureSsisExpressCustomSetup,
         DataFactoryIntegrationRuntimeAzureSsisExpressVnetIntegration,
         DataFactoryIntegrationRuntimeAzureSsisKeyVaultLicense,
         DataFactoryIntegrationRuntimeAzureSsisKeyVaultPassword,
+        DataFactoryIntegrationRuntimeAzureSsisLicenseType,
+        DataFactoryIntegrationRuntimeAzureSsisNetwork,
+        DataFactoryIntegrationRuntimeAzureSsisNetworkSubnetId,
+        DataFactoryIntegrationRuntimeAzureSsisNetworkVnetId,
+        DataFactoryIntegrationRuntimeAzureSsisNodeSize,
         DataFactoryIntegrationRuntimeAzureSsisPackageStore,
         DataFactoryIntegrationRuntimeAzureSsisPipelineExternalComputeScale,
+        DataFactoryIntegrationRuntimeAzureSsisPricingTier,
         DataFactoryIntegrationRuntimeAzureSsisProxy,
         DataFactoryIntegrationRuntimeAzureSsisVnetIntegration;
 export 'src/data_factory/azurerm_data_factory_integration_runtime_self_hosted.dart'
@@ -133,11 +183,28 @@ export 'src/data_factory/azurerm_data_factory_linked_custom_service.dart'
 export 'src/data_factory/azurerm_data_factory_linked_service_azure_blob_storage.dart'
     show
         AzurermDataFactoryLinkedServiceAzureBlobStorage,
+        DataFactoryLinkedServiceAzureBlobStorageAuthentication,
+        DataFactoryLinkedServiceAzureBlobStorageAuthenticationServicePrincipalId,
+        DataFactoryLinkedServiceAzureBlobStorageAuthenticationUseManagedIdentity,
+        DataFactoryLinkedServiceAzureBlobStorageConnection,
+        DataFactoryLinkedServiceAzureBlobStorageConnectionSasUri,
+        DataFactoryLinkedServiceAzureBlobStorageConnectionServiceEndpoint,
+        DataFactoryLinkedServiceAzureBlobStorageConnectionString,
+        DataFactoryLinkedServiceAzureBlobStorageConnectionStringInsecure,
+        DataFactoryLinkedServiceAzureBlobStorageKind,
         DataFactoryLinkedServiceAzureBlobStorageSasTokenLinkedKeyVaultKey,
         DataFactoryLinkedServiceAzureBlobStorageServicePrincipalLinkedKeyVaultKey;
 export 'src/data_factory/azurerm_data_factory_linked_service_azure_databricks.dart'
     show
         AzurermDataFactoryLinkedServiceAzureDatabricks,
+        DataFactoryLinkedServiceAzureDatabricksCluster,
+        DataFactoryLinkedServiceAzureDatabricksClusterExistingClusterId,
+        DataFactoryLinkedServiceAzureDatabricksClusterInstancePool,
+        DataFactoryLinkedServiceAzureDatabricksClusterNewClusterConfig,
+        DataFactoryLinkedServiceAzureDatabricksCredential,
+        DataFactoryLinkedServiceAzureDatabricksCredentialAccessToken,
+        DataFactoryLinkedServiceAzureDatabricksCredentialKeyVaultPassword,
+        DataFactoryLinkedServiceAzureDatabricksCredentialMsiWorkspaceId,
         DataFactoryLinkedServiceAzureDatabricksInstancePool,
         DataFactoryLinkedServiceAzureDatabricksKeyVaultPassword,
         DataFactoryLinkedServiceAzureDatabricksNewClusterConfig;
@@ -148,12 +215,21 @@ export 'src/data_factory/azurerm_data_factory_linked_service_azure_file_storage.
 export 'src/data_factory/azurerm_data_factory_linked_service_azure_function.dart'
     show
         AzurermDataFactoryLinkedServiceAzureFunction,
-        DataFactoryLinkedServiceAzureFunctionKeyVaultKey;
+        DataFactoryLinkedServiceAzureFunctionKey,
+        DataFactoryLinkedServiceAzureFunctionKeyChoice,
+        DataFactoryLinkedServiceAzureFunctionKeyVaultKey,
+        DataFactoryLinkedServiceAzureFunctionKeyVaultKeyChoice;
 export 'src/data_factory/azurerm_data_factory_linked_service_azure_search.dart'
     show AzurermDataFactoryLinkedServiceAzureSearch;
 export 'src/data_factory/azurerm_data_factory_linked_service_azure_sql_database.dart'
     show
         AzurermDataFactoryLinkedServiceAzureSqlDatabase,
+        DataFactoryLinkedServiceAzureSqlDatabaseAuthentication,
+        DataFactoryLinkedServiceAzureSqlDatabaseAuthenticationServicePrincipalId,
+        DataFactoryLinkedServiceAzureSqlDatabaseAuthenticationUseManagedIdentity,
+        DataFactoryLinkedServiceAzureSqlDatabaseConnection,
+        DataFactoryLinkedServiceAzureSqlDatabaseConnectionKeyVaultConnectionString,
+        DataFactoryLinkedServiceAzureSqlDatabaseConnectionString,
         DataFactoryLinkedServiceAzureSqlDatabaseKeyVaultConnectionString,
         DataFactoryLinkedServiceAzureSqlDatabaseKeyVaultPassword;
 export 'src/data_factory/azurerm_data_factory_linked_service_azure_table_storage.dart'
@@ -167,9 +243,15 @@ export 'src/data_factory/azurerm_data_factory_linked_service_data_lake_storage_g
 export 'src/data_factory/azurerm_data_factory_linked_service_key_vault.dart'
     show AzurermDataFactoryLinkedServiceKeyVault;
 export 'src/data_factory/azurerm_data_factory_linked_service_kusto.dart'
-    show AzurermDataFactoryLinkedServiceKusto;
+    show
+        AzurermDataFactoryLinkedServiceKusto,
+        DataFactoryLinkedServiceKustoAuthentication,
+        DataFactoryLinkedServiceKustoAuthenticationServicePrincipalId,
+        DataFactoryLinkedServiceKustoAuthenticationUseManagedIdentity;
 export 'src/data_factory/azurerm_data_factory_linked_service_mysql.dart'
-    show AzurermDataFactoryLinkedServiceMysql;
+    show
+        AzurermDataFactoryLinkedServiceMysql,
+        DataFactoryLinkedServiceMysqlDriverVersion;
 export 'src/data_factory/azurerm_data_factory_linked_service_odata.dart'
     show
         AzurermDataFactoryLinkedServiceOdata,
@@ -183,9 +265,20 @@ export 'src/data_factory/azurerm_data_factory_linked_service_postgresql.dart'
 export 'src/data_factory/azurerm_data_factory_linked_service_sftp.dart'
     show
         AzurermDataFactoryLinkedServiceSftp,
+        DataFactoryLinkedServiceSftpAuthenticationType,
         DataFactoryLinkedServiceSftpKeyVaultPassword,
+        DataFactoryLinkedServiceSftpKeyVaultPasswordChoice,
         DataFactoryLinkedServiceSftpKeyVaultPrivateKeyContentBase64,
-        DataFactoryLinkedServiceSftpKeyVaultPrivateKeyPassphrase;
+        DataFactoryLinkedServiceSftpKeyVaultPrivateKeyPassphrase,
+        DataFactoryLinkedServiceSftpKeyVaultPrivateKeyPassphraseChoice,
+        DataFactoryLinkedServiceSftpPassphrase,
+        DataFactoryLinkedServiceSftpPassword,
+        DataFactoryLinkedServiceSftpPasswordChoice,
+        DataFactoryLinkedServiceSftpPrivateKey,
+        DataFactoryLinkedServiceSftpPrivateKeyContentBase64,
+        DataFactoryLinkedServiceSftpPrivateKeyPassphrase,
+        DataFactoryLinkedServiceSftpPrivateKeyPath,
+        DataFactoryLinkedServiceSftpPrivateKeyVaultPrivateKeyContentBase64;
 export 'src/data_factory/azurerm_data_factory_linked_service_snowflake.dart'
     show
         AzurermDataFactoryLinkedServiceSnowflake,
@@ -201,6 +294,9 @@ export 'src/data_factory/azurerm_data_factory_linked_service_sql_managed_instanc
 export 'src/data_factory/azurerm_data_factory_linked_service_sql_server.dart'
     show
         AzurermDataFactoryLinkedServiceSqlServer,
+        DataFactoryLinkedServiceSqlServerConnection,
+        DataFactoryLinkedServiceSqlServerConnectionKeyVaultConnectionString,
+        DataFactoryLinkedServiceSqlServerConnectionString,
         DataFactoryLinkedServiceSqlServerKeyVaultConnectionString,
         DataFactoryLinkedServiceSqlServerKeyVaultPassword;
 export 'src/data_factory/azurerm_data_factory_linked_service_synapse.dart'
@@ -216,6 +312,7 @@ export 'src/data_factory/azurerm_data_factory_pipeline.dart'
 export 'src/data_factory/azurerm_data_factory_trigger_blob_event.dart'
     show
         AzurermDataFactoryTriggerBlobEvent,
+        DataFactoryTriggerBlobEventEvents,
         DataFactoryTriggerBlobEventPipeline;
 export 'src/data_factory/azurerm_data_factory_trigger_custom_event.dart'
     show
@@ -226,7 +323,10 @@ export 'src/data_factory/azurerm_data_factory_trigger_schedule.dart'
         AzurermDataFactoryTriggerSchedule,
         DataFactoryTriggerSchedule,
         DataFactoryTriggerScheduleMonthly,
-        DataFactoryTriggerSchedulePipeline;
+        DataFactoryTriggerSchedulePipeline,
+        DataFactoryTriggerSchedulePipelineTarget,
+        DataFactoryTriggerSchedulePipelineTargetPipeline,
+        DataFactoryTriggerSchedulePipelineTargetPipelineName;
 export 'src/data_factory/azurerm_data_factory_trigger_tumbling_window.dart'
     show
         AzurermDataFactoryTriggerTumblingWindow,

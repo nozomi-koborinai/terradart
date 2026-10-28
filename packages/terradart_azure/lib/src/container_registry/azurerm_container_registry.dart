@@ -11,6 +11,54 @@ const Set<String> _azurermContainerRegistrySensitive = <String>{
   'admin_password',
 };
 
+/// Container Registry Network Rule Bypass enum for `network_rule_bypass_option`.
+extension type const ContainerRegistryNetworkRuleBypassOption._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerRegistryNetworkRuleBypassOption.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerRegistryNetworkRuleBypassOption.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerRegistryNetworkRuleBypassOption.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const azureservices = ContainerRegistryNetworkRuleBypassOption._(
+    TfArgLiteral('AzureServices'),
+  );
+  static const none = ContainerRegistryNetworkRuleBypassOption._(
+    TfArgLiteral('None'),
+  );
+
+  static const List<ContainerRegistryNetworkRuleBypassOption> values = [
+    azureservices,
+    none,
+  ];
+}
+
+/// Container Registry Role Assignment enum for `role_assignment_mode`.
+extension type const ContainerRegistryRoleAssignmentMode._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerRegistryRoleAssignmentMode.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerRegistryRoleAssignmentMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerRegistryRoleAssignmentMode.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const abacrepositorypermissions =
+      ContainerRegistryRoleAssignmentMode._(
+        TfArgLiteral('AbacRepositoryPermissions'),
+      );
+  static const legacyregistrypermissions =
+      ContainerRegistryRoleAssignmentMode._(
+        TfArgLiteral('LegacyRegistryPermissions'),
+      );
+
+  static const List<ContainerRegistryRoleAssignmentMode> values = [
+    abacrepositorypermissions,
+    legacyregistrypermissions,
+  ];
+}
+
 /// Typed helper for the `georeplications` block of
 /// `azurerm_container_registry` (derived from provider schema).
 @immutable
@@ -71,13 +119,13 @@ final class AzurermContainerRegistry extends Resource {
     required TfArg<String> location,
     required TfArg<String> name,
     TfArg<bool>? networkRuleBypassForTasksEnabled,
-    TfArg<String>? networkRuleBypassOption,
+    ContainerRegistryNetworkRuleBypassOption? networkRuleBypassOption,
     TfArg<List<Map<String, Object?>>>? networkRuleSet,
     TfArg<bool>? publicNetworkAccessEnabled,
     TfArg<bool>? quarantinePolicyEnabled,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<num>? retentionPolicyInDays,
-    TfArg<String>? roleAssignmentMode,
+    ContainerRegistryRoleAssignmentMode? roleAssignmentMode,
     required TfArg<String> sku,
     TfArg<Map<String, String>>? tags,
     TfArg<bool>? zoneRedundancyEnabled,

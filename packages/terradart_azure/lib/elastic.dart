@@ -16,6 +16,7 @@ export 'src/data/azurerm_elastic_san_volume_snapshot.dart'
 export 'src/elastic/azurerm_elastic_cloud_elasticsearch.dart'
     show
         AzurermElasticCloudElasticsearch,
+        ElasticCloudElasticsearchAction,
         ElasticCloudElasticsearchFilteringTag,
         ElasticCloudElasticsearchLogs;
 export 'src/elastic/azurerm_elastic_san.dart'

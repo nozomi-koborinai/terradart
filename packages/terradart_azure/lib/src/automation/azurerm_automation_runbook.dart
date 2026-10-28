@@ -9,6 +9,47 @@ import '../resource/azurerm_resource_group.dart' show AzurermResourceGroup;
 /// Sensitive field paths for `azurerm_automation_runbook`.
 const Set<String> _azurermAutomationRunbookSensitive = <String>{};
 
+/// Automation Runbook enum for `runbook_type`.
+extension type const AutomationRunbookType._(TfArg<String> _)
+    implements TfArg<String> {
+  AutomationRunbookType.variable(String name) : this._(TfArg.variable(name));
+  AutomationRunbookType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AutomationRunbookType.arg(TfArg<String> arg) : this._(arg);
+
+  static const graph = AutomationRunbookType._(TfArgLiteral('Graph'));
+  static const graphpowershell = AutomationRunbookType._(
+    TfArgLiteral('GraphPowerShell'),
+  );
+  static const graphpowershellworkflow = AutomationRunbookType._(
+    TfArgLiteral('GraphPowerShellWorkflow'),
+  );
+  static const powershell = AutomationRunbookType._(TfArgLiteral('PowerShell'));
+  static const powershell72 = AutomationRunbookType._(
+    TfArgLiteral('PowerShell72'),
+  );
+  static const powershellworkflow = AutomationRunbookType._(
+    TfArgLiteral('PowerShellWorkflow'),
+  );
+  static const python = AutomationRunbookType._(TfArgLiteral('Python'));
+  static const python3 = AutomationRunbookType._(TfArgLiteral('Python3'));
+  static const python2 = AutomationRunbookType._(TfArgLiteral('Python2'));
+  static const script = AutomationRunbookType._(TfArgLiteral('Script'));
+
+  static const List<AutomationRunbookType> values = [
+    graph,
+    graphpowershell,
+    graphpowershellworkflow,
+    powershell,
+    powershell72,
+    powershellworkflow,
+    python,
+    python3,
+    python2,
+    script,
+  ];
+}
+
 /// Typed helper for the `draft` block of
 /// `azurerm_automation_runbook` (derived from provider schema).
 @immutable
@@ -152,7 +193,7 @@ final class AzurermAutomationRunbook extends Resource {
     required TfArg<bool> logVerbose,
     required TfArg<String> name,
     required RefTo<AzurermResourceGroup> resourceGroupName,
-    required TfArg<String> runbookType,
+    required AutomationRunbookType runbookType,
     TfArg<String>? runtimeEnvironmentName,
     TfArg<Map<String, String>>? tags,
     AutomationRunbookDraft? draft,

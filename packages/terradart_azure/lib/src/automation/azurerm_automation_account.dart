@@ -12,6 +12,20 @@ const Set<String> _azurermAutomationAccountSensitive = <String>{
   'dsc_secondary_access_key',
 };
 
+/// Automation Account Sku enum for `sku_name`.
+extension type const AutomationAccountSkuName._(TfArg<String> _)
+    implements TfArg<String> {
+  AutomationAccountSkuName.variable(String name) : this._(TfArg.variable(name));
+  AutomationAccountSkuName.expression(String template)
+    : this._(TfArg.expression(template));
+  const AutomationAccountSkuName.arg(TfArg<String> arg) : this._(arg);
+
+  static const basic = AutomationAccountSkuName._(TfArgLiteral('Basic'));
+  static const free = AutomationAccountSkuName._(TfArgLiteral('Free'));
+
+  static const List<AutomationAccountSkuName> values = [basic, free];
+}
+
 /// Typed helper for the `encryption` block of
 /// `azurerm_automation_account` (derived from provider schema).
 @immutable
@@ -60,7 +74,7 @@ final class AzurermAutomationAccount extends Resource {
     required TfArg<String> name,
     TfArg<bool>? publicNetworkAccessEnabled,
     required RefTo<AzurermResourceGroup> resourceGroupName,
-    required TfArg<String> skuName,
+    required AutomationAccountSkuName skuName,
     TfArg<Map<String, String>>? tags,
     List<AutomationAccountEncryption>? encryption,
     AutomationAccountIdentity? identity,

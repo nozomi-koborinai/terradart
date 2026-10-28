@@ -16,6 +16,21 @@ const Set<String> _azurermEventhubNamespaceSensitive = <String>{
   'default_secondary_key',
 };
 
+/// Eventhub Namespace enum for `sku`.
+extension type const EventhubNamespaceSku._(TfArg<String> _)
+    implements TfArg<String> {
+  EventhubNamespaceSku.variable(String name) : this._(TfArg.variable(name));
+  EventhubNamespaceSku.expression(String template)
+    : this._(TfArg.expression(template));
+  const EventhubNamespaceSku.arg(TfArg<String> arg) : this._(arg);
+
+  static const basic = EventhubNamespaceSku._(TfArgLiteral('Basic'));
+  static const premium = EventhubNamespaceSku._(TfArgLiteral('Premium'));
+  static const standard = EventhubNamespaceSku._(TfArgLiteral('Standard'));
+
+  static const List<EventhubNamespaceSku> values = [basic, premium, standard];
+}
+
 /// Typed helper for the `identity` block of
 /// `azurerm_eventhub_namespace` (derived from provider schema).
 @immutable
@@ -50,7 +65,7 @@ final class AzurermEventhubNamespace extends Resource {
     TfArg<List<Map<String, Object?>>>? networkRulesets,
     TfArg<bool>? publicNetworkAccessEnabled,
     required RefTo<AzurermResourceGroup> resourceGroupName,
-    required TfArg<String> sku,
+    required EventhubNamespaceSku sku,
     TfArg<Map<String, String>>? tags,
     EventhubNamespaceIdentity? identity,
     super.lifecycle,

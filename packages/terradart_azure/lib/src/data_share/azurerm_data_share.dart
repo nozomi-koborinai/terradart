@@ -7,6 +7,19 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `azurerm_data_share`.
 const Set<String> _azurermDataShareSensitive = <String>{};
 
+/// Data Share enum for `kind`.
+extension type const DataShareKind._(TfArg<String> _) implements TfArg<String> {
+  DataShareKind.variable(String name) : this._(TfArg.variable(name));
+  DataShareKind.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataShareKind.arg(TfArg<String> arg) : this._(arg);
+
+  static const copybased = DataShareKind._(TfArgLiteral('CopyBased'));
+  static const inplace = DataShareKind._(TfArgLiteral('InPlace'));
+
+  static const List<DataShareKind> values = [copybased, inplace];
+}
+
 /// Typed helper for the `snapshot_schedule` block of
 /// `azurerm_data_share` (derived from provider schema).
 @immutable
@@ -19,7 +32,7 @@ final class DataShareSnapshotSchedule {
 
   final TfArg<String> name;
 
-  final TfArg<String> recurrence;
+  final DataShareRecurrence recurrence;
 
   final TfArg<String> startTime;
 
@@ -31,6 +44,20 @@ final class DataShareSnapshotSchedule {
   };
 }
 
+/// `recurrence` — derived from the provider schema description.
+extension type const DataShareRecurrence._(TfArg<String> _)
+    implements TfArg<String> {
+  DataShareRecurrence.variable(String name) : this._(TfArg.variable(name));
+  DataShareRecurrence.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataShareRecurrence.arg(TfArg<String> arg) : this._(arg);
+
+  static const day = DataShareRecurrence._(TfArgLiteral('Day'));
+  static const hour = DataShareRecurrence._(TfArgLiteral('Hour'));
+
+  static const List<DataShareRecurrence> values = [day, hour];
+}
+
 /// Factory wrapper for `azurerm_data_share`.
 final class AzurermDataShare extends Resource {
   static const String tfType = 'azurerm_data_share';
@@ -39,7 +66,7 @@ final class AzurermDataShare extends Resource {
     super.localName, {
     required TfArg<String> accountId,
     TfArg<String>? description,
-    required TfArg<String> kind,
+    required DataShareKind kind,
     required TfArg<String> name,
     TfArg<String>? terms,
     DataShareSnapshotSchedule? snapshotSchedule,

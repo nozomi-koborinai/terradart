@@ -25,6 +25,6 @@ Never hand-edit. Re-extract at the fixture's pin with:
 ```bash
 dart tool/extract_provider_hints.dart \
   --repo=hashicorp/terraform-provider-azurerm \
-  --version="$(cat packages/terradart_codegen/test/fixtures/wrap/source_azure/provider_version.txt)" \
-  --schema-dir=packages/terradart_codegen/test/fixtures/wrap/source_azure
+  --version="$(cat /tmp/azure-schema/provider_version.txt)" \
+  --schema-dir=/tmp/azure-schema
 ```

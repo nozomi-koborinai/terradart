@@ -9,6 +9,9 @@ export 'src/data/azurerm_database_migration_project.dart'
 export 'src/data/azurerm_database_migration_service.dart'
     show DataAzurermDatabaseMigrationService;
 export 'src/database/azurerm_database_migration_project.dart'
-    show AzurermDatabaseMigrationProject;
+    show
+        AzurermDatabaseMigrationProject,
+        DatabaseMigrationProjectSourcePlatform,
+        DatabaseMigrationProjectTargetPlatform;
 export 'src/database/azurerm_database_migration_service.dart'
-    show AzurermDatabaseMigrationService;
+    show AzurermDatabaseMigrationService, DatabaseMigrationServiceSkuName;

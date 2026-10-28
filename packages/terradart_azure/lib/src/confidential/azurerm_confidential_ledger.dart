@@ -19,7 +19,7 @@ final class ConfidentialLedgerAzureadBasedServicePrincipal {
     required this.tenantId,
   });
 
-  final TfArg<String> ledgerRoleName;
+  final ConfidentialLedgerRoleName ledgerRoleName;
 
   final TfArg<String> principalId;
 
@@ -33,6 +33,30 @@ final class ConfidentialLedgerAzureadBasedServicePrincipal {
   };
 }
 
+/// `ledger_role_name` — derived from the provider schema description.
+extension type const ConfidentialLedgerRoleName._(TfArg<String> _)
+    implements TfArg<String> {
+  ConfidentialLedgerRoleName.variable(String name)
+    : this._(TfArg.variable(name));
+  ConfidentialLedgerRoleName.expression(String template)
+    : this._(TfArg.expression(template));
+  const ConfidentialLedgerRoleName.arg(TfArg<String> arg) : this._(arg);
+
+  static const administrator = ConfidentialLedgerRoleName._(
+    TfArgLiteral('Administrator'),
+  );
+  static const contributor = ConfidentialLedgerRoleName._(
+    TfArgLiteral('Contributor'),
+  );
+  static const reader = ConfidentialLedgerRoleName._(TfArgLiteral('Reader'));
+
+  static const List<ConfidentialLedgerRoleName> values = [
+    administrator,
+    contributor,
+    reader,
+  ];
+}
+
 /// Typed helper for the `certificate_based_security_principal` block of
 /// `azurerm_confidential_ledger` (derived from provider schema).
 @immutable
@@ -42,7 +66,7 @@ final class ConfidentialLedgerCertificateBasedSecurityPrincipal {
     required this.pemPublicKey,
   });
 
-  final TfArg<String> ledgerRoleName;
+  final ConfidentialLedgerRoleName ledgerRoleName;
 
   final TfArg<String> pemPublicKey;
 

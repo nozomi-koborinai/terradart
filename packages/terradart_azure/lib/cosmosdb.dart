@@ -79,7 +79,11 @@ export 'src/cosmosdb/azurerm_cosmosdb_mongo_user_definition.dart'
 export 'src/cosmosdb/azurerm_cosmosdb_postgresql_cluster.dart'
     show
         AzurermCosmosdbPostgresqlCluster,
-        CosmosdbPostgresqlClusterMaintenanceWindow;
+        CosmosdbPostgresqlClusterCitusVersion,
+        CosmosdbPostgresqlClusterCoordinatorServerEdition,
+        CosmosdbPostgresqlClusterMaintenanceWindow,
+        CosmosdbPostgresqlClusterNodeServerEdition,
+        CosmosdbPostgresqlClusterSqlVersion;
 export 'src/cosmosdb/azurerm_cosmosdb_postgresql_coordinator_configuration.dart'
     show AzurermCosmosdbPostgresqlCoordinatorConfiguration;
 export 'src/cosmosdb/azurerm_cosmosdb_postgresql_firewall_rule.dart'

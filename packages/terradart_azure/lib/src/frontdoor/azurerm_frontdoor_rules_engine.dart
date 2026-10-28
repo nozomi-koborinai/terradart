@@ -67,7 +67,7 @@ final class FrontdoorRulesEngineRequestHeader {
     this.value,
   });
 
-  final TfArg<String>? headerActionType;
+  final FrontdoorRulesEngineHeaderActionType? headerActionType;
 
   final TfArg<String>? headerName;
 
@@ -81,6 +81,33 @@ final class FrontdoorRulesEngineRequestHeader {
   };
 }
 
+/// `header_action_type` — derived from the provider schema description.
+extension type const FrontdoorRulesEngineHeaderActionType._(TfArg<String> _)
+    implements TfArg<String> {
+  FrontdoorRulesEngineHeaderActionType.variable(String name)
+    : this._(TfArg.variable(name));
+  FrontdoorRulesEngineHeaderActionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const FrontdoorRulesEngineHeaderActionType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const append = FrontdoorRulesEngineHeaderActionType._(
+    TfArgLiteral('Append'),
+  );
+  static const delete = FrontdoorRulesEngineHeaderActionType._(
+    TfArgLiteral('Delete'),
+  );
+  static const overwrite = FrontdoorRulesEngineHeaderActionType._(
+    TfArgLiteral('Overwrite'),
+  );
+
+  static const List<FrontdoorRulesEngineHeaderActionType> values = [
+    append,
+    delete,
+    overwrite,
+  ];
+}
+
 /// Typed helper for the `rule.action.response_header` block of
 /// `azurerm_frontdoor_rules_engine` (derived from provider schema).
 @immutable
@@ -91,7 +118,7 @@ final class FrontdoorRulesEngineResponseHeader {
     this.value,
   });
 
-  final TfArg<String>? headerActionType;
+  final FrontdoorRulesEngineHeaderActionType? headerActionType;
 
   final TfArg<String>? headerName;
 
@@ -120,25 +147,178 @@ final class FrontdoorRulesEngineMatchCondition {
 
   final TfArg<bool>? negateCondition;
 
-  final TfArg<String> operator;
+  final FrontdoorRulesEngineOperator operator;
 
   final TfArg<String>? selector;
 
-  final TfArg<List<String>>? transform;
+  final List<FrontdoorRulesEngineTransform>? transform;
 
   final TfArg<List<String>>? value;
 
-  final TfArg<String>? variable;
+  final FrontdoorRulesEngineVariable? variable;
 
   @internal
   Map<String, Object?> encode() => {
     'negate_condition': ?negateCondition?.toTfJson(),
     'operator': operator.toTfJson(),
     'selector': ?selector?.toTfJson(),
-    'transform': ?transform?.toTfJson(),
+    if (transform != null)
+      'transform': [for (final e in transform!) e.toTfJson()],
     'value': ?value?.toTfJson(),
     'variable': ?variable?.toTfJson(),
   };
+}
+
+/// `operator` — derived from the provider schema description.
+extension type const FrontdoorRulesEngineOperator._(TfArg<String> _)
+    implements TfArg<String> {
+  FrontdoorRulesEngineOperator.variable(String name)
+    : this._(TfArg.variable(name));
+  FrontdoorRulesEngineOperator.expression(String template)
+    : this._(TfArg.expression(template));
+  const FrontdoorRulesEngineOperator.arg(TfArg<String> arg) : this._(arg);
+
+  static const any = FrontdoorRulesEngineOperator._(TfArgLiteral('Any'));
+  static const ipmatch = FrontdoorRulesEngineOperator._(
+    TfArgLiteral('IPMatch'),
+  );
+  static const geomatch = FrontdoorRulesEngineOperator._(
+    TfArgLiteral('GeoMatch'),
+  );
+  static const equal = FrontdoorRulesEngineOperator._(TfArgLiteral('Equal'));
+  static const contains = FrontdoorRulesEngineOperator._(
+    TfArgLiteral('Contains'),
+  );
+  static const lessthan = FrontdoorRulesEngineOperator._(
+    TfArgLiteral('LessThan'),
+  );
+  static const greaterthan = FrontdoorRulesEngineOperator._(
+    TfArgLiteral('GreaterThan'),
+  );
+  static const lessthanorequal = FrontdoorRulesEngineOperator._(
+    TfArgLiteral('LessThanOrEqual'),
+  );
+  static const greaterthanorequal = FrontdoorRulesEngineOperator._(
+    TfArgLiteral('GreaterThanOrEqual'),
+  );
+  static const beginswith = FrontdoorRulesEngineOperator._(
+    TfArgLiteral('BeginsWith'),
+  );
+  static const endswith = FrontdoorRulesEngineOperator._(
+    TfArgLiteral('EndsWith'),
+  );
+
+  static const List<FrontdoorRulesEngineOperator> values = [
+    any,
+    ipmatch,
+    geomatch,
+    equal,
+    contains,
+    lessthan,
+    greaterthan,
+    lessthanorequal,
+    greaterthanorequal,
+    beginswith,
+    endswith,
+  ];
+}
+
+/// `transform` — derived from the provider schema description.
+extension type const FrontdoorRulesEngineTransform._(TfArg<String> _)
+    implements TfArg<String> {
+  FrontdoorRulesEngineTransform.variable(String name)
+    : this._(TfArg.variable(name));
+  FrontdoorRulesEngineTransform.expression(String template)
+    : this._(TfArg.expression(template));
+  const FrontdoorRulesEngineTransform.arg(TfArg<String> arg) : this._(arg);
+
+  static const lowercase = FrontdoorRulesEngineTransform._(
+    TfArgLiteral('Lowercase'),
+  );
+  static const removenulls = FrontdoorRulesEngineTransform._(
+    TfArgLiteral('RemoveNulls'),
+  );
+  static const trim = FrontdoorRulesEngineTransform._(TfArgLiteral('Trim'));
+  static const uppercase = FrontdoorRulesEngineTransform._(
+    TfArgLiteral('Uppercase'),
+  );
+  static const urldecode = FrontdoorRulesEngineTransform._(
+    TfArgLiteral('UrlDecode'),
+  );
+  static const urlencode = FrontdoorRulesEngineTransform._(
+    TfArgLiteral('UrlEncode'),
+  );
+
+  static const List<FrontdoorRulesEngineTransform> values = [
+    lowercase,
+    removenulls,
+    trim,
+    uppercase,
+    urldecode,
+    urlencode,
+  ];
+}
+
+/// `variable` — derived from the provider schema description.
+extension type const FrontdoorRulesEngineVariable._(TfArg<String> _)
+    implements TfArg<String> {
+  FrontdoorRulesEngineVariable.variable(String name)
+    : this._(TfArg.variable(name));
+  FrontdoorRulesEngineVariable.expression(String template)
+    : this._(TfArg.expression(template));
+  const FrontdoorRulesEngineVariable.arg(TfArg<String> arg) : this._(arg);
+
+  static const ismobile = FrontdoorRulesEngineVariable._(
+    TfArgLiteral('IsMobile'),
+  );
+  static const remoteaddr = FrontdoorRulesEngineVariable._(
+    TfArgLiteral('RemoteAddr'),
+  );
+  static const requestmethod = FrontdoorRulesEngineVariable._(
+    TfArgLiteral('RequestMethod'),
+  );
+  static const querystring = FrontdoorRulesEngineVariable._(
+    TfArgLiteral('QueryString'),
+  );
+  static const postargs = FrontdoorRulesEngineVariable._(
+    TfArgLiteral('PostArgs'),
+  );
+  static const requesturi = FrontdoorRulesEngineVariable._(
+    TfArgLiteral('RequestUri'),
+  );
+  static const requestpath = FrontdoorRulesEngineVariable._(
+    TfArgLiteral('RequestPath'),
+  );
+  static const requestfilename = FrontdoorRulesEngineVariable._(
+    TfArgLiteral('RequestFilename'),
+  );
+  static const requestfilenameextension = FrontdoorRulesEngineVariable._(
+    TfArgLiteral('RequestFilenameExtension'),
+  );
+  static const requestheader = FrontdoorRulesEngineVariable._(
+    TfArgLiteral('RequestHeader'),
+  );
+  static const requestbody = FrontdoorRulesEngineVariable._(
+    TfArgLiteral('RequestBody'),
+  );
+  static const requestscheme = FrontdoorRulesEngineVariable._(
+    TfArgLiteral('RequestScheme'),
+  );
+
+  static const List<FrontdoorRulesEngineVariable> values = [
+    ismobile,
+    remoteaddr,
+    requestmethod,
+    querystring,
+    postargs,
+    requesturi,
+    requestpath,
+    requestfilename,
+    requestfilenameextension,
+    requestheader,
+    requestbody,
+    requestscheme,
+  ];
 }
 
 /// Factory wrapper for `azurerm_frontdoor_rules_engine`.

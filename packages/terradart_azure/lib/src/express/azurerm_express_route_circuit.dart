@@ -18,15 +18,58 @@ const Set<String> _azurermExpressRouteCircuitSensitive = <String>{
 final class ExpressRouteCircuitSku {
   const ExpressRouteCircuitSku({required this.family, required this.tier});
 
-  final TfArg<String> family;
+  final ExpressRouteCircuitFamily family;
 
-  final TfArg<String> tier;
+  final ExpressRouteCircuitTier tier;
 
   @internal
   Map<String, Object?> encode() => {
     'family': family.toTfJson(),
     'tier': tier.toTfJson(),
   };
+}
+
+/// `family` — derived from the provider schema description.
+extension type const ExpressRouteCircuitFamily._(TfArg<String> _)
+    implements TfArg<String> {
+  ExpressRouteCircuitFamily.variable(String name)
+    : this._(TfArg.variable(name));
+  ExpressRouteCircuitFamily.expression(String template)
+    : this._(TfArg.expression(template));
+  const ExpressRouteCircuitFamily.arg(TfArg<String> arg) : this._(arg);
+
+  static const metereddata = ExpressRouteCircuitFamily._(
+    TfArgLiteral('MeteredData'),
+  );
+  static const unlimiteddata = ExpressRouteCircuitFamily._(
+    TfArgLiteral('UnlimitedData'),
+  );
+
+  static const List<ExpressRouteCircuitFamily> values = [
+    metereddata,
+    unlimiteddata,
+  ];
+}
+
+/// `tier` — derived from the provider schema description.
+extension type const ExpressRouteCircuitTier._(TfArg<String> _)
+    implements TfArg<String> {
+  ExpressRouteCircuitTier.variable(String name) : this._(TfArg.variable(name));
+  ExpressRouteCircuitTier.expression(String template)
+    : this._(TfArg.expression(template));
+  const ExpressRouteCircuitTier.arg(TfArg<String> arg) : this._(arg);
+
+  static const basic = ExpressRouteCircuitTier._(TfArgLiteral('Basic'));
+  static const local = ExpressRouteCircuitTier._(TfArgLiteral('Local'));
+  static const premium = ExpressRouteCircuitTier._(TfArgLiteral('Premium'));
+  static const standard = ExpressRouteCircuitTier._(TfArgLiteral('Standard'));
+
+  static const List<ExpressRouteCircuitTier> values = [
+    basic,
+    local,
+    premium,
+    standard,
+  ];
 }
 
 /// Factory wrapper for `azurerm_express_route_circuit`.

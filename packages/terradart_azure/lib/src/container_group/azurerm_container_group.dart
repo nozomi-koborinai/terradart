@@ -18,6 +18,179 @@ const Set<String> _azurermContainerGroupSensitive = <String>{
   'init_container.volume.storage_account_key',
 };
 
+/// Container Group Dns Name Label Reuse enum for `dns_name_label_reuse_policy`.
+extension type const ContainerGroupDnsNameLabelReusePolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerGroupDnsNameLabelReusePolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerGroupDnsNameLabelReusePolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerGroupDnsNameLabelReusePolicy.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const noreuse = ContainerGroupDnsNameLabelReusePolicy._(
+    TfArgLiteral('Noreuse'),
+  );
+  static const resourcegroupreuse = ContainerGroupDnsNameLabelReusePolicy._(
+    TfArgLiteral('ResourceGroupReuse'),
+  );
+  static const subscriptionreuse = ContainerGroupDnsNameLabelReusePolicy._(
+    TfArgLiteral('SubscriptionReuse'),
+  );
+  static const tenantreuse = ContainerGroupDnsNameLabelReusePolicy._(
+    TfArgLiteral('TenantReuse'),
+  );
+  static const unsecure = ContainerGroupDnsNameLabelReusePolicy._(
+    TfArgLiteral('Unsecure'),
+  );
+
+  static const List<ContainerGroupDnsNameLabelReusePolicy> values = [
+    noreuse,
+    resourcegroupreuse,
+    subscriptionreuse,
+    tenantreuse,
+    unsecure,
+  ];
+}
+
+/// Container Group Os enum for `os_type`.
+extension type const ContainerGroupOsType._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerGroupOsType.variable(String name) : this._(TfArg.variable(name));
+  ContainerGroupOsType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerGroupOsType.arg(TfArg<String> arg) : this._(arg);
+
+  static const linux = ContainerGroupOsType._(TfArgLiteral('Linux'));
+  static const windows = ContainerGroupOsType._(TfArgLiteral('Windows'));
+
+  static const List<ContainerGroupOsType> values = [linux, windows];
+}
+
+/// Container Group enum for `priority`.
+extension type const ContainerGroupPriority._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerGroupPriority.variable(String name) : this._(TfArg.variable(name));
+  ContainerGroupPriority.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerGroupPriority.arg(TfArg<String> arg) : this._(arg);
+
+  static const regular = ContainerGroupPriority._(TfArgLiteral('Regular'));
+  static const spot = ContainerGroupPriority._(TfArgLiteral('Spot'));
+
+  static const List<ContainerGroupPriority> values = [regular, spot];
+}
+
+/// Container Group Restart enum for `restart_policy`.
+extension type const ContainerGroupRestartPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerGroupRestartPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerGroupRestartPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerGroupRestartPolicy.arg(TfArg<String> arg) : this._(arg);
+
+  static const always = ContainerGroupRestartPolicy._(TfArgLiteral('Always'));
+  static const never = ContainerGroupRestartPolicy._(TfArgLiteral('Never'));
+  static const onfailure = ContainerGroupRestartPolicy._(
+    TfArgLiteral('OnFailure'),
+  );
+
+  static const List<ContainerGroupRestartPolicy> values = [
+    always,
+    never,
+    onfailure,
+  ];
+}
+
+/// Container Group enum for `sku`.
+extension type const ContainerGroupSku._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerGroupSku.variable(String name) : this._(TfArg.variable(name));
+  ContainerGroupSku.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerGroupSku.arg(TfArg<String> arg) : this._(arg);
+
+  static const confidential = ContainerGroupSku._(TfArgLiteral('Confidential'));
+  static const dedicated = ContainerGroupSku._(TfArgLiteral('Dedicated'));
+  static const notspecified = ContainerGroupSku._(TfArgLiteral('NotSpecified'));
+  static const standard = ContainerGroupSku._(TfArgLiteral('Standard'));
+
+  static const List<ContainerGroupSku> values = [
+    confidential,
+    dedicated,
+    notspecified,
+    standard,
+  ];
+}
+
+/// At most one of `dns_name_label`, `subnet_ids` on `azurerm_container_group`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.dnsNameLabel(...)`.
+sealed class ContainerGroupAddress {
+  const ContainerGroupAddress();
+
+  /// Sets `dns_name_label`.
+  const factory ContainerGroupAddress.dnsNameLabel(TfArg<String> dnsNameLabel) =
+      ContainerGroupAddressDnsNameLabel;
+
+  /// Sets `subnet_ids`.
+  const factory ContainerGroupAddress.subnetIds(TfArg<List<String>> subnetIds) =
+      ContainerGroupAddressSubnetIds;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [ContainerGroupAddress.dnsNameLabel] choice: sets `dns_name_label`.
+final class ContainerGroupAddressDnsNameLabel extends ContainerGroupAddress {
+  const ContainerGroupAddressDnsNameLabel(this.dnsNameLabel);
+
+  final TfArg<String> dnsNameLabel;
+
+  @internal
+  @override
+  String get blockKey => 'dns_name_label';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'dns_name_label': dnsNameLabel.toTfJson()};
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'dns_name_label': dnsNameLabel};
+}
+
+/// The [ContainerGroupAddress.subnetIds] choice: sets `subnet_ids`.
+final class ContainerGroupAddressSubnetIds extends ContainerGroupAddress {
+  const ContainerGroupAddressSubnetIds(this.subnetIds);
+
+  final TfArg<List<String>> subnetIds;
+
+  @internal
+  @override
+  String get blockKey => 'subnet_ids';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'subnet_ids': subnetIds.toTfJson()};
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'subnet_ids': subnetIds};
+}
+
 /// Typed helper for the `container` block of
 /// `azurerm_container_group` (derived from provider schema).
 @immutable
@@ -324,7 +497,7 @@ final class ContainerGroupLogAnalytics {
     required this.workspaceKey,
   });
 
-  final TfArg<String>? logType;
+  final ContainerGroupLogType? logType;
 
   final TfArg<Map<String, String>>? metadata;
 
@@ -339,6 +512,27 @@ final class ContainerGroupLogAnalytics {
     'workspace_id': workspaceId.toTfJson(),
     'workspace_key': workspaceKey.toTfJson(),
   };
+}
+
+/// `log_type` — derived from the provider schema description.
+extension type const ContainerGroupLogType._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerGroupLogType.variable(String name) : this._(TfArg.variable(name));
+  ContainerGroupLogType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerGroupLogType.arg(TfArg<String> arg) : this._(arg);
+
+  static const containerinsights = ContainerGroupLogType._(
+    TfArgLiteral('ContainerInsights'),
+  );
+  static const containerinstancelogs = ContainerGroupLogType._(
+    TfArgLiteral('ContainerInstanceLogs'),
+  );
+
+  static const List<ContainerGroupLogType> values = [
+    containerinsights,
+    containerinstancelogs,
+  ];
 }
 
 /// Typed helper for the `dns_config` block of
@@ -456,8 +650,8 @@ final class AzurermContainerGroup extends Resource {
 
   AzurermContainerGroup(
     super.localName, {
-    TfArg<String>? dnsNameLabel,
-    TfArg<String>? dnsNameLabelReusePolicy,
+    ContainerGroupAddress? address,
+    ContainerGroupDnsNameLabelReusePolicy? dnsNameLabelReusePolicy,
     TfArg<List<Map<String, Object?>>>? exposedPort,
     TfArg<String>? ipAddressType,
     TfArg<String>? keyVaultKeyId,
@@ -465,12 +659,11 @@ final class AzurermContainerGroup extends Resource {
     required TfArg<String> location,
     required TfArg<String> name,
     TfArg<String>? networkProfileId,
-    required TfArg<String> osType,
-    TfArg<String>? priority,
+    required ContainerGroupOsType osType,
+    ContainerGroupPriority? priority,
     required RefTo<AzurermResourceGroup> resourceGroupName,
-    TfArg<String>? restartPolicy,
-    TfArg<String>? sku,
-    TfArg<List<String>>? subnetIds,
+    ContainerGroupRestartPolicy? restartPolicy,
+    ContainerGroupSku? sku,
     TfArg<Map<String, String>>? tags,
     TfArg<List<String>>? zones,
     required List<ContainerGroupContainer> container,
@@ -486,7 +679,7 @@ final class AzurermContainerGroup extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'dns_name_label': ?dnsNameLabel,
+           ...?address?.argMap,
            'dns_name_label_reuse_policy': ?dnsNameLabelReusePolicy,
            'exposed_port': ?exposedPort,
            'ip_address_type': ?ipAddressType,
@@ -501,7 +694,6 @@ final class AzurermContainerGroup extends Resource {
            'resource_group_name': resourceGroupName.encodeAs('name'),
            'restart_policy': ?restartPolicy,
            'sku': ?sku,
-           'subnet_ids': ?subnetIds,
            'tags': ?tags,
            'zones': ?zones,
            'container': TfArg.literal([for (final e in container) e.encode()]),

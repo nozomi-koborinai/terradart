@@ -17,7 +17,10 @@ export 'src/databricks/azurerm_databricks_virtual_network_peering.dart'
 export 'src/databricks/azurerm_databricks_workspace.dart'
     show
         AzurermDatabricksWorkspace,
+        DatabricksWorkspaceComplianceSecurityProfileStandards,
         DatabricksWorkspaceCustomParameters,
-        DatabricksWorkspaceEnhancedSecurityCompliance;
+        DatabricksWorkspaceEnhancedSecurityCompliance,
+        DatabricksWorkspaceNetworkSecurityGroupRulesRequired,
+        DatabricksWorkspaceSku;
 export 'src/databricks/azurerm_databricks_workspace_root_dbfs_customer_managed_key.dart'
     show AzurermDatabricksWorkspaceRootDbfsCustomerManagedKey;

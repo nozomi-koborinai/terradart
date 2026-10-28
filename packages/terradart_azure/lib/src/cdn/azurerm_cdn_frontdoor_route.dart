@@ -7,6 +7,53 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `azurerm_cdn_frontdoor_route`.
 const Set<String> _azurermCdnFrontdoorRouteSensitive = <String>{};
 
+/// Cdn Frontdoor Route Forwarding enum for `forwarding_protocol`.
+extension type const CdnFrontdoorRouteForwardingProtocol._(TfArg<String> _)
+    implements TfArg<String> {
+  CdnFrontdoorRouteForwardingProtocol.variable(String name)
+    : this._(TfArg.variable(name));
+  CdnFrontdoorRouteForwardingProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const CdnFrontdoorRouteForwardingProtocol.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const httponly = CdnFrontdoorRouteForwardingProtocol._(
+    TfArgLiteral('HttpOnly'),
+  );
+  static const httpsonly = CdnFrontdoorRouteForwardingProtocol._(
+    TfArgLiteral('HttpsOnly'),
+  );
+  static const matchrequest = CdnFrontdoorRouteForwardingProtocol._(
+    TfArgLiteral('MatchRequest'),
+  );
+
+  static const List<CdnFrontdoorRouteForwardingProtocol> values = [
+    httponly,
+    httpsonly,
+    matchrequest,
+  ];
+}
+
+/// Cdn Frontdoor Route Supported enum for `supported_protocols`.
+extension type const CdnFrontdoorRouteSupportedProtocols._(TfArg<String> _)
+    implements TfArg<String> {
+  CdnFrontdoorRouteSupportedProtocols.variable(String name)
+    : this._(TfArg.variable(name));
+  CdnFrontdoorRouteSupportedProtocols.expression(String template)
+    : this._(TfArg.expression(template));
+  const CdnFrontdoorRouteSupportedProtocols.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const http = CdnFrontdoorRouteSupportedProtocols._(
+    TfArgLiteral('Http'),
+  );
+  static const https = CdnFrontdoorRouteSupportedProtocols._(
+    TfArgLiteral('Https'),
+  );
+
+  static const List<CdnFrontdoorRouteSupportedProtocols> values = [http, https];
+}
+
 /// Typed helper for the `cache` block of
 /// `azurerm_cdn_frontdoor_route` (derived from provider schema).
 @immutable
@@ -22,7 +69,7 @@ final class CdnFrontdoorRouteCache {
 
   final TfArg<List<String>>? contentTypesToCompress;
 
-  final TfArg<String>? queryStringCachingBehavior;
+  final CdnFrontdoorRouteQueryStringCachingBehavior? queryStringCachingBehavior;
 
   final TfArg<List<String>>? queryStrings;
 
@@ -33,6 +80,41 @@ final class CdnFrontdoorRouteCache {
     'query_string_caching_behavior': ?queryStringCachingBehavior?.toTfJson(),
     'query_strings': ?queryStrings?.toTfJson(),
   };
+}
+
+/// `query_string_caching_behavior` — derived from the provider schema description.
+extension type const CdnFrontdoorRouteQueryStringCachingBehavior._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CdnFrontdoorRouteQueryStringCachingBehavior.variable(String name)
+    : this._(TfArg.variable(name));
+  CdnFrontdoorRouteQueryStringCachingBehavior.expression(String template)
+    : this._(TfArg.expression(template));
+  const CdnFrontdoorRouteQueryStringCachingBehavior.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const ignorequerystring =
+      CdnFrontdoorRouteQueryStringCachingBehavior._(
+        TfArgLiteral('IgnoreQueryString'),
+      );
+  static const ignorespecifiedquerystrings =
+      CdnFrontdoorRouteQueryStringCachingBehavior._(
+        TfArgLiteral('IgnoreSpecifiedQueryStrings'),
+      );
+  static const includespecifiedquerystrings =
+      CdnFrontdoorRouteQueryStringCachingBehavior._(
+        TfArgLiteral('IncludeSpecifiedQueryStrings'),
+      );
+  static const usequerystring = CdnFrontdoorRouteQueryStringCachingBehavior._(
+    TfArgLiteral('UseQueryString'),
+  );
+
+  static const List<CdnFrontdoorRouteQueryStringCachingBehavior> values = [
+    ignorequerystring,
+    ignorespecifiedquerystrings,
+    includespecifiedquerystrings,
+    usequerystring,
+  ];
 }
 
 /// Factory wrapper for `azurerm_cdn_frontdoor_route`.
@@ -48,12 +130,12 @@ final class AzurermCdnFrontdoorRoute extends Resource {
     TfArg<String>? cdnFrontdoorOriginPath,
     TfArg<List<String>>? cdnFrontdoorRuleSetIds,
     TfArg<bool>? enabled,
-    TfArg<String>? forwardingProtocol,
+    CdnFrontdoorRouteForwardingProtocol? forwardingProtocol,
     TfArg<bool>? httpsRedirectEnabled,
     TfArg<bool>? linkToDefaultDomain,
     required TfArg<String> name,
     required TfArg<List<String>> patternsToMatch,
-    required TfArg<List<String>> supportedProtocols,
+    required List<CdnFrontdoorRouteSupportedProtocols> supportedProtocols,
     CdnFrontdoorRouteCache? cache,
     super.lifecycle,
     super.dependsOn,
@@ -74,7 +156,9 @@ final class AzurermCdnFrontdoorRoute extends Resource {
            'link_to_default_domain': ?linkToDefaultDomain,
            'name': name,
            'patterns_to_match': patternsToMatch,
-           'supported_protocols': supportedProtocols,
+           'supported_protocols': TfArg.literal([
+             for (final e in supportedProtocols) e.toTfJson(),
+           ]),
            if (cache != null) 'cache': TfArg.literal(cache.encode()),
          },
        );

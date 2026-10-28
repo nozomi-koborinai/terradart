@@ -16,13 +16,26 @@ export 'src/data/azurerm_data_share_dataset_kusto_cluster.dart'
 export 'src/data/azurerm_data_share_dataset_kusto_database.dart'
     show DataAzurermDataShareDatasetKustoDatabase;
 export 'src/data_share/azurerm_data_share.dart'
-    show AzurermDataShare, DataShareSnapshotSchedule;
+    show
+        AzurermDataShare,
+        DataShareKind,
+        DataShareRecurrence,
+        DataShareSnapshotSchedule;
 export 'src/data_share/azurerm_data_share_account.dart'
     show AzurermDataShareAccount, DataShareAccountIdentity;
 export 'src/data_share/azurerm_data_share_dataset_blob_storage.dart'
-    show AzurermDataShareDatasetBlobStorage, DataShareDatasetBlobStorageAccount;
+    show
+        AzurermDataShareDatasetBlobStorage,
+        DataShareDatasetBlobStorageAccount,
+        DataShareDatasetBlobStorageFilePath,
+        DataShareDatasetBlobStorageFolderPath,
+        DataShareDatasetBlobStoragePath;
 export 'src/data_share/azurerm_data_share_dataset_data_lake_gen2.dart'
-    show AzurermDataShareDatasetDataLakeGen2;
+    show
+        AzurermDataShareDatasetDataLakeGen2,
+        DataShareDatasetDataLakeGen2FilePath,
+        DataShareDatasetDataLakeGen2FolderPath,
+        DataShareDatasetDataLakeGen2Path;
 export 'src/data_share/azurerm_data_share_dataset_kusto_cluster.dart'
     show AzurermDataShareDatasetKustoCluster;
 export 'src/data_share/azurerm_data_share_dataset_kusto_database.dart'

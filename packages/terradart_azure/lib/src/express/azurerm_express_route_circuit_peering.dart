@@ -11,6 +11,32 @@ const Set<String> _azurermExpressRouteCircuitPeeringSensitive = <String>{
   'shared_key',
 };
 
+/// Express Route Circuit Peering enum for `peering_type`.
+extension type const ExpressRouteCircuitPeeringType._(TfArg<String> _)
+    implements TfArg<String> {
+  ExpressRouteCircuitPeeringType.variable(String name)
+    : this._(TfArg.variable(name));
+  ExpressRouteCircuitPeeringType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ExpressRouteCircuitPeeringType.arg(TfArg<String> arg) : this._(arg);
+
+  static const azureprivatepeering = ExpressRouteCircuitPeeringType._(
+    TfArgLiteral('AzurePrivatePeering'),
+  );
+  static const azurepublicpeering = ExpressRouteCircuitPeeringType._(
+    TfArgLiteral('AzurePublicPeering'),
+  );
+  static const microsoftpeering = ExpressRouteCircuitPeeringType._(
+    TfArgLiteral('MicrosoftPeering'),
+  );
+
+  static const List<ExpressRouteCircuitPeeringType> values = [
+    azureprivatepeering,
+    azurepublicpeering,
+    microsoftpeering,
+  ];
+}
+
 /// Typed helper for the `ipv6` block of
 /// `azurerm_express_route_circuit_peering` (derived from provider schema).
 @immutable
@@ -108,7 +134,7 @@ final class AzurermExpressRouteCircuitPeering extends Resource {
     required TfArg<String> expressRouteCircuitName,
     TfArg<bool>? ipv4Enabled,
     TfArg<num>? peerAsn,
-    required TfArg<String> peeringType,
+    required ExpressRouteCircuitPeeringType peeringType,
     TfArg<String>? primaryPeerAddressPrefix,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<String>? routeFilterId,

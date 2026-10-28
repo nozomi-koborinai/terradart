@@ -6,6 +6,34 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `azurerm_eventhub_namespace_schema_group`.
 const Set<String> _azurermEventhubNamespaceSchemaGroupSensitive = <String>{};
 
+/// Eventhub Namespace Schema Group Schema enum for `schema_compatibility`.
+extension type const EventhubNamespaceSchemaGroupSchemaCompatibility._(
+  TfArg<String> _
+) implements TfArg<String> {
+  EventhubNamespaceSchemaGroupSchemaCompatibility.variable(String name)
+    : this._(TfArg.variable(name));
+  EventhubNamespaceSchemaGroupSchemaCompatibility.expression(String template)
+    : this._(TfArg.expression(template));
+  const EventhubNamespaceSchemaGroupSchemaCompatibility.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const backward = EventhubNamespaceSchemaGroupSchemaCompatibility._(
+    TfArgLiteral('Backward'),
+  );
+  static const forward = EventhubNamespaceSchemaGroupSchemaCompatibility._(
+    TfArgLiteral('Forward'),
+  );
+  static const none = EventhubNamespaceSchemaGroupSchemaCompatibility._(
+    TfArgLiteral('None'),
+  );
+
+  static const List<EventhubNamespaceSchemaGroupSchemaCompatibility> values = [
+    backward,
+    forward,
+    none,
+  ];
+}
+
 /// Factory wrapper for `azurerm_eventhub_namespace_schema_group`.
 final class AzurermEventhubNamespaceSchemaGroup extends Resource {
   static const String tfType = 'azurerm_eventhub_namespace_schema_group';
@@ -14,7 +42,8 @@ final class AzurermEventhubNamespaceSchemaGroup extends Resource {
     super.localName, {
     required TfArg<String> name,
     required TfArg<String> namespaceId,
-    required TfArg<String> schemaCompatibility,
+    required EventhubNamespaceSchemaGroupSchemaCompatibility
+    schemaCompatibility,
     required TfArg<String> schemaType,
     super.lifecycle,
     super.dependsOn,

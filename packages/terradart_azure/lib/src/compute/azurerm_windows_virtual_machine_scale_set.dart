@@ -14,6 +14,245 @@ const Set<String> _azurermWindowsVirtualMachineScaleSetSensitive = <String>{
   'extension.protected_settings',
 };
 
+/// Windows Virtual Machine Scale Set Eviction enum for `eviction_policy`.
+extension type const WindowsVirtualMachineScaleSetEvictionPolicy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  WindowsVirtualMachineScaleSetEvictionPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsVirtualMachineScaleSetEvictionPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsVirtualMachineScaleSetEvictionPolicy.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const deallocate = WindowsVirtualMachineScaleSetEvictionPolicy._(
+    TfArgLiteral('Deallocate'),
+  );
+  static const delete = WindowsVirtualMachineScaleSetEvictionPolicy._(
+    TfArgLiteral('Delete'),
+  );
+
+  static const List<WindowsVirtualMachineScaleSetEvictionPolicy> values = [
+    deallocate,
+    delete,
+  ];
+}
+
+/// Windows Virtual Machine Scale Set License enum for `license_type`.
+extension type const WindowsVirtualMachineScaleSetLicenseType._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsVirtualMachineScaleSetLicenseType.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsVirtualMachineScaleSetLicenseType.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsVirtualMachineScaleSetLicenseType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const none = WindowsVirtualMachineScaleSetLicenseType._(
+    TfArgLiteral('None'),
+  );
+  static const windowsClient = WindowsVirtualMachineScaleSetLicenseType._(
+    TfArgLiteral('Windows_Client'),
+  );
+  static const windowsServer = WindowsVirtualMachineScaleSetLicenseType._(
+    TfArgLiteral('Windows_Server'),
+  );
+
+  static const List<WindowsVirtualMachineScaleSetLicenseType> values = [
+    none,
+    windowsClient,
+    windowsServer,
+  ];
+}
+
+/// Windows Virtual Machine Scale Set Upgrade enum for `upgrade_mode`.
+extension type const WindowsVirtualMachineScaleSetUpgradeMode._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsVirtualMachineScaleSetUpgradeMode.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsVirtualMachineScaleSetUpgradeMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsVirtualMachineScaleSetUpgradeMode.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const automatic = WindowsVirtualMachineScaleSetUpgradeMode._(
+    TfArgLiteral('Automatic'),
+  );
+  static const manual = WindowsVirtualMachineScaleSetUpgradeMode._(
+    TfArgLiteral('Manual'),
+  );
+  static const rolling = WindowsVirtualMachineScaleSetUpgradeMode._(
+    TfArgLiteral('Rolling'),
+  );
+
+  static const List<WindowsVirtualMachineScaleSetUpgradeMode> values = [
+    automatic,
+    manual,
+    rolling,
+  ];
+}
+
+/// Exactly one of `source_image_id`, `source_image_reference` on `azurerm_windows_virtual_machine_scale_set`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.sourceImageId(...)`.
+sealed class WindowsVirtualMachineScaleSetSourceImage {
+  const WindowsVirtualMachineScaleSetSourceImage();
+
+  /// Sets `source_image_id`.
+  const factory WindowsVirtualMachineScaleSetSourceImage.sourceImageId(
+    TfArg<String> sourceImageId,
+  ) = WindowsVirtualMachineScaleSetSourceImageId;
+
+  /// Sets `source_image_reference`.
+  const factory WindowsVirtualMachineScaleSetSourceImage.sourceImageReference(
+    WindowsVirtualMachineScaleSetSourceImageReference sourceImageReference,
+  ) = WindowsVirtualMachineScaleSetSourceImageReferenceChoice;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [WindowsVirtualMachineScaleSetSourceImage.sourceImageId] choice: sets `source_image_id`.
+final class WindowsVirtualMachineScaleSetSourceImageId
+    extends WindowsVirtualMachineScaleSetSourceImage {
+  const WindowsVirtualMachineScaleSetSourceImageId(this.sourceImageId);
+
+  final TfArg<String> sourceImageId;
+
+  @internal
+  @override
+  String get blockKey => 'source_image_id';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'source_image_id': sourceImageId.toTfJson(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'source_image_id': sourceImageId};
+}
+
+/// The [WindowsVirtualMachineScaleSetSourceImage.sourceImageReference] choice: sets `source_image_reference`.
+final class WindowsVirtualMachineScaleSetSourceImageReferenceChoice
+    extends WindowsVirtualMachineScaleSetSourceImage {
+  const WindowsVirtualMachineScaleSetSourceImageReferenceChoice(
+    this.sourceImageReference,
+  );
+
+  final WindowsVirtualMachineScaleSetSourceImageReference sourceImageReference;
+
+  @internal
+  @override
+  String get blockKey => 'source_image_reference';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'source_image_reference': sourceImageReference.encode(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'source_image_reference': TfArg.literal(sourceImageReference.encode()),
+  };
+}
+
+/// At most one of `capacity_reservation_group_id`, `proximity_placement_group_id` on `azurerm_windows_virtual_machine_scale_set`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.capacityReservationGroupId(...)`.
+sealed class WindowsVirtualMachineScaleSetGroupId {
+  const WindowsVirtualMachineScaleSetGroupId();
+
+  /// Sets `capacity_reservation_group_id`.
+  const factory WindowsVirtualMachineScaleSetGroupId.capacityReservationGroupId(
+    TfArg<String> capacityReservationGroupId,
+  ) = WindowsVirtualMachineScaleSetCapacityReservationGroupId;
+
+  /// Sets `proximity_placement_group_id`.
+  const factory WindowsVirtualMachineScaleSetGroupId.proximityPlacementGroupId(
+    TfArg<String> proximityPlacementGroupId,
+  ) = WindowsVirtualMachineScaleSetProximityPlacementGroupId;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [WindowsVirtualMachineScaleSetGroupId.capacityReservationGroupId] choice: sets `capacity_reservation_group_id`.
+final class WindowsVirtualMachineScaleSetCapacityReservationGroupId
+    extends WindowsVirtualMachineScaleSetGroupId {
+  const WindowsVirtualMachineScaleSetCapacityReservationGroupId(
+    this.capacityReservationGroupId,
+  );
+
+  final TfArg<String> capacityReservationGroupId;
+
+  @internal
+  @override
+  String get blockKey => 'capacity_reservation_group_id';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'capacity_reservation_group_id': capacityReservationGroupId.toTfJson(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'capacity_reservation_group_id': capacityReservationGroupId,
+  };
+}
+
+/// The [WindowsVirtualMachineScaleSetGroupId.proximityPlacementGroupId] choice: sets `proximity_placement_group_id`.
+final class WindowsVirtualMachineScaleSetProximityPlacementGroupId
+    extends WindowsVirtualMachineScaleSetGroupId {
+  const WindowsVirtualMachineScaleSetProximityPlacementGroupId(
+    this.proximityPlacementGroupId,
+  );
+
+  final TfArg<String> proximityPlacementGroupId;
+
+  @internal
+  @override
+  String get blockKey => 'proximity_placement_group_id';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'proximity_placement_group_id': proximityPlacementGroupId.toTfJson(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'proximity_placement_group_id': proximityPlacementGroupId,
+  };
+}
+
 /// Typed helper for the `additional_capabilities` block of
 /// `azurerm_windows_virtual_machine_scale_set` (derived from provider schema).
 @immutable
@@ -728,19 +967,19 @@ final class AzurermWindowsVirtualMachineScaleSet extends Resource {
     required Sensitive<String> adminPassword,
     required TfArg<String> adminUsername,
     TfArg<bool>? automaticUpdatesEnabled,
-    TfArg<String>? capacityReservationGroupId,
+    WindowsVirtualMachineScaleSetGroupId? groupId,
     TfArg<String>? computerNamePrefix,
     Sensitive<String>? customData,
     TfArg<bool>? doNotRunExtensionsOnOverprovisionedMachines,
     TfArg<String>? edgeZone,
     TfArg<bool>? encryptionAtHostEnabled,
-    TfArg<String>? evictionPolicy,
+    WindowsVirtualMachineScaleSetEvictionPolicy? evictionPolicy,
     TfArg<bool>? extensionOperationsEnabled,
     TfArg<String>? extensionsTimeBudget,
     TfArg<String>? healthProbeId,
     TfArg<String>? hostGroupId,
     required TfArg<num> instances,
-    TfArg<String>? licenseType,
+    WindowsVirtualMachineScaleSetLicenseType? licenseType,
     required TfArg<String> location,
     TfArg<num>? maxBidPrice,
     required TfArg<String> name,
@@ -748,17 +987,16 @@ final class AzurermWindowsVirtualMachineScaleSet extends Resource {
     TfArg<num>? platformFaultDomainCount,
     TfArg<String>? priority,
     TfArg<bool>? provisionVmAgent,
-    TfArg<String>? proximityPlacementGroupId,
     TfArg<bool>? resilientVmCreationEnabled,
     TfArg<bool>? resilientVmDeletionEnabled,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<bool>? secureBootEnabled,
     TfArg<bool>? singlePlacementGroup,
     required TfArg<String> sku,
-    TfArg<String>? sourceImageId,
+    required WindowsVirtualMachineScaleSetSourceImage sourceImage,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? timezone,
-    TfArg<String>? upgradeMode,
+    WindowsVirtualMachineScaleSetUpgradeMode? upgradeMode,
     TfArg<String>? userData,
     TfArg<bool>? vtpmEnabled,
     TfArg<bool>? zoneBalance,
@@ -782,7 +1020,6 @@ final class AzurermWindowsVirtualMachineScaleSet extends Resource {
     WindowsVirtualMachineScaleSetRollingUpgradePolicy? rollingUpgradePolicy,
     WindowsVirtualMachineScaleSetScaleIn? scaleIn,
     List<WindowsVirtualMachineScaleSetSecret>? secret,
-    WindowsVirtualMachineScaleSetSourceImageReference? sourceImageReference,
     WindowsVirtualMachineScaleSetSpotRestore? spotRestore,
     WindowsVirtualMachineScaleSetTerminationNotification?
     terminationNotification,
@@ -797,7 +1034,7 @@ final class AzurermWindowsVirtualMachineScaleSet extends Resource {
            'admin_password': adminPassword,
            'admin_username': adminUsername,
            'automatic_updates_enabled': ?automaticUpdatesEnabled,
-           'capacity_reservation_group_id': ?capacityReservationGroupId,
+           ...?groupId?.argMap,
            'computer_name_prefix': ?computerNamePrefix,
            'custom_data': ?customData,
            'do_not_run_extensions_on_overprovisioned_machines':
@@ -818,14 +1055,13 @@ final class AzurermWindowsVirtualMachineScaleSet extends Resource {
            'platform_fault_domain_count': ?platformFaultDomainCount,
            'priority': ?priority,
            'provision_vm_agent': ?provisionVmAgent,
-           'proximity_placement_group_id': ?proximityPlacementGroupId,
            'resilient_vm_creation_enabled': ?resilientVmCreationEnabled,
            'resilient_vm_deletion_enabled': ?resilientVmDeletionEnabled,
            'resource_group_name': resourceGroupName.encodeAs('name'),
            'secure_boot_enabled': ?secureBootEnabled,
            'single_placement_group': ?singlePlacementGroup,
            'sku': sku,
-           'source_image_id': ?sourceImageId,
+           ...sourceImage.argMap,
            'tags': ?tags,
            'timezone': ?timezone,
            'upgrade_mode': ?upgradeMode,
@@ -874,10 +1110,6 @@ final class AzurermWindowsVirtualMachineScaleSet extends Resource {
            if (scaleIn != null) 'scale_in': TfArg.literal(scaleIn.encode()),
            if (secret != null)
              'secret': TfArg.literal([for (final e in secret) e.encode()]),
-           if (sourceImageReference != null)
-             'source_image_reference': TfArg.literal(
-               sourceImageReference.encode(),
-             ),
            if (spotRestore != null)
              'spot_restore': TfArg.literal(spotRestore.encode()),
            if (terminationNotification != null)

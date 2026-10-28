@@ -8,6 +8,7 @@ export 'src/automation/azurerm_automation_account.dart'
     show
         AutomationAccountEncryption,
         AutomationAccountIdentity,
+        AutomationAccountSkuName,
         AzurermAutomationAccount;
 export 'src/automation/azurerm_automation_certificate.dart'
     show AzurermAutomationCertificate;
@@ -49,6 +50,7 @@ export 'src/automation/azurerm_automation_runbook.dart'
         AutomationRunbookHash,
         AutomationRunbookParameters,
         AutomationRunbookPublishContentLink,
+        AutomationRunbookType,
         AzurermAutomationRunbook;
 export 'src/automation/azurerm_automation_runtime_environment.dart'
     show
@@ -57,7 +59,16 @@ export 'src/automation/azurerm_automation_runtime_environment.dart'
 export 'src/automation/azurerm_automation_runtime_environment_package.dart'
     show AzurermAutomationRuntimeEnvironmentPackage;
 export 'src/automation/azurerm_automation_schedule.dart'
-    show AutomationScheduleMonthlyOccurrence, AzurermAutomationSchedule;
+    show
+        AutomationScheduleDay,
+        AutomationScheduleDays,
+        AutomationScheduleDaysMonthlyOccurrence,
+        AutomationScheduleFrequency,
+        AutomationScheduleMonthDays,
+        AutomationScheduleMonthlyOccurrence,
+        AutomationScheduleWeekDays,
+        AutomationScheduleWeekDaysChoice,
+        AzurermAutomationSchedule;
 export 'src/automation/azurerm_automation_source_control.dart'
     show
         AutomationSourceControlSecurity,

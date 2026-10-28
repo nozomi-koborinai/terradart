@@ -8,6 +8,29 @@ import '../resource/azurerm_resource_group.dart' show AzurermResourceGroup;
 /// Sensitive field paths for `azurerm_bot_channel_ms_teams`.
 const Set<String> _azurermBotChannelMsTeamsSensitive = <String>{};
 
+/// Bot Channel Ms Teams Deployment enum for `deployment_environment`.
+extension type const BotChannelMsTeamsDeploymentEnvironment._(TfArg<String> _)
+    implements TfArg<String> {
+  BotChannelMsTeamsDeploymentEnvironment.variable(String name)
+    : this._(TfArg.variable(name));
+  BotChannelMsTeamsDeploymentEnvironment.expression(String template)
+    : this._(TfArg.expression(template));
+  const BotChannelMsTeamsDeploymentEnvironment.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const commercialdeployment = BotChannelMsTeamsDeploymentEnvironment._(
+    TfArgLiteral('CommercialDeployment'),
+  );
+  static const gccmoderatedeployment = BotChannelMsTeamsDeploymentEnvironment._(
+    TfArgLiteral('GCCModerateDeployment'),
+  );
+
+  static const List<BotChannelMsTeamsDeploymentEnvironment> values = [
+    commercialdeployment,
+    gccmoderatedeployment,
+  ];
+}
+
 /// Factory wrapper for `azurerm_bot_channel_ms_teams`.
 final class AzurermBotChannelMsTeams extends Resource {
   static const String tfType = 'azurerm_bot_channel_ms_teams';
@@ -17,7 +40,7 @@ final class AzurermBotChannelMsTeams extends Resource {
     required TfArg<String> botName,
     TfArg<bool>? callingEnabled,
     TfArg<String>? callingWebHook,
-    TfArg<String>? deploymentEnvironment,
+    BotChannelMsTeamsDeploymentEnvironment? deploymentEnvironment,
     required TfArg<String> location,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     super.lifecycle,

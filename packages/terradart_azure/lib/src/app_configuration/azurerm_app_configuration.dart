@@ -9,6 +9,74 @@ import '../resource/azurerm_resource_group.dart' show AzurermResourceGroup;
 /// Sensitive field paths for `azurerm_app_configuration`.
 const Set<String> _azurermAppConfigurationSensitive = <String>{};
 
+/// App Configuration Data Plane Proxy Authentication enum for `data_plane_proxy_authentication_mode`.
+extension type const AppConfigurationDataPlaneProxyAuthenticationMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AppConfigurationDataPlaneProxyAuthenticationMode.variable(String name)
+    : this._(TfArg.variable(name));
+  AppConfigurationDataPlaneProxyAuthenticationMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppConfigurationDataPlaneProxyAuthenticationMode.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const local = AppConfigurationDataPlaneProxyAuthenticationMode._(
+    TfArgLiteral('Local'),
+  );
+  static const passThrough = AppConfigurationDataPlaneProxyAuthenticationMode._(
+    TfArgLiteral('Pass-through'),
+  );
+
+  static const List<AppConfigurationDataPlaneProxyAuthenticationMode> values = [
+    local,
+    passThrough,
+  ];
+}
+
+/// App Configuration Public Network enum for `public_network_access`.
+extension type const AppConfigurationPublicNetworkAccess._(TfArg<String> _)
+    implements TfArg<String> {
+  AppConfigurationPublicNetworkAccess.variable(String name)
+    : this._(TfArg.variable(name));
+  AppConfigurationPublicNetworkAccess.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppConfigurationPublicNetworkAccess.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const disabled = AppConfigurationPublicNetworkAccess._(
+    TfArgLiteral('Disabled'),
+  );
+  static const enabled = AppConfigurationPublicNetworkAccess._(
+    TfArgLiteral('Enabled'),
+  );
+
+  static const List<AppConfigurationPublicNetworkAccess> values = [
+    disabled,
+    enabled,
+  ];
+}
+
+/// App Configuration enum for `sku`.
+extension type const AppConfigurationSku._(TfArg<String> _)
+    implements TfArg<String> {
+  AppConfigurationSku.variable(String name) : this._(TfArg.variable(name));
+  AppConfigurationSku.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppConfigurationSku.arg(TfArg<String> arg) : this._(arg);
+
+  static const free = AppConfigurationSku._(TfArgLiteral('free'));
+  static const developer = AppConfigurationSku._(TfArgLiteral('developer'));
+  static const standard = AppConfigurationSku._(TfArgLiteral('standard'));
+  static const premium = AppConfigurationSku._(TfArgLiteral('premium'));
+
+  static const List<AppConfigurationSku> values = [
+    free,
+    developer,
+    standard,
+    premium,
+  ];
+}
+
 /// Typed helper for the `encryption` block of
 /// `azurerm_app_configuration` (derived from provider schema).
 @immutable
@@ -69,15 +137,16 @@ final class AzurermAppConfiguration extends Resource {
 
   AzurermAppConfiguration(
     super.localName, {
-    TfArg<String>? dataPlaneProxyAuthenticationMode,
+    AppConfigurationDataPlaneProxyAuthenticationMode?
+    dataPlaneProxyAuthenticationMode,
     TfArg<bool>? dataPlaneProxyPrivateLinkDelegationEnabled,
     TfArg<bool>? localAuthEnabled,
     required TfArg<String> location,
     required TfArg<String> name,
-    TfArg<String>? publicNetworkAccess,
+    AppConfigurationPublicNetworkAccess? publicNetworkAccess,
     TfArg<bool>? purgeProtectionEnabled,
     required RefTo<AzurermResourceGroup> resourceGroupName,
-    TfArg<String>? sku,
+    AppConfigurationSku? sku,
     TfArg<num>? softDeleteRetentionDays,
     TfArg<Map<String, String>>? tags,
     AppConfigurationEncryption? encryption,

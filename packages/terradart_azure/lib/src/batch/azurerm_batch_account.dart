@@ -13,6 +13,81 @@ const Set<String> _azurermBatchAccountSensitive = <String>{
   'secondary_access_key',
 };
 
+/// Batch Account Allowed Authentication enum for `allowed_authentication_modes`.
+extension type const BatchAccountAllowedAuthenticationModes._(TfArg<String> _)
+    implements TfArg<String> {
+  BatchAccountAllowedAuthenticationModes.variable(String name)
+    : this._(TfArg.variable(name));
+  BatchAccountAllowedAuthenticationModes.expression(String template)
+    : this._(TfArg.expression(template));
+  const BatchAccountAllowedAuthenticationModes.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const aad = BatchAccountAllowedAuthenticationModes._(
+    TfArgLiteral('AAD'),
+  );
+  static const sharedkey = BatchAccountAllowedAuthenticationModes._(
+    TfArgLiteral('SharedKey'),
+  );
+  static const taskauthenticationtoken =
+      BatchAccountAllowedAuthenticationModes._(
+        TfArgLiteral('TaskAuthenticationToken'),
+      );
+
+  static const List<BatchAccountAllowedAuthenticationModes> values = [
+    aad,
+    sharedkey,
+    taskauthenticationtoken,
+  ];
+}
+
+/// Batch Account Pool Allocation enum for `pool_allocation_mode`.
+extension type const BatchAccountPoolAllocationMode._(TfArg<String> _)
+    implements TfArg<String> {
+  BatchAccountPoolAllocationMode.variable(String name)
+    : this._(TfArg.variable(name));
+  BatchAccountPoolAllocationMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const BatchAccountPoolAllocationMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const batchservice = BatchAccountPoolAllocationMode._(
+    TfArgLiteral('BatchService'),
+  );
+  static const usersubscription = BatchAccountPoolAllocationMode._(
+    TfArgLiteral('UserSubscription'),
+  );
+
+  static const List<BatchAccountPoolAllocationMode> values = [
+    batchservice,
+    usersubscription,
+  ];
+}
+
+/// Batch Account Storage Account Authentication enum for `storage_account_authentication_mode`.
+extension type const BatchAccountStorageAccountAuthenticationMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BatchAccountStorageAccountAuthenticationMode.variable(String name)
+    : this._(TfArg.variable(name));
+  BatchAccountStorageAccountAuthenticationMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const BatchAccountStorageAccountAuthenticationMode.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const batchaccountmanagedidentity =
+      BatchAccountStorageAccountAuthenticationMode._(
+        TfArgLiteral('BatchAccountManagedIdentity'),
+      );
+  static const storagekeys = BatchAccountStorageAccountAuthenticationMode._(
+    TfArgLiteral('StorageKeys'),
+  );
+
+  static const List<BatchAccountStorageAccountAuthenticationMode> values = [
+    batchaccountmanagedidentity,
+    storagekeys,
+  ];
+}
+
 /// Typed helper for the `identity` block of
 /// `azurerm_batch_account` (derived from provider schema).
 @immutable
@@ -122,14 +197,15 @@ final class AzurermBatchAccount extends Resource {
 
   AzurermBatchAccount(
     super.localName, {
-    TfArg<List<String>>? allowedAuthenticationModes,
+    List<BatchAccountAllowedAuthenticationModes>? allowedAuthenticationModes,
     TfArg<List<Map<String, Object?>>>? encryption,
     required TfArg<String> location,
     required TfArg<String> name,
-    TfArg<String>? poolAllocationMode,
+    BatchAccountPoolAllocationMode? poolAllocationMode,
     TfArg<bool>? publicNetworkAccessEnabled,
     required RefTo<AzurermResourceGroup> resourceGroupName,
-    TfArg<String>? storageAccountAuthenticationMode,
+    BatchAccountStorageAccountAuthenticationMode?
+    storageAccountAuthenticationMode,
     RefTo<AzurermStorageAccount>? storageAccountId,
     TfArg<String>? storageAccountNodeIdentity,
     TfArg<Map<String, String>>? tags,
@@ -143,7 +219,10 @@ final class AzurermBatchAccount extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'allowed_authentication_modes': ?allowedAuthenticationModes,
+           if (allowedAuthenticationModes != null)
+             'allowed_authentication_modes': TfArg.literal([
+               for (final e in allowedAuthenticationModes) e.toTfJson(),
+             ]),
            'encryption': ?encryption,
            'location': location,
            'name': name,

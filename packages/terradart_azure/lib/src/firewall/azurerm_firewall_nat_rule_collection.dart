@@ -9,6 +9,21 @@ import '../resource/azurerm_resource_group.dart' show AzurermResourceGroup;
 /// Sensitive field paths for `azurerm_firewall_nat_rule_collection`.
 const Set<String> _azurermFirewallNatRuleCollectionSensitive = <String>{};
 
+/// Firewall Nat Rule Collection enum for `action`.
+extension type const FirewallNatRuleCollectionAction._(TfArg<String> _)
+    implements TfArg<String> {
+  FirewallNatRuleCollectionAction.variable(String name)
+    : this._(TfArg.variable(name));
+  FirewallNatRuleCollectionAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const FirewallNatRuleCollectionAction.arg(TfArg<String> arg) : this._(arg);
+
+  static const dnat = FirewallNatRuleCollectionAction._(TfArgLiteral('Dnat'));
+  static const snat = FirewallNatRuleCollectionAction._(TfArgLiteral('Snat'));
+
+  static const List<FirewallNatRuleCollectionAction> values = [dnat, snat];
+}
+
 /// Typed helper for the `rule` block of
 /// `azurerm_firewall_nat_rule_collection` (derived from provider schema).
 @immutable
@@ -33,7 +48,7 @@ final class FirewallNatRuleCollectionRule {
 
   final TfArg<String> name;
 
-  final TfArg<List<String>> protocols;
+  final List<FirewallNatRuleCollectionProtocols> protocols;
 
   final TfArg<List<String>>? sourceAddresses;
 
@@ -49,12 +64,36 @@ final class FirewallNatRuleCollectionRule {
     'destination_addresses': destinationAddresses.toTfJson(),
     'destination_ports': destinationPorts.toTfJson(),
     'name': name.toTfJson(),
-    'protocols': protocols.toTfJson(),
+    'protocols': [for (final e in protocols) e.toTfJson()],
     'source_addresses': ?sourceAddresses?.toTfJson(),
     'source_ip_groups': ?sourceIpGroups?.toTfJson(),
     'translated_address': translatedAddress.toTfJson(),
     'translated_port': translatedPort.toTfJson(),
   };
+}
+
+/// `protocols` — derived from the provider schema description.
+extension type const FirewallNatRuleCollectionProtocols._(TfArg<String> _)
+    implements TfArg<String> {
+  FirewallNatRuleCollectionProtocols.variable(String name)
+    : this._(TfArg.variable(name));
+  FirewallNatRuleCollectionProtocols.expression(String template)
+    : this._(TfArg.expression(template));
+  const FirewallNatRuleCollectionProtocols.arg(TfArg<String> arg) : this._(arg);
+
+  static const any = FirewallNatRuleCollectionProtocols._(TfArgLiteral('Any'));
+  static const icmp = FirewallNatRuleCollectionProtocols._(
+    TfArgLiteral('ICMP'),
+  );
+  static const tcp = FirewallNatRuleCollectionProtocols._(TfArgLiteral('TCP'));
+  static const udp = FirewallNatRuleCollectionProtocols._(TfArgLiteral('UDP'));
+
+  static const List<FirewallNatRuleCollectionProtocols> values = [
+    any,
+    icmp,
+    tcp,
+    udp,
+  ];
 }
 
 /// Factory wrapper for `azurerm_firewall_nat_rule_collection`.
@@ -63,7 +102,7 @@ final class AzurermFirewallNatRuleCollection extends Resource {
 
   AzurermFirewallNatRuleCollection(
     super.localName, {
-    required TfArg<String> action,
+    required FirewallNatRuleCollectionAction action,
     required TfArg<String> azureFirewallName,
     required TfArg<String> name,
     required TfArg<num> priority,

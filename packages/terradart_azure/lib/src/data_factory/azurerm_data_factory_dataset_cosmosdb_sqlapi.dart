@@ -22,7 +22,7 @@ final class DataFactoryDatasetCosmosdbSqlapiSchemaColumn {
 
   final TfArg<String> name;
 
-  final TfArg<String>? type;
+  final DataFactoryDatasetCosmosdbSqlapiType? type;
 
   @internal
   Map<String, Object?> encode() => {
@@ -30,6 +30,81 @@ final class DataFactoryDatasetCosmosdbSqlapiSchemaColumn {
     'name': name.toTfJson(),
     'type': ?type?.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+extension type const DataFactoryDatasetCosmosdbSqlapiType._(TfArg<String> _)
+    implements TfArg<String> {
+  DataFactoryDatasetCosmosdbSqlapiType.variable(String name)
+    : this._(TfArg.variable(name));
+  DataFactoryDatasetCosmosdbSqlapiType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataFactoryDatasetCosmosdbSqlapiType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const byte = DataFactoryDatasetCosmosdbSqlapiType._(
+    TfArgLiteral('Byte'),
+  );
+  static const byte2 = DataFactoryDatasetCosmosdbSqlapiType._(
+    TfArgLiteral('Byte[]'),
+  );
+  static const boolean = DataFactoryDatasetCosmosdbSqlapiType._(
+    TfArgLiteral('Boolean'),
+  );
+  static const date = DataFactoryDatasetCosmosdbSqlapiType._(
+    TfArgLiteral('Date'),
+  );
+  static const datetime = DataFactoryDatasetCosmosdbSqlapiType._(
+    TfArgLiteral('DateTime'),
+  );
+  static const datetimeoffset = DataFactoryDatasetCosmosdbSqlapiType._(
+    TfArgLiteral('DateTimeOffset'),
+  );
+  static const decimal = DataFactoryDatasetCosmosdbSqlapiType._(
+    TfArgLiteral('Decimal'),
+  );
+  static const double = DataFactoryDatasetCosmosdbSqlapiType._(
+    TfArgLiteral('Double'),
+  );
+  static const guid = DataFactoryDatasetCosmosdbSqlapiType._(
+    TfArgLiteral('Guid'),
+  );
+  static const int16 = DataFactoryDatasetCosmosdbSqlapiType._(
+    TfArgLiteral('Int16'),
+  );
+  static const int32 = DataFactoryDatasetCosmosdbSqlapiType._(
+    TfArgLiteral('Int32'),
+  );
+  static const int64 = DataFactoryDatasetCosmosdbSqlapiType._(
+    TfArgLiteral('Int64'),
+  );
+  static const single = DataFactoryDatasetCosmosdbSqlapiType._(
+    TfArgLiteral('Single'),
+  );
+  static const string = DataFactoryDatasetCosmosdbSqlapiType._(
+    TfArgLiteral('String'),
+  );
+  static const timespan = DataFactoryDatasetCosmosdbSqlapiType._(
+    TfArgLiteral('TimeSpan'),
+  );
+
+  static const List<DataFactoryDatasetCosmosdbSqlapiType> values = [
+    byte,
+    byte2,
+    boolean,
+    date,
+    datetime,
+    datetimeoffset,
+    decimal,
+    double,
+    guid,
+    int16,
+    int32,
+    int64,
+    single,
+    string,
+    timespan,
+  ];
 }
 
 /// Factory wrapper for `azurerm_data_factory_dataset_cosmosdb_sqlapi`.

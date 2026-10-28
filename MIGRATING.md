@@ -2,6 +2,18 @@
 
 ## Unreleased
 
+`terradart_azure` is not published yet. Its factories now type the
+provider's fixed value sets and seal exclusive groups that the hint
+scanner previously missed, including `azurerm_role_assignment`. A
+constructor that passed those inputs as separate arguments takes one
+sealed argument instead. Concept names that the namer could not
+derive are `sealedNames` on those resources. Three groups stay unsealed
+because a member
+already belongs to another group: the OS image source on
+`azurerm_linux_virtual_machine` and `azurerm_windows_virtual_machine`,
+and `default_recovery_disk_type` / `managed_disk` on
+`azurerm_site_recovery_vmware_replicated_vm`.
+
 The weekly `hashicorp/google` pin moved from 8.4.0 to 8.7.0, and then to
 8.8.1. `terradart_google` and `terradart_google_beta` follow that pin. These
 are the Dart API changes. Synth output stays the same except

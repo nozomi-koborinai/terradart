@@ -9,6 +9,35 @@ import '../resource/azurerm_resource_group.dart' show AzurermResourceGroup;
 /// Sensitive field paths for `azurerm_disk_encryption_set`.
 const Set<String> _azurermDiskEncryptionSetSensitive = <String>{};
 
+/// Disk Encryption Set Encryption enum for `encryption_type`.
+extension type const DiskEncryptionSetEncryptionType._(TfArg<String> _)
+    implements TfArg<String> {
+  DiskEncryptionSetEncryptionType.variable(String name)
+    : this._(TfArg.variable(name));
+  DiskEncryptionSetEncryptionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiskEncryptionSetEncryptionType.arg(TfArg<String> arg) : this._(arg);
+
+  static const confidentialvmencryptedwithcustomerkey =
+      DiskEncryptionSetEncryptionType._(
+        TfArgLiteral('ConfidentialVmEncryptedWithCustomerKey'),
+      );
+  static const encryptionatrestwithcustomerkey =
+      DiskEncryptionSetEncryptionType._(
+        TfArgLiteral('EncryptionAtRestWithCustomerKey'),
+      );
+  static const encryptionatrestwithplatformandcustomerkeys =
+      DiskEncryptionSetEncryptionType._(
+        TfArgLiteral('EncryptionAtRestWithPlatformAndCustomerKeys'),
+      );
+
+  static const List<DiskEncryptionSetEncryptionType> values = [
+    confidentialvmencryptedwithcustomerkey,
+    encryptionatrestwithcustomerkey,
+    encryptionatrestwithplatformandcustomerkeys,
+  ];
+}
+
 /// Typed helper for the `identity` block of
 /// `azurerm_disk_encryption_set` (derived from provider schema).
 @immutable
@@ -33,7 +62,7 @@ final class AzurermDiskEncryptionSet extends Resource {
   AzurermDiskEncryptionSet(
     super.localName, {
     TfArg<bool>? autoKeyRotationEnabled,
-    TfArg<String>? encryptionType,
+    DiskEncryptionSetEncryptionType? encryptionType,
     TfArg<String>? federatedClientId,
     required TfArg<String> keyVaultKeyId,
     required TfArg<String> location,

@@ -17,6 +17,275 @@ const Set<String> _azurermOrchestratedVirtualMachineScaleSetSensitive =
       'user_data_base64',
     };
 
+/// Orchestrated Virtual Machine Scale Set Eviction enum for `eviction_policy`.
+extension type const OrchestratedVirtualMachineScaleSetEvictionPolicy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OrchestratedVirtualMachineScaleSetEvictionPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  OrchestratedVirtualMachineScaleSetEvictionPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const OrchestratedVirtualMachineScaleSetEvictionPolicy.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const deallocate = OrchestratedVirtualMachineScaleSetEvictionPolicy._(
+    TfArgLiteral('Deallocate'),
+  );
+  static const delete = OrchestratedVirtualMachineScaleSetEvictionPolicy._(
+    TfArgLiteral('Delete'),
+  );
+
+  static const List<OrchestratedVirtualMachineScaleSetEvictionPolicy> values = [
+    deallocate,
+    delete,
+  ];
+}
+
+/// Orchestrated Virtual Machine Scale Set License enum for `license_type`.
+extension type const OrchestratedVirtualMachineScaleSetLicenseType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OrchestratedVirtualMachineScaleSetLicenseType.variable(String name)
+    : this._(TfArg.variable(name));
+  OrchestratedVirtualMachineScaleSetLicenseType.expression(String template)
+    : this._(TfArg.expression(template));
+  const OrchestratedVirtualMachineScaleSetLicenseType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const none = OrchestratedVirtualMachineScaleSetLicenseType._(
+    TfArgLiteral('None'),
+  );
+  static const windowsClient = OrchestratedVirtualMachineScaleSetLicenseType._(
+    TfArgLiteral('Windows_Client'),
+  );
+  static const windowsServer = OrchestratedVirtualMachineScaleSetLicenseType._(
+    TfArgLiteral('Windows_Server'),
+  );
+
+  static const List<OrchestratedVirtualMachineScaleSetLicenseType> values = [
+    none,
+    windowsClient,
+    windowsServer,
+  ];
+}
+
+/// Orchestrated Virtual Machine Scale Set Network Api enum for `network_api_version`.
+extension type const OrchestratedVirtualMachineScaleSetNetworkApiVersion._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OrchestratedVirtualMachineScaleSetNetworkApiVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  OrchestratedVirtualMachineScaleSetNetworkApiVersion.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const OrchestratedVirtualMachineScaleSetNetworkApiVersion.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const v2022x11x01 =
+      OrchestratedVirtualMachineScaleSetNetworkApiVersion._(
+        TfArgLiteral('2022-11-01'),
+      );
+  static const v2020x11x01 =
+      OrchestratedVirtualMachineScaleSetNetworkApiVersion._(
+        TfArgLiteral('2020-11-01'),
+      );
+
+  static const List<OrchestratedVirtualMachineScaleSetNetworkApiVersion>
+  values = [v2022x11x01, v2020x11x01];
+}
+
+/// Orchestrated Virtual Machine Scale Set Upgrade enum for `upgrade_mode`.
+extension type const OrchestratedVirtualMachineScaleSetUpgradeMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OrchestratedVirtualMachineScaleSetUpgradeMode.variable(String name)
+    : this._(TfArg.variable(name));
+  OrchestratedVirtualMachineScaleSetUpgradeMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const OrchestratedVirtualMachineScaleSetUpgradeMode.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const automatic = OrchestratedVirtualMachineScaleSetUpgradeMode._(
+    TfArgLiteral('Automatic'),
+  );
+  static const manual = OrchestratedVirtualMachineScaleSetUpgradeMode._(
+    TfArgLiteral('Manual'),
+  );
+  static const rolling = OrchestratedVirtualMachineScaleSetUpgradeMode._(
+    TfArgLiteral('Rolling'),
+  );
+
+  static const List<OrchestratedVirtualMachineScaleSetUpgradeMode> values = [
+    automatic,
+    manual,
+    rolling,
+  ];
+}
+
+/// At most one of `capacity_reservation_group_id`, `proximity_placement_group_id` on `azurerm_orchestrated_virtual_machine_scale_set`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.capacityReservationGroupId(...)`.
+sealed class OrchestratedVirtualMachineScaleSetGroupId {
+  const OrchestratedVirtualMachineScaleSetGroupId();
+
+  /// Sets `capacity_reservation_group_id`.
+  const factory OrchestratedVirtualMachineScaleSetGroupId.capacityReservationGroupId(
+    TfArg<String> capacityReservationGroupId,
+  ) = OrchestratedVirtualMachineScaleSetCapacityReservationGroupId;
+
+  /// Sets `proximity_placement_group_id`.
+  const factory OrchestratedVirtualMachineScaleSetGroupId.proximityPlacementGroupId(
+    TfArg<String> proximityPlacementGroupId,
+  ) = OrchestratedVirtualMachineScaleSetProximityPlacementGroupId;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [OrchestratedVirtualMachineScaleSetGroupId.capacityReservationGroupId] choice: sets `capacity_reservation_group_id`.
+final class OrchestratedVirtualMachineScaleSetCapacityReservationGroupId
+    extends OrchestratedVirtualMachineScaleSetGroupId {
+  const OrchestratedVirtualMachineScaleSetCapacityReservationGroupId(
+    this.capacityReservationGroupId,
+  );
+
+  final TfArg<String> capacityReservationGroupId;
+
+  @internal
+  @override
+  String get blockKey => 'capacity_reservation_group_id';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'capacity_reservation_group_id': capacityReservationGroupId.toTfJson(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'capacity_reservation_group_id': capacityReservationGroupId,
+  };
+}
+
+/// The [OrchestratedVirtualMachineScaleSetGroupId.proximityPlacementGroupId] choice: sets `proximity_placement_group_id`.
+final class OrchestratedVirtualMachineScaleSetProximityPlacementGroupId
+    extends OrchestratedVirtualMachineScaleSetGroupId {
+  const OrchestratedVirtualMachineScaleSetProximityPlacementGroupId(
+    this.proximityPlacementGroupId,
+  );
+
+  final TfArg<String> proximityPlacementGroupId;
+
+  @internal
+  @override
+  String get blockKey => 'proximity_placement_group_id';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'proximity_placement_group_id': proximityPlacementGroupId.toTfJson(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'proximity_placement_group_id': proximityPlacementGroupId,
+  };
+}
+
+/// At most one of `source_image_id`, `source_image_reference` on `azurerm_orchestrated_virtual_machine_scale_set`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.sourceImageId(...)`.
+sealed class OrchestratedVirtualMachineScaleSetSourceImage {
+  const OrchestratedVirtualMachineScaleSetSourceImage();
+
+  /// Sets `source_image_id`.
+  const factory OrchestratedVirtualMachineScaleSetSourceImage.sourceImageId(
+    TfArg<String> sourceImageId,
+  ) = OrchestratedVirtualMachineScaleSetSourceImageId;
+
+  /// Sets `source_image_reference`.
+  const factory OrchestratedVirtualMachineScaleSetSourceImage.sourceImageReference(
+    OrchestratedVirtualMachineScaleSetSourceImageReference sourceImageReference,
+  ) = OrchestratedVirtualMachineScaleSetSourceImageReferenceChoice;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [OrchestratedVirtualMachineScaleSetSourceImage.sourceImageId] choice: sets `source_image_id`.
+final class OrchestratedVirtualMachineScaleSetSourceImageId
+    extends OrchestratedVirtualMachineScaleSetSourceImage {
+  const OrchestratedVirtualMachineScaleSetSourceImageId(this.sourceImageId);
+
+  final TfArg<String> sourceImageId;
+
+  @internal
+  @override
+  String get blockKey => 'source_image_id';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'source_image_id': sourceImageId.toTfJson(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'source_image_id': sourceImageId};
+}
+
+/// The [OrchestratedVirtualMachineScaleSetSourceImage.sourceImageReference] choice: sets `source_image_reference`.
+final class OrchestratedVirtualMachineScaleSetSourceImageReferenceChoice
+    extends OrchestratedVirtualMachineScaleSetSourceImage {
+  const OrchestratedVirtualMachineScaleSetSourceImageReferenceChoice(
+    this.sourceImageReference,
+  );
+
+  final OrchestratedVirtualMachineScaleSetSourceImageReference
+  sourceImageReference;
+
+  @internal
+  @override
+  String get blockKey => 'source_image_reference';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'source_image_reference': sourceImageReference.encode(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'source_image_reference': TfArg.literal(sourceImageReference.encode()),
+  };
+}
+
 /// Typed helper for the `additional_capabilities` block of
 /// `azurerm_orchestrated_virtual_machine_scale_set` (derived from provider schema).
 @immutable
@@ -813,7 +1082,7 @@ final class OrchestratedVirtualMachineScaleSetSkuProfile {
     required this.virtualMachineSize,
   });
 
-  final TfArg<String> allocationStrategy;
+  final OrchestratedVirtualMachineScaleSetAllocationStrategy allocationStrategy;
 
   final List<OrchestratedVirtualMachineScaleSetVirtualMachineSize>
   virtualMachineSize;
@@ -823,6 +1092,36 @@ final class OrchestratedVirtualMachineScaleSetSkuProfile {
     'allocation_strategy': allocationStrategy.toTfJson(),
     'virtual_machine_size': [for (final e in virtualMachineSize) e.encode()],
   };
+}
+
+/// `allocation_strategy` — derived from the provider schema description.
+extension type const OrchestratedVirtualMachineScaleSetAllocationStrategy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OrchestratedVirtualMachineScaleSetAllocationStrategy.variable(String name)
+    : this._(TfArg.variable(name));
+  OrchestratedVirtualMachineScaleSetAllocationStrategy.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const OrchestratedVirtualMachineScaleSetAllocationStrategy.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const capacityoptimized =
+      OrchestratedVirtualMachineScaleSetAllocationStrategy._(
+        TfArgLiteral('CapacityOptimized'),
+      );
+  static const lowestprice =
+      OrchestratedVirtualMachineScaleSetAllocationStrategy._(
+        TfArgLiteral('LowestPrice'),
+      );
+  static const prioritized =
+      OrchestratedVirtualMachineScaleSetAllocationStrategy._(
+        TfArgLiteral('Prioritized'),
+      );
+
+  static const List<OrchestratedVirtualMachineScaleSetAllocationStrategy>
+  values = [capacityoptimized, lowestprice, prioritized];
 }
 
 /// Typed helper for the `sku_profile.virtual_machine_size` block of
@@ -899,26 +1198,25 @@ final class AzurermOrchestratedVirtualMachineScaleSet extends Resource {
 
   AzurermOrchestratedVirtualMachineScaleSet(
     super.localName, {
-    TfArg<String>? capacityReservationGroupId,
+    OrchestratedVirtualMachineScaleSetGroupId? groupId,
     TfArg<bool>? encryptionAtHostEnabled,
-    TfArg<String>? evictionPolicy,
+    OrchestratedVirtualMachineScaleSetEvictionPolicy? evictionPolicy,
     TfArg<bool>? extensionOperationsEnabled,
     TfArg<String>? extensionsTimeBudget,
     TfArg<num>? instances,
-    TfArg<String>? licenseType,
+    OrchestratedVirtualMachineScaleSetLicenseType? licenseType,
     required TfArg<String> location,
     TfArg<num>? maxBidPrice,
     required TfArg<String> name,
-    TfArg<String>? networkApiVersion,
+    OrchestratedVirtualMachineScaleSetNetworkApiVersion? networkApiVersion,
     required TfArg<num> platformFaultDomainCount,
     TfArg<String>? priority,
-    TfArg<String>? proximityPlacementGroupId,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<bool>? singlePlacementGroup,
     TfArg<String>? skuName,
-    TfArg<String>? sourceImageId,
+    OrchestratedVirtualMachineScaleSetSourceImage? sourceImage,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? upgradeMode,
+    OrchestratedVirtualMachineScaleSetUpgradeMode? upgradeMode,
     Sensitive<String>? userDataBase64,
     TfArg<bool>? zoneBalance,
     TfArg<List<String>>? zones,
@@ -938,8 +1236,6 @@ final class AzurermOrchestratedVirtualMachineScaleSet extends Resource {
     OrchestratedVirtualMachineScaleSetRollingUpgradePolicy?
     rollingUpgradePolicy,
     OrchestratedVirtualMachineScaleSetSkuProfile? skuProfile,
-    OrchestratedVirtualMachineScaleSetSourceImageReference?
-    sourceImageReference,
     OrchestratedVirtualMachineScaleSetTerminationNotification?
     terminationNotification,
     super.lifecycle,
@@ -949,7 +1245,7 @@ final class AzurermOrchestratedVirtualMachineScaleSet extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'capacity_reservation_group_id': ?capacityReservationGroupId,
+           ...?groupId?.argMap,
            'encryption_at_host_enabled': ?encryptionAtHostEnabled,
            'eviction_policy': ?evictionPolicy,
            'extension_operations_enabled': ?extensionOperationsEnabled,
@@ -962,11 +1258,10 @@ final class AzurermOrchestratedVirtualMachineScaleSet extends Resource {
            'network_api_version': ?networkApiVersion,
            'platform_fault_domain_count': platformFaultDomainCount,
            'priority': ?priority,
-           'proximity_placement_group_id': ?proximityPlacementGroupId,
            'resource_group_name': resourceGroupName.encodeAs('name'),
            'single_placement_group': ?singlePlacementGroup,
            'sku_name': ?skuName,
-           'source_image_id': ?sourceImageId,
+           ...?sourceImage?.argMap,
            'tags': ?tags,
            'upgrade_mode': ?upgradeMode,
            'user_data_base64': ?userDataBase64,
@@ -1005,10 +1300,6 @@ final class AzurermOrchestratedVirtualMachineScaleSet extends Resource {
              ),
            if (skuProfile != null)
              'sku_profile': TfArg.literal(skuProfile.encode()),
-           if (sourceImageReference != null)
-             'source_image_reference': TfArg.literal(
-               sourceImageReference.encode(),
-             ),
            if (terminationNotification != null)
              'termination_notification': TfArg.literal(
                terminationNotification.encode(),

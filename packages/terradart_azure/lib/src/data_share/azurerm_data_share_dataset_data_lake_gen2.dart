@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../storage/azurerm_storage_account.dart' show AzurermStorageAccount;
@@ -8,15 +9,85 @@ import '../storage/azurerm_storage_account.dart' show AzurermStorageAccount;
 /// Sensitive field paths for `azurerm_data_share_dataset_data_lake_gen2`.
 const Set<String> _azurermDataShareDatasetDataLakeGen2Sensitive = <String>{};
 
+/// At most one of `file_path`, `folder_path` on `azurerm_data_share_dataset_data_lake_gen2`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.filePath(...)`.
+sealed class DataShareDatasetDataLakeGen2Path {
+  const DataShareDatasetDataLakeGen2Path();
+
+  /// Sets `file_path`.
+  const factory DataShareDatasetDataLakeGen2Path.filePath(
+    TfArg<String> filePath,
+  ) = DataShareDatasetDataLakeGen2FilePath;
+
+  /// Sets `folder_path`.
+  const factory DataShareDatasetDataLakeGen2Path.folderPath(
+    TfArg<String> folderPath,
+  ) = DataShareDatasetDataLakeGen2FolderPath;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [DataShareDatasetDataLakeGen2Path.filePath] choice: sets `file_path`.
+final class DataShareDatasetDataLakeGen2FilePath
+    extends DataShareDatasetDataLakeGen2Path {
+  const DataShareDatasetDataLakeGen2FilePath(this.filePath);
+
+  final TfArg<String> filePath;
+
+  @internal
+  @override
+  String get blockKey => 'file_path';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'file_path': filePath.toTfJson()};
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'file_path': filePath};
+}
+
+/// The [DataShareDatasetDataLakeGen2Path.folderPath] choice: sets `folder_path`.
+final class DataShareDatasetDataLakeGen2FolderPath
+    extends DataShareDatasetDataLakeGen2Path {
+  const DataShareDatasetDataLakeGen2FolderPath(this.folderPath);
+
+  final TfArg<String> folderPath;
+
+  @internal
+  @override
+  String get blockKey => 'folder_path';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'folder_path': folderPath.toTfJson()};
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'folder_path': folderPath};
+}
+
 /// Factory wrapper for `azurerm_data_share_dataset_data_lake_gen2`.
 final class AzurermDataShareDatasetDataLakeGen2 extends Resource {
   static const String tfType = 'azurerm_data_share_dataset_data_lake_gen2';
 
   AzurermDataShareDatasetDataLakeGen2(
     super.localName, {
-    TfArg<String>? filePath,
+    DataShareDatasetDataLakeGen2Path? path,
     required TfArg<String> fileSystemName,
-    TfArg<String>? folderPath,
     required TfArg<String> name,
     required TfArg<String> shareId,
     required RefTo<AzurermStorageAccount> storageAccountId,
@@ -27,9 +98,8 @@ final class AzurermDataShareDatasetDataLakeGen2 extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'file_path': ?filePath,
+           ...?path?.argMap,
            'file_system_name': fileSystemName,
-           'folder_path': ?folderPath,
            'name': name,
            'share_id': shareId,
            'storage_account_id': storageAccountId.encodeAs('id'),

@@ -7,6 +7,181 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `azurerm_kubernetes_cluster_node_pool`.
 const Set<String> _azurermKubernetesClusterNodePoolSensitive = <String>{};
 
+/// Kubernetes Cluster Node Pool Eviction enum for `eviction_policy`.
+extension type const KubernetesClusterNodePoolEvictionPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  KubernetesClusterNodePoolEvictionPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  KubernetesClusterNodePoolEvictionPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const KubernetesClusterNodePoolEvictionPolicy.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const deallocate = KubernetesClusterNodePoolEvictionPolicy._(
+    TfArgLiteral('Deallocate'),
+  );
+  static const delete = KubernetesClusterNodePoolEvictionPolicy._(
+    TfArgLiteral('Delete'),
+  );
+
+  static const List<KubernetesClusterNodePoolEvictionPolicy> values = [
+    deallocate,
+    delete,
+  ];
+}
+
+/// Kubernetes Cluster Node Pool Gpu enum for `gpu_driver`.
+extension type const KubernetesClusterNodePoolGpuDriver._(TfArg<String> _)
+    implements TfArg<String> {
+  KubernetesClusterNodePoolGpuDriver.variable(String name)
+    : this._(TfArg.variable(name));
+  KubernetesClusterNodePoolGpuDriver.expression(String template)
+    : this._(TfArg.expression(template));
+  const KubernetesClusterNodePoolGpuDriver.arg(TfArg<String> arg) : this._(arg);
+
+  static const install = KubernetesClusterNodePoolGpuDriver._(
+    TfArgLiteral('Install'),
+  );
+  static const none = KubernetesClusterNodePoolGpuDriver._(
+    TfArgLiteral('None'),
+  );
+
+  static const List<KubernetesClusterNodePoolGpuDriver> values = [
+    install,
+    none,
+  ];
+}
+
+/// Kubernetes Cluster Node Pool Kubelet Disk enum for `kubelet_disk_type`.
+extension type const KubernetesClusterNodePoolKubeletDiskType._(TfArg<String> _)
+    implements TfArg<String> {
+  KubernetesClusterNodePoolKubeletDiskType.variable(String name)
+    : this._(TfArg.variable(name));
+  KubernetesClusterNodePoolKubeletDiskType.expression(String template)
+    : this._(TfArg.expression(template));
+  const KubernetesClusterNodePoolKubeletDiskType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const os = KubernetesClusterNodePoolKubeletDiskType._(
+    TfArgLiteral('OS'),
+  );
+  static const temporary = KubernetesClusterNodePoolKubeletDiskType._(
+    TfArgLiteral('Temporary'),
+  );
+
+  static const List<KubernetesClusterNodePoolKubeletDiskType> values = [
+    os,
+    temporary,
+  ];
+}
+
+/// Kubernetes Cluster Node Pool Os Disk enum for `os_disk_type`.
+extension type const KubernetesClusterNodePoolOsDiskType._(TfArg<String> _)
+    implements TfArg<String> {
+  KubernetesClusterNodePoolOsDiskType.variable(String name)
+    : this._(TfArg.variable(name));
+  KubernetesClusterNodePoolOsDiskType.expression(String template)
+    : this._(TfArg.expression(template));
+  const KubernetesClusterNodePoolOsDiskType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const ephemeral = KubernetesClusterNodePoolOsDiskType._(
+    TfArgLiteral('Ephemeral'),
+  );
+  static const managed = KubernetesClusterNodePoolOsDiskType._(
+    TfArgLiteral('Managed'),
+  );
+
+  static const List<KubernetesClusterNodePoolOsDiskType> values = [
+    ephemeral,
+    managed,
+  ];
+}
+
+/// Kubernetes Cluster Node Pool Os enum for `os_type`.
+extension type const KubernetesClusterNodePoolOsType._(TfArg<String> _)
+    implements TfArg<String> {
+  KubernetesClusterNodePoolOsType.variable(String name)
+    : this._(TfArg.variable(name));
+  KubernetesClusterNodePoolOsType.expression(String template)
+    : this._(TfArg.expression(template));
+  const KubernetesClusterNodePoolOsType.arg(TfArg<String> arg) : this._(arg);
+
+  static const linux = KubernetesClusterNodePoolOsType._(TfArgLiteral('Linux'));
+  static const windows = KubernetesClusterNodePoolOsType._(
+    TfArgLiteral('Windows'),
+  );
+
+  static const List<KubernetesClusterNodePoolOsType> values = [linux, windows];
+}
+
+/// Kubernetes Cluster Node Pool enum for `priority`.
+extension type const KubernetesClusterNodePoolPriority._(TfArg<String> _)
+    implements TfArg<String> {
+  KubernetesClusterNodePoolPriority.variable(String name)
+    : this._(TfArg.variable(name));
+  KubernetesClusterNodePoolPriority.expression(String template)
+    : this._(TfArg.expression(template));
+  const KubernetesClusterNodePoolPriority.arg(TfArg<String> arg) : this._(arg);
+
+  static const regular = KubernetesClusterNodePoolPriority._(
+    TfArgLiteral('Regular'),
+  );
+  static const spot = KubernetesClusterNodePoolPriority._(TfArgLiteral('Spot'));
+
+  static const List<KubernetesClusterNodePoolPriority> values = [regular, spot];
+}
+
+/// Kubernetes Cluster Node Pool Scale Down enum for `scale_down_mode`.
+extension type const KubernetesClusterNodePoolScaleDownMode._(TfArg<String> _)
+    implements TfArg<String> {
+  KubernetesClusterNodePoolScaleDownMode.variable(String name)
+    : this._(TfArg.variable(name));
+  KubernetesClusterNodePoolScaleDownMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const KubernetesClusterNodePoolScaleDownMode.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const deallocate = KubernetesClusterNodePoolScaleDownMode._(
+    TfArgLiteral('Deallocate'),
+  );
+  static const delete = KubernetesClusterNodePoolScaleDownMode._(
+    TfArgLiteral('Delete'),
+  );
+
+  static const List<KubernetesClusterNodePoolScaleDownMode> values = [
+    deallocate,
+    delete,
+  ];
+}
+
+/// Kubernetes Cluster Node Pool Workload enum for `workload_runtime`.
+extension type const KubernetesClusterNodePoolWorkloadRuntime._(TfArg<String> _)
+    implements TfArg<String> {
+  KubernetesClusterNodePoolWorkloadRuntime.variable(String name)
+    : this._(TfArg.variable(name));
+  KubernetesClusterNodePoolWorkloadRuntime.expression(String template)
+    : this._(TfArg.expression(template));
+  const KubernetesClusterNodePoolWorkloadRuntime.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const katavmisolation = KubernetesClusterNodePoolWorkloadRuntime._(
+    TfArgLiteral('KataVmIsolation'),
+  );
+  static const ocicontainer = KubernetesClusterNodePoolWorkloadRuntime._(
+    TfArgLiteral('OCIContainer'),
+  );
+  static const wasmwasi = KubernetesClusterNodePoolWorkloadRuntime._(
+    TfArgLiteral('WasmWasi'),
+  );
+
+  static const List<KubernetesClusterNodePoolWorkloadRuntime> values = [
+    katavmisolation,
+    ocicontainer,
+    wasmwasi,
+  ];
+}
+
 /// Typed helper for the `kubelet_config` block of
 /// `azurerm_kubernetes_cluster_node_pool` (derived from provider schema).
 @immutable
@@ -322,13 +497,13 @@ final class AzurermKubernetesClusterNodePool extends Resource {
     super.localName, {
     TfArg<bool>? autoScalingEnabled,
     TfArg<String>? capacityReservationGroupId,
-    TfArg<String>? evictionPolicy,
+    KubernetesClusterNodePoolEvictionPolicy? evictionPolicy,
     TfArg<bool>? fipsEnabled,
-    TfArg<String>? gpuDriver,
+    KubernetesClusterNodePoolGpuDriver? gpuDriver,
     TfArg<String>? gpuInstance,
     TfArg<bool>? hostEncryptionEnabled,
     TfArg<String>? hostGroupId,
-    TfArg<String>? kubeletDiskType,
+    KubernetesClusterNodePoolKubeletDiskType? kubeletDiskType,
     required TfArg<String> kubernetesClusterId,
     TfArg<num>? maxCount,
     TfArg<num>? maxPods,
@@ -342,13 +517,13 @@ final class AzurermKubernetesClusterNodePool extends Resource {
     TfArg<List<String>>? nodeTaints,
     TfArg<String>? orchestratorVersion,
     TfArg<num>? osDiskSizeGb,
-    TfArg<String>? osDiskType,
+    KubernetesClusterNodePoolOsDiskType? osDiskType,
     TfArg<String>? osSku,
-    TfArg<String>? osType,
+    KubernetesClusterNodePoolOsType? osType,
     TfArg<String>? podSubnetId,
-    TfArg<String>? priority,
+    KubernetesClusterNodePoolPriority? priority,
     TfArg<String>? proximityPlacementGroupId,
-    TfArg<String>? scaleDownMode,
+    KubernetesClusterNodePoolScaleDownMode? scaleDownMode,
     TfArg<String>? snapshotId,
     TfArg<num>? spotMaxPrice,
     TfArg<Map<String, String>>? tags,
@@ -356,7 +531,7 @@ final class AzurermKubernetesClusterNodePool extends Resource {
     TfArg<bool>? ultraSsdEnabled,
     TfArg<String>? vmSize,
     TfArg<String>? vnetSubnetId,
-    TfArg<String>? workloadRuntime,
+    KubernetesClusterNodePoolWorkloadRuntime? workloadRuntime,
     TfArg<List<String>>? zones,
     KubernetesClusterNodePoolKubeletConfig? kubeletConfig,
     KubernetesClusterNodePoolLinuxOsConfig? linuxOsConfig,

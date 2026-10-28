@@ -22,7 +22,7 @@ final class DataFactoryDatasetSqlServerTableSchemaColumn {
 
   final TfArg<String> name;
 
-  final TfArg<String>? type;
+  final DataFactoryDatasetSqlServerTableType? type;
 
   @internal
   Map<String, Object?> encode() => {
@@ -30,6 +30,81 @@ final class DataFactoryDatasetSqlServerTableSchemaColumn {
     'name': name.toTfJson(),
     'type': ?type?.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+extension type const DataFactoryDatasetSqlServerTableType._(TfArg<String> _)
+    implements TfArg<String> {
+  DataFactoryDatasetSqlServerTableType.variable(String name)
+    : this._(TfArg.variable(name));
+  DataFactoryDatasetSqlServerTableType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataFactoryDatasetSqlServerTableType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const byte = DataFactoryDatasetSqlServerTableType._(
+    TfArgLiteral('Byte'),
+  );
+  static const byte2 = DataFactoryDatasetSqlServerTableType._(
+    TfArgLiteral('Byte[]'),
+  );
+  static const boolean = DataFactoryDatasetSqlServerTableType._(
+    TfArgLiteral('Boolean'),
+  );
+  static const date = DataFactoryDatasetSqlServerTableType._(
+    TfArgLiteral('Date'),
+  );
+  static const datetime = DataFactoryDatasetSqlServerTableType._(
+    TfArgLiteral('DateTime'),
+  );
+  static const datetimeoffset = DataFactoryDatasetSqlServerTableType._(
+    TfArgLiteral('DateTimeOffset'),
+  );
+  static const decimal = DataFactoryDatasetSqlServerTableType._(
+    TfArgLiteral('Decimal'),
+  );
+  static const double = DataFactoryDatasetSqlServerTableType._(
+    TfArgLiteral('Double'),
+  );
+  static const guid = DataFactoryDatasetSqlServerTableType._(
+    TfArgLiteral('Guid'),
+  );
+  static const int16 = DataFactoryDatasetSqlServerTableType._(
+    TfArgLiteral('Int16'),
+  );
+  static const int32 = DataFactoryDatasetSqlServerTableType._(
+    TfArgLiteral('Int32'),
+  );
+  static const int64 = DataFactoryDatasetSqlServerTableType._(
+    TfArgLiteral('Int64'),
+  );
+  static const single = DataFactoryDatasetSqlServerTableType._(
+    TfArgLiteral('Single'),
+  );
+  static const string = DataFactoryDatasetSqlServerTableType._(
+    TfArgLiteral('String'),
+  );
+  static const timespan = DataFactoryDatasetSqlServerTableType._(
+    TfArgLiteral('TimeSpan'),
+  );
+
+  static const List<DataFactoryDatasetSqlServerTableType> values = [
+    byte,
+    byte2,
+    boolean,
+    date,
+    datetime,
+    datetimeoffset,
+    decimal,
+    double,
+    guid,
+    int16,
+    int32,
+    int64,
+    single,
+    string,
+    timespan,
+  ];
 }
 
 /// Factory wrapper for `azurerm_data_factory_dataset_sql_server_table`.

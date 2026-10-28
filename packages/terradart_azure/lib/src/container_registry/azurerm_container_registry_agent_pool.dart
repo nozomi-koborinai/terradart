@@ -8,6 +8,23 @@ import '../resource/azurerm_resource_group.dart' show AzurermResourceGroup;
 /// Sensitive field paths for `azurerm_container_registry_agent_pool`.
 const Set<String> _azurermContainerRegistryAgentPoolSensitive = <String>{};
 
+/// Container Registry Agent Pool enum for `tier`.
+extension type const ContainerRegistryAgentPoolTier._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerRegistryAgentPoolTier.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerRegistryAgentPoolTier.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerRegistryAgentPoolTier.arg(TfArg<String> arg) : this._(arg);
+
+  static const s1 = ContainerRegistryAgentPoolTier._(TfArgLiteral('S1'));
+  static const s2 = ContainerRegistryAgentPoolTier._(TfArgLiteral('S2'));
+  static const s3 = ContainerRegistryAgentPoolTier._(TfArgLiteral('S3'));
+  static const i6 = ContainerRegistryAgentPoolTier._(TfArgLiteral('I6'));
+
+  static const List<ContainerRegistryAgentPoolTier> values = [s1, s2, s3, i6];
+}
+
 /// Factory wrapper for `azurerm_container_registry_agent_pool`.
 final class AzurermContainerRegistryAgentPool extends Resource {
   static const String tfType = 'azurerm_container_registry_agent_pool';
@@ -20,7 +37,7 @@ final class AzurermContainerRegistryAgentPool extends Resource {
     required TfArg<String> name,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? tier,
+    ContainerRegistryAgentPoolTier? tier,
     TfArg<String>? virtualNetworkSubnetId,
     super.lifecycle,
     super.dependsOn,

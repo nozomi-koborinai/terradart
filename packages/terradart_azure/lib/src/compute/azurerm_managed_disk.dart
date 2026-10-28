@@ -10,6 +10,260 @@ import '../storage/azurerm_storage_account.dart' show AzurermStorageAccount;
 /// Sensitive field paths for `azurerm_managed_disk`.
 const Set<String> _azurermManagedDiskSensitive = <String>{};
 
+/// Managed Disk Hyper V enum for `hyper_v_generation`.
+extension type const ManagedDiskHyperVGeneration._(TfArg<String> _)
+    implements TfArg<String> {
+  ManagedDiskHyperVGeneration.variable(String name)
+    : this._(TfArg.variable(name));
+  ManagedDiskHyperVGeneration.expression(String template)
+    : this._(TfArg.expression(template));
+  const ManagedDiskHyperVGeneration.arg(TfArg<String> arg) : this._(arg);
+
+  static const v1 = ManagedDiskHyperVGeneration._(TfArgLiteral('V1'));
+  static const v2 = ManagedDiskHyperVGeneration._(TfArgLiteral('V2'));
+
+  static const List<ManagedDiskHyperVGeneration> values = [v1, v2];
+}
+
+/// Managed Disk Network Access enum for `network_access_policy`.
+extension type const ManagedDiskNetworkAccessPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  ManagedDiskNetworkAccessPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  ManagedDiskNetworkAccessPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const ManagedDiskNetworkAccessPolicy.arg(TfArg<String> arg) : this._(arg);
+
+  static const allowall = ManagedDiskNetworkAccessPolicy._(
+    TfArgLiteral('AllowAll'),
+  );
+  static const allowprivate = ManagedDiskNetworkAccessPolicy._(
+    TfArgLiteral('AllowPrivate'),
+  );
+  static const denyall = ManagedDiskNetworkAccessPolicy._(
+    TfArgLiteral('DenyAll'),
+  );
+
+  static const List<ManagedDiskNetworkAccessPolicy> values = [
+    allowall,
+    allowprivate,
+    denyall,
+  ];
+}
+
+/// Managed Disk Os enum for `os_type`.
+extension type const ManagedDiskOsType._(TfArg<String> _)
+    implements TfArg<String> {
+  ManagedDiskOsType.variable(String name) : this._(TfArg.variable(name));
+  ManagedDiskOsType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ManagedDiskOsType.arg(TfArg<String> arg) : this._(arg);
+
+  static const linux = ManagedDiskOsType._(TfArgLiteral('Linux'));
+  static const windows = ManagedDiskOsType._(TfArgLiteral('Windows'));
+
+  static const List<ManagedDiskOsType> values = [linux, windows];
+}
+
+/// Managed Disk Storage Account enum for `storage_account_type`.
+extension type const ManagedDiskStorageAccountType._(TfArg<String> _)
+    implements TfArg<String> {
+  ManagedDiskStorageAccountType.variable(String name)
+    : this._(TfArg.variable(name));
+  ManagedDiskStorageAccountType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ManagedDiskStorageAccountType.arg(TfArg<String> arg) : this._(arg);
+
+  static const premiumLrs = ManagedDiskStorageAccountType._(
+    TfArgLiteral('Premium_LRS'),
+  );
+  static const premiumv2Lrs = ManagedDiskStorageAccountType._(
+    TfArgLiteral('PremiumV2_LRS'),
+  );
+  static const premiumZrs = ManagedDiskStorageAccountType._(
+    TfArgLiteral('Premium_ZRS'),
+  );
+  static const standardLrs = ManagedDiskStorageAccountType._(
+    TfArgLiteral('Standard_LRS'),
+  );
+  static const standardssdLrs = ManagedDiskStorageAccountType._(
+    TfArgLiteral('StandardSSD_LRS'),
+  );
+  static const standardssdZrs = ManagedDiskStorageAccountType._(
+    TfArgLiteral('StandardSSD_ZRS'),
+  );
+  static const ultrassdLrs = ManagedDiskStorageAccountType._(
+    TfArgLiteral('UltraSSD_LRS'),
+  );
+
+  static const List<ManagedDiskStorageAccountType> values = [
+    premiumLrs,
+    premiumv2Lrs,
+    premiumZrs,
+    standardLrs,
+    standardssdLrs,
+    standardssdZrs,
+    ultrassdLrs,
+  ];
+}
+
+/// At most one of `disk_encryption_set_id`, `secure_vm_disk_encryption_set_id` on `azurerm_managed_disk`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.diskEncryptionSetId(...)`.
+sealed class ManagedDiskEncryption {
+  const ManagedDiskEncryption();
+
+  /// Sets `disk_encryption_set_id`.
+  const factory ManagedDiskEncryption.diskEncryptionSetId(
+    TfArg<String> diskEncryptionSetId,
+  ) = ManagedDiskEncryptionSetId;
+
+  /// Sets `secure_vm_disk_encryption_set_id`.
+  const factory ManagedDiskEncryption.secureVmDiskEncryptionSetId(
+    TfArg<String> secureVmDiskEncryptionSetId,
+  ) = ManagedDiskEncryptionSecureVmDiskEncryptionSetId;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [ManagedDiskEncryption.diskEncryptionSetId] choice: sets `disk_encryption_set_id`.
+final class ManagedDiskEncryptionSetId extends ManagedDiskEncryption {
+  const ManagedDiskEncryptionSetId(this.diskEncryptionSetId);
+
+  final TfArg<String> diskEncryptionSetId;
+
+  @internal
+  @override
+  String get blockKey => 'disk_encryption_set_id';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'disk_encryption_set_id': diskEncryptionSetId.toTfJson(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'disk_encryption_set_id': diskEncryptionSetId,
+  };
+}
+
+/// The [ManagedDiskEncryption.secureVmDiskEncryptionSetId] choice: sets `secure_vm_disk_encryption_set_id`.
+final class ManagedDiskEncryptionSecureVmDiskEncryptionSetId
+    extends ManagedDiskEncryption {
+  const ManagedDiskEncryptionSecureVmDiskEncryptionSetId(
+    this.secureVmDiskEncryptionSetId,
+  );
+
+  final TfArg<String> secureVmDiskEncryptionSetId;
+
+  @internal
+  @override
+  String get blockKey => 'secure_vm_disk_encryption_set_id';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'secure_vm_disk_encryption_set_id': secureVmDiskEncryptionSetId.toTfJson(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'secure_vm_disk_encryption_set_id': secureVmDiskEncryptionSetId,
+  };
+}
+
+/// At most one of `gallery_image_reference_id`, `image_reference_id` on `azurerm_managed_disk`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.galleryImageReferenceId(...)`.
+sealed class ManagedDiskImage {
+  const ManagedDiskImage();
+
+  /// Sets `gallery_image_reference_id`.
+  const factory ManagedDiskImage.galleryImageReferenceId(
+    TfArg<String> galleryImageReferenceId,
+  ) = ManagedDiskImageGalleryImageReferenceId;
+
+  /// Sets `image_reference_id`.
+  const factory ManagedDiskImage.imageReferenceId(
+    TfArg<String> imageReferenceId,
+  ) = ManagedDiskImageReferenceId;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [ManagedDiskImage.galleryImageReferenceId] choice: sets `gallery_image_reference_id`.
+final class ManagedDiskImageGalleryImageReferenceId extends ManagedDiskImage {
+  const ManagedDiskImageGalleryImageReferenceId(this.galleryImageReferenceId);
+
+  final TfArg<String> galleryImageReferenceId;
+
+  @internal
+  @override
+  String get blockKey => 'gallery_image_reference_id';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'gallery_image_reference_id': galleryImageReferenceId.toTfJson(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'gallery_image_reference_id': galleryImageReferenceId,
+  };
+}
+
+/// The [ManagedDiskImage.imageReferenceId] choice: sets `image_reference_id`.
+final class ManagedDiskImageReferenceId extends ManagedDiskImage {
+  const ManagedDiskImageReferenceId(this.imageReferenceId);
+
+  final TfArg<String> imageReferenceId;
+
+  @internal
+  @override
+  String get blockKey => 'image_reference_id';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'image_reference_id': imageReferenceId.toTfJson(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'image_reference_id': imageReferenceId,
+  };
+}
+
 /// Typed helper for the `encryption_settings` block of
 /// `azurerm_managed_disk` (derived from provider schema).
 @immutable
@@ -78,33 +332,31 @@ final class AzurermManagedDisk extends Resource {
     super.localName, {
     required TfArg<String> createOption,
     TfArg<String>? diskAccessId,
-    TfArg<String>? diskEncryptionSetId,
+    ManagedDiskEncryption? encryption,
     TfArg<num>? diskIopsReadOnly,
     TfArg<num>? diskIopsReadWrite,
     TfArg<num>? diskMbpsReadOnly,
     TfArg<num>? diskMbpsReadWrite,
     TfArg<num>? diskSizeGb,
     TfArg<String>? edgeZone,
-    TfArg<String>? galleryImageReferenceId,
-    TfArg<String>? hyperVGeneration,
-    TfArg<String>? imageReferenceId,
+    ManagedDiskImage? image,
+    ManagedDiskHyperVGeneration? hyperVGeneration,
     required TfArg<String> location,
     TfArg<num>? logicalSectorSize,
     TfArg<num>? maxShares,
     required TfArg<String> name,
-    TfArg<String>? networkAccessPolicy,
+    ManagedDiskNetworkAccessPolicy? networkAccessPolicy,
     TfArg<bool>? onDemandBurstingEnabled,
     TfArg<bool>? optimizedFrequentAttachEnabled,
-    TfArg<String>? osType,
+    ManagedDiskOsType? osType,
     TfArg<bool>? performancePlusEnabled,
     TfArg<bool>? publicNetworkAccessEnabled,
     required RefTo<AzurermResourceGroup> resourceGroupName,
-    TfArg<String>? secureVmDiskEncryptionSetId,
     TfArg<String>? securityType,
     TfArg<String>? sourceResourceId,
     TfArg<String>? sourceUri,
     RefTo<AzurermStorageAccount>? storageAccountId,
-    required TfArg<String> storageAccountType,
+    required ManagedDiskStorageAccountType storageAccountType,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? tier,
     TfArg<bool>? trustedLaunchEnabled,
@@ -120,16 +372,15 @@ final class AzurermManagedDisk extends Resource {
          argMap: {
            'create_option': createOption,
            'disk_access_id': ?diskAccessId,
-           'disk_encryption_set_id': ?diskEncryptionSetId,
+           ...?encryption?.argMap,
            'disk_iops_read_only': ?diskIopsReadOnly,
            'disk_iops_read_write': ?diskIopsReadWrite,
            'disk_mbps_read_only': ?diskMbpsReadOnly,
            'disk_mbps_read_write': ?diskMbpsReadWrite,
            'disk_size_gb': ?diskSizeGb,
            'edge_zone': ?edgeZone,
-           'gallery_image_reference_id': ?galleryImageReferenceId,
+           ...?image?.argMap,
            'hyper_v_generation': ?hyperVGeneration,
-           'image_reference_id': ?imageReferenceId,
            'location': location,
            'logical_sector_size': ?logicalSectorSize,
            'max_shares': ?maxShares,
@@ -141,7 +392,6 @@ final class AzurermManagedDisk extends Resource {
            'performance_plus_enabled': ?performancePlusEnabled,
            'public_network_access_enabled': ?publicNetworkAccessEnabled,
            'resource_group_name': resourceGroupName.encodeAs('name'),
-           'secure_vm_disk_encryption_set_id': ?secureVmDiskEncryptionSetId,
            'security_type': ?securityType,
            'source_resource_id': ?sourceResourceId,
            'source_uri': ?sourceUri,

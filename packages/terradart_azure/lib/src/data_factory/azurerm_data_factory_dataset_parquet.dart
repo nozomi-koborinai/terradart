@@ -7,6 +7,194 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `azurerm_data_factory_dataset_parquet`.
 const Set<String> _azurermDataFactoryDatasetParquetSensitive = <String>{};
 
+/// Data Factory Dataset Parquet Compression enum for `compression_codec`.
+extension type const DataFactoryDatasetParquetCompressionCodec._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataFactoryDatasetParquetCompressionCodec.variable(String name)
+    : this._(TfArg.variable(name));
+  DataFactoryDatasetParquetCompressionCodec.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataFactoryDatasetParquetCompressionCodec.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const bzip2 = DataFactoryDatasetParquetCompressionCodec._(
+    TfArgLiteral('bzip2'),
+  );
+  static const gzip = DataFactoryDatasetParquetCompressionCodec._(
+    TfArgLiteral('gzip'),
+  );
+  static const deflate = DataFactoryDatasetParquetCompressionCodec._(
+    TfArgLiteral('deflate'),
+  );
+  static const zipdeflate = DataFactoryDatasetParquetCompressionCodec._(
+    TfArgLiteral('ZipDeflate'),
+  );
+  static const targzip = DataFactoryDatasetParquetCompressionCodec._(
+    TfArgLiteral('TarGzip'),
+  );
+  static const tar = DataFactoryDatasetParquetCompressionCodec._(
+    TfArgLiteral('Tar'),
+  );
+  static const snappy = DataFactoryDatasetParquetCompressionCodec._(
+    TfArgLiteral('snappy'),
+  );
+  static const lz4 = DataFactoryDatasetParquetCompressionCodec._(
+    TfArgLiteral('lz4'),
+  );
+
+  static const List<DataFactoryDatasetParquetCompressionCodec> values = [
+    bzip2,
+    gzip,
+    deflate,
+    zipdeflate,
+    targzip,
+    tar,
+    snappy,
+    lz4,
+  ];
+}
+
+/// Data Factory Dataset Parquet Compression enum for `compression_level`.
+extension type const DataFactoryDatasetParquetCompressionLevel._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataFactoryDatasetParquetCompressionLevel.variable(String name)
+    : this._(TfArg.variable(name));
+  DataFactoryDatasetParquetCompressionLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataFactoryDatasetParquetCompressionLevel.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const optimal = DataFactoryDatasetParquetCompressionLevel._(
+    TfArgLiteral('Optimal'),
+  );
+  static const fastest = DataFactoryDatasetParquetCompressionLevel._(
+    TfArgLiteral('Fastest'),
+  );
+
+  static const List<DataFactoryDatasetParquetCompressionLevel> values = [
+    optimal,
+    fastest,
+  ];
+}
+
+/// Exactly one of `azure_blob_fs_location`, `azure_blob_storage_location`, `http_server_location` on `azurerm_data_factory_dataset_parquet`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.azureBlobFsLocation(...)`.
+sealed class DataFactoryDatasetParquetLocation {
+  const DataFactoryDatasetParquetLocation();
+
+  /// Sets `azure_blob_fs_location`.
+  const factory DataFactoryDatasetParquetLocation.azureBlobFsLocation(
+    DataFactoryDatasetParquetAzureBlobFsLocation azureBlobFsLocation,
+  ) = DataFactoryDatasetParquetAzureBlobFsLocationChoice;
+
+  /// Sets `azure_blob_storage_location`.
+  const factory DataFactoryDatasetParquetLocation.azureBlobStorageLocation(
+    DataFactoryDatasetParquetAzureBlobStorageLocation azureBlobStorageLocation,
+  ) = DataFactoryDatasetParquetAzureBlobStorageLocationChoice;
+
+  /// Sets `http_server_location`.
+  const factory DataFactoryDatasetParquetLocation.httpServerLocation(
+    DataFactoryDatasetParquetHttpServerLocation httpServerLocation,
+  ) = DataFactoryDatasetParquetHttpServerLocationChoice;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [DataFactoryDatasetParquetLocation.azureBlobFsLocation] choice: sets `azure_blob_fs_location`.
+final class DataFactoryDatasetParquetAzureBlobFsLocationChoice
+    extends DataFactoryDatasetParquetLocation {
+  const DataFactoryDatasetParquetAzureBlobFsLocationChoice(
+    this.azureBlobFsLocation,
+  );
+
+  final DataFactoryDatasetParquetAzureBlobFsLocation azureBlobFsLocation;
+
+  @internal
+  @override
+  String get blockKey => 'azure_blob_fs_location';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'azure_blob_fs_location': azureBlobFsLocation.encode(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'azure_blob_fs_location': TfArg.literal(azureBlobFsLocation.encode()),
+  };
+}
+
+/// The [DataFactoryDatasetParquetLocation.azureBlobStorageLocation] choice: sets `azure_blob_storage_location`.
+final class DataFactoryDatasetParquetAzureBlobStorageLocationChoice
+    extends DataFactoryDatasetParquetLocation {
+  const DataFactoryDatasetParquetAzureBlobStorageLocationChoice(
+    this.azureBlobStorageLocation,
+  );
+
+  final DataFactoryDatasetParquetAzureBlobStorageLocation
+  azureBlobStorageLocation;
+
+  @internal
+  @override
+  String get blockKey => 'azure_blob_storage_location';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'azure_blob_storage_location': azureBlobStorageLocation.encode(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'azure_blob_storage_location': TfArg.literal(
+      azureBlobStorageLocation.encode(),
+    ),
+  };
+}
+
+/// The [DataFactoryDatasetParquetLocation.httpServerLocation] choice: sets `http_server_location`.
+final class DataFactoryDatasetParquetHttpServerLocationChoice
+    extends DataFactoryDatasetParquetLocation {
+  const DataFactoryDatasetParquetHttpServerLocationChoice(
+    this.httpServerLocation,
+  );
+
+  final DataFactoryDatasetParquetHttpServerLocation httpServerLocation;
+
+  @internal
+  @override
+  String get blockKey => 'http_server_location';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'http_server_location': httpServerLocation.encode(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'http_server_location': TfArg.literal(httpServerLocation.encode()),
+  };
+}
+
 /// Typed helper for the `azure_blob_fs_location` block of
 /// `azurerm_data_factory_dataset_parquet` (derived from provider schema).
 @immutable
@@ -125,7 +313,7 @@ final class DataFactoryDatasetParquetSchemaColumn {
 
   final TfArg<String> name;
 
-  final TfArg<String>? type;
+  final DataFactoryDatasetParquetType? type;
 
   @internal
   Map<String, Object?> encode() => {
@@ -133,6 +321,60 @@ final class DataFactoryDatasetParquetSchemaColumn {
     'name': name.toTfJson(),
     'type': ?type?.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+extension type const DataFactoryDatasetParquetType._(TfArg<String> _)
+    implements TfArg<String> {
+  DataFactoryDatasetParquetType.variable(String name)
+    : this._(TfArg.variable(name));
+  DataFactoryDatasetParquetType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataFactoryDatasetParquetType.arg(TfArg<String> arg) : this._(arg);
+
+  static const byte = DataFactoryDatasetParquetType._(TfArgLiteral('Byte'));
+  static const byte2 = DataFactoryDatasetParquetType._(TfArgLiteral('Byte[]'));
+  static const boolean = DataFactoryDatasetParquetType._(
+    TfArgLiteral('Boolean'),
+  );
+  static const date = DataFactoryDatasetParquetType._(TfArgLiteral('Date'));
+  static const datetime = DataFactoryDatasetParquetType._(
+    TfArgLiteral('DateTime'),
+  );
+  static const datetimeoffset = DataFactoryDatasetParquetType._(
+    TfArgLiteral('DateTimeOffset'),
+  );
+  static const decimal = DataFactoryDatasetParquetType._(
+    TfArgLiteral('Decimal'),
+  );
+  static const double = DataFactoryDatasetParquetType._(TfArgLiteral('Double'));
+  static const guid = DataFactoryDatasetParquetType._(TfArgLiteral('Guid'));
+  static const int16 = DataFactoryDatasetParquetType._(TfArgLiteral('Int16'));
+  static const int32 = DataFactoryDatasetParquetType._(TfArgLiteral('Int32'));
+  static const int64 = DataFactoryDatasetParquetType._(TfArgLiteral('Int64'));
+  static const single = DataFactoryDatasetParquetType._(TfArgLiteral('Single'));
+  static const string = DataFactoryDatasetParquetType._(TfArgLiteral('String'));
+  static const timespan = DataFactoryDatasetParquetType._(
+    TfArgLiteral('TimeSpan'),
+  );
+
+  static const List<DataFactoryDatasetParquetType> values = [
+    byte,
+    byte2,
+    boolean,
+    date,
+    datetime,
+    datetimeoffset,
+    decimal,
+    double,
+    guid,
+    int16,
+    int32,
+    int64,
+    single,
+    string,
+    timespan,
+  ];
 }
 
 /// Factory wrapper for `azurerm_data_factory_dataset_parquet`.
@@ -143,17 +385,15 @@ final class AzurermDataFactoryDatasetParquet extends Resource {
     super.localName, {
     TfArg<Map<String, String>>? additionalProperties,
     TfArg<List<String>>? annotations,
-    TfArg<String>? compressionCodec,
-    TfArg<String>? compressionLevel,
+    DataFactoryDatasetParquetCompressionCodec? compressionCodec,
+    DataFactoryDatasetParquetCompressionLevel? compressionLevel,
     required TfArg<String> dataFactoryId,
     TfArg<String>? description,
     TfArg<String>? folder,
     required TfArg<String> linkedServiceName,
     required TfArg<String> name,
     TfArg<Map<String, String>>? parameters,
-    DataFactoryDatasetParquetAzureBlobFsLocation? azureBlobFsLocation,
-    DataFactoryDatasetParquetAzureBlobStorageLocation? azureBlobStorageLocation,
-    DataFactoryDatasetParquetHttpServerLocation? httpServerLocation,
+    required DataFactoryDatasetParquetLocation location,
     List<DataFactoryDatasetParquetSchemaColumn>? schemaColumn,
     super.lifecycle,
     super.dependsOn,
@@ -172,16 +412,7 @@ final class AzurermDataFactoryDatasetParquet extends Resource {
            'linked_service_name': linkedServiceName,
            'name': name,
            'parameters': ?parameters,
-           if (azureBlobFsLocation != null)
-             'azure_blob_fs_location': TfArg.literal(
-               azureBlobFsLocation.encode(),
-             ),
-           if (azureBlobStorageLocation != null)
-             'azure_blob_storage_location': TfArg.literal(
-               azureBlobStorageLocation.encode(),
-             ),
-           if (httpServerLocation != null)
-             'http_server_location': TfArg.literal(httpServerLocation.encode()),
+           ...location.argMap,
            if (schemaColumn != null)
              'schema_column': TfArg.literal([
                for (final e in schemaColumn) e.encode(),

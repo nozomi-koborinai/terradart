@@ -10,6 +10,30 @@ import '../storage/azurerm_storage_account.dart' show AzurermStorageAccount;
 /// Sensitive field paths for `azurerm_snapshot`.
 const Set<String> _azurermSnapshotSensitive = <String>{};
 
+/// Snapshot Network Access enum for `network_access_policy`.
+extension type const SnapshotNetworkAccessPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  SnapshotNetworkAccessPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  SnapshotNetworkAccessPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const SnapshotNetworkAccessPolicy.arg(TfArg<String> arg) : this._(arg);
+
+  static const allowall = SnapshotNetworkAccessPolicy._(
+    TfArgLiteral('AllowAll'),
+  );
+  static const allowprivate = SnapshotNetworkAccessPolicy._(
+    TfArgLiteral('AllowPrivate'),
+  );
+  static const denyall = SnapshotNetworkAccessPolicy._(TfArgLiteral('DenyAll'));
+
+  static const List<SnapshotNetworkAccessPolicy> values = [
+    allowall,
+    allowprivate,
+    denyall,
+  ];
+}
+
 /// Typed helper for the `encryption_settings` block of
 /// `azurerm_snapshot` (derived from provider schema).
 @immutable
@@ -82,7 +106,7 @@ final class AzurermSnapshot extends Resource {
     TfArg<bool>? incrementalEnabled,
     required TfArg<String> location,
     required TfArg<String> name,
-    TfArg<String>? networkAccessPolicy,
+    SnapshotNetworkAccessPolicy? networkAccessPolicy,
     TfArg<bool>? publicNetworkAccessEnabled,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<String>? sourceResourceId,

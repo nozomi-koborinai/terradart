@@ -821,7 +821,7 @@ final class AzureLeftoverStack extends Stack {
     add(
       AzurermApplicationInsights(
         'application_insights',
-        applicationType: .literal('web'),
+        applicationType: .web,
         location: .literal(location),
         name: .literal(leftover),
         resourceGroupName: .literal(resourceGroupName),
@@ -836,7 +836,7 @@ final class AzureLeftoverStack extends Stack {
         ),
         content: .literal(leftover),
         name: .literal(leftover),
-        scope: .literal('shared'),
+        scope: .shared,
         type: .literal('query'),
       ),
     );
@@ -857,7 +857,7 @@ final class AzureLeftoverStack extends Stack {
         applicationInsightsId: .literal(
           '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/components/componentName',
         ),
-        name: .literal('Slow page load time'),
+        name: .slowPageLoadTime,
       ),
     );
 
@@ -1092,7 +1092,7 @@ final class AzureLeftoverStack extends Stack {
         location: .literal(location),
         name: .literal(leftover),
         resourceGroupName: .literal(resourceGroupName),
-        skuName: .literal('Basic'),
+        skuName: .basic,
       ),
     );
 
@@ -1293,7 +1293,7 @@ final class AzureLeftoverStack extends Stack {
       AzurermAutomationSchedule(
         'automation_schedule',
         automationAccountName: .literal(leftover),
-        frequency: .literal('Day'),
+        frequency: .day,
         name: .literal(leftover),
         resourceGroupName: .literal(resourceGroupName),
       ),
@@ -1734,7 +1734,7 @@ final class AzureLeftoverStack extends Stack {
     add(
       AzurermCdnFrontdoorFirewallPolicy(
         'cdn_frontdoor_firewall_policy',
-        mode: .literal('Detection'),
+        mode: .detection,
         name: .literal(leftover),
         resourceGroupName: .literal(resourceGroupName),
         skuName: .literal('Standard_AzureFrontDoor'),
@@ -1825,11 +1825,11 @@ final class AzureLeftoverStack extends Stack {
     add(
       AzurermCognitiveAccount(
         'cognitive_account',
-        kind: .literal('AIServices'),
+        kind: .aiservices,
         location: .literal(location),
         name: .literal(leftover),
         resourceGroupName: .literal(resourceGroupName),
-        skuName: .literal('C2'),
+        skuName: .c2,
       ),
     );
 
@@ -1985,7 +1985,7 @@ final class AzureLeftoverStack extends Stack {
         resourceGroupName: .literal(resourceGroupName),
         azureadBasedServicePrincipal: [
           ConfidentialLedgerAzureadBasedServicePrincipal(
-            ledgerRoleName: .literal('Administrator'),
+            ledgerRoleName: .administrator,
             principalId: .literal('11111111-1111-1111-1111-111111111111'),
             tenantId: .literal('11111111-1111-1111-1111-111111111111'),
           ),
@@ -2123,7 +2123,7 @@ final class AzureLeftoverStack extends Stack {
         'container_group',
         location: .literal(location),
         name: .literal(leftover),
-        osType: .literal('Linux'),
+        osType: .linux,
         resourceGroupName: .literal(resourceGroupName),
         container: [
           ContainerGroupContainer(
@@ -2737,7 +2737,7 @@ final class AzureLeftoverStack extends Stack {
         ),
         location: .literal(location),
         name: .literal(leftover),
-        nodeSize: .literal('Standard_D2_v3'),
+        nodeSize: .standardD2V3,
       ),
     );
 
@@ -2877,7 +2877,7 @@ final class AzureLeftoverStack extends Stack {
     add(
       AzurermDataFactoryLinkedServiceSftp(
         'data_factory_linked_service_sftp',
-        authenticationType: .literal('Basic'),
+        authenticationType: .basic,
         dataFactoryId: .literal(
           '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName',
         ),
@@ -3148,10 +3148,10 @@ final class AzureLeftoverStack extends Stack {
     add(
       AzurermDataProtectionBackupVault(
         'data_protection_backup_vault',
-        datastoreType: .literal('ArchiveStore'),
+        datastoreType: .archivestore,
         location: .literal(location),
         name: .literal(leftover),
-        redundancy: .literal('GeoRedundant'),
+        redundancy: .georedundant,
         resourceGroupName: .literal(resourceGroupName),
       ),
     );
@@ -3171,7 +3171,7 @@ final class AzureLeftoverStack extends Stack {
         accountId: .literal(
           '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountName',
         ),
-        kind: .literal('CopyBased'),
+        kind: .copybased,
         name: .literal(leftover),
       ),
     );
@@ -3249,8 +3249,8 @@ final class AzureLeftoverStack extends Stack {
         name: .literal(leftover),
         resourceGroupName: .literal(resourceGroupName),
         serviceName: .literal(leftover),
-        sourcePlatform: .literal('MongoDb'),
-        targetPlatform: .literal('AzureDbForMySql'),
+        sourcePlatform: .mongodb,
+        targetPlatform: .azuredbformysql,
       ),
     );
 
@@ -3260,7 +3260,7 @@ final class AzureLeftoverStack extends Stack {
         location: .literal(location),
         name: .literal(leftover),
         resourceGroupName: .literal(resourceGroupName),
-        skuName: .literal('Premium_4vCores'),
+        skuName: .premium4vcores,
         subnetId: .literal(
           '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualNetworks/virtualNetworksValue/subnets/subnetValue',
         ),
@@ -3297,7 +3297,7 @@ final class AzureLeftoverStack extends Stack {
         location: .literal(location),
         name: .literal(leftover),
         resourceGroupName: .literal(resourceGroupName),
-        sku: .literal('standard'),
+        sku: .standard,
       ),
     );
 
@@ -3328,7 +3328,7 @@ final class AzureLeftoverStack extends Stack {
         enterpriseApplicationId: .literal(
           '11111111-1111-1111-1111-111111111111',
         ),
-        singleSignOn: .literal('Disable'),
+        singleSignOn: .disable,
       ),
     );
 
@@ -3366,7 +3366,7 @@ final class AzureLeftoverStack extends Stack {
         location: .literal(location),
         name: .literal(leftover),
         platformFaultDomain: .literal(200),
-        skuName: .literal('DADSv5-Type1'),
+        skuName: .dadsv5Type1,
       ),
     );
 
@@ -4009,7 +4009,7 @@ final class AzureLeftoverStack extends Stack {
         location: .literal(location),
         name: .literal(leftover),
         resourceGroupName: .literal(resourceGroupName),
-        sku: .literal('Basic'),
+        sku: .basic,
       ),
     );
 
@@ -4041,7 +4041,7 @@ final class AzureLeftoverStack extends Stack {
         namespaceId: .literal(
           '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceName',
         ),
-        schemaCompatibility: .literal('Backward'),
+        schemaCompatibility: .backward,
         schemaType: .literal('Unknown'),
       ),
     );
@@ -4052,10 +4052,7 @@ final class AzureLeftoverStack extends Stack {
         location: .literal(location),
         name: .literal(leftover),
         resourceGroupName: .literal(resourceGroupName),
-        sku: ExpressRouteCircuitSku(
-          family: .literal('MeteredData'),
-          tier: .literal('Basic'),
-        ),
+        sku: ExpressRouteCircuitSku(family: .metereddata, tier: .basic),
       ),
     );
 
@@ -4086,7 +4083,7 @@ final class AzureLeftoverStack extends Stack {
       AzurermExpressRouteCircuitPeering(
         'express_route_circuit_peering',
         expressRouteCircuitName: .literal(leftover),
-        peeringType: .literal('AzurePrivatePeering'),
+        peeringType: .azureprivatepeering,
         resourceGroupName: .literal(resourceGroupName),
         vlanId: .literal(200),
       ),
@@ -4122,7 +4119,7 @@ final class AzureLeftoverStack extends Stack {
       AzurermExpressRoutePort(
         'express_route_port',
         bandwidthInGbps: .literal(200),
-        encapsulation: .literal('Dot1Q'),
+        encapsulation: .dot1q,
         location: .literal(location),
         name: .literal(leftover),
         peeringLocation: .literal(leftover),
@@ -4168,15 +4165,15 @@ final class AzureLeftoverStack extends Stack {
         location: .literal(location),
         name: .literal(leftover),
         resourceGroupName: .literal(resourceGroupName),
-        skuName: .literal('AZFW_Hub'),
-        skuTier: .literal('Basic'),
+        skuName: .azfwHub,
+        skuTier: .basic,
       ),
     );
 
     add(
       AzurermFirewallApplicationRuleCollection(
         'firewall_application_rule_collection',
-        action: .literal('Allow'),
+        action: .allow,
         azureFirewallName: .literal(leftover),
         name: .literal(leftover),
         priority: .literal(200),
@@ -4188,7 +4185,7 @@ final class AzureLeftoverStack extends Stack {
     add(
       AzurermFirewallNatRuleCollection(
         'firewall_nat_rule_collection',
-        action: .literal('Dnat'),
+        action: .dnat,
         azureFirewallName: .literal(leftover),
         name: .literal(leftover),
         priority: .literal(200),
@@ -4198,7 +4195,7 @@ final class AzureLeftoverStack extends Stack {
             destinationAddresses: .literal([leftover]),
             destinationPorts: .literal([leftover]),
             name: .literal(leftover),
-            protocols: .literal(['Any']),
+            protocols: [.any],
             translatedAddress: .literal(leftover),
             translatedPort: .literal(leftover),
           ),
@@ -4209,7 +4206,7 @@ final class AzureLeftoverStack extends Stack {
     add(
       AzurermFirewallNetworkRuleCollection(
         'firewall_network_rule_collection',
-        action: .literal('Allow'),
+        action: .allow,
         azureFirewallName: .literal(leftover),
         name: .literal(leftover),
         priority: .literal(200),
@@ -4218,7 +4215,7 @@ final class AzureLeftoverStack extends Stack {
           FirewallNetworkRuleCollectionRule(
             destinationPorts: .literal([leftover]),
             name: .literal(leftover),
-            protocols: .literal(['Any']),
+            protocols: [.any],
           ),
         ],
       ),
@@ -4287,7 +4284,7 @@ final class AzureLeftoverStack extends Stack {
         ],
         routingRule: [
           FrontdoorRoutingRule(
-            acceptedProtocols: .literal(['Http']),
+            acceptedProtocols: [.http],
             frontendEndpoints: .literal([leftover]),
             name: .literal(leftover),
             patternsToMatch: .literal([leftover]),
@@ -4604,7 +4601,7 @@ final class AzureLeftoverStack extends Stack {
         location: .literal(location),
         name: .literal(leftover),
         resourceGroupName: .literal(resourceGroupName),
-        skuName: .literal('C1'),
+        skuName: .c1,
       ),
     );
 
@@ -5877,7 +5874,7 @@ final class AzureLeftoverStack extends Stack {
         location: .literal(location),
         name: .literal(leftover),
         resourceGroupName: .literal(resourceGroupName),
-        storageAccountType: .literal('Premium_LRS'),
+        storageAccountType: .premiumLrs,
       ),
     );
 
@@ -8926,7 +8923,7 @@ final class AzureLeftoverStack extends Stack {
         galleryName: .literal(leftover),
         location: .literal(location),
         name: .literal(leftover),
-        osType: .literal('Linux'),
+        osType: .linux,
         resourceGroupName: .literal(resourceGroupName),
         identifier: SharedImageIdentifier(
           offer: .literal(leftover),
@@ -10907,7 +10904,7 @@ final class AzureLeftoverStack extends Stack {
     add(
       AzurermVirtualMachineDataDiskAttachment(
         'virtual_machine_data_disk_attachment',
-        caching: .literal('None'),
+        caching: .none,
         lun: .literal(200),
         managedDiskId: .literal(
           '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/disks/diskValue',

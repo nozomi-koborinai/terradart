@@ -4,3 +4,7 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 deriveExactlyOne: true
+
+sealedNames:
+  "access_token, key_vault_password, msi_workspace_id": credential
+  "existing_cluster_id, instance_pool, new_cluster_config": cluster

@@ -12,6 +12,307 @@ const Set<String> _azurermLinuxVirtualMachineSensitive = <String>{
   'custom_data',
 };
 
+/// Linux Virtual Machine Disk Controller enum for `disk_controller_type`.
+extension type const LinuxVirtualMachineDiskControllerType._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxVirtualMachineDiskControllerType.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxVirtualMachineDiskControllerType.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxVirtualMachineDiskControllerType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const nvme = LinuxVirtualMachineDiskControllerType._(
+    TfArgLiteral('NVMe'),
+  );
+  static const scsi = LinuxVirtualMachineDiskControllerType._(
+    TfArgLiteral('SCSI'),
+  );
+
+  static const List<LinuxVirtualMachineDiskControllerType> values = [
+    nvme,
+    scsi,
+  ];
+}
+
+/// Linux Virtual Machine Eviction enum for `eviction_policy`.
+extension type const LinuxVirtualMachineEvictionPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxVirtualMachineEvictionPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxVirtualMachineEvictionPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxVirtualMachineEvictionPolicy.arg(TfArg<String> arg) : this._(arg);
+
+  static const deallocate = LinuxVirtualMachineEvictionPolicy._(
+    TfArgLiteral('Deallocate'),
+  );
+  static const delete = LinuxVirtualMachineEvictionPolicy._(
+    TfArgLiteral('Delete'),
+  );
+
+  static const List<LinuxVirtualMachineEvictionPolicy> values = [
+    deallocate,
+    delete,
+  ];
+}
+
+/// Linux Virtual Machine License enum for `license_type`.
+extension type const LinuxVirtualMachineLicenseType._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxVirtualMachineLicenseType.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxVirtualMachineLicenseType.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxVirtualMachineLicenseType.arg(TfArg<String> arg) : this._(arg);
+
+  static const rhelByos = LinuxVirtualMachineLicenseType._(
+    TfArgLiteral('RHEL_BYOS'),
+  );
+  static const rhelBase = LinuxVirtualMachineLicenseType._(
+    TfArgLiteral('RHEL_BASE'),
+  );
+  static const rhelEus = LinuxVirtualMachineLicenseType._(
+    TfArgLiteral('RHEL_EUS'),
+  );
+  static const rhelSapapps = LinuxVirtualMachineLicenseType._(
+    TfArgLiteral('RHEL_SAPAPPS'),
+  );
+  static const rhelSapha = LinuxVirtualMachineLicenseType._(
+    TfArgLiteral('RHEL_SAPHA'),
+  );
+  static const rhelBasesapapps = LinuxVirtualMachineLicenseType._(
+    TfArgLiteral('RHEL_BASESAPAPPS'),
+  );
+  static const rhelBasesapha = LinuxVirtualMachineLicenseType._(
+    TfArgLiteral('RHEL_BASESAPHA'),
+  );
+  static const slesByos = LinuxVirtualMachineLicenseType._(
+    TfArgLiteral('SLES_BYOS'),
+  );
+  static const slesSap = LinuxVirtualMachineLicenseType._(
+    TfArgLiteral('SLES_SAP'),
+  );
+  static const slesHpc = LinuxVirtualMachineLicenseType._(
+    TfArgLiteral('SLES_HPC'),
+  );
+  static const ubuntuPro = LinuxVirtualMachineLicenseType._(
+    TfArgLiteral('UBUNTU_PRO'),
+  );
+
+  static const List<LinuxVirtualMachineLicenseType> values = [
+    rhelByos,
+    rhelBase,
+    rhelEus,
+    rhelSapapps,
+    rhelSapha,
+    rhelBasesapapps,
+    rhelBasesapha,
+    slesByos,
+    slesSap,
+    slesHpc,
+    ubuntuPro,
+  ];
+}
+
+/// Linux Virtual Machine Patch Assessment enum for `patch_assessment_mode`.
+extension type const LinuxVirtualMachinePatchAssessmentMode._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxVirtualMachinePatchAssessmentMode.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxVirtualMachinePatchAssessmentMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxVirtualMachinePatchAssessmentMode.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const automaticbyplatform = LinuxVirtualMachinePatchAssessmentMode._(
+    TfArgLiteral('AutomaticByPlatform'),
+  );
+  static const imagedefault = LinuxVirtualMachinePatchAssessmentMode._(
+    TfArgLiteral('ImageDefault'),
+  );
+
+  static const List<LinuxVirtualMachinePatchAssessmentMode> values = [
+    automaticbyplatform,
+    imagedefault,
+  ];
+}
+
+/// Linux Virtual Machine Patch enum for `patch_mode`.
+extension type const LinuxVirtualMachinePatchMode._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxVirtualMachinePatchMode.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxVirtualMachinePatchMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxVirtualMachinePatchMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const automaticbyplatform = LinuxVirtualMachinePatchMode._(
+    TfArgLiteral('AutomaticByPlatform'),
+  );
+  static const imagedefault = LinuxVirtualMachinePatchMode._(
+    TfArgLiteral('ImageDefault'),
+  );
+
+  static const List<LinuxVirtualMachinePatchMode> values = [
+    automaticbyplatform,
+    imagedefault,
+  ];
+}
+
+/// Exactly one of `admin_username`, `os_managed_disk_id` on `azurerm_linux_virtual_machine`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.adminUsername(...)`.
+sealed class LinuxVirtualMachineOsProfile {
+  const LinuxVirtualMachineOsProfile();
+
+  /// Sets `admin_username`.
+  const factory LinuxVirtualMachineOsProfile.adminUsername(
+    TfArg<String> adminUsername,
+  ) = LinuxVirtualMachineOsProfileAdminUsername;
+
+  /// Sets `os_managed_disk_id`.
+  const factory LinuxVirtualMachineOsProfile.osManagedDiskId(
+    TfArg<String> osManagedDiskId,
+  ) = LinuxVirtualMachineOsProfileOsManagedDiskId;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [LinuxVirtualMachineOsProfile.adminUsername] choice: sets `admin_username`.
+final class LinuxVirtualMachineOsProfileAdminUsername
+    extends LinuxVirtualMachineOsProfile {
+  const LinuxVirtualMachineOsProfileAdminUsername(this.adminUsername);
+
+  final TfArg<String> adminUsername;
+
+  @internal
+  @override
+  String get blockKey => 'admin_username';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'admin_username': adminUsername.toTfJson()};
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'admin_username': adminUsername};
+}
+
+/// The [LinuxVirtualMachineOsProfile.osManagedDiskId] choice: sets `os_managed_disk_id`.
+final class LinuxVirtualMachineOsProfileOsManagedDiskId
+    extends LinuxVirtualMachineOsProfile {
+  const LinuxVirtualMachineOsProfileOsManagedDiskId(this.osManagedDiskId);
+
+  final TfArg<String> osManagedDiskId;
+
+  @internal
+  @override
+  String get blockKey => 'os_managed_disk_id';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'os_managed_disk_id': osManagedDiskId.toTfJson(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'os_managed_disk_id': osManagedDiskId,
+  };
+}
+
+/// At most one of `dedicated_host_group_id`, `dedicated_host_id` on `azurerm_linux_virtual_machine`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.dedicatedHostGroupId(...)`.
+sealed class LinuxVirtualMachineDedicatedHost {
+  const LinuxVirtualMachineDedicatedHost();
+
+  /// Sets `dedicated_host_group_id`.
+  const factory LinuxVirtualMachineDedicatedHost.dedicatedHostGroupId(
+    TfArg<String> dedicatedHostGroupId,
+  ) = LinuxVirtualMachineDedicatedHostGroupId;
+
+  /// Sets `dedicated_host_id`.
+  const factory LinuxVirtualMachineDedicatedHost.dedicatedHostId(
+    TfArg<String> dedicatedHostId,
+  ) = LinuxVirtualMachineDedicatedHostId;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [LinuxVirtualMachineDedicatedHost.dedicatedHostGroupId] choice: sets `dedicated_host_group_id`.
+final class LinuxVirtualMachineDedicatedHostGroupId
+    extends LinuxVirtualMachineDedicatedHost {
+  const LinuxVirtualMachineDedicatedHostGroupId(this.dedicatedHostGroupId);
+
+  final TfArg<String> dedicatedHostGroupId;
+
+  @internal
+  @override
+  String get blockKey => 'dedicated_host_group_id';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'dedicated_host_group_id': dedicatedHostGroupId.toTfJson(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'dedicated_host_group_id': dedicatedHostGroupId,
+  };
+}
+
+/// The [LinuxVirtualMachineDedicatedHost.dedicatedHostId] choice: sets `dedicated_host_id`.
+final class LinuxVirtualMachineDedicatedHostId
+    extends LinuxVirtualMachineDedicatedHost {
+  const LinuxVirtualMachineDedicatedHostId(this.dedicatedHostId);
+
+  final TfArg<String> dedicatedHostId;
+
+  @internal
+  @override
+  String get blockKey => 'dedicated_host_id';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'dedicated_host_id': dedicatedHostId.toTfJson(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'dedicated_host_id': dedicatedHostId,
+  };
+}
+
 /// Typed helper for the `additional_capabilities` block of
 /// `azurerm_linux_virtual_machine` (derived from provider schema).
 @immutable
@@ -312,29 +613,27 @@ final class AzurermLinuxVirtualMachine extends Resource {
   AzurermLinuxVirtualMachine(
     super.localName, {
     Sensitive<String>? adminPassword,
-    TfArg<String>? adminUsername,
+    required LinuxVirtualMachineOsProfile osProfile,
     TfArg<bool>? allowExtensionOperations,
     TfArg<String>? availabilitySetId,
     TfArg<bool>? bypassPlatformSafetyChecksOnUserScheduleEnabled,
     TfArg<String>? capacityReservationGroupId,
     TfArg<String>? computerName,
     Sensitive<String>? customData,
-    TfArg<String>? dedicatedHostGroupId,
-    TfArg<String>? dedicatedHostId,
+    LinuxVirtualMachineDedicatedHost? dedicatedHost,
     TfArg<bool>? disablePasswordAuthentication,
-    TfArg<String>? diskControllerType,
+    LinuxVirtualMachineDiskControllerType? diskControllerType,
     TfArg<String>? edgeZone,
     TfArg<bool>? encryptionAtHostEnabled,
-    TfArg<String>? evictionPolicy,
+    LinuxVirtualMachineEvictionPolicy? evictionPolicy,
     TfArg<String>? extensionsTimeBudget,
-    TfArg<String>? licenseType,
+    LinuxVirtualMachineLicenseType? licenseType,
     required TfArg<String> location,
     TfArg<num>? maxBidPrice,
     required TfArg<String> name,
     required TfArg<List<String>> networkInterfaceIds,
-    TfArg<String>? osManagedDiskId,
-    TfArg<String>? patchAssessmentMode,
-    TfArg<String>? patchMode,
+    LinuxVirtualMachinePatchAssessmentMode? patchAssessmentMode,
+    LinuxVirtualMachinePatchMode? patchMode,
     TfArg<num>? platformFaultDomain,
     TfArg<String>? priority,
     TfArg<bool>? provisionVmAgent,
@@ -368,7 +667,7 @@ final class AzurermLinuxVirtualMachine extends Resource {
          terraformType: tfType,
          argMap: {
            'admin_password': ?adminPassword,
-           'admin_username': ?adminUsername,
+           ...osProfile.argMap,
            'allow_extension_operations': ?allowExtensionOperations,
            'availability_set_id': ?availabilitySetId,
            'bypass_platform_safety_checks_on_user_schedule_enabled':
@@ -376,8 +675,7 @@ final class AzurermLinuxVirtualMachine extends Resource {
            'capacity_reservation_group_id': ?capacityReservationGroupId,
            'computer_name': ?computerName,
            'custom_data': ?customData,
-           'dedicated_host_group_id': ?dedicatedHostGroupId,
-           'dedicated_host_id': ?dedicatedHostId,
+           ...?dedicatedHost?.argMap,
            'disable_password_authentication': ?disablePasswordAuthentication,
            'disk_controller_type': ?diskControllerType,
            'edge_zone': ?edgeZone,
@@ -389,7 +687,6 @@ final class AzurermLinuxVirtualMachine extends Resource {
            'max_bid_price': ?maxBidPrice,
            'name': name,
            'network_interface_ids': networkInterfaceIds,
-           'os_managed_disk_id': ?osManagedDiskId,
            'patch_assessment_mode': ?patchAssessmentMode,
            'patch_mode': ?patchMode,
            'platform_fault_domain': ?platformFaultDomain,

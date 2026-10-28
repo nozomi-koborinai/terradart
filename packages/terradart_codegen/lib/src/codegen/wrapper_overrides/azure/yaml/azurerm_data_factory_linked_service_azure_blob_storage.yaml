@@ -4,3 +4,7 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 deriveExactlyOne: true
+
+sealedNames:
+  "connection_string, connection_string_insecure, sas_uri, service_endpoint": connection
+  "service_principal_id, use_managed_identity": authentication

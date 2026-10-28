@@ -8,6 +8,23 @@ import '../resource/azurerm_resource_group.dart' show AzurermResourceGroup;
 /// Sensitive field paths for `azurerm_healthbot`.
 const Set<String> _azurermHealthbotSensitive = <String>{};
 
+/// Healthbot Sku enum for `sku_name`.
+extension type const HealthbotSkuName._(TfArg<String> _)
+    implements TfArg<String> {
+  HealthbotSkuName.variable(String name) : this._(TfArg.variable(name));
+  HealthbotSkuName.expression(String template)
+    : this._(TfArg.expression(template));
+  const HealthbotSkuName.arg(TfArg<String> arg) : this._(arg);
+
+  static const c1 = HealthbotSkuName._(TfArgLiteral('C1'));
+  static const c0 = HealthbotSkuName._(TfArgLiteral('C0'));
+  static const f0 = HealthbotSkuName._(TfArgLiteral('F0'));
+  static const pes = HealthbotSkuName._(TfArgLiteral('PES'));
+  static const s1 = HealthbotSkuName._(TfArgLiteral('S1'));
+
+  static const List<HealthbotSkuName> values = [c1, c0, f0, pes, s1];
+}
+
 /// Factory wrapper for `azurerm_healthbot`.
 final class AzurermHealthbot extends Resource {
   static const String tfType = 'azurerm_healthbot';
@@ -17,7 +34,7 @@ final class AzurermHealthbot extends Resource {
     required TfArg<String> location,
     required TfArg<String> name,
     required RefTo<AzurermResourceGroup> resourceGroupName,
-    required TfArg<String> skuName,
+    required HealthbotSkuName skuName,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,

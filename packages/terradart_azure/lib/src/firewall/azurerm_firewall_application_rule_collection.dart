@@ -10,6 +10,29 @@ import '../resource/azurerm_resource_group.dart' show AzurermResourceGroup;
 const Set<String> _azurermFirewallApplicationRuleCollectionSensitive =
     <String>{};
 
+/// Firewall Application Rule Collection enum for `action`.
+extension type const FirewallApplicationRuleCollectionAction._(TfArg<String> _)
+    implements TfArg<String> {
+  FirewallApplicationRuleCollectionAction.variable(String name)
+    : this._(TfArg.variable(name));
+  FirewallApplicationRuleCollectionAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const FirewallApplicationRuleCollectionAction.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const allow = FirewallApplicationRuleCollectionAction._(
+    TfArgLiteral('Allow'),
+  );
+  static const deny = FirewallApplicationRuleCollectionAction._(
+    TfArgLiteral('Deny'),
+  );
+
+  static const List<FirewallApplicationRuleCollectionAction> values = [
+    allow,
+    deny,
+  ];
+}
+
 /// Typed helper for the `rule` block of
 /// `azurerm_firewall_application_rule_collection` (derived from provider schema).
 @immutable
@@ -61,7 +84,7 @@ final class FirewallApplicationRuleCollectionProtocol {
 
   final TfArg<num> port;
 
-  final TfArg<String> type;
+  final FirewallApplicationRuleCollectionType type;
 
   @internal
   Map<String, Object?> encode() => {
@@ -70,13 +93,40 @@ final class FirewallApplicationRuleCollectionProtocol {
   };
 }
 
+/// `type` — derived from the provider schema description.
+extension type const FirewallApplicationRuleCollectionType._(TfArg<String> _)
+    implements TfArg<String> {
+  FirewallApplicationRuleCollectionType.variable(String name)
+    : this._(TfArg.variable(name));
+  FirewallApplicationRuleCollectionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const FirewallApplicationRuleCollectionType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const http = FirewallApplicationRuleCollectionType._(
+    TfArgLiteral('Http'),
+  );
+  static const https = FirewallApplicationRuleCollectionType._(
+    TfArgLiteral('Https'),
+  );
+  static const mssql = FirewallApplicationRuleCollectionType._(
+    TfArgLiteral('Mssql'),
+  );
+
+  static const List<FirewallApplicationRuleCollectionType> values = [
+    http,
+    https,
+    mssql,
+  ];
+}
+
 /// Factory wrapper for `azurerm_firewall_application_rule_collection`.
 final class AzurermFirewallApplicationRuleCollection extends Resource {
   static const String tfType = 'azurerm_firewall_application_rule_collection';
 
   AzurermFirewallApplicationRuleCollection(
     super.localName, {
-    required TfArg<String> action,
+    required FirewallApplicationRuleCollectionAction action,
     required TfArg<String> azureFirewallName,
     required TfArg<String> name,
     required TfArg<num> priority,

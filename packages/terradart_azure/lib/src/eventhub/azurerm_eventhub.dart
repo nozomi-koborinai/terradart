@@ -7,6 +7,82 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `azurerm_eventhub`.
 const Set<String> _azurermEventhubSensitive = <String>{};
 
+/// Exactly one of `message_retention`, `retention_description` on `azurerm_eventhub`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.messageRetention(...)`.
+sealed class EventhubRetention {
+  const EventhubRetention();
+
+  /// Sets `message_retention`.
+  const factory EventhubRetention.messageRetention(
+    TfArg<num> messageRetention,
+  ) = EventhubMessageRetention;
+
+  /// Sets `retention_description`.
+  const factory EventhubRetention.retentionDescription(
+    EventhubRetentionDescription retentionDescription,
+  ) = EventhubRetentionDescriptionChoice;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [EventhubRetention.messageRetention] choice: sets `message_retention`.
+final class EventhubMessageRetention extends EventhubRetention {
+  const EventhubMessageRetention(this.messageRetention);
+
+  final TfArg<num> messageRetention;
+
+  @internal
+  @override
+  String get blockKey => 'message_retention';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'message_retention': messageRetention.toTfJson(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'message_retention': messageRetention,
+  };
+}
+
+/// The [EventhubRetention.retentionDescription] choice: sets `retention_description`.
+final class EventhubRetentionDescriptionChoice extends EventhubRetention {
+  const EventhubRetentionDescriptionChoice(this.retentionDescription);
+
+  final EventhubRetentionDescription retentionDescription;
+
+  @internal
+  @override
+  String get blockKey => 'retention_description';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'retention_description': retentionDescription.encode(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'retention_description': TfArg.literal(retentionDescription.encode()),
+  };
+}
+
 /// Typed helper for the `capture_description` block of
 /// `azurerm_eventhub` (derived from provider schema).
 @immutable
@@ -22,7 +98,7 @@ final class EventhubCaptureDescription {
 
   final TfArg<bool> enabled;
 
-  final TfArg<String> encoding;
+  final EventhubEncoding encoding;
 
   final TfArg<num>? intervalInSeconds;
 
@@ -41,6 +117,20 @@ final class EventhubCaptureDescription {
     'skip_empty_archives': ?skipEmptyArchives?.toTfJson(),
     'destination': destination.encode(),
   };
+}
+
+/// `encoding` — derived from the provider schema description.
+extension type const EventhubEncoding._(TfArg<String> _)
+    implements TfArg<String> {
+  EventhubEncoding.variable(String name) : this._(TfArg.variable(name));
+  EventhubEncoding.expression(String template)
+    : this._(TfArg.expression(template));
+  const EventhubEncoding.arg(TfArg<String> arg) : this._(arg);
+
+  static const avro = EventhubEncoding._(TfArgLiteral('Avro'));
+  static const avrodeflate = EventhubEncoding._(TfArgLiteral('AvroDeflate'));
+
+  static const List<EventhubEncoding> values = [avro, avrodeflate];
 }
 
 /// Typed helper for the `capture_description.destination` block of
@@ -85,23 +175,95 @@ final class EventhubDestination {
 final class EventhubRetentionDescription {
   const EventhubRetentionDescription({
     required this.cleanupPolicy,
-    this.retentionTimeInHours,
-    this.tombstoneRetentionTimeInHours,
+    required this.duration,
   });
 
-  final TfArg<String> cleanupPolicy;
+  final EventhubCleanupPolicy cleanupPolicy;
 
-  final TfArg<num>? retentionTimeInHours;
-
-  final TfArg<num>? tombstoneRetentionTimeInHours;
+  final EventhubDuration duration;
 
   @internal
   Map<String, Object?> encode() => {
     'cleanup_policy': cleanupPolicy.toTfJson(),
-    'retention_time_in_hours': ?retentionTimeInHours?.toTfJson(),
-    'tombstone_retention_time_in_hours': ?tombstoneRetentionTimeInHours
-        ?.toTfJson(),
+    ...duration.encode(),
   };
+}
+
+/// Exactly one of `retention_time_in_hours`, `tombstone_retention_time_in_hours` on the `retention_description` block of `azurerm_eventhub`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.retentionTimeInHours(...)`.
+sealed class EventhubDuration {
+  const EventhubDuration();
+
+  /// Sets `retention_time_in_hours`.
+  const factory EventhubDuration.retentionTimeInHours(
+    TfArg<num> retentionTimeInHours,
+  ) = EventhubDurationRetentionTimeInHours;
+
+  /// Sets `tombstone_retention_time_in_hours`.
+  const factory EventhubDuration.tombstoneRetentionTimeInHours(
+    TfArg<num> tombstoneRetentionTimeInHours,
+  ) = EventhubDurationTombstoneRetentionTimeInHours;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+}
+
+/// The [EventhubDuration.retentionTimeInHours] choice: sets `retention_time_in_hours`.
+final class EventhubDurationRetentionTimeInHours extends EventhubDuration {
+  const EventhubDurationRetentionTimeInHours(this.retentionTimeInHours);
+
+  final TfArg<num> retentionTimeInHours;
+
+  @internal
+  @override
+  String get blockKey => 'retention_time_in_hours';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'retention_time_in_hours': retentionTimeInHours.toTfJson(),
+  };
+}
+
+/// The [EventhubDuration.tombstoneRetentionTimeInHours] choice: sets `tombstone_retention_time_in_hours`.
+final class EventhubDurationTombstoneRetentionTimeInHours
+    extends EventhubDuration {
+  const EventhubDurationTombstoneRetentionTimeInHours(
+    this.tombstoneRetentionTimeInHours,
+  );
+
+  final TfArg<num> tombstoneRetentionTimeInHours;
+
+  @internal
+  @override
+  String get blockKey => 'tombstone_retention_time_in_hours';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'tombstone_retention_time_in_hours': tombstoneRetentionTimeInHours
+        .toTfJson(),
+  };
+}
+
+/// `cleanup_policy` — derived from the provider schema description.
+extension type const EventhubCleanupPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  EventhubCleanupPolicy.variable(String name) : this._(TfArg.variable(name));
+  EventhubCleanupPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const EventhubCleanupPolicy.arg(TfArg<String> arg) : this._(arg);
+
+  static const compact = EventhubCleanupPolicy._(TfArgLiteral('Compact'));
+  static const delete = EventhubCleanupPolicy._(TfArgLiteral('Delete'));
+
+  static const List<EventhubCleanupPolicy> values = [compact, delete];
 }
 
 /// Factory wrapper for `azurerm_eventhub`.
@@ -110,13 +272,12 @@ final class AzurermEventhub extends Resource {
 
   AzurermEventhub(
     super.localName, {
-    TfArg<num>? messageRetention,
+    required EventhubRetention retention,
     required TfArg<String> name,
     required TfArg<String> namespaceId,
     required TfArg<num> partitionCount,
     TfArg<String>? status,
     EventhubCaptureDescription? captureDescription,
-    EventhubRetentionDescription? retentionDescription,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -124,17 +285,13 @@ final class AzurermEventhub extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'message_retention': ?messageRetention,
+           ...retention.argMap,
            'name': name,
            'namespace_id': namespaceId,
            'partition_count': partitionCount,
            'status': ?status,
            if (captureDescription != null)
              'capture_description': TfArg.literal(captureDescription.encode()),
-           if (retentionDescription != null)
-             'retention_description': TfArg.literal(
-               retentionDescription.encode(),
-             ),
          },
        );
 

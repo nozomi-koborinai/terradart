@@ -9,4 +9,5 @@ export 'src/custom_provider/azurerm_custom_provider.dart'
         AzurermCustomProvider,
         CustomProviderAction,
         CustomProviderResourceType,
+        CustomProviderRoutingType,
         CustomProviderValidation;

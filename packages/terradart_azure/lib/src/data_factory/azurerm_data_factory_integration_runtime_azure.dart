@@ -7,6 +7,36 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _azurermDataFactoryIntegrationRuntimeAzureSensitive =
     <String>{};
 
+/// Data Factory Integration Runtime Azure Compute enum for `compute_type`.
+extension type const DataFactoryIntegrationRuntimeAzureComputeType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataFactoryIntegrationRuntimeAzureComputeType.variable(String name)
+    : this._(TfArg.variable(name));
+  DataFactoryIntegrationRuntimeAzureComputeType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataFactoryIntegrationRuntimeAzureComputeType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const computeoptimized =
+      DataFactoryIntegrationRuntimeAzureComputeType._(
+        TfArgLiteral('ComputeOptimized'),
+      );
+  static const general = DataFactoryIntegrationRuntimeAzureComputeType._(
+    TfArgLiteral('General'),
+  );
+  static const memoryoptimized =
+      DataFactoryIntegrationRuntimeAzureComputeType._(
+        TfArgLiteral('MemoryOptimized'),
+      );
+
+  static const List<DataFactoryIntegrationRuntimeAzureComputeType> values = [
+    computeoptimized,
+    general,
+    memoryoptimized,
+  ];
+}
+
 /// Factory wrapper for `azurerm_data_factory_integration_runtime_azure`.
 final class AzurermDataFactoryIntegrationRuntimeAzure extends Resource {
   static const String tfType = 'azurerm_data_factory_integration_runtime_azure';
@@ -14,7 +44,7 @@ final class AzurermDataFactoryIntegrationRuntimeAzure extends Resource {
   AzurermDataFactoryIntegrationRuntimeAzure(
     super.localName, {
     TfArg<bool>? cleanupEnabled,
-    TfArg<String>? computeType,
+    DataFactoryIntegrationRuntimeAzureComputeType? computeType,
     TfArg<num>? coreCount,
     required TfArg<String> dataFactoryId,
     TfArg<String>? description,

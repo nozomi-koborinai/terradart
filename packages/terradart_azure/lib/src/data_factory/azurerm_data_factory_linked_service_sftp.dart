@@ -11,6 +11,317 @@ const Set<String> _azurermDataFactoryLinkedServiceSftpSensitive = <String>{
   'private_key_passphrase',
 };
 
+/// Data Factory Linked Service Sftp Authentication enum for `authentication_type`.
+extension type const DataFactoryLinkedServiceSftpAuthenticationType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataFactoryLinkedServiceSftpAuthenticationType.variable(String name)
+    : this._(TfArg.variable(name));
+  DataFactoryLinkedServiceSftpAuthenticationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataFactoryLinkedServiceSftpAuthenticationType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const basic = DataFactoryLinkedServiceSftpAuthenticationType._(
+    TfArgLiteral('Basic'),
+  );
+  static const multifactor = DataFactoryLinkedServiceSftpAuthenticationType._(
+    TfArgLiteral('MultiFactor'),
+  );
+  static const sshpublickey = DataFactoryLinkedServiceSftpAuthenticationType._(
+    TfArgLiteral('SshPublicKey'),
+  );
+
+  static const List<DataFactoryLinkedServiceSftpAuthenticationType> values = [
+    basic,
+    multifactor,
+    sshpublickey,
+  ];
+}
+
+/// At most one of `key_vault_password`, `password` on `azurerm_data_factory_linked_service_sftp`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.keyVaultPassword(...)`.
+sealed class DataFactoryLinkedServiceSftpPassword {
+  const DataFactoryLinkedServiceSftpPassword();
+
+  /// Sets `key_vault_password`.
+  const factory DataFactoryLinkedServiceSftpPassword.keyVaultPassword(
+    List<DataFactoryLinkedServiceSftpKeyVaultPassword> keyVaultPassword,
+  ) = DataFactoryLinkedServiceSftpKeyVaultPasswordChoice;
+
+  /// Sets `password`.
+  const factory DataFactoryLinkedServiceSftpPassword.password(
+    Sensitive<String> password,
+  ) = DataFactoryLinkedServiceSftpPasswordChoice;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [DataFactoryLinkedServiceSftpPassword.keyVaultPassword] choice: sets `key_vault_password`.
+final class DataFactoryLinkedServiceSftpKeyVaultPasswordChoice
+    extends DataFactoryLinkedServiceSftpPassword {
+  const DataFactoryLinkedServiceSftpKeyVaultPasswordChoice(
+    this.keyVaultPassword,
+  );
+
+  final List<DataFactoryLinkedServiceSftpKeyVaultPassword> keyVaultPassword;
+
+  @internal
+  @override
+  String get blockKey => 'key_vault_password';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'key_vault_password': [for (final e in keyVaultPassword) e.encode()],
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'key_vault_password': TfArg.literal([
+      for (final e in keyVaultPassword) e.encode(),
+    ]),
+  };
+}
+
+/// The [DataFactoryLinkedServiceSftpPassword.password] choice: sets `password`.
+final class DataFactoryLinkedServiceSftpPasswordChoice
+    extends DataFactoryLinkedServiceSftpPassword {
+  const DataFactoryLinkedServiceSftpPasswordChoice(this.password);
+
+  final Sensitive<String> password;
+
+  @internal
+  @override
+  String get blockKey => 'password';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'password': password.toTfJson()};
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'password': password};
+}
+
+/// At most one of `key_vault_private_key_content_base64`, `private_key_content_base64`, `private_key_path` on `azurerm_data_factory_linked_service_sftp`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.keyVaultPrivateKeyContentBase64(...)`.
+sealed class DataFactoryLinkedServiceSftpPrivateKey {
+  const DataFactoryLinkedServiceSftpPrivateKey();
+
+  /// Sets `key_vault_private_key_content_base64`.
+  const factory DataFactoryLinkedServiceSftpPrivateKey.keyVaultPrivateKeyContentBase64(
+    DataFactoryLinkedServiceSftpKeyVaultPrivateKeyContentBase64
+    keyVaultPrivateKeyContentBase64,
+  ) = DataFactoryLinkedServiceSftpPrivateKeyVaultPrivateKeyContentBase64;
+
+  /// Sets `private_key_content_base64`.
+  const factory DataFactoryLinkedServiceSftpPrivateKey.privateKeyContentBase64(
+    Sensitive<String> privateKeyContentBase64,
+  ) = DataFactoryLinkedServiceSftpPrivateKeyContentBase64;
+
+  /// Sets `private_key_path`.
+  const factory DataFactoryLinkedServiceSftpPrivateKey.privateKeyPath(
+    TfArg<String> privateKeyPath,
+  ) = DataFactoryLinkedServiceSftpPrivateKeyPath;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [DataFactoryLinkedServiceSftpPrivateKey.keyVaultPrivateKeyContentBase64] choice: sets `key_vault_private_key_content_base64`.
+final class DataFactoryLinkedServiceSftpPrivateKeyVaultPrivateKeyContentBase64
+    extends DataFactoryLinkedServiceSftpPrivateKey {
+  const DataFactoryLinkedServiceSftpPrivateKeyVaultPrivateKeyContentBase64(
+    this.keyVaultPrivateKeyContentBase64,
+  );
+
+  final DataFactoryLinkedServiceSftpKeyVaultPrivateKeyContentBase64
+  keyVaultPrivateKeyContentBase64;
+
+  @internal
+  @override
+  String get blockKey => 'key_vault_private_key_content_base64';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'key_vault_private_key_content_base64': keyVaultPrivateKeyContentBase64
+        .encode(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'key_vault_private_key_content_base64': TfArg.literal(
+      keyVaultPrivateKeyContentBase64.encode(),
+    ),
+  };
+}
+
+/// The [DataFactoryLinkedServiceSftpPrivateKey.privateKeyContentBase64] choice: sets `private_key_content_base64`.
+final class DataFactoryLinkedServiceSftpPrivateKeyContentBase64
+    extends DataFactoryLinkedServiceSftpPrivateKey {
+  const DataFactoryLinkedServiceSftpPrivateKeyContentBase64(
+    this.privateKeyContentBase64,
+  );
+
+  final Sensitive<String> privateKeyContentBase64;
+
+  @internal
+  @override
+  String get blockKey => 'private_key_content_base64';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'private_key_content_base64': privateKeyContentBase64.toTfJson(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'private_key_content_base64': privateKeyContentBase64,
+  };
+}
+
+/// The [DataFactoryLinkedServiceSftpPrivateKey.privateKeyPath] choice: sets `private_key_path`.
+final class DataFactoryLinkedServiceSftpPrivateKeyPath
+    extends DataFactoryLinkedServiceSftpPrivateKey {
+  const DataFactoryLinkedServiceSftpPrivateKeyPath(this.privateKeyPath);
+
+  final TfArg<String> privateKeyPath;
+
+  @internal
+  @override
+  String get blockKey => 'private_key_path';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'private_key_path': privateKeyPath.toTfJson(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'private_key_path': privateKeyPath,
+  };
+}
+
+/// At most one of `key_vault_private_key_passphrase`, `private_key_passphrase` on `azurerm_data_factory_linked_service_sftp`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.keyVaultPrivateKeyPassphrase(...)`.
+sealed class DataFactoryLinkedServiceSftpPassphrase {
+  const DataFactoryLinkedServiceSftpPassphrase();
+
+  /// Sets `key_vault_private_key_passphrase`.
+  const factory DataFactoryLinkedServiceSftpPassphrase.keyVaultPrivateKeyPassphrase(
+    DataFactoryLinkedServiceSftpKeyVaultPrivateKeyPassphrase
+    keyVaultPrivateKeyPassphrase,
+  ) = DataFactoryLinkedServiceSftpKeyVaultPrivateKeyPassphraseChoice;
+
+  /// Sets `private_key_passphrase`.
+  const factory DataFactoryLinkedServiceSftpPassphrase.privateKeyPassphrase(
+    Sensitive<String> privateKeyPassphrase,
+  ) = DataFactoryLinkedServiceSftpPrivateKeyPassphrase;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [DataFactoryLinkedServiceSftpPassphrase.keyVaultPrivateKeyPassphrase] choice: sets `key_vault_private_key_passphrase`.
+final class DataFactoryLinkedServiceSftpKeyVaultPrivateKeyPassphraseChoice
+    extends DataFactoryLinkedServiceSftpPassphrase {
+  const DataFactoryLinkedServiceSftpKeyVaultPrivateKeyPassphraseChoice(
+    this.keyVaultPrivateKeyPassphrase,
+  );
+
+  final DataFactoryLinkedServiceSftpKeyVaultPrivateKeyPassphrase
+  keyVaultPrivateKeyPassphrase;
+
+  @internal
+  @override
+  String get blockKey => 'key_vault_private_key_passphrase';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'key_vault_private_key_passphrase': keyVaultPrivateKeyPassphrase.encode(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'key_vault_private_key_passphrase': TfArg.literal(
+      keyVaultPrivateKeyPassphrase.encode(),
+    ),
+  };
+}
+
+/// The [DataFactoryLinkedServiceSftpPassphrase.privateKeyPassphrase] choice: sets `private_key_passphrase`.
+final class DataFactoryLinkedServiceSftpPrivateKeyPassphrase
+    extends DataFactoryLinkedServiceSftpPassphrase {
+  const DataFactoryLinkedServiceSftpPrivateKeyPassphrase(
+    this.privateKeyPassphrase,
+  );
+
+  final Sensitive<String> privateKeyPassphrase;
+
+  @internal
+  @override
+  String get blockKey => 'private_key_passphrase';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'private_key_passphrase': privateKeyPassphrase.toTfJson(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'private_key_passphrase': privateKeyPassphrase,
+  };
+}
+
 /// Typed helper for the `key_vault_password` block of
 /// `azurerm_data_factory_linked_service_sftp` (derived from provider schema).
 @immutable
@@ -79,7 +390,7 @@ final class AzurermDataFactoryLinkedServiceSftp extends Resource {
     super.localName, {
     TfArg<Map<String, String>>? additionalProperties,
     TfArg<List<String>>? annotations,
-    required TfArg<String> authenticationType,
+    required DataFactoryLinkedServiceSftpAuthenticationType authenticationType,
     required TfArg<String> dataFactoryId,
     TfArg<String>? description,
     required TfArg<String> host,
@@ -87,18 +398,12 @@ final class AzurermDataFactoryLinkedServiceSftp extends Resource {
     TfArg<String>? integrationRuntimeName,
     required TfArg<String> name,
     TfArg<Map<String, String>>? parameters,
-    Sensitive<String>? password,
+    DataFactoryLinkedServiceSftpPassword? password,
     required TfArg<num> port,
-    Sensitive<String>? privateKeyContentBase64,
-    Sensitive<String>? privateKeyPassphrase,
-    TfArg<String>? privateKeyPath,
+    DataFactoryLinkedServiceSftpPrivateKey? privateKey,
+    DataFactoryLinkedServiceSftpPassphrase? passphrase,
     TfArg<bool>? skipHostKeyValidation,
     required TfArg<String> username,
-    List<DataFactoryLinkedServiceSftpKeyVaultPassword>? keyVaultPassword,
-    DataFactoryLinkedServiceSftpKeyVaultPrivateKeyContentBase64?
-    keyVaultPrivateKeyContentBase64,
-    DataFactoryLinkedServiceSftpKeyVaultPrivateKeyPassphrase?
-    keyVaultPrivateKeyPassphrase,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -116,25 +421,12 @@ final class AzurermDataFactoryLinkedServiceSftp extends Resource {
            'integration_runtime_name': ?integrationRuntimeName,
            'name': name,
            'parameters': ?parameters,
-           'password': ?password,
+           ...?password?.argMap,
            'port': port,
-           'private_key_content_base64': ?privateKeyContentBase64,
-           'private_key_passphrase': ?privateKeyPassphrase,
-           'private_key_path': ?privateKeyPath,
+           ...?privateKey?.argMap,
+           ...?passphrase?.argMap,
            'skip_host_key_validation': ?skipHostKeyValidation,
            'username': username,
-           if (keyVaultPassword != null)
-             'key_vault_password': TfArg.literal([
-               for (final e in keyVaultPassword) e.encode(),
-             ]),
-           if (keyVaultPrivateKeyContentBase64 != null)
-             'key_vault_private_key_content_base64': TfArg.literal(
-               keyVaultPrivateKeyContentBase64.encode(),
-             ),
-           if (keyVaultPrivateKeyPassphrase != null)
-             'key_vault_private_key_passphrase': TfArg.literal(
-               keyVaultPrivateKeyPassphrase.encode(),
-             ),
          },
        );
 

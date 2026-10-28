@@ -14,9 +14,11 @@ export 'src/container_registry/azurerm_container_registry.dart'
     show
         AzurermContainerRegistry,
         ContainerRegistryGeoreplications,
-        ContainerRegistryIdentity;
+        ContainerRegistryIdentity,
+        ContainerRegistryNetworkRuleBypassOption,
+        ContainerRegistryRoleAssignmentMode;
 export 'src/container_registry/azurerm_container_registry_agent_pool.dart'
-    show AzurermContainerRegistryAgentPool;
+    show AzurermContainerRegistryAgentPool, ContainerRegistryAgentPoolTier;
 export 'src/container_registry/azurerm_container_registry_cache_rule.dart'
     show AzurermContainerRegistryCacheRule;
 export 'src/container_registry/azurerm_container_registry_credential_set.dart'
@@ -68,7 +70,10 @@ export 'src/container_registry/azurerm_container_registry_token_password.dart'
         ContainerRegistryTokenPasswordPassword1,
         ContainerRegistryTokenPasswordPassword2;
 export 'src/container_registry/azurerm_container_registry_webhook.dart'
-    show AzurermContainerRegistryWebhook;
+    show
+        AzurermContainerRegistryWebhook,
+        ContainerRegistryWebhookActions,
+        ContainerRegistryWebhookStatus;
 export 'src/data/azurerm_container_registry.dart'
     show DataAzurermContainerRegistry;
 export 'src/data/azurerm_container_registry_cache_rule.dart'

@@ -8,6 +8,45 @@ const Set<String> _azurermApplicationInsightsApiKeySensitive = <String>{
   'api_key',
 };
 
+/// Application Insights Api Key Read enum for `read_permissions`.
+extension type const ApplicationInsightsApiKeyReadPermissions._(TfArg<String> _)
+    implements TfArg<String> {
+  ApplicationInsightsApiKeyReadPermissions.variable(String name)
+    : this._(TfArg.variable(name));
+  ApplicationInsightsApiKeyReadPermissions.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApplicationInsightsApiKeyReadPermissions.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const agentconfig = ApplicationInsightsApiKeyReadPermissions._(
+    TfArgLiteral('agentconfig'),
+  );
+  static const aggregate = ApplicationInsightsApiKeyReadPermissions._(
+    TfArgLiteral('aggregate'),
+  );
+  static const api = ApplicationInsightsApiKeyReadPermissions._(
+    TfArgLiteral('api'),
+  );
+  static const draft = ApplicationInsightsApiKeyReadPermissions._(
+    TfArgLiteral('draft'),
+  );
+  static const extendqueries = ApplicationInsightsApiKeyReadPermissions._(
+    TfArgLiteral('extendqueries'),
+  );
+  static const search = ApplicationInsightsApiKeyReadPermissions._(
+    TfArgLiteral('search'),
+  );
+
+  static const List<ApplicationInsightsApiKeyReadPermissions> values = [
+    agentconfig,
+    aggregate,
+    api,
+    draft,
+    extendqueries,
+    search,
+  ];
+}
+
 /// Factory wrapper for `azurerm_application_insights_api_key`.
 final class AzurermApplicationInsightsApiKey extends Resource {
   static const String tfType = 'azurerm_application_insights_api_key';
@@ -16,7 +55,7 @@ final class AzurermApplicationInsightsApiKey extends Resource {
     super.localName, {
     required TfArg<String> applicationInsightsId,
     required TfArg<String> name,
-    TfArg<List<String>>? readPermissions,
+    List<ApplicationInsightsApiKeyReadPermissions>? readPermissions,
     TfArg<List<String>>? writePermissions,
     super.lifecycle,
     super.dependsOn,
@@ -27,7 +66,10 @@ final class AzurermApplicationInsightsApiKey extends Resource {
          argMap: {
            'application_insights_id': applicationInsightsId,
            'name': name,
-           'read_permissions': ?readPermissions,
+           if (readPermissions != null)
+             'read_permissions': TfArg.literal([
+               for (final e in readPermissions) e.toTfJson(),
+             ]),
            'write_permissions': ?writePermissions,
          },
        );
