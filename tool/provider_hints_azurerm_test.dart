@@ -227,4 +227,138 @@ func resourceTyped() *Resource { return nil }
       endsWith('widget_resource.go'),
     );
   });
+
+  test('scans pkg.RegisterResource and pkg.RegisterDataSource registrations', () {
+    final root = Directory.systemTemp.createTempSync('azurerm_hints_sel_');
+    addTearDown(() => root.deleteSync(recursive: true));
+    void write(String rel, String src) {
+      final file = File(p.join(root.path, rel));
+      file.parent.createSync(recursive: true);
+      file.writeAsStringSync(src);
+    }
+
+    write('go.mod', 'module github.com/hashicorp/terraform-provider-azurerm\n');
+    write('internal/provider/provider.go', 'package provider\n');
+    write(
+      'vendor/github.com/hashicorp/go-azure-sdk/resource-manager/demo/constants.go',
+      'package demo\n',
+    );
+    write('internal/services/demo/registration.go', '''
+package demo
+
+import (
+	ra "github.com/hashicorp/terraform-provider-azurerm/internal/services/demo/resources/role"
+)
+
+func (r Registration) SupportedDataSources() map[string]*Resource {
+	return map[string]*Resource{
+		"azurerm_client_config": ra.RegisterDataSource(),
+		"azurerm_shared":        ra.RegisterDataSource(),
+	}
+}
+
+func (r Registration) SupportedResources() map[string]*Resource {
+	return map[string]*Resource{
+		"azurerm_role_assignment": ra.RegisterResource(),
+		"azurerm_shared":          ra.RegisterResource(),
+	}
+}
+''');
+    write('internal/services/demo/resources/role/resource.go', '''
+package role
+
+import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation"
+
+func RegisterResource() *Resource {
+	return &Resource{
+		Schema: roleSchema(),
+	}
+}
+
+func roleSchema() map[string]*Schema {
+	return map[string]*Schema{
+		"principal_type": {
+			Type: TypeString,
+			ValidateFunc: validation.StringInSlice([]string{"User", "Group"}, false),
+		},
+		"name": {
+			Type: TypeString,
+			ConflictsWith: []string{"name_prefix"},
+		},
+		"name_prefix": {
+			Type: TypeString,
+			ConflictsWith: []string{"name"},
+		},
+	}
+}
+''');
+    write('internal/services/demo/resources/role/data_source.go', '''
+package role
+
+import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation"
+
+func RegisterDataSource() *Resource {
+	return &Resource{
+		Schema: map[string]*Schema{
+			"tenant_mode": {
+				Type: TypeString,
+				ValidateFunc: validation.StringInSlice([]string{"single", "multi"}, false),
+			},
+		},
+	}
+}
+''');
+    write('internal/services/demo/named_resource.go', '''
+package demo
+
+import "github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation"
+
+var namedType = "azurerm_named"
+
+type NamedResource struct{}
+
+func (r NamedResource) ResourceType() string { return namedType }
+
+func (r NamedResource) Arguments() map[string]*Schema {
+	return map[string]*Schema{
+		"sku": {
+			Type: TypeString,
+			ValidateFunc: validation.StringInSlice([]string{"basic", "standard"}, false),
+		},
+	}
+}
+''');
+
+    final scan = scanAzurermProvider(root);
+    final role = scan.byType['azurerm_role_assignment'];
+    expect(role, isNotNull);
+    expect(role!.sourcePath, endsWith('resources/role/resource.go'));
+    expect(role.hints.single.dotted, 'principal_type');
+    expect(role.hints.single.values, ['User', 'Group']);
+    expect(role.atMostOne.map((g) => g.map((m) => m.join('.')).toList()), [
+      ['name', 'name_prefix'],
+    ]);
+
+    final client = scan.byType['azurerm_client_config'];
+    expect(client, isNotNull);
+    expect(client!.sourcePath, endsWith('resources/role/data_source.go'));
+    expect(client.hints.single.dotted, 'tenant_mode');
+    expect(client.hints.single.values, ['single', 'multi']);
+
+    final shared = scan.byType['azurerm_shared'];
+    expect(shared, isNotNull);
+    expect(shared!.hints.single.dotted, 'principal_type');
+    expect(shared.hints.map((h) => h.dotted), isNot(contains('tenant_mode')));
+
+    final named = scan.byType['azurerm_named'];
+    expect(named, isNotNull);
+    expect(named!.hints.single.values, ['basic', 'standard']);
+
+    expect(scan.byType.keys, [
+      'azurerm_client_config',
+      'azurerm_named',
+      'azurerm_role_assignment',
+      'azurerm_shared',
+    ]);
+  });
 }

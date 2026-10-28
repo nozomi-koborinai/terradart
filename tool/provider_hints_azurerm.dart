@@ -38,7 +38,7 @@ AwsHintsScan scanAzurermProvider(Directory root) {
 
   for (final ref in funcs) {
     if (!ref.name.endsWith('.ResourceType')) continue;
-    final type = _returnedAzurerm(ref);
+    final type = _returnedAzurerm(ref, index);
     final arguments = samePackage(ref, '${ref.receiver}.Arguments');
     if (type == null || arguments == null) continue;
     if (_isDataSchema(arguments)) {
@@ -61,9 +61,7 @@ AwsHintsScan scanAzurermProvider(Directory root) {
         continue;
       }
       if (tokens[i + 1].text != ':') continue;
-      if (tokens[i + 2].kind != GoTok.ident) continue;
-      if (tokens[i + 3].text != '(' || tokens[i + 4].text != ')') continue;
-      final target = samePackage(ref, tokens[i + 2].text);
+      final target = _registeredSchema(ref, i + 2, samePackage, byKey);
       if (target == null) continue;
       _preferSchema(schemas, tokens[i].text, target);
     }
@@ -131,10 +129,38 @@ void _preferSchema(
   if (!_isDataSchema(target)) schemas[type] = [target];
 }
 
-bool _isDataSchema(_FuncRef ref) =>
-    ref.file.rel.endsWith('_data_source.go') ||
-    (ref.receiver?.contains('DataSource') ?? false) ||
-    ref.name.startsWith('dataSource');
+bool _isDataSchema(_FuncRef ref) {
+  final leaf = ref.name.split('.').last;
+  final fileName = p.basename(ref.file.rel);
+  return fileName == 'data_source.go' ||
+      fileName.endsWith('_data_source.go') ||
+      (ref.receiver?.contains('DataSource') ?? false) ||
+      leaf.startsWith('dataSource');
+}
+
+_FuncRef? _registeredSchema(
+  _FuncRef from,
+  int at,
+  _FuncRef? Function(_FuncRef from, String name) samePackage,
+  Map<String, _FuncRef?> byKey,
+) {
+  final t = from.file.tokens;
+  final end = from.bodyEnd;
+  if (at >= end || t[at].kind != GoTok.ident) return null;
+  if (at + 2 < end && t[at + 1].text == '(' && t[at + 2].text == ')') {
+    return samePackage(from, t[at].text);
+  }
+  if (at + 4 < end &&
+      t[at + 1].text == '.' &&
+      t[at + 2].kind == GoTok.ident &&
+      t[at + 3].text == '(' &&
+      t[at + 4].text == ')') {
+    final importPath = from.file.imports[t[at].text];
+    if (importPath == null) return null;
+    return byKey['$importPath ${t[at + 2].text}'];
+  }
+  return null;
+}
 
 final class _FileTok {
   _FileTok(this.rel, this.tokens, this.imports, this.packagePath);
@@ -233,12 +259,21 @@ int _matchBrace(List<GoToken> t, int open) {
   return t.length - 1;
 }
 
-String? _returnedAzurerm(_FuncRef ref) {
+String? _returnedAzurerm(_FuncRef ref, _PackageIndex index) {
   final t = ref.file.tokens;
   for (var i = ref.bodyStart; i < ref.bodyEnd; i++) {
     if (t[i].kind == GoTok.string && t[i].text.startsWith('azurerm_')) {
       return t[i].text;
     }
+  }
+  for (var i = ref.bodyStart; i < ref.bodyEnd; i++) {
+    if (t[i].text != 'return' ||
+        i + 1 >= ref.bodyEnd ||
+        t[i + 1].kind != GoTok.ident) {
+      continue;
+    }
+    final value = index.constant(ref.file.packagePath, t[i + 1].text);
+    if (value != null && value.startsWith('azurerm_')) return value;
   }
   return null;
 }
@@ -699,12 +734,16 @@ final class _PackageIndex {
 
   void _readVars(_Package pkg, List<GoToken> t, String importPath) {
     for (var i = 0; i < t.length; i++) {
-      if (t[i].text != 'var' ||
-          i + 1 >= t.length ||
-          t[i + 1].kind != GoTok.ident) {
+      if (t[i].text != 'var') continue;
+      if (i + 1 < t.length && t[i + 1].text == '(') {
+        final close = _matchParen(t, i + 1);
+        _readConsts(pkg, t, i + 2, close);
+        i = close;
         continue;
       }
+      if (i + 1 >= t.length || t[i + 1].kind != GoTok.ident) continue;
       final name = t[i + 1].text;
+      _readOneConst(pkg, t, i + 1);
       final brace = _sliceBrace(t, i + 2);
       if (brace == null) continue;
       final values = _elements(t, brace, this, importPath);
