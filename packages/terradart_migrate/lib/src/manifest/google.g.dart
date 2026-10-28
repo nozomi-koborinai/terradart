@@ -110146,10 +110146,13 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'target',
           dartName: 'target',
-          kind: MigrateSlotKind.helper,
+          kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
-          helper: 'IamFoldersPolicyBindingTarget',
+          variants: <String, String>{
+            'principal_set': 'IamFoldersPolicyBindingTargetPrincipalSet',
+            'resource': 'IamFoldersPolicyBindingTargetResource',
+          },
         ),
       ],
       getters: <MigrateGetter>[
@@ -110649,10 +110652,13 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'target',
           dartName: 'target',
-          kind: MigrateSlotKind.helper,
+          kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
-          helper: 'IamOrganizationsPolicyBindingTarget',
+          variants: <String, String>{
+            'principal_set': 'IamOrganizationsPolicyBindingTargetPrincipalSet',
+            'resource': 'IamOrganizationsPolicyBindingTargetResource',
+          },
         ),
       ],
       getters: <MigrateGetter>[
@@ -111043,10 +111049,13 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'target',
           dartName: 'target',
-          kind: MigrateSlotKind.helper,
+          kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
-          helper: 'IamProjectsPolicyBindingTarget',
+          variants: <String, String>{
+            'principal_set': 'IamProjectsPolicyBindingTargetPrincipalSet',
+            'resource': 'IamProjectsPolicyBindingTargetResource',
+          },
         ),
       ],
       getters: <MigrateGetter>[
@@ -282876,27 +282885,22 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'IamFoldersPolicyBindingTarget': MigrateHelper(
-      className: 'IamFoldersPolicyBindingTarget',
+    'IamFoldersPolicyBindingTargetPrincipalSet': MigrateHelper(
+      className: 'IamFoldersPolicyBindingTargetPrincipalSet',
       slots: <MigrateSlot>[
         MigrateSlot(
-          tfName: '',
-          dartName: 'principalSetOrResource',
-          kind: MigrateSlotKind.sealed,
-          required: false,
-          wrapped: false,
-          merged: true,
-          variants: <String, String>{
-            'principal_set':
-                'IamFoldersPolicyBindingTargetPrincipalSetOrResourcePrincipalSet',
-            'resource':
-                'IamFoldersPolicyBindingTargetPrincipalSetOrResourceChoice',
-          },
+          tfName: 'principal_set',
+          dartName: 'principalSet',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
       ],
+      shorthand: 'principalSet',
     ),
-    'IamFoldersPolicyBindingTargetPrincipalSetOrResourceChoice': MigrateHelper(
-      className: 'IamFoldersPolicyBindingTargetPrincipalSetOrResourceChoice',
+    'IamFoldersPolicyBindingTargetResource': MigrateHelper(
+      className: 'IamFoldersPolicyBindingTargetResource',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'resource',
@@ -282909,22 +282913,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       ],
       shorthand: 'resource',
     ),
-    'IamFoldersPolicyBindingTargetPrincipalSetOrResourcePrincipalSet':
-        MigrateHelper(
-          className:
-              'IamFoldersPolicyBindingTargetPrincipalSetOrResourcePrincipalSet',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'principal_set',
-              dartName: 'principalSet',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'principalSet',
-        ),
     'IamOrganizationAccessPolicyConditions': MigrateHelper(
       className: 'IamOrganizationAccessPolicyConditions',
       slots: <MigrateSlot>[
@@ -283060,57 +283048,34 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'IamOrganizationsPolicyBindingTarget': MigrateHelper(
-      className: 'IamOrganizationsPolicyBindingTarget',
+    'IamOrganizationsPolicyBindingTargetPrincipalSet': MigrateHelper(
+      className: 'IamOrganizationsPolicyBindingTargetPrincipalSet',
       slots: <MigrateSlot>[
         MigrateSlot(
-          tfName: '',
-          dartName: 'principalSetOrResource',
-          kind: MigrateSlotKind.sealed,
-          required: false,
-          wrapped: false,
-          merged: true,
-          variants: <String, String>{
-            'principal_set':
-                'IamOrganizationsPolicyBindingTargetPrincipalSetOrResourcePrincipalSet',
-            'resource':
-                'IamOrganizationsPolicyBindingTargetPrincipalSetOrResourceChoice',
-          },
+          tfName: 'principal_set',
+          dartName: 'principalSet',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
       ],
+      shorthand: 'principalSet',
     ),
-    'IamOrganizationsPolicyBindingTargetPrincipalSetOrResourceChoice':
-        MigrateHelper(
-          className:
-              'IamOrganizationsPolicyBindingTargetPrincipalSetOrResourceChoice',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'resource',
-              dartName: 'resource',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'resource',
+    'IamOrganizationsPolicyBindingTargetResource': MigrateHelper(
+      className: 'IamOrganizationsPolicyBindingTargetResource',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'resource',
+          dartName: 'resource',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'IamOrganizationsPolicyBindingTargetPrincipalSetOrResourcePrincipalSet':
-        MigrateHelper(
-          className:
-              'IamOrganizationsPolicyBindingTargetPrincipalSetOrResourcePrincipalSet',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'principal_set',
-              dartName: 'principalSet',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'principalSet',
-        ),
+      ],
+      shorthand: 'resource',
+    ),
     'IamPrincipalAccessBoundaryPolicyDetails': MigrateHelper(
       className: 'IamPrincipalAccessBoundaryPolicyDetails',
       slots: <MigrateSlot>[
@@ -283293,27 +283258,22 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'IamProjectsPolicyBindingTarget': MigrateHelper(
-      className: 'IamProjectsPolicyBindingTarget',
+    'IamProjectsPolicyBindingTargetPrincipalSet': MigrateHelper(
+      className: 'IamProjectsPolicyBindingTargetPrincipalSet',
       slots: <MigrateSlot>[
         MigrateSlot(
-          tfName: '',
-          dartName: 'principalSetOrResource',
-          kind: MigrateSlotKind.sealed,
-          required: false,
-          wrapped: false,
-          merged: true,
-          variants: <String, String>{
-            'principal_set':
-                'IamProjectsPolicyBindingTargetPrincipalSetOrResourcePrincipalSet',
-            'resource':
-                'IamProjectsPolicyBindingTargetPrincipalSetOrResourceChoice',
-          },
+          tfName: 'principal_set',
+          dartName: 'principalSet',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
       ],
+      shorthand: 'principalSet',
     ),
-    'IamProjectsPolicyBindingTargetPrincipalSetOrResourceChoice': MigrateHelper(
-      className: 'IamProjectsPolicyBindingTargetPrincipalSetOrResourceChoice',
+    'IamProjectsPolicyBindingTargetResource': MigrateHelper(
+      className: 'IamProjectsPolicyBindingTargetResource',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'resource',
@@ -283326,22 +283286,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       ],
       shorthand: 'resource',
     ),
-    'IamProjectsPolicyBindingTargetPrincipalSetOrResourcePrincipalSet':
-        MigrateHelper(
-          className:
-              'IamProjectsPolicyBindingTargetPrincipalSetOrResourcePrincipalSet',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'principal_set',
-              dartName: 'principalSet',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'principalSet',
-        ),
     'IamWorkforcePoolAccessRestrictions': MigrateHelper(
       className: 'IamWorkforcePoolAccessRestrictions',
       slots: <MigrateSlot>[
@@ -307274,16 +307218,15 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'backdateDurationOrAllowRequesterSpecifiedNotBeforeTime',
+          dartName: 'notBefore',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'backdate_duration':
-                'PrivatecaCaPoolIssuancePolicyBackdateDurationOrAllowRequesterSpecifiedNotBeforeTimeBackdateDuration',
+            'backdate_duration': 'PrivatecaCaPoolNotBeforeBackdateDuration',
             'allow_requester_specified_not_before_time':
-                'PrivatecaCaPoolIssuancePolicyBackdateDurationOrAllowRequesterSpecifiedNotBeforeTimeChoice',
+                'PrivatecaCaPoolNotBeforeAllowRequesterSpecifiedNotBeforeTime',
           },
         ),
         MigrateSlot(
@@ -307328,38 +307271,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'PrivatecaCaPoolIssuancePolicyBackdateDurationOrAllowRequesterSpecifiedNotBeforeTimeBackdateDuration':
-        MigrateHelper(
-          className:
-              'PrivatecaCaPoolIssuancePolicyBackdateDurationOrAllowRequesterSpecifiedNotBeforeTimeBackdateDuration',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'backdate_duration',
-              dartName: 'backdateDuration',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'backdateDuration',
-        ),
-    'PrivatecaCaPoolIssuancePolicyBackdateDurationOrAllowRequesterSpecifiedNotBeforeTimeChoice':
-        MigrateHelper(
-          className:
-              'PrivatecaCaPoolIssuancePolicyBackdateDurationOrAllowRequesterSpecifiedNotBeforeTimeChoice',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'allow_requester_specified_not_before_time',
-              dartName: 'allowRequesterSpecifiedNotBeforeTime',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'bool',
-            ),
-          ],
-          shorthand: 'allowRequesterSpecifiedNotBeforeTime',
-        ),
     'PrivatecaCaPoolKeyUsage': MigrateHelper(
       className: 'PrivatecaCaPoolKeyUsage',
       slots: <MigrateSlot>[
@@ -307457,6 +307368,36 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
       ],
+    ),
+    'PrivatecaCaPoolNotBeforeAllowRequesterSpecifiedNotBeforeTime':
+        MigrateHelper(
+          className:
+              'PrivatecaCaPoolNotBeforeAllowRequesterSpecifiedNotBeforeTime',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'allow_requester_specified_not_before_time',
+              dartName: 'allowRequesterSpecifiedNotBeforeTime',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              positional: true,
+              dartType: 'bool',
+            ),
+          ],
+          shorthand: 'allowRequesterSpecifiedNotBeforeTime',
+        ),
+    'PrivatecaCaPoolNotBeforeBackdateDuration': MigrateHelper(
+      className: 'PrivatecaCaPoolNotBeforeBackdateDuration',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'backdate_duration',
+          dartName: 'backdateDuration',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'backdateDuration',
     ),
     'PrivatecaCaPoolObjectId': MigrateHelper(
       className: 'PrivatecaCaPoolObjectId',

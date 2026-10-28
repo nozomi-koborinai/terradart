@@ -44,21 +44,18 @@ and the variant types above. This bump puts the four-member group back on
 `issuance_policy.backdate_duration` and
 `issuance_policy.allow_requester_specified_not_before_time` as `conflicts`.
 `PrivatecaCaPoolIssuancePolicy.backdateDuration` is removed. Pass one choice
-on `backdateDurationOrAllowRequesterSpecifiedNotBeforeTime`. The provider
-rejects setting both. A null choice sets neither. The Terraform JSON for
-`backdate_duration` is unchanged.
+on `notBefore`. The provider rejects setting both. A null choice sets
+neither. The Terraform JSON for `backdate_duration` is unchanged.
 
 | Before | After |
 |---|---|
-| `PrivatecaCaPoolIssuancePolicy(backdateDuration: .literal('3600s'))` | `PrivatecaCaPoolIssuancePolicy(backdateDurationOrAllowRequesterSpecifiedNotBeforeTime: .backdateDuration(.literal('3600s')))` |
-| *(not available)* | `PrivatecaCaPoolIssuancePolicy(backdateDurationOrAllowRequesterSpecifiedNotBeforeTime: .allowRequesterSpecifiedNotBeforeTime(.literal(true)))` |
+| `PrivatecaCaPoolIssuancePolicy(backdateDuration: .literal('3600s'))` | `PrivatecaCaPoolIssuancePolicy(notBefore: .backdateDuration(.literal('3600s')))` |
+| *(not available)* | `PrivatecaCaPoolIssuancePolicy(notBefore: .allowRequesterSpecifiedNotBeforeTime(.literal(true)))` |
 
-The sealed type is
-`PrivatecaCaPoolIssuancePolicyBackdateDurationOrAllowRequesterSpecifiedNotBeforeTime`.
-`.backdateDuration` is
-`PrivatecaCaPoolIssuancePolicyBackdateDurationOrAllowRequesterSpecifiedNotBeforeTimeBackdateDuration`.
+The sealed type is `PrivatecaCaPoolNotBefore`. `.backdateDuration` is
+`PrivatecaCaPoolNotBeforeBackdateDuration`.
 `.allowRequesterSpecifiedNotBeforeTime` is
-`PrivatecaCaPoolIssuancePolicyBackdateDurationOrAllowRequesterSpecifiedNotBeforeTimeChoice`.
+`PrivatecaCaPoolNotBeforeAllowRequesterSpecifiedNotBeforeTime`.
 
 The weekly `appwrite/appwrite` pin moved from 2.0.0-beta.1 to 2.3.0.
 `terradart_appwrite` follows that pin.
@@ -114,13 +111,15 @@ wrote.
 **Breaking (`terradart_aws`).**
 `AwsObservabilityadminTelemetryEvaluationForOrganization` no longer takes
 `allRegions` and `regions` as their own arguments. Provider 6.69.1 rejects
-setting both. Pass one choice on `allRegionsOrRegions`. The `allRegions` and
+setting both. Pass one choice on `multiRegion`
+(`ObservabilityadminTelemetryEvaluationForOrganizationMultiRegion`).
+`.allRegions` and `.regions` are the variants. The `allRegions` and
 `regions` getters stay.
 
 | Before | After |
 |---|---|
-| `AwsObservabilityadminTelemetryEvaluationForOrganization('eval', allRegions: .literal(true))` | `AwsObservabilityadminTelemetryEvaluationForOrganization('eval', allRegionsOrRegions: .allRegions(.literal(true)))` |
-| `AwsObservabilityadminTelemetryEvaluationForOrganization('eval', regions: .literal(['us-east-1']))` | `AwsObservabilityadminTelemetryEvaluationForOrganization('eval', allRegionsOrRegions: .regions(.literal(['us-east-1'])))` |
+| `AwsObservabilityadminTelemetryEvaluationForOrganization('eval', allRegions: .literal(true))` | `AwsObservabilityadminTelemetryEvaluationForOrganization('eval', multiRegion: .allRegions(.literal(true)))` |
+| `AwsObservabilityadminTelemetryEvaluationForOrganization('eval', regions: .literal(['us-east-1']))` | `AwsObservabilityadminTelemetryEvaluationForOrganization('eval', multiRegion: .regions(.literal(['us-east-1'])))` |
 
 ### Function and site variables seal `value`
 
@@ -148,8 +147,9 @@ default 5). `api_key` and `organization_api_key` stay off the class.
 ### User password, webhook password, and function schedule
 
 **Breaking (`terradart_appwrite`)** — the same pin seals three more
-slots. `password` and `authPassword` stay optional. `schedule` is no
-longer its own argument.
+slots. `password` and `authPassword` stay optional. `schedule` stays
+the argument. It is now the sealed choice `FunctionSchedule`.
+`.schedule` wraps the CRON string. `.interval` is minutes.
 
 | Before | After |
 |---|---|
@@ -157,13 +157,12 @@ longer its own argument.
 | *(not available)* | `AppwriteAuthUser('demo', password: .passwordWo(password))` |
 | `AppwriteWebhook('hook', authPassword: password, ...)` | `AppwriteWebhook('hook', authPassword: .authPassword(password), ...)` |
 | *(not available)* | `AppwriteWebhook('hook', authPassword: .authPasswordWo(password), ...)` |
-| `AppwriteFunction('fn', schedule: .literal('0 2 * * *'), ...)` | `AppwriteFunction('fn', intervalOrSchedule: .schedule(.literal('0 2 * * *')), ...)` |
-| *(not available)* | `AppwriteFunction('fn', intervalOrSchedule: .interval(.literal(60)), ...)` |
+| `AppwriteFunction('fn', schedule: .literal('0 2 * * *'), ...)` | `AppwriteFunction('fn', schedule: .schedule(.literal('0 2 * * *')), ...)` |
+| *(not available)* | `AppwriteFunction('fn', schedule: .interval(.literal(60)), ...)` |
 
 `password` is `variable<String>('password', sensitive: true)`.
 `passwordWoVersion` and `authPasswordWoVersion` bump a write-only value.
-`interval` is minutes. The provider rejects setting both `interval` and
-`schedule`.
+The provider rejects setting both `interval` and `schedule`.
 
 ### Provider 8.7.0 dropped conflicts on thirteen slots
 
@@ -292,16 +291,18 @@ list. A stack that set one credential passes a one-element list.
 
 **Breaking (`terradart_google`)** — `IamFoldersPolicyBindingTarget`,
 `IamOrganizationsPolicyBindingTarget`, and
-`IamProjectsPolicyBindingTarget` no longer take `principalSet`. The
-`principal_set` and `resource` inputs are one nullable sealed argument,
-`principalSetOrResource`. A null choice sets neither. The same shape
-applies to the folders and organizations helpers. Replace
-`IamProjects` in the names below with `IamFolders` or `IamOrganizations`.
+`IamProjectsPolicyBindingTarget` are the sealed type. Callers write
+`target: .principalSet(...)` or `target: .resource(...)` on the
+resource. The empty constructor v0.35.0 accepted no longer compiles,
+because the API requires exactly one. Replace `IamProjects` in the
+names below with `IamFolders` or `IamOrganizations`. `.principalSet`
+is `IamProjectsPolicyBindingTargetPrincipalSet`. `.resource` is
+`IamProjectsPolicyBindingTargetResource`.
 
 | Before | After |
 |---|---|
-| `IamProjectsPolicyBindingTarget(principalSet: .literal('//cloudresourcemanager.googleapis.com/projects/123'))` | `IamProjectsPolicyBindingTarget(principalSetOrResource: .principalSet(.literal('//cloudresourcemanager.googleapis.com/projects/123')))` |
-| *(not available)* | `IamProjectsPolicyBindingTarget(principalSetOrResource: .resource(.literal('//cloudresourcemanager.googleapis.com/projects/123')))` |
+| `IamProjectsPolicyBindingTarget(principalSet: .literal('//cloudresourcemanager.googleapis.com/projects/123'))` | `GoogleIamProjectsPolicyBinding('binding', target: .principalSet(.literal('//cloudresourcemanager.googleapis.com/projects/123')), ...)` |
+| *(not available)* | `GoogleIamProjectsPolicyBinding('binding', target: .resource(.literal('//cloudresourcemanager.googleapis.com/projects/123')), ...)` |
 
 ### `terradart_cloudflare` follows `cloudflare/cloudflare` 5.28.0
 

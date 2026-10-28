@@ -34377,11 +34377,11 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     kind: CatalogKind.resource,
     summary:
         'Factory wrapper for `aws_observabilityadmin_telemetry_evaluation`.',
-    constructorParams: <String>['localName', 'allRegionsOrRegions', 'region'],
+    constructorParams: <String>['localName', 'multiRegion', 'region'],
     nestedTypes: <String>[
-      'ObservabilityadminTelemetryEvaluationAllRegionsOrRegions',
-      'ObservabilityadminTelemetryEvaluationAllRegionsOrRegionsAllRegions',
-      'ObservabilityadminTelemetryEvaluationAllRegionsOrRegionsChoice',
+      'ObservabilityadminTelemetryEvaluationMultiRegion',
+      'ObservabilityadminTelemetryEvaluationMultiRegionAllRegions',
+      'ObservabilityadminTelemetryEvaluationMultiRegionRegions',
     ],
     sensitiveFields: <String>[],
     docComment:
@@ -34394,11 +34394,11 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     kind: CatalogKind.resource,
     summary:
         'Factory wrapper for `aws_observabilityadmin_telemetry_evaluation_for_organization`.',
-    constructorParams: <String>['localName', 'allRegionsOrRegions', 'region'],
+    constructorParams: <String>['localName', 'multiRegion', 'region'],
     nestedTypes: <String>[
-      'ObservabilityadminTelemetryEvaluationForOrganizationAllRegionsOrRegions',
-      'ObservabilityadminTelemetryEvaluationForOrganizationAllRegionsOrRegionsAllRegions',
-      'ObservabilityadminTelemetryEvaluationForOrganizationAllRegionsOrRegionsChoice',
+      'ObservabilityadminTelemetryEvaluationForOrganizationMultiRegion',
+      'ObservabilityadminTelemetryEvaluationForOrganizationMultiRegionAllRegions',
+      'ObservabilityadminTelemetryEvaluationForOrganizationMultiRegionRegions',
     ],
     sensitiveFields: <String>[],
     docComment:
@@ -44677,12 +44677,12 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'variantName',
       'deploymentConfig',
       'runtimeConfig',
-      'specificationOrSpecifications',
+      'spec',
     ],
     nestedTypes: <String>[
-      'SagemakerInferenceComponentSpecificationOrSpecifications',
-      'SagemakerInferenceComponentSpecificationOrSpecificationsSpecification',
-      'SagemakerInferenceComponentSpecificationOrSpecificationsChoice',
+      'SagemakerInferenceComponentSpec',
+      'SagemakerInferenceComponentSpecSpecification',
+      'SagemakerInferenceComponentSpecSpecifications',
       'SagemakerInferenceComponentDeploymentConfig',
       'SagemakerInferenceComponentAutoRollbackConfiguration',
       'SagemakerInferenceComponentAlarms',

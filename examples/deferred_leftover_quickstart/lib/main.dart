@@ -585,7 +585,9 @@ final class DeferredLeftoverStack extends Stack {
         location: .literal('us-central1'),
         policy: .literal('terradart-leftover'),
         policyBindingId: .literal('terradart-leftover'),
-        target: const IamFoldersPolicyBindingTarget(),
+        target: .principalSet(
+          .literal('//cloudresourcemanager.googleapis.com/folders/123456789'),
+        ),
       ),
     );
 
@@ -607,7 +609,11 @@ final class DeferredLeftoverStack extends Stack {
         organization: .literal('organizations/123456789'),
         policy: .literal('terradart-leftover'),
         policyBindingId: .literal('terradart-leftover'),
-        target: const IamOrganizationsPolicyBindingTarget(),
+        target: .principalSet(
+          .literal(
+            '//cloudresourcemanager.googleapis.com/organizations/123456789',
+          ),
+        ),
       ),
     );
 
@@ -628,7 +634,9 @@ final class DeferredLeftoverStack extends Stack {
         location: .literal('us-central1'),
         policy: .literal('terradart-leftover'),
         policyBindingId: .literal('terradart-leftover'),
-        target: const IamProjectsPolicyBindingTarget(),
+        target: .principalSet(
+          .literal('//cloudresourcemanager.googleapis.com/projects/$projectId'),
+        ),
       ),
     );
 
