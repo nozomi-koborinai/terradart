@@ -157,7 +157,13 @@ providers:
               ? 'tool/providers.yaml'
               : '../../tool/providers.yaml',
         ).readAsStringSync();
-        for (final lane in ['google', 'aws', 'cloudflare', 'appwrite']) {
+        for (final lane in [
+          'google',
+          'aws',
+          'cloudflare',
+          'appwrite',
+          'azure',
+        ]) {
           expect(laneBumpCoordinates(text, lane).repo, isNotEmpty);
         }
       },
