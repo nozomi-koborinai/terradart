@@ -230,7 +230,7 @@ pub.dev on this run returned 0.35.0 for `terradart_google`, `terradart_google_be
 
 A second scan, `python3 /tmp/how-sealed/scan_groups.py`, wrote `/tmp/how-sealed/scan.json`. It reimplemented `exclusiveGroups` and checked that port against `exclusive_groups_test.dart`. Overlapping groups after that combine step are the same three Azure resources and zero everywhere else. Same-parent groups that mix a scalar and a block are already sealed on aws, cloudflare, google, and google-beta, except the two AWS rows below. The only hint groups it marked `partial_fields` were the three Azure leftovers.
 
-One arena sketch, `/tmp/arena-nested/candidate-b/design.md`, uses this same tree. `placeGroup`, `FieldResidual`, and `SealedResidual` in Appendix G are that sketch. The other sketch produced no file, so this plan keeps the sketch that did.
+One arena sketch, `/tmp/arena-nested/candidate-b/design.md`, uses this same tree. `placeGroup`, `FieldResidual`, and `SealedResidual` in Appendix G are that sketch. The other sketch, `/tmp/arena-nested/candidate-a/design.md`, rebuilds the outer argument so the shared member is a solo variant and the leftovers share one joint variant. Appendix B records why that shape lost.
 
 `dart --packages=.dart_tool/package_config.json /tmp/interrogate/names_and_extractor.dart` was rerun on this branch. `deriveSealedConcept` returned `source_image`. A human name of `source_image` returned `repeats the derived name`. Variant classes were `LinuxVirtualMachineSourceImageId` and `LinuxVirtualMachineSourceImageReferenceChoice`, and the Windows pair. `HelperClassExtractor` printed `irregular=null`. The host field `sourceImage` was merged. The one-member variant listed `default_log_storage_account_id` and `default_recovery_disk_type`. The same package config ran `/tmp/interrogate/overlap_scan.dart` and printed the three Azure exactly-one skips, zero elsewhere, including 9 Azure data-source exactly-one groups with zero skips. None of the seal members matched an Azure `RefTo` rule.
 
@@ -256,6 +256,10 @@ Sealing a block that `nestedTypeExcludes` leaves as a map would change published
 
 Sealing `os_disk.storage_account_type` against `os_managed_disk_id` would be a cross-block rule. `groupSkipReason` drops that pair today. Pulling a nested field up into `osProfile` is a second design, and the same mechanism would reach the published Google groups named above. Examples set `storageAccountType` by hand instead.
 
+A joint variant named `.image` or `.defaults`, with the slot renamed from `osProfile` to `osSource`. The shared member is a solo variant, and the leftovers sit together on the joint variant. That shape does not follow hint sort order. It also renames `osProfile`, the image branch `.adminUsername`, and `.defaultLogStorageAccountId`. Those names already exist on the unpublished factories, and `sealedNames` already says `os_profile` and `disk_replication`. A later pin that changes a member set can still move which group sorts first. If that happens, the maintainer re-seals that resource on purpose. The words to ask for instead are `os_source`, `image`, and `defaults`.
+
+A temporary flag that keeps root residuals off until a second pull request. The flag would let a codegen-only head pass `wrap --check`. This program lands one pull request whose head already contains the regeneration, so the flag would only exist to be deleted.
+
 ## Appendix C. Risks
 
 `codegen` changes a function every lane calls. The new branch runs only when a later exactly-one group shares a taken member. Appendix A found that case only on the three Azure resources. A bug that fires the branch for a disjoint group would change a published factory. Lane 8 and lane 10 of `regen` watch that. `wrap --check` on the published lanes is the proof this plan did not run.
@@ -273,6 +277,8 @@ A prototype that changed only the sealer, then ran `dart tool/wrap_lanes.dart --
 #949 and #950 also block the first Azure publish. They do not have to merge before `codegen` for these three groups. None of the members is a `RefTo` under the Azure rules in `tool/reference_targets.yaml`. If #950 has already changed the return type of `deriveExactlyOneSlots`, rebase `codegen` onto it so the residual references, if a later group has any, are returned rather than scanned from prelude text.
 
 Windows `admin_password` is `RequiredWith` `admin_username` and `ConflictsWith` `os_managed_disk_id`. The scanner does not record `RequiredWith`. The password stays a separate optional. The type will still accept an image VM with no password.
+
+`tool/example_debt.yaml` lists `AzurermLinuxVirtualMachine`, `AzurermWindowsVirtualMachine`, and `AzurermSiteRecoveryVmwareReplicatedVm` as `awaiting-example`. This program does not delete those lines and does not run `dart tool/coverage_stack.dart --lane azure`. Azure has no coverage generator in `tool/providers.yaml`, and `CoverageLane.read` always leaves out a class the debt file lists. Deleting the lines without an example fails the synth gate. The scale-set lines for `AzurermLinuxVirtualMachineScaleSet` and `AzurermWindowsVirtualMachineScaleSet` are a separate retry. Their image pair is already sealed.
 
 ## Appendix D. Links and reading list
 
