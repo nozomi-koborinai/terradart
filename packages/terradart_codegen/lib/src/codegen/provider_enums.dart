@@ -109,14 +109,14 @@ final class ProviderEnums {
     required ByKind<KindHints> tables,
     this.caseInsensitive = false,
     this.availableValuesDialect = false,
-    bool? groupSource,
-  }) : _tables = tables,
-       _groupSource = groupSource;
+    required this.hasGroupSource,
+  }) : _tables = tables;
 
   /// The gate closed: no enrichment, the default description resolver.
   static const ProviderEnums off = ProviderEnums._(
     enabled: false,
     tables: (resources: KindHints.empty, dataSources: KindHints.empty),
+    hasGroupSource: false,
   );
 
   /// Opens the gate over each kind's table.
@@ -127,7 +127,7 @@ final class ProviderEnums {
     this.availableValuesDialect = true,
   }) : enabled = true,
        _tables = (resources: resources, dataSources: dataSources),
-       _groupSource = null;
+       hasGroupSource = true;
 
   /// `wrap --mm-hints`: the same gate with Magic Modules YAML as the hint
   /// source — each resource's `enum_values` by path, its `exactly_one_of`
@@ -170,6 +170,7 @@ final class ProviderEnums {
         resources: KindHints.empty._withGroups(all.exactlyOne, all.atMostOne),
         dataSources: KindHints.empty,
       ),
+      hasGroupSource: true,
     );
   }
 
@@ -253,16 +254,12 @@ final class ProviderEnums {
 
   final ByKind<KindHints> _tables;
 
-  final bool? _groupSource;
-
-  /// Whether any exclusive-group source is loaded, in either table. Without
-  /// one, no group exists to match, so a `sealedNames` key cannot be judged
-  /// stale. A copy keeps its source's answer: trimming members leaves the
-  /// source loaded, and an override's own groups are no source for the
-  /// other names.
-  bool get hasGroupSource =>
-      _groupSource ??
-      (enabled || _tables.resources.hasGroups || _tables.dataSources.hasGroups);
+  /// Whether hints or Magic Modules groups were loaded, even ones that
+  /// declare no group. Without a source, a `sealedNames` key that matches
+  /// no group cannot be judged stale. Copies keep the flag, so trimming a
+  /// group leaves the source loaded, and an override's own groups are no
+  /// source.
+  final bool hasGroupSource;
 
   ProviderEnums _withTables(
     KindHints Function(WrapperOverrideKind kind, KindHints table) table,
@@ -271,7 +268,7 @@ final class ProviderEnums {
     tables: byKind((k) => table(k, _tables.of(k))),
     caseInsensitive: caseInsensitive,
     availableValuesDialect: availableValuesDialect,
-    groupSource: hasGroupSource,
+    hasGroupSource: hasGroupSource,
   );
 
   /// Each table's groups without the members its own kind's definitions in

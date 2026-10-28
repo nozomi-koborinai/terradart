@@ -257,6 +257,56 @@ properties:
     },
   );
 
+  test('a loaded group source survives trimming and extending', () {
+    final ir = _ir([_attr('a'), _attr('b')]);
+    const lane = LoadedOverrides(
+      resources: {
+        'x_thing': WrapperOverride(outputDir: 'thing', exactlyOneOf: ['a, b']),
+      },
+      dataSources: {},
+    );
+    final sources = {
+      'hints': const ProviderEnums.on(
+        resources: KindHints(
+          exactlyOne: {
+            'x_thing': [
+              ['a', 'gone'],
+            ],
+          },
+        ),
+      ),
+      'mm groups': ProviderEnums.mmGroups(const {
+        'x_thing': MmResourceOverrides(
+          fieldOverrides: {},
+          atMostOneOfPaths: [
+            ['b', 'gone'],
+          ],
+        ),
+      }),
+      'mm yaml without groups': ProviderEnums.mmGroups(const {}),
+    };
+    for (final MapEntry(key: name, value: source) in sources.entries) {
+      final trimmed = source.withinSchema(ir);
+      final root = trimmed.rootGroups('x_thing', _resource);
+      expect([...root.exactlyOne, ...root.atMostOne], isEmpty, reason: name);
+      expect(trimmed.hasGroupSource, isTrue, reason: name);
+      final extended = trimmed.withOverrideGroups(lane, ir, error: fail);
+      expect(extended.rootGroups('x_thing', _resource).exactlyOne, [
+        ['a', 'b'],
+      ], reason: name);
+      expect(extended.hasGroupSource, isTrue, reason: name);
+    }
+    final overridesOnly = ProviderEnums.off.withOverrideGroups(
+      lane,
+      ir,
+      error: fail,
+    );
+    expect(overridesOnly.rootGroups('x_thing', _resource).exactlyOne, [
+      ['a', 'b'],
+    ]);
+    expect(overridesOnly.hasGroupSource, isFalse);
+  });
+
   test('top-level string and list-of-string inputs are enriched', () {
     final ir = const ProviderEnums.on().enrich(
       _ir([
