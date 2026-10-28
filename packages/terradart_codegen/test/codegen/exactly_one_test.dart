@@ -1003,6 +1003,37 @@ void main() {
     );
   });
 
+  test('a list enum keeps its class off the sealed variant', () {
+    final derived = deriveExactlyOneSlots(
+      {
+        'aws_thing': const WrapperOverride(
+          outputDir: 'thing',
+          deriveExactlyOne: true,
+          dartTypeOverrides: {'week_days': 'List<ThingWeekDays>'},
+          sealedNames: {'month_days, week_days': 'days'},
+        ),
+      },
+      {
+        'aws_thing': ResourceDef(
+          terraformType: 'aws_thing',
+          root: BlockDef(attributes: [_attr('month_days'), _attr('week_days')]),
+        ),
+      },
+      providerEnums: const ProviderEnums.on(
+        atMostOneGroups: {
+          'aws_thing': [
+            ['month_days', 'week_days'],
+          ],
+        },
+      ),
+      rawSchemas: const {},
+    );
+    final prelude = derived.overrides['aws_thing']!.prelude!;
+    expect(prelude, contains('final class ThingWeekDaysChoice'));
+    expect(prelude, isNot(contains('final class ThingWeekDays ')));
+    expect(prelude, contains('List<ThingWeekDays> weekDays'));
+  });
+
   test('a hand helper custom slot becomes a variant of its group', () {
     final def = ResourceDef(
       terraformType: 'aws_thing',
