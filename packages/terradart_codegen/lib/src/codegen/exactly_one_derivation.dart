@@ -19,14 +19,6 @@ import 'wrapper_overrides/yaml_loader.dart';
 /// inputs the provider also accepts none of) is nullable and spreads
 /// nothing when null.
 ///
-/// Rewriting the override (instead of teaching the emitter a new slot kind)
-/// keeps the wrapper emitters and the migration manifest builder on the same
-/// inputs: all of them read `paramOrder`, `customSlots` and `prelude`, and
-/// a `...slot.argMap` custom slot is the merged sealed shape the manifest
-/// derives (`google_secret_manager_secret_version`'s `payload`). Data-source
-/// YAML cannot hand-write those axes (E201), so on a data source this
-/// derivation is their only writer.
-///
 /// A group is sealable when every member is an optional constructor input
 /// no custom slot owns and no earlier group took, and none is a keyed
 /// (`nesting_mode: map`) block, which the migration manifest has no shape
@@ -151,7 +143,6 @@ deriveExactlyOneSlots(
           '$label $s',
       ]);
     }
-    // An override without groups can still carry stale names.
     for (final MapEntry(key: type, value: o) in overrides.of(kind).entries) {
       final key = overrides.lintKey(type, kind);
       if (providerEnums.hasGroupSource &&

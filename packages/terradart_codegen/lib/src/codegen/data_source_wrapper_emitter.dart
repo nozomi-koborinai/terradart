@@ -148,8 +148,6 @@ class DataSourceWrapperEmitter {
     // alongside the resource Layer 1) and no `package:terradart_annotations`
     // import (package deleted).
     final refs = references[def.terraformType] ?? const {};
-    // Only `deriveExactlyOneSlots` writes a data source's `customSlots` and
-    // `prelude`; E201 keeps them out of the YAML.
     final customSlots = override.customSlots ?? const <String, CustomSlot>{};
     final hints = providerEnums.nestedHints(def.terraformType, override);
     final nestedTypeSpecs = override.deriveNestedTypes
@@ -324,10 +322,6 @@ class DataSourceWrapperEmitter {
     buf.writeln("  static const String tfType = '${def.terraformType}';");
     buf.writeln();
 
-    // Constructor + super initializer. The slot machinery mirrors
-    // WrapperEmitter (paramOrder drives both the param list and the
-    // argMap), minus deprecations: data source YAML has no
-    // `deprecatedParams`.
     final argMapOrder = override.argMapOrder ?? paramOrder;
     final paramsByName = _paramsByName(
       def,
@@ -435,12 +429,6 @@ class DataSourceWrapperEmitter {
 
     return buf.toString();
   }
-
-  // ---------------------------------------------------------------------
-  // Slot-name helpers. Trimmed-down copy of WrapperEmitter's helpers —
-  // data sources have no nested-block filtering quirks and no
-  // deprecations, so the surface is smaller.
-  // ---------------------------------------------------------------------
 
   Map<String, String> _paramsByName(
     ResourceDef def,
