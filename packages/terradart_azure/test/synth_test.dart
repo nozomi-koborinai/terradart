@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:terradart_azure/catalog.dart';
+import 'package:terradart_azure/data.dart';
 import 'package:terradart_azure/provider.dart';
 import 'package:terradart_azure/resource.dart';
 import 'package:test/test.dart';
@@ -58,6 +59,36 @@ final class _TestStack extends Stack {
         'app',
         location: const .literal('eastus'),
         name: const .literal('app'),
+      ),
+    );
+  }
+}
+
+final class _LookupStack extends Stack {
+  _LookupStack() : super(providers: const [AzureProvider()]) {
+    add(
+      DataAzurermRoleDefinition(
+        'reader',
+        lookup: const .name(.literal('Reader')),
+      ),
+    );
+    add(
+      DataAzurermManagementGroup(
+        'root',
+        identifier: const .displayName(.literal('Tenant Root Group')),
+      ),
+    );
+    add(
+      DataAzurermOracleDatabaseSystemVersions(
+        'exadata',
+        location: const .literal('eastus'),
+        shape: const .shapeFamily(.exadata),
+      ),
+    );
+    add(
+      DataAzurermOracleDatabaseSystemVersions(
+        'any',
+        location: const .literal('eastus'),
       ),
     );
   }
@@ -132,6 +163,20 @@ void main() {
     for (final key in _credentialArgs) {
       expect(source, isNot(contains("'$key'")), reason: key);
     }
+  });
+
+  test('a data source sets only the argument its sealed lookup names', () {
+    final data = _LookupStack().synth().tfJson['data'] as Map<String, dynamic>;
+    expect(data['azurerm_role_definition'], {
+      'reader': {'name': 'Reader'},
+    });
+    expect(data['azurerm_management_group'], {
+      'root': {'display_name': 'Tenant Root Group'},
+    });
+    expect(data['azurerm_oracle_database_system_versions'], {
+      'exadata': {'location': 'eastus', 'shape_family': 'EXADATA'},
+      'any': {'location': 'eastus'},
+    });
   });
 
   test('features is always emitted, including when omitted', () {
