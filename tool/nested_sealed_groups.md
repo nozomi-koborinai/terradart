@@ -1,6 +1,6 @@
 # Nested sealed groups plan
 
-Three Azure exactly-one groups share a member, so wrap seals the first and leaves the rest as plain fields. This program nests that leftover on the variant that does not set the shared member. Callers of `terradart_azure` get the shape before the first publish. Published factories in google, google-beta, aws, cloudflare, and appwrite stay as they are. Land the sealer after #948, then regenerate. The commits are `codegen`, then `regen`, on one pull request. A codegen-only head fails `ci gate`.
+Three Azure exactly-one groups share a member, so wrap seals the first and leaves the rest as plain fields. This program seals each overlap as one argument. The shared member is a solo variant. The leftovers share one joint variant. Callers of `terradart_azure` get that shape before the first publish. Published factories in google, google-beta, aws, cloudflare, and appwrite stay as they are. #947 lands first. #948 lands on #947. This program lands after #948. The commits are `codegen`, then `regen`, on one pull request. A codegen-only head fails `ci gate`.
 
 ## How to read this
 
@@ -15,7 +15,7 @@ Tests alone are not sufficient verification. A PR is verified only when its unit
 ### Arm the program
 
 - [ ] State the protocol and this plan to the operator, then stop. Start execution only on the operator's explicit go.
-- [ ] Wait for a sign-off of the names in Appendix E before that go. A different word replaces the derived concept `source_image` only through `sealedNames`, and that word must not equal `source_image`.
+- [ ] Use the approved names in Appendix E. They are `sealedNames` entries on the three Azure overrides, the same axis as `"display_name, name": identifier` on `data_azurerm_policy_definition.yaml`. Do not change `deriveSealedConcept`.
 - [ ] Read these from trunk at program start. Re-read them at every tick.
   - [ ] `git show origin/main:pstack/skills/poteto-mode/playbooks/autopilot-stack.md`
   - [ ] `git show origin/main:pstack/skills/swarm/SKILL.md`
@@ -79,36 +79,35 @@ Each live lane runs on its own cloud VM at the PR head. `control-cli` is not in 
 
 **Build.**
 
-- [ ] Put the overlap rule in `placeGroup` only. `_derive` and the nested-block layout both call it. `exclusive_groups.dart` stays as it is. Merging these pairs into one exactly-one set would reject the legal config.
-- [ ] Keep the host group as the one the sealer already claims. Walk exactly-one groups first, then at-most-one groups, in the hint list order `renderHintsYaml` writes.
-- [ ] When a later exactly-one group shares a taken member, attach the untaken members to the variants that do not set that member.
-- [ ] When one member remains, add a `FieldResidual`. It is a required named field. It is not a sealed class.
-- [ ] When two or more members remain, add one `SealedResidual`. Name it with `resolveSealedName`. Do not write a `sealedNames` entry that repeats the derived concept.
-- [ ] When every member is already taken, or the overlap cannot be a residual on every open variant, skip the whole group. Do not keep a partial tree.
-- [ ] Leave at-most-one overlaps as skips. A nullable residual would still allow the illegal pair. Also leave keyed blocks, custom slots, `nestedTypeExcludes`, and `groupSkipReason` drops on the path they have today.
+- [ ] Put the overlap rule in `placeGroup` only. `_derive` and the nested-block layout both call it. `exclusive_groups.dart` stays as it is. Merging these pairs into one exactly-one set would reject the legal config. `deriveSealedConcept` stays as it is.
+- [ ] When two or more exactly-one groups on one block share one member set and nothing else, seal them as one argument. Each shared member is a solo variant. The leftovers are one joint variant, with one required named field per leftover part.
+- [ ] A one-member part is a plain required field. A part of two or more members is one nested sealed argument, named by `resolveSealedName`. Do not add a `sealedNames` entry that repeats the derived concept `source_image`.
+- [ ] Name the outer slot and the joint factory only from a `sealedNames` entry whose key equals the members that thing sets. With no entry, keep today's member-named factory. Published lanes have no such entry.
+- [ ] When the overlap is not that shape, or every member is already taken, skip the whole group. Do not keep a partial tree.
+- [ ] Leave at-most-one overlaps as skips. A nullable joint would still allow the illegal pair. Also leave keyed blocks, custom slots, `nestedTypeExcludes`, and `groupSkipReason` drops on the path they have today.
 - [ ] Do not seal a group whose members have different parents. `groupSkipReason` already drops those before they reach wrap.
-- [ ] Render `encode()` and `argMap` as every key the variant sets. Spread a nested seal with `...sourceImage.encode()` and `...sourceImage.argMap`. Keep `blockKey` as the variant's own member.
-- [ ] Teach the same residual rule inside a nested block in `nested_type_emitter.dart`, so a helper is not a second algorithm.
+- [ ] Render `encode()` and `argMap` as every key the variant sets. The joint image variant spreads `...sourceImage.encode()`. Its `blockKey` is `admin_username`. The `.defaults` variant writes both default keys. Its `blockKey` is `default_log_storage_account_id`.
+- [ ] Teach the same joint rule inside a nested block in `nested_type_emitter.dart`, so a helper is not a second algorithm.
 
 **You see.**
 
 - [ ] `dart test packages/terradart_codegen/test/codegen/exactly_one_test.dart` prints `All tests passed`.
-- [ ] The new test's prelude contains an inner `sealed class` whose factories are the residual members.
-- [ ] The one-member residual test's prelude has a required field and no inner `sealed class` for that member.
+- [ ] The new test's prelude contains a joint factory and an inner `sealed class` for a two-member part.
+- [ ] The one-member part test's prelude has a required field on the joint factory and no inner `sealed class` for that part.
 - [ ] A group with no shared member still renders one sealed slot and no extra field.
 
 **Verify, unit.** Tests alone are not sufficient verification. A PR is verified only when its unit, live, and perf boxes are all checked.
 
-- [ ] `packages/terradart_codegen/test/codegen/exactly_one_test.dart` gains `an overlapping exactly-one group nests a two-member residual`. Run `dart test packages/terradart_codegen/test/codegen/exactly_one_test.dart`.
-- [ ] The same file gains `a one-member residual is a required field on the complement variant`. Run that test.
+- [ ] `packages/terradart_codegen/test/codegen/exactly_one_test.dart` gains `an overlapping exactly-one pair becomes one joint variant`. Run `dart test packages/terradart_codegen/test/codegen/exactly_one_test.dart`.
+- [ ] The same file gains `a one-member part is a required field on the joint variant`. Run that test.
 - [ ] The same file gains `a non-overlapping group stays a single sealed slot`. Run that test.
 - [ ] A test renders the prelude and runs `HelperClassExtractor`. Pass when `sourceImage` is merged, the nested variants carry `source_image_id` and `source_image_reference`, and the one-member variant carries both `default_log_storage_account_id` and `default_recovery_disk_type` with `irregular` null. Run that test.
 
 **Verify, live.** Tests alone are not sufficient verification. A PR is verified only when its unit, live, and perf boxes are all checked. Ten lanes on `grok-4.7-xhigh-fast` at the PR head, per the boot recipe.
 
 - [ ] Lane 1. Regression lane against trunk. Run `dart test packages/terradart_codegen/test/codegen/exactly_one_test.dart` at trunk and head. Trunk lacks the residual tests. Record that, and gate the three new test names plus a green exit. Save `codegen-regression.png`. Pass when head exits 0 and trunk's existing tests still pass.
-- [ ] Lane 2. Two-member residual. Run the two-member test alone. Save `codegen-two-member.png`. Pass when the prelude contains `sealed class` and both residual factories.
-- [ ] Lane 3. One-member residual. Run the one-member test alone. Save `codegen-one-member.png`. Pass when the complement variant has a required field and the prelude has no sealed class named for that single member.
+- [ ] Lane 2. Two-member part. Run the joint-variant test alone. Save `codegen-two-member.png`. Pass when the prelude contains one outer sealed class, a joint factory, and an inner `sealed class` for the two-member part.
+- [ ] Lane 3. One-member part. Run the one-member test alone. Save `codegen-one-member.png`. Pass when the joint factory has a required field and the prelude has no sealed class named for that single part.
 - [ ] Lane 4. Disjoint groups. Run the non-overlapping test. Save `codegen-disjoint.png`. Pass when the slot count is one and no residual field appears.
 - [ ] Lane 5. Block payload. Run a test whose residual member is a `max_items` 1 block with a helper. Save `codegen-block.png`. Pass when the factory takes the helper and the variant class ends in `Choice` if the helper owns the unsuffixed name.
 - [ ] Lane 6. Derived name clash. Run a test that sets `sealedNames` to the derived concept. Save `codegen-name-clash.png`. Pass when the result's `nameErrors` contains `repeats the derived name`.
@@ -145,23 +144,23 @@ Each live lane runs on its own cloud VM at the PR head. `control-cli` is not in 
 - [ ] Edit `packages/terradart_migrate/lib/src/manifest/azure.g.dart` by running wrap, not by hand.
 - [ ] Edit `packages/terradart_azure/lib/compute.dart` by running wrap, not by hand.
 - [ ] Edit `packages/terradart_azure/lib/src/_catalog.g.dart` by running wrap, not by hand.
-- [ ] Edit an Azure override YAML `sealedNames` entry only when wrap reports a fallback name. Do not add `source_image`.
+- [ ] Replace `sealedNames` in the three Azure override YAML files with the approved keys in Appendix E. Do not add `source_image`.
 - [ ] Create no hand-written factory.
 - [ ] Delete the top-level `sourceImageId`, `sourceImageReference`, and `defaultRecoveryDiskType` parameters from those three constructors. Wrap does this when the members move onto variants.
 
 **Build.**
 
-- [ ] Run the Azure wrap lane so the three resources pick up the residual rule.
-- [ ] Keep `osProfile` and `diskReplication` as the host slots. Their `sealedNames` entries stay.
-- [ ] Confirm `LinuxVirtualMachineSourceImage` and `WindowsVirtualMachineSourceImage` come from `deriveSealedConcept` with no new `sealedNames` line.
-- [ ] Confirm `defaultRecoveryDiskType` moved onto `.defaultLogStorageAccountId` and no new sealed type was created for it.
+- [ ] Run the Azure wrap lane so the three resources pick up the joint rule and the approved `sealedNames`.
+- [ ] Confirm the Linux and Windows constructors take `osSource`, with factories `.image` and `.osManagedDiskId`.
+- [ ] Confirm `LinuxVirtualMachineSourceImage` and `WindowsVirtualMachineSourceImage` come from `deriveSealedConcept` with no `sealedNames` line for `source_image`.
+- [ ] Confirm VMware keeps the slot `diskReplication`, with factories `.defaults` and `.managedDisk`.
 - [ ] Run `dart tool/release_ledger_check.dart` and keep `tool/sealed_name_debt.yaml` empty.
 
 **You see.**
 
 - [ ] `AzurermLinuxVirtualMachine` no longer takes `sourceImageId` or `sourceImageReference`. The `sourceImageId` and `sourceImageReference` getters stay, because `emitDerivedOutputGetters` walks schema attributes.
-- [ ] `.adminUsername` takes `sourceImage`, and `.osManagedDiskId` does not.
-- [ ] `.defaultLogStorageAccountId` takes `defaultRecoveryDiskType`, and `.managedDisk` does not.
+- [ ] `osSource: .image` takes `adminUsername` and `sourceImage`. `osSource: .osManagedDiskId` takes only the disk id.
+- [ ] `diskReplication: .defaults` takes `defaultLogStorageAccountId` and `defaultRecoveryDiskType`. `.managedDisk` takes neither.
 - [ ] Appendix E matches the generated factories.
 
 **Verify, unit.** Tests alone are not sufficient verification. A PR is verified only when its unit, live, and perf boxes are all checked.
@@ -230,7 +229,7 @@ pub.dev on this run returned 0.35.0 for `terradart_google`, `terradart_google_be
 
 A second scan, `python3 /tmp/how-sealed/scan_groups.py`, wrote `/tmp/how-sealed/scan.json`. It reimplemented `exclusiveGroups` and checked that port against `exclusive_groups_test.dart`. Overlapping groups after that combine step are the same three Azure resources and zero everywhere else. Same-parent groups that mix a scalar and a block are already sealed on aws, cloudflare, google, and google-beta, except the two AWS rows below. The only hint groups it marked `partial_fields` were the three Azure leftovers.
 
-One arena sketch, `/tmp/arena-nested/candidate-b/design.md`, uses this same tree. `placeGroup`, `FieldResidual`, and `SealedResidual` in Appendix G are that sketch. The other sketch, `/tmp/arena-nested/candidate-a/design.md`, rebuilds the outer argument so the shared member is a solo variant and the leftovers share one joint variant. Appendix B records why that shape lost.
+`/tmp/arena-nested/candidate-a/design.md` is the joint-variant shape this plan now follows. `/tmp/arena-nested/candidate-b/design.md` hung the leftover on `.adminUsername`. Appendix B records why that hang lost. Nozomi chose the joint variant on 2026-10-28.
 
 `dart --packages=.dart_tool/package_config.json /tmp/interrogate/names_and_extractor.dart` was rerun on this branch. `deriveSealedConcept` returned `source_image`. A human name of `source_image` returned `repeats the derived name`. Variant classes were `LinuxVirtualMachineSourceImageId` and `LinuxVirtualMachineSourceImageReferenceChoice`, and the Windows pair. `HelperClassExtractor` printed `irregular=null`. The host field `sourceImage` was merged. The one-member variant listed `default_log_storage_account_id` and `default_recovery_disk_type`. The same package config ran `/tmp/interrogate/overlap_scan.dart` and printed the three Azure exactly-one skips, zero elsewhere, including 9 Azure data-source exactly-one groups with zero skips. None of the seal members matched an Azure `RefTo` rule.
 
@@ -242,9 +241,9 @@ Leaving the three groups unsealed keeps `sourceImageId` and `defaultRecoveryDisk
 
 A flat seal with one variant per legal config repeats `adminUsername` on two variants. It is a legal encoding. It throws away the nested shape Nozomi asked for, and it does not reuse the sealed block pattern already in `LinuxVirtualMachineScaleSetSourceImage`.
 
-Naming the host slot `osDisk` clashes with the required `osDisk` parameter of type `LinuxVirtualMachineOsDisk`. The host stays `osProfile`.
+Naming the host slot `osDisk` clashes with the required `osDisk` parameter of type `LinuxVirtualMachineOsDisk`. The approved slot is `osSource`.
 
-Folding every `ConflictsWith: os_managed_disk_id` field onto `.adminUsername` would move `admin_password`, `computer_name`, `custom_data`, and the patch fields. Those are pairwise conflicts, not an exactly-one group. `exclusiveGroups` already leaves them unsealed. This program does not move them.
+Folding every `ConflictsWith: os_managed_disk_id` field onto `.image` would move `admin_password`, `computer_name`, `custom_data`, and the patch fields. Those are pairwise conflicts, not an exactly-one group. `exclusiveGroups` already leaves them unsealed. This program does not move them.
 
 A sealed type with one variant for `default_recovery_disk_type` would reject the legal pair of log account plus disk type. The residual is a required field.
 
@@ -254,9 +253,9 @@ Sealing across parent blocks would change published `terradart_google` 0.35.0 fa
 
 Sealing a block that `nestedTypeExcludes` leaves as a map would change published `terradart_aws` 0.35.0. `aws_s3_bucket` keeps `object_lock_configuration` as `TfArg<Map<String, dynamic>>?` beside `objectLockEnabled`. `aws_wafv2_web_acl` keeps `rule` as `TfArg<List<Map<String, dynamic>>>?` beside `ruleJson`. The helper names belong to other resources. This program does not type those maps.
 
-Sealing `os_disk.storage_account_type` against `os_managed_disk_id` would be a cross-block rule. `groupSkipReason` drops that pair today. Pulling a nested field up into `osProfile` is a second design, and the same mechanism would reach the published Google groups named above. Examples set `storageAccountType` by hand instead.
+Sealing `os_disk.storage_account_type` against `os_managed_disk_id` would be a cross-block rule. `groupSkipReason` drops that pair today. Pulling a nested field up into `osSource` is a second design, and the same mechanism would reach the published Google groups named above. Examples set `storageAccountType` by hand instead.
 
-A joint variant named `.image` or `.defaults`, with the slot renamed from `osProfile` to `osSource`. The shared member is a solo variant, and the leftovers sit together on the joint variant. That shape does not follow hint sort order. It also renames `osProfile`, the image branch `.adminUsername`, and `.defaultLogStorageAccountId`. Those names already exist on the unpublished factories, and `sealedNames` already says `os_profile` and `disk_replication`. A later pin that changes a member set can still move which group sorts first. If that happens, the maintainer re-seals that resource on purpose. The words to ask for instead are `os_source`, `image`, and `defaults`.
+Hanging the leftover on `.adminUsername` and `.defaultLogStorageAccountId`. That keeps the names the current factories already emit, and it follows whichever group `renderHintsYaml` sorts first. Nozomi rejected it on 2026-10-28. The joint variant is the clearer call, and `terradart_azure` is unpublished, so the rename breaks nobody. The accepted cost is that `os_source`, `image`, and `defaults` do not follow that sort.
 
 A temporary flag that keeps root residuals off until a second pull request. The flag would let a codegen-only head pass `wrap --check`. This program lands one pull request whose head already contains the regeneration, so the flag would only exist to be deleted.
 
@@ -266,9 +265,9 @@ A temporary flag that keeps root residuals off until a second pull request. The 
 
 Hint files do not store cross-block conflicts for aws, cloudflare, appwrite, or azure. `groupSkipReason` drops them before write. A later extract that started keeping them would be a different change. This program does not change that filter. Google's four dropped cross-block lists are named in Appendix B. They stay dropped.
 
-`renderHintsYaml` sorts groups by the comma-joined member string before wrap reads them (`tool/extract_provider_hints.dart`). That sort is why `admin_username` seals before the image group, and why `default_log_storage_account_id` seals before the disk type. The residual rule must keep that host. Reordering the YAML to seal the image group first would rename `osProfile` and is out of scope.
+`renderHintsYaml` sorts groups by the comma-joined member string before wrap reads them (`tool/extract_provider_hints.dart`). The joint variant does not use that order to pick factory names. `os_source`, `image`, and `defaults` come only from the approved `sealedNames` entries. A later pin that changes a member set does not rename those factories unless the override entries change too.
 
-`encode()` on a variant is one map, while `blockKey` stays one string. The resource emits `...osProfile.argMap`, so the extra keys have to be in `argMap`, not only in `blockKey`. The extractor test in `codegen` is what catches a manifest that drops `source_image_id`.
+`encode()` on a variant is one map, while `blockKey` stays one string. The resource emits `...osSource.argMap`, so the extra keys have to be in `argMap`, not only in `blockKey`. The extractor test in `codegen` is what catches a manifest that drops `source_image_id`.
 
 `control-cli` was not installed here. Live lanes are terminal commands plus a screenshot of the terminal. That is a weaker UI proof than a control skill, and it is the surface this repo has for a library change.
 
@@ -297,24 +296,46 @@ Read before editing.
 
 ## Appendix E. Caller API
 
-The host slots already exist. `sealedNames` in the Azure overrides map `admin_username, os_managed_disk_id` to `os_profile` and `default_log_storage_account_id, managed_disk` to `disk_replication`. Keep those entries. `deriveSealedConcept` of `source_image_id` and `source_image_reference` returns `source_image`. Do not copy that into `sealedNames`.
+Nozomi approved these names on 2026-10-28. Record them as `sealedNames` on the three override files, the same way #946 recorded `identifier`, `lookup`, and `shape` on data-source overrides such as `packages/terradart_codegen/lib/src/codegen/wrapper_overrides/azure/yaml/data_azurerm_policy_definition.yaml`. Do not change `deriveSealedConcept`. A group with no matching entry keeps a member-named factory.
 
-Names that need sign-off.
+`packages/terradart_codegen/lib/src/codegen/wrapper_overrides/azure/yaml/azurerm_linux_virtual_machine.yaml` and `azurerm_windows_virtual_machine.yaml` replace the `os_profile` entry with these two lines.
 
-- Parameter `sourceImage` on `.adminUsername`, for both Linux and Windows.
-- `LinuxVirtualMachineSourceImage` and `WindowsVirtualMachineSourceImage`.
-- Factories `.sourceImageId` and `.sourceImageReference`.
-- Variant classes `LinuxVirtualMachineSourceImageId`, `LinuxVirtualMachineSourceImageReferenceChoice`, `WindowsVirtualMachineSourceImageId`, and `WindowsVirtualMachineSourceImageReferenceChoice`. The `Choice` suffix is the existing collision rule. The helper already owns `LinuxVirtualMachineSourceImageReference`.
-- Parameter `defaultRecoveryDiskType` on `.defaultLogStorageAccountId`.
+```yaml
+sealedNames:
+  "admin_username, os_managed_disk_id, source_image_id, source_image_reference": os_source
+  "admin_username, source_image_id, source_image_reference": image
+```
 
-The extra value is a named argument. The member value stays the one positional argument the factories already use. A request to make the extra value positional replaces that decision.
+`packages/terradart_codegen/lib/src/codegen/wrapper_overrides/azure/yaml/azurerm_site_recovery_vmware_replicated_vm.yaml` replaces the `disk_replication` key with these two lines. The concept `disk_replication` stays.
+
+```yaml
+sealedNames:
+  "default_log_storage_account_id, default_recovery_disk_type, managed_disk": disk_replication
+  "default_log_storage_account_id, default_recovery_disk_type": defaults
+```
+
+`source_image` is not in either file. `deriveSealedConcept` already returns it for `source_image_id` and `source_image_reference`. A `sealedNames` copy of that word is E406.
+
+Approved caller names.
+
+- Slot `osSource`, types `LinuxVirtualMachineOsSource` and `WindowsVirtualMachineOsSource`.
+- Factory `.image`, with required named fields `adminUsername` and `sourceImage`.
+- Factory `.osManagedDiskId`.
+- Slot `diskReplication`, type `SiteRecoveryVmwareReplicatedVmDiskReplication`.
+- Factory `.defaults`, with required named fields `defaultLogStorageAccountId` and `defaultRecoveryDiskType`.
+- Factory `.managedDisk`.
+- Inner parameter `sourceImage`, types `LinuxVirtualMachineSourceImage` and `WindowsVirtualMachineSourceImage`.
+- Inner factories `.sourceImageId` and `.sourceImageReference`.
+- Inner variant classes `LinuxVirtualMachineSourceImageId`, `LinuxVirtualMachineSourceImageReferenceChoice`, and the Windows twins. The `Choice` suffix is the existing collision rule. The helper already owns `LinuxVirtualMachineSourceImageReference`.
+
+The joint factory class names come from the existing joiner. `LinuxVirtualMachineOsSourceImage`, `LinuxVirtualMachineOsSourceOsManagedDiskId`, the Windows twins, and `SiteRecoveryVmwareReplicatedVmDiskReplicationDefaults`. They are not separate approved words.
 
 Names that stay.
 
-- `osProfile`, `LinuxVirtualMachineOsProfile`, `WindowsVirtualMachineOsProfile`, `.adminUsername`, `.osManagedDiskId`.
-- `diskReplication`, `SiteRecoveryVmwareReplicatedVmDiskReplication`, `.defaultLogStorageAccountId`, `.managedDisk`.
+- `.managedDisk` and the managed-disk helper `SiteRecoveryVmwareReplicatedVmManagedDisk`.
 - Helper `LinuxVirtualMachineSourceImageReference` and the Windows twin.
 - Enum `SiteRecoveryVmwareReplicatedVmDefaultRecoveryDiskType`, including `.premiumLrs`.
+- Output getters `adminUsername`, `osManagedDiskId`, `sourceImageId`, `sourceImageReference`, `defaultLogStorageAccountId`, and `defaultRecoveryDiskType`.
 
 Linux, image id. The other required arguments stay. `storageAccountType` is required by the provider and is not part of the seal.
 
@@ -323,19 +344,19 @@ osDisk: LinuxVirtualMachineOsDisk(
   caching: .literal('ReadWrite'),
   storageAccountType: .literal('Standard_LRS'),
 ),
-osProfile: .adminUsername(
-  .literal('azureuser'),
+osSource: .image(
+  adminUsername: .literal('azureuser'),
   sourceImage: .sourceImageId(
     .literal('/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg/providers/Microsoft.Compute/images/img'),
   ),
 ),
 ```
 
-Linux, marketplace image.
+Linux, marketplace image. The same `osDisk` applies.
 
 ```dart
-osProfile: .adminUsername(
-  .literal('azureuser'),
+osSource: .image(
+  adminUsername: .literal('azureuser'),
   sourceImage: .sourceImageReference(
     LinuxVirtualMachineSourceImageReference(
       publisher: .literal('Canonical'),
@@ -351,18 +372,18 @@ Linux, existing OS disk. Omit `storageAccountType`, `name`, and `diffDiskSetting
 
 ```dart
 osDisk: LinuxVirtualMachineOsDisk(caching: .literal('ReadWrite')),
-osProfile: .osManagedDiskId(
+osSource: .osManagedDiskId(
   .literal('/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg/providers/Microsoft.Compute/disks/os'),
 ),
 ```
 
-Windows uses `WindowsVirtualMachineOsProfile`, `WindowsVirtualMachineSourceImage`, and `WindowsVirtualMachineSourceImageReference` in the same three shapes.
+Windows uses `WindowsVirtualMachineOsSource`, `WindowsVirtualMachineSourceImage`, and `WindowsVirtualMachineSourceImageReference` in the same three shapes. `adminPassword` stays a top-level `Sensitive<String>?`.
 
 VMware, account plus disk type.
 
 ```dart
-diskReplication: .defaultLogStorageAccountId(
-  .literal('/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg/providers/Microsoft.Storage/storageAccounts/logs'),
+diskReplication: .defaults(
+  defaultLogStorageAccountId: .literal('/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg/providers/Microsoft.Storage/storageAccounts/logs'),
   defaultRecoveryDiskType: .premiumLrs,
 ),
 ```
@@ -400,40 +421,20 @@ The same OS-disk schema sets `ConflictsWith` `os_managed_disk_id` on `name` and 
 
 Legal configs are `managed_disk` alone, or the log storage account together with the disk type. `default_recovery_disk_type` is also a `StringInSlice`. The hint file records that as `enum_values`. `target_availability_set_id` and `target_zone` are already the nullable seal `target`.
 
-Scale sets are not in the overlap list. `LinuxVirtualMachineScaleSetSourceImage` already seals `source_image_id` against `source_image_reference` because that pair shares no member with an earlier group. The variant class for the block is `LinuxVirtualMachineScaleSetSourceImageReferenceChoice`. This program copies that pattern for the VM residual.
+Scale sets are not in the overlap list. `LinuxVirtualMachineScaleSetSourceImage` already seals `source_image_id` against `source_image_reference` because that pair shares no member with an earlier group. The variant class for the block is `LinuxVirtualMachineScaleSetSourceImageReferenceChoice`. The inner image choice on `.image` uses that same helper-as-variant pattern.
 
 ## Appendix G. Slot shape after #948
 
 #947 makes `WrapperEmitter` and `DataSourceWrapperEmitter` call one constructor builder. #948 stops storing a derived seal as a `CustomSlot` of source strings. `deriveExactlyOneSlots` returns the slot type #948 defines. The emitters render it. Hand-written `customSlots` stay the YAML shape, and a data source YAML still cannot set them.
 
-Do not add `residuals` inside #948. That couples an API field to a refactor whose output must stay byte-identical. `codegen` adds `List<Residual> residuals` on each variant, defaulting to empty.
+Do not add a joint-variant field inside #948. That couples an API field to a refactor whose output must stay byte-identical. `codegen` adds the joint variant on the slot type #948 returns.
 
-`placeGroup` is the only overlap policy. `taken` is the walk of that tree, not a second set. A disjoint group is rooted as one slot with empty residuals. A later exactly-one group that shares a member is attached. A one-member leftover is a `FieldResidual`. Two or more leftovers are one `SealedResidual`. An at-most-one overlap, a group whose members are all already in the tree, or a tangle that cannot put a residual on every open variant, is skipped whole.
+`placeGroup` is the only overlap policy. Two or more exactly-one groups whose shared members are one set, and whose leftovers are disjoint from that set and from each other, become one slot. Each shared member is a solo variant. The leftovers are one joint variant. A one-member leftover is a required named field. Two or more leftovers are one nested sealed field. Any other overlap is skipped whole. At-most-one groups never join.
 
-```dart
-sealed class Residual {}
+The outer concept and the joint factory name come from `sealedNames` when the key equals the members that thing sets. `resolveSealedName` and `deriveSealedConcept` are otherwise unchanged. The inner image type is the derived concept `source_image`. The existing joiner names its variant classes, including the `Choice` suffix when the helper owns the unsuffixed name.
 
-final class FieldResidual implements Residual {
-  FieldResidual({required this.member});
-  final ExactlyOneVariant member;
-}
+A whole-block seal is a different case. It already exists when the group lists every input of a block, and `MonitoringSloSli.requestBasedSli` already takes the sealed helper `MonitoringSloRequestBasedSli`. The Azure image part is not a whole-block seal. `source_image_reference` is one member. The other member is a string.
 
-final class SealedResidual implements Residual {
-  SealedResidual({
-    required this.members,
-    required this.paramName,
-    required this.variants,
-  });
-  final List<String> members;
-  final String paramName;
-  final List<VariantPlan> variants;
-}
-```
+A spread of that sealed value stays `MigrateSlotKind.sealed` through `mergedShape`. The `.defaults` disk-type field is a quoted enum key, not a spread, so it stays `MigrateSlotKind.enumValue`. The joint `.image` `blockKey` is `admin_username`. There is no new manifest kind and no `tool/migrate_manifest_debt.yaml` line. If a rendered `encode()` comes back irregular, fix the extractor in `codegen`.
 
-Empty residual lists render the bytes a flat seal renders today. That is what keeps published factories unchanged.
-
-The nested slot uses the same `resolveSealedName`, `sealedTypeName`, and `exactlyOneVariantNames` path as a root group. A whole-block seal is a different case. It already exists when the group lists every input of a block, and `MonitoringSloSli.requestBasedSli` already takes the sealed helper `MonitoringSloRequestBasedSli`. The Azure image residual is not a whole-block seal. `source_image_reference` is one member. The other member is a string. The inner type is a normal sealed argument whose block variant holds the helper.
-
-A spread of that sealed value stays `MigrateSlotKind.sealed` through `mergedShape`. The disk-type field is a quoted enum key, not a spread, so it stays `MigrateSlotKind.enumValue`. There is no new manifest kind and no `tool/migrate_manifest_debt.yaml` line. If a rendered `encode()` comes back irregular, fix the extractor in `codegen`.
-
-`codegen` does not append a new `CustomSlot` for `sourceImage`.
+`codegen` does not append a new `CustomSlot` for `osSource`. Published lanes never enter `placeGroup`'s joint path, because they have zero overlap skips, so their generated factories stay byte-identical.
