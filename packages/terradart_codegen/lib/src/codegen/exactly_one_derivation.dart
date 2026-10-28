@@ -430,13 +430,20 @@ WrapperOverride _derive(
 }
 
 /// Whether the resource declares a class for its input [name]: a block's
-/// helper, or an enum.
+/// helper, or an enum. A `List<Enum>` or `Set<Enum>` counts. The variant
+/// class is named after the member, which is also the enum's name, so the
+/// enum has to be reserved or the two types collide.
 bool _hasClass(String name, Map<String, Object> blocks, WrapperOverride o) {
   if (blocks.containsKey(name)) return true;
   final type = o.dartTypeOverrides?[name];
-  return type != null &&
-      RegExp(r'^[A-Z]').hasMatch(type) &&
-      !const {'String', 'List', 'Map', 'Set', 'Object'}.any(type.startsWith);
+  if (type == null) return false;
+  if (RegExp(r'^[A-Z]').hasMatch(type) &&
+      !const {'String', 'List', 'Map', 'Set', 'Object'}.any(type.startsWith)) {
+    return true;
+  }
+  final element = RegExp(r'^(?:List|Set)<([A-Z]\w*)>$').firstMatch(type);
+  return element != null &&
+      !const {'String', 'Object'}.contains(element.group(1));
 }
 
 /// [order] with the first of [group]'s members replaced by [slot] and the
