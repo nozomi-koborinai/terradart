@@ -96,19 +96,22 @@ final class _SidecarBuilder {
   /// written no longer exists in the directory.
   late final _rewriter = ReferenceRewriter(report.expanded);
 
-  /// [p] as written, with credential arguments removed.
-  ///
-  /// Those names never reach Dart and must not reach the sidecar either.
-  /// A block that sets none of them is copied verbatim.
-  String _providerText(ProviderBlock p) {
-    final dropped = droppedProviderArguments[p.name];
-    final body = p.block.body;
+  String _providerText(ProviderBlock p) =>
+      _credentialFree(p.file, p.block, droppedProviderArguments[p.name]);
+
+  String _credentialFree(
+    HclFile file,
+    Block block,
+    Set<String>? dropped, {
+    int level = 0,
+  }) {
+    final body = block.body;
     if (dropped == null || !_hasDroppedCredential(body, dropped)) {
-      return verbatimEntry(p.file, p.block);
+      return verbatimEntry(file, block, level: level);
     }
     final filtered = Block(
-      p.block.type,
-      p.block.labels,
+      block.type,
+      block.labels,
       Body(
         [
           for (final e in body.entries)
@@ -117,13 +120,13 @@ final class _SidecarBuilder {
         body.range,
         trailingComments: body.trailingComments,
       ),
-      p.block.range,
-      typeRange: p.block.typeRange,
-      oneLine: p.block.oneLine,
-      leadingComments: p.block.leadingComments,
-      trailingComment: p.block.trailingComment,
+      block.range,
+      typeRange: block.typeRange,
+      oneLine: block.oneLine,
+      leadingComments: block.leadingComments,
+      trailingComment: block.trailingComment,
     );
-    return const HclWriter().writeEntry(filtered).trimRight();
+    return const HclWriter().writeEntry(filtered, level: level).trimRight();
   }
 
   /// A credential attribute, or a nested block of that name
@@ -322,10 +325,17 @@ final class _SidecarBuilder {
         BodyEntry node = entry;
         if (entry is Attribute && key == 'backend') node = t.backend ?? entry;
         if (entry is Attribute && key == 'cloud') node = t.cloud ?? entry;
-        entries.add(
-          '  # terradart-migrate: $reason\n'
-          '${verbatimEntry(t.file, node, level: 1)}',
-        );
+        final text = key == 'backend' && node is Block
+            ? _credentialFree(
+                t.file,
+                node,
+                droppedProviderArguments[node.labels.isEmpty
+                    ? ''
+                    : node.labels.first.text],
+                level: 1,
+              )
+            : verbatimEntry(t.file, node, level: 1);
+        entries.add('  # terradart-migrate: $reason\n$text');
         _placements[address] = backendFileName;
       }
     }

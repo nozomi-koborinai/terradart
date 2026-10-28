@@ -286,13 +286,15 @@ final List<DiagnosticFamily> kDiagnosticFamilies = [
   ),
   DiagnosticFamily(
     'ipv4',
-    RegExp('valid IPv4'),
+    RegExp(r'valid IPv4|valid IP(?!v)'),
     (_) => [LiteralDummy('10.0.0.1')],
   ),
   DiagnosticFamily(
     'int-range',
     RegExp(r'in the range \((\d+) - (\d+)\)'),
-    (m) => [LiteralDummy(int.parse(m[1]!))],
+    (m) => m.input.contains('length')
+        ? const []
+        : [LiteralDummy(int.parse(m[1]!))],
   ),
   DiagnosticFamily(
     'azure-id-uri',
@@ -304,10 +306,15 @@ final List<DiagnosticFamily> kDiagnosticFamilies = [
     ],
   ),
   DiagnosticFamily(
-    'path-segments',
+    'key-vault-nested-item',
     RegExp('expected 2 or 3 path segments'),
     (_) => [
-      LiteralDummy('/subscriptions/11111111-1111-1111-1111-111111111111'),
+      LiteralDummy('https://example.com/keys/leftover'),
+      LiteralDummy('https://example.com/keys/leftover/v'),
+      LiteralDummy('https://example.com/secrets/leftover'),
+      LiteralDummy('https://example.com/certificates/leftover'),
+      LiteralDummy('https://example.com/secrets/leftover/v'),
+      LiteralDummy('https://example.com/certificates/leftover/v'),
     ],
   ),
   DiagnosticFamily(

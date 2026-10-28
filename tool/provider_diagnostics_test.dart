@@ -241,10 +241,26 @@ void main() {
         [('10.0.0.1', 'family ipv4')],
       );
       expect(
+        shapes('expected end_ip_address to contain a valid IP, got: leftover'),
+        [('10.0.0.1', 'family ipv4')],
+      );
+      expect(
+        shapes(
+          'expected peer_ip to contain a valid IPv6 address, got: leftover',
+        ),
+        isEmpty,
+      );
+      expect(
         shapes(
           'expected backup_retention_period_in_days to be in the range (1 - 60), got 200',
         ),
         [(1, 'family int-range')],
+      );
+      expect(
+        shapes(
+          'expected length of application_identifier to be in the range (1 - 3), got leftover',
+        ),
+        isEmpty,
       );
       expect(
         shapes(
@@ -262,9 +278,26 @@ void main() {
           'expected 2 or 3 path segments, found 4 segment(s) in `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover`',
         ),
         [
+          ('https://example.com/keys/leftover', 'family key-vault-nested-item'),
           (
-            '/subscriptions/11111111-1111-1111-1111-111111111111',
-            'family path-segments',
+            'https://example.com/keys/leftover/v',
+            'family key-vault-nested-item',
+          ),
+          (
+            'https://example.com/secrets/leftover',
+            'family key-vault-nested-item',
+          ),
+          (
+            'https://example.com/certificates/leftover',
+            'family key-vault-nested-item',
+          ),
+          (
+            'https://example.com/secrets/leftover/v',
+            'family key-vault-nested-item',
+          ),
+          (
+            'https://example.com/certificates/leftover/v',
+            'family key-vault-nested-item',
           ),
         ],
       );

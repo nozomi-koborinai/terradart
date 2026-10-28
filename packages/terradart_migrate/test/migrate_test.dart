@@ -1335,6 +1335,113 @@ resource "azurerm_resource_group" "app" {
       expect(r.report.warnings.join('\n'), contains('"client_secret"'));
     });
 
+    test('an azurerm backend drops credentials from the sidecar', () {
+      const secrets = {
+        'client_id': '11111111-1111-1111-1111-111111111111',
+        'client_secret': 'secret-value',
+        'client_certificate_password': 'cert-password-secret',
+        'oidc_token': 'oidc-token-secret',
+        'access_key': 'storage-access-key',
+        'sas_token': 'storage-sas-token',
+      };
+      void check(MigrationResult r) {
+        final sidecar = r.sidecar.files[backendFileName]!;
+        expect(sidecar, contains('storage_account_name'));
+        expect(sidecar, contains('tfstate'));
+        final warnings = r.report.warnings.join('\n');
+        for (final e in secrets.entries) {
+          expect(sidecar, isNot(contains(e.key)), reason: e.key);
+          expect(sidecar, isNot(contains(e.value)), reason: e.value);
+          expect(r.files.values.join('\n'), isNot(contains(e.value)));
+          expect(warnings, contains('"${e.key}"'));
+        }
+      }
+
+      final assigns = secrets.entries
+          .map((e) => '    ${e.key} = "${e.value}"')
+          .join('\n');
+      check(
+        _migrateHcl('''
+terraform {
+  required_providers {
+    azurerm = { source = "hashicorp/azurerm", version = "$kAzureProviderVersionConstraint" }
+  }
+  backend "azurerm" {
+    storage_account_name = "tfstate"
+    container_name       = "state"
+    key                  = "prod.tfstate"
+$assigns
+  }
+}
+provider "azurerm" {
+  features {}
+}
+resource "azurerm_resource_group" "app" {
+  name     = "app"
+  location = "eastus"
+}
+'''),
+      );
+      check(
+        _migrateJson({
+          'terraform': {
+            'required_providers': {
+              'azurerm': {
+                'source': 'hashicorp/azurerm',
+                'version': kAzureProviderVersionConstraint,
+              },
+            },
+            'backend': {
+              'azurerm': {
+                'storage_account_name': 'tfstate',
+                'container_name': 'state',
+                'key': 'prod.tfstate',
+                ...secrets,
+              },
+            },
+          },
+          'provider': {
+            'azurerm': {
+              'features': [<String, Object?>{}],
+            },
+          },
+          'resource': {
+            'azurerm_resource_group': {
+              'app': {'name': 'app', 'location': 'eastus'},
+            },
+          },
+        }),
+      );
+    });
+
+    test('a kept azuread provider drops ARM credentials', () {
+      final r = _migrateHcl('''
+terraform {
+  required_providers {
+    azurerm = { source = "hashicorp/azurerm", version = "$kAzureProviderVersionConstraint" }
+    azuread = { source = "hashicorp/azuread", version = "~> 3.0" }
+  }
+}
+provider "azurerm" {
+  features {}
+}
+provider "azuread" {
+  client_id     = "11111111-1111-1111-1111-111111111111"
+  client_secret = "ARM-SECRET"
+}
+resource "azurerm_resource_group" "app" {
+  name     = "app"
+  location = "eastus"
+}
+''');
+      final files = r.files.values.join('\n');
+      final sidecar = r.sidecar.files.values.join('\n');
+      expect(files, isNot(contains('ARM-SECRET')));
+      expect(sidecar, isNot(contains('ARM-SECRET')));
+      expect(sidecar, isNot(contains('client_secret')));
+      expect(r.report.warnings.join('\n'), contains('"client_secret"'));
+    });
+
     test('repeated aws endpoints blocks merge into one map', () {
       final r = _migrateHcl('''
 terraform {

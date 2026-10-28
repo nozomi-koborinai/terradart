@@ -910,6 +910,16 @@ final class StackEmitter {
     for (final name in providerNames) {
       final recipe = _providerRecipes[name];
       if (recipe == null) {
+        final dropped = droppedProviderArguments[name] ?? const <String>{};
+        for (final p in module.providers.where((p) => p.name == name)) {
+          final values = objectMap(bodyAsObject(p.body)) ?? {};
+          for (final key in values.keys.where(dropped.contains)) {
+            _warnings.add(
+              'provider "$name": argument "$key" has no TerraDart '
+              'parameter and was dropped',
+            );
+          }
+        }
         _keep('provider.$name', 'provider "$name" has no TerraDart factory');
         continue;
       }
@@ -2281,6 +2291,13 @@ final class StackEmitter {
           _migrated.add(const MigratedItem(address: 'terraform.backend'));
           return '${isConst ? 'const ' : ''}S3Backend(${args.join(', ')})';
         default:
+          final dropped = droppedProviderArguments[type] ?? const <String>{};
+          for (final key in values.keys.where(dropped.contains)) {
+            _warnings.add(
+              'backend "$type": argument "$key" has no TerraDart '
+              'parameter and was dropped',
+            );
+          }
           throw MigrateBlocker(
             'backend "$type" has no TerraDart type; it stays in backend.tf',
           );

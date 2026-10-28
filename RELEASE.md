@@ -1,6 +1,6 @@
 # Release Checklist
 
-terradart bumps every workspace package in lockstep (`tool/bump_version.sh`); all share the same version. The pub.dev publish workflow (`publish.yml`) publishes the hosted packages in phases: `terradart_core` and `terradart_hcl`, `terradart_codegen`, `terradart_time`, `terradart_google`, `terradart_google_beta`, `terradart_appwrite`, `terradart_cloudflare`, `terradart_aws`, `terradart_migrate`, and last `terradart_cli`, whose `terradart` command users install with `dart pub global activate terradart_cli`.
+terradart bumps every workspace package in lockstep (`tool/bump_version.sh`); all share the same version. The pub.dev publish workflow (`publish.yml`) publishes the hosted packages in phases: `terradart_core` and `terradart_hcl`, `terradart_codegen`, `terradart_time`, `terradart_google`, `terradart_google_beta`, `terradart_appwrite`, `terradart_cloudflare`, `terradart_aws`, `terradart_azure`, `terradart_migrate`, and last `terradart_cli`, whose `terradart` command users install with `dart pub global activate terradart_cli`.
 
 ## Pre-flight (local)
 
@@ -20,14 +20,14 @@ terradart bumps every workspace package in lockstep (`tool/bump_version.sh`); al
   tool/bump_version.sh 0.X.Y
   ```
 
-  This updates all 11 package pubspecs, the `terradart-migrate --version` const, their inter-package carets, the example pubspec carets, and the README + website pubspec samples in one shot. Idempotent: re-running with the same version is a no-op. Run `git diff --stat` afterwards to review.
+  This updates all 12 package pubspecs, the `terradart-migrate --version` const, their inter-package carets, the example pubspec carets, and the README + website pubspec samples in one shot. Idempotent: re-running with the same version is a no-op. Run `git diff --stat` afterwards to review.
 - [ ] Add `## <version> - YYYY-MM-DD` entry to root `CHANGELOG.md` and to each package `CHANGELOG.md` file. Release notes are prose — the bump script intentionally does not generate them.
 - [ ] If the release is breaking, add a `# Migrating from terradart X.Y.Z to A.B.C` section at the top of `MIGRATING.md` with before / after snippets.
 - [ ] Run pana score check on each package:
 
   ```bash
   dart pub global activate pana
-  for pkg in terradart_core terradart_hcl terradart_codegen terradart_time terradart_google terradart_google_beta terradart_appwrite terradart_cloudflare terradart_aws terradart_migrate terradart_cli; do
+  for pkg in terradart_core terradart_hcl terradart_codegen terradart_time terradart_google terradart_google_beta terradart_appwrite terradart_cloudflare terradart_aws terradart_azure terradart_migrate terradart_cli; do
     (cd "packages/$pkg" && dart pub global run pana --no-warning --exit-code-threshold 100)
   done
   ```
@@ -35,7 +35,7 @@ terradart bumps every workspace package in lockstep (`tool/bump_version.sh`); al
 - [ ] Run dry-run after the pre-publish pubspec mutation (the script edits in-place; restore via `git checkout` after):
 
   ```bash
-  for pkg in terradart_core terradart_hcl terradart_codegen terradart_time terradart_google terradart_google_beta terradart_appwrite terradart_cloudflare terradart_aws terradart_migrate terradart_cli; do
+  for pkg in terradart_core terradart_hcl terradart_codegen terradart_time terradart_google terradart_google_beta terradart_appwrite terradart_cloudflare terradart_aws terradart_azure terradart_migrate terradart_cli; do
     tool/prepare_publish.sh v0.X.Y "$pkg"
     (cd "packages/$pkg" && dart pub publish --dry-run)
   done
@@ -75,11 +75,12 @@ Watch `publish.yml` on GitHub Actions. The workflow ships the 12 packages in 10 
 
 pub.dev's OIDC trusted publisher only works for **previously published** packages. The first publish of a new package must be done manually with `dart pub publish` (interactive auth via `dart pub token add`); `skip_if_published.sh` then turns that package's `publish.yml` job into a no-op for the version already on pub.dev.
 
-`terradart_azure` is not on pub.dev yet. Its first publish is the manual step below, after the phase it depends on (`publish-aws`, which publishes `terradart_core`'s dependents) is green. The other 11 packages already have automated publishing. For that first publish:
+`terradart_azure` is not on pub.dev yet. Its first publish is the manual step below, after `publish-aws` is green. `terradart_azure` depends only on `terradart_core`. The job waits for `publish-aws` because that phase runs first. The other 11 packages already have automated publishing. For that first publish:
 
 ```bash
-# 1. Push the tag. publish.yml ships every existing package;
-#    the new package's job fails because it is not on pub.dev yet.
+# 1. Push the tag. publish.yml ships the packages that do not wait on
+#    terradart_azure. The new package's job fails because it is not on
+#    pub.dev yet, and publish-migrate and publish-cli wait for it.
 git tag v0.X.Y && git push origin v0.X.Y
 
 # 2. Once the phase it depends on is green (and pub.dev lists those
@@ -88,9 +89,10 @@ tool/prepare_publish.sh v0.X.Y <pkg>
 (cd packages/<pkg> && dart pub publish)
 git checkout packages/*/pubspec.yaml
 
-# 3. Re-run publish.yml. The new package's job skips the version now on
-#    pub.dev. Jobs that waited on it, including publish-migrate and
-#    publish-cli for terradart_azure, then run.
+# 3. Re-run the failed jobs on the tag's workflow run. A fresh
+#    workflow_dispatch checks out the ref you dispatch, not the tag.
+#    The new package's job skips the version now on pub.dev. Jobs that
+#    waited on it, including publish-migrate and publish-cli, then run.
 ```
 
 After a new package exists on pub.dev, set up its trusted publisher:
@@ -115,5 +117,5 @@ If a phase succeeds for some packages but fails for the next (e.g. `publish-code
 
 - [ ] All 12 listings on pub.dev show the correct version
 - [ ] GitHub Release created (`gh release create v0.X.Y --notes ...`)
-- [ ] Verified publisher badge appears on all 11 pub.dev pages
+- [ ] Verified publisher badge appears on all 12 pub.dev pages
 - [ ] `terradart` install verified on a clean machine: `dart pub global activate terradart_cli && terradart migrate --version`, then one real tree migrates and plans with *No changes* per [Migrating from HCL](https://terradart.dev/docs/migrate-from-hcl/)
