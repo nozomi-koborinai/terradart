@@ -13,18 +13,18 @@ const Set<String> _azurermPrivateLinkServiceSensitive = <String>{};
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.destinationIpAddress(...)`.
-sealed class PrivateLinkServiceDestinationIpAddressOrLoadBalancerFrontendIpConfigurationIds {
-  const PrivateLinkServiceDestinationIpAddressOrLoadBalancerFrontendIpConfigurationIds();
+sealed class PrivateLinkServiceDestination {
+  const PrivateLinkServiceDestination();
 
   /// Sets `destination_ip_address`.
-  const factory PrivateLinkServiceDestinationIpAddressOrLoadBalancerFrontendIpConfigurationIds.destinationIpAddress(
+  const factory PrivateLinkServiceDestination.destinationIpAddress(
     TfArg<String> destinationIpAddress,
-  ) = PrivateLinkServiceDestinationIpAddressOrLoadBalancerFrontendIpConfigurationIdsDestinationIpAddress;
+  ) = PrivateLinkServiceDestinationIpAddress;
 
   /// Sets `load_balancer_frontend_ip_configuration_ids`.
-  const factory PrivateLinkServiceDestinationIpAddressOrLoadBalancerFrontendIpConfigurationIds.loadBalancerFrontendIpConfigurationIds(
+  const factory PrivateLinkServiceDestination.loadBalancerFrontendIpConfigurationIds(
     TfArg<List<String>> loadBalancerFrontendIpConfigurationIds,
-  ) = PrivateLinkServiceDestinationIpAddressOrLoadBalancerFrontendIpConfigurationIdsChoice;
+  ) = PrivateLinkServiceDestinationLoadBalancerFrontendIpConfigurationIds;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -39,13 +39,10 @@ sealed class PrivateLinkServiceDestinationIpAddressOrLoadBalancerFrontendIpConfi
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [PrivateLinkServiceDestinationIpAddressOrLoadBalancerFrontendIpConfigurationIds.destinationIpAddress] choice: sets `destination_ip_address`.
-final class PrivateLinkServiceDestinationIpAddressOrLoadBalancerFrontendIpConfigurationIdsDestinationIpAddress
-    extends
-        PrivateLinkServiceDestinationIpAddressOrLoadBalancerFrontendIpConfigurationIds {
-  const PrivateLinkServiceDestinationIpAddressOrLoadBalancerFrontendIpConfigurationIdsDestinationIpAddress(
-    this.destinationIpAddress,
-  );
+/// The [PrivateLinkServiceDestination.destinationIpAddress] choice: sets `destination_ip_address`.
+final class PrivateLinkServiceDestinationIpAddress
+    extends PrivateLinkServiceDestination {
+  const PrivateLinkServiceDestinationIpAddress(this.destinationIpAddress);
 
   final TfArg<String> destinationIpAddress;
 
@@ -66,11 +63,10 @@ final class PrivateLinkServiceDestinationIpAddressOrLoadBalancerFrontendIpConfig
   };
 }
 
-/// The [PrivateLinkServiceDestinationIpAddressOrLoadBalancerFrontendIpConfigurationIds.loadBalancerFrontendIpConfigurationIds] choice: sets `load_balancer_frontend_ip_configuration_ids`.
-final class PrivateLinkServiceDestinationIpAddressOrLoadBalancerFrontendIpConfigurationIdsChoice
-    extends
-        PrivateLinkServiceDestinationIpAddressOrLoadBalancerFrontendIpConfigurationIds {
-  const PrivateLinkServiceDestinationIpAddressOrLoadBalancerFrontendIpConfigurationIdsChoice(
+/// The [PrivateLinkServiceDestination.loadBalancerFrontendIpConfigurationIds] choice: sets `load_balancer_frontend_ip_configuration_ids`.
+final class PrivateLinkServiceDestinationLoadBalancerFrontendIpConfigurationIds
+    extends PrivateLinkServiceDestination {
+  const PrivateLinkServiceDestinationLoadBalancerFrontendIpConfigurationIds(
     this.loadBalancerFrontendIpConfigurationIds,
   );
 
@@ -134,8 +130,7 @@ final class AzurermPrivateLinkService extends Resource {
   AzurermPrivateLinkService(
     super.localName, {
     TfArg<List<String>>? autoApprovalSubscriptionIds,
-    required PrivateLinkServiceDestinationIpAddressOrLoadBalancerFrontendIpConfigurationIds
-    destinationIpAddressOrLoadBalancerFrontendIpConfigurationIds,
+    required PrivateLinkServiceDestination destination,
     TfArg<List<String>>? fqdns,
     required TfArg<String> location,
     required TfArg<String> name,
@@ -152,8 +147,7 @@ final class AzurermPrivateLinkService extends Resource {
          terraformType: tfType,
          argMap: {
            'auto_approval_subscription_ids': ?autoApprovalSubscriptionIds,
-           ...destinationIpAddressOrLoadBalancerFrontendIpConfigurationIds
-               .argMap,
+           ...destination.argMap,
            'fqdns': ?fqdns,
            'location': location,
            'name': name,

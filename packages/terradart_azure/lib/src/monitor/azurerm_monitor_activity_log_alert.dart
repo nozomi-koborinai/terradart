@@ -34,7 +34,7 @@ final class MonitorActivityLogAlertAction {
 @immutable
 final class MonitorActivityLogAlertCriteria {
   const MonitorActivityLogAlertCriteria({
-    this.callerOrResourceHealthOrServiceHealth,
+    this.detail,
     required this.category,
     this.level,
     this.operationName,
@@ -45,12 +45,11 @@ final class MonitorActivityLogAlertCriteria {
     this.resourceId,
     this.resourceProvider,
     this.resourceType,
-    this.statusOrStatuses,
+    this.status,
     this.sub,
   });
 
-  final MonitorActivityLogAlertCriteriaCallerOrResourceHealthOrServiceHealth?
-  callerOrResourceHealthOrServiceHealth;
+  final MonitorActivityLogAlertDetail? detail;
 
   final MonitorActivityLogAlertCategory category;
 
@@ -72,13 +71,13 @@ final class MonitorActivityLogAlertCriteria {
 
   final MonitorActivityLogAlertResourceType? resourceType;
 
-  final MonitorActivityLogAlertCriteriaStatusOrStatuses? statusOrStatuses;
+  final MonitorActivityLogAlertStatus? status;
 
   final MonitorActivityLogAlertSub? sub;
 
   @internal
   Map<String, Object?> encode() => {
-    ...?callerOrResourceHealthOrServiceHealth?.encode(),
+    ...?detail?.encode(),
     'category': category.toTfJson(),
     ...?level?.encode(),
     'operation_name': ?operationName?.toTfJson(),
@@ -89,7 +88,7 @@ final class MonitorActivityLogAlertCriteria {
     ...?resourceId?.encode(),
     ...?resourceProvider?.encode(),
     ...?resourceType?.encode(),
-    ...?statusOrStatuses?.encode(),
+    ...?status?.encode(),
     ...?sub?.encode(),
   };
 }
@@ -99,23 +98,22 @@ final class MonitorActivityLogAlertCriteria {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.caller(...)`.
-sealed class MonitorActivityLogAlertCriteriaCallerOrResourceHealthOrServiceHealth {
-  const MonitorActivityLogAlertCriteriaCallerOrResourceHealthOrServiceHealth();
+sealed class MonitorActivityLogAlertDetail {
+  const MonitorActivityLogAlertDetail();
 
   /// Sets `caller`.
-  const factory MonitorActivityLogAlertCriteriaCallerOrResourceHealthOrServiceHealth.caller(
-    TfArg<String> caller,
-  ) = MonitorActivityLogAlertCriteriaCallerOrResourceHealthOrServiceHealthCaller;
+  const factory MonitorActivityLogAlertDetail.caller(TfArg<String> caller) =
+      MonitorActivityLogAlertDetailCaller;
 
   /// Sets `resource_health`.
-  const factory MonitorActivityLogAlertCriteriaCallerOrResourceHealthOrServiceHealth.resourceHealth(
+  const factory MonitorActivityLogAlertDetail.resourceHealth(
     MonitorActivityLogAlertResourceHealth resourceHealth,
-  ) = MonitorActivityLogAlertCriteriaCallerOrResourceHealthOrServiceHealthResourceHealth;
+  ) = MonitorActivityLogAlertDetailResourceHealth;
 
   /// Sets `service_health`.
-  const factory MonitorActivityLogAlertCriteriaCallerOrResourceHealthOrServiceHealth.serviceHealth(
+  const factory MonitorActivityLogAlertDetail.serviceHealth(
     MonitorActivityLogAlertServiceHealth serviceHealth,
-  ) = MonitorActivityLogAlertCriteriaCallerOrResourceHealthOrServiceHealthChoice;
+  ) = MonitorActivityLogAlertDetailServiceHealth;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -125,13 +123,10 @@ sealed class MonitorActivityLogAlertCriteriaCallerOrResourceHealthOrServiceHealt
   Map<String, Object?> encode();
 }
 
-/// The [MonitorActivityLogAlertCriteriaCallerOrResourceHealthOrServiceHealth.caller] choice: sets `caller`.
-final class MonitorActivityLogAlertCriteriaCallerOrResourceHealthOrServiceHealthCaller
-    extends
-        MonitorActivityLogAlertCriteriaCallerOrResourceHealthOrServiceHealth {
-  const MonitorActivityLogAlertCriteriaCallerOrResourceHealthOrServiceHealthCaller(
-    this.caller,
-  );
+/// The [MonitorActivityLogAlertDetail.caller] choice: sets `caller`.
+final class MonitorActivityLogAlertDetailCaller
+    extends MonitorActivityLogAlertDetail {
+  const MonitorActivityLogAlertDetailCaller(this.caller);
 
   final TfArg<String> caller;
 
@@ -144,13 +139,10 @@ final class MonitorActivityLogAlertCriteriaCallerOrResourceHealthOrServiceHealth
   Map<String, Object?> encode() => {'caller': caller.toTfJson()};
 }
 
-/// The [MonitorActivityLogAlertCriteriaCallerOrResourceHealthOrServiceHealth.resourceHealth] choice: sets `resource_health`.
-final class MonitorActivityLogAlertCriteriaCallerOrResourceHealthOrServiceHealthResourceHealth
-    extends
-        MonitorActivityLogAlertCriteriaCallerOrResourceHealthOrServiceHealth {
-  const MonitorActivityLogAlertCriteriaCallerOrResourceHealthOrServiceHealthResourceHealth(
-    this.resourceHealth,
-  );
+/// The [MonitorActivityLogAlertDetail.resourceHealth] choice: sets `resource_health`.
+final class MonitorActivityLogAlertDetailResourceHealth
+    extends MonitorActivityLogAlertDetail {
+  const MonitorActivityLogAlertDetailResourceHealth(this.resourceHealth);
 
   final MonitorActivityLogAlertResourceHealth resourceHealth;
 
@@ -163,13 +155,10 @@ final class MonitorActivityLogAlertCriteriaCallerOrResourceHealthOrServiceHealth
   Map<String, Object?> encode() => {'resource_health': resourceHealth.encode()};
 }
 
-/// The [MonitorActivityLogAlertCriteriaCallerOrResourceHealthOrServiceHealth.serviceHealth] choice: sets `service_health`.
-final class MonitorActivityLogAlertCriteriaCallerOrResourceHealthOrServiceHealthChoice
-    extends
-        MonitorActivityLogAlertCriteriaCallerOrResourceHealthOrServiceHealth {
-  const MonitorActivityLogAlertCriteriaCallerOrResourceHealthOrServiceHealthChoice(
-    this.serviceHealth,
-  );
+/// The [MonitorActivityLogAlertDetail.serviceHealth] choice: sets `service_health`.
+final class MonitorActivityLogAlertDetailServiceHealth
+    extends MonitorActivityLogAlertDetail {
+  const MonitorActivityLogAlertDetailServiceHealth(this.serviceHealth);
 
   final MonitorActivityLogAlertServiceHealth serviceHealth;
 
@@ -487,18 +476,17 @@ final class MonitorActivityLogAlertResourceTypeResourceTypes
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.status(...)`.
-sealed class MonitorActivityLogAlertCriteriaStatusOrStatuses {
-  const MonitorActivityLogAlertCriteriaStatusOrStatuses();
+sealed class MonitorActivityLogAlertStatus {
+  const MonitorActivityLogAlertStatus();
 
   /// Sets `status`.
-  const factory MonitorActivityLogAlertCriteriaStatusOrStatuses.status(
-    TfArg<String> status,
-  ) = MonitorActivityLogAlertCriteriaStatusOrStatusesStatus;
+  const factory MonitorActivityLogAlertStatus.status(TfArg<String> status) =
+      MonitorActivityLogAlertStatusChoice;
 
   /// Sets `statuses`.
-  const factory MonitorActivityLogAlertCriteriaStatusOrStatuses.statuses(
+  const factory MonitorActivityLogAlertStatus.statuses(
     TfArg<List<String>> statuses,
-  ) = MonitorActivityLogAlertCriteriaStatusOrStatusesChoice;
+  ) = MonitorActivityLogAlertStatusStatuses;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -508,10 +496,10 @@ sealed class MonitorActivityLogAlertCriteriaStatusOrStatuses {
   Map<String, Object?> encode();
 }
 
-/// The [MonitorActivityLogAlertCriteriaStatusOrStatuses.status] choice: sets `status`.
-final class MonitorActivityLogAlertCriteriaStatusOrStatusesStatus
-    extends MonitorActivityLogAlertCriteriaStatusOrStatuses {
-  const MonitorActivityLogAlertCriteriaStatusOrStatusesStatus(this.status);
+/// The [MonitorActivityLogAlertStatus.status] choice: sets `status`.
+final class MonitorActivityLogAlertStatusChoice
+    extends MonitorActivityLogAlertStatus {
+  const MonitorActivityLogAlertStatusChoice(this.status);
 
   final TfArg<String> status;
 
@@ -524,10 +512,10 @@ final class MonitorActivityLogAlertCriteriaStatusOrStatusesStatus
   Map<String, Object?> encode() => {'status': status.toTfJson()};
 }
 
-/// The [MonitorActivityLogAlertCriteriaStatusOrStatuses.statuses] choice: sets `statuses`.
-final class MonitorActivityLogAlertCriteriaStatusOrStatusesChoice
-    extends MonitorActivityLogAlertCriteriaStatusOrStatuses {
-  const MonitorActivityLogAlertCriteriaStatusOrStatusesChoice(this.statuses);
+/// The [MonitorActivityLogAlertStatus.statuses] choice: sets `statuses`.
+final class MonitorActivityLogAlertStatusStatuses
+    extends MonitorActivityLogAlertStatus {
+  const MonitorActivityLogAlertStatusStatuses(this.statuses);
 
   final TfArg<List<String>> statuses;
 

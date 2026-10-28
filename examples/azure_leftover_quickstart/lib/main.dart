@@ -183,7 +183,7 @@ final class AzureLeftoverStack extends Stack {
         'api_management_api_schema',
         apiManagementName: .literal(leftover),
         apiName: .literal(leftover),
-        componentsOrDefinitionsOrValue: .components(.literal(leftover)),
+        document: .components(.literal(leftover)),
         contentType: .literal(leftover),
         resourceGroupName: .literal(resourceGroupName),
         schemaId: .literal('leftover'),
@@ -252,7 +252,7 @@ final class AzureLeftoverStack extends Stack {
       AzurermApiManagementCertificate(
         'api_management_certificate',
         apiManagementName: .literal(leftover),
-        dataOrKeyVaultSecretId: .data(leftoverSecret),
+        source: .data(leftoverSecret),
         name: .literal(leftover),
         resourceGroupName: .literal(resourceGroupName),
       ),
@@ -437,7 +437,7 @@ final class AzureLeftoverStack extends Stack {
         displayName: .literal(leftover),
         name: .literal(leftover),
         resourceGroupName: .literal(resourceGroupName),
-        valueOrValueFromKeyVault: .value(leftoverSecret),
+        source: .value(leftoverSecret),
       ),
     );
 
@@ -620,9 +620,7 @@ final class AzureLeftoverStack extends Stack {
         apiManagementWorkspaceId: .literal(
           '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceName/workspaces/workspaceId',
         ),
-        certificateDataBase64OrKeyVaultSecretId: .certificateDataBase64(
-          leftoverSecret,
-        ),
+        source: .certificateDataBase64(leftoverSecret),
         name: .literal(leftover),
       ),
     );
@@ -635,7 +633,7 @@ final class AzureLeftoverStack extends Stack {
         ),
         displayName: .literal(leftover),
         name: .literal(leftover),
-        valueOrValueFromKeyVault: .value(leftoverSecret),
+        source: .value(leftoverSecret),
       ),
     );
 
@@ -984,10 +982,9 @@ final class AzureLeftoverStack extends Stack {
         ),
         name: .literal(leftover),
         namespace: .literal(leftover),
-        blobStorageOrBucketOrGitRepository: .blobStorage(
+        source: .blobStorage(
           .new(
-            accountKeyOrLocalAuthReferenceOrSasTokenOrServicePrincipal:
-                .accountKey(leftoverSecret),
+            credentials: .accountKey(leftoverSecret),
             containerId: .literal(
               '/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover',
             ),
@@ -2905,9 +2902,7 @@ final class AzureLeftoverStack extends Stack {
     add(
       AzurermDataFactoryLinkedServiceSqlManagedInstance(
         'data_factory_linked_service_sql_managed_instance',
-        connectionStringOrKeyVaultConnectionString: .connectionString(
-          leftoverSecret,
-        ),
+        connectionString: .connectionString(leftoverSecret),
         dataFactoryId: .literal(
           '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataFactory/factories/factoryName',
         ),
@@ -3704,7 +3699,7 @@ final class AzureLeftoverStack extends Stack {
       AzurermDnsCnameRecord(
         'dns_cname_record',
         name: .literal(leftover),
-        recordOrTargetResourceId: .record(.literal(leftover)),
+        target: .record(.literal(leftover)),
         resourceGroupName: .literal(resourceGroupName),
         ttl: .literal(200),
         zoneName: .literal(leftover),
@@ -5057,10 +5052,9 @@ final class AzureLeftoverStack extends Stack {
         ),
         name: .literal(leftover),
         namespace: .literal(leftover),
-        blobStorageOrBucketOrGitRepository: .blobStorage(
+        source: .blobStorage(
           .new(
-            accountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipal:
-                .accountKey(leftoverSecret),
+            credentials: .accountKey(leftoverSecret),
             containerId: .literal(
               '/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover',
             ),
@@ -5102,7 +5096,7 @@ final class AzureLeftoverStack extends Stack {
         clusterId: .literal(
           '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterValue',
         ),
-        keyVaultIdOrManagedHsmKeyId: .keyVaultId(
+        keyIdentifier: .keyVaultId(
           .literal(
             '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.KeyVault/vaults/vaultValue',
           ),
@@ -5228,7 +5222,7 @@ final class AzureLeftoverStack extends Stack {
           '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Kusto/clusters/clusterValue/databases/databaseValue',
         ),
         name: .literal(leftover),
-        scriptContentOrUrl: .scriptContent(leftoverSecret),
+        content: .scriptContent(leftoverSecret),
       ),
     );
 
@@ -5392,7 +5386,7 @@ final class AzureLeftoverStack extends Stack {
     add(
       AzurermLocalNetworkGateway(
         'local_network_gateway',
-        gatewayAddressOrGatewayFqdn: .gatewayAddress(.literal(leftover)),
+        address: .gatewayAddress(.literal(leftover)),
         location: .literal(location),
         name: .literal(leftover),
         resourceGroupName: .literal(resourceGroupName),
@@ -5708,7 +5702,7 @@ final class AzureLeftoverStack extends Stack {
     add(
       AzurermMachineLearningDatastoreFileshare(
         'machine_learning_datastore_fileshare',
-        accountKeyOrSharedAccessSignature: .accountKey(leftoverSecret),
+        credentials: .accountKey(leftoverSecret),
         name: .literal(leftover),
         storageFileshareId: .literal(
           '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/storageAccountName/fileServices/default/shares/shareName',
@@ -6984,9 +6978,7 @@ final class AzureLeftoverStack extends Stack {
     add(
       AzurermNetworkManagerIpamPoolStaticCidr(
         'network_manager_ipam_pool_static_cidr',
-        addressPrefixesOrNumberOfIpAddressesToAllocate: .addressPrefixes(
-          .literal(['10.0.0.0/24']),
-        ),
+        allocation: .addressPrefixes(.literal(['10.0.0.0/24'])),
         ipamPoolId: .literal(
           '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/networkManagers/networkManagerName/ipamPools/ipamPoolName',
         ),
@@ -7144,9 +7136,7 @@ final class AzureLeftoverStack extends Stack {
     add(
       AzurermNetworkSecurityPerimeterAccessRule(
         'network_security_perimeter_access_rule',
-        addressPrefixesOrFqdnsOrServiceTagsOrSubscriptionIds: .addressPrefixes(
-          .literal(['10.0.0.0/24']),
-        ),
+        source: .addressPrefixes(.literal(['10.0.0.0/24'])),
         direction: .inbound,
         name: .literal(leftover),
         networkSecurityPerimeterProfileId: .literal(
@@ -7256,7 +7246,7 @@ final class AzureLeftoverStack extends Stack {
         nginxDeploymentId: .literal(
           '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Nginx.NginxPlus/nginxDeployments/nginxDeploymentName',
         ),
-        configFileOrPackageData: .configFile([
+        content: .configFile([
           .new(content: leftoverSecret, virtualPath: .literal(leftover)),
         ]),
         rootFile: .literal(leftover),
@@ -7968,8 +7958,7 @@ final class AzureLeftoverStack extends Stack {
     add(
       AzurermPrivateLinkService(
         'private_link_service',
-        destinationIpAddressOrLoadBalancerFrontendIpConfigurationIds:
-            .destinationIpAddress(.literal('10.0.0.1')),
+        destination: .destinationIpAddress(.literal('10.0.0.1')),
         location: .literal(location),
         name: .literal(leftover),
         resourceGroupName: .literal(resourceGroupName),
@@ -8456,7 +8445,7 @@ final class AzureLeftoverStack extends Stack {
     add(
       AzurermSentinelAlertRuleAnomalyBuiltIn(
         'sentinel_alert_rule_anomaly_built_in',
-        displayNameOrName: .displayName(.literal(leftover)),
+        identifier: .displayName(.literal(leftover)),
         enabled: .literal(true),
         logAnalyticsWorkspaceId: .literal(
           '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceName',
@@ -9450,7 +9439,7 @@ final class AzureLeftoverStack extends Stack {
           '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springName/applicationAccelerators/applicationAcceleratorName',
         ),
         gitRepository: SpringCloudCustomizedAcceleratorGitRepository(
-          branchOrCommitOrGitTag: .branch(.literal(leftover)),
+          reference: .branch(.literal(leftover)),
           url: .literal('https://example.com'),
         ),
       ),
@@ -10297,7 +10286,7 @@ final class AzureLeftoverStack extends Stack {
     add(
       AzurermSubnet(
         'subnet',
-        addressPrefixesOrIpAddressPool: .addressPrefixes(.literal([leftover])),
+        addressing: .addressPrefixes(.literal([leftover])),
         name: .literal(leftover),
         resourceGroupName: .literal(resourceGroupName),
         virtualNetworkName: .literal(leftover),
@@ -10430,7 +10419,7 @@ final class AzureLeftoverStack extends Stack {
       AzurermSynapseSparkPool(
         'synapse_spark_pool',
         name: .literal(leftover),
-        autoScaleOrNodeCount: .autoScale(
+        scale: .autoScale(
           .new(maxNodeCount: .literal(200), minNodeCount: .literal(200)),
         ),
         nodeSize: .large,
@@ -11001,7 +10990,7 @@ final class AzureLeftoverStack extends Stack {
           '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachines/virtualMachineValue',
         ),
         source: VirtualMachineRunCommandSource(
-          commandIdOrScriptOrScriptUri: .commandId(
+          command: .commandId(
             .literal(
               '/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover',
             ),
@@ -11079,7 +11068,7 @@ final class AzureLeftoverStack extends Stack {
     add(
       AzurermVirtualNetwork(
         'virtual_network',
-        addressSpaceOrIpAddressPool: .addressSpace(.literal([leftover])),
+        addressing: .addressSpace(.literal([leftover])),
         location: .literal(location),
         name: .literal(leftover),
         resourceGroupName: .literal(resourceGroupName),

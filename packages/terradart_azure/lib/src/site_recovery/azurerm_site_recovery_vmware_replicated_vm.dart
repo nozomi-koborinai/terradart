@@ -93,18 +93,18 @@ extension type const SiteRecoveryVmwareReplicatedVmLicenseType._(
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.defaultLogStorageAccountId(...)`.
-sealed class SiteRecoveryVmwareReplicatedVmDefaultLogStorageAccountIdOrManagedDisk {
-  const SiteRecoveryVmwareReplicatedVmDefaultLogStorageAccountIdOrManagedDisk();
+sealed class SiteRecoveryVmwareReplicatedVmDiskReplication {
+  const SiteRecoveryVmwareReplicatedVmDiskReplication();
 
   /// Sets `default_log_storage_account_id`.
-  const factory SiteRecoveryVmwareReplicatedVmDefaultLogStorageAccountIdOrManagedDisk.defaultLogStorageAccountId(
+  const factory SiteRecoveryVmwareReplicatedVmDiskReplication.defaultLogStorageAccountId(
     TfArg<String> defaultLogStorageAccountId,
-  ) = SiteRecoveryVmwareReplicatedVmDefaultLogStorageAccountIdOrManagedDiskDefaultLogStorageAccountId;
+  ) = SiteRecoveryVmwareReplicatedVmDiskReplicationDefaultLogStorageAccountId;
 
   /// Sets `managed_disk`.
-  const factory SiteRecoveryVmwareReplicatedVmDefaultLogStorageAccountIdOrManagedDisk.managedDisk(
+  const factory SiteRecoveryVmwareReplicatedVmDiskReplication.managedDisk(
     List<SiteRecoveryVmwareReplicatedVmManagedDisk> managedDisk,
-  ) = SiteRecoveryVmwareReplicatedVmDefaultLogStorageAccountIdOrManagedDiskChoice;
+  ) = SiteRecoveryVmwareReplicatedVmDiskReplicationManagedDisk;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -119,11 +119,10 @@ sealed class SiteRecoveryVmwareReplicatedVmDefaultLogStorageAccountIdOrManagedDi
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [SiteRecoveryVmwareReplicatedVmDefaultLogStorageAccountIdOrManagedDisk.defaultLogStorageAccountId] choice: sets `default_log_storage_account_id`.
-final class SiteRecoveryVmwareReplicatedVmDefaultLogStorageAccountIdOrManagedDiskDefaultLogStorageAccountId
-    extends
-        SiteRecoveryVmwareReplicatedVmDefaultLogStorageAccountIdOrManagedDisk {
-  const SiteRecoveryVmwareReplicatedVmDefaultLogStorageAccountIdOrManagedDiskDefaultLogStorageAccountId(
+/// The [SiteRecoveryVmwareReplicatedVmDiskReplication.defaultLogStorageAccountId] choice: sets `default_log_storage_account_id`.
+final class SiteRecoveryVmwareReplicatedVmDiskReplicationDefaultLogStorageAccountId
+    extends SiteRecoveryVmwareReplicatedVmDiskReplication {
+  const SiteRecoveryVmwareReplicatedVmDiskReplicationDefaultLogStorageAccountId(
     this.defaultLogStorageAccountId,
   );
 
@@ -146,11 +145,10 @@ final class SiteRecoveryVmwareReplicatedVmDefaultLogStorageAccountIdOrManagedDis
   };
 }
 
-/// The [SiteRecoveryVmwareReplicatedVmDefaultLogStorageAccountIdOrManagedDisk.managedDisk] choice: sets `managed_disk`.
-final class SiteRecoveryVmwareReplicatedVmDefaultLogStorageAccountIdOrManagedDiskChoice
-    extends
-        SiteRecoveryVmwareReplicatedVmDefaultLogStorageAccountIdOrManagedDisk {
-  const SiteRecoveryVmwareReplicatedVmDefaultLogStorageAccountIdOrManagedDiskChoice(
+/// The [SiteRecoveryVmwareReplicatedVmDiskReplication.managedDisk] choice: sets `managed_disk`.
+final class SiteRecoveryVmwareReplicatedVmDiskReplicationManagedDisk
+    extends SiteRecoveryVmwareReplicatedVmDiskReplication {
+  const SiteRecoveryVmwareReplicatedVmDiskReplicationManagedDisk(
     this.managedDisk,
   );
 
@@ -317,8 +315,7 @@ final class AzurermSiteRecoveryVmwareReplicatedVm extends Resource {
   AzurermSiteRecoveryVmwareReplicatedVm(
     super.localName, {
     required TfArg<String> applianceName,
-    required SiteRecoveryVmwareReplicatedVmDefaultLogStorageAccountIdOrManagedDisk
-    defaultLogStorageAccountIdOrManagedDisk,
+    required SiteRecoveryVmwareReplicatedVmDiskReplication diskReplication,
     SiteRecoveryVmwareReplicatedVmDefaultRecoveryDiskType?
     defaultRecoveryDiskType,
     TfArg<String>? defaultTargetDiskEncryptionSetId,
@@ -346,7 +343,7 @@ final class AzurermSiteRecoveryVmwareReplicatedVm extends Resource {
          terraformType: tfType,
          argMap: {
            'appliance_name': applianceName,
-           ...defaultLogStorageAccountIdOrManagedDisk.argMap,
+           ...diskReplication.argMap,
            'default_recovery_disk_type': ?defaultRecoveryDiskType,
            'default_target_disk_encryption_set_id':
                ?defaultTargetDiskEncryptionSetId,

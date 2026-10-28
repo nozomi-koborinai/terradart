@@ -114,9 +114,9 @@ export 'src/network/azurerm_custom_ip_prefix.dart' show AzurermCustomIpPrefix;
 export 'src/network/azurerm_local_network_gateway.dart'
     show
         AzurermLocalNetworkGateway,
-        LocalNetworkGatewayAddressOrGatewayFqdn,
-        LocalNetworkGatewayAddressOrGatewayFqdnChoice,
-        LocalNetworkGatewayAddressOrGatewayFqdnGatewayAddress,
+        LocalNetworkGatewayAddress,
+        LocalNetworkGatewayAddressChoice,
+        LocalNetworkGatewayAddressGatewayFqdn,
         LocalNetworkGatewayBgpSettings;
 export 'src/network/azurerm_network_connection_monitor.dart'
     show
@@ -188,9 +188,9 @@ export 'src/network/azurerm_network_manager_ipam_pool.dart'
 export 'src/network/azurerm_network_manager_ipam_pool_static_cidr.dart'
     show
         AzurermNetworkManagerIpamPoolStaticCidr,
-        NetworkManagerIpamPoolStaticCidrAddressPrefixesOrNumberOfIpAddressesToAllocate,
-        NetworkManagerIpamPoolStaticCidrAddressPrefixesOrNumberOfIpAddressesToAllocateAddressPrefixes,
-        NetworkManagerIpamPoolStaticCidrAddressPrefixesOrNumberOfIpAddressesToAllocateChoice;
+        NetworkManagerIpamPoolStaticCidrAllocation,
+        NetworkManagerIpamPoolStaticCidrAllocationAddressPrefixes,
+        NetworkManagerIpamPoolStaticCidrAllocationNumberOfIpAddressesToAllocate;
 export 'src/network/azurerm_network_manager_management_group_connection.dart'
     show AzurermNetworkManagerManagementGroupConnection;
 export 'src/network/azurerm_network_manager_network_group.dart'
@@ -239,12 +239,12 @@ export 'src/network/azurerm_network_security_perimeter.dart'
 export 'src/network/azurerm_network_security_perimeter_access_rule.dart'
     show
         AzurermNetworkSecurityPerimeterAccessRule,
-        NetworkSecurityPerimeterAccessRuleAddressPrefixesOrFqdnsOrServiceTagsOrSubscriptionIds,
-        NetworkSecurityPerimeterAccessRuleAddressPrefixesOrFqdnsOrServiceTagsOrSubscriptionIdsAddressPrefixes,
-        NetworkSecurityPerimeterAccessRuleAddressPrefixesOrFqdnsOrServiceTagsOrSubscriptionIdsChoice,
-        NetworkSecurityPerimeterAccessRuleAddressPrefixesOrFqdnsOrServiceTagsOrSubscriptionIdsFqdns,
-        NetworkSecurityPerimeterAccessRuleAddressPrefixesOrFqdnsOrServiceTagsOrSubscriptionIdsServiceTags,
-        NetworkSecurityPerimeterAccessRuleDirection;
+        NetworkSecurityPerimeterAccessRuleDirection,
+        NetworkSecurityPerimeterAccessRuleSource,
+        NetworkSecurityPerimeterAccessRuleSourceAddressPrefixes,
+        NetworkSecurityPerimeterAccessRuleSourceFqdns,
+        NetworkSecurityPerimeterAccessRuleSourceServiceTags,
+        NetworkSecurityPerimeterAccessRuleSourceSubscriptionIds;
 export 'src/network/azurerm_network_security_perimeter_association.dart'
     show
         AzurermNetworkSecurityPerimeterAssociation,
@@ -298,9 +298,9 @@ export 'src/network/azurerm_private_endpoint_application_security_group_associat
 export 'src/network/azurerm_private_link_service.dart'
     show
         AzurermPrivateLinkService,
-        PrivateLinkServiceDestinationIpAddressOrLoadBalancerFrontendIpConfigurationIds,
-        PrivateLinkServiceDestinationIpAddressOrLoadBalancerFrontendIpConfigurationIdsChoice,
-        PrivateLinkServiceDestinationIpAddressOrLoadBalancerFrontendIpConfigurationIdsDestinationIpAddress,
+        PrivateLinkServiceDestination,
+        PrivateLinkServiceDestinationIpAddress,
+        PrivateLinkServiceDestinationLoadBalancerFrontendIpConfigurationIds,
         PrivateLinkServiceNatIpConfiguration;
 export 'src/network/azurerm_public_ip.dart'
     show
@@ -320,9 +320,9 @@ export 'src/network/azurerm_public_ip_prefix.dart'
 export 'src/network/azurerm_virtual_network.dart'
     show
         AzurermVirtualNetwork,
-        VirtualNetworkAddressSpaceOrIpAddressPool,
-        VirtualNetworkAddressSpaceOrIpAddressPoolAddressSpace,
-        VirtualNetworkAddressSpaceOrIpAddressPoolChoice,
+        VirtualNetworkAddressing,
+        VirtualNetworkAddressingAddressSpace,
+        VirtualNetworkAddressingIpAddressPool,
         VirtualNetworkDdosProtectionPlan,
         VirtualNetworkEncryption,
         VirtualNetworkEnforcement,

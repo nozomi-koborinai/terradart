@@ -37,18 +37,17 @@ extension type const AppServiceCertificateOrderProductType._(TfArg<String> _)
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.csr(...)`.
-sealed class AppServiceCertificateOrderCsrOrDistinguishedName {
-  const AppServiceCertificateOrderCsrOrDistinguishedName();
+sealed class AppServiceCertificateOrderRequest {
+  const AppServiceCertificateOrderRequest();
 
   /// Sets `csr`.
-  const factory AppServiceCertificateOrderCsrOrDistinguishedName.csr(
-    TfArg<String> csr,
-  ) = AppServiceCertificateOrderCsrOrDistinguishedNameCsr;
+  const factory AppServiceCertificateOrderRequest.csr(TfArg<String> csr) =
+      AppServiceCertificateOrderRequestCsr;
 
   /// Sets `distinguished_name`.
-  const factory AppServiceCertificateOrderCsrOrDistinguishedName.distinguishedName(
+  const factory AppServiceCertificateOrderRequest.distinguishedName(
     TfArg<String> distinguishedName,
-  ) = AppServiceCertificateOrderCsrOrDistinguishedNameChoice;
+  ) = AppServiceCertificateOrderRequestDistinguishedName;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -63,10 +62,10 @@ sealed class AppServiceCertificateOrderCsrOrDistinguishedName {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [AppServiceCertificateOrderCsrOrDistinguishedName.csr] choice: sets `csr`.
-final class AppServiceCertificateOrderCsrOrDistinguishedNameCsr
-    extends AppServiceCertificateOrderCsrOrDistinguishedName {
-  const AppServiceCertificateOrderCsrOrDistinguishedNameCsr(this.csr);
+/// The [AppServiceCertificateOrderRequest.csr] choice: sets `csr`.
+final class AppServiceCertificateOrderRequestCsr
+    extends AppServiceCertificateOrderRequest {
+  const AppServiceCertificateOrderRequestCsr(this.csr);
 
   final TfArg<String> csr;
 
@@ -83,10 +82,10 @@ final class AppServiceCertificateOrderCsrOrDistinguishedNameCsr
   Map<String, TfArg<Object?>> get argMap => {'csr': csr};
 }
 
-/// The [AppServiceCertificateOrderCsrOrDistinguishedName.distinguishedName] choice: sets `distinguished_name`.
-final class AppServiceCertificateOrderCsrOrDistinguishedNameChoice
-    extends AppServiceCertificateOrderCsrOrDistinguishedName {
-  const AppServiceCertificateOrderCsrOrDistinguishedNameChoice(
+/// The [AppServiceCertificateOrderRequest.distinguishedName] choice: sets `distinguished_name`.
+final class AppServiceCertificateOrderRequestDistinguishedName
+    extends AppServiceCertificateOrderRequest {
+  const AppServiceCertificateOrderRequestDistinguishedName(
     this.distinguishedName,
   );
 
@@ -116,7 +115,7 @@ final class AzurermAppServiceCertificateOrder extends Resource {
   AzurermAppServiceCertificateOrder(
     super.localName, {
     TfArg<bool>? autoRenew,
-    AppServiceCertificateOrderCsrOrDistinguishedName? csrOrDistinguishedName,
+    AppServiceCertificateOrderRequest? request,
     TfArg<num>? keySize,
     required TfArg<String> location,
     required TfArg<String> name,
@@ -132,7 +131,7 @@ final class AzurermAppServiceCertificateOrder extends Resource {
          terraformType: tfType,
          argMap: {
            'auto_renew': ?autoRenew,
-           ...?csrOrDistinguishedName?.argMap,
+           ...?request?.argMap,
            'key_size': ?keySize,
            'location': location,
            'name': name,

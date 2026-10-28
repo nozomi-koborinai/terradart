@@ -117,18 +117,18 @@ extension type const ServiceFabricClusterVmssZonalUpgradeMode._(TfArg<String> _)
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.certificate(...)`.
-sealed class ServiceFabricClusterCertificateOrCertificateCommonNames {
-  const ServiceFabricClusterCertificateOrCertificateCommonNames();
+sealed class ServiceFabricClusterCertificates {
+  const ServiceFabricClusterCertificates();
 
   /// Sets `certificate`.
-  const factory ServiceFabricClusterCertificateOrCertificateCommonNames.certificate(
+  const factory ServiceFabricClusterCertificates.certificate(
     ServiceFabricClusterCertificate certificate,
-  ) = ServiceFabricClusterCertificateOrCertificateCommonNamesCertificate;
+  ) = ServiceFabricClusterCertificatesCertificate;
 
   /// Sets `certificate_common_names`.
-  const factory ServiceFabricClusterCertificateOrCertificateCommonNames.certificateCommonNames(
+  const factory ServiceFabricClusterCertificates.certificateCommonNames(
     ServiceFabricClusterCertificateCommonNames certificateCommonNames,
-  ) = ServiceFabricClusterCertificateOrCertificateCommonNamesChoice;
+  ) = ServiceFabricClusterCertificatesCertificateCommonNames;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -143,12 +143,10 @@ sealed class ServiceFabricClusterCertificateOrCertificateCommonNames {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [ServiceFabricClusterCertificateOrCertificateCommonNames.certificate] choice: sets `certificate`.
-final class ServiceFabricClusterCertificateOrCertificateCommonNamesCertificate
-    extends ServiceFabricClusterCertificateOrCertificateCommonNames {
-  const ServiceFabricClusterCertificateOrCertificateCommonNamesCertificate(
-    this.certificate,
-  );
+/// The [ServiceFabricClusterCertificates.certificate] choice: sets `certificate`.
+final class ServiceFabricClusterCertificatesCertificate
+    extends ServiceFabricClusterCertificates {
+  const ServiceFabricClusterCertificatesCertificate(this.certificate);
 
   final ServiceFabricClusterCertificate certificate;
 
@@ -167,10 +165,10 @@ final class ServiceFabricClusterCertificateOrCertificateCommonNamesCertificate
   };
 }
 
-/// The [ServiceFabricClusterCertificateOrCertificateCommonNames.certificateCommonNames] choice: sets `certificate_common_names`.
-final class ServiceFabricClusterCertificateOrCertificateCommonNamesChoice
-    extends ServiceFabricClusterCertificateOrCertificateCommonNames {
-  const ServiceFabricClusterCertificateOrCertificateCommonNamesChoice(
+/// The [ServiceFabricClusterCertificates.certificateCommonNames] choice: sets `certificate_common_names`.
+final class ServiceFabricClusterCertificatesCertificateCommonNames
+    extends ServiceFabricClusterCertificates {
+  const ServiceFabricClusterCertificatesCertificateCommonNames(
     this.certificateCommonNames,
   );
 
@@ -198,19 +196,19 @@ final class ServiceFabricClusterCertificateOrCertificateCommonNamesChoice
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.reverseProxyCertificate(...)`.
-sealed class ServiceFabricClusterReverseProxyCertificateOrReverseProxyCertificateCommonNames {
-  const ServiceFabricClusterReverseProxyCertificateOrReverseProxyCertificateCommonNames();
+sealed class ServiceFabricClusterReverseProxyCertificates {
+  const ServiceFabricClusterReverseProxyCertificates();
 
   /// Sets `reverse_proxy_certificate`.
-  const factory ServiceFabricClusterReverseProxyCertificateOrReverseProxyCertificateCommonNames.reverseProxyCertificate(
+  const factory ServiceFabricClusterReverseProxyCertificates.reverseProxyCertificate(
     ServiceFabricClusterReverseProxyCertificate reverseProxyCertificate,
-  ) = ServiceFabricClusterReverseProxyCertificateOrReverseProxyCertificateCommonNamesReverseProxyCertificate;
+  ) = ServiceFabricClusterReverseProxyCertificatesReverseProxyCertificate;
 
   /// Sets `reverse_proxy_certificate_common_names`.
-  const factory ServiceFabricClusterReverseProxyCertificateOrReverseProxyCertificateCommonNames.reverseProxyCertificateCommonNames(
+  const factory ServiceFabricClusterReverseProxyCertificates.reverseProxyCertificateCommonNames(
     ServiceFabricClusterReverseProxyCertificateCommonNames
     reverseProxyCertificateCommonNames,
-  ) = ServiceFabricClusterReverseProxyCertificateOrReverseProxyCertificateCommonNamesChoice;
+  ) = ServiceFabricClusterReverseProxyCertificatesReverseProxyCertificateCommonNames;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -225,11 +223,10 @@ sealed class ServiceFabricClusterReverseProxyCertificateOrReverseProxyCertificat
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [ServiceFabricClusterReverseProxyCertificateOrReverseProxyCertificateCommonNames.reverseProxyCertificate] choice: sets `reverse_proxy_certificate`.
-final class ServiceFabricClusterReverseProxyCertificateOrReverseProxyCertificateCommonNamesReverseProxyCertificate
-    extends
-        ServiceFabricClusterReverseProxyCertificateOrReverseProxyCertificateCommonNames {
-  const ServiceFabricClusterReverseProxyCertificateOrReverseProxyCertificateCommonNamesReverseProxyCertificate(
+/// The [ServiceFabricClusterReverseProxyCertificates.reverseProxyCertificate] choice: sets `reverse_proxy_certificate`.
+final class ServiceFabricClusterReverseProxyCertificatesReverseProxyCertificate
+    extends ServiceFabricClusterReverseProxyCertificates {
+  const ServiceFabricClusterReverseProxyCertificatesReverseProxyCertificate(
     this.reverseProxyCertificate,
   );
 
@@ -254,11 +251,10 @@ final class ServiceFabricClusterReverseProxyCertificateOrReverseProxyCertificate
   };
 }
 
-/// The [ServiceFabricClusterReverseProxyCertificateOrReverseProxyCertificateCommonNames.reverseProxyCertificateCommonNames] choice: sets `reverse_proxy_certificate_common_names`.
-final class ServiceFabricClusterReverseProxyCertificateOrReverseProxyCertificateCommonNamesChoice
-    extends
-        ServiceFabricClusterReverseProxyCertificateOrReverseProxyCertificateCommonNames {
-  const ServiceFabricClusterReverseProxyCertificateOrReverseProxyCertificateCommonNamesChoice(
+/// The [ServiceFabricClusterReverseProxyCertificates.reverseProxyCertificateCommonNames] choice: sets `reverse_proxy_certificate_common_names`.
+final class ServiceFabricClusterReverseProxyCertificatesReverseProxyCertificateCommonNames
+    extends ServiceFabricClusterReverseProxyCertificates {
+  const ServiceFabricClusterReverseProxyCertificatesReverseProxyCertificateCommonNames(
     this.reverseProxyCertificateCommonNames,
   );
 
@@ -762,8 +758,7 @@ final class AzurermServiceFabricCluster extends Resource {
     required TfArg<String> vmImage,
     ServiceFabricClusterVmssZonalUpgradeMode? vmssZonalUpgradeMode,
     ServiceFabricClusterAzureActiveDirectory? azureActiveDirectory,
-    ServiceFabricClusterCertificateOrCertificateCommonNames?
-    certificateOrCertificateCommonNames,
+    ServiceFabricClusterCertificates? certificates,
     List<ServiceFabricClusterClientCertificateCommonName>?
     clientCertificateCommonName,
     List<ServiceFabricClusterClientCertificateThumbprint>?
@@ -771,8 +766,7 @@ final class AzurermServiceFabricCluster extends Resource {
     ServiceFabricClusterDiagnosticsConfig? diagnosticsConfig,
     List<ServiceFabricClusterFabricSettings>? fabricSettings,
     required List<ServiceFabricClusterNodeType> nodeType,
-    ServiceFabricClusterReverseProxyCertificateOrReverseProxyCertificateCommonNames?
-    reverseProxyCertificateOrReverseProxyCertificateCommonNames,
+    ServiceFabricClusterReverseProxyCertificates? reverseProxyCertificates,
     ServiceFabricClusterUpgradePolicy? upgradePolicy,
     super.lifecycle,
     super.dependsOn,
@@ -797,7 +791,7 @@ final class AzurermServiceFabricCluster extends Resource {
              'azure_active_directory': TfArg.literal(
                azureActiveDirectory.encode(),
              ),
-           ...?certificateOrCertificateCommonNames?.argMap,
+           ...?certificates?.argMap,
            if (clientCertificateCommonName != null)
              'client_certificate_common_name': TfArg.literal([
                for (final e in clientCertificateCommonName) e.encode(),
@@ -813,8 +807,7 @@ final class AzurermServiceFabricCluster extends Resource {
                for (final e in fabricSettings) e.encode(),
              ]),
            'node_type': TfArg.literal([for (final e in nodeType) e.encode()]),
-           ...?reverseProxyCertificateOrReverseProxyCertificateCommonNames
-               ?.argMap,
+           ...?reverseProxyCertificates?.argMap,
            if (upgradePolicy != null)
              'upgrade_policy': TfArg.literal(upgradePolicy.encode()),
          },

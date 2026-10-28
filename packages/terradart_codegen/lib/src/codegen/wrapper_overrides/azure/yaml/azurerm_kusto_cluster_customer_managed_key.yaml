@@ -4,3 +4,6 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 deriveExactlyOne: true
+
+sealedNames:
+  "key_vault_id, managed_hsm_key_id": key_identifier

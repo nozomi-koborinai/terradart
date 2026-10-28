@@ -4,3 +4,6 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 deriveExactlyOne: true
+
+sealedNames:
+  "certificate_data_base64, key_vault_secret_id": source

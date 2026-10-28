@@ -37,17 +37,17 @@ extension type const BackupPolicyFileShareBackupTier._(TfArg<String> _)
 final class BackupPolicyFileShareBackup {
   const BackupPolicyFileShareBackup({
     required this.frequency,
-    required this.hourlyOrTime,
+    required this.schedule,
   });
 
   final TfArg<String> frequency;
 
-  final BackupPolicyFileShareBackupHourlyOrTime hourlyOrTime;
+  final BackupPolicyFileShareSchedule schedule;
 
   @internal
   Map<String, Object?> encode() => {
     'frequency': frequency.toTfJson(),
-    ...hourlyOrTime.encode(),
+    ...schedule.encode(),
   };
 }
 
@@ -55,18 +55,17 @@ final class BackupPolicyFileShareBackup {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.hourly(...)`.
-sealed class BackupPolicyFileShareBackupHourlyOrTime {
-  const BackupPolicyFileShareBackupHourlyOrTime();
+sealed class BackupPolicyFileShareSchedule {
+  const BackupPolicyFileShareSchedule();
 
   /// Sets `hourly`.
-  const factory BackupPolicyFileShareBackupHourlyOrTime.hourly(
+  const factory BackupPolicyFileShareSchedule.hourly(
     BackupPolicyFileShareHourly hourly,
-  ) = BackupPolicyFileShareBackupHourlyOrTimeHourly;
+  ) = BackupPolicyFileShareScheduleHourly;
 
   /// Sets `time`.
-  const factory BackupPolicyFileShareBackupHourlyOrTime.time(
-    TfArg<String> time,
-  ) = BackupPolicyFileShareBackupHourlyOrTimeChoice;
+  const factory BackupPolicyFileShareSchedule.time(TfArg<String> time) =
+      BackupPolicyFileShareScheduleTime;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -76,10 +75,10 @@ sealed class BackupPolicyFileShareBackupHourlyOrTime {
   Map<String, Object?> encode();
 }
 
-/// The [BackupPolicyFileShareBackupHourlyOrTime.hourly] choice: sets `hourly`.
-final class BackupPolicyFileShareBackupHourlyOrTimeHourly
-    extends BackupPolicyFileShareBackupHourlyOrTime {
-  const BackupPolicyFileShareBackupHourlyOrTimeHourly(this.hourly);
+/// The [BackupPolicyFileShareSchedule.hourly] choice: sets `hourly`.
+final class BackupPolicyFileShareScheduleHourly
+    extends BackupPolicyFileShareSchedule {
+  const BackupPolicyFileShareScheduleHourly(this.hourly);
 
   final BackupPolicyFileShareHourly hourly;
 
@@ -92,10 +91,10 @@ final class BackupPolicyFileShareBackupHourlyOrTimeHourly
   Map<String, Object?> encode() => {'hourly': hourly.encode()};
 }
 
-/// The [BackupPolicyFileShareBackupHourlyOrTime.time] choice: sets `time`.
-final class BackupPolicyFileShareBackupHourlyOrTimeChoice
-    extends BackupPolicyFileShareBackupHourlyOrTime {
-  const BackupPolicyFileShareBackupHourlyOrTimeChoice(this.time);
+/// The [BackupPolicyFileShareSchedule.time] choice: sets `time`.
+final class BackupPolicyFileShareScheduleTime
+    extends BackupPolicyFileShareSchedule {
+  const BackupPolicyFileShareScheduleTime(this.time);
 
   final TfArg<String> time;
 

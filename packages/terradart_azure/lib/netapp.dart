@@ -35,9 +35,9 @@ export 'src/netapp/azurerm_netapp_account.dart'
 export 'src/netapp/azurerm_netapp_account_encryption.dart'
     show
         AzurermNetappAccountEncryption,
-        NetappAccountEncryptionSystemAssignedIdentityPrincipalIdOrUserAssignedIdentityId,
-        NetappAccountEncryptionSystemAssignedIdentityPrincipalIdOrUserAssignedIdentityIdChoice,
-        NetappAccountEncryptionSystemAssignedIdentityPrincipalIdOrUserAssignedIdentityIdSystemAssignedIdentityPrincipalId;
+        NetappAccountEncryptionIdentity,
+        NetappAccountEncryptionIdentitySystemAssignedIdentityPrincipalId,
+        NetappAccountEncryptionIdentityUserAssignedIdentityId;
 export 'src/netapp/azurerm_netapp_backup_policy.dart'
     show AzurermNetappBackupPolicy;
 export 'src/netapp/azurerm_netapp_backup_vault.dart'

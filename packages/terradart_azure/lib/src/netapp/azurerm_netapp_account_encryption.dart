@@ -12,18 +12,18 @@ const Set<String> _azurermNetappAccountEncryptionSensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.systemAssignedIdentityPrincipalId(...)`.
-sealed class NetappAccountEncryptionSystemAssignedIdentityPrincipalIdOrUserAssignedIdentityId {
-  const NetappAccountEncryptionSystemAssignedIdentityPrincipalIdOrUserAssignedIdentityId();
+sealed class NetappAccountEncryptionIdentity {
+  const NetappAccountEncryptionIdentity();
 
   /// Sets `system_assigned_identity_principal_id`.
-  const factory NetappAccountEncryptionSystemAssignedIdentityPrincipalIdOrUserAssignedIdentityId.systemAssignedIdentityPrincipalId(
+  const factory NetappAccountEncryptionIdentity.systemAssignedIdentityPrincipalId(
     TfArg<String> systemAssignedIdentityPrincipalId,
-  ) = NetappAccountEncryptionSystemAssignedIdentityPrincipalIdOrUserAssignedIdentityIdSystemAssignedIdentityPrincipalId;
+  ) = NetappAccountEncryptionIdentitySystemAssignedIdentityPrincipalId;
 
   /// Sets `user_assigned_identity_id`.
-  const factory NetappAccountEncryptionSystemAssignedIdentityPrincipalIdOrUserAssignedIdentityId.userAssignedIdentityId(
+  const factory NetappAccountEncryptionIdentity.userAssignedIdentityId(
     TfArg<String> userAssignedIdentityId,
-  ) = NetappAccountEncryptionSystemAssignedIdentityPrincipalIdOrUserAssignedIdentityIdChoice;
+  ) = NetappAccountEncryptionIdentityUserAssignedIdentityId;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -38,11 +38,10 @@ sealed class NetappAccountEncryptionSystemAssignedIdentityPrincipalIdOrUserAssig
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [NetappAccountEncryptionSystemAssignedIdentityPrincipalIdOrUserAssignedIdentityId.systemAssignedIdentityPrincipalId] choice: sets `system_assigned_identity_principal_id`.
-final class NetappAccountEncryptionSystemAssignedIdentityPrincipalIdOrUserAssignedIdentityIdSystemAssignedIdentityPrincipalId
-    extends
-        NetappAccountEncryptionSystemAssignedIdentityPrincipalIdOrUserAssignedIdentityId {
-  const NetappAccountEncryptionSystemAssignedIdentityPrincipalIdOrUserAssignedIdentityIdSystemAssignedIdentityPrincipalId(
+/// The [NetappAccountEncryptionIdentity.systemAssignedIdentityPrincipalId] choice: sets `system_assigned_identity_principal_id`.
+final class NetappAccountEncryptionIdentitySystemAssignedIdentityPrincipalId
+    extends NetappAccountEncryptionIdentity {
+  const NetappAccountEncryptionIdentitySystemAssignedIdentityPrincipalId(
     this.systemAssignedIdentityPrincipalId,
   );
 
@@ -66,11 +65,10 @@ final class NetappAccountEncryptionSystemAssignedIdentityPrincipalIdOrUserAssign
   };
 }
 
-/// The [NetappAccountEncryptionSystemAssignedIdentityPrincipalIdOrUserAssignedIdentityId.userAssignedIdentityId] choice: sets `user_assigned_identity_id`.
-final class NetappAccountEncryptionSystemAssignedIdentityPrincipalIdOrUserAssignedIdentityIdChoice
-    extends
-        NetappAccountEncryptionSystemAssignedIdentityPrincipalIdOrUserAssignedIdentityId {
-  const NetappAccountEncryptionSystemAssignedIdentityPrincipalIdOrUserAssignedIdentityIdChoice(
+/// The [NetappAccountEncryptionIdentity.userAssignedIdentityId] choice: sets `user_assigned_identity_id`.
+final class NetappAccountEncryptionIdentityUserAssignedIdentityId
+    extends NetappAccountEncryptionIdentity {
+  const NetappAccountEncryptionIdentityUserAssignedIdentityId(
     this.userAssignedIdentityId,
   );
 
@@ -103,8 +101,7 @@ final class AzurermNetappAccountEncryption extends Resource {
     required TfArg<String> encryptionKey,
     TfArg<String>? federatedClientId,
     required TfArg<String> netappAccountId,
-    NetappAccountEncryptionSystemAssignedIdentityPrincipalIdOrUserAssignedIdentityId?
-    systemAssignedIdentityPrincipalIdOrUserAssignedIdentityId,
+    NetappAccountEncryptionIdentity? identity,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -116,8 +113,7 @@ final class AzurermNetappAccountEncryption extends Resource {
            'encryption_key': encryptionKey,
            'federated_client_id': ?federatedClientId,
            'netapp_account_id': netappAccountId,
-           ...?systemAssignedIdentityPrincipalIdOrUserAssignedIdentityId
-               ?.argMap,
+           ...?identity?.argMap,
          },
        );
 

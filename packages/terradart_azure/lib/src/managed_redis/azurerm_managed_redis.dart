@@ -63,7 +63,7 @@ final class ManagedRedisDefaultDatabase {
     this.clientProtocol,
     this.clusteringPolicy,
     this.evictionPolicy,
-    this.geoReplicationGroupNameOrPersistenceAppendOnlyFileBackupFrequencyOrPersistenceRedisDatabaseBackupFrequency,
+    this.durability,
     this.module,
   });
 
@@ -75,8 +75,7 @@ final class ManagedRedisDefaultDatabase {
 
   final ManagedRedisEvictionPolicy? evictionPolicy;
 
-  final ManagedRedisDefaultDatabaseGeoReplicationGroupNameOrPersistenceAppendOnlyFileBackupFrequencyOrPersistenceRedisDatabaseBackupFrequency?
-  geoReplicationGroupNameOrPersistenceAppendOnlyFileBackupFrequencyOrPersistenceRedisDatabaseBackupFrequency;
+  final ManagedRedisDurability? durability;
 
   final List<ManagedRedisModule>? module;
 
@@ -87,8 +86,7 @@ final class ManagedRedisDefaultDatabase {
     'client_protocol': ?clientProtocol?.toTfJson(),
     'clustering_policy': ?clusteringPolicy?.toTfJson(),
     'eviction_policy': ?evictionPolicy?.toTfJson(),
-    ...?geoReplicationGroupNameOrPersistenceAppendOnlyFileBackupFrequencyOrPersistenceRedisDatabaseBackupFrequency
-        ?.encode(),
+    ...?durability?.encode(),
     if (module != null) 'module': [for (final e in module!) e.encode()],
   };
 }
@@ -98,24 +96,24 @@ final class ManagedRedisDefaultDatabase {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.geoReplicationGroupName(...)`.
-sealed class ManagedRedisDefaultDatabaseGeoReplicationGroupNameOrPersistenceAppendOnlyFileBackupFrequencyOrPersistenceRedisDatabaseBackupFrequency {
-  const ManagedRedisDefaultDatabaseGeoReplicationGroupNameOrPersistenceAppendOnlyFileBackupFrequencyOrPersistenceRedisDatabaseBackupFrequency();
+sealed class ManagedRedisDurability {
+  const ManagedRedisDurability();
 
   /// Sets `geo_replication_group_name`.
-  const factory ManagedRedisDefaultDatabaseGeoReplicationGroupNameOrPersistenceAppendOnlyFileBackupFrequencyOrPersistenceRedisDatabaseBackupFrequency.geoReplicationGroupName(
+  const factory ManagedRedisDurability.geoReplicationGroupName(
     TfArg<String> geoReplicationGroupName,
-  ) = ManagedRedisDefaultDatabaseGeoReplicationGroupNameOrPersistenceAppendOnlyFileBackupFrequencyOrPersistenceRedisDatabaseBackupFrequencyGeoReplicationGroupName;
+  ) = ManagedRedisDurabilityGeoReplicationGroupName;
 
   /// Sets `persistence_append_only_file_backup_frequency`.
-  const factory ManagedRedisDefaultDatabaseGeoReplicationGroupNameOrPersistenceAppendOnlyFileBackupFrequencyOrPersistenceRedisDatabaseBackupFrequency.persistenceAppendOnlyFileBackupFrequency(
+  const factory ManagedRedisDurability.persistenceAppendOnlyFileBackupFrequency(
     TfArg<String> persistenceAppendOnlyFileBackupFrequency,
-  ) = ManagedRedisDefaultDatabaseGeoReplicationGroupNameOrPersistenceAppendOnlyFileBackupFrequencyOrPersistenceRedisDatabaseBackupFrequencyPersistenceAppendOnlyFileBackupFrequency;
+  ) = ManagedRedisDurabilityPersistenceAppendOnlyFileBackupFrequency;
 
   /// Sets `persistence_redis_database_backup_frequency`.
-  const factory ManagedRedisDefaultDatabaseGeoReplicationGroupNameOrPersistenceAppendOnlyFileBackupFrequencyOrPersistenceRedisDatabaseBackupFrequency.persistenceRedisDatabaseBackupFrequency(
+  const factory ManagedRedisDurability.persistenceRedisDatabaseBackupFrequency(
     ManagedRedisPersistenceRedisDatabaseBackupFrequency
     persistenceRedisDatabaseBackupFrequency,
-  ) = ManagedRedisDefaultDatabaseGeoReplicationGroupNameOrPersistenceAppendOnlyFileBackupFrequencyOrPersistenceRedisDatabaseBackupFrequencyChoice;
+  ) = ManagedRedisDurabilityPersistenceRedisDatabaseBackupFrequency;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -125,11 +123,10 @@ sealed class ManagedRedisDefaultDatabaseGeoReplicationGroupNameOrPersistenceAppe
   Map<String, Object?> encode();
 }
 
-/// The [ManagedRedisDefaultDatabaseGeoReplicationGroupNameOrPersistenceAppendOnlyFileBackupFrequencyOrPersistenceRedisDatabaseBackupFrequency.geoReplicationGroupName] choice: sets `geo_replication_group_name`.
-final class ManagedRedisDefaultDatabaseGeoReplicationGroupNameOrPersistenceAppendOnlyFileBackupFrequencyOrPersistenceRedisDatabaseBackupFrequencyGeoReplicationGroupName
-    extends
-        ManagedRedisDefaultDatabaseGeoReplicationGroupNameOrPersistenceAppendOnlyFileBackupFrequencyOrPersistenceRedisDatabaseBackupFrequency {
-  const ManagedRedisDefaultDatabaseGeoReplicationGroupNameOrPersistenceAppendOnlyFileBackupFrequencyOrPersistenceRedisDatabaseBackupFrequencyGeoReplicationGroupName(
+/// The [ManagedRedisDurability.geoReplicationGroupName] choice: sets `geo_replication_group_name`.
+final class ManagedRedisDurabilityGeoReplicationGroupName
+    extends ManagedRedisDurability {
+  const ManagedRedisDurabilityGeoReplicationGroupName(
     this.geoReplicationGroupName,
   );
 
@@ -146,11 +143,10 @@ final class ManagedRedisDefaultDatabaseGeoReplicationGroupNameOrPersistenceAppen
   };
 }
 
-/// The [ManagedRedisDefaultDatabaseGeoReplicationGroupNameOrPersistenceAppendOnlyFileBackupFrequencyOrPersistenceRedisDatabaseBackupFrequency.persistenceAppendOnlyFileBackupFrequency] choice: sets `persistence_append_only_file_backup_frequency`.
-final class ManagedRedisDefaultDatabaseGeoReplicationGroupNameOrPersistenceAppendOnlyFileBackupFrequencyOrPersistenceRedisDatabaseBackupFrequencyPersistenceAppendOnlyFileBackupFrequency
-    extends
-        ManagedRedisDefaultDatabaseGeoReplicationGroupNameOrPersistenceAppendOnlyFileBackupFrequencyOrPersistenceRedisDatabaseBackupFrequency {
-  const ManagedRedisDefaultDatabaseGeoReplicationGroupNameOrPersistenceAppendOnlyFileBackupFrequencyOrPersistenceRedisDatabaseBackupFrequencyPersistenceAppendOnlyFileBackupFrequency(
+/// The [ManagedRedisDurability.persistenceAppendOnlyFileBackupFrequency] choice: sets `persistence_append_only_file_backup_frequency`.
+final class ManagedRedisDurabilityPersistenceAppendOnlyFileBackupFrequency
+    extends ManagedRedisDurability {
+  const ManagedRedisDurabilityPersistenceAppendOnlyFileBackupFrequency(
     this.persistenceAppendOnlyFileBackupFrequency,
   );
 
@@ -168,11 +164,10 @@ final class ManagedRedisDefaultDatabaseGeoReplicationGroupNameOrPersistenceAppen
   };
 }
 
-/// The [ManagedRedisDefaultDatabaseGeoReplicationGroupNameOrPersistenceAppendOnlyFileBackupFrequencyOrPersistenceRedisDatabaseBackupFrequency.persistenceRedisDatabaseBackupFrequency] choice: sets `persistence_redis_database_backup_frequency`.
-final class ManagedRedisDefaultDatabaseGeoReplicationGroupNameOrPersistenceAppendOnlyFileBackupFrequencyOrPersistenceRedisDatabaseBackupFrequencyChoice
-    extends
-        ManagedRedisDefaultDatabaseGeoReplicationGroupNameOrPersistenceAppendOnlyFileBackupFrequencyOrPersistenceRedisDatabaseBackupFrequency {
-  const ManagedRedisDefaultDatabaseGeoReplicationGroupNameOrPersistenceAppendOnlyFileBackupFrequencyOrPersistenceRedisDatabaseBackupFrequencyChoice(
+/// The [ManagedRedisDurability.persistenceRedisDatabaseBackupFrequency] choice: sets `persistence_redis_database_backup_frequency`.
+final class ManagedRedisDurabilityPersistenceRedisDatabaseBackupFrequency
+    extends ManagedRedisDurability {
+  const ManagedRedisDurabilityPersistenceRedisDatabaseBackupFrequency(
     this.persistenceRedisDatabaseBackupFrequency,
   );
 

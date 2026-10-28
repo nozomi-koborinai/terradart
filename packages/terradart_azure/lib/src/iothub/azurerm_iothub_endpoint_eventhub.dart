@@ -15,18 +15,18 @@ const Set<String> _azurermIothubEndpointEventhubSensitive = <String>{
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.connectionString(...)`.
-sealed class IothubEndpointEventhubConnectionStringOrEndpointUri {
-  const IothubEndpointEventhubConnectionStringOrEndpointUri();
+sealed class IothubEndpointEventhubConnection {
+  const IothubEndpointEventhubConnection();
 
   /// Sets `connection_string`.
-  const factory IothubEndpointEventhubConnectionStringOrEndpointUri.connectionString(
+  const factory IothubEndpointEventhubConnection.connectionString(
     Sensitive<String> connectionString,
-  ) = IothubEndpointEventhubConnectionStringOrEndpointUriConnectionString;
+  ) = IothubEndpointEventhubConnectionString;
 
   /// Sets `endpoint_uri`.
-  const factory IothubEndpointEventhubConnectionStringOrEndpointUri.endpointUri(
+  const factory IothubEndpointEventhubConnection.endpointUri(
     TfArg<String> endpointUri,
-  ) = IothubEndpointEventhubConnectionStringOrEndpointUriChoice;
+  ) = IothubEndpointEventhubConnectionEndpointUri;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -41,12 +41,10 @@ sealed class IothubEndpointEventhubConnectionStringOrEndpointUri {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [IothubEndpointEventhubConnectionStringOrEndpointUri.connectionString] choice: sets `connection_string`.
-final class IothubEndpointEventhubConnectionStringOrEndpointUriConnectionString
-    extends IothubEndpointEventhubConnectionStringOrEndpointUri {
-  const IothubEndpointEventhubConnectionStringOrEndpointUriConnectionString(
-    this.connectionString,
-  );
+/// The [IothubEndpointEventhubConnection.connectionString] choice: sets `connection_string`.
+final class IothubEndpointEventhubConnectionString
+    extends IothubEndpointEventhubConnection {
+  const IothubEndpointEventhubConnectionString(this.connectionString);
 
   final Sensitive<String> connectionString;
 
@@ -67,12 +65,10 @@ final class IothubEndpointEventhubConnectionStringOrEndpointUriConnectionString
   };
 }
 
-/// The [IothubEndpointEventhubConnectionStringOrEndpointUri.endpointUri] choice: sets `endpoint_uri`.
-final class IothubEndpointEventhubConnectionStringOrEndpointUriChoice
-    extends IothubEndpointEventhubConnectionStringOrEndpointUri {
-  const IothubEndpointEventhubConnectionStringOrEndpointUriChoice(
-    this.endpointUri,
-  );
+/// The [IothubEndpointEventhubConnection.endpointUri] choice: sets `endpoint_uri`.
+final class IothubEndpointEventhubConnectionEndpointUri
+    extends IothubEndpointEventhubConnection {
+  const IothubEndpointEventhubConnectionEndpointUri(this.endpointUri);
 
   final TfArg<String> endpointUri;
 
@@ -96,8 +92,7 @@ final class AzurermIothubEndpointEventhub extends Resource {
   AzurermIothubEndpointEventhub(
     super.localName, {
     TfArg<String>? authenticationType,
-    required IothubEndpointEventhubConnectionStringOrEndpointUri
-    connectionStringOrEndpointUri,
+    required IothubEndpointEventhubConnection connection,
     TfArg<String>? entityPath,
     TfArg<String>? identityId,
     required TfArg<String> iothubId,
@@ -112,7 +107,7 @@ final class AzurermIothubEndpointEventhub extends Resource {
          terraformType: tfType,
          argMap: {
            'authentication_type': ?authenticationType,
-           ...connectionStringOrEndpointUri.argMap,
+           ...connection.argMap,
            'entity_path': ?entityPath,
            'identity_id': ?identityId,
            'iothub_id': iothubId,

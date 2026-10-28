@@ -9,9 +9,9 @@ export 'src/subnet/azurerm_subnet.dart'
     show
         AzurermSubnet,
         SubnetActions,
-        SubnetAddressPrefixesOrIpAddressPool,
-        SubnetAddressPrefixesOrIpAddressPoolAddressPrefixes,
-        SubnetAddressPrefixesOrIpAddressPoolChoice,
+        SubnetAddressing,
+        SubnetAddressingAddressPrefixes,
+        SubnetAddressingIpAddressPool,
         SubnetDelegation,
         SubnetIpAddressPool,
         SubnetPrivateEndpointNetworkPolicies,

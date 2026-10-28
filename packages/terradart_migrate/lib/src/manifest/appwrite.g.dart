@@ -918,14 +918,14 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'intervalOrSchedule',
+          dartName: 'schedule',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'interval': 'FunctionIntervalOrScheduleInterval',
-            'schedule': 'FunctionIntervalOrScheduleChoice',
+            'interval': 'FunctionScheduleInterval',
+            'schedule': 'FunctionScheduleChoice',
           },
         ),
         MigrateSlot(
@@ -8058,8 +8058,8 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
       ],
       shorthand: 'passwordWo',
     ),
-    'FunctionIntervalOrScheduleChoice': MigrateHelper(
-      className: 'FunctionIntervalOrScheduleChoice',
+    'FunctionScheduleChoice': MigrateHelper(
+      className: 'FunctionScheduleChoice',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'schedule',
@@ -8072,8 +8072,8 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
       ],
       shorthand: 'schedule',
     ),
-    'FunctionIntervalOrScheduleInterval': MigrateHelper(
-      className: 'FunctionIntervalOrScheduleInterval',
+    'FunctionScheduleInterval': MigrateHelper(
+      className: 'FunctionScheduleInterval',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'interval',

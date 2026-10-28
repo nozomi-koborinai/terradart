@@ -4,3 +4,6 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 deriveExactlyOne: true
+
+sealedNames:
+  "circuit_breaker_rule.failure_condition.count, circuit_breaker_rule.failure_condition.percentage": threshold

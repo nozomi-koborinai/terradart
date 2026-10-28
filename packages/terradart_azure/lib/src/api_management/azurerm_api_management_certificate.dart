@@ -16,18 +16,17 @@ const Set<String> _azurermApiManagementCertificateSensitive = <String>{
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.data(...)`.
-sealed class ApiManagementCertificateDataOrKeyVaultSecretId {
-  const ApiManagementCertificateDataOrKeyVaultSecretId();
+sealed class ApiManagementCertificateSource {
+  const ApiManagementCertificateSource();
 
   /// Sets `data`.
-  const factory ApiManagementCertificateDataOrKeyVaultSecretId.data(
-    Sensitive<String> data,
-  ) = ApiManagementCertificateDataOrKeyVaultSecretIdData;
+  const factory ApiManagementCertificateSource.data(Sensitive<String> data) =
+      ApiManagementCertificateSourceData;
 
   /// Sets `key_vault_secret_id`.
-  const factory ApiManagementCertificateDataOrKeyVaultSecretId.keyVaultSecretId(
+  const factory ApiManagementCertificateSource.keyVaultSecretId(
     TfArg<String> keyVaultSecretId,
-  ) = ApiManagementCertificateDataOrKeyVaultSecretIdChoice;
+  ) = ApiManagementCertificateSourceKeyVaultSecretId;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -42,10 +41,10 @@ sealed class ApiManagementCertificateDataOrKeyVaultSecretId {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [ApiManagementCertificateDataOrKeyVaultSecretId.data] choice: sets `data`.
-final class ApiManagementCertificateDataOrKeyVaultSecretIdData
-    extends ApiManagementCertificateDataOrKeyVaultSecretId {
-  const ApiManagementCertificateDataOrKeyVaultSecretIdData(this.data);
+/// The [ApiManagementCertificateSource.data] choice: sets `data`.
+final class ApiManagementCertificateSourceData
+    extends ApiManagementCertificateSource {
+  const ApiManagementCertificateSourceData(this.data);
 
   final Sensitive<String> data;
 
@@ -62,12 +61,10 @@ final class ApiManagementCertificateDataOrKeyVaultSecretIdData
   Map<String, TfArg<Object?>> get argMap => {'data': data};
 }
 
-/// The [ApiManagementCertificateDataOrKeyVaultSecretId.keyVaultSecretId] choice: sets `key_vault_secret_id`.
-final class ApiManagementCertificateDataOrKeyVaultSecretIdChoice
-    extends ApiManagementCertificateDataOrKeyVaultSecretId {
-  const ApiManagementCertificateDataOrKeyVaultSecretIdChoice(
-    this.keyVaultSecretId,
-  );
+/// The [ApiManagementCertificateSource.keyVaultSecretId] choice: sets `key_vault_secret_id`.
+final class ApiManagementCertificateSourceKeyVaultSecretId
+    extends ApiManagementCertificateSource {
+  const ApiManagementCertificateSourceKeyVaultSecretId(this.keyVaultSecretId);
 
   final TfArg<String> keyVaultSecretId;
 
@@ -95,8 +92,7 @@ final class AzurermApiManagementCertificate extends Resource {
   AzurermApiManagementCertificate(
     super.localName, {
     required TfArg<String> apiManagementName,
-    required ApiManagementCertificateDataOrKeyVaultSecretId
-    dataOrKeyVaultSecretId,
+    required ApiManagementCertificateSource source,
     TfArg<String>? keyVaultIdentityClientId,
     required TfArg<String> name,
     Sensitive<String>? password,
@@ -109,7 +105,7 @@ final class AzurermApiManagementCertificate extends Resource {
          terraformType: tfType,
          argMap: {
            'api_management_name': apiManagementName,
-           ...dataOrKeyVaultSecretId.argMap,
+           ...source.argMap,
            'key_vault_identity_client_id': ?keyVaultIdentityClientId,
            'name': name,
            'password': ?password,

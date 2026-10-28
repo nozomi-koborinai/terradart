@@ -15,15 +15,14 @@ export 'src/role/azurerm_role_management_policy.dart'
     show
         AzurermRoleManagementPolicy,
         RoleManagementPolicyActivationRules,
-        RoleManagementPolicyActivationRulesRequireMultifactorAuthenticationOrRequiredConditionalAccessAuthenticationContext,
-        RoleManagementPolicyActivationRulesRequireMultifactorAuthenticationOrRequiredConditionalAccessAuthenticationContextChoice,
-        RoleManagementPolicyActivationRulesRequireMultifactorAuthenticationOrRequiredConditionalAccessAuthenticationContextRequireMultifactorAuthentication,
         RoleManagementPolicyActiveAssignmentRules,
         RoleManagementPolicyActiveAssignments,
         RoleManagementPolicyActiveAssignmentsAdminNotifications,
         RoleManagementPolicyApprovalStage,
         RoleManagementPolicyApproverNotifications,
         RoleManagementPolicyAssigneeNotifications,
+        RoleManagementPolicyAuthentication,
+        RoleManagementPolicyAuthenticationRequiredConditionalAccessAuthenticationContext,
         RoleManagementPolicyEligibleActivations,
         RoleManagementPolicyEligibleActivationsAdminNotifications,
         RoleManagementPolicyEligibleAssignmentRules,
@@ -33,4 +32,5 @@ export 'src/role/azurerm_role_management_policy.dart'
         RoleManagementPolicyNotificationLevel,
         RoleManagementPolicyNotificationRules,
         RoleManagementPolicyPrimaryApprover,
+        RoleManagementPolicyRequireMultifactorAuthentication,
         RoleManagementPolicyType;

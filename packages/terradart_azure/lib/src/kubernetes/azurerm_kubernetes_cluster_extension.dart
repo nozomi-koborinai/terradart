@@ -91,18 +91,18 @@ final class KubernetesClusterExtensionTargetNamespace
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.releaseTrain(...)`.
-sealed class KubernetesClusterExtensionReleaseTrainOrVersion {
-  const KubernetesClusterExtensionReleaseTrainOrVersion();
+sealed class KubernetesClusterExtensionRelease {
+  const KubernetesClusterExtensionRelease();
 
   /// Sets `release_train`.
-  const factory KubernetesClusterExtensionReleaseTrainOrVersion.releaseTrain(
+  const factory KubernetesClusterExtensionRelease.releaseTrain(
     TfArg<String> releaseTrain,
-  ) = KubernetesClusterExtensionReleaseTrainOrVersionReleaseTrain;
+  ) = KubernetesClusterExtensionReleaseTrain;
 
   /// Sets `version`.
-  const factory KubernetesClusterExtensionReleaseTrainOrVersion.version(
+  const factory KubernetesClusterExtensionRelease.version(
     TfArg<String> version,
-  ) = KubernetesClusterExtensionReleaseTrainOrVersionChoice;
+  ) = KubernetesClusterExtensionReleaseVersion;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -117,12 +117,10 @@ sealed class KubernetesClusterExtensionReleaseTrainOrVersion {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [KubernetesClusterExtensionReleaseTrainOrVersion.releaseTrain] choice: sets `release_train`.
-final class KubernetesClusterExtensionReleaseTrainOrVersionReleaseTrain
-    extends KubernetesClusterExtensionReleaseTrainOrVersion {
-  const KubernetesClusterExtensionReleaseTrainOrVersionReleaseTrain(
-    this.releaseTrain,
-  );
+/// The [KubernetesClusterExtensionRelease.releaseTrain] choice: sets `release_train`.
+final class KubernetesClusterExtensionReleaseTrain
+    extends KubernetesClusterExtensionRelease {
+  const KubernetesClusterExtensionReleaseTrain(this.releaseTrain);
 
   final TfArg<String> releaseTrain;
 
@@ -139,10 +137,10 @@ final class KubernetesClusterExtensionReleaseTrainOrVersionReleaseTrain
   Map<String, TfArg<Object?>> get argMap => {'release_train': releaseTrain};
 }
 
-/// The [KubernetesClusterExtensionReleaseTrainOrVersion.version] choice: sets `version`.
-final class KubernetesClusterExtensionReleaseTrainOrVersionChoice
-    extends KubernetesClusterExtensionReleaseTrainOrVersion {
-  const KubernetesClusterExtensionReleaseTrainOrVersionChoice(this.version);
+/// The [KubernetesClusterExtensionRelease.version] choice: sets `version`.
+final class KubernetesClusterExtensionReleaseVersion
+    extends KubernetesClusterExtensionRelease {
+  const KubernetesClusterExtensionReleaseVersion(this.version);
 
   final TfArg<String> version;
 
@@ -203,7 +201,7 @@ final class AzurermKubernetesClusterExtension extends Resource {
     required TfArg<String> extensionType,
     required TfArg<String> name,
     KubernetesClusterExtensionNamespace? namespace,
-    KubernetesClusterExtensionReleaseTrainOrVersion? releaseTrainOrVersion,
+    KubernetesClusterExtensionRelease? release,
     KubernetesClusterExtensionPlan? plan,
     super.lifecycle,
     super.dependsOn,
@@ -218,7 +216,7 @@ final class AzurermKubernetesClusterExtension extends Resource {
            'extension_type': extensionType,
            'name': name,
            ...?namespace?.argMap,
-           ...?releaseTrainOrVersion?.argMap,
+           ...?release?.argMap,
            if (plan != null) 'plan': TfArg.literal(plan.encode()),
          },
        );

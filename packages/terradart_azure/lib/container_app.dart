@@ -45,10 +45,10 @@ export 'src/container_app/azurerm_container_app_environment.dart'
 export 'src/container_app/azurerm_container_app_environment_certificate.dart'
     show
         AzurermContainerAppEnvironmentCertificate,
-        ContainerAppEnvironmentCertificateBlobBase64OrCertificateKeyVault,
-        ContainerAppEnvironmentCertificateBlobBase64OrCertificateKeyVaultCertificateBlobBase64,
-        ContainerAppEnvironmentCertificateBlobBase64OrCertificateKeyVaultChoice,
-        ContainerAppEnvironmentCertificateKeyVault;
+        ContainerAppEnvironmentCertificateKeyVault,
+        ContainerAppEnvironmentCertificateSource,
+        ContainerAppEnvironmentCertificateSourceCertificateBlobBase64,
+        ContainerAppEnvironmentCertificateSourceCertificateKeyVault;
 export 'src/container_app/azurerm_container_app_environment_custom_domain.dart'
     show AzurermContainerAppEnvironmentCustomDomain;
 export 'src/container_app/azurerm_container_app_environment_dapr_component.dart'
@@ -62,9 +62,9 @@ export 'src/container_app/azurerm_container_app_environment_storage.dart'
     show
         AzurermContainerAppEnvironmentStorage,
         ContainerAppEnvironmentStorageAccessMode,
-        ContainerAppEnvironmentStorageAccountNameOrNfsServerUrl,
-        ContainerAppEnvironmentStorageAccountNameOrNfsServerUrlAccountName,
-        ContainerAppEnvironmentStorageAccountNameOrNfsServerUrlChoice;
+        ContainerAppEnvironmentStorageBackend,
+        ContainerAppEnvironmentStorageBackendAccountName,
+        ContainerAppEnvironmentStorageBackendNfsServerUrl;
 export 'src/container_app/azurerm_container_app_job.dart'
     show
         AzurermContainerAppJob,

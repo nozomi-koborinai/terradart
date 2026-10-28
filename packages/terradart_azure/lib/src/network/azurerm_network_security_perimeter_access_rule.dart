@@ -36,28 +36,28 @@ extension type const NetworkSecurityPerimeterAccessRuleDirection._(
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.addressPrefixes(...)`.
-sealed class NetworkSecurityPerimeterAccessRuleAddressPrefixesOrFqdnsOrServiceTagsOrSubscriptionIds {
-  const NetworkSecurityPerimeterAccessRuleAddressPrefixesOrFqdnsOrServiceTagsOrSubscriptionIds();
+sealed class NetworkSecurityPerimeterAccessRuleSource {
+  const NetworkSecurityPerimeterAccessRuleSource();
 
   /// Sets `address_prefixes`.
-  const factory NetworkSecurityPerimeterAccessRuleAddressPrefixesOrFqdnsOrServiceTagsOrSubscriptionIds.addressPrefixes(
+  const factory NetworkSecurityPerimeterAccessRuleSource.addressPrefixes(
     TfArg<List<String>> addressPrefixes,
-  ) = NetworkSecurityPerimeterAccessRuleAddressPrefixesOrFqdnsOrServiceTagsOrSubscriptionIdsAddressPrefixes;
+  ) = NetworkSecurityPerimeterAccessRuleSourceAddressPrefixes;
 
   /// Sets `fqdns`.
-  const factory NetworkSecurityPerimeterAccessRuleAddressPrefixesOrFqdnsOrServiceTagsOrSubscriptionIds.fqdns(
+  const factory NetworkSecurityPerimeterAccessRuleSource.fqdns(
     TfArg<List<String>> fqdns,
-  ) = NetworkSecurityPerimeterAccessRuleAddressPrefixesOrFqdnsOrServiceTagsOrSubscriptionIdsFqdns;
+  ) = NetworkSecurityPerimeterAccessRuleSourceFqdns;
 
   /// Sets `service_tags`.
-  const factory NetworkSecurityPerimeterAccessRuleAddressPrefixesOrFqdnsOrServiceTagsOrSubscriptionIds.serviceTags(
+  const factory NetworkSecurityPerimeterAccessRuleSource.serviceTags(
     TfArg<List<String>> serviceTags,
-  ) = NetworkSecurityPerimeterAccessRuleAddressPrefixesOrFqdnsOrServiceTagsOrSubscriptionIdsServiceTags;
+  ) = NetworkSecurityPerimeterAccessRuleSourceServiceTags;
 
   /// Sets `subscription_ids`.
-  const factory NetworkSecurityPerimeterAccessRuleAddressPrefixesOrFqdnsOrServiceTagsOrSubscriptionIds.subscriptionIds(
+  const factory NetworkSecurityPerimeterAccessRuleSource.subscriptionIds(
     TfArg<List<String>> subscriptionIds,
-  ) = NetworkSecurityPerimeterAccessRuleAddressPrefixesOrFqdnsOrServiceTagsOrSubscriptionIdsChoice;
+  ) = NetworkSecurityPerimeterAccessRuleSourceSubscriptionIds;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -72,11 +72,10 @@ sealed class NetworkSecurityPerimeterAccessRuleAddressPrefixesOrFqdnsOrServiceTa
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [NetworkSecurityPerimeterAccessRuleAddressPrefixesOrFqdnsOrServiceTagsOrSubscriptionIds.addressPrefixes] choice: sets `address_prefixes`.
-final class NetworkSecurityPerimeterAccessRuleAddressPrefixesOrFqdnsOrServiceTagsOrSubscriptionIdsAddressPrefixes
-    extends
-        NetworkSecurityPerimeterAccessRuleAddressPrefixesOrFqdnsOrServiceTagsOrSubscriptionIds {
-  const NetworkSecurityPerimeterAccessRuleAddressPrefixesOrFqdnsOrServiceTagsOrSubscriptionIdsAddressPrefixes(
+/// The [NetworkSecurityPerimeterAccessRuleSource.addressPrefixes] choice: sets `address_prefixes`.
+final class NetworkSecurityPerimeterAccessRuleSourceAddressPrefixes
+    extends NetworkSecurityPerimeterAccessRuleSource {
+  const NetworkSecurityPerimeterAccessRuleSourceAddressPrefixes(
     this.addressPrefixes,
   );
 
@@ -99,13 +98,10 @@ final class NetworkSecurityPerimeterAccessRuleAddressPrefixesOrFqdnsOrServiceTag
   };
 }
 
-/// The [NetworkSecurityPerimeterAccessRuleAddressPrefixesOrFqdnsOrServiceTagsOrSubscriptionIds.fqdns] choice: sets `fqdns`.
-final class NetworkSecurityPerimeterAccessRuleAddressPrefixesOrFqdnsOrServiceTagsOrSubscriptionIdsFqdns
-    extends
-        NetworkSecurityPerimeterAccessRuleAddressPrefixesOrFqdnsOrServiceTagsOrSubscriptionIds {
-  const NetworkSecurityPerimeterAccessRuleAddressPrefixesOrFqdnsOrServiceTagsOrSubscriptionIdsFqdns(
-    this.fqdns,
-  );
+/// The [NetworkSecurityPerimeterAccessRuleSource.fqdns] choice: sets `fqdns`.
+final class NetworkSecurityPerimeterAccessRuleSourceFqdns
+    extends NetworkSecurityPerimeterAccessRuleSource {
+  const NetworkSecurityPerimeterAccessRuleSourceFqdns(this.fqdns);
 
   final TfArg<List<String>> fqdns;
 
@@ -122,13 +118,10 @@ final class NetworkSecurityPerimeterAccessRuleAddressPrefixesOrFqdnsOrServiceTag
   Map<String, TfArg<Object?>> get argMap => {'fqdns': fqdns};
 }
 
-/// The [NetworkSecurityPerimeterAccessRuleAddressPrefixesOrFqdnsOrServiceTagsOrSubscriptionIds.serviceTags] choice: sets `service_tags`.
-final class NetworkSecurityPerimeterAccessRuleAddressPrefixesOrFqdnsOrServiceTagsOrSubscriptionIdsServiceTags
-    extends
-        NetworkSecurityPerimeterAccessRuleAddressPrefixesOrFqdnsOrServiceTagsOrSubscriptionIds {
-  const NetworkSecurityPerimeterAccessRuleAddressPrefixesOrFqdnsOrServiceTagsOrSubscriptionIdsServiceTags(
-    this.serviceTags,
-  );
+/// The [NetworkSecurityPerimeterAccessRuleSource.serviceTags] choice: sets `service_tags`.
+final class NetworkSecurityPerimeterAccessRuleSourceServiceTags
+    extends NetworkSecurityPerimeterAccessRuleSource {
+  const NetworkSecurityPerimeterAccessRuleSourceServiceTags(this.serviceTags);
 
   final TfArg<List<String>> serviceTags;
 
@@ -145,11 +138,10 @@ final class NetworkSecurityPerimeterAccessRuleAddressPrefixesOrFqdnsOrServiceTag
   Map<String, TfArg<Object?>> get argMap => {'service_tags': serviceTags};
 }
 
-/// The [NetworkSecurityPerimeterAccessRuleAddressPrefixesOrFqdnsOrServiceTagsOrSubscriptionIds.subscriptionIds] choice: sets `subscription_ids`.
-final class NetworkSecurityPerimeterAccessRuleAddressPrefixesOrFqdnsOrServiceTagsOrSubscriptionIdsChoice
-    extends
-        NetworkSecurityPerimeterAccessRuleAddressPrefixesOrFqdnsOrServiceTagsOrSubscriptionIds {
-  const NetworkSecurityPerimeterAccessRuleAddressPrefixesOrFqdnsOrServiceTagsOrSubscriptionIdsChoice(
+/// The [NetworkSecurityPerimeterAccessRuleSource.subscriptionIds] choice: sets `subscription_ids`.
+final class NetworkSecurityPerimeterAccessRuleSourceSubscriptionIds
+    extends NetworkSecurityPerimeterAccessRuleSource {
+  const NetworkSecurityPerimeterAccessRuleSourceSubscriptionIds(
     this.subscriptionIds,
   );
 
@@ -178,8 +170,7 @@ final class AzurermNetworkSecurityPerimeterAccessRule extends Resource {
 
   AzurermNetworkSecurityPerimeterAccessRule(
     super.localName, {
-    required NetworkSecurityPerimeterAccessRuleAddressPrefixesOrFqdnsOrServiceTagsOrSubscriptionIds
-    addressPrefixesOrFqdnsOrServiceTagsOrSubscriptionIds,
+    required NetworkSecurityPerimeterAccessRuleSource source,
     required NetworkSecurityPerimeterAccessRuleDirection direction,
     required TfArg<String> name,
     required TfArg<String> networkSecurityPerimeterProfileId,
@@ -190,7 +181,7 @@ final class AzurermNetworkSecurityPerimeterAccessRule extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...addressPrefixesOrFqdnsOrServiceTagsOrSubscriptionIds.argMap,
+           ...source.argMap,
            'direction': direction,
            'name': name,
            'network_security_perimeter_profile_id':

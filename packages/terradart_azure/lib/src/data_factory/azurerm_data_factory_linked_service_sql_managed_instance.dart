@@ -12,19 +12,19 @@ const Set<String> _azurermDataFactoryLinkedServiceSqlManagedInstanceSensitive =
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.connectionString(...)`.
-sealed class DataFactoryLinkedServiceSqlManagedInstanceConnectionStringOrKeyVaultConnectionString {
-  const DataFactoryLinkedServiceSqlManagedInstanceConnectionStringOrKeyVaultConnectionString();
+sealed class DataFactoryLinkedServiceSqlManagedInstanceConnectionString {
+  const DataFactoryLinkedServiceSqlManagedInstanceConnectionString();
 
   /// Sets `connection_string`.
-  const factory DataFactoryLinkedServiceSqlManagedInstanceConnectionStringOrKeyVaultConnectionString.connectionString(
+  const factory DataFactoryLinkedServiceSqlManagedInstanceConnectionString.connectionString(
     Sensitive<String> connectionString,
-  ) = DataFactoryLinkedServiceSqlManagedInstanceConnectionStringOrKeyVaultConnectionStringChoice;
+  ) = DataFactoryLinkedServiceSqlManagedInstanceConnectionStringChoice;
 
   /// Sets `key_vault_connection_string`.
-  const factory DataFactoryLinkedServiceSqlManagedInstanceConnectionStringOrKeyVaultConnectionString.keyVaultConnectionString(
+  const factory DataFactoryLinkedServiceSqlManagedInstanceConnectionString.keyVaultConnectionString(
     DataFactoryLinkedServiceSqlManagedInstanceKeyVaultConnectionString
     keyVaultConnectionString,
-  ) = DataFactoryLinkedServiceSqlManagedInstanceConnectionStringOrKeyVaultConnectionStringOption;
+  ) = DataFactoryLinkedServiceSqlManagedInstanceKeyVaultConnectionStringChoice;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -39,11 +39,10 @@ sealed class DataFactoryLinkedServiceSqlManagedInstanceConnectionStringOrKeyVaul
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [DataFactoryLinkedServiceSqlManagedInstanceConnectionStringOrKeyVaultConnectionString.connectionString] choice: sets `connection_string`.
-final class DataFactoryLinkedServiceSqlManagedInstanceConnectionStringOrKeyVaultConnectionStringChoice
-    extends
-        DataFactoryLinkedServiceSqlManagedInstanceConnectionStringOrKeyVaultConnectionString {
-  const DataFactoryLinkedServiceSqlManagedInstanceConnectionStringOrKeyVaultConnectionStringChoice(
+/// The [DataFactoryLinkedServiceSqlManagedInstanceConnectionString.connectionString] choice: sets `connection_string`.
+final class DataFactoryLinkedServiceSqlManagedInstanceConnectionStringChoice
+    extends DataFactoryLinkedServiceSqlManagedInstanceConnectionString {
+  const DataFactoryLinkedServiceSqlManagedInstanceConnectionStringChoice(
     this.connectionString,
   );
 
@@ -66,11 +65,10 @@ final class DataFactoryLinkedServiceSqlManagedInstanceConnectionStringOrKeyVault
   };
 }
 
-/// The [DataFactoryLinkedServiceSqlManagedInstanceConnectionStringOrKeyVaultConnectionString.keyVaultConnectionString] choice: sets `key_vault_connection_string`.
-final class DataFactoryLinkedServiceSqlManagedInstanceConnectionStringOrKeyVaultConnectionStringOption
-    extends
-        DataFactoryLinkedServiceSqlManagedInstanceConnectionStringOrKeyVaultConnectionString {
-  const DataFactoryLinkedServiceSqlManagedInstanceConnectionStringOrKeyVaultConnectionStringOption(
+/// The [DataFactoryLinkedServiceSqlManagedInstanceConnectionString.keyVaultConnectionString] choice: sets `key_vault_connection_string`.
+final class DataFactoryLinkedServiceSqlManagedInstanceKeyVaultConnectionStringChoice
+    extends DataFactoryLinkedServiceSqlManagedInstanceConnectionString {
+  const DataFactoryLinkedServiceSqlManagedInstanceKeyVaultConnectionStringChoice(
     this.keyVaultConnectionString,
   );
 
@@ -144,8 +142,8 @@ final class AzurermDataFactoryLinkedServiceSqlManagedInstance extends Resource {
   AzurermDataFactoryLinkedServiceSqlManagedInstance(
     super.localName, {
     TfArg<List<String>>? annotations,
-    required DataFactoryLinkedServiceSqlManagedInstanceConnectionStringOrKeyVaultConnectionString
-    connectionStringOrKeyVaultConnectionString,
+    required DataFactoryLinkedServiceSqlManagedInstanceConnectionString
+    connectionString,
     required TfArg<String> dataFactoryId,
     TfArg<String>? description,
     TfArg<String>? integrationRuntimeName,
@@ -164,7 +162,7 @@ final class AzurermDataFactoryLinkedServiceSqlManagedInstance extends Resource {
          terraformType: tfType,
          argMap: {
            'annotations': ?annotations,
-           ...connectionStringOrKeyVaultConnectionString.argMap,
+           ...connectionString.argMap,
            'data_factory_id': dataFactoryId,
            'description': ?description,
            'integration_runtime_name': ?integrationRuntimeName,

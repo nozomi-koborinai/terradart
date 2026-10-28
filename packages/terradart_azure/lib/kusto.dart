@@ -9,9 +9,9 @@ export 'src/data/azurerm_kusto_database.dart' show DataAzurermKustoDatabase;
 export 'src/kusto/azurerm_kusto_attached_database_configuration.dart'
     show
         AzurermKustoAttachedDatabaseConfiguration,
-        KustoAttachedDatabaseConfigurationDatabaseNameOverrideOrDatabaseNamePrefix,
-        KustoAttachedDatabaseConfigurationDatabaseNameOverrideOrDatabaseNamePrefixChoice,
-        KustoAttachedDatabaseConfigurationDatabaseNameOverrideOrDatabaseNamePrefixDatabaseNameOverride,
+        KustoAttachedDatabaseConfigurationDatabaseNaming,
+        KustoAttachedDatabaseConfigurationDatabaseNamingDatabaseNameOverride,
+        KustoAttachedDatabaseConfigurationDatabaseNamingDatabaseNamePrefix,
         KustoAttachedDatabaseConfigurationDefaultPrincipalModificationKind,
         KustoAttachedDatabaseConfigurationSharing;
 export 'src/kusto/azurerm_kusto_cluster.dart'
@@ -28,9 +28,9 @@ export 'src/kusto/azurerm_kusto_cluster.dart'
 export 'src/kusto/azurerm_kusto_cluster_customer_managed_key.dart'
     show
         AzurermKustoClusterCustomerManagedKey,
-        KustoClusterCustomerManagedKeyVaultIdOrManagedHsmKeyId,
-        KustoClusterCustomerManagedKeyVaultIdOrManagedHsmKeyIdChoice,
-        KustoClusterCustomerManagedKeyVaultIdOrManagedHsmKeyIdKeyVaultId;
+        KustoClusterCustomerManagedKeyIdentifier,
+        KustoClusterCustomerManagedKeyIdentifierKeyVaultId,
+        KustoClusterCustomerManagedKeyIdentifierManagedHsmKeyId;
 export 'src/kusto/azurerm_kusto_cluster_managed_private_endpoint.dart'
     show AzurermKustoClusterManagedPrivateEndpoint;
 export 'src/kusto/azurerm_kusto_cluster_principal_assignment.dart'
@@ -66,8 +66,8 @@ export 'src/kusto/azurerm_kusto_iothub_data_connection.dart'
 export 'src/kusto/azurerm_kusto_script.dart'
     show
         AzurermKustoScript,
-        KustoScriptContentOrUrl,
-        KustoScriptContentOrUrlChoice,
-        KustoScriptContentOrUrlScriptContent,
+        KustoScriptContent,
+        KustoScriptContentChoice,
+        KustoScriptContentUrl,
         KustoScriptLevel,
         KustoScriptPrincipalPermissionsAction;

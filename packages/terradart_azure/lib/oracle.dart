@@ -49,20 +49,20 @@ export 'src/oracle/azurerm_oracle_autonomous_database_backup.dart'
 export 'src/oracle/azurerm_oracle_autonomous_database_clone_from_backup.dart'
     show
         AzurermOracleAutonomousDatabaseCloneFromBackup,
-        OracleAutonomousDatabaseCloneFromBackupAllowedIpAddressesOrVirtualNetworkId,
-        OracleAutonomousDatabaseCloneFromBackupAllowedIpAddressesOrVirtualNetworkIdAllowedIpAddresses,
-        OracleAutonomousDatabaseCloneFromBackupAllowedIpAddressesOrVirtualNetworkIdChoice,
         OracleAutonomousDatabaseCloneFromBackupCloneType,
         OracleAutonomousDatabaseCloneFromBackupDatabaseWorkload,
-        OracleAutonomousDatabaseCloneFromBackupLicenseModel;
+        OracleAutonomousDatabaseCloneFromBackupLicenseModel,
+        OracleAutonomousDatabaseCloneFromBackupNetworkAccess,
+        OracleAutonomousDatabaseCloneFromBackupNetworkAccessAllowedIpAddresses,
+        OracleAutonomousDatabaseCloneFromBackupNetworkAccessVirtualNetworkId;
 export 'src/oracle/azurerm_oracle_autonomous_database_clone_from_database.dart'
     show
         AzurermOracleAutonomousDatabaseCloneFromDatabase,
-        OracleAutonomousDatabaseCloneFromDatabaseAllowedIpAddressesOrVirtualNetworkId,
-        OracleAutonomousDatabaseCloneFromDatabaseAllowedIpAddressesOrVirtualNetworkIdAllowedIpAddresses,
-        OracleAutonomousDatabaseCloneFromDatabaseAllowedIpAddressesOrVirtualNetworkIdChoice,
         OracleAutonomousDatabaseCloneFromDatabaseCloneType,
         OracleAutonomousDatabaseCloneFromDatabaseLicenseModel,
+        OracleAutonomousDatabaseCloneFromDatabaseNetworkAccess,
+        OracleAutonomousDatabaseCloneFromDatabaseNetworkAccessAllowedIpAddresses,
+        OracleAutonomousDatabaseCloneFromDatabaseNetworkAccessVirtualNetworkId,
         OracleAutonomousDatabaseCloneFromDatabaseRefreshableModel,
         OracleAutonomousDatabaseCloneFromDatabaseWorkload;
 export 'src/oracle/azurerm_oracle_autonomous_database_cross_region_disaster_recovery.dart'

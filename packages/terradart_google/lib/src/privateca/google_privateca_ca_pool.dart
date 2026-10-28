@@ -38,7 +38,7 @@ final class PrivatecaCaPoolEncryptionSpec {
 @immutable
 final class PrivatecaCaPoolIssuancePolicy {
   const PrivatecaCaPoolIssuancePolicy({
-    this.backdateDurationOrAllowRequesterSpecifiedNotBeforeTime,
+    this.notBefore,
     this.maximumLifetime,
     this.allowedIssuanceModes,
     this.allowedKeyTypes,
@@ -46,8 +46,7 @@ final class PrivatecaCaPoolIssuancePolicy {
     this.identityConstraints,
   });
 
-  final PrivatecaCaPoolIssuancePolicyBackdateDurationOrAllowRequesterSpecifiedNotBeforeTime?
-  backdateDurationOrAllowRequesterSpecifiedNotBeforeTime;
+  final PrivatecaCaPoolNotBefore? notBefore;
 
   final TfArg<String>? maximumLifetime;
 
@@ -61,7 +60,7 @@ final class PrivatecaCaPoolIssuancePolicy {
 
   @internal
   Map<String, Object?> encode() => {
-    ...?backdateDurationOrAllowRequesterSpecifiedNotBeforeTime?.encode(),
+    ...?notBefore?.encode(),
     'maximum_lifetime': ?maximumLifetime?.toTfJson(),
     'allowed_issuance_modes': ?allowedIssuanceModes?.encode(),
     if (allowedKeyTypes != null)
@@ -76,18 +75,18 @@ final class PrivatecaCaPoolIssuancePolicy {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.backdateDuration(...)`.
-sealed class PrivatecaCaPoolIssuancePolicyBackdateDurationOrAllowRequesterSpecifiedNotBeforeTime {
-  const PrivatecaCaPoolIssuancePolicyBackdateDurationOrAllowRequesterSpecifiedNotBeforeTime();
+sealed class PrivatecaCaPoolNotBefore {
+  const PrivatecaCaPoolNotBefore();
 
   /// Sets `backdate_duration`.
-  const factory PrivatecaCaPoolIssuancePolicyBackdateDurationOrAllowRequesterSpecifiedNotBeforeTime.backdateDuration(
+  const factory PrivatecaCaPoolNotBefore.backdateDuration(
     TfArg<String> backdateDuration,
-  ) = PrivatecaCaPoolIssuancePolicyBackdateDurationOrAllowRequesterSpecifiedNotBeforeTimeBackdateDuration;
+  ) = PrivatecaCaPoolNotBeforeBackdateDuration;
 
   /// Sets `allow_requester_specified_not_before_time`.
-  const factory PrivatecaCaPoolIssuancePolicyBackdateDurationOrAllowRequesterSpecifiedNotBeforeTime.allowRequesterSpecifiedNotBeforeTime(
+  const factory PrivatecaCaPoolNotBefore.allowRequesterSpecifiedNotBeforeTime(
     TfArg<bool> allowRequesterSpecifiedNotBeforeTime,
-  ) = PrivatecaCaPoolIssuancePolicyBackdateDurationOrAllowRequesterSpecifiedNotBeforeTimeChoice;
+  ) = PrivatecaCaPoolNotBeforeAllowRequesterSpecifiedNotBeforeTime;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -97,13 +96,10 @@ sealed class PrivatecaCaPoolIssuancePolicyBackdateDurationOrAllowRequesterSpecif
   Map<String, Object?> encode();
 }
 
-/// The [PrivatecaCaPoolIssuancePolicyBackdateDurationOrAllowRequesterSpecifiedNotBeforeTime.backdateDuration] choice: sets `backdate_duration`.
-final class PrivatecaCaPoolIssuancePolicyBackdateDurationOrAllowRequesterSpecifiedNotBeforeTimeBackdateDuration
-    extends
-        PrivatecaCaPoolIssuancePolicyBackdateDurationOrAllowRequesterSpecifiedNotBeforeTime {
-  const PrivatecaCaPoolIssuancePolicyBackdateDurationOrAllowRequesterSpecifiedNotBeforeTimeBackdateDuration(
-    this.backdateDuration,
-  );
+/// The [PrivatecaCaPoolNotBefore.backdateDuration] choice: sets `backdate_duration`.
+final class PrivatecaCaPoolNotBeforeBackdateDuration
+    extends PrivatecaCaPoolNotBefore {
+  const PrivatecaCaPoolNotBeforeBackdateDuration(this.backdateDuration);
 
   final TfArg<String> backdateDuration;
 
@@ -118,11 +114,10 @@ final class PrivatecaCaPoolIssuancePolicyBackdateDurationOrAllowRequesterSpecifi
   };
 }
 
-/// The [PrivatecaCaPoolIssuancePolicyBackdateDurationOrAllowRequesterSpecifiedNotBeforeTime.allowRequesterSpecifiedNotBeforeTime] choice: sets `allow_requester_specified_not_before_time`.
-final class PrivatecaCaPoolIssuancePolicyBackdateDurationOrAllowRequesterSpecifiedNotBeforeTimeChoice
-    extends
-        PrivatecaCaPoolIssuancePolicyBackdateDurationOrAllowRequesterSpecifiedNotBeforeTime {
-  const PrivatecaCaPoolIssuancePolicyBackdateDurationOrAllowRequesterSpecifiedNotBeforeTimeChoice(
+/// The [PrivatecaCaPoolNotBefore.allowRequesterSpecifiedNotBeforeTime] choice: sets `allow_requester_specified_not_before_time`.
+final class PrivatecaCaPoolNotBeforeAllowRequesterSpecifiedNotBeforeTime
+    extends PrivatecaCaPoolNotBefore {
+  const PrivatecaCaPoolNotBeforeAllowRequesterSpecifiedNotBeforeTime(
     this.allowRequesterSpecifiedNotBeforeTime,
   );
 

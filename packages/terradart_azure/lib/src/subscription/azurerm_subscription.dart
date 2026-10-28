@@ -25,18 +25,18 @@ extension type const SubscriptionWorkload._(TfArg<String> _)
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.billingScopeId(...)`.
-sealed class SubscriptionBillingScopeIdOrSubscriptionId {
-  const SubscriptionBillingScopeIdOrSubscriptionId();
+sealed class SubscriptionSource {
+  const SubscriptionSource();
 
   /// Sets `billing_scope_id`.
-  const factory SubscriptionBillingScopeIdOrSubscriptionId.billingScopeId(
+  const factory SubscriptionSource.billingScopeId(
     TfArg<String> billingScopeId,
-  ) = SubscriptionBillingScopeIdOrSubscriptionIdBillingScopeId;
+  ) = SubscriptionSourceBillingScopeId;
 
   /// Sets `subscription_id`.
-  const factory SubscriptionBillingScopeIdOrSubscriptionId.subscriptionId(
+  const factory SubscriptionSource.subscriptionId(
     TfArg<String> subscriptionId,
-  ) = SubscriptionBillingScopeIdOrSubscriptionIdChoice;
+  ) = SubscriptionSourceSubscriptionId;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -51,12 +51,9 @@ sealed class SubscriptionBillingScopeIdOrSubscriptionId {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [SubscriptionBillingScopeIdOrSubscriptionId.billingScopeId] choice: sets `billing_scope_id`.
-final class SubscriptionBillingScopeIdOrSubscriptionIdBillingScopeId
-    extends SubscriptionBillingScopeIdOrSubscriptionId {
-  const SubscriptionBillingScopeIdOrSubscriptionIdBillingScopeId(
-    this.billingScopeId,
-  );
+/// The [SubscriptionSource.billingScopeId] choice: sets `billing_scope_id`.
+final class SubscriptionSourceBillingScopeId extends SubscriptionSource {
+  const SubscriptionSourceBillingScopeId(this.billingScopeId);
 
   final TfArg<String> billingScopeId;
 
@@ -77,10 +74,9 @@ final class SubscriptionBillingScopeIdOrSubscriptionIdBillingScopeId
   };
 }
 
-/// The [SubscriptionBillingScopeIdOrSubscriptionId.subscriptionId] choice: sets `subscription_id`.
-final class SubscriptionBillingScopeIdOrSubscriptionIdChoice
-    extends SubscriptionBillingScopeIdOrSubscriptionId {
-  const SubscriptionBillingScopeIdOrSubscriptionIdChoice(this.subscriptionId);
+/// The [SubscriptionSource.subscriptionId] choice: sets `subscription_id`.
+final class SubscriptionSourceSubscriptionId extends SubscriptionSource {
+  const SubscriptionSourceSubscriptionId(this.subscriptionId);
 
   final TfArg<String> subscriptionId;
 
@@ -106,8 +102,7 @@ final class AzurermSubscription extends Resource {
   AzurermSubscription(
     super.localName, {
     TfArg<String>? alias,
-    required SubscriptionBillingScopeIdOrSubscriptionId
-    billingScopeIdOrSubscriptionId,
+    required SubscriptionSource source,
     required TfArg<String> subscriptionName,
     TfArg<Map<String, String>>? tags,
     SubscriptionWorkload? workload,
@@ -119,7 +114,7 @@ final class AzurermSubscription extends Resource {
          terraformType: tfType,
          argMap: {
            'alias': ?alias,
-           ...billingScopeIdOrSubscriptionId.argMap,
+           ...source.argMap,
            'subscription_name': subscriptionName,
            'tags': ?tags,
            'workload': ?workload,

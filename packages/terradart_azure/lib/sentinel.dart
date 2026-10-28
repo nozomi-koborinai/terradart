@@ -13,9 +13,9 @@ export 'src/data/azurerm_sentinel_alert_rule_template.dart'
 export 'src/sentinel/azurerm_sentinel_alert_rule_anomaly_built_in.dart'
     show
         AzurermSentinelAlertRuleAnomalyBuiltIn,
-        SentinelAlertRuleAnomalyBuiltInDisplayNameOrName,
-        SentinelAlertRuleAnomalyBuiltInDisplayNameOrNameChoice,
-        SentinelAlertRuleAnomalyBuiltInDisplayNameOrNameDisplayName,
+        SentinelAlertRuleAnomalyBuiltInIdentifier,
+        SentinelAlertRuleAnomalyBuiltInIdentifierDisplayName,
+        SentinelAlertRuleAnomalyBuiltInIdentifierName,
         SentinelAlertRuleAnomalyBuiltInMode;
 export 'src/sentinel/azurerm_sentinel_alert_rule_anomaly_duplicate.dart'
     show

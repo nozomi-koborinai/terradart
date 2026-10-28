@@ -16,19 +16,15 @@ export 'src/arc/azurerm_arc_kubernetes_cluster_extension.dart'
 export 'src/arc/azurerm_arc_kubernetes_flux_configuration.dart'
     show
         ArcKubernetesFluxConfigurationBlobStorage,
-        ArcKubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrSasTokenOrServicePrincipal,
-        ArcKubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrSasTokenOrServicePrincipalAccountKey,
-        ArcKubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrSasTokenOrServicePrincipalChoice,
-        ArcKubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrSasTokenOrServicePrincipalLocalAuthReference,
-        ArcKubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrSasTokenOrServicePrincipalSasToken,
-        ArcKubernetesFluxConfigurationBlobStorageOrBucketOrGitRepository,
-        ArcKubernetesFluxConfigurationBlobStorageOrBucketOrGitRepositoryBlobStorage,
-        ArcKubernetesFluxConfigurationBlobStorageOrBucketOrGitRepositoryBucket,
-        ArcKubernetesFluxConfigurationBlobStorageOrBucketOrGitRepositoryChoice,
+        ArcKubernetesFluxConfigurationBlobStorageCredentials,
+        ArcKubernetesFluxConfigurationBlobStorageCredentialsAccountKey,
+        ArcKubernetesFluxConfigurationBlobStorageCredentialsLocalAuthReference,
+        ArcKubernetesFluxConfigurationBlobStorageCredentialsSasToken,
+        ArcKubernetesFluxConfigurationBlobStorageCredentialsServicePrincipal,
         ArcKubernetesFluxConfigurationBucket,
-        ArcKubernetesFluxConfigurationBucketAccessKeyOrLocalAuthReference,
-        ArcKubernetesFluxConfigurationBucketAccessKeyOrLocalAuthReferenceAccessKey,
-        ArcKubernetesFluxConfigurationBucketAccessKeyOrLocalAuthReferenceChoice,
+        ArcKubernetesFluxConfigurationBucketCredentials,
+        ArcKubernetesFluxConfigurationBucketCredentialsAccessKey,
+        ArcKubernetesFluxConfigurationBucketCredentialsLocalAuthReference,
         ArcKubernetesFluxConfigurationClient,
         ArcKubernetesFluxConfigurationClientCertificateBase64,
         ArcKubernetesFluxConfigurationClientSecret,
@@ -36,6 +32,10 @@ export 'src/arc/azurerm_arc_kubernetes_flux_configuration.dart'
         ArcKubernetesFluxConfigurationKustomizations,
         ArcKubernetesFluxConfigurationScope,
         ArcKubernetesFluxConfigurationServicePrincipal,
+        ArcKubernetesFluxConfigurationSource,
+        ArcKubernetesFluxConfigurationSourceBlobStorage,
+        ArcKubernetesFluxConfigurationSourceBucket,
+        ArcKubernetesFluxConfigurationSourceGitRepository,
         AzurermArcKubernetesFluxConfiguration;
 export 'src/arc/azurerm_arc_kubernetes_provisioned_cluster.dart'
     show

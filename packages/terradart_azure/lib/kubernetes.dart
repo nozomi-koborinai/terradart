@@ -83,10 +83,10 @@ export 'src/kubernetes/azurerm_kubernetes_cluster_extension.dart'
         AzurermKubernetesClusterExtension,
         KubernetesClusterExtensionNamespace,
         KubernetesClusterExtensionPlan,
+        KubernetesClusterExtensionRelease,
         KubernetesClusterExtensionReleaseNamespace,
-        KubernetesClusterExtensionReleaseTrainOrVersion,
-        KubernetesClusterExtensionReleaseTrainOrVersionChoice,
-        KubernetesClusterExtensionReleaseTrainOrVersionReleaseTrain,
+        KubernetesClusterExtensionReleaseTrain,
+        KubernetesClusterExtensionReleaseVersion,
         KubernetesClusterExtensionTargetNamespace;
 export 'src/kubernetes/azurerm_kubernetes_cluster_node_pool.dart'
     show
@@ -107,13 +107,13 @@ export 'src/kubernetes/azurerm_kubernetes_fleet_member.dart'
 export 'src/kubernetes/azurerm_kubernetes_fleet_update_run.dart'
     show
         AzurermKubernetesFleetUpdateRun,
-        KubernetesFleetUpdateRunFleetUpdateStrategyIdOrStage,
-        KubernetesFleetUpdateRunFleetUpdateStrategyIdOrStageChoice,
-        KubernetesFleetUpdateRunFleetUpdateStrategyIdOrStageFleetUpdateStrategyId,
         KubernetesFleetUpdateRunGroup,
         KubernetesFleetUpdateRunManagedClusterUpdate,
         KubernetesFleetUpdateRunNodeImageSelection,
         KubernetesFleetUpdateRunStage,
+        KubernetesFleetUpdateRunStrategy,
+        KubernetesFleetUpdateRunStrategyFleetUpdateStrategyId,
+        KubernetesFleetUpdateRunStrategyStage,
         KubernetesFleetUpdateRunUpgrade;
 export 'src/kubernetes/azurerm_kubernetes_fleet_update_strategy.dart'
     show
@@ -124,20 +124,16 @@ export 'src/kubernetes/azurerm_kubernetes_flux_configuration.dart'
     show
         AzurermKubernetesFluxConfiguration,
         KubernetesFluxConfigurationBlobStorage,
-        KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipal,
-        KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipalAccountKey,
-        KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipalChoice,
-        KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipalLocalAuthReference,
-        KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipalManagedIdentity,
-        KubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrManagedIdentityOrSasTokenOrServicePrincipalSasToken,
-        KubernetesFluxConfigurationBlobStorageOrBucketOrGitRepository,
-        KubernetesFluxConfigurationBlobStorageOrBucketOrGitRepositoryBlobStorage,
-        KubernetesFluxConfigurationBlobStorageOrBucketOrGitRepositoryBucket,
-        KubernetesFluxConfigurationBlobStorageOrBucketOrGitRepositoryChoice,
+        KubernetesFluxConfigurationBlobStorageCredentials,
+        KubernetesFluxConfigurationBlobStorageCredentialsAccountKey,
+        KubernetesFluxConfigurationBlobStorageCredentialsLocalAuthReference,
+        KubernetesFluxConfigurationBlobStorageCredentialsManagedIdentity,
+        KubernetesFluxConfigurationBlobStorageCredentialsSasToken,
+        KubernetesFluxConfigurationBlobStorageCredentialsServicePrincipal,
         KubernetesFluxConfigurationBucket,
-        KubernetesFluxConfigurationBucketAccessKeyOrLocalAuthReference,
-        KubernetesFluxConfigurationBucketAccessKeyOrLocalAuthReferenceAccessKey,
-        KubernetesFluxConfigurationBucketAccessKeyOrLocalAuthReferenceChoice,
+        KubernetesFluxConfigurationBucketCredentials,
+        KubernetesFluxConfigurationBucketCredentialsAccessKey,
+        KubernetesFluxConfigurationBucketCredentialsLocalAuthReference,
         KubernetesFluxConfigurationClient,
         KubernetesFluxConfigurationClientCertificateBase64,
         KubernetesFluxConfigurationClientSecret,
@@ -148,4 +144,8 @@ export 'src/kubernetes/azurerm_kubernetes_flux_configuration.dart'
         KubernetesFluxConfigurationProvider,
         KubernetesFluxConfigurationScope,
         KubernetesFluxConfigurationServicePrincipal,
+        KubernetesFluxConfigurationSource,
+        KubernetesFluxConfigurationSourceBlobStorage,
+        KubernetesFluxConfigurationSourceBucket,
+        KubernetesFluxConfigurationSourceGitRepository,
         KubernetesFluxConfigurationSubstituteFrom;

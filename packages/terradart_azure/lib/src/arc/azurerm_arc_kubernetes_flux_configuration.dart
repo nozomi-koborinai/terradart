@@ -44,23 +44,23 @@ extension type const ArcKubernetesFluxConfigurationScope._(TfArg<String> _)
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.blobStorage(...)`.
-sealed class ArcKubernetesFluxConfigurationBlobStorageOrBucketOrGitRepository {
-  const ArcKubernetesFluxConfigurationBlobStorageOrBucketOrGitRepository();
+sealed class ArcKubernetesFluxConfigurationSource {
+  const ArcKubernetesFluxConfigurationSource();
 
   /// Sets `blob_storage`.
-  const factory ArcKubernetesFluxConfigurationBlobStorageOrBucketOrGitRepository.blobStorage(
+  const factory ArcKubernetesFluxConfigurationSource.blobStorage(
     ArcKubernetesFluxConfigurationBlobStorage blobStorage,
-  ) = ArcKubernetesFluxConfigurationBlobStorageOrBucketOrGitRepositoryBlobStorage;
+  ) = ArcKubernetesFluxConfigurationSourceBlobStorage;
 
   /// Sets `bucket`.
-  const factory ArcKubernetesFluxConfigurationBlobStorageOrBucketOrGitRepository.bucket(
+  const factory ArcKubernetesFluxConfigurationSource.bucket(
     ArcKubernetesFluxConfigurationBucket bucket,
-  ) = ArcKubernetesFluxConfigurationBlobStorageOrBucketOrGitRepositoryBucket;
+  ) = ArcKubernetesFluxConfigurationSourceBucket;
 
   /// Sets `git_repository`.
-  const factory ArcKubernetesFluxConfigurationBlobStorageOrBucketOrGitRepository.gitRepository(
+  const factory ArcKubernetesFluxConfigurationSource.gitRepository(
     ArcKubernetesFluxConfigurationGitRepository gitRepository,
-  ) = ArcKubernetesFluxConfigurationBlobStorageOrBucketOrGitRepositoryChoice;
+  ) = ArcKubernetesFluxConfigurationSourceGitRepository;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -75,12 +75,10 @@ sealed class ArcKubernetesFluxConfigurationBlobStorageOrBucketOrGitRepository {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [ArcKubernetesFluxConfigurationBlobStorageOrBucketOrGitRepository.blobStorage] choice: sets `blob_storage`.
-final class ArcKubernetesFluxConfigurationBlobStorageOrBucketOrGitRepositoryBlobStorage
-    extends ArcKubernetesFluxConfigurationBlobStorageOrBucketOrGitRepository {
-  const ArcKubernetesFluxConfigurationBlobStorageOrBucketOrGitRepositoryBlobStorage(
-    this.blobStorage,
-  );
+/// The [ArcKubernetesFluxConfigurationSource.blobStorage] choice: sets `blob_storage`.
+final class ArcKubernetesFluxConfigurationSourceBlobStorage
+    extends ArcKubernetesFluxConfigurationSource {
+  const ArcKubernetesFluxConfigurationSourceBlobStorage(this.blobStorage);
 
   final ArcKubernetesFluxConfigurationBlobStorage blobStorage;
 
@@ -99,12 +97,10 @@ final class ArcKubernetesFluxConfigurationBlobStorageOrBucketOrGitRepositoryBlob
   };
 }
 
-/// The [ArcKubernetesFluxConfigurationBlobStorageOrBucketOrGitRepository.bucket] choice: sets `bucket`.
-final class ArcKubernetesFluxConfigurationBlobStorageOrBucketOrGitRepositoryBucket
-    extends ArcKubernetesFluxConfigurationBlobStorageOrBucketOrGitRepository {
-  const ArcKubernetesFluxConfigurationBlobStorageOrBucketOrGitRepositoryBucket(
-    this.bucket,
-  );
+/// The [ArcKubernetesFluxConfigurationSource.bucket] choice: sets `bucket`.
+final class ArcKubernetesFluxConfigurationSourceBucket
+    extends ArcKubernetesFluxConfigurationSource {
+  const ArcKubernetesFluxConfigurationSourceBucket(this.bucket);
 
   final ArcKubernetesFluxConfigurationBucket bucket;
 
@@ -123,12 +119,10 @@ final class ArcKubernetesFluxConfigurationBlobStorageOrBucketOrGitRepositoryBuck
   };
 }
 
-/// The [ArcKubernetesFluxConfigurationBlobStorageOrBucketOrGitRepository.gitRepository] choice: sets `git_repository`.
-final class ArcKubernetesFluxConfigurationBlobStorageOrBucketOrGitRepositoryChoice
-    extends ArcKubernetesFluxConfigurationBlobStorageOrBucketOrGitRepository {
-  const ArcKubernetesFluxConfigurationBlobStorageOrBucketOrGitRepositoryChoice(
-    this.gitRepository,
-  );
+/// The [ArcKubernetesFluxConfigurationSource.gitRepository] choice: sets `git_repository`.
+final class ArcKubernetesFluxConfigurationSourceGitRepository
+    extends ArcKubernetesFluxConfigurationSource {
+  const ArcKubernetesFluxConfigurationSourceGitRepository(this.gitRepository);
 
   final ArcKubernetesFluxConfigurationGitRepository gitRepository;
 
@@ -152,14 +146,13 @@ final class ArcKubernetesFluxConfigurationBlobStorageOrBucketOrGitRepositoryChoi
 @immutable
 final class ArcKubernetesFluxConfigurationBlobStorage {
   const ArcKubernetesFluxConfigurationBlobStorage({
-    required this.accountKeyOrLocalAuthReferenceOrSasTokenOrServicePrincipal,
+    required this.credentials,
     required this.containerId,
     this.syncIntervalInSeconds,
     this.timeoutInSeconds,
   });
 
-  final ArcKubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrSasTokenOrServicePrincipal
-  accountKeyOrLocalAuthReferenceOrSasTokenOrServicePrincipal;
+  final ArcKubernetesFluxConfigurationBlobStorageCredentials credentials;
 
   final TfArg<String> containerId;
 
@@ -169,7 +162,7 @@ final class ArcKubernetesFluxConfigurationBlobStorage {
 
   @internal
   Map<String, Object?> encode() => {
-    ...accountKeyOrLocalAuthReferenceOrSasTokenOrServicePrincipal.encode(),
+    ...credentials.encode(),
     'container_id': containerId.toTfJson(),
     'sync_interval_in_seconds': ?syncIntervalInSeconds?.toTfJson(),
     'timeout_in_seconds': ?timeoutInSeconds?.toTfJson(),
@@ -180,28 +173,28 @@ final class ArcKubernetesFluxConfigurationBlobStorage {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.accountKey(...)`.
-sealed class ArcKubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrSasTokenOrServicePrincipal {
-  const ArcKubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrSasTokenOrServicePrincipal();
+sealed class ArcKubernetesFluxConfigurationBlobStorageCredentials {
+  const ArcKubernetesFluxConfigurationBlobStorageCredentials();
 
   /// Sets `account_key`.
-  const factory ArcKubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrSasTokenOrServicePrincipal.accountKey(
+  const factory ArcKubernetesFluxConfigurationBlobStorageCredentials.accountKey(
     Sensitive<String> accountKey,
-  ) = ArcKubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrSasTokenOrServicePrincipalAccountKey;
+  ) = ArcKubernetesFluxConfigurationBlobStorageCredentialsAccountKey;
 
   /// Sets `local_auth_reference`.
-  const factory ArcKubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrSasTokenOrServicePrincipal.localAuthReference(
+  const factory ArcKubernetesFluxConfigurationBlobStorageCredentials.localAuthReference(
     TfArg<String> localAuthReference,
-  ) = ArcKubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrSasTokenOrServicePrincipalLocalAuthReference;
+  ) = ArcKubernetesFluxConfigurationBlobStorageCredentialsLocalAuthReference;
 
   /// Sets `sas_token`.
-  const factory ArcKubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrSasTokenOrServicePrincipal.sasToken(
+  const factory ArcKubernetesFluxConfigurationBlobStorageCredentials.sasToken(
     Sensitive<String> sasToken,
-  ) = ArcKubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrSasTokenOrServicePrincipalSasToken;
+  ) = ArcKubernetesFluxConfigurationBlobStorageCredentialsSasToken;
 
   /// Sets `service_principal`.
-  const factory ArcKubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrSasTokenOrServicePrincipal.servicePrincipal(
+  const factory ArcKubernetesFluxConfigurationBlobStorageCredentials.servicePrincipal(
     ArcKubernetesFluxConfigurationServicePrincipal servicePrincipal,
-  ) = ArcKubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrSasTokenOrServicePrincipalChoice;
+  ) = ArcKubernetesFluxConfigurationBlobStorageCredentialsServicePrincipal;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -211,11 +204,10 @@ sealed class ArcKubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthRefer
   Map<String, Object?> encode();
 }
 
-/// The [ArcKubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrSasTokenOrServicePrincipal.accountKey] choice: sets `account_key`.
-final class ArcKubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrSasTokenOrServicePrincipalAccountKey
-    extends
-        ArcKubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrSasTokenOrServicePrincipal {
-  const ArcKubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrSasTokenOrServicePrincipalAccountKey(
+/// The [ArcKubernetesFluxConfigurationBlobStorageCredentials.accountKey] choice: sets `account_key`.
+final class ArcKubernetesFluxConfigurationBlobStorageCredentialsAccountKey
+    extends ArcKubernetesFluxConfigurationBlobStorageCredentials {
+  const ArcKubernetesFluxConfigurationBlobStorageCredentialsAccountKey(
     this.accountKey,
   );
 
@@ -230,11 +222,10 @@ final class ArcKubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthRefere
   Map<String, Object?> encode() => {'account_key': accountKey.toTfJson()};
 }
 
-/// The [ArcKubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrSasTokenOrServicePrincipal.localAuthReference] choice: sets `local_auth_reference`.
-final class ArcKubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrSasTokenOrServicePrincipalLocalAuthReference
-    extends
-        ArcKubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrSasTokenOrServicePrincipal {
-  const ArcKubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrSasTokenOrServicePrincipalLocalAuthReference(
+/// The [ArcKubernetesFluxConfigurationBlobStorageCredentials.localAuthReference] choice: sets `local_auth_reference`.
+final class ArcKubernetesFluxConfigurationBlobStorageCredentialsLocalAuthReference
+    extends ArcKubernetesFluxConfigurationBlobStorageCredentials {
+  const ArcKubernetesFluxConfigurationBlobStorageCredentialsLocalAuthReference(
     this.localAuthReference,
   );
 
@@ -251,11 +242,10 @@ final class ArcKubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthRefere
   };
 }
 
-/// The [ArcKubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrSasTokenOrServicePrincipal.sasToken] choice: sets `sas_token`.
-final class ArcKubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrSasTokenOrServicePrincipalSasToken
-    extends
-        ArcKubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrSasTokenOrServicePrincipal {
-  const ArcKubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrSasTokenOrServicePrincipalSasToken(
+/// The [ArcKubernetesFluxConfigurationBlobStorageCredentials.sasToken] choice: sets `sas_token`.
+final class ArcKubernetesFluxConfigurationBlobStorageCredentialsSasToken
+    extends ArcKubernetesFluxConfigurationBlobStorageCredentials {
+  const ArcKubernetesFluxConfigurationBlobStorageCredentialsSasToken(
     this.sasToken,
   );
 
@@ -270,11 +260,10 @@ final class ArcKubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthRefere
   Map<String, Object?> encode() => {'sas_token': sasToken.toTfJson()};
 }
 
-/// The [ArcKubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrSasTokenOrServicePrincipal.servicePrincipal] choice: sets `service_principal`.
-final class ArcKubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrSasTokenOrServicePrincipalChoice
-    extends
-        ArcKubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrSasTokenOrServicePrincipal {
-  const ArcKubernetesFluxConfigurationBlobStorageAccountKeyOrLocalAuthReferenceOrSasTokenOrServicePrincipalChoice(
+/// The [ArcKubernetesFluxConfigurationBlobStorageCredentials.servicePrincipal] choice: sets `service_principal`.
+final class ArcKubernetesFluxConfigurationBlobStorageCredentialsServicePrincipal
+    extends ArcKubernetesFluxConfigurationBlobStorageCredentials {
+  const ArcKubernetesFluxConfigurationBlobStorageCredentialsServicePrincipal(
     this.servicePrincipal,
   );
 
@@ -389,7 +378,7 @@ final class ArcKubernetesFluxConfigurationClientSecret
 @immutable
 final class ArcKubernetesFluxConfigurationBucket {
   const ArcKubernetesFluxConfigurationBucket({
-    required this.accessKeyOrLocalAuthReference,
+    required this.credentials,
     required this.bucketName,
     this.secretKeyBase64,
     this.syncIntervalInSeconds,
@@ -398,8 +387,7 @@ final class ArcKubernetesFluxConfigurationBucket {
     required this.url,
   });
 
-  final ArcKubernetesFluxConfigurationBucketAccessKeyOrLocalAuthReference
-  accessKeyOrLocalAuthReference;
+  final ArcKubernetesFluxConfigurationBucketCredentials credentials;
 
   final TfArg<String> bucketName;
 
@@ -415,7 +403,7 @@ final class ArcKubernetesFluxConfigurationBucket {
 
   @internal
   Map<String, Object?> encode() => {
-    ...accessKeyOrLocalAuthReference.encode(),
+    ...credentials.encode(),
     'bucket_name': bucketName.toTfJson(),
     'secret_key_base64': ?secretKeyBase64?.toTfJson(),
     'sync_interval_in_seconds': ?syncIntervalInSeconds?.toTfJson(),
@@ -429,18 +417,18 @@ final class ArcKubernetesFluxConfigurationBucket {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.accessKey(...)`.
-sealed class ArcKubernetesFluxConfigurationBucketAccessKeyOrLocalAuthReference {
-  const ArcKubernetesFluxConfigurationBucketAccessKeyOrLocalAuthReference();
+sealed class ArcKubernetesFluxConfigurationBucketCredentials {
+  const ArcKubernetesFluxConfigurationBucketCredentials();
 
   /// Sets `access_key`.
-  const factory ArcKubernetesFluxConfigurationBucketAccessKeyOrLocalAuthReference.accessKey(
+  const factory ArcKubernetesFluxConfigurationBucketCredentials.accessKey(
     TfArg<String> accessKey,
-  ) = ArcKubernetesFluxConfigurationBucketAccessKeyOrLocalAuthReferenceAccessKey;
+  ) = ArcKubernetesFluxConfigurationBucketCredentialsAccessKey;
 
   /// Sets `local_auth_reference`.
-  const factory ArcKubernetesFluxConfigurationBucketAccessKeyOrLocalAuthReference.localAuthReference(
+  const factory ArcKubernetesFluxConfigurationBucketCredentials.localAuthReference(
     TfArg<String> localAuthReference,
-  ) = ArcKubernetesFluxConfigurationBucketAccessKeyOrLocalAuthReferenceChoice;
+  ) = ArcKubernetesFluxConfigurationBucketCredentialsLocalAuthReference;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -450,10 +438,10 @@ sealed class ArcKubernetesFluxConfigurationBucketAccessKeyOrLocalAuthReference {
   Map<String, Object?> encode();
 }
 
-/// The [ArcKubernetesFluxConfigurationBucketAccessKeyOrLocalAuthReference.accessKey] choice: sets `access_key`.
-final class ArcKubernetesFluxConfigurationBucketAccessKeyOrLocalAuthReferenceAccessKey
-    extends ArcKubernetesFluxConfigurationBucketAccessKeyOrLocalAuthReference {
-  const ArcKubernetesFluxConfigurationBucketAccessKeyOrLocalAuthReferenceAccessKey(
+/// The [ArcKubernetesFluxConfigurationBucketCredentials.accessKey] choice: sets `access_key`.
+final class ArcKubernetesFluxConfigurationBucketCredentialsAccessKey
+    extends ArcKubernetesFluxConfigurationBucketCredentials {
+  const ArcKubernetesFluxConfigurationBucketCredentialsAccessKey(
     this.accessKey,
   );
 
@@ -468,10 +456,10 @@ final class ArcKubernetesFluxConfigurationBucketAccessKeyOrLocalAuthReferenceAcc
   Map<String, Object?> encode() => {'access_key': accessKey.toTfJson()};
 }
 
-/// The [ArcKubernetesFluxConfigurationBucketAccessKeyOrLocalAuthReference.localAuthReference] choice: sets `local_auth_reference`.
-final class ArcKubernetesFluxConfigurationBucketAccessKeyOrLocalAuthReferenceChoice
-    extends ArcKubernetesFluxConfigurationBucketAccessKeyOrLocalAuthReference {
-  const ArcKubernetesFluxConfigurationBucketAccessKeyOrLocalAuthReferenceChoice(
+/// The [ArcKubernetesFluxConfigurationBucketCredentials.localAuthReference] choice: sets `local_auth_reference`.
+final class ArcKubernetesFluxConfigurationBucketCredentialsLocalAuthReference
+    extends ArcKubernetesFluxConfigurationBucketCredentials {
+  const ArcKubernetesFluxConfigurationBucketCredentialsLocalAuthReference(
     this.localAuthReference,
   );
 
@@ -599,8 +587,7 @@ final class AzurermArcKubernetesFluxConfiguration extends Resource {
     required TfArg<String> name,
     required TfArg<String> namespace,
     ArcKubernetesFluxConfigurationScope? scope,
-    required ArcKubernetesFluxConfigurationBlobStorageOrBucketOrGitRepository
-    blobStorageOrBucketOrGitRepository,
+    required ArcKubernetesFluxConfigurationSource source,
     required List<ArcKubernetesFluxConfigurationKustomizations> kustomizations,
     super.lifecycle,
     super.dependsOn,
@@ -615,7 +602,7 @@ final class AzurermArcKubernetesFluxConfiguration extends Resource {
            'name': name,
            'namespace': namespace,
            'scope': ?scope,
-           ...blobStorageOrBucketOrGitRepository.argMap,
+           ...source.argMap,
            'kustomizations': TfArg.literal([
              for (final e in kustomizations) e.encode(),
            ]),

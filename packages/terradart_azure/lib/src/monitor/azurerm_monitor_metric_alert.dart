@@ -67,24 +67,24 @@ extension type const MonitorMetricAlertWindowSize._(TfArg<String> _)
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.applicationInsightsWebTestLocationAvailabilityCriteria(...)`.
-sealed class MonitorMetricAlertApplicationInsightsWebTestLocationAvailabilityCriteriaOrCriteriaOrDynamicCriteria {
-  const MonitorMetricAlertApplicationInsightsWebTestLocationAvailabilityCriteriaOrCriteriaOrDynamicCriteria();
+sealed class MonitorMetricAlertSignal {
+  const MonitorMetricAlertSignal();
 
   /// Sets `application_insights_web_test_location_availability_criteria`.
-  const factory MonitorMetricAlertApplicationInsightsWebTestLocationAvailabilityCriteriaOrCriteriaOrDynamicCriteria.applicationInsightsWebTestLocationAvailabilityCriteria(
+  const factory MonitorMetricAlertSignal.applicationInsightsWebTestLocationAvailabilityCriteria(
     MonitorMetricAlertApplicationInsightsWebTestLocationAvailabilityCriteria
     applicationInsightsWebTestLocationAvailabilityCriteria,
-  ) = MonitorMetricAlertApplicationInsightsWebTestLocationAvailabilityCriteriaOrCriteriaOrDynamicCriteriaApplicationInsightsWebTestLocationAvailabilityCriteria;
+  ) = MonitorMetricAlertSignalApplicationInsightsWebTestLocationAvailabilityCriteria;
 
   /// Sets `criteria`.
-  const factory MonitorMetricAlertApplicationInsightsWebTestLocationAvailabilityCriteriaOrCriteriaOrDynamicCriteria.criteria(
+  const factory MonitorMetricAlertSignal.criteria(
     List<MonitorMetricAlertCriteria> criteria,
-  ) = MonitorMetricAlertApplicationInsightsWebTestLocationAvailabilityCriteriaOrCriteriaOrDynamicCriteriaChoice;
+  ) = MonitorMetricAlertSignalCriteria;
 
   /// Sets `dynamic_criteria`.
-  const factory MonitorMetricAlertApplicationInsightsWebTestLocationAvailabilityCriteriaOrCriteriaOrDynamicCriteria.dynamicCriteria(
+  const factory MonitorMetricAlertSignal.dynamicCriteria(
     MonitorMetricAlertDynamicCriteria dynamicCriteria,
-  ) = MonitorMetricAlertApplicationInsightsWebTestLocationAvailabilityCriteriaOrCriteriaOrDynamicCriteriaOption;
+  ) = MonitorMetricAlertSignalDynamicCriteria;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -99,11 +99,10 @@ sealed class MonitorMetricAlertApplicationInsightsWebTestLocationAvailabilityCri
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [MonitorMetricAlertApplicationInsightsWebTestLocationAvailabilityCriteriaOrCriteriaOrDynamicCriteria.applicationInsightsWebTestLocationAvailabilityCriteria] choice: sets `application_insights_web_test_location_availability_criteria`.
-final class MonitorMetricAlertApplicationInsightsWebTestLocationAvailabilityCriteriaOrCriteriaOrDynamicCriteriaApplicationInsightsWebTestLocationAvailabilityCriteria
-    extends
-        MonitorMetricAlertApplicationInsightsWebTestLocationAvailabilityCriteriaOrCriteriaOrDynamicCriteria {
-  const MonitorMetricAlertApplicationInsightsWebTestLocationAvailabilityCriteriaOrCriteriaOrDynamicCriteriaApplicationInsightsWebTestLocationAvailabilityCriteria(
+/// The [MonitorMetricAlertSignal.applicationInsightsWebTestLocationAvailabilityCriteria] choice: sets `application_insights_web_test_location_availability_criteria`.
+final class MonitorMetricAlertSignalApplicationInsightsWebTestLocationAvailabilityCriteria
+    extends MonitorMetricAlertSignal {
+  const MonitorMetricAlertSignalApplicationInsightsWebTestLocationAvailabilityCriteria(
     this.applicationInsightsWebTestLocationAvailabilityCriteria,
   );
 
@@ -132,13 +131,9 @@ final class MonitorMetricAlertApplicationInsightsWebTestLocationAvailabilityCrit
   };
 }
 
-/// The [MonitorMetricAlertApplicationInsightsWebTestLocationAvailabilityCriteriaOrCriteriaOrDynamicCriteria.criteria] choice: sets `criteria`.
-final class MonitorMetricAlertApplicationInsightsWebTestLocationAvailabilityCriteriaOrCriteriaOrDynamicCriteriaChoice
-    extends
-        MonitorMetricAlertApplicationInsightsWebTestLocationAvailabilityCriteriaOrCriteriaOrDynamicCriteria {
-  const MonitorMetricAlertApplicationInsightsWebTestLocationAvailabilityCriteriaOrCriteriaOrDynamicCriteriaChoice(
-    this.criteria,
-  );
+/// The [MonitorMetricAlertSignal.criteria] choice: sets `criteria`.
+final class MonitorMetricAlertSignalCriteria extends MonitorMetricAlertSignal {
+  const MonitorMetricAlertSignalCriteria(this.criteria);
 
   final List<MonitorMetricAlertCriteria> criteria;
 
@@ -159,13 +154,10 @@ final class MonitorMetricAlertApplicationInsightsWebTestLocationAvailabilityCrit
   };
 }
 
-/// The [MonitorMetricAlertApplicationInsightsWebTestLocationAvailabilityCriteriaOrCriteriaOrDynamicCriteria.dynamicCriteria] choice: sets `dynamic_criteria`.
-final class MonitorMetricAlertApplicationInsightsWebTestLocationAvailabilityCriteriaOrCriteriaOrDynamicCriteriaOption
-    extends
-        MonitorMetricAlertApplicationInsightsWebTestLocationAvailabilityCriteriaOrCriteriaOrDynamicCriteria {
-  const MonitorMetricAlertApplicationInsightsWebTestLocationAvailabilityCriteriaOrCriteriaOrDynamicCriteriaOption(
-    this.dynamicCriteria,
-  );
+/// The [MonitorMetricAlertSignal.dynamicCriteria] choice: sets `dynamic_criteria`.
+final class MonitorMetricAlertSignalDynamicCriteria
+    extends MonitorMetricAlertSignal {
+  const MonitorMetricAlertSignalDynamicCriteria(this.dynamicCriteria);
 
   final MonitorMetricAlertDynamicCriteria dynamicCriteria;
 
@@ -503,8 +495,7 @@ final class AzurermMonitorMetricAlert extends Resource {
     TfArg<String>? targetResourceType,
     MonitorMetricAlertWindowSize? windowSize,
     List<MonitorMetricAlertAction>? action,
-    required MonitorMetricAlertApplicationInsightsWebTestLocationAvailabilityCriteriaOrCriteriaOrDynamicCriteria
-    applicationInsightsWebTestLocationAvailabilityCriteriaOrCriteriaOrDynamicCriteria,
+    required MonitorMetricAlertSignal signal,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -526,8 +517,7 @@ final class AzurermMonitorMetricAlert extends Resource {
            'window_size': ?windowSize,
            if (action != null)
              'action': TfArg.literal([for (final e in action) e.encode()]),
-           ...applicationInsightsWebTestLocationAvailabilityCriteriaOrCriteriaOrDynamicCriteria
-               .argMap,
+           ...signal.argMap,
          },
        );
 

@@ -13,18 +13,18 @@ const Set<String> _awsObservabilityadminTelemetryEvaluationSensitive =
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.allRegions(...)`.
-sealed class ObservabilityadminTelemetryEvaluationAllRegionsOrRegions {
-  const ObservabilityadminTelemetryEvaluationAllRegionsOrRegions();
+sealed class ObservabilityadminTelemetryEvaluationMultiRegion {
+  const ObservabilityadminTelemetryEvaluationMultiRegion();
 
   /// Sets `all_regions`.
-  const factory ObservabilityadminTelemetryEvaluationAllRegionsOrRegions.allRegions(
+  const factory ObservabilityadminTelemetryEvaluationMultiRegion.allRegions(
     TfArg<bool> allRegions,
-  ) = ObservabilityadminTelemetryEvaluationAllRegionsOrRegionsAllRegions;
+  ) = ObservabilityadminTelemetryEvaluationMultiRegionAllRegions;
 
   /// Sets `regions`.
-  const factory ObservabilityadminTelemetryEvaluationAllRegionsOrRegions.regions(
+  const factory ObservabilityadminTelemetryEvaluationMultiRegion.regions(
     TfArg<List<String>> regions,
-  ) = ObservabilityadminTelemetryEvaluationAllRegionsOrRegionsChoice;
+  ) = ObservabilityadminTelemetryEvaluationMultiRegionRegions;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -39,10 +39,10 @@ sealed class ObservabilityadminTelemetryEvaluationAllRegionsOrRegions {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [ObservabilityadminTelemetryEvaluationAllRegionsOrRegions.allRegions] choice: sets `all_regions`.
-final class ObservabilityadminTelemetryEvaluationAllRegionsOrRegionsAllRegions
-    extends ObservabilityadminTelemetryEvaluationAllRegionsOrRegions {
-  const ObservabilityadminTelemetryEvaluationAllRegionsOrRegionsAllRegions(
+/// The [ObservabilityadminTelemetryEvaluationMultiRegion.allRegions] choice: sets `all_regions`.
+final class ObservabilityadminTelemetryEvaluationMultiRegionAllRegions
+    extends ObservabilityadminTelemetryEvaluationMultiRegion {
+  const ObservabilityadminTelemetryEvaluationMultiRegionAllRegions(
     this.allRegions,
   );
 
@@ -61,12 +61,10 @@ final class ObservabilityadminTelemetryEvaluationAllRegionsOrRegionsAllRegions
   Map<String, TfArg<Object?>> get argMap => {'all_regions': allRegions};
 }
 
-/// The [ObservabilityadminTelemetryEvaluationAllRegionsOrRegions.regions] choice: sets `regions`.
-final class ObservabilityadminTelemetryEvaluationAllRegionsOrRegionsChoice
-    extends ObservabilityadminTelemetryEvaluationAllRegionsOrRegions {
-  const ObservabilityadminTelemetryEvaluationAllRegionsOrRegionsChoice(
-    this.regions,
-  );
+/// The [ObservabilityadminTelemetryEvaluationMultiRegion.regions] choice: sets `regions`.
+final class ObservabilityadminTelemetryEvaluationMultiRegionRegions
+    extends ObservabilityadminTelemetryEvaluationMultiRegion {
+  const ObservabilityadminTelemetryEvaluationMultiRegionRegions(this.regions);
 
   final TfArg<List<String>> regions;
 
@@ -89,8 +87,7 @@ final class AwsObservabilityadminTelemetryEvaluation extends Resource {
 
   AwsObservabilityadminTelemetryEvaluation(
     super.localName, {
-    ObservabilityadminTelemetryEvaluationAllRegionsOrRegions?
-    allRegionsOrRegions,
+    ObservabilityadminTelemetryEvaluationMultiRegion? multiRegion,
     TfArg<String>? region,
     super.lifecycle,
     super.dependsOn,
@@ -98,7 +95,7 @@ final class AwsObservabilityadminTelemetryEvaluation extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {...?allRegionsOrRegions?.argMap, 'region': ?region},
+         argMap: {...?multiRegion?.argMap, 'region': ?region},
        );
 
   @override

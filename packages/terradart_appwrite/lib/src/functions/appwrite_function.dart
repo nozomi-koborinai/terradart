@@ -14,16 +14,16 @@ const Set<String> _appwriteFunctionSensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.interval(...)`.
-sealed class FunctionIntervalOrSchedule {
-  const FunctionIntervalOrSchedule();
+sealed class FunctionSchedule {
+  const FunctionSchedule();
 
   /// Sets `interval`.
-  const factory FunctionIntervalOrSchedule.interval(TfArg<num> interval) =
-      FunctionIntervalOrScheduleInterval;
+  const factory FunctionSchedule.interval(TfArg<num> interval) =
+      FunctionScheduleInterval;
 
   /// Sets `schedule`.
-  const factory FunctionIntervalOrSchedule.schedule(TfArg<String> schedule) =
-      FunctionIntervalOrScheduleChoice;
+  const factory FunctionSchedule.schedule(TfArg<String> schedule) =
+      FunctionScheduleChoice;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -38,10 +38,9 @@ sealed class FunctionIntervalOrSchedule {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [FunctionIntervalOrSchedule.interval] choice: sets `interval`.
-final class FunctionIntervalOrScheduleInterval
-    extends FunctionIntervalOrSchedule {
-  const FunctionIntervalOrScheduleInterval(this.interval);
+/// The [FunctionSchedule.interval] choice: sets `interval`.
+final class FunctionScheduleInterval extends FunctionSchedule {
+  const FunctionScheduleInterval(this.interval);
 
   final TfArg<num> interval;
 
@@ -58,10 +57,9 @@ final class FunctionIntervalOrScheduleInterval
   Map<String, TfArg<Object?>> get argMap => {'interval': interval};
 }
 
-/// The [FunctionIntervalOrSchedule.schedule] choice: sets `schedule`.
-final class FunctionIntervalOrScheduleChoice
-    extends FunctionIntervalOrSchedule {
-  const FunctionIntervalOrScheduleChoice(this.schedule);
+/// The [FunctionSchedule.schedule] choice: sets `schedule`.
+final class FunctionScheduleChoice extends FunctionSchedule {
+  const FunctionScheduleChoice(this.schedule);
 
   final TfArg<String> schedule;
 
@@ -94,7 +92,7 @@ final class AppwriteFunction extends Resource {
     TfArg<List<String>>? events,
     TfArg<List<String>>? execute,
     TfArg<String>? installationId,
-    FunctionIntervalOrSchedule? intervalOrSchedule,
+    FunctionSchedule? schedule,
     TfArg<bool>? logging,
     required TfArg<String> name,
     RefTo<AppwriteProject>? projectId,
@@ -121,7 +119,7 @@ final class AppwriteFunction extends Resource {
            'events': ?events,
            'execute': ?execute,
            'installation_id': ?installationId,
-           ...?intervalOrSchedule?.argMap,
+           ...?schedule?.argMap,
            'logging': ?logging,
            'name': name,
            'project_id': ?projectId?.encodeAs('id'),

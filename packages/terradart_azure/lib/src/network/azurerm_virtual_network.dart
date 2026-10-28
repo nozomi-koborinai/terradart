@@ -37,18 +37,18 @@ extension type const VirtualNetworkPrivateEndpointVnetPolicies._(
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.addressSpace(...)`.
-sealed class VirtualNetworkAddressSpaceOrIpAddressPool {
-  const VirtualNetworkAddressSpaceOrIpAddressPool();
+sealed class VirtualNetworkAddressing {
+  const VirtualNetworkAddressing();
 
   /// Sets `address_space`.
-  const factory VirtualNetworkAddressSpaceOrIpAddressPool.addressSpace(
+  const factory VirtualNetworkAddressing.addressSpace(
     TfArg<List<String>> addressSpace,
-  ) = VirtualNetworkAddressSpaceOrIpAddressPoolAddressSpace;
+  ) = VirtualNetworkAddressingAddressSpace;
 
   /// Sets `ip_address_pool`.
-  const factory VirtualNetworkAddressSpaceOrIpAddressPool.ipAddressPool(
+  const factory VirtualNetworkAddressing.ipAddressPool(
     List<VirtualNetworkIpAddressPool> ipAddressPool,
-  ) = VirtualNetworkAddressSpaceOrIpAddressPoolChoice;
+  ) = VirtualNetworkAddressingIpAddressPool;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -63,12 +63,10 @@ sealed class VirtualNetworkAddressSpaceOrIpAddressPool {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [VirtualNetworkAddressSpaceOrIpAddressPool.addressSpace] choice: sets `address_space`.
-final class VirtualNetworkAddressSpaceOrIpAddressPoolAddressSpace
-    extends VirtualNetworkAddressSpaceOrIpAddressPool {
-  const VirtualNetworkAddressSpaceOrIpAddressPoolAddressSpace(
-    this.addressSpace,
-  );
+/// The [VirtualNetworkAddressing.addressSpace] choice: sets `address_space`.
+final class VirtualNetworkAddressingAddressSpace
+    extends VirtualNetworkAddressing {
+  const VirtualNetworkAddressingAddressSpace(this.addressSpace);
 
   final TfArg<List<String>> addressSpace;
 
@@ -85,10 +83,10 @@ final class VirtualNetworkAddressSpaceOrIpAddressPoolAddressSpace
   Map<String, TfArg<Object?>> get argMap => {'address_space': addressSpace};
 }
 
-/// The [VirtualNetworkAddressSpaceOrIpAddressPool.ipAddressPool] choice: sets `ip_address_pool`.
-final class VirtualNetworkAddressSpaceOrIpAddressPoolChoice
-    extends VirtualNetworkAddressSpaceOrIpAddressPool {
-  const VirtualNetworkAddressSpaceOrIpAddressPoolChoice(this.ipAddressPool);
+/// The [VirtualNetworkAddressing.ipAddressPool] choice: sets `ip_address_pool`.
+final class VirtualNetworkAddressingIpAddressPool
+    extends VirtualNetworkAddressing {
+  const VirtualNetworkAddressingIpAddressPool(this.ipAddressPool);
 
   final List<VirtualNetworkIpAddressPool> ipAddressPool;
 
@@ -191,8 +189,7 @@ final class AzurermVirtualNetwork extends Resource {
 
   AzurermVirtualNetwork(
     super.localName, {
-    required VirtualNetworkAddressSpaceOrIpAddressPool
-    addressSpaceOrIpAddressPool,
+    required VirtualNetworkAddressing addressing,
     TfArg<String>? bgpCommunity,
     TfArg<List<String>>? dnsServers,
     TfArg<String>? edgeZone,
@@ -212,7 +209,7 @@ final class AzurermVirtualNetwork extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...addressSpaceOrIpAddressPool.argMap,
+           ...addressing.argMap,
            'bgp_community': ?bgpCommunity,
            'dns_servers': ?dnsServers,
            'edge_zone': ?edgeZone,

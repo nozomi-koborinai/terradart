@@ -18,18 +18,18 @@ const Set<String> _azurermApiManagementLoggerSensitive = <String>{
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.applicationInsights(...)`.
-sealed class ApiManagementLoggerApplicationInsightsOrEventhub {
-  const ApiManagementLoggerApplicationInsightsOrEventhub();
+sealed class ApiManagementLoggerTarget {
+  const ApiManagementLoggerTarget();
 
   /// Sets `application_insights`.
-  const factory ApiManagementLoggerApplicationInsightsOrEventhub.applicationInsights(
+  const factory ApiManagementLoggerTarget.applicationInsights(
     ApiManagementLoggerApplicationInsights applicationInsights,
-  ) = ApiManagementLoggerApplicationInsightsOrEventhubApplicationInsights;
+  ) = ApiManagementLoggerTargetApplicationInsights;
 
   /// Sets `eventhub`.
-  const factory ApiManagementLoggerApplicationInsightsOrEventhub.eventhub(
+  const factory ApiManagementLoggerTarget.eventhub(
     ApiManagementLoggerEventhub eventhub,
-  ) = ApiManagementLoggerApplicationInsightsOrEventhubChoice;
+  ) = ApiManagementLoggerTargetEventhub;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -44,12 +44,10 @@ sealed class ApiManagementLoggerApplicationInsightsOrEventhub {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [ApiManagementLoggerApplicationInsightsOrEventhub.applicationInsights] choice: sets `application_insights`.
-final class ApiManagementLoggerApplicationInsightsOrEventhubApplicationInsights
-    extends ApiManagementLoggerApplicationInsightsOrEventhub {
-  const ApiManagementLoggerApplicationInsightsOrEventhubApplicationInsights(
-    this.applicationInsights,
-  );
+/// The [ApiManagementLoggerTarget.applicationInsights] choice: sets `application_insights`.
+final class ApiManagementLoggerTargetApplicationInsights
+    extends ApiManagementLoggerTarget {
+  const ApiManagementLoggerTargetApplicationInsights(this.applicationInsights);
 
   final ApiManagementLoggerApplicationInsights applicationInsights;
 
@@ -70,10 +68,10 @@ final class ApiManagementLoggerApplicationInsightsOrEventhubApplicationInsights
   };
 }
 
-/// The [ApiManagementLoggerApplicationInsightsOrEventhub.eventhub] choice: sets `eventhub`.
-final class ApiManagementLoggerApplicationInsightsOrEventhubChoice
-    extends ApiManagementLoggerApplicationInsightsOrEventhub {
-  const ApiManagementLoggerApplicationInsightsOrEventhubChoice(this.eventhub);
+/// The [ApiManagementLoggerTarget.eventhub] choice: sets `eventhub`.
+final class ApiManagementLoggerTargetEventhub
+    extends ApiManagementLoggerTarget {
+  const ApiManagementLoggerTargetEventhub(this.eventhub);
 
   final ApiManagementLoggerEventhub eventhub;
 
@@ -97,18 +95,17 @@ final class ApiManagementLoggerApplicationInsightsOrEventhubChoice
 @immutable
 final class ApiManagementLoggerApplicationInsights {
   const ApiManagementLoggerApplicationInsights({
-    required this.connectionStringOrInstrumentationKey,
+    required this.credentials,
     this.identityClientId,
   });
 
-  final ApiManagementLoggerApplicationInsightsConnectionStringOrInstrumentationKey
-  connectionStringOrInstrumentationKey;
+  final ApiManagementLoggerCredentials credentials;
 
   final TfArg<String>? identityClientId;
 
   @internal
   Map<String, Object?> encode() => {
-    ...connectionStringOrInstrumentationKey.encode(),
+    ...credentials.encode(),
     'identity_client_id': ?identityClientId?.toTfJson(),
   };
 }
@@ -117,18 +114,18 @@ final class ApiManagementLoggerApplicationInsights {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.connectionString(...)`.
-sealed class ApiManagementLoggerApplicationInsightsConnectionStringOrInstrumentationKey {
-  const ApiManagementLoggerApplicationInsightsConnectionStringOrInstrumentationKey();
+sealed class ApiManagementLoggerCredentials {
+  const ApiManagementLoggerCredentials();
 
   /// Sets `connection_string`.
-  const factory ApiManagementLoggerApplicationInsightsConnectionStringOrInstrumentationKey.connectionString(
+  const factory ApiManagementLoggerCredentials.connectionString(
     Sensitive<String> connectionString,
-  ) = ApiManagementLoggerApplicationInsightsConnectionStringOrInstrumentationKeyConnectionString;
+  ) = ApiManagementLoggerCredentialsConnectionString;
 
   /// Sets `instrumentation_key`.
-  const factory ApiManagementLoggerApplicationInsightsConnectionStringOrInstrumentationKey.instrumentationKey(
+  const factory ApiManagementLoggerCredentials.instrumentationKey(
     Sensitive<String> instrumentationKey,
-  ) = ApiManagementLoggerApplicationInsightsConnectionStringOrInstrumentationKeyChoice;
+  ) = ApiManagementLoggerCredentialsInstrumentationKey;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -138,13 +135,10 @@ sealed class ApiManagementLoggerApplicationInsightsConnectionStringOrInstrumenta
   Map<String, Object?> encode();
 }
 
-/// The [ApiManagementLoggerApplicationInsightsConnectionStringOrInstrumentationKey.connectionString] choice: sets `connection_string`.
-final class ApiManagementLoggerApplicationInsightsConnectionStringOrInstrumentationKeyConnectionString
-    extends
-        ApiManagementLoggerApplicationInsightsConnectionStringOrInstrumentationKey {
-  const ApiManagementLoggerApplicationInsightsConnectionStringOrInstrumentationKeyConnectionString(
-    this.connectionString,
-  );
+/// The [ApiManagementLoggerCredentials.connectionString] choice: sets `connection_string`.
+final class ApiManagementLoggerCredentialsConnectionString
+    extends ApiManagementLoggerCredentials {
+  const ApiManagementLoggerCredentialsConnectionString(this.connectionString);
 
   final Sensitive<String> connectionString;
 
@@ -159,11 +153,10 @@ final class ApiManagementLoggerApplicationInsightsConnectionStringOrInstrumentat
   };
 }
 
-/// The [ApiManagementLoggerApplicationInsightsConnectionStringOrInstrumentationKey.instrumentationKey] choice: sets `instrumentation_key`.
-final class ApiManagementLoggerApplicationInsightsConnectionStringOrInstrumentationKeyChoice
-    extends
-        ApiManagementLoggerApplicationInsightsConnectionStringOrInstrumentationKey {
-  const ApiManagementLoggerApplicationInsightsConnectionStringOrInstrumentationKeyChoice(
+/// The [ApiManagementLoggerCredentials.instrumentationKey] choice: sets `instrumentation_key`.
+final class ApiManagementLoggerCredentialsInstrumentationKey
+    extends ApiManagementLoggerCredentials {
+  const ApiManagementLoggerCredentialsInstrumentationKey(
     this.instrumentationKey,
   );
 
@@ -185,13 +178,12 @@ final class ApiManagementLoggerApplicationInsightsConnectionStringOrInstrumentat
 @immutable
 final class ApiManagementLoggerEventhub {
   const ApiManagementLoggerEventhub({
-    required this.connectionStringOrEndpointUri,
+    required this.connection,
     required this.name,
     this.userAssignedIdentityClientId,
   });
 
-  final ApiManagementLoggerEventhubConnectionStringOrEndpointUri
-  connectionStringOrEndpointUri;
+  final ApiManagementLoggerConnection connection;
 
   final TfArg<String> name;
 
@@ -199,7 +191,7 @@ final class ApiManagementLoggerEventhub {
 
   @internal
   Map<String, Object?> encode() => {
-    ...connectionStringOrEndpointUri.encode(),
+    ...connection.encode(),
     'name': name.toTfJson(),
     'user_assigned_identity_client_id': ?userAssignedIdentityClientId
         ?.toTfJson(),
@@ -210,18 +202,18 @@ final class ApiManagementLoggerEventhub {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.connectionString(...)`.
-sealed class ApiManagementLoggerEventhubConnectionStringOrEndpointUri {
-  const ApiManagementLoggerEventhubConnectionStringOrEndpointUri();
+sealed class ApiManagementLoggerConnection {
+  const ApiManagementLoggerConnection();
 
   /// Sets `connection_string`.
-  const factory ApiManagementLoggerEventhubConnectionStringOrEndpointUri.connectionString(
+  const factory ApiManagementLoggerConnection.connectionString(
     Sensitive<String> connectionString,
-  ) = ApiManagementLoggerEventhubConnectionStringOrEndpointUriConnectionString;
+  ) = ApiManagementLoggerConnectionString;
 
   /// Sets `endpoint_uri`.
-  const factory ApiManagementLoggerEventhubConnectionStringOrEndpointUri.endpointUri(
+  const factory ApiManagementLoggerConnection.endpointUri(
     TfArg<String> endpointUri,
-  ) = ApiManagementLoggerEventhubConnectionStringOrEndpointUriChoice;
+  ) = ApiManagementLoggerConnectionEndpointUri;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -231,12 +223,10 @@ sealed class ApiManagementLoggerEventhubConnectionStringOrEndpointUri {
   Map<String, Object?> encode();
 }
 
-/// The [ApiManagementLoggerEventhubConnectionStringOrEndpointUri.connectionString] choice: sets `connection_string`.
-final class ApiManagementLoggerEventhubConnectionStringOrEndpointUriConnectionString
-    extends ApiManagementLoggerEventhubConnectionStringOrEndpointUri {
-  const ApiManagementLoggerEventhubConnectionStringOrEndpointUriConnectionString(
-    this.connectionString,
-  );
+/// The [ApiManagementLoggerConnection.connectionString] choice: sets `connection_string`.
+final class ApiManagementLoggerConnectionString
+    extends ApiManagementLoggerConnection {
+  const ApiManagementLoggerConnectionString(this.connectionString);
 
   final Sensitive<String> connectionString;
 
@@ -251,12 +241,10 @@ final class ApiManagementLoggerEventhubConnectionStringOrEndpointUriConnectionSt
   };
 }
 
-/// The [ApiManagementLoggerEventhubConnectionStringOrEndpointUri.endpointUri] choice: sets `endpoint_uri`.
-final class ApiManagementLoggerEventhubConnectionStringOrEndpointUriChoice
-    extends ApiManagementLoggerEventhubConnectionStringOrEndpointUri {
-  const ApiManagementLoggerEventhubConnectionStringOrEndpointUriChoice(
-    this.endpointUri,
-  );
+/// The [ApiManagementLoggerConnection.endpointUri] choice: sets `endpoint_uri`.
+final class ApiManagementLoggerConnectionEndpointUri
+    extends ApiManagementLoggerConnection {
+  const ApiManagementLoggerConnectionEndpointUri(this.endpointUri);
 
   final TfArg<String> endpointUri;
 
@@ -281,8 +269,7 @@ final class AzurermApiManagementLogger extends Resource {
     required TfArg<String> name,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<String>? resourceId,
-    ApiManagementLoggerApplicationInsightsOrEventhub?
-    applicationInsightsOrEventhub,
+    ApiManagementLoggerTarget? target,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -296,7 +283,7 @@ final class AzurermApiManagementLogger extends Resource {
            'name': name,
            'resource_group_name': resourceGroupName.encodeAs('name'),
            'resource_id': ?resourceId,
-           ...?applicationInsightsOrEventhub?.argMap,
+           ...?target?.argMap,
          },
        );
 

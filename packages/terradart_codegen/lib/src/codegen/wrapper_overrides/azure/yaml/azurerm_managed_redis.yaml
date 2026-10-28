@@ -4,3 +4,6 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 deriveExactlyOne: true
+
+sealedNames:
+  "default_database.geo_replication_group_name, default_database.persistence_append_only_file_backup_frequency, default_database.persistence_redis_database_backup_frequency": durability

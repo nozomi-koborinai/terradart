@@ -45,18 +45,18 @@ extension type const SubnetPrivateEndpointNetworkPolicies._(TfArg<String> _)
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.addressPrefixes(...)`.
-sealed class SubnetAddressPrefixesOrIpAddressPool {
-  const SubnetAddressPrefixesOrIpAddressPool();
+sealed class SubnetAddressing {
+  const SubnetAddressing();
 
   /// Sets `address_prefixes`.
-  const factory SubnetAddressPrefixesOrIpAddressPool.addressPrefixes(
+  const factory SubnetAddressing.addressPrefixes(
     TfArg<List<String>> addressPrefixes,
-  ) = SubnetAddressPrefixesOrIpAddressPoolAddressPrefixes;
+  ) = SubnetAddressingAddressPrefixes;
 
   /// Sets `ip_address_pool`.
-  const factory SubnetAddressPrefixesOrIpAddressPool.ipAddressPool(
+  const factory SubnetAddressing.ipAddressPool(
     SubnetIpAddressPool ipAddressPool,
-  ) = SubnetAddressPrefixesOrIpAddressPoolChoice;
+  ) = SubnetAddressingIpAddressPool;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -71,12 +71,9 @@ sealed class SubnetAddressPrefixesOrIpAddressPool {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [SubnetAddressPrefixesOrIpAddressPool.addressPrefixes] choice: sets `address_prefixes`.
-final class SubnetAddressPrefixesOrIpAddressPoolAddressPrefixes
-    extends SubnetAddressPrefixesOrIpAddressPool {
-  const SubnetAddressPrefixesOrIpAddressPoolAddressPrefixes(
-    this.addressPrefixes,
-  );
+/// The [SubnetAddressing.addressPrefixes] choice: sets `address_prefixes`.
+final class SubnetAddressingAddressPrefixes extends SubnetAddressing {
+  const SubnetAddressingAddressPrefixes(this.addressPrefixes);
 
   final TfArg<List<String>> addressPrefixes;
 
@@ -97,10 +94,9 @@ final class SubnetAddressPrefixesOrIpAddressPoolAddressPrefixes
   };
 }
 
-/// The [SubnetAddressPrefixesOrIpAddressPool.ipAddressPool] choice: sets `ip_address_pool`.
-final class SubnetAddressPrefixesOrIpAddressPoolChoice
-    extends SubnetAddressPrefixesOrIpAddressPool {
-  const SubnetAddressPrefixesOrIpAddressPoolChoice(this.ipAddressPool);
+/// The [SubnetAddressing.ipAddressPool] choice: sets `ip_address_pool`.
+final class SubnetAddressingIpAddressPool extends SubnetAddressing {
+  const SubnetAddressingIpAddressPool(this.ipAddressPool);
 
   final SubnetIpAddressPool ipAddressPool;
 
@@ -572,8 +568,7 @@ final class AzurermSubnet extends Resource {
 
   AzurermSubnet(
     super.localName, {
-    required SubnetAddressPrefixesOrIpAddressPool
-    addressPrefixesOrIpAddressPool,
+    required SubnetAddressing addressing,
     TfArg<bool>? defaultOutboundAccessEnabled,
     required TfArg<String> name,
     TfArg<String>? networkSecurityGroupIdWo,
@@ -595,7 +590,7 @@ final class AzurermSubnet extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...addressPrefixesOrIpAddressPool.argMap,
+           ...addressing.argMap,
            'default_outbound_access_enabled': ?defaultOutboundAccessEnabled,
            'name': name,
            'network_security_group_id_wo': ?networkSecurityGroupIdWo,

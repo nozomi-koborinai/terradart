@@ -15,18 +15,18 @@ const Set<String> _azurermIothubEndpointStorageContainerSensitive = <String>{
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.connectionString(...)`.
-sealed class IothubEndpointStorageContainerConnectionStringOrEndpointUri {
-  const IothubEndpointStorageContainerConnectionStringOrEndpointUri();
+sealed class IothubEndpointStorageContainerConnection {
+  const IothubEndpointStorageContainerConnection();
 
   /// Sets `connection_string`.
-  const factory IothubEndpointStorageContainerConnectionStringOrEndpointUri.connectionString(
+  const factory IothubEndpointStorageContainerConnection.connectionString(
     Sensitive<String> connectionString,
-  ) = IothubEndpointStorageContainerConnectionStringOrEndpointUriConnectionString;
+  ) = IothubEndpointStorageContainerConnectionString;
 
   /// Sets `endpoint_uri`.
-  const factory IothubEndpointStorageContainerConnectionStringOrEndpointUri.endpointUri(
+  const factory IothubEndpointStorageContainerConnection.endpointUri(
     TfArg<String> endpointUri,
-  ) = IothubEndpointStorageContainerConnectionStringOrEndpointUriChoice;
+  ) = IothubEndpointStorageContainerConnectionEndpointUri;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -41,12 +41,10 @@ sealed class IothubEndpointStorageContainerConnectionStringOrEndpointUri {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [IothubEndpointStorageContainerConnectionStringOrEndpointUri.connectionString] choice: sets `connection_string`.
-final class IothubEndpointStorageContainerConnectionStringOrEndpointUriConnectionString
-    extends IothubEndpointStorageContainerConnectionStringOrEndpointUri {
-  const IothubEndpointStorageContainerConnectionStringOrEndpointUriConnectionString(
-    this.connectionString,
-  );
+/// The [IothubEndpointStorageContainerConnection.connectionString] choice: sets `connection_string`.
+final class IothubEndpointStorageContainerConnectionString
+    extends IothubEndpointStorageContainerConnection {
+  const IothubEndpointStorageContainerConnectionString(this.connectionString);
 
   final Sensitive<String> connectionString;
 
@@ -67,12 +65,10 @@ final class IothubEndpointStorageContainerConnectionStringOrEndpointUriConnectio
   };
 }
 
-/// The [IothubEndpointStorageContainerConnectionStringOrEndpointUri.endpointUri] choice: sets `endpoint_uri`.
-final class IothubEndpointStorageContainerConnectionStringOrEndpointUriChoice
-    extends IothubEndpointStorageContainerConnectionStringOrEndpointUri {
-  const IothubEndpointStorageContainerConnectionStringOrEndpointUriChoice(
-    this.endpointUri,
-  );
+/// The [IothubEndpointStorageContainerConnection.endpointUri] choice: sets `endpoint_uri`.
+final class IothubEndpointStorageContainerConnectionEndpointUri
+    extends IothubEndpointStorageContainerConnection {
+  const IothubEndpointStorageContainerConnectionEndpointUri(this.endpointUri);
 
   final TfArg<String> endpointUri;
 
@@ -97,8 +93,7 @@ final class AzurermIothubEndpointStorageContainer extends Resource {
     super.localName, {
     TfArg<String>? authenticationType,
     TfArg<num>? batchFrequencyInSeconds,
-    required IothubEndpointStorageContainerConnectionStringOrEndpointUri
-    connectionStringOrEndpointUri,
+    required IothubEndpointStorageContainerConnection connection,
     required TfArg<String> containerName,
     TfArg<String>? encoding,
     TfArg<String>? fileNameFormat,
@@ -117,7 +112,7 @@ final class AzurermIothubEndpointStorageContainer extends Resource {
          argMap: {
            'authentication_type': ?authenticationType,
            'batch_frequency_in_seconds': ?batchFrequencyInSeconds,
-           ...connectionStringOrEndpointUri.argMap,
+           ...connection.argMap,
            'container_name': containerName,
            'encoding': ?encoding,
            'file_name_format': ?fileNameFormat,

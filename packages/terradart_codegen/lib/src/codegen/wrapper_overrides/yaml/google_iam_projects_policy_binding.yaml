@@ -15,6 +15,11 @@ curatedDoc: |-
   /// external artifact that standalone terradart-validate
   /// cannot supply. Do not apply.
 
+# IAM v3 requires `target` and holds its members in a proto oneof; Magic
+# Modules only marks them conflicting.
+exactlyOneOf:
+  - "target.principal_set, target.resource"
+
 paramOrder:
   - annotations
   - deletion_policy

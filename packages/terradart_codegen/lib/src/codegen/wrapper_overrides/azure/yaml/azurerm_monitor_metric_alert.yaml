@@ -4,3 +4,6 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 deriveExactlyOne: true
+
+sealedNames:
+  "application_insights_web_test_location_availability_criteria, criteria, dynamic_criteria": signal

@@ -34,15 +34,15 @@ export 'src/observabilityadmin/aws_observabilityadmin_telemetry_enrichment.dart'
 export 'src/observabilityadmin/aws_observabilityadmin_telemetry_evaluation.dart'
     show
         AwsObservabilityadminTelemetryEvaluation,
-        ObservabilityadminTelemetryEvaluationAllRegionsOrRegions,
-        ObservabilityadminTelemetryEvaluationAllRegionsOrRegionsAllRegions,
-        ObservabilityadminTelemetryEvaluationAllRegionsOrRegionsChoice;
+        ObservabilityadminTelemetryEvaluationMultiRegion,
+        ObservabilityadminTelemetryEvaluationMultiRegionAllRegions,
+        ObservabilityadminTelemetryEvaluationMultiRegionRegions;
 export 'src/observabilityadmin/aws_observabilityadmin_telemetry_evaluation_for_organization.dart'
     show
         AwsObservabilityadminTelemetryEvaluationForOrganization,
-        ObservabilityadminTelemetryEvaluationForOrganizationAllRegionsOrRegions,
-        ObservabilityadminTelemetryEvaluationForOrganizationAllRegionsOrRegionsAllRegions,
-        ObservabilityadminTelemetryEvaluationForOrganizationAllRegionsOrRegionsChoice;
+        ObservabilityadminTelemetryEvaluationForOrganizationMultiRegion,
+        ObservabilityadminTelemetryEvaluationForOrganizationMultiRegionAllRegions,
+        ObservabilityadminTelemetryEvaluationForOrganizationMultiRegionRegions;
 export 'src/observabilityadmin/aws_observabilityadmin_telemetry_pipeline.dart'
     show
         AwsObservabilityadminTelemetryPipeline,

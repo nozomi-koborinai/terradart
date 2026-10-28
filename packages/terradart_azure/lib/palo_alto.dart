@@ -11,9 +11,9 @@ export 'src/palo_alto/azurerm_palo_alto_local_rulestack.dart'
 export 'src/palo_alto/azurerm_palo_alto_local_rulestack_certificate.dart'
     show
         AzurermPaloAltoLocalRulestackCertificate,
-        PaloAltoLocalRulestackCertificateKeyVaultCertificateIdOrSelfSigned,
-        PaloAltoLocalRulestackCertificateKeyVaultCertificateIdOrSelfSignedChoice,
-        PaloAltoLocalRulestackCertificateKeyVaultCertificateIdOrSelfSignedKeyVaultCertificateId;
+        PaloAltoLocalRulestackCertificateSource,
+        PaloAltoLocalRulestackCertificateSourceKeyVaultCertificateId,
+        PaloAltoLocalRulestackCertificateSourceSelfSigned;
 export 'src/palo_alto/azurerm_palo_alto_local_rulestack_fqdn_list.dart'
     show AzurermPaloAltoLocalRulestackFqdnList;
 export 'src/palo_alto/azurerm_palo_alto_local_rulestack_outbound_trust_certificate_association.dart'

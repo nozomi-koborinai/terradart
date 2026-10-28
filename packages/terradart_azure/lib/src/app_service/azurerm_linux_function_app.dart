@@ -137,18 +137,18 @@ final class LinuxFunctionAppStorageKeyVaultSecretId
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.storageAccountAccessKey(...)`.
-sealed class LinuxFunctionAppStorageAccountAccessKeyOrStorageUsesManagedIdentity {
-  const LinuxFunctionAppStorageAccountAccessKeyOrStorageUsesManagedIdentity();
+sealed class LinuxFunctionAppStorageAccess {
+  const LinuxFunctionAppStorageAccess();
 
   /// Sets `storage_account_access_key`.
-  const factory LinuxFunctionAppStorageAccountAccessKeyOrStorageUsesManagedIdentity.storageAccountAccessKey(
+  const factory LinuxFunctionAppStorageAccess.storageAccountAccessKey(
     Sensitive<String> storageAccountAccessKey,
-  ) = LinuxFunctionAppStorageAccountAccessKeyOrStorageUsesManagedIdentityStorageAccountAccessKey;
+  ) = LinuxFunctionAppStorageAccessStorageAccountAccessKey;
 
   /// Sets `storage_uses_managed_identity`.
-  const factory LinuxFunctionAppStorageAccountAccessKeyOrStorageUsesManagedIdentity.storageUsesManagedIdentity(
+  const factory LinuxFunctionAppStorageAccess.storageUsesManagedIdentity(
     TfArg<bool> storageUsesManagedIdentity,
-  ) = LinuxFunctionAppStorageAccountAccessKeyOrStorageUsesManagedIdentityChoice;
+  ) = LinuxFunctionAppStorageAccessStorageUsesManagedIdentity;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -163,11 +163,10 @@ sealed class LinuxFunctionAppStorageAccountAccessKeyOrStorageUsesManagedIdentity
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [LinuxFunctionAppStorageAccountAccessKeyOrStorageUsesManagedIdentity.storageAccountAccessKey] choice: sets `storage_account_access_key`.
-final class LinuxFunctionAppStorageAccountAccessKeyOrStorageUsesManagedIdentityStorageAccountAccessKey
-    extends
-        LinuxFunctionAppStorageAccountAccessKeyOrStorageUsesManagedIdentity {
-  const LinuxFunctionAppStorageAccountAccessKeyOrStorageUsesManagedIdentityStorageAccountAccessKey(
+/// The [LinuxFunctionAppStorageAccess.storageAccountAccessKey] choice: sets `storage_account_access_key`.
+final class LinuxFunctionAppStorageAccessStorageAccountAccessKey
+    extends LinuxFunctionAppStorageAccess {
+  const LinuxFunctionAppStorageAccessStorageAccountAccessKey(
     this.storageAccountAccessKey,
   );
 
@@ -190,11 +189,10 @@ final class LinuxFunctionAppStorageAccountAccessKeyOrStorageUsesManagedIdentityS
   };
 }
 
-/// The [LinuxFunctionAppStorageAccountAccessKeyOrStorageUsesManagedIdentity.storageUsesManagedIdentity] choice: sets `storage_uses_managed_identity`.
-final class LinuxFunctionAppStorageAccountAccessKeyOrStorageUsesManagedIdentityChoice
-    extends
-        LinuxFunctionAppStorageAccountAccessKeyOrStorageUsesManagedIdentity {
-  const LinuxFunctionAppStorageAccountAccessKeyOrStorageUsesManagedIdentityChoice(
+/// The [LinuxFunctionAppStorageAccess.storageUsesManagedIdentity] choice: sets `storage_uses_managed_identity`.
+final class LinuxFunctionAppStorageAccessStorageUsesManagedIdentity
+    extends LinuxFunctionAppStorageAccess {
+  const LinuxFunctionAppStorageAccessStorageUsesManagedIdentity(
     this.storageUsesManagedIdentity,
   );
 
@@ -1413,8 +1411,7 @@ final class AzurermLinuxFunctionApp extends Resource {
     TfArg<bool>? publicNetworkAccessEnabled,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     required TfArg<String> servicePlanId,
-    LinuxFunctionAppStorageAccountAccessKeyOrStorageUsesManagedIdentity?
-    storageAccountAccessKeyOrStorageUsesManagedIdentity,
+    LinuxFunctionAppStorageAccess? storageAccess,
     required LinuxFunctionAppStorage storage,
     TfArg<Map<String, String>>? tags,
     TfArg<bool>? virtualNetworkBackupRestoreEnabled,
@@ -1457,7 +1454,7 @@ final class AzurermLinuxFunctionApp extends Resource {
            'public_network_access_enabled': ?publicNetworkAccessEnabled,
            'resource_group_name': resourceGroupName.encodeAs('name'),
            'service_plan_id': servicePlanId,
-           ...?storageAccountAccessKeyOrStorageUsesManagedIdentity?.argMap,
+           ...?storageAccess?.argMap,
            ...storage.argMap,
            'tags': ?tags,
            'virtual_network_backup_restore_enabled':

@@ -48,18 +48,18 @@ extension type const KustoAttachedDatabaseConfigurationDefaultPrincipalModificat
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.databaseNameOverride(...)`.
-sealed class KustoAttachedDatabaseConfigurationDatabaseNameOverrideOrDatabaseNamePrefix {
-  const KustoAttachedDatabaseConfigurationDatabaseNameOverrideOrDatabaseNamePrefix();
+sealed class KustoAttachedDatabaseConfigurationDatabaseNaming {
+  const KustoAttachedDatabaseConfigurationDatabaseNaming();
 
   /// Sets `database_name_override`.
-  const factory KustoAttachedDatabaseConfigurationDatabaseNameOverrideOrDatabaseNamePrefix.databaseNameOverride(
+  const factory KustoAttachedDatabaseConfigurationDatabaseNaming.databaseNameOverride(
     TfArg<String> databaseNameOverride,
-  ) = KustoAttachedDatabaseConfigurationDatabaseNameOverrideOrDatabaseNamePrefixDatabaseNameOverride;
+  ) = KustoAttachedDatabaseConfigurationDatabaseNamingDatabaseNameOverride;
 
   /// Sets `database_name_prefix`.
-  const factory KustoAttachedDatabaseConfigurationDatabaseNameOverrideOrDatabaseNamePrefix.databaseNamePrefix(
+  const factory KustoAttachedDatabaseConfigurationDatabaseNaming.databaseNamePrefix(
     TfArg<String> databaseNamePrefix,
-  ) = KustoAttachedDatabaseConfigurationDatabaseNameOverrideOrDatabaseNamePrefixChoice;
+  ) = KustoAttachedDatabaseConfigurationDatabaseNamingDatabaseNamePrefix;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -74,11 +74,10 @@ sealed class KustoAttachedDatabaseConfigurationDatabaseNameOverrideOrDatabaseNam
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [KustoAttachedDatabaseConfigurationDatabaseNameOverrideOrDatabaseNamePrefix.databaseNameOverride] choice: sets `database_name_override`.
-final class KustoAttachedDatabaseConfigurationDatabaseNameOverrideOrDatabaseNamePrefixDatabaseNameOverride
-    extends
-        KustoAttachedDatabaseConfigurationDatabaseNameOverrideOrDatabaseNamePrefix {
-  const KustoAttachedDatabaseConfigurationDatabaseNameOverrideOrDatabaseNamePrefixDatabaseNameOverride(
+/// The [KustoAttachedDatabaseConfigurationDatabaseNaming.databaseNameOverride] choice: sets `database_name_override`.
+final class KustoAttachedDatabaseConfigurationDatabaseNamingDatabaseNameOverride
+    extends KustoAttachedDatabaseConfigurationDatabaseNaming {
+  const KustoAttachedDatabaseConfigurationDatabaseNamingDatabaseNameOverride(
     this.databaseNameOverride,
   );
 
@@ -101,11 +100,10 @@ final class KustoAttachedDatabaseConfigurationDatabaseNameOverrideOrDatabaseName
   };
 }
 
-/// The [KustoAttachedDatabaseConfigurationDatabaseNameOverrideOrDatabaseNamePrefix.databaseNamePrefix] choice: sets `database_name_prefix`.
-final class KustoAttachedDatabaseConfigurationDatabaseNameOverrideOrDatabaseNamePrefixChoice
-    extends
-        KustoAttachedDatabaseConfigurationDatabaseNameOverrideOrDatabaseNamePrefix {
-  const KustoAttachedDatabaseConfigurationDatabaseNameOverrideOrDatabaseNamePrefixChoice(
+/// The [KustoAttachedDatabaseConfigurationDatabaseNaming.databaseNamePrefix] choice: sets `database_name_prefix`.
+final class KustoAttachedDatabaseConfigurationDatabaseNamingDatabaseNamePrefix
+    extends KustoAttachedDatabaseConfigurationDatabaseNaming {
+  const KustoAttachedDatabaseConfigurationDatabaseNamingDatabaseNamePrefix(
     this.databaseNamePrefix,
   );
 
@@ -181,8 +179,7 @@ final class AzurermKustoAttachedDatabaseConfiguration extends Resource {
     required TfArg<String> clusterId,
     required TfArg<String> clusterName,
     required TfArg<String> databaseName,
-    KustoAttachedDatabaseConfigurationDatabaseNameOverrideOrDatabaseNamePrefix?
-    databaseNameOverrideOrDatabaseNamePrefix,
+    KustoAttachedDatabaseConfigurationDatabaseNaming? databaseNaming,
     KustoAttachedDatabaseConfigurationDefaultPrincipalModificationKind?
     defaultPrincipalModificationKind,
     required TfArg<String> location,
@@ -199,7 +196,7 @@ final class AzurermKustoAttachedDatabaseConfiguration extends Resource {
            'cluster_id': clusterId,
            'cluster_name': clusterName,
            'database_name': databaseName,
-           ...?databaseNameOverrideOrDatabaseNamePrefix?.argMap,
+           ...?databaseNaming?.argMap,
            'default_principal_modification_kind':
                ?defaultPrincipalModificationKind,
            'location': location,

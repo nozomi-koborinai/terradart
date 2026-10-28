@@ -210,7 +210,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'events',
       'execute',
       'installationId',
-      'intervalOrSchedule',
+      'schedule',
       'logging',
       'name',
       'projectId',
@@ -224,9 +224,9 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'timeout',
     ],
     nestedTypes: <String>[
-      'FunctionIntervalOrSchedule',
-      'FunctionIntervalOrScheduleInterval',
-      'FunctionIntervalOrScheduleChoice',
+      'FunctionSchedule',
+      'FunctionScheduleInterval',
+      'FunctionScheduleChoice',
     ],
     sensitiveFields: <String>[],
     docComment:

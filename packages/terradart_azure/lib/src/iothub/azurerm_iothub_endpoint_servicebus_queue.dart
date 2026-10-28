@@ -15,18 +15,18 @@ const Set<String> _azurermIothubEndpointServicebusQueueSensitive = <String>{
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.connectionString(...)`.
-sealed class IothubEndpointServicebusQueueConnectionStringOrEndpointUri {
-  const IothubEndpointServicebusQueueConnectionStringOrEndpointUri();
+sealed class IothubEndpointServicebusQueueConnection {
+  const IothubEndpointServicebusQueueConnection();
 
   /// Sets `connection_string`.
-  const factory IothubEndpointServicebusQueueConnectionStringOrEndpointUri.connectionString(
+  const factory IothubEndpointServicebusQueueConnection.connectionString(
     Sensitive<String> connectionString,
-  ) = IothubEndpointServicebusQueueConnectionStringOrEndpointUriConnectionString;
+  ) = IothubEndpointServicebusQueueConnectionString;
 
   /// Sets `endpoint_uri`.
-  const factory IothubEndpointServicebusQueueConnectionStringOrEndpointUri.endpointUri(
+  const factory IothubEndpointServicebusQueueConnection.endpointUri(
     TfArg<String> endpointUri,
-  ) = IothubEndpointServicebusQueueConnectionStringOrEndpointUriChoice;
+  ) = IothubEndpointServicebusQueueConnectionEndpointUri;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -41,12 +41,10 @@ sealed class IothubEndpointServicebusQueueConnectionStringOrEndpointUri {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [IothubEndpointServicebusQueueConnectionStringOrEndpointUri.connectionString] choice: sets `connection_string`.
-final class IothubEndpointServicebusQueueConnectionStringOrEndpointUriConnectionString
-    extends IothubEndpointServicebusQueueConnectionStringOrEndpointUri {
-  const IothubEndpointServicebusQueueConnectionStringOrEndpointUriConnectionString(
-    this.connectionString,
-  );
+/// The [IothubEndpointServicebusQueueConnection.connectionString] choice: sets `connection_string`.
+final class IothubEndpointServicebusQueueConnectionString
+    extends IothubEndpointServicebusQueueConnection {
+  const IothubEndpointServicebusQueueConnectionString(this.connectionString);
 
   final Sensitive<String> connectionString;
 
@@ -67,12 +65,10 @@ final class IothubEndpointServicebusQueueConnectionStringOrEndpointUriConnection
   };
 }
 
-/// The [IothubEndpointServicebusQueueConnectionStringOrEndpointUri.endpointUri] choice: sets `endpoint_uri`.
-final class IothubEndpointServicebusQueueConnectionStringOrEndpointUriChoice
-    extends IothubEndpointServicebusQueueConnectionStringOrEndpointUri {
-  const IothubEndpointServicebusQueueConnectionStringOrEndpointUriChoice(
-    this.endpointUri,
-  );
+/// The [IothubEndpointServicebusQueueConnection.endpointUri] choice: sets `endpoint_uri`.
+final class IothubEndpointServicebusQueueConnectionEndpointUri
+    extends IothubEndpointServicebusQueueConnection {
+  const IothubEndpointServicebusQueueConnectionEndpointUri(this.endpointUri);
 
   final TfArg<String> endpointUri;
 
@@ -96,8 +92,7 @@ final class AzurermIothubEndpointServicebusQueue extends Resource {
   AzurermIothubEndpointServicebusQueue(
     super.localName, {
     TfArg<String>? authenticationType,
-    required IothubEndpointServicebusQueueConnectionStringOrEndpointUri
-    connectionStringOrEndpointUri,
+    required IothubEndpointServicebusQueueConnection connection,
     TfArg<String>? entityPath,
     TfArg<String>? identityId,
     required TfArg<String> iothubId,
@@ -112,7 +107,7 @@ final class AzurermIothubEndpointServicebusQueue extends Resource {
          terraformType: tfType,
          argMap: {
            'authentication_type': ?authenticationType,
-           ...connectionStringOrEndpointUri.argMap,
+           ...connection.argMap,
            'entity_path': ?entityPath,
            'identity_id': ?identityId,
            'iothub_id': iothubId,

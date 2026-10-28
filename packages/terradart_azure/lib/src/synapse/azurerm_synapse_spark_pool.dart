@@ -81,18 +81,17 @@ extension type const SynapseSparkPoolSparkVersion._(TfArg<String> _)
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.autoScale(...)`.
-sealed class SynapseSparkPoolAutoScaleOrNodeCount {
-  const SynapseSparkPoolAutoScaleOrNodeCount();
+sealed class SynapseSparkPoolScale {
+  const SynapseSparkPoolScale();
 
   /// Sets `auto_scale`.
-  const factory SynapseSparkPoolAutoScaleOrNodeCount.autoScale(
+  const factory SynapseSparkPoolScale.autoScale(
     SynapseSparkPoolAutoScale autoScale,
-  ) = SynapseSparkPoolAutoScaleOrNodeCountAutoScale;
+  ) = SynapseSparkPoolAutoScaleChoice;
 
   /// Sets `node_count`.
-  const factory SynapseSparkPoolAutoScaleOrNodeCount.nodeCount(
-    TfArg<num> nodeCount,
-  ) = SynapseSparkPoolAutoScaleOrNodeCountChoice;
+  const factory SynapseSparkPoolScale.nodeCount(TfArg<num> nodeCount) =
+      SynapseSparkPoolScaleNodeCount;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -107,10 +106,9 @@ sealed class SynapseSparkPoolAutoScaleOrNodeCount {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [SynapseSparkPoolAutoScaleOrNodeCount.autoScale] choice: sets `auto_scale`.
-final class SynapseSparkPoolAutoScaleOrNodeCountAutoScale
-    extends SynapseSparkPoolAutoScaleOrNodeCount {
-  const SynapseSparkPoolAutoScaleOrNodeCountAutoScale(this.autoScale);
+/// The [SynapseSparkPoolScale.autoScale] choice: sets `auto_scale`.
+final class SynapseSparkPoolAutoScaleChoice extends SynapseSparkPoolScale {
+  const SynapseSparkPoolAutoScaleChoice(this.autoScale);
 
   final SynapseSparkPoolAutoScale autoScale;
 
@@ -129,10 +127,9 @@ final class SynapseSparkPoolAutoScaleOrNodeCountAutoScale
   };
 }
 
-/// The [SynapseSparkPoolAutoScaleOrNodeCount.nodeCount] choice: sets `node_count`.
-final class SynapseSparkPoolAutoScaleOrNodeCountChoice
-    extends SynapseSparkPoolAutoScaleOrNodeCount {
-  const SynapseSparkPoolAutoScaleOrNodeCountChoice(this.nodeCount);
+/// The [SynapseSparkPoolScale.nodeCount] choice: sets `node_count`.
+final class SynapseSparkPoolScaleNodeCount extends SynapseSparkPoolScale {
+  const SynapseSparkPoolScaleNodeCount(this.nodeCount);
 
   final TfArg<num> nodeCount;
 
@@ -235,7 +232,7 @@ final class AzurermSynapseSparkPool extends Resource {
     TfArg<num>? maxExecutors,
     TfArg<num>? minExecutors,
     required TfArg<String> name,
-    required SynapseSparkPoolAutoScaleOrNodeCount autoScaleOrNodeCount,
+    required SynapseSparkPoolScale scale,
     required SynapseSparkPoolNodeSize nodeSize,
     required SynapseSparkPoolNodeSizeFamily nodeSizeFamily,
     TfArg<bool>? sessionLevelPackagesEnabled,
@@ -261,7 +258,7 @@ final class AzurermSynapseSparkPool extends Resource {
            'max_executors': ?maxExecutors,
            'min_executors': ?minExecutors,
            'name': name,
-           ...autoScaleOrNodeCount.argMap,
+           ...scale.argMap,
            'node_size': nodeSize,
            'node_size_family': nodeSizeFamily,
            'session_level_packages_enabled': ?sessionLevelPackagesEnabled,
