@@ -15,14 +15,87 @@ import 'naming.dart';
 import 'nested_types/nested_type_collector.dart';
 import 'nested_types/nested_type_names.dart';
 import 'wrapper_overrides/wrapper_override.dart';
+import 'wrapper_overrides/yaml_loader.dart';
 
-/// The `wrap --provider-enums` gate: enum value sets a provider documents
-/// outside Magic Modules.
+/// Where [kind]'s hint files live under a lane fixture: `<sourceDir>/hints`
+/// for resources, `<sourceDir>/hints/data` for data sources. Every reader
+/// and writer of hint files goes through this.
+String providerHintsDir(String sourceDir, WrapperOverrideKind kind) =>
+    switch (kind) {
+      WrapperOverrideKind.resource => p.join(sourceDir, 'hints'),
+      WrapperOverrideKind.dataSource => p.join(sourceDir, 'hints', 'data'),
+    };
+
+/// Whether [sourceDir] has at least one data-source hint file.
+bool hasDataSourceHints(String sourceDir) {
+  final dir = Directory(
+    providerHintsDir(sourceDir, WrapperOverrideKind.dataSource),
+  );
+  return dir.existsSync() &&
+      dir.listSync().any((f) => f is File && f.path.endsWith('.yaml'));
+}
+
+/// One kind's hint table, keyed by Terraform type.
+final class KindHints {
+  const KindHints({
+    this.enums = const {},
+    this.exactlyOne = const {},
+    this.atMostOne = const {},
+  });
+
+  static const KindHints empty = KindHints();
+
+  /// Terraform type → dotted input path → the values the provider accepts.
+  final Map<String, Map<String, List<String>>> enums;
+
+  /// Terraform type → each input set the provider requires exactly one of,
+  /// as dotted paths from the schema root that share one parent block
+  /// (`exactly_one_of_groups`).
+  final Map<String, List<List<String>>> exactlyOne;
+
+  /// Terraform type → each mutually exclusive input set the provider also
+  /// accepts none of, shaped like [exactlyOne] (`at_most_one_of_groups`).
+  final Map<String, List<List<String>>> atMostOne;
+
+  bool get hasGroups => exactlyOne.isNotEmpty || atMostOne.isNotEmpty;
+
+  KindHints _withGroups(
+    Map<String, List<List<String>>> exactlyOne,
+    Map<String, List<List<String>>> atMostOne,
+  ) => KindHints(enums: enums, exactlyOne: exactlyOne, atMostOne: atMostOne);
+}
+
+/// What the nested-type collector and the migration manifest read for one
+/// override's derived types.
+typedef NestedHints = ({
+  EnumValuesResolver enumValues,
+
+  /// Nested blocks only (the root removed); empty unless `deriveExactlyOne`.
+  Map<String, List<List<String>>> exactlyOneGroups,
+  Map<String, List<List<String>>> atMostOneGroups,
+
+  /// The root sealed types' names and variants: the names helpers keep off.
+  Set<String> reserved,
+});
+
+extension ProviderSchemaIRByKind on ProviderSchemaIR {
+  /// The definitions of [kind].
+  Map<String, ResourceDef> of(WrapperOverrideKind kind) => switch (kind) {
+    WrapperOverrideKind.resource => resources,
+    WrapperOverrideKind.dataSource => dataSources,
+  };
+}
+
+/// The `wrap --provider-enums` gate: enum value sets and exclusive groups a
+/// provider documents outside Magic Modules.
 ///
-/// Two sources, in precedence order:
-/// 1. `<source>/hints/<terraform_type>.yaml` — value sets extracted from the
-///    provider's Go validators (`tool/extract_provider_hints.dart`), in the
-///    MM YAML subset `properties[].api_name` / `enum_values`. Resources only.
+/// Each kind reads its own table ([KindHints]), so a resource hint never
+/// types a data source of the same Terraform type. Every lookup takes the
+/// override and reads `override.kind`. Two sources, in precedence order:
+/// 1. `providerHintsDir(<source>, kind)/<terraform_type>.yaml` — value sets
+///    extracted from the provider's Go validators
+///    (`tool/extract_provider_hints.dart`), in the MM YAML subset
+///    `properties[].api_name` / `enum_values`.
 /// 2. The attribute description: the dialects every lane reads
 ///    ([parseEnumValuesFromDescription]) plus the `Available values:`
 ///    dialect ([parseAvailableValues]), which the GA google schema also
@@ -30,86 +103,189 @@ import 'wrapper_overrides/wrapper_override.dart';
 ///
 /// [off] is every lane's default and changes nothing.
 final class ProviderEnums {
-  const ProviderEnums._({required this.enabled, required this.hints})
-    : exactlyOneGroups = const {},
-      atMostOneGroups = const {},
-      caseInsensitive = false,
-      availableValuesDialect = false,
-      _groupSource = null;
+  const ProviderEnums._({
+    required this.enabled,
+    required ByKind<KindHints> tables,
+    this.caseInsensitive = false,
+    this.availableValuesDialect = false,
+    bool? groupSource,
+  }) : _tables = tables,
+       _groupSource = groupSource;
 
   /// The gate closed: no enrichment, the default description resolver.
-  static const ProviderEnums off = ProviderEnums._(enabled: false, hints: {});
+  static const ProviderEnums off = ProviderEnums._(
+    enabled: false,
+    tables: (resources: KindHints.empty, dataSources: KindHints.empty),
+  );
 
-  /// Opens the gate over [hints] (Terraform type → dotted attribute path →
-  /// values), [exactlyOneGroups] and [atMostOneGroups].
+  /// Opens the gate over each kind's table.
   const ProviderEnums.on({
-    this.hints = const <String, Map<String, List<String>>>{},
-    this.exactlyOneGroups = const <String, List<List<String>>>{},
-    this.atMostOneGroups = const <String, List<List<String>>>{},
+    KindHints resources = KindHints.empty,
+    KindHints dataSources = KindHints.empty,
     this.caseInsensitive = true,
     this.availableValuesDialect = true,
   }) : enabled = true,
+       _tables = (resources: resources, dataSources: dataSources),
        _groupSource = null;
 
   /// `wrap --mm-hints`: the same gate with Magic Modules YAML as the hint
   /// source — each resource's `enum_values` by path, its `exactly_one_of`
   /// groups ([MmResourceOverrides.exactlyOneOfPaths]) and its `conflicts`
-  /// sets ([MmResourceOverrides.atMostOneOfPaths]).
+  /// sets ([MmResourceOverrides.atMostOneOfPaths]). Magic Modules YAML
+  /// describes resources, so the data-source table stays empty.
   /// Magic Modules validators match case-sensitively, and the google
   /// schema's `Available values:` prose has no validator behind it, so the
   /// description dialects stay the ones every lane reads.
-  factory ProviderEnums.fromMm(Map<String, MmResourceOverrides> mm) =>
-      ProviderEnums.on(
-        hints: {
-          for (final MapEntry(:key, :value) in mm.entries)
-            key: value.enumValuesByPath,
-        },
-        exactlyOneGroups: {
-          for (final MapEntry(:key, :value) in mm.entries)
-            if (value.exactlyOneOfPaths.isNotEmpty)
-              key: value.exactlyOneOfPaths,
-        },
-        atMostOneGroups: {
-          for (final MapEntry(:key, :value) in mm.entries)
-            if (value.atMostOneOfPaths.isNotEmpty) key: value.atMostOneOfPaths,
-        },
-        caseInsensitive: false,
-        availableValuesDialect: false,
-      );
+  factory ProviderEnums.fromMm(
+    Map<String, MmResourceOverrides> mm,
+  ) => ProviderEnums.on(
+    resources: KindHints(
+      enums: {
+        for (final MapEntry(:key, :value) in mm.entries)
+          key: value.enumValuesByPath,
+      },
+      exactlyOne: {
+        for (final MapEntry(:key, :value) in mm.entries)
+          if (value.exactlyOneOfPaths.isNotEmpty) key: value.exactlyOneOfPaths,
+      },
+      atMostOne: {
+        for (final MapEntry(:key, :value) in mm.entries)
+          if (value.atMostOneOfPaths.isNotEmpty) key: value.atMostOneOfPaths,
+      },
+    ),
+    caseInsensitive: false,
+    availableValuesDialect: false,
+  );
 
   /// `wrap --mm-groups`: only the `exactly_one_of` / `conflicts` groups of
   /// [ProviderEnums.fromMm], for a lane whose enum typing comes from the
-  /// merged IR instead (google GA). The gate stays closed, so the
+  /// merged IR instead (google GA). The gate stays closed, so the enum
   /// resolver, [enrich] and [typeDerivedEnums] behave as [off] does.
   factory ProviderEnums.mmGroups(Map<String, MmResourceOverrides> mm) {
-    final all = ProviderEnums.fromMm(mm);
-    return ProviderEnums._groups(
-      exactlyOneGroups: all.exactlyOneGroups,
-      atMostOneGroups: all.atMostOneGroups,
+    final all = ProviderEnums.fromMm(mm)._tables.resources;
+    return ProviderEnums._(
+      enabled: false,
+      tables: (
+        resources: KindHints.empty._withGroups(all.exactlyOne, all.atMostOne),
+        dataSources: KindHints.empty,
+      ),
     );
   }
 
-  ProviderEnums._copy(
-    ProviderEnums from, {
-    required this.exactlyOneGroups,
-    required this.atMostOneGroups,
-  }) : enabled = from.enabled,
-       hints = from.hints,
-       caseInsensitive = from.caseInsensitive,
-       availableValuesDialect = from.availableValuesDialect,
-       _groupSource = from.hasGroupSource;
-
-  /// These groups without the members [defs] has no input for, and without
-  /// every group that leaves fewer than two members. Magic Modules YAML is
-  /// shared by the GA and beta providers, so a GA lane reads `conflicts` /
-  /// `exactly_one_of` naming `min_version: beta` fields, and some upstream
-  /// paths name a field at the wrong depth; neither is a constraint a
-  /// constructor can express. [dropped] hears each group no input is left
-  /// of but one or none, as `type [members]`.
-  ProviderEnums withinSchema(
-    Map<String, ResourceDef> defs, {
-    void Function(String group)? dropped,
+  /// Reads `providerHintsDir(sourceDir, kind)/*.yaml` into each kind's
+  /// table (a missing directory means no hints).
+  ///
+  /// Throws [FormatException] when a file is malformed or its
+  /// `provider_version` differs from [providerVersion] — hints extracted at
+  /// another release would type the wrappers against the wrong validators.
+  factory ProviderEnums.load(
+    String sourceDir, {
+    required String providerVersion,
   }) {
+    KindHints read(WrapperOverrideKind kind) {
+      final dir = Directory(providerHintsDir(sourceDir, kind));
+      if (!dir.existsSync()) return KindHints.empty;
+      final enums = <String, Map<String, List<String>>>{};
+      final exactlyOne = <String, List<List<String>>>{};
+      final atMostOne = <String, List<List<String>>>{};
+      final files =
+          dir
+              .listSync()
+              .whereType<File>()
+              .where((f) => f.path.endsWith('.yaml'))
+              .toList()
+            ..sort((a, b) => a.path.compareTo(b.path));
+      for (final file in files) {
+        final src = file.readAsStringSync();
+        final doc = loadYaml(src);
+        final version = doc is YamlMap ? doc['provider_version'] : null;
+        if (version?.toString() != providerVersion) {
+          throw FormatException(
+            '${file.path}: provider_version "$version" does not match the '
+            'fixture\'s provider_version.txt "$providerVersion"; re-extract '
+            'the hints (see hints/README.md).',
+          );
+        }
+        final type = p.basenameWithoutExtension(file.path);
+        enums[type] = {
+          for (final e
+              in const MmYamlParser().parseString(src).fieldOverrides.entries)
+            if (e.value.enumValues != null) e.key: e.value.enumValues!,
+        };
+        for (final (key, sink) in [
+          ('exactly_one_of_groups', exactlyOne),
+          ('at_most_one_of_groups', atMostOne),
+        ]) {
+          final raw = (doc as YamlMap)[key];
+          if (raw == null) continue;
+          if (raw is! YamlList || raw.any((g) => g is! YamlList)) {
+            throw FormatException('${file.path}: $key must be a list of lists');
+          }
+          sink[type] = [
+            for (final g in raw) [for (final m in g as YamlList) m.toString()],
+          ];
+        }
+      }
+      return KindHints(
+        enums: enums,
+        exactlyOne: exactlyOne,
+        atMostOne: atMostOne,
+      );
+    }
+
+    return ProviderEnums.on(
+      resources: read(WrapperOverrideKind.resource),
+      dataSources: read(WrapperOverrideKind.dataSource),
+    );
+  }
+
+  final bool enabled;
+
+  /// Whether the provider matches enum values case-insensitively (its
+  /// validators are `OneOfCaseInsensitive`), recorded in the migration
+  /// manifest.
+  final bool caseInsensitive;
+
+  /// Whether the resolver also reads the `Available values:` description
+  /// dialect ([parseAvailableValues]).
+  final bool availableValuesDialect;
+
+  final ByKind<KindHints> _tables;
+
+  final bool? _groupSource;
+
+  /// Whether any exclusive-group source is loaded, in either table. Without
+  /// one, no group exists to match, so a `sealedNames` key cannot be judged
+  /// stale. A copy keeps its source's answer: trimming members leaves the
+  /// source loaded, and an override's own groups are no source for the
+  /// other names.
+  bool get hasGroupSource =>
+      _groupSource ??
+      (enabled || _tables.resources.hasGroups || _tables.dataSources.hasGroups);
+
+  ProviderEnums _withTables(
+    KindHints Function(WrapperOverrideKind kind, KindHints table) table,
+  ) => ProviderEnums._(
+    enabled: enabled,
+    tables: byKind((k) => table(k, _tables.of(k))),
+    caseInsensitive: caseInsensitive,
+    availableValuesDialect: availableValuesDialect,
+    groupSource: hasGroupSource,
+  );
+
+  /// Each table's groups without the members its own kind's definitions in
+  /// [ir] have no input for, and without every group that leaves fewer than
+  /// two members. Magic Modules YAML is shared by the GA and beta
+  /// providers, so a GA lane reads `conflicts` / `exactly_one_of` naming
+  /// `min_version: beta` fields, and some upstream paths name a field at
+  /// the wrong depth; neither is a constraint a constructor can express.
+  /// [dropped] hears each group no input is left of but one or none, as
+  /// `type [members]` (`data.type [members]` for a data source).
+  ProviderEnums withinSchema(
+    ProviderSchemaIR ir, {
+    void Function(String group)? dropped,
+  }) => _withTables((kind, table) {
+    final defs = ir.of(kind);
     Map<String, List<List<String>>> keep(Map<String, List<List<String>>> all) {
       final out = <String, List<List<String>>>{};
       for (final MapEntry(key: type, value: groups) in all.entries) {
@@ -127,7 +303,7 @@ final class ProviderEnums {
           if (inputs.length >= 2) {
             kept.add(inputs);
           } else {
-            dropped?.call('$type [${g.join(', ')}]');
+            dropped?.call('${kind.label(type)} [${g.join(', ')}]');
           }
         }
         if (kept.isNotEmpty) out[type] = kept;
@@ -135,29 +311,27 @@ final class ProviderEnums {
       return out;
     }
 
-    return ProviderEnums._copy(
-      this,
-      exactlyOneGroups: keep(exactlyOneGroups),
-      atMostOneGroups: keep(atMostOneGroups),
-    );
-  }
+    return table._withGroups(keep(table.exactlyOne), keep(table.atMostOne));
+  });
 
   /// These groups plus each override's `exactlyOneOf` / `atMostOneOf`
-  /// entries. An `exactlyOneOf` entry that matches an at-most-one group
-  /// tightens it to exactly one (the API requires a member the group source
-  /// only marks exclusive). [error] hears an entry that names no input of
-  /// [defs] or that these groups already hold, as `type [members]: reason`.
+  /// entries, each added to its own kind's table. An `exactlyOneOf` entry
+  /// that matches an at-most-one group tightens it to exactly one (the API
+  /// requires a member the group source only marks exclusive). [error]
+  /// hears an entry that names no input of its kind's definitions in [ir]
+  /// or that these groups already hold, as `type [members]: reason`.
   ProviderEnums withOverrideGroups(
-    Map<String, WrapperOverride> overrides,
-    Map<String, ResourceDef> defs, {
+    LoadedOverrides overrides,
+    ProviderSchemaIR ir, {
     required void Function(String error) error,
-  }) {
+  }) => _withTables((kind, table) {
+    final defs = ir.of(kind);
     final exactly = {
-      for (final MapEntry(:key, :value) in exactlyOneGroups.entries)
+      for (final MapEntry(:key, :value) in table.exactlyOne.entries)
         key: [...value],
     };
     final atMost = {
-      for (final MapEntry(:key, :value) in atMostOneGroups.entries)
+      for (final MapEntry(:key, :value) in table.atMostOne.entries)
         key: [...value],
     };
     void add(
@@ -168,7 +342,7 @@ final class ProviderEnums {
       final def = defs[type];
       for (final entry in entries ?? const <String>[]) {
         final members = sealedGroupKey(entry).toList()..sort();
-        final label = '$type [${members.join(', ')}]';
+        final label = '${kind.label(type)} [${members.join(', ')}]';
         final missing = [
           for (final m in members)
             if (def == null || !_hasInput(def.root, m.split('.'))) m,
@@ -190,8 +364,8 @@ final class ProviderEnums {
           continue;
         }
         final declared = [
-          ...?exactlyOneGroups[type],
-          ...?atMostOneGroups[type],
+          ...?table.exactlyOne[type],
+          ...?table.atMostOne[type],
         ].any((g) => sealedGroupKeyOf(const [], g) == key);
         if (declared) {
           error('$label: the group source declares it; remove the entry');
@@ -201,16 +375,12 @@ final class ProviderEnums {
       }
     }
 
-    for (final MapEntry(key: type, value: o) in overrides.entries) {
+    for (final MapEntry(key: type, value: o) in overrides.of(kind).entries) {
       add(type, o.exactlyOneOf, exactly);
       add(type, o.atMostOneOf, atMost);
     }
-    return ProviderEnums._copy(
-      this,
-      exactlyOneGroups: exactly,
-      atMostOneGroups: atMost,
-    );
-  }
+    return table._withGroups(exactly, atMost);
+  });
 
   /// Whether [path] names an input: a computed-only attribute or block is
   /// an output, which no group can constrain.
@@ -232,120 +402,8 @@ final class ProviderEnums {
     return false;
   }
 
-  /// Whether any exclusive-group source is loaded. Without one, no group
-  /// exists to match, so a `sealedNames` key cannot be judged stale. A copy
-  /// keeps its source's answer: trimming members leaves the source loaded,
-  /// and an override's own groups are no source for the other names.
-  bool get hasGroupSource =>
-      _groupSource ??
-      (enabled || exactlyOneGroups.isNotEmpty || atMostOneGroups.isNotEmpty);
-
-  final bool? _groupSource;
-
-  const ProviderEnums._groups({
-    required this.exactlyOneGroups,
-    required this.atMostOneGroups,
-  }) : enabled = false,
-       hints = const {},
-       caseInsensitive = false,
-       availableValuesDialect = false,
-       _groupSource = null;
-
-  /// Reads `<sourceDir>/hints/*.yaml` (a missing directory means no hints).
-  ///
-  /// Throws [FormatException] when a file is malformed or its
-  /// `provider_version` differs from [providerVersion] — hints extracted at
-  /// another release would type the wrappers against the wrong validators.
-  factory ProviderEnums.load(
-    String sourceDir, {
-    required String providerVersion,
-  }) {
-    final dir = Directory(p.join(sourceDir, 'hints'));
-    final hints = <String, Map<String, List<String>>>{};
-    final groups = <String, List<List<String>>>{};
-    final atMostOne = <String, List<List<String>>>{};
-    if (dir.existsSync()) {
-      final files =
-          dir
-              .listSync()
-              .whereType<File>()
-              .where((f) => f.path.endsWith('.yaml'))
-              .toList()
-            ..sort((a, b) => a.path.compareTo(b.path));
-      for (final file in files) {
-        final src = file.readAsStringSync();
-        final doc = loadYaml(src);
-        final version = doc is YamlMap ? doc['provider_version'] : null;
-        if (version?.toString() != providerVersion) {
-          throw FormatException(
-            '${file.path}: provider_version "$version" does not match the '
-            'fixture\'s provider_version.txt "$providerVersion"; re-extract '
-            'the hints (see hints/README.md).',
-          );
-        }
-        final type = p.basenameWithoutExtension(file.path);
-        hints[type] = {
-          for (final e
-              in const MmYamlParser().parseString(src).fieldOverrides.entries)
-            if (e.value.enumValues != null) e.key: e.value.enumValues!,
-        };
-        for (final (key, sink) in [
-          ('exactly_one_of_groups', groups),
-          ('at_most_one_of_groups', atMostOne),
-        ]) {
-          final raw = (doc as YamlMap)[key];
-          if (raw == null) continue;
-          if (raw is! YamlList || raw.any((g) => g is! YamlList)) {
-            throw FormatException('${file.path}: $key must be a list of lists');
-          }
-          sink[type] = [
-            for (final g in raw) [for (final m in g as YamlList) m.toString()],
-          ];
-        }
-      }
-    }
-    return ProviderEnums.on(
-      hints: hints,
-      exactlyOneGroups: groups,
-      atMostOneGroups: atMostOne,
-    );
-  }
-
-  final bool enabled;
-  final Map<String, Map<String, List<String>>> hints;
-
-  /// Whether the provider matches enum values case-insensitively (its
-  /// validators are `OneOfCaseInsensitive`), recorded in the migration
-  /// manifest.
-  final bool caseInsensitive;
-
-  /// Whether the resolver also reads the `Available values:` description
-  /// dialect ([parseAvailableValues]).
-  final bool availableValuesDialect;
-
-  /// Terraform type → the input sets the provider requires exactly one of,
-  /// each a list of dotted paths from the resource root that share one
-  /// parent block (`hints/*.yaml` `exactly_one_of_groups`).
-  final Map<String, List<List<String>>> exactlyOneGroups;
-
-  /// [terraformType]'s exactly-one groups keyed by their parent block's
-  /// dotted path (`''` for the resource's own arguments), members as bare
-  /// names.
-  Map<String, List<List<String>>> exactlyOneGroupsByBlock(
-    String terraformType,
-  ) => _byBlock(exactlyOneGroups[terraformType]);
-
-  /// Terraform type → the mutually exclusive input sets the provider also
-  /// accepts none of (at most one), in the shape of [exactlyOneGroups]
-  /// (`hints/*.yaml` `at_most_one_of_groups`).
-  final Map<String, List<List<String>>> atMostOneGroups;
-
-  /// [atMostOneGroups] of [terraformType] keyed like
-  /// [exactlyOneGroupsByBlock].
-  Map<String, List<List<String>>> atMostOneGroupsByBlock(
-    String terraformType,
-  ) => _byBlock(atMostOneGroups[terraformType]);
-
+  /// [groups] keyed by their parent block's dotted path (`''` for the
+  /// schema root), members as bare names.
   static Map<String, List<List<String>>> _byBlock(List<List<String>>? groups) {
     final out = <String, List<List<String>>>{};
     for (final g in groups ?? const <List<String>>[]) {
@@ -357,43 +415,50 @@ final class ProviderEnums {
     return out;
   }
 
-  /// [exactlyOneGroupsByBlock] for the nested blocks of an override that
-  /// sets `deriveExactlyOne` (empty otherwise), as `collectNestedTypes`
-  /// takes them.
-  Map<String, List<List<String>>> nestedExactlyOneGroups(
+  /// The groups on [override]'s own arguments (the root block), for
+  /// sealing. Empty unless [override] sets `deriveExactlyOne`.
+  ({List<List<String>> exactlyOne, List<List<String>> atMostOne}) rootGroups(
     String terraformType,
-    WrapperOverride? override,
+    WrapperOverride override,
   ) {
-    if (!(override?.deriveExactlyOne ?? false)) return const {};
-    return exactlyOneGroupsByBlock(terraformType)..remove('');
+    if (!override.deriveExactlyOne) {
+      return (exactlyOne: const [], atMostOne: const []);
+    }
+    final table = _tables.of(override.kind);
+    return (
+      exactlyOne: _byBlock(table.exactlyOne[terraformType])[''] ?? const [],
+      atMostOne: _byBlock(table.atMostOne[terraformType])[''] ?? const [],
+    );
   }
 
-  /// [nestedExactlyOneGroups] for the at-most-one groups.
-  Map<String, List<List<String>>> nestedAtMostOneGroups(
-    String terraformType,
-    WrapperOverride? override,
-  ) {
-    if (!(override?.deriveExactlyOne ?? false)) return const {};
-    return atMostOneGroupsByBlock(terraformType)..remove('');
+  /// The hints [override]'s derived nested types read.
+  NestedHints nestedHints(String terraformType, WrapperOverride override) {
+    final table = _tables.of(override.kind);
+    final enumValues = _resolver(table, terraformType);
+    if (!override.deriveExactlyOne) {
+      return (
+        enumValues: enumValues,
+        exactlyOneGroups: const {},
+        atMostOneGroups: const {},
+        reserved: const {},
+      );
+    }
+    final root = rootGroups(terraformType, override);
+    return (
+      enumValues: enumValues,
+      exactlyOneGroups: _byBlock(table.exactlyOne[terraformType])..remove(''),
+      atMostOneGroups: _byBlock(table.atMostOne[terraformType])..remove(''),
+      reserved: rootSealedTypeNames(override.kind.typeStem(terraformType), [
+        ...root.exactlyOne,
+        ...root.atMostOne,
+      ], sealedNames: override.sealedNames),
+    );
   }
 
-  /// The names the sealed types of [terraformType]'s root groups take, with
-  /// their variants, for an override that sets `deriveExactlyOne` (empty
-  /// otherwise) — the `reserved` names `collectNestedTypes` keeps its
-  /// helpers off.
-  Set<String> rootSealedNames(String terraformType, WrapperOverride? override) {
-    if (!(override?.deriveExactlyOne ?? false)) return const {};
-    return rootSealedTypeNames(shortResourcePascal(terraformType), [
-      ...?exactlyOneGroupsByBlock(terraformType)[''],
-      ...?atMostOneGroupsByBlock(terraformType)[''],
-    ], sealedNames: override?.sealedNames);
-  }
-
-  /// The nested-type collector's resolver for [terraformType] (null for a
-  /// data source, which has no hints).
-  EnumValuesResolver resolver(String? terraformType) {
+  EnumValuesResolver _resolver(KindHints table, String terraformType) {
     if (!enabled) return descriptionEnumValues;
-    final typeHints = hints[terraformType] ?? const <String, List<String>>{};
+    final typeHints =
+        table.enums[terraformType] ?? const <String, List<String>>{};
     return (path, description) =>
         typeHints[path.join('.')] ??
         parseEnumValuesFromDescription(description) ??
@@ -401,41 +466,44 @@ final class ProviderEnums {
   }
 
   /// [ir] with `enumValues` filled on every top-level string or
-  /// list-of-string input that has none yet. Computed-only attributes stay untouched: they have no
-  /// constructor parameter to type.
+  /// list-of-string input that has none yet, each kind from its own table.
+  /// Computed-only attributes stay untouched: they have no constructor
+  /// parameter to type.
   ProviderSchemaIR enrich(ProviderSchemaIR ir) {
     if (!enabled) return ir;
+    Map<String, ResourceDef> enriched(WrapperOverrideKind kind) => {
+      for (final e in ir.of(kind).entries)
+        e.key: _enrich(e.value, _resolver(_tables.of(kind), e.key)),
+    };
     return ProviderSchemaIR(
       providerName: ir.providerName,
       providerSource: ir.providerSource,
       providerVersion: ir.providerVersion,
-      resources: {
-        for (final e in ir.resources.entries)
-          e.key: _enrich(e.value, resolver(e.key)),
-      },
-      dataSources: {
-        for (final e in ir.dataSources.entries)
-          e.key: _enrich(e.value, resolver(null)),
-      },
+      resources: enriched(WrapperOverrideKind.resource),
+      dataSources: enriched(WrapperOverrideKind.dataSource),
     );
   }
 
   /// [overrides] with a `dartTypeOverrides` entry naming the derived enum
-  /// for every `deriveEnums` top-level string attribute of [ir] that carries
-  /// `enumValues` — so the constructor parameter takes the enum the wrapper
-  /// declares — and `List<Enum>` for a list or set of strings, the
+  /// ([topLevelEnums]) for every top-level string attribute of its kind's
+  /// definition in [ir] — so the constructor parameter takes the enum the
+  /// wrapper declares — and `List<Enum>` for a list or set of strings, the
   /// element-wise shape nested helpers use ([isEnumListType]). An explicit
   /// `dartTypeOverrides` entry or a custom slot wins.
-  Map<String, WrapperOverride> typeDerivedEnums(
-    Map<String, WrapperOverride> overrides,
-    Map<String, ResourceDef> defs, {
+  LoadedOverrides typeDerivedEnums(
+    LoadedOverrides overrides,
+    ProviderSchemaIR ir, {
     Map<String, Set<String>> laneInputs = const {},
   }) {
     if (!enabled) return overrides;
-    return {
-      for (final e in overrides.entries)
-        e.key: _typeDerivedEnums(e.value, defs[e.key], laneInputs),
+    Map<String, WrapperOverride> typed(WrapperOverrideKind kind) => {
+      for (final MapEntry(key: type, value: o) in overrides.of(kind).entries)
+        type: _typeDerivedEnums(o, ir.of(kind)[type], laneInputs),
     };
+    return LoadedOverrides(
+      resources: typed(WrapperOverrideKind.resource),
+      dataSources: typed(WrapperOverrideKind.dataSource),
+    );
   }
 
   WrapperOverride _typeDerivedEnums(
@@ -443,32 +511,49 @@ final class ProviderEnums {
     ResourceDef? def,
     Map<String, Set<String>> laneInputs,
   ) {
-    if (!o.deriveEnums || def == null) return o;
+    if (def == null) return o;
     final explicit = o.dartTypeOverrides ?? const <String, String>{};
     final slots = o.customSlots ?? const <String, CustomSlot>{};
-    final names = topLevelTypeNames(shortResourcePascal(def.terraformType), [
-      ...def.root.attributes.map((a) => a.name),
-      ...def.root.nestedBlocks.map((b) => b.name),
-    ], laneInputs: laneInputs);
+    final enums = topLevelEnums(def, o, laneInputs: laneInputs);
     final derived = <String, String>{
       for (final attr in def.root.attributes)
-        if (_isStringish(attr.type) &&
-            attr.constraints.enumValues != null &&
-            !explicit.containsKey(attr.name) &&
-            !slots.containsKey(attr.name))
-          attr.name: _enumSlotType(
-            attr,
-            enumName(
-              resourceType: def.terraformType,
-              fieldPath: attr.name,
-              members: attr.constraints.enumValues!,
-              dartName: names[attr.name],
-            ).dartName,
-          ),
+        if (enums[attr.name] case final en?)
+          if (_isStringish(attr.type) &&
+              !explicit.containsKey(attr.name) &&
+              !slots.containsKey(attr.name))
+            attr.name: _enumSlotType(attr, en.dartName),
     };
     if (derived.isEmpty) return o;
     return o.withDartTypeOverrides({...derived, ...explicit});
   }
+}
+
+/// The enum every top-level input of [def] carrying `enumValues` takes when
+/// [override] sets `deriveEnums`, keyed by input name in attribute order and
+/// named on `override.kind.typeStem`. The one source for both the
+/// `dartTypeOverrides` [ProviderEnums.typeDerivedEnums] writes and the
+/// declarations both emitters write.
+Map<String, EnumName> topLevelEnums(
+  ResourceDef def,
+  WrapperOverride override, {
+  Map<String, Set<String>> laneInputs = const {},
+}) {
+  if (!override.deriveEnums) return const {};
+  final names = topLevelTypeNames(override.kind.typeStem(def.terraformType), [
+    ...def.root.attributes.map((a) => a.name),
+    ...def.root.nestedBlocks.map((b) => b.name),
+  ], laneInputs: laneInputs);
+  return {
+    for (final attr in def.root.attributes)
+      if (attr.constraints.enumValues case final values?)
+        if (values.isNotEmpty)
+          attr.name: enumName(
+            resourceType: def.terraformType,
+            fieldPath: attr.name,
+            members: values,
+            dartName: names[attr.name],
+          ),
+  };
 }
 
 ResourceDef _enrich(ResourceDef def, EnumValuesResolver resolve) {

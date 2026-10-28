@@ -3,12 +3,14 @@ import '../ir/nested_block.dart';
 import '../ir/resource_def.dart';
 import 'constructor_params.dart'
     show
+        elementwiseArgMapEntry,
         nestedBlockIsObject,
         orderedDataSourceConstructorParams,
         skipDataSourceAttribute,
         skipNestedBlock;
 import 'dart_type_writer.dart';
 import 'doc_comment_builder.dart';
+import 'enum_emitter.dart';
 import 'getter_emitter.dart';
 import 'naming.dart';
 import 'nested_types/nested_type_collector.dart';
@@ -146,27 +148,38 @@ class DataSourceWrapperEmitter {
     // alongside the resource Layer 1) and no `package:terradart_annotations`
     // import (package deleted).
     final refs = references[def.terraformType] ?? const {};
+    final customSlots = override.customSlots ?? const <String, CustomSlot>{};
+    final hints = providerEnums.nestedHints(def.terraformType, override);
     final nestedTypeSpecs = override.deriveNestedTypes
         ? collectNestedTypes(
             resourceBlock: _requireRawSchema(def.terraformType),
-            resourcePrefix: 'Data${shortResourcePascal(def.terraformType)}',
-            customSlotKeys: const <String>{},
+            resourcePrefix: override.kind.typeStem(def.terraformType),
+            customSlotKeys: customSlots.keys.toSet(),
             excludedPaths: (override.nestedTypeExcludes ?? const <String>[])
                 .toSet(),
             shareIdenticalShapes: override.dedupeNestedTypes,
-            enumValues: providerEnums.resolver(null),
+            enumValues: hints.enumValues,
+            exactlyOneGroups: hints.exactlyOneGroups,
+            atMostOneGroups: hints.atMostOneGroups,
+            sealedNames: override.sealedNames,
             references: (path) => refs[path.join('.')],
+            typeOverrides: override.nestedDartTypeOverrides,
+            reserved: hints.reserved,
             laneInputs: laneInputs,
           )
         : const <NestedBlockSpec>[];
     final dartTypeOverrides =
         override.dartTypeOverrides ?? const <String, String>{};
+    final paramOrder = orderedDataSourceConstructorParams(
+      def,
+      override.paramOrder,
+    );
     final topLevelRefs = <String, ResolvedReference>{
-      for (final attr in def.root.attributes)
-        if (refs[attr.name] case final ref?)
-          if (!skipDataSourceAttribute(attr) &&
-              !dartTypeOverrides.containsKey(attr.name))
-            attr.name: ref,
+      for (final name in paramOrder)
+        if (refs[name] case final ref?)
+          if (!customSlots.containsKey(name) &&
+              !dartTypeOverrides.containsKey(name))
+            name: ref,
     };
     final nestedRefs = <String, ResolvedReference>{};
     void collectNestedRefs(NestedBlockSpec spec, List<String> at) {
@@ -224,6 +237,7 @@ class DataSourceWrapperEmitter {
       for (final ref in [
         ...topLevelRefs.values,
         ...nestedRefs.values,
+        ...preludeReferences(refs, override.prelude),
         if (principals.contains(def.terraformType)) ?principal,
       ])
         if (!emitsRef || ref.target != def.terraformType) ref,
@@ -274,6 +288,20 @@ class DataSourceWrapperEmitter {
     );
     buf.writeln();
 
+    for (final en in topLevelEnums(
+      def,
+      override,
+      laneInputs: laneInputs,
+    ).values) {
+      buf.writeln(emitEnumDeclaration(en));
+    }
+
+    final prelude = override.prelude;
+    if (prelude != null) {
+      buf.write(prelude);
+      buf.writeln();
+    }
+
     if (nestedTypes.isNotEmpty) {
       buf.write(nestedTypes);
       buf.writeln();
@@ -294,24 +322,17 @@ class DataSourceWrapperEmitter {
     buf.writeln("  static const String tfType = '${def.terraformType}';");
     buf.writeln();
 
-    // Constructor + super initializer. The slot machinery mirrors
-    // WrapperEmitter (paramOrder drives both the param list and the
-    // argMap), minus the customSlots / dartTypeOverrides / deprecations /
-    // virtual-fan-out machinery — data source overrides don't need any
-    // of that (no fan-outs, no `BigQueryConfig` helpers, no deprecation
-    // policy). We still respect dartTypeOverrides and requiredOverrides
-    // for parity with the resource path; they're cheap.
-    final paramOrder = orderedDataSourceConstructorParams(
-      def,
-      override.paramOrder,
-    );
     final argMapOrder = override.argMapOrder ?? paramOrder;
     final paramsByName = _paramsByName(
       def,
       requiredOverrides,
       dartTypeOverrides,
     );
-    final argMapByName = _argMapEntriesByName(def, requiredOverrides);
+    final argMapByName = _argMapEntriesByName(
+      def,
+      requiredOverrides,
+      dartTypeOverrides,
+    );
     for (final MapEntry(key: name, value: ref) in topLevelRefs.entries) {
       final attr = def.root.attributes.firstWhere((a) => a.name == name);
       final slot = referenceSlot(
@@ -322,6 +343,10 @@ class DataSourceWrapperEmitter {
       );
       paramsByName[name] = slot.param;
       argMapByName[name] = slot.argMapEntry;
+    }
+    for (final entry in customSlots.entries) {
+      paramsByName[entry.key] = entry.value.paramDeclaration;
+      argMapByName[entry.key] = entry.value.argMapEntry;
     }
     for (final spec in nestedTypeSpecs) {
       final isRequired =
@@ -405,12 +430,6 @@ class DataSourceWrapperEmitter {
     return buf.toString();
   }
 
-  // ---------------------------------------------------------------------
-  // Slot-name helpers. Trimmed-down copy of WrapperEmitter's helpers —
-  // data sources have no nested-block filtering quirks and no customSlots,
-  // so the surface is smaller.
-  // ---------------------------------------------------------------------
-
   Map<String, String> _paramsByName(
     ResourceDef def,
     Set<String> requiredOverrides,
@@ -440,13 +459,16 @@ class DataSourceWrapperEmitter {
   Map<String, String> _argMapEntriesByName(
     ResourceDef def,
     Set<String> requiredOverrides,
+    Map<String, String> dartTypeOverrides,
   ) {
     final out = <String, String>{};
     for (final attr in def.root.attributes) {
       if (skipDataSourceAttribute(attr)) continue;
       final isRequired =
           attr.constraints.required || requiredOverrides.contains(attr.name);
-      out[attr.name] = _argMapEntry(attr.name, isRequired);
+      out[attr.name] = isEnumListType(dartTypeOverrides[attr.name] ?? '')
+          ? elementwiseArgMapEntry(attr.name, isRequired: isRequired)
+          : _argMapEntry(attr.name, isRequired);
     }
     for (final nested in def.root.nestedBlocks) {
       if (_skipNestedBlock(nested)) continue;

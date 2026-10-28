@@ -56,15 +56,28 @@ class LoadedOverrides {
   /// Total curated overrides (resources + data sources).
   int get length => resources.length + dataSources.length;
 
-  /// Bag for lint / debt tools that need a unique map key per override.
-  ///
-  /// Colliding data-source keys are stored as `data.<tfType>` so they
-  /// never overwrite the resource twin. Non-colliding data sources keep
-  /// their terraform type key (`google_project`).
+  /// The overrides of [kind].
+  Map<String, WrapperOverride> of(WrapperOverrideKind kind) => switch (kind) {
+    WrapperOverrideKind.resource => resources,
+    WrapperOverrideKind.dataSource => dataSources,
+  };
+
+  /// The unique key lint and ledgers use for [terraformType]'s [kind]
+  /// override: `data.<tfType>` for a data source with a resource twin, so
+  /// it never overwrites the twin, else the terraform type
+  /// (`google_project`).
+  String lintKey(String terraformType, WrapperOverrideKind kind) =>
+      kind == WrapperOverrideKind.dataSource &&
+          resources.containsKey(terraformType)
+      ? 'data.$terraformType'
+      : terraformType;
+
+  /// Bag for lint / debt tools that need a unique map key per override,
+  /// keyed by [lintKey].
   Map<String, WrapperOverride> asLintMap() => {
     ...resources,
     for (final e in dataSources.entries)
-      resources.containsKey(e.key) ? 'data.${e.key}' : e.key: e.value,
+      lintKey(e.key, WrapperOverrideKind.dataSource): e.value,
   };
 }
 
@@ -157,6 +170,12 @@ class YamlOverrideLoader {
     'outputDir',
     'schemaStubBodyMode',
     'fileLeadingComment',
+  };
+
+  static const Set<String> _resourceOnlyAxes = {
+    'prelude',
+    'customSlots',
+    'deprecatedParams',
   };
 
   static const Set<String> _allowedCustomSlotKeys = {
@@ -390,21 +409,11 @@ class YamlOverrideLoader {
       );
     }
 
-    // E201: data sources reject resource-only axes. Listed axes are the ones
-    // the data source emitter has no slot for; surfacing them at load time
-    // beats silently dropping verbatim Dart at emit time.
-    //
-    // Plan 5.X (v0.5.0-dev): `schemaStubComment` is no longer a recognized
-    // top-level key (its host stub class is retired), so it's already
-    // rejected by the top-level allowed-keys check above — keeping it out
-    // of this resource-only list avoids a duplicate / unreachable branch.
+    // E201: data sources reject the hand-written Dart axes. A data source's
+    // `prelude` and `customSlots` are derived only (`deriveExactlyOneSlots`
+    // writes them in memory), so the derivation stays their one writer.
     if (kind == WrapperOverrideKind.dataSource) {
-      const resourceOnlyAxes = <String>[
-        'prelude',
-        'customSlots',
-        'deprecatedParams',
-      ];
-      for (final axis in resourceOnlyAxes) {
+      for (final axis in _resourceOnlyAxes) {
         final axisNode = yaml.nodes[axis];
         if (axisNode != null) {
           final span = axisNode.span;
@@ -416,10 +425,8 @@ class YamlOverrideLoader {
               line: span.start.line + 1,
               column: span.start.column + 1,
               hint:
-                  'Allowed axes for data sources: kind, outputDir, '
-                  'schemaStubBodyMode, fileLeadingComment, '
-                  'paramOrder, argMapOrder, requiredParams, '
-                  'dartTypeOverrides, extraImports, extraGetters.',
+                  'Allowed axes for data sources: '
+                  '${_allowedTopLevelKeys.difference(_resourceOnlyAxes).join(', ')}.',
             ),
           );
         }

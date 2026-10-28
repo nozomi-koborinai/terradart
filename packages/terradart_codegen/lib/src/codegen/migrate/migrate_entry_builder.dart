@@ -72,18 +72,17 @@ final class MigrateEntryInput {
   final EnumValuesResolver enumValues;
 
   /// The nested exactly-one groups the wrapper emitter sealed for this
-  /// type (`ProviderEnums.nestedExactlyOneGroups`).
+  /// type (`ProviderEnums.nestedHints`).
   final Map<String, List<List<String>>> exactlyOneGroups;
 
-  /// The nested at-most-one groups, likewise
-  /// (`ProviderEnums.nestedAtMostOneGroups`).
+  /// The nested at-most-one groups, likewise.
   final Map<String, List<List<String>>> atMostOneGroups;
 
   /// The type's reference inputs the wrapper emitter typed, by dotted path.
   final Map<String, ResolvedReference> references;
 
-  /// The names no derived helper may take
-  /// (`ProviderEnums.rootSealedNames`), as the wrapper emitter passed them.
+  /// The names no derived helper may take (`ProviderEnums.nestedHints`), as
+  /// the wrapper emitter passed them.
   final Set<String> reservedTypeNames;
 
   /// The stem of every type the lane wraps, as the emitters got it.
@@ -211,9 +210,7 @@ MigrateEntryBuild buildMigrateEntry({
     }
     final collected = collectNestedTypes(
       resourceBlock: raw,
-      resourcePrefix: isDataSource
-          ? 'Data${shortResourcePascal(tfType)}'
-          : shortResourcePascal(tfType),
+      resourcePrefix: override.kind.typeStem(tfType),
       customSlotKeys: customSlots.keys.toSet(),
       excludedPaths: (override.nestedTypeExcludes ?? const []).toSet(),
       shareIdenticalShapes: override.dedupeNestedTypes,

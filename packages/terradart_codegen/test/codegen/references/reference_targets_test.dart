@@ -11,6 +11,7 @@ import 'package:terradart_codegen/src/codegen/provider_enums.dart';
 import 'package:terradart_codegen/src/codegen/references/reference_targets.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_emitter.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_overrides/wrapper_override.dart';
+import 'package:terradart_codegen/src/codegen/wrapper_overrides/yaml_loader.dart';
 import 'package:terradart_codegen/src/parser/mm_yaml_parser.dart';
 import 'package:terradart_codegen/src/parser/schema_parser.dart';
 import 'package:test/test.dart';
@@ -807,31 +808,39 @@ class XVmNic {
       targetDirs: const {'google_x_network': 'x', 'google_x_nic': 'x'},
     ).byResource;
     const groups = ProviderEnums.on(
-      atMostOneGroups: {
-        'google_x_nic': [
-          ['network', 'network_name'],
-        ],
-      },
-      exactlyOneGroups: {
-        'google_x_nic': [
-          ['peer.address', 'peer.network'],
-        ],
-      },
+      resources: KindHints(
+        atMostOne: {
+          'google_x_nic': [
+            ['network', 'network_name'],
+          ],
+        },
+        exactlyOne: {
+          'google_x_nic': [
+            ['peer.address', 'peer.network'],
+          ],
+        },
+      ),
     );
     final derived = deriveExactlyOneSlots(
-      {
-        'google_x_nic': const WrapperOverride(
-          outputDir: 'x',
-          deriveNestedTypes: true,
-          deriveExactlyOne: true,
-        ),
-      },
-      {'google_x_nic': ir.resources['google_x_nic']!},
+      const LoadedOverrides(
+        resources: {
+          'google_x_nic': WrapperOverride(
+            outputDir: 'x',
+            deriveNestedTypes: true,
+            deriveExactlyOne: true,
+          ),
+        },
+        dataSources: {},
+      ),
+      ir,
       providerEnums: groups,
-      rawSchemas: {'google_x_nic': blocks['google_x_nic']!},
-      references: references,
+      rawSchemas: (
+        resources: {'google_x_nic': blocks['google_x_nic']!},
+        dataSources: const {},
+      ),
+      references: (resources: references, dataSources: const {}),
     );
-    final override = derived.overrides['google_x_nic']!;
+    final override = derived.overrides.resources['google_x_nic']!;
     final emitter = WrapperEmitter(
       overrides: {'google_x_nic': override},
       rawResourceSchemas: {'google_x_nic': blocks['google_x_nic']!},
@@ -885,10 +894,9 @@ class XVmNic {
         kind: 'resource',
         emittedSource: src,
         rawSchemaBlock: blocks['google_x_nic'],
-        exactlyOneGroups: groups.nestedExactlyOneGroups(
-          'google_x_nic',
-          override,
-        ),
+        exactlyOneGroups: groups
+            .nestedHints('google_x_nic', override)
+            .exactlyOneGroups,
         references: references['google_x_nic']!,
       );
       final fields = [

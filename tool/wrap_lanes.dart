@@ -32,8 +32,11 @@ import 'dart:io';
 
 import 'package:path/path.dart' as p;
 import 'package:terradart_codegen/src/cli/lint_override_command.dart';
+import 'package:terradart_codegen/src/codegen/provider_enums.dart';
 import 'package:terradart_codegen/src/codegen/sealed_name_debt.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_overrides/_registry.dart';
+import 'package:terradart_codegen/src/codegen/wrapper_overrides/wrapper_override.dart';
+import 'package:terradart_codegen/src/codegen/wrapper_overrides/yaml_loader.dart';
 import 'package:yaml/yaml.dart';
 
 import 'retire_removed_overrides.dart';
@@ -334,21 +337,51 @@ WrapLane _parseLane(String name, Object? entry) {
   );
 }
 
-/// The `provider_version` of every `<schemaDir>/hints/*.yaml` that differs
-/// from `<schemaDir>/provider_version.txt`, as `file: version`. Empty when
-/// the hints match the fixture or the lane has none yet.
+/// The `provider_version` of every hint file of either kind that differs
+/// from `<schemaDir>/provider_version.txt`, as `file: version` (resources)
+/// or `data/file: version` (data sources). Empty when the hints match the
+/// fixture or the lane has none yet.
 List<String> staleHints(String schemaDir) {
-  final hints = Directory(p.join(schemaDir, 'hints'));
   final versionFile = File(p.join(schemaDir, 'provider_version.txt'));
-  if (!hints.existsSync() || !versionFile.existsSync()) return const [];
+  if (!versionFile.existsSync()) return const [];
   final version = versionFile.readAsStringSync().trim();
+  final stale = <String>[];
+  for (final kind in WrapperOverrideKind.values) {
+    final hints = Directory(providerHintsDir(schemaDir, kind));
+    if (!hints.existsSync()) continue;
+    final prefix = switch (kind) {
+      WrapperOverrideKind.resource => '',
+      WrapperOverrideKind.dataSource => 'data/',
+    };
+    for (final file in hints.listSync().whereType<File>()) {
+      if (!file.path.endsWith('.yaml')) continue;
+      final doc = loadYaml(file.readAsStringSync());
+      final found = doc is YamlMap ? doc['provider_version'] : null;
+      if ('$found' != version) {
+        stale.add('$prefix${p.basename(file.path)}: $found');
+      }
+    }
+  }
+  return stale..sort();
+}
+
+/// Each data override under [overridesRoot] that lacks `deriveEnums: true`
+/// or `deriveExactlyOne: true` while [schemaDir] has data-source hints, as
+/// `file: flag`. Without both flags a data factory reads its hint file for
+/// neither enums nor sealed groups.
+List<String> dataSourceDerivationGaps(String schemaDir, String overridesRoot) {
+  if (!hasDataSourceHints(schemaDir)) return const [];
   return [
-    for (final file in hints.listSync().whereType<File>())
-      if (file.path.endsWith('.yaml'))
-        if (loadYaml(file.readAsStringSync()) case final doc
-            when doc is! YamlMap || '${doc['provider_version']}' != version)
-          '${p.basename(file.path)}: '
-              '${doc is YamlMap ? doc['provider_version'] : null}',
+    for (final MapEntry(key: type, value: o) in YamlOverrideLoader(
+      rootDir: overridesRoot,
+    ).load().dataSources.entries)
+      for (final (flag, set) in [
+        ('deriveEnums', o.deriveEnums),
+        ('deriveExactlyOne', o.deriveExactlyOne),
+      ])
+        if (!set)
+          '${overrideFileStem(terraformType: type, kind: .dataSource)}.yaml: '
+              '$flag',
   ]..sort();
 }
 

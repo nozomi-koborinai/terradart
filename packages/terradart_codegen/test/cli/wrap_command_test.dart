@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:isolate';
 
 import 'package:args/command_runner.dart';
 import 'package:dart_style/dart_style.dart';
@@ -1450,6 +1451,296 @@ paramOrder: [name, mode, kind, regions, grants, settings]
       expect(err, contains('[E405]'));
       expect(err, contains('provider_version "1.0.0"'));
     });
+  });
+
+  group('WrapCommand data-source hints', () {
+    late Directory tmp;
+    late String source;
+    late String manifestPath;
+
+    Map<String, dynamic> optional() => {'type': 'string', 'optional': true};
+    Map<String, dynamic> block(Map<String, dynamic> attributes) => {
+      'version': 0,
+      'block': {
+        'attributes': {
+          'id': {'type': 'string', 'computed': true},
+          ...attributes,
+        },
+      },
+    };
+
+    setUp(() {
+      tmp = Directory.systemTemp.createTempSync('wrap_data_hints_');
+      source = p.join(tmp.path, 'source');
+      manifestPath = p.join(tmp.path, 'x.g.dart');
+      final overrides = p.join(tmp.path, 'overrides');
+      Directory(p.join(source, 'hints', 'data')).createSync(recursive: true);
+      Directory(overrides).createSync();
+      File(p.join(source, 'provider_version.txt')).writeAsStringSync('1.0.0\n');
+      File(p.join(source, 'schema.json')).writeAsStringSync(
+        jsonEncode({
+          'format_version': '1.0',
+          'provider_schemas': {
+            'registry.terraform.io/example/x': {
+              'resource_schemas': {
+                'x_thing': block({
+                  'name': {'type': 'string', 'required': true},
+                  'tier': optional(),
+                  'source_bucket': optional(),
+                  'source_image': optional(),
+                }),
+              },
+              'data_source_schemas': {
+                'x_thing': block({
+                  'name': optional(),
+                  'tier': optional(),
+                  'source_bucket': optional(),
+                  'source_image': optional(),
+                  'lookup_id': optional(),
+                  'lookup_name': optional(),
+                  'settings': {
+                    'optional': true,
+                    'nested_type': {
+                      'nesting_mode': 'single',
+                      'attributes': {'level': optional()},
+                    },
+                  },
+                }),
+                'x_client': block({
+                  'region': optional(),
+                  'client_id': {'type': 'string', 'computed': true},
+                }),
+              },
+            },
+          },
+        }),
+      );
+      File(p.join(source, 'hints', 'x_thing.yaml')).writeAsStringSync('''
+provider_version: "1.0.0"
+properties:
+  - api_name: tier
+    enum_values: ["legacy", "standard"]
+exactly_one_of_groups:
+  - ["source_bucket", "source_image"]
+''');
+      File(p.join(source, 'hints', 'data', 'x_thing.yaml')).writeAsStringSync(
+        '''
+provider_version: "1.0.0"
+properties:
+  - api_name: tier
+    enum_values: ["premium", "standard"]
+  - api_name: settings
+    properties:
+      - api_name: level
+        enum_values: ["low", "high"]
+exactly_one_of_groups:
+  - ["lookup_id", "lookup_name"]
+''',
+      );
+      File(p.join(source, 'hints', 'data', 'x_client.yaml')).writeAsStringSync(
+        '''
+provider_version: "1.0.0"
+properties:
+  - api_name: region
+    enum_values: ["east", "west"]
+''',
+      );
+      File(p.join(overrides, 'x_thing.yaml')).writeAsStringSync('''
+outputDir: thing
+deriveEnums: true
+deriveExactlyOne: true
+''');
+      File(p.join(overrides, 'data_x_thing.yaml')).writeAsStringSync('''
+kind: data_source
+outputDir: data
+deriveEnums: true
+deriveExactlyOne: true
+deriveNestedTypes: true
+''');
+      File(p.join(overrides, 'data_x_client.yaml')).writeAsStringSync('''
+kind: data_source
+outputDir: data
+deriveEnums: true
+deriveExactlyOne: true
+''');
+      File(p.join(tmp.path, 'barrels.yaml')).writeAsStringSync('''
+umbrellaFile: terradart_x
+umbrellaDoc: |-
+  /// x umbrella.
+umbrellaExtraExports: []
+barrels:
+  data:
+    doc: |-
+      /// Data sources.
+  thing:
+    doc: |-
+      /// Things.
+''');
+    });
+    tearDown(() => tmp.deleteSync(recursive: true));
+
+    Future<int?> wrap({bool check = false}) => buildCliRunner().run([
+      'wrap',
+      '--provider',
+      'example/x',
+      '--source',
+      source,
+      '--output',
+      _libSrcOut(tmp),
+      '--overrides-root',
+      p.join(tmp.path, 'overrides'),
+      '--barrels-manifest',
+      p.join(tmp.path, 'barrels.yaml'),
+      '--provider-enums',
+      '--migrate-manifest',
+      manifestPath,
+      '--migrate-package',
+      'terradart_x',
+      if (check) '--check',
+    ]);
+
+    /// Compiles and runs a Stack whose constructor body is [body] against
+    /// the generated wrappers, printing its synthesized Terraform JSON.
+    Future<ProcessResult> probe(String body) async {
+      final script = File(p.join(tmp.path, 'bin', 'probe.dart'))
+        ..createSync(recursive: true)
+        ..writeAsStringSync('''
+import 'dart:convert';
+
+import 'package:terradart_core/terradart_core.dart';
+
+import '../lib/src/data/x_client.dart';
+import '../lib/src/data/x_thing.dart';
+import '../lib/src/thing/x_thing.dart';
+
+final class XProvider implements StackProvider {
+  const XProvider();
+  @override
+  String get providerName => 'x';
+  @override
+  String? get alias => null;
+  @override
+  String get source => 'example/x';
+  @override
+  String get versionConstraint => '1.0.0';
+  @override
+  Map<String, Object?> get configArgs => const {};
+}
+
+final class Probe extends Stack {
+  Probe() : super(providers: const [XProvider()]) {
+    $body
+  }
+}
+
+void main() => print(jsonEncode(Probe().synth().tfJson));
+''');
+      final packages = await Isolate.packageConfig;
+      return Process.run(Platform.resolvedExecutable, [
+        '--packages=${packages!.toFilePath()}',
+        script.path,
+      ]);
+    }
+
+    Map<String, dynamic> synthOf(ProcessResult run) {
+      expect(run.exitCode, 0, reason: '${run.stdout}${run.stderr}');
+      return jsonDecode(run.stdout as String) as Map<String, dynamic>;
+    }
+
+    test('each kind takes its own hint file', () async {
+      expect(await wrap(), CliExitCodes.success);
+      final tf = synthOf(
+        await probe('''
+add(XThing('r', name: .literal('n'), tier: .legacy, source: .sourceBucket(.literal('b'))));
+add(DataXThing('d', tier: .premium, lookup: .lookupName(.literal('n')), settings: DataXThingSettings(level: .high)));
+add(DataXThing('both', lookup: .lookupId(.literal('i')), sourceBucket: .literal('b'), sourceImage: .literal('i')));
+add(DataXClient('c', region: .west));
+'''),
+      );
+      expect(tf['resource']['x_thing']['r'], {
+        'name': 'n',
+        'tier': 'legacy',
+        'source_bucket': 'b',
+      });
+      expect(tf['data']['x_thing']['d'], {
+        'tier': 'premium',
+        'lookup_name': 'n',
+        'settings': {'level': 'high'},
+      });
+      expect(tf['data']['x_thing']['both'], {
+        'lookup_id': 'i',
+        'source_bucket': 'b',
+        'source_image': 'i',
+      });
+      expect(tf['data']['x_client']['c'], {'region': 'west'});
+      expect(await wrap(check: true), CliExitCodes.success);
+    });
+
+    test("neither kind accepts the other's enum values", () async {
+      expect(await wrap(), CliExitCodes.success);
+      final run = await probe('''
+add(DataXThing('d', tier: .legacy, lookup: .lookupName(.literal('n'))));
+add(XThing('r', name: .literal('n'), tier: .premium, source: .sourceBucket(.literal('b'))));
+''');
+      expect(run.exitCode, isNot(0));
+      final errors = '${run.stdout}${run.stderr}';
+      expect(errors, matches(RegExp(r"'legacy'[^\n]*'DataXThingTier\??'")));
+      expect(errors, matches(RegExp(r"'premium'[^\n]*'XThingTier\??'")));
+    });
+
+    test(
+      'without its data hint file a data source keeps plain strings',
+      () async {
+        File(p.join(source, 'hints', 'data', 'x_thing.yaml')).deleteSync();
+        expect(await wrap(), CliExitCodes.success);
+        final tf = synthOf(
+          await probe('''
+add(DataXThing('d', tier: .literal('premium'), lookupId: .literal('i')));
+'''),
+        );
+        expect(tf['data']['x_thing']['d'], {
+          'tier': 'premium',
+          'lookup_id': 'i',
+        });
+      },
+    );
+
+    test(
+      'the migration manifest records the data enum and sealed slot',
+      () async {
+        expect(await wrap(), CliExitCodes.success);
+        final manifest = File(manifestPath).readAsStringSync();
+        expect(
+          manifest,
+          matches(
+            RegExp(
+              r"tfName: 'tier',\s+dartName: 'tier',\s+"
+              r'kind: MigrateSlotKind\.enumValue,\s+required: false,\s+'
+              r"dartType: 'DataXThingTier',",
+            ),
+          ),
+        );
+        expect(
+          manifest,
+          matches(
+            RegExp(
+              r"'DataXThingTier': MigrateEnum\(\s+name: 'DataXThingTier',\s+"
+              r"members: <String, String>\{\s*'premium': 'premium',\s*"
+              r"'standard': 'standard',?\s*\}",
+            ),
+          ),
+        );
+        expect(
+          manifest,
+          matches(
+            RegExp(
+              r"dartName: 'lookup',\s+kind: MigrateSlotKind\.sealed,\s+"
+              r'required: true,',
+            ),
+          ),
+        );
+      },
+    );
   });
 
   group('WrapCommand at-most-one groups', () {

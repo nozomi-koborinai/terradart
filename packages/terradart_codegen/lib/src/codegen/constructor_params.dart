@@ -1,6 +1,7 @@
 import '../ir/attribute.dart';
 import '../ir/nested_block.dart';
 import '../ir/resource_def.dart';
+import 'naming.dart' show snakeToDartIdent;
 
 /// Returns the ordered list of snake-case slot names for a wrapper constructor.
 ///
@@ -123,6 +124,19 @@ List<String> orderedDataSourceConstructorParams(
 /// emitter) so all surfaces filter identically.
 bool skipNestedBlock(NestedBlockDef block) {
   return block.name == 'timeouts' || block.constraints.computedOnly;
+}
+
+/// The argMap entry for a bare `List<TfArg<...>>` parameter (a list of
+/// derived enums): each element encodes itself, and the list goes in as one
+/// literal. Optional slots are `if`-guarded so synth tells "unset" from
+/// "explicit null".
+String elementwiseArgMapEntry(String snakeName, {required bool isRequired}) {
+  final camel = snakeToDartIdent(snakeName);
+  final value = 'TfArg.literal([for (final e in $camel) e.toTfJson()])';
+  if (isRequired) {
+    return "'$snakeName': $value,";
+  }
+  return "if ($camel != null) '$snakeName': $value,";
 }
 
 /// Whether [block]'s untyped passthrough takes one JSON object

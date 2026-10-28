@@ -911,6 +911,8 @@ prelude: |
             e.errors.first.code,
             LoaderErrorCode.axisNotAllowedForDataSource,
           );
+          expect(e.errors.first.hint, contains('deriveExactlyOne'));
+          expect(e.errors.first.hint, isNot(contains('prelude')));
         }
       } finally {
         await tmpDir.delete(recursive: true);

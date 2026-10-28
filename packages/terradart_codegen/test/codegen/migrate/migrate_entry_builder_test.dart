@@ -91,18 +91,14 @@ final class _Fixture {
     // Mirrors `wrap --mm-groups`: MM exactly-one / at-most-one groups
     // become the sealed slots the committed google lane emits.
     final providerEnums = ProviderEnums.mmGroups(mm)
-        .withinSchema(ir.resources, dropped: (_) {})
-        .withOverrideGroups(
-          loaded.resources,
-          ir.resources,
-          error: (e) => throw StateError(e),
-        );
+        .withinSchema(ir, dropped: (_) {})
+        .withOverrideGroups(loaded, ir, error: (e) => throw StateError(e));
     final overrides = deriveExactlyOneSlots(
-      providerEnums.typeDerivedEnums(loaded.resources, ir.resources),
-      ir.resources,
+      providerEnums.typeDerivedEnums(loaded, ir),
+      ir,
       providerEnums: providerEnums,
-      rawSchemas: raw,
-    ).overrides;
+      rawSchemas: (resources: raw, dataSources: const {}),
+    ).overrides.resources;
     final override = overrides[tfType]!;
     final src =
         generatedFileHeader +

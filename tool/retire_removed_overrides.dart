@@ -18,6 +18,7 @@ import 'dart:io';
 
 import 'package:path/path.dart' as p;
 import 'package:terradart_codegen/src/codegen/barrels/barrel_manifest.dart';
+import 'package:terradart_codegen/src/codegen/provider_enums.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_overrides/wrapper_override.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_overrides/yaml_loader.dart';
 import 'package:yaml/yaml.dart';
@@ -44,8 +45,9 @@ class RetiredOverrides {
 }
 
 /// Deletes override YAML under [overridesRoot] for types absent from
-/// [schemaPath], the hint file of a type the schema dropped entirely, and
-/// barrel keys in [barrelsManifest] that then have no type.
+/// [schemaPath], each deleted override's hint file of its own kind
+/// (`hints/<type>.yaml` or `hints/data/<type>.yaml`), and barrel keys in
+/// [barrelsManifest] that then have no type.
 ///
 /// A schema with no `data_source_schemas` object leaves data-source
 /// overrides alone. A present object, even an empty one, is the whole set.
@@ -79,21 +81,23 @@ RetiredOverrides retireRemovedOverrides({
   removedData.sort();
 
   final hints = <String>[];
-  final hintsDir = Directory(p.join(p.dirname(schemaPath), 'hints'));
-  if (hintsDir.existsSync()) {
-    final gone = <String>{
-      for (final type in [...removedResources, ...removedData])
-        if (!schema.resources.contains(type) &&
-            !(schema.dataSources?.contains(type) ?? false))
-          type,
+  for (final (kind, removed) in [
+    (WrapperOverrideKind.resource, removedResources),
+    (WrapperOverrideKind.dataSource, removedData),
+  ]) {
+    final dir = providerHintsDir(p.dirname(schemaPath), kind);
+    final prefix = switch (kind) {
+      WrapperOverrideKind.resource => '',
+      WrapperOverrideKind.dataSource => 'data/',
     };
-    for (final type in gone.toList()..sort()) {
-      final hint = File(p.join(hintsDir.path, '$type.yaml'));
+    for (final type in removed) {
+      final hint = File(p.join(dir, '$type.yaml'));
       if (!hint.existsSync()) continue;
       hint.deleteSync();
-      hints.add(p.basename(hint.path));
+      hints.add('$prefix$type.yaml');
     }
   }
+  hints.sort();
 
   final used = _usedBarrels(
     overridesRoot,

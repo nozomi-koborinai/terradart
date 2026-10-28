@@ -6,10 +6,13 @@ import 'package:terradart_codegen/src/codegen/exactly_one_types.dart';
 import 'package:terradart_codegen/src/codegen/nested_types/nested_type_collector.dart';
 import 'package:terradart_codegen/src/codegen/nested_types/nested_type_emitter.dart';
 import 'package:terradart_codegen/src/codegen/provider_enums.dart';
+import 'package:terradart_codegen/src/codegen/references/reference_targets.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_overrides/wrapper_override.dart';
+import 'package:terradart_codegen/src/codegen/wrapper_overrides/yaml_loader.dart';
 import 'package:terradart_codegen/src/ir/attribute.dart';
 import 'package:terradart_codegen/src/ir/constraints.dart';
 import 'package:terradart_codegen/src/ir/nested_block.dart';
+import 'package:terradart_codegen/src/ir/provider_schema_ir.dart';
 import 'package:terradart_codegen/src/ir/resource_def.dart';
 import 'package:terradart_codegen/src/ir/type_def.dart';
 import 'package:terradart_codegen/src/parser/mm_yaml_parser.dart';
@@ -24,45 +27,75 @@ Attribute _attr(String name, {bool required = false}) => Attribute(
 );
 
 const _groups = ProviderEnums.on(
-  exactlyOneGroups: {
-    'aws_thing': [
-      ['a', 'b'],
-      ['c', 'd'],
-      ['settings.x', 'settings.y'],
-    ],
-  },
+  resources: KindHints(
+    exactlyOne: {
+      'aws_thing': [
+        ['a', 'b'],
+        ['c', 'd'],
+        ['settings.x', 'settings.y'],
+      ],
+    },
+  ),
+);
+
+const _derives = WrapperOverride(outputDir: 'thing', deriveExactlyOne: true);
+
+/// [deriveExactlyOneSlots] over a lane of resources only.
+({
+  LoadedOverrides overrides,
+  List<String> skipped,
+  List<String> skippedAtMostOne,
+  List<SealedName> names,
+  List<String> nameErrors,
+  List<String> typedReferences,
+})
+_derive(
+  Map<String, WrapperOverride> overrides,
+  Map<String, ResourceDef> defs, {
+  required ProviderEnums providerEnums,
+  Map<String, Map<String, dynamic>> rawSchemas = const {},
+  Map<String, Map<String, ResolvedReference>> references = const {},
+}) => deriveExactlyOneSlots(
+  LoadedOverrides(resources: overrides, dataSources: const {}),
+  _lane(defs),
+  providerEnums: providerEnums,
+  rawSchemas: (resources: rawSchemas, dataSources: const {}),
+  references: (resources: references, dataSources: const {}),
+);
+
+ProviderEnums _hints({
+  Map<String, List<List<String>>> exactlyOne = const {},
+  Map<String, List<List<String>>> atMostOne = const {},
+}) => ProviderEnums.on(
+  resources: KindHints(exactlyOne: exactlyOne, atMostOne: atMostOne),
+);
+
+ProviderSchemaIR _lane(
+  Map<String, ResourceDef> resources, {
+  Map<String, ResourceDef> dataSources = const {},
+}) => ProviderSchemaIR(
+  providerName: 'aws',
+  providerSource: 'hashicorp/aws',
+  providerVersion: '1.0.0',
+  resources: resources,
+  dataSources: dataSources,
 );
 
 void main() {
-  test('exactlyOneGroupsByBlock keys groups by their parent block', () {
-    expect(_groups.exactlyOneGroupsByBlock('aws_thing'), {
-      '': [
-        ['a', 'b'],
-        ['c', 'd'],
-      ],
+  test('nestedHints and rootGroups split groups by their parent block', () {
+    expect(_groups.rootGroups('aws_thing', _derives).exactlyOne, [
+      ['a', 'b'],
+      ['c', 'd'],
+    ]);
+    expect(_groups.rootGroups('aws_other', _derives).exactlyOne, isEmpty);
+    expect(_groups.nestedHints('aws_thing', _derives).exactlyOneGroups, {
       'settings': [
         ['x', 'y'],
       ],
     });
-    expect(_groups.exactlyOneGroupsByBlock('aws_other'), isEmpty);
-    expect(
-      _groups.nestedExactlyOneGroups(
-        'aws_thing',
-        const WrapperOverride(outputDir: 'thing', deriveExactlyOne: true),
-      ),
-      {
-        'settings': [
-          ['x', 'y'],
-        ],
-      },
-    );
-    expect(
-      _groups.nestedExactlyOneGroups(
-        'aws_thing',
-        const WrapperOverride(outputDir: 'thing'),
-      ),
-      isEmpty,
-    );
+    const off = WrapperOverride(outputDir: 'thing');
+    expect(_groups.nestedHints('aws_thing', off).exactlyOneGroups, isEmpty);
+    expect(_groups.rootGroups('aws_thing', off).exactlyOne, isEmpty);
   });
 
   group('ProviderEnums.load', () {
@@ -84,10 +117,12 @@ void main() {
         '  - ["settings.x", "settings.y"]\n',
       );
       final enums = ProviderEnums.load(dir.path, providerVersion: '1.0.0');
-      expect(enums.exactlyOneGroups, {
-        'aws_thing': [
-          ['a', 'b'],
-          ['settings.x', 'settings.y'],
+      expect(enums.rootGroups('aws_thing', _derives).exactlyOne, [
+        ['a', 'b'],
+      ]);
+      expect(enums.nestedHints('aws_thing', _derives).exactlyOneGroups, {
+        'settings': [
+          ['x', 'y'],
         ],
       });
     });
@@ -98,12 +133,11 @@ void main() {
         '  - ["content", "data"]\n',
       );
       final enums = ProviderEnums.load(dir.path, providerVersion: '1.0.0');
-      expect(enums.exactlyOneGroups, isEmpty);
-      expect(enums.atMostOneGroups, {
-        'aws_thing': [
-          ['content', 'data'],
-        ],
-      });
+      final root = enums.rootGroups('aws_thing', _derives);
+      expect(root.exactlyOne, isEmpty);
+      expect(root.atMostOne, [
+        ['content', 'data'],
+      ]);
     });
 
     test('rejects a malformed at-most-one group list', () {
@@ -142,38 +176,62 @@ void main() {
       ),
     };
 
+    LoadedOverrides lane(WrapperOverride o) =>
+        LoadedOverrides(resources: {'aws_thing': o}, dataSources: const {});
+
     test('adds the override groups to the loaded ones', () {
       final errors = <String>[];
       final enums = _groups.withOverrideGroups(
-        {
-          'aws_thing': const WrapperOverride(
+        lane(
+          const WrapperOverride(
             outputDir: 'thing',
+            deriveExactlyOne: true,
             exactlyOneOf: ['c, a'],
             atMostOneOf: ['b, d'],
           ),
-        },
-        defs,
+        ),
+        _lane(defs),
         error: errors.add,
       );
       expect(errors, isEmpty);
-      expect(enums.exactlyOneGroups['aws_thing'], hasLength(4));
-      expect(enums.exactlyOneGroups['aws_thing']!.last, ['a', 'c']);
-      expect(enums.atMostOneGroups['aws_thing'], [
+      final root = enums.rootGroups('aws_thing', _derives);
+      expect(root.exactlyOne, hasLength(3));
+      expect(root.exactlyOne.last, ['a', 'c']);
+      expect(root.atMostOne, [
         ['b', 'd'],
       ]);
-      expect(_groups.exactlyOneGroups['aws_thing'], hasLength(3));
+      expect(
+        _groups.rootGroups('aws_thing', _derives).exactlyOne,
+        hasLength(2),
+      );
+    });
+
+    test('routes a data override to the data table and schema', () {
+      final errors = <String>[];
+      const data = WrapperOverride(
+        outputDir: 'data',
+        kind: WrapperOverrideKind.dataSource,
+        deriveExactlyOne: true,
+        exactlyOneOf: ['c, a'],
+        atMostOneOf: ['b, x'],
+      );
+      final enums = _groups.withOverrideGroups(
+        const LoadedOverrides(resources: {}, dataSources: {'aws_thing': data}),
+        _lane(const {}, dataSources: defs),
+        error: errors.add,
+      );
+      expect(errors, ['data.aws_thing [b, x]: x names no input']);
+      expect(enums.rootGroups('aws_thing', data).exactlyOne, [
+        ['a', 'c'],
+      ]);
+      expect(enums.rootGroups('aws_thing', _derives).exactlyOne, hasLength(2));
     });
 
     test('rejects a member that names no input', () {
       final errors = <String>[];
       _groups.withOverrideGroups(
-        {
-          'aws_thing': const WrapperOverride(
-            outputDir: 'thing',
-            exactlyOneOf: ['a, z'],
-          ),
-        },
-        defs,
+        lane(const WrapperOverride(outputDir: 'thing', exactlyOneOf: ['a, z'])),
+        _lane(defs),
         error: errors.add,
       );
       expect(errors, ['aws_thing [a, z]: z names no input']);
@@ -182,13 +240,8 @@ void main() {
     test('rejects a group the source already declares', () {
       final errors = <String>[];
       _groups.withOverrideGroups(
-        {
-          'aws_thing': const WrapperOverride(
-            outputDir: 'thing',
-            atMostOneOf: ['b, a'],
-          ),
-        },
-        defs,
+        lane(const WrapperOverride(outputDir: 'thing', atMostOneOf: ['b, a'])),
+        _lane(defs),
         error: errors.add,
       );
       expect(errors, [
@@ -198,46 +251,45 @@ void main() {
 
     test('an exactly-one entry tightens a declared at-most-one group', () {
       const source = ProviderEnums.on(
-        atMostOneGroups: {
-          'aws_thing': [
-            ['a', 'b'],
-          ],
-        },
+        resources: KindHints(
+          atMostOne: {
+            'aws_thing': [
+              ['a', 'b'],
+            ],
+          },
+        ),
       );
       final enums = source.withOverrideGroups(
-        {
-          'aws_thing': const WrapperOverride(
-            outputDir: 'thing',
-            exactlyOneOf: ['b, a'],
-          ),
-        },
-        defs,
+        lane(const WrapperOverride(outputDir: 'thing', exactlyOneOf: ['b, a'])),
+        _lane(defs),
         error: (e) => fail(e),
       );
-      expect(enums.exactlyOneGroups['aws_thing'], [
+      final root = enums.rootGroups('aws_thing', _derives);
+      expect(root.exactlyOne, [
         ['a', 'b'],
       ]);
-      expect(enums.atMostOneGroups['aws_thing'], isNull);
-      expect(source.atMostOneGroups['aws_thing'], hasLength(1));
+      expect(root.atMostOne, isEmpty);
+      expect(source.rootGroups('aws_thing', _derives).atMostOne, hasLength(1));
     });
 
     test('override groups alone are no group source', () {
       final enums = ProviderEnums.off.withOverrideGroups(
-        {
-          'aws_thing': const WrapperOverride(
-            outputDir: 'thing',
-            exactlyOneOf: ['c, a'],
-          ),
-        },
-        defs,
+        lane(const WrapperOverride(outputDir: 'thing', exactlyOneOf: ['c, a'])),
+        _lane(defs),
         error: (e) => fail(e),
       );
-      expect(enums.exactlyOneGroups['aws_thing'], [
+      expect(enums.rootGroups('aws_thing', _derives).exactlyOne, [
         ['a', 'c'],
       ]);
       expect(enums.hasGroupSource, isFalse);
       expect(
-        _groups.withOverrideGroups({}, defs, error: fail).hasGroupSource,
+        _groups
+            .withOverrideGroups(
+              const LoadedOverrides(resources: {}, dataSources: {}),
+              _lane(defs),
+              error: fail,
+            )
+            .hasGroupSource,
         isTrue,
       );
     });
@@ -253,17 +305,16 @@ void main() {
       deriveExactlyOne: true,
       sealedNames: {'a, b': 'source'},
     );
-    Iterable<String> errors(ProviderEnums enums) => deriveExactlyOneSlots(
+    Iterable<String> errors(ProviderEnums enums) => _derive(
       {'aws_thing': o},
       {'aws_thing': def},
       providerEnums: enums,
       rawSchemas: const {},
     ).nameErrors;
     expect(errors(ProviderEnums.off), isEmpty);
-    expect(
-      errors(const ProviderEnums.on(exactlyOneGroups: {'aws_other': []})),
-      ['aws_thing sealedNames "a, b" matches no sealed group'],
-    );
+    expect(errors(_hints(exactlyOne: {'aws_other': []})), [
+      'aws_thing sealedNames "a, b" matches no sealed group',
+    ]);
   });
 
   test('a sealed name cannot take a meta-argument name', () {
@@ -271,7 +322,7 @@ void main() {
       terraformType: 'aws_thing',
       root: BlockDef(attributes: [_attr('a'), _attr('b')]),
     );
-    final derived = deriveExactlyOneSlots(
+    final derived = _derive(
       {
         'aws_thing': const WrapperOverride(
           outputDir: 'thing',
@@ -280,8 +331,8 @@ void main() {
         ),
       },
       {'aws_thing': def},
-      providerEnums: const ProviderEnums.on(
-        exactlyOneGroups: {
+      providerEnums: _hints(
+        exactlyOne: {
           'aws_thing': [
             ['a', 'b'],
           ],
@@ -305,7 +356,7 @@ void main() {
         ],
       ),
     );
-    final derived = deriveExactlyOneSlots(
+    final derived = _derive(
       {
         'aws_thing': const WrapperOverride(
           outputDir: 'thing',
@@ -320,7 +371,7 @@ void main() {
       'aws_thing [c, d]: c is required or has no typed shape',
       'aws_thing settings [x, y]: the block has no typed helper',
     ]);
-    final o = derived.overrides['aws_thing']!;
+    final o = derived.overrides.resources['aws_thing']!;
     expect(
       o.customSlots!['a_or_b']!.paramDeclaration,
       'required ThingAOrB aOrB',
@@ -338,14 +389,115 @@ void main() {
     expect(o.prelude, contains('const ThingAOrBA(this.a);'));
     expect(o.prelude, contains("{'b': b};"));
 
-    final off = deriveExactlyOneSlots(
+    final off = _derive(
       {'aws_thing': const WrapperOverride(outputDir: 'thing')},
       {'aws_thing': def},
       providerEnums: _groups,
       rawSchemas: const {},
     );
-    expect(off.overrides['aws_thing']!.customSlots, isNull);
+    expect(off.overrides.resources['aws_thing']!.customSlots, isNull);
     expect(off.skipped, isEmpty);
+  });
+
+  test('a data source seals its own groups under the Data stem', () {
+    final def = ResourceDef(
+      terraformType: 'aws_thing',
+      root: BlockDef(
+        attributes: [_attr('a'), _attr('b'), _attr('c'), _attr('d')],
+      ),
+    );
+    const data = WrapperOverride(
+      outputDir: 'data',
+      kind: WrapperOverrideKind.dataSource,
+      deriveExactlyOne: true,
+      sealedNames: {'x, y': 'nope'},
+    );
+    final derived = deriveExactlyOneSlots(
+      const LoadedOverrides(
+        resources: {'aws_thing': _derives},
+        dataSources: {
+          'aws_thing': data,
+          'aws_client': WrapperOverride(
+            outputDir: 'data',
+            kind: WrapperOverrideKind.dataSource,
+            deriveExactlyOne: true,
+          ),
+        },
+      ),
+      _lane(
+        {'aws_thing': def},
+        dataSources: {'aws_thing': def, 'aws_client': def},
+      ),
+      providerEnums: const ProviderEnums.on(
+        resources: KindHints(
+          exactlyOne: {
+            'aws_thing': [
+              ['a', 'b'],
+            ],
+          },
+        ),
+        dataSources: KindHints(
+          exactlyOne: {
+            'aws_thing': [
+              ['c', 'd'],
+            ],
+            'aws_client': [
+              ['a', 'b'],
+            ],
+          },
+        ),
+      ),
+      rawSchemas: (resources: const {}, dataSources: const {}),
+    );
+    final d = derived.overrides.dataSources['aws_thing']!;
+    expect(d.customSlots!.keys, ['c_or_d']);
+    expect(
+      d.customSlots!['c_or_d']!.paramDeclaration,
+      'required DataThingCOrD cOrD',
+    );
+    expect(d.paramOrder, containsAll(['a', 'b', 'c_or_d']));
+    expect(d.paramOrder, isNot(contains('c')));
+    expect(d.prelude, contains('sealed class DataThingCOrD {'));
+    expect(d.prelude, contains('on `data.aws_thing`'));
+    final r = derived.overrides.resources['aws_thing']!;
+    expect(r.customSlots!.keys, ['a_or_b']);
+    expect(r.paramOrder, containsAll(['c', 'd']));
+    expect(derived.overrides.dataSources['aws_client']!.customSlots!.keys, [
+      'a_or_b',
+    ]);
+    expect(
+      [for (final n in derived.names) n.type],
+      ['aws_thing', 'data.aws_thing', 'aws_client'],
+    );
+    expect(derived.nameErrors, [
+      'data.aws_thing sealedNames "x, y" matches no sealed group',
+    ]);
+  });
+
+  test('a data source with no data groups is left unchanged', () {
+    final def = ResourceDef(
+      terraformType: 'aws_thing',
+      root: BlockDef(attributes: [_attr('a'), _attr('b')]),
+    );
+    const data = WrapperOverride(
+      outputDir: 'data',
+      kind: WrapperOverrideKind.dataSource,
+      deriveExactlyOne: true,
+    );
+    final derived = deriveExactlyOneSlots(
+      const LoadedOverrides(resources: {}, dataSources: {'aws_thing': data}),
+      _lane(const {}, dataSources: {'aws_thing': def}),
+      providerEnums: _hints(
+        exactlyOne: {
+          'aws_thing': [
+            ['a', 'b'],
+          ],
+        },
+      ),
+      rawSchemas: (resources: const {}, dataSources: const {}),
+    );
+    expect(derived.overrides.dataSources['aws_thing'], same(data));
+    expect(derived.names, isEmpty);
   });
 
   test('a block that is one exactly-one group is itself the sealed type', () {
@@ -510,7 +662,7 @@ void main() {
 
   test('a group of any size seals, named by its human name', () {
     final names = [for (var i = 0; i < 40; i++) 'feed$i'];
-    final derived = deriveExactlyOneSlots(
+    final derived = _derive(
       {
         'aws_thing': WrapperOverride(
           outputDir: 'thing',
@@ -524,8 +676,8 @@ void main() {
           root: BlockDef(attributes: [for (final n in names) _attr(n)]),
         ),
       },
-      providerEnums: ProviderEnums.on(
-        exactlyOneGroups: {
+      providerEnums: _hints(
+        exactlyOne: {
           'aws_thing': [names],
         },
       ),
@@ -534,7 +686,11 @@ void main() {
     expect(derived.skipped, isEmpty);
     expect(derived.nameErrors, isEmpty);
     expect(
-      derived.overrides['aws_thing']!.customSlots!['source']!.paramDeclaration,
+      derived
+          .overrides
+          .resources['aws_thing']!
+          .customSlots!['source']!
+          .paramDeclaration,
       'required ThingSource source',
     );
     expect(derived.names.single.name.source, SealedNameSource.human);
@@ -925,7 +1081,7 @@ void main() {
   test(
     'deriveExactlyOneSlots reports nested groups without a typed helper',
     () {
-      final derived = deriveExactlyOneSlots(
+      final derived = _derive(
         {
           'aws_thing': const WrapperOverride(
             outputDir: 'thing',
@@ -938,8 +1094,8 @@ void main() {
             root: BlockDef(attributes: [_attr('a'), _attr('b')]),
           ),
         },
-        providerEnums: const ProviderEnums.on(
-          exactlyOneGroups: {
+        providerEnums: _hints(
+          exactlyOne: {
             'aws_thing': [
               ['settings.x', 'settings.y'],
             ],
@@ -960,7 +1116,7 @@ void main() {
         attributes: [_attr('a'), _attr('b'), _attr('c'), _attr('d')],
       ),
     );
-    final derived = deriveExactlyOneSlots(
+    final derived = _derive(
       {
         'aws_thing': const WrapperOverride(
           outputDir: 'thing',
@@ -968,13 +1124,13 @@ void main() {
         ),
       },
       {'aws_thing': def},
-      providerEnums: const ProviderEnums.on(
-        exactlyOneGroups: {
+      providerEnums: _hints(
+        exactlyOne: {
           'aws_thing': [
             ['a', 'b'],
           ],
         },
-        atMostOneGroups: {
+        atMostOne: {
           'aws_thing': [
             ['b', 'c'],
             ['c', 'd'],
@@ -987,7 +1143,7 @@ void main() {
     expect(derived.skippedAtMostOne, [
       'aws_thing [b, c]: b is in an earlier group',
     ]);
-    final o = derived.overrides['aws_thing']!;
+    final o = derived.overrides.resources['aws_thing']!;
     expect(
       o.customSlots!['a_or_b']!.paramDeclaration,
       'required ThingAOrB aOrB',
@@ -1004,7 +1160,7 @@ void main() {
   });
 
   test('a list enum keeps its class off the sealed variant', () {
-    final derived = deriveExactlyOneSlots(
+    final derived = _derive(
       {
         'aws_thing': const WrapperOverride(
           outputDir: 'thing',
@@ -1019,8 +1175,8 @@ void main() {
           root: BlockDef(attributes: [_attr('month_days'), _attr('week_days')]),
         ),
       },
-      providerEnums: const ProviderEnums.on(
-        atMostOneGroups: {
+      providerEnums: _hints(
+        atMostOne: {
           'aws_thing': [
             ['month_days', 'week_days'],
           ],
@@ -1028,7 +1184,7 @@ void main() {
       ),
       rawSchemas: const {},
     );
-    final prelude = derived.overrides['aws_thing']!.prelude!;
+    final prelude = derived.overrides.resources['aws_thing']!.prelude!;
     expect(prelude, contains('final class ThingWeekDaysChoice'));
     expect(prelude, isNot(contains('final class ThingWeekDays ')));
     expect(prelude, contains('List<ThingWeekDays> weekDays'));
@@ -1055,7 +1211,7 @@ void main() {
         ],
       ),
     );
-    final derived = deriveExactlyOneSlots(
+    final derived = _derive(
       {
         'aws_thing': const WrapperOverride(
           outputDir: 'thing',
@@ -1076,13 +1232,13 @@ void main() {
         ),
       },
       {'aws_thing': def},
-      providerEnums: const ProviderEnums.on(
-        exactlyOneGroups: {
+      providerEnums: _hints(
+        exactlyOne: {
           'aws_thing': [
             ['a', 'b'],
           ],
         },
-        atMostOneGroups: {
+        atMostOne: {
           'aws_thing': [
             ['c', 'd'],
           ],
@@ -1091,7 +1247,7 @@ void main() {
       rawSchemas: const {},
     );
     expect(derived.skippedAtMostOne, ['aws_thing [c, d]: c is a custom slot']);
-    final o = derived.overrides['aws_thing']!;
+    final o = derived.overrides.resources['aws_thing']!;
     expect(o.customSlots!.keys, unorderedEquals(['a_or_b', 'c']));
     expect(o.paramOrder, ['d', 'a_or_b', 'c']);
     expect(o.argMapOrder, ['a_or_b', 'd', 'c']);
@@ -1144,18 +1300,25 @@ void main() {
     };
     final groups = ProviderEnums.mmGroups(mm);
     expect(groups.enabled, isFalse);
-    expect(groups.hints, isEmpty);
-    expect(groups.exactlyOneGroupsByBlock('google_thing'), {
-      '': [
-        ['a', 'b'],
-      ],
-    });
-    expect(groups.atMostOneGroupsByBlock('google_thing'), {
-      '': [
-        ['c', 'd'],
-      ],
-    });
-    expect(groups.resolver('google_thing')(['e'], 'no values'), isNull);
+    final root = groups.rootGroups('google_thing', _derives);
+    expect(root.exactlyOne, [
+      ['a', 'b'],
+    ]);
+    expect(root.atMostOne, [
+      ['c', 'd'],
+    ]);
+    expect(
+      groups.nestedHints('google_thing', _derives).enumValues([
+        'e',
+      ], 'no values'),
+      isNull,
+    );
+    const data = WrapperOverride(
+      outputDir: 'data',
+      kind: WrapperOverrideKind.dataSource,
+      deriveExactlyOne: true,
+    );
+    expect(groups.rootGroups('google_thing', data).exactlyOne, isEmpty);
   });
 
   test('a nested at-most-one group becomes a nullable sealed field', () {

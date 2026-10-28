@@ -226,6 +226,12 @@ func resourceTyped() *Resource { return nil }
       scan.byType['azurerm_widget']!.sourcePath,
       endsWith('widget_resource.go'),
     );
+
+    expect(scan.dataSourcesByType.keys, ['azurerm_widget']);
+    final widgetData = scan.dataSourcesByType['azurerm_widget']!;
+    expect(widgetData.sourcePath, endsWith('widget_data_source.go'));
+    expect(widgetData.hints.single.dotted, 'kind');
+    expect(widgetData.hints.single.values, ['data', 'only']);
   });
 
   test('scans pkg.RegisterResource and pkg.RegisterDataSource registrations', () {
@@ -339,7 +345,7 @@ func (r NamedResource) Arguments() map[string]*Schema {
       ['name', 'name_prefix'],
     ]);
 
-    final client = scan.byType['azurerm_client_config'];
+    final client = scan.dataSourcesByType['azurerm_client_config'];
     expect(client, isNotNull);
     expect(client!.sourcePath, endsWith('resources/role/data_source.go'));
     expect(client.hints.single.dotted, 'tenant_mode');
@@ -348,16 +354,22 @@ func (r NamedResource) Arguments() map[string]*Schema {
     final shared = scan.byType['azurerm_shared'];
     expect(shared, isNotNull);
     expect(shared!.hints.single.dotted, 'principal_type');
-    expect(shared.hints.map((h) => h.dotted), isNot(contains('tenant_mode')));
+    final sharedData = scan.dataSourcesByType['azurerm_shared'];
+    expect(sharedData, isNotNull);
+    expect(sharedData!.hints.single.dotted, 'tenant_mode');
+    expect(sharedData.atMostOne, isEmpty);
 
     final named = scan.byType['azurerm_named'];
     expect(named, isNotNull);
     expect(named!.hints.single.values, ['basic', 'standard']);
 
     expect(scan.byType.keys, [
-      'azurerm_client_config',
       'azurerm_named',
       'azurerm_role_assignment',
+      'azurerm_shared',
+    ]);
+    expect(scan.dataSourcesByType.keys, [
+      'azurerm_client_config',
       'azurerm_shared',
     ]);
   });

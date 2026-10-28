@@ -9,7 +9,6 @@ import 'getter_emitter.dart';
 import 'naming.dart';
 import 'nested_types/nested_type_collector.dart';
 import 'nested_types/nested_type_emitter.dart';
-import 'nested_types/nested_type_names.dart';
 import 'provider_enums.dart';
 import 'references/reference_slots.dart';
 import 'references/reference_targets.dart';
@@ -137,33 +136,26 @@ class WrapperEmitter {
     final customSlots = override?.customSlots ?? const <String, CustomSlot>{};
     final refs = references[def.terraformType] ?? const {};
 
-    final nestedTypeSpecs = (override?.deriveNestedTypes ?? false)
-        ? collectNestedTypes(
-            resourceBlock: _requireRawSchema(def.terraformType),
-            resourcePrefix: shortResourcePascal(def.terraformType),
-            customSlotKeys: customSlots.keys.toSet(),
-            excludedPaths: (override?.nestedTypeExcludes ?? const <String>[])
-                .toSet(),
-            shareIdenticalShapes: override?.dedupeNestedTypes ?? false,
-            enumValues: providerEnums.resolver(def.terraformType),
-            exactlyOneGroups: providerEnums.nestedExactlyOneGroups(
-              def.terraformType,
-              override,
-            ),
-            atMostOneGroups: providerEnums.nestedAtMostOneGroups(
-              def.terraformType,
-              override,
-            ),
-            sealedNames: override?.sealedNames,
-            references: (path) => refs[path.join('.')],
-            typeOverrides: override?.nestedDartTypeOverrides ?? const {},
-            reserved: providerEnums.rootSealedNames(
-              def.terraformType,
-              override,
-            ),
-            laneInputs: laneInputs,
-          )
-        : const <NestedBlockSpec>[];
+    var nestedTypeSpecs = const <NestedBlockSpec>[];
+    if (override != null && override.deriveNestedTypes) {
+      final hints = providerEnums.nestedHints(def.terraformType, override);
+      nestedTypeSpecs = collectNestedTypes(
+        resourceBlock: _requireRawSchema(def.terraformType),
+        resourcePrefix: override.kind.typeStem(def.terraformType),
+        customSlotKeys: customSlots.keys.toSet(),
+        excludedPaths: (override.nestedTypeExcludes ?? const <String>[])
+            .toSet(),
+        shareIdenticalShapes: override.dedupeNestedTypes,
+        enumValues: hints.enumValues,
+        exactlyOneGroups: hints.exactlyOneGroups,
+        atMostOneGroups: hints.atMostOneGroups,
+        sealedNames: override.sealedNames,
+        references: (path) => refs[path.join('.')],
+        typeOverrides: override.nestedDartTypeOverrides,
+        reserved: hints.reserved,
+        laneInputs: laneInputs,
+      );
+    }
     final nestedTypeKeys = {...?override?.nestedDartTypeOverrides.keys};
     if (nestedTypeKeys.isNotEmpty) {
       void typed(NestedBlockSpec spec, List<String> at) {
@@ -268,21 +260,11 @@ class WrapperEmitter {
       buf.writeln(imp);
     }
     buf.writeln("import 'package:terradart_core/terradart_core.dart';");
-    // A top-level sealed group's variants live in the prelude
-    // (`deriveExactlyOneSlots`), so its members are in neither map.
-    final preludeRefs = [
-      for (final ref in refs.values)
-        if (override?.prelude?.contains(
-              ref.principal ? ref.className : 'RefTo<${ref.className}>',
-            ) ??
-            false)
-          ref,
-    ];
     final refImports = referenceImports([
       for (final ref in [
         ...topLevelRefs.values,
         ...nestedRefs.values,
-        ...preludeRefs,
+        ...preludeReferences(refs, override?.prelude),
         if (principals.contains(def.terraformType)) ?principal,
       ])
         if (ref.target != def.terraformType) ref,
@@ -323,20 +305,12 @@ class WrapperEmitter {
     // top-level attribute carrying `enumValues` becomes a generated enum,
     // replacing the hand-written `prelude` enum block. Nested-block enums are
     // out of scope for A1 (top-level attributes only).
-    if (override?.deriveEnums ?? false) {
-      final names = topLevelTypeNames(shortResourcePascal(def.terraformType), [
-        ...def.root.attributes.map((a) => a.name),
-        ...def.root.nestedBlocks.map((b) => b.name),
-      ], laneInputs: laneInputs);
-      for (final attr in def.root.attributes) {
-        final values = attr.constraints.enumValues;
-        if (values == null || values.isEmpty) continue;
-        final en = enumName(
-          resourceType: def.terraformType,
-          fieldPath: attr.name,
-          members: values,
-          dartName: names[attr.name],
-        );
+    if (override != null) {
+      for (final en in topLevelEnums(
+        def,
+        override,
+        laneInputs: laneInputs,
+      ).values) {
         buf.writeln(emitEnumDeclaration(en));
       }
     }
@@ -626,7 +600,7 @@ class WrapperEmitter {
       final isRequired =
           attr.constraints.required || requiredOverrides.contains(attr.name);
       out[attr.name] = isEnumListType(dartTypeOverrides[attr.name] ?? '')
-          ? _elementwiseArgMapEntry(attr.name, isRequired)
+          ? elementwiseArgMapEntry(attr.name, isRequired: isRequired)
           : _argMapEntry(attr.name, isRequired);
     }
     for (final nested in def.root.nestedBlocks) {
@@ -689,17 +663,6 @@ class WrapperEmitter {
       return "'$snakeName': $camel,";
     }
     return "'$snakeName': ?$camel,";
-  }
-
-  /// [_argMapEntry] for a bare `List<TfArg<...>>` parameter: each element
-  /// encodes itself, and the list goes in as one literal.
-  String _elementwiseArgMapEntry(String snakeName, bool isRequired) {
-    final camel = snakeToDartIdent(snakeName);
-    final value = 'TfArg.literal([for (final e in $camel) e.toTfJson()])';
-    if (isRequired) {
-      return "'$snakeName': $value,";
-    }
-    return "if ($camel != null) '$snakeName': $value,";
   }
 
   /// Builds the constructor-param and argMap-entry snippets for one

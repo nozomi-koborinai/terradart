@@ -6,6 +6,22 @@
 ///   Terraform data source wrapper under `<output>/data/`.
 enum WrapperOverrideKind { resource, dataSource }
 
+/// A value per override kind. Selecting one is always [ByKindOf.of].
+typedef ByKind<T> = ({T resources, T dataSources});
+
+/// [ByKind] with each kind's value built by [value].
+ByKind<T> byKind<T>(T Function(WrapperOverrideKind kind) value) => (
+  resources: value(WrapperOverrideKind.resource),
+  dataSources: value(WrapperOverrideKind.dataSource),
+);
+
+extension ByKindOf<T> on ByKind<T> {
+  T of(WrapperOverrideKind kind) => switch (kind) {
+    WrapperOverrideKind.resource => resources,
+    WrapperOverrideKind.dataSource => dataSources,
+  };
+}
+
 /// Schema-stub class body shape.
 ///
 /// - [nosuchmethod]: 5-line variant with `noSuchMethod` (existing 12 resource

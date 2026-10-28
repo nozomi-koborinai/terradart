@@ -48,6 +48,12 @@
 // `ConfigValidators`) are written as `exactly_one_of_groups`; a group whose
 // members are not sibling inputs in schema.json is skipped and listed.
 //
+// hashicorp/azurerm (tool/provider_hints_azurerm.dart) is the one scanner
+// that reads data sources too. A data source's hints go to
+// `<schemaDir>/hints/data/<type>.yaml`, checked against schema.json's
+// `data_source_schemas`, so a resource's hints never type its data-source
+// twin.
+//
 // schema.json at the same version is authoritative: a hint whose path is
 // absent there (a service's custom code reshapes the served schema) is
 // skipped and listed on stdout, and a path that names a non-string
@@ -78,6 +84,9 @@ import 'dart:io';
 
 import 'package:path/path.dart' as p;
 import 'package:terradart_codegen/src/codegen/exclusive_groups.dart';
+import 'package:terradart_codegen/src/codegen/naming.dart';
+import 'package:terradart_codegen/src/codegen/provider_enums.dart';
+import 'package:terradart_codegen/src/codegen/wrapper_overrides/wrapper_override.dart';
 
 import 'http_retry.dart';
 import 'provider_hints_aws.dart';
@@ -794,12 +803,22 @@ Future<void> main(List<String> args) async {
           as Map<String, dynamic>;
   final providerSchemas = (schema['provider_schemas'] as Map)
       .cast<String, dynamic>();
-  final resources = <String, Map<String, dynamic>>{
-    for (final body in providerSchemas.values)
-      for (final MapEntry(:key, :value)
-          in ((body as Map)['resource_schemas'] as Map? ?? const {}).entries)
-        key as String: ((value as Map)['block'] as Map).cast<String, dynamic>(),
-  };
+  final schemas = byKind(
+    (kind) => <String, Map<String, dynamic>>{
+      for (final body in providerSchemas.values)
+        for (final MapEntry(:key, :value)
+            in ((body as Map)[switch (kind) {
+                          WrapperOverrideKind.resource => 'resource_schemas',
+                          WrapperOverrideKind.dataSource =>
+                            'data_source_schemas',
+                        }]
+                        as Map? ??
+                    const {})
+                .entries)
+          key as String: ((value as Map)['block'] as Map)
+              .cast<String, dynamic>(),
+    },
+  );
   final provider = repo.split('/').last.replaceFirst('terraform-provider-', '');
 
   final root = sourceDir != null
@@ -807,7 +826,7 @@ Future<void> main(List<String> args) async {
       : await _download(repo, version);
   final aws = isAwsProviderSource(root);
   final azurerm = !aws && isAzurermProviderSource(root);
-  final found = <String, AwsTypeHints>{};
+  final found = byKind((_) => <String, AwsTypeHints>{});
   final unsealed = <String>[];
   var groupValidators = 0;
   var unresolvedGroups = 0;
@@ -822,7 +841,7 @@ Future<void> main(List<String> args) async {
       }
     }
     final scan = scanAwsProvider(root, sdkDir: sdk);
-    found.addAll(scan.byType);
+    found.resources.addAll(scan.byType);
     unsealed.addAll(scan.unsealed);
     print(
       'extract_provider_hints: ${scan.validators} value-set validator(s) '
@@ -836,11 +855,13 @@ Future<void> main(List<String> args) async {
     );
   } else if (azurerm) {
     final scan = scanAzurermProvider(root);
-    found.addAll(scan.byType);
+    found.resources.addAll(scan.byType);
+    found.dataSources.addAll(scan.dataSourcesByType);
     unsealed.addAll(scan.unsealed);
     print(
       'extract_provider_hints: ${scan.validators} value-set validator(s) '
-      'in resource schemas, ${scan.unresolved} not evaluable (dropped)',
+      'in resource and data source schemas, ${scan.unresolved} not '
+      'evaluable (dropped)',
     );
     print(
       'extract_provider_hints: ${scan.groupValidators} relation '
@@ -858,7 +879,7 @@ Future<void> main(List<String> args) async {
         final types = resourceTypeNames(
           source.typeName.readAsStringSync(),
           provider: provider,
-          knownTypes: resources.keys,
+          knownTypes: schemas.resources.keys,
         );
         if (types.isEmpty) continue;
         final sourcePath = p.relative(source.schema.path, from: root.path);
@@ -871,7 +892,7 @@ Future<void> main(List<String> args) async {
         groupValidators += scan.groups.length + scan.atMostOne.length;
         unresolvedGroups += scan.unresolved;
         for (final type in types) {
-          found[type] = (
+          found.resources[type] = (
             sourcePath: sourcePath,
             hints: scan.hints,
             groups: scan.groups,
@@ -890,95 +911,145 @@ Future<void> main(List<String> args) async {
     );
   }
 
-  final out = Directory(p.join(schemaDir, 'hints'));
-  if (out.existsSync()) out.deleteSync(recursive: true);
-  out.createSync(recursive: true);
-
-  final notString = <String>[];
-  final skipped = <String>[];
-  var files = 0;
-  var hintCount = 0;
-  var groupCount = 0;
-  var atMostOneCount = 0;
-  for (final type in found.keys.toList()..sort()) {
-    final block = resources[type];
-    if (block == null) continue;
-    final (:sourcePath, :hints, :groups, :atMostOne) = found[type]!;
-    List<List<List<String>>> keep(List<List<List<String>>> gs, String kind) {
-      final kept = <List<List<String>>>[];
-      for (final g in gs) {
-        final reason = groupSkipReason(block, g);
-        if (reason == null) {
-          kept.add(g);
-        } else {
-          skipped.add(
-            '$type $kind [${g.map((m) => m.join('.')).join(', ')}] '
-            '($reason)',
-          );
-        }
-      }
-      return kept;
-    }
-
-    final keptGroups = keep(groups, 'exactly_one_of');
-    final keptAtMostOne = keep(atMostOne, 'at_most_one_of');
-    final kept = <GoEnumHint>[];
-    for (final h in hints) {
-      switch (resolveHint(block, h.path)) {
-        case HintResolution.string:
-          kept.add(h);
-        case HintResolution.missing:
-          skipped.add('$type.${h.dotted} (not in schema.json)');
-        case HintResolution.map:
-          skipped.add('$type.${h.dotted} (a map: the set constrains keys)');
-        case HintResolution.notString:
-          notString.add('$type.${h.dotted}');
-      }
-    }
-    if (kept.isEmpty && keptGroups.isEmpty && keptAtMostOne.isEmpty) continue;
-    File(p.join(out.path, '$type.yaml')).writeAsStringSync(
-      renderHintsYaml(
+  final HintsWriteReport report;
+  try {
+    report = writeProviderHints(
+      schemaDir: schemaDir,
+      repo: repo,
+      version: version,
+      found: found,
+      schemas: schemas,
+      readme: _readme(
         repo: repo,
-        version: version,
-        sourcePath: sourcePath,
-        hints: kept,
-        groups: keptGroups,
-        atMostOne: keptAtMostOne,
+        schemaDir: schemaDir,
+        dialect: aws
+            ? _HintDialect.aws
+            : azurerm
+            ? _HintDialect.azurerm
+            : _HintDialect.framework,
       ),
     );
-    files++;
-    hintCount += kept.length;
-    groupCount += keptGroups.length;
-    atMostOneCount += keptAtMostOne.length;
+  } on FormatException catch (e) {
+    _fail(_exitData, e.message);
   }
-  if (notString.isNotEmpty) {
-    out.deleteSync(recursive: true);
-    _fail(
-      _exitData,
-      '${notString.length} hint(s) name a non-string attribute in '
-      'schema.json:\n${notString.map((u) => '  $u').join('\n')}',
-    );
-  }
-  for (final s in skipped) {
+  for (final s in report.skipped) {
     print('skipped: $s');
   }
   for (final s in unsealed) {
     print('conflict not sealed: $s');
   }
-  File(p.join(out.path, 'README.md')).writeAsStringSync(
-    _readme(
-      repo: repo,
-      schemaDir: schemaDir,
-      dialect: aws
-          ? _HintDialect.aws
-          : azurerm
-          ? _HintDialect.azurerm
-          : _HintDialect.framework,
-    ),
-  );
   print(
-    'extract_provider_hints: wrote $hintCount enum hint(s), '
-    '$groupCount exactly-one group(s) and $atMostOneCount at-most-one '
-    'group(s) for $files resource(s) to ${out.path}',
+    'extract_provider_hints: wrote ${report.hints} enum hint(s), '
+    '${report.groups} exactly-one group(s) and ${report.atMostOne} '
+    'at-most-one group(s) for ${report.files} type(s) to '
+    '${providerHintsDir(schemaDir, WrapperOverrideKind.resource)}',
   );
+}
+
+/// What [writeProviderHints] wrote and left out.
+final class HintsWriteReport {
+  var files = 0;
+  var hints = 0;
+  var groups = 0;
+  var atMostOne = 0;
+
+  /// Each type, hint or group left out, as `<type>.<path> (reason)`
+  /// (`data.<type>` for a data source).
+  final skipped = <String>[];
+}
+
+/// Recreates `providerHintsDir(schemaDir, kind)` for each kind from [found],
+/// checking each kind's hints against that kind's [schemas] (Terraform type
+/// → schema.json `block`). `hints/data/` is written only when a data source
+/// keeps a hint, and [readme] goes to `hints/README.md`.
+///
+/// Throws [FormatException], after deleting what it wrote, when a hint names
+/// a non-string input: the scanner misread a validator.
+HintsWriteReport writeProviderHints({
+  required String schemaDir,
+  required String repo,
+  required String version,
+  required ByKind<Map<String, AwsTypeHints>> found,
+  required ByKind<Map<String, Map<String, dynamic>>> schemas,
+  required String readme,
+}) {
+  final root = Directory(providerHintsDir(schemaDir, .resource));
+  if (root.existsSync()) root.deleteSync(recursive: true);
+  root.createSync(recursive: true);
+  final report = HintsWriteReport();
+  final notString = <String>[];
+  for (final kind in WrapperOverrideKind.values) {
+    final out = Directory(providerHintsDir(schemaDir, kind));
+    final kindFound = found.of(kind);
+    for (final type in kindFound.keys.toList()..sort()) {
+      final label = kind.label(type);
+      final block = schemas.of(kind)[type];
+      if (block == null) {
+        report.skipped.add('$label (not in schema.json)');
+        continue;
+      }
+      final (:sourcePath, :hints, :groups, :atMostOne) = kindFound[type]!;
+      List<List<List<String>>> keep(List<List<List<String>>> gs, String rule) {
+        final kept = <List<List<String>>>[];
+        for (final g in gs) {
+          final reason = groupSkipReason(block, g);
+          if (reason == null) {
+            kept.add(g);
+          } else {
+            report.skipped.add(
+              '$label $rule [${g.map((m) => m.join('.')).join(', ')}] '
+              '($reason)',
+            );
+          }
+        }
+        return kept;
+      }
+
+      final keptGroups = keep(groups, 'exactly_one_of');
+      final keptAtMostOne = keep(atMostOne, 'at_most_one_of');
+      final kept = <GoEnumHint>[];
+      for (final h in hints) {
+        switch (resolveHint(block, h.path)) {
+          case HintResolution.string:
+            kept.add(h);
+          case HintResolution.missing:
+            report.skipped.add('$label.${h.dotted} (not in schema.json)');
+          case HintResolution.map:
+            report.skipped.add(
+              '$label.${h.dotted} (a map: the set constrains keys)',
+            );
+          case HintResolution.notString:
+            notString.add('$label.${h.dotted}');
+        }
+      }
+      if (kept.isEmpty && keptGroups.isEmpty && keptAtMostOne.isEmpty) {
+        continue;
+      }
+      out.createSync(recursive: true);
+      File(p.join(out.path, '$type.yaml')).writeAsStringSync(
+        renderHintsYaml(
+          repo: repo,
+          version: version,
+          sourcePath: sourcePath,
+          hints: kept,
+          groups: keptGroups,
+          atMostOne: keptAtMostOne,
+        ),
+      );
+      report
+        ..files += 1
+        ..hints += kept.length
+        ..groups += keptGroups.length
+        ..atMostOne += keptAtMostOne.length;
+    }
+  }
+  if (notString.isNotEmpty) {
+    root.deleteSync(recursive: true);
+    throw FormatException(
+      '${notString.length} hint(s) name a non-string attribute in '
+      'schema.json:\n${notString.map((u) => '  $u').join('\n')}',
+    );
+  }
+  File(p.join(root.path, 'README.md')).writeAsStringSync(readme);
+  return report;
 }
