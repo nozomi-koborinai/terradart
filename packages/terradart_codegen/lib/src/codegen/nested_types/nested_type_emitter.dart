@@ -1,8 +1,8 @@
+import '../constructor_slots.dart';
 import '../enum_emitter.dart';
 import '../exactly_one_types.dart';
 import '../naming.dart';
 import '../provider_enums.dart';
-import '../references/reference_slots.dart';
 import '../references/reference_targets.dart';
 import 'nested_type_collector.dart';
 
@@ -47,49 +47,6 @@ String renderNestedTypes(
     buf.write(tree);
   }
   return buf.toString();
-}
-
-/// The Dart type of the constructor parameter a resource (or an ancestor
-/// nested class) uses to hold [s] — a bare class reference, never
-/// `TfArg`-wrapped, because a whole nested block has no Terraform "computed
-/// reference" form the way a leaf attribute does (only the *scalar/enum
-/// attributes inside it* can be individually computed-or-literal). Always
-/// nullable; a caller rendering a `required` slot strips the trailing `?`
-/// itself — mirrors [NestedAttrSpec.dartType], which is likewise the inner
-/// type only, with nullability layered on by whoever renders the field.
-String nestedParamType(NestedBlockSpec s) => '${_bareNestedType(s)}?';
-
-String _bareNestedType(NestedBlockSpec s) => s.repeated
-    ? 'List<${s.className}>'
-    : s.keyed
-    ? 'Map<String, ${s.className}>'
-    : s.className;
-
-/// Constructor-param + argMap-entry snippets for a TOP-LEVEL derived nested
-/// slot on a resource or data-source wrapper.
-///
-/// The constructor exposes a bare (non-`TfArg`) helper-class reference —
-/// [nestedParamType]'s shape, required-ness stripped per its documented
-/// contract ("a caller rendering a required slot strips the trailing `?`
-/// itself") — and the argMap entry wraps `.encode()` in `TfArg.literal(...)`.
-({String param, String argMapEntry}) nestedTypeConstructorSlot(
-  NestedBlockSpec spec, {
-  required bool isRequired,
-}) {
-  final dartName = snakeToDartIdent(spec.tfName);
-  final nullableType = nestedParamType(spec);
-  final bareType = nullableType.substring(0, nullableType.length - 1);
-  final param = isRequired
-      ? 'required $bareType $dartName'
-      : '$nullableType $dartName';
-  final encodeExpr = spec.repeated
-      ? '[for (final e in $dartName) e.encode()]'
-      : spec.keyed
-      ? '{for (final e in $dartName.entries) e.key: e.value.encode()}'
-      : '$dartName.encode()';
-  final entry = "'${spec.tfName}': TfArg.literal($encodeExpr),";
-  final argMapEntry = isRequired ? entry : 'if ($dartName != null) $entry';
-  return (param: param, argMapEntry: argMapEntry);
 }
 
 /// Renders one block's own class, then its attribute enums, then recurses
@@ -178,7 +135,7 @@ String _renderBlockTree(
 String _renderClass(
   NestedBlockSpec spec,
   String resourceTerraformType,
-  List<_FieldPlan> plans,
+  List<HelperMember> plans,
 ) {
   final blockPath = spec.path.join('.');
 
@@ -239,19 +196,13 @@ String _renderEnum(NestedAttrSpec attr) {
   );
 }
 
-/// One class member's rendering, in its three call sites (constructor
-/// parameter, field declaration, `encode()` map entry) — computed together
-/// so the required/optional and repeated/scalar axes are handled exactly
-/// once (see [_plan]) instead of re-derived at each call site.
-typedef _FieldPlan = ({String ctorParam, String fieldDecl, String encodeEntry});
-
 /// One class member before layout: its plan, and the shape a sealed
 /// variant holding it takes (null for an excluded child).
 typedef _Member = ({
   String tfName,
   bool required,
   bool keyed,
-  _FieldPlan plan,
+  HelperMember plan,
   ExactlyOneVariant? variant,
 });
 
@@ -265,7 +216,7 @@ List<_Member> _members(NestedBlockSpec spec) {
         tfName: attr.tfName,
         required: attr.required,
         keyed: false,
-        plan: _planAttr(attr),
+        plan: ConstructorSlots.nestedAttribute(attr),
         variant: switch (attr.reference) {
           final reference? => _referenceVariant(attr, reference),
           null => _variant(
@@ -286,7 +237,7 @@ List<_Member> _members(NestedBlockSpec spec) {
         tfName: child.tfName,
         required: child.required,
         keyed: child.keyed,
-        plan: _planChild(child),
+        plan: ConstructorSlots.nestedChild(child),
         variant: _variant(
           tfName: child.tfName,
           ident: safeDartIdentifier(snakeToCamel(child.tfName)),
@@ -301,7 +252,7 @@ List<_Member> _members(NestedBlockSpec spec) {
         tfName: excluded.tfName,
         required: excluded.required,
         keyed: excluded.keyed,
-        plan: _planExcludedChild(excluded),
+        plan: ConstructorSlots.excludedBlock(excluded),
         variant: null,
       ),
   ]..sort((a, b) => a.tfName.compareTo(b.tfName));
@@ -329,7 +280,7 @@ typedef _SealedGroup = ({
 });
 
 typedef _Layout = ({
-  List<_FieldPlan> plans,
+  List<HelperMember> plans,
   List<_SealedGroup> sealed,
 
   /// The exactly-one group that is every input of the block, when there is
@@ -561,24 +512,18 @@ _Layout _layout(NestedBlockSpec spec, Set<String> taken) {
     sealed.add(g);
     firstOf[members.firstWhere((m) => group.contains(m.tfName)).tfName] = g;
   }
-  final plans = <_FieldPlan>[];
+  final plans = <HelperMember>[];
   for (final m in members) {
     final g = firstOf[m.tfName];
     if (g != null) {
       final ident = g.ident;
       final type = g.type;
       plans.add(
-        g.optional
-            ? (
-                ctorParam: 'this.$ident,',
-                fieldDecl: 'final $type? $ident;',
-                encodeEntry: '...?$ident?.encode(),',
-              )
-            : (
-                ctorParam: 'required this.$ident,',
-                fieldDecl: 'final $type $ident;',
-                encodeEntry: '...$ident.encode(),',
-              ),
+        ConstructorSlots.sealedMember(
+          ident: ident,
+          type: type,
+          optional: g.optional,
+        ),
       );
     } else if (!claimed.contains(m.tfName)) {
       plans.add(m.plan);
@@ -726,127 +671,6 @@ ExactlyOneVariant _referenceVariant(
     deprecation: null,
     defaultValue: null,
   );
-}
-
-_FieldPlan _planAttr(NestedAttrSpec attr) => switch (attr.reference) {
-  final reference? => referenceField(
-    tfName: attr.tfName,
-    dartName: attr.dartName,
-    reference: reference,
-    required: attr.required,
-  ),
-  null => _planPlainAttr(attr),
-};
-
-_FieldPlan _planPlainAttr(NestedAttrSpec attr) => _plan(
-  dartName: attr.dartName,
-  tfName: attr.tfName,
-  elementType: attr.dartType,
-  required: attr.required,
-  repeated: attr.repeated,
-  keyed: false,
-  wrapInTfArg: true,
-  sensitive: attr.sensitive,
-);
-
-/// A derived nested child renders as a bare (non-`TfArg`) class reference —
-/// see [nestedParamType] — and encodes via its own `.encode()`.
-_FieldPlan _planChild(NestedBlockSpec child) => _plan(
-  dartName: snakeToCamel(child.tfName),
-  tfName: child.tfName,
-  elementType: child.className,
-  required: child.required,
-  repeated: child.repeated,
-  keyed: child.keyed,
-  wrapInTfArg: false,
-);
-
-/// An excluded child (its subtree wasn't collected — see
-/// [NestedBlockSpec.excludedChildren]) renders as an opaque `TfArg`
-/// passthrough that still matches the schema's real cardinality: a single
-/// `TfArg<Map<String, dynamic>>` normally, or `TfArg<List<Map<String,
-/// dynamic>>>` when [ExcludedNestedBlock.repeated] (a keyed map of blocks is
-/// one `Map<String, dynamic>` JSON object) — required-ness follows
-/// [ExcludedNestedBlock.required] the same way every other field here does.
-/// Only the excluded block's OWN inner shape (its attrs / further children)
-/// is discarded; its shape as seen by its parent is preserved, matching the
-/// existing top-level passthrough idiom (`WrapperEmitter._nestedBlockParam`)
-/// rather than the per-element `List<TfArg<...>>?` shape [_plan] uses for a
-/// repeated *typed* attribute or child — a `TfArg` wrapping one JSON blob
-/// (here a whole array) is a different shape than a Dart `List` of
-/// individually-`TfArg`-wrapped elements, and callers of an opaque
-/// passthrough have always supplied the former (e.g. a literal
-/// `TfArg.literal([{...}, {...}])`), not the latter.
-_FieldPlan _planExcludedChild(ExcludedNestedBlock excluded) {
-  final dartName = safeDartIdentifier(snakeToCamel(excluded.tfName));
-  final innerType = excluded.repeated
-      ? 'List<Map<String, dynamic>>'
-      : 'Map<String, dynamic>';
-  final fieldType = excluded.required
-      ? 'TfArg<$innerType>'
-      : 'TfArg<$innerType>?';
-  final ctorParam = excluded.required
-      ? 'required this.$dartName,'
-      : 'this.$dartName,';
-  final fieldDecl = 'final $fieldType $dartName;';
-
-  final encodeEntry = excluded.required
-      ? "'${excluded.tfName}': $dartName.toTfJson(),"
-      : "'${excluded.tfName}': ?$dartName?.toTfJson(),";
-
-  return (ctorParam: ctorParam, fieldDecl: fieldDecl, encodeEntry: encodeEntry);
-}
-
-/// The one place the required/optional and repeated/scalar axes resolve
-/// into a constructor parameter, field declaration, and `encode()` entry.
-/// [keyed] (a `nesting_mode: map` child) holds a `Map<String, elementType>`
-/// and encodes each value under its own key.
-///
-/// [wrapInTfArg] selects between the two attribute shapes this emitter
-/// ever produces: a leaf attribute (`TfArg<elementType>`, encoded via
-/// `.toTfJson()`) or a nested-block reference (bare `elementType`, encoded
-/// via `.encode()`).
-_FieldPlan _plan({
-  required String dartName,
-  required String tfName,
-  required String elementType,
-  required bool required,
-  required bool repeated,
-  required bool keyed,
-  required bool wrapInTfArg,
-  bool sensitive = false,
-}) {
-  final ident = safeDartIdentifier(dartName);
-  final accessor = wrapInTfArg ? '.toTfJson()' : '.encode()';
-  final elementDartType = wrapInTfArg
-      ? argTypeFor(elementType, sensitive: sensitive)
-      : elementType;
-  final bareFieldType = repeated
-      ? 'List<$elementDartType>'
-      : keyed
-      ? 'Map<String, $elementDartType>'
-      : elementDartType;
-  final fieldType = required ? bareFieldType : '$bareFieldType?';
-
-  final ctorParam = required ? 'required this.$ident,' : 'this.$ident,';
-  final fieldDecl = 'final $fieldType $ident;';
-
-  final String valueExpr;
-  if (repeated) {
-    final source = required ? ident : '$ident!';
-    valueExpr = '[for (final e in $source) e$accessor]';
-  } else if (keyed) {
-    final source = required ? ident : '$ident!';
-    valueExpr = '{for (final e in $source.entries) e.key: e.value$accessor}';
-  } else {
-    valueExpr = required ? '$ident$accessor' : '?$ident?$accessor';
-  }
-  final entry = "'$tfName': $valueExpr,";
-  final encodeEntry = required || !(repeated || keyed)
-      ? entry
-      : 'if ($ident != null) $entry';
-
-  return (ctorParam: ctorParam, fieldDecl: fieldDecl, encodeEntry: encodeEntry);
 }
 
 /// Sorts a defensive copy of [items] by [tfName], ascending. Every

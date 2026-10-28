@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dart_style/dart_style.dart';
+import 'package:terradart_codegen/src/codegen/constructor_slots.dart';
 import 'package:terradart_codegen/src/codegen/naming.dart';
 import 'package:terradart_codegen/src/codegen/nested_types/nested_type_collector.dart';
 import 'package:terradart_codegen/src/codegen/nested_types/nested_type_emitter.dart';
@@ -666,7 +667,10 @@ extension type const AppEngineDomainMappingSslManagementType._(TfArg<String> _) 
         children: [],
         excludedChildren: [],
       );
-      expect(nestedParamType(spec), 'AppEngineDomainMappingSslSettings?');
+      expect(
+        ConstructorSlots.nestedParamType(spec),
+        'AppEngineDomainMappingSslSettings?',
+      );
     });
 
     test('repeated block -> "List<ClassName>?"', () {
@@ -680,7 +684,10 @@ extension type const AppEngineDomainMappingSslManagementType._(TfArg<String> _) 
         children: [],
         excludedChildren: [],
       );
-      expect(nestedParamType(spec), 'List<AccessLevelBasicConditions>?');
+      expect(
+        ConstructorSlots.nestedParamType(spec),
+        'List<AccessLevelBasicConditions>?',
+      );
     });
 
     test('keyed block -> "Map<String, ClassName>?"', () {
@@ -695,8 +702,14 @@ extension type const AppEngineDomainMappingSslManagementType._(TfArg<String> _) 
         children: [],
         excludedChildren: [],
       );
-      expect(nestedParamType(spec), 'Map<String, RiskBehaviorBehaviors>?');
-      final slot = nestedTypeConstructorSlot(spec, isRequired: true);
+      expect(
+        ConstructorSlots.nestedParamType(spec),
+        'Map<String, RiskBehaviorBehaviors>?',
+      );
+      final slot = ConstructorSlots.nestedTypeConstructorSlot(
+        spec,
+        isRequired: true,
+      );
       expect(
         slot.param,
         'required Map<String, RiskBehaviorBehaviors> behaviors',

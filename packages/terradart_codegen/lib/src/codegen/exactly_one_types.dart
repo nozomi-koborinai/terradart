@@ -1,3 +1,4 @@
+import 'constructor_slots.dart';
 import 'naming.dart';
 
 /// One member of an exactly-one group as its sealed variant holds it.
@@ -496,10 +497,14 @@ String renderExactlyOneTypes({
     if (v.deprecation != null) {
       buf.writeln("  @Deprecated('${dartSingleQuotedBody(v.deprecation!)}')");
     }
-    final param = v.defaultValue == null
-        ? '${v.fieldType} ${v.ident}'
-        : '[${v.fieldType} ${v.ident}]';
-    buf.writeln('  const factory $sealed.${v.ident}($param) = ${classes[i]};');
+    final parameters = ConstructorSlots.variantConstructor((
+      fieldType: v.fieldType,
+      ident: v.ident,
+      defaultValue: v.defaultValue,
+    ));
+    buf.writeln(
+      '  const factory $sealed.${v.ident}(${parameters.factoryParameters}) = ${classes[i]};',
+    );
   }
   buf
     ..writeln()
@@ -528,13 +533,14 @@ String renderExactlyOneTypes({
     if (v.deprecation != null) {
       buf.writeln("@Deprecated('${dartSingleQuotedBody(v.deprecation!)}')");
     }
+    final parameters = ConstructorSlots.variantConstructor((
+      fieldType: v.fieldType,
+      ident: v.ident,
+      defaultValue: v.defaultValue,
+    ));
     buf
       ..writeln('final class $name extends $sealed {')
-      ..writeln(
-        v.defaultValue == null
-            ? '  const $name(this.${v.ident});'
-            : '  const $name([this.${v.ident} = ${v.defaultValue}]);',
-      )
+      ..writeln('  const $name(${parameters.variantParameters});')
       ..writeln()
       ..writeln('  final ${v.fieldType} ${v.ident};')
       ..writeln()

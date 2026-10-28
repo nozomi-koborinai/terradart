@@ -1,14 +1,7 @@
-import '../ir/attribute.dart';
-import '../ir/nested_block.dart';
 import '../ir/resource_def.dart';
 import 'constructor_params.dart'
-    show
-        elementwiseArgMapEntry,
-        nestedBlockIsObject,
-        orderedDataSourceConstructorParams,
-        skipDataSourceAttribute,
-        skipNestedBlock;
-import 'dart_type_writer.dart';
+    show orderedDataSourceConstructorParams, skipDataSourceAttribute;
+import 'constructor_slots.dart';
 import 'doc_comment_builder.dart';
 import 'enum_emitter.dart';
 import 'getter_emitter.dart';
@@ -16,7 +9,6 @@ import 'naming.dart';
 import 'nested_types/nested_type_collector.dart';
 import 'nested_types/nested_type_emitter.dart';
 import 'provider_enums.dart';
-import 'references/reference_slots.dart';
 import 'references/reference_targets.dart';
 import 'sensitive_set_emitter.dart';
 import 'wrapper_overrides/wrapper_override.dart';
@@ -323,42 +315,21 @@ class DataSourceWrapperEmitter {
     buf.writeln();
 
     final argMapOrder = override.argMapOrder ?? paramOrder;
-    final paramsByName = _paramsByName(
-      def,
-      requiredOverrides,
-      dartTypeOverrides,
+    final slots = ConstructorSlots.wrapper(
+      def: def,
+      kind: WrapperOverrideKind.dataSource,
+      skipAttribute: skipDataSourceAttribute,
+      requiredOverrides: requiredOverrides,
+      typeOverrides: dartTypeOverrides,
+      references: topLevelRefs,
+      paramOrder: paramOrder,
+      customSlots: customSlots,
+      nestedTypeSpecs: nestedTypeSpecs,
     );
-    final argMapByName = _argMapEntriesByName(
-      def,
-      requiredOverrides,
-      dartTypeOverrides,
-    );
-    for (final MapEntry(key: name, value: ref) in topLevelRefs.entries) {
-      final attr = def.root.attributes.firstWhere((a) => a.name == name);
-      final slot = referenceSlot(
-        tfName: name,
-        dartName: snakeToDartIdent(name),
-        reference: ref,
-        required: attr.constraints.required || requiredOverrides.contains(name),
-      );
-      paramsByName[name] = slot.param;
-      argMapByName[name] = slot.argMapEntry;
-    }
-    for (final entry in customSlots.entries) {
-      paramsByName[entry.key] = entry.value.paramDeclaration;
-      argMapByName[entry.key] = entry.value.argMapEntry;
-    }
-    for (final spec in nestedTypeSpecs) {
-      final isRequired =
-          spec.required || requiredOverrides.contains(spec.tfName);
-      final slot = nestedTypeConstructorSlot(spec, isRequired: isRequired);
-      paramsByName[spec.tfName] = slot.param;
-      argMapByName[spec.tfName] = slot.argMapEntry;
-    }
 
     buf.writeln('  $pascal(super.localName, {');
     for (final name in paramOrder) {
-      final snippet = paramsByName[name];
+      final snippet = slots.parameter(name);
       if (snippet == null) {
         throw StateError(
           'DataSourceWrapperEmitter: paramOrder references unknown slot '
@@ -374,7 +345,7 @@ class DataSourceWrapperEmitter {
     buf.writeln('         terraformType: tfType,');
     buf.writeln('         argMap: {');
     for (final name in argMapOrder) {
-      final snippet = argMapByName[name];
+      final snippet = slots.argMapEntry(name);
       if (snippet == null) {
         throw StateError(
           'DataSourceWrapperEmitter: argMapOrder references unknown slot '
@@ -428,90 +399,6 @@ class DataSourceWrapperEmitter {
     buf.writeln('}');
 
     return buf.toString();
-  }
-
-  Map<String, String> _paramsByName(
-    ResourceDef def,
-    Set<String> requiredOverrides,
-    Map<String, String> dartTypeOverrides,
-  ) {
-    final out = <String, String>{};
-    for (final attr in def.root.attributes) {
-      if (skipDataSourceAttribute(attr)) continue;
-      final isRequired =
-          attr.constraints.required || requiredOverrides.contains(attr.name);
-      out[attr.name] = _attributeParam(
-        attr,
-        isRequired: isRequired,
-        typeOverride: dartTypeOverrides[attr.name],
-      );
-    }
-    for (final nested in def.root.nestedBlocks) {
-      if (_skipNestedBlock(nested)) continue;
-      final isRequired =
-          nested.constraints.required ||
-          requiredOverrides.contains(nested.name);
-      out[nested.name] = _nestedBlockParam(nested, isRequired: isRequired);
-    }
-    return out;
-  }
-
-  Map<String, String> _argMapEntriesByName(
-    ResourceDef def,
-    Set<String> requiredOverrides,
-    Map<String, String> dartTypeOverrides,
-  ) {
-    final out = <String, String>{};
-    for (final attr in def.root.attributes) {
-      if (skipDataSourceAttribute(attr)) continue;
-      final isRequired =
-          attr.constraints.required || requiredOverrides.contains(attr.name);
-      out[attr.name] = isEnumListType(dartTypeOverrides[attr.name] ?? '')
-          ? elementwiseArgMapEntry(attr.name, isRequired: isRequired)
-          : _argMapEntry(attr.name, isRequired);
-    }
-    for (final nested in def.root.nestedBlocks) {
-      if (_skipNestedBlock(nested)) continue;
-      final isRequired =
-          nested.constraints.required ||
-          requiredOverrides.contains(nested.name);
-      out[nested.name] = _argMapEntry(nested.name, isRequired);
-    }
-    return out;
-  }
-
-  // Delegates to the shared rule so framework-normalized computed-only
-  // nested_type attributes stay out of data-source constructors too.
-  bool _skipNestedBlock(NestedBlockDef nested) => skipNestedBlock(nested);
-
-  String _attributeParam(
-    Attribute attr, {
-    required bool isRequired,
-    String? typeOverride,
-  }) {
-    final dartName = snakeToDartIdent(attr.name);
-    final dartType = typeOverride ?? writeDartType(attr.type);
-    final modifier = isRequired ? 'required ' : '';
-    final nullSuffix = isRequired ? '' : '?';
-    return '$modifier${argTypeFor(dartType, sensitive: takesSensitive(attr))}$nullSuffix $dartName';
-  }
-
-  String _nestedBlockParam(NestedBlockDef nested, {required bool isRequired}) {
-    final dartName = snakeToDartIdent(nested.name);
-    final innerType = nestedBlockIsObject(nested)
-        ? 'Map<String, dynamic>'
-        : 'List<Map<String, dynamic>>';
-    final modifier = isRequired ? 'required ' : '';
-    final nullSuffix = isRequired ? '' : '?';
-    return '${modifier}TfArg<$innerType>$nullSuffix $dartName';
-  }
-
-  String _argMapEntry(String snakeName, bool isRequired) {
-    final camel = snakeToDartIdent(snakeName);
-    if (isRequired) {
-      return "'$snakeName': $camel,";
-    }
-    return "'$snakeName': ?$camel,";
   }
 
   Map<String, dynamic> _requireRawSchema(String terraformType) {
