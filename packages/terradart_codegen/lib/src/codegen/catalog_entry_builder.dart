@@ -78,10 +78,10 @@ CatalogEntryData buildCatalogEntry({
 /// resolved slot's Dart identifier.
 ///
 /// Mirrors `WrapperEmitter` / `DataSourceWrapperEmitter` slot resolution: a
-/// name present in `override.customSlots` takes its identifier from the
-/// slot's verbatim `paramDeclaration` (handling renames like `host_rule` →
-/// `hostRules` and virtual slots like scheduler_job's `target`); every
-/// other name is an IR slot rendered as `snakeToCamel(name)`. The
+/// name that is a custom slot in `override.overrideSlots` takes its
+/// identifier from the slot's verbatim `paramDeclaration` (handling renames
+/// like `host_rule` → `hostRules` and virtual slots like scheduler_job's
+/// `target`); every other name is rendered as `snakeToDartIdent(name)`. The
 /// super-parameter bookends (`lifecycle`, `dependsOn`, `provider`) are excluded — only
 /// `localName` is prepended, matching the `CatalogEntry.constructorParams`
 /// contract.
@@ -97,15 +97,13 @@ List<String> catalogConstructorParams(
   final slots = override.kind == WrapperOverrideKind.dataSource
       ? orderedDataSourceConstructorParams(def, override.paramOrder)
       : orderedConstructorParams(def, override.paramOrder);
-  final customSlots = override.customSlots ?? const <String, CustomSlot>{};
+  final overrideSlots = override.overrideSlots;
   final params = <String>['localName'];
   for (final name in slots) {
-    final custom = customSlots[name];
-    params.add(
-      custom != null
-          ? paramIdentifier(custom.paramDeclaration)
-          : snakeToDartIdent(name),
-    );
+    params.add(switch (overrideSlots[name]) {
+      final CustomSlot custom => paramIdentifier(custom.paramDeclaration),
+      _ => snakeToDartIdent(name),
+    });
   }
   return params;
 }

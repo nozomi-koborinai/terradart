@@ -1,32 +1,6 @@
 import 'constructor_slots.dart';
 import 'naming.dart';
-
-/// One member of an exactly-one group as its sealed variant holds it.
-typedef ExactlyOneVariant = ({
-  /// Terraform argument name, which is also the variant's `blockKey`.
-  String tfName,
-
-  /// Dart field name.
-  String ident,
-
-  /// Non-nullable Dart field type.
-  String fieldType,
-
-  /// The wire value `encode()` writes under [tfName].
-  String encodeExpr,
-
-  /// The `TfArg` a resource's `argMap` holds under [tfName]; null for a
-  /// variant inside a nested helper, which only encodes.
-  String? argMapExpr,
-
-  /// `@Deprecated` message of the member, if any.
-  String? deprecation,
-
-  /// The value the variant takes when the caller passes none — the empty
-  /// helper of a block with no fields (`.avroFormat()`) — or null when the
-  /// variant requires one.
-  String? defaultValue,
-});
+import 'wrapper_overrides/wrapper_override.dart';
 
 /// The member paths a `sealedNames` key lists (`"b, a"` → `{a, b}`).
 Set<String> sealedGroupKey(String key) => {
@@ -562,6 +536,31 @@ String renderExactlyOneTypes({
         ..writeln("      {'${v.tfName}': ${v.argMapExpr}};");
     }
     buf.writeln('}');
+  }
+  return buf.toString();
+}
+
+/// The prelude both wrapper emitters write for [terraformType]: the
+/// override's hand-written prelude, then each sealed argument's
+/// declarations after a blank line.
+String? emittedPrelude(WrapperOverride? override, String terraformType) {
+  if (override == null || override.sealedArguments.isEmpty) {
+    return override?.prelude;
+  }
+  final buf = StringBuffer(override.prelude ?? '');
+  for (final a in override.sealedArguments) {
+    buf
+      ..writeln()
+      ..write(
+        renderExactlyOneTypes(
+          sealed: a.sealedClass,
+          members: a.members,
+          where: '`${override.kind.label(terraformType)}`',
+          variants: a.variants,
+          variantClasses: a.variantClasses,
+          optional: a.optional,
+        ),
+      );
   }
   return buf.toString();
 }

@@ -545,8 +545,6 @@ class WrapCommand extends Command<int> {
         principalDataSources = resolution.principalDataSources;
       }
     }
-    // `deriveExactlyOne`: the hints' top-level exactly-one and at-most-one
-    // groups become sealed custom slots before anything reads the overrides.
     final exactlyOne = deriveExactlyOneSlots(
       typedOverrides,
       ir,

@@ -118,6 +118,52 @@ void main() {
         expect(params, ['localName', 'name', 'region', 'target']);
       },
     );
+
+    test('lists a sealed argument under its concept\'s Dart name', () {
+      final def = _def(
+        tfType: 'aws_thing',
+        attributes: [
+          _attr('name'),
+          _attr('mysql_source_config'),
+          _attr('oracle_source_config'),
+        ],
+      );
+      ExactlyOneVariant variant(String m) => (
+        tfName: m,
+        ident: m,
+        fieldType: 'TfArg<String>',
+        encodeExpr: '$m.toTfJson()',
+        argMapExpr: m,
+        deprecation: null,
+        defaultValue: null,
+      );
+      final override = const WrapperOverride(outputDir: 'thing')
+          .withSealedArguments(
+            paramOrder: const ['name', 'source_config'],
+            argMapOrder: null,
+            sealedArguments: [
+              SealedArgument(
+                concept: 'source_config',
+                sealedClass: 'ThingSourceConfig',
+                optional: false,
+                variants: [
+                  variant('mysql_source_config'),
+                  variant('oracle_source_config'),
+                ],
+                variantClasses: const [
+                  'ThingMysqlSourceConfig',
+                  'ThingOracleSourceConfig',
+                ],
+              ),
+            ],
+          );
+
+      expect(catalogConstructorParams(def, override), [
+        'localName',
+        'name',
+        'sourceConfig',
+      ]);
+    });
   });
 
   group('paramIdentifier', () {

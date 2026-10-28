@@ -53,7 +53,7 @@ final class WrapperOverride {
   ///
   /// Names listed here may refer to either an IR-derived slot
   /// (attribute / nested block) or a virtual slot defined in
-  /// [customSlots]. The emitter resolves names by checking [customSlots]
+  /// [overrideSlots]. The emitter resolves names by checking [overrideSlots]
   /// first, then falling back to the IR-derived snippets.
   ///
   /// `localName`, `lifecycle`, `dependsOn`, and `provider` are super-parameters and
@@ -210,6 +210,9 @@ final class WrapperOverride {
   /// The emitter writes the string via `write` (not `writeln`) so the
   /// trailing `\n` is the prelude's responsibility.
   ///
+  /// Hand-written only: the YAML loader is its one writer, and it rejects
+  /// the axis on a data source (E201).
+  ///
   /// `null` means "no prelude".
   final String? prelude;
 
@@ -252,9 +255,9 @@ final class WrapperOverride {
   /// schema — see `nested_types/nested_type_collector.dart` and
   /// `nested_type_emitter.dart` — replacing the generic
   /// `TfArg<Map<String, dynamic>>?` passthrough the IR would otherwise
-  /// produce for that slot. A block already covered by a [customSlots] entry
-  /// is left untouched (the collector skips any subtree rooted at a
-  /// customSlot key). Defaults to `false` so un-migrated resources are
+  /// produce for that slot. A block already covered by an [overrideSlots]
+  /// entry is left untouched (the collector skips any subtree rooted at an
+  /// [overrideSlots] key). Defaults to `false` so un-migrated resources are
   /// unaffected — mirrors [deriveEnums] / [deriveOutputGetters] / [deriveClassDoc].
   final bool deriveNestedTypes;
 
@@ -274,7 +277,7 @@ final class WrapperOverride {
   /// the same condition for an override constructed some other way.
   ///
   /// `null` means "derive every nested block reachable from the resource
-  /// root" (subject only to the [customSlots] skip).
+  /// root" (subject only to the [overrideSlots] skip).
   final List<String>? nestedTypeExcludes;
 
   /// Opt-in: blocks whose [deriveNestedTypes] classes would be structurally
@@ -345,9 +348,31 @@ final class WrapperOverride {
   ///
   /// A name in [customSlots] replaces the schema slot for that name.
   ///
+  /// Hand-written only: the YAML loader is its one writer, and it rejects
+  /// the axis on a data source (E201).
+  ///
   /// `null` means "no custom slots — every paramOrder name is resolved
   /// from the IR".
   final Map<String, CustomSlot>? customSlots;
+
+  /// The sealed arguments `deriveExactlyOneSlots` derives from the
+  /// provider's exactly-one and at-most-one groups, in the order it sealed
+  /// them. Derived only, through [withSealedArguments]; no YAML axis sets
+  /// it.
+  final List<SealedArgument> sealedArguments;
+
+  /// Every slot the override supplies in place of the IR's, by snake-case
+  /// name: each [customSlots] entry no sealed argument folded into a
+  /// variant, then each sealed argument under its concept.
+  Map<String, OverrideSlot> get overrideSlots {
+    final folded = {for (final a in sealedArguments) ...a.members};
+    return {
+      for (final MapEntry(:key, :value)
+          in (customSlots ?? const <String, CustomSlot>{}).entries)
+        if (!folded.contains(key)) key: value,
+      for (final a in sealedArguments) a.concept: a,
+    };
+  }
 
   /// Override entry kind. Default: [WrapperOverrideKind.resource].
   ///
@@ -405,61 +430,65 @@ final class WrapperOverride {
     this.sealedNames,
     this.exactlyOneOf,
     this.atMostOneOf,
-  });
+  }) : sealedArguments = const [];
+
+  WrapperOverride._copy(
+    WrapperOverride base, {
+    List<String>? paramOrder,
+    List<String>? argMapOrder,
+    Map<String, String>? dartTypeOverrides,
+    List<SealedArgument>? sealedArguments,
+  }) : outputDir = base.outputDir,
+       kind = base.kind,
+       schemaStubBodyMode = base.schemaStubBodyMode,
+       fileLeadingComment = base.fileLeadingComment,
+       paramOrder = paramOrder ?? base.paramOrder,
+       argMapOrder = argMapOrder ?? base.argMapOrder,
+       extraGetters = base.extraGetters,
+       requiredParams = base.requiredParams,
+       dartTypeOverrides = dartTypeOverrides ?? base.dartTypeOverrides,
+       deprecatedParams = base.deprecatedParams,
+       extraImports = base.extraImports,
+       extraSensitiveFields = base.extraSensitiveFields,
+       prelude = base.prelude,
+       customSlots = base.customSlots,
+       sealedArguments = sealedArguments ?? base.sealedArguments,
+       deriveEnums = base.deriveEnums,
+       deriveOutputGetters = base.deriveOutputGetters,
+       deriveClassDoc = base.deriveClassDoc,
+       curatedDoc = base.curatedDoc,
+       deriveNestedTypes = base.deriveNestedTypes,
+       nestedTypeExcludes = base.nestedTypeExcludes,
+       dedupeNestedTypes = base.dedupeNestedTypes,
+       deriveExactlyOne = base.deriveExactlyOne,
+       sealedNames = base.sealedNames,
+       exactlyOneOf = base.exactlyOneOf,
+       atMostOneOf = base.atMostOneOf;
 
   /// This override with [dartTypeOverrides] replaced.
   WrapperOverride withDartTypeOverrides(
     Map<String, String> dartTypeOverrides,
-  ) => _copy(dartTypeOverrides: dartTypeOverrides);
+  ) => WrapperOverride._copy(this, dartTypeOverrides: dartTypeOverrides);
 
-  /// This override with the slots `deriveExactlyOne` synthesizes: the
-  /// constructor and argMap orders without the group members, the sealed
-  /// slots, and their declarations appended to [prelude].
-  WrapperOverride withExactlyOneSlots({
+  /// This override with the [sealedArguments] `deriveExactlyOne` derives,
+  /// and the constructor and argMap orders that name each one's concept in
+  /// place of its members.
+  WrapperOverride withSealedArguments({
     required List<String> paramOrder,
     required List<String>? argMapOrder,
-    required Map<String, CustomSlot> customSlots,
-    required String prelude,
-  }) => _copy(
+    required List<SealedArgument> sealedArguments,
+  }) => WrapperOverride._copy(
+    this,
     paramOrder: paramOrder,
     argMapOrder: argMapOrder,
-    customSlots: customSlots,
-    prelude: prelude,
+    sealedArguments: sealedArguments,
   );
+}
 
-  WrapperOverride _copy({
-    List<String>? paramOrder,
-    List<String>? argMapOrder,
-    Map<String, String>? dartTypeOverrides,
-    Map<String, CustomSlot>? customSlots,
-    String? prelude,
-  }) => WrapperOverride(
-    outputDir: outputDir,
-    kind: kind,
-    schemaStubBodyMode: schemaStubBodyMode,
-    fileLeadingComment: fileLeadingComment,
-    paramOrder: paramOrder ?? this.paramOrder,
-    argMapOrder: argMapOrder ?? this.argMapOrder,
-    extraGetters: extraGetters,
-    requiredParams: requiredParams,
-    dartTypeOverrides: dartTypeOverrides ?? this.dartTypeOverrides,
-    deprecatedParams: deprecatedParams,
-    extraImports: extraImports,
-    extraSensitiveFields: extraSensitiveFields,
-    prelude: prelude ?? this.prelude,
-    customSlots: customSlots ?? this.customSlots,
-    deriveEnums: deriveEnums,
-    deriveOutputGetters: deriveOutputGetters,
-    deriveClassDoc: deriveClassDoc,
-    curatedDoc: curatedDoc,
-    deriveNestedTypes: deriveNestedTypes,
-    nestedTypeExcludes: nestedTypeExcludes,
-    dedupeNestedTypes: dedupeNestedTypes,
-    deriveExactlyOne: deriveExactlyOne,
-    sealedNames: sealedNames,
-    exactlyOneOf: exactlyOneOf,
-    atMostOneOf: atMostOneOf,
-  );
+/// A constructor slot an override supplies in place of the IR's: a
+/// hand-written [CustomSlot] or a derived [SealedArgument].
+sealed class OverrideSlot {
+  const OverrideSlot();
 }
 
 /// One slot's worth of verbatim constructor + argMap snippets.
@@ -469,7 +498,7 @@ final class WrapperOverride {
 /// retypes an IR slot (e.g. `BigQueryConfig?` instead of
 /// `TfArg<Map<String, dynamic>>?`) or because the slot is virtual (e.g.
 /// scheduler_job's sealed `SchedulerTarget`).
-final class CustomSlot {
+final class CustomSlot extends OverrideSlot {
   /// Verbatim constructor parameter declaration.
   ///
   /// Examples:
@@ -536,3 +565,62 @@ final class MigrateHint {
   /// The `kind:` value this hint was declared with.
   String get kind => 'manual';
 }
+
+/// One exactly-one or at-most-one group of top-level inputs, sealed into a
+/// single constructor argument whose variants each set one member.
+final class SealedArgument extends OverrideSlot {
+  const SealedArgument({
+    required this.concept,
+    required this.sealedClass,
+    required this.optional,
+    required this.variants,
+    required this.variantClasses,
+  });
+
+  /// Snake-case slot name in `paramOrder` and `argMapOrder`. It may equal
+  /// a member (`name` for `[name, name_prefix]`).
+  final String concept;
+
+  /// The sealed type the argument takes.
+  final String sealedClass;
+
+  /// Whether the group is at-most-one: the argument is nullable and spreads
+  /// nothing when null. An exactly-one group's argument is required.
+  final bool optional;
+
+  /// One variant per member, in group order.
+  final List<ExactlyOneVariant> variants;
+
+  /// Each variant's class, in [variants] order.
+  final List<String> variantClasses;
+
+  /// The group's members, in group order.
+  List<String> get members => [for (final v in variants) v.tfName];
+}
+
+/// One member of an exactly-one group as its sealed variant holds it.
+typedef ExactlyOneVariant = ({
+  /// Terraform argument name, which is also the variant's `blockKey`.
+  String tfName,
+
+  /// Dart field name.
+  String ident,
+
+  /// Non-nullable Dart field type.
+  String fieldType,
+
+  /// The wire value `encode()` writes under [tfName].
+  String encodeExpr,
+
+  /// The `TfArg` a resource's `argMap` holds under [tfName]; null for a
+  /// variant inside a nested helper, which only encodes.
+  String? argMapExpr,
+
+  /// `@Deprecated` message of the member, if any.
+  String? deprecation,
+
+  /// The value the variant takes when the caller passes none — the empty
+  /// helper of a block with no fields (`.avroFormat()`) — or null when the
+  /// variant requires one.
+  String? defaultValue,
+});
