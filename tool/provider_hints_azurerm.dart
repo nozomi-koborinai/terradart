@@ -129,24 +129,15 @@ void _preferSchema(
   if (!_isDataSchema(target)) schemas[type] = [target];
 }
 
-/// A schema factory registered from a data source.
-///
-/// `data_source.go` is the file name under `resources/<type>/`, and
-/// `*_data_source.go` is the older same-package name. `RegisterDataSource`
-/// is the call the service map uses for that file.
 bool _isDataSchema(_FuncRef ref) {
   final leaf = ref.name.split('.').last;
-  return ref.file.rel.endsWith('data_source.go') ||
-      leaf == 'RegisterDataSource' ||
+  final fileName = p.basename(ref.file.rel);
+  return fileName == 'data_source.go' ||
+      fileName.endsWith('_data_source.go') ||
       (ref.receiver?.contains('DataSource') ?? false) ||
       leaf.startsWith('dataSource');
 }
 
-/// The schema function a registration map value calls.
-///
-/// `resourceFoo()` stays in the service package. `pkg.RegisterResource()`
-/// and `pkg.RegisterDataSource()` live in the imported package. Both forms
-/// take no arguments in the provider.
 _FuncRef? _registeredSchema(
   _FuncRef from,
   int at,
