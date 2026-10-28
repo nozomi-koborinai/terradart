@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:path/path.dart' as p;
 import 'package:terradart_codegen/src/codegen/exclusive_groups.dart';
+import 'package:terradart_codegen/src/codegen/naming.dart';
+import 'package:terradart_codegen/src/codegen/wrapper_overrides/wrapper_override.dart';
 
 import 'extract_provider_hints.dart';
 import 'provider_hints_aws.dart';
@@ -30,28 +32,25 @@ AwsHintsScan scanAzurermProvider(Directory root) {
   _FuncRef? samePackage(_FuncRef from, String name) =>
       byKey['${from.file.packagePath} $name'];
   final result = AwsHintsScan({});
-  final schemas = <String, List<_FuncRef>>{};
-
-  void add(String type, _FuncRef ref) {
-    (schemas[type] ??= []).add(ref);
-  }
+  final schemas = byKind((_) => <String, List<_FuncRef>>{});
 
   for (final ref in funcs) {
     if (!ref.name.endsWith('.ResourceType')) continue;
     final type = _returnedAzurerm(ref, index);
     final arguments = samePackage(ref, '${ref.receiver}.Arguments');
     if (type == null || arguments == null) continue;
-    if (_isDataSchema(arguments)) {
-      final haveResource = schemas[type]?.any((e) => !_isDataSchema(e));
-      if (haveResource ?? false) continue;
-    } else {
-      schemas[type]?.removeWhere(_isDataSchema);
-    }
-    add(type, arguments);
+    final kind = _isDataSchema(arguments)
+        ? WrapperOverrideKind.dataSource
+        : WrapperOverrideKind.resource;
+    (schemas.of(kind)[type] ??= []).add(arguments);
   }
   for (final ref in funcs) {
-    if (!ref.name.endsWith('.SupportedResources') &&
-        !ref.name.endsWith('.SupportedDataSources')) {
+    final WrapperOverrideKind kind;
+    if (ref.name.endsWith('.SupportedResources')) {
+      kind = WrapperOverrideKind.resource;
+    } else if (ref.name.endsWith('.SupportedDataSources')) {
+      kind = WrapperOverrideKind.dataSource;
+    } else {
       continue;
     }
     final tokens = ref.file.tokens;
@@ -63,10 +62,35 @@ AwsHintsScan scanAzurermProvider(Directory root) {
       if (tokens[i + 1].text != ':') continue;
       final target = _registeredSchema(ref, i + 2, samePackage, byKey);
       if (target == null) continue;
-      _preferSchema(schemas, tokens[i].text, target);
+      _preferSchema(schemas.of(kind), tokens[i].text, target);
     }
   }
 
+  for (final kind in WrapperOverrideKind.values) {
+    _collect(
+      kind,
+      schemas.of(kind),
+      switch (kind) {
+        WrapperOverrideKind.resource => result.byType,
+        WrapperOverrideKind.dataSource => result.dataSourcesByType,
+      },
+      result,
+      index,
+      samePackage,
+    );
+  }
+  return result;
+}
+
+/// Scans each of [kind]'s [schemas] into [out], counting into [result].
+void _collect(
+  WrapperOverrideKind kind,
+  Map<String, List<_FuncRef>> schemas,
+  Map<String, AwsTypeHints> out,
+  AwsHintsScan result,
+  _PackageIndex index,
+  _FuncRef? Function(_FuncRef from, String name) samePackage,
+) {
   for (final type in schemas.keys.toList()..sort()) {
     final hints = <String, GoEnumHint>{};
     final exactly = <List<String>>[];
@@ -102,17 +126,16 @@ AwsHintsScan scanAzurermProvider(Directory root) {
         combined.unsealed.isEmpty) {
       continue;
     }
-    result.byType[type] = (
+    out[type] = (
       sourcePath: sourcePath!,
       hints: hints.values.toList(),
       groups: split(combined.exactlyOne),
       atMostOne: split(combined.atMostOne),
     );
     for (final line in combined.unsealed) {
-      result.unsealed.add('$type $line');
+      result.unsealed.add('${kind.label(type)} $line');
     }
   }
-  return result;
 }
 
 void _preferSchema(

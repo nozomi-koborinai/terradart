@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:path/path.dart' as p;
+import 'package:terradart_codegen/src/codegen/provider_enums.dart';
+import 'package:terradart_codegen/src/codegen/wrapper_overrides/wrapper_override.dart';
 import 'package:terradart_codegen/src/parser/mm_yaml_parser.dart';
 import 'package:test/test.dart';
 import 'package:yaml/yaml.dart';
@@ -626,6 +628,132 @@ func (r *gadgetResource) ConfigValidators(context.Context) []resource.ConfigVali
       ]),
       'id is computed-only',
     );
+  });
+
+  group('writeProviderHints', () {
+    late Directory dir;
+    setUp(() => dir = Directory.systemTemp.createTempSync('hints_write_'));
+    tearDown(() => dir.deleteSync(recursive: true));
+
+    AwsTypeHints typeHints(Map<String, List<String>> enums) => (
+      sourcePath: 'internal/services/widget/widget.go',
+      hints: [
+        for (final MapEntry(:key, :value) in enums.entries)
+          GoEnumHint(
+            path: key.split('.'),
+            values: value,
+            caseInsensitive: false,
+          ),
+      ],
+      groups: const [],
+      atMostOne: const [],
+    );
+    Map<String, dynamic> block(Map<String, String> attributes) => {
+      'attributes': {
+        for (final MapEntry(:key, :value) in attributes.entries)
+          key: {'type': value, 'optional': true},
+      },
+    };
+
+    test('writes each kind to its own directory, checked against its own '
+        'schema', () {
+      File(p.join(dir.path, 'hints', 'data', 'x_gone.yaml'))
+        ..createSync(recursive: true)
+        ..writeAsStringSync('provider_version: 0.9.0\n');
+      final report = writeProviderHints(
+        schemaDir: dir.path,
+        repo: 'example/terraform-provider-x',
+        version: '1.0.0',
+        found: (
+          resources: {
+            'x_widget': typeHints({
+              'kind': ['a', 'b'],
+            }),
+          },
+          dataSources: {
+            'x_widget': typeHints({
+              'kind': ['data', 'only'],
+              'retired': ['x'],
+            }),
+            'x_lookup': typeHints({
+              'mode': ['fast', 'slow'],
+            }),
+          },
+        ),
+        schemas: (
+          resources: {
+            'x_widget': block({'kind': 'string'}),
+          },
+          dataSources: {
+            'x_widget': block({'kind': 'string'}),
+            'x_lookup': block({'mode': 'string'}),
+          },
+        ),
+        readme: 'readme\n',
+      );
+
+      final written = [
+        for (final f in Directory(
+          p.join(dir.path, 'hints'),
+        ).listSync(recursive: true).whereType<File>())
+          p.relative(f.path, from: dir.path),
+      ]..sort();
+      expect(written, [
+        p.join('hints', 'README.md'),
+        p.join('hints', 'data', 'x_lookup.yaml'),
+        p.join('hints', 'data', 'x_widget.yaml'),
+        p.join('hints', 'x_widget.yaml'),
+      ]);
+      expect(report.files, 3);
+      expect(report.skipped, ['data.x_widget.retired (not in schema.json)']);
+
+      final enums = ProviderEnums.load(dir.path, providerVersion: '1.0.0');
+      List<String>? values(String type, WrapperOverride o, String path) =>
+          enums.nestedHints(type, o).enumValues(path.split('.'), null);
+      const resource = WrapperOverride(outputDir: 'widget');
+      const data = WrapperOverride(
+        outputDir: 'data',
+        kind: WrapperOverrideKind.dataSource,
+      );
+      expect(values('x_widget', resource, 'kind'), ['a', 'b']);
+      expect(values('x_widget', data, 'kind'), ['data', 'only']);
+      expect(values('x_lookup', data, 'mode'), ['fast', 'slow']);
+      expect(values('x_lookup', resource, 'mode'), isNull);
+    });
+
+    test('rejects a data source hint on a non-string input and keeps no '
+        'hints', () {
+      expect(
+        () => writeProviderHints(
+          schemaDir: dir.path,
+          repo: 'example/terraform-provider-x',
+          version: '1.0.0',
+          found: (
+            resources: const {},
+            dataSources: {
+              'x_widget': typeHints({
+                'count': ['1', '2'],
+              }),
+            },
+          ),
+          schemas: (
+            resources: const {},
+            dataSources: {
+              'x_widget': block({'count': 'number'}),
+            },
+          ),
+          readme: 'readme\n',
+        ),
+        throwsA(
+          isA<FormatException>().having(
+            (e) => e.message,
+            'message',
+            contains('data.x_widget.count'),
+          ),
+        ),
+      );
+      expect(Directory(p.join(dir.path, 'hints')).existsSync(), isFalse);
+    });
   });
 
   for (final fixture in _fixtures) {

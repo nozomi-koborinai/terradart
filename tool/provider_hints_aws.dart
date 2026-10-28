@@ -829,7 +829,12 @@ final class AwsHintsScan {
   /// root).
   final Map<String, AwsTypeHints> byType;
 
-  /// Conflicts no group expresses, as `<type> [members]: reason`.
+  /// The same for data-source schemas. Only scanners that tell a data
+  /// source's schema from its resource twin's fill it.
+  final Map<String, AwsTypeHints> dataSourcesByType = {};
+
+  /// Conflicts no group expresses, as `<type> [members]: reason`
+  /// (`data.<type>` for a data source).
   final unsealed = <String>[];
   var validators = 0;
   var unresolved = 0;
