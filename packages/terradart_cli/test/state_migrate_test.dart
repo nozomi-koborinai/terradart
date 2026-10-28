@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:terradart_cli/src/state_engine.dart';
+import 'package:terradart_migrate/terradart_migrate.dart'
+    show droppedProviderArguments;
 import 'package:test/test.dart';
 
 import 'support.dart';
@@ -334,6 +337,200 @@ void main() {
       ),
     );
     expect(r.out, isNot(contains('sekret')));
+  });
+
+  test('names an azurerm backend.tf and hides its credentials', () async {
+    const secrets = [
+      'client_id',
+      'client_id_file_path',
+      'client_certificate',
+      'client_certificate_path',
+      'client_certificate_password',
+      'client_secret',
+      'client_secret_file_path',
+      'oidc_request_token',
+      'oidc_request_url',
+      'oidc_token',
+      'oidc_token_file_path',
+      'ado_pipeline_service_connection_id',
+      'access_key',
+      'sas_token',
+    ];
+    expect(secrets.toSet(), droppedProviderArguments['azurerm']);
+    String value(String source, String key) => '$source-$key-secret';
+    final project = TestProject.create();
+    final block = StringBuffer('terraform {\n  backend "azurerm" {\n')
+      ..writeln('    storage_account_name = "tfstateacct"')
+      ..writeln('    container_name = "state"')
+      ..writeln('    key = "prod.tfstate"');
+    for (final key in secrets) {
+      block.writeln('    $key = "${value('block', key)}"');
+    }
+    block.writeln('  }\n}');
+    File(project.path('tf-out/backend.tf'))
+      ..createSync(recursive: true)
+      ..writeAsStringSync(block.toString());
+    File(project.path('tf-out/.terraform/terraform.tfstate'))
+      ..createSync(recursive: true)
+      ..writeAsStringSync(
+        jsonEncode({
+          'backend': {
+            'type': 'azurerm',
+            'config': {
+              'storage_account_name': 'tfstatefrom',
+              'container_name': 'state-from',
+              'key': 'from.tfstate',
+              for (final key in secrets) key: value('state', key),
+            },
+          },
+        }),
+      );
+    const fileKeys = [
+      'oidc_token',
+      'client_certificate',
+      'client_certificate_password',
+      'client_secret',
+      'access_key',
+      'sas_token',
+    ];
+    const flagKeys = [
+      'oidc_request_token',
+      'oidc_request_url',
+      'oidc_token_file_path',
+      'client_certificate_path',
+      'client_id',
+      'client_id_file_path',
+      'client_secret_file_path',
+      'ado_pipeline_service_connection_id',
+    ];
+    expect(fileKeys.toSet().intersection(flagKeys.toSet()), isEmpty);
+    final backendFile = StringBuffer();
+    for (final key in fileKeys) {
+      backendFile.writeln('$key = "${value('file', key)}"');
+    }
+    File(project.path('backend/azurerm.tfbackend'))
+      ..createSync(recursive: true)
+      ..writeAsStringSync(backendFile.toString());
+    final runner = FakeRunner(synth: (_) => _withBackend(null));
+    final r = await project.run(
+      [
+        'state',
+        'migrate',
+        '--backend-config=backend/azurerm.tfbackend',
+        for (final key in flagKeys)
+          '--backend-config=$key=${value('flag', key)}',
+      ],
+      runner,
+      input: ['n'],
+    );
+    expect(r.code, 1, reason: r.err);
+    expect(configuredLocalBackend(project.path('tf-out')), isFalse);
+    expect(
+      r.out,
+      contains(
+        'from azurerm (container_name=state-from, key=from.tfstate, '
+        'storage_account_name=tfstatefrom) to azurerm '
+        '(container_name=state, key=prod.tfstate, '
+        'storage_account_name=tfstateacct)?',
+      ),
+    );
+    expect(r.out, isNot(contains('to local')));
+    for (final key in secrets) {
+      expect(r.out, isNot(contains(key)), reason: key);
+      expect(r.err, isNot(contains(key)), reason: key);
+      for (final source in ['block', 'state']) {
+        final secret = value(source, key);
+        expect(r.out, isNot(contains(secret)), reason: secret);
+        expect(r.err, isNot(contains(secret)), reason: secret);
+      }
+    }
+    for (final key in fileKeys) {
+      final secret = value('file', key);
+      expect(r.out, isNot(contains(secret)), reason: secret);
+      expect(r.err, isNot(contains(secret)), reason: secret);
+    }
+    for (final key in flagKeys) {
+      final secret = value('flag', key);
+      expect(r.out, isNot(contains(secret)), reason: secret);
+      expect(r.err, isNot(contains(secret)), reason: secret);
+    }
+    expect(runner.engineCalls, isEmpty);
+  });
+
+  test('names an http backend that exists only in backend.tf', () async {
+    final project = TestProject.create();
+    File(project.path('tf-out/backend.tf'))
+      ..createSync(recursive: true)
+      ..writeAsStringSync('''
+terraform {
+  backend "http" {
+    address  = "https://state.example/app"
+    password = "http-password-secret"
+  }
+}
+''');
+    final runner = FakeRunner(synth: (_) => _withBackend(null));
+    final r = await project.run(['state', 'migrate'], runner, input: ['n']);
+    expect(r.code, 1, reason: r.err);
+    expect(configuredLocalBackend(project.path('tf-out')), isFalse);
+    expect(r.out, contains('to http (address=https://state.example/app)?'));
+    expect(r.out, isNot(contains('to local')));
+    expect(r.out, isNot(contains('http-password-secret')));
+    expect(r.out, isNot(contains('password')));
+    expect(runner.engineCalls, isEmpty);
+  });
+
+  test('hides http certificate pems and a pg connection string', () async {
+    final project = TestProject.create();
+    const secrets = {
+      'password': 'http-password-secret',
+      'client_certificate_pem': 'http-cert-pem-secret',
+      'client_private_key_pem': 'http-key-pem-secret',
+      'client_ca_certificate_pem': 'http-ca-pem-secret',
+    };
+    File(project.path('tf-out/.terraform/terraform.tfstate'))
+      ..createSync(recursive: true)
+      ..writeAsStringSync(
+        jsonEncode({
+          'backend': {
+            'type': 'http',
+            'config': {'address': 'https://state.example/app', ...secrets},
+          },
+        }),
+      );
+    File(project.path('tf-out/backend.tf'))
+      ..createSync(recursive: true)
+      ..writeAsStringSync('''
+terraform {
+  backend "pg" {
+    conn_str    = "pg-conn-str-secret"
+    schema_name = "terraform_remote_state"
+  }
+}
+''');
+    final runner = FakeRunner(synth: (_) => _withBackend(null));
+    final r = await project.run(['state', 'migrate'], runner, input: ['n']);
+    expect(r.code, 1, reason: r.err);
+    expect(
+      r.out,
+      contains(
+        'from http (address=https://state.example/app) '
+        'to pg (schema_name=terraform_remote_state)?',
+      ),
+    );
+    for (final secret in [
+      ...secrets.values,
+      'pg-conn-str-secret',
+      'client_certificate_pem',
+      'client_private_key_pem',
+      'client_ca_certificate_pem',
+      'conn_str',
+      'password',
+    ]) {
+      expect(r.out, isNot(contains(secret)), reason: secret);
+      expect(r.err, isNot(contains(secret)), reason: secret);
+    }
+    expect(runner.engineCalls, isEmpty);
   });
 
   test('takes no engine arguments', () async {

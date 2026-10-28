@@ -182,6 +182,48 @@ terraform {
     expect(configuredLocalBackend(dir.path), isFalse);
   });
 
+  test('readConfiguredBackend sees every sidecar, and a json backend', () {
+    final dir = Directory.systemTemp.createTempSync('state_engine_read_');
+    addTearDown(() => dir.deleteSync(recursive: true));
+    File(p.join(dir.path, 'backend.tf')).writeAsStringSync('''
+terraform {
+  backend "azurerm" {
+    container_name       = "state"
+    client_certificate   = "cert"
+  }
+}
+''');
+    File(p.join(dir.path, 'main.tf.json')).writeAsStringSync(
+      jsonEncode({
+        'terraform': {'required_version': '>= 1.11.0'},
+      }),
+    );
+    final azurerm = readConfiguredBackend(dir.path);
+    expect(azurerm.type, 'azurerm');
+    expect(azurerm.isLocal, isFalse);
+    expect(azurerm.attributes['container_name'], 'state');
+    expect(configuredLocalBackend(dir.path), isFalse);
+
+    File(p.join(dir.path, 'backend.tf')).writeAsStringSync('''
+resource "google_storage_bucket" "states" {
+  name = "states"
+}
+''');
+    File(p.join(dir.path, 'main.tf.json')).writeAsStringSync(
+      jsonEncode({
+        'terraform': {
+          'backend': {
+            'gcs': {'bucket': 'states', 'prefix': 'app'},
+          },
+        },
+      }),
+    );
+    final gcs = readConfiguredBackend(dir.path);
+    expect(gcs.type, 'gcs');
+    expect(gcs.attributes, {'bucket': 'states', 'prefix': 'app'});
+    expect(gcs.isLocal, isFalse);
+  });
+
   test('localStateFile treats a missing directory as no local state', () {
     final missing = p.join(
       Directory.systemTemp.path,

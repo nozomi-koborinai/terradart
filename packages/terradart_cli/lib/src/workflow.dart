@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:path/path.dart' as p;
 
+import 'backend_secrets.dart';
 import 'cli_exception.dart';
 import 'engine.dart';
 import 'manifest.dart';
@@ -394,9 +395,9 @@ final class Workflow {
     await _engineRun(['validate', ...extra]);
   }
 
-  /// The backend the Stack configures, from the `*.tf.json` files in [dir]
-  /// plus this environment's partial `-backend-config` (bucket, prefix, and
-  /// the rest). `local` when nothing configures one.
+  /// The backend the Stack configures, from the `.tf` and `*.tf.json` files
+  /// in [dir] plus this environment's partial `-backend-config` (bucket,
+  /// prefix, and the rest). `local` when nothing configures one.
   String get configuredBackend => _configuredBackend().label;
 
   /// The backend the last `init` in [dir] actually configured
@@ -622,43 +623,14 @@ final class Workflow {
 
   static const _initializedEnvFile = 'terradart-env.json';
 
-  /// Backend arguments whose values must not appear in the migrate question.
-  static const _secretBackendKeys = {
-    'access_key',
-    'access_token',
-    'client_secret',
-    'credentials',
-    'encryption_key',
-    'password',
-    'sas_token',
-    'secret_key',
-    'token',
-  };
-
   _Backend _configuredBackend() {
-    var spec = const _Backend('local');
-    if (Directory(dir).existsSync()) {
-      for (final f in Directory(dir).listSync().whereType<File>()) {
-        if (!f.path.endsWith('.tf.json')) continue;
-        try {
-          final found = _backendFromTfJson(jsonDecode(f.readAsStringSync()));
-          if (found != null) {
-            spec = found;
-            break;
-          }
-        } on FormatException {
-          continue;
-        } on FileSystemException {
-          continue;
-        }
-      }
-    }
-    final config = {...spec.config};
+    final found = readConfiguredBackend(dir);
+    final config = {...found.attributes};
     for (final v in target.backendConfig) {
       if (v.contains('=')) {
         final eq = v.indexOf('=');
         final key = v.substring(0, eq).trim();
-        if (key.isEmpty || _secretBackendKeys.contains(key)) continue;
+        if (key.isEmpty) continue;
         config[key] = _unquote(v.substring(eq + 1).trim());
       } else {
         final file = File(p.normalize(p.join(target.config.root, v)));
@@ -672,12 +644,12 @@ final class Workflow {
         }
       }
     }
-    return _Backend(spec.type, config);
+    return _Backend(found.type, config);
   }
 
   _Backend _initializedBackend() {
     final file = File(p.join(dir, '.terraform', 'terraform.tfstate'));
-    if (!file.existsSync()) return const _Backend('local');
+    if (!file.existsSync()) return _Backend('local');
     try {
       final json = jsonDecode(file.readAsStringSync());
       if (json case {'backend': final Map<Object?, Object?> backend}) {
@@ -685,15 +657,15 @@ final class Workflow {
         final config = backend['config'];
         return _Backend(
           type is String && type.isNotEmpty ? type : 'local',
-          config is Map ? _publicConfig(config) : const {},
+          config is Map ? _stringConfig(config) : const {},
         );
       }
     } on FormatException {
-      return const _Backend('local');
+      return _Backend('local');
     } on FileSystemException {
-      return const _Backend('local');
+      return _Backend('local');
     }
-    return const _Backend('local');
+    return _Backend('local');
   }
 
   void _recordInitializedEnvironment() {
@@ -805,10 +777,12 @@ String dartBinary() {
   return p.basenameWithoutExtension(vm) == 'dart' ? vm : 'dart';
 }
 
-/// A backend type plus the configuration that tells one of that type from
-/// another (`bucket`, `prefix`), with secret values left out.
 final class _Backend {
-  const _Backend(this.type, [this.config = const {}]);
+  _Backend(this.type, [Map<String, String> raw = const {}])
+    : config = Map.unmodifiable({
+        for (final MapEntry(:key, :value) in raw.entries)
+          if (key.isNotEmpty && !secretBackendArgument(key)) key: value,
+      });
 
   final String type;
   final Map<String, String> config;
@@ -820,28 +794,10 @@ final class _Backend {
   }
 }
 
-_Backend? _backendFromTfJson(Object? json) {
-  if (json is! Map) return null;
-  final terraform = json['terraform'];
-  if (terraform is! Map) return null;
-  final backend = terraform['backend'];
-  if (backend is Map && backend.isNotEmpty) {
-    final type = backend.keys.first;
-    if (type is! String) return null;
-    final body = backend[type];
-    return _Backend(type, body is Map ? _publicConfig(body) : const {});
-  }
-  if (terraform['cloud'] is Map) {
-    return _Backend('cloud', _publicConfig(terraform['cloud'] as Map));
-  }
-  return null;
-}
-
-Map<String, String> _publicConfig(Map<Object?, Object?> raw) {
+Map<String, String> _stringConfig(Map<Object?, Object?> raw) {
   final out = <String, String>{};
   for (final MapEntry(:key, :value) in raw.entries) {
-    if (key is! String || value == null) continue;
-    if (Workflow._secretBackendKeys.contains(key)) continue;
+    if (key is! String || key.isEmpty || value == null) continue;
     if (value is String || value is num || value is bool) out[key] = '$value';
   }
   return out;
@@ -853,7 +809,7 @@ Map<String, String> _parseBackendFile(String text) {
   final trimmed = text.trim();
   if (trimmed.startsWith('{')) {
     final json = jsonDecode(trimmed);
-    if (json is Map) return _publicConfig(json);
+    if (json is Map) return _stringConfig(json);
     return const {};
   }
   final out = <String, String>{};
@@ -863,7 +819,7 @@ Map<String, String> _parseBackendFile(String text) {
     final eq = line.indexOf('=');
     if (eq <= 0) continue;
     final key = line.substring(0, eq).trim();
-    if (key.isEmpty || Workflow._secretBackendKeys.contains(key)) continue;
+    if (key.isEmpty) continue;
     out[key] = _unquote(line.substring(eq + 1).trim());
   }
   return out;

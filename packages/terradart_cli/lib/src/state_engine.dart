@@ -150,47 +150,116 @@ String? recordedWorkspace(String dir) {
 /// `backend` other than `"local"`, or a `cloud { }` block, is not local, so
 /// the check falls through to a remote `state pull`. A file that does not
 /// parse does the same — guessing wrong would skip the guard.
-bool configuredLocalBackend(String dir) {
-  final d = Directory(dir);
-  if (!d.existsSync()) return true;
-  for (final f in d.listSync().whereType<File>()) {
-    final name = p.basename(f.path);
-    if (name.endsWith('.tf.json')) {
-      if (!_parsedBackendIsLocal(
-        () => TfModule.fromTfJson(f.readAsStringSync(), fileName: f.path),
-      )) {
-        return false;
+bool configuredLocalBackend(String dir) => readConfiguredBackend(dir).isLocal;
+
+ConfiguredBackend readConfiguredBackend(String dir) {
+  final directory = Directory(dir);
+  if (!directory.existsSync()) {
+    return const ConfiguredBackend(type: 'local');
+  }
+  var unreadable = false;
+  var hasCloud = false;
+  var sawBackend = false;
+  var hasRemote = false;
+  var type = 'local';
+  var attributes = const <String, String>{};
+  final files = directory.listSync().whereType<File>().toList()
+    // Basename order, so two backend files resolve the same way on every OS.
+    ..sort((a, b) => p.basename(a.path).compareTo(p.basename(b.path)));
+  for (final file in files) {
+    final name = p.basename(file.path);
+    final TfModule module;
+    try {
+      if (name.endsWith('.tf.json')) {
+        module = TfModule.fromTfJson(
+          file.readAsStringSync(),
+          fileName: file.path,
+        );
+      } else if (name.endsWith('.tf')) {
+        module = TfModule.fromHcl(file.readAsStringSync(), fileName: file.path);
+      } else {
+        continue;
       }
-    } else if (name.endsWith('.tf')) {
-      if (!_parsedBackendIsLocal(
-        () => TfModule.fromHcl(f.readAsStringSync(), fileName: f.path),
-      )) {
-        return false;
+    } on HclParseException {
+      unreadable = true;
+      continue;
+    } on FileSystemException {
+      unreadable = true;
+      continue;
+    }
+    for (final block in module.terraform) {
+      final backend = block.backend;
+      if (backend != null) {
+        final backendType = backend.labels.isEmpty
+            ? ''
+            : backend.labels.first.text;
+        if (backendType.isEmpty) {
+          unreadable = true;
+        } else {
+          sawBackend = true;
+          final attrs = _scalarAttributes(backend);
+          if (backendType == 'local') {
+            if (!hasRemote) {
+              type = 'local';
+              attributes = attrs;
+            }
+          } else {
+            hasRemote = true;
+            type = backendType;
+            attributes = attrs;
+          }
+        }
+      }
+      if (block.cloud != null) {
+        hasCloud = true;
+        if (!sawBackend && !hasRemote) {
+          type = 'cloud';
+          attributes = _scalarAttributes(block.cloud!);
+        }
       }
     }
   }
-  return true;
+  return ConfiguredBackend(
+    type: type,
+    attributes: attributes,
+    unreadable: unreadable,
+    hasCloud: hasCloud,
+  );
 }
 
-/// `true` when the parsed module has no remote state config. A parse error
-/// is not local.
-bool _parsedBackendIsLocal(TfModule Function() parse) {
-  final TfModule module;
-  try {
-    module = parse();
-  } on HclParseException {
-    return false;
-  } on FileSystemException {
-    return false;
+final class ConfiguredBackend {
+  const ConfiguredBackend({
+    required this.type,
+    this.attributes = const {},
+    this.unreadable = false,
+    this.hasCloud = false,
+  });
+
+  final String type;
+  final Map<String, String> attributes;
+  final bool unreadable;
+  final bool hasCloud;
+
+  bool get isLocal => !unreadable && !hasCloud && type == 'local';
+}
+
+Map<String, String> _scalarAttributes(Block block) {
+  final out = <String, String>{};
+  for (final attr in block.body.attributes) {
+    final shown = _shownScalar(attr.value);
+    if (shown == null) continue;
+    out[attr.name] = shown;
   }
-  for (final block in module.terraform) {
-    if (block.cloud != null) return false;
-    final backend = block.backend;
-    if (backend == null) continue;
-    final type = backend.labels.isEmpty ? null : backend.labels.first.text;
-    if (type != 'local') return false;
+  return out;
+}
+
+String? _shownScalar(Expr expr) {
+  if (expr is LiteralExpr) {
+    if (expr.isNull) return null;
+    if (expr.isString || expr.isNumber || expr.isBool) return '${expr.value}';
+    return null;
   }
-  return true;
+  return expr.constantString;
 }
 
 /// Whether `init` configured [dir] with a backend other than `local`, as
