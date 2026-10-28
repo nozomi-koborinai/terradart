@@ -378,8 +378,61 @@ providers:
       hint('b.yaml', '5.1.0');
       hint('a.yaml', '5.2.0');
       hint('c.yaml', '5.0.0');
+      hint(p.join('data', 'd.yaml'), '5.0.0');
+      hint(p.join('data', 'e.yaml'), '5.2.0');
       File(p.join(dir.path, 'hints', 'README.md')).writeAsStringSync('x');
-      expect(staleHints(dir.path), ['b.yaml: 5.1.0', 'c.yaml: 5.0.0']);
+      expect(staleHints(dir.path), [
+        'b.yaml: 5.1.0',
+        'c.yaml: 5.0.0',
+        'data/d.yaml: 5.0.0',
+      ]);
+    });
+  });
+
+  group('dataSourceDerivationGaps', () {
+    late Directory dir;
+    late String schemaDir;
+    late String overridesRoot;
+    setUp(() {
+      dir = Directory.systemTemp.createTempSync('ds_derivation_');
+      schemaDir = p.join(dir.path, 'source_x');
+      overridesRoot = p.join(dir.path, 'yaml');
+      for (final (name, body) in [
+        ('x_thing.yaml', 'outputDir: thing\n'),
+        (
+          'data_x_thing.yaml',
+          'kind: data_source\noutputDir: data\nderiveEnums: true\n',
+        ),
+        (
+          'data_x_other.yaml',
+          'kind: data_source\noutputDir: data\nderiveEnums: true\n'
+              'deriveExactlyOne: true\n',
+        ),
+        ('data_x_bare.yaml', 'kind: data_source\noutputDir: data\n'),
+      ]) {
+        File(p.join(overridesRoot, name))
+          ..createSync(recursive: true)
+          ..writeAsStringSync(body);
+      }
+      File(p.join(schemaDir, 'hints', 'x_thing.yaml'))
+        ..createSync(recursive: true)
+        ..writeAsStringSync('provider_version: 1.0.0\n');
+    });
+    tearDown(() => dir.deleteSync(recursive: true));
+
+    test('is empty while the lane has no data-source hints', () {
+      expect(dataSourceDerivationGaps(schemaDir, overridesRoot), isEmpty);
+    });
+
+    test('names each data override flag a lane with data hints lacks', () {
+      File(p.join(schemaDir, 'hints', 'data', 'x_other.yaml'))
+        ..createSync(recursive: true)
+        ..writeAsStringSync('provider_version: 1.0.0\n');
+      expect(dataSourceDerivationGaps(schemaDir, overridesRoot), [
+        'data_x_bare.yaml: deriveEnums',
+        'data_x_bare.yaml: deriveExactlyOne',
+        'data_x_thing.yaml: deriveExactlyOne',
+      ]);
     });
   });
 
@@ -440,6 +493,16 @@ providers:
           expect(lines, contains('$flag: true'), reason: '${f.path}: $flag');
         }
       }
+    }
+  });
+
+  test('every data override of a lane with data hints derives them', () {
+    for (final lane in parseWrapLanes(File(providersPath).readAsStringSync())) {
+      expect(
+        dataSourceDerivationGaps(lane.schemaDir, lane.overridesRoot),
+        isEmpty,
+        reason: 'lane ${lane.name}',
+      );
     }
   });
 

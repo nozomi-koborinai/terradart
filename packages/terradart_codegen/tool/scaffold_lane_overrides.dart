@@ -18,6 +18,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:path/path.dart' as p;
+import 'package:terradart_codegen/src/codegen/provider_enums.dart';
 import 'package:terradart_codegen/src/codegen/providers/provider_registry.dart';
 import 'package:terradart_codegen/src/codegen/wrap_init/output_dir_resolver.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_overrides/wrapper_override.dart';
@@ -58,12 +59,9 @@ void main(List<String> args) {
       ) ??
       _fail('no tool/providers.yaml lane with source $providerId');
 
+  final schemaDir = p.join(repoRoot, lane['schemaDir'] as String);
   final schema =
-      jsonDecode(
-            File(
-              p.join(repoRoot, lane['schemaDir'] as String, 'schema.json'),
-            ).readAsStringSync(),
-          )
+      jsonDecode(File(p.join(schemaDir, 'schema.json')).readAsStringSync())
           as Map<String, dynamic>;
   final provider =
       (schema['provider_schemas'] as Map).values.single as Map<String, dynamic>;
@@ -111,13 +109,18 @@ void main(List<String> args) {
           '${rules.exactlyOneDefaults ? 'deriveExactlyOne: true\n' : ''}',
     );
   }
+  // tool/wrap_lanes_test.dart requires both flags on every data override of
+  // a lane with data-source hints.
+  final dataHints = hasDataSourceHints(schemaDir)
+      ? 'deriveEnums: true\nderiveExactlyOne: true\n'
+      : '';
   for (final type in dataSources) {
     write(
       'data_$type.yaml',
       'kind: data_source\n'
           'outputDir: data\n'
           'schemaStubBodyMode: bare\n'
-          '$derive',
+          '$derive$dataHints',
     );
   }
 

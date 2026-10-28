@@ -104,6 +104,50 @@ dataSourceBarrels:
 ''');
   });
 
+  test('deletes only the hint file of the kind the schema dropped', () {
+    put(
+      'schema.json',
+      schema(['cloudflare_registrar_domain'], ['cloudflare_zone']),
+    );
+    put('overrides/cloudflare_zone.yaml', 'outputDir: zone\n');
+    put(
+      'overrides/data_cloudflare_zone.yaml',
+      'kind: data_source\noutputDir: data\n',
+    );
+    put('overrides/cloudflare_registrar_domain.yaml', 'outputDir: registrar\n');
+    put(
+      'overrides/data_cloudflare_registrar_domain.yaml',
+      'kind: data_source\noutputDir: data\n',
+    );
+    put('barrels.yaml', barrels);
+    for (final hint in [
+      'hints/cloudflare_zone.yaml',
+      'hints/data/cloudflare_zone.yaml',
+      'hints/cloudflare_registrar_domain.yaml',
+      'hints/data/cloudflare_registrar_domain.yaml',
+    ]) {
+      put(hint, 'provider_version: "1"\n');
+    }
+
+    final retired = retireRemovedOverrides(
+      schemaPath: p.join(root.path, 'schema.json'),
+      overridesRoot: p.join(root.path, 'overrides'),
+      barrelsManifest: p.join(root.path, 'barrels.yaml'),
+    );
+
+    expect(retired.resources, ['cloudflare_zone']);
+    expect(retired.dataSources, ['cloudflare_registrar_domain']);
+    expect(retired.hints, [
+      'cloudflare_zone.yaml',
+      'data/cloudflare_registrar_domain.yaml',
+    ]);
+    bool exists(String path) => File(p.join(root.path, path)).existsSync();
+    expect(exists('hints/cloudflare_zone.yaml'), isFalse);
+    expect(exists('hints/data/cloudflare_zone.yaml'), isTrue);
+    expect(exists('hints/cloudflare_registrar_domain.yaml'), isTrue);
+    expect(exists('hints/data/cloudflare_registrar_domain.yaml'), isFalse);
+  });
+
   test('keeps a barrel an authored data source still names', () {
     put(
       'schema.json',
