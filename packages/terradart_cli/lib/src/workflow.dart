@@ -2,9 +2,8 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:path/path.dart' as p;
-import 'package:terradart_migrate/terradart_migrate.dart'
-    show secretArgumentNames;
 
+import 'backend_secrets.dart';
 import 'cli_exception.dart';
 import 'engine.dart';
 import 'manifest.dart';
@@ -782,7 +781,7 @@ final class _Backend {
   _Backend(this.type, [Map<String, String> raw = const {}])
     : config = Map.unmodifiable({
         for (final MapEntry(:key, :value) in raw.entries)
-          if (key.isNotEmpty && !secretArgumentNames.contains(key)) key: value,
+          if (key.isNotEmpty && !secretBackendArgument(key)) key: value,
       });
 
   final String type;
