@@ -689,19 +689,14 @@ class XVmNic {
       expect(handEmitter.typedReferences, contains('google_x_vm.nic.network'));
     });
 
-    test('imports the target of a reference only the prelude holds', () {
+    ({String src, List<String> typed}) emitNicPrelude(String prelude) {
       final handEmitter = WrapperEmitter(
-        overrides: const {
+        overrides: {
           'google_x_vm': WrapperOverride(
             outputDir: 'compute',
             deriveNestedTypes: true,
-            nestedTypeExcludes: ['nic'],
-            prelude: '''
-class XVmNic {
-  const XVmNic({required this.network});
-  final RefTo<GoogleXNetwork> network;
-}
-''',
+            nestedTypeExcludes: const ['nic'],
+            prelude: prelude,
           ),
         },
         rawResourceSchemas: {
@@ -713,15 +708,37 @@ class XVmNic {
           },
         },
       );
-      final handSrc = handEmitter.emit(
+      final src = handEmitter.emit(
         ir.resources['google_x_vm']!,
         providerSource: 'hashicorp/google',
       );
+      return (src: src, typed: handEmitter.typedReferences);
+    }
+
+    test('imports the target of a reference only the prelude holds', () {
+      final hand = emitNicPrelude('''
+class XVmNic {
+  const XVmNic({required this.network});
+  final RefTo<GoogleXNetwork> network;
+}
+''');
       expect(
-        handSrc,
+        hand.src,
         contains("import '../x/google_x_network.dart' show GoogleXNetwork;"),
       );
-      expect(handEmitter.typedReferences, ['google_x_vm.nic.network']);
+      expect(hand.typed, ['google_x_vm.nic.network']);
+    });
+
+    test('a prelude that only names the target imports nothing', () {
+      final hand = emitNicPrelude('''
+/// Takes the network's name, not a `RefTo<GoogleXNetwork>`.
+class XVmNic {
+  const XVmNic({required this.network});
+  final TfArg<String> network;
+}
+''');
+      expect(hand.src, isNot(contains('google_x_network.dart')));
+      expect(hand.typed, isEmpty);
     });
   });
 
@@ -836,16 +853,25 @@ class XVmNic {
         rawSchemas: (resources: const {}, dataSources: const {}),
         references: (resources: const {}, dataSources: nicReferences),
       );
-      final nicSrc =
-          DataSourceWrapperEmitter(
-            overrides: derived.overrides.dataSources,
-            references: nicReferences,
-          ).emit(
-            nicIr.dataSources['google_x_nic']!,
-            providerSource: 'hashicorp/google',
-          );
+      final nicEmitter = DataSourceWrapperEmitter(
+        overrides: derived.overrides.dataSources,
+        references: nicReferences,
+      );
+      final nicSrc = nicEmitter.emit(
+        nicIr.dataSources['google_x_nic']!,
+        providerSource: 'hashicorp/google',
+      );
 
-      expect(derived.typedReferences, ['data.google_x_nic.network']);
+      expect(
+        derived
+            .overrides
+            .dataSources['google_x_nic']!
+            .sealedArguments
+            .single
+            .references,
+        {'network': nicReferences['google_x_nic']!['network']},
+      );
+      expect(nicEmitter.typedReferences, ['data.google_x_nic.network']);
       expect(
         nicSrc,
         contains("import '../x/google_x_network.dart' show GoogleXNetwork;"),
@@ -960,7 +986,9 @@ class XVmNic {
     test('a variant of a matched member holds the reference', () {
       expect(derived.skipped, isEmpty);
       expect(derived.skippedAtMostOne, isEmpty);
-      expect(derived.typedReferences, ['google_x_nic.network']);
+      expect(override.sealedArguments.single.references, {
+        'network': references['google_x_nic']!['network'],
+      });
       expect(emitter.typedReferences, [
         'google_x_nic.network',
         'google_x_nic.peer.network',

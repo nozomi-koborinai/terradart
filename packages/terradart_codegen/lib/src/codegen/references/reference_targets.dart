@@ -424,21 +424,6 @@ List<String> referenceImports(Iterable<ResolvedReference> refs) {
   ];
 }
 
-/// The references of [refs] that [prelude] declares. A top-level sealed
-/// group's variants live in the emitted prelude (`emittedPrelude`), so its
-/// members are typed there rather than in the constructor.
-List<ResolvedReference> preludeReferences(
-  Map<String, ResolvedReference> refs,
-  String? prelude,
-) => [
-  for (final ref in refs.values)
-    if (prelude?.contains(
-          ref.principal ? ref.className : 'RefTo<${ref.className}>',
-        ) ??
-        false)
-      ref,
-];
-
 /// The ledger applied to one lane: every curated resource's and data
 /// source's reference inputs, keyed by Terraform type and then dotted input
 /// path.

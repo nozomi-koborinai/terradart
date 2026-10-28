@@ -1,6 +1,7 @@
 import 'constructor_slots.dart';
 import 'exactly_one_placement.dart';
 import 'naming.dart';
+import 'references/resolved_reference.dart';
 import 'wrapper_overrides/wrapper_override.dart';
 
 /// The member paths a `sealedNames` key lists (`"b, a"` → `{a, b}`).
@@ -891,3 +892,31 @@ String? emittedPrelude(WrapperOverride? override, String terraformType) {
   }
   return buf.toString();
 }
+
+/// The references of [refs] (dotted input path → reference) that the
+/// prelude of [override] holds: each sealed argument's
+/// [SealedArgument.references], then each input a hand-written prelude
+/// field takes. A field takes an input when it is declared
+/// `final <type> <name>;` (or `<type>?`) with the reference's Dart type and
+/// named after the input's last path segment.
+Map<String, ResolvedReference> preludeReferences(
+  WrapperOverride? override,
+  Map<String, ResolvedReference> refs,
+) {
+  if (override == null) return const {};
+  final fields = {
+    for (final m in _fieldDeclaration.allMatches(override.prelude ?? ''))
+      (type: m[1]!, name: m[2]!),
+  };
+  return {
+    for (final a in override.sealedArguments) ...a.references,
+    for (final MapEntry(key: path, value: ref) in refs.entries)
+      if (fields.contains((
+        type: ref.dartType,
+        name: snakeToDartIdent(path.split('.').last),
+      )))
+        path: ref,
+  };
+}
+
+final _fieldDeclaration = RegExp(r'final ([A-Za-z_][\w<>, ]*?)\?? (\w+);');
