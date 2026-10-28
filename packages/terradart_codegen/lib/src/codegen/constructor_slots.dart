@@ -225,6 +225,24 @@ final class ConstructorSlots {
     );
   }
 
+  static ({String factoryParameter, String variantParameter}) jointParameter(
+    VariantParameter parameter,
+  ) {
+    final fieldType = parameter.fieldType;
+    final ident = parameter.ident;
+    final defaultValue = parameter.defaultValue;
+    if (defaultValue == null) {
+      return (
+        factoryParameter: 'required $fieldType $ident',
+        variantParameter: 'required this.$ident',
+      );
+    }
+    return (
+      factoryParameter: '$fieldType $ident',
+      variantParameter: 'this.$ident = $defaultValue',
+    );
+  }
+
   static String nestedParamType(NestedBlockSpec spec) {
     final bare = spec.repeated
         ? 'List<${spec.className}>'

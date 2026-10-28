@@ -10,6 +10,7 @@ import '../ir/resource_def.dart';
 import '../ir/type_def.dart';
 import '../parser/mm_yaml_parser.dart';
 import 'enum_value_parser.dart';
+import 'exactly_one_placement.dart';
 import 'exactly_one_types.dart';
 import 'naming.dart';
 import 'nested_types/nested_type_collector.dart';
@@ -448,10 +449,11 @@ final class ProviderEnums {
       enumValues: enumValues,
       exactlyOneGroups: _byBlock(table.exactlyOne[terraformType])..remove(''),
       atMostOneGroups: _byBlock(table.atMostOne[terraformType])..remove(''),
-      reserved: rootSealedTypeNames(override.kind.typeStem(terraformType), [
-        ...root.exactlyOne,
-        ...root.atMostOne,
-      ], sealedNames: override.sealedNames),
+      reserved: rootSealedTypeNames(
+        override.kind.typeStem(terraformType),
+        blockGroups(root.exactlyOne, root.atMostOne),
+        sealedNames: override.sealedNames,
+      ),
     );
   }
 

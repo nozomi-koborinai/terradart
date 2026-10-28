@@ -3,6 +3,7 @@ import '../ir/resource_def.dart';
 import 'constructor_params.dart';
 import 'constructor_slots.dart';
 import 'dart_type_writer.dart';
+import 'exactly_one_placement.dart';
 import 'exactly_one_types.dart';
 import 'naming.dart';
 import 'nested_types/nested_type_collector.dart';
@@ -24,7 +25,9 @@ import 'wrapper_overrides/yaml_loader.dart';
 /// (`nesting_mode: map`) block, which the migration manifest has no shape
 /// for; the others are returned in `skipped` (exactly-one) or
 /// `skippedAtMostOne` with a reason and keep their plain slots. Exactly-one
-/// groups claim their members first.
+/// groups claim their members first. Exactly-one groups that share one
+/// member set and nothing else seal as one argument ([placeGroups]); any
+/// other overlap leaves the later group unsealed.
 ///
 /// Every sealed group, top-level or nested, is named by
 /// [resolveSealedName] and listed in `names`; `nameErrors` lists each
@@ -104,10 +107,7 @@ deriveExactlyOneSlots(
               type,
               o,
               def,
-              [
-                for (final g in root.exactlyOne) (members: g, optional: false),
-                for (final g in root.atMostOne) (members: g, optional: true),
-              ],
+              blockGroups(root.exactlyOne, root.atMostOne),
               specs,
               refs,
               skipped: skipped,
@@ -215,7 +215,7 @@ WrapperOverride _derive(
   String type,
   WrapperOverride o,
   ResourceDef def,
-  List<({List<String> members, bool optional})> groups,
+  List<BlockGroup> groups,
   List<NestedBlockSpec> nestedSpecs,
   Map<String, ResolvedReference> refs, {
   required List<String> skipped,
@@ -315,115 +315,162 @@ WrapperOverride _derive(
   final sealedArguments = <SealedArgument>[];
   var paramOrder = order;
   var argMapOrder = o.argMapOrder;
-  for (final (:members, :optional) in groups) {
-    final group = members;
-    final label = '$where [${group.join(', ')}]';
-    String? reason;
-    final variants = <ExactlyOneVariant>[];
-    for (final m in group) {
-      if (reason != null) break;
-      if (!order.contains(m)) {
-        reason = '$m is not a constructor input';
-      } else if (slots[m] case final custom?) {
-        final v = customSlotVariant(m, custom, o.deprecatedParams?[m]);
-        if (v == null) {
-          reason = '$m is a custom slot';
-        } else if (taken.contains(m)) {
-          reason = '$m is in an earlier group';
-        } else {
-          variants.add(v);
-        }
-      } else if (required.contains(m)) {
-        reason = '$m is in requiredParams';
-      } else if (taken.contains(m)) {
-        reason = '$m is in an earlier group';
-      } else if (specs[m]?.keyed ?? false) {
-        reason = '$m is a keyed block';
-      } else {
-        final v = variant(m);
-        if (v == null) {
-          reason = '$m is required or has no typed shape';
-        } else {
-          variants.add(v);
-        }
-      }
+  String? check(String m, List<ExactlyOneVariant> into) {
+    if (!order.contains(m)) return '$m is not a constructor input';
+    if (slots[m] case final custom?) {
+      final v = customSlotVariant(m, custom, o.deprecatedParams?[m]);
+      if (v == null) return '$m is a custom slot';
+      if (taken.contains(m)) return '$m is in an earlier group';
+      into.add(v);
+      return null;
     }
-    if (reason != null) {
-      (optional ? skippedAtMostOne : skipped).add('$label: $reason');
-      continue;
-    }
-    Set<String> classesFor() => {
-      ...classNames,
-      for (final n in order)
-        if (!group.contains(n) || _hasClass(n, blocks, o))
-          prefix + snakeToPascal(n),
-    };
-    String? clashes(String concept) {
-      if (!group.contains(concept) &&
+    if (required.contains(m)) return '$m is in requiredParams';
+    if (taken.contains(m)) return '$m is in an earlier group';
+    if (specs[m]?.keyed ?? false) return '$m is a keyed block';
+    final v = variant(m);
+    if (v == null) return '$m is required or has no typed shape';
+    into.add(v);
+    return null;
+  }
+
+  Set<String> classesFor(List<String> group) => {
+    ...classNames,
+    for (final n in order)
+      if (!group.contains(n) || _hasClass(n, blocks, o))
+        prefix + snakeToPascal(n),
+  };
+  String? slotTaken(String concept, List<String> group) =>
+      !group.contains(concept) &&
               (order.contains(concept) || slots.containsKey(concept)) ||
           chosenSlots.contains(concept) ||
-          _metaParams.contains(concept)) {
-        return 'the slot $concept is taken';
-      }
-      return sealedNameClash(prefix, concept, group, classesFor());
-    }
-
-    final key = sealedGroupKeyOf(const [], group);
-    final derived = deriveSealedConcept(group);
-    final resolved = resolveSealedName(
-      members: group,
-      human: humanNames[key],
-      derived: derived,
-      clashes: clashes,
-    );
-    names.add((
-      key: key,
-      concept: resolved.concept,
-      source: resolved.source,
-      derived: derived,
-      error: resolved.error,
-    ));
-    final slot = resolved.concept;
-    chosenSlots.add(slot);
-    taken.addAll(group);
-    typedReferences.addAll([
-      for (final v in variants)
-        if (refs[v.tfName]?.dartType == v.fieldType) '$where.${v.tfName}',
-    ]);
-    group.forEach(slots.remove);
-    // Only a group whose name reports an error (which fails `wrap`) reaches
-    // the plain concatenations: `clashes` vetted every name it resolves to.
-    final sealed = sealedTypeName(prefix, slot) ?? prefix + snakeToPascal(slot);
-    final variantClasses =
-        exactlyOneVariantNames(
-          sealed,
-          group,
-          classesFor(),
-          concept: sealedConcept(prefix, sealed),
-        ) ??
-        [
-          for (final m in group)
-            exactlyOneVariantName(
+          _metaParams.contains(concept)
+      ? 'the slot $concept is taken'
+      : null;
+  for (final placement in placeGroups(groups)) {
+    switch (placement) {
+      case SinglePlacement(group: (members: final group, :final optional)):
+        final label = '$where [${group.join(', ')}]';
+        String? reason;
+        final variants = <ExactlyOneVariant>[];
+        for (final m in group) {
+          reason = check(m, variants);
+          if (reason != null) break;
+        }
+        if (reason != null) {
+          (optional ? skippedAtMostOne : skipped).add('$label: $reason');
+          continue;
+        }
+        final key = sealedGroupKeyOf(const [], group);
+        final derived = deriveSealedConcept(group);
+        final resolved = resolveSealedName(
+          members: group,
+          human: humanNames[key],
+          derived: derived,
+          clashes: (c) =>
+              slotTaken(c, group) ??
+              sealedNameClash(prefix, c, group, classesFor(group)),
+        );
+        names.add((
+          key: key,
+          concept: resolved.concept,
+          source: resolved.source,
+          derived: derived,
+          error: resolved.error,
+        ));
+        final slot = resolved.concept;
+        chosenSlots.add(slot);
+        taken.addAll(group);
+        typedReferences.addAll([
+          for (final v in variants)
+            if (refs[v.tfName]?.dartType == v.fieldType) '$where.${v.tfName}',
+        ]);
+        group.forEach(slots.remove);
+        // Only a group whose name reports an error (which fails `wrap`)
+        // reaches the plain concatenations: `clashes` vetted every name it
+        // resolves to.
+        final sealed =
+            sealedTypeName(prefix, slot) ?? prefix + snakeToPascal(slot);
+        final variantClasses =
+            exactlyOneVariantNames(
               sealed,
-              m,
+              group,
+              classesFor(group),
               concept: sealedConcept(prefix, sealed),
-            ),
-        ];
-    classNames
-      ..add(sealed)
-      ..addAll(variantClasses);
-    sealedArguments.add(
-      SealedArgument(
-        concept: slot,
-        sealedClass: sealed,
-        optional: optional,
-        variants: variants,
-        variantClasses: variantClasses,
-      ),
-    );
-    paramOrder = _replaceMembers(paramOrder, group, slot);
-    if (argMapOrder != null) {
-      argMapOrder = _replaceMembers(argMapOrder, group, slot);
+            ) ??
+            [
+              for (final m in group)
+                exactlyOneVariantName(
+                  sealed,
+                  m,
+                  concept: sealedConcept(prefix, sealed),
+                ),
+            ];
+        classNames
+          ..add(sealed)
+          ..addAll(variantClasses);
+        sealedArguments.add(
+          SealedArgument(
+            concept: slot,
+            sealedClass: sealed,
+            optional: optional,
+            variants: [
+              for (final (i, v) in variants.indexed)
+                SoloVariant(v, className: variantClasses[i]),
+            ],
+          ),
+        );
+        paramOrder = _replaceMembers(paramOrder, group, slot);
+        if (argMapOrder != null) {
+          argMapOrder = _replaceMembers(argMapOrder, group, slot);
+        }
+      case final JointPlacement joint:
+        final members = joint.members;
+        String? reason;
+        final variants = <ExactlyOneVariant>[];
+        for (final m in members) {
+          reason = check(m, variants);
+          if (reason != null) break;
+        }
+        if (reason != null) {
+          for (final g in joint.groups) {
+            skipped.add('$where [${g.join(', ')}]: $reason');
+          }
+          continue;
+        }
+        final argument = sealJoint(
+          joint,
+          blockPath: const [],
+          owner: prefix,
+          human: humanNames,
+          variants: {for (final v in variants) v.tfName: v},
+          taken: classesFor(members),
+          slotClash: (c) => slotTaken(c, members),
+          namedType: (_) => null,
+        );
+        names.addAll(argument.names);
+        chosenSlots.add(argument.concept);
+        taken.addAll(members);
+        typedReferences.addAll([
+          for (final v in argument.variants)
+            for (final l in v.leaves)
+              if (refs[l.tfName]?.dartType == l.fieldType) '$where.${l.tfName}',
+        ]);
+        members.forEach(slots.remove);
+        classNames
+          ..add(argument.sealedClass)
+          ..addAll([for (final v in argument.variants) ...v.classes]);
+        sealedArguments.add(
+          SealedArgument(
+            concept: argument.concept,
+            sealedClass: argument.sealedClass,
+            optional: false,
+            variants: argument.variants,
+          ),
+        );
+        paramOrder = _replaceMembers(paramOrder, members, argument.concept);
+        if (argMapOrder != null) {
+          argMapOrder = _replaceMembers(argMapOrder, members, argument.concept);
+        }
     }
   }
   if (taken.isEmpty) return o;

@@ -147,12 +147,14 @@ void main() {
                 sealedClass: 'ThingSourceConfig',
                 optional: false,
                 variants: [
-                  variant('mysql_source_config'),
-                  variant('oracle_source_config'),
-                ],
-                variantClasses: const [
-                  'ThingMysqlSourceConfig',
-                  'ThingOracleSourceConfig',
+                  SoloVariant(
+                    variant('mysql_source_config'),
+                    className: 'ThingMysqlSourceConfig',
+                  ),
+                  SoloVariant(
+                    variant('oracle_source_config'),
+                    className: 'ThingOracleSourceConfig',
+                  ),
                 ],
               ),
             ],

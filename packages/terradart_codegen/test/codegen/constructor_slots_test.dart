@@ -124,8 +124,8 @@ SealedArgument _sealed(
   sealedClass: sealedClass,
   optional: optional,
   variants: [
-    for (final m in const ['note', 'token'])
-      (
+    for (final (m, suffix) in const [('note', 'Note'), ('token', 'Token')])
+      SoloVariant((
         tfName: m,
         ident: m,
         fieldType: 'TfArg<String>',
@@ -133,9 +133,8 @@ SealedArgument _sealed(
         argMapExpr: m,
         deprecation: null,
         defaultValue: null,
-      ),
+      ), className: '$sealedClass$suffix'),
   ],
-  variantClasses: ['${sealedClass}Note', '${sealedClass}Token'],
 );
 
 void main() {
