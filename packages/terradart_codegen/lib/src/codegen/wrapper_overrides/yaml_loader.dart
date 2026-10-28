@@ -172,6 +172,12 @@ class YamlOverrideLoader {
     'fileLeadingComment',
   };
 
+  static const Set<String> _resourceOnlyAxes = {
+    'prelude',
+    'customSlots',
+    'deprecatedParams',
+  };
+
   static const Set<String> _allowedCustomSlotKeys = {
     'paramDeclaration',
     'argMapEntry',
@@ -403,21 +409,11 @@ class YamlOverrideLoader {
       );
     }
 
-    // E201: data sources reject resource-only axes. Listed axes are the ones
-    // the data source emitter has no slot for; surfacing them at load time
-    // beats silently dropping verbatim Dart at emit time.
-    //
-    // Plan 5.X (v0.5.0-dev): `schemaStubComment` is no longer a recognized
-    // top-level key (its host stub class is retired), so it's already
-    // rejected by the top-level allowed-keys check above — keeping it out
-    // of this resource-only list avoids a duplicate / unreachable branch.
+    // E201: data sources reject the hand-written Dart axes. A data source's
+    // `prelude` and `customSlots` are derived only (`deriveExactlyOneSlots`
+    // writes them in memory), so the derivation stays their one writer.
     if (kind == WrapperOverrideKind.dataSource) {
-      const resourceOnlyAxes = <String>[
-        'prelude',
-        'customSlots',
-        'deprecatedParams',
-      ];
-      for (final axis in resourceOnlyAxes) {
+      for (final axis in _resourceOnlyAxes) {
         final axisNode = yaml.nodes[axis];
         if (axisNode != null) {
           final span = axisNode.span;
@@ -429,10 +425,8 @@ class YamlOverrideLoader {
               line: span.start.line + 1,
               column: span.start.column + 1,
               hint:
-                  'Allowed axes for data sources: kind, outputDir, '
-                  'schemaStubBodyMode, fileLeadingComment, '
-                  'paramOrder, argMapOrder, requiredParams, '
-                  'dartTypeOverrides, extraImports, extraGetters.',
+                  'Allowed axes for data sources: '
+                  '${_allowedTopLevelKeys.difference(_resourceOnlyAxes).join(', ')}.',
             ),
           );
         }

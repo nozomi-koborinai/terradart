@@ -234,7 +234,13 @@ WrapperOverride _derive(
 }) {
   final prefix = o.kind.typeStem(type);
   final where = o.kind.label(type);
-  final order = orderedConstructorParams(def, o.paramOrder);
+  final order = switch (o.kind) {
+    WrapperOverrideKind.resource => orderedConstructorParams(def, o.paramOrder),
+    WrapperOverrideKind.dataSource => orderedDataSourceConstructorParams(
+      def,
+      o.paramOrder,
+    ),
+  };
   final slots = {...?o.customSlots};
   final required = {...?o.requiredParams};
   final attrs = {for (final a in def.root.attributes) a.name: a};

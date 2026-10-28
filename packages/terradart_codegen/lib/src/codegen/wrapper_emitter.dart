@@ -260,21 +260,11 @@ class WrapperEmitter {
       buf.writeln(imp);
     }
     buf.writeln("import 'package:terradart_core/terradart_core.dart';");
-    // A top-level sealed group's variants live in the prelude
-    // (`deriveExactlyOneSlots`), so its members are in neither map.
-    final preludeRefs = [
-      for (final ref in refs.values)
-        if (override?.prelude?.contains(
-              ref.principal ? ref.className : 'RefTo<${ref.className}>',
-            ) ??
-            false)
-          ref,
-    ];
     final refImports = referenceImports([
       for (final ref in [
         ...topLevelRefs.values,
         ...nestedRefs.values,
-        ...preludeRefs,
+        ...preludeReferences(refs, override?.prelude),
         if (principals.contains(def.terraformType)) ?principal,
       ])
         if (ref.target != def.terraformType) ref,
@@ -610,7 +600,7 @@ class WrapperEmitter {
       final isRequired =
           attr.constraints.required || requiredOverrides.contains(attr.name);
       out[attr.name] = isEnumListType(dartTypeOverrides[attr.name] ?? '')
-          ? _elementwiseArgMapEntry(attr.name, isRequired)
+          ? elementwiseArgMapEntry(attr.name, isRequired: isRequired)
           : _argMapEntry(attr.name, isRequired);
     }
     for (final nested in def.root.nestedBlocks) {
@@ -673,17 +663,6 @@ class WrapperEmitter {
       return "'$snakeName': $camel,";
     }
     return "'$snakeName': ?$camel,";
-  }
-
-  /// [_argMapEntry] for a bare `List<TfArg<...>>` parameter: each element
-  /// encodes itself, and the list goes in as one literal.
-  String _elementwiseArgMapEntry(String snakeName, bool isRequired) {
-    final camel = snakeToDartIdent(snakeName);
-    final value = 'TfArg.literal([for (final e in $camel) e.toTfJson()])';
-    if (isRequired) {
-      return "'$snakeName': $value,";
-    }
-    return "if ($camel != null) '$snakeName': $value,";
   }
 
   /// Builds the constructor-param and argMap-entry snippets for one
