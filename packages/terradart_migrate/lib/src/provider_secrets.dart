@@ -22,3 +22,15 @@ const droppedProviderArguments = <String, Set<String>>{
   'cloudflare': {'api_token', 'api_key', 'api_user_service_key'},
   'appwrite': {'api_key', 'organization_api_key'},
 };
+
+/// Credential argument names, on any provider or backend.
+///
+/// Every name in [droppedProviderArguments], plus backend arguments no
+/// provider entry names: `encryption_key` on `gcs` and `password` on `http`.
+/// A name is secret wherever it appears. Code that shows a backend omits
+/// these names instead of keeping a second list.
+final Set<String> secretArgumentNames = Set<String>.unmodifiable({
+  for (final names in droppedProviderArguments.values) ...names,
+  'encryption_key',
+  'password',
+});

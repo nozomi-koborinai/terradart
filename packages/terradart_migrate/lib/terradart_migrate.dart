@@ -25,6 +25,8 @@ export 'src/merge_envs.dart';
 export 'src/migrate.dart';
 export 'src/migrate_manifest.dart';
 export 'src/project.dart';
+export 'src/provider_secrets.dart'
+    show droppedProviderArguments, secretArgumentNames;
 export 'src/report.dart';
 export 'src/sidecar.dart';
 export 'src/topology.dart';

@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:terradart_cli/src/state_engine.dart';
+import 'package:terradart_migrate/terradart_migrate.dart'
+    show droppedProviderArguments;
 import 'package:test/test.dart';
 
 import 'support.dart';
@@ -354,6 +356,7 @@ void main() {
       'access_key',
       'sas_token',
     ];
+    expect(secrets.toSet(), droppedProviderArguments['azurerm']);
     String value(String source, String key) => '$source-$key-secret';
     final project = TestProject.create();
     final block = StringBuffer('terraform {\n  backend "azurerm" {\n')
@@ -382,8 +385,6 @@ void main() {
           },
         }),
       );
-    // A file and a key=value pair are different --backend-config parsers.
-    // The same key in both would let the pair hide a file leak.
     const fileKeys = [
       'oidc_token',
       'client_certificate',
@@ -402,6 +403,7 @@ void main() {
       'client_secret_file_path',
       'ado_pipeline_service_connection_id',
     ];
+    expect(fileKeys.toSet().intersection(flagKeys.toSet()), isEmpty);
     final backendFile = StringBuffer();
     for (final key in fileKeys) {
       backendFile.writeln('$key = "${value('file', key)}"');
