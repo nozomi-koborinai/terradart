@@ -688,6 +688,41 @@ class XVmNic {
       )..emit(ir.resources['google_x_vm']!, providerSource: 'hashicorp/google');
       expect(handEmitter.typedReferences, contains('google_x_vm.nic.network'));
     });
+
+    test('imports the target of a reference only the prelude holds', () {
+      final handEmitter = WrapperEmitter(
+        overrides: const {
+          'google_x_vm': WrapperOverride(
+            outputDir: 'compute',
+            deriveNestedTypes: true,
+            nestedTypeExcludes: ['nic'],
+            prelude: '''
+class XVmNic {
+  const XVmNic({required this.network});
+  final RefTo<GoogleXNetwork> network;
+}
+''',
+          ),
+        },
+        rawResourceSchemas: {
+          'google_x_vm': _blocks('resource_schemas')['google_x_vm']!,
+        },
+        references: {
+          'google_x_vm': {
+            'nic.network': references['google_x_vm']!['nic.network']!,
+          },
+        },
+      );
+      final handSrc = handEmitter.emit(
+        ir.resources['google_x_vm']!,
+        providerSource: 'hashicorp/google',
+      );
+      expect(
+        handSrc,
+        contains("import '../x/google_x_network.dart' show GoogleXNetwork;"),
+      );
+      expect(handEmitter.typedReferences, ['google_x_vm.nic.network']);
+    });
   });
 
   group('data-source emission', () {
@@ -751,6 +786,71 @@ class XVmNic {
       expect(src, contains("'network': ?network?.encodeAs('self_link')"));
       expect(src, contains('required TfArg<String> name'));
       expect(emitter.typedReferences, ['data.google_x_vm.network']);
+    });
+
+    test('a sealed variant that holds a reference imports its target', () {
+      final nicIr = const SchemaJsonParser().parseString(
+        jsonEncode({
+          'format_version': '1.0',
+          'provider_schemas': {
+            'registry.terraform.io/hashicorp/google': {
+              'resource_schemas': const <String, Object?>{},
+              'data_source_schemas': {
+                'google_x_nic': {
+                  'block': {
+                    'attributes': {
+                      'network': {'type': 'string', 'optional': true},
+                      'network_name': {'type': 'string', 'optional': true},
+                    },
+                  },
+                },
+              },
+            },
+          },
+        }),
+      );
+      final nicReferences = {
+        'google_x_nic': {'network': references['google_x_vm']!['network']!},
+      };
+      final derived = deriveExactlyOneSlots(
+        const LoadedOverrides(
+          resources: {},
+          dataSources: {
+            'google_x_nic': WrapperOverride(
+              kind: WrapperOverrideKind.dataSource,
+              outputDir: 'data',
+              deriveExactlyOne: true,
+            ),
+          },
+        ),
+        nicIr,
+        providerEnums: const ProviderEnums.on(
+          dataSources: KindHints(
+            exactlyOne: {
+              'google_x_nic': [
+                ['network', 'network_name'],
+              ],
+            },
+          ),
+        ),
+        rawSchemas: (resources: const {}, dataSources: const {}),
+        references: (resources: const {}, dataSources: nicReferences),
+      );
+      final nicSrc =
+          DataSourceWrapperEmitter(
+            overrides: derived.overrides.dataSources,
+            references: nicReferences,
+          ).emit(
+            nicIr.dataSources['google_x_nic']!,
+            providerSource: 'hashicorp/google',
+          );
+
+      expect(derived.typedReferences, ['data.google_x_nic.network']);
+      expect(
+        nicSrc,
+        contains("import '../x/google_x_network.dart' show GoogleXNetwork;"),
+      );
+      expect(nicSrc, contains('final RefTo<GoogleXNetwork> network;'));
     });
   });
 
