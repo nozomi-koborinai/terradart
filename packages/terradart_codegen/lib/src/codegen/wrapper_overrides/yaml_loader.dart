@@ -56,15 +56,28 @@ class LoadedOverrides {
   /// Total curated overrides (resources + data sources).
   int get length => resources.length + dataSources.length;
 
-  /// Bag for lint / debt tools that need a unique map key per override.
-  ///
-  /// Colliding data-source keys are stored as `data.<tfType>` so they
-  /// never overwrite the resource twin. Non-colliding data sources keep
-  /// their terraform type key (`google_project`).
+  /// The overrides of [kind].
+  Map<String, WrapperOverride> of(WrapperOverrideKind kind) => switch (kind) {
+    WrapperOverrideKind.resource => resources,
+    WrapperOverrideKind.dataSource => dataSources,
+  };
+
+  /// The unique key lint and ledgers use for [terraformType]'s [kind]
+  /// override: `data.<tfType>` for a data source with a resource twin, so
+  /// it never overwrites the twin, else the terraform type
+  /// (`google_project`).
+  String lintKey(String terraformType, WrapperOverrideKind kind) =>
+      kind == WrapperOverrideKind.dataSource &&
+          resources.containsKey(terraformType)
+      ? 'data.$terraformType'
+      : terraformType;
+
+  /// Bag for lint / debt tools that need a unique map key per override,
+  /// keyed by [lintKey].
   Map<String, WrapperOverride> asLintMap() => {
     ...resources,
     for (final e in dataSources.entries)
-      resources.containsKey(e.key) ? 'data.${e.key}' : e.key: e.value,
+      lintKey(e.key, WrapperOverrideKind.dataSource): e.value,
   };
 }
 

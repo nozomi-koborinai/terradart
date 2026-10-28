@@ -16,13 +16,14 @@ import '../codegen/exactly_one_types.dart';
 import '../codegen/generated_file_header.dart';
 import '../codegen/migrate/migrate_entry_builder.dart';
 import '../codegen/migrate/migrate_manifest_emitter.dart';
-import '../codegen/naming.dart' show shortResourcePascal, snakeToPascal;
+import '../codegen/naming.dart' show WrapperOverrideKindNames, snakeToPascal;
 import '../codegen/provider_enums.dart';
 import '../codegen/provider_version_emitter.dart';
 import '../codegen/references/reference_targets.dart';
 import '../codegen/sealed_name_debt.dart';
 import '../codegen/wrapper_emitter.dart';
 import '../codegen/wrapper_overrides/_registry.dart';
+import '../codegen/wrapper_overrides/wrapper_override.dart';
 import '../codegen/wrapper_overrides/yaml_loader.dart';
 import '../parser/ir_merger.dart';
 import '../parser/mm_yaml_parser.dart';
@@ -330,7 +331,7 @@ class WrapCommand extends Command<int> {
       providerEnums = ProviderEnums.off;
     }
     providerEnums = providerEnums.withinSchema(
-      mergedIr.resources,
+      mergedIr,
       dropped: (g) => stderr.writeln(
         'terradart wrap: exclusive group names no schema input: $g',
       ),
@@ -373,8 +374,8 @@ class WrapCommand extends Command<int> {
     }
     final groupErrors = <String>[];
     providerEnums = providerEnums.withOverrideGroups(
-      loaded.resources,
-      mergedIr.resources,
+      loaded,
+      mergedIr,
       error: groupErrors.add,
     );
     if (groupErrors.isNotEmpty) {
@@ -384,20 +385,19 @@ class WrapCommand extends Command<int> {
       return CliExitCodes.dataError;
     }
     final laneInputs = {
-      for (final MapEntry(:key, :value) in _rawSchemaBlocks(
-        schemaSrc,
-        schemasKey: 'resource_schemas',
-      ).entries)
-        shortResourcePascal(key): _inputNames(value),
-      for (final MapEntry(:key, :value) in _rawSchemaBlocks(
-        schemaSrc,
-        schemasKey: 'data_source_schemas',
-      ).entries)
-        'Data${shortResourcePascal(key)}': _inputNames(value),
+      for (final (kind, schemasKey) in const [
+        (WrapperOverrideKind.resource, 'resource_schemas'),
+        (WrapperOverrideKind.dataSource, 'data_source_schemas'),
+      ])
+        for (final MapEntry(:key, :value) in _rawSchemaBlocks(
+          schemaSrc,
+          schemasKey: schemasKey,
+        ).entries)
+          kind.typeStem(key): _inputNames(value),
     };
     final typedOverrides = providerEnums.typeDerivedEnums(
-      loaded.resources,
-      ir.resources,
+      loaded,
+      ir,
       laneInputs: laneInputs,
     );
 
@@ -435,10 +435,10 @@ class WrapCommand extends Command<int> {
     // loaded override actually sets the gate keeps today's (dark) run
     // exactly as cheap as before this gate existed — every committed
     // override currently leaves `deriveNestedTypes` at its `false` default.
-    final needsRawResourceSchemas = typedOverrides.values.any(
+    final needsRawResourceSchemas = typedOverrides.resources.values.any(
       (o) => o.deriveNestedTypes,
     );
-    final needsRawDataSourceSchemas = loaded.dataSources.values.any(
+    final needsRawDataSourceSchemas = typedOverrides.dataSources.values.any(
       (o) => o.deriveNestedTypes,
     );
     final rawResourceSchemas = needsRawResourceSchemas
@@ -520,10 +520,11 @@ class WrapCommand extends Command<int> {
           schemaSrc,
           schemasKey: 'resource_schemas',
         ),
-        curated: typedOverrides.keys,
+        curated: typedOverrides.resources.keys,
         targetDirs: {
           if (only != null) ..._generatedResourceDirs(output),
-          for (final e in typedOverrides.entries) e.key: e.value.outputDir,
+          for (final e in typedOverrides.resources.entries)
+            e.key: e.value.outputDir,
         },
         dataSourceSchemas: {
           for (final type in loaded.dataSources.keys) type: ?dataSchemas[type],
@@ -548,12 +549,16 @@ class WrapCommand extends Command<int> {
     // groups become sealed custom slots before anything reads the overrides.
     final exactlyOne = deriveExactlyOneSlots(
       typedOverrides,
-      ir.resources,
+      ir,
       providerEnums: providerEnums,
-      rawSchemas: rawResourceSchemas,
-      references: references,
+      rawSchemas: (
+        resources: rawResourceSchemas,
+        dataSources: rawDataSourceSchemas,
+      ),
+      references: (resources: references, dataSources: dataReferences),
     );
-    final resourceOverrides = exactlyOne.overrides;
+    final resourceOverrides = exactlyOne.overrides.resources;
+    final dataSourceOverrides = exactlyOne.overrides.dataSources;
     for (final s in exactlyOne.skipped) {
       stderr.writeln('terradart wrap: exactly-one group not sealed: $s');
     }
@@ -584,7 +589,7 @@ class WrapCommand extends Command<int> {
           file.existsSync()
               ? parseSealedNameDebt(file.readAsStringSync(), path: debtPath)
               : {},
-          laneTypes: resourceOverrides.keys.toSet(),
+          laneTypes: exactlyOne.overrides.asLintMap().keys.toSet(),
           fallbacks: fallbacks,
           reason:
               '$sealedNameDebtPrefix $provider '
@@ -617,7 +622,7 @@ class WrapCommand extends Command<int> {
     );
     final typedReferenceKeys = {...exactlyOne.typedReferences};
     final dataSourceEmitter = DataSourceWrapperEmitter(
-      overrides: loaded.dataSources,
+      overrides: dataSourceOverrides,
       rawDataSourceSchemas: rawDataSourceSchemas,
       providerEnums: providerEnums,
       resourceDirs: {
@@ -671,6 +676,7 @@ class WrapCommand extends Command<int> {
         ),
       );
       if (migrateManifest) {
+        final hints = providerEnums.nestedHints(entry.key, entry.value);
         migrateInputs.add(
           MigrateEntryInput(
             tfType: entry.key,
@@ -679,27 +685,18 @@ class WrapCommand extends Command<int> {
             kind: 'resource',
             emittedSource: dartSrc,
             rawSchemaBlock: rawResourceSchemas[entry.key],
-            enumValues: providerEnums.resolver(entry.key),
-            exactlyOneGroups: providerEnums.nestedExactlyOneGroups(
-              entry.key,
-              entry.value,
-            ),
-            atMostOneGroups: providerEnums.nestedAtMostOneGroups(
-              entry.key,
-              entry.value,
-            ),
+            enumValues: hints.enumValues,
+            exactlyOneGroups: hints.exactlyOneGroups,
+            atMostOneGroups: hints.atMostOneGroups,
             references: references[entry.key] ?? const {},
-            reservedTypeNames: providerEnums.rootSealedNames(
-              entry.key,
-              entry.value,
-            ),
+            reservedTypeNames: hints.reserved,
             laneInputs: laneInputs,
           ),
         );
       }
     }
 
-    for (final entry in loaded.dataSources.entries) {
+    for (final entry in dataSourceOverrides.entries) {
       final def = ir.dataSources[entry.key];
       if (def == null) {
         stderr.writeln(
@@ -723,6 +720,7 @@ class WrapCommand extends Command<int> {
         ),
       );
       if (migrateManifest) {
+        final hints = providerEnums.nestedHints(entry.key, entry.value);
         migrateInputs.add(
           MigrateEntryInput(
             tfType: entry.key,
@@ -731,8 +729,11 @@ class WrapCommand extends Command<int> {
             kind: 'dataSource',
             emittedSource: layer2,
             rawSchemaBlock: rawDataSourceSchemas[entry.key],
-            enumValues: providerEnums.resolver(null),
+            enumValues: hints.enumValues,
+            exactlyOneGroups: hints.exactlyOneGroups,
+            atMostOneGroups: hints.atMostOneGroups,
             references: dataReferences[entry.key] ?? const {},
+            reservedTypeNames: hints.reserved,
             laneInputs: laneInputs,
           ),
         );

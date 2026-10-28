@@ -1,4 +1,5 @@
 import 'providers/provider_registry.dart';
+import 'wrapper_overrides/wrapper_override.dart';
 
 /// snake_case → camelCase.
 String snakeToCamel(String s) {
@@ -76,6 +77,25 @@ String shortResourcePascal(String terraformType, {Iterable<String>? prefixes}) {
     }
   }
   return snakeToPascal(short);
+}
+
+extension WrapperOverrideKindNames on WrapperOverrideKind {
+  /// The stem every derived type of [terraformType] starts with: helpers,
+  /// enums, sealed types. `ComputeSnapshot` for a resource,
+  /// `DataComputeSnapshot` for a data source, so a data file can import its
+  /// twin's resource file without a name collision.
+  String typeStem(String terraformType) => switch (this) {
+    WrapperOverrideKind.resource => shortResourcePascal(terraformType),
+    WrapperOverrideKind.dataSource =>
+      'Data${shortResourcePascal(terraformType)}',
+  };
+
+  /// How diagnostics and typed-reference keys name [terraformType]:
+  /// `x_thing` for a resource, `data.x_thing` for a data source.
+  String label(String terraformType) => switch (this) {
+    WrapperOverrideKind.resource => terraformType,
+    WrapperOverrideKind.dataSource => 'data.$terraformType',
+  };
 }
 
 /// Enum name = `<ResourceShortName><FieldNamePascal>`, e.g.

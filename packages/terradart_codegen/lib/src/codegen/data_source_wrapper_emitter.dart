@@ -149,12 +149,14 @@ class DataSourceWrapperEmitter {
     final nestedTypeSpecs = override.deriveNestedTypes
         ? collectNestedTypes(
             resourceBlock: _requireRawSchema(def.terraformType),
-            resourcePrefix: 'Data${shortResourcePascal(def.terraformType)}',
+            resourcePrefix: override.kind.typeStem(def.terraformType),
             customSlotKeys: const <String>{},
             excludedPaths: (override.nestedTypeExcludes ?? const <String>[])
                 .toSet(),
             shareIdenticalShapes: override.dedupeNestedTypes,
-            enumValues: providerEnums.resolver(null),
+            enumValues: providerEnums
+                .nestedHints(def.terraformType, override)
+                .enumValues,
             references: (path) => refs[path.join('.')],
             laneInputs: laneInputs,
           )

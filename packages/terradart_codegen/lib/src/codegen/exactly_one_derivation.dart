@@ -1,3 +1,4 @@
+import '../ir/provider_schema_ir.dart';
 import '../ir/resource_def.dart';
 import 'constructor_params.dart';
 import 'dart_type_writer.dart';
@@ -8,19 +9,23 @@ import 'nested_types/nested_type_emitter.dart';
 import 'provider_enums.dart';
 import 'references/reference_targets.dart';
 import 'wrapper_overrides/wrapper_override.dart';
+import 'wrapper_overrides/yaml_loader.dart';
 
-/// The `deriveExactlyOne` gate for a resource's own arguments: every
-/// sealable top-level group in the `--provider-enums` hints becomes one
-/// custom slot typed with a sealed class (declared in the prelude), and its
-/// members leave the constructor. An exactly-one group's slot is required;
-/// an at-most-one group's (mutually exclusive inputs the provider also
-/// accepts none of) is nullable and spreads nothing when null.
+/// The `deriveExactlyOne` gate for a factory's own arguments, resources and
+/// data sources alike: every sealable top-level group in the override's own
+/// kind's hints becomes one custom slot typed with a sealed class (declared
+/// in the prelude), and its members leave the constructor. An exactly-one
+/// group's slot is required; an at-most-one group's (mutually exclusive
+/// inputs the provider also accepts none of) is nullable and spreads
+/// nothing when null.
 ///
 /// Rewriting the override (instead of teaching the emitter a new slot kind)
-/// keeps the wrapper emitter and the migration manifest builder on the same
-/// inputs: both already read `paramOrder`, `customSlots` and `prelude`, and
+/// keeps the wrapper emitters and the migration manifest builder on the same
+/// inputs: all of them read `paramOrder`, `customSlots` and `prelude`, and
 /// a `...slot.argMap` custom slot is the merged sealed shape the manifest
-/// derives (`google_secret_manager_secret_version`'s `payload`).
+/// derives (`google_secret_manager_secret_version`'s `payload`). Data-source
+/// YAML cannot hand-write those axes (E201), so on a data source this
+/// derivation is their only writer.
 ///
 /// A group is sealable when every member is an optional constructor input
 /// no custom slot owns and no earlier group took, and none is a keyed
@@ -34,12 +39,14 @@ import 'wrapper_overrides/wrapper_override.dart';
 /// `sealedNames` entry that clashes, repeats the derived name, or matches
 /// no sealed group.
 ///
-/// [references] (`--typed-references`: resource type → dotted input path →
-/// target) types a member the ledger matches: its variant holds a
+/// [references] (`--typed-references`: Terraform type → dotted input path →
+/// target, per kind) types a member the ledger matches: its variant holds a
 /// `RefTo<Target>`. `typedReferences` lists each top-level member typed
-/// that way, as `<type>.<member>`.
+/// that way, as `<type>.<member>` (`data.<type>.<member>` for a data
+/// source). Diagnostics name a data source `data.<type>`; `names` carries
+/// each override's [LoadedOverrides.lintKey], the sealed-name ledger key.
 ({
-  Map<String, WrapperOverride> overrides,
+  LoadedOverrides overrides,
   List<String> skipped,
   List<String> skippedAtMostOne,
   List<SealedName> names,
@@ -47,111 +54,125 @@ import 'wrapper_overrides/wrapper_override.dart';
   List<String> typedReferences,
 })
 deriveExactlyOneSlots(
-  Map<String, WrapperOverride> overrides,
-  Map<String, ResourceDef> defs, {
+  LoadedOverrides overrides,
+  ProviderSchemaIR ir, {
   required ProviderEnums providerEnums,
-  required Map<String, Map<String, dynamic>> rawSchemas,
-  Map<String, Map<String, ResolvedReference>> references = const {},
+  required ByKind<Map<String, Map<String, dynamic>>> rawSchemas,
+  ByKind<Map<String, Map<String, ResolvedReference>>> references = const (
+    resources: <String, Map<String, ResolvedReference>>{},
+    dataSources: <String, Map<String, ResolvedReference>>{},
+  ),
 }) {
   final skipped = <String>[];
   final skippedAtMostOne = <String>[];
   final names = <SealedName>[];
   final nameErrors = <String>[];
   final typedReferences = <String>[];
-  final out = <String, WrapperOverride>{};
-  for (final MapEntry(key: type, value: o) in overrides.entries) {
-    final def = defs[type];
-    final refs = references[type] ?? const <String, ResolvedReference>{};
-    final groups = providerEnums.exactlyOneGroupsByBlock(type)[''];
-    final optionalGroups = providerEnums.atMostOneGroupsByBlock(type)[''];
-    final nested = providerEnums.nestedExactlyOneGroups(type, o);
-    final nestedOptional = providerEnums.nestedAtMostOneGroups(type, o);
-    if (!o.deriveExactlyOne ||
-        def == null ||
-        (groups == null &&
-            optionalGroups == null &&
-            nested.isEmpty &&
-            nestedOptional.isEmpty)) {
-      out[type] = o;
-      continue;
+  Map<String, WrapperOverride> derive(WrapperOverrideKind kind) {
+    final defs = ir.of(kind);
+    final out = <String, WrapperOverride>{};
+    for (final MapEntry(key: type, value: o) in overrides.of(kind).entries) {
+      final def = defs[type];
+      final label = kind.label(type);
+      final refs =
+          references.of(kind)[type] ?? const <String, ResolvedReference>{};
+      final root = providerEnums.rootGroups(type, o);
+      final hints = providerEnums.nestedHints(type, o);
+      final nested = hints.exactlyOneGroups;
+      final nestedOptional = hints.atMostOneGroups;
+      if (!o.deriveExactlyOne ||
+          def == null ||
+          (root.exactlyOne.isEmpty &&
+              root.atMostOne.isEmpty &&
+              nested.isEmpty &&
+              nestedOptional.isEmpty)) {
+        out[type] = o;
+        continue;
+      }
+      final specs = o.deriveNestedTypes
+          ? collectNestedTypes(
+              resourceBlock: rawSchemas.of(kind)[type]!,
+              resourcePrefix: o.kind.typeStem(type),
+              customSlotKeys: {...?o.customSlots?.keys},
+              excludedPaths: (o.nestedTypeExcludes ?? const <String>[]).toSet(),
+              shareIdenticalShapes: o.dedupeNestedTypes,
+              enumValues: hints.enumValues,
+              exactlyOneGroups: nested,
+              atMostOneGroups: nestedOptional,
+              sealedNames: o.sealedNames,
+              references: (path) => refs[path.join('.')],
+              typeOverrides: o.nestedDartTypeOverrides,
+              reserved: hints.reserved,
+            )
+          : const <NestedBlockSpec>[];
+      final typeNames = <SealedGroupName>[];
+      out[type] = root.exactlyOne.isEmpty && root.atMostOne.isEmpty
+          ? o
+          : _derive(
+              type,
+              o,
+              def,
+              [
+                for (final g in root.exactlyOne) (members: g, optional: false),
+                for (final g in root.atMostOne) (members: g, optional: true),
+              ],
+              specs,
+              refs,
+              skipped: skipped,
+              skippedAtMostOne: skippedAtMostOne,
+              names: typeNames,
+              typedReferences: typedReferences,
+            );
+      typeNames.addAll(nestedSealedNames(specs));
+      final human = {
+        for (final k in (o.sealedNames ?? const <String, String>{}).keys)
+          sealedGroupKeyOf(const [], sealedGroupKey(k)): k,
+      };
+      for (final n in typeNames) {
+        names.add((type: overrides.lintKey(type, kind), name: n));
+        human.remove(n.key);
+        if (n.error case final e?) nameErrors.add('$label [${n.key}]: $e');
+      }
+      nestedSealedKeys(specs).forEach(human.remove);
+      if (providerEnums.hasGroupSource) {
+        for (final k in human.values) {
+          nameErrors.add('$label sealedNames "$k" matches no sealed group');
+        }
+      }
+      skipped.addAll([
+        for (final s in unsealedNestedGroups(specs, nested)) '$label $s',
+      ]);
+      skippedAtMostOne.addAll([
+        for (final s in unsealedNestedGroups(
+          specs,
+          nestedOptional,
+          optional: true,
+        ))
+          '$label $s',
+      ]);
     }
-    final specs = o.deriveNestedTypes
-        ? collectNestedTypes(
-            resourceBlock: rawSchemas[type]!,
-            resourcePrefix: shortResourcePascal(type),
-            customSlotKeys: {...?o.customSlots?.keys},
-            excludedPaths: (o.nestedTypeExcludes ?? const <String>[]).toSet(),
-            shareIdenticalShapes: o.dedupeNestedTypes,
-            enumValues: providerEnums.resolver(type),
-            exactlyOneGroups: nested,
-            atMostOneGroups: nestedOptional,
-            sealedNames: o.sealedNames,
-            references: (path) => refs[path.join('.')],
-            typeOverrides: o.nestedDartTypeOverrides,
-            reserved: providerEnums.rootSealedNames(type, o),
-          )
-        : const <NestedBlockSpec>[];
-    final typeNames = <SealedGroupName>[];
-    out[type] = groups == null && optionalGroups == null
-        ? o
-        : _derive(
-            type,
-            o,
-            def,
-            [
-              for (final g in groups ?? const <List<String>>[])
-                (members: g, optional: false),
-              for (final g in optionalGroups ?? const <List<String>>[])
-                (members: g, optional: true),
-            ],
-            specs,
-            refs,
-            skipped: skipped,
-            skippedAtMostOne: skippedAtMostOne,
-            names: typeNames,
-            typedReferences: typedReferences,
+    // An override without groups can still carry stale names.
+    for (final MapEntry(key: type, value: o) in overrides.of(kind).entries) {
+      final key = overrides.lintKey(type, kind);
+      if (providerEnums.hasGroupSource &&
+          out[type] == o &&
+          o.sealedNames != null &&
+          !names.any((n) => n.type == key)) {
+        for (final k in o.sealedNames!.keys) {
+          nameErrors.add(
+            '${kind.label(type)} sealedNames "$k" matches no sealed group',
           );
-    typeNames.addAll(nestedSealedNames(specs));
-    final human = {
-      for (final k in (o.sealedNames ?? const <String, String>{}).keys)
-        sealedGroupKeyOf(const [], sealedGroupKey(k)): k,
-    };
-    for (final n in typeNames) {
-      names.add((type: type, name: n));
-      human.remove(n.key);
-      if (n.error case final e?) nameErrors.add('$type [${n.key}]: $e');
-    }
-    nestedSealedKeys(specs).forEach(human.remove);
-    if (providerEnums.hasGroupSource) {
-      for (final k in human.values) {
-        nameErrors.add('$type sealedNames "$k" matches no sealed group');
+        }
       }
     }
-    skipped.addAll([
-      for (final s in unsealedNestedGroups(specs, nested)) '$type $s',
-    ]);
-    skippedAtMostOne.addAll([
-      for (final s in unsealedNestedGroups(
-        specs,
-        nestedOptional,
-        optional: true,
-      ))
-        '$type $s',
-    ]);
+    return out;
   }
-  // An override without groups can still carry stale names.
-  for (final MapEntry(key: type, value: o) in overrides.entries) {
-    if (providerEnums.hasGroupSource &&
-        out[type] == o &&
-        o.sealedNames != null &&
-        !names.any((n) => n.type == type)) {
-      for (final k in o.sealedNames!.keys) {
-        nameErrors.add('$type sealedNames "$k" matches no sealed group');
-      }
-    }
-  }
+
   return (
-    overrides: out,
+    overrides: LoadedOverrides(
+      resources: derive(WrapperOverrideKind.resource),
+      dataSources: derive(WrapperOverrideKind.dataSource),
+    ),
     skipped: skipped,
     skippedAtMostOne: skippedAtMostOne,
     names: names,
@@ -211,7 +232,8 @@ WrapperOverride _derive(
   required List<SealedGroupName> names,
   required List<String> typedReferences,
 }) {
-  final prefix = shortResourcePascal(type);
+  final prefix = o.kind.typeStem(type);
+  final where = o.kind.label(type);
   final order = orderedConstructorParams(def, o.paramOrder);
   final slots = {...?o.customSlots};
   final required = {...?o.requiredParams};
@@ -298,7 +320,7 @@ WrapperOverride _derive(
   var argMapOrder = o.argMapOrder;
   for (final (:members, :optional) in groups) {
     final group = members;
-    final label = '$type [${group.join(', ')}]';
+    final label = '$where [${group.join(', ')}]';
     String? reason;
     final variants = <ExactlyOneVariant>[];
     for (final m in group) {
@@ -369,7 +391,7 @@ WrapperOverride _derive(
     taken.addAll(group);
     typedReferences.addAll([
       for (final v in variants)
-        if (refs[v.tfName]?.dartType == v.fieldType) '$type.${v.tfName}',
+        if (refs[v.tfName]?.dartType == v.fieldType) '$where.${v.tfName}',
     ]);
     group.forEach(slots.remove);
     // Only a group whose name reports an error (which fails `wrap`) reaches
@@ -413,7 +435,7 @@ WrapperOverride _derive(
         renderExactlyOneTypes(
           sealed: sealed,
           members: group,
-          where: '`$type`',
+          where: '`$where`',
           variants: variants,
           variantClasses: variantClasses,
           optional: optional,
