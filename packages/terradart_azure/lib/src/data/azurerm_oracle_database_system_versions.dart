@@ -1,10 +1,120 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `azurerm_oracle_database_system_versions`.
 const Set<String> _azurermOracleDatabaseSystemVersionsSensitive = <String>{};
+
+/// Data Oracle Database System Versions Shape enum for `shape_family`.
+extension type const DataOracleDatabaseSystemVersionsShapeFamily._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataOracleDatabaseSystemVersionsShapeFamily.variable(String name)
+    : this._(TfArg.variable(name));
+  DataOracleDatabaseSystemVersionsShapeFamily.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataOracleDatabaseSystemVersionsShapeFamily.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const exadata = DataOracleDatabaseSystemVersionsShapeFamily._(
+    TfArgLiteral('EXADATA'),
+  );
+  static const exadbXs = DataOracleDatabaseSystemVersionsShapeFamily._(
+    TfArgLiteral('EXADB_XS'),
+  );
+  static const singlenode = DataOracleDatabaseSystemVersionsShapeFamily._(
+    TfArgLiteral('SINGLENODE'),
+  );
+  static const virtualmachine = DataOracleDatabaseSystemVersionsShapeFamily._(
+    TfArgLiteral('VIRTUALMACHINE'),
+  );
+
+  static const List<DataOracleDatabaseSystemVersionsShapeFamily> values = [
+    exadata,
+    exadbXs,
+    singlenode,
+    virtualmachine,
+  ];
+}
+
+/// At most one of `database_system_shape`, `shape_family` on `data.azurerm_oracle_database_system_versions`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.databaseSystemShape(...)`.
+sealed class DataOracleDatabaseSystemVersionsShape {
+  const DataOracleDatabaseSystemVersionsShape();
+
+  /// Sets `database_system_shape`.
+  const factory DataOracleDatabaseSystemVersionsShape.databaseSystemShape(
+    TfArg<String> databaseSystemShape,
+  ) = DataOracleDatabaseSystemVersionsDatabaseSystemShape;
+
+  /// Sets `shape_family`.
+  const factory DataOracleDatabaseSystemVersionsShape.shapeFamily(
+    DataOracleDatabaseSystemVersionsShapeFamily shapeFamily,
+  ) = DataOracleDatabaseSystemVersionsShapeFamilyChoice;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [DataOracleDatabaseSystemVersionsShape.databaseSystemShape] choice: sets `database_system_shape`.
+final class DataOracleDatabaseSystemVersionsDatabaseSystemShape
+    extends DataOracleDatabaseSystemVersionsShape {
+  const DataOracleDatabaseSystemVersionsDatabaseSystemShape(
+    this.databaseSystemShape,
+  );
+
+  final TfArg<String> databaseSystemShape;
+
+  @internal
+  @override
+  String get blockKey => 'database_system_shape';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'database_system_shape': databaseSystemShape.toTfJson(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'database_system_shape': databaseSystemShape,
+  };
+}
+
+/// The [DataOracleDatabaseSystemVersionsShape.shapeFamily] choice: sets `shape_family`.
+final class DataOracleDatabaseSystemVersionsShapeFamilyChoice
+    extends DataOracleDatabaseSystemVersionsShape {
+  const DataOracleDatabaseSystemVersionsShapeFamilyChoice(this.shapeFamily);
+
+  final DataOracleDatabaseSystemVersionsShapeFamily shapeFamily;
+
+  @internal
+  @override
+  String get blockKey => 'shape_family';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'shape_family': shapeFamily.toTfJson()};
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'shape_family': shapeFamily};
+}
 
 /// Factory wrapper for `azurerm_oracle_database_system_versions`.
 final class DataAzurermOracleDatabaseSystemVersions extends Data {
@@ -13,9 +123,8 @@ final class DataAzurermOracleDatabaseSystemVersions extends Data {
   DataAzurermOracleDatabaseSystemVersions(
     super.localName, {
     TfArg<bool>? databaseSoftwareImageSupported,
-    TfArg<String>? databaseSystemShape,
+    DataOracleDatabaseSystemVersionsShape? shape,
     required TfArg<String> location,
-    TfArg<String>? shapeFamily,
     TfArg<String>? storageManagement,
     TfArg<bool>? upgradeSupported,
     super.provider,
@@ -24,9 +133,8 @@ final class DataAzurermOracleDatabaseSystemVersions extends Data {
          terraformType: tfType,
          argMap: {
            'database_software_image_supported': ?databaseSoftwareImageSupported,
-           'database_system_shape': ?databaseSystemShape,
+           ...?shape?.argMap,
            'location': location,
-           'shape_family': ?shapeFamily,
            'storage_management': ?storageManagement,
            'upgrade_supported': ?upgradeSupported,
          },

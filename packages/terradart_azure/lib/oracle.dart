@@ -23,7 +23,12 @@ export 'src/data/azurerm_oracle_autonomous_database_cross_region_disaster_recove
 export 'src/data/azurerm_oracle_cloud_vm_cluster.dart'
     show DataAzurermOracleCloudVmCluster;
 export 'src/data/azurerm_oracle_database_system_versions.dart'
-    show DataAzurermOracleDatabaseSystemVersions;
+    show
+        DataAzurermOracleDatabaseSystemVersions,
+        DataOracleDatabaseSystemVersionsDatabaseSystemShape,
+        DataOracleDatabaseSystemVersionsShape,
+        DataOracleDatabaseSystemVersionsShapeFamily,
+        DataOracleDatabaseSystemVersionsShapeFamilyChoice;
 export 'src/data/azurerm_oracle_db_nodes.dart' show DataAzurermOracleDbNodes;
 export 'src/data/azurerm_oracle_db_servers.dart'
     show DataAzurermOracleDbServers;
@@ -34,7 +39,7 @@ export 'src/data/azurerm_oracle_exadata_infrastructure.dart'
 export 'src/data/azurerm_oracle_exascale_database_storage_vault.dart'
     show DataAzurermOracleExascaleDatabaseStorageVault;
 export 'src/data/azurerm_oracle_gi_versions.dart'
-    show DataAzurermOracleGiVersions;
+    show DataAzurermOracleGiVersions, DataOracleGiVersionsShape;
 export 'src/data/azurerm_oracle_resource_anchor.dart'
     show DataAzurermOracleResourceAnchor;
 export 'src/oracle/azurerm_oracle_autonomous_database.dart'

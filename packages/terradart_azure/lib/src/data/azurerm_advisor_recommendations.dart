@@ -6,13 +6,50 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `azurerm_advisor_recommendations`.
 const Set<String> _azurermAdvisorRecommendationsSensitive = <String>{};
 
+/// Data Advisor Recommendations Filter By enum for `filter_by_category`.
+extension type const DataAdvisorRecommendationsFilterByCategory._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataAdvisorRecommendationsFilterByCategory.variable(String name)
+    : this._(TfArg.variable(name));
+  DataAdvisorRecommendationsFilterByCategory.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataAdvisorRecommendationsFilterByCategory.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const cost = DataAdvisorRecommendationsFilterByCategory._(
+    TfArgLiteral('Cost'),
+  );
+  static const highavailability = DataAdvisorRecommendationsFilterByCategory._(
+    TfArgLiteral('HighAvailability'),
+  );
+  static const operationalexcellence =
+      DataAdvisorRecommendationsFilterByCategory._(
+        TfArgLiteral('OperationalExcellence'),
+      );
+  static const performance = DataAdvisorRecommendationsFilterByCategory._(
+    TfArgLiteral('Performance'),
+  );
+  static const security = DataAdvisorRecommendationsFilterByCategory._(
+    TfArgLiteral('Security'),
+  );
+
+  static const List<DataAdvisorRecommendationsFilterByCategory> values = [
+    cost,
+    highavailability,
+    operationalexcellence,
+    performance,
+    security,
+  ];
+}
+
 /// Factory wrapper for `azurerm_advisor_recommendations`.
 final class DataAzurermAdvisorRecommendations extends Data {
   static const String tfType = 'azurerm_advisor_recommendations';
 
   DataAzurermAdvisorRecommendations(
     super.localName, {
-    TfArg<List<String>>? filterByCategory,
+    List<DataAdvisorRecommendationsFilterByCategory>? filterByCategory,
     TfArg<List<String>>? filterByRecommendationTypeGuids,
     TfArg<List<String>>? filterByResourceGroups,
     TfArg<List<String>>? filterByResourceIds,
@@ -21,7 +58,10 @@ final class DataAzurermAdvisorRecommendations extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'filter_by_category': ?filterByCategory,
+           if (filterByCategory != null)
+             'filter_by_category': TfArg.literal([
+               for (final e in filterByCategory) e.toTfJson(),
+             ]),
            'filter_by_recommendation_type_guids':
                ?filterByRecommendationTypeGuids,
            'filter_by_resource_groups': ?filterByResourceGroups,

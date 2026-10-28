@@ -4,3 +4,8 @@ schemaStubBodyMode: bare
 deriveClassDoc: true
 deriveOutputGetters: true
 deriveNestedTypes: true
+deriveEnums: true
+deriveExactlyOne: true
+
+sealedNames:
+  "name, role_definition_id": lookup

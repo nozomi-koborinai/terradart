@@ -1,11 +1,84 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 import '../role/azurerm_role_definition.dart';
 
 /// Sensitive field paths for `azurerm_role_definition`.
 const Set<String> _azurermRoleDefinitionSensitive = <String>{};
+
+/// Exactly one of `name`, `role_definition_id` on `data.azurerm_role_definition`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.name(...)`.
+sealed class DataRoleDefinitionLookup {
+  const DataRoleDefinitionLookup();
+
+  /// Sets `name`.
+  const factory DataRoleDefinitionLookup.name(TfArg<String> name) =
+      DataRoleDefinitionLookupName;
+
+  /// Sets `role_definition_id`.
+  const factory DataRoleDefinitionLookup.roleDefinitionId(
+    TfArg<String> roleDefinitionId,
+  ) = DataRoleDefinitionLookupRoleDefinitionId;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [DataRoleDefinitionLookup.name] choice: sets `name`.
+final class DataRoleDefinitionLookupName extends DataRoleDefinitionLookup {
+  const DataRoleDefinitionLookupName(this.name);
+
+  final TfArg<String> name;
+
+  @internal
+  @override
+  String get blockKey => 'name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'name': name.toTfJson()};
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name': name};
+}
+
+/// The [DataRoleDefinitionLookup.roleDefinitionId] choice: sets `role_definition_id`.
+final class DataRoleDefinitionLookupRoleDefinitionId
+    extends DataRoleDefinitionLookup {
+  const DataRoleDefinitionLookupRoleDefinitionId(this.roleDefinitionId);
+
+  final TfArg<String> roleDefinitionId;
+
+  @internal
+  @override
+  String get blockKey => 'role_definition_id';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'role_definition_id': roleDefinitionId.toTfJson(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'role_definition_id': roleDefinitionId,
+  };
+}
 
 /// Factory wrapper for `azurerm_role_definition`.
 final class DataAzurermRoleDefinition extends Data {
@@ -13,18 +86,13 @@ final class DataAzurermRoleDefinition extends Data {
 
   DataAzurermRoleDefinition(
     super.localName, {
-    TfArg<String>? name,
-    TfArg<String>? roleDefinitionId,
+    required DataRoleDefinitionLookup lookup,
     TfArg<String>? scope,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'name': ?name,
-           'role_definition_id': ?roleDefinitionId,
-           'scope': ?scope,
-         },
+         argMap: {...lookup.argMap, 'scope': ?scope},
        );
 
   @override

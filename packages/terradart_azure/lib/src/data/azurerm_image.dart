@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 import '../compute/azurerm_image.dart';
 import '../resource/azurerm_resource_group.dart' show AzurermResourceGroup;
@@ -8,14 +9,78 @@ import '../resource/azurerm_resource_group.dart' show AzurermResourceGroup;
 /// Sensitive field paths for `azurerm_image`.
 const Set<String> _azurermImageSensitive = <String>{};
 
+/// Exactly one of `name`, `name_regex` on `data.azurerm_image`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.name(...)`.
+sealed class DataImageName {
+  const DataImageName();
+
+  /// Sets `name`.
+  const factory DataImageName.name(TfArg<String> name) = DataImageNameChoice;
+
+  /// Sets `name_regex`.
+  const factory DataImageName.nameRegex(TfArg<String> nameRegex) =
+      DataImageNameRegex;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [DataImageName.name] choice: sets `name`.
+final class DataImageNameChoice extends DataImageName {
+  const DataImageNameChoice(this.name);
+
+  final TfArg<String> name;
+
+  @internal
+  @override
+  String get blockKey => 'name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'name': name.toTfJson()};
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name': name};
+}
+
+/// The [DataImageName.nameRegex] choice: sets `name_regex`.
+final class DataImageNameRegex extends DataImageName {
+  const DataImageNameRegex(this.nameRegex);
+
+  final TfArg<String> nameRegex;
+
+  @internal
+  @override
+  String get blockKey => 'name_regex';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'name_regex': nameRegex.toTfJson()};
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name_regex': nameRegex};
+}
+
 /// Factory wrapper for `azurerm_image`.
 final class DataAzurermImage extends Data {
   static const String tfType = 'azurerm_image';
 
   DataAzurermImage(
     super.localName, {
-    TfArg<String>? name,
-    TfArg<String>? nameRegex,
+    required DataImageName name,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<bool>? sortDescending,
     super.provider,
@@ -23,8 +88,7 @@ final class DataAzurermImage extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'name': ?name,
-           'name_regex': ?nameRegex,
+           ...name.argMap,
            'resource_group_name': resourceGroupName.encodeAs('name'),
            'sort_descending': ?sortDescending,
          },

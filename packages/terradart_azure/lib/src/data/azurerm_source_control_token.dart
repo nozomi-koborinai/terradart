@@ -10,13 +10,39 @@ const Set<String> _azurermSourceControlTokenSensitive = <String>{
   'token_secret',
 };
 
+/// Data Source Control Token enum for `type`.
+extension type const DataSourceControlTokenType._(TfArg<String> _)
+    implements TfArg<String> {
+  DataSourceControlTokenType.variable(String name)
+    : this._(TfArg.variable(name));
+  DataSourceControlTokenType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataSourceControlTokenType.arg(TfArg<String> arg) : this._(arg);
+
+  static const bitbucket = DataSourceControlTokenType._(
+    TfArgLiteral('Bitbucket'),
+  );
+  static const dropbox = DataSourceControlTokenType._(TfArgLiteral('Dropbox'));
+  static const github = DataSourceControlTokenType._(TfArgLiteral('GitHub'));
+  static const onedrive = DataSourceControlTokenType._(
+    TfArgLiteral('OneDrive'),
+  );
+
+  static const List<DataSourceControlTokenType> values = [
+    bitbucket,
+    dropbox,
+    github,
+    onedrive,
+  ];
+}
+
 /// Factory wrapper for `azurerm_source_control_token`.
 final class DataAzurermSourceControlToken extends Data {
   static const String tfType = 'azurerm_source_control_token';
 
   DataAzurermSourceControlToken(
     super.localName, {
-    required TfArg<String> type,
+    required DataSourceControlTokenType type,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'type': type});

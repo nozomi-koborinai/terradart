@@ -11,7 +11,9 @@ export 'src/data/azurerm_aadb2c_directory.dart' show DataAzurermAadb2cDirectory;
 export 'src/data/azurerm_active_directory_domain_service.dart'
     show DataAzurermActiveDirectoryDomainService;
 export 'src/data/azurerm_advisor_recommendations.dart'
-    show DataAzurermAdvisorRecommendations;
+    show
+        DataAdvisorRecommendationsFilterByCategory,
+        DataAzurermAdvisorRecommendations;
 export 'src/data/azurerm_api_connection.dart' show DataAzurermApiConnection;
 export 'src/data/azurerm_api_management.dart' show DataAzurermApiManagement;
 export 'src/data/azurerm_api_management_api.dart'
@@ -255,7 +257,9 @@ export 'src/data/azurerm_eventhub_sas.dart' show DataAzurermEventhubSas;
 export 'src/data/azurerm_express_route_circuit.dart'
     show DataAzurermExpressRouteCircuit;
 export 'src/data/azurerm_express_route_circuit_peering.dart'
-    show DataAzurermExpressRouteCircuitPeering;
+    show
+        DataAzurermExpressRouteCircuitPeering,
+        DataExpressRouteCircuitPeeringType;
 export 'src/data/azurerm_extended_location_custom_location.dart'
     show DataAzurermExtendedLocationCustomLocation;
 export 'src/data/azurerm_extended_locations.dart'
@@ -278,7 +282,12 @@ export 'src/data/azurerm_healthcare_service.dart'
     show DataAzurermHealthcareService;
 export 'src/data/azurerm_healthcare_workspace.dart'
     show DataAzurermHealthcareWorkspace;
-export 'src/data/azurerm_image.dart' show DataAzurermImage;
+export 'src/data/azurerm_image.dart'
+    show
+        DataAzurermImage,
+        DataImageName,
+        DataImageNameChoice,
+        DataImageNameRegex;
 export 'src/data/azurerm_images.dart' show DataAzurermImages;
 export 'src/data/azurerm_iothub.dart' show DataAzurermIothub;
 export 'src/data/azurerm_iothub_dps.dart' show DataAzurermIothubDps;
@@ -290,7 +299,7 @@ export 'src/data/azurerm_ip_group.dart' show DataAzurermIpGroup;
 export 'src/data/azurerm_ip_groups.dart' show DataAzurermIpGroups;
 export 'src/data/azurerm_key_vault.dart' show DataAzurermKeyVault;
 export 'src/data/azurerm_key_vault_access_policy.dart'
-    show DataAzurermKeyVaultAccessPolicy;
+    show DataAzurermKeyVaultAccessPolicy, DataKeyVaultAccessPolicyName;
 export 'src/data/azurerm_key_vault_certificate.dart'
     show DataAzurermKeyVaultCertificate;
 export 'src/data/azurerm_key_vault_certificate_data.dart'
@@ -361,7 +370,12 @@ export 'src/data/azurerm_managed_disks.dart' show DataAzurermManagedDisks;
 export 'src/data/azurerm_managed_redis.dart' show DataAzurermManagedRedis;
 export 'src/data/azurerm_managed_redis_access_policy_assignment.dart'
     show DataAzurermManagedRedisAccessPolicyAssignment;
-export 'src/data/azurerm_management_group.dart' show DataAzurermManagementGroup;
+export 'src/data/azurerm_management_group.dart'
+    show
+        DataAzurermManagementGroup,
+        DataManagementGroupIdentifier,
+        DataManagementGroupIdentifierDisplayName,
+        DataManagementGroupIdentifierName;
 export 'src/data/azurerm_management_group_template_deployment.dart'
     show DataAzurermManagementGroupTemplateDeployment;
 export 'src/data/azurerm_maps_account.dart' show DataAzurermMapsAccount;
@@ -465,7 +479,12 @@ export 'src/data/azurerm_oracle_autonomous_database_cross_region_disaster_recove
 export 'src/data/azurerm_oracle_cloud_vm_cluster.dart'
     show DataAzurermOracleCloudVmCluster;
 export 'src/data/azurerm_oracle_database_system_versions.dart'
-    show DataAzurermOracleDatabaseSystemVersions;
+    show
+        DataAzurermOracleDatabaseSystemVersions,
+        DataOracleDatabaseSystemVersionsDatabaseSystemShape,
+        DataOracleDatabaseSystemVersionsShape,
+        DataOracleDatabaseSystemVersionsShapeFamily,
+        DataOracleDatabaseSystemVersionsShapeFamilyChoice;
 export 'src/data/azurerm_oracle_db_nodes.dart' show DataAzurermOracleDbNodes;
 export 'src/data/azurerm_oracle_db_servers.dart'
     show DataAzurermOracleDbServers;
@@ -476,7 +495,7 @@ export 'src/data/azurerm_oracle_exadata_infrastructure.dart'
 export 'src/data/azurerm_oracle_exascale_database_storage_vault.dart'
     show DataAzurermOracleExascaleDatabaseStorageVault;
 export 'src/data/azurerm_oracle_gi_versions.dart'
-    show DataAzurermOracleGiVersions;
+    show DataAzurermOracleGiVersions, DataOracleGiVersionsShape;
 export 'src/data/azurerm_oracle_resource_anchor.dart'
     show DataAzurermOracleResourceAnchor;
 export 'src/data/azurerm_orchestrated_virtual_machine_scale_set.dart'
@@ -489,14 +508,31 @@ export 'src/data/azurerm_playwright_workspace.dart'
 export 'src/data/azurerm_policy_assignment.dart'
     show DataAzurermPolicyAssignment;
 export 'src/data/azurerm_policy_definition.dart'
-    show DataAzurermPolicyDefinition;
+    show
+        DataAzurermPolicyDefinition,
+        DataPolicyDefinitionIdentifier,
+        DataPolicyDefinitionIdentifierDisplayName,
+        DataPolicyDefinitionIdentifierName;
 export 'src/data/azurerm_policy_definition_built_in.dart'
-    show DataAzurermPolicyDefinitionBuiltIn;
+    show
+        DataAzurermPolicyDefinitionBuiltIn,
+        DataPolicyDefinitionBuiltInIdentifier,
+        DataPolicyDefinitionBuiltInIdentifierDisplayName,
+        DataPolicyDefinitionBuiltInIdentifierName;
 export 'src/data/azurerm_policy_set_definition.dart'
-    show DataAzurermPolicySetDefinition;
+    show
+        DataAzurermPolicySetDefinition,
+        DataPolicySetDefinitionIdentifier,
+        DataPolicySetDefinitionIdentifierDisplayName,
+        DataPolicySetDefinitionIdentifierName;
 export 'src/data/azurerm_policy_virtual_machine_configuration_assignment.dart'
     show DataAzurermPolicyVirtualMachineConfigurationAssignment;
-export 'src/data/azurerm_portal_dashboard.dart' show DataAzurermPortalDashboard;
+export 'src/data/azurerm_portal_dashboard.dart'
+    show
+        DataAzurermPortalDashboard,
+        DataPortalDashboardIdentifier,
+        DataPortalDashboardIdentifierDisplayName,
+        DataPortalDashboardIdentifierName;
 export 'src/data/azurerm_postgresql_flexible_server.dart'
     show DataAzurermPostgresqlFlexibleServer;
 export 'src/data/azurerm_private_dns_a_record.dart'
@@ -540,7 +576,11 @@ export 'src/data/azurerm_proximity_placement_group.dart'
     show DataAzurermProximityPlacementGroup;
 export 'src/data/azurerm_public_ip.dart' show DataAzurermPublicIp;
 export 'src/data/azurerm_public_ip_prefix.dart' show DataAzurermPublicIpPrefix;
-export 'src/data/azurerm_public_ips.dart' show DataAzurermPublicIps;
+export 'src/data/azurerm_public_ips.dart'
+    show
+        DataAzurermPublicIps,
+        DataPublicIpsAllocationType,
+        DataPublicIpsAttachmentStatus;
 export 'src/data/azurerm_public_maintenance_configurations.dart'
     show DataAzurermPublicMaintenanceConfigurations;
 export 'src/data/azurerm_recovery_services_vault.dart'
@@ -551,7 +591,12 @@ export 'src/data/azurerm_resource_group_template_deployment.dart'
     show DataAzurermResourceGroupTemplateDeployment;
 export 'src/data/azurerm_resources.dart' show DataAzurermResources;
 export 'src/data/azurerm_role_assignments.dart' show DataAzurermRoleAssignments;
-export 'src/data/azurerm_role_definition.dart' show DataAzurermRoleDefinition;
+export 'src/data/azurerm_role_definition.dart'
+    show
+        DataAzurermRoleDefinition,
+        DataRoleDefinitionLookup,
+        DataRoleDefinitionLookupName,
+        DataRoleDefinitionLookupRoleDefinitionId;
 export 'src/data/azurerm_role_management_policy.dart'
     show DataAzurermRoleManagementPolicy;
 export 'src/data/azurerm_route_filter.dart' show DataAzurermRouteFilter;
@@ -560,9 +605,17 @@ export 'src/data/azurerm_search_service.dart' show DataAzurermSearchService;
 export 'src/data/azurerm_sentinel_alert_rule.dart'
     show DataAzurermSentinelAlertRule;
 export 'src/data/azurerm_sentinel_alert_rule_anomaly.dart'
-    show DataAzurermSentinelAlertRuleAnomaly;
+    show
+        DataAzurermSentinelAlertRuleAnomaly,
+        DataSentinelAlertRuleAnomalyIdentifier,
+        DataSentinelAlertRuleAnomalyIdentifierDisplayName,
+        DataSentinelAlertRuleAnomalyIdentifierName;
 export 'src/data/azurerm_sentinel_alert_rule_template.dart'
-    show DataAzurermSentinelAlertRuleTemplate;
+    show
+        DataAzurermSentinelAlertRuleTemplate,
+        DataSentinelAlertRuleTemplateIdentifier,
+        DataSentinelAlertRuleTemplateIdentifierDisplayName,
+        DataSentinelAlertRuleTemplateIdentifierName;
 export 'src/data/azurerm_service_plan.dart' show DataAzurermServicePlan;
 export 'src/data/azurerm_servicebus_namespace.dart'
     show DataAzurermServicebusNamespace;
@@ -596,7 +649,7 @@ export 'src/data/azurerm_site_recovery_replication_recovery_plan.dart'
     show DataAzurermSiteRecoveryReplicationRecoveryPlan;
 export 'src/data/azurerm_snapshot.dart' show DataAzurermSnapshot;
 export 'src/data/azurerm_source_control_token.dart'
-    show DataAzurermSourceControlToken;
+    show DataAzurermSourceControlToken, DataSourceControlTokenType;
 export 'src/data/azurerm_spring_cloud_app.dart' show DataAzurermSpringCloudApp;
 export 'src/data/azurerm_spring_cloud_service.dart'
     show DataAzurermSpringCloudService;
@@ -649,7 +702,9 @@ export 'src/data/azurerm_subscriptions.dart' show DataAzurermSubscriptions;
 export 'src/data/azurerm_synapse_workspace.dart'
     show DataAzurermSynapseWorkspace;
 export 'src/data/azurerm_system_center_virtual_machine_manager_inventory_items.dart'
-    show DataAzurermSystemCenterVirtualMachineManagerInventoryItems;
+    show
+        DataAzurermSystemCenterVirtualMachineManagerInventoryItems,
+        DataSystemCenterVirtualMachineManagerInventoryItemsInventoryType;
 export 'src/data/azurerm_template_spec_version.dart'
     show DataAzurermTemplateSpecVersion;
 export 'src/data/azurerm_tenant_template_deployment.dart'

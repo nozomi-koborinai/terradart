@@ -4,7 +4,12 @@
 library;
 
 export 'package:terradart_core/terradart_core.dart';
-export 'src/data/azurerm_management_group.dart' show DataAzurermManagementGroup;
+export 'src/data/azurerm_management_group.dart'
+    show
+        DataAzurermManagementGroup,
+        DataManagementGroupIdentifier,
+        DataManagementGroupIdentifierDisplayName,
+        DataManagementGroupIdentifierName;
 export 'src/data/azurerm_management_group_template_deployment.dart'
     show DataAzurermManagementGroupTemplateDeployment;
 export 'src/management/azurerm_management_group.dart'

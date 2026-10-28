@@ -1,11 +1,81 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 import '../management/azurerm_management_group.dart';
 
 /// Sensitive field paths for `azurerm_management_group`.
 const Set<String> _azurermManagementGroupSensitive = <String>{};
+
+/// Exactly one of `display_name`, `name` on `data.azurerm_management_group`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.displayName(...)`.
+sealed class DataManagementGroupIdentifier {
+  const DataManagementGroupIdentifier();
+
+  /// Sets `display_name`.
+  const factory DataManagementGroupIdentifier.displayName(
+    TfArg<String> displayName,
+  ) = DataManagementGroupIdentifierDisplayName;
+
+  /// Sets `name`.
+  const factory DataManagementGroupIdentifier.name(TfArg<String> name) =
+      DataManagementGroupIdentifierName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [DataManagementGroupIdentifier.displayName] choice: sets `display_name`.
+final class DataManagementGroupIdentifierDisplayName
+    extends DataManagementGroupIdentifier {
+  const DataManagementGroupIdentifierDisplayName(this.displayName);
+
+  final TfArg<String> displayName;
+
+  @internal
+  @override
+  String get blockKey => 'display_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'display_name': displayName.toTfJson()};
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'display_name': displayName};
+}
+
+/// The [DataManagementGroupIdentifier.name] choice: sets `name`.
+final class DataManagementGroupIdentifierName
+    extends DataManagementGroupIdentifier {
+  const DataManagementGroupIdentifierName(this.name);
+
+  final TfArg<String> name;
+
+  @internal
+  @override
+  String get blockKey => 'name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'name': name.toTfJson()};
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name': name};
+}
 
 /// Factory wrapper for `azurerm_management_group`.
 final class DataAzurermManagementGroup extends Data {
@@ -13,14 +83,10 @@ final class DataAzurermManagementGroup extends Data {
 
   DataAzurermManagementGroup(
     super.localName, {
-    TfArg<String>? displayName,
-    TfArg<String>? name,
+    required DataManagementGroupIdentifier identifier,
     super.provider,
     super.timeouts,
-  }) : super(
-         terraformType: tfType,
-         argMap: {'display_name': ?displayName, 'name': ?name},
-       );
+  }) : super(terraformType: tfType, argMap: {...identifier.argMap});
 
   @override
   Set<String> get sensitiveFields => _azurermManagementGroupSensitive;

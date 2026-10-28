@@ -8,6 +8,32 @@ import '../resource/azurerm_resource_group.dart' show AzurermResourceGroup;
 /// Sensitive field paths for `azurerm_express_route_circuit_peering`.
 const Set<String> _azurermExpressRouteCircuitPeeringSensitive = <String>{};
 
+/// Data Express Route Circuit Peering enum for `peering_type`.
+extension type const DataExpressRouteCircuitPeeringType._(TfArg<String> _)
+    implements TfArg<String> {
+  DataExpressRouteCircuitPeeringType.variable(String name)
+    : this._(TfArg.variable(name));
+  DataExpressRouteCircuitPeeringType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataExpressRouteCircuitPeeringType.arg(TfArg<String> arg) : this._(arg);
+
+  static const azureprivatepeering = DataExpressRouteCircuitPeeringType._(
+    TfArgLiteral('AzurePrivatePeering'),
+  );
+  static const azurepublicpeering = DataExpressRouteCircuitPeeringType._(
+    TfArgLiteral('AzurePublicPeering'),
+  );
+  static const microsoftpeering = DataExpressRouteCircuitPeeringType._(
+    TfArgLiteral('MicrosoftPeering'),
+  );
+
+  static const List<DataExpressRouteCircuitPeeringType> values = [
+    azureprivatepeering,
+    azurepublicpeering,
+    microsoftpeering,
+  ];
+}
+
 /// Factory wrapper for `azurerm_express_route_circuit_peering`.
 final class DataAzurermExpressRouteCircuitPeering extends Data {
   static const String tfType = 'azurerm_express_route_circuit_peering';
@@ -15,7 +41,7 @@ final class DataAzurermExpressRouteCircuitPeering extends Data {
   DataAzurermExpressRouteCircuitPeering(
     super.localName, {
     required TfArg<String> expressRouteCircuitName,
-    required TfArg<String> peeringType,
+    required DataExpressRouteCircuitPeeringType peeringType,
     required RefTo<AzurermResourceGroup> resourceGroupName,
     super.provider,
     super.timeouts,

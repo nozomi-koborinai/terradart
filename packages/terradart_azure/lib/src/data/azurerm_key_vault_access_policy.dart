@@ -7,13 +7,55 @@ import '../key_vault/azurerm_key_vault_access_policy.dart';
 /// Sensitive field paths for `azurerm_key_vault_access_policy`.
 const Set<String> _azurermKeyVaultAccessPolicySensitive = <String>{};
 
+/// Data Key Vault Access Policy enum for `name`.
+extension type const DataKeyVaultAccessPolicyName._(TfArg<String> _)
+    implements TfArg<String> {
+  DataKeyVaultAccessPolicyName.variable(String name)
+    : this._(TfArg.variable(name));
+  DataKeyVaultAccessPolicyName.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataKeyVaultAccessPolicyName.arg(TfArg<String> arg) : this._(arg);
+
+  static const keyManagement = DataKeyVaultAccessPolicyName._(
+    TfArgLiteral('Key Management'),
+  );
+  static const secretManagement = DataKeyVaultAccessPolicyName._(
+    TfArgLiteral('Secret Management'),
+  );
+  static const certificateManagement = DataKeyVaultAccessPolicyName._(
+    TfArgLiteral('Certificate Management'),
+  );
+  static const keySecretManagement = DataKeyVaultAccessPolicyName._(
+    TfArgLiteral('Key & Secret Management'),
+  );
+  static const keyCertificateManagement = DataKeyVaultAccessPolicyName._(
+    TfArgLiteral('Key & Certificate Management'),
+  );
+  static const secretCertificateManagement = DataKeyVaultAccessPolicyName._(
+    TfArgLiteral('Secret & Certificate Management'),
+  );
+  static const keySecretCertificateManagement = DataKeyVaultAccessPolicyName._(
+    TfArgLiteral('Key, Secret, & Certificate Management'),
+  );
+
+  static const List<DataKeyVaultAccessPolicyName> values = [
+    keyManagement,
+    secretManagement,
+    certificateManagement,
+    keySecretManagement,
+    keyCertificateManagement,
+    secretCertificateManagement,
+    keySecretCertificateManagement,
+  ];
+}
+
 /// Factory wrapper for `azurerm_key_vault_access_policy`.
 final class DataAzurermKeyVaultAccessPolicy extends Data {
   static const String tfType = 'azurerm_key_vault_access_policy';
 
   DataAzurermKeyVaultAccessPolicy(
     super.localName, {
-    required TfArg<String> name,
+    required DataKeyVaultAccessPolicyName name,
     super.provider,
     super.timeouts,
   }) : super(terraformType: tfType, argMap: {'name': name});

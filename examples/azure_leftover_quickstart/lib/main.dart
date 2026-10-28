@@ -12638,7 +12638,7 @@ final class AzureLeftoverStack extends Stack {
       DataAzurermExpressRouteCircuitPeering(
         'd_express_route_circuit_peering',
         expressRouteCircuitName: .literal(leftover),
-        peeringType: .literal('AzurePrivatePeering'),
+        peeringType: .azureprivatepeering,
         resourceGroupName: .literal(resourceGroupName),
       ),
     );
@@ -12813,7 +12813,7 @@ final class AzureLeftoverStack extends Stack {
     add(
       DataAzurermKeyVaultAccessPolicy(
         'd_key_vault_access_policy',
-        name: .literal('Key Management'),
+        name: .keyManagement,
       ),
     );
 
@@ -13167,7 +13167,7 @@ final class AzureLeftoverStack extends Stack {
     add(
       DataAzurermManagementGroup(
         'd_management_group',
-        name: .literal(leftover),
+        identifier: .name(.literal(leftover)),
       ),
     );
 
@@ -13780,21 +13780,21 @@ final class AzureLeftoverStack extends Stack {
     add(
       DataAzurermPolicyDefinition(
         'd_policy_definition',
-        name: .literal(leftover),
+        identifier: .name(.literal(leftover)),
       ),
     );
 
     add(
       DataAzurermPolicyDefinitionBuiltIn(
         'd_policy_definition_built_in',
-        name: .literal(leftover),
+        identifier: .name(.literal(leftover)),
       ),
     );
 
     add(
       DataAzurermPolicySetDefinition(
         'd_policy_set_definition',
-        name: .literal(leftover),
+        identifier: .name(.literal(leftover)),
       ),
     );
 
@@ -14053,7 +14053,10 @@ final class AzureLeftoverStack extends Stack {
     );
 
     add(
-      DataAzurermRoleDefinition('d_role_definition', name: .literal(leftover)),
+      DataAzurermRoleDefinition(
+        'd_role_definition',
+        lookup: .name(.literal(leftover)),
+      ),
     );
 
     add(
@@ -14247,10 +14250,7 @@ final class AzureLeftoverStack extends Stack {
     );
 
     add(
-      DataAzurermSourceControlToken(
-        'd_source_control_token',
-        type: .literal('Bitbucket'),
-      ),
+      DataAzurermSourceControlToken('d_source_control_token', type: .bitbucket),
     );
 
     add(
@@ -14505,7 +14505,7 @@ final class AzureLeftoverStack extends Stack {
     add(
       DataAzurermSystemCenterVirtualMachineManagerInventoryItems(
         'd_system_center_virtual_machine_manager_inventor',
-        inventoryType: .literal('Cloud'),
+        inventoryType: .cloud,
         systemCenterVirtualMachineManagerServerId: .literal(
           '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ScVmm/vmmServers/vmmServerName',
         ),
