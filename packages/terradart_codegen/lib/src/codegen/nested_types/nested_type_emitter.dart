@@ -4,6 +4,7 @@ import '../exactly_one_types.dart';
 import '../naming.dart';
 import '../provider_enums.dart';
 import '../references/reference_targets.dart';
+import '../wrapper_overrides/wrapper_override.dart';
 import 'nested_type_collector.dart';
 
 /// Renders the Dart source for a resource's derived nested-block helper

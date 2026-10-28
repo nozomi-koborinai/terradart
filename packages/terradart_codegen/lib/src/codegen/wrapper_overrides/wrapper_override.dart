@@ -536,3 +536,30 @@ final class MigrateHint {
   /// The `kind:` value this hint was declared with.
   String get kind => 'manual';
 }
+
+/// One member of an exactly-one group as its sealed variant holds it.
+typedef ExactlyOneVariant = ({
+  /// Terraform argument name, which is also the variant's `blockKey`.
+  String tfName,
+
+  /// Dart field name.
+  String ident,
+
+  /// Non-nullable Dart field type.
+  String fieldType,
+
+  /// The wire value `encode()` writes under [tfName].
+  String encodeExpr,
+
+  /// The `TfArg` a resource's `argMap` holds under [tfName]; null for a
+  /// variant inside a nested helper, which only encodes.
+  String? argMapExpr,
+
+  /// `@Deprecated` message of the member, if any.
+  String? deprecation,
+
+  /// The value the variant takes when the caller passes none — the empty
+  /// helper of a block with no fields (`.avroFormat()`) — or null when the
+  /// variant requires one.
+  String? defaultValue,
+});
