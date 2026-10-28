@@ -22,7 +22,7 @@ import 'output_getter_extractor.dart';
 /// - Top-level slots follow `orderedConstructorParams` /
 ///   `orderedDataSourceConstructorParams` — the emitter's own slot order.
 /// - IR attributes classify from `dartTypeOverrides[name] ??
-///   writeDartType(type)` (what `WrapperEmitter._attributeParam` renders).
+///   writeDartType(type)`.
 /// - Derived nested blocks use the `collectNestedTypes` specs the emitter
 ///   rendered (class name, cardinality, requiredness).
 /// - Custom slots are read from their verbatim `paramDeclaration` /
@@ -408,9 +408,6 @@ MigrateSlotData _attributeSlot(
   );
 }
 
-/// Mirrors `WrapperEmitter._nestedBlockParam`: object-valued nestings
-/// ([nestedBlockIsObject]) collapse to `Map<String, dynamic>`, the rest to
-/// `List<Map<String, dynamic>>`.
 MigrateSlotData _passthroughSlot(
   NestedBlockDef block,
   Set<String> requiredOverrides,

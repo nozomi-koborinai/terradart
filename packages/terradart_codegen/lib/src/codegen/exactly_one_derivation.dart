@@ -1,6 +1,7 @@
 import '../ir/provider_schema_ir.dart';
 import '../ir/resource_def.dart';
 import 'constructor_params.dart';
+import 'constructor_slots.dart';
 import 'dart_type_writer.dart';
 import 'exactly_one_types.dart';
 import 'naming.dart';
@@ -284,7 +285,7 @@ WrapperOverride _derive(
     if (block == null || block.constraints.required) return null;
     final spec = specs[m];
     if (spec != null) {
-      final bare = nestedParamType(spec);
+      final bare = ConstructorSlots.nestedParamType(spec);
       final encode = spec.repeated
           ? '[for (final e in $ident) e.encode()]'
           : '$ident.encode()';

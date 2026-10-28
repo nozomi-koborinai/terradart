@@ -1,8 +1,6 @@
-import '../ir/attribute.dart';
-import '../ir/nested_block.dart';
 import '../ir/resource_def.dart';
 import 'constructor_params.dart';
-import 'dart_type_writer.dart';
+import 'constructor_slots.dart';
 import 'doc_comment_builder.dart';
 import 'enum_emitter.dart';
 import 'getter_emitter.dart';
@@ -10,7 +8,6 @@ import 'naming.dart';
 import 'nested_types/nested_type_collector.dart';
 import 'nested_types/nested_type_emitter.dart';
 import 'provider_enums.dart';
-import 'references/reference_slots.dart';
 import 'references/reference_targets.dart';
 import 'sensitive_set_emitter.dart';
 import 'wrapper_overrides/wrapper_override.dart';
@@ -99,8 +96,8 @@ class WrapperEmitter {
   /// Raw provider-schema JSON `block` maps, keyed by Terraform type — the
   /// shape `collectNestedTypes` consumes (`block_types` / `nesting_mode` /
   /// `min_items`, etc.), which the parsed [ResourceDef] IR no longer carries
-  /// once `SchemaJsonParser` has flattened it into [Attribute] /
-  /// [NestedBlockDef]. Only consulted when an override sets
+  /// once `SchemaJsonParser` has flattened it into attributes and nested
+  /// blocks. Only consulted when an override sets
   /// `deriveNestedTypes: true`; `wrap_command.dart` builds this lazily (only
   /// decoding schema.json a second time when at least one loaded override
   /// needs it), so callers that never flip the gate — every committed
@@ -364,67 +361,22 @@ class WrapperEmitter {
     // suppresses the schema's individual `pubsub_target` /
     // `http_target` / `app_engine_http_target` blocks.
     final argMapOrder = override?.argMapOrder ?? paramOrder;
-    final deprecations = override?.deprecatedParams ?? const <String, String>{};
-    final paramsByName = _paramsByName(
-      def,
-      requiredOverrides,
-      dartTypeOverrides,
-      deprecations,
+    final slots = ConstructorSlots.wrapper(
+      def: def,
+      kind: WrapperOverrideKind.resource,
+      skipAttribute: skipAttribute,
+      requiredOverrides: requiredOverrides,
+      typeOverrides: dartTypeOverrides,
+      deprecations: override?.deprecatedParams ?? const {},
+      references: topLevelRefs,
+      paramOrder: paramOrder,
+      customSlots: customSlots,
+      nestedTypeSpecs: nestedTypeSpecs,
     );
-    final argMapByName = _argMapEntriesByName(
-      def,
-      requiredOverrides,
-      dartTypeOverrides,
-    );
-    for (final MapEntry(key: name, value: ref) in topLevelRefs.entries) {
-      final attr = def.root.attributes.firstWhere((a) => a.name == name);
-      final isRequired =
-          attr.constraints.required || requiredOverrides.contains(name);
-      final dartName = ref.dartName ?? snakeToDartIdent(name);
-      final slot = referenceSlot(
-        tfName: name,
-        dartName: dartName,
-        reference: ref,
-        required: isRequired,
-      );
-      paramsByName[name] = _deprecated(slot.param, deprecations[name]);
-      argMapByName[name] = slot.argMapEntry;
-      for (final key in ref.absorbed) {
-        if (!paramOrder.contains(key) ||
-            customSlots.containsKey(key) ||
-            dartTypeOverrides.containsKey(key)) {
-          continue;
-        }
-        final fill = absorbedSlot(
-          tfName: key,
-          dartName: snakeToDartIdent(key),
-          from: dartName,
-          fromRequired: isRequired,
-        );
-        paramsByName[key] = _deprecated(fill.param, deprecations[key]);
-        argMapByName[key] = fill.argMapEntry;
-      }
-    }
-    for (final entry in customSlots.entries) {
-      paramsByName[entry.key] = entry.value.paramDeclaration;
-      argMapByName[entry.key] = entry.value.argMapEntry;
-    }
-    // Replace the generic passthrough for every TOP-LEVEL `deriveNestedTypes`
-    // spec with its typed rendering. Keys never collide with the customSlots
-    // loop above: `collectNestedTypes` skips any subtree rooted at a
-    // `customSlots` key entirely (see `customSlotKeys` above), so a spec can
-    // never share a `tfName` with a customSlot entry.
-    for (final spec in nestedTypeSpecs) {
-      final isRequired =
-          spec.required || requiredOverrides.contains(spec.tfName);
-      final slot = _nestedTypeSlot(spec, isRequired: isRequired);
-      paramsByName[spec.tfName] = slot.param;
-      argMapByName[spec.tfName] = slot.argMapEntry;
-    }
 
     buf.writeln('  $pascal(super.localName, {');
     for (final name in paramOrder) {
-      final snippet = paramsByName[name];
+      final snippet = slots.parameter(name);
       if (snippet == null) {
         throw StateError(
           'WrapperEmitter: paramOrder references unknown slot "$name" for '
@@ -448,7 +400,7 @@ class WrapperEmitter {
     buf.writeln('         terraformType: tfType,');
     buf.writeln('         argMap: {');
     for (final name in argMapOrder) {
-      final snippet = argMapByName[name];
+      final snippet = slots.argMapEntry(name);
       if (snippet == null) {
         throw StateError(
           'WrapperEmitter: argMapOrder references unknown slot "$name" for '
@@ -544,144 +496,6 @@ class WrapperEmitter {
 
     return buf.toString();
   }
-
-  // ---------------------------------------------------------------------
-  // Slot-name helpers. The wrapper has three "slot" surfaces (constructor
-  // params, argMap entries, and the override's paramOrder list) that all
-  // address the same set of inputs by snake-case name. We build a name →
-  // snippet map once per emit and look up snippets in whatever order the
-  // override (or IR default) specifies.
-  // ---------------------------------------------------------------------
-
-  /// Builds a snake-case-name → constructor-param-snippet map.
-  ///
-  /// `requiredOverrides` lists slot names the override wants to force
-  /// `required` regardless of the schema's `required` flag (Phase 2.2 use
-  /// case: `google_cloud_tasks_queue_iam_member` makes `location`
-  /// required even though Terraform marks it `optional + computed`).
-  Map<String, String> _paramsByName(
-    ResourceDef def,
-    Set<String> requiredOverrides,
-    Map<String, String> dartTypeOverrides,
-    Map<String, String> deprecations,
-  ) {
-    final out = <String, String>{};
-    for (final attr in def.root.attributes) {
-      if (skipAttribute(attr)) continue;
-      final isRequired =
-          attr.constraints.required || requiredOverrides.contains(attr.name);
-      out[attr.name] = _attributeParam(
-        attr,
-        isRequired: isRequired,
-        typeOverride: dartTypeOverrides[attr.name],
-        deprecation: deprecations[attr.name],
-      );
-    }
-    for (final nested in def.root.nestedBlocks) {
-      if (skipNestedBlock(nested)) continue;
-      final isRequired =
-          nested.constraints.required ||
-          requiredOverrides.contains(nested.name);
-      out[nested.name] = _nestedBlockParam(nested, isRequired: isRequired);
-    }
-    return out;
-  }
-
-  /// Builds a snake-case-name → argMap-entry-snippet map. The required /
-  /// optional shape mirrors [_paramsByName] so the two are always in sync.
-  Map<String, String> _argMapEntriesByName(
-    ResourceDef def,
-    Set<String> requiredOverrides,
-    Map<String, String> dartTypeOverrides,
-  ) {
-    final out = <String, String>{};
-    for (final attr in def.root.attributes) {
-      if (skipAttribute(attr)) continue;
-      final isRequired =
-          attr.constraints.required || requiredOverrides.contains(attr.name);
-      out[attr.name] = isEnumListType(dartTypeOverrides[attr.name] ?? '')
-          ? elementwiseArgMapEntry(attr.name, isRequired: isRequired)
-          : _argMapEntry(attr.name, isRequired);
-    }
-    for (final nested in def.root.nestedBlocks) {
-      if (skipNestedBlock(nested)) continue;
-      final isRequired =
-          nested.constraints.required ||
-          requiredOverrides.contains(nested.name);
-      out[nested.name] = _argMapEntry(nested.name, isRequired);
-    }
-    return out;
-  }
-
-  // ---------------------------------------------------------------------
-  // Snippet builders.
-  // ---------------------------------------------------------------------
-
-  /// Renders `[required] TfArg<DartType>[?] camelName` for a scalar
-  /// attribute. The Dart type comes from `writeDartType` (the same
-  /// renderer abstract class getters use).
-  String _attributeParam(
-    Attribute attr, {
-    required bool isRequired,
-    String? typeOverride,
-    String? deprecation,
-  }) {
-    final dartName = snakeToDartIdent(attr.name);
-    final dartType = typeOverride ?? writeDartType(attr.type);
-    final modifier = isRequired ? 'required ' : '';
-    final nullSuffix = isRequired ? '' : '?';
-    final base =
-        '$modifier${argTypeFor(dartType, sensitive: takesSensitive(attr))}$nullSuffix $dartName';
-    return _deprecated(base, deprecation);
-  }
-
-  static String _deprecated(String param, String? deprecation) {
-    if (deprecation == null) return param;
-    final escaped = deprecation.replaceAll(r'\', r'\\').replaceAll("'", r"\'");
-    return "@Deprecated('$escaped') $param";
-  }
-
-  /// Renders `[required] TfArg<Map|List<Map>>[?] camelName` for a nested
-  /// block, collapsing object-valued nestings ([nestedBlockIsObject]) to
-  /// `Map<String, dynamic>` and the rest to `List<Map<String, dynamic>>`.
-  String _nestedBlockParam(NestedBlockDef nested, {required bool isRequired}) {
-    final dartName = snakeToDartIdent(nested.name);
-    final innerType = nestedBlockIsObject(nested)
-        ? 'Map<String, dynamic>'
-        : 'List<Map<String, dynamic>>';
-    final modifier = isRequired ? 'required ' : '';
-    final nullSuffix = isRequired ? '' : '?';
-    return '${modifier}TfArg<$innerType>$nullSuffix $dartName';
-  }
-
-  /// Renders the matching argMap entry. Required slots are unconditional;
-  /// optional ones are `if`-guarded so the synth pass distinguishes
-  /// "unset" from "explicit null".
-  String _argMapEntry(String snakeName, bool isRequired) {
-    final camel = snakeToDartIdent(snakeName);
-    if (isRequired) {
-      return "'$snakeName': $camel,";
-    }
-    return "'$snakeName': ?$camel,";
-  }
-
-  /// Builds the constructor-param and argMap-entry snippets for one
-  /// TOP-LEVEL `deriveNestedTypes` spec, replacing [_nestedBlockParam] /
-  /// [_argMapEntry]'s generic `TfArg<Map<String, dynamic>>?` passthrough for
-  /// that slot.
-  ///
-  /// Mirrors the hand-written idiom [CustomSlot]'s doc comment describes
-  /// (e.g. `google_pubsub_subscription.bigquery_config`): the constructor
-  /// exposes a bare (non-`TfArg`) helper-class reference —
-  /// [nestedParamType]'s shape, required-ness stripped per its own
-  /// documented contract ("a caller rendering a required slot strips the
-  /// trailing `?` itself") — and the argMap entry wraps its `.encode()`
-  /// output in `TfArg.literal(...)` so it satisfies `Resource.argMap`'s
-  /// `Map<String, TfArg<dynamic>?>` contract.
-  ({String param, String argMapEntry}) _nestedTypeSlot(
-    NestedBlockSpec spec, {
-    required bool isRequired,
-  }) => nestedTypeConstructorSlot(spec, isRequired: isRequired);
 
   /// Looks up [terraformType]'s raw provider-schema `block` map in
   /// [rawResourceSchemas], failing loudly when it's missing — this only

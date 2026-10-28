@@ -343,11 +343,7 @@ final class WrapperOverride {
   ///    and the customSlot fan-outs to a single argMap entry whose key
   ///    is dynamic (`target.blockKey`).
   ///
-  /// The emitter resolves [paramOrder] / [argMapOrder] names against
-  /// [customSlots] FIRST; if no entry, it falls back to IR-derived
-  /// snippets from `_paramsByName` / `_argMapEntriesByName`. Listing a
-  /// name in [customSlots] therefore overrides whatever the IR would
-  /// have produced for that name.
+  /// A name in [customSlots] replaces the schema slot for that name.
   ///
   /// `null` means "no custom slots — every paramOrder name is resolved
   /// from the IR".
