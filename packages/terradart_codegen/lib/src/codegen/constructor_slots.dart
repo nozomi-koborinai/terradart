@@ -39,7 +39,7 @@ final class ConstructorSlots {
     Map<String, String> deprecations = const {},
     Map<String, ResolvedReference> references = const {},
     required List<String> paramOrder,
-    Map<String, CustomSlot> customSlots = const {},
+    Map<String, OverrideSlot> overrideSlots = const {},
     List<NestedBlockSpec> nestedTypeSpecs = const [],
   }) {
     final resource = kind == WrapperOverrideKind.resource;
@@ -98,7 +98,7 @@ final class ConstructorSlots {
       if (!resource) continue;
       for (final key in ref.absorbed) {
         if (!paramOrder.contains(key) ||
-            customSlots.containsKey(key) ||
+            overrideSlots.containsKey(key) ||
             typeOverrides.containsKey(key)) {
           continue;
         }
@@ -115,11 +115,14 @@ final class ConstructorSlots {
       }
     }
 
-    for (final entry in customSlots.entries) {
-      byName[entry.key] = (
-        param: entry.value.paramDeclaration,
-        argMapEntry: entry.value.argMapEntry,
-      );
+    for (final MapEntry(key: name, value: slot) in overrideSlots.entries) {
+      byName[name] = switch (slot) {
+        CustomSlot() => (
+          param: slot.paramDeclaration,
+          argMapEntry: slot.argMapEntry,
+        ),
+        SealedArgument() => _sealedArgumentSlot(slot),
+      };
     }
     for (final spec in nestedTypeSpecs) {
       final isRequired =
@@ -366,6 +369,14 @@ WrapperSlot _referenceSlot({
               ? "'$tfName': ?$dartName,"
               : "'$tfName': ?$dartName?$encode,",
         );
+}
+
+WrapperSlot _sealedArgumentSlot(SealedArgument argument) {
+  final ident = snakeToDartIdent(argument.concept);
+  final sealed = argument.sealedClass;
+  return argument.optional
+      ? (param: '$sealed? $ident', argMapEntry: '...?$ident?.argMap,')
+      : (param: 'required $sealed $ident', argMapEntry: '...$ident.argMap,');
 }
 
 WrapperSlot _absorbedSlot({

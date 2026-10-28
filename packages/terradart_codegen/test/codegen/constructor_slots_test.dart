@@ -100,7 +100,7 @@ ConstructorSlots _slots({
   Set<String> requiredOverrides = const {},
   Map<String, ResolvedReference> references = const {},
   List<String> paramOrder = _order,
-  Map<String, CustomSlot> customSlots = const {},
+  Map<String, OverrideSlot> overrideSlots = const {},
   List<NestedBlockSpec> nestedTypeSpecs = const [],
 }) => ConstructorSlots.wrapper(
   def: _def(),
@@ -111,8 +111,31 @@ ConstructorSlots _slots({
   deprecations: deprecations,
   references: references,
   paramOrder: paramOrder,
-  customSlots: customSlots,
+  overrideSlots: overrideSlots,
   nestedTypeSpecs: nestedTypeSpecs,
+);
+
+SealedArgument _sealed(
+  String concept,
+  String sealedClass, {
+  bool optional = false,
+}) => SealedArgument(
+  concept: concept,
+  sealedClass: sealedClass,
+  optional: optional,
+  variants: [
+    for (final m in const ['note', 'token'])
+      (
+        tfName: m,
+        ident: m,
+        fieldType: 'TfArg<String>',
+        encodeExpr: '$m.toTfJson()',
+        argMapExpr: m,
+        deprecation: null,
+        defaultValue: null,
+      ),
+  ],
+  variantClasses: ['${sealedClass}Note', '${sealedClass}Token'],
 );
 
 void main() {
@@ -258,7 +281,7 @@ void main() {
     test('a custom slot replaces the schema slot, deprecation included', () {
       final slots = _slots(
         deprecations: {'name': 'old'},
-        customSlots: {
+        overrideSlots: {
           'name': const CustomSlot(
             paramDeclaration: 'required Name name',
             argMapEntry: "'name': name.encode(),",
@@ -273,6 +296,48 @@ void main() {
       expect(slots.argMapEntry('name'), "'name': name.encode(),");
       expect(slots.parameter('target'), 'required Target target');
       expect(slots.argMapEntry('target'), '...target.argMap,');
+    });
+
+    test('a sealed argument spreads its argMap, null-aware when optional', () {
+      final slots = _slots(
+        overrideSlots: {
+          'code': _sealed('code', 'TestCode'),
+          'source_choice': _sealed(
+            'source_choice',
+            'TestSourceChoice',
+            optional: true,
+          ),
+        },
+      );
+      expect(slots.parameter('code'), 'required TestCode code');
+      expect(slots.argMapEntry('code'), '...code.argMap,');
+      expect(
+        slots.parameter('source_choice'),
+        'TestSourceChoice? sourceChoice',
+      );
+      expect(slots.argMapEntry('source_choice'), '...?sourceChoice?.argMap,');
+    });
+
+    test('a sealed argument named after an attribute replaces it, '
+        'deprecation included', () {
+      final slots = _slots(
+        deprecations: {'name': 'old'},
+        overrideSlots: {'name': _sealed('name', 'TestName')},
+      );
+      expect(slots.parameter('name'), 'required TestName name');
+      expect(slots.argMapEntry('name'), '...name.argMap,');
+    });
+
+    test('an absorbed key that is a sealed argument gets no alsoAs fill', () {
+      final slots = _slots(
+        references: {'service': _project},
+        overrideSlots: {
+          'location': _sealed('location', 'TestLocation', optional: true),
+        },
+      );
+      expect(slots.parameter('service'), 'RefTo<GoogleProject>? project');
+      expect(slots.parameter('location'), 'TestLocation? location');
+      expect(slots.argMapEntry('location'), '...?location?.argMap,');
     });
 
     test('a derived nested spec replaces the generic block slot', () {

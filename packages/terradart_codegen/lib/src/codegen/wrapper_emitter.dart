@@ -3,6 +3,7 @@ import 'constructor_params.dart';
 import 'constructor_slots.dart';
 import 'doc_comment_builder.dart';
 import 'enum_emitter.dart';
+import 'exactly_one_types.dart';
 import 'getter_emitter.dart';
 import 'naming.dart';
 import 'nested_types/nested_type_collector.dart';
@@ -126,11 +127,8 @@ class WrapperEmitter {
     final override = overrides[def.terraformType];
     final requiredOverrides = (override?.requiredParams ?? const <String>[])
         .toSet();
-    // Hoisted ahead of its historical position (immediately before the
-    // constructor section) because the `deriveNestedTypes` gate below needs
-    // `customSlotKeys` before it renders the prelude section — customSlots
-    // itself doesn't depend on anything emitted in between.
-    final customSlots = override?.customSlots ?? const <String, CustomSlot>{};
+    final overrideSlots =
+        override?.overrideSlots ?? const <String, OverrideSlot>{};
     final refs = references[def.terraformType] ?? const {};
 
     var nestedTypeSpecs = const <NestedBlockSpec>[];
@@ -139,7 +137,7 @@ class WrapperEmitter {
       nestedTypeSpecs = collectNestedTypes(
         resourceBlock: _requireRawSchema(def.terraformType),
         resourcePrefix: override.kind.typeStem(def.terraformType),
-        customSlotKeys: customSlots.keys.toSet(),
+        customSlotKeys: overrideSlots.keys.toSet(),
         excludedPaths: (override.nestedTypeExcludes ?? const <String>[])
             .toSet(),
         shareIdenticalShapes: override.dedupeNestedTypes,
@@ -181,7 +179,7 @@ class WrapperEmitter {
     final topLevelRefs = <String, ResolvedReference>{
       for (final name in paramOrder)
         if (refs[name] case final ref?)
-          if (!customSlots.containsKey(name) &&
+          if (!overrideSlots.containsKey(name) &&
               !dartTypeOverrides.containsKey(name))
             name: ref,
     };
@@ -196,7 +194,8 @@ class WrapperEmitter {
       }
     }
 
-    final preludeSource = override?.prelude ?? '';
+    final prelude = emittedPrelude(override, def.terraformType);
+    final preludeSource = prelude ?? '';
     unreachableHelpers.clear();
     for (final spec in nestedTypeSpecs) {
       collectNestedRefs(spec, [spec.tfName]);
@@ -248,7 +247,7 @@ class WrapperEmitter {
             resourceTerraformType: def.terraformType,
           );
     final needsMeta =
-        _metaAnnotation.hasMatch('$nestedTypes${override?.prelude ?? ''}') &&
+        _metaAnnotation.hasMatch('$nestedTypes${prelude ?? ''}') &&
         !extraImports.any((i) => i.contains('package:meta/meta.dart'));
     if (needsMeta) {
       buf.writeln("import 'package:meta/meta.dart';");
@@ -261,7 +260,7 @@ class WrapperEmitter {
       for (final ref in [
         ...topLevelRefs.values,
         ...nestedRefs.values,
-        ...preludeReferences(refs, override?.prelude),
+        ...preludeReferences(refs, prelude),
         if (principals.contains(def.terraformType)) ?principal,
       ])
         if (ref.target != def.terraformType) ref,
@@ -320,7 +319,6 @@ class WrapperEmitter {
     // brackets it with one blank line on each side. `dart_style` later
     // collapses any double-blank-lines the override accidentally
     // introduces.
-    final prelude = override?.prelude;
     if (prelude != null) {
       buf.write(prelude);
       buf.writeln();
@@ -351,15 +349,6 @@ class WrapperEmitter {
     // Constructor signature + super initializer. Parameter ordering and
     // requiredness come from the override when present, otherwise
     // IR-natural (alphabetical, schema-derived required flag).
-    //
-    // Slot resolution layers customSlots ON TOP of IR-derived snippets,
-    // so a customSlot named after an IR slot replaces the IR rendering
-    // (e.g. `bigquery_config` → helper-typed `BigQueryConfig?`), and a
-    // customSlot named after a *virtual* slot adds it (e.g.
-    // scheduler_job's `target`). IR slots that the override omits from
-    // paramOrder are silently skipped — this is how virtual-fan-out
-    // suppresses the schema's individual `pubsub_target` /
-    // `http_target` / `app_engine_http_target` blocks.
     final argMapOrder = override?.argMapOrder ?? paramOrder;
     final slots = ConstructorSlots.wrapper(
       def: def,
@@ -370,7 +359,7 @@ class WrapperEmitter {
       deprecations: override?.deprecatedParams ?? const {},
       references: topLevelRefs,
       paramOrder: paramOrder,
-      customSlots: customSlots,
+      overrideSlots: overrideSlots,
       nestedTypeSpecs: nestedTypeSpecs,
     );
 

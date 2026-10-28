@@ -539,3 +539,28 @@ String renderExactlyOneTypes({
   }
   return buf.toString();
 }
+
+/// The prelude both wrapper emitters write for [terraformType]: the
+/// override's hand-written prelude, then each sealed argument's
+/// declarations after a blank line.
+String? emittedPrelude(WrapperOverride? override, String terraformType) {
+  if (override == null || override.sealedArguments.isEmpty) {
+    return override?.prelude;
+  }
+  final buf = StringBuffer(override.prelude ?? '');
+  for (final a in override.sealedArguments) {
+    buf
+      ..writeln()
+      ..write(
+        renderExactlyOneTypes(
+          sealed: a.sealedClass,
+          members: a.members,
+          where: '`${override.kind.label(terraformType)}`',
+          variants: a.variants,
+          variantClasses: a.variantClasses,
+          optional: a.optional,
+        ),
+      );
+  }
+  return buf.toString();
+}

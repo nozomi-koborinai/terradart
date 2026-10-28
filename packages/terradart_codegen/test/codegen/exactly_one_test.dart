@@ -372,22 +372,26 @@ void main() {
       'aws_thing settings [x, y]: the block has no typed helper',
     ]);
     final o = derived.overrides.resources['aws_thing']!;
-    expect(
-      o.customSlots!['a_or_b']!.paramDeclaration,
-      'required ThingAOrB aOrB',
-    );
-    expect(o.customSlots!['a_or_b']!.argMapEntry, '...aOrB.argMap,');
+    expect(o.customSlots, isNull);
+    expect(o.prelude, isNull);
+    final sealed = o.sealedArguments.single;
+    expect(sealed.concept, 'a_or_b');
+    expect(sealed.sealedClass, 'ThingAOrB');
+    expect(sealed.optional, isFalse);
+    expect(sealed.members, ['a', 'b']);
+    expect(sealed.variantClasses, ['ThingAOrBA', 'ThingAOrBChoice']);
     expect(o.paramOrder, isNot(contains('a')));
     expect(o.paramOrder, isNot(contains('b')));
     expect(o.paramOrder, containsAll(['a_or_b', 'c', 'd', 'name']));
-    expect(o.prelude, contains('sealed class ThingAOrB {'));
-    expect(o.prelude, contains('final class ThingAOrBA extends ThingAOrB {'));
+    final prelude = emittedPrelude(o, 'aws_thing');
+    expect(prelude, contains('sealed class ThingAOrB {'));
+    expect(prelude, contains('final class ThingAOrBA extends ThingAOrB {'));
     expect(
-      o.prelude,
+      prelude,
       contains('const factory ThingAOrB.a(TfArg<String> a) = ThingAOrBA;'),
     );
-    expect(o.prelude, contains('const ThingAOrBA(this.a);'));
-    expect(o.prelude, contains("{'b': b};"));
+    expect(prelude, contains('const ThingAOrBA(this.a);'));
+    expect(prelude, contains("{'b': b};"));
 
     final off = _derive(
       {'aws_thing': const WrapperOverride(outputDir: 'thing')},
@@ -395,7 +399,7 @@ void main() {
       providerEnums: _groups,
       rawSchemas: const {},
     );
-    expect(off.overrides.resources['aws_thing']!.customSlots, isNull);
+    expect(off.overrides.resources['aws_thing']!.sealedArguments, isEmpty);
     expect(off.skipped, isEmpty);
   });
 
@@ -449,22 +453,27 @@ void main() {
       ),
       rawSchemas: (resources: const {}, dataSources: const {}),
     );
+    List<String> concepts(WrapperOverride o) => [
+      for (final a in o.sealedArguments) a.concept,
+    ];
     final d = derived.overrides.dataSources['aws_thing']!;
-    expect(d.customSlots!.keys, ['c_or_d']);
-    expect(
-      d.customSlots!['c_or_d']!.paramDeclaration,
-      'required DataThingCOrD cOrD',
-    );
+    expect(d.customSlots, isNull);
+    expect(d.prelude, isNull);
+    expect(concepts(d), ['c_or_d']);
+    final sealed = d.sealedArguments.single;
+    expect(sealed.sealedClass, 'DataThingCOrD');
+    expect(sealed.optional, isFalse);
+    expect(sealed.members, ['c', 'd']);
+    expect(sealed.variantClasses, ['DataThingCOrDC', 'DataThingCOrDChoice']);
     expect(d.paramOrder, containsAll(['a', 'b', 'c_or_d']));
     expect(d.paramOrder, isNot(contains('c')));
-    expect(d.prelude, contains('sealed class DataThingCOrD {'));
-    expect(d.prelude, contains('on `data.aws_thing`'));
+    final prelude = emittedPrelude(d, 'aws_thing');
+    expect(prelude, contains('sealed class DataThingCOrD {'));
+    expect(prelude, contains('on `data.aws_thing`'));
     final r = derived.overrides.resources['aws_thing']!;
-    expect(r.customSlots!.keys, ['a_or_b']);
+    expect(concepts(r), ['a_or_b']);
     expect(r.paramOrder, containsAll(['c', 'd']));
-    expect(derived.overrides.dataSources['aws_client']!.customSlots!.keys, [
-      'a_or_b',
-    ]);
+    expect(concepts(derived.overrides.dataSources['aws_client']!), ['a_or_b']);
     expect(
       [for (final n in derived.names) n.type],
       ['aws_thing', 'data.aws_thing', 'aws_client'],
@@ -685,14 +694,17 @@ void main() {
     );
     expect(derived.skipped, isEmpty);
     expect(derived.nameErrors, isEmpty);
-    expect(
-      derived
-          .overrides
-          .resources['aws_thing']!
-          .customSlots!['source']!
-          .paramDeclaration,
-      'required ThingSource source',
-    );
+    final o = derived.overrides.resources['aws_thing']!;
+    expect(o.customSlots, isNull);
+    expect(o.prelude, isNull);
+    final sealed = o.sealedArguments.single;
+    expect(sealed.concept, 'source');
+    expect(sealed.sealedClass, 'ThingSource');
+    expect(sealed.optional, isFalse);
+    expect(sealed.members, names);
+    expect(sealed.variantClasses, [
+      for (var i = 0; i < 40; i++) 'ThingSourceFeed$i',
+    ]);
     expect(derived.names.single.name.source, SealedNameSource.human);
   });
 
@@ -1144,18 +1156,59 @@ void main() {
       'aws_thing [b, c]: b is in an earlier group',
     ]);
     final o = derived.overrides.resources['aws_thing']!;
-    expect(
-      o.customSlots!['a_or_b']!.paramDeclaration,
-      'required ThingAOrB aOrB',
-    );
-    expect(o.customSlots!['c_or_d']!.paramDeclaration, 'ThingCOrD? cOrD');
-    expect(o.customSlots!['c_or_d']!.argMapEntry, '...?cOrD?.argMap,');
+    expect(o.customSlots, isNull);
+    expect(o.prelude, isNull);
+    final [exactlyOne, atMostOne] = o.sealedArguments;
+    expect(exactlyOne.concept, 'a_or_b');
+    expect(exactlyOne.sealedClass, 'ThingAOrB');
+    expect(exactlyOne.optional, isFalse);
+    expect(exactlyOne.members, ['a', 'b']);
+    expect(atMostOne.concept, 'c_or_d');
+    expect(atMostOne.sealedClass, 'ThingCOrD');
+    expect(atMostOne.optional, isTrue);
+    expect(atMostOne.members, ['c', 'd']);
+    expect(atMostOne.variantClasses, ['ThingCOrDC', 'ThingCOrDChoice']);
     expect(o.paramOrder, ['a_or_b', 'c_or_d']);
-    expect(o.prelude, contains('/// At most one of `c`, `d` on `aws_thing`'));
-    expect(o.prelude, contains('sealed class ThingCOrD {'));
+    final prelude = emittedPrelude(o, 'aws_thing');
+    expect(prelude, contains('/// At most one of `c`, `d` on `aws_thing`'));
+    expect(prelude, contains('sealed class ThingCOrD {'));
     expect(
-      o.prelude,
+      prelude,
       contains('final class ThingCOrDChoice extends ThingCOrD {'),
+    );
+  });
+
+  test('a member that is an earlier group\'s concept is in that group', () {
+    final derived = _derive(
+      {'aws_thing': _derives},
+      {
+        'aws_thing': ResourceDef(
+          terraformType: 'aws_thing',
+          root: BlockDef(
+            attributes: [_attr('name'), _attr('name_prefix'), _attr('tags')],
+          ),
+        ),
+      },
+      providerEnums: _hints(
+        exactlyOne: {
+          'aws_thing': [
+            ['name', 'name_prefix'],
+          ],
+        },
+        atMostOne: {
+          'aws_thing': [
+            ['name', 'tags'],
+          ],
+        },
+      ),
+      rawSchemas: const {},
+    );
+    expect(derived.skippedAtMostOne, [
+      'aws_thing [name, tags]: name is in an earlier group',
+    ]);
+    expect(
+      derived.overrides.resources['aws_thing']!.sealedArguments.single.concept,
+      'name',
     );
   });
 
@@ -1184,7 +1237,14 @@ void main() {
       ),
       rawSchemas: const {},
     );
-    final prelude = derived.overrides.resources['aws_thing']!.prelude!;
+    final o = derived.overrides.resources['aws_thing']!;
+    expect(o.customSlots, isNull);
+    expect(o.prelude, isNull);
+    expect(o.sealedArguments.single.variantClasses, [
+      'ThingMonthDays',
+      'ThingWeekDaysChoice',
+    ]);
+    final prelude = emittedPrelude(o, 'aws_thing');
     expect(prelude, contains('final class ThingWeekDaysChoice'));
     expect(prelude, isNot(contains('final class ThingWeekDays ')));
     expect(prelude, contains('List<ThingWeekDays> weekDays'));
@@ -1248,13 +1308,69 @@ void main() {
     );
     expect(derived.skippedAtMostOne, ['aws_thing [c, d]: c is a custom slot']);
     final o = derived.overrides.resources['aws_thing']!;
-    expect(o.customSlots!.keys, unorderedEquals(['a_or_b', 'c']));
+    expect(o.customSlots!.keys, unorderedEquals(['b', 'c']));
+    expect(o.overrideSlots.keys, unorderedEquals(['a_or_b', 'c']));
+    expect(o.overrideSlots['a_or_b'], isA<SealedArgument>());
+    expect(o.overrideSlots['c'], isA<CustomSlot>());
     expect(o.paramOrder, ['d', 'a_or_b', 'c']);
     expect(o.argMapOrder, ['a_or_b', 'd', 'c']);
-    expect(o.prelude, contains('const ThingAOrBChoice(this.bee);'));
-    expect(o.prelude, contains('final ThingBHelper bee;'));
-    expect(o.prelude, contains("{'b': [bee.encode()]};"));
-    expect(o.prelude, contains("{'b': TfArg.literal([bee.encode()])};"));
+    final prelude = emittedPrelude(o, 'aws_thing');
+    expect(prelude, contains('const ThingAOrBChoice(this.bee);'));
+    expect(prelude, contains('final ThingBHelper bee;'));
+    expect(prelude, contains("{'b': [bee.encode()]};"));
+    expect(prelude, contains("{'b': TfArg.literal([bee.encode()])};"));
+  });
+
+  test('emittedPrelude puts a blank line before each sealed argument', () {
+    ExactlyOneVariant variant(String m) => (
+      tfName: m,
+      ident: m,
+      fieldType: 'TfArg<String>',
+      encodeExpr: '$m.toTfJson()',
+      argMapExpr: m,
+      deprecation: null,
+      defaultValue: null,
+    );
+    final exactlyOne = SealedArgument(
+      concept: 'a_or_b',
+      sealedClass: 'ThingAOrB',
+      optional: false,
+      variants: [variant('a'), variant('b')],
+      variantClasses: const ['ThingAOrBA', 'ThingAOrBChoice'],
+    );
+    final atMostOne = SealedArgument(
+      concept: 'c_or_d',
+      sealedClass: 'ThingCOrD',
+      optional: true,
+      variants: [variant('c'), variant('d')],
+      variantClasses: const ['ThingCOrDC', 'ThingCOrDChoice'],
+    );
+    const hand = 'final class ThingHand {}\n';
+    String? prelude(String? handWritten, List<SealedArgument> arguments) =>
+        emittedPrelude(
+          WrapperOverride(
+            outputDir: 'thing',
+            prelude: handWritten,
+          ).withSealedArguments(
+            paramOrder: const [],
+            argMapOrder: null,
+            sealedArguments: arguments,
+          ),
+          'aws_thing',
+        );
+
+    expect(emittedPrelude(null, 'aws_thing'), isNull);
+    expect(prelude(null, const []), isNull);
+    expect(prelude(hand, const []), hand);
+
+    final alone = prelude(null, [exactlyOne])!;
+    expect(alone, startsWith('\n/// Exactly one of `a`, `b` on `aws_thing`'));
+    expect(alone, endsWith('}\n'));
+    expect(prelude(hand, [exactlyOne]), '$hand$alone');
+    expect(
+      prelude(hand, [exactlyOne, atMostOne]),
+      startsWith('$hand$alone\n/// At most one of `c`, `d` on `aws_thing`'),
+    );
   });
 
   test('customSlotVariant reads only the optional helper slot shape', () {

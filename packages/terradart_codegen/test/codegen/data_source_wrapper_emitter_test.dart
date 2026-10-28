@@ -3,10 +3,18 @@ import 'dart:io';
 import 'package:dart_style/dart_style.dart';
 import 'package:path/path.dart' as p;
 import 'package:terradart_codegen/src/codegen/data_source_wrapper_emitter.dart';
+import 'package:terradart_codegen/src/codegen/exactly_one_derivation.dart';
 import 'package:terradart_codegen/src/codegen/generated_file_header.dart';
+import 'package:terradart_codegen/src/codegen/provider_enums.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_overrides/_registry.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_overrides/wrapper_override.dart';
+import 'package:terradart_codegen/src/codegen/wrapper_overrides/yaml_loader.dart';
+import 'package:terradart_codegen/src/ir/attribute.dart';
+import 'package:terradart_codegen/src/ir/constraints.dart';
+import 'package:terradart_codegen/src/ir/nested_block.dart';
+import 'package:terradart_codegen/src/ir/provider_schema_ir.dart';
 import 'package:terradart_codegen/src/ir/resource_def.dart';
+import 'package:terradart_codegen/src/ir/type_def.dart';
 import 'package:terradart_codegen/src/parser/schema_parser.dart';
 import 'package:test/test.dart';
 
@@ -221,6 +229,65 @@ void main() {
         out,
         contains('const Set<String> _googleProjectSensitive = <String>{}'),
       );
+    });
+
+    test('a sealed group is one required argument and its sealed type', () {
+      Attribute attr(String name, {bool required = false}) => Attribute(
+        name: name,
+        type: const StringType(),
+        constraints: required
+            ? const Constraints(required: true)
+            : const Constraints(optional: true),
+      );
+      final def = ResourceDef(
+        terraformType: 'azurerm_image',
+        root: BlockDef(
+          attributes: [
+            attr('name'),
+            attr('name_regex'),
+            attr('resource_group_name', required: true),
+          ],
+        ),
+      );
+      final derived = deriveExactlyOneSlots(
+        const LoadedOverrides(
+          resources: {},
+          dataSources: {
+            'azurerm_image': WrapperOverride(
+              kind: WrapperOverrideKind.dataSource,
+              outputDir: 'data',
+              deriveExactlyOne: true,
+            ),
+          },
+        ),
+        ProviderSchemaIR(
+          providerName: 'azurerm',
+          providerSource: 'hashicorp/azurerm',
+          providerVersion: '4.0.0',
+          resources: const {},
+          dataSources: {'azurerm_image': def},
+        ),
+        providerEnums: const ProviderEnums.on(
+          dataSources: KindHints(
+            exactlyOne: {
+              'azurerm_image': [
+                ['name', 'name_regex'],
+              ],
+            },
+          ),
+        ),
+        rawSchemas: (resources: const {}, dataSources: const {}),
+      );
+
+      final out = DataSourceWrapperEmitter(
+        overrides: derived.overrides.dataSources,
+      ).emit(def, providerSource: 'hashicorp/azurerm');
+
+      expect(out, contains("import 'package:meta/meta.dart';"));
+      expect(out, contains('sealed class DataImageName {'));
+      expect(out, contains('required DataImageName name,'));
+      expect(out, contains('...name.argMap,'));
+      expect(out, isNot(contains('TfArg<String>? name,')));
     });
   });
 }

@@ -14,11 +14,10 @@ import 'wrapper_overrides/yaml_loader.dart';
 
 /// The `deriveExactlyOne` gate for a factory's own arguments, resources and
 /// data sources alike: every sealable top-level group in the override's own
-/// kind's hints becomes one custom slot typed with a sealed class (declared
-/// in the prelude), and its members leave the constructor. An exactly-one
-/// group's slot is required; an at-most-one group's (mutually exclusive
-/// inputs the provider also accepts none of) is nullable and spreads
-/// nothing when null.
+/// kind's hints becomes one [SealedArgument] on the override, and its
+/// members leave the constructor. An exactly-one group's slot is required;
+/// an at-most-one group's (mutually exclusive inputs the provider also
+/// accepts none of) is nullable and spreads nothing when null.
 ///
 /// A group is sealable when every member is an optional constructor input
 /// no custom slot owns and no earlier group took, and none is a keyed
@@ -313,7 +312,7 @@ WrapperOverride _derive(
     ...declaredTypeNames(o.prelude ?? ''),
   };
   final chosenSlots = <String>{};
-  final declarations = StringBuffer();
+  final sealedArguments = <SealedArgument>[];
   var paramOrder = order;
   var argMapOrder = o.argMapOrder;
   for (final (:members, :optional) in groups) {
@@ -413,39 +412,25 @@ WrapperOverride _derive(
     classNames
       ..add(sealed)
       ..addAll(variantClasses);
-    final ident = snakeToDartIdent(slot);
-    slots[slot] = optional
-        ? CustomSlot(
-            paramDeclaration: '$sealed? $ident',
-            argMapEntry: '...?$ident?.argMap,',
-          )
-        : CustomSlot(
-            paramDeclaration: 'required $sealed $ident',
-            argMapEntry: '...$ident.argMap,',
-          );
+    sealedArguments.add(
+      SealedArgument(
+        concept: slot,
+        sealedClass: sealed,
+        optional: optional,
+        variants: variants,
+        variantClasses: variantClasses,
+      ),
+    );
     paramOrder = _replaceMembers(paramOrder, group, slot);
     if (argMapOrder != null) {
       argMapOrder = _replaceMembers(argMapOrder, group, slot);
     }
-    declarations
-      ..writeln()
-      ..write(
-        renderExactlyOneTypes(
-          sealed: sealed,
-          members: group,
-          where: '`$where`',
-          variants: variants,
-          variantClasses: variantClasses,
-          optional: optional,
-        ),
-      );
   }
   if (taken.isEmpty) return o;
-  return o.withExactlyOneSlots(
+  return o.withSealedArguments(
     paramOrder: paramOrder,
     argMapOrder: argMapOrder,
-    customSlots: slots,
-    prelude: '${o.prelude ?? ''}$declarations',
+    sealedArguments: sealedArguments,
   );
 }
 

@@ -26,8 +26,9 @@ import 'output_getter_extractor.dart';
 /// - Derived nested blocks use the `collectNestedTypes` specs the emitter
 ///   rendered (class name, cardinality, requiredness).
 /// - Custom slots are read from their verbatim `paramDeclaration` /
-///   `argMapEntry` and resolved against the helper / sealed / enum
-///   declarations extracted from the emitted file.
+///   `argMapEntry` and sealed arguments from their sealed type, both
+///   resolved against the helper / sealed / enum declarations extracted
+///   from the emitted file.
 /// - Helper recipes, enum member maps and output getters are extracted
 ///   from the emitted file (`HelperClassExtractor`, `EnumExtractor`,
 ///   `extractOutputGetters`).
@@ -195,7 +196,7 @@ MigrateEntryBuild buildMigrateEntry({
         enumNames: {for (final e in enums) e.name},
       );
 
-  final customSlots = override.customSlots ?? const <String, CustomSlot>{};
+  final overrideSlots = override.overrideSlots;
   final requiredOverrides = (override.requiredParams ?? const []).toSet();
   final dartTypeOverrides = override.dartTypeOverrides ?? const {};
 
@@ -211,7 +212,7 @@ MigrateEntryBuild buildMigrateEntry({
     final collected = collectNestedTypes(
       resourceBlock: raw,
       resourcePrefix: override.kind.typeStem(tfType),
-      customSlotKeys: customSlots.keys.toSet(),
+      customSlotKeys: overrideSlots.keys.toSet(),
       excludedPaths: (override.nestedTypeExcludes ?? const []).toSet(),
       shareIdenticalShapes: override.dedupeNestedTypes,
       enumValues: enumValues,
@@ -239,21 +240,24 @@ MigrateEntryBuild buildMigrateEntry({
     if (!isDataSource)
       for (final MapEntry(key: name, value: ref) in references.entries)
         if (!name.contains('.') &&
-            !customSlots.containsKey(name) &&
+            !overrideSlots.containsKey(name) &&
             !dartTypeOverrides.containsKey(name))
           for (final key in ref.absorbed)
-            if (!customSlots.containsKey(key) &&
+            if (!overrideSlots.containsKey(key) &&
                 !dartTypeOverrides.containsKey(key))
               key: ref.dartName ?? snakeToDartIdent(name),
   };
   final slots = <MigrateSlotData>[];
   for (final name in order) {
-    final custom = customSlots[name];
+    final overrideSlot = overrideSlots[name];
     final spec = specs[name];
     final attr = attrs[name];
     final block = blocks[name];
-    if (custom != null) {
-      slots.add(_customSlot(name, custom, ctx));
+    if (overrideSlot != null) {
+      slots.add(switch (overrideSlot) {
+        CustomSlot() => _customSlot(name, overrideSlot, ctx),
+        SealedArgument() => _sealedArgumentSlot(overrideSlot, ctx),
+      });
     } else if (spec != null &&
         ctx.helpers.sealedClasses.contains(spec.className)) {
       // A block that is one exactly-one group is itself the sealed type.
@@ -351,6 +355,22 @@ MigrateSlotData _customSlot(String name, CustomSlot custom, ShapeContext ctx) {
     dartName: parsed.dartName,
     required: parsed.required,
     merged: parsed.merged && !shape.isManual,
+  );
+}
+
+MigrateSlotData _sealedArgumentSlot(SealedArgument argument, ShapeContext ctx) {
+  var shape = classifyDartType(argument.sealedClass, ctx);
+  if (!shape.isManual && shape.kind != MigrateSlotKind.sealed) {
+    shape = const SlotShape.manual(
+      'argMap spreads the slot but the type is not a sealed class',
+    );
+  }
+  return _fromShape(
+    shape,
+    tfName: '',
+    dartName: snakeToDartIdent(argument.concept),
+    required: !argument.optional,
+    merged: !shape.isManual,
   );
 }
 

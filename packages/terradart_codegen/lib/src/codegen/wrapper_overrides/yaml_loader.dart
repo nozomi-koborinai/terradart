@@ -409,9 +409,6 @@ class YamlOverrideLoader {
       );
     }
 
-    // E201: data sources reject the hand-written Dart axes. A data source's
-    // `prelude` and `customSlots` are derived only (`deriveExactlyOneSlots`
-    // writes them in memory), so the derivation stays their one writer.
     if (kind == WrapperOverrideKind.dataSource) {
       for (final axis in _resourceOnlyAxes) {
         final axisNode = yaml.nodes[axis];

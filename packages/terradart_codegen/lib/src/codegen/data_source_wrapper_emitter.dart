@@ -4,6 +4,7 @@ import 'constructor_params.dart'
 import 'constructor_slots.dart';
 import 'doc_comment_builder.dart';
 import 'enum_emitter.dart';
+import 'exactly_one_types.dart';
 import 'getter_emitter.dart';
 import 'naming.dart';
 import 'nested_types/nested_type_collector.dart';
@@ -140,13 +141,13 @@ class DataSourceWrapperEmitter {
     // alongside the resource Layer 1) and no `package:terradart_annotations`
     // import (package deleted).
     final refs = references[def.terraformType] ?? const {};
-    final customSlots = override.customSlots ?? const <String, CustomSlot>{};
+    final overrideSlots = override.overrideSlots;
     final hints = providerEnums.nestedHints(def.terraformType, override);
     final nestedTypeSpecs = override.deriveNestedTypes
         ? collectNestedTypes(
             resourceBlock: _requireRawSchema(def.terraformType),
             resourcePrefix: override.kind.typeStem(def.terraformType),
-            customSlotKeys: customSlots.keys.toSet(),
+            customSlotKeys: overrideSlots.keys.toSet(),
             excludedPaths: (override.nestedTypeExcludes ?? const <String>[])
                 .toSet(),
             shareIdenticalShapes: override.dedupeNestedTypes,
@@ -169,7 +170,7 @@ class DataSourceWrapperEmitter {
     final topLevelRefs = <String, ResolvedReference>{
       for (final name in paramOrder)
         if (refs[name] case final ref?)
-          if (!customSlots.containsKey(name) &&
+          if (!overrideSlots.containsKey(name) &&
               !dartTypeOverrides.containsKey(name))
             name: ref,
     };
@@ -201,8 +202,9 @@ class DataSourceWrapperEmitter {
             nestedTypeSpecs,
             resourceTerraformType: def.terraformType,
           );
+    final prelude = emittedPrelude(override, def.terraformType);
     final needsMeta =
-        _metaAnnotation.hasMatch('$nestedTypes${override.prelude ?? ''}') &&
+        _metaAnnotation.hasMatch('$nestedTypes${prelude ?? ''}') &&
         !extraImports.any((i) => i.contains('package:meta/meta.dart'));
     if (needsMeta) {
       buf.writeln("import 'package:meta/meta.dart';");
@@ -229,7 +231,7 @@ class DataSourceWrapperEmitter {
       for (final ref in [
         ...topLevelRefs.values,
         ...nestedRefs.values,
-        ...preludeReferences(refs, override.prelude),
+        ...preludeReferences(refs, prelude),
         if (principals.contains(def.terraformType)) ?principal,
       ])
         if (!emitsRef || ref.target != def.terraformType) ref,
@@ -288,7 +290,6 @@ class DataSourceWrapperEmitter {
       buf.writeln(emitEnumDeclaration(en));
     }
 
-    final prelude = override.prelude;
     if (prelude != null) {
       buf.write(prelude);
       buf.writeln();
@@ -323,7 +324,7 @@ class DataSourceWrapperEmitter {
       typeOverrides: dartTypeOverrides,
       references: topLevelRefs,
       paramOrder: paramOrder,
-      customSlots: customSlots,
+      overrideSlots: overrideSlots,
       nestedTypeSpecs: nestedTypeSpecs,
     );
 

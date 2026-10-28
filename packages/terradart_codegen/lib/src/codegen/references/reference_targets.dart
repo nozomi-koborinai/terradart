@@ -497,7 +497,7 @@ List<String> referenceImports(Iterable<ResolvedReference> refs) {
 }
 
 /// The references of [refs] that [prelude] declares. A top-level sealed
-/// group's variants live in the prelude (`deriveExactlyOneSlots`), so its
+/// group's variants live in the emitted prelude (`emittedPrelude`), so its
 /// members are typed there rather than in the constructor.
 List<ResolvedReference> preludeReferences(
   Map<String, ResolvedReference> refs,
