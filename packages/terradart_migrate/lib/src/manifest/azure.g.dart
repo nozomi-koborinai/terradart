@@ -68180,14 +68180,14 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'osProfile',
+          dartName: 'osSource',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'admin_username': 'LinuxVirtualMachineOsProfileAdminUsername',
-            'os_managed_disk_id': 'LinuxVirtualMachineOsProfileOsManagedDiskId',
+            'admin_username': 'LinuxVirtualMachineOsSourceImage',
+            'os_managed_disk_id': 'LinuxVirtualMachineOsSourceOsManagedDiskId',
           },
         ),
         MigrateSlot(
@@ -68394,13 +68394,6 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'source_image_id',
-          dartName: 'sourceImageId',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
           tfName: 'tags',
           dartName: 'tags',
           kind: MigrateSlotKind.scalar,
@@ -68509,14 +68502,6 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           repeated: true,
           wrapped: false,
           helper: 'LinuxVirtualMachineSecret',
-        ),
-        MigrateSlot(
-          tfName: 'source_image_reference',
-          dartName: 'sourceImageReference',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'LinuxVirtualMachineSourceImageReference',
         ),
         MigrateSlot(
           tfName: 'termination_notification',
@@ -118769,17 +118754,10 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           merged: true,
           variants: <String, String>{
             'default_log_storage_account_id':
-                'SiteRecoveryVmwareReplicatedVmDiskReplicationDefaultLogStorageAccountId',
+                'SiteRecoveryVmwareReplicatedVmDiskReplicationDefaults',
             'managed_disk':
                 'SiteRecoveryVmwareReplicatedVmDiskReplicationManagedDisk',
           },
-        ),
-        MigrateSlot(
-          tfName: 'default_recovery_disk_type',
-          dartName: 'defaultRecoveryDiskType',
-          kind: MigrateSlotKind.enumValue,
-          required: false,
-          dartType: 'SiteRecoveryVmwareReplicatedVmDefaultRecoveryDiskType',
         ),
         MigrateSlot(
           tfName: 'default_target_disk_encryption_set_id',
@@ -144572,15 +144550,15 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'osProfile',
+          dartName: 'osSource',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'admin_username': 'WindowsVirtualMachineOsProfileAdminUsername',
+            'admin_username': 'WindowsVirtualMachineOsSourceImage',
             'os_managed_disk_id':
-                'WindowsVirtualMachineOsProfileOsManagedDiskId',
+                'WindowsVirtualMachineOsSourceOsManagedDiskId',
           },
         ),
         MigrateSlot(
@@ -144794,13 +144772,6 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'source_image_id',
-          dartName: 'sourceImageId',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
           tfName: 'tags',
           dartName: 'tags',
           kind: MigrateSlotKind.scalar,
@@ -144916,14 +144887,6 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           repeated: true,
           wrapped: false,
           helper: 'WindowsVirtualMachineSecret',
-        ),
-        MigrateSlot(
-          tfName: 'source_image_reference',
-          dartName: 'sourceImageReference',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'WindowsVirtualMachineSourceImageReference',
         ),
         MigrateSlot(
           tfName: 'termination_notification',
@@ -188934,22 +188897,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'LinuxVirtualMachineOsProfileAdminUsername': MigrateHelper(
-      className: 'LinuxVirtualMachineOsProfileAdminUsername',
+    'LinuxVirtualMachineOsSourceImage': MigrateHelper(
+      className: 'LinuxVirtualMachineOsSourceImage',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'admin_username',
           dartName: 'adminUsername',
           kind: MigrateSlotKind.scalar,
           required: true,
-          positional: true,
           dartType: 'String',
         ),
+        MigrateSlot(
+          tfName: '',
+          dartName: 'sourceImage',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'source_image_id': 'LinuxVirtualMachineSourceImageId',
+            'source_image_reference':
+                'LinuxVirtualMachineSourceImageReferenceChoice',
+          },
+        ),
       ],
-      shorthand: 'adminUsername',
+      shorthand: 'image',
     ),
-    'LinuxVirtualMachineOsProfileOsManagedDiskId': MigrateHelper(
-      className: 'LinuxVirtualMachineOsProfileOsManagedDiskId',
+    'LinuxVirtualMachineOsSourceOsManagedDiskId': MigrateHelper(
+      className: 'LinuxVirtualMachineOsSourceOsManagedDiskId',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'os_managed_disk_id',
@@ -189875,6 +189850,20 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'LinuxVirtualMachineSourceImageId': MigrateHelper(
+      className: 'LinuxVirtualMachineSourceImageId',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'source_image_id',
+          dartName: 'sourceImageId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'sourceImageId',
+    ),
     'LinuxVirtualMachineSourceImageReference': MigrateHelper(
       className: 'LinuxVirtualMachineSourceImageReference',
       slots: <MigrateSlot>[
@@ -189907,6 +189896,21 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+    ),
+    'LinuxVirtualMachineSourceImageReferenceChoice': MigrateHelper(
+      className: 'LinuxVirtualMachineSourceImageReferenceChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'source_image_reference',
+          dartName: 'sourceImageReference',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'LinuxVirtualMachineSourceImageReference',
+        ),
+      ],
+      shorthand: 'sourceImageReference',
     ),
     'LinuxVirtualMachineTerminationNotification': MigrateHelper(
       className: 'LinuxVirtualMachineTerminationNotification',
@@ -212556,22 +212560,26 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'SiteRecoveryVmwareReplicatedVmDiskReplicationDefaultLogStorageAccountId':
-        MigrateHelper(
-          className:
-              'SiteRecoveryVmwareReplicatedVmDiskReplicationDefaultLogStorageAccountId',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'default_log_storage_account_id',
-              dartName: 'defaultLogStorageAccountId',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'defaultLogStorageAccountId',
+    'SiteRecoveryVmwareReplicatedVmDiskReplicationDefaults': MigrateHelper(
+      className: 'SiteRecoveryVmwareReplicatedVmDiskReplicationDefaults',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'default_log_storage_account_id',
+          dartName: 'defaultLogStorageAccountId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
         ),
+        MigrateSlot(
+          tfName: 'default_recovery_disk_type',
+          dartName: 'defaultRecoveryDiskType',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          dartType: 'SiteRecoveryVmwareReplicatedVmDefaultRecoveryDiskType',
+        ),
+      ],
+      shorthand: 'defaults',
+    ),
     'SiteRecoveryVmwareReplicatedVmDiskReplicationManagedDisk': MigrateHelper(
       className: 'SiteRecoveryVmwareReplicatedVmDiskReplicationManagedDisk',
       slots: <MigrateSlot>[
@@ -225490,22 +225498,34 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'WindowsVirtualMachineOsProfileAdminUsername': MigrateHelper(
-      className: 'WindowsVirtualMachineOsProfileAdminUsername',
+    'WindowsVirtualMachineOsSourceImage': MigrateHelper(
+      className: 'WindowsVirtualMachineOsSourceImage',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'admin_username',
           dartName: 'adminUsername',
           kind: MigrateSlotKind.scalar,
           required: true,
-          positional: true,
           dartType: 'String',
         ),
+        MigrateSlot(
+          tfName: '',
+          dartName: 'sourceImage',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'source_image_id': 'WindowsVirtualMachineSourceImageId',
+            'source_image_reference':
+                'WindowsVirtualMachineSourceImageReferenceChoice',
+          },
+        ),
       ],
-      shorthand: 'adminUsername',
+      shorthand: 'image',
     ),
-    'WindowsVirtualMachineOsProfileOsManagedDiskId': MigrateHelper(
-      className: 'WindowsVirtualMachineOsProfileOsManagedDiskId',
+    'WindowsVirtualMachineOsSourceOsManagedDiskId': MigrateHelper(
+      className: 'WindowsVirtualMachineOsSourceOsManagedDiskId',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'os_managed_disk_id',
@@ -226457,6 +226477,20 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'WindowsVirtualMachineSourceImageId': MigrateHelper(
+      className: 'WindowsVirtualMachineSourceImageId',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'source_image_id',
+          dartName: 'sourceImageId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'sourceImageId',
+    ),
     'WindowsVirtualMachineSourceImageReference': MigrateHelper(
       className: 'WindowsVirtualMachineSourceImageReference',
       slots: <MigrateSlot>[
@@ -226489,6 +226523,21 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+    ),
+    'WindowsVirtualMachineSourceImageReferenceChoice': MigrateHelper(
+      className: 'WindowsVirtualMachineSourceImageReferenceChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'source_image_reference',
+          dartName: 'sourceImageReference',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'WindowsVirtualMachineSourceImageReference',
+        ),
+      ],
+      shorthand: 'sourceImageReference',
     ),
     'WindowsVirtualMachineTerminationNotification': MigrateHelper(
       className: 'WindowsVirtualMachineTerminationNotification',

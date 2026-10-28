@@ -160,24 +160,27 @@ extension type const LinuxVirtualMachinePatchMode._(TfArg<String> _)
   ];
 }
 
-/// Exactly one of `admin_username`, `os_managed_disk_id` on `azurerm_linux_virtual_machine`: the provider rejects
-/// none and more than one, so each variant sets one of them.
+/// Exactly one of these input sets on `azurerm_linux_virtual_machine`. The provider rejects any other mix of them.
 ///
-/// Pick one with a dot shorthand: `.adminUsername(...)`.
-sealed class LinuxVirtualMachineOsProfile {
-  const LinuxVirtualMachineOsProfile();
+/// - `.image` sets `admin_username` and one of `source_image_id` or `source_image_reference`.
+/// - `.osManagedDiskId` sets `os_managed_disk_id`.
+///
+/// Pick one with a dot shorthand: `.image(...)`.
+sealed class LinuxVirtualMachineOsSource {
+  const LinuxVirtualMachineOsSource();
 
-  /// Sets `admin_username`.
-  const factory LinuxVirtualMachineOsProfile.adminUsername(
-    TfArg<String> adminUsername,
-  ) = LinuxVirtualMachineOsProfileAdminUsername;
+  /// Sets `admin_username` and one of `source_image_id` or `source_image_reference`.
+  const factory LinuxVirtualMachineOsSource.image({
+    required TfArg<String> adminUsername,
+    required LinuxVirtualMachineSourceImage sourceImage,
+  }) = LinuxVirtualMachineOsSourceImage;
 
   /// Sets `os_managed_disk_id`.
-  const factory LinuxVirtualMachineOsProfile.osManagedDiskId(
+  const factory LinuxVirtualMachineOsSource.osManagedDiskId(
     TfArg<String> osManagedDiskId,
-  ) = LinuxVirtualMachineOsProfileOsManagedDiskId;
+  ) = LinuxVirtualMachineOsSourceOsManagedDiskId;
 
-  /// The Terraform argument this choice sets.
+  /// The Terraform argument that identifies this choice.
   @internal
   String get blockKey;
 
@@ -190,12 +193,17 @@ sealed class LinuxVirtualMachineOsProfile {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [LinuxVirtualMachineOsProfile.adminUsername] choice: sets `admin_username`.
-final class LinuxVirtualMachineOsProfileAdminUsername
-    extends LinuxVirtualMachineOsProfile {
-  const LinuxVirtualMachineOsProfileAdminUsername(this.adminUsername);
+/// The [LinuxVirtualMachineOsSource.image] choice: sets `admin_username` and one of `source_image_id` or `source_image_reference`.
+final class LinuxVirtualMachineOsSourceImage
+    extends LinuxVirtualMachineOsSource {
+  const LinuxVirtualMachineOsSourceImage({
+    required this.adminUsername,
+    required this.sourceImage,
+  });
 
   final TfArg<String> adminUsername;
+
+  final LinuxVirtualMachineSourceImage sourceImage;
 
   @internal
   @override
@@ -203,17 +211,23 @@ final class LinuxVirtualMachineOsProfileAdminUsername
 
   @internal
   @override
-  Map<String, Object?> encode() => {'admin_username': adminUsername.toTfJson()};
+  Map<String, Object?> encode() => {
+    'admin_username': adminUsername.toTfJson(),
+    ...sourceImage.encode(),
+  };
 
   @internal
   @override
-  Map<String, TfArg<Object?>> get argMap => {'admin_username': adminUsername};
+  Map<String, TfArg<Object?>> get argMap => {
+    'admin_username': adminUsername,
+    ...sourceImage.argMap,
+  };
 }
 
-/// The [LinuxVirtualMachineOsProfile.osManagedDiskId] choice: sets `os_managed_disk_id`.
-final class LinuxVirtualMachineOsProfileOsManagedDiskId
-    extends LinuxVirtualMachineOsProfile {
-  const LinuxVirtualMachineOsProfileOsManagedDiskId(this.osManagedDiskId);
+/// The [LinuxVirtualMachineOsSource.osManagedDiskId] choice: sets `os_managed_disk_id`.
+final class LinuxVirtualMachineOsSourceOsManagedDiskId
+    extends LinuxVirtualMachineOsSource {
+  const LinuxVirtualMachineOsSourceOsManagedDiskId(this.osManagedDiskId);
 
   final TfArg<String> osManagedDiskId;
 
@@ -231,6 +245,84 @@ final class LinuxVirtualMachineOsProfileOsManagedDiskId
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'os_managed_disk_id': osManagedDiskId,
+  };
+}
+
+/// Exactly one of `source_image_id`, `source_image_reference` on [LinuxVirtualMachineOsSource.image]: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.sourceImageId(...)`.
+sealed class LinuxVirtualMachineSourceImage {
+  const LinuxVirtualMachineSourceImage();
+
+  /// Sets `source_image_id`.
+  const factory LinuxVirtualMachineSourceImage.sourceImageId(
+    TfArg<String> sourceImageId,
+  ) = LinuxVirtualMachineSourceImageId;
+
+  /// Sets `source_image_reference`.
+  const factory LinuxVirtualMachineSourceImage.sourceImageReference(
+    LinuxVirtualMachineSourceImageReference sourceImageReference,
+  ) = LinuxVirtualMachineSourceImageReferenceChoice;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [LinuxVirtualMachineSourceImage.sourceImageId] choice: sets `source_image_id`.
+final class LinuxVirtualMachineSourceImageId
+    extends LinuxVirtualMachineSourceImage {
+  const LinuxVirtualMachineSourceImageId(this.sourceImageId);
+
+  final TfArg<String> sourceImageId;
+
+  @internal
+  @override
+  String get blockKey => 'source_image_id';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'source_image_id': sourceImageId.toTfJson(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'source_image_id': sourceImageId};
+}
+
+/// The [LinuxVirtualMachineSourceImage.sourceImageReference] choice: sets `source_image_reference`.
+final class LinuxVirtualMachineSourceImageReferenceChoice
+    extends LinuxVirtualMachineSourceImage {
+  const LinuxVirtualMachineSourceImageReferenceChoice(
+    this.sourceImageReference,
+  );
+
+  final LinuxVirtualMachineSourceImageReference sourceImageReference;
+
+  @internal
+  @override
+  String get blockKey => 'source_image_reference';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'source_image_reference': sourceImageReference.encode(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'source_image_reference': TfArg.literal(sourceImageReference.encode()),
   };
 }
 
@@ -613,7 +705,7 @@ final class AzurermLinuxVirtualMachine extends Resource {
   AzurermLinuxVirtualMachine(
     super.localName, {
     Sensitive<String>? adminPassword,
-    required LinuxVirtualMachineOsProfile osProfile,
+    required LinuxVirtualMachineOsSource osSource,
     TfArg<bool>? allowExtensionOperations,
     TfArg<String>? availabilitySetId,
     TfArg<bool>? bypassPlatformSafetyChecksOnUserScheduleEnabled,
@@ -642,7 +734,6 @@ final class AzurermLinuxVirtualMachine extends Resource {
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<bool>? secureBootEnabled,
     required TfArg<String> size,
-    TfArg<String>? sourceImageId,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? userData,
     TfArg<String>? virtualMachineScaleSetId,
@@ -657,7 +748,6 @@ final class AzurermLinuxVirtualMachine extends Resource {
     LinuxVirtualMachineOsImageNotification? osImageNotification,
     LinuxVirtualMachinePlan? plan,
     List<LinuxVirtualMachineSecret>? secret,
-    LinuxVirtualMachineSourceImageReference? sourceImageReference,
     LinuxVirtualMachineTerminationNotification? terminationNotification,
     super.lifecycle,
     super.dependsOn,
@@ -667,7 +757,7 @@ final class AzurermLinuxVirtualMachine extends Resource {
          terraformType: tfType,
          argMap: {
            'admin_password': ?adminPassword,
-           ...osProfile.argMap,
+           ...osSource.argMap,
            'allow_extension_operations': ?allowExtensionOperations,
            'availability_set_id': ?availabilitySetId,
            'bypass_platform_safety_checks_on_user_schedule_enabled':
@@ -697,7 +787,6 @@ final class AzurermLinuxVirtualMachine extends Resource {
            'resource_group_name': resourceGroupName.encodeAs('name'),
            'secure_boot_enabled': ?secureBootEnabled,
            'size': size,
-           'source_image_id': ?sourceImageId,
            'tags': ?tags,
            'user_data': ?userData,
            'virtual_machine_scale_set_id': ?virtualMachineScaleSetId,
@@ -726,10 +815,6 @@ final class AzurermLinuxVirtualMachine extends Resource {
            if (plan != null) 'plan': TfArg.literal(plan.encode()),
            if (secret != null)
              'secret': TfArg.literal([for (final e in secret) e.encode()]),
-           if (sourceImageReference != null)
-             'source_image_reference': TfArg.literal(
-               sourceImageReference.encode(),
-             ),
            if (terminationNotification != null)
              'termination_notification': TfArg.literal(
                terminationNotification.encode(),

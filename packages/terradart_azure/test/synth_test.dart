@@ -2,9 +2,11 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:terradart_azure/catalog.dart';
+import 'package:terradart_azure/compute.dart';
 import 'package:terradart_azure/data.dart';
 import 'package:terradart_azure/provider.dart';
 import 'package:terradart_azure/resource.dart';
+import 'package:terradart_azure/site_recovery.dart';
 import 'package:test/test.dart';
 
 const _credentialArgs = {
@@ -93,6 +95,80 @@ final class _LookupStack extends Stack {
     );
   }
 }
+
+final class _OneResourceStack extends Stack {
+  _OneResourceStack(Resource resource)
+    : super(providers: const [AzureProvider()]) {
+    add(resource);
+  }
+}
+
+Map<String, dynamic> _synthedArgs(Resource resource, Set<String> keys) {
+  final resources =
+      _OneResourceStack(resource).synth().tfJson['resource']
+          as Map<String, dynamic>;
+  final body =
+      (resources[resource.terraformType]
+              as Map<String, dynamic>)[resource.localName]
+          as Map<String, dynamic>;
+  return {
+    for (final MapEntry(:key, :value) in body.entries)
+      if (keys.contains(key)) key: value,
+  };
+}
+
+const _osSourceKeys = {
+  'admin_username',
+  'os_managed_disk_id',
+  'source_image_id',
+  'source_image_reference',
+};
+
+const _diskReplicationKeys = {
+  'default_log_storage_account_id',
+  'default_recovery_disk_type',
+  'managed_disk',
+};
+
+AzurermLinuxVirtualMachine _linuxVm(LinuxVirtualMachineOsSource osSource) =>
+    AzurermLinuxVirtualMachine(
+      'vm',
+      osSource: osSource,
+      location: const .literal('eastus'),
+      name: const .literal('vm'),
+      networkInterfaceIds: const .literal(['nic']),
+      resourceGroupName: .literal('app'),
+      size: const .literal('Standard_B1s'),
+      osDisk: const LinuxVirtualMachineOsDisk(caching: .literal('ReadWrite')),
+    );
+
+AzurermWindowsVirtualMachine _windowsVm(
+  WindowsVirtualMachineOsSource osSource,
+) => AzurermWindowsVirtualMachine(
+  'vm',
+  osSource: osSource,
+  location: const .literal('eastus'),
+  name: const .literal('vm'),
+  networkInterfaceIds: const .literal(['nic']),
+  resourceGroupName: .literal('app'),
+  size: const .literal('Standard_B1s'),
+  osDisk: const WindowsVirtualMachineOsDisk(caching: .literal('ReadWrite')),
+);
+
+AzurermSiteRecoveryVmwareReplicatedVm _vmwareVm(
+  SiteRecoveryVmwareReplicatedVmDiskReplication diskReplication,
+) => AzurermSiteRecoveryVmwareReplicatedVm(
+  'replica',
+  applianceName: const .literal('appliance'),
+  diskReplication: diskReplication,
+  name: const .literal('replica'),
+  physicalServerCredentialName: const .literal('credential'),
+  recoveryReplicationPolicyId: const .literal('policy'),
+  recoveryVaultId: const .literal('vault'),
+  sourceVmName: const .literal('source'),
+  targetResourceGroupId: const .literal('rg'),
+  targetVmName: const .literal('target'),
+);
 
 Map<String, dynamic> _providerBlock() =>
     (_TestStack().synth().tfJson['provider'] as Map<String, dynamic>)['azurerm']
@@ -195,5 +271,90 @@ void main() {
                 as Map<String, dynamic>)['azurerm']
             as Map<String, dynamic>;
     expect(bare['features'], [<String, Object?>{}]);
+  });
+
+  test('a Linux VM image source sets the admin user and an image id', () {
+    final vm = _linuxVm(
+      const .image(
+        adminUsername: .literal('azureuser'),
+        sourceImage: .sourceImageId(.literal('image')),
+      ),
+    );
+    expect(_synthedArgs(vm, _osSourceKeys), {
+      'admin_username': 'azureuser',
+      'source_image_id': 'image',
+    });
+  });
+
+  test('a Linux VM image source can name a marketplace image', () {
+    final vm = _linuxVm(
+      const .image(
+        adminUsername: .literal('azureuser'),
+        sourceImage: .sourceImageReference(
+          LinuxVirtualMachineSourceImageReference(
+            offer: .literal('ubuntu-24_04-lts'),
+            publisher: .literal('Canonical'),
+            sku: .literal('server'),
+            version: .literal('latest'),
+          ),
+        ),
+      ),
+    );
+    expect(_synthedArgs(vm, _osSourceKeys), {
+      'admin_username': 'azureuser',
+      'source_image_reference': {
+        'offer': 'ubuntu-24_04-lts',
+        'publisher': 'Canonical',
+        'sku': 'server',
+        'version': 'latest',
+      },
+    });
+  });
+
+  test('a Linux VM on a managed OS disk sets only that disk', () {
+    final vm = _linuxVm(const .osManagedDiskId(.literal('disk')));
+    expect(_synthedArgs(vm, _osSourceKeys), {'os_managed_disk_id': 'disk'});
+  });
+
+  test('a Windows VM image source sets the admin user and an image id', () {
+    final vm = _windowsVm(
+      const .image(
+        adminUsername: .literal('azureuser'),
+        sourceImage: .sourceImageId(.literal('image')),
+      ),
+    );
+    expect(_synthedArgs(vm, _osSourceKeys), {
+      'admin_username': 'azureuser',
+      'source_image_id': 'image',
+    });
+  });
+
+  test('a VMware replicated VM with disk defaults sets both defaults', () {
+    final vm = _vmwareVm(
+      const .defaults(
+        defaultLogStorageAccountId: .literal('logs'),
+        defaultRecoveryDiskType: .premiumLrs,
+      ),
+    );
+    expect(_synthedArgs(vm, _diskReplicationKeys), {
+      'default_log_storage_account_id': 'logs',
+      'default_recovery_disk_type': 'Premium_LRS',
+    });
+  });
+
+  test('a VMware replicated VM with managed disks sets only those', () {
+    final vm = _vmwareVm(
+      const .managedDisk([
+        SiteRecoveryVmwareReplicatedVmManagedDisk(
+          diskId: .literal('disk'),
+          targetDiskType: .literal('Premium_LRS'),
+        ),
+      ]),
+    );
+    expect(_synthedArgs(vm, _diskReplicationKeys), {
+      'managed_disk': [
+        {'disk_id': 'disk', 'target_disk_type': 'Premium_LRS'},
+      ],
+    });
   });
 }

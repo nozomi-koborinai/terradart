@@ -7,12 +7,16 @@ provider's fixed value sets and seal exclusive groups that the hint
 scanner previously missed, including `azurerm_role_assignment`. A
 constructor that passed those inputs as separate arguments takes one
 sealed argument instead. Concept names that the namer could not
-derive are `sealedNames` on those resources. Three groups stay unsealed
-because a member
-already belongs to another group: the OS image source on
-`azurerm_linux_virtual_machine` and `azurerm_windows_virtual_machine`,
-and `default_recovery_disk_type` / `managed_disk` on
-`azurerm_site_recovery_vmware_replicated_vm`.
+derive are `sealedNames` on those resources. Exactly-one groups that
+share a member now seal as one argument. `azurerm_linux_virtual_machine`
+and `azurerm_windows_virtual_machine` take
+`osSource: .image(adminUsername: ..., sourceImage: ...)` or
+`osSource: .osManagedDiskId(...)` in place of `osProfile` and the
+separate `sourceImageId` and `sourceImageReference` parameters.
+`azurerm_site_recovery_vmware_replicated_vm` takes
+`diskReplication: .defaults(defaultLogStorageAccountId: ..., defaultRecoveryDiskType: ...)`
+or `.managedDisk(...)` in place of `.defaultLogStorageAccountId(...)` and
+the separate `defaultRecoveryDiskType` parameter.
 
 Data source factories read `hints/data/<type>.yaml`, not the resource
 file of the same name. Seventeen data sources gained an enum or a
