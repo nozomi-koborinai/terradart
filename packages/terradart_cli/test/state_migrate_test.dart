@@ -480,6 +480,59 @@ terraform {
     expect(runner.engineCalls, isEmpty);
   });
 
+  test('hides http certificate pems and a pg connection string', () async {
+    final project = TestProject.create();
+    const secrets = {
+      'password': 'http-password-secret',
+      'client_certificate_pem': 'http-cert-pem-secret',
+      'client_private_key_pem': 'http-key-pem-secret',
+      'client_ca_certificate_pem': 'http-ca-pem-secret',
+    };
+    File(project.path('tf-out/.terraform/terraform.tfstate'))
+      ..createSync(recursive: true)
+      ..writeAsStringSync(
+        jsonEncode({
+          'backend': {
+            'type': 'http',
+            'config': {'address': 'https://state.example/app', ...secrets},
+          },
+        }),
+      );
+    File(project.path('tf-out/backend.tf'))
+      ..createSync(recursive: true)
+      ..writeAsStringSync('''
+terraform {
+  backend "pg" {
+    conn_str    = "pg-conn-str-secret"
+    schema_name = "terraform_remote_state"
+  }
+}
+''');
+    final runner = FakeRunner(synth: (_) => _withBackend(null));
+    final r = await project.run(['state', 'migrate'], runner, input: ['n']);
+    expect(r.code, 1, reason: r.err);
+    expect(
+      r.out,
+      contains(
+        'from http (address=https://state.example/app) '
+        'to pg (schema_name=terraform_remote_state)?',
+      ),
+    );
+    for (final secret in [
+      ...secrets.values,
+      'pg-conn-str-secret',
+      'client_certificate_pem',
+      'client_private_key_pem',
+      'client_ca_certificate_pem',
+      'conn_str',
+      'password',
+    ]) {
+      expect(r.out, isNot(contains(secret)), reason: secret);
+      expect(r.err, isNot(contains(secret)), reason: secret);
+    }
+    expect(runner.engineCalls, isEmpty);
+  });
+
   test('takes no engine arguments', () async {
     final project = TestProject.create();
     final r = await project.run([
