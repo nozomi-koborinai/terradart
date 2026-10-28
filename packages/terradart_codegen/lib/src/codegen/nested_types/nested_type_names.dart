@@ -1,3 +1,4 @@
+import '../exactly_one_placement.dart';
 import '../exactly_one_types.dart';
 import '../naming.dart';
 
@@ -6,7 +7,7 @@ import '../naming.dart';
 /// clashes — reserved so that no derived helper takes one first.
 Set<String> rootSealedTypeNames(
   String stem,
-  List<List<String>> groups, {
+  List<BlockGroup> groups, {
   Map<String, String>? sealedNames,
 }) {
   final human = {
@@ -14,15 +15,17 @@ Set<String> rootSealedTypeNames(
       sealedGroupKeyOf(const [], sealedGroupKey(key)): value,
   };
   return {
-    for (final group in groups)
-      if (human[sealedGroupKeyOf(const [], group)] ?? deriveSealedConcept(group)
-          case final concept?)
-        if (sealedTypeName(stem, concept) case final sealed?) ...[
+    for (final placement in placeGroups(groups))
+      for (final t in preferredSealedTypes(
+        placement,
+        (members) => human[sealedGroupKeyOf(const [], members)],
+      ))
+        if (sealedTypeName(stem, t.concept) case final sealed?) ...[
           sealed,
-          for (final m in group)
+          for (final v in t.variants)
             exactlyOneVariantName(
               sealed,
-              m,
+              v,
               concept: sealedConcept(stem, sealed),
             ),
         ],

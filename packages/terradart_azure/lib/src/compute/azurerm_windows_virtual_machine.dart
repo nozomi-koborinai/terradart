@@ -132,24 +132,27 @@ extension type const WindowsVirtualMachinePatchMode._(TfArg<String> _)
   ];
 }
 
-/// Exactly one of `admin_username`, `os_managed_disk_id` on `azurerm_windows_virtual_machine`: the provider rejects
-/// none and more than one, so each variant sets one of them.
+/// Exactly one of these input sets on `azurerm_windows_virtual_machine`. The provider rejects any other mix of them.
 ///
-/// Pick one with a dot shorthand: `.adminUsername(...)`.
-sealed class WindowsVirtualMachineOsProfile {
-  const WindowsVirtualMachineOsProfile();
+/// - `.image` sets `admin_username` and one of `source_image_id` or `source_image_reference`.
+/// - `.osManagedDiskId` sets `os_managed_disk_id`.
+///
+/// Pick one with a dot shorthand: `.image(...)`.
+sealed class WindowsVirtualMachineOsSource {
+  const WindowsVirtualMachineOsSource();
 
-  /// Sets `admin_username`.
-  const factory WindowsVirtualMachineOsProfile.adminUsername(
-    TfArg<String> adminUsername,
-  ) = WindowsVirtualMachineOsProfileAdminUsername;
+  /// Sets `admin_username` and one of `source_image_id` or `source_image_reference`.
+  const factory WindowsVirtualMachineOsSource.image({
+    required TfArg<String> adminUsername,
+    required WindowsVirtualMachineSourceImage sourceImage,
+  }) = WindowsVirtualMachineOsSourceImage;
 
   /// Sets `os_managed_disk_id`.
-  const factory WindowsVirtualMachineOsProfile.osManagedDiskId(
+  const factory WindowsVirtualMachineOsSource.osManagedDiskId(
     TfArg<String> osManagedDiskId,
-  ) = WindowsVirtualMachineOsProfileOsManagedDiskId;
+  ) = WindowsVirtualMachineOsSourceOsManagedDiskId;
 
-  /// The Terraform argument this choice sets.
+  /// The Terraform argument that identifies this choice.
   @internal
   String get blockKey;
 
@@ -162,12 +165,17 @@ sealed class WindowsVirtualMachineOsProfile {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [WindowsVirtualMachineOsProfile.adminUsername] choice: sets `admin_username`.
-final class WindowsVirtualMachineOsProfileAdminUsername
-    extends WindowsVirtualMachineOsProfile {
-  const WindowsVirtualMachineOsProfileAdminUsername(this.adminUsername);
+/// The [WindowsVirtualMachineOsSource.image] choice: sets `admin_username` and one of `source_image_id` or `source_image_reference`.
+final class WindowsVirtualMachineOsSourceImage
+    extends WindowsVirtualMachineOsSource {
+  const WindowsVirtualMachineOsSourceImage({
+    required this.adminUsername,
+    required this.sourceImage,
+  });
 
   final TfArg<String> adminUsername;
+
+  final WindowsVirtualMachineSourceImage sourceImage;
 
   @internal
   @override
@@ -175,17 +183,23 @@ final class WindowsVirtualMachineOsProfileAdminUsername
 
   @internal
   @override
-  Map<String, Object?> encode() => {'admin_username': adminUsername.toTfJson()};
+  Map<String, Object?> encode() => {
+    'admin_username': adminUsername.toTfJson(),
+    ...sourceImage.encode(),
+  };
 
   @internal
   @override
-  Map<String, TfArg<Object?>> get argMap => {'admin_username': adminUsername};
+  Map<String, TfArg<Object?>> get argMap => {
+    'admin_username': adminUsername,
+    ...sourceImage.argMap,
+  };
 }
 
-/// The [WindowsVirtualMachineOsProfile.osManagedDiskId] choice: sets `os_managed_disk_id`.
-final class WindowsVirtualMachineOsProfileOsManagedDiskId
-    extends WindowsVirtualMachineOsProfile {
-  const WindowsVirtualMachineOsProfileOsManagedDiskId(this.osManagedDiskId);
+/// The [WindowsVirtualMachineOsSource.osManagedDiskId] choice: sets `os_managed_disk_id`.
+final class WindowsVirtualMachineOsSourceOsManagedDiskId
+    extends WindowsVirtualMachineOsSource {
+  const WindowsVirtualMachineOsSourceOsManagedDiskId(this.osManagedDiskId);
 
   final TfArg<String> osManagedDiskId;
 
@@ -203,6 +217,84 @@ final class WindowsVirtualMachineOsProfileOsManagedDiskId
   @override
   Map<String, TfArg<Object?>> get argMap => {
     'os_managed_disk_id': osManagedDiskId,
+  };
+}
+
+/// Exactly one of `source_image_id`, `source_image_reference` on [WindowsVirtualMachineOsSource.image]: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.sourceImageId(...)`.
+sealed class WindowsVirtualMachineSourceImage {
+  const WindowsVirtualMachineSourceImage();
+
+  /// Sets `source_image_id`.
+  const factory WindowsVirtualMachineSourceImage.sourceImageId(
+    TfArg<String> sourceImageId,
+  ) = WindowsVirtualMachineSourceImageId;
+
+  /// Sets `source_image_reference`.
+  const factory WindowsVirtualMachineSourceImage.sourceImageReference(
+    WindowsVirtualMachineSourceImageReference sourceImageReference,
+  ) = WindowsVirtualMachineSourceImageReferenceChoice;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [WindowsVirtualMachineSourceImage.sourceImageId] choice: sets `source_image_id`.
+final class WindowsVirtualMachineSourceImageId
+    extends WindowsVirtualMachineSourceImage {
+  const WindowsVirtualMachineSourceImageId(this.sourceImageId);
+
+  final TfArg<String> sourceImageId;
+
+  @internal
+  @override
+  String get blockKey => 'source_image_id';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'source_image_id': sourceImageId.toTfJson(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'source_image_id': sourceImageId};
+}
+
+/// The [WindowsVirtualMachineSourceImage.sourceImageReference] choice: sets `source_image_reference`.
+final class WindowsVirtualMachineSourceImageReferenceChoice
+    extends WindowsVirtualMachineSourceImage {
+  const WindowsVirtualMachineSourceImageReferenceChoice(
+    this.sourceImageReference,
+  );
+
+  final WindowsVirtualMachineSourceImageReference sourceImageReference;
+
+  @internal
+  @override
+  String get blockKey => 'source_image_reference';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'source_image_reference': sourceImageReference.encode(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'source_image_reference': TfArg.literal(sourceImageReference.encode()),
   };
 }
 
@@ -613,7 +705,7 @@ final class AzurermWindowsVirtualMachine extends Resource {
   AzurermWindowsVirtualMachine(
     super.localName, {
     Sensitive<String>? adminPassword,
-    required WindowsVirtualMachineOsProfile osProfile,
+    required WindowsVirtualMachineOsSource osSource,
     TfArg<bool>? allowExtensionOperations,
     TfArg<bool>? automaticUpdatesEnabled,
     TfArg<String>? availabilitySetId,
@@ -643,7 +735,6 @@ final class AzurermWindowsVirtualMachine extends Resource {
     required RefTo<AzurermResourceGroup> resourceGroupName,
     TfArg<bool>? secureBootEnabled,
     required TfArg<String> size,
-    TfArg<String>? sourceImageId,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? timezone,
     TfArg<String>? userData,
@@ -660,7 +751,6 @@ final class AzurermWindowsVirtualMachine extends Resource {
     WindowsVirtualMachineOsImageNotification? osImageNotification,
     WindowsVirtualMachinePlan? plan,
     List<WindowsVirtualMachineSecret>? secret,
-    WindowsVirtualMachineSourceImageReference? sourceImageReference,
     WindowsVirtualMachineTerminationNotification? terminationNotification,
     List<WindowsVirtualMachineWinrmListener>? winrmListener,
     super.lifecycle,
@@ -671,7 +761,7 @@ final class AzurermWindowsVirtualMachine extends Resource {
          terraformType: tfType,
          argMap: {
            'admin_password': ?adminPassword,
-           ...osProfile.argMap,
+           ...osSource.argMap,
            'allow_extension_operations': ?allowExtensionOperations,
            'automatic_updates_enabled': ?automaticUpdatesEnabled,
            'availability_set_id': ?availabilitySetId,
@@ -702,7 +792,6 @@ final class AzurermWindowsVirtualMachine extends Resource {
            'resource_group_name': resourceGroupName.encodeAs('name'),
            'secure_boot_enabled': ?secureBootEnabled,
            'size': size,
-           'source_image_id': ?sourceImageId,
            'tags': ?tags,
            'timezone': ?timezone,
            'user_data': ?userData,
@@ -732,10 +821,6 @@ final class AzurermWindowsVirtualMachine extends Resource {
            if (plan != null) 'plan': TfArg.literal(plan.encode()),
            if (secret != null)
              'secret': TfArg.literal([for (final e in secret) e.encode()]),
-           if (sourceImageReference != null)
-             'source_image_reference': TfArg.literal(
-               sourceImageReference.encode(),
-             ),
            if (terminationNotification != null)
              'termination_notification': TfArg.literal(
                terminationNotification.encode(),

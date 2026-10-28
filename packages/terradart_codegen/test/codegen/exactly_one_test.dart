@@ -2,9 +2,12 @@ import 'dart:io';
 
 import 'package:path/path.dart' as p;
 import 'package:terradart_codegen/src/codegen/exactly_one_derivation.dart';
+import 'package:terradart_codegen/src/codegen/exactly_one_placement.dart';
 import 'package:terradart_codegen/src/codegen/exactly_one_types.dart';
+import 'package:terradart_codegen/src/codegen/migrate/helper_class_extractor.dart';
 import 'package:terradart_codegen/src/codegen/nested_types/nested_type_collector.dart';
 import 'package:terradart_codegen/src/codegen/nested_types/nested_type_emitter.dart';
+import 'package:terradart_codegen/src/codegen/nested_types/nested_type_names.dart';
 import 'package:terradart_codegen/src/codegen/provider_enums.dart';
 import 'package:terradart_codegen/src/codegen/references/reference_targets.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_overrides/wrapper_override.dart';
@@ -40,16 +43,17 @@ const _groups = ProviderEnums.on(
 
 const _derives = WrapperOverride(outputDir: 'thing', deriveExactlyOne: true);
 
-/// [deriveExactlyOneSlots] over a lane of resources only.
-({
+typedef _Derived = ({
   LoadedOverrides overrides,
   List<String> skipped,
   List<String> skippedAtMostOne,
   List<SealedName> names,
   List<String> nameErrors,
   List<String> typedReferences,
-})
-_derive(
+});
+
+/// [deriveExactlyOneSlots] over a lane of resources only.
+_Derived _derive(
   Map<String, WrapperOverride> overrides,
   Map<String, ResourceDef> defs, {
   required ProviderEnums providerEnums,
@@ -79,6 +83,80 @@ ProviderSchemaIR _lane(
   providerVersion: '1.0.0',
   resources: resources,
   dataSources: dataSources,
+);
+
+const _linuxType = 'azurerm_linux_virtual_machine';
+
+const _linuxGroups = [
+  ['admin_username', 'os_managed_disk_id'],
+  ['os_managed_disk_id', 'source_image_id', 'source_image_reference'],
+];
+
+const _linuxNames = {
+  'admin_username, os_managed_disk_id, source_image_id, source_image_reference':
+      'os_source',
+  'admin_username, source_image_id, source_image_reference': 'image',
+};
+
+Map<String, dynamic> _optionalString() => {'type': 'string', 'optional': true};
+
+Map<String, dynamic> _sourceImageReference() => {
+  'nesting_mode': 'list',
+  'max_items': 1,
+  'block': {
+    'attributes': {
+      'offer': {'type': 'string', 'required': true},
+    },
+  },
+};
+
+_Derived _deriveLinux({
+  Map<String, String>? sealedNames = _linuxNames,
+  List<String>? requiredParams,
+}) => _derive(
+  {
+    _linuxType: WrapperOverride(
+      outputDir: 'compute',
+      deriveExactlyOne: true,
+      deriveNestedTypes: true,
+      sealedNames: sealedNames,
+      requiredParams: requiredParams,
+    ),
+  },
+  {
+    _linuxType: ResourceDef(
+      terraformType: _linuxType,
+      root: BlockDef(
+        attributes: [
+          _attr('admin_username'),
+          _attr('name', required: true),
+          _attr('os_managed_disk_id'),
+          _attr('source_image_id'),
+        ],
+        nestedBlocks: [
+          NestedBlockDef(
+            name: 'source_image_reference',
+            nesting: NestingMode.list,
+            maxItems: 1,
+            constraints: const Constraints(optional: true),
+            block: BlockDef(attributes: [_attr('offer', required: true)]),
+          ),
+        ],
+      ),
+    ),
+  },
+  providerEnums: _hints(exactlyOne: {_linuxType: _linuxGroups}),
+  rawSchemas: {
+    _linuxType: {
+      'attributes': {
+        'admin_username': _optionalString(),
+        'name': {'type': 'string', 'required': true},
+        'os_managed_disk_id': _optionalString(),
+        'source_image_id': _optionalString(),
+      },
+      'block_types': {'source_image_reference': _sourceImageReference()},
+    },
+  },
 );
 
 void main() {
@@ -1335,15 +1413,19 @@ void main() {
       concept: 'a_or_b',
       sealedClass: 'ThingAOrB',
       optional: false,
-      variants: [variant('a'), variant('b')],
-      variantClasses: const ['ThingAOrBA', 'ThingAOrBChoice'],
+      variants: [
+        SoloVariant(variant('a'), className: 'ThingAOrBA'),
+        SoloVariant(variant('b'), className: 'ThingAOrBChoice'),
+      ],
     );
     final atMostOne = SealedArgument(
       concept: 'c_or_d',
       sealedClass: 'ThingCOrD',
       optional: true,
-      variants: [variant('c'), variant('d')],
-      variantClasses: const ['ThingCOrDC', 'ThingCOrDChoice'],
+      variants: [
+        SoloVariant(variant('c'), className: 'ThingCOrDC'),
+        SoloVariant(variant('d'), className: 'ThingCOrDChoice'),
+      ],
     );
     const hand = 'final class ThingHand {}\n';
     String? prelude(String? handWritten, List<SealedArgument> arguments) =>
@@ -1473,5 +1555,386 @@ void main() {
       'settings [y, z]: y is in an earlier group',
     ]);
     expect(unsealedNestedGroups(specs, const {}), isEmpty);
+  });
+
+  test('an overlapping exactly-one pair becomes one joint variant', () {
+    final derived = _deriveLinux();
+    expect(derived.skipped, isEmpty);
+    expect(derived.nameErrors, isEmpty);
+    expect(
+      [
+        for (final n in derived.names)
+          (n.name.key, n.name.concept, n.name.source),
+      ],
+      [
+        (
+          'admin_username, os_managed_disk_id, source_image_id, '
+              'source_image_reference',
+          'os_source',
+          SealedNameSource.human,
+        ),
+        (
+          'admin_username, source_image_id, source_image_reference',
+          'image',
+          SealedNameSource.human,
+        ),
+        (
+          'source_image_id, source_image_reference',
+          'source_image',
+          SealedNameSource.derived,
+        ),
+      ],
+    );
+    final o = derived.overrides.resources[_linuxType]!;
+    final sealed = o.sealedArguments.single;
+    expect(sealed.concept, 'os_source');
+    expect(sealed.sealedClass, 'LinuxVirtualMachineOsSource');
+    expect(sealed.optional, isFalse);
+    expect(sealed.members, [
+      'admin_username',
+      'source_image_id',
+      'source_image_reference',
+      'os_managed_disk_id',
+    ]);
+    expect(sealed.variantClasses, [
+      'LinuxVirtualMachineOsSourceImage',
+      'LinuxVirtualMachineOsSourceOsManagedDiskId',
+    ]);
+    final image = sealed.variants.first as JointVariant;
+    expect(image.ident, 'image');
+    expect(image.blockKey, 'admin_username');
+    expect(image.parts.first, isA<MemberPart>());
+    final choice = image.parts.last as ChoicePart;
+    expect(choice.ident, 'sourceImage');
+    expect(choice.sealedClass, 'LinuxVirtualMachineSourceImage');
+    expect(
+      [for (final v in choice.variants) v.className],
+      [
+        'LinuxVirtualMachineSourceImageId',
+        'LinuxVirtualMachineSourceImageReferenceChoice',
+      ],
+    );
+    expect(o.paramOrder, contains('os_source'));
+    for (final m in sealed.members) {
+      expect(o.paramOrder, isNot(contains(m)));
+    }
+    final prelude = emittedPrelude(o, _linuxType);
+    expect(
+      prelude,
+      contains(
+        'const factory LinuxVirtualMachineOsSource.image({required '
+        'TfArg<String> adminUsername, required LinuxVirtualMachineSourceImage '
+        'sourceImage}) = LinuxVirtualMachineOsSourceImage;',
+      ),
+    );
+    expect(prelude, contains("String get blockKey => 'admin_username';"));
+    expect(
+      prelude,
+      contains(
+        "encode() => {'admin_username': adminUsername.toTfJson(), "
+        '...sourceImage.encode()};',
+      ),
+    );
+    expect(
+      prelude,
+      contains("{'admin_username': adminUsername, ...sourceImage.argMap};"),
+    );
+    expect(prelude, contains('sealed class LinuxVirtualMachineSourceImage {'));
+    expect(
+      prelude,
+      contains(
+        '/// - `.image` sets `admin_username` and one of `source_image_id` or '
+        '`source_image_reference`.',
+      ),
+    );
+  });
+
+  test('a one-member part is a required field on the joint variant', () {
+    const type = 'azurerm_site_recovery_vmware_replicated_vm';
+    final derived = _derive(
+      {
+        type: const WrapperOverride(
+          outputDir: 'site_recovery',
+          deriveExactlyOne: true,
+          sealedNames: {
+            'default_log_storage_account_id, default_recovery_disk_type, '
+                    'managed_disk':
+                'disk_replication',
+            'default_log_storage_account_id, default_recovery_disk_type':
+                'defaults',
+          },
+        ),
+      },
+      {
+        type: ResourceDef(
+          terraformType: type,
+          root: BlockDef(
+            attributes: [
+              _attr('default_log_storage_account_id'),
+              _attr('default_recovery_disk_type'),
+              _attr('managed_disk'),
+            ],
+          ),
+        ),
+      },
+      providerEnums: _hints(
+        exactlyOne: {
+          type: [
+            ['default_log_storage_account_id', 'managed_disk'],
+            ['default_recovery_disk_type', 'managed_disk'],
+          ],
+        },
+      ),
+    );
+    expect(derived.skipped, isEmpty);
+    expect(derived.nameErrors, isEmpty);
+    final o = derived.overrides.resources[type]!;
+    final sealed = o.sealedArguments.single;
+    expect(sealed.sealedClass, 'SiteRecoveryVmwareReplicatedVmDiskReplication');
+    expect(sealed.variantClasses, [
+      'SiteRecoveryVmwareReplicatedVmDiskReplicationDefaults',
+      'SiteRecoveryVmwareReplicatedVmDiskReplicationManagedDisk',
+    ]);
+    final defaults = sealed.variants.first as JointVariant;
+    expect(defaults.ident, 'defaults');
+    expect(defaults.blockKey, 'default_log_storage_account_id');
+    expect(defaults.parts, everyElement(isA<MemberPart>()));
+    expect(defaults.members, [
+      'default_log_storage_account_id',
+      'default_recovery_disk_type',
+    ]);
+    final prelude = emittedPrelude(o, type)!;
+    expect(
+      prelude,
+      contains(
+        "encode() => {'default_log_storage_account_id': "
+        'defaultLogStorageAccountId.toTfJson(), '
+        "'default_recovery_disk_type': defaultRecoveryDiskType.toTfJson()};",
+      ),
+    );
+    expect('sealed class '.allMatches(prelude), hasLength(1));
+  });
+
+  test('a joint with no sealedNames keeps a member-named factory', () {
+    final derived = _deriveLinux(sealedNames: null);
+    expect(derived.nameErrors, isEmpty);
+    expect(
+      [for (final n in derived.names) (n.name.concept, n.name.source)],
+      [
+        (
+          'admin_username_or_os_managed_disk_id_or_source_image_id_or_'
+              'source_image_reference',
+          SealedNameSource.fallback,
+        ),
+        ('admin_username', SealedNameSource.derived),
+        ('source_image', SealedNameSource.derived),
+      ],
+    );
+    final sealed = derived.overrides.resources[_linuxType]!.sealedArguments;
+    expect(
+      (sealed.single.variants.first as JointVariant).ident,
+      'adminUsername',
+    );
+  });
+
+  test('a joint name that repeats its key member is E406', () {
+    final derived = _deriveLinux(
+      sealedNames: {
+        ..._linuxNames,
+        'admin_username, source_image_id, source_image_reference':
+            'admin_username',
+      },
+    );
+    expect(derived.nameErrors, [
+      '$_linuxType [admin_username, source_image_id, source_image_reference]: '
+          'sealedNames "admin_username" repeats the derived name; remove it',
+    ]);
+  });
+
+  test('a nested choice name that repeats the derived name is E406', () {
+    final derived = _deriveLinux(
+      sealedNames: {
+        ..._linuxNames,
+        'source_image_id, source_image_reference': 'source_image',
+      },
+    );
+    expect(derived.nameErrors, [
+      '$_linuxType [source_image_id, source_image_reference]: '
+          'sealedNames "source_image" repeats the derived name; remove it',
+    ]);
+  });
+
+  test('a failed joint member skips every joined group', () {
+    final derived = _deriveLinux(
+      sealedNames: null,
+      requiredParams: ['source_image_id'],
+    );
+    expect(derived.skipped, [
+      '$_linuxType [admin_username, os_managed_disk_id]: '
+          'source_image_id is in requiredParams',
+      '$_linuxType [os_managed_disk_id, source_image_id, '
+          'source_image_reference]: source_image_id is in requiredParams',
+    ]);
+    expect(derived.overrides.resources[_linuxType]!.sealedArguments, isEmpty);
+  });
+
+  test('a non-overlapping group stays a single sealed slot', () {
+    final derived = _derive(
+      {'aws_thing': _derives},
+      {
+        'aws_thing': ResourceDef(
+          terraformType: 'aws_thing',
+          root: BlockDef(
+            attributes: [_attr('a'), _attr('b'), _attr('c'), _attr('d')],
+          ),
+        ),
+      },
+      providerEnums: _hints(
+        exactlyOne: {
+          'aws_thing': [
+            ['a', 'b'],
+            ['c', 'd'],
+          ],
+        },
+      ),
+    );
+    final o = derived.overrides.resources['aws_thing']!;
+    expect(o.sealedArguments, hasLength(2));
+    for (final a in o.sealedArguments) {
+      expect(a.variants, everyElement(isA<SoloVariant>()));
+    }
+    expect(emittedPrelude(o, 'aws_thing'), isNot(contains('input sets')));
+  });
+
+  test('the migration extractor reads a joint variant as regular', () {
+    final o = _deriveLinux().overrides.resources[_linuxType]!;
+    final extraction = const HelperClassExtractor().extract(
+      emittedPrelude(o, _linuxType)!,
+    );
+    final image = extraction.helpers['LinuxVirtualMachineOsSourceImage']!;
+    expect(image.blockKey, 'admin_username');
+    expect(image.shorthand, 'image');
+    expect(image.irregularReason, isNull);
+    final [adminUsername, sourceImage] = image.fields;
+    expect(adminUsername.name, 'adminUsername');
+    expect(adminUsername.tfKey, 'admin_username');
+    expect(sourceImage.name, 'sourceImage');
+    expect(sourceImage.merged, isTrue);
+    expect(extraction.variantsOf('LinuxVirtualMachineOsSource'), {
+      'admin_username': 'LinuxVirtualMachineOsSourceImage',
+      'os_managed_disk_id': 'LinuxVirtualMachineOsSourceOsManagedDiskId',
+    });
+    expect(extraction.variantsOf('LinuxVirtualMachineSourceImage'), {
+      'source_image_id': 'LinuxVirtualMachineSourceImageId',
+      'source_image_reference': 'LinuxVirtualMachineSourceImageReferenceChoice',
+    });
+  });
+
+  test('an overlap in a nested block joins in its helper', () {
+    Map<String, dynamic> settings() => {
+      'nesting_mode': 'list',
+      'max_items': 1,
+      'block': {
+        'attributes': {
+          'admin_username': _optionalString(),
+          'os_managed_disk_id': _optionalString(),
+          'source_image_id': _optionalString(),
+        },
+        'block_types': {'source_image_reference': _sourceImageReference()},
+      },
+    };
+    final groups = [
+      for (final g in _linuxGroups) [for (final m in g) 'settings.$m'],
+    ];
+    final names = {
+      for (final MapEntry(:key, :value) in _linuxNames.entries)
+        sealedGroupKeyOf(const ['settings'], sealedGroupKey(key)): value,
+    };
+    final specs = collectNestedTypes(
+      resourceBlock: {
+        'block_types': {'settings': settings()},
+      },
+      resourcePrefix: 'Thing',
+      customSlotKeys: const {},
+      excludedPaths: const {},
+      exactlyOneGroups: const {'settings': _linuxGroups},
+      sealedNames: names,
+    );
+    final src = renderNestedTypes(specs, resourceTerraformType: 'aws_thing');
+    expect(
+      src,
+      contains('const ThingSettings({\n    required this.osSource,\n  });'),
+    );
+    expect(src, contains('final ThingOsSource osSource;'));
+    expect(
+      src,
+      contains(
+        'const factory ThingOsSource.image({required TfArg<String> '
+        'adminUsername, required ThingSourceImage sourceImage}) = '
+        'ThingOsSourceImage;',
+      ),
+    );
+    expect(src, isNot(contains('argMap')));
+    const keys = [
+      'settings.admin_username, settings.os_managed_disk_id, '
+          'settings.source_image_id, settings.source_image_reference',
+      'settings.admin_username, settings.source_image_id, '
+          'settings.source_image_reference',
+      'settings.source_image_id, settings.source_image_reference',
+    ];
+    expect(
+      [for (final n in nestedSealedNames(specs)) (n.key, n.concept, n.source)],
+      [
+        (keys[0], 'os_source', SealedNameSource.human),
+        (keys[1], 'image', SealedNameSource.human),
+        (keys[2], 'source_image', SealedNameSource.derived),
+      ],
+    );
+    expect(nestedSealedKeys(specs), keys.toSet());
+
+    final derived = _derive(
+      {
+        'aws_thing': WrapperOverride(
+          outputDir: 'thing',
+          deriveExactlyOne: true,
+          deriveNestedTypes: true,
+          sealedNames: names,
+        ),
+      },
+      {
+        'aws_thing': const ResourceDef(
+          terraformType: 'aws_thing',
+          root: BlockDef(),
+        ),
+      },
+      providerEnums: _hints(exactlyOne: {'aws_thing': groups}),
+      rawSchemas: {
+        'aws_thing': {
+          'block_types': {'settings': settings()},
+        },
+      },
+    );
+    expect(derived.skipped, isEmpty);
+    expect(derived.nameErrors, isEmpty);
+    expect(derived.names, hasLength(3));
+    expect(derived.overrides.resources['aws_thing']!.sealedArguments, isEmpty);
+  });
+
+  test('rootSealedTypeNames reserves a joint\'s types', () {
+    expect(
+      rootSealedTypeNames(
+        'LinuxVirtualMachine',
+        blockGroups(_linuxGroups, const []),
+        sealedNames: _linuxNames,
+      ),
+      {
+        'LinuxVirtualMachineOsSource',
+        'LinuxVirtualMachineOsSourceImage',
+        'LinuxVirtualMachineOsSourceOsManagedDiskId',
+        'LinuxVirtualMachineSourceImage',
+        'LinuxVirtualMachineSourceImageId',
+        'LinuxVirtualMachineSourceImageReference',
+      },
+    );
   });
 }

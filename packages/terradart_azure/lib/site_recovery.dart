@@ -53,7 +53,7 @@ export 'src/site_recovery/azurerm_site_recovery_vmware_replicated_vm.dart'
         AzurermSiteRecoveryVmwareReplicatedVm,
         SiteRecoveryVmwareReplicatedVmDefaultRecoveryDiskType,
         SiteRecoveryVmwareReplicatedVmDiskReplication,
-        SiteRecoveryVmwareReplicatedVmDiskReplicationDefaultLogStorageAccountId,
+        SiteRecoveryVmwareReplicatedVmDiskReplicationDefaults,
         SiteRecoveryVmwareReplicatedVmDiskReplicationManagedDisk,
         SiteRecoveryVmwareReplicatedVmLicenseType,
         SiteRecoveryVmwareReplicatedVmManagedDisk,

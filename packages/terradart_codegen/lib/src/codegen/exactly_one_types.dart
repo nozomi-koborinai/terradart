@@ -1,4 +1,5 @@
 import 'constructor_slots.dart';
+import 'exactly_one_placement.dart';
 import 'naming.dart';
 import 'wrapper_overrides/wrapper_override.dart';
 
@@ -37,7 +38,8 @@ typedef SealedGroupName = ({
   String concept,
   SealedNameSource source,
 
-  /// The name [deriveSealedConcept] gives the group, if any.
+  /// The name [deriveSealedConcept] gives the group, if any. A joint
+  /// variant's is its key member.
   String? derived,
 
   /// Why the group's `sealedNames` entry cannot be used, if it cannot.
@@ -418,44 +420,237 @@ String? sealedNameClash(
   return null;
 }
 
+/// The argument [joint] seals into, on [owner]'s types: its concept, its
+/// sealed type, its variants (a [JointVariant] for the
+/// [JointPlacement.parts], then a [SoloVariant] per shared member), and the
+/// names of the argument, the joint factory, and each nested choice, keyed
+/// at [blockPath].
+///
+/// [human] holds the block's `sealedNames` by bare [sealedGroupKeyOf] key,
+/// and [variants] each member's variant. The new types avoid [taken];
+/// [slotClash] says why the argument cannot take a concept, and [namedType]
+/// is the type a block's concise names chose for a concept, if any.
+///
+/// The joint factory takes the `sealedNames` entry for the members it sets,
+/// else its key member's name (`.adminUsername`).
+({
+  String concept,
+  String sealedClass,
+  List<SealedVariant> variants,
+  List<SealedGroupName> names,
+})
+sealJoint(
+  JointPlacement joint, {
+  required List<String> blockPath,
+  required String owner,
+  required Map<String, String> human,
+  required Map<String, ExactlyOneVariant> variants,
+  required Set<String> taken,
+  required String? Function(String concept) slotClash,
+  required String? Function(String concept) namedType,
+}) {
+  String typeOf(String concept) =>
+      namedType(concept) ??
+      sealedTypeName(owner, concept) ??
+      owner + snakeToPascal(concept);
+  String? conceptOf(String concept, String type) => namedType(concept) == type
+      ? conceptSuffix(type, concept)
+      : sealedConcept(owner, type);
+  List<String> classesOf(
+    String type,
+    String concept,
+    List<String> members,
+    Set<String> used,
+  ) =>
+      exactlyOneVariantNames(
+        type,
+        members,
+        used,
+        concept: conceptOf(concept, type),
+      ) ??
+      [
+        for (final m in members)
+          exactlyOneVariantName(type, m, concept: conceptOf(concept, type)),
+      ];
+  SealedGroupName name(
+    List<String> members, {
+    required String? derived,
+    required String? Function(String concept) clashes,
+  }) {
+    final resolved = resolveSealedName(
+      members: members,
+      human: human[sealedGroupKeyOf(const [], members)],
+      derived: derived,
+      clashes: clashes,
+    );
+    return (
+      key: sealedGroupKeyOf(blockPath, members),
+      concept: resolved.concept,
+      source: resolved.source,
+      derived: derived,
+      error: resolved.error,
+    );
+  }
+
+  final solos = {for (final s in joint.shared) variants[s]!.ident};
+  final jointName = name(
+    joint.jointMembers,
+    derived: joint.keyMember,
+    clashes: (c) => solos.contains(snakeToDartIdent(c))
+        ? 'the variant .${snakeToDartIdent(c)} is taken'
+        : null,
+  );
+  final naming = [jointName.concept, ...joint.shared];
+  final outer = name(
+    joint.members,
+    derived: deriveSealedConcept(joint.members),
+    clashes: (c) =>
+        slotClash(c) ??
+        sealedNameClash(owner, c, naming, taken, named: namedType(c)),
+  );
+  final sealed = typeOf(outer.concept);
+  final classes = classesOf(sealed, outer.concept, naming, taken);
+  final used = {...taken, sealed, ...classes};
+  final fields = {
+    for (final part in joint.parts)
+      if (part case [final m]) variants[m]!.ident,
+  };
+  final parts = <JointPart>[];
+  final choices = <SealedGroupName>[];
+  for (final part in joint.parts) {
+    if (part case [final m]) {
+      parts.add(MemberPart(variants[m]!));
+      continue;
+    }
+    final choice = name(
+      part,
+      derived: deriveSealedConcept(part),
+      clashes: (c) => fields.contains(snakeToDartIdent(c))
+          ? 'the field ${snakeToDartIdent(c)} is taken'
+          : sealedNameClash(owner, c, part, used, named: namedType(c)),
+    );
+    final type = typeOf(choice.concept);
+    final choiceClasses = classesOf(type, choice.concept, part, used);
+    final ident = snakeToDartIdent(choice.concept);
+    fields.add(ident);
+    used
+      ..add(type)
+      ..addAll(choiceClasses);
+    choices.add(choice);
+    parts.add(
+      ChoicePart(
+        ident: ident,
+        sealedClass: type,
+        variants: [
+          for (final (i, m) in part.indexed)
+            SoloVariant(variants[m]!, className: choiceClasses[i]),
+        ],
+      ),
+    );
+  }
+  return (
+    concept: outer.concept,
+    sealedClass: sealed,
+    variants: [
+      JointVariant(
+        ident: snakeToDartIdent(jointName.concept),
+        className: classes.first,
+        parts: parts,
+      ),
+      for (final (i, s) in joint.shared.indexed)
+        SoloVariant(variants[s]!, className: classes[i + 1]),
+    ],
+    names: [outer, jointName, ...choices],
+  );
+}
+
+/// The sealed types [placement] declares when no name clashes, each as its
+/// members, its concept ([human] for those members, else
+/// [deriveSealedConcept]), and the names its variants take. A type with no
+/// concept is left out.
+List<({List<String> members, String concept, List<String> variants})>
+preferredSealedTypes(
+  GroupPlacement placement,
+  String? Function(List<String> members) human,
+) {
+  String? conceptOf(List<String> members) =>
+      human(members) ?? deriveSealedConcept(members);
+  return switch (placement) {
+    SinglePlacement(:final group) => [
+      if (conceptOf(group.members) case final concept?)
+        (members: group.members, concept: concept, variants: group.members),
+    ],
+    JointPlacement(
+      :final members,
+      :final jointMembers,
+      :final keyMember,
+      :final shared,
+      :final parts,
+    ) =>
+      [
+        if (conceptOf(members) case final concept?)
+          (
+            members: members,
+            concept: concept,
+            variants: [human(jointMembers) ?? keyMember, ...shared],
+          ),
+        for (final part in parts)
+          if (part.length > 1)
+            if (conceptOf(part) case final concept?)
+              (members: part, concept: concept, variants: part),
+      ],
+  };
+}
+
 /// Renders the sealed type for one exactly-one group — or, when [optional],
-/// one at-most-one group, held by a nullable slot — and one variant per
-/// member, in [variants] order. [where] names the block the members belong
-/// to in the doc comments.
+/// one at-most-one group, held by a nullable slot — and its [variants], in
+/// order. [where] names the block the members belong to in the doc
+/// comments.
 ///
 /// Each variant is reachable as a `const factory` constructor on the sealed
-/// type named after its member, taking the member's value positionally, so
-/// a caller writes the dot shorthand `slot: .imageUri(...)`. The concrete
-/// classes follow the shape `migrate/helper_class_extractor.dart`
-/// recognises: a `blockKey` getter and a field-per-key `encode()` (plus
+/// type. A [SoloVariant]'s is named after its member and takes the member's
+/// value positionally, so a caller writes the dot shorthand
+/// `slot: .imageUri(...)`; a [JointVariant]'s takes one required named
+/// argument per part, and each [ChoicePart]'s own sealed type follows the
+/// variants. The concrete classes follow the shape
+/// `migrate/helper_class_extractor.dart` recognises: a `blockKey` getter
+/// and a field-per-key `encode()` that spreads a nested choice (plus
 /// `argMap` for a resource-level group).
 String renderExactlyOneTypes({
   required String sealed,
-  required List<String> members,
   required String where,
-  required List<ExactlyOneVariant> variants,
-  List<String>? variantClasses,
+  required List<SealedVariant> variants,
   bool optional = false,
 }) {
-  final classes =
-      variantClasses ??
-      exactlyOneVariantNames(sealed, [
-        for (final v in variants) v.tfName,
-      ], const {})!;
-  final topLevel = variants.first.argMapExpr != null;
-  final list = members.map((m) => '`$m`').join(', ');
+  final topLevel = variants.first.leaves.first.argMapExpr != null;
+  final joint = variants.any((v) => v is JointVariant);
   final buf = StringBuffer();
-  if (optional) {
+  if (joint) {
     buf
-      ..writeln('/// At most one of $list on $where: the provider rejects')
-      ..writeln('/// more than one, so each variant sets one of them and a')
-      ..writeln('/// null choice sets none.');
-  } else {
-    buf
-      ..writeln('/// Exactly one of $list on $where: the provider rejects')
       ..writeln(
-        '/// none and more than one, so each variant sets one of them.',
-      );
+        '/// Exactly one of these input sets on $where. The provider rejects any other mix of them.',
+      )
+      ..writeln('///');
+    for (final v in variants) {
+      buf.writeln('/// - `.${v.ident}` sets ${_sets(v)}.');
+    }
+  } else {
+    final list = [
+      for (final v in variants)
+        for (final l in v.leaves) '`${l.tfName}`',
+    ].join(', ');
+    if (optional) {
+      buf
+        ..writeln('/// At most one of $list on $where: the provider rejects')
+        ..writeln('/// more than one, so each variant sets one of them and a')
+        ..writeln('/// null choice sets none.');
+    } else {
+      buf
+        ..writeln('/// Exactly one of $list on $where: the provider rejects')
+        ..writeln(
+          '/// none and more than one, so each variant sets one of them.',
+        );
+    }
   }
   buf
     ..writeln('///')
@@ -464,25 +659,44 @@ String renderExactlyOneTypes({
     )
     ..writeln('sealed class $sealed {')
     ..writeln('  const $sealed();');
-  for (final (i, v) in variants.indexed) {
-    buf
-      ..writeln()
-      ..writeln('  /// Sets `${v.tfName}`.');
-    if (v.deprecation != null) {
-      buf.writeln("  @Deprecated('${dartSingleQuotedBody(v.deprecation!)}')");
+  for (final variant in variants) {
+    switch (variant) {
+      case SoloVariant(member: final v, :final className):
+        buf
+          ..writeln()
+          ..writeln('  /// Sets `${v.tfName}`.');
+        if (v.deprecation != null) {
+          buf.writeln(
+            "  @Deprecated('${dartSingleQuotedBody(v.deprecation!)}')",
+          );
+        }
+        final parameters = ConstructorSlots.variantConstructor((
+          fieldType: v.fieldType,
+          ident: v.ident,
+          defaultValue: v.defaultValue,
+        ));
+        buf.writeln(
+          '  const factory $sealed.${v.ident}(${parameters.factoryParameters}) = $className;',
+        );
+      case JointVariant(:final ident, :final className):
+        final parameters = [
+          for (final p in _jointParameters(variant)) p.factoryParameter,
+        ].join(', ');
+        buf
+          ..writeln()
+          ..writeln('  /// Sets ${_sets(variant)}.')
+          ..writeln(
+            '  const factory $sealed.$ident({$parameters}) = $className;',
+          );
     }
-    final parameters = ConstructorSlots.variantConstructor((
-      fieldType: v.fieldType,
-      ident: v.ident,
-      defaultValue: v.defaultValue,
-    ));
-    buf.writeln(
-      '  const factory $sealed.${v.ident}(${parameters.factoryParameters}) = ${classes[i]};',
-    );
   }
   buf
     ..writeln()
-    ..writeln('  /// The Terraform argument this choice sets.')
+    ..writeln(
+      joint
+          ? '  /// The Terraform argument that identifies this choice.'
+          : '  /// The Terraform argument this choice sets.',
+    )
     ..writeln('  @internal')
     ..writeln('  String get blockKey;')
     ..writeln()
@@ -499,45 +713,160 @@ String renderExactlyOneTypes({
       ..writeln('  Map<String, TfArg<Object?>> get argMap;');
   }
   buf.writeln('}');
-  for (final (i, v) in variants.indexed) {
-    final name = classes[i];
-    buf
-      ..writeln()
-      ..writeln('/// The [$sealed.${v.ident}] choice: sets `${v.tfName}`.');
-    if (v.deprecation != null) {
-      buf.writeln("@Deprecated('${dartSingleQuotedBody(v.deprecation!)}')");
+  for (final variant in variants) {
+    switch (variant) {
+      case SoloVariant(member: final v, className: final name):
+        buf
+          ..writeln()
+          ..writeln('/// The [$sealed.${v.ident}] choice: sets `${v.tfName}`.');
+        if (v.deprecation != null) {
+          buf.writeln("@Deprecated('${dartSingleQuotedBody(v.deprecation!)}')");
+        }
+        final parameters = ConstructorSlots.variantConstructor((
+          fieldType: v.fieldType,
+          ident: v.ident,
+          defaultValue: v.defaultValue,
+        ));
+        buf
+          ..writeln('final class $name extends $sealed {')
+          ..writeln('  const $name(${parameters.variantParameters});')
+          ..writeln()
+          ..writeln('  final ${v.fieldType} ${v.ident};')
+          ..writeln()
+          ..writeln('  @internal')
+          ..writeln('  @override')
+          ..writeln("  String get blockKey => '${v.tfName}';")
+          ..writeln()
+          ..writeln('  @internal')
+          ..writeln('  @override')
+          ..writeln(
+            "  Map<String, Object?> encode() => {'${v.tfName}': ${v.encodeExpr}};",
+          );
+        if (topLevel) {
+          buf
+            ..writeln()
+            ..writeln('  @internal')
+            ..writeln('  @override')
+            ..writeln('  Map<String, TfArg<Object?>> get argMap =>')
+            ..writeln("      {'${v.tfName}': ${v.argMapExpr}};");
+        }
+        buf.writeln('}');
+      case JointVariant(:final ident, className: final name, :final parts):
+        final parameters = [
+          for (final p in _jointParameters(variant)) p.variantParameter,
+        ].join(', ');
+        final encode = [
+          for (final part in parts)
+            switch (part) {
+              MemberPart(member: final m) => "'${m.tfName}': ${m.encodeExpr}",
+              ChoicePart(:final ident) => '...$ident.encode()',
+            },
+        ].join(', ');
+        buf
+          ..writeln()
+          ..writeln('/// The [$sealed.$ident] choice: sets ${_sets(variant)}.')
+          ..writeln('final class $name extends $sealed {')
+          ..writeln('  const $name({$parameters});')
+          ..writeln();
+        for (final part in parts) {
+          final type = switch (part) {
+            MemberPart(:final member) => member.fieldType,
+            ChoicePart(:final sealedClass) => sealedClass,
+          };
+          buf
+            ..writeln('  final $type ${part.ident};')
+            ..writeln();
+        }
+        buf
+          ..writeln('  @internal')
+          ..writeln('  @override')
+          ..writeln("  String get blockKey => '${variant.blockKey}';")
+          ..writeln()
+          ..writeln('  @internal')
+          ..writeln('  @override')
+          ..writeln('  Map<String, Object?> encode() => {$encode};');
+        if (topLevel) {
+          final argMap = [
+            for (final part in parts)
+              switch (part) {
+                MemberPart(member: final m) => "'${m.tfName}': ${m.argMapExpr}",
+                ChoicePart(:final ident) => '...$ident.argMap',
+              },
+          ].join(', ');
+          buf
+            ..writeln()
+            ..writeln('  @internal')
+            ..writeln('  @override')
+            ..writeln('  Map<String, TfArg<Object?>> get argMap =>')
+            ..writeln('      {$argMap};');
+        }
+        buf.writeln('}');
     }
-    final parameters = ConstructorSlots.variantConstructor((
-      fieldType: v.fieldType,
-      ident: v.ident,
-      defaultValue: v.defaultValue,
-    ));
-    buf
-      ..writeln('final class $name extends $sealed {')
-      ..writeln('  const $name(${parameters.variantParameters});')
-      ..writeln()
-      ..writeln('  final ${v.fieldType} ${v.ident};')
-      ..writeln()
-      ..writeln('  @internal')
-      ..writeln('  @override')
-      ..writeln("  String get blockKey => '${v.tfName}';")
-      ..writeln()
-      ..writeln('  @internal')
-      ..writeln('  @override')
-      ..writeln(
-        "  Map<String, Object?> encode() => {'${v.tfName}': ${v.encodeExpr}};",
-      );
-    if (topLevel) {
+  }
+  for (final v in variants.whereType<JointVariant>()) {
+    for (final choice in v.parts.whereType<ChoicePart>()) {
       buf
         ..writeln()
-        ..writeln('  @internal')
-        ..writeln('  @override')
-        ..writeln('  Map<String, TfArg<Object?>> get argMap =>')
-        ..writeln("      {'${v.tfName}': ${v.argMapExpr}};");
+        ..write(
+          renderExactlyOneTypes(
+            sealed: choice.sealedClass,
+            where: '[$sealed.${v.ident}]',
+            variants: choice.variants,
+          ),
+        );
     }
-    buf.writeln('}');
   }
   return buf.toString();
+}
+
+String _sets(SealedVariant variant) => switch (variant) {
+  SoloVariant(:final member) => '`${member.tfName}`',
+  JointVariant(:final parts) => _series([
+    for (final part in parts)
+      switch (part) {
+        MemberPart(:final member) => '`${member.tfName}`',
+        ChoicePart(:final members) =>
+          'one of ${_series([for (final m in members) '`$m`'], 'or')}',
+      },
+  ], 'and'),
+};
+
+String _series(List<String> items, String conjunction) => items.length < 3
+    ? items.join(' $conjunction ')
+    : '${items.take(items.length - 1).join(', ')}, $conjunction ${items.last}';
+
+List<({String factoryParameter, String variantParameter})> _jointParameters(
+  JointVariant variant,
+) => [
+  for (final part in variant.parts)
+    switch (part) {
+      MemberPart(member: final m) => _deprecated(
+        ConstructorSlots.jointParameter((
+          fieldType: m.fieldType,
+          ident: m.ident,
+          defaultValue: m.defaultValue,
+        )),
+        m.deprecation,
+      ),
+      ChoicePart(:final ident, :final sealedClass) =>
+        ConstructorSlots.jointParameter((
+          fieldType: sealedClass,
+          ident: ident,
+          defaultValue: null,
+        )),
+    },
+];
+
+({String factoryParameter, String variantParameter}) _deprecated(
+  ({String factoryParameter, String variantParameter}) parameter,
+  String? deprecation,
+) {
+  if (deprecation == null) return parameter;
+  final annotation = "@Deprecated('${dartSingleQuotedBody(deprecation)}') ";
+  return (
+    factoryParameter: '$annotation${parameter.factoryParameter}',
+    variantParameter: '$annotation${parameter.variantParameter}',
+  );
 }
 
 /// The prelude both wrapper emitters write for [terraformType]: the
@@ -554,10 +883,8 @@ String? emittedPrelude(WrapperOverride? override, String terraformType) {
       ..write(
         renderExactlyOneTypes(
           sealed: a.sealedClass,
-          members: a.members,
           where: '`${override.kind.label(terraformType)}`',
           variants: a.variants,
-          variantClasses: a.variantClasses,
           optional: a.optional,
         ),
       );

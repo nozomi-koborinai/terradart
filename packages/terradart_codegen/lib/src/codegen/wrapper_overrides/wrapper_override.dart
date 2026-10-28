@@ -566,15 +566,16 @@ final class MigrateHint {
   String get kind => 'manual';
 }
 
-/// One exactly-one or at-most-one group of top-level inputs, sealed into a
-/// single constructor argument whose variants each set one member.
+/// One exactly-one or at-most-one group of top-level inputs sealed into a
+/// single constructor argument, or overlapping exactly-one groups joined
+/// into one: a [SoloVariant] per shared member, one [JointVariant] for the
+/// rest.
 final class SealedArgument extends OverrideSlot {
   const SealedArgument({
     required this.concept,
     required this.sealedClass,
     required this.optional,
     required this.variants,
-    required this.variantClasses,
   });
 
   /// Snake-case slot name in `paramOrder` and `argMapOrder`. It may equal
@@ -588,19 +589,143 @@ final class SealedArgument extends OverrideSlot {
   /// nothing when null. An exactly-one group's argument is required.
   final bool optional;
 
-  /// One variant per member, in group order.
-  final List<ExactlyOneVariant> variants;
+  /// The variants, in the order the sealed type declares them.
+  final List<SealedVariant> variants;
 
   /// Each variant's class, in [variants] order.
-  final List<String> variantClasses;
+  List<String> get variantClasses => [for (final v in variants) v.className];
 
-  /// The group's members, in group order.
-  List<String> get members => [for (final v in variants) v.tfName];
+  /// Every member the argument covers, in variant order.
+  List<String> get members => [
+    for (final v in variants)
+      for (final l in v.leaves) l.tfName,
+  ];
+}
+
+/// One variant of a sealed type: a [SoloVariant] sets one member, a
+/// [JointVariant] one input of each part.
+sealed class SealedVariant {
+  const SealedVariant({required this.className});
+
+  final String className;
+
+  /// The factory constructor's name.
+  String get ident;
+
+  /// A Terraform argument the variant always sets.
+  String get blockKey;
+
+  /// Every member the variant can set, as it holds them.
+  List<ExactlyOneVariant> get leaves;
+
+  /// The classes the variant declares: its own, then any nested choice's
+  /// type and variants.
+  List<String> get classes;
+}
+
+final class SoloVariant extends SealedVariant {
+  const SoloVariant(this.member, {required super.className});
+
+  final ExactlyOneVariant member;
+
+  @override
+  String get ident => member.ident;
+
+  @override
+  String get blockKey => member.tfName;
+
+  @override
+  List<ExactlyOneVariant> get leaves => [member];
+
+  @override
+  List<String> get classes => [className];
+}
+
+/// The variant of overlapping exactly-one groups that sets one input of
+/// each group's leftover part.
+final class JointVariant extends SealedVariant {
+  const JointVariant({
+    required this.ident,
+    required super.className,
+    required this.parts,
+  });
+
+  @override
+  final String ident;
+
+  /// One per joined group, in group order. At least one is a [MemberPart].
+  final List<JointPart> parts;
+
+  @override
+  String get blockKey => parts.whereType<MemberPart>().first.member.tfName;
+
+  @override
+  List<ExactlyOneVariant> get leaves => [for (final p in parts) ...p.leaves];
+
+  @override
+  List<String> get classes => [
+    className,
+    for (final c in parts.whereType<ChoicePart>()) ...[
+      c.sealedClass,
+      for (final v in c.variants) v.className,
+    ],
+  ];
+
+  /// The members the variant sets, in part order.
+  List<String> get members => [for (final l in leaves) l.tfName];
+}
+
+/// One required field of a [JointVariant].
+sealed class JointPart {
+  const JointPart();
+
+  /// The field's Dart name.
+  String get ident;
+
+  /// Every member the field can set.
+  List<ExactlyOneVariant> get leaves;
+}
+
+/// A part of one member: a plain field.
+final class MemberPart extends JointPart {
+  const MemberPart(this.member);
+
+  final ExactlyOneVariant member;
+
+  @override
+  String get ident => member.ident;
+
+  @override
+  List<ExactlyOneVariant> get leaves => [member];
+}
+
+/// A part of several members, of which the variant sets exactly one: a
+/// nested sealed choice.
+final class ChoicePart extends JointPart {
+  const ChoicePart({
+    required this.ident,
+    required this.sealedClass,
+    required this.variants,
+  });
+
+  @override
+  final String ident;
+
+  final String sealedClass;
+
+  /// One per member, in part order.
+  final List<SoloVariant> variants;
+
+  @override
+  List<ExactlyOneVariant> get leaves => [for (final v in variants) v.member];
+
+  /// The members, in part order.
+  List<String> get members => [for (final v in variants) v.member.tfName];
 }
 
 /// One member of an exactly-one group as its sealed variant holds it.
 typedef ExactlyOneVariant = ({
-  /// Terraform argument name, which is also the variant's `blockKey`.
+  /// The Terraform argument it sets, which is a solo variant's `blockKey`.
   String tfName,
 
   /// Dart field name.

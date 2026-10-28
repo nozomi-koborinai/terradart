@@ -1,5 +1,6 @@
 import '../constructor_slots.dart';
 import '../enum_emitter.dart';
+import '../exactly_one_placement.dart';
 import '../exactly_one_types.dart';
 import '../naming.dart';
 import '../provider_enums.dart';
@@ -71,10 +72,11 @@ String _renderBlockTree(
     buf.write(
       renderExactlyOneTypes(
         sealed: spec.className,
-        members: whole.members,
         where: where,
-        variants: whole.variants,
-        variantClasses: whole.classes,
+        variants: [
+          for (final (i, v) in whole.variants.indexed)
+            SoloVariant(v, className: whole.classes[i]),
+        ],
         optional: whole.atMostOne,
       ),
     );
@@ -87,10 +89,8 @@ String _renderBlockTree(
       ..write(
         renderExactlyOneTypes(
           sealed: group.type,
-          members: group.members,
           where: where,
           variants: group.variants,
-          variantClasses: group.classes,
           optional: group.optional,
         ),
       );
@@ -262,11 +262,11 @@ List<_Member> _members(NestedBlockSpec spec) {
   return members;
 }
 
-/// One sealed field of a helper class: required for an exactly-one group,
-/// nullable for an at-most-one ([optional]) group.
+/// One sealed field of a helper class: required for an exactly-one group or
+/// a joint of them, nullable for an at-most-one ([optional]) group.
 typedef _SealedGroup = ({
   List<String> members,
-  List<ExactlyOneVariant> variants,
+  List<SealedVariant> variants,
   bool optional,
 
   /// The field's Dart name.
@@ -275,9 +275,8 @@ typedef _SealedGroup = ({
   /// The sealed type's name.
   String type,
 
-  /// Each member's variant class, in [members] order.
-  List<String> classes,
-  SealedGroupName name,
+  /// The field's name first, then any joint factory's and nested choice's.
+  List<SealedGroupName> names,
 });
 
 typedef _Layout = ({
@@ -292,7 +291,6 @@ typedef _Layout = ({
 });
 
 typedef _WholeBlockGroup = ({
-  List<String> members,
   List<ExactlyOneVariant> variants,
   List<String> classes,
   bool atMostOne,
@@ -313,7 +311,7 @@ Map<String, _Layout> _layouts(List<NestedBlockSpec> specs) {
     for (final g in layout.sealed) {
       taken
         ..add(g.type)
-        ..addAll(g.classes);
+        ..addAll([for (final v in g.variants) ...v.classes]);
     }
     for (final c in _byTfName(spec.children, (NestedBlockSpec s) => s.tfName)) {
       walk(c);
@@ -347,7 +345,9 @@ Set<String> nestedTypeNames(List<NestedBlockSpec> specs) {
 /// [NestedBlockSpec.atMostOne] group into one nullable sealed field, at its
 /// first member's position. A group is sealable when every member is an
 /// optional typed input of this block, not a keyed block, and no earlier
-/// group (exactly-one groups come first) took one of them.
+/// group (exactly-one groups come first) took one of them. Exactly-one
+/// groups that share one member set and nothing else fold into one sealed
+/// field together ([placeGroups]).
 ///
 /// An exactly-one group that is every input of a (non-keyed) block — or an
 /// at-most-one group, when the block is optional — needs no field: the
@@ -388,7 +388,6 @@ _Layout _layout(NestedBlockSpec spec, Set<String> taken) {
         plans: const [],
         sealed: const [],
         whole: (
-          members: group,
           variants: [for (final m in ms) m!.variant!],
           classes: classes,
           atMostOne: !spec.exactlyOne.any((g) => identical(g, group)),
@@ -415,103 +414,137 @@ _Layout _layout(NestedBlockSpec spec, Set<String> taken) {
   final skipped = <String>[];
   final skippedAtMostOne = <String>[];
   final firstOf = <String, _SealedGroup>{};
-  for (final (group, optional) in [
-    for (final g in spec.exactlyOne) (g, false),
-    for (final g in spec.atMostOne) (g, true),
-  ]) {
-    final ms = [for (final name in group) byName[name]];
-    String? reason;
-    for (final (i, m) in ms.indexed) {
-      if (reason != null) break;
-      if (m == null) {
-        reason = '${group[i]} is not an input of this block';
-      } else if (m.required) {
-        reason = '${m.tfName} is required';
-      } else if (m.keyed) {
-        reason = '${m.tfName} is a keyed block';
-      } else if (m.variant == null) {
-        reason = '${m.tfName} has no typed shape';
-      } else if (claimed.contains(m.tfName)) {
-        reason = '${m.tfName} is in an earlier group';
-      }
-      if (reason != null) break;
-    }
-    if (reason != null) {
-      (optional ? skippedAtMostOne : skipped).add(
-        '${spec.path.join('.')} [${group.join(', ')}]: $reason',
-      );
-      continue;
-    }
-    claimed.addAll(group);
+  String? reasonOf(String name) {
+    final m = byName[name];
+    if (m == null) return '$name is not an input of this block';
+    if (m.required) return '$name is required';
+    if (m.keyed) return '$name is a keyed block';
+    if (m.variant == null) return '$name has no typed shape';
+    if (claimed.contains(name)) return '$name is in an earlier group';
+    return null;
+  }
+
+  String? fieldClash(String concept, List<String> group) {
+    final ident = safeDartIdentifier(snakeToCamel(concept));
     final otherIdents = {
       for (final m in members)
         if (!group.contains(m.tfName)) m.plan.fieldDecl.split(' ').last,
     };
-    String typeOf(String concept) =>
-        spec.sealedTypeNames[concept] ??
-        sealedTypeName(spec.className, concept) ??
-        spec.className + snakeToPascal(concept);
-    String? conceptOf(String concept, String type) =>
-        spec.sealedTypeNames[concept] == type
-        ? conceptSuffix(type, concept)
-        : sealedConcept(spec.className, type);
-    String? clashes(String concept) {
-      final ident = safeDartIdentifier(snakeToCamel(concept));
-      if ('$ident;' case final decl
-          when otherIdents.contains(decl) || chosenIdents.contains(ident)) {
-        return 'the field $ident is taken';
-      }
-      return sealedNameClash(spec.className, concept, group, {
-        ...taken,
-        ...chosenTypes,
-      }, named: spec.sealedTypeNames[concept]);
-    }
+    return otherIdents.contains('$ident;') || chosenIdents.contains(ident)
+        ? 'the field $ident is taken'
+        : null;
+  }
 
-    final derived = deriveSealedConcept(group);
-    final resolved = resolveSealedName(
-      members: group,
-      human: spec.sealedNames[sealedGroupKeyOf(const [], group)],
-      derived: derived,
-      clashes: clashes,
-    );
-    final ident = safeDartIdentifier(snakeToCamel(resolved.concept));
-    // Only a group whose name reports an error (which fails `wrap`) reaches
-    // the plain concatenations: `clashes` vetted every name it resolves to.
-    final type = typeOf(resolved.concept);
-    final classes =
-        exactlyOneVariantNames(type, group, {
-          ...taken,
-          ...chosenTypes,
-        }, concept: conceptOf(resolved.concept, type)) ??
-        [
-          for (final m in group)
-            exactlyOneVariantName(
-              type,
-              m,
-              concept: conceptOf(resolved.concept, type),
+  for (final placement in placeGroups(
+    blockGroups(spec.exactlyOne, spec.atMostOne),
+  )) {
+    switch (placement) {
+      case SinglePlacement(group: (members: final group, :final optional)):
+        if (group.map(reasonOf).nonNulls.firstOrNull case final reason?) {
+          (optional ? skippedAtMostOne : skipped).add(
+            '${spec.path.join('.')} [${group.join(', ')}]: $reason',
+          );
+          continue;
+        }
+        claimed.addAll(group);
+        String typeOf(String concept) =>
+            spec.sealedTypeNames[concept] ??
+            sealedTypeName(spec.className, concept) ??
+            spec.className + snakeToPascal(concept);
+        String? conceptOf(String concept, String type) =>
+            spec.sealedTypeNames[concept] == type
+            ? conceptSuffix(type, concept)
+            : sealedConcept(spec.className, type);
+        final derived = deriveSealedConcept(group);
+        final resolved = resolveSealedName(
+          members: group,
+          human: spec.sealedNames[sealedGroupKeyOf(const [], group)],
+          derived: derived,
+          clashes: (c) =>
+              fieldClash(c, group) ??
+              sealedNameClash(spec.className, c, group, {
+                ...taken,
+                ...chosenTypes,
+              }, named: spec.sealedTypeNames[c]),
+        );
+        final ident = safeDartIdentifier(snakeToCamel(resolved.concept));
+        // Only a group whose name reports an error (which fails `wrap`)
+        // reaches the plain concatenations: `clashes` vetted every name it
+        // resolves to.
+        final type = typeOf(resolved.concept);
+        final classes =
+            exactlyOneVariantNames(type, group, {
+              ...taken,
+              ...chosenTypes,
+            }, concept: conceptOf(resolved.concept, type)) ??
+            [
+              for (final m in group)
+                exactlyOneVariantName(
+                  type,
+                  m,
+                  concept: conceptOf(resolved.concept, type),
+                ),
+            ];
+        chosenIdents.add(ident);
+        chosenTypes
+          ..add(type)
+          ..addAll(classes);
+        final g = (
+          members: group,
+          variants: [
+            for (final (i, name) in group.indexed)
+              SoloVariant(byName[name]!.variant!, className: classes[i]),
+          ],
+          optional: optional,
+          ident: ident,
+          type: type,
+          names: [
+            (
+              key: sealedGroupKeyOf(spec.path, group),
+              concept: resolved.concept,
+              source: resolved.source,
+              derived: derived,
+              error: resolved.error,
             ),
-        ];
-    chosenIdents.add(ident);
-    chosenTypes
-      ..add(type)
-      ..addAll(classes);
-    final g = (
-      members: group,
-      variants: [for (final m in ms) m!.variant!],
-      optional: optional,
-      ident: ident,
-      type: type,
-      classes: classes,
-      name: (
-        key: sealedGroupKeyOf(spec.path, group),
-        concept: resolved.concept,
-        source: resolved.source,
-        derived: derived,
-        error: resolved.error,
-      ),
-    );
-    sealed.add(g);
-    firstOf[members.firstWhere((m) => group.contains(m.tfName)).tfName] = g;
+          ],
+        );
+        sealed.add(g);
+        firstOf[members.firstWhere((m) => group.contains(m.tfName)).tfName] = g;
+      case final JointPlacement joint:
+        final group = joint.members;
+        if (group.map(reasonOf).nonNulls.firstOrNull case final reason?) {
+          for (final g in joint.groups) {
+            skipped.add('${spec.path.join('.')} [${g.join(', ')}]: $reason');
+          }
+          continue;
+        }
+        claimed.addAll(group);
+        final argument = sealJoint(
+          joint,
+          blockPath: spec.path,
+          owner: spec.className,
+          human: spec.sealedNames,
+          variants: {for (final name in group) name: byName[name]!.variant!},
+          taken: {...taken, ...chosenTypes},
+          slotClash: (c) => fieldClash(c, group),
+          namedType: (c) => spec.sealedTypeNames[c],
+        );
+        final ident = safeDartIdentifier(snakeToCamel(argument.concept));
+        chosenIdents.add(ident);
+        chosenTypes
+          ..add(argument.sealedClass)
+          ..addAll([for (final v in argument.variants) ...v.classes]);
+        final g = (
+          members: group,
+          variants: argument.variants,
+          optional: false,
+          ident: ident,
+          type: argument.sealedClass,
+          names: argument.names,
+        );
+        sealed.add(g);
+        firstOf[members.firstWhere((m) => group.contains(m.tfName)).tfName] = g;
+    }
   }
   final plans = <HelperMember>[];
   for (final m in members) {
@@ -587,7 +620,7 @@ List<SealedGroupName> nestedSealedNames(List<NestedBlockSpec> specs) {
   void walk(NestedBlockSpec spec) {
     if (laidOut.add(spec.className)) {
       for (final g in layouts[spec.className]!.sealed) {
-        out.add(g.name);
+        out.addAll(g.names);
       }
     }
     spec.children.forEach(walk);
@@ -606,6 +639,12 @@ Set<String> nestedSealedKeys(List<NestedBlockSpec> specs) {
   void walk(NestedBlockSpec spec, List<String> at) {
     for (final g in layouts[spec.className]!.sealed) {
       out.add(sealedGroupKeyOf(at, g.members));
+      for (final v in g.variants.whereType<JointVariant>()) {
+        out.add(sealedGroupKeyOf(at, v.members));
+        for (final c in v.parts.whereType<ChoicePart>()) {
+          out.add(sealedGroupKeyOf(at, c.members));
+        }
+      }
     }
     for (final c in spec.children) {
       walk(c, [...at, c.tfName]);

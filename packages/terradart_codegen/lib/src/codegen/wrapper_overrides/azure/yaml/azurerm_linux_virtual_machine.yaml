@@ -6,4 +6,5 @@ deriveEnums: true
 deriveExactlyOne: true
 
 sealedNames:
-  "admin_username, os_managed_disk_id": os_profile
+  "admin_username, os_managed_disk_id, source_image_id, source_image_reference": os_source
+  "admin_username, source_image_id, source_image_reference": image

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import '../enum_value_parser.dart';
+import '../exactly_one_placement.dart';
 import '../exactly_one_types.dart';
 import '../naming.dart';
 import '../references/reference_targets.dart';
@@ -297,16 +298,23 @@ List<NestedBlockSpec> _renameConcisely(
     final c = classes[k]!;
     final inputs =
         c.attrs.length + c.children.length + c.excludedChildren.length;
-    for (final g in [...c.exactlyOne, ...c.atMostOne]) {
-      if (!c.keyed && g.length == inputs) continue;
-      final concept =
-          c.sealedNames[sealedGroupKeyOf(const [], g)] ??
-          deriveSealedConcept(g);
-      if (concept == null) continue;
-      final path = [...c.path, concept];
-      if (!taken.add(path.join('.'))) continue;
-      groups.add((k, concept));
-      groupPaths.add(path);
+    for (final placement in placeGroups(
+      blockGroups(c.exactlyOne, c.atMostOne),
+    )) {
+      if (placement case SinglePlacement(
+        :final group,
+      ) when !c.keyed && group.members.length == inputs) {
+        continue;
+      }
+      for (final t in preferredSealedTypes(
+        placement,
+        (members) => c.sealedNames[sealedGroupKeyOf(const [], members)],
+      )) {
+        final path = [...c.path, t.concept];
+        if (!taken.add(path.join('.'))) continue;
+        groups.add((k, t.concept));
+        groupPaths.add(path);
+      }
     }
   }
   final names = conciseTypeNames(

@@ -6,4 +6,5 @@ deriveEnums: true
 deriveExactlyOne: true
 
 sealedNames:
-  "default_log_storage_account_id, managed_disk": disk_replication
+  "default_log_storage_account_id, default_recovery_disk_type, managed_disk": disk_replication
+  "default_log_storage_account_id, default_recovery_disk_type": defaults
