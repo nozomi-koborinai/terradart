@@ -631,7 +631,6 @@ void main() {
   });
 }
 
-/// The block at [path], or null when the collector dropped it.
 NestedBlockSpec? _blockAt(List<NestedBlockSpec> specs, List<String> path) {
   var level = specs;
   NestedBlockSpec? current;
