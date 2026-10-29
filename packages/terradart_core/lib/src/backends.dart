@@ -4,10 +4,10 @@ import 'stack.dart';
 
 /// `terraform { backend "gcs" { ... } }` configuration.
 ///
-/// Core ships the three backends that need no provider knowledge to
-/// configure: [GcsBackend], [S3Backend], and [LocalBackend]. Anything
-/// else (Terraform Cloud, Consul, ...) implements [StackBackend] in the
-/// caller — synth's `TfJsonEncoder` has a generic path for that.
+/// Core ships the backends that need no provider knowledge to configure:
+/// [GcsBackend], [S3Backend], [AzurermBackend], and [LocalBackend].
+/// Anything else (Terraform Cloud, Consul, ...) implements [StackBackend]
+/// in the caller — synth's `TfJsonEncoder` has a generic path for that.
 ///
 /// `TfJsonEncoder.terraformBlock` special-cases [GcsBackend] because it
 /// predates the generic path; the emitted JSON is the same either way.
@@ -175,5 +175,52 @@ final class S3Backend implements StackBackend {
     if (skipMetadataApiCheck != null)
       'skip_metadata_api_check': skipMetadataApiCheck,
     if (skipS3Checksum != null) 'skip_s3_checksum': skipS3Checksum,
+  };
+}
+
+/// `terraform { backend "azurerm" { ... } }` configuration.
+///
+/// Every field is optional and omitted from [toTfJson] when null, so a
+/// **partial configuration** is `const AzurermBackend()` and emits
+/// `backend "azurerm" {}`. Supply the rest with `terraform init
+/// -backend-config`.
+///
+/// Credentials never enter synth output. This class has no access key,
+/// SAS token, client secret, or certificate parameter. Apply
+/// authenticates through the `ARM_*` environment variables.
+@immutable
+final class AzurermBackend implements StackBackend {
+  const AzurermBackend({
+    this.resourceGroupName,
+    this.storageAccountName,
+    this.containerName,
+    this.key,
+  });
+
+  /// Resource group of the storage account, or `null` when
+  /// `-backend-config` supplies `resource_group_name`.
+  final String? resourceGroupName;
+
+  /// Storage account that holds the state container, or `null` when
+  /// `-backend-config` supplies `storage_account_name`.
+  final String? storageAccountName;
+
+  /// Blob container for the state file, or `null` when
+  /// `-backend-config` supplies `container_name`.
+  final String? containerName;
+
+  /// Blob name of the state file inside [containerName], or `null` when
+  /// `-backend-config` supplies `key`.
+  final String? key;
+
+  @override
+  String get backendType => 'azurerm';
+
+  @override
+  Map<String, Object?> toTfJson() => {
+    if (resourceGroupName != null) 'resource_group_name': resourceGroupName,
+    if (storageAccountName != null) 'storage_account_name': storageAccountName,
+    if (containerName != null) 'container_name': containerName,
+    if (key != null) 'key': key,
   };
 }
