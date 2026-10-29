@@ -2,6 +2,20 @@
 
 ## Unreleased
 
+### EMR instance fleets can set configuration blocks
+
+**Additive (`terradart_aws`).** `EmrClusterInstanceTypeConfigs` takes
+`configurations`, a list of `EmrClusterInstanceTypeConfigsConfigurations`.
+Each entry sets `classification` and `properties` on
+`core_instance_fleet.instance_type_configs.configurations` and on the same
+block under `master_instance_fleet`. The root argument stays
+`configurations`, and still chooses the string attribute `configurations`
+or `configurations_json`.
+
+| Before | After |
+|---|---|
+| `EmrClusterInstanceTypeConfigs(instanceType: .literal('m5.xlarge'))` | `EmrClusterInstanceTypeConfigs(instanceType: .literal('m5.xlarge'), configurations: [EmrClusterInstanceTypeConfigsConfigurations(classification: .literal('spark-defaults'), properties: .literal({'spark.executor.memory': '2G'}))])` |
+
 `terradart_azure` is not published yet. Its factories now type the
 provider's fixed value sets and seal exclusive groups that the hint
 scanner previously missed, including `azurerm_role_assignment`. A

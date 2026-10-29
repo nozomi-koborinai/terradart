@@ -21534,6 +21534,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'EmrClusterBootstrapAction',
       'EmrClusterCoreInstanceFleet',
       'EmrClusterInstanceTypeConfigs',
+      'EmrClusterInstanceTypeConfigsConfigurations',
       'EmrClusterInstanceTypeConfigsEbsConfig',
       'EmrClusterLaunchSpecifications',
       'EmrClusterOnDemandSpecification',

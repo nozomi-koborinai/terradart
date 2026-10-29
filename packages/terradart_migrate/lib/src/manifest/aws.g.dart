@@ -279700,6 +279700,15 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
         MigrateSlot(
+          tfName: 'configurations',
+          dartName: 'configurations',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'EmrClusterInstanceTypeConfigsConfigurations',
+        ),
+        MigrateSlot(
           tfName: 'ebs_config',
           dartName: 'ebsConfig',
           kind: MigrateSlotKind.helper,
@@ -279707,6 +279716,25 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           repeated: true,
           wrapped: false,
           helper: 'EmrClusterInstanceTypeConfigsEbsConfig',
+        ),
+      ],
+    ),
+    'EmrClusterInstanceTypeConfigsConfigurations': MigrateHelper(
+      className: 'EmrClusterInstanceTypeConfigsConfigurations',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'classification',
+          dartName: 'classification',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'properties',
+          dartName: 'properties',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'Map<String, String>',
         ),
       ],
     ),
