@@ -22,6 +22,21 @@ import 'package:yaml/yaml.dart';
 
 import 'wrap_lanes.dart';
 
+/// A cron day of the week. Sunday is `0`, and also `7`.
+enum Weekday {
+  sunday('Sunday'),
+  monday('Monday'),
+  tuesday('Tuesday'),
+  wednesday('Wednesday'),
+  thursday('Thursday'),
+  friday('Friday'),
+  saturday('Saturday');
+
+  const Weekday(this.label);
+
+  final String label;
+}
+
 /// A lane with a `bump:` entry.
 @immutable
 class BumpLane {
@@ -29,6 +44,7 @@ class BumpLane {
     required this.lane,
     required this.mode,
     required this.cron,
+    required this.weekday,
     required this.refresh,
     required this.scaffold,
     required this.dataSources,
@@ -43,6 +59,10 @@ class BumpLane {
   /// `auto` or `pr-only`.
   final String mode;
   final String cron;
+
+  /// The day [cron] runs. [parseBumpLanes] rejects a day field that is not
+  /// one number from 0 to 7, so a lane never shares or spans days.
+  final Weekday weekday;
 
   /// `dump` or `extract`.
   final String refresh;
@@ -110,6 +130,7 @@ List<BumpLane> parseBumpLanes(String providersYaml) {
       );
     }
 
+    final cron = field('cron');
     final rideAlongName = bump['rideAlong'];
     final rideAlong = rideAlongName == null ? null : lanes['$rideAlongName'];
     if (rideAlongName != null && rideAlong == null) {
@@ -137,7 +158,8 @@ List<BumpLane> parseBumpLanes(String providersYaml) {
       BumpLane(
         lane: lanes[name]!,
         mode: field('mode', oneOf: {'auto', 'pr-only'}),
-        cron: field('cron'),
+        cron: cron,
+        weekday: _weekday(name, cron),
         refresh: field('refresh', oneOf: {'dump', 'extract'}),
         scaffold: field('scaffold', oneOf: {'wrap-init', 'lane'}),
         dataSources: bump['dataSources'] == true,
@@ -149,6 +171,17 @@ List<BumpLane> parseBumpLanes(String providersYaml) {
     );
   }
   return out;
+}
+
+Weekday _weekday(String lane, String cron) {
+  final fields = cron.trim().split(RegExp(r'\s+'));
+  final day = fields.length == 5 ? int.tryParse(fields.last) : null;
+  if (day == null || day < 0 || day > 7) {
+    throw FormatException(
+      'lane $lane: bump.cron must run on one weekday (day field 0-7)',
+    );
+  }
+  return Weekday.values[day % 7];
 }
 
 /// The lanes one run bumps: those whose cron is [schedule] (a scheduled
