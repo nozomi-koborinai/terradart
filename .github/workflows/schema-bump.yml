@@ -2,7 +2,7 @@ name: schema-bump
 
 # Weekly provider schema bumps: one job and one PR per tool/providers.yaml
 # lane with a `bump:` entry (tool/bump_plan.dart) — google (with the
-# google-beta ride-along), aws, cloudflare, appwrite. The lanes' crons
+# google-beta ride-along), aws, cloudflare, appwrite, azure. The lanes' crons
 # fall on different days, so one lane's PR can merge before the next
 # opens instead of leaving it behind main.
 #
@@ -32,12 +32,13 @@ on:
     - cron: '0 22 * * 1' # aws
     - cron: '0 22 * * 2' # cloudflare
     - cron: '0 22 * * 3' # appwrite
+    - cron: '0 22 * * 4' # azure
   workflow_dispatch:
     inputs:
       lane:
         description: 'Lane to bump (a tool/providers.yaml lane with bump:), or all.'
         type: choice
-        options: [all, google, aws, cloudflare, appwrite]
+        options: [all, google, aws, cloudflare, appwrite, azure]
         default: all
       dry_run:
         description: 'If true, do not create a PR (only run detection + report).'
