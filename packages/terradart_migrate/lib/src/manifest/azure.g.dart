@@ -87756,7 +87756,7 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartName: 'securityStyle',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'NetappVolumeSecurityStyle',
+          dartType: 'AzurermNetappVolumeSecurityStyle',
         ),
         MigrateSlot(
           tfName: 'service_level',
@@ -202376,7 +202376,7 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartName: 'tieringPolicy',
           kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'NetappVolumeTieringPolicy',
+          dartType: 'AzurermNetappVolumeTieringPolicy',
         ),
       ],
     ),
@@ -232112,6 +232112,14 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         'VsoTfvc': 'vsotfvc',
       },
     ),
+    'AzurermNetappVolumeSecurityStyle': MigrateEnum(
+      name: 'AzurermNetappVolumeSecurityStyle',
+      members: <String, String>{'ntfs': 'ntfs', 'unix': 'unix'},
+    ),
+    'AzurermNetappVolumeTieringPolicy': MigrateEnum(
+      name: 'AzurermNetappVolumeTieringPolicy',
+      members: <String, String>{'Auto': 'auto', 'SnapshotOnly': 'snapshotonly'},
+    ),
     'BackupPolicyFileShareBackupTier': MigrateEnum(
       name: 'BackupPolicyFileShareBackupTier',
       members: <String, String>{
@@ -237351,14 +237359,6 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         'Never': 'never',
         'OnRead': 'onread',
       },
-    ),
-    'NetappVolumeSecurityStyle': MigrateEnum(
-      name: 'NetappVolumeSecurityStyle',
-      members: <String, String>{'ntfs': 'ntfs', 'unix': 'unix'},
-    ),
-    'NetappVolumeTieringPolicy': MigrateEnum(
-      name: 'NetappVolumeTieringPolicy',
-      members: <String, String>{'Auto': 'auto', 'SnapshotOnly': 'snapshotonly'},
     ),
     'NetworkConnectionMonitorCoverageLevel': MigrateEnum(
       name: 'NetworkConnectionMonitorCoverageLevel',

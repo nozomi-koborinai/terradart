@@ -4,3 +4,7 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 deriveExactlyOne: true
+
+typeNames:
+  security_style: AzurermNetappVolumeSecurityStyle
+  cool_access.tiering_policy: AzurermNetappVolumeTieringPolicy

@@ -27,6 +27,12 @@ because `definition` would repeat a segment of `DataRoleDefinition`.
 `azurerm_oracle_database_system_versions` is `shape`. `name` /
 `name_regex` on `azurerm_image` derived `name`.
 
+The `azurerm_netapp_volume` enums `NetappVolumeSecurityStyle` and
+`NetappVolumeTieringPolicy` are `AzurermNetappVolumeSecurityStyle` and
+`AzurermNetappVolumeTieringPolicy`, because `terradart_google` already
+publishes both names. A Stack that imports both `netapp.dart` barrels
+now compiles. A dot shorthand (`securityStyle: .unix`) needs no change.
+
 The weekly `hashicorp/google` pin moved from 8.4.0 to 8.7.0, and then to
 8.8.1. `terradart_google` and `terradart_google_beta` follow that pin. These
 are the Dart API changes. Synth output stays the same except

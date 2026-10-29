@@ -55,6 +55,8 @@ export 'src/netapp/azurerm_netapp_snapshot_policy.dart'
 export 'src/netapp/azurerm_netapp_volume.dart'
     show
         AzurermNetappVolume,
+        AzurermNetappVolumeSecurityStyle,
+        AzurermNetappVolumeTieringPolicy,
         NetappVolumeAcceptGrowCapacityPoolForShortTermCloneSplit,
         NetappVolumeCoolAccess,
         NetappVolumeDataProtectionAdvancedRansomware,
@@ -66,9 +68,7 @@ export 'src/netapp/azurerm_netapp_volume.dart'
         NetappVolumeProtocol,
         NetappVolumeProtocols,
         NetappVolumeReplicationFrequency,
-        NetappVolumeRetrievalPolicy,
-        NetappVolumeSecurityStyle,
-        NetappVolumeTieringPolicy;
+        NetappVolumeRetrievalPolicy;
 export 'src/netapp/azurerm_netapp_volume_bucket.dart'
     show
         AzurermNetappVolumeBucket,
