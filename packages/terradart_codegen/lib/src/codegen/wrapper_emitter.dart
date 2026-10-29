@@ -206,26 +206,15 @@ class WrapperEmitter {
         unreachableHelpers.add(spec.tfName);
       }
     }
-    // A reference a sealed variant or a hand-written helper in the prelude
-    // declares as a `RefTo` field named after the input.
-    final preludeFieldRefs = <String, ResolvedReference>{
-      for (final MapEntry(key: path, value: ref) in refs.entries)
-        if (!topLevelRefs.containsKey(path) &&
-            !nestedRefs.containsKey(path) &&
-            RegExp(
-              'final ${RegExp.escape(ref.dartType)}\\?? '
-              '${snakeToDartIdent(path.split('.').last)};',
-            ).hasMatch(preludeSource))
-          path: ref,
+    final typedRefs = {
+      ...topLevelRefs,
+      ...preludeReferences(override, refs),
+      ...nestedRefs,
     };
     typedReferences
       ..clear()
       ..addAll([
-        for (final path in [
-          ...topLevelRefs.keys,
-          ...preludeFieldRefs.keys,
-          ...nestedRefs.keys,
-        ])
+        for (final path in typedRefs.keys)
           if (!unreachableHelpers.contains(path.split('.').first))
             '${def.terraformType}.$path',
       ]);
@@ -258,9 +247,7 @@ class WrapperEmitter {
     buf.writeln("import 'package:terradart_core/terradart_core.dart';");
     final refImports = referenceImports([
       for (final ref in [
-        ...topLevelRefs.values,
-        ...nestedRefs.values,
-        ...preludeReferences(refs, prelude),
+        ...typedRefs.values,
         if (principals.contains(def.terraformType)) ?principal,
       ])
         if (ref.target != def.terraformType) ref,

@@ -49,7 +49,6 @@ typedef _Derived = ({
   List<String> skippedAtMostOne,
   List<SealedName> names,
   List<String> nameErrors,
-  List<String> typedReferences,
 });
 
 /// [deriveExactlyOneSlots] over a lane of resources only.
