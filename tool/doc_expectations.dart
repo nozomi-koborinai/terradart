@@ -11,6 +11,7 @@ library;
 
 import 'dart:io';
 
+import 'bump_plan.dart';
 import 'lane_surface.dart';
 import 'wrap_lanes.dart';
 
@@ -39,6 +40,70 @@ const googleCountPages = [
   'packages/terradart_google/README.md',
   'website/src/content/docs/docs/coverage/google.md',
 ];
+
+/// The page whose Sustainability section carries the weekly bump table.
+const bumpSchedulePage = 'website/src/content/docs/docs/how-its-built.mdx';
+
+/// Every tool/providers.yaml lane with a `bump:` entry.
+final List<BumpLane> bumpLanes = parseBumpLanes(
+  File(providersPath).readAsStringSync(),
+);
+
+const _bumpScheduleStart = '{/* bump-schedule:start */}';
+const _bumpScheduleEnd = '{/* bump-schedule:end */}';
+
+/// [text] with the lines between the bump-schedule markers set to the table
+/// [lanes] render. One row per lane, Sunday first. Throws [StateError] when
+/// [text] does not contain exactly one marker pair, or when a lane has no
+/// `siteTitle`.
+String fixBumpSchedule(String text, List<BumpLane> lanes) {
+  final lines = text.split('\n');
+  var startAt = -1;
+  var endAt = -1;
+  for (var i = 0; i < lines.length; i++) {
+    final line = lines[i].trim();
+    if (line == _bumpScheduleStart) {
+      if (startAt != -1) _badBumpScheduleMarkers();
+      startAt = i;
+    } else if (line == _bumpScheduleEnd) {
+      if (endAt != -1) _badBumpScheduleMarkers();
+      endAt = i;
+    }
+  }
+  if (startAt == -1 || endAt == -1 || startAt >= endAt) {
+    _badBumpScheduleMarkers();
+  }
+  final rows = [...lanes]
+    ..sort((a, b) => a.weekday.index.compareTo(b.weekday.index));
+  return [
+    ...lines.sublist(0, startAt + 1),
+    '| Provider | Day (UTC) | Routine bump |',
+    '|---|---|---|',
+    for (final lane in rows) _bumpScheduleRow(lane),
+    ...lines.sublist(endAt),
+  ].join('\n');
+}
+
+Never _badBumpScheduleMarkers() {
+  throw StateError('expected one $_bumpScheduleStart before $_bumpScheduleEnd');
+}
+
+String _bumpScheduleRow(BumpLane lane) {
+  final title = lane.lane.siteTitle;
+  if (title == null || title.isEmpty) {
+    throw StateError('lane ${lane.lane.name} has no siteTitle');
+  }
+  final rideAlong = lane.rideAlong;
+  final provider = rideAlong == null
+      ? title
+      : '$title (with ${rideAlong.name})';
+  final routine = switch (lane.mode) {
+    'auto' => 'auto-merges when CI is green',
+    'pr-only' => 'waits for review',
+    _ => throw StateError('lane ${lane.lane.name}: bump mode ${lane.mode}'),
+  };
+  return '| $provider | ${lane.weekday.label} | $routine |';
+}
 
 /// [text] with every terradart_google count phrase set to the catalog's
 /// counts: `N curated resource factories + M data sources`,
