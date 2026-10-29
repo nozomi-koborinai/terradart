@@ -231,6 +231,7 @@ Step 2 takes another `--provider` and its IDs; the steps after it are the same.
 |---|---|---|
 | AWS | `terradart init my_app --provider aws --env dev,prd --aws-region us-east-1 --backend local` | the AWS SDK credential chain (`AWS_PROFILE`, or the access key variables) |
 | Cloudflare | `terradart init my_app --provider cloudflare --env dev,prd --cloudflare-account <account id> --backend local` | `CLOUDFLARE_API_TOKEN` |
+| Azure | `terradart init my_app --provider azure --env dev,prd --backend local` | `ARM_SUBSCRIPTION_ID`, `ARM_TENANT_ID`, and a client credential or `ARM_USE_CLI` |
 
 `--provider google,aws` puts both in one Stack. An Appwrite project needs one more step today: see [Appwrite](/docs/providers/appwrite/).
 
