@@ -135,6 +135,35 @@ final class GoogleFirebaseAppHostingDomain extends Resource {
   /// `RefTo<GoogleFirebaseAppHostingDomain>`.
   RefTo<GoogleFirebaseAppHostingDomain> get ref => RefTo.of(this);
 
+  /// Reference to `create_time` attribute.
+  TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
+
+  /// Reference to `custom_domain_status` attribute.
+  TfRef<List<Map<String, Object?>>> get customDomainStatus =>
+      TfRef.attribute<List<Map<String, Object?>>>(this, 'custom_domain_status');
+
+  /// Reference to `delete_time` attribute.
+  TfRef<String> get deleteTime => TfRef.attribute<String>(this, 'delete_time');
+
+  /// Reference to `purge_time` attribute.
+  TfRef<String> get purgeTime => TfRef.attribute<String>(this, 'purge_time');
+
+  /// Reference to `update_time` attribute.
+  TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `backend` attribute.
+  TfRef<String> get backend => TfRef.attribute<String>(this, 'backend');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicy =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
+
   /// Reference to `name` attribute (full resource path
   /// `projects/{project}/locations/{location}/backends/{backend}/domains/{domain_id}`).
   TfRef<String> get name => TfRef.attribute<String>(this, 'name');

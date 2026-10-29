@@ -304,4 +304,51 @@ final class GoogleBiglakeHiveTable extends Resource {
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleBiglakeHiveTable>`.
   RefTo<GoogleBiglakeHiveTable> get ref => RefTo.of(this);
+
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `create_time` attribute.
+  TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
+
+  /// Reference to `last_access_time` attribute.
+  TfRef<String> get lastAccessTime =>
+      TfRef.attribute<String>(this, 'last_access_time');
+
+  /// Reference to `table_type` attribute.
+  TfRef<String> get tableType => TfRef.attribute<String>(this, 'table_type');
+
+  /// Reference to `update_time` attribute.
+  TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `catalog` attribute.
+  TfRef<String> get catalog => TfRef.attribute<String>(this, 'catalog');
+
+  /// Reference to `database` attribute.
+  TfRef<String> get database => TfRef.attribute<String>(this, 'database');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicy =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `parameters` attribute.
+  TfRef<Map<String, String>> get parameters =>
+      TfRef.attribute<Map<String, String>>(this, 'parameters');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `view_expanded_text` attribute.
+  TfRef<String> get viewExpandedText =>
+      TfRef.attribute<String>(this, 'view_expanded_text');
+
+  /// Reference to `view_original_text` attribute.
+  TfRef<String> get viewOriginalText =>
+      TfRef.attribute<String>(this, 'view_original_text');
 }

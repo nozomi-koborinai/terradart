@@ -411,9 +411,12 @@ hashicorp/google:
       },
     );
 
-    test(
-      'reports a matched input a hand-written helper keeps a string',
-      () async {
+    group('a matched input a hand-written helper keeps a string', () {
+      const untyped =
+          'reference input not typed: google_network_connectivity_spoke'
+          '.linked_producer_vpc_network.network';
+
+      Future<({int? code, String err})> wrapSpoke({String exclude = ''}) async {
         final tmpOut = await Directory.systemTemp.createTemp('refs_untyped_');
         try {
           File(
@@ -431,7 +434,7 @@ hashicorp/google:
   - target: google_compute_network
     attribute: id
     slots: '(^|\\.)network\$'
-''');
+$exclude''');
           final overridesDir = Directory(p.join(tmpOut.path, 'overrides'))
             ..createSync();
           File(
@@ -471,19 +474,29 @@ paramOrder:
             ),
             stderr: () => _BufferSink(err),
           );
-          expect(code, 0);
-          expect(
-            err.toString(),
-            contains(
-              'reference input not typed: google_network_connectivity_spoke'
-              '.linked_producer_vpc_network.network',
-            ),
-          );
+          return (code: code, err: err.toString());
         } finally {
           await tmpOut.delete(recursive: true);
         }
-      },
-    );
+      }
+
+      test('fails the wrap (E406)', () async {
+        final run = await wrapSpoke();
+        expect(run.code, CliExitCodes.dataError);
+        expect(run.err, contains('[E406] terradart wrap: $untyped'));
+      });
+
+      test('passes once the rule excludes it', () async {
+        final run = await wrapSpoke(
+          exclude: '''
+    exclude:
+      - google_network_connectivity_spoke.linked_producer_vpc_network.network
+''',
+        );
+        expect(run.code, 0);
+        expect(run.err, isNot(contains(untyped)));
+      });
+    });
   });
 
   group('WrapCommand --force', () {

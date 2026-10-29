@@ -45,4 +45,37 @@ final class GoogleBiglakeHiveDatabase extends Resource {
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleBiglakeHiveDatabase>`.
   RefTo<GoogleBiglakeHiveDatabase> get ref => RefTo.of(this);
+
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `create_time` attribute.
+  TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
+
+  /// Reference to `update_time` attribute.
+  TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `catalog` attribute.
+  TfRef<String> get catalog => TfRef.attribute<String>(this, 'catalog');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicy =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `location_uri` attribute.
+  TfRef<String> get locationUri =>
+      TfRef.attribute<String>(this, 'location_uri');
+
+  /// Reference to `parameters` attribute.
+  TfRef<Map<String, String>> get parameters =>
+      TfRef.attribute<Map<String, String>>(this, 'parameters');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

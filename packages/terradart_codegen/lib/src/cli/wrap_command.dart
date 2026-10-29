@@ -619,6 +619,7 @@ class WrapCommand extends Command<int> {
       principal: principal,
     );
     final typedReferenceKeys = <String>{};
+    final unreachableReferenceKeys = <String>{};
     final dataSourceEmitter = DataSourceWrapperEmitter(
       overrides: dataSourceOverrides,
       rawDataSourceSchemas: rawDataSourceSchemas,
@@ -656,6 +657,7 @@ class WrapCommand extends Command<int> {
         extraSensitiveFields: entry.value.extraSensitiveFields,
       );
       typedReferenceKeys.addAll(resourceEmitter.typedReferences);
+      unreachableReferenceKeys.addAll(resourceEmitter.unreachableReferences);
       for (final block in resourceEmitter.unreachableHelpers) {
         stderr.writeln(
           'terradart wrap: nested helper not reachable from the '
@@ -743,19 +745,32 @@ class WrapCommand extends Command<int> {
         'references.',
       );
       // An input the ledger matches but whose slot an override types by
-      // hand, or whose block has no derived helper, stays a string.
-      for (final (prefix, byType) in [
-        ('', references),
-        ('data.', dataReferences),
-      ]) {
-        for (final MapEntry(key: type, value: slots) in byType.entries) {
-          for (final path in slots.keys) {
-            final key = '$prefix$type.$path';
-            if (!typedReferenceKeys.contains(key)) {
-              stderr.writeln('terradart wrap: reference input not typed: $key');
-            }
-          }
+      // hand, or whose block has no derived helper, stays a string. An
+      // unreachable helper still types its inputs; the helper is reported
+      // above.
+      final untyped = [
+        for (final (prefix, byType) in [
+          ('', references),
+          ('data.', dataReferences),
+        ])
+          for (final MapEntry(key: type, value: slots) in byType.entries)
+            for (final path in slots.keys)
+              if ('$prefix$type.$path' case final key
+                  when !typedReferenceKeys.contains(key) &&
+                      !unreachableReferenceKeys.contains(key))
+                key,
+      ];
+      if (untyped.isNotEmpty) {
+        for (final key in untyped) {
+          stderr.writeln(
+            '[E406] terradart wrap: reference input not typed: $key',
+          );
         }
+        stderr.writeln(
+          '[E406] terradart wrap: type each input, or exclude it under its '
+          'rule in $referenceLedger with a comment saying why.',
+        );
+        return CliExitCodes.dataError;
       }
     }
 

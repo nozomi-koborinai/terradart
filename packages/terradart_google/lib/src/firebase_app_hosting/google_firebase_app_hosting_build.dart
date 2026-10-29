@@ -188,6 +188,52 @@ final class GoogleFirebaseAppHostingBuild extends Resource {
   /// `RefTo<GoogleFirebaseAppHostingBuild>`.
   RefTo<GoogleFirebaseAppHostingBuild> get ref => RefTo.of(this);
 
+  /// Reference to `create_time` attribute.
+  TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
+
+  /// Reference to `effective_annotations` attribute.
+  TfRef<Map<String, String>> get effectiveAnnotations =>
+      TfRef.attribute<Map<String, String>>(this, 'effective_annotations');
+
+  /// Reference to `effective_labels` attribute.
+  TfRef<Map<String, String>> get effectiveLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'effective_labels');
+
+  /// Reference to `environment` attribute.
+  TfRef<String> get environment => TfRef.attribute<String>(this, 'environment');
+
+  /// Reference to `error` attribute.
+  TfRef<List<Map<String, Object?>>> get error =>
+      TfRef.attribute<List<Map<String, Object?>>>(this, 'error');
+
+  /// Reference to `terraform_labels` attribute.
+  TfRef<Map<String, String>> get terraformLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
+
+  /// Reference to `update_time` attribute.
+  TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `annotations` attribute.
+  TfRef<Map<String, String>> get annotations =>
+      TfRef.attribute<Map<String, String>>(this, 'annotations');
+
+  /// Reference to `backend` attribute.
+  TfRef<String> get backend => TfRef.attribute<String>(this, 'backend');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayName =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labels =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
+
   /// Reference to `name` attribute (full resource path
   /// `projects/{project}/locations/{location}/backends/{backend}/builds/{build_id}`).
   TfRef<String> get name => TfRef.attribute<String>(this, 'name');

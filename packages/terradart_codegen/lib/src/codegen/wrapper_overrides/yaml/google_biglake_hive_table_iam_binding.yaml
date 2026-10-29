@@ -6,6 +6,7 @@ outputDir: biglake
 deriveClassDoc: true
 deriveNestedTypes: true
 deriveExactlyOne: true
+deriveOutputGetters: true
 
 curatedDoc: |-
   /// Authoritative IAM binding for a single `role` on a Biglake Hive Table.

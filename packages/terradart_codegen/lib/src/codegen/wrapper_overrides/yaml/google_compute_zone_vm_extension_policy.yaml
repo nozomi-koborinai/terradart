@@ -3,7 +3,7 @@ outputDir: compute
 deriveClassDoc: true
 deriveNestedTypes: true
 deriveExactlyOne: true
-deriveOutputGetters: false
+deriveOutputGetters: true
 
 paramOrder:
   - name

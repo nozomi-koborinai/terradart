@@ -119,6 +119,20 @@ final class GoogleFirebaseAppCheckServiceConfig extends Resource {
   /// `RefTo<GoogleFirebaseAppCheckServiceConfig>`.
   RefTo<GoogleFirebaseAppCheckServiceConfig> get ref => RefTo.of(this);
 
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicy =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `enforcement_mode` attribute.
+  TfRef<String> get enforcementMode =>
+      TfRef.attribute<String>(this, 'enforcement_mode');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `service_id` attribute.
+  TfRef<String> get serviceId => TfRef.attribute<String>(this, 'service_id');
+
   /// Reference to `name` attribute (the fully-qualified resource name of
   /// the service enforcement configuration, in the shape
   /// `projects/{project}/services/{service_id}`).

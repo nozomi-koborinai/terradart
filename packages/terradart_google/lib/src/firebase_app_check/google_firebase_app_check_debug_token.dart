@@ -78,6 +78,23 @@ final class GoogleFirebaseAppCheckDebugToken extends Resource {
   /// `RefTo<GoogleFirebaseAppCheckDebugToken>`.
   RefTo<GoogleFirebaseAppCheckDebugToken> get ref => RefTo.of(this);
 
+  /// Reference to `app_id` attribute.
+  TfRef<String> get appId => TfRef.attribute<String>(this, 'app_id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicy =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayName =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `token` attribute.
+  TfRef<String> get token => TfRef.attribute<String>(this, 'token');
+
   /// Reference to `id` attribute. Equal to the full resource path
   /// `projects/{project}/apps/{app_id}/debugTokens/{debug_token_id}`.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

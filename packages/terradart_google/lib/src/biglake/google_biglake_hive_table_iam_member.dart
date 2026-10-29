@@ -71,4 +71,28 @@ final class GoogleBiglakeHiveTableIamMember extends Resource {
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleBiglakeHiveTableIamMember>`.
   RefTo<GoogleBiglakeHiveTableIamMember> get ref => RefTo.of(this);
+
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `etag` attribute.
+  TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `catalog` attribute.
+  TfRef<String> get catalog => TfRef.attribute<String>(this, 'catalog');
+
+  /// Reference to `database` attribute.
+  TfRef<String> get database => TfRef.attribute<String>(this, 'database');
+
+  /// Reference to `member` attribute.
+  TfRef<String> get member => TfRef.attribute<String>(this, 'member');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `role` attribute.
+  TfRef<String> get role => TfRef.attribute<String>(this, 'role');
 }

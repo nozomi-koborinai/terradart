@@ -14954,7 +14954,50 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'name', dartName: 'name', dartType: 'String'),
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'create_time',
+          dartName: 'createTime',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'replicas',
+          dartName: 'replicas',
+          dartType: 'List<Map<String, Object?>>',
+        ),
+        MigrateGetter(
+          tfName: 'update_time',
+          dartName: 'updateTime',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicy',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'description',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'location_uri',
+          dartName: 'locationUri',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'primary_location',
+          dartName: 'primaryLocation',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'project',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'google_biglake_hive_catalog_iam_binding',
@@ -15002,7 +15045,22 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           helper: 'BiglakeHiveCatalogIamBindingCondition',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'name', dartName: 'name', dartType: 'String'),
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'members',
+          dartName: 'members',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'project',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'role', dartName: 'role', dartType: 'String'),
+      ],
     ),
     MigrateEntry(
       tfType: 'google_biglake_hive_catalog_iam_member',
@@ -15049,7 +15107,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           helper: 'BiglakeHiveCatalogIamMemberCondition',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'name', dartName: 'name', dartType: 'String'),
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(tfName: 'member', dartName: 'member', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'project',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'role', dartName: 'role', dartType: 'String'),
+      ],
     ),
     MigrateEntry(
       tfType: 'google_biglake_hive_catalog_iam_policy',
@@ -15081,7 +15150,21 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           defaultsFrom: 'catalog',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'name', dartName: 'name', dartType: 'String'),
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'policy_data',
+          dartName: 'policyData',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'project',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'google_biglake_hive_catalog_iam_policy',
@@ -15176,7 +15259,50 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'name', dartName: 'name', dartType: 'String'),
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'create_time',
+          dartName: 'createTime',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'update_time',
+          dartName: 'updateTime',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'catalog',
+          dartName: 'catalog',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicy',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'description',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'location_uri',
+          dartName: 'locationUri',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'parameters',
+          dartName: 'parameters',
+          dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'project',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'google_biglake_hive_database_iam_binding',
@@ -15232,7 +15358,27 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           helper: 'BiglakeHiveDatabaseIamBindingCondition',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'name', dartName: 'name', dartType: 'String'),
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'catalog',
+          dartName: 'catalog',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'members',
+          dartName: 'members',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'project',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'role', dartName: 'role', dartType: 'String'),
+      ],
     ),
     MigrateEntry(
       tfType: 'google_biglake_hive_database_iam_member',
@@ -15287,7 +15433,23 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           helper: 'BiglakeHiveDatabaseIamMemberCondition',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'name', dartName: 'name', dartType: 'String'),
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'catalog',
+          dartName: 'catalog',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'member', dartName: 'member', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'project',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'role', dartName: 'role', dartType: 'String'),
+      ],
     ),
     MigrateEntry(
       tfType: 'google_biglake_hive_database_iam_policy',
@@ -15327,7 +15489,26 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           defaultsFrom: 'database',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'name', dartName: 'name', dartType: 'String'),
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'catalog',
+          dartName: 'catalog',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'policy_data',
+          dartName: 'policyData',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'project',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'google_biglake_hive_database_iam_policy',
@@ -15465,7 +15646,70 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           helper: 'BiglakeHiveTableStorageDescriptor',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'name', dartName: 'name', dartType: 'String'),
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'create_time',
+          dartName: 'createTime',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'last_access_time',
+          dartName: 'lastAccessTime',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'table_type',
+          dartName: 'tableType',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'update_time',
+          dartName: 'updateTime',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'catalog',
+          dartName: 'catalog',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'database',
+          dartName: 'database',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicy',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'description',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'parameters',
+          dartName: 'parameters',
+          dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'project',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'view_expanded_text',
+          dartName: 'viewExpandedText',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'view_original_text',
+          dartName: 'viewOriginalText',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'google_biglake_hive_table_iam_binding',
@@ -15529,7 +15773,32 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           helper: 'BiglakeHiveTableIamBindingCondition',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'name', dartName: 'name', dartType: 'String'),
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'catalog',
+          dartName: 'catalog',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'database',
+          dartName: 'database',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'members',
+          dartName: 'members',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'project',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'role', dartName: 'role', dartType: 'String'),
+      ],
     ),
     MigrateEntry(
       tfType: 'google_biglake_hive_table_iam_member',
@@ -15592,7 +15861,28 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           helper: 'BiglakeHiveTableIamMemberCondition',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'name', dartName: 'name', dartType: 'String'),
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'catalog',
+          dartName: 'catalog',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'database',
+          dartName: 'database',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'member', dartName: 'member', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'project',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'role', dartName: 'role', dartType: 'String'),
+      ],
     ),
     MigrateEntry(
       tfType: 'google_biglake_hive_table_iam_policy',
@@ -15640,7 +15930,31 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           defaultsFrom: 'table',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'name', dartName: 'name', dartType: 'String'),
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'catalog',
+          dartName: 'catalog',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'database',
+          dartName: 'database',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'policy_data',
+          dartName: 'policyData',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'project',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'google_biglake_hive_table_iam_policy',
@@ -52859,7 +53173,56 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'name', dartName: 'name', dartType: 'String'),
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'creation_timestamp',
+          dartName: 'creationTimestamp',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'fingerprint',
+          dartName: 'fingerprint',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'self_link',
+          dartName: 'selfLink',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'self_link_with_service_id',
+          dartName: 'selfLinkWithServiceId',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'service_id',
+          dartName: 'serviceId',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicy',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'description',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'project',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'region', dartName: 'region', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'security_policy',
+          dartName: 'securityPolicy',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'google_compute_network_endpoint',
@@ -69449,6 +69812,39 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
       getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'kind', dartName: 'kindAttr', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'creation_timestamp',
+          dartName: 'creationTimestamp',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'managed_by_global',
+          dartName: 'managedByGlobal',
+          dartType: 'bool',
+        ),
+        MigrateGetter(tfName: 'state', dartName: 'state', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicy',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'description',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'priority',
+          dartName: 'priority',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'project',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'zone', dartName: 'zone', dartType: 'String'),
         MigrateGetter(tfName: 'name', dartName: 'name', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
       ],
@@ -98798,6 +99194,17 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
       getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'app_id', dartName: 'appId', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'project',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'token_ttl',
+          dartName: 'tokenTtl',
+          dartType: 'String',
+        ),
         MigrateGetter(tfName: 'name', dartName: 'name', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
       ],
@@ -98845,6 +99252,23 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
       getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'app_id', dartName: 'appId', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicy',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'display_name',
+          dartName: 'displayName',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'project',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'token', dartName: 'token', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(
           tfName: 'debug_token_id',
@@ -98896,6 +99320,23 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
       getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'app_id', dartName: 'appId', dartType: 'String'),
+        MigrateGetter(tfName: 'key_id', dartName: 'keyId', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'private_key',
+          dartName: 'privateKey',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'project',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'token_ttl',
+          dartName: 'tokenTtl',
+          dartType: 'String',
+        ),
         MigrateGetter(tfName: 'name', dartName: 'name', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(
@@ -98934,6 +99375,17 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
       getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'app_id', dartName: 'appId', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'project',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'token_ttl',
+          dartName: 'tokenTtl',
+          dartType: 'String',
+        ),
         MigrateGetter(tfName: 'name', dartName: 'name', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
       ],
@@ -98974,6 +99426,22 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
       getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'app_id', dartName: 'appId', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'project',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'site_key',
+          dartName: 'siteKey',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'token_ttl',
+          dartName: 'tokenTtl',
+          dartType: 'String',
+        ),
         MigrateGetter(tfName: 'name', dartName: 'name', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
       ],
@@ -99082,6 +99550,31 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
       getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicy',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'enforcement_mode',
+          dartName: 'enforcementMode',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'project',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'service_id',
+          dartName: 'serviceId',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'target_resource',
+          dartName: 'targetResource',
+          dartType: 'String',
+        ),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(
           tfName: 'resource_policy_id',
@@ -99132,6 +99625,26 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
       getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicy',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'enforcement_mode',
+          dartName: 'enforcementMode',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'project',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'service_id',
+          dartName: 'serviceId',
+          dartType: 'String',
+        ),
         MigrateGetter(tfName: 'name', dartName: 'name', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
       ],
@@ -99230,6 +99743,87 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
       getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'create_time',
+          dartName: 'createTime',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'delete_time',
+          dartName: 'deleteTime',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'effective_annotations',
+          dartName: 'effectiveAnnotations',
+          dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(
+          tfName: 'effective_labels',
+          dartName: 'effectiveLabels',
+          dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(
+          tfName: 'managed_resources',
+          dartName: 'managedResources',
+          dartType: 'List<Map<String, Object?>>',
+        ),
+        MigrateGetter(
+          tfName: 'terraform_labels',
+          dartName: 'terraformLabels',
+          dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(
+          tfName: 'update_time',
+          dartName: 'updateTime',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'annotations',
+          dartName: 'annotations',
+          dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(tfName: 'app_id', dartName: 'appId', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicy',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'display_name',
+          dartName: 'displayName',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'environment',
+          dartName: 'environment',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'labels',
+          dartName: 'labels',
+          dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(
+          tfName: 'location',
+          dartName: 'location',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'project',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'service_account',
+          dartName: 'serviceAccount',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'serving_locality',
+          dartName: 'servingLocality',
+          dartType: 'String',
+        ),
         MigrateGetter(tfName: 'name', dartName: 'name', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(
@@ -99311,6 +99905,71 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
       getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'create_time',
+          dartName: 'createTime',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'effective_annotations',
+          dartName: 'effectiveAnnotations',
+          dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(
+          tfName: 'effective_labels',
+          dartName: 'effectiveLabels',
+          dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(
+          tfName: 'environment',
+          dartName: 'environment',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'error',
+          dartName: 'error',
+          dartType: 'List<Map<String, Object?>>',
+        ),
+        MigrateGetter(
+          tfName: 'terraform_labels',
+          dartName: 'terraformLabels',
+          dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(
+          tfName: 'update_time',
+          dartName: 'updateTime',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'annotations',
+          dartName: 'annotations',
+          dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(
+          tfName: 'backend',
+          dartName: 'backend',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'display_name',
+          dartName: 'displayName',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'labels',
+          dartName: 'labels',
+          dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(
+          tfName: 'location',
+          dartName: 'location',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'project',
+          dartType: 'String',
+        ),
         MigrateGetter(tfName: 'name', dartName: 'name', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(
@@ -99378,6 +100037,36 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
       getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'create_time',
+          dartName: 'createTime',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'update_time',
+          dartName: 'updateTime',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'backend',
+          dartName: 'backend',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'disabled',
+          dartName: 'disabled',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'location',
+          dartName: 'location',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'project',
+          dartType: 'String',
+        ),
         MigrateGetter(tfName: 'name', dartName: 'name', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(
@@ -99441,6 +100130,51 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
       getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'create_time',
+          dartName: 'createTime',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'custom_domain_status',
+          dartName: 'customDomainStatus',
+          dartType: 'List<Map<String, Object?>>',
+        ),
+        MigrateGetter(
+          tfName: 'delete_time',
+          dartName: 'deleteTime',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'purge_time',
+          dartName: 'purgeTime',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'update_time',
+          dartName: 'updateTime',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'backend',
+          dartName: 'backend',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicy',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'location',
+          dartName: 'location',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'project',
+          dartType: 'String',
+        ),
         MigrateGetter(tfName: 'name', dartName: 'name', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(
@@ -99494,6 +100228,41 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
       getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'create_time',
+          dartName: 'createTime',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'current',
+          dartName: 'current',
+          dartType: 'List<Map<String, Object?>>',
+        ),
+        MigrateGetter(
+          tfName: 'delete_time',
+          dartName: 'deleteTime',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'update_time',
+          dartName: 'updateTime',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'backend',
+          dartName: 'backend',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'location',
+          dartName: 'location',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'project',
+          dartType: 'String',
+        ),
         MigrateGetter(tfName: 'name', dartName: 'name', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'uid', dartName: 'uid', dartType: 'String'),
@@ -101798,7 +102567,31 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'Map<String, dynamic>',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'data_agent_id',
+          dartName: 'dataAgentId',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'location',
+          dartName: 'location',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'members',
+          dartName: 'members',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'project',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'role', dartName: 'role', dartType: 'String'),
+      ],
     ),
     MigrateEntry(
       tfType: 'google_gemini_data_analytics_data_agent_iam_member',
@@ -101852,7 +102645,27 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'Map<String, dynamic>',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'data_agent_id',
+          dartName: 'dataAgentId',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'location',
+          dartName: 'location',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'member', dartName: 'member', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'project',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'role', dartName: 'role', dartType: 'String'),
+      ],
     ),
     MigrateEntry(
       tfType: 'google_gemini_data_analytics_data_agent_iam_policy',
@@ -101892,7 +102705,30 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           defaultsFrom: 'dataAgent',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'data_agent_id',
+          dartName: 'dataAgentId',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'location',
+          dartName: 'location',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'policy_data',
+          dartName: 'policyData',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'project',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'google_gemini_data_analytics_data_agent_iam_policy',
@@ -112113,6 +112949,37 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
       getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicy',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'description',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'disabled',
+          dartName: 'disabled',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'display_name',
+          dartName: 'displayName',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'mode', dartName: 'mode', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'project',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'workload_identity_pool_id',
+          dartName: 'workloadIdentityPoolId',
+          dartType: 'String',
+        ),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'name', dartName: 'name', dartType: 'String'),
         MigrateGetter(tfName: 'state', dartName: 'state', dartType: 'String'),
@@ -140786,7 +141653,31 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'name', dartName: 'name', dartType: 'String'),
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'service_account_id',
+          dartName: 'serviceAccountId',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'default_storage_location',
+          dartName: 'defaultStorageLocation',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'folder', dartName: 'folder', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'kms_key_name',
+          dartName: 'kmsKeyName',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'location',
+          dartName: 'location',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'google_observability_folder_settings',
@@ -140981,7 +141872,35 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'name', dartName: 'name', dartType: 'String'),
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'service_account_id',
+          dartName: 'serviceAccountId',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'default_storage_location',
+          dartName: 'defaultStorageLocation',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'kms_key_name',
+          dartName: 'kmsKeyName',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'location',
+          dartName: 'location',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'organization',
+          dartName: 'organization',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'google_observability_organization_settings',
@@ -141070,7 +141989,35 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'name', dartName: 'name', dartType: 'String'),
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'service_account_id',
+          dartName: 'serviceAccountId',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'default_storage_location',
+          dartName: 'defaultStorageLocation',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'kms_key_name',
+          dartName: 'kmsKeyName',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'location',
+          dartName: 'location',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'project',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'google_observability_project_settings',
@@ -148730,6 +149677,33 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
       getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicy',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'description',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'permissions',
+          dartName: 'permissions',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'project',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'role_id',
+          dartName: 'roleId',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'stage', dartName: 'stage', dartType: 'String'),
+        MigrateGetter(tfName: 'title', dartName: 'title', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'name', dartName: 'name', dartType: 'String'),
         MigrateGetter(tfName: 'deleted', dartName: 'deleted', dartType: 'bool'),
@@ -148874,6 +149848,14 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
       getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(tfName: 'member', dartName: 'member', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'project',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'role', dartName: 'role', dartType: 'String'),
         MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
       ],
     ),
@@ -152268,7 +153250,48 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'name', dartName: 'name', dartType: 'String'),
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'create_time',
+          dartName: 'createTime',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(tfName: 'state', dartName: 'state', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'update_time',
+          dartName: 'updateTime',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'capability_config_id',
+          dartName: 'capabilityConfigId',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicy',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'display_name',
+          dartName: 'displayName',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'management_project',
+          dartName: 'managementProject',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'parent', dartName: 'parent', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'types',
+          dartName: 'types',
+          dartType: 'List<String>',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'google_resource_manager_lien',
@@ -158521,6 +159544,42 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
       getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'member', dartName: 'member', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'account_id',
+          dartName: 'accountId',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'create_ignore_already_exists',
+          dartName: 'createIgnoreAlreadyExists',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicy',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'description',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'disabled',
+          dartName: 'disabled',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'display_name',
+          dartName: 'displayName',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'project',
+          dartType: 'String',
+        ),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'email', dartName: 'email', dartType: 'String'),
         MigrateGetter(tfName: 'name', dartName: 'name', dartType: 'String'),
@@ -158742,6 +159801,14 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
       getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(tfName: 'member', dartName: 'member', dartType: 'String'),
+        MigrateGetter(tfName: 'role', dartName: 'role', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'service_account_id',
+          dartName: 'serviceAccountId',
+          dartType: 'String',
+        ),
         MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
       ],
     ),
@@ -158994,6 +160061,42 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
       getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicy',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'keepers',
+          dartName: 'keepers',
+          dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(
+          tfName: 'key_algorithm',
+          dartName: 'keyAlgorithm',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'private_key_type',
+          dartName: 'privateKeyType',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'public_key_data',
+          dartName: 'publicKeyData',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'public_key_type',
+          dartName: 'publicKeyType',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'service_account_id',
+          dartName: 'serviceAccountId',
+          dartType: 'String',
+        ),
         MigrateGetter(tfName: 'name', dartName: 'name', dartType: 'String'),
         MigrateGetter(
           tfName: 'private_key',
@@ -170838,7 +171941,47 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'List<Map<String, dynamic>>',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'name', dartName: 'name', dartType: 'String'),
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'create_time',
+          dartName: 'createTime',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'state', dartName: 'state', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'state_details',
+          dartName: 'stateDetails',
+          dartType: 'List<Map<String, Object?>>',
+        ),
+        MigrateGetter(
+          tfName: 'update_time',
+          dartName: 'updateTime',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'agent_resource',
+          dartName: 'agentResource',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicy',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'display_name',
+          dartName: 'displayName',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'project',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'region', dartName: 'region', dartType: 'String'),
+      ],
     ),
     MigrateEntry(
       tfType: 'google_vertex_ai_persistent_resource',
@@ -171704,7 +172847,58 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'Map<String, dynamic>',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'name', dartName: 'name', dartType: 'String'),
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'agent_identity',
+          dartName: 'agentIdentity',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'create_time',
+          dartName: 'createTime',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'update_time',
+          dartName: 'updateTime',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'agent', dartName: 'agent', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicy',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'description',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'display_name',
+          dartName: 'displayName',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'natural_language_constraint',
+          dartName: 'naturalLanguageConstraint',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'project',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'region', dartName: 'region', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'semantic_governance_policy_id',
+          dartName: 'semanticGovernancePolicyId',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'google_vertex_ai_semantic_governance_policy_engine',

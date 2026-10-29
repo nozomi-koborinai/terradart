@@ -73,6 +73,18 @@ final class GoogleFirebaseAppCheckRecaptchaEnterpriseConfig extends Resource {
   RefTo<GoogleFirebaseAppCheckRecaptchaEnterpriseConfig> get ref =>
       RefTo.of(this);
 
+  /// Reference to `app_id` attribute.
+  TfRef<String> get appId => TfRef.attribute<String>(this, 'app_id');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `site_key` attribute.
+  TfRef<String> get siteKey => TfRef.attribute<String>(this, 'site_key');
+
+  /// Reference to `token_ttl` attribute.
+  TfRef<String> get tokenTtl => TfRef.attribute<String>(this, 'token_ttl');
+
   /// Reference to `name` attribute (the relative resource name of the
   /// reCAPTCHA Enterprise configuration object, in the shape
   /// `projects/{project}/apps/{app_id}/recaptchaEnterpriseConfig`).

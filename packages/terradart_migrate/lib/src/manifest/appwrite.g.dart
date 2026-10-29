@@ -6577,6 +6577,14 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
           repeated: true,
           dartType: 'AppwritePermission',
         ),
+        MigrateSlot(
+          tfName: 'project_id',
+          dartName: 'projectId',
+          kind: MigrateSlotKind.reference,
+          required: false,
+          dartType: 'AppwriteProject',
+          attribute: 'id',
+        ),
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'name', dartType: 'String'),
