@@ -381,7 +381,7 @@ More on each row: [Writing arguments](/docs/arguments/).
 
 ## 3. Synth Terraform JSON
 
-Synthesis is plain Dart: `bin/infra.dart`, the project's entry point, constructs the Stack and hands it to `runStack`, which writes it. The rest of this guide follows the Google Cloud Stack; for the others, construct `QueueStack()`, `EdgeStack(accountId: ...)` or `UploadsStack()` the same way.
+Synthesis is plain Dart: `bin/infra.dart`, the project's entry point, constructs the Stack and hands it to `runStack`, which writes it. The rest of this guide follows the Google Cloud Stack; for the others, construct `QueueStack()`, `EdgeStack(accountId: ...)`, `UploadsStack()`, or `GroupStack()` the same way.
 
 ```dart
 // bin/infra.dart
