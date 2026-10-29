@@ -1,9 +1,11 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:terradart_codegen/src/codegen/exactly_one_placement.dart';
 import 'package:terradart_codegen/src/codegen/naming.dart';
 import 'package:terradart_codegen/src/codegen/nested_types/nested_type_collector.dart';
 import 'package:terradart_codegen/src/codegen/nested_types/nested_type_emitter.dart';
+import 'package:terradart_codegen/src/codegen/nested_types/nested_type_names.dart';
 import 'package:test/test.dart';
 
 const _schemaPath = 'test/fixtures/wrap/source/schema.json';
@@ -11,9 +13,12 @@ const _schemaPath = 'test/fixtures/wrap/source/schema.json';
 /// Loads `resource_schemas[terraformType].block` as a raw decoded JSON map
 /// (the shape [collectNestedTypes] consumes), straight from the pinned
 /// provider-schema fixture — no IR parsing involved.
-Map<String, dynamic> _blockOf(String terraformType) {
+Map<String, dynamic> _blockOf(
+  String terraformType, {
+  String schemaPath = _schemaPath,
+}) {
   final decoded =
-      jsonDecode(File(_schemaPath).readAsStringSync()) as Map<String, dynamic>;
+      jsonDecode(File(schemaPath).readAsStringSync()) as Map<String, dynamic>;
   final providerSchemas = (decoded['provider_schemas'] as Map)
       .cast<String, dynamic>();
   final providerBody = (providerSchemas.values.single as Map)
@@ -575,4 +580,70 @@ void main() {
       expect(byName['outer']!.shared, isFalse);
     });
   });
+
+  test('aws_emr_cluster exposes nested configurations blocks when the sealed '
+      'slot reuses that name', () {
+    final specs = collectNestedTypes(
+      resourceBlock: _blockOf(
+        'aws_emr_cluster',
+        schemaPath: 'test/fixtures/wrap/source_aws/schema.json',
+      ),
+      resourcePrefix: 'EmrCluster',
+      customSlotKeys: const {'configurations'},
+      excludedPaths: const {},
+      reserved: rootSealedTypeNames(
+        'EmrCluster',
+        blockGroups(const [], const [
+          ['configurations', 'configurations_json'],
+        ]),
+      ),
+    );
+    final core = _blockAt(specs, const [
+      'core_instance_fleet',
+      'instance_type_configs',
+      'configurations',
+    ]);
+    final master = _blockAt(specs, const [
+      'master_instance_fleet',
+      'instance_type_configs',
+      'configurations',
+    ]);
+    expect(core, isNotNull);
+    expect(master, isNotNull);
+    expect(
+      core!.attrs.map((a) => a.tfName),
+      containsAll(['classification', 'properties']),
+    );
+    final rendered = renderNestedTypes(
+      specs,
+      resourceTerraformType: 'aws_emr_cluster',
+    );
+    expect(rendered, contains('class ${core.className}'));
+    expect(rendered, contains('this.configurations,'));
+    expect(
+      rendered,
+      contains(
+        "'configurations': [for (final e in configurations!) e.encode()]",
+      ),
+    );
+    expect(rendered, contains('this.classification'));
+    expect(rendered, contains('this.properties'));
+  });
+}
+
+NestedBlockSpec? _blockAt(List<NestedBlockSpec> specs, List<String> path) {
+  var level = specs;
+  NestedBlockSpec? current;
+  for (final name in path) {
+    current = null;
+    for (final spec in level) {
+      if (spec.tfName == name) {
+        current = spec;
+        break;
+      }
+    }
+    if (current == null) return null;
+    level = current.children;
+  }
+  return current;
 }

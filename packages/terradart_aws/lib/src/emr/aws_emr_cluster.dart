@@ -228,6 +228,7 @@ final class EmrClusterInstanceTypeConfigs {
     this.bidPriceAsPercentageOfOnDemandPrice,
     required this.instanceType,
     this.weightedCapacity,
+    this.configurations,
     this.ebsConfig,
   });
 
@@ -239,6 +240,8 @@ final class EmrClusterInstanceTypeConfigs {
 
   final TfArg<num>? weightedCapacity;
 
+  final List<EmrClusterInstanceTypeConfigsConfigurations>? configurations;
+
   final List<EmrClusterInstanceTypeConfigsEbsConfig>? ebsConfig;
 
   @internal
@@ -248,8 +251,31 @@ final class EmrClusterInstanceTypeConfigs {
         ?bidPriceAsPercentageOfOnDemandPrice?.toTfJson(),
     'instance_type': instanceType.toTfJson(),
     'weighted_capacity': ?weightedCapacity?.toTfJson(),
+    if (configurations != null)
+      'configurations': [for (final e in configurations!) e.encode()],
     if (ebsConfig != null)
       'ebs_config': [for (final e in ebsConfig!) e.encode()],
+  };
+}
+
+/// Typed helper for the `core_instance_fleet.instance_type_configs.configurations` block of
+/// `aws_emr_cluster` (derived from provider schema).
+/// Shared by every block of this shape in the resource.
+@immutable
+final class EmrClusterInstanceTypeConfigsConfigurations {
+  const EmrClusterInstanceTypeConfigsConfigurations({
+    this.classification,
+    this.properties,
+  });
+
+  final TfArg<String>? classification;
+
+  final TfArg<Map<String, String>>? properties;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'classification': ?classification?.toTfJson(),
+    'properties': ?properties?.toTfJson(),
   };
 }
 

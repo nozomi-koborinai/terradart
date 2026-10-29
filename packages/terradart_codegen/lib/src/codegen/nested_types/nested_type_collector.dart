@@ -154,16 +154,14 @@ List<String>? descriptionEnumValues(List<String> path, String? description) =>
 /// `'AppEngineDomainMapping'` for `google_app_engine_domain_mapping`) is
 /// derived by the caller — see `naming.dart`'s `snakeToPascal`.
 ///
-/// Filtering, applied uniformly at every recursion depth:
-/// - A block whose bare Terraform name is in [customSlotKeys] is skipped
-///   entirely — no trace anywhere in the result. The hand-written
-///   customSlot already owns that whole subtree (mirrors
-///   `check_google_enum_gaps.dart`'s `_customSlotCoversBlock`; checking
-///   the bare name at every depth reproduces its "any ancestor" semantics
-///   for free, because a skipped node's children are never visited).
-///   Only keys naming a top-level schema field count: a virtual slot
-///   (a sealed `metric` over `metric_name` / `metric_query` / ...) owns no
-///   block, so a nested `metric` block elsewhere keeps its helper.
+/// Filtering. The slot skip applies at the resource root. The other
+/// rules apply at every depth:
+/// - A top-level block whose name is in [customSlotKeys] is skipped, and
+///   its subtree with it. A key that names no top-level field is a virtual
+///   slot (a sealed `metric` over `metric_name` / `metric_query` / ...) and
+///   owns nothing, so a nested `metric` block keeps its helper. A deeper
+///   block that only shares the slot's name is a different input and keeps
+///   its helper too.
 /// - A block named `timeouts` is skipped entirely — Terraform's SDK-level
 ///   meta-argument, not a user-facing input (same rule as
 ///   `constructor_params.dart`'s `skipNestedBlock`).
@@ -233,10 +231,12 @@ List<NestedBlockSpec> collectNestedTypes({
     ..._optionalMap(resourceBlock['block_types'], context: 'block_types').keys,
   };
   final scan = _scanChildren(
-    resourceBlock,
+    _withoutRootSlotBlocks(
+      resourceBlock,
+      customSlotKeys.intersection(rootKeys),
+    ),
     path: const [],
     resourcePrefix: resourcePrefix,
-    customSlotKeys: customSlotKeys.intersection(rootKeys),
     excludedPaths: excludedPaths,
     enumValues: enumValues,
     exactlyOneGroups: exactlyOneGroups,
@@ -515,6 +515,29 @@ typedef _ChildScan = ({
   List<ExcludedNestedBlock> excludedChildren,
 });
 
+Map<String, dynamic> _withoutRootSlotBlocks(
+  Map<String, dynamic> block,
+  Set<String> slotKeys,
+) {
+  if (slotKeys.isEmpty) return block;
+  final blockTypes = _optionalMap(block['block_types'], context: 'block_types');
+  final attributes = _optionalMap(block['attributes'], context: 'attributes');
+  return {
+    ...block,
+    'block_types': {
+      for (final e in blockTypes.entries)
+        if (!slotKeys.contains(e.key)) e.key: e.value,
+    },
+    'attributes': {
+      for (final e in attributes.entries)
+        if (!slotKeys.contains(e.key) ||
+            e.value is! Map ||
+            !(e.value as Map).containsKey('nested_type'))
+          e.key: e.value,
+    },
+  };
+}
+
 /// Scans one block's nested children: SDKv2 `block_types` plus
 /// plugin-framework `nested_type` object attributes (Cloudflare v5, etc.).
 ///
@@ -527,7 +550,6 @@ _ChildScan _scanChildren(
   Map<String, dynamic> block, {
   required List<String> path,
   required String resourcePrefix,
-  required Set<String> customSlotKeys,
   required Set<String> excludedPaths,
   required EnumValuesResolver enumValues,
   required Map<String, List<List<String>>> exactlyOneGroups,
@@ -543,7 +565,7 @@ _ChildScan _scanChildren(
     required String tfName,
     required Map<String, dynamic> childBody,
   }) {
-    if (customSlotKeys.contains(tfName) || tfName == 'timeouts') return;
+    if (tfName == 'timeouts') return;
 
     final childPath = [...path, tfName];
     if (excludedPaths.contains(childPath.join('.'))) {
@@ -565,7 +587,6 @@ _ChildScan _scanChildren(
         childBody,
         path: childPath,
         resourcePrefix: resourcePrefix,
-        customSlotKeys: customSlotKeys,
         excludedPaths: excludedPaths,
         enumValues: enumValues,
         exactlyOneGroups: exactlyOneGroups,
@@ -665,7 +686,6 @@ NestedBlockSpec _buildSpec(
   Map<String, dynamic> nestedBlockBody, {
   required List<String> path,
   required String resourcePrefix,
-  required Set<String> customSlotKeys,
   required Set<String> excludedPaths,
   required EnumValuesResolver enumValues,
   required Map<String, List<List<String>>> exactlyOneGroups,
@@ -685,7 +705,6 @@ NestedBlockSpec _buildSpec(
     block,
     path: path,
     resourcePrefix: resourcePrefix,
-    customSlotKeys: customSlotKeys,
     excludedPaths: excludedPaths,
     enumValues: enumValues,
     exactlyOneGroups: exactlyOneGroups,

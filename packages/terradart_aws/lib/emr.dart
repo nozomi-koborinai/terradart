@@ -25,6 +25,7 @@ export 'src/emr/aws_emr_cluster.dart'
         EmrClusterEbsConfig,
         EmrClusterEc2Attributes,
         EmrClusterInstanceTypeConfigs,
+        EmrClusterInstanceTypeConfigsConfigurations,
         EmrClusterInstanceTypeConfigsEbsConfig,
         EmrClusterKerberosAttributes,
         EmrClusterLaunchSpecifications,
