@@ -476,7 +476,7 @@ String _stack(InitPlan plan) {
           '        )',
     InitBackend.azurerm =>
       'AzurermBackend(\n'
-          "          resourceGroupName: '${plan.slug}-\${env.name}-tfstate',\n"
+          "          resourceGroupName: '${plan.slug}-tfstate',\n"
           '          storageAccountName: env.stateBucket,\n'
           "          containerName: 'tfstate',\n"
           "          key: '$stateKey/terraform.tfstate',\n"
@@ -655,7 +655,7 @@ String _readme(InitPlan plan) {
       '- State: create each `stateBucket` in R2, and export an R2 API token '
           'as `AWS_ACCESS_KEY_ID` / `AWS_SECRET_ACCESS_KEY`.',
     if (plan.backend == InitBackend.azurerm)
-      '- State: create the resource group `${plan.slug}-<env>-tfstate`, '
+      '- State: create the resource group `${plan.slug}-tfstate`, '
           'each `stateBucket` storage account, and a `tfstate` container '
           'before the first plan. Apply authenticates with the `ARM_*` '
           'environment variables.',
@@ -665,7 +665,7 @@ String _readme(InitPlan plan) {
       'State is a local file, `tf-out/<env>/terraform.tfstate`, kept out of '
           'git. $moveStateNote',
     InitBackend.azurerm =>
-      'State is in the resource group `${plan.slug}-<env>-tfstate` and the '
+      'State is in the resource group `${plan.slug}-tfstate` and the '
           'Azure storage account `stateBucket` of each environment, in the '
           '`tfstate` container, under `${plan.packageName}/<env>`.',
     _ =>

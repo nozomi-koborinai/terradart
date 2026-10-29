@@ -357,7 +357,7 @@ void main() {
       read('a/lib/stack.dart'),
       contains(
         'AzurermBackend(\n'
-        "          resourceGroupName: 'a-\${env.name}-tfstate',\n"
+        "          resourceGroupName: 'a-tfstate',\n"
         '          storageAccountName: env.stateBucket,\n'
         "          containerName: 'tfstate',\n"
         "          key: 'a/\${env.name}/terraform.tfstate',\n"
@@ -365,7 +365,8 @@ void main() {
       ),
     );
     final readme = read('a/README.md');
-    expect(readme, contains('resource group `a-<env>-tfstate`'));
+    expect(readme, contains('resource group `a-tfstate`'));
+    expect(readme, isNot(contains('<env>-tfstate')));
     expect(readme, contains('Azure storage account `stateBucket`'));
     expect(readme, contains('`ARM_*` environment variables'));
     expect(readme, isNot(contains('ARM_USE_AZUREAD')));
