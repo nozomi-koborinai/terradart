@@ -675,7 +675,7 @@ Import per service: `import 'package:terradart_cloudflare/<barrel>.dart';`
 | Terraform type | Dart factory | Example |
 | --- | --- | --- |
 | `cloudflare_dns_firewall` | `CloudflareDnsFirewall` | [cloudflare_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/cloudflare_leftover_quickstart) |
-| `cloudflare_dns_record` | `CloudflareDnsRecord` | [cloudflare_dns_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/cloudflare_dns_quickstart) |
+| `cloudflare_dns_record` | `CloudflareDnsRecord` | [azure_dns_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/azure_dns_quickstart), [cloudflare_dns_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/cloudflare_dns_quickstart) |
 | `cloudflare_dns_zone_transfers_acl` | `CloudflareDnsZoneTransfersAcl` | [cloudflare_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/cloudflare_leftover_quickstart) |
 | `cloudflare_dns_zone_transfers_incoming` | `CloudflareDnsZoneTransfersIncoming` | [cloudflare_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/cloudflare_leftover_quickstart) |
 | `cloudflare_dns_zone_transfers_outgoing` | `CloudflareDnsZoneTransfersOutgoing` | [cloudflare_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/cloudflare_leftover_quickstart) |
@@ -1087,7 +1087,7 @@ Import per service: `import 'package:terradart_cloudflare/<barrel>.dart';`
 
 | Terraform type | Dart factory | Example |
 | --- | --- | --- |
-| `cloudflare_zone` | `CloudflareZone` | [cloudflare_dns_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/cloudflare_dns_quickstart) |
+| `cloudflare_zone` | `CloudflareZone` | [azure_dns_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/azure_dns_quickstart), [cloudflare_dns_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/cloudflare_dns_quickstart) |
 | `cloudflare_zone_auto_origin_tls_kex` | `CloudflareZoneAutoOriginTlsKex` | [cloudflare_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/cloudflare_leftover_quickstart) |
 | `cloudflare_zone_cache_reserve` | `CloudflareZoneCacheReserve` | [cloudflare_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/cloudflare_leftover_quickstart) |
 | `cloudflare_zone_cache_variants` | `CloudflareZoneCacheVariants` | [cloudflare_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/cloudflare_leftover_quickstart) |
