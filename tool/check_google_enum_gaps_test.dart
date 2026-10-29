@@ -21,7 +21,8 @@ void main() {
 GoogleCloudRunV2Instance(
   super.localName, {
   TfArg<String>? encryptionKeyRevocationAction,
-}) : super(
+})
+  : super(
 ''',
     );
     expect(gaps.map(_gapKey), [

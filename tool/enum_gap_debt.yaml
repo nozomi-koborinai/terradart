@@ -3,6 +3,22 @@
 # a reviewed decision, and a stale line (no longer matching any reported gap)
 # fails the check so the ledger cannot rot.
 #
-# The ledger is currently empty — the 0.23.0 breaking minor paid all six
-# original entries off (typed-enum narrowing shipped with MIGRATING.md
-# coverage). Add new lines only as a reviewed decision.
+# The 0.23.0 breaking minor paid the original six entries (typed-enum
+# narrowing shipped with MIGRATING.md). Each line below is a public
+# constructor input that still takes a free string, or a list of strings,
+# for a schema value set. Retyping it to an enum is a breaking constructor
+# change and waits for the criteria 3 and 4 minor.
+
+google_app_engine_flexible_app_version.inbound_services: TfArg<List<String>> stays until the criteria 3 and 4 minor retypes it to an enum
+google_app_engine_standard_app_version.inbound_services: TfArg<List<String>> stays until the criteria 3 and 4 minor retypes it to an enum
+google_cloud_run_v2_instance.encryption_key_revocation_action: TfArg<String> stays until the criteria 3 and 4 minor retypes it to an enum
+google_compute_interconnect.requested_features: TfArg<List<String>> stays until the criteria 3 and 4 minor retypes it to an enum
+google_data_catalog_taxonomy.activated_policy_types: TfArg<List<String>> stays until the criteria 3 and 4 minor retypes it to an enum
+google_dialogflow_intent.default_response_platforms: TfArg<List<String>> stays until the criteria 3 and 4 minor retypes it to an enum
+google_discovery_engine_control.use_cases: TfArg<List<String>> stays until the criteria 3 and 4 minor retypes it to an enum
+google_discovery_engine_data_store.solution_types: TfArg<List<String>> stays until the criteria 3 and 4 minor retypes it to an enum
+google_gkeonprem_vmware_cluster.skip_validations: TfArg<List<String>> stays until the criteria 3 and 4 minor retypes it to an enum
+google_netapp_volume.protocols: TfArg<List<String>> stays until the criteria 3 and 4 minor retypes it to an enum
+google_network_connectivity_internal_range.overlaps: TfArg<List<String>> stays until the criteria 3 and 4 minor retypes it to an enum
+google_site_verification_token.type: data source TfArg<String> stays until the criteria 3 and 4 minor retypes it to an enum
+google_site_verification_token.verification_method: data source TfArg<String> stays until the criteria 3 and 4 minor retypes it to an enum

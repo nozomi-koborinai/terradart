@@ -1,14 +1,16 @@
 // ignore_for_file: avoid_print
 //
 // google lane gate: in the GA `hashicorp/google` overrides,
-// schema-documented finite values must not surface as TfArg<String> when
-// the wrapper override lacks dartTypeOverrides / prelude enum coverage.
+// schema-documented finite values must not surface as TfArg<String> or
+// TfArg<List<String>> when the wrapper override lacks dartTypeOverrides /
+// prelude enum coverage. Resources and data sources are both checked.
 // Only that lane needs it — google-beta derives its enums from MM YAML
 // (--mm-hints), and aws / cloudflare / appwrite from provider hints
 // (--provider-enums).
 //
 // Top-level gaps (THIN / PARTIAL) and NESTED_PARTIAL (customSlot helpers
-// still using TfArg<String> for schema enums) fail CI by default.
+// still using TfArg<String> or TfArg<List<String>> for schema enums) fail
+// CI by default.
 // NESTED_THIN (whole block still TfArg<Map>) prints as advisory unless
 // --strict-nested is passed.
 //
@@ -21,6 +23,8 @@ import 'dart:io';
 
 import 'package:path/path.dart' as p;
 import 'package:terradart_codegen/src/codegen/enum_value_parser.dart';
+import 'package:terradart_codegen/src/codegen/wrapper_overrides/wrapper_override.dart';
+import 'package:terradart_codegen/src/codegen/wrapper_overrides/yaml_loader.dart';
 import 'package:yaml/yaml.dart';
 
 final _root = Directory.current;
@@ -42,6 +46,9 @@ final _resources =
         as Map<String, dynamic>;
 
 final _resourceSchemas = _resources['resource_schemas'] as Map<String, dynamic>;
+
+final _dataSourceSchemas =
+    _resources['data_source_schemas'] as Map<String, dynamic>;
 
 final _overrideDir = Directory(
   p.join(
@@ -88,31 +95,53 @@ String _camel(String snake) {
 String _blockPathLabel(List<String> blockPath, String attr) =>
     '${blockPath.join('.')}.$attr';
 
-/// Constructor inputs still typed `TfArg<String>`.
+final _ctorStart = RegExp(r'\(\s*super\.localName\s*,\s*\{');
+final _ctorEnd = RegExp(r'\}\s*\)\s*:\s*super\s*\(');
+final _rawCtorField = RegExp(
+  r'(?:required\s+)?TfArg\s*<\s*(?:String|List\s*<\s*String\s*>)\s*>\s*\??\s+(\w+)',
+);
+
+/// Constructor inputs still typed `TfArg<String>` or `TfArg<List<String>>`.
 ///
-/// Looks for the exact character sequences `(super.localName, {` and
-/// `}) : super(`. `dart format` splits both, so a formatted factory
-/// contributes no fields.
+/// `dart format` splits `(super.localName, {` and `}) : super(` across
+/// lines, and it can wrap inside `TfArg<List<String>>`. Matching through
+/// whitespace keeps a formatted factory in the check.
 Set<String> ctorRawStringFields(String source) {
-  final start = source.indexOf('(super.localName, {');
-  if (start < 0) return {};
-  final end = source.indexOf('}) : super(', start);
-  if (end < 0) return {};
-  final ctor = source.substring(start, end);
-  final fields = <String>{};
-  for (final m in RegExp(
-    r'(?:required\s+)?TfArg<String>\??\s+(\w+)',
-  ).allMatches(ctor)) {
-    fields.add(m.group(1)!);
-  }
-  return fields;
+  final start = _ctorStart.firstMatch(source);
+  if (start == null) return {};
+  final end = _ctorEnd.firstMatch(source.substring(start.end));
+  if (end == null) return {};
+  final ctor = source.substring(start.start, start.end + end.start);
+  return {for (final match in _rawCtorField.allMatches(ctor)) match.group(1)!};
+}
+
+typedef _GapTarget = ({String terraformType, Map<String, dynamic>? schema});
+
+/// Schema block for an override file. Data-source files are
+/// `data_<type>.yaml` (legacy `google_project.yaml` stays unprefixed).
+_GapTarget _gapTarget({
+  required String stem,
+  required Map<String, dynamic> override,
+  required Map<String, dynamic> resourceSchemas,
+  required Map<String, dynamic> dataSourceSchemas,
+}) {
+  final kind = override['kind'] == 'data_source'
+      ? WrapperOverrideKind.dataSource
+      : WrapperOverrideKind.resource;
+  final terraformType = terraformTypeFromOverrideStem(stem, kind);
+  final schemas = kind == WrapperOverrideKind.dataSource
+      ? dataSourceSchemas
+      : resourceSchemas;
+  final raw = schemas[terraformType];
+  return (
+    terraformType: terraformType,
+    schema: raw is Map<String, dynamic> ? raw : null,
+  );
 }
 
 /// Top-level `THIN` / `PARTIAL` lines for one override.
 ///
-/// [stem] is the override file name without `.yaml`. Historical behavior
-/// reads only [resourceSchemas] under that stem, so a data-source file
-/// (`data_<type>.yaml`) never matches.
+/// [stem] is the override file name without `.yaml`.
 List<String> topLevelEnumGaps({
   required String stem,
   required Map<String, dynamic> override,
@@ -120,17 +149,23 @@ List<String> topLevelEnumGaps({
   required Map<String, dynamic> dataSourceSchemas,
   required String? generatedSource,
 }) {
-  if (stem == 'google_project') return const [];
-  final schema = resourceSchemas[stem];
+  final target = _gapTarget(
+    stem: stem,
+    override: override,
+    resourceSchemas: resourceSchemas,
+    dataSourceSchemas: dataSourceSchemas,
+  );
+  final schema = target.schema;
   if (schema == null || generatedSource == null) return const [];
   final fields = ctorRawStringFields(generatedSource);
-  final dto = Map<String, dynamic>.from(
-    override['dartTypeOverrides'] as YamlMap? ?? {},
-  );
+  final rawDto = override['dartTypeOverrides'];
+  final dto = rawDto is Map
+      ? Map<String, dynamic>.from(rawDto)
+      : const <String, dynamic>{};
   final thin = _isThin(override);
   final gaps = <String>[];
   final attrs =
-      ((schema as Map)['block'] as Map)['attributes'] as Map<String, dynamic>;
+      ((schema)['block'] as Map)['attributes'] as Map<String, dynamic>;
   for (final entry in attrs.entries) {
     final attr = entry.key;
     final meta = Map<String, dynamic>.from(entry.value as Map);
@@ -140,7 +175,9 @@ List<String> topLevelEnumGaps({
     final camel = _camel(attr);
     if (!fields.contains(camel)) continue;
     if (dto.containsKey(attr)) continue;
-    gaps.add('${thin ? "THIN" : "PARTIAL"}\t$stem.$attr\t${vals.join(", ")}');
+    gaps.add(
+      '${thin ? "THIN" : "PARTIAL"}\t${target.terraformType}.$attr\t${vals.join(", ")}',
+    );
   }
   return gaps;
 }
@@ -198,7 +235,7 @@ String _normalizeWhitespace(String s) => s.replaceAll(RegExp(r'\s+'), ' ');
 /// exists. More than one entry is possible — and INTENTIONALLY not resolved
 /// to "the right one" — when an unrelated block reuses the same attr name
 /// (e.g. top-level `type` vs a nested block's own `type`); see
-/// `_nestedEnumFieldIsGap`'s doc for why that's the accepted heuristic.
+/// [nestedEnumFieldIsGap] for why that's the accepted heuristic.
 Iterable<String> _declaredFieldTypes(String genText, String camel) sync* {
   for (final m in RegExp('final ([^;]+?)\\s+$camel\\s*;').allMatches(genText)) {
     yield m.group(1)!.replaceAll(' ', '');
@@ -209,20 +246,24 @@ bool _nestedFieldDeclared(String genText, String camel) {
   return _declaredFieldTypes(genText, camel).isNotEmpty;
 }
 
+const _rawGapTypes = {
+  'TfArg<String>',
+  'TfArg<String>?',
+  'TfArg<List<String>>',
+  'TfArg<List<String>>?',
+};
+
 bool nestedEnumFieldIsGap(String genText, String camel) {
-  const rawString = {'TfArg<String>', 'TfArg<String>?'};
-  var sawRawString = false;
+  var sawRaw = false;
   for (final type in _declaredFieldTypes(genText, camel)) {
-    if (!rawString.contains(type)) {
-      // A typed non-string field (enum / helper) with this name means
-      // covered, even when another unrelated `TfArg<String> foo` shares the
-      // same name elsewhere in the generated file (e.g. top-level `type` vs
-      // nested `type`).
+    if (!_rawGapTypes.contains(type)) {
+      // An enum or helper with this name means covered, even when another
+      // raw string field shares the name (top-level `type` vs nested `type`).
       return false;
     }
-    sawRawString = true;
+    sawRaw = true;
   }
-  return sawRawString;
+  return sawRaw;
 }
 
 /// Whether [blockPath] (or an ancestor of it) is one of [ov]'s
@@ -283,22 +324,28 @@ void main(List<String> args) {
 
   for (final ent in _overrideDir.listSync().whereType<File>()) {
     if (!ent.path.endsWith('.yaml')) continue;
-    final tfType = p.basenameWithoutExtension(ent.path);
-    if (tfType == 'google_project') continue;
-    final schema = _resourceSchemas[tfType];
+    final stem = p.basenameWithoutExtension(ent.path);
+    final ov = _loadOverride(stem);
+    final target = _gapTarget(
+      stem: stem,
+      override: ov,
+      resourceSchemas: _resourceSchemas,
+      dataSourceSchemas: _dataSourceSchemas,
+    );
+    final schema = target.schema;
     if (schema == null) continue;
+    final tfType = target.terraformType;
 
-    final ov = _loadOverride(tfType);
     final genTextRaw = _generatedSource(tfType, ov);
     final genText = genTextRaw == null
         ? null
         : _normalizeWhitespace(genTextRaw);
     topLevelGaps.addAll(
       topLevelEnumGaps(
-        stem: tfType,
+        stem: stem,
         override: ov,
         resourceSchemas: _resourceSchemas,
-        dataSourceSchemas: const <String, dynamic>{},
+        dataSourceSchemas: _dataSourceSchemas,
         generatedSource: genTextRaw,
       ),
     );
