@@ -3,7 +3,7 @@ title: Status & versioning
 description: Alpha, beta, and 1.0, and how TerraDart versions releases.
 ---
 
-TerraDart is **alpha** on the **0.35.x** line today. Alpha is the phase where many people use TerraDart and the feedback shapes the API. The [change policy](#change-policy-from-alpha-onward) below stays in force through beta and up to 1.0.0.
+TerraDart is **alpha** on the **0.35.x** line today. Alpha is where TerraDart gets into people's hands and their feedback shapes the API. The [change policy](#change-policy-from-alpha-onward) below stays in force through beta and up to 1.0.0.
 
 There are no SemVer guarantees until **v1.0.0**. Breaking changes land only on **minor** bumps. Pin with `^0.35.0`, take patch releases freely, and read [MIGRATING.md](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md) before every minor bump. Check [pub.dev](https://pub.dev/packages/terradart_core) for the latest patch.
 
@@ -11,7 +11,7 @@ There are no SemVer guarantees until **v1.0.0**. Breaking changes land only on *
 
 | Phase | Version line | What we promise |
 | --- | --- | --- |
-| **Alpha** | 0.35.x (current) | Many people use TerraDart, and the feedback shapes the API. **No breaking changes within a minor** (`^0.N.x`). Breaking changes land only on minor bumps, each with a `MIGRATING.md` section. Not SemVer until 1.0.0. |
+| **Alpha** | 0.35.x (current) | Alpha is where TerraDart gets into people's hands and their feedback shapes the API. **No breaking changes within a minor** (`^0.N.x`). Breaking changes land only on minor bumps, each with a `MIGRATING.md` section. Not SemVer until 1.0.0. |
 | **Beta** | TBD | The API shape is settled. The gates are checks the maintainer runs. See [Path to beta](#path-to-beta). The change policy stays in force. |
 | **1.0.0** | TBD | After beta, two minor releases in a row ship with no breaking changes. Neither release needs a new `MIGRATING.md` section. Stable SemVer for `terradart_core`, every provider package (`terradart_google`, `terradart_google_beta`, `terradart_aws`, `terradart_cloudflare`, `terradart_appwrite`, `terradart_azure`, `terradart_time`), and `terradart_cli`. `terradart_codegen`, `terradart_migrate`, and `terradart_hcl` stay outside the promise. |
 
@@ -33,9 +33,9 @@ Every maintainer-side gate already runs on each pull request. That set includes 
 
 ## Path to beta
 
-Beta means the API shape is settled. The gates are checks the maintainer runs. People using TerraDart outside the project shape the API during alpha. Beta waits on the checklist below.
+Beta means the API shape is settled. The gates are checks the maintainer runs. Alpha is where TerraDart gets into people's hands and their feedback shapes the API. Beta waits on the checklist below.
 
-This list is a draft. The boxes stay open until the list is accepted and beta is labeled.
+These are the beta gates. The boxes stay open until each one is met.
 
 - [ ] **Sealed groups have concept names.** Every exclusive group is one sealed argument, named for the concept (`deriveExactlyOne: true` on the override). `yaml_loader_test.dart` requires that flag on every Google resource override and every google-beta resource override. `tool/wrap_lanes_test.dart` requires it on every resource override of aws, cloudflare, appwrite, and azure. `dart tool/release_ledger_check.dart` fails while `tool/sealed_name_debt.yaml` has an entry, so an `Or` placeholder cannot ship in a release. `terradart lint-override` fails a stale line in `tool/exactly_one_lint_debt.yaml`. To-do. No command fails only because that file still has a reasoned line. Beta requires the file to be empty.
 - [ ] **References and outputs are typed.** A string input that names another resource is a `RefTo`, or `IamPrincipal` or `AppwritePermission` when `tool/reference_targets.yaml` says so. `terradart wrap` fails (E406) on a stale `exclude`, an attribute the target does not export, or an input two rules claim. Callers read computed attributes through getters (`deriveOutputGetters`). `yaml_loader_test.dart` requires that flag on every google-beta resource override. To-do. No test requires the flag on every override in `terradart_google`, `terradart_aws`, `terradart_cloudflare`, `terradart_appwrite`, or `terradart_azure`. `google_compute_zone_vm_extension_policy` sets the flag to false and writes `name` and `id` by hand in `extraGetters`.
