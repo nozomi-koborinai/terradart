@@ -84,6 +84,9 @@ export 'src/discovery_engine/google_discovery_engine_data_store.dart'
         DiscoveryEngineDataStoreChunkingConfig,
         DiscoveryEngineDataStoreContentConfig,
         DiscoveryEngineDataStoreDefaultParsingConfig,
+        DiscoveryEngineDataStoreDefaultParsingConfigDigitalParsingConfig,
+        DiscoveryEngineDataStoreDefaultParsingConfigLayoutParsingConfig,
+        DiscoveryEngineDataStoreDefaultParsingConfigOcrParsingConfig,
         DiscoveryEngineDataStoreDigitalParsingConfig,
         DiscoveryEngineDataStoreDocumentProcessingConfig,
         DiscoveryEngineDataStoreIndustryVertical,
@@ -103,6 +106,8 @@ export 'src/discovery_engine/google_discovery_engine_recommendation_engine.dart'
     show
         DiscoveryEngineRecommendationEngineCommonConfig,
         DiscoveryEngineRecommendationEngineFeaturesConfig,
+        DiscoveryEngineRecommendationEngineFeaturesConfigMostPopularConfig,
+        DiscoveryEngineRecommendationEngineFeaturesConfigRecommendedForYouConfig,
         DiscoveryEngineRecommendationEngineIndustryVertical,
         DiscoveryEngineRecommendationEngineMediaRecommendationEngineConfig,
         DiscoveryEngineRecommendationEngineMostPopularConfig,

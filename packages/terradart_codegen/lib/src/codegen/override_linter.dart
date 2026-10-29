@@ -1,6 +1,7 @@
 import 'package:meta/meta.dart';
 
 import '../parser/mm_yaml_parser.dart';
+import 'hand_sealed_groups.dart';
 import 'migrate/helper_class_extractor.dart';
 import 'migrate/migrate_shape_analyzer.dart';
 import 'universal_invariants/enum_extractor.dart';
@@ -54,7 +55,6 @@ List<LintViolation> lintOverride(
   String tfType,
   WrapperOverride override, {
   MmResourceOverrides? mm,
-  Set<String> exactlyOneOptionalFanoutDebt = const {},
   MigrateShapeLintInput? migrate,
 }) {
   final violations = <LintViolation>[];
@@ -97,14 +97,7 @@ List<LintViolation> lintOverride(
 
   violations.addAll(lintDeadCustomSlots(tfType, override));
 
-  violations.addAll(
-    lintExactlyOneMutualExclusion(
-      tfType,
-      override,
-      mm: mm,
-      exactlyOneOptionalFanoutDebt: exactlyOneOptionalFanoutDebt,
-    ),
-  );
+  violations.addAll(lintExactlyOneMutualExclusion(tfType, override, mm: mm));
 
   if (migrate != null) {
     violations.addAll(lintMigrateShapes(tfType, override, migrate));
@@ -412,12 +405,13 @@ List<List<String>> canonicalExactlyOneOfGroups(List<List<String>> raw) {
 ///   when an override omits customSlots and relies on schema-default optional
 ///   nested blocks).
 ///
-/// An override with `deriveExactlyOne` is never flagged.
+/// A group a hand-written sealed slot covers ([handSealedGroups], the test
+/// `deriveExactlyOne` applies too) is sealed. An override with
+/// `deriveExactlyOne` is never flagged.
 List<LintViolation> lintExactlyOneMutualExclusion(
   String tfType,
   WrapperOverride override, {
   MmResourceOverrides? mm,
-  Set<String> exactlyOneOptionalFanoutDebt = const {},
 }) {
   // `deriveExactlyOne` seals the groups at wrap time (wrap prints any it
   // cannot), so the override has no slots of its own to lint.
@@ -426,13 +420,12 @@ List<LintViolation> lintExactlyOneMutualExclusion(
   final violations = <LintViolation>[];
   final slots = override.customSlots ?? const {};
   final paramOrder = override.paramOrder ?? const [];
+  final hand = handSealedGroups(override);
 
   for (final group in canonicalExactlyOneOfGroups(mm.exactlyOneOfGroups)) {
-    if (exactlyOneOptionalFanoutDebt.contains(tfType)) continue;
-
     final optionalDirectMemberSlots = _optionalMemberSlots(group, slots);
     if (optionalDirectMemberSlots.length < 2) continue;
-    if (_hasSealedVirtualSlot(group, slots)) continue;
+    if (coversGroup(hand, '', group)) continue;
 
     violations.add(
       _exactlyOneViolation(
@@ -444,14 +437,13 @@ List<LintViolation> lintExactlyOneMutualExclusion(
             'separate optional customSlots. Model the group as a sealed class '
             'plus one required virtual customSlot that dispatches via '
             '`.blockKey` (see google_cloud_scheduler_job.yaml and '
-            'google_firestore_backup_schedule.yaml), or add a reasoned entry to '
-            'tool/exactly_one_lint_debt.yaml.',
+            'google_firestore_backup_schedule.yaml), or set deriveExactlyOne.',
       ),
     );
   }
 
   for (final group in canonicalExactlyOneOfGroups(mm.exactlyOneOfGroups)) {
-    if (_hasSealedVirtualSlot(group, slots)) continue;
+    if (coversGroup(hand, '', group)) continue;
 
     final optionalDirectMemberSlots = _optionalMemberSlots(group, slots);
     // IR/schema slots only — customSlot keys in paramOrder are curated
@@ -493,21 +485,6 @@ List<String> _optionalMemberSlots(
   ];
 }
 
-bool _hasSealedVirtualSlot(List<String> group, Map<String, CustomSlot> slots) {
-  return slots.entries.any((entry) {
-    if (group.contains(entry.key)) return false;
-    final slot = entry.value;
-    if (!_paramDeclarationIsRequired(slot.paramDeclaration)) return false;
-    // Sealed dispatch is signalled by a dynamic `<slot>.blockKey:` argMap key
-    // — used by both nested-block groups (scheduler `target`) and scalar
-    // groups where each variant emits one `{blockKey: value}` pair (cert map
-    // entry `match`) — or by a `...<slot>.argMap` spread, where a variant
-    // writes several keys (secret version `secret_data_wo` + its version).
-    return slot.argMapEntry.contains('.blockKey') ||
-        parseCustomSlot(slot).spread;
-  });
-}
-
 LintViolation _exactlyOneViolation({
   required String tfType,
   required String rule,
@@ -526,55 +503,19 @@ LintViolation _exactlyOneViolation({
 bool _paramDeclarationIsOptional(String paramDeclaration) =>
     paramDeclaration.contains('?');
 
-bool _paramDeclarationIsRequired(String paramDeclaration) =>
-    paramDeclaration.startsWith('required ');
-
 /// Lints every entry of [overrides], aggregating violations across the
 /// registry. Results are ordered by `tfType` (then by rule-discovery order
 /// within a type) for deterministic output.
 ///
 /// When [mmByType] is supplied, phase-2 rules (MM-backed) run per entry.
-/// Flags [debt] entries that no longer suppress a violation (override was fixed).
-List<String> staleExactlyOneOptionalFanoutDebt(
-  Map<String, WrapperOverride> overrides, {
-  Map<String, MmResourceOverrides>? mmByType,
-  required Set<String> debt,
-}) {
-  final stale = <String>[];
-  for (final tfType in debt) {
-    final override = overrides[tfType];
-    final mm = mmByType?[tfType];
-    if (override == null || mm == null) {
-      stale.add(tfType);
-      continue;
-    }
-    final wouldViolate = lintExactlyOneMutualExclusion(
-      tfType,
-      override,
-      mm: mm,
-      exactlyOneOptionalFanoutDebt: const {},
-    ).any((v) => v.rule == 'exactly-one-optional-fanout');
-    if (!wouldViolate) stale.add(tfType);
-  }
-  stale.sort();
-  return stale;
-}
-
 List<LintViolation> lintOverrides(
   Map<String, WrapperOverride> overrides, {
   Map<String, MmResourceOverrides>? mmByType,
-  Set<String> exactlyOneOptionalFanoutDebt = const {},
   MigrateShapeLintInput? migrate,
 }) {
   final keys = overrides.keys.toList()..sort();
   return [
     for (final k in keys)
-      ...lintOverride(
-        k,
-        overrides[k]!,
-        mm: mmByType?[k],
-        exactlyOneOptionalFanoutDebt: exactlyOneOptionalFanoutDebt,
-        migrate: migrate,
-      ),
+      ...lintOverride(k, overrides[k]!, mm: mmByType?[k], migrate: migrate),
   ];
 }

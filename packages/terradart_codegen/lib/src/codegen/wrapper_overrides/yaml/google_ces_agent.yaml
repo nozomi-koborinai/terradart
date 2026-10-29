@@ -44,6 +44,7 @@ paramOrder:
   - llm_agent
   - model_settings
   - remote_dialogflow_agent
+  - remote_a2a_agent
   - tools
   - toolsets
   - guardrails

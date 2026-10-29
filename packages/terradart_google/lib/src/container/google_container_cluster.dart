@@ -3808,6 +3808,7 @@ final class GoogleContainerCluster extends Resource {
     ContainerClusterIpAllocationPolicy? ipAllocationPolicy,
     ContainerClusterLoggingConfig? loggingConfig,
     ContainerClusterMaintenancePolicy? maintenancePolicy,
+    ContainerClusterManagedOpentelemetryConfig? managedOpentelemetryConfig,
     ContainerClusterMasterAuth? masterAuth,
     ContainerClusterMasterAuthorizedNetworksConfig?
     masterAuthorizedNetworksConfig,
@@ -3939,6 +3940,10 @@ final class GoogleContainerCluster extends Resource {
              'logging_config': TfArg.literal(loggingConfig.encode()),
            if (maintenancePolicy != null)
              'maintenance_policy': TfArg.literal(maintenancePolicy.encode()),
+           if (managedOpentelemetryConfig != null)
+             'managed_opentelemetry_config': TfArg.literal(
+               managedOpentelemetryConfig.encode(),
+             ),
            if (masterAuth != null)
              'master_auth': TfArg.literal(masterAuth.encode()),
            if (masterAuthorizedNetworksConfig != null)

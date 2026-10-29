@@ -1946,6 +1946,37 @@ $yaml''');
       expect(await wrap([...args, '--check']), CliExitCodes.dataError);
     });
 
+    test('--check fails on a group it cannot seal until unsealedGroups '
+        'says why', () async {
+      File(p.join(source, 'hints', 'x_thing.yaml')).writeAsStringSync('''
+provider_version: "1.0.0"
+exactly_one_of_groups:
+  - ["content", "name"]
+''');
+      setSealedNames('');
+      expect(await wrap(const []), CliExitCodes.success);
+      expect(await wrap(const ['--check']), CliExitCodes.dataError);
+
+      const reason = '  "name, content": name is the required identity.\n';
+      setSealedNames('unsealedGroups:\n$reason');
+      expect(await wrap(const []), CliExitCodes.success);
+      expect(await wrap(const ['--check']), CliExitCodes.success);
+
+      setSealedNames('unsealedGroups:\n$reason  "data, content": stale.\n');
+      expect(await wrap(const []), CliExitCodes.success);
+      expect(await wrap(const ['--check']), CliExitCodes.dataError);
+    });
+
+    test('--check fails on a helper no constructor reaches', () async {
+      setSealedNames('''
+sealedNames:
+  "data, content": content
+paramOrder: [name, content, data]
+''');
+      expect(await wrap(const []), CliExitCodes.success);
+      expect(await wrap(const ['--check']), CliExitCodes.dataError);
+    });
+
     for (final (label, yaml) in [
       ('matches no sealed group', '"a, b": thing'),
       ('repeats the derived name', '"settings.a, settings.b": settings'),
@@ -2060,6 +2091,33 @@ deriveExactlyOne: true
     String emitted() => File(
       p.join(_libSrcOut(tmp), 'thing', 'google_thing.dart'),
     ).readAsStringSync();
+
+    test('a group dropped for a beta-only member needs no decision', () async {
+      File(p.join(source, 'mm', 'google_thing.yaml')).writeAsStringSync('''
+name: Thing
+properties:
+  - name: uri
+    type: String
+    conflicts: [beta_uri]
+  - name: betaUri
+    type: String
+    min_version: beta
+  - name: path
+    type: String
+    conflicts: [gone]
+''');
+      final (code, err) = await wrap(const ['--mm-hints']);
+      expect(code, CliExitCodes.success);
+      expect(err, isNot(contains('beta_uri')));
+      expect(
+        err,
+        contains(
+          'exclusive group names no schema input: google_thing [path, gone]',
+        ),
+      );
+      final (check, _) = await wrap(const ['--mm-hints', '--check']);
+      expect(check, CliExitCodes.dataError);
+    });
 
     test(
       'off: MM enums are declared but inputs stay strings, no sealing',

@@ -49,6 +49,7 @@ typedef _Derived = ({
   List<String> skippedAtMostOne,
   List<SealedName> names,
   List<String> nameErrors,
+  List<UnsealedGroup> excused,
 });
 
 /// [deriveExactlyOneSlots] over a lane of resources only.
@@ -478,6 +479,44 @@ void main() {
     );
     expect(off.overrides.resources['aws_thing']!.sealedArguments, isEmpty);
     expect(off.skipped, isEmpty);
+  });
+
+  test('an unsealedGroups entry excuses the group it names', () {
+    final def = ResourceDef(
+      terraformType: 'aws_thing',
+      root: BlockDef(
+        attributes: [
+          _attr('a'),
+          _attr('b'),
+          _attr('c', required: true),
+          _attr('d'),
+        ],
+      ),
+    );
+    final derived = _derive(
+      {
+        'aws_thing': const WrapperOverride(
+          outputDir: 'thing',
+          deriveExactlyOne: true,
+          unsealedGroups: {
+            'd, c': 'c is a required identity.',
+            'settings.y, settings.x': 'settings stays a map.',
+            'e, f': 'matches nothing.',
+          },
+        ),
+      },
+      {'aws_thing': def},
+      providerEnums: _groups,
+    );
+    expect(derived.skipped, isEmpty);
+    expect(derived.excused, [
+      (type: 'aws_thing', key: 'c, d'),
+      (type: 'aws_thing', key: 'settings.x, settings.y'),
+    ]);
+    expect(
+      derived.overrides.resources['aws_thing']!.sealedArguments.single.members,
+      ['a', 'b'],
+    );
   });
 
   test('a data source seals its own groups under the Data stem', () {
@@ -1252,6 +1291,74 @@ void main() {
     expect(
       prelude,
       contains('final class ThingCOrDChoice extends ThingCOrD {'),
+    );
+  });
+
+  test('a block kept as a map passthrough seals as its map', () {
+    final def = ResourceDef(
+      terraformType: 'aws_thing',
+      root: BlockDef(
+        attributes: [_attr('rule_json')],
+        nestedBlocks: [
+          NestedBlockDef(
+            name: 'rule',
+            nesting: NestingMode.set,
+            constraints: const Constraints(optional: true),
+            block: BlockDef(attributes: [_attr('name')]),
+          ),
+        ],
+      ),
+    );
+    _Derived derive({required bool excluded}) => _derive(
+      {
+        'aws_thing': WrapperOverride(
+          outputDir: 'thing',
+          deriveExactlyOne: true,
+          deriveNestedTypes: true,
+          nestedTypeExcludes: excluded ? const ['rule'] : null,
+          sealedNames: const {'rule, rule_json': 'rules'},
+        ),
+      },
+      {'aws_thing': def},
+      providerEnums: _hints(
+        atMostOne: {
+          'aws_thing': [
+            ['rule', 'rule_json'],
+          ],
+        },
+      ),
+      rawSchemas: {
+        'aws_thing': {
+          'attributes': {'rule_json': _optionalString()},
+          'block_types': {
+            'rule': {
+              'nesting_mode': 'set',
+              'block': {
+                'attributes': {'name': _optionalString()},
+              },
+            },
+          },
+        },
+      },
+    );
+    final derived = derive(excluded: true);
+    expect(derived.skippedAtMostOne, isEmpty);
+    final o = derived.overrides.resources['aws_thing']!;
+    expect(o.sealedArguments.single.members, ['rule', 'rule_json']);
+    final prelude = emittedPrelude(o, 'aws_thing');
+    expect(
+      prelude,
+      contains(
+        'const factory ThingRules.rule(TfArg<List<Map<String, dynamic>>> rule)',
+      ),
+    );
+    expect(prelude, contains("{'rule': rule}"));
+    expect(
+      derive(
+        excluded: false,
+      ).overrides.resources['aws_thing']!.sealedArguments.single.members,
+      ['rule', 'rule_json'],
+      reason: 'a derived helper seals as itself',
     );
   });
 

@@ -303,6 +303,42 @@ $names''');
         });
       });
 
+      group('unsealedGroups', () {
+        late Directory tmp;
+        setUp(() => tmp = Directory.systemTemp.createTempSync('unsealed_'));
+        tearDown(() => tmp.deleteSync(recursive: true));
+
+        YamlOverrideLoader loaderFor(String reasons) {
+          File(p.join(tmp.path, 'aws_thing.yaml')).writeAsStringSync('''
+outputDir: thing
+deriveExactlyOne: true
+unsealedGroups:
+$reasons''');
+          return YamlOverrideLoader(rootDir: tmp.path);
+        }
+
+        test('reads group keys and reasons', () {
+          final o = loaderFor(
+            '  "b, settings.a": settings stays a map.\n',
+          ).load().resources['aws_thing']!;
+          expect(o.unsealedGroups, {'b, settings.a': 'settings stays a map.'});
+        });
+
+        test('a key with one member -> FormatException', () {
+          expect(
+            loaderFor('  filename: why\n').load,
+            throwsFormatExceptionWith('must list the group\'s members'),
+          );
+        });
+
+        test('an empty reason -> FormatException', () {
+          expect(
+            loaderFor('  "a, b": " "\n').load,
+            throwsFormatExceptionWith('needs the reason'),
+          );
+        });
+      });
+
       group('typeNames', () {
         late Directory tmp;
         setUp(() => tmp = Directory.systemTemp.createTempSync('type_names_'));

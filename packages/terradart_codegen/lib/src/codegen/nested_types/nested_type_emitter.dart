@@ -575,23 +575,33 @@ _Layout _layout(NestedBlockSpec spec, Set<String> taken) {
 /// The nested exactly-one [groups] — at-most-one groups when [optional] —
 /// (parent path → member names, as `collectNestedTypes` takes them) that
 /// [renderNestedTypes] leaves unsealed for [specs], each as
-/// `<path> [<members>]: <reason>`.
+/// `<path> [<members>]: <reason>`. A group [settled] accepts (a hand-written
+/// slot seals it, or the override says why it stays unsealed) is left out.
 List<String> unsealedNestedGroups(
   List<NestedBlockSpec> specs,
   Map<String, List<List<String>>> groups, {
   bool optional = false,
+  bool Function(String path, List<String> members)? settled,
 }) {
   final out = <String>[];
   final seen = <String>{};
   final laidOut = <String>{};
   final layouts = _layouts(specs);
+  void report(String path, List<String> members, String reason) {
+    if (settled?.call(path, members) ?? false) return;
+    out.add('$path [${members.join(', ')}]: $reason');
+  }
+
   // A shared helper carries its canonical occurrence's `path`, so the walk
   // tracks where each copy actually sits.
   void walk(NestedBlockSpec spec, List<String> at) {
     if (!seen.add(at.join('.'))) return;
     if (laidOut.add(spec.className)) {
       final layout = layouts[spec.className]!;
-      out.addAll(optional ? layout.skippedAtMostOne : layout.skipped);
+      for (final line in optional ? layout.skippedAtMostOne : layout.skipped) {
+        final m = _skipReport.firstMatch(line)!;
+        report(m[1]!, m[2]!.split(', '), m[3]!);
+      }
     }
     for (final c in spec.children) {
       walk(c, [...at, c.tfName]);
@@ -604,11 +614,14 @@ List<String> unsealedNestedGroups(
   for (final MapEntry(key: path, value: list) in groups.entries) {
     if (seen.contains(path)) continue;
     for (final group in list) {
-      out.add('$path [${group.join(', ')}]: the block has no typed helper');
+      report(path, group, 'the block has no typed helper');
     }
   }
   return out;
 }
+
+/// A helper layout's skipped group: `<path> [<members>]: <reason>`.
+final _skipReport = RegExp(r'^(\S+) \[([^\]]*)\]: (.*)$');
 
 /// The name of every group [renderNestedTypes] seals for [specs], each
 /// with its [sealedGroupKeyOf] key from the resource root, and any naming

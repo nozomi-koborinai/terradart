@@ -167735,11 +167735,17 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           dartType: 'bool',
         ),
         MigrateSlot(
-          tfName: 'object_lock_enabled',
-          dartName: 'objectLockEnabled',
-          kind: MigrateSlotKind.scalar,
+          tfName: '',
+          dartName: 'objectLock',
+          kind: MigrateSlotKind.sealed,
           required: false,
-          dartType: 'bool',
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'object_lock_configuration':
+                'S3BucketObjectLockConfigurationChoice',
+            'object_lock_enabled': 'S3BucketObjectLockEnabled',
+          },
         ),
         MigrateSlot(
           tfName: 'policy',
@@ -167794,13 +167800,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           required: false,
           wrapped: false,
           helper: 'S3BucketLogging',
-        ),
-        MigrateSlot(
-          tfName: 'object_lock_configuration',
-          dartName: 'objectLockConfiguration',
-          kind: MigrateSlotKind.passthrough,
-          required: false,
-          dartType: 'Map<String, dynamic>',
         ),
         MigrateSlot(
           tfName: 'replication_configuration',
@@ -209612,11 +209611,16 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'rule_json',
-          dartName: 'ruleJson',
-          kind: MigrateSlotKind.scalar,
+          tfName: '',
+          dartName: 'rules',
+          kind: MigrateSlotKind.sealed,
           required: false,
-          dartType: 'String',
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'rule': 'Wafv2WebAclRulesRule',
+            'rule_json': 'Wafv2WebAclRulesRuleJson',
+          },
         ),
         MigrateSlot(
           tfName: 'scope',
@@ -209695,13 +209699,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           required: false,
           wrapped: false,
           helper: 'Wafv2WebAclMonetizationConfig',
-        ),
-        MigrateSlot(
-          tfName: 'rule',
-          dartName: 'rule',
-          kind: MigrateSlotKind.passthrough,
-          required: false,
-          dartType: 'List<Map<String, dynamic>>',
         ),
         MigrateSlot(
           tfName: 'visibility_config',
@@ -372685,6 +372682,20 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       ],
       shorthand: 'kmsKeyId',
     ),
+    'S3BucketObjectLockConfigurationChoice': MigrateHelper(
+      className: 'S3BucketObjectLockConfigurationChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'object_lock_configuration',
+          dartName: 'objectLockConfiguration',
+          kind: MigrateSlotKind.passthrough,
+          required: true,
+          positional: true,
+          dartType: 'Map<String, dynamic>',
+        ),
+      ],
+      shorthand: 'objectLockConfiguration',
+    ),
     'S3BucketObjectLockConfigurationDefaultRetention': MigrateHelper(
       className: 'S3BucketObjectLockConfigurationDefaultRetention',
       slots: <MigrateSlot>[
@@ -372749,6 +372760,20 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           helper: 'S3BucketObjectLockConfigurationDefaultRetention',
         ),
       ],
+    ),
+    'S3BucketObjectLockEnabled': MigrateHelper(
+      className: 'S3BucketObjectLockEnabled',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'object_lock_enabled',
+          dartName: 'objectLockEnabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'bool',
+        ),
+      ],
+      shorthand: 'objectLockEnabled',
     ),
     'S3BucketOwnershipControlsRule': MigrateHelper(
       className: 'S3BucketOwnershipControlsRule',
@@ -405535,6 +405560,34 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           helper: 'Wafv2WebAclRuleTextTransformation',
         ),
       ],
+    ),
+    'Wafv2WebAclRulesRule': MigrateHelper(
+      className: 'Wafv2WebAclRulesRule',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'rule',
+          dartName: 'rule',
+          kind: MigrateSlotKind.passthrough,
+          required: true,
+          positional: true,
+          dartType: 'List<Map<String, dynamic>>',
+        ),
+      ],
+      shorthand: 'rule',
+    ),
+    'Wafv2WebAclRulesRuleJson': MigrateHelper(
+      className: 'Wafv2WebAclRulesRuleJson',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'rule_json',
+          dartName: 'ruleJson',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'ruleJson',
     ),
     'Wafv2WebAclVisibilityConfig': MigrateHelper(
       className: 'Wafv2WebAclVisibilityConfig',

@@ -194,6 +194,83 @@ final class S3BucketNameBucketPrefix extends S3BucketName {
   Map<String, TfArg<Object?>> get argMap => {'bucket_prefix': bucketPrefix};
 }
 
+/// At most one of `object_lock_configuration`, `object_lock_enabled` on `aws_s3_bucket`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.objectLockConfiguration(...)`.
+sealed class S3BucketObjectLock {
+  const S3BucketObjectLock();
+
+  /// Sets `object_lock_configuration`.
+  const factory S3BucketObjectLock.objectLockConfiguration(
+    TfArg<Map<String, dynamic>> objectLockConfiguration,
+  ) = S3BucketObjectLockConfigurationChoice;
+
+  /// Sets `object_lock_enabled`.
+  const factory S3BucketObjectLock.objectLockEnabled(
+    TfArg<bool> objectLockEnabled,
+  ) = S3BucketObjectLockEnabled;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [S3BucketObjectLock.objectLockConfiguration] choice: sets `object_lock_configuration`.
+final class S3BucketObjectLockConfigurationChoice extends S3BucketObjectLock {
+  const S3BucketObjectLockConfigurationChoice(this.objectLockConfiguration);
+
+  final TfArg<Map<String, dynamic>> objectLockConfiguration;
+
+  @internal
+  @override
+  String get blockKey => 'object_lock_configuration';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'object_lock_configuration': objectLockConfiguration.toTfJson(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'object_lock_configuration': objectLockConfiguration,
+  };
+}
+
+/// The [S3BucketObjectLock.objectLockEnabled] choice: sets `object_lock_enabled`.
+final class S3BucketObjectLockEnabled extends S3BucketObjectLock {
+  const S3BucketObjectLockEnabled(this.objectLockEnabled);
+
+  final TfArg<bool> objectLockEnabled;
+
+  @internal
+  @override
+  String get blockKey => 'object_lock_enabled';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'object_lock_enabled': objectLockEnabled.toTfJson(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'object_lock_enabled': objectLockEnabled,
+  };
+}
+
 /// Typed helper for the `cors_rule` block of
 /// `aws_s3_bucket` (derived from provider schema).
 @immutable
@@ -883,7 +960,7 @@ final class AwsS3Bucket extends Resource {
     S3BucketName? name,
     S3BucketNamespace? bucketNamespace,
     TfArg<bool>? forceDestroy,
-    TfArg<bool>? objectLockEnabled,
+    S3BucketObjectLock? objectLock,
     TfArg<String>? policy,
     TfArg<String>? region,
     S3BucketRequestPayer? requestPayer,
@@ -891,7 +968,6 @@ final class AwsS3Bucket extends Resource {
     List<S3BucketCorsRule>? corsRule,
     List<S3BucketLifecycleRule>? lifecycleRule,
     S3BucketLogging? logging,
-    TfArg<Map<String, dynamic>>? objectLockConfiguration,
     S3BucketReplicationConfiguration? replicationConfiguration,
     TfArg<Map<String, dynamic>>? serverSideEncryptionConfiguration,
     S3BucketVersioning? versioning,
@@ -908,7 +984,7 @@ final class AwsS3Bucket extends Resource {
            ...?name?.argMap,
            'bucket_namespace': ?bucketNamespace,
            'force_destroy': ?forceDestroy,
-           'object_lock_enabled': ?objectLockEnabled,
+           ...?objectLock?.argMap,
            'policy': ?policy,
            'region': ?region,
            'request_payer': ?requestPayer,
@@ -920,7 +996,6 @@ final class AwsS3Bucket extends Resource {
                for (final e in lifecycleRule) e.encode(),
              ]),
            if (logging != null) 'logging': TfArg.literal(logging.encode()),
-           'object_lock_configuration': ?objectLockConfiguration,
            if (replicationConfiguration != null)
              'replication_configuration': TfArg.literal(
                replicationConfiguration.encode(),

@@ -68,7 +68,8 @@ curatedDoc: |-
   ///     type: BigqueryConnectionCloudSqlType.postgres,
   ///     credential: .new(
   ///       username: TfArg.literal('bq_federation'),
-  ///       password: pgPasswordVar,
+  ///       password: .passwordWo(pgPasswordVar),
+  ///       passwordWoVersion: TfArg.literal('1'),
   ///     ),
   ///   ),
   /// );
@@ -241,21 +242,78 @@ prelude: |
     const BigqueryConnectionCloudSqlCredential({
       required this.username,
       required this.password,
+      this.passwordWoVersion,
     });
 
     /// Required. Database user name.
     final TfArg<String> username;
 
-    /// Required. Database user password. Wire it to a Secret
-    /// Manager-backed variable rather than a literal — the value is
-    /// schema-flagged sensitive and is masked in the rendered
-    /// `main.tf.json` via the generated `sensitiveFields` set.
-    final TfArg<String> password;
+    /// Required. Database user password, as exactly one of
+    /// [BigqueryConnectionCloudSqlPassword.password] or the write-only
+    /// [BigqueryConnectionCloudSqlPassword.passwordWo].
+    final BigqueryConnectionCloudSqlPassword password;
+
+    /// Version tag of a write-only password. Change it to make Terraform
+    /// send the current `passwordWo` again.
+    final TfArg<String>? passwordWoVersion;
 
     Map<String, Object?> toArgMap() => {
       'username': username.toTfJson(),
-      'password': password.toTfJson(),
+      ...password.encode(),
+      'password_wo_version': ?passwordWoVersion?.toTfJson(),
     };
+  }
+
+  /// `cloud_sql.credential` password: the provider takes exactly one of
+  /// `password` and `password_wo`.
+  sealed class BigqueryConnectionCloudSqlPassword {
+    const BigqueryConnectionCloudSqlPassword();
+
+    /// Sets `password`. Wire it to a Secret Manager-backed variable rather
+    /// than a literal: the value is stored in Terraform state, and the
+    /// generated `sensitiveFields` set masks it in `main.tf.json`.
+    const factory BigqueryConnectionCloudSqlPassword.password(TfArg<String> password) = BigqueryConnectionCloudSqlPasswordChoice;
+
+    /// Sets `password_wo` (Terraform 1.11+), which never lands in state.
+    const factory BigqueryConnectionCloudSqlPassword.passwordWo(TfArg<String> passwordWo) = BigqueryConnectionCloudSqlPasswordWo;
+
+    @internal
+    String get blockKey;
+
+    @internal
+    Map<String, Object?> encode();
+  }
+
+  /// The [BigqueryConnectionCloudSqlPassword.password] choice.
+  final class BigqueryConnectionCloudSqlPasswordChoice
+      extends BigqueryConnectionCloudSqlPassword {
+    const BigqueryConnectionCloudSqlPasswordChoice(this.password);
+
+    final TfArg<String> password;
+
+    @override
+    @internal
+    String get blockKey => 'password';
+
+    @override
+    @internal
+    Map<String, Object?> encode() => {'password': password.toTfJson()};
+  }
+
+  /// The [BigqueryConnectionCloudSqlPassword.passwordWo] choice.
+  final class BigqueryConnectionCloudSqlPasswordWo
+      extends BigqueryConnectionCloudSqlPassword {
+    const BigqueryConnectionCloudSqlPasswordWo(this.passwordWo);
+
+    final TfArg<String> passwordWo;
+
+    @override
+    @internal
+    String get blockKey => 'password_wo';
+
+    @override
+    @internal
+    Map<String, Object?> encode() => {'password_wo': passwordWo.toTfJson()};
   }
 
   /// `cloud_sql` block — federated queries against a Cloud SQL Postgres

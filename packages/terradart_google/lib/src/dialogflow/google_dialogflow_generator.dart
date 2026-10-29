@@ -57,6 +57,117 @@ final class DialogflowGeneratorSummarizationContext {
   };
 }
 
+/// Exactly one of `summarization_context`, `free_form_context`, `agent_coaching_context` on `google_dialogflow_generator`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.summarizationContext(...)`.
+sealed class DialogflowGeneratorContext {
+  const DialogflowGeneratorContext();
+
+  /// Sets `summarization_context`.
+  const factory DialogflowGeneratorContext.summarizationContext(
+    DialogflowGeneratorSummarizationContext summarizationContext,
+  ) = DialogflowGeneratorSummarizationContextChoice;
+
+  /// Sets `free_form_context`.
+  const factory DialogflowGeneratorContext.freeFormContext(
+    DialogflowGeneratorFreeFormContext freeFormContext,
+  ) = DialogflowGeneratorFreeFormContextChoice;
+
+  /// Sets `agent_coaching_context`.
+  const factory DialogflowGeneratorContext.agentCoachingContext(
+    DialogflowGeneratorAgentCoachingContext agentCoachingContext,
+  ) = DialogflowGeneratorAgentCoachingContextChoice;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [DialogflowGeneratorContext.summarizationContext] choice: sets `summarization_context`.
+final class DialogflowGeneratorSummarizationContextChoice
+    extends DialogflowGeneratorContext {
+  const DialogflowGeneratorSummarizationContextChoice(
+    this.summarizationContext,
+  );
+
+  final DialogflowGeneratorSummarizationContext summarizationContext;
+
+  @internal
+  @override
+  String get blockKey => 'summarization_context';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'summarization_context': [summarizationContext.encode()],
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'summarization_context': TfArg.literal([summarizationContext.encode()]),
+  };
+}
+
+/// The [DialogflowGeneratorContext.freeFormContext] choice: sets `free_form_context`.
+final class DialogflowGeneratorFreeFormContextChoice
+    extends DialogflowGeneratorContext {
+  const DialogflowGeneratorFreeFormContextChoice(this.freeFormContext);
+
+  final DialogflowGeneratorFreeFormContext freeFormContext;
+
+  @internal
+  @override
+  String get blockKey => 'free_form_context';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'free_form_context': freeFormContext.encode(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'free_form_context': TfArg.literal(freeFormContext.encode()),
+  };
+}
+
+/// The [DialogflowGeneratorContext.agentCoachingContext] choice: sets `agent_coaching_context`.
+final class DialogflowGeneratorAgentCoachingContextChoice
+    extends DialogflowGeneratorContext {
+  const DialogflowGeneratorAgentCoachingContextChoice(
+    this.agentCoachingContext,
+  );
+
+  final DialogflowGeneratorAgentCoachingContext agentCoachingContext;
+
+  @internal
+  @override
+  String get blockKey => 'agent_coaching_context';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'agent_coaching_context': agentCoachingContext.encode(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'agent_coaching_context': TfArg.literal(agentCoachingContext.encode()),
+  };
+}
+
 /// Typed helper for the `agent_coaching_context` block of
 /// `google_dialogflow_generator` (derived from provider schema).
 @immutable
@@ -205,7 +316,7 @@ final class DialogflowGeneratorInferenceParameter {
 /// start a conversation, call DetectIntent, or run summarization.
 ///
 /// Prefer a thin smoke stack: [location] `global`, [triggerEvent]
-/// `MANUAL_CALL`, and a [summarizationContext] with version `4.0`
+/// `MANUAL_CALL`, and a summarization [context] with version `4.0`
 /// plus `en`. Omit [publishedModel], inference parameters, few-shot
 /// examples, and summarization sections. Set [deletionPolicy] to
 /// `DELETE`.
@@ -221,9 +332,11 @@ final class DialogflowGeneratorInferenceParameter {
 ///   location: TfArg.literal('global'),
 ///   description: TfArg.literal('terradart summarization generator'),
 ///   triggerEvent: DialogflowGeneratorTriggerEvent.manualCall,
-///   summarizationContext: DialogflowGeneratorSummarizationContext(
-///     version: TfArg.literal('4.0'),
-///     outputLanguageCode: TfArg.literal('en'),
+///   context: .summarizationContext(
+///     DialogflowGeneratorSummarizationContext(
+///       version: TfArg.literal('4.0'),
+///       outputLanguageCode: TfArg.literal('en'),
+///     ),
 ///   ),
 ///   deletionPolicy: TfArg.literal('DELETE'),
 /// );
@@ -237,7 +350,7 @@ final class GoogleDialogflowGenerator extends Resource {
     TfArg<String>? generatorId,
     TfArg<String>? description,
     DialogflowGeneratorTriggerEvent? triggerEvent,
-    required DialogflowGeneratorSummarizationContext summarizationContext,
+    required DialogflowGeneratorContext context,
     TfArg<String>? publishedModel,
     DialogflowGeneratorInferenceParameter? inferenceParameter,
     TfArg<String>? project,
@@ -253,9 +366,7 @@ final class GoogleDialogflowGenerator extends Resource {
            'generator_id': ?generatorId,
            'description': ?description,
            'trigger_event': ?triggerEvent,
-           'summarization_context': TfArg.literal([
-             summarizationContext.encode(),
-           ]),
+           ...context.argMap,
            'published_model': ?publishedModel,
            if (inferenceParameter != null)
              'inference_parameter': TfArg.literal(inferenceParameter.encode()),

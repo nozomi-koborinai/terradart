@@ -120,6 +120,9 @@ export 'src/wafv2/aws_wafv2_web_acl.dart'
         Wafv2WebAclPaymentNetwork,
         Wafv2WebAclPrices,
         Wafv2WebAclRequestBody,
+        Wafv2WebAclRules,
+        Wafv2WebAclRulesRule,
+        Wafv2WebAclRulesRuleJson,
         Wafv2WebAclScope,
         Wafv2WebAclVisibilityConfig;
 export 'src/wafv2/aws_wafv2_web_acl_association.dart'

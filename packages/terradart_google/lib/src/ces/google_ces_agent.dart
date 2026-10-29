@@ -706,6 +706,7 @@ final class GoogleCesAgent extends Resource {
     CesAgentLlmAgent? llmAgent,
     CesAgentModelSettings? modelSettings,
     CesAgentRemoteDialogflowAgent? remoteDialogflowAgent,
+    CesAgentRemoteA2aAgent? remoteA2aAgent,
     TfArg<List<String>>? tools,
     List<CesAgentToolsets>? toolsets,
     TfArg<List<String>>? guardrails,
@@ -739,6 +740,8 @@ final class GoogleCesAgent extends Resource {
              'remote_dialogflow_agent': TfArg.literal(
                remoteDialogflowAgent.encode(),
              ),
+           if (remoteA2aAgent != null)
+             'remote_a2a_agent': TfArg.literal(remoteA2aAgent.encode()),
            'tools': ?tools,
            if (toolsets != null)
              'toolsets': TfArg.literal([for (final e in toolsets) e.encode()]),

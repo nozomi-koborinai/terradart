@@ -64,7 +64,9 @@ class WrapCommand extends Command<int> {
         negatable: false,
         help:
             'CI gate mode: fail (E301) if any emitted file differs from '
-            'its on-disk counterpart. Implies no writes.',
+            'its on-disk counterpart, if an exclusive group is neither '
+            'sealed nor named in the override\'s unsealedGroups, or if a '
+            'derived helper is unreachable. Implies no writes.',
       )
       ..addFlag(
         'force',
@@ -330,12 +332,8 @@ class WrapCommand extends Command<int> {
     } else {
       providerEnums = ProviderEnums.off;
     }
-    providerEnums = providerEnums.withinSchema(
-      mergedIr,
-      dropped: (g) => stderr.writeln(
-        'terradart wrap: exclusive group names no schema input: $g',
-      ),
-    );
+    final dropped = <DroppedGroup>[];
+    providerEnums = providerEnums.withinSchema(mergedIr, dropped: dropped.add);
     final ir = providerEnums.enrich(mergedIr);
 
     // 2. Resolve the YAML override root: the --overrides-root flag when
@@ -557,12 +555,29 @@ class WrapCommand extends Command<int> {
     );
     final resourceOverrides = exactlyOne.overrides.resources;
     final dataSourceOverrides = exactlyOne.overrides.dataSources;
-    for (final s in exactlyOne.skipped) {
-      stderr.writeln('terradart wrap: exactly-one group not sealed: $s');
-    }
-    for (final s in exactlyOne.skippedAtMostOne) {
-      stderr.writeln('terradart wrap: at-most-one group not sealed: $s');
-    }
+    // `--check` fails on each of these: a group neither sealed nor named in
+    // its override's `unsealedGroups`, a stale `unsealedGroups` entry, and a
+    // derived helper no constructor reaches.
+    final excused = exactlyOne.excused.toSet();
+    final unsealed = <String>[
+      for (final g in dropped) ?_droppedReport(g, loaded, mmOverrides, excused),
+      for (final s in exactlyOne.skipped) 'exactly-one group not sealed: $s',
+      for (final s in exactlyOne.skippedAtMostOne)
+        'at-most-one group not sealed: $s',
+    ];
+    final staleUnsealed = [
+      if (providerEnums.hasGroupSource)
+        for (final kind in WrapperOverrideKind.values)
+          for (final MapEntry(key: type, value: o) in loaded.of(kind).entries)
+            for (final k in (o.unsealedGroups ?? const <String, String>{}).keys)
+              if (!excused.contains((
+                type: loaded.lintKey(type, kind),
+                key: sealedGroupKeyOf(const [], sealedGroupKey(k)),
+              )))
+                '${kind.label(type)} unsealedGroups "$k" matches no group wrap '
+                    'leaves unsealed; remove it',
+    ];
+    final unreachable = <String>[];
     if (exactlyOne.nameErrors.isNotEmpty) {
       for (final e in exactlyOne.nameErrors) {
         stderr.writeln('[E406] terradart wrap: $e');
@@ -659,9 +674,9 @@ class WrapCommand extends Command<int> {
       typedReferenceKeys.addAll(resourceEmitter.typedReferences);
       unreachableReferenceKeys.addAll(resourceEmitter.unreachableReferences);
       for (final block in resourceEmitter.unreachableHelpers) {
-        stderr.writeln(
-          'terradart wrap: nested helper not reachable from the '
-          'constructor: ${entry.key}.$block',
+        unreachable.add(
+          'nested helper not reachable from the constructor: '
+          '${entry.key}.$block',
         );
       }
       final dartSrc = generatedFileHeader + formatter.format(raw);
@@ -912,7 +927,17 @@ class WrapCommand extends Command<int> {
           '$debtPath: $m has no entry (name it in sealedNames, or run '
               '`terradart wrap` to record it)',
         for (final s in debt?.stale ?? const <String>[]) '$debtPath: $s',
+        for (final u in unsealed)
+          '$u (seal it, or give the reason in the override\'s '
+              'unsealedGroups)',
+        ...staleUnsealed,
+        for (final u in unreachable)
+          '$u (add the block to paramOrder, or list it in '
+              'nestedTypeExcludes)',
       ]);
+    }
+    for (final u in [...unsealed, ...staleUnsealed, ...unreachable]) {
+      stderr.writeln('terradart wrap: $u');
     }
 
     // 6. Materialise. Create parent dirs lazily; writeAsStringSync is
@@ -1018,6 +1043,32 @@ class WrapCommand extends Command<int> {
     stderr.writeln('\nRun `terradart wrap` to regenerate.');
     return CliExitCodes.dataError;
   }
+}
+
+/// How `wrap` reports a [group] `withinSchema` dropped, or null when the
+/// drop needs no decision: the type has no factory, its override's
+/// `unsealedGroups` names the group (added to [excused]), or every missing
+/// member is a `min_version: beta` property of the MM YAML, which a GA
+/// schema lacks.
+String? _droppedReport(
+  DroppedGroup group,
+  LoadedOverrides loaded,
+  Map<String, MmResourceOverrides> mm,
+  Set<UnsealedGroup> excused,
+) {
+  final o = loaded.of(group.kind)[group.type];
+  if (o == null) return null;
+  final key = sealedGroupKeyOf(const [], group.members);
+  if (unsealedGroupKeys(o).contains(key)) {
+    excused.add((type: loaded.lintKey(group.type, group.kind), key: key));
+    return null;
+  }
+  final beta = group.kind == WrapperOverrideKind.resource
+      ? mm[group.type]?.betaPaths
+      : null;
+  if (beta != null && group.missing.every(beta.contains)) return null;
+  return 'exclusive group names no schema input: '
+      '${group.kind.label(group.type)} [${group.members.join(', ')}]';
 }
 
 bool _isGeneratedFile(File file) {

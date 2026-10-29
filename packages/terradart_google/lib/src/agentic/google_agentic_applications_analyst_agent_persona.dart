@@ -914,6 +914,7 @@ final class GoogleAgenticApplicationsAnalystAgentPersona extends Resource {
     List<AgenticApplicationsAnalystAgentPersonaExternalDataSources>?
     externalDataSources,
     List<AgenticApplicationsAnalystAgentPersonaMcpDataSources>? mcpDataSources,
+    AgenticApplicationsAnalystAgentPersonaWebSearchConfig? webSearchConfig,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,
@@ -953,6 +954,8 @@ final class GoogleAgenticApplicationsAnalystAgentPersona extends Resource {
              'mcp_data_sources': TfArg.literal([
                for (final e in mcpDataSources) e.encode(),
              ]),
+           if (webSearchConfig != null)
+             'web_search_config': TfArg.literal(webSearchConfig.encode()),
            'deletion_policy': ?deletionPolicy,
            'project': ?project,
          },

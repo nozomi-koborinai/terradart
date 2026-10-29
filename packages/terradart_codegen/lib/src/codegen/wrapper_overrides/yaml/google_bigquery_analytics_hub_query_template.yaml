@@ -40,5 +40,6 @@ paramOrder:
   - primary_contact
   - routine
   - submit
+  - encryption_configuration
   - deletion_policy
   - project

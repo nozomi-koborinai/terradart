@@ -118,5 +118,6 @@ paramOrder:
   - artifacts_config
   - external_data_sources
   - mcp_data_sources
+  - web_search_config
   - deletion_policy
   - project

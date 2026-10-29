@@ -88,6 +88,73 @@ final class Wafv2WebAclNamePrefix extends Wafv2WebAclName {
   Map<String, TfArg<Object?>> get argMap => {'name_prefix': namePrefix};
 }
 
+/// At most one of `rule`, `rule_json` on `aws_wafv2_web_acl`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.rule(...)`.
+sealed class Wafv2WebAclRules {
+  const Wafv2WebAclRules();
+
+  /// Sets `rule`.
+  const factory Wafv2WebAclRules.rule(TfArg<List<Map<String, dynamic>>> rule) =
+      Wafv2WebAclRulesRule;
+
+  /// Sets `rule_json`.
+  const factory Wafv2WebAclRules.ruleJson(TfArg<String> ruleJson) =
+      Wafv2WebAclRulesRuleJson;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [Wafv2WebAclRules.rule] choice: sets `rule`.
+final class Wafv2WebAclRulesRule extends Wafv2WebAclRules {
+  const Wafv2WebAclRulesRule(this.rule);
+
+  final TfArg<List<Map<String, dynamic>>> rule;
+
+  @internal
+  @override
+  String get blockKey => 'rule';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'rule': rule.toTfJson()};
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'rule': rule};
+}
+
+/// The [Wafv2WebAclRules.ruleJson] choice: sets `rule_json`.
+final class Wafv2WebAclRulesRuleJson extends Wafv2WebAclRules {
+  const Wafv2WebAclRulesRuleJson(this.ruleJson);
+
+  final TfArg<String> ruleJson;
+
+  @internal
+  @override
+  String get blockKey => 'rule_json';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'rule_json': ruleJson.toTfJson()};
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'rule_json': ruleJson};
+}
+
 /// Typed helper for the `association_config` block of
 /// `aws_wafv2_web_acl` (derived from provider schema).
 @immutable
@@ -514,7 +581,7 @@ final class AwsWafv2WebAcl extends Resource {
     TfArg<String>? description,
     Wafv2WebAclName? name,
     TfArg<String>? region,
-    TfArg<String>? ruleJson,
+    Wafv2WebAclRules? rules,
     required Wafv2WebAclScope scope,
     TfArg<Map<String, String>>? tags,
     TfArg<List<String>>? tokenDomains,
@@ -525,7 +592,6 @@ final class AwsWafv2WebAcl extends Resource {
     Wafv2WebAclDataProtectionConfig? dataProtectionConfig,
     required Wafv2WebAclDefaultAction defaultAction,
     Wafv2WebAclMonetizationConfig? monetizationConfig,
-    TfArg<List<Map<String, dynamic>>>? rule,
     required Wafv2WebAclVisibilityConfig visibilityConfig,
     super.lifecycle,
     super.dependsOn,
@@ -537,7 +603,7 @@ final class AwsWafv2WebAcl extends Resource {
            'description': ?description,
            ...?name?.argMap,
            'region': ?region,
-           'rule_json': ?ruleJson,
+           ...?rules?.argMap,
            'scope': scope,
            'tags': ?tags,
            'token_domains': ?tokenDomains,
@@ -558,7 +624,6 @@ final class AwsWafv2WebAcl extends Resource {
            'default_action': TfArg.literal(defaultAction.encode()),
            if (monetizationConfig != null)
              'monetization_config': TfArg.literal(monetizationConfig.encode()),
-           'rule': ?rule,
            'visibility_config': TfArg.literal(visibilityConfig.encode()),
          },
        );

@@ -271,6 +271,98 @@ properties:
         ['basic_sli.latency', 'basic_sli.availability'],
       ]);
     });
+
+    test('resolves members upstream writes from another block', () {
+      final result = const MmYamlParser().parseString('''
+properties:
+  - name: postgresqlProfile
+    properties:
+      - name: sslConfig
+        properties:
+          - name: serverVerification
+            exactly_one_of:
+              - ssl_config.0.server_verification
+              - ssl_config.0.server_and_client_verification
+          - name: serverAndClientVerification
+  - name: tlsSettings
+    properties:
+      - name: subjectAltNames
+        type: Array
+        item_type:
+          properties:
+            - name: dnsName
+              exactly_one_of:
+                - tlsSettings.0.dns_name
+                - tlsSettings.0.uniform_resource_identifier
+            - name: uniformResourceIdentifier
+  - name: eventConfig
+    exactly_one_of:
+      - pull_request
+      - push
+    properties:
+      - name: pullRequest
+      - name: push
+        exactly_one_of:
+          - branch
+          - tag
+        properties:
+          - name: branch
+          - name: tag
+''');
+      expect(result.exactlyOneOfPaths, [
+        [
+          'postgresql_profile.ssl_config.server_verification',
+          'postgresql_profile.ssl_config.server_and_client_verification',
+        ],
+        [
+          'tls_settings.subject_alt_names.dns_name',
+          'tls_settings.subject_alt_names.uniform_resource_identifier',
+        ],
+        ['event_config.pull_request', 'event_config.push'],
+        ['event_config.push.branch', 'event_config.push.tag'],
+      ]);
+    });
+
+    test('a bare member that is no sibling names the root input', () {
+      final result = const MmYamlParser().parseString('''
+properties:
+  - name: network
+    exactly_one_of:
+      - network
+      - subnet.0.name
+  - name: subnet
+    properties:
+      - name: name
+        exactly_one_of:
+          - network
+          - subnet.0.name
+''');
+      expect(
+        result.exactlyOneOfPaths,
+        isEmpty,
+        reason: '[network, subnet.name] spans two blocks',
+      );
+    });
+
+    test('betaPaths are the beta properties and every one below', () {
+      final result = const MmYamlParser().parseString('''
+properties:
+  - name: memberKey
+    min_version: beta
+    properties:
+      - name: id
+  - name: preferredMemberKey
+    properties:
+      - name: id
+      - name: namespace
+        min_version: beta
+''');
+      expect(result.betaPaths, {
+        'member_key',
+        'member_key.id',
+        'preferred_member_key.namespace',
+      });
+    });
   });
 
   group('atMostOneOfPaths', () {

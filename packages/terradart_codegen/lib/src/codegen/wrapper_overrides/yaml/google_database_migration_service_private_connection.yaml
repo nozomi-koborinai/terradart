@@ -25,3 +25,8 @@ paramOrder:
   - project
   - vpc_peering_config
   - psc_interface_config
+  - reserved_public_ip_config
+
+# The API's `connectivity` oneof.
+sealedNames:
+  "psc_interface_config, reserved_public_ip_config, vpc_peering_config": connectivity

@@ -36,6 +36,10 @@ _Avoid_: MM YAML, override enum
 The name of a sealed argument, like a protobuf `oneof`: what its members are alternatives *of* (`code` for `filename` / `image_uri` / `s3_bucket`), not the members joined together. The slot takes it (`code:`), the sealed type is `<ResourceStem><Concept>` (`LambdaFunctionCode`), and each member is a factory constructor on that type (`.filename(...)`). It comes from the override's `sealedNames`, else is derived from the members, else falls back to the members joined with `Or` and waits in the sealed-name ledger (`tool/sealed_name_debt.yaml`, reason `awaiting-name:`).
 _Avoid_: Or name, option type
 
+**Unsealed group**:
+An exclusive group a factory keeps as separate arguments, because sealing it would misstate the provider (its Magic Modules YAML describes the REST API of a hand-written resource, say). The override's `unsealedGroups` names it with the reason. `wrap --check` fails on any other group it cannot seal, and on an entry that names no such group.
+_Avoid_: exactly-one debt, lint exemption
+
 **Synth issue**:
 One reason a Stack cannot synthesize — a subtype of the sealed `SynthIssue` (`UnregisteredReference`, `SensitiveLiteral`, `MissingProvider`, ...) carrying the address of the block that holds it and a fix. Synth collects every issue before it encodes anything and throws them together as one `SynthException`; `Stack.validate()` returns them without throwing. A name problem is not a synth issue: `add` / `variable` / `addOutput` throw `ArgumentError` where the name is registered.
 _Avoid_: Synth error, validation failure

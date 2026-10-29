@@ -102,6 +102,16 @@ extension ProviderSchemaIRByKind on ProviderSchemaIR {
 ///    dialect ([parseAvailableValues]), which the GA google schema also
 ///    contains and so stays behind this gate.
 ///
+/// A group [ProviderEnums.withinSchema] drops, because fewer than two of
+/// its [members] are inputs of the [type] of [kind]: the others are
+/// [missing].
+typedef DroppedGroup = ({
+  WrapperOverrideKind kind,
+  String type,
+  List<String> members,
+  List<String> missing,
+});
+
 /// [off] is every lane's default and changes nothing.
 final class ProviderEnums {
   const ProviderEnums._({
@@ -277,11 +287,11 @@ final class ProviderEnums {
   /// providers, so a GA lane reads `conflicts` / `exactly_one_of` naming
   /// `min_version: beta` fields, and some upstream paths name a field at
   /// the wrong depth; neither is a constraint a constructor can express.
-  /// [dropped] hears each group no input is left of but one or none, as
-  /// `type [members]` (`data.type [members]` for a data source).
+  /// [dropped] hears each group no input is left of but one or none, with
+  /// the members that are not inputs.
   ProviderEnums withinSchema(
     ProviderSchemaIR ir, {
-    void Function(String group)? dropped,
+    void Function(DroppedGroup group)? dropped,
   }) => _withTables((kind, table) {
     final defs = ir.of(kind);
     Map<String, List<List<String>>> keep(Map<String, List<List<String>>> all) {
@@ -301,7 +311,15 @@ final class ProviderEnums {
           if (inputs.length >= 2) {
             kept.add(inputs);
           } else {
-            dropped?.call('${kind.label(type)} [${g.join(', ')}]');
+            dropped?.call((
+              kind: kind,
+              type: type,
+              members: g,
+              missing: [
+                for (final m in g)
+                  if (!inputs.contains(m)) m,
+              ],
+            ));
           }
         }
         if (kept.isNotEmpty) out[type] = kept;

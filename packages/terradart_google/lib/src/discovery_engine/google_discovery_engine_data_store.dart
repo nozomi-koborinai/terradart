@@ -148,27 +148,94 @@ final class DiscoveryEngineDataStoreLayoutBasedChunkingConfig {
   };
 }
 
-/// Typed helper for the `document_processing_config.default_parsing_config` block of
-/// `google_discovery_engine_data_store` (derived from provider schema).
-@immutable
-final class DiscoveryEngineDataStoreDefaultParsingConfig {
-  const DiscoveryEngineDataStoreDefaultParsingConfig({
-    this.digitalParsingConfig,
-    this.layoutParsingConfig,
-    this.ocrParsingConfig,
-  });
+/// Exactly one of `digital_parsing_config`, `ocr_parsing_config`, `layout_parsing_config` on the `document_processing_config.default_parsing_config` block of `google_discovery_engine_data_store`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.digitalParsingConfig(...)`.
+sealed class DiscoveryEngineDataStoreDefaultParsingConfig {
+  const DiscoveryEngineDataStoreDefaultParsingConfig();
 
-  final DiscoveryEngineDataStoreDigitalParsingConfig? digitalParsingConfig;
+  /// Sets `digital_parsing_config`.
+  const factory DiscoveryEngineDataStoreDefaultParsingConfig.digitalParsingConfig([
+    DiscoveryEngineDataStoreDigitalParsingConfig digitalParsingConfig,
+  ]) = DiscoveryEngineDataStoreDefaultParsingConfigDigitalParsingConfig;
 
-  final DiscoveryEngineDataStoreLayoutParsingConfig? layoutParsingConfig;
+  /// Sets `ocr_parsing_config`.
+  const factory DiscoveryEngineDataStoreDefaultParsingConfig.ocrParsingConfig(
+    DiscoveryEngineDataStoreOcrParsingConfig ocrParsingConfig,
+  ) = DiscoveryEngineDataStoreDefaultParsingConfigOcrParsingConfig;
 
-  final DiscoveryEngineDataStoreOcrParsingConfig? ocrParsingConfig;
+  /// Sets `layout_parsing_config`.
+  const factory DiscoveryEngineDataStoreDefaultParsingConfig.layoutParsingConfig(
+    DiscoveryEngineDataStoreLayoutParsingConfig layoutParsingConfig,
+  ) = DiscoveryEngineDataStoreDefaultParsingConfigLayoutParsingConfig;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
 
   @internal
+  Map<String, Object?> encode();
+}
+
+/// The [DiscoveryEngineDataStoreDefaultParsingConfig.digitalParsingConfig] choice: sets `digital_parsing_config`.
+final class DiscoveryEngineDataStoreDefaultParsingConfigDigitalParsingConfig
+    extends DiscoveryEngineDataStoreDefaultParsingConfig {
+  const DiscoveryEngineDataStoreDefaultParsingConfigDigitalParsingConfig([
+    this.digitalParsingConfig =
+        const DiscoveryEngineDataStoreDigitalParsingConfig(),
+  ]);
+
+  final DiscoveryEngineDataStoreDigitalParsingConfig digitalParsingConfig;
+
+  @internal
+  @override
+  String get blockKey => 'digital_parsing_config';
+
+  @internal
+  @override
   Map<String, Object?> encode() => {
-    'digital_parsing_config': ?digitalParsingConfig?.encode(),
-    'layout_parsing_config': ?layoutParsingConfig?.encode(),
-    'ocr_parsing_config': ?ocrParsingConfig?.encode(),
+    'digital_parsing_config': digitalParsingConfig.encode(),
+  };
+}
+
+/// The [DiscoveryEngineDataStoreDefaultParsingConfig.ocrParsingConfig] choice: sets `ocr_parsing_config`.
+final class DiscoveryEngineDataStoreDefaultParsingConfigOcrParsingConfig
+    extends DiscoveryEngineDataStoreDefaultParsingConfig {
+  const DiscoveryEngineDataStoreDefaultParsingConfigOcrParsingConfig(
+    this.ocrParsingConfig,
+  );
+
+  final DiscoveryEngineDataStoreOcrParsingConfig ocrParsingConfig;
+
+  @internal
+  @override
+  String get blockKey => 'ocr_parsing_config';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'ocr_parsing_config': ocrParsingConfig.encode(),
+  };
+}
+
+/// The [DiscoveryEngineDataStoreDefaultParsingConfig.layoutParsingConfig] choice: sets `layout_parsing_config`.
+final class DiscoveryEngineDataStoreDefaultParsingConfigLayoutParsingConfig
+    extends DiscoveryEngineDataStoreDefaultParsingConfig {
+  const DiscoveryEngineDataStoreDefaultParsingConfigLayoutParsingConfig(
+    this.layoutParsingConfig,
+  );
+
+  final DiscoveryEngineDataStoreLayoutParsingConfig layoutParsingConfig;
+
+  @internal
+  @override
+  String get blockKey => 'layout_parsing_config';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'layout_parsing_config': layoutParsingConfig.encode(),
   };
 }
 

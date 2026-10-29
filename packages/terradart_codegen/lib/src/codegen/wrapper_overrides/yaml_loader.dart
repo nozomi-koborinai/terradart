@@ -166,6 +166,7 @@ class YamlOverrideLoader {
     'typeNames',
     'exactlyOneOf',
     'atMostOneOf',
+    'unsealedGroups',
     // 4 Phase 4.1 axes (kind dispatch + emitter routing).
     'kind',
     'outputDir',
@@ -465,7 +466,30 @@ class YamlOverrideLoader {
       typeNames: _readTypeNames(yaml, filePath),
       exactlyOneOf: _readGroups(yaml, 'exactlyOneOf', filePath),
       atMostOneOf: _readGroups(yaml, 'atMostOneOf', filePath),
+      unsealedGroups: _readUnsealedGroups(yaml, filePath),
     );
+  }
+
+  /// The `unsealedGroups` axis: a string map whose keys are comma-separated
+  /// member paths and whose values are the reasons, never empty.
+  Map<String, String>? _readUnsealedGroups(YamlMap yaml, String filePath) {
+    final reasons = _readStringMap(yaml, 'unsealedGroups', filePath);
+    if (reasons == null) return null;
+    for (final MapEntry(:key, :value) in reasons.entries) {
+      if (sealedGroupKey(key).length < 2) {
+        throw FormatException(
+          '$filePath: unsealedGroups key "$key" must list the group\'s '
+          'members, comma-separated.',
+        );
+      }
+      if (value.trim().isEmpty) {
+        throw FormatException(
+          '$filePath: unsealedGroups "$key" needs the reason the group '
+          'stays unsealed.',
+        );
+      }
+    }
+    return reasons;
   }
 
   /// The `exactlyOneOf` / `atMostOneOf` axes: a string list whose entries

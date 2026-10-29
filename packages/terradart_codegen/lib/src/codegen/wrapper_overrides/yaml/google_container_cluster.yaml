@@ -83,6 +83,7 @@ paramOrder:
   - ip_allocation_policy
   - logging_config
   - maintenance_policy
+  - managed_opentelemetry_config
   - master_auth
   - master_authorized_networks_config
   - mesh_certificates

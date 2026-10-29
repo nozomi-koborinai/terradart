@@ -336,6 +336,13 @@ final class WrapperOverride {
   /// of: each becomes a nullable sealed slot or field.
   final List<String>? atMostOneOf;
 
+  /// Exclusive groups the group source declares that this factory does not
+  /// seal: group key → the reason, for a reviewer. The key is a
+  /// [sealedNames] key, or the members `wrap` reports for a group that
+  /// names no schema input. `wrap --check` fails on a group it can neither
+  /// seal nor find here, and on an entry that matches no such group.
+  final Map<String, String>? unsealedGroups;
+
   /// Snake-case slot name → custom constructor / argMap snippets.
   ///
   /// Two use cases:
@@ -442,6 +449,7 @@ final class WrapperOverride {
     this.typeNames,
     this.exactlyOneOf,
     this.atMostOneOf,
+    this.unsealedGroups,
   }) : sealedArguments = const [];
 
   WrapperOverride._copy(
@@ -476,7 +484,8 @@ final class WrapperOverride {
        sealedNames = base.sealedNames,
        typeNames = base.typeNames,
        exactlyOneOf = base.exactlyOneOf,
-       atMostOneOf = base.atMostOneOf;
+       atMostOneOf = base.atMostOneOf,
+       unsealedGroups = base.unsealedGroups;
 
   /// This override with [dartTypeOverrides] replaced.
   WrapperOverride withDartTypeOverrides(

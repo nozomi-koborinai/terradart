@@ -166,27 +166,45 @@ prelude: |
       laneDir,
     ], workingDirectory: Directory.current.path);
 
-    for (final (ledger, rule) in [
-      ('exactly_one_lint_debt.yaml', 'exactly-one-optional-fanout'),
-      ('migrate_manifest_debt.yaml', 'migrate-shape-underivable'),
-    ]) {
-      test('a planted $ledger entry for a clean lane override is stale', () {
-        File(
-          '${repo.path}/tool/$ledger',
-        ).writeAsStringSync('aws_thing: planted\n');
-        final result = lint();
-        expect(
-          result.exitCode,
-          65,
-          reason: 'stdout:\n${result.stdout}\nstderr:\n${result.stderr}',
-        );
-        expect(result.stderr, contains('stale tool/$ledger entries'));
-        expect(
-          result.stderr,
-          contains('aws_thing (override no longer violates $rule)'),
-        );
-      });
-    }
+    test('a planted migrate_manifest_debt.yaml entry for a clean lane '
+        'override is stale', () {
+      File(
+        '${repo.path}/tool/migrate_manifest_debt.yaml',
+      ).writeAsStringSync('aws_thing: planted\n');
+      final result = lint();
+      expect(
+        result.exitCode,
+        65,
+        reason: 'stdout:\n${result.stdout}\nstderr:\n${result.stderr}',
+      );
+      expect(
+        result.stderr,
+        contains('stale tool/migrate_manifest_debt.yaml entries'),
+      );
+      expect(
+        result.stderr,
+        contains(
+          'aws_thing (override no longer violates migrate-shape-underivable)',
+        ),
+      );
+    });
+
+    test('any exactly_one_lint_debt.yaml entry fails', () {
+      File(
+        '${repo.path}/tool/exactly_one_lint_debt.yaml',
+      ).writeAsStringSync('aws_thing: a reasoned line put back\n');
+      final result = lint();
+      expect(
+        result.exitCode,
+        65,
+        reason: 'stdout:\n${result.stdout}\nstderr:\n${result.stderr}',
+      );
+      expect(
+        result.stderr,
+        contains('tool/exactly_one_lint_debt.yaml must stay empty'),
+      );
+      expect(result.stderr, contains('  aws_thing (seal it with'));
+    });
 
     test('entries naming another lane are left to wrap_lanes', () {
       for (final ledger in lintDebtLedgerFileNames) {
