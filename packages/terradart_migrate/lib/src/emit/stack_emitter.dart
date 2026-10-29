@@ -2290,6 +2290,38 @@ final class StackEmitter {
           }
           _migrated.add(const MigratedItem(address: 'terraform.backend'));
           return '${isConst ? 'const ' : ''}S3Backend(${args.join(', ')})';
+        case 'azurerm':
+          const params = [
+            'resource_group_name',
+            'storage_account_name',
+            'container_name',
+            'key',
+          ];
+          final dropped =
+              droppedProviderArguments['azurerm'] ?? const <String>{};
+          for (final key in values.keys.where(dropped.contains)) {
+            _warnings.add(
+              'backend "azurerm": argument "$key" has no TerraDart '
+              'parameter and was dropped',
+            );
+          }
+          final extra = values.keys.where(
+            (k) => !params.contains(k) && !dropped.contains(k),
+          );
+          if (extra.isNotEmpty) {
+            throw MigrateBlocker(
+              'backend "azurerm": AzurermBackend has no parameter for '
+              '${extra.map((k) => '"$k"').join(', ')}',
+            );
+          }
+          final args = <String>[
+            ?arg('resourceGroupName', 'resource_group_name'),
+            ?arg('storageAccountName', 'storage_account_name'),
+            ?arg('containerName', 'container_name'),
+            ?arg('key', 'key'),
+          ];
+          _migrated.add(const MigratedItem(address: 'terraform.backend'));
+          return '${isConst ? 'const ' : ''}AzurermBackend(${args.join(', ')})';
         default:
           final dropped = droppedProviderArguments[type] ?? const <String>{};
           for (final key in values.keys.where(dropped.contains)) {

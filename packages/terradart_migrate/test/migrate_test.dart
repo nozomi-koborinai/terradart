@@ -1335,7 +1335,7 @@ resource "azurerm_resource_group" "app" {
       expect(r.report.warnings.join('\n'), contains('"client_secret"'));
     });
 
-    test('an azurerm backend drops credentials from the sidecar', () {
+    test('an azurerm backend emits AzurermBackend and drops credentials', () {
       const secrets = {
         'client_id': '11111111-1111-1111-1111-111111111111',
         'client_secret': 'secret-value',
@@ -1345,14 +1345,23 @@ resource "azurerm_resource_group" "app" {
         'sas_token': 'storage-sas-token',
       };
       void check(MigrationResult r) {
-        final sidecar = r.sidecar.files[backendFileName]!;
-        expect(sidecar, contains('storage_account_name'));
-        expect(sidecar, contains('tfstate'));
+        expect(
+          r.stackSource,
+          contains(
+            "backend: const AzurermBackend(storageAccountName: 'tfstate', "
+            "containerName: 'state', key: 'prod.tfstate')",
+          ),
+        );
+        expect(
+          r.report.kept.map((k) => k.address),
+          isNot(contains('terraform.backend')),
+        );
         final warnings = r.report.warnings.join('\n');
+        final written = r.files.values.join('\n');
         for (final e in secrets.entries) {
-          expect(sidecar, isNot(contains(e.key)), reason: e.key);
-          expect(sidecar, isNot(contains(e.value)), reason: e.value);
-          expect(r.files.values.join('\n'), isNot(contains(e.value)));
+          expect(written, isNot(contains(e.key)), reason: e.key);
+          expect(written, isNot(contains(e.value)), reason: e.value);
+          expect(r.stackSource, isNot(contains(e.value)), reason: e.value);
           expect(warnings, contains('"${e.key}"'));
         }
       }
@@ -1731,15 +1740,45 @@ resource "google_pubsub_topic" "orders" {
         }),
         contains("backend: const S3Backend(key: 'k', region: 'auto')"),
       );
+      expect(
+        backend({
+          'azurerm': {
+            'storage_account_name': 'st',
+            'container_name': 'tfstate',
+            'key': 'k',
+          },
+        }),
+        contains(
+          "backend: const AzurermBackend(storageAccountName: 'st', "
+          "containerName: 'tfstate', key: 'k')",
+        ),
+      );
+      expect(
+        backend({'azurerm': <String, Object?>{}}),
+        contains('backend: const AzurermBackend()'),
+      );
+      final unmodeled = _migrateJson({
+        'terraform': {
+          ..._google,
+          'backend': {
+            'azurerm': {'key': 'k', 'not_a_parameter': 'x'},
+          },
+        },
+      });
+      expect(
+        unmodeled.report.kept.single.reason,
+        contains('"not_a_parameter"'),
+      );
+      expect(unmodeled.stackSource, isNot(contains('AzurermBackend')));
       final unknown = _migrateJson({
         'terraform': {
           ..._google,
           'backend': {
-            'azurerm': {'key': 'k'},
+            'http': {'address': 'https://example.invalid'},
           },
         },
       });
-      expect(unknown.report.kept.single.reason, contains('backend "azurerm"'));
+      expect(unknown.report.kept.single.reason, contains('backend "http"'));
     });
 
     test('variables become handles; validation keeps them external', () {
