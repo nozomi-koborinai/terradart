@@ -4,6 +4,7 @@
 import 'package:terradart_core/terradart_core.dart';
 
 import '../auth/appwrite_permission.dart' show AppwritePermission;
+import '../project/appwrite_project.dart' show AppwriteProject;
 
 /// Sensitive field paths for `appwrite_storage_bucket`.
 const Set<String> _appwriteStorageBucketSensitive = <String>{};
@@ -47,6 +48,7 @@ final class AppwriteStorageBucket extends Resource {
     TfArg<bool>? encryption,
     TfArg<bool>? antivirus,
     TfArg<List<AppwritePermission>>? permissions,
+    RefTo<AppwriteProject>? projectId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -63,6 +65,7 @@ final class AppwriteStorageBucket extends Resource {
            'encryption': ?encryption,
            'antivirus': ?antivirus,
            'permissions': ?permissions,
+           'project_id': ?projectId?.encodeAs('id'),
          },
        );
 

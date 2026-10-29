@@ -16,8 +16,11 @@
 #               path that names a different target per product family
 #   attributes: (optional) `<resource>.<path>: attribute` for an input that
 #               takes another attribute of the target (a bare `name`)
-#   exclude:    (optional) `<resource>.<path>` inputs the pattern matches but
-#               that name something else; they stay strings
+#   exclude:    (optional) `<resource>.<path>` inputs the pattern matches
+#               that stay strings, each under a comment saying why: the input
+#               names something else, or the override holds it where wrap
+#               cannot type it (a hand-written type, a map passthrough, no
+#               constructor input)
 #   with:       (optional) sibling top-level keys the reference also fills
 #               from the referenced block (`[location, project]`) unless the
 #               caller sets them; they stay optional `TfArg<String>`s
@@ -127,6 +130,20 @@ hashicorp/google:
       # Also a managed SSL certificate.
       - google_compute_target_https_proxy.ssl_certificates
       - google_compute_target_ssl_proxy.ssl_certificates
+      # A string field of the sealed type the override writes by hand
+      # (ComputeImageSource, ComputeRouteNextHop, ComputeSnapshotSource).
+      # Typing it changes that public type, a breaking change.
+      - google_compute_image.source_disk
+      - google_compute_image.source_snapshot
+      - google_compute_route.next_hop_instance
+      - google_compute_route.next_hop_vpn_tunnel
+      - google_compute_snapshot.source_disk
+      - google_compute_snapshot.source_instant_snapshot
+      # Not a constructor input: the override's paramOrder leaves it out.
+      # Delete the line when the factory takes it, so wrap types it.
+      - google_compute_interconnect_attachment.ipsec_internal_addresses
+      - google_compute_region_disk.snapshot
+      - google_oracle_database_exascale_db_storage_vault.exadata_infrastructure
   # Upstream's ResourceRef names `Disk`.
   - target: google_compute_region_disk
     attribute: name
@@ -163,6 +180,13 @@ hashicorp/google:
       - google_vmwareengine_network_peering.peer_network
       # A Service Directory endpoint takes the network by project number.
       - google_service_directory_endpoint.network
+      # A string field of the DnsRecordSetRoutingPolicy helpers the override
+      # writes by hand. Typing it changes those public types, a breaking
+      # change.
+      - google_dns_record_set.routing_policy.geo.health_checked_targets.internal_load_balancers.network_url
+      - google_dns_record_set.routing_policy.primary_backup.backup_geo.health_checked_targets.internal_load_balancers.network_url
+      - google_dns_record_set.routing_policy.primary_backup.primary.internal_load_balancers.network_url
+      - google_dns_record_set.routing_policy.wrr.health_checked_targets.internal_load_balancers.network_url
   - target: google_compute_subnetwork
     attribute: id
     slots: '(^|\.)(subnetwork|subnet|subnetwork_self_link|subnetwork_uri)$'
@@ -632,6 +656,9 @@ hashicorp/aws:
       - aws_api_gateway_usage_plan_key.key_id
       # A Payment Cryptography key.
       - aws_paymentcryptography_key_alias.key_arn
+      # The inline block stays a map (nestedTypeExcludes), so it has no field
+      # to type. aws_s3_bucket_server_side_encryption_configuration types it.
+      - aws_s3_bucket.server_side_encryption_configuration.rule.apply_server_side_encryption_by_default.kms_master_key_id
   - target: aws_s3_bucket
     attribute: id
     slots: '(^|\.)(bucket|bucket_name|s3_bucket|s3_bucket_name|target_bucket|log_bucket|logging_bucket|source_bucket)$'
