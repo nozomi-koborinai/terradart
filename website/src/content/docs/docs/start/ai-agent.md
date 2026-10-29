@@ -96,7 +96,7 @@ The skill tells the agent not to rewrite a tree by hand, to keep every resource 
 
 ## What the skill tells the agent
 
-- **Which package** owns a Terraform type: `google_*`, beta-only `google_*`, `aws_*`, `cloudflare_*`, `appwrite_*`.
+- **Which package** owns a Terraform type: `google_*`, beta-only `google_*`, `aws_*`, `cloudflare_*`, `appwrite_*`, `azurerm_*`.
 - **How to find the class and its barrel.** Each package's generated `lib/src/_catalog.g.dart` maps every Terraform type to its class and barrel, and the class's doc comment lists its arguments.
 - **How to write the arguments**: a literal, another resource's `ref`, an enum member, a variant, a secret — the rules of [Writing arguments](/docs/arguments/).
 - **Where the runnable examples are**: more than 100 quickstarts under [`examples/`](https://github.com/nozomi-koborinai/terradart/tree/main/examples), each synthesized and validated in CI.

@@ -3,7 +3,7 @@ title: Writing arguments
 description: How to pass a value to a TerraDart factory — a literal, another resource, an enum member, a variant, a nested block, a variable, a secret or a Terraform expression — on every provider.
 ---
 
-Every factory argument has one shape per kind of value, and the analyzer tells you which kind it wants. The rules are the same on every provider package: Google Cloud, AWS, Cloudflare and Appwrite.
+Every factory argument has one shape per kind of value, and the analyzer tells you which kind it wants. The rules are the same on every provider package: Google Cloud, AWS, Cloudflare, Appwrite and Azure.
 
 ## The rules
 

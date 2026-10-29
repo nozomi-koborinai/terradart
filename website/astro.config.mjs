@@ -67,6 +67,7 @@ export default defineConfig({
             { label: "AWS", slug: "docs/providers/aws" },
             { label: "Cloudflare", slug: "docs/providers/cloudflare" },
             { label: "Appwrite", slug: "docs/providers/appwrite" },
+            { label: "Azure", slug: "docs/providers/azure" },
           ],
         },
         {

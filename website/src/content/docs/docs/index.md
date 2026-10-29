@@ -3,7 +3,7 @@ title: Documentation
 description: Guides for TerraDart — type-safe infrastructure-as-code for Dart, from the Stack to the app.
 ---
 
-TerraDart lets you write your infrastructure and your app in one typed Dart codebase. A `Stack` synthesizes standard Terraform JSON for Google Cloud, AWS, Cloudflare and Appwrite, and the values your app needs reach it as a generated Dart file instead of copied strings.
+TerraDart lets you write your infrastructure and your app in one typed Dart codebase. A `Stack` synthesizes standard Terraform JSON for Google Cloud, AWS, Cloudflare, Appwrite and Azure, and the values your app needs reach it as a generated Dart file instead of copied strings.
 
 Guides track the **0.35.x** line on pub.dev. Every Dart snippet on this site compiles against it in CI.
 
@@ -30,6 +30,7 @@ Pick the guide for where you start. Each is one path you can paste, from `dart p
 - [AWS](/docs/providers/aws/) — `terradart_aws`: Lambda, ECS Express Mode, Flutter Web on S3 + CloudFront
 - [Cloudflare](/docs/providers/cloudflare/) — `terradart_cloudflare`: the DNS and edge in front of your app
 - [Appwrite](/docs/providers/appwrite/) — `terradart_appwrite`: the backend of a Flutter app
+- [Azure](/docs/providers/azure/) — `terradart_azure`: Azure Resource Manager (`hashicorp/azurerm`)
 
 [`terradart_time`](https://pub.dev/packages/terradart_time) adds `TimeSleep`, the propagation wait any Stack can use, and everything builds on [`terradart_core`](https://pub.dev/packages/terradart_core).
 

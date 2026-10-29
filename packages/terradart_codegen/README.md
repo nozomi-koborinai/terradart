@@ -14,7 +14,7 @@ This package ships the `terradart-codegen` CLI for **maintainers** and contribut
 
 The `terradart` command users run (`synth`, `plan`, `apply`) is [`terradart_cli`](https://pub.dev/packages/terradart_cli).
 
-End users depend on [`terradart_google`](https://pub.dev/packages/terradart_google), [`terradart_google_beta`](https://pub.dev/packages/terradart_google_beta), [`terradart_appwrite`](https://pub.dev/packages/terradart_appwrite), [`terradart_cloudflare`](https://pub.dev/packages/terradart_cloudflare), or [`terradart_aws`](https://pub.dev/packages/terradart_aws) directly; they do not run generation locally.
+End users depend on [`terradart_google`](https://pub.dev/packages/terradart_google), [`terradart_google_beta`](https://pub.dev/packages/terradart_google_beta), [`terradart_appwrite`](https://pub.dev/packages/terradart_appwrite), [`terradart_cloudflare`](https://pub.dev/packages/terradart_cloudflare), [`terradart_aws`](https://pub.dev/packages/terradart_aws), or [`terradart_azure`](https://pub.dev/packages/terradart_azure) directly; they do not run generation locally.
 
 ## Installation
 
