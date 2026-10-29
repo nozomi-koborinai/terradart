@@ -115,7 +115,7 @@ final class _AzureLeftoverStack implements CoverageStackGenerator {
 
     final usedLocals = <String>{};
     final buf = StringBuffer()
-      ..writeln('// GENERATED — tool/generate_azure_leftover_example.dart')
+      ..writeln('// GENERATED — dart tool/coverage_stack.dart --lane azure')
       ..writeln('// ignore_for_file: unused_element')
       ..writeln()
       ..writeln(

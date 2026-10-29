@@ -240,6 +240,15 @@ providers:
       expect(staleHints(appwrite.schemaDir), isEmpty);
     });
 
+    test('the committed azure lane re-extracts hints from its repo', () {
+      final azure = parseWrapLanes(
+        File(providersPath).readAsStringSync(),
+      ).singleWhere((l) => l.name == 'azure');
+      expect(azure.providerEnums, isTrue);
+      expect(azure.hintsRepo, 'hashicorp/terraform-provider-azurerm');
+      expect(staleHints(azure.schemaDir), isEmpty);
+    });
+
     test('mmHints: true adds --mm-hints to wrap and regen', () {
       final x = parseWrapLanes('$lane    mmHints: true\n').single;
       expect(WrapGate.wrap.args(x), contains('--mm-hints'));
