@@ -55,8 +55,8 @@ final class InitCommand extends Command<int> {
           null =>
             'The bucket that already holds the state, one for every '
                 'environment or env=name pairs; picks the backend from the '
-                'provider (google: gcs, aws: s3, cloudflare: r2) unless '
-                '--backend names it.',
+                'provider (google: gcs, aws: s3, cloudflare: r2, azure: azurerm) '
+                'unless --backend names it.',
           final p =>
             'The ${id.label} of each environment (--provider ${p.name}); '
                 'a bare value is every environment\'s. Left out, '
@@ -810,7 +810,7 @@ const _defaultEnvs = ['dev', 'prd'];
 bool _sameTargets(List<SkillTarget> a, List<SkillTarget> b) =>
     a.toSet().containsAll(b) && b.toSet().containsAll(a);
 
-const _anyBucket = [InitBackend.gcs, InitBackend.s3];
+const _anyBucket = [InitBackend.gcs, InitBackend.s3, InitBackend.azurerm];
 
 /// The buckets the providers point at: google's is GCS, and so on.
 List<InitBackend> _bucketKinds(List<InitProvider> providers) => [
@@ -820,7 +820,7 @@ List<InitBackend> _bucketKinds(List<InitProvider> providers) => [
       InitProvider.aws => InitBackend.s3,
       InitProvider.cloudflare => InitBackend.r2,
       InitProvider.appwrite => null,
-      InitProvider.azure => null,
+      InitProvider.azure => InitBackend.azurerm,
     },
 ];
 

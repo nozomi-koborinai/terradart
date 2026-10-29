@@ -158,6 +158,46 @@ void main() {
       );
     });
 
+    test('AzurermBackend with nothing set emits an empty block', () {
+      const backend = AzurermBackend();
+      expect(backend.backendType, 'azurerm');
+      expect(backend.toTfJson(), equals(<String, Object?>{}));
+    });
+
+    test('AzurermBackend emits only the keys that are set', () {
+      const backend = AzurermBackend(
+        storageAccountName: 'tfstateacct',
+        containerName: 'tfstate',
+        key: 'prod.tfstate',
+      );
+      expect(
+        backend.toTfJson(),
+        equals(<String, Object?>{
+          'storage_account_name': 'tfstateacct',
+          'container_name': 'tfstate',
+          'key': 'prod.tfstate',
+        }),
+      );
+    });
+
+    test('AzurermBackend emits every field that is set', () {
+      const backend = AzurermBackend(
+        resourceGroupName: 'rg',
+        storageAccountName: 'tfstateacct',
+        containerName: 'tfstate',
+        key: 'prod.tfstate',
+      );
+      expect(
+        backend.toTfJson(),
+        equals(<String, Object?>{
+          'resource_group_name': 'rg',
+          'storage_account_name': 'tfstateacct',
+          'container_name': 'tfstate',
+          'key': 'prod.tfstate',
+        }),
+      );
+    });
+
     test('S3Backend.r2 keeps its preset without bucket and key', () {
       final backend = S3Backend.r2(accountId: 'acc');
       expect(backend.bucket, isNull);

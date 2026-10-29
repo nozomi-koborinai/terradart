@@ -90,7 +90,7 @@ terradart validate
 
 ## 6. Plan: No changes
 
-The Stack carries your backend (`GcsBackend`, `S3Backend`, `LocalBackend`; any other stays in the sidecar's `backend.tf` as written), so the plan reads the same remote state as before. With a **local** state file, copy it next to `main.tf.json` first — the migrator never copies state:
+The Stack carries your backend (`GcsBackend`, `S3Backend`, `AzurermBackend`, `LocalBackend`; any other stays in the sidecar's `backend.tf` as written), so the plan reads the same remote state as before. `--backend azurerm` and `AzurermBackend` are not in the published 0.35.0 packages and arrive in the next release, after the packages publish. With a **local** state file, copy it next to `main.tf.json` first — the migrator never copies state:
 
 ```bash
 cp ../infra/terraform.tfstate tf-out/

@@ -31,6 +31,7 @@ void main() {
       TfOutput,
       GcsBackend,
       S3Backend,
+      AzurermBackend,
       SynthResult,
       DuplicateResourceError,
       TfVariable,
@@ -39,7 +40,7 @@ void main() {
       DuplicateModuleError,
       TfTimeouts,
     ];
-    expect(symbols, hasLength(31));
+    expect(symbols, hasLength(32));
   });
 
   test('generator building blocks stay out of the public library', () {

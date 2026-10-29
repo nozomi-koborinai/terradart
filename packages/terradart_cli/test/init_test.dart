@@ -336,6 +336,66 @@ void main() {
     expect(read('b/lib/env.dart'), contains('final String appwriteProjectId;'));
   });
 
+  test('azurerm state uses the storage account, container, and key', () async {
+    final r = await init([
+      'a',
+      '-p',
+      'google',
+      '--backend',
+      'azurerm',
+      '--defaults',
+    ]);
+    expect(r.code, 0, reason: r.err);
+    final env = read('a/lib/env.dart');
+    expect(env, contains("stateBucket: 'adevtf'"));
+    expect(env, contains("stateBucket: 'aprdtf'"));
+    expect(
+      env,
+      contains('create this storage account and a `tfstate` container'),
+    );
+    expect(
+      read('a/lib/stack.dart'),
+      contains(
+        'AzurermBackend(\n'
+        "          resourceGroupName: 'a-tfstate',\n"
+        '          storageAccountName: env.stateBucket,\n'
+        "          containerName: 'tfstate',\n"
+        "          key: 'a/\${env.name}/terraform.tfstate',\n"
+        '        )',
+      ),
+    );
+    final readme = read('a/README.md');
+    expect(readme, contains('resource group `a-tfstate`'));
+    expect(readme, isNot(contains('<env>-tfstate')));
+    expect(readme, contains('Azure storage account `stateBucket`'));
+    expect(readme, contains('`ARM_*` environment variables'));
+    expect(readme, isNot(contains('ARM_USE_AZUREAD')));
+    expect(readme, isNot(contains('access_key')));
+    expect(readme, isNot(contains('sas_token')));
+  });
+
+  test('azurerm storage account names stay within 24 characters', () async {
+    final r = await init([
+      'my_company_platform_infra',
+      '-p',
+      'google',
+      '--backend',
+      'azurerm',
+      '--defaults',
+    ]);
+    expect(r.code, 0, reason: r.err);
+    final env = read('my_company_platform_infra/lib/env.dart');
+    expect(env, isNot(contains('mycompanyplatforminfradevtf')));
+    expect(env, contains("stateBucket: 'mycompanyplatformindevtf'"));
+    expect(env, contains("stateBucket: 'mycompanyplatforminprdtf'"));
+    final names = RegExp(
+      r"stateBucket: '([0-9a-z]+)'",
+    ).allMatches(env).map((m) => m.group(1)!);
+    for (final name in names) {
+      expect(name, matches(RegExp(r'^[0-9a-z]{3,24}$')), reason: name);
+    }
+  });
+
   test('S3 state without aws gets a region of its own', () async {
     expect(
       (await init([
@@ -490,7 +550,7 @@ void main() {
     expect(r.asked.sublist(3), [
       'Do you already have a bucket for Terraform state? [y/N] ',
       'Is it a Cloudflare R2 bucket? [Y/n] ',
-      'Which kind of bucket (gcs, s3) [gcs]: ',
+      'Which kind of bucket (gcs, s3, azurerm) [gcs]: ',
       'Bucket name, one for every environment or env=name pairs: ',
       'Install the terradart agent skill for coding agents (.agents/skills/, .claude/skills/)? [Y/n] ',
     ]);
@@ -499,6 +559,27 @@ void main() {
   });
 
   group('--state-bucket', () {
+    test('azure state bucket is the azurerm backend', () async {
+      final r = await init([
+        '-p',
+        'azure',
+        '--env',
+        'dev,prd',
+        '--state-bucket',
+        'sharedacct',
+      ]);
+      expect(r.code, 0, reason: r.err);
+      final stack = read('infra/lib/stack.dart');
+      expect(stack, contains("resourceGroupName: 'acme-infra-tfstate'"));
+      expect(stack, contains('storageAccountName: env.stateBucket'));
+      expect(
+        "stateBucket: 'sharedacct'".allMatches(read('infra/lib/env.dart')),
+        hasLength(2),
+      );
+      expect(r.out, contains('azurerm state'));
+      expect(r.err, isNot(contains('gcs or s3')));
+    });
+
     test('takes the backend from the provider', () async {
       final r = await init([
         '-p',

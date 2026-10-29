@@ -18,13 +18,14 @@ import 'synth/stack_synth.dart';
 import 'synth/stack_validator.dart';
 import 'synth/synth_issue.dart';
 
-/// Lightweight backend hook. Core ships `GcsBackend`, `S3Backend`, and
-/// `LocalBackend`; anything else implements this interface in the caller.
+/// Lightweight backend hook. Core ships `GcsBackend`, `S3Backend`,
+/// `AzurermBackend`, and `LocalBackend`; anything else implements this
+/// interface in the caller.
 /// The `Stack` only stores the value and exposes a discriminator for
 /// synth's `terraform { backend ... }` emitter.
 abstract interface class StackBackend {
-  /// Backend type tag, e.g. `'gcs'`, `'s3'`, `'local'`. Synth uses this
-  /// as the JSON key under `terraform.backend.<type>`.
+  /// Backend type tag, e.g. `'gcs'`, `'s3'`, `'azurerm'`, `'local'`. Synth
+  /// uses this as the JSON key under `terraform.backend.<type>`.
   String get backendType;
 
   /// Backend-specific config block contents (bucket, prefix, etc.).
