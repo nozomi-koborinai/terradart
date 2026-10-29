@@ -1,10 +1,3 @@
-/// Rewrites exact provider pins in the migrate lane fixtures.
-///
-/// A weekly schema bump moves `provider_version.txt` and the generated
-/// constant together. The fixture gate compares fixtures with the
-/// synthesized `main.tf.json`, so the same step has to move exact pins or
-/// the bump goes red. A range such as `~> 8.0` stays, and a second run
-/// changes nothing.
 library;
 
 import 'dart:io';
@@ -13,11 +6,8 @@ import 'package:path/path.dart' as p;
 import 'package:pub_semver/pub_semver.dart';
 import 'package:terradart_hcl/terradart_hcl.dart';
 
-/// The migrator's test fixtures, relative to the repo root.
 const migrateFixturesRoot = 'packages/terradart_migrate/test/fixtures';
 
-/// [hcl] with every exact `required_providers` version of [source] set to
-/// [version]. A constraint [Version.parse] rejects, such as `~> 8.0`, stays.
 String repinFixture(
   String hcl, {
   required String source,
@@ -30,7 +20,7 @@ String repinFixture(
     final versionExpr = expr.item('version')?.value;
     if (versionExpr == null || versionExpr.range.isNone) continue;
     final text = versionExpr.constantString;
-    if (text == null || text == version || !_isExactRelease(text)) continue;
+    if (text == null || text == version || !_isSingleVersion(text)) continue;
     edits.add((
       start: versionExpr.range.start.offset,
       end: versionExpr.range.end.offset,
@@ -44,8 +34,6 @@ String repinFixture(
   return out;
 }
 
-/// [repinFixture] over every `*.tf` file under `lanes/`, writing the files
-/// it changes. Returns those paths relative to `lanes/`, sorted.
 List<String> repinLaneFixtures(
   String repoRoot, {
   required String source,
@@ -72,9 +60,11 @@ List<String> repinLaneFixtures(
   return moved;
 }
 
-bool _isExactRelease(String constraint) {
+bool _isSingleVersion(String constraint) {
+  var text = constraint.trim();
+  if (text.startsWith('=')) text = text.substring(1).trim();
   try {
-    Version.parse(constraint.trim());
+    Version.parse(text);
     return true;
   } on FormatException {
     return false;

@@ -41,10 +41,8 @@ const googleCountPages = [
   'website/src/content/docs/docs/coverage/google.md',
 ];
 
-/// The page whose Sustainability section carries the weekly bump table.
 const bumpSchedulePage = 'website/src/content/docs/docs/how-its-built.mdx';
 
-/// Every tool/providers.yaml lane with a `bump:` entry.
 final List<BumpLane> bumpLanes = parseBumpLanes(
   File(providersPath).readAsStringSync(),
 );
@@ -52,10 +50,6 @@ final List<BumpLane> bumpLanes = parseBumpLanes(
 const _bumpScheduleStart = '{/* bump-schedule:start */}';
 const _bumpScheduleEnd = '{/* bump-schedule:end */}';
 
-/// [text] with the lines between the bump-schedule markers set to the table
-/// [lanes] render. One row per lane, Sunday first. Throws [StateError] when
-/// [text] does not contain exactly one marker pair, or when a lane has no
-/// `siteTitle`.
 String fixBumpSchedule(String text, List<BumpLane> lanes) {
   final lines = text.split('\n');
   var startAt = -1;
@@ -85,13 +79,15 @@ String fixBumpSchedule(String text, List<BumpLane> lanes) {
 }
 
 Never _badBumpScheduleMarkers() {
-  throw StateError('expected one $_bumpScheduleStart before $_bumpScheduleEnd');
+  throw const FormatException(
+    'expected one $_bumpScheduleStart before $_bumpScheduleEnd',
+  );
 }
 
 String _bumpScheduleRow(BumpLane lane) {
   final title = lane.lane.siteTitle;
   if (title == null || title.isEmpty) {
-    throw StateError('lane ${lane.lane.name} has no siteTitle');
+    throw FormatException('lane ${lane.lane.name} has no siteTitle');
   }
   final rideAlong = lane.rideAlong;
   final provider = rideAlong == null
@@ -100,7 +96,9 @@ String _bumpScheduleRow(BumpLane lane) {
   final routine = switch (lane.mode) {
     'auto' => 'auto-merges when CI is green',
     'pr-only' => 'waits for review',
-    _ => throw StateError('lane ${lane.lane.name}: bump mode ${lane.mode}'),
+    _ => throw FormatException(
+      'lane ${lane.lane.name}: bump mode ${lane.mode}',
+    ),
   };
   return '| $provider | ${lane.weekday.label} | $routine |';
 }

@@ -64,13 +64,16 @@ outro
   });
 
   test('a page with no bump-schedule markers fails', () {
-    expect(() => fixBumpSchedule('intro\noutro\n', const []), throwsStateError);
+    expect(
+      () => fixBumpSchedule('intro\noutro\n', const []),
+      throwsFormatException,
+    );
     expect(
       () => fixBumpSchedule(
         '{/* bump-schedule:end */}\n{/* bump-schedule:start */}\n',
         const [],
       ),
-      throwsStateError,
+      throwsFormatException,
     );
   });
 
@@ -85,7 +88,7 @@ outro
           mode: 'auto',
         ),
       ]),
-      throwsStateError,
+      throwsFormatException,
     );
   });
 
@@ -117,7 +120,6 @@ BumpLane _bump({
   lane: _wrap(name, siteTitle: siteTitle),
   mode: mode,
   cron: '0 0 * * ${weekday.index}',
-  weekday: weekday,
   refresh: 'dump',
   scaffold: 'lane',
   dataSources: false,

@@ -1,4 +1,5 @@
-// check_docs_consistency.dart — verifies docs caret minors and catalog counts.
+// check_docs_consistency.dart — verifies docs caret minors, catalog counts,
+// and the weekly bump table.
 //
 // Text-only: the example synth gates (coverage + API-enablement ratchet +
 // local terraform validate) live in tool/example_synth_gates.dart and run as
@@ -6,9 +7,7 @@
 //
 // Run from repo root: dart tool/check_docs_consistency.dart
 //   --fix  first rewrite the terradart_google catalog counts in the pages
-//          that carry them, and the weekly bump table in how-its-built.mdx
-//          (the weekly schema bump generates factories, so it moves the
-//          counts; every other check stays read-only).
+//          that carry them, and the weekly bump table in how-its-built.mdx.
 // ignore_for_file: avoid_print
 
 import 'dart:io';
@@ -38,7 +37,7 @@ Future<void> main(List<String> args) async {
           page.writeAsStringSync(fixed);
           print('fixed bump schedule: $bumpSchedulePage');
         }
-      } on StateError catch (e) {
+      } on FormatException catch (e) {
         print('$bumpSchedulePage: ${e.message}');
       }
     }
@@ -192,7 +191,7 @@ void _checkBumpSchedule(List<String> errors) {
   final String fixed;
   try {
     fixed = fixBumpSchedule(text, bumpLanes);
-  } on StateError catch (e) {
+  } on FormatException catch (e) {
     errors.add('$bumpSchedulePage: ${e.message}');
     return;
   }

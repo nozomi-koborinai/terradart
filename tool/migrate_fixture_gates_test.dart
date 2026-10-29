@@ -234,8 +234,6 @@ WrapLane _lane(String name) => WrapLane(
 List<WrapLane> _realLanes() =>
     parseWrapLanes(File(providersPath).readAsStringSync());
 
-/// Every path [planFixtures] would migrate for [lanes], so a test can drop
-/// or add one directory without failing the rest.
 Set<String> _covering(List<WrapLane> lanes) =>
     planFixtures(lanes: lanes, onDisk: const {}).run.toSet();
 

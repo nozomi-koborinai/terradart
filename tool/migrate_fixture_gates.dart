@@ -10,15 +10,6 @@
 /// validate covers it. Every kept block must have landed in a sidecar file.
 /// `user_project_override` in a fixture must still be present after synth.
 ///
-/// The fixture list is the wrap lanes (`lanes/<lane>`, with `-` written as
-/// `_`) plus the shared fixtures in this file. The gate prints coverage
-/// failures and returns before migrate when that list and the directories
-/// on disk disagree.
-///
-/// After synth, and before `terraform validate`, the gate compares each
-/// fixture `required_providers` version with that module's synthesized
-/// `main.tf.json`. Validate still runs when the pins differ.
-///
 /// The merged-environment gate (#668) migrates `config_tree/` a second time
 /// with `--merge-envs`, and requires that the one `ConfigTreeStack(env: ...)`
 /// synthesizes, per environment, exactly the JSON the two separate Stacks
@@ -46,9 +37,9 @@ import 'wrap_lanes.dart';
 
 const _treeFixtures = ['config_tree', 'real_plan_src'];
 
-/// `lanes/` fixtures no wrap lane owns. Each directory is its own scan
-/// root: sibling directories under one parent would be read as environment
-/// roots and merged.
+/// `lanes/` fixtures no wrap lane owns. Sibling directories under one
+/// parent are environment roots and would be merged, so each entry is its
+/// own scan root.
 const _sharedLaneFixtures = [
   'lanes/time',
   'lanes/google_cloudflare',
@@ -59,8 +50,6 @@ const _sharedLaneFixtures = [
   'lanes/aliased',
 ];
 
-/// The directories the gate migrates, and the coverage failures.
-@immutable
 final class FixturePlan {
   const FixturePlan({required this.run, required this.failures});
 
@@ -68,11 +57,6 @@ final class FixturePlan {
   final List<String> failures;
 }
 
-/// [run] is [_treeFixtures], then `lanes/<lane>` for every wrap lane (`-`
-/// written as `_`), then [_sharedLaneFixtures]. [failures] is empty only
-/// when [run] has no duplicate, every run path is in [onDisk], and every
-/// `lanes/` path in [onDisk] is in [run]. `moved_state` is not part of this
-/// gate. [run] does not come from the disk.
 @visibleForTesting
 FixturePlan planFixtures({
   required List<WrapLane> lanes,
@@ -133,11 +117,6 @@ Set<String> _fixturesOnDisk(String fixturesRoot) {
   return names;
 }
 
-/// Versions in [modules] that differ from the `main.tf.json` each one
-/// synthesized. Comparison is by registry source, so a local name such as
-/// `azurerm` still matches `hashicorp/azurerm`. A `lanes/` scan root whose
-/// modules have no readable pin fails. `config_tree` and `real_plan_src`
-/// are not under that rule.
 @visibleForTesting
 List<String> pinDrift(
   String fixture,
@@ -516,16 +495,18 @@ Future<bool> _gate(
     if (errors.isNotEmpty) {
       return _finish(fixture, temp, errors, keep: keep);
     }
-    final pinErrors = pinDrift(fixture, [
-      for (final m in project.modules)
-        (
-          relPath: m.dir.relPath,
-          module: m.dir.module,
-          synthesized: File(
-            p.join(temp.path, m.terraformDir, 'main.tf.json'),
-          ).readAsStringSync(),
-        ),
-    ]);
+    errors.addAll(
+      pinDrift(fixture, [
+        for (final m in project.modules)
+          (
+            relPath: m.dir.relPath,
+            module: m.dir.module,
+            synthesized: File(
+              p.join(temp.path, m.terraformDir, 'main.tf.json'),
+            ).readAsStringSync(),
+          ),
+      ]),
+    );
     var validatedDirs = dirs.length;
     if (!skipValidate) {
       validatedDirs = 0;
@@ -544,7 +525,6 @@ Future<bool> _gate(
         }
       }
     }
-    errors.addAll(pinErrors);
     final validated = skipValidate
         ? ' (terraform validate skipped)'
         : ', $validatedDirs directories validated';

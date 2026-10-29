@@ -23,9 +23,6 @@
 // fixture ([staleMmSync]), regen first re-syncs the Magic Modules YAML
 // (tool/sync_lane_mm_yaml.dart, network); the wrap gate fails on a stale
 // sync instead, so a fixture change never ships without its MM hints.
-// After a successful wrap, regen moves exact required_providers versions in
-// the migrate lane fixtures to `<schemaDir>/provider_version.txt`
-// (tool/migrate_fixture_pins.dart). A range such as `~> 8.0` stays.
 // exit: 0 every selected gate passed; 1 a gate failed, a lane path is
 //       missing, or the arguments / providers.yaml are invalid.
 // ignore_for_file: avoid_print

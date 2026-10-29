@@ -59,6 +59,22 @@ void main() {
     expect(moved, contains('"~> 8.0"'));
   });
 
+  test('a terraform equals pin moves', () {
+    const hcl = '''
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "= 1.2.3"
+    }
+  }
+}
+''';
+    final after = repinFixture(hcl, source: 'hashicorp/aws', version: '9.9.9');
+    expect(after, contains('version = "9.9.9"'));
+    expect(after, isNot(contains('= 1.2.3')));
+  });
+
   test('a second call is a no-op', () {
     final once = repinFixture(_hcl, source: 'hashicorp/aws', version: '9.9.9');
     expect(repinFixture(once, source: 'hashicorp/aws', version: '9.9.9'), once);
