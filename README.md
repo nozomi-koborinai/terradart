@@ -11,7 +11,7 @@
 >
 > Write your infrastructure and your app in one typed Dart codebase. TerraDart synthesizes Terraform JSON for Google Cloud, AWS, Cloudflare, Appwrite and Azure, and hands the values your app needs — topic names, IDs, URLs — to it as typed Dart instead of copied strings. The `terradart` command plans and applies it with OpenTofu, and you never install Terraform.
 
-**Alpha** — no SemVer until v1.0.0, but breaking changes land only on **minor** bumps. Pin `^0.35.0`, read [`MIGRATING.md`](MIGRATING.md) before minor bumps, and see [status on terradart.dev](https://terradart.dev/docs/status/).
+**Alpha** is where TerraDart gets into people's hands and their feedback shapes the API. There is no SemVer until v1.0.0. Breaking changes land only on **minor** bumps. Pin `^0.35.0`, read [`MIGRATING.md`](MIGRATING.md) before a minor bump, and see [status on terradart.dev](https://terradart.dev/docs/status/).
 
 [![CI](https://github.com/nozomi-koborinai/terradart/actions/workflows/ci.yml/badge.svg)](https://github.com/nozomi-koborinai/terradart/actions/workflows/ci.yml)
 [![Dart SDK](https://img.shields.io/badge/Dart-%E2%89%A53.10-blue.svg)](https://dart.dev)
@@ -311,7 +311,7 @@ How TerraDart compares with HCL, CDKTF and Pulumi: [Why TerraDart](https://terra
 
 ## Status
 
-**Alpha**, pre-1.0 (0.35.x). No SemVer until v1.0.0, but breaking changes land only on **minor** bumps, always documented in [`MIGRATING.md`](MIGRATING.md); pin `^0.35.0` and take patches freely. Beta needs external validation — see the [path to beta](https://terradart.dev/docs/status/#path-to-beta).
+**Alpha** (0.35.x) is where TerraDart gets into people's hands and their feedback shapes the API. There is no SemVer until v1.0.0. Breaking changes land only on **minor** bumps, each with a section in [`MIGRATING.md`](MIGRATING.md). Pin `^0.35.0` and take patch releases freely. **Beta** starts when the API shape is settled. The beta gates are the [path to beta](https://terradart.dev/docs/status/#path-to-beta). **1.0.0** follows beta, after two minor releases in a row ship with no breaking changes.
 
 ## Contributing
 

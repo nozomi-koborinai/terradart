@@ -1,6 +1,6 @@
 # Contributing to terradart
 
-Thanks for taking time to look at this. terradart is an **alpha** single-maintainer project (0.35.x today; breaking changes land only on minor bumps — beta needs external validation, see the [path to beta](https://terradart.dev/docs/status/#path-to-beta)). Contributions are welcome on a best-effort basis.
+Thanks for taking time to look at this. terradart is an **alpha** single-maintainer project (0.35.x today). Alpha is where TerraDart gets into people's hands and their feedback shapes the API. Breaking changes land only on minor bumps. Beta starts when the API shape is settled. See the [path to beta](https://terradart.dev/docs/status/#path-to-beta). Contributions are welcome on a best-effort basis.
 
 ## What kind of contribution?
 
