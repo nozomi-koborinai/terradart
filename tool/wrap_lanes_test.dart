@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:path/path.dart' as p;
 import 'package:terradart_codegen/src/cli/lint_override_command.dart';
+import 'package:terradart_codegen/src/codegen/wrapper_overrides/_registry.dart';
 import 'package:test/test.dart';
 
 import 'wrap_lanes.dart';
@@ -503,6 +504,25 @@ providers:
         }
       }
     }
+  });
+
+  test('every resource override of every lane derives its output getters', () {
+    final missing = <String>[];
+    for (final lane in parseWrapLanes(File(providersPath).readAsStringSync())) {
+      final loaded = loadWrapperOverrides(rootDir: lane.overridesRoot);
+      expect(loaded.resources, isNotEmpty, reason: 'lane ${lane.name}');
+      for (final MapEntry(key: type, value: o) in loaded.resources.entries) {
+        if (!o.deriveOutputGetters) missing.add('${lane.name}: $type');
+      }
+    }
+    expect(
+      missing,
+      isEmpty,
+      reason:
+          '${missing.length} resource overrides lack deriveOutputGetters: '
+          'true. A hand-written extraGetters entry of the same name wins '
+          'over the derived getter.',
+    );
   });
 
   test('every data override of a lane with data hints derives them', () {
