@@ -232,38 +232,6 @@ void main() {
       );
     });
 
-    test('clean: exactly-one optional fanout suppressed by debt allowlist', () {
-      const mm = MmResourceOverrides(
-        fieldOverrides: {},
-        exactlyOneOfGroups: [
-          ['oidc', 'aws'],
-        ],
-      );
-      const o = WrapperOverride(
-        outputDir: 'iam',
-        paramOrder: ['oidc', 'aws'],
-        customSlots: {
-          'oidc': CustomSlot(
-            paramDeclaration: 'Oidc? oidc',
-            argMapEntry: "if (oidc != null) 'oidc': TfArg.literal([]),",
-          ),
-          'aws': CustomSlot(
-            paramDeclaration: 'Aws? aws',
-            argMapEntry: "if (aws != null) 'aws': TfArg.literal([]),",
-          ),
-        },
-      );
-      expect(
-        lintOverride(
-          'google_x',
-          o,
-          mm: mm,
-          exactlyOneOptionalFanoutDebt: {'google_x'},
-        ),
-        isEmpty,
-      );
-    });
-
     test('a sealed virtual slot satisfies exactly_one when it covers it', () {
       const mm = MmResourceOverrides(
         fieldOverrides: {},

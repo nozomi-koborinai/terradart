@@ -1,8 +1,7 @@
-# Overrides exempt from `exactly-one-optional-fanout` (canonical MM groups).
+# Closed: this file stays empty. Every exclusive group is one sealed
+# argument (`deriveExactlyOne`), or its override's `unsealedGroups` gives
+# the reason it stays unsealed.
 #
-# Each line is `<override name>: reason`. Stale entries (override no longer
-# violates) fail `terradart lint-override`. New entries are a reviewed
-# maintainer decision — prefer sealed virtual slots (see #107).
-# Shared by every tool/providers.yaml lane: each lane's lint checks the
-# entries naming its own overrides, and `tool/wrap_lanes.dart` fails on an
-# entry that names an override in no lane.
+# `terradart lint-override` fails on any `<override name>: reason` line,
+# and `tool/wrap_lanes.dart` fails on a line that names an override in no
+# lane.

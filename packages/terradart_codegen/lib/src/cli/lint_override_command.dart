@@ -89,18 +89,15 @@ class LintOverrideCommand extends Command<int> {
       _loadLedger(exactlyOneLintDebtPathForOverrideRoot(rootDir)),
       lintBag.keys,
     );
-    final staleDebt = staleExactlyOneOptionalFanoutDebt(
-      lintBag,
-      mmByType: mmByType,
-      debt: debt.keys.toSet(),
-    );
-    if (staleDebt.isNotEmpty) {
+    if (debt.isNotEmpty) {
       stderr.writeln(
-        'lint-override: stale tool/exactly_one_lint_debt.yaml entries:',
+        'lint-override: tool/exactly_one_lint_debt.yaml must stay empty; '
+        'every exclusive group is one sealed argument:',
       );
-      for (final tf in staleDebt) {
+      for (final tf in debt.keys) {
         stderr.writeln(
-          '  $tf (override no longer violates exactly-one-optional-fanout)',
+          '  $tf (seal it with deriveExactlyOne, or give the reason in the '
+          'override\'s unsealedGroups)',
         );
       }
       return CliExitCodes.dataError;
@@ -129,7 +126,6 @@ class LintOverrideCommand extends Command<int> {
     final violations = lintOverrides(
       lintBag,
       mmByType: mmByType,
-      exactlyOneOptionalFanoutDebt: debt.keys.toSet(),
       migrate: MigrateShapeLintInput(
         context: migrateContext,
         debt: migrateDebt.keys.toSet(),
@@ -192,8 +188,8 @@ String? lintDebtToolDirForOverrideRoot(String overrideYamlRoot) {
   return p.joinAll([...parts.take(i - codegenPath.length), 'tool']);
 }
 
-/// `tool/exactly_one_lint_debt.yaml`: overrides accepted as
-/// `exactly-one-optional-fanout` debt.
+/// `tool/exactly_one_lint_debt.yaml`, which must stay empty: every line is
+/// a lint failure.
 String? exactlyOneLintDebtPathForOverrideRoot(String overrideYamlRoot) =>
     _ledgerPath(overrideYamlRoot, lintDebtLedgerFileNames[0]);
 
