@@ -64,7 +64,7 @@ terradart init --provider azure --env dev,prd --backend local
 | `--gcp-project`, `--aws-region`, `--cloudflare-account`, `--appwrite-endpoint`, `--appwrite-project` | `<env>=<value>` pairs, or one value for every environment | a placeholder marked `TODO` |
 | `--aws-account` | the same; the provider then refuses credentials of another account | any account |
 | `--state-bucket` | the bucket that already holds the state, one name or `<env>=<name>` pairs; the backend follows the provider — google `gcs`, aws `s3`, cloudflare `r2` | |
-| `--backend` | `local`, `gcs`, `s3`, `r2` (Cloudflare R2, with `--provider cloudflare`) | required without a terminal unless `--state-bucket`; `--defaults`: `local` |
+| `--backend` | `local`, `gcs`, `s3`, `r2` (Cloudflare R2, with `--provider cloudflare`), `azurerm` (an Azure storage account) | required without a terminal unless `--state-bucket`; `--defaults`: `local` |
 | `--defaults` | take `--env dev,prd`, `--backend local`, placeholder IDs and the Flutter wiring for what the flags leave out; never the providers | |
 | `--[no-]flutter` | wiring to the Flutter app in the current directory | on when there is one |
 | `--[no-]agent-skill` | write the agent skill this CLI bundles into the project | asked in a terminal (yes); off without one or with `--defaults` |

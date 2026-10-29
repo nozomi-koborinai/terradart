@@ -336,6 +336,40 @@ void main() {
     expect(read('b/lib/env.dart'), contains('final String appwriteProjectId;'));
   });
 
+  test('azurerm state uses the storage account, container, and key', () async {
+    final r = await init([
+      'a',
+      '-p',
+      'google',
+      '--backend',
+      'azurerm',
+      '--defaults',
+    ]);
+    expect(r.code, 0, reason: r.err);
+    final env = read('a/lib/env.dart');
+    expect(env, contains("stateBucket: 'adevtf'"));
+    expect(env, contains("stateBucket: 'aprdtf'"));
+    expect(
+      env,
+      contains('create this storage account and a `tfstate` container'),
+    );
+    expect(
+      read('a/lib/stack.dart'),
+      contains(
+        'AzurermBackend(\n'
+        '          storageAccountName: env.stateBucket,\n'
+        "          containerName: 'tfstate',\n"
+        "          key: 'a/\${env.name}/terraform.tfstate',\n"
+        '        )',
+      ),
+    );
+    final readme = read('a/README.md');
+    expect(readme, contains('Azure storage account `stateBucket`'));
+    expect(readme, contains('`ARM_*` environment variables'));
+    expect(readme, isNot(contains('access_key')));
+    expect(readme, isNot(contains('sas_token')));
+  });
+
   test('S3 state without aws gets a region of its own', () async {
     expect(
       (await init([

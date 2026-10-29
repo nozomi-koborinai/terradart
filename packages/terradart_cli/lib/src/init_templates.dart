@@ -27,7 +27,8 @@ enum InitBackend {
   local('a file under tf-out/'),
   gcs('a Google Cloud Storage bucket'),
   s3('an AWS S3 bucket'),
-  r2('a Cloudflare R2 bucket');
+  r2('a Cloudflare R2 bucket'),
+  azurerm('an Azure storage account');
 
   const InitBackend(this.label);
 
@@ -237,12 +238,22 @@ final class InitPlan {
       if (backend != InitBackend.local)
         EnvField(
           'stateBucket',
-          'The ${backend.name.toUpperCase()} bucket holding this '
-              "environment's Terraform state, under ${backend == InitBackend.gcs ? 'the prefix' : 'a key'} "
-              'named after the package and the environment.',
-          (env) => '$slug-$env-tfstate',
+          backend == InitBackend.azurerm
+              ? 'The Azure storage account holding this environment\'s '
+                    'Terraform state. The Stack writes it to the `tfstate` '
+                    'container, under a key named after the package and the '
+                    'environment.'
+              : 'The ${backend.name.toUpperCase()} bucket holding this '
+                    "environment's Terraform state, under ${backend == InitBackend.gcs ? 'the prefix' : 'a key'} "
+                    'named after the package and the environment.',
+          (env) => backend == InitBackend.azurerm
+              ? '${packageName.replaceAll('_', '')}${env.toLowerCase()}tf'
+              : '$slug-$env-tfstate',
           id: InitId.stateBucket,
-          todo: 'create this bucket before the first `terradart plan`.',
+          todo: backend == InitBackend.azurerm
+              ? 'create this storage account and a `tfstate` container '
+                    'before the first `terradart plan`.'
+              : 'create this bucket before the first `terradart plan`.',
         ),
       if (backend == InitBackend.s3 && !aws)
         EnvField(
@@ -463,6 +474,12 @@ String _stack(InitPlan plan) {
           '          bucket: env.stateBucket,\n'
           "          key: '$stateKey/terraform.tfstate',\n"
           '        )',
+    InitBackend.azurerm =>
+      'AzurermBackend(\n'
+          '          storageAccountName: env.stateBucket,\n'
+          "          containerName: 'tfstate',\n"
+          "          key: '$stateKey/terraform.tfstate',\n"
+          '        )',
   };
 
   final body = StringBuffer();
@@ -636,11 +653,19 @@ String _readme(InitPlan plan) {
     if (plan.backend == InitBackend.r2)
       '- State: create each `stateBucket` in R2, and export an R2 API token '
           'as `AWS_ACCESS_KEY_ID` / `AWS_SECRET_ACCESS_KEY`.',
+    if (plan.backend == InitBackend.azurerm)
+      '- State: create each `stateBucket` storage account and a `tfstate` '
+          'container before the first plan. Apply authenticates with the '
+          '`ARM_*` environment variables.',
   ];
   final state = switch (plan.backend) {
     InitBackend.local =>
       'State is a local file, `tf-out/<env>/terraform.tfstate`, kept out of '
           'git. $moveStateNote',
+    InitBackend.azurerm =>
+      'State is in the Azure storage account `stateBucket` of each '
+          'environment, in the `tfstate` container, under '
+          '`${plan.packageName}/<env>`.',
     _ =>
       'State is in the ${plan.backend.name.toUpperCase()} bucket '
           '`stateBucket` of each environment, under '
@@ -697,8 +722,8 @@ Guides: [The terradart command](https://terradart.dev/docs/cli/), [Environments]
 /// How local state moves to a bucket; `terradart init` only scaffolds.
 const moveStateNote =
     'Move it to a bucket before anyone else applies: set `backend:` in '
-    '`lib/stack.dart` to `GcsBackend`, `S3Backend` or `S3Backend.r2`, then run '
-    '`terradart state migrate`.';
+    '`lib/stack.dart` to `GcsBackend`, `S3Backend`, `S3Backend.r2` or '
+    '`AzurermBackend`, then run `terradart state migrate`.';
 
 /// The OpenTofu registry has no `appwrite/appwrite`, so the downloaded
 /// OpenTofu cannot install it.

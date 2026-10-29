@@ -89,7 +89,7 @@ The migrator's Stack output for a directory a `module` block's `source` points a
 _Avoid_: Nested Stack
 
 **Partial backend configuration**:
-A `backend` block whose values arrive at `terraform init -backend-config` time rather than in the configuration. Every field of `GcsBackend` and `S3Backend` is optional, so `const GcsBackend()` emits `backend "gcs" {}` and the migrator translates such a block instead of leaving it in `backend.tf`.
+A `backend` block whose values arrive at `terraform init -backend-config` time rather than in the configuration. Every field of `GcsBackend`, `S3Backend`, and `AzurermBackend` is optional, so `const GcsBackend()` emits `backend "gcs" {}` and the migrator translates such a block instead of leaving it in `backend.tf`.
 _Avoid_: Empty backend, backend stub
 
 **Module call wrapper**:
