@@ -30,10 +30,10 @@ required, because the provider takes exactly one member. `objectLock` and
 `rules` stay optional. The inline `rule` and `object_lock_configuration`
 blocks stay maps, as before.
 
-Magic Modules wrote six more groups from another block's path, so `wrap`
+Magic Modules wrote seven more groups from another block's path, so `wrap`
 read them as inputs that do not exist. They now seal in the block they sit
-in. Each of these blocks is one choice, so the helper class itself is the
-sealed type.
+in. Where the group is the whole block, the helper class itself is the
+sealed type. The two cloudbuild groups take a field (`event`, `revision`).
 
 | Before | After |
 |---|---|
