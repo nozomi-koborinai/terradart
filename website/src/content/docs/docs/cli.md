@@ -52,11 +52,14 @@ terradart init --provider google --env dev,prd --gcp-project dev=myapp-dev,prd=m
 terradart init --provider aws --env dev,stg,prd --aws-region prd=eu-west-1 --aws-account prd=123456789012 --backend local
 terradart init --provider cloudflare --defaults --cloudflare-account 0123abcd --agent-skill
 terradart init --dry-run --provider appwrite --defaults # lists the files, writes nothing
+terradart init --provider azure --env dev,prd --backend local
 ```
+
+`--provider azure` is not in the published 0.35.0 CLI and arrives in the next release, after `terradart_azure` is published.
 
 | Flag | Takes | Default |
 |---|---|---|
-| `--provider`, `-p` | `google`, `aws`, `cloudflare`, `appwrite`, comma-separated or repeated | required without a terminal |
+| `--provider`, `-p` | `google`, `aws`, `cloudflare`, `appwrite`, `azure`, comma-separated or repeated | required without a terminal |
 | `--env`, `-e` | lowerCamelCase environment names, comma-separated or repeated | required without a terminal; `--defaults`: `dev,prd` |
 | `--gcp-project`, `--aws-region`, `--cloudflare-account`, `--appwrite-endpoint`, `--appwrite-project` | `<env>=<value>` pairs, or one value for every environment | a placeholder marked `TODO` |
 | `--aws-account` | the same; the provider then refuses credentials of another account | any account |

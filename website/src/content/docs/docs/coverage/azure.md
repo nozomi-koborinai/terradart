@@ -1739,7 +1739,7 @@ Import per service: `import 'package:terradart_azure/<barrel>.dart';`
 | `azurerm_private_endpoint` | `AzurermPrivateEndpoint` | — |
 | `azurerm_private_endpoint_application_security_group_association` | `AzurermPrivateEndpointApplicationSecurityGroupAssociation` | [azure_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/azure_leftover_quickstart) |
 | `azurerm_private_link_service` | `AzurermPrivateLinkService` | [azure_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/azure_leftover_quickstart) |
-| `azurerm_public_ip` | `AzurermPublicIp` | [azure_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/azure_leftover_quickstart) |
+| `azurerm_public_ip` | `AzurermPublicIp` | [azure_dns_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/azure_dns_quickstart), [azure_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/azure_leftover_quickstart) |
 | `azurerm_public_ip_prefix` | `AzurermPublicIpPrefix` | [azure_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/azure_leftover_quickstart) |
 | `azurerm_virtual_network` | `AzurermVirtualNetwork` | [azure_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/azure_leftover_quickstart) |
 | `azurerm_virtual_network_dns_servers` | `AzurermVirtualNetworkDnsServers` | [azure_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/azure_leftover_quickstart) |
@@ -1922,7 +1922,7 @@ Import per service: `import 'package:terradart_azure/<barrel>.dart';`
 | --- | --- | --- |
 | `azurerm_resource_deployment_script_azure_cli` | `AzurermResourceDeploymentScriptAzureCli` | — |
 | `azurerm_resource_deployment_script_azure_power_shell` | `AzurermResourceDeploymentScriptAzurePowerShell` | — |
-| `azurerm_resource_group` | `AzurermResourceGroup` | [azure_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/azure_leftover_quickstart) |
+| `azurerm_resource_group` | `AzurermResourceGroup` | [azure_dns_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/azure_dns_quickstart), [azure_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/azure_leftover_quickstart) |
 | `azurerm_resource_group_cost_management_export` | `AzurermResourceGroupCostManagementExport` | [azure_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/azure_leftover_quickstart) |
 | `azurerm_resource_group_cost_management_view` | `AzurermResourceGroupCostManagementView` | [azure_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/azure_leftover_quickstart) |
 | `azurerm_resource_group_policy_assignment` | `AzurermResourceGroupPolicyAssignment` | — |

@@ -188,11 +188,15 @@ class DataSourceWrapperEmitter {
     for (final spec in nestedTypeSpecs) {
       collectNestedRefs(spec, [spec.tfName]);
     }
+    final typedRefs = {
+      ...topLevelRefs,
+      ...preludeReferences(override, refs),
+      ...nestedRefs,
+    };
     typedReferences
       ..clear()
       ..addAll([
-        for (final path in [...topLevelRefs.keys, ...nestedRefs.keys])
-          'data.${def.terraformType}.$path',
+        for (final path in typedRefs.keys) 'data.${def.terraformType}.$path',
       ]);
 
     final extraImports = override.extraImports ?? const <String>[];
@@ -229,9 +233,7 @@ class DataSourceWrapperEmitter {
         ).hasMatch('$derivedGetters${override.extraGetters ?? ''}');
     final refImports = referenceImports([
       for (final ref in [
-        ...topLevelRefs.values,
-        ...nestedRefs.values,
-        ...preludeReferences(refs, prelude),
+        ...typedRefs.values,
         if (principals.contains(def.terraformType)) ?principal,
       ])
         if (!emitsRef || ref.target != def.terraformType) ref,

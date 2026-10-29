@@ -618,7 +618,7 @@ class WrapCommand extends Command<int> {
       principals: principalResources,
       principal: principal,
     );
-    final typedReferenceKeys = {...exactlyOne.typedReferences};
+    final typedReferenceKeys = <String>{};
     final dataSourceEmitter = DataSourceWrapperEmitter(
       overrides: dataSourceOverrides,
       rawDataSourceSchemas: rawDataSourceSchemas,

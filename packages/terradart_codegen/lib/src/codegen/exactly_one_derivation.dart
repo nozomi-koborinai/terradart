@@ -36,9 +36,8 @@ import 'wrapper_overrides/yaml_loader.dart';
 ///
 /// [references] (`--typed-references`: Terraform type → dotted input path →
 /// target, per kind) types a member the ledger matches: its variant holds a
-/// `RefTo<Target>`. `typedReferences` lists each top-level member typed
-/// that way, as `<type>.<member>` (`data.<type>.<member>` for a data
-/// source). Diagnostics name a data source `data.<type>`; `names` carries
+/// `RefTo<Target>`, and its [SealedArgument.references] holds that
+/// reference. Diagnostics name a data source `data.<type>`; `names` carries
 /// each override's [LoadedOverrides.lintKey], the sealed-name ledger key.
 ({
   LoadedOverrides overrides,
@@ -46,7 +45,6 @@ import 'wrapper_overrides/yaml_loader.dart';
   List<String> skippedAtMostOne,
   List<SealedName> names,
   List<String> nameErrors,
-  List<String> typedReferences,
 })
 deriveExactlyOneSlots(
   LoadedOverrides overrides,
@@ -62,7 +60,6 @@ deriveExactlyOneSlots(
   final skippedAtMostOne = <String>[];
   final names = <SealedName>[];
   final nameErrors = <String>[];
-  final typedReferences = <String>[];
   Map<String, WrapperOverride> derive(WrapperOverrideKind kind) {
     final defs = ir.of(kind);
     final out = <String, WrapperOverride>{};
@@ -113,7 +110,6 @@ deriveExactlyOneSlots(
               skipped: skipped,
               skippedAtMostOne: skippedAtMostOne,
               names: typeNames,
-              typedReferences: typedReferences,
             );
       typeNames.addAll(nestedSealedNames(specs));
       final human = {
@@ -168,7 +164,6 @@ deriveExactlyOneSlots(
     skippedAtMostOne: skippedAtMostOne,
     names: names,
     nameErrors: nameErrors,
-    typedReferences: typedReferences,
   );
 }
 
@@ -221,7 +216,6 @@ WrapperOverride _derive(
   required List<String> skipped,
   required List<String> skippedAtMostOne,
   required List<SealedGroupName> names,
-  required List<String> typedReferences,
 }) {
   final prefix = o.kind.typeStem(type);
   final where = o.kind.label(type);
@@ -333,6 +327,12 @@ WrapperOverride _derive(
     return null;
   }
 
+  Map<String, ResolvedReference> held(Iterable<ExactlyOneVariant> leaves) => {
+    for (final l in leaves)
+      if (refs[l.tfName] case final ref? when ref.dartType == l.fieldType)
+        l.tfName: ref,
+  };
+
   Set<String> classesFor(List<String> group) => {
     ...classNames,
     for (final n in order)
@@ -380,10 +380,6 @@ WrapperOverride _derive(
         final slot = resolved.concept;
         chosenSlots.add(slot);
         taken.addAll(group);
-        typedReferences.addAll([
-          for (final v in variants)
-            if (refs[v.tfName]?.dartType == v.fieldType) '$where.${v.tfName}',
-        ]);
         group.forEach(slots.remove);
         // Only a group whose name reports an error (which fails `wrap`)
         // reaches the plain concatenations: `clashes` vetted every name it
@@ -417,6 +413,7 @@ WrapperOverride _derive(
               for (final (i, v) in variants.indexed)
                 SoloVariant(v, className: variantClasses[i]),
             ],
+            references: held(variants),
           ),
         );
         paramOrder = _replaceMembers(paramOrder, group, slot);
@@ -450,11 +447,6 @@ WrapperOverride _derive(
         names.addAll(argument.names);
         chosenSlots.add(argument.concept);
         taken.addAll(members);
-        typedReferences.addAll([
-          for (final v in argument.variants)
-            for (final l in v.leaves)
-              if (refs[l.tfName]?.dartType == l.fieldType) '$where.${l.tfName}',
-        ]);
         members.forEach(slots.remove);
         classNames
           ..add(argument.sealedClass)
@@ -465,6 +457,7 @@ WrapperOverride _derive(
             sealedClass: argument.sealedClass,
             optional: false,
             variants: argument.variants,
+            references: held([for (final v in argument.variants) ...v.leaves]),
           ),
         );
         paramOrder = _replaceMembers(paramOrder, members, argument.concept);

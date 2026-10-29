@@ -16,7 +16,7 @@
 #   - packages/terradart_appwrite/pubspec.yaml    (version: + terradart_core caret)
 #   - packages/terradart_cloudflare/pubspec.yaml  (version: + terradart_core caret)
 #   - packages/terradart_aws/pubspec.yaml         (version: + terradart_core caret)
-#   - packages/terradart_azure/pubspec.yaml       (version: + terradart_core caret)
+#   - packages/terradart_azure/pubspec.yaml       (version: + terradart_{core,cloudflare} carets)
 #   - packages/terradart_time/pubspec.yaml        (version: + terradart_core caret)
 #   - packages/terradart_hcl/pubspec.yaml         (version: line)
 #   - packages/terradart_migrate/pubspec.yaml     (version: + terradart_{core,google,google_beta,appwrite,cloudflare,aws,azure,hcl,time} carets)
@@ -150,6 +150,8 @@ sed_inplace "s#^( *terradart_core): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terra
 echo "    - terradart_aws.dependencies.terradart_core: ^${NEW}"
 sed_inplace "s#^( *terradart_core): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_azure/pubspec.yaml
 echo "    - terradart_azure.dependencies.terradart_core: ^${NEW}"
+sed_inplace "s#^( *terradart_cloudflare): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_azure/pubspec.yaml
+echo "    - terradart_azure.dev_dependencies.terradart_cloudflare: ^${NEW}"
 sed_inplace "s#^( *terradart_core): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_time/pubspec.yaml
 echo "    - terradart_time.dependencies.terradart_core: ^${NEW}"
 sed_inplace "s#^( *terradart_(hcl|migrate)): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_cli/pubspec.yaml

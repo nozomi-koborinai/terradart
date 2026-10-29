@@ -33,12 +33,13 @@ In CI or an AI agent's shell it never asks: `apply` and `destroy` need `--auto-a
 
 ## A new project
 
-`terradart init` asks, in a terminal, for the providers, the environment names, each environment's IDs (GCP project, AWS region and account, Cloudflare account, Appwrite endpoint and project) and whether a bucket for the state already exists, and prints the flags that give the same answers. Without a terminal it never asks and never chooses for you: `--provider`, `--env` and `--backend` (or `--state-bucket`) are required, and `--defaults` accepts `dev,prd` and local state. IDs left out become placeholders marked `TODO`:
+`terradart init` asks, in a terminal, for the providers, the environment names, each environment's IDs (GCP project, AWS region and account, Cloudflare account, Appwrite endpoint and project) and whether a bucket for the state already exists, and prints the flags that give the same answers. Azure asks for no ID. The resource group location defaults to `eastus` in `lib/env.dart`. Without a terminal it never asks and never chooses for you: `--provider`, `--env` and `--backend` (or `--state-bucket`) are required, and `--defaults` accepts `dev,prd` and local state. IDs left out become placeholders marked `TODO`:
 
 ```bash
 terradart init --provider google --env dev,prd --gcp-project dev=myapp-dev,prd=myapp-prd --state-bucket myapp-tfstate
 terradart init --provider aws --defaults --aws-region eu-west-1
 terradart init --dry-run --provider cloudflare --defaults   # list the files, write nothing
+terradart init --provider azure --env dev,prd --backend local
 terradart init --provider google --defaults --agent-skill   # with the agent skill
 ```
 

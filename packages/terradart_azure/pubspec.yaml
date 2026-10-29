@@ -23,4 +23,5 @@ dependencies:
 
 dev_dependencies:
   lints: ^6.0.0
+  terradart_cloudflare: ^0.35.0
   test: ^1.25.6

@@ -1,3 +1,5 @@
+import '../references/resolved_reference.dart';
+
 /// Kind of override entry. Determines which emitter consumes it.
 ///
 /// - [resource]: Consumed by `WrapperEmitter` to render a Terraform resource
@@ -576,6 +578,7 @@ final class SealedArgument extends OverrideSlot {
     required this.sealedClass,
     required this.optional,
     required this.variants,
+    this.references = const {},
   });
 
   /// Snake-case slot name in `paramOrder` and `argMapOrder`. It may equal
@@ -591,6 +594,10 @@ final class SealedArgument extends OverrideSlot {
 
   /// The variants, in the order the sealed type declares them.
   final List<SealedVariant> variants;
+
+  /// The reference each member's variant field holds, by member: the
+  /// ledger's `RefTo<Target>` or principal for that input.
+  final Map<String, ResolvedReference> references;
 
   /// Each variant's class, in [variants] order.
   List<String> get variantClasses => [for (final v in variants) v.className];
