@@ -169,6 +169,7 @@ Examples:
       With the agent skill in .agents/skills/ and .claude/skills/.
   terradart init --dry-run --provider appwrite --defaults
       Lists the files, writes nothing.
+  terradart init --provider azure --env dev,prd --backend local
   terradart init --provider google --defaults --no-input --json
 
 Existing Terraform:
@@ -504,7 +505,10 @@ See also: terradart help environments, terradart help backends, terradart help a
             },
         ];
         if (picked.isEmpty || picked.any((n) => !names.contains(n))) {
-          return (null, 'Pick from ${names.join(', ')}, or 1 to 4.');
+          return (
+            null,
+            'Pick from ${names.join(', ')}, or 1 to ${names.length}.',
+          );
         }
         return ([for (final n in picked) InitProvider.parse(n)], null);
       },
@@ -816,6 +820,7 @@ List<InitBackend> _bucketKinds(List<InitProvider> providers) => [
       InitProvider.aws => InitBackend.s3,
       InitProvider.cloudflare => InitBackend.r2,
       InitProvider.appwrite => null,
+      InitProvider.azure => null,
     },
 ];
 

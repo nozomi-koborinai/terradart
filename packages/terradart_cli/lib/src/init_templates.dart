@@ -10,7 +10,8 @@ enum InitProvider {
   google('terradart_google'),
   aws('terradart_aws'),
   cloudflare('terradart_cloudflare'),
-  appwrite('terradart_appwrite');
+  appwrite('terradart_appwrite'),
+  azure('terradart_azure');
 
   const InitProvider(this.package);
 
@@ -227,6 +228,12 @@ final class InitPlan {
           id: InitId.appwriteProject,
         ),
       ],
+      if (has(InitProvider.azure))
+        EnvField(
+          'location',
+          'The Azure region the resource group is created in.',
+          (_) => 'eastus',
+        ),
       if (backend != InitBackend.local)
         EnvField(
           'stateBucket',
@@ -420,6 +427,10 @@ String _stack(InitPlan plan) {
       'package:terradart_appwrite/auth.dart',
       'package:terradart_appwrite/provider.dart',
     ],
+    if (plan.has(InitProvider.azure)) ...[
+      'package:terradart_azure/provider.dart',
+      'package:terradart_azure/resource.dart',
+    ],
   }.toList()..sort();
 
   final providers = [
@@ -433,6 +444,7 @@ String _stack(InitPlan plan) {
           '            endpoint: env.appwriteEndpoint,\n'
           '            projectId: env.${plan._appwriteProjectField},\n'
           '          )',
+    if (plan.has(InitProvider.azure)) 'const AzureProvider()',
   ];
   final stateKey = '${plan.packageName}/\${env.name}';
   final backend = switch (plan.backend) {
@@ -502,6 +514,18 @@ String _stack(InitPlan plan) {
       AppwriteAuthTeam('editors', name: .literal('\${env.name} editors')),
     );
     addOutput('editors_team_id', team.id);
+''');
+  }
+  if (plan.has(InitProvider.azure)) {
+    resource('''
+    final group = add(
+      AzurermResourceGroup(
+        'app',
+        location: .literal(env.location),
+        name: .literal('${plan.slug}-\${env.name}'),
+      ),
+    );
+    addOutput('resource_group_id', group.id);
 ''');
   }
   if (plan.flutter != null) {
@@ -599,6 +623,10 @@ String _readme(InitPlan plan) {
     if (plan.has(InitProvider.appwrite))
       '- Appwrite: `APPWRITE_API_KEY`, an API key of the project. '
           '$appwriteEngineNote',
+    if (plan.has(InitProvider.azure))
+      '- Azure: `ARM_SUBSCRIPTION_ID` and `ARM_TENANT_ID`, and a credential '
+          '(`ARM_CLIENT_ID` / `ARM_CLIENT_SECRET`, `ARM_CLIENT_CERTIFICATE`, '
+          '`ARM_USE_OIDC`, `ARM_USE_MSI`, or `ARM_USE_CLI`).',
     if (plan.backend == InitBackend.gcs)
       '- State: create each `stateBucket` (`gcloud storage buckets create '
           'gs://<bucket>`) before the first plan.',
