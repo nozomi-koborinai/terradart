@@ -550,7 +550,7 @@ void main() {
     expect(r.asked.sublist(3), [
       'Do you already have a bucket for Terraform state? [y/N] ',
       'Is it a Cloudflare R2 bucket? [Y/n] ',
-      'Which kind of bucket (gcs, s3) [gcs]: ',
+      'Which kind of bucket (gcs, s3, azurerm) [gcs]: ',
       'Bucket name, one for every environment or env=name pairs: ',
       'Install the terradart agent skill for coding agents (.agents/skills/, .claude/skills/)? [Y/n] ',
     ]);
@@ -559,6 +559,27 @@ void main() {
   });
 
   group('--state-bucket', () {
+    test('azure state bucket is the azurerm backend', () async {
+      final r = await init([
+        '-p',
+        'azure',
+        '--env',
+        'dev,prd',
+        '--state-bucket',
+        'sharedacct',
+      ]);
+      expect(r.code, 0, reason: r.err);
+      final stack = read('infra/lib/stack.dart');
+      expect(stack, contains("resourceGroupName: 'acme-infra-tfstate'"));
+      expect(stack, contains('storageAccountName: env.stateBucket'));
+      expect(
+        "stateBucket: 'sharedacct'".allMatches(read('infra/lib/env.dart')),
+        hasLength(2),
+      );
+      expect(r.out, contains('azurerm state'));
+      expect(r.err, isNot(contains('gcs or s3')));
+    });
+
     test('takes the backend from the provider', () async {
       final r = await init([
         '-p',
