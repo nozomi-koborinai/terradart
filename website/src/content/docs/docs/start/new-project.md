@@ -233,6 +233,8 @@ Step 2 takes another `--provider` and its IDs; the steps after it are the same.
 | Cloudflare | `terradart init my_app --provider cloudflare --env dev,prd --cloudflare-account <account id> --backend local` | `CLOUDFLARE_API_TOKEN` |
 | Azure | `terradart init my_app --provider azure --env dev,prd --backend local` | `ARM_SUBSCRIPTION_ID`, `ARM_TENANT_ID`, and a client credential or `ARM_USE_CLI` |
 
+`--provider azure` is not in the published 0.35.0 CLI and arrives in the next release, after `terradart_azure` is published.
+
 `--provider google,aws` puts both in one Stack. An Appwrite project needs one more step today: see [Appwrite](/docs/providers/appwrite/).
 
 ## Next

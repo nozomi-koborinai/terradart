@@ -55,6 +55,8 @@ terradart init --dry-run --provider appwrite --defaults # lists the files, write
 terradart init --provider azure --env dev,prd --backend local
 ```
 
+`--provider azure` is not in the published 0.35.0 CLI and arrives in the next release, after `terradart_azure` is published.
+
 | Flag | Takes | Default |
 |---|---|---|
 | `--provider`, `-p` | `google`, `aws`, `cloudflare`, `appwrite`, `azure`, comma-separated or repeated | required without a terminal |
