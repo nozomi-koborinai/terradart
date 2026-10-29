@@ -62,6 +62,11 @@ const scaffolds = <String, Scaffold>{
     resource: 'appwrite_auth_team',
     backend: 'local',
   ),
+  'azure': (
+    args: ['--provider', 'azure', '--defaults'],
+    resource: 'azurerm_resource_group',
+    backend: 'local',
+  ),
 };
 
 /// Runs `terradart <args>` in [cwd] with the real process runner, failing

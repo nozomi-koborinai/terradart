@@ -8,9 +8,10 @@ provider. **Never apply.**
 terradart synth
 ```
 
-`lib/main.dart` is generated from `tool/generate_azure_leftover_example.dart`.
-Placeholder values that satisfy provider validators live in
-`tool/coverage_dummies/azure.yaml`.
+`lib/main.dart` is generated. Regenerate it after a wrap with
+`dart tool/coverage_stack.dart --lane azure` from the repository root, which
+also validates it against the provider; the placeholder values that satisfy
+provider validators live in `tool/coverage_dummies/azure.yaml`.
 
 ## Before you apply
 

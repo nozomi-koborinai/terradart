@@ -247,3 +247,12 @@ providers:
     migrateManifest: packages/terradart_migrate/lib/src/manifest/azure.g.dart
     providerEnums: true
     references: typed
+    bump:
+      mode: auto
+      repo: hashicorp/terraform-provider-azurerm
+      major: 5
+      cron: '0 22 * * 4' # Thursday 22:00 UTC
+      refresh: extract
+      dataSources: true
+      scaffold: lane
+      exampleGenerator: tool/generate_azure_leftover_example.dart
