@@ -40,14 +40,14 @@ final class _EmrConfigurationsStack extends Stack {
         name: const .literal('demo'),
         releaseLabel: const .literal('emr-7.0.0'),
         serviceRole: role.ref,
-        coreInstanceFleet: EmrClusterCoreInstanceFleet(
+        coreInstanceFleet: const EmrClusterCoreInstanceFleet(
           instanceTypeConfigs: [
             EmrClusterInstanceTypeConfigs(
-              instanceType: const .literal('m5.xlarge'),
+              instanceType: .literal('m5.xlarge'),
               configurations: [
                 EmrClusterInstanceTypeConfigsConfigurations(
-                  classification: const .literal('spark-defaults'),
-                  properties: const .literal({'spark.executor.memory': '2G'}),
+                  classification: .literal('spark-defaults'),
+                  properties: .literal({'spark.executor.memory': '2G'}),
                 ),
               ],
             ),
