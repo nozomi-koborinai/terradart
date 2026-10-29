@@ -154,16 +154,16 @@ List<String>? descriptionEnumValues(List<String> path, String? description) =>
 /// `'AppEngineDomainMapping'` for `google_app_engine_domain_mapping`) is
 /// derived by the caller — see `naming.dart`'s `snakeToPascal`.
 ///
-/// Filtering, applied uniformly at every recursion depth:
-/// - A block whose bare Terraform name is in [customSlotKeys] is skipped
-///   entirely — no trace anywhere in the result. The hand-written
-///   customSlot already owns that whole subtree (mirrors
-///   `check_google_enum_gaps.dart`'s `_customSlotCoversBlock`; checking
-///   the bare name at every depth reproduces its "any ancestor" semantics
-///   for free, because a skipped node's children are never visited).
-///   Only keys naming a top-level schema field count: a virtual slot
-///   (a sealed `metric` over `metric_name` / `metric_query` / ...) owns no
-///   block, so a nested `metric` block elsewhere keeps its helper.
+/// Filtering. The slot skip applies at the resource root. The other
+/// rules apply at every depth:
+/// - A top-level block whose name is in [customSlotKeys] is skipped, and
+///   its subtree with it, because a skipped node's children are never
+///   visited. The slot owns that block. A key that names no top-level
+///   field is a virtual slot (a sealed `metric` over `metric_name` /
+///   `metric_query` / ...) and owns nothing, so a nested `metric` block
+///   keeps its helper. A deeper block that only shares the slot's name is
+///   a different input and keeps its helper too. A sealed concept that
+///   reuses a root attribute's name does not own those nested blocks.
 /// - A block named `timeouts` is skipped entirely — Terraform's SDK-level
 ///   meta-argument, not a user-facing input (same rule as
 ///   `constructor_params.dart`'s `skipNestedBlock`).
@@ -543,7 +543,11 @@ _ChildScan _scanChildren(
     required String tfName,
     required Map<String, dynamic> childBody,
   }) {
-    if (customSlotKeys.contains(tfName) || tfName == 'timeouts') return;
+    // Only the root block of this name. A deeper namesake is another input.
+    if ((path.isEmpty && customSlotKeys.contains(tfName)) ||
+        tfName == 'timeouts') {
+      return;
+    }
 
     final childPath = [...path, tfName];
     if (excludedPaths.contains(childPath.join('.'))) {
