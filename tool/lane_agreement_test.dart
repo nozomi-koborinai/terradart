@@ -141,12 +141,15 @@ void main() {
         expectMentions(path, package);
       }
       expect(astro, contains('docs/coverage/${lane.name}'), reason: lane.name);
+      final guideName = lane.providerGuide ?? lane.name;
       final guide = File(
-        'website/src/content/docs/docs/providers/${lane.name}.md',
+        'website/src/content/docs/docs/providers/$guideName.md',
       );
-      if (!guide.existsSync()) continue;
-      expect(astro, contains('docs/providers/${lane.name}'), reason: lane.name);
-      expect(landing, contains(package), reason: lane.name);
+      expect(guide.existsSync(), isTrue, reason: guide.path);
+      expect(astro, contains('docs/providers/$guideName'), reason: lane.name);
+      if (lane.providerGuide == null) {
+        expect(landing, contains(package), reason: lane.name);
+      }
     }
   });
 }

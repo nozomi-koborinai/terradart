@@ -5,7 +5,7 @@ description: Build a Flutter, Dart web or command-line client with the values Te
 
 A client app needs values that exist only after apply: the URL of the API it calls, the bucket it uploads to. TerraDart hands them over without a copied string and without tying the app's release to the apply. The Stack declares one more output, the **define file**; `terradart apply` or `terradart outputs` writes it from the applied state, the client's build compiles it in with `--dart-define-from-file`, and reads each value with its type through the generated `<Stack>Outputs` reader.
 
-It works the same on every provider package — Google Cloud, AWS, Cloudflare, Appwrite — because it lives on `Stack`, not on a provider.
+It works the same on every provider package — Google Cloud, AWS, Cloudflare, Appwrite, Azure — because it lives on `Stack`, not on a provider.
 
 ## Declare the define file
 

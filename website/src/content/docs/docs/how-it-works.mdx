@@ -27,7 +27,7 @@ graph LR
   CLOUD -->|"outputEnvironment()"| APP
 ```
 
-1. **Author.** A `final class AppStack extends Stack` adds resources built with the factories of the provider packages — `terradart_google`, `terradart_aws`, `terradart_cloudflare`, `terradart_appwrite` — and declares the values the app reads back with `addConstant` and `addOutput`.
+1. **Author.** A `final class AppStack extends Stack` adds resources built with the factories of the provider packages — `terradart_google`, `terradart_aws`, `terradart_cloudflare`, `terradart_appwrite`, `terradart_azure` — and declares the values the app reads back with `addConstant` and `addOutput`.
 2. **Synth.** `terradart synth` runs `bin/infra.dart`, whose `runStack` (or `runEnvironments`, for [several environments](/docs/environments/)) builds the Stack and writes `tf-out/main.tf.json` plus the generated app file. `dart run bin/infra.dart` does the same without the command.
 3. **Plan and apply.** `terradart plan` and `terradart apply` synthesize, then run `init` and `plan` or `apply` in `tf-out/` with a checksum-verified OpenTofu the command downloads, or the `tofu` or `terraform` already on your `PATH` — you never install Terraform yourself. State lives in the backend the Stack declares.
 4. **Hand off.** Constants are known at synth and compiled into the app. Outputs exist after apply and reach the app through the generated reader: a deployed service from its environment, a Flutter or web client from the define file `terradart apply` writes, a script from the same file.
@@ -251,10 +251,11 @@ Each provider package wraps one official Terraform provider, and its factories m
 - **[`terradart_aws`](https://pub.dev/packages/terradart_aws)** — HashiCorp [`aws`](https://registry.terraform.io/providers/hashicorp/aws/latest), filled at its pinned release.
 - **[`terradart_cloudflare`](https://pub.dev/packages/terradart_cloudflare)** — the official `cloudflare/cloudflare` provider, filled at its pinned release.
 - **[`terradart_appwrite`](https://pub.dev/packages/terradart_appwrite)** — the official `appwrite/appwrite` provider, filled at its pinned release.
+- **[`terradart_azure`](https://pub.dev/packages/terradart_azure)** — HashiCorp [`azurerm`](https://registry.terraform.io/providers/hashicorp/azurerm/latest), filled at its pinned release.
 
 **[`terradart_time`](https://pub.dev/packages/terradart_time)** is a small hand-written package beside them: `TimeProvider` / `TimeSleep` for HashiCorp [`time`](https://registry.terraform.io/providers/hashicorp/time/latest), usable from a Stack on any provider. One Stack can mix packages.
 
-Each provider has a page under Providers — [Google Cloud](/docs/providers/google/), [AWS](/docs/providers/aws/), [Cloudflare](/docs/providers/cloudflare/), [Appwrite](/docs/providers/appwrite/) — and [How TerraDart is built](/docs/how-its-built/) covers how the factories are generated from the provider schemas and kept current.
+Each provider has a page under Providers — [Google Cloud](/docs/providers/google/), [AWS](/docs/providers/aws/), [Cloudflare](/docs/providers/cloudflare/), [Appwrite](/docs/providers/appwrite/), [Azure](/docs/providers/azure/) — and [How TerraDart is built](/docs/how-its-built/) covers how the factories are generated from the provider schemas and kept current.
 
 ## Non-goals
 

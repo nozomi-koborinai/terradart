@@ -1,17 +1,17 @@
 /// Migrate fixture gate (#661): migrates the tree fixtures `config_tree/`
 /// (two environment roots sharing six local modules), `real_plan_src/`
 /// (a root with one child module) and `lanes/` (one small module per
-/// provider, plus google+cloudflare, aws+cloudflare, google+google-beta
-/// and an aliased child module) with `terradart_migrate`, writes the
-/// generated package to a temp directory, analyzes and synthesizes it, and
-/// runs `terraform init -backend=false && terraform validate` in every
-/// Terraform directory of the mirrored `tf-out/` tree — each holding the
-/// Stack's `main.tf.json` next to its leftover sidecar. A directory whose
-/// synthesized JSON only declares `configuration_aliases` is not validated
-/// on its own: Terraform requires the calling module for that, and the
-/// root validate covers it. Every kept block must have landed in a sidecar
-/// file. `user_project_override` in a fixture must still be present after
-/// synth.
+/// provider, plus google+cloudflare, aws+cloudflare, google+google-beta,
+/// google+azure and an aliased child module) with `terradart_migrate`,
+/// writes the generated package to a temp directory, analyzes and
+/// synthesizes it, and runs `terraform init -backend=false && terraform
+/// validate` in every Terraform directory of the mirrored `tf-out/` tree —
+/// each holding the Stack's `main.tf.json` next to its leftover sidecar. A
+/// directory whose synthesized JSON only declares `configuration_aliases`
+/// is not validated on its own: Terraform requires the calling module for
+/// that, and the root validate covers it. Every kept block must have landed
+/// in a sidecar file. `user_project_override` in a fixture must still be
+/// present after synth.
 ///
 /// The merged-environment gate (#668) migrates `config_tree/` a second time
 /// with `--merge-envs`, and requires that the one `ConfigTreeStack(env: ...)`
@@ -50,6 +50,7 @@ const _fixtures = [
   'lanes/google_cloudflare',
   'lanes/aws_cloudflare',
   'lanes/google_google_beta',
+  'lanes/google_azure',
   'lanes/aliased',
 ];
 

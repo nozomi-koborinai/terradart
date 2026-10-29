@@ -1067,6 +1067,59 @@ void main() {
         );
       });
 
+      test('a typeNames entry names the helper its input takes', () {
+        const terraformType = 'google_netapp_volume';
+        final out =
+            WrapperEmitter(
+              overrides: {
+                terraformType: const WrapperOverride(
+                  outputDir: 'netapp',
+                  deriveNestedTypes: true,
+                  paramOrder: ['name', 'tiering_policy'],
+                  typeNames: {'tiering_policy': 'GoogleNetappVolumeTiering'},
+                ),
+              },
+              rawResourceSchemas: rawResourceSchemas,
+            ).emit(
+              _loadFromWrapFixture(terraformType),
+              providerSource: 'hashicorp/google',
+            );
+
+        expect(out, contains('final class GoogleNetappVolumeTiering {'));
+        expect(out, contains('GoogleNetappVolumeTiering? tieringPolicy'));
+        expect(out, isNot(contains('class NetappVolumeTieringPolicy')));
+      });
+
+      test('a typeNames key that names no derived type fails', () {
+        const terraformType = 'google_netapp_volume';
+        final emitter = WrapperEmitter(
+          overrides: {
+            terraformType: const WrapperOverride(
+              outputDir: 'netapp',
+              deriveNestedTypes: true,
+              paramOrder: ['name', 'tiering_policy'],
+              typeNames: {'tiering_policy.tier': 'GoogleNetappVolumeTier'},
+            ),
+          },
+          rawResourceSchemas: rawResourceSchemas,
+        );
+
+        expect(
+          () => emitter.emit(
+            _loadFromWrapFixture(terraformType),
+            providerSource: 'hashicorp/google',
+          ),
+          throwsA(
+            isA<StateError>().having(
+              (e) => e.message,
+              'message',
+              'google_netapp_volume: typeNames tiering_policy.tier names no '
+                  'derived enum or helper',
+            ),
+          ),
+        );
+      });
+
       test('a helper named only as a prefix of a prelude class is '
           'unreachable (google_compute_firewall.allow)', () {
         const terraformType = 'google_compute_firewall';
