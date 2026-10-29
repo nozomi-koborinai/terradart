@@ -88,6 +88,8 @@ These follow the entry, with no second list.
 - Argument-rule copies in each lane's barrels manifest (`tool/sync_argument_rules.dart`). The fixed copies (README, getting started, the skill, `TfArg`, `RefTo`) stay listed there.
 - Migrator-gate path overrides (`tool/migrate_fixture_gates.dart`, `tool/migrate_moved_gates.dart`, `tool/migrate_roundtrip_gates.dart`). The set is `terradart_core`, every lane package, and `terradart_time`.
 
+A yaml lane's `lanes/<lane>` fixture follows the yaml, with `-` written as `_`. The directory itself is hand-written, and the fixture gate fails when it is missing. A `lanes/` directory that is not a yaml lane has to be listed in the shared fixture list, and the gate fails when the directory and the list disagree.
+
 A resource class whose name is the PascalCase Terraform type may be longer than 80 characters. A helper more than one Terraform segment past the type it is named after may not. The gate is `tool/type_name_length_test.dart`, and it already reads every lane.
 
 These stay hand-edited. The agreement test fails if the lane is missing from the ones it can see.
