@@ -223,6 +223,7 @@ MigrateEntryBuild buildMigrateEntry({
       typeOverrides: override.nestedDartTypeOverrides,
       reserved: reservedTypeNames,
       laneInputs: laneInputs,
+      typeNames: override.typeNames,
     );
     for (final s in collected) {
       specs[s.tfName] = s;

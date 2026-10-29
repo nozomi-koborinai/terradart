@@ -40,14 +40,21 @@ Set<String> rootSealedTypeNames(
 /// fewest words keeps the name and the others take [stem] and their name
 /// concatenated whole; on a tie all of them do.
 ///
+/// An input in [named] (the override's `typeNames`) takes that name and
+/// never moves. Throws a [StateError] when another input keeps that name
+/// too.
+///
 /// [laneInputs] as for [joinStem].
 Map<String, String> topLevelTypeNames(
   String stem,
   Iterable<String> keys, {
   Map<String, Set<String>> laneInputs = const {},
+  Map<String, String> named = const {},
 }) {
-  final whole = {for (final k in keys) k: stem + snakeToPascal(k)};
-  final names = {for (final k in whole.keys) k: joinStem(stem, k, laneInputs)};
+  final whole = {for (final k in keys) k: named[k] ?? stem + snakeToPascal(k)};
+  final names = {
+    for (final k in whole.keys) k: named[k] ?? joinStem(stem, k, laneInputs),
+  };
   int dropped(String k) =>
       pascalWords(whole[k]!).length - pascalWords(names[k]!).length;
   while (true) {
@@ -68,7 +75,17 @@ Map<String, String> topLevelTypeNames(
         ),
       );
     }
-    if (move.isEmpty) return names;
+    if (move.isEmpty) {
+      for (final MapEntry(:key, :value) in names.entries) {
+        if (named.containsKey(key) &&
+            names.entries.any((e) => e.key != key && e.value == value)) {
+          throw StateError(
+            'typeNames $key: $value is the name of another input of $stem',
+          );
+        }
+      }
+      return names;
+    }
     for (final k in move) {
       names[k] = whole[k]!;
     }
@@ -166,9 +183,11 @@ List<String> typeNameCandidates(
 /// named like no other block or enum input of the resource is
 /// `<stem><Name>`, and a deeper namesake is told apart by its nearest
 /// distinguishing ancestor. The paths at [stemless] (sealed types, whose
-/// variants are named after them) never take [stem] itself. [laneInputs]
-/// as for [joinStem]. Throws a [StateError] when a path runs out of
-/// candidates on a name another path or [owned] holds.
+/// variants are named after them) never take [stem] itself. Any other
+/// path in [named] (the override's `typeNames`, keyed by the dotted path)
+/// has that name as its one candidate. [laneInputs] as for [joinStem]. Throws
+/// a [StateError] when a path runs out of candidates on a name another
+/// path or [owned] holds.
 List<String> conciseTypeNames(
   String stem,
   List<List<String>> paths, {
@@ -176,15 +195,19 @@ List<String> conciseTypeNames(
   Set<String> reserved = const {},
   Set<int> stemless = const {},
   Map<String, Set<String>> laneInputs = const {},
+  Map<String, String> named = const {},
 }) {
   final candidates = [
     for (final (i, p) in paths.indexed)
-      typeNameCandidates(
-        stem,
-        p,
-        allowStem: !stemless.contains(i),
-        laneInputs: laneInputs,
-      ),
+      if (named[p.join('.')] case final name? when !stemless.contains(i))
+        [name]
+      else
+        typeNameCandidates(
+          stem,
+          p,
+          allowStem: !stemless.contains(i),
+          laneInputs: laneInputs,
+        ),
   ];
   final at = List.filled(paths.length, 0);
   bool canMove(int i) => at[i] < candidates[i].length - 1;

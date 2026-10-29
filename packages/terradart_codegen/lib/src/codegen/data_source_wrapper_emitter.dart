@@ -159,8 +159,10 @@ class DataSourceWrapperEmitter {
             typeOverrides: override.nestedDartTypeOverrides,
             reserved: hints.reserved,
             laneInputs: laneInputs,
+            typeNames: override.typeNames,
           )
         : const <NestedBlockSpec>[];
+    checkTypeNames(def, override, nestedTypeSpecs, laneInputs: laneInputs);
     final dartTypeOverrides =
         override.dartTypeOverrides ?? const <String, String>{};
     final paramOrder = orderedDataSourceConstructorParams(

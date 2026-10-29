@@ -303,6 +303,43 @@ $names''');
         });
       });
 
+      group('typeNames', () {
+        late Directory tmp;
+        setUp(() => tmp = Directory.systemTemp.createTempSync('type_names_'));
+        tearDown(() => tmp.deleteSync(recursive: true));
+
+        YamlOverrideLoader loaderFor(String names) {
+          File(p.join(tmp.path, 'azurerm_thing.yaml')).writeAsStringSync('''
+outputDir: thing
+typeNames:
+$names''');
+          return YamlOverrideLoader(rootDir: tmp.path);
+        }
+
+        test('reads input paths and type names', () {
+          final o = loaderFor(
+            '  cool_access.tiering_policy: AzurermThingTieringPolicy\n',
+          ).load().resources['azurerm_thing']!;
+          expect(o.typeNames, {
+            'cool_access.tiering_policy': 'AzurermThingTieringPolicy',
+          });
+        });
+
+        test('a key that is not an input path -> FormatException', () {
+          expect(
+            loaderFor('  "a, b": AzurermThingA\n').load,
+            throwsFormatExceptionWith('must be a dotted input path'),
+          );
+        });
+
+        test('a name that is not PascalCase -> FormatException', () {
+          expect(
+            loaderFor('  security_style: security_style\n').load,
+            throwsFormatExceptionWith('use a PascalCase Dart type name'),
+          );
+        });
+      });
+
       group('exactlyOneOf / atMostOneOf', () {
         late Directory tmp;
         setUp(() => tmp = Directory.systemTemp.createTempSync('groups_'));
