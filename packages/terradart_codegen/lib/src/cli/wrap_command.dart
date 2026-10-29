@@ -64,7 +64,9 @@ class WrapCommand extends Command<int> {
         negatable: false,
         help:
             'CI gate mode: fail (E301) if any emitted file differs from '
-            'its on-disk counterpart. Implies no writes.',
+            'its on-disk counterpart, if an exclusive group is neither '
+            'sealed nor named in the override\'s unsealedGroups, or if a '
+            'derived helper is unreachable. Implies no writes.',
       )
       ..addFlag(
         'force',
@@ -553,6 +555,9 @@ class WrapCommand extends Command<int> {
     );
     final resourceOverrides = exactlyOne.overrides.resources;
     final dataSourceOverrides = exactlyOne.overrides.dataSources;
+    // `--check` fails on each of these: a group neither sealed nor named in
+    // its override's `unsealedGroups`, a stale `unsealedGroups` entry, and a
+    // derived helper no constructor reaches.
     final excused = exactlyOne.excused.toSet();
     final unsealed = <String>[
       for (final g in dropped) ?_droppedReport(g, loaded, mmOverrides, excused),
@@ -561,15 +566,16 @@ class WrapCommand extends Command<int> {
         'at-most-one group not sealed: $s',
     ];
     final staleUnsealed = [
-      for (final kind in WrapperOverrideKind.values)
-        for (final MapEntry(key: type, value: o) in loaded.of(kind).entries)
-          for (final k in (o.unsealedGroups ?? const <String, String>{}).keys)
-            if (!excused.contains((
-              type: loaded.lintKey(type, kind),
-              key: sealedGroupKeyOf(const [], sealedGroupKey(k)),
-            )))
-              '${kind.label(type)} unsealedGroups "$k" matches no group wrap '
-                  'leaves unsealed; remove it',
+      if (providerEnums.hasGroupSource)
+        for (final kind in WrapperOverrideKind.values)
+          for (final MapEntry(key: type, value: o) in loaded.of(kind).entries)
+            for (final k in (o.unsealedGroups ?? const <String, String>{}).keys)
+              if (!excused.contains((
+                type: loaded.lintKey(type, kind),
+                key: sealedGroupKeyOf(const [], sealedGroupKey(k)),
+              )))
+                '${kind.label(type)} unsealedGroups "$k" matches no group wrap '
+                    'leaves unsealed; remove it',
     ];
     final unreachable = <String>[];
     if (exactlyOne.nameErrors.isNotEmpty) {
@@ -915,16 +921,23 @@ class WrapCommand extends Command<int> {
         ? _orphanedGeneratedFiles(buffer, output)
         : const <String>[];
 
-    for (final u in [...unsealed, ...staleUnsealed, ...unreachable]) {
-      stderr.writeln('terradart wrap: $u');
-    }
     if (check) {
       return _runCheck(buffer, output, orphans, [
         for (final m in debt?.missing ?? const <String>[])
           '$debtPath: $m has no entry (name it in sealedNames, or run '
               '`terradart wrap` to record it)',
         for (final s in debt?.stale ?? const <String>[]) '$debtPath: $s',
+        for (final u in unsealed)
+          '$u (seal it, or give the reason in the override\'s '
+              'unsealedGroups)',
+        ...staleUnsealed,
+        for (final u in unreachable)
+          '$u (add the block to paramOrder, or list it in '
+              'nestedTypeExcludes)',
       ]);
+    }
+    for (final u in [...unsealed, ...staleUnsealed, ...unreachable]) {
+      stderr.writeln('terradart wrap: $u');
     }
 
     // 6. Materialise. Create parent dirs lazily; writeAsStringSync is
