@@ -39,6 +39,7 @@ import 'package:terradart_codegen/src/codegen/wrapper_overrides/wrapper_override
 import 'package:terradart_codegen/src/codegen/wrapper_overrides/yaml_loader.dart';
 import 'package:yaml/yaml.dart';
 
+import 'migrate_fixture_pins.dart';
 import 'retire_removed_overrides.dart';
 import 'retire_stale_sealed_names.dart';
 
@@ -659,6 +660,21 @@ Future<void> main(List<String> args) async {
       }
       if (run.code != 0) {
         failed.add('${lane.name} (${gate.name}, exit ${run.code})');
+      } else if (gate == WrapGate.regen) {
+        final version = File(
+          p.join(repoRoot, lane.schemaDir, 'provider_version.txt'),
+        ).readAsStringSync().trim();
+        final moved = repinLaneFixtures(
+          repoRoot,
+          source: lane.source,
+          version: version,
+        );
+        if (moved.isNotEmpty) {
+          print(
+            '>> repin migrate lane fixtures (${lane.name}): '
+            '${moved.join(', ')}',
+          );
+        }
       }
     }
   }

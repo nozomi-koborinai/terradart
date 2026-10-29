@@ -129,20 +129,33 @@ routine work does not depend on the maintainer being present.
   code={`flowchart LR
   cron["Weekly schedule"] --> pr["Provider bump PR<br/>(opened automatically)"]
   pr --> report{"Drift report<br/>new resources? breaking API?"}
-  report -- "routine (Google, AWS, Appwrite)" --> gate{"Full CI"}
+  report -- "routine" --> gate{"Full CI"}
   report -- "needs design judgment" --> human["Maintainer"]
   gate -- "green" --> merge["Auto-merged"]
   human --> merge`}
 />
 
+Bumps run on different weekdays, so one can merge before the next opens.
+This table is rendered from `tool/providers.yaml`, and the docs consistency
+check fails when the two disagree:
+
+{/* bump-schedule:start */}
+| Provider | Day (UTC) | Routine bump |
+|---|---|---|
+| Google Cloud (with google-beta) | Sunday | auto-merges when CI is green |
+| AWS | Monday | auto-merges when CI is green |
+| Cloudflare | Tuesday | waits for review |
+| Appwrite | Wednesday | auto-merges when CI is green |
+| Azure | Thursday | auto-merges when CI is green |
+{/* bump-schedule:end */}
+
 - **The update loop runs on a schedule.** Provider schema updates arrive as
-  automatic weekly pull requests, one per provider: Google (with google-beta)
-  on Sundays, AWS on Mondays, Cloudflare on Tuesdays, Appwrite on Wednesdays.
-  A new resource type arrives as a generated factory queued for API polish.
-  On Google, AWS, and Appwrite, a bump with no removed type and no breaking
-  change to the generated Dart API enables auto-merge and lands once the full
-  CI battery is green, without waiting on anyone's availability. Cloudflare
-  bumps always wait for review (`bump.mode: pr-only` in `tool/providers.yaml`).
+  automatic weekly pull requests on the days above. A new resource type
+  arrives as a generated factory queued for API polish. A routine bump, one
+  with no removed type and no breaking change to the generated Dart API,
+  enables auto-merge and lands once the full CI battery is green, without
+  waiting on anyone's availability. A provider set to `bump.mode: pr-only`
+  in `tool/providers.yaml` always waits for review.
 - **The repository is deliberately maintainable by others — human or AI.** A
   single agent guide is the source of truth for how to work on the codebase;
   the ledgers make every standing decision explicit; determinism makes every

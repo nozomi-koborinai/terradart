@@ -22,6 +22,31 @@ import 'package:yaml/yaml.dart';
 
 import 'wrap_lanes.dart';
 
+enum Weekday {
+  sunday('Sunday'),
+  monday('Monday'),
+  tuesday('Tuesday'),
+  wednesday('Wednesday'),
+  thursday('Thursday'),
+  friday('Friday'),
+  saturday('Saturday');
+
+  const Weekday(this.label);
+
+  final String label;
+
+  static Weekday parseCron(String cron) {
+    final fields = cron.trim().split(RegExp(r'\s+'));
+    final day = fields.length == 5 ? int.tryParse(fields.last) : null;
+    if (day == null || day < 0 || day > 7) {
+      throw const FormatException(
+        'bump.cron must run on one weekday (day field 0-7)',
+      );
+    }
+    return Weekday.values[day % 7];
+  }
+}
+
 /// A lane with a `bump:` entry.
 @immutable
 class BumpLane {
@@ -43,6 +68,8 @@ class BumpLane {
   /// `auto` or `pr-only`.
   final String mode;
   final String cron;
+
+  Weekday get weekday => Weekday.parseCron(cron);
 
   /// `dump` or `extract`.
   final String refresh;
@@ -110,6 +137,12 @@ List<BumpLane> parseBumpLanes(String providersYaml) {
       );
     }
 
+    final cron = field('cron');
+    try {
+      Weekday.parseCron(cron);
+    } on FormatException catch (e) {
+      throw FormatException('lane $name: ${e.message}');
+    }
     final rideAlongName = bump['rideAlong'];
     final rideAlong = rideAlongName == null ? null : lanes['$rideAlongName'];
     if (rideAlongName != null && rideAlong == null) {
@@ -137,7 +170,7 @@ List<BumpLane> parseBumpLanes(String providersYaml) {
       BumpLane(
         lane: lanes[name]!,
         mode: field('mode', oneOf: {'auto', 'pr-only'}),
-        cron: field('cron'),
+        cron: cron,
         refresh: field('refresh', oneOf: {'dump', 'extract'}),
         scaffold: field('scaffold', oneOf: {'wrap-init', 'lane'}),
         dataSources: bump['dataSources'] == true,

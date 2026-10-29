@@ -1,17 +1,14 @@
-/// Migrate fixture gate (#661): migrates the tree fixtures `config_tree/`
-/// (two environment roots sharing six local modules), `real_plan_src/`
-/// (a root with one child module) and `lanes/` (one small module per
-/// provider, plus google+cloudflare, aws+cloudflare, azure+cloudflare,
-/// google+google-beta, google+azure and an aliased child module) with
-/// `terradart_migrate`, writes the generated package to a temp directory,
-/// analyzes and synthesizes it, and runs `terraform init -backend=false &&
-/// terraform validate` in every Terraform directory of the mirrored
-/// `tf-out/` tree — each holding the Stack's `main.tf.json` next to its
-/// leftover sidecar. A directory whose synthesized JSON only declares
-/// `configuration_aliases` is not validated on its own: Terraform requires
-/// the calling module for that, and the root validate covers it. Every kept
-/// block must have landed in a sidecar file. `user_project_override` in a
-/// fixture must still be present after synth.
+/// Migrate fixture gate (#661): migrates `config_tree/` (two environment
+/// roots sharing six local modules), `real_plan_src/` (a root with one
+/// child module) and the `lanes/` fixtures with `terradart_migrate`, writes
+/// the generated package to a temp directory, analyzes and synthesizes it,
+/// and runs `terraform init -backend=false && terraform validate` in every
+/// Terraform directory of the mirrored `tf-out/` tree — each holding the
+/// Stack's `main.tf.json` next to its leftover sidecar. A directory whose
+/// synthesized JSON only declares `configuration_aliases` is not validated
+/// on its own: Terraform requires the calling module for that, and the root
+/// validate covers it. Every kept block must have landed in a sidecar file.
+/// `user_project_override` in a fixture must still be present after synth.
 ///
 /// The merged-environment gate (#668) migrates `config_tree/` a second time
 /// with `--merge-envs`, and requires that the one `ConfigTreeStack(env: ...)`
@@ -29,24 +26,21 @@ library;
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:meta/meta.dart';
 import 'package:path/path.dart' as p;
+import 'package:terradart_hcl/terradart_hcl.dart';
 import 'package:terradart_migrate/terradart_migrate.dart';
 
 import 'lane_surface.dart';
+import 'migrate_fixture_pins.dart';
 import 'wrap_lanes.dart';
 
-const _fixtures = [
-  'config_tree',
-  'real_plan_src',
-  // One small module per provider lane, plus the mixed and aliased
-  // combinations. Each directory is its own scan root: sibling directories
-  // under one parent would be read as environment roots and merged.
-  'lanes/google',
-  'lanes/google_beta',
-  'lanes/aws',
-  'lanes/cloudflare',
-  'lanes/appwrite',
-  'lanes/azure',
+const _treeFixtures = ['config_tree', 'real_plan_src'];
+
+/// `lanes/` fixtures no wrap lane owns. Sibling directories under one
+/// parent are environment roots and would be merged, so each entry is its
+/// own scan root.
+const _sharedLaneFixtures = [
   'lanes/time',
   'lanes/google_cloudflare',
   'lanes/aws_cloudflare',
@@ -55,6 +49,173 @@ const _fixtures = [
   'lanes/google_azure',
   'lanes/aliased',
 ];
+
+final class FixturePlan {
+  const FixturePlan({required this.run, required this.failures});
+
+  final List<String> run;
+  final List<String> failures;
+}
+
+@visibleForTesting
+FixturePlan planFixtures({
+  required List<WrapLane> lanes,
+  required Set<String> onDisk,
+}) {
+  final run = [
+    ..._treeFixtures,
+    for (final lane in lanes) 'lanes/${lane.name.replaceAll('-', '_')}',
+    ..._sharedLaneFixtures,
+  ];
+  final failures = <String>[];
+  final seen = <String>{};
+  for (final path in run) {
+    if (!seen.add(path)) {
+      failures.add(
+        '$path: listed twice; a tool/providers.yaml lane owns it now, '
+        'so drop it from _sharedLaneFixtures',
+      );
+    }
+  }
+  for (final path in seen) {
+    if (!onDisk.contains(path)) {
+      failures.add(
+        '$path: the gate migrates this fixture but the directory is '
+        "missing (every tool/providers.yaml lane needs lanes/<lane> with "
+        "'-' as '_'; every other entry needs its directory)",
+      );
+    }
+  }
+  final unlisted = [
+    for (final path in onDisk)
+      if (path.startsWith('lanes/') && !seen.contains(path)) path,
+  ]..sort();
+  for (final path in unlisted) {
+    failures.add(
+      '$path: a fixture directory the gate never migrates; add it to '
+      '_sharedLaneFixtures in tool/migrate_fixture_gates.dart',
+    );
+  }
+  return FixturePlan(run: run, failures: failures);
+}
+
+Set<String> _fixturesOnDisk(String fixturesRoot) {
+  final root = Directory(fixturesRoot);
+  if (!root.existsSync()) return {};
+  final names = <String>{};
+  for (final entity in root.listSync()) {
+    if (entity is! Directory) continue;
+    final name = p.basename(entity.path);
+    if (name == 'lanes') {
+      for (final child in Directory(entity.path).listSync()) {
+        if (child is Directory) names.add('lanes/${p.basename(child.path)}');
+      }
+    } else {
+      names.add(name);
+    }
+  }
+  return names;
+}
+
+@visibleForTesting
+List<String> pinDrift(
+  String fixture,
+  List<({String relPath, TfModule module, String synthesized})> modules,
+) {
+  final failures = <String>[];
+  var readable = 0;
+  for (final module in modules) {
+    final where = module.relPath == '.'
+        ? fixture
+        : '$fixture/${module.relPath}';
+    final emitted = _emittedPins(module.synthesized, where, failures);
+    for (final expr in module.module.requiredProviders.values) {
+      final pin = _fixturePin(expr);
+      if (pin.unreadableVersion) {
+        failures.add(
+          '$where: required_providers source "${pin.source}" version is '
+          'not a literal string',
+        );
+        continue;
+      }
+      final version = pin.version;
+      final source = pin.source;
+      if (version == null || source == null) continue;
+      readable++;
+      if (emitted.bad.contains(source)) continue;
+      final emittedVersion = emitted.versions[source];
+      if (emittedVersion == null) {
+        failures.add(
+          '$where: required_providers source "$source" pins "$version"; '
+          'the synthesized main.tf.json has no provider with that source',
+        );
+      } else if (emittedVersion != version) {
+        failures.add(
+          '$where: required_providers source "$source" pins "$version"; '
+          'the Stack emits "$emittedVersion", the version terraform '
+          'validate installs',
+        );
+      }
+    }
+  }
+  if (fixture.startsWith('lanes/') && readable == 0) {
+    failures.add('$fixture: no readable required_providers pin');
+  }
+  return failures;
+}
+
+({String? source, String? version, bool unreadableVersion}) _fixturePin(
+  Expr expr,
+) {
+  if (expr is! ObjectExpr) {
+    return (source: null, version: null, unreadableVersion: false);
+  }
+  final source = expr.item('source')?.value.constantString;
+  if (source == null) {
+    return (source: null, version: null, unreadableVersion: false);
+  }
+  final versionExpr = expr.item('version')?.value;
+  final version = versionExpr?.constantString;
+  if (versionExpr != null && version == null) {
+    return (source: source, version: null, unreadableVersion: true);
+  }
+  return (source: source, version: version, unreadableVersion: false);
+}
+
+({Map<String, String> versions, Set<String> bad}) _emittedPins(
+  String synthesized,
+  String where,
+  List<String> failures,
+) {
+  final versions = <String, String>{};
+  final bad = <String>{};
+  final decoded = jsonDecode(synthesized);
+  if (decoded is! Map<String, dynamic>) return (versions: versions, bad: bad);
+  final terraform = decoded['terraform'];
+  if (terraform is! Map<String, dynamic>) {
+    return (versions: versions, bad: bad);
+  }
+  final providers = terraform['required_providers'];
+  if (providers is! Map<String, dynamic>) {
+    return (versions: versions, bad: bad);
+  }
+  for (final value in providers.values) {
+    if (value is! Map<String, dynamic>) continue;
+    final source = value['source'];
+    final version = value['version'];
+    if (source is! String) continue;
+    if (version is! String) {
+      bad.add(source);
+      failures.add(
+        '$where: required_providers source "$source" version is not a '
+        'literal string',
+      );
+      continue;
+    }
+    versions[source] = version;
+  }
+  return (versions: versions, bad: bad);
+}
 
 /// The fixture whose environment roots `--merge-envs` folds together.
 const _mergeFixture = 'config_tree';
@@ -67,9 +228,11 @@ const _terraformInit = [
   '-no-color',
 ];
 
-final List<String> _workspacePackages = migrateGatePackages(
-  parseWrapLanes(File(providersPath).readAsStringSync()),
+final List<WrapLane> _lanes = parseWrapLanes(
+  File(providersPath).readAsStringSync(),
 );
+
+final List<String> _workspacePackages = migrateGatePackages(_lanes);
 
 Future<void> main(List<String> args) async {
   final skipValidate = args.contains('--skip-validate');
@@ -77,8 +240,20 @@ Future<void> main(List<String> args) async {
   final repoRoot = p.normalize(
     p.join(p.dirname(Platform.script.toFilePath()), '..'),
   );
+  final plan = planFixtures(
+    lanes: _lanes,
+    onDisk: _fixturesOnDisk(p.join(repoRoot, migrateFixturesRoot)),
+  );
+  if (plan.failures.isNotEmpty) {
+    for (final failure in plan.failures) {
+      stderr.writeln('migrate_fixture_gates: $failure');
+    }
+    stdout.writeln('migrate_fixture_gates: FAILED');
+    exitCode = 1;
+    return;
+  }
   var ok = true;
-  for (final fixture in _fixtures) {
+  for (final fixture in plan.run) {
     final passed = await _gate(
       fixture,
       repoRoot: repoRoot,
@@ -107,9 +282,7 @@ Future<bool> _mergeEnvGate({
   required bool skipValidate,
   required bool keep,
 }) async {
-  final input = Directory(
-    p.join(repoRoot, 'packages/terradart_migrate/test/fixtures', _mergeFixture),
-  );
+  final input = Directory(p.join(repoRoot, migrateFixturesRoot, _mergeFixture));
   final plain = Directory.systemTemp.createTempSync('terradart_merge_plain_');
   final temp = Directory.systemTemp.createTempSync('terradart_merge_envs_');
   final errors = <String>[];
@@ -254,9 +427,7 @@ Future<bool> _gate(
   required bool skipValidate,
   required bool keep,
 }) async {
-  final input = Directory(
-    p.join(repoRoot, 'packages/terradart_migrate/test/fixtures', fixture),
-  );
+  final input = Directory(p.join(repoRoot, migrateFixturesRoot, fixture));
   final temp = Directory.systemTemp.createTempSync(
     'terradart_migrate_fixture_',
   );
@@ -324,6 +495,18 @@ Future<bool> _gate(
     if (errors.isNotEmpty) {
       return _finish(fixture, temp, errors, keep: keep);
     }
+    errors.addAll(
+      pinDrift(fixture, [
+        for (final m in project.modules)
+          (
+            relPath: m.dir.relPath,
+            module: m.dir.module,
+            synthesized: File(
+              p.join(temp.path, m.terraformDir, 'main.tf.json'),
+            ).readAsStringSync(),
+          ),
+      ]),
+    );
     var validatedDirs = dirs.length;
     if (!skipValidate) {
       validatedDirs = 0;

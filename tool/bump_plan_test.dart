@@ -22,8 +22,17 @@ void main() {
   test('each lane has its own cron, on different days', () {
     final crons = lanes.map((l) => l.cron).toList();
     expect(crons.toSet(), hasLength(lanes.length));
-    final days = crons.map((c) => c.split(' ').last).toSet();
-    expect(days, hasLength(lanes.length));
+    expect(lanes.map((l) => l.weekday).toSet(), hasLength(lanes.length));
+    expect(
+      {for (final l in lanes) l.lane.name: l.weekday},
+      {
+        'google': Weekday.sunday,
+        'aws': Weekday.monday,
+        'cloudflare': Weekday.tuesday,
+        'appwrite': Weekday.wednesday,
+        'azure': Weekday.thursday,
+      },
+    );
   });
 
   test('the bump docs step continues only for a partial coverage render', () {
@@ -236,6 +245,28 @@ providers:
         );
       }
     }
+  });
+
+  test('a cron day field that is not one number is rejected', () {
+    String lane(String cron) =>
+        '''
+providers:
+  x:
+    source: a/x
+    schemaDir: s
+    outputPackage: o
+    overridesRoot: r
+    barrelsManifest: b
+    migrateManifest: m
+    bump: {mode: auto, cron: '$cron', refresh: dump, scaffold: lane}
+''';
+
+    expect(parseBumpLanes(lane('0 22 * * 0')).single.weekday, Weekday.sunday);
+    expect(parseBumpLanes(lane('0 22 * * 7')).single.weekday, Weekday.sunday);
+    expect(() => parseBumpLanes(lane('0 22 * * 1-5')), throwsFormatException);
+    expect(() => parseBumpLanes(lane('0 22 * * *')), throwsFormatException);
+    expect(() => parseBumpLanes(lane('0 22 * * 1,2')), throwsFormatException);
+    expect(() => parseBumpLanes(lane('0 22 * * 8')), throwsFormatException);
   });
 
   test('an unknown mode is rejected', () {

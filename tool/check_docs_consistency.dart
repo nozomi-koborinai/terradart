@@ -1,4 +1,5 @@
-// check_docs_consistency.dart — verifies docs caret minors and catalog counts.
+// check_docs_consistency.dart — verifies docs caret minors, catalog counts,
+// and the weekly bump table.
 //
 // Text-only: the example synth gates (coverage + API-enablement ratchet +
 // local terraform validate) live in tool/example_synth_gates.dart and run as
@@ -6,8 +7,7 @@
 //
 // Run from repo root: dart tool/check_docs_consistency.dart
 //   --fix  first rewrite the terradart_google catalog counts in the pages
-//          that carry them (the weekly schema bump generates factories, so
-//          it moves the counts; every other check stays read-only).
+//          that carry them, and the weekly bump table in how-its-built.mdx.
 // ignore_for_file: avoid_print
 
 import 'dart:io';
@@ -26,6 +26,19 @@ Future<void> main(List<String> args) async {
       if (fixed != text) {
         file.writeAsStringSync(fixed);
         print('fixed catalog counts: $path');
+      }
+    }
+    final page = File(bumpSchedulePage);
+    if (page.existsSync()) {
+      final text = page.readAsStringSync();
+      try {
+        final fixed = fixBumpSchedule(text, bumpLanes);
+        if (fixed != text) {
+          page.writeAsStringSync(fixed);
+          print('fixed bump schedule: $bumpSchedulePage');
+        }
+      } on FormatException catch (e) {
+        print('$bumpSchedulePage: ${e.message}');
       }
     }
   }
@@ -107,6 +120,7 @@ Future<void> main(List<String> args) async {
     _checkNoExactPinCopies(errors, lane);
   }
   _checkCopyPasteConstraints(errors);
+  _checkBumpSchedule(errors);
   for (final template in [
     '.github/ISSUE_TEMPLATE/bug.yml',
     '.github/ISSUE_TEMPLATE/feature.yml',
@@ -165,6 +179,28 @@ int _workspaceMinor() {
     exit(2);
   }
   return int.parse(match.group(1)!);
+}
+
+void _checkBumpSchedule(List<String> errors) {
+  final file = File(bumpSchedulePage);
+  if (!file.existsSync()) {
+    errors.add('Missing file: $bumpSchedulePage');
+    return;
+  }
+  final text = file.readAsStringSync();
+  final String fixed;
+  try {
+    fixed = fixBumpSchedule(text, bumpLanes);
+  } on FormatException catch (e) {
+    errors.add('$bumpSchedulePage: ${e.message}');
+    return;
+  }
+  if (fixed != text) {
+    errors.add(
+      '$bumpSchedulePage: the bump-schedule table differs from '
+      'tool/providers.yaml; run dart tool/check_docs_consistency.dart --fix',
+    );
+  }
 }
 
 void _checkPhrase(
