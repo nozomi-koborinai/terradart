@@ -88,17 +88,17 @@ String _camel(String snake) {
 String _blockPathLabel(List<String> blockPath, String attr) =>
     '${blockPath.join('.')}.$attr';
 
-Set<String> _ctorStringFields(String tfType, Map<String, dynamic> ov) {
-  final outDir = ov['outputDir'] as String?;
-  if (outDir == null) return {};
-  final genFile = File(p.join(_genDir.path, outDir, '$tfType.dart'));
-  if (!genFile.existsSync()) return {};
-  final text = genFile.readAsStringSync();
-  final start = text.indexOf('(super.localName, {');
+/// Constructor inputs still typed `TfArg<String>`.
+///
+/// Looks for the exact character sequences `(super.localName, {` and
+/// `}) : super(`. `dart format` splits both, so a formatted factory
+/// contributes no fields.
+Set<String> ctorRawStringFields(String source) {
+  final start = source.indexOf('(super.localName, {');
   if (start < 0) return {};
-  final end = text.indexOf('}) : super(', start);
+  final end = source.indexOf('}) : super(', start);
   if (end < 0) return {};
-  final ctor = text.substring(start, end);
+  final ctor = source.substring(start, end);
   final fields = <String>{};
   for (final m in RegExp(
     r'(?:required\s+)?TfArg<String>\??\s+(\w+)',
@@ -106,6 +106,43 @@ Set<String> _ctorStringFields(String tfType, Map<String, dynamic> ov) {
     fields.add(m.group(1)!);
   }
   return fields;
+}
+
+/// Top-level `THIN` / `PARTIAL` lines for one override.
+///
+/// [stem] is the override file name without `.yaml`. Historical behavior
+/// reads only [resourceSchemas] under that stem, so a data-source file
+/// (`data_<type>.yaml`) never matches.
+List<String> topLevelEnumGaps({
+  required String stem,
+  required Map<String, dynamic> override,
+  required Map<String, dynamic> resourceSchemas,
+  required Map<String, dynamic> dataSourceSchemas,
+  required String? generatedSource,
+}) {
+  if (stem == 'google_project') return const [];
+  final schema = resourceSchemas[stem];
+  if (schema == null || generatedSource == null) return const [];
+  final fields = ctorRawStringFields(generatedSource);
+  final dto = Map<String, dynamic>.from(
+    override['dartTypeOverrides'] as YamlMap? ?? {},
+  );
+  final thin = _isThin(override);
+  final gaps = <String>[];
+  final attrs =
+      ((schema as Map)['block'] as Map)['attributes'] as Map<String, dynamic>;
+  for (final entry in attrs.entries) {
+    final attr = entry.key;
+    final meta = Map<String, dynamic>.from(entry.value as Map);
+    if (meta['computed'] == true) continue;
+    final vals = parseEnumValuesFromDescription(meta['description'] as String?);
+    if (vals == null) continue;
+    final camel = _camel(attr);
+    if (!fields.contains(camel)) continue;
+    if (dto.containsKey(attr)) continue;
+    gaps.add('${thin ? "THIN" : "PARTIAL"}\t$stem.$attr\t${vals.join(", ")}');
+  }
+  return gaps;
 }
 
 String? _generatedSource(String tfType, Map<String, dynamic> ov) {
@@ -172,7 +209,7 @@ bool _nestedFieldDeclared(String genText, String camel) {
   return _declaredFieldTypes(genText, camel).isNotEmpty;
 }
 
-bool _nestedEnumFieldIsGap(String genText, String camel) {
+bool nestedEnumFieldIsGap(String genText, String camel) {
   const rawString = {'TfArg<String>', 'TfArg<String>?'};
   var sawRawString = false;
   for (final type in _declaredFieldTypes(genText, camel)) {
@@ -252,40 +289,23 @@ void main(List<String> args) {
     if (schema == null) continue;
 
     final ov = _loadOverride(tfType);
-    final dto = Map<String, dynamic>.from(
-      ov['dartTypeOverrides'] as YamlMap? ?? {},
-    );
-    final thin = _isThin(ov);
-    final stringFields = _ctorStringFields(tfType, ov);
     final genTextRaw = _generatedSource(tfType, ov);
     final genText = genTextRaw == null
         ? null
         : _normalizeWhitespace(genTextRaw);
-
-    final attrs =
-        ((schema as Map)['block'] as Map)['attributes'] as Map<String, dynamic>;
-    for (final entry in attrs.entries) {
-      final attr = entry.key;
-      final meta = Map<String, dynamic>.from(entry.value as Map);
-      if (meta['computed'] == true) continue;
-
-      final vals = parseEnumValuesFromDescription(
-        meta['description'] as String?,
-      );
-      if (vals == null) continue;
-
-      final camel = _camel(attr);
-      if (!stringFields.contains(camel)) continue;
-      if (dto.containsKey(attr)) continue;
-
-      topLevelGaps.add(
-        '${thin ? "THIN" : "PARTIAL"}\t$tfType.$attr\t${vals.join(", ")}',
-      );
-    }
+    topLevelGaps.addAll(
+      topLevelEnumGaps(
+        stem: tfType,
+        override: ov,
+        resourceSchemas: _resourceSchemas,
+        dataSourceSchemas: const <String, dynamic>{},
+        generatedSource: genTextRaw,
+      ),
+    );
 
     if (genText == null) continue;
 
-    final block = Map<String, dynamic>.from(((schema)['block'] as Map));
+    final block = Map<String, dynamic>.from(((schema as Map)['block'] as Map));
     for (final site in _collectNestedEnumSites(block)) {
       final label = _blockPathLabel(site.blockPath, site.attr);
       final camel = _camel(site.attr);
@@ -297,7 +317,7 @@ void main(List<String> args) {
         continue;
       }
 
-      if (!_nestedEnumFieldIsGap(genText, camel)) {
+      if (!nestedEnumFieldIsGap(genText, camel)) {
         continue;
       }
 
