@@ -5,6 +5,7 @@ import 'package:path/path.dart' as p;
 import 'package:terradart_cli/src/assets/skill_md.g.dart';
 import 'package:terradart_cli/src/config.dart';
 import 'package:terradart_cli/src/engine.dart';
+import 'package:terradart_cli/src/init_templates.dart';
 import 'package:terradart_cli/terradart_cli.dart';
 import 'package:terradart_migrate/terradart_migrate.dart' show packageVersion;
 import 'package:test/test.dart';
@@ -313,6 +314,21 @@ void main() {
     expect(r.err, contains('Appwrite currently needs Terraform on your PATH'));
   });
 
+  test('scaffolds Azure on OpenTofu with one resource group', () async {
+    final r = await init(['a', '-p', 'azure', '--defaults', '--no-input']);
+    expect(r.code, 0, reason: r.err);
+    final pubspec = read('a/pubspec.yaml');
+    expect(pubspec, contains('terradart_azure:'));
+    expect(pubspec, isNot(contains('engine: terraform')));
+    final stack = read('a/lib/stack.dart');
+    expect(stack, contains('const AzureProvider()'));
+    expect(stack, contains('AzurermResourceGroup('));
+    expect(stack, contains("addOutput('resource_group_id', group.id);"));
+    expect(read('a/lib/env.dart'), contains("location: 'eastus'"));
+    expect(read('a/README.md'), contains('ARM_SUBSCRIPTION_ID'));
+    expect(read('a/README.md'), contains('OpenTofu, which it downloads'));
+  });
+
   test('names the Appwrite project projectId without google', () async {
     expect((await init(['a', '-p', 'appwrite', '--defaults'])).code, 0);
     expect(read('a/lib/env.dart'), contains('final String projectId;'));
@@ -340,7 +356,7 @@ void main() {
     final r = await init(
       ['app'],
       answers: [
-        'azure',
+        'oracle',
         '1,3',
         'Dev',
         'qa,prod',
@@ -371,7 +387,13 @@ void main() {
     ]);
     expect(r.out, contains('  1) google\n  2) aws\n'));
     expect(r.out, contains('without a bucket it is a local file'));
-    expect(r.err, contains('Pick from google, aws, cloudflare, appwrite'));
+    expect(
+      r.err,
+      contains(
+        'Pick from ${InitProvider.values.map((p) => p.name).join(', ')}, '
+        'or 1 to ${InitProvider.values.length}.',
+      ),
+    );
     expect(r.err, contains('Environment "Dev" is not a lowerCamelCase'));
     final env = read('app/lib/env.dart');
     expect(env, contains("projectId: 'acme-qa'"));
@@ -887,7 +909,7 @@ void main() {
   test('writes formatted Dart', () async {
     final r = await init([
       '-p',
-      'google,aws,cloudflare,appwrite',
+      'google,aws,cloudflare,appwrite,azure',
       '--backend',
       's3',
       '--env',

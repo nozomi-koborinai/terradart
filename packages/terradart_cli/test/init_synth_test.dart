@@ -55,4 +55,37 @@ void main() {
       'dart_defines',
     ]);
   }, timeout: const Timeout(Duration(minutes: 3)));
+
+  test(
+    'an Azure Flutter app still reads outputs with fromDartDefine',
+    () async {
+      File(p.join(root, 'pubspec.yaml')).writeAsStringSync(
+        'name: shop\ndependencies:\n  flutter:\n    sdk: flutter\n',
+      );
+      await terradart([
+        'init',
+        '--provider',
+        'azure',
+        '--defaults',
+        '--no-pub-get',
+      ], cwd: root);
+      final infra = p.join(root, 'infra');
+      overrideWorkspacePackages(infra);
+      await terradart(['synth', '--env', 'dev'], cwd: infra);
+      final reader = File(p.join(root, 'lib', 'generated', 'infra.g.dart'));
+      expect(
+        reader.readAsStringSync(),
+        contains('ShopInfraStackOutputs.fromDartDefine'),
+      );
+      expect(
+        File(p.join(infra, 'lib', 'stack.dart')).readAsStringSync(),
+        contains('addDartDefineOutput();'),
+      );
+      expect((mainTf(infra, 'dev')['output'] as Map).keys, [
+        'resource_group_id',
+        'dart_defines',
+      ]);
+    },
+    timeout: const Timeout(Duration(minutes: 3)),
+  );
 }
