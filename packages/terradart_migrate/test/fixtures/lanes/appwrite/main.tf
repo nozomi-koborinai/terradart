@@ -4,7 +4,7 @@ terraform {
   required_providers {
     appwrite = {
       source  = "appwrite/appwrite"
-      version = "2.0.0-beta.1"
+      version = "2.3.0"
     }
   }
 }

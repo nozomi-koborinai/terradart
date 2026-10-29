@@ -15,6 +15,10 @@
 /// failures and returns before migrate when that list and the directories
 /// on disk disagree.
 ///
+/// After synth, and before `terraform validate`, the gate compares each
+/// fixture `required_providers` version with that module's synthesized
+/// `main.tf.json`. Validate still runs when the pins differ.
+///
 /// The merged-environment gate (#668) migrates `config_tree/` a second time
 /// with `--merge-envs`, and requires that the one `ConfigTreeStack(env: ...)`
 /// synthesizes, per environment, exactly the JSON the two separate Stacks
@@ -33,12 +37,12 @@ import 'dart:io';
 
 import 'package:meta/meta.dart';
 import 'package:path/path.dart' as p;
+import 'package:terradart_hcl/terradart_hcl.dart';
 import 'package:terradart_migrate/terradart_migrate.dart';
 
 import 'lane_surface.dart';
+import 'migrate_fixture_pins.dart';
 import 'wrap_lanes.dart';
-
-const _fixturesRoot = 'packages/terradart_migrate/test/fixtures';
 
 const _treeFixtures = ['config_tree', 'real_plan_src'];
 
@@ -129,6 +133,111 @@ Set<String> _fixturesOnDisk(String fixturesRoot) {
   return names;
 }
 
+/// Versions in [modules] that differ from the `main.tf.json` each one
+/// synthesized. Comparison is by registry source, so a local name such as
+/// `azurerm` still matches `hashicorp/azurerm`. A `lanes/` scan root whose
+/// modules have no readable pin fails. `config_tree` and `real_plan_src`
+/// are not under that rule.
+@visibleForTesting
+List<String> pinDrift(
+  String fixture,
+  List<({String relPath, TfModule module, String synthesized})> modules,
+) {
+  final failures = <String>[];
+  var readable = 0;
+  for (final module in modules) {
+    final where = module.relPath == '.'
+        ? fixture
+        : '$fixture/${module.relPath}';
+    final emitted = _emittedPins(module.synthesized, where, failures);
+    for (final expr in module.module.requiredProviders.values) {
+      final pin = _fixturePin(expr);
+      if (pin.unreadableVersion) {
+        failures.add(
+          '$where: required_providers source "${pin.source}" version is '
+          'not a literal string',
+        );
+        continue;
+      }
+      final version = pin.version;
+      final source = pin.source;
+      if (version == null || source == null) continue;
+      readable++;
+      if (emitted.bad.contains(source)) continue;
+      final emittedVersion = emitted.versions[source];
+      if (emittedVersion == null) {
+        failures.add(
+          '$where: required_providers source "$source" pins "$version"; '
+          'the synthesized main.tf.json has no provider with that source',
+        );
+      } else if (emittedVersion != version) {
+        failures.add(
+          '$where: required_providers source "$source" pins "$version"; '
+          'the Stack emits "$emittedVersion", the version terraform '
+          'validate installs',
+        );
+      }
+    }
+  }
+  if (fixture.startsWith('lanes/') && readable == 0) {
+    failures.add('$fixture: no readable required_providers pin');
+  }
+  return failures;
+}
+
+({String? source, String? version, bool unreadableVersion}) _fixturePin(
+  Expr expr,
+) {
+  if (expr is! ObjectExpr) {
+    return (source: null, version: null, unreadableVersion: false);
+  }
+  final source = expr.item('source')?.value.constantString;
+  if (source == null) {
+    return (source: null, version: null, unreadableVersion: false);
+  }
+  final versionExpr = expr.item('version')?.value;
+  final version = versionExpr?.constantString;
+  if (versionExpr != null && version == null) {
+    return (source: source, version: null, unreadableVersion: true);
+  }
+  return (source: source, version: version, unreadableVersion: false);
+}
+
+({Map<String, String> versions, Set<String> bad}) _emittedPins(
+  String synthesized,
+  String where,
+  List<String> failures,
+) {
+  final versions = <String, String>{};
+  final bad = <String>{};
+  final decoded = jsonDecode(synthesized);
+  if (decoded is! Map<String, dynamic>) return (versions: versions, bad: bad);
+  final terraform = decoded['terraform'];
+  if (terraform is! Map<String, dynamic>) {
+    return (versions: versions, bad: bad);
+  }
+  final providers = terraform['required_providers'];
+  if (providers is! Map<String, dynamic>) {
+    return (versions: versions, bad: bad);
+  }
+  for (final value in providers.values) {
+    if (value is! Map<String, dynamic>) continue;
+    final source = value['source'];
+    final version = value['version'];
+    if (source is! String) continue;
+    if (version is! String) {
+      bad.add(source);
+      failures.add(
+        '$where: required_providers source "$source" version is not a '
+        'literal string',
+      );
+      continue;
+    }
+    versions[source] = version;
+  }
+  return (versions: versions, bad: bad);
+}
+
 /// The fixture whose environment roots `--merge-envs` folds together.
 const _mergeFixture = 'config_tree';
 
@@ -154,7 +263,7 @@ Future<void> main(List<String> args) async {
   );
   final plan = planFixtures(
     lanes: _lanes,
-    onDisk: _fixturesOnDisk(p.join(repoRoot, _fixturesRoot)),
+    onDisk: _fixturesOnDisk(p.join(repoRoot, migrateFixturesRoot)),
   );
   if (plan.failures.isNotEmpty) {
     for (final failure in plan.failures) {
@@ -194,7 +303,7 @@ Future<bool> _mergeEnvGate({
   required bool skipValidate,
   required bool keep,
 }) async {
-  final input = Directory(p.join(repoRoot, _fixturesRoot, _mergeFixture));
+  final input = Directory(p.join(repoRoot, migrateFixturesRoot, _mergeFixture));
   final plain = Directory.systemTemp.createTempSync('terradart_merge_plain_');
   final temp = Directory.systemTemp.createTempSync('terradart_merge_envs_');
   final errors = <String>[];
@@ -339,7 +448,7 @@ Future<bool> _gate(
   required bool skipValidate,
   required bool keep,
 }) async {
-  final input = Directory(p.join(repoRoot, _fixturesRoot, fixture));
+  final input = Directory(p.join(repoRoot, migrateFixturesRoot, fixture));
   final temp = Directory.systemTemp.createTempSync(
     'terradart_migrate_fixture_',
   );
@@ -407,6 +516,16 @@ Future<bool> _gate(
     if (errors.isNotEmpty) {
       return _finish(fixture, temp, errors, keep: keep);
     }
+    final pinErrors = pinDrift(fixture, [
+      for (final m in project.modules)
+        (
+          relPath: m.dir.relPath,
+          module: m.dir.module,
+          synthesized: File(
+            p.join(temp.path, m.terraformDir, 'main.tf.json'),
+          ).readAsStringSync(),
+        ),
+    ]);
     var validatedDirs = dirs.length;
     if (!skipValidate) {
       validatedDirs = 0;
@@ -425,6 +544,7 @@ Future<bool> _gate(
         }
       }
     }
+    errors.addAll(pinErrors);
     final validated = skipValidate
         ? ' (terraform validate skipped)'
         : ', $validatedDirs directories validated';
