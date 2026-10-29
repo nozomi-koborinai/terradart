@@ -70,6 +70,24 @@ final class GoogleFirebaseAppHostingDefaultDomain extends Resource {
   /// `RefTo<GoogleFirebaseAppHostingDefaultDomain>`.
   RefTo<GoogleFirebaseAppHostingDefaultDomain> get ref => RefTo.of(this);
 
+  /// Reference to `create_time` attribute.
+  TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
+
+  /// Reference to `update_time` attribute.
+  TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `backend` attribute.
+  TfRef<String> get backend => TfRef.attribute<String>(this, 'backend');
+
+  /// Reference to `disabled` attribute.
+  TfRef<bool> get disabled => TfRef.attribute<bool>(this, 'disabled');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
+
   /// Reference to `name` attribute (full resource path
   /// `projects/{project}/locations/{location}/backends/{backend}/domains/{domain_id}`).
   TfRef<String> get name => TfRef.attribute<String>(this, 'name');

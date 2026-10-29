@@ -2,6 +2,7 @@ outputDir: iam
 deriveClassDoc: true
 deriveNestedTypes: true
 deriveExactlyOne: true
+deriveOutputGetters: true
 
 curatedDoc: |-
   /// Grants a single (`role`, `member`) IAM binding on a GCP project. This

@@ -42,4 +42,28 @@ final class GoogleObservabilityOrganizationSettings extends Resource {
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleObservabilityOrganizationSettings>`.
   RefTo<GoogleObservabilityOrganizationSettings> get ref => RefTo.of(this);
+
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `service_account_id` attribute.
+  TfRef<String> get serviceAccountId =>
+      TfRef.attribute<String>(this, 'service_account_id');
+
+  /// Reference to `default_storage_location` attribute.
+  TfRef<String> get defaultStorageLocation =>
+      TfRef.attribute<String>(this, 'default_storage_location');
+
+  /// Reference to `kms_key_name` attribute.
+  TfRef<String> get kmsKeyName => TfRef.attribute<String>(this, 'kms_key_name');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `organization` attribute.
+  TfRef<String> get organization =>
+      TfRef.attribute<String>(this, 'organization');
 }

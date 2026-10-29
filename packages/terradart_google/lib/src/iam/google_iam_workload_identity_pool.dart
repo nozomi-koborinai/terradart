@@ -323,6 +323,30 @@ final class GoogleIamWorkloadIdentityPool extends Resource {
   /// `RefTo<GoogleIamWorkloadIdentityPool>`.
   RefTo<GoogleIamWorkloadIdentityPool> get ref => RefTo.of(this);
 
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicy =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `disabled` attribute.
+  TfRef<bool> get disabled => TfRef.attribute<bool>(this, 'disabled');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayName =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `mode` attribute.
+  TfRef<String> get mode => TfRef.attribute<String>(this, 'mode');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `workload_identity_pool_id` attribute.
+  TfRef<String> get workloadIdentityPoolId =>
+      TfRef.attribute<String>(this, 'workload_identity_pool_id');
+
   /// Reference to `id` attribute (full path
   /// `projects/{project}/locations/global/workloadIdentityPools/{poolId}`).
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

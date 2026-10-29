@@ -42,4 +42,38 @@ final class GoogleBiglakeHiveCatalog extends Resource {
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleBiglakeHiveCatalog>`.
   RefTo<GoogleBiglakeHiveCatalog> get ref => RefTo.of(this);
+
+  /// Reference to `name` attribute.
+  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `create_time` attribute.
+  TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
+
+  /// Reference to `replicas` attribute.
+  TfRef<List<Map<String, Object?>>> get replicas =>
+      TfRef.attribute<List<Map<String, Object?>>>(this, 'replicas');
+
+  /// Reference to `update_time` attribute.
+  TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicy =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `location_uri` attribute.
+  TfRef<String> get locationUri =>
+      TfRef.attribute<String>(this, 'location_uri');
+
+  /// Reference to `primary_location` attribute.
+  TfRef<String> get primaryLocation =>
+      TfRef.attribute<String>(this, 'primary_location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
 }

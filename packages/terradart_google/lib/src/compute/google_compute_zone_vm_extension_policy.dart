@@ -103,6 +103,36 @@ final class GoogleComputeZoneVmExtensionPolicy extends Resource {
   /// `RefTo<GoogleComputeZoneVmExtensionPolicy>`.
   RefTo<GoogleComputeZoneVmExtensionPolicy> get ref => RefTo.of(this);
 
+  /// Reference to `kind` attribute.
+  TfRef<String> get kindAttr => TfRef.attribute<String>(this, 'kind');
+
+  /// Reference to `creation_timestamp` attribute.
+  TfRef<String> get creationTimestamp =>
+      TfRef.attribute<String>(this, 'creation_timestamp');
+
+  /// Reference to `managed_by_global` attribute.
+  TfRef<bool> get managedByGlobal =>
+      TfRef.attribute<bool>(this, 'managed_by_global');
+
+  /// Reference to `state` attribute.
+  TfRef<String> get state => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicy =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `priority` attribute.
+  TfRef<num> get priority => TfRef.attribute<num>(this, 'priority');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `zone` attribute.
+  TfRef<String> get zone => TfRef.attribute<String>(this, 'zone');
+
   TfRef<String> get name => TfRef.attribute<String>(this, 'name');
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

@@ -160,6 +160,67 @@ final class GoogleFirebaseAppHostingBackend extends Resource {
   /// `RefTo<GoogleFirebaseAppHostingBackend>`.
   RefTo<GoogleFirebaseAppHostingBackend> get ref => RefTo.of(this);
 
+  /// Reference to `create_time` attribute.
+  TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
+
+  /// Reference to `delete_time` attribute.
+  TfRef<String> get deleteTime => TfRef.attribute<String>(this, 'delete_time');
+
+  /// Reference to `effective_annotations` attribute.
+  TfRef<Map<String, String>> get effectiveAnnotations =>
+      TfRef.attribute<Map<String, String>>(this, 'effective_annotations');
+
+  /// Reference to `effective_labels` attribute.
+  TfRef<Map<String, String>> get effectiveLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'effective_labels');
+
+  /// Reference to `managed_resources` attribute.
+  TfRef<List<Map<String, Object?>>> get managedResources =>
+      TfRef.attribute<List<Map<String, Object?>>>(this, 'managed_resources');
+
+  /// Reference to `terraform_labels` attribute.
+  TfRef<Map<String, String>> get terraformLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
+
+  /// Reference to `update_time` attribute.
+  TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `annotations` attribute.
+  TfRef<Map<String, String>> get annotations =>
+      TfRef.attribute<Map<String, String>>(this, 'annotations');
+
+  /// Reference to `app_id` attribute.
+  TfRef<String> get appId => TfRef.attribute<String>(this, 'app_id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicy =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayName =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `environment` attribute.
+  TfRef<String> get environment => TfRef.attribute<String>(this, 'environment');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labels =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get location => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `service_account` attribute.
+  TfRef<String> get serviceAccount =>
+      TfRef.attribute<String>(this, 'service_account');
+
+  /// Reference to `serving_locality` attribute.
+  TfRef<String> get servingLocality =>
+      TfRef.attribute<String>(this, 'serving_locality');
+
   /// Reference to `name` attribute (full resource path
   /// `projects/{project}/locations/{location}/backends/{backend_id}`).
   TfRef<String> get name => TfRef.attribute<String>(this, 'name');

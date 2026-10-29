@@ -98,6 +98,29 @@ final class GoogleProjectIamCustomRole extends Resource {
   /// `RefTo<GoogleProjectIamCustomRole>`.
   RefTo<GoogleProjectIamCustomRole> get ref => RefTo.of(this);
 
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicy =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `permissions` attribute.
+  TfRef<List<String>> get permissions =>
+      TfRef.attribute<List<String>>(this, 'permissions');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `role_id` attribute.
+  TfRef<String> get roleId => TfRef.attribute<String>(this, 'role_id');
+
+  /// Reference to `stage` attribute.
+  TfRef<String> get stage => TfRef.attribute<String>(this, 'stage');
+
+  /// Reference to `title` attribute.
+  TfRef<String> get title => TfRef.attribute<String>(this, 'title');
+
   /// Reference to `id` attribute (full role path
   /// `projects/{project}/roles/{roleId}`).
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

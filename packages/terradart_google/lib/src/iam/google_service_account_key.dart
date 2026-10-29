@@ -140,6 +140,37 @@ final class GoogleServiceAccountKey extends Resource {
   /// `RefTo<GoogleServiceAccountKey>`.
   RefTo<GoogleServiceAccountKey> get ref => RefTo.of(this);
 
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicy =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `keepers` attribute.
+  TfRef<Map<String, String>> get keepers =>
+      TfRef.attribute<Map<String, String>>(this, 'keepers');
+
+  /// Reference to `key_algorithm` attribute.
+  TfRef<String> get keyAlgorithm =>
+      TfRef.attribute<String>(this, 'key_algorithm');
+
+  /// Reference to `private_key_type` attribute.
+  TfRef<String> get privateKeyType =>
+      TfRef.attribute<String>(this, 'private_key_type');
+
+  /// Reference to `public_key_data` attribute.
+  TfRef<String> get publicKeyData =>
+      TfRef.attribute<String>(this, 'public_key_data');
+
+  /// Reference to `public_key_type` attribute.
+  TfRef<String> get publicKeyType =>
+      TfRef.attribute<String>(this, 'public_key_type');
+
+  /// Reference to `service_account_id` attribute.
+  TfRef<String> get serviceAccountId =>
+      TfRef.attribute<String>(this, 'service_account_id');
+
   /// Reference to `name` attribute — full key path
   /// `projects/{project}/serviceAccounts/{email}/keys/{keyId}`.
   TfRef<String> get name => TfRef.attribute<String>(this, 'name');

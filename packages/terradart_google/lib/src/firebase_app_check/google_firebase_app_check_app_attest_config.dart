@@ -61,6 +61,15 @@ final class GoogleFirebaseAppCheckAppAttestConfig extends Resource {
   /// `RefTo<GoogleFirebaseAppCheckAppAttestConfig>`.
   RefTo<GoogleFirebaseAppCheckAppAttestConfig> get ref => RefTo.of(this);
 
+  /// Reference to `app_id` attribute.
+  TfRef<String> get appId => TfRef.attribute<String>(this, 'app_id');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `token_ttl` attribute.
+  TfRef<String> get tokenTtl => TfRef.attribute<String>(this, 'token_ttl');
+
   /// Reference to `name` attribute (the relative resource name of the
   /// App Attest configuration object, in the shape
   /// `projects/{project}/apps/{app_id}/appAttestConfig`).

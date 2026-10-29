@@ -95,6 +95,33 @@ final class GoogleServiceAccount extends Resource {
   /// `RefTo<GoogleServiceAccount>`.
   RefTo<GoogleServiceAccount> get ref => RefTo.of(this);
 
+  /// Reference to `member` attribute.
+  TfRef<String> get member => TfRef.attribute<String>(this, 'member');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountId => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `create_ignore_already_exists` attribute.
+  TfRef<bool> get createIgnoreAlreadyExists =>
+      TfRef.attribute<bool>(this, 'create_ignore_already_exists');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicy =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `disabled` attribute.
+  TfRef<bool> get disabled => TfRef.attribute<bool>(this, 'disabled');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayName =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
+
   /// This identity as an IAM principal, for `member` / `members`.
   IamPrincipal get principal =>
       IamPrincipal.arg(TfRef.attribute<String>(this, 'member'));

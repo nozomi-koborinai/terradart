@@ -5,6 +5,7 @@ outputDir: biglake
 
 deriveClassDoc: true
 deriveExactlyOne: true
+deriveOutputGetters: true
 
 curatedDoc: |-
   /// Authoritative IAM policy for a Biglake Hive Database.

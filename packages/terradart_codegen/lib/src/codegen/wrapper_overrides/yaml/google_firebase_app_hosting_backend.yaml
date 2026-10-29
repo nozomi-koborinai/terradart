@@ -3,6 +3,7 @@ deriveNestedTypes: true
 
 deriveClassDoc: true
 deriveExactlyOne: true
+deriveOutputGetters: true
 
 curatedDoc: |-
   /// Required identity:

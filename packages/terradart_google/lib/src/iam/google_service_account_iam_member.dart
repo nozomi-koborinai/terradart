@@ -98,6 +98,19 @@ final class GoogleServiceAccountIamMember extends Resource {
   /// `RefTo<GoogleServiceAccountIamMember>`.
   RefTo<GoogleServiceAccountIamMember> get ref => RefTo.of(this);
 
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `member` attribute.
+  TfRef<String> get member => TfRef.attribute<String>(this, 'member');
+
+  /// Reference to `role` attribute.
+  TfRef<String> get role => TfRef.attribute<String>(this, 'role');
+
+  /// Reference to `service_account_id` attribute.
+  TfRef<String> get serviceAccountId =>
+      TfRef.attribute<String>(this, 'service_account_id');
+
   /// Reference to `etag` attribute (concurrency token written by the API).
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 }

@@ -86,6 +86,21 @@ final class GoogleFirebaseAppCheckDeviceCheckConfig extends Resource {
   /// `RefTo<GoogleFirebaseAppCheckDeviceCheckConfig>`.
   RefTo<GoogleFirebaseAppCheckDeviceCheckConfig> get ref => RefTo.of(this);
 
+  /// Reference to `app_id` attribute.
+  TfRef<String> get appId => TfRef.attribute<String>(this, 'app_id');
+
+  /// Reference to `key_id` attribute.
+  TfRef<String> get keyId => TfRef.attribute<String>(this, 'key_id');
+
+  /// Reference to `private_key` attribute.
+  TfRef<String> get privateKey => TfRef.attribute<String>(this, 'private_key');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `token_ttl` attribute.
+  TfRef<String> get tokenTtl => TfRef.attribute<String>(this, 'token_ttl');
+
   /// Reference to `name` attribute (the relative resource name of the
   /// DeviceCheck configuration object, in the shape
   /// `projects/{project}/apps/{app_id}/deviceCheckConfig`).

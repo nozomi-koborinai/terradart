@@ -100,6 +100,18 @@ final class GoogleProjectIamMember extends Resource {
   /// `RefTo<GoogleProjectIamMember>`.
   RefTo<GoogleProjectIamMember> get ref => RefTo.of(this);
 
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `member` attribute.
+  TfRef<String> get member => TfRef.attribute<String>(this, 'member');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get project => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `role` attribute.
+  TfRef<String> get role => TfRef.attribute<String>(this, 'role');
+
   /// Reference to `etag` attribute (concurrency token written by the API).
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 }
