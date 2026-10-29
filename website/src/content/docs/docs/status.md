@@ -35,7 +35,7 @@ Every maintainer-side gate already runs on each pull request. That set includes 
 
 Beta means the API shape is settled. The gates are checks the maintainer runs. People using TerraDart outside the project shape the API during alpha. Beta waits on the checklist below.
 
-This list is a draft.
+This list is a draft. The boxes stay open until the list is accepted and beta is labeled.
 
 - [ ] **Sealed groups have concept names.** Every exclusive group is one sealed argument, named for the concept (`deriveExactlyOne: true` on the override). `yaml_loader_test.dart` requires that flag on every Google resource override and every google-beta resource override. `tool/wrap_lanes_test.dart` requires it on every resource override of aws, cloudflare, appwrite, and azure. `dart tool/release_ledger_check.dart` fails while `tool/sealed_name_debt.yaml` has an entry, so an `Or` placeholder cannot ship in a release. `terradart lint-override` fails a stale line in `tool/exactly_one_lint_debt.yaml`. To-do. No command fails only because that file still has a reasoned line. Beta requires the file to be empty.
 - [ ] **References and outputs are typed.** A string input that names another resource is a `RefTo`, or `IamPrincipal` or `AppwritePermission` when `tool/reference_targets.yaml` says so. `terradart wrap` fails (E406) on a stale `exclude`, an attribute the target does not export, or an input two rules claim. Callers read computed attributes through getters (`deriveOutputGetters`). `yaml_loader_test.dart` requires that flag on every google-beta resource override. To-do. No test requires the flag on every override in `terradart_google`, `terradart_aws`, `terradart_cloudflare`, `terradart_appwrite`, or `terradart_azure`. `google_compute_zone_vm_extension_policy` sets the flag to false and writes `name` and `id` by hand in `extraGetters`.
@@ -46,7 +46,7 @@ This list is a draft.
 
 ## Toward 1.0.0
 
-1.0.0 comes after beta. Two minor releases in a row ship with no breaking changes. Neither release needs a new `MIGRATING.md` section. Reports of real usage inform the maintainer. The 1.0 label waits on beta, then on those two releases.
+1.0.0 comes after beta. Two minor releases in a row ship with no breaking changes. Neither release needs a new `MIGRATING.md` section. A later minor that adds a `MIGRATING.md` section starts that count again. A schema bump that removes a provider type is one of those minors. Reports of real usage inform the maintainer. The 1.0 label waits on beta, then on those two releases.
 
 Stable SemVer then covers the packages in the table above.
 
