@@ -315,6 +315,15 @@ final class WrapperOverride {
   /// collides with another slot or class.
   final Map<String, String>? sealedNames;
 
+  /// Human names for derived enums and helper classes: the dotted path of
+  /// an input from the resource root → the Dart type that input takes
+  /// (`security_style: AzurermNetappVolumeSecurityStyle`). A type shared
+  /// by several inputs takes the name keyed by its shallowest one. The name
+  /// wins over the derived one, and the other types of the resource avoid
+  /// it. `wrap` fails on an entry that names no derived type or that
+  /// collides with another type of the resource.
+  final Map<String, String>? typeNames;
+
   /// Groups of inputs the provider accepts exactly one of that no group
   /// source declares (the API enforces them, or the provider checks them
   /// outside its validators). Each entry lists the members as dotted paths
@@ -430,6 +439,7 @@ final class WrapperOverride {
     this.dedupeNestedTypes = false,
     this.deriveExactlyOne = false,
     this.sealedNames,
+    this.typeNames,
     this.exactlyOneOf,
     this.atMostOneOf,
   }) : sealedArguments = const [];
@@ -464,6 +474,7 @@ final class WrapperOverride {
        dedupeNestedTypes = base.dedupeNestedTypes,
        deriveExactlyOne = base.deriveExactlyOne,
        sealedNames = base.sealedNames,
+       typeNames = base.typeNames,
        exactlyOneOf = base.exactlyOneOf,
        atMostOneOf = base.atMostOneOf;
 

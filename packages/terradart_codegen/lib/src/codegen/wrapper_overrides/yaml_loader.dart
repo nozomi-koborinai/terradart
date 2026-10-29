@@ -163,6 +163,7 @@ class YamlOverrideLoader {
     'dedupeNestedTypes',
     'deriveExactlyOne',
     'sealedNames',
+    'typeNames',
     'exactlyOneOf',
     'atMostOneOf',
     // 4 Phase 4.1 axes (kind dispatch + emitter routing).
@@ -461,6 +462,7 @@ class YamlOverrideLoader {
       dedupeNestedTypes: dedupeNestedTypes,
       deriveExactlyOne: _readBool(yaml, 'deriveExactlyOne', filePath) ?? false,
       sealedNames: _readSealedNames(yaml, filePath),
+      typeNames: _readTypeNames(yaml, filePath),
       exactlyOneOf: _readGroups(yaml, 'exactlyOneOf', filePath),
       atMostOneOf: _readGroups(yaml, 'atMostOneOf', filePath),
     );
@@ -500,6 +502,31 @@ class YamlOverrideLoader {
         throw FormatException(
           '$filePath: sealedNames "$key" is "$value"; use a snake_case '
           'concept name (code, name_or_id).',
+        );
+      }
+    }
+    return names;
+  }
+
+  static final RegExp _inputPath = RegExp(r'^[a-z0-9_]+(\.[a-z0-9_]+)*$');
+  static final RegExp _typeName = RegExp(r'^[A-Z][A-Za-z0-9]*$');
+
+  /// The `typeNames` axis: a string map from a dotted input path to a
+  /// PascalCase Dart type name.
+  Map<String, String>? _readTypeNames(YamlMap yaml, String filePath) {
+    final names = _readStringMap(yaml, 'typeNames', filePath);
+    if (names == null) return null;
+    for (final MapEntry(:key, :value) in names.entries) {
+      if (!_inputPath.hasMatch(key)) {
+        throw FormatException(
+          '$filePath: typeNames key "$key" must be a dotted input path '
+          '(cool_access.tiering_policy).',
+        );
+      }
+      if (!_typeName.hasMatch(value)) {
+        throw FormatException(
+          '$filePath: typeNames "$key" is "$value"; use a PascalCase Dart '
+          'type name.',
         );
       }
     }

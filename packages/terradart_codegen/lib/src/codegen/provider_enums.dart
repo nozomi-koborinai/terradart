@@ -538,10 +538,15 @@ Map<String, EnumName> topLevelEnums(
   Map<String, Set<String>> laneInputs = const {},
 }) {
   if (!override.deriveEnums) return const {};
-  final names = topLevelTypeNames(override.kind.typeStem(def.terraformType), [
-    ...def.root.attributes.map((a) => a.name),
-    ...def.root.nestedBlocks.map((b) => b.name),
-  ], laneInputs: laneInputs);
+  final names = topLevelTypeNames(
+    override.kind.typeStem(def.terraformType),
+    [
+      ...def.root.attributes.map((a) => a.name),
+      ...def.root.nestedBlocks.map((b) => b.name),
+    ],
+    laneInputs: laneInputs,
+    named: override.typeNames ?? const {},
+  );
   return {
     for (final attr in def.root.attributes)
       if (attr.constraints.enumValues case final values?)
@@ -553,6 +558,39 @@ Map<String, EnumName> topLevelEnums(
             dartName: names[attr.name],
           ),
   };
+}
+
+/// Throws a [StateError] naming each `typeNames` entry of [override] that no
+/// derived type of [def] took: a key that is not the path of an enum or a
+/// helper input, or that a shared type does not take its name from.
+/// [nested] is what `collectNestedTypes` derived for [def].
+void checkTypeNames(
+  ResourceDef def,
+  WrapperOverride override,
+  List<NestedBlockSpec> nested, {
+  Map<String, Set<String>> laneInputs = const {},
+}) {
+  final names = override.typeNames;
+  if (names == null) return;
+  final taken = {
+    for (final MapEntry(:key, :value) in topLevelEnums(
+      def,
+      override,
+      laneInputs: laneInputs,
+    ).entries)
+      key: value.dartName,
+    ...nestedTypeNamesByPath(nested),
+  };
+  final stale = [
+    for (final MapEntry(:key, :value) in names.entries)
+      if (taken[key] != value) key,
+  ];
+  if (stale.isNotEmpty) {
+    throw StateError(
+      '${override.kind.label(def.terraformType)}: typeNames '
+      '${stale.join(', ')} names no derived enum or helper',
+    );
+  }
 }
 
 ResourceDef _enrich(ResourceDef def, EnumValuesResolver resolve) {

@@ -208,6 +208,9 @@ List<String>? descriptionEnumValues(List<String> path, String? description) =>
 /// the override's `dartTypeOverrides` entries whose key has a dot.
 ///
 /// [laneInputs] maps every stem of the lane to its input names ([joinStem]).
+///
+/// [typeNames] is the override's `typeNames` axis: a class or enum takes
+/// the name keyed by its path ([conciseTypeNames]'s `named`).
 List<NestedBlockSpec> collectNestedTypes({
   required Map<String, dynamic> resourceBlock,
   required String resourcePrefix,
@@ -222,7 +225,9 @@ List<NestedBlockSpec> collectNestedTypes({
   Map<String, String> typeOverrides = const {},
   Set<String> reserved = const {},
   Map<String, Set<String>> laneInputs = const {},
+  Map<String, String>? typeNames,
 }) {
+  final named = typeNames ?? const <String, String>{};
   final rootKeys = {
     ..._optionalMap(resourceBlock['attributes'], context: 'attributes').keys,
     ..._optionalMap(resourceBlock['block_types'], context: 'block_types').keys,
@@ -248,14 +253,36 @@ List<NestedBlockSpec> collectNestedTypes({
     resourceBlock['attributes'],
     context: 'attributes',
   );
-  final topLevel = topLevelTypeNames(resourcePrefix, laneInputs: laneInputs, [
-    ...attributes.keys,
-    ..._optionalMap(resourceBlock['block_types'], context: 'block_types').keys,
-  ]);
-  return _renameConcisely(specs, resourcePrefix, laneInputs, reserved, {
+  final topLevel =
+      topLevelTypeNames(resourcePrefix, laneInputs: laneInputs, named: named, [
+        ...attributes.keys,
+        ..._optionalMap(
+          resourceBlock['block_types'],
+          context: 'block_types',
+        ).keys,
+      ]);
+  return _renameConcisely(specs, resourcePrefix, laneInputs, reserved, named, {
     for (final MapEntry(:key, :value) in attributes.entries)
       if (value is! Map || !value.containsKey('nested_type')) topLevel[key]!,
   });
+}
+
+/// The dotted path of every class and enum input in [specs], recursively,
+/// mapped to the type it takes: what a `typeNames` key has to match.
+Map<String, String> nestedTypeNamesByPath(List<NestedBlockSpec> specs) {
+  final out = <String, String>{};
+  void visit(NestedBlockSpec s) {
+    out[s.path.join('.')] = s.className;
+    for (final a in s.attrs) {
+      if (a.enumValues != null) {
+        out[[...s.path, a.tfName].join('.')] = a.dartType;
+      }
+    }
+    s.children.forEach(visit);
+  }
+
+  specs.forEach(visit);
+  return out;
 }
 
 /// [specs] with every class and enum named by [conciseTypeNames]. Enum
@@ -266,6 +293,7 @@ List<NestedBlockSpec> _renameConcisely(
   String stem,
   Map<String, Set<String>> laneInputs,
   Set<String> reserved,
+  Map<String, String> named,
   Set<String> owned,
 ) {
   final classes = <String, NestedBlockSpec>{};
@@ -327,6 +355,7 @@ List<NestedBlockSpec> _renameConcisely(
     owned: owned,
     reserved: reserved,
     laneInputs: laneInputs,
+    named: named,
     stemless: {
       for (var i = 0; i < groupPaths.length; i++)
         classKeys.length + enumKeys.length + i,

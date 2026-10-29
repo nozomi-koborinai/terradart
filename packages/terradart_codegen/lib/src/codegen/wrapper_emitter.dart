@@ -149,7 +149,11 @@ class WrapperEmitter {
         typeOverrides: override.nestedDartTypeOverrides,
         reserved: hints.reserved,
         laneInputs: laneInputs,
+        typeNames: override.typeNames,
       );
+    }
+    if (override != null) {
+      checkTypeNames(def, override, nestedTypeSpecs, laneInputs: laneInputs);
     }
     final nestedTypeKeys = {...?override?.nestedDartTypeOverrides.keys};
     if (nestedTypeKeys.isNotEmpty) {

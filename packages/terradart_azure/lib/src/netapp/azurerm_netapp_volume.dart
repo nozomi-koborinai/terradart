@@ -73,19 +73,19 @@ extension type const NetappVolumeProtocols._(TfArg<String> _)
   static const List<NetappVolumeProtocols> values = [nfsv3, nfsv4p1, cifs];
 }
 
-/// Netapp Volume Security enum for `security_style`.
-extension type const NetappVolumeSecurityStyle._(TfArg<String> _)
+/// Azurerm Netapp Volume Security enum for `security_style`.
+extension type const AzurermNetappVolumeSecurityStyle._(TfArg<String> _)
     implements TfArg<String> {
-  NetappVolumeSecurityStyle.variable(String name)
+  AzurermNetappVolumeSecurityStyle.variable(String name)
     : this._(TfArg.variable(name));
-  NetappVolumeSecurityStyle.expression(String template)
+  AzurermNetappVolumeSecurityStyle.expression(String template)
     : this._(TfArg.expression(template));
-  const NetappVolumeSecurityStyle.arg(TfArg<String> arg) : this._(arg);
+  const AzurermNetappVolumeSecurityStyle.arg(TfArg<String> arg) : this._(arg);
 
-  static const ntfs = NetappVolumeSecurityStyle._(TfArgLiteral('ntfs'));
-  static const unix = NetappVolumeSecurityStyle._(TfArgLiteral('unix'));
+  static const ntfs = AzurermNetappVolumeSecurityStyle._(TfArgLiteral('ntfs'));
+  static const unix = AzurermNetappVolumeSecurityStyle._(TfArgLiteral('unix'));
 
-  static const List<NetappVolumeSecurityStyle> values = [ntfs, unix];
+  static const List<AzurermNetappVolumeSecurityStyle> values = [ntfs, unix];
 }
 
 /// Typed helper for the `cool_access` block of
@@ -102,7 +102,7 @@ final class NetappVolumeCoolAccess {
 
   final NetappVolumeRetrievalPolicy retrievalPolicy;
 
-  final NetappVolumeTieringPolicy tieringPolicy;
+  final AzurermNetappVolumeTieringPolicy tieringPolicy;
 
   @internal
   Map<String, Object?> encode() => {
@@ -135,20 +135,23 @@ extension type const NetappVolumeRetrievalPolicy._(TfArg<String> _)
 }
 
 /// `tiering_policy` — derived from the provider schema description.
-extension type const NetappVolumeTieringPolicy._(TfArg<String> _)
+extension type const AzurermNetappVolumeTieringPolicy._(TfArg<String> _)
     implements TfArg<String> {
-  NetappVolumeTieringPolicy.variable(String name)
+  AzurermNetappVolumeTieringPolicy.variable(String name)
     : this._(TfArg.variable(name));
-  NetappVolumeTieringPolicy.expression(String template)
+  AzurermNetappVolumeTieringPolicy.expression(String template)
     : this._(TfArg.expression(template));
-  const NetappVolumeTieringPolicy.arg(TfArg<String> arg) : this._(arg);
+  const AzurermNetappVolumeTieringPolicy.arg(TfArg<String> arg) : this._(arg);
 
-  static const auto = NetappVolumeTieringPolicy._(TfArgLiteral('Auto'));
-  static const snapshotonly = NetappVolumeTieringPolicy._(
+  static const auto = AzurermNetappVolumeTieringPolicy._(TfArgLiteral('Auto'));
+  static const snapshotonly = AzurermNetappVolumeTieringPolicy._(
     TfArgLiteral('SnapshotOnly'),
   );
 
-  static const List<NetappVolumeTieringPolicy> values = [auto, snapshotonly];
+  static const List<AzurermNetappVolumeTieringPolicy> values = [
+    auto,
+    snapshotonly,
+  ];
 }
 
 /// Typed helper for the `data_protection_advanced_ransomware` block of
@@ -358,7 +361,7 @@ final class AzurermNetappVolume extends Resource {
     required TfArg<String> poolName,
     List<NetappVolumeProtocols>? protocols,
     required RefTo<AzurermResourceGroup> resourceGroupName,
-    NetappVolumeSecurityStyle? securityStyle,
+    AzurermNetappVolumeSecurityStyle? securityStyle,
     required TfArg<String> serviceLevel,
     TfArg<bool>? smb3ProtocolEncryptionEnabled,
     TfArg<bool>? smbAccessBasedEnumerationEnabled,
