@@ -14,7 +14,7 @@ The GA `hashicorp/google` catalog is **filled** (alpha). The curation push is ov
 
 Human / maintainer focus in this phase:
 
-- **Path to beta** — three external-validation gates; the canonical list lives in [status](website/src/content/docs/docs/status.md) (not duplicated here).
+- **Path to beta** — the API shape is settled. The draft criteria are the canonical list in [status](website/src/content/docs/docs/status.md) (not duplicated here). Beta waits on that list. Feedback from outside the project shapes the API during alpha.
 - **Example-debt paydown** — the 2026-08 apply-excluded batch left a large [`tool/example_debt.yaml`](tool/example_debt.yaml); shrinking it is standing quality work via [`terradart-backfill-examples`](.agents/skills/terradart-backfill-examples/SKILL.md).
 - **Cookbook and docs** — real-apply records and user-facing guides.
 
