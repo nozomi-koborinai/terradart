@@ -689,6 +689,25 @@ class XVmNic {
       expect(handEmitter.typedReferences, contains('google_x_vm.nic.network'));
     });
 
+    test('keeps the references of an unreachable helper apart', () {
+      final unreachable = WrapperEmitter(
+        overrides: const {
+          'google_x_vm': WrapperOverride(
+            outputDir: 'compute',
+            deriveNestedTypes: true,
+            paramOrder: ['name', 'network'],
+          ),
+        },
+        rawResourceSchemas: {
+          'google_x_vm': _blocks('resource_schemas')['google_x_vm']!,
+        },
+        references: references,
+      )..emit(ir.resources['google_x_vm']!, providerSource: 'hashicorp/google');
+      expect(unreachable.unreachableHelpers, ['nic']);
+      expect(unreachable.typedReferences, ['google_x_vm.network']);
+      expect(unreachable.unreachableReferences, ['google_x_vm.nic.network']);
+    });
+
     ({String src, List<String> typed}) emitNicPrelude(String prelude) {
       final handEmitter = WrapperEmitter(
         overrides: {

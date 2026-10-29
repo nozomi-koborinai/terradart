@@ -84,6 +84,10 @@ class WrapperEmitter {
   /// Its references are not counted in [typedReferences].
   final List<String> unreachableHelpers = [];
 
+  /// `<resource type>.<path>` of every input the last [emit] typed as a
+  /// reference inside one of the [unreachableHelpers].
+  final List<String> unreachableReferences = [];
+
   final Map<String, WrapperOverride> overrides;
 
   /// When set (e.g. `google-beta`), every emitted wrapper pins its
@@ -215,13 +219,14 @@ class WrapperEmitter {
       ...preludeReferences(override, refs),
       ...nestedRefs,
     };
-    typedReferences
-      ..clear()
-      ..addAll([
-        for (final path in typedRefs.keys)
-          if (!unreachableHelpers.contains(path.split('.').first))
-            '${def.terraformType}.$path',
-      ]);
+    typedReferences.clear();
+    unreachableReferences.clear();
+    for (final path in typedRefs.keys) {
+      (unreachableHelpers.contains(path.split('.').first)
+              ? unreachableReferences
+              : typedReferences)
+          .add('${def.terraformType}.$path');
+    }
 
     // Imports. `extraImports` is emitted FIRST so that `package:meta` (the
     // common case for hand-written helper classes that decorate themselves

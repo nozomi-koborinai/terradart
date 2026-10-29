@@ -65,8 +65,10 @@
 # attribute the target (or its data source) does not export, or an input two
 # rules match. Enum-typed inputs and inputs an override types by hand stay
 # as they are; a member of a sealed group is typed inside its variant.
-# `terradart wrap` lists every matched input that stays a string
-# (`reference input not typed:`).
+# wrap also fails on a matched input that stays a string
+# (`reference input not typed:`): type it, or exclude it with the reason.
+# An input of a derived helper no constructor input takes is typed in that
+# helper, and wrap names the helper (`nested helper not reachable`).
 
 hashicorp/google:
   - principals: IamPrincipal
