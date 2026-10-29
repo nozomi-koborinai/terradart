@@ -72,6 +72,8 @@ terradart init --provider azure --env dev,prd --backend local
 | `--dry-run` | list the files, write nothing | |
 | `--force` | overwrite existing files, scaffold next to existing Terraform | |
 
+`--backend azurerm` and `AzurermBackend` are not in the published 0.35.0 packages and arrive in the next release, after the packages publish.
+
 In a terminal, every flag left out is a question: the providers, the environments, each environment's IDs (a blank answer leaves a placeholder marked `TODO`), then *Do you already have a bucket for Terraform state?* — yes asks for its name, one for every environment or one each, and takes the kind from the provider (asking when the providers do not settle it); no keeps the state local — and last whether to install the agent skill. Without the skill, `AGENTS.md` says how to add it: `terradart skill install`, or the pinned `npx skills add` line. The run ends with `Re-run with: terradart init ...`, the same answers as flags.
 
 Without a terminal it never asks, and never picks the providers, the environments or the state backend for you: a run that leaves out any of `--provider`, `--env` and `--backend` (or `--state-bucket`) fails with exit 64, names every missing flag, and prints a command to edit. `--defaults` accepts `dev,prd` and local state; the IDs it leaves out become placeholders, and the defaults it took are printed. A bucket's state sits under `<package>/<env>`, so one bucket serves every environment. Local state moves to a bucket later with `terradart state migrate`; `terradart init` only scaffolds.
