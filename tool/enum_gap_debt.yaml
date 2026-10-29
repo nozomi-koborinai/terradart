@@ -3,6 +3,58 @@
 # a reviewed decision, and a stale line (no longer matching any reported gap)
 # fails the check so the ledger cannot rot.
 #
-# The ledger is currently empty — the 0.23.0 breaking minor paid all six
-# original entries off (typed-enum narrowing shipped with MIGRATING.md
-# coverage). Add new lines only as a reviewed decision.
+# The 0.23.0 breaking minor paid the original six entries (typed-enum
+# narrowing shipped with MIGRATING.md). Each line below is a public
+# constructor input, including an optional computed input and a sealed
+# variant, that still takes a free string or a list of strings for a schema
+# value set. Retyping it to an enum is a breaking constructor change and
+# waits for the criteria 3 and 4 minor.
+
+google_alloydb_backup.type: TfArg<String> stays until the criteria 3 and 4 minor retypes it to an enum
+google_alloydb_cluster.subscription_type: TfArg<String> stays until the criteria 3 and 4 minor retypes it to an enum
+google_alloydb_instance.activation_policy: TfArg<String> stays until the criteria 3 and 4 minor retypes it to an enum
+google_alloydb_instance.availability_type: TfArg<String> stays until the criteria 3 and 4 minor retypes it to an enum
+google_app_engine_flexible_app_version.inbound_services: TfArg<List<String>> stays until the criteria 3 and 4 minor retypes it to an enum
+google_app_engine_standard_app_version.app_engine_bundled_services: sealed variant TfArg<List<String>> stays until the criteria 3 and 4 minor retypes it to an enum
+google_app_engine_standard_app_version.inbound_services: TfArg<List<String>> stays until the criteria 3 and 4 minor retypes it to an enum
+google_binary_authorization_policy.global_policy_evaluation_mode: TfArg<String> stays until the criteria 3 and 4 minor retypes it to an enum
+google_chronicle_big_query_export.big_query_export_package: TfArg<String> stays until the criteria 3 and 4 minor retypes it to an enum
+google_cloud_run_v2_instance.encryption_key_revocation_action: TfArg<String> stays until the criteria 3 and 4 minor retypes it to an enum
+google_cloud_run_v2_instance.ingress: TfArg<String> stays until the criteria 3 and 4 minor retypes it to an enum
+google_cloud_run_v2_instance.launch_stage: TfArg<String> stays until the criteria 3 and 4 minor retypes it to an enum
+google_cloud_run_v2_instance.restart_policy: TfArg<String> stays until the criteria 3 and 4 minor retypes it to an enum
+google_compute_interconnect.requested_features: TfArg<List<String>> stays until the criteria 3 and 4 minor retypes it to an enum
+google_compute_interconnect_attachment.bandwidth: TfArg<String> stays until the criteria 3 and 4 minor retypes it to an enum
+google_compute_network_firewall_policy_rule.target_type: TfArg<String> stays until the criteria 3 and 4 minor retypes it to an enum
+google_compute_organization_security_policy.type: TfArg<String> stays until the criteria 3 and 4 minor retypes it to an enum
+google_compute_packet_mirroring.enable: TfArg<String> stays until the criteria 3 and 4 minor retypes it to an enum
+google_compute_public_advertised_prefix.ipv6_access_type: TfArg<String> stays until the criteria 3 and 4 minor retypes it to an enum
+google_compute_region_network_firewall_policy_with_rules.policy_type: TfArg<String> stays until the criteria 3 and 4 minor retypes it to an enum
+google_data_catalog_taxonomy.activated_policy_types: TfArg<List<String>> stays until the criteria 3 and 4 minor retypes it to an enum
+google_database_migration_service_connection_profile.role: TfArg<String> stays until the criteria 3 and 4 minor retypes it to an enum
+google_database_migration_service_migration_job.desired_state: TfArg<String> stays until the criteria 3 and 4 minor retypes it to an enum
+google_dialogflow_intent.default_response_platforms: TfArg<List<String>> stays until the criteria 3 and 4 minor retypes it to an enum
+google_discovery_engine_control.use_cases: TfArg<List<String>> stays until the criteria 3 and 4 minor retypes it to an enum
+google_discovery_engine_data_store.solution_types: TfArg<List<String>> stays until the criteria 3 and 4 minor retypes it to an enum
+google_edgecontainer_cluster.release_channel: TfArg<String> stays until the criteria 3 and 4 minor retypes it to an enum
+google_gemini_release_channel_setting_binding.product: TfArg<String> stays until the criteria 3 and 4 minor retypes it to an enum
+google_gkeonprem_vmware_cluster.skip_validations: TfArg<List<String>> stays until the criteria 3 and 4 minor retypes it to an enum
+google_healthcare_fhir_store.complex_data_type_reference_parsing: TfArg<String> stays until the criteria 3 and 4 minor retypes it to an enum
+google_memorystore_instance.mode: TfArg<String> stays until the criteria 3 and 4 minor retypes it to an enum
+google_netapp_backup_vault.backup_vault_type: TfArg<String> stays until the criteria 3 and 4 minor retypes it to an enum
+google_netapp_volume.protocols: TfArg<List<String>> stays until the criteria 3 and 4 minor retypes it to an enum
+google_netapp_volume.security_style: TfArg<String> stays until the criteria 3 and 4 minor retypes it to an enum
+google_netapp_volume.smb_settings: TfArg<List<String>> stays until the criteria 3 and 4 minor retypes it to an enum
+google_network_connectivity_hub.policy_mode: TfArg<String> stays until the criteria 3 and 4 minor retypes it to an enum
+google_network_connectivity_hub.preset_topology: TfArg<String> stays until the criteria 3 and 4 minor retypes it to an enum
+google_network_connectivity_internal_range.overlaps: TfArg<List<String>> stays until the criteria 3 and 4 minor retypes it to an enum
+google_network_management_organization_vpc_flow_logs_config.cross_project_metadata: TfArg<String> stays until the criteria 3 and 4 minor retypes it to an enum
+google_network_security_authz_policy.policy_profile: TfArg<String> stays until the criteria 3 and 4 minor retypes it to an enum
+google_network_services_agent_connectivity_template.access_types: TfArg<List<String>> stays until the criteria 3 and 4 minor retypes it to an enum
+google_network_services_edge_cache_origin.retry_conditions: TfArg<List<String>> stays until the criteria 3 and 4 minor retypes it to an enum
+google_secure_source_manager_hook.events: TfArg<List<String>> stays until the criteria 3 and 4 minor retypes it to an enum
+google_site_verification_token.type: data source TfArg<String> stays until the criteria 3 and 4 minor retypes it to an enum
+google_site_verification_token.verification_method: data source TfArg<String> stays until the criteria 3 and 4 minor retypes it to an enum
+google_spanner_instance.default_backup_schedule_type: TfArg<String> stays until the criteria 3 and 4 minor retypes it to an enum
+google_spanner_instance.instance_type: TfArg<String> stays until the criteria 3 and 4 minor retypes it to an enum
+google_vector_search_index.distance_metric: TfArg<String> stays until the criteria 3 and 4 minor retypes it to an enum
