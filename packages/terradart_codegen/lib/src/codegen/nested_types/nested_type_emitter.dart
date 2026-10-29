@@ -575,11 +575,13 @@ _Layout _layout(NestedBlockSpec spec, Set<String> taken) {
 /// The nested exactly-one [groups] — at-most-one groups when [optional] —
 /// (parent path → member names, as `collectNestedTypes` takes them) that
 /// [renderNestedTypes] leaves unsealed for [specs], each as
-/// `<path> [<members>]: <reason>`.
+/// `<path> [<members>]: <reason>`. A group in a block with no typed helper
+/// is left out when [sealedByHand] says a hand-written slot seals it.
 List<String> unsealedNestedGroups(
   List<NestedBlockSpec> specs,
   Map<String, List<List<String>>> groups, {
   bool optional = false,
+  bool Function(String path, List<String> members)? sealedByHand,
 }) {
   final out = <String>[];
   final seen = <String>{};
@@ -604,6 +606,7 @@ List<String> unsealedNestedGroups(
   for (final MapEntry(key: path, value: list) in groups.entries) {
     if (seen.contains(path)) continue;
     for (final group in list) {
+      if (sealedByHand?.call(path, group) ?? false) continue;
       out.add('$path [${group.join(', ')}]: the block has no typed helper');
     }
   }

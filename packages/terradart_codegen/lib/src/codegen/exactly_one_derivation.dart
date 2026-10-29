@@ -5,6 +5,7 @@ import 'constructor_slots.dart';
 import 'dart_type_writer.dart';
 import 'exactly_one_placement.dart';
 import 'exactly_one_types.dart';
+import 'hand_sealed_groups.dart';
 import 'naming.dart';
 import 'nested_types/nested_type_collector.dart';
 import 'nested_types/nested_type_emitter.dart';
@@ -24,7 +25,9 @@ import 'wrapper_overrides/yaml_loader.dart';
 /// no custom slot owns and no earlier group took, and none is a keyed
 /// (`nesting_mode: map`) block, which the migration manifest has no shape
 /// for; the others are returned in `skipped` (exactly-one) or
-/// `skippedAtMostOne` with a reason and keep their plain slots. Exactly-one
+/// `skippedAtMostOne` with a reason and keep their plain slots. A group a
+/// hand-written sealed slot already covers ([handSealedGroups]), with none
+/// of its members a constructor input, is sealed and reported in neither. Exactly-one
 /// groups claim their members first. Exactly-one groups that share one
 /// member set and nothing else seal as one argument ([placeGroups]); any
 /// other overlap leaves the later group unsealed.
@@ -81,6 +84,7 @@ deriveExactlyOneSlots(
         out[type] = o;
         continue;
       }
+      final hand = handSealedGroups(o);
       final specs = o.deriveNestedTypes
           ? collectNestedTypes(
               resourceBlock: rawSchemas.of(kind)[type]!,
@@ -108,6 +112,7 @@ deriveExactlyOneSlots(
               blockGroups(root.exactlyOne, root.atMostOne),
               specs,
               refs,
+              hand,
               skipped: skipped,
               skippedAtMostOne: skippedAtMostOne,
               names: typeNames,
@@ -128,14 +133,22 @@ deriveExactlyOneSlots(
           nameErrors.add('$label sealedNames "$k" matches no sealed group');
         }
       }
+      bool sealedByHand(String path, List<String> members) =>
+          coversGroup(hand, path, members);
       skipped.addAll([
-        for (final s in unsealedNestedGroups(specs, nested)) '$label $s',
+        for (final s in unsealedNestedGroups(
+          specs,
+          nested,
+          sealedByHand: sealedByHand,
+        ))
+          '$label $s',
       ]);
       skippedAtMostOne.addAll([
         for (final s in unsealedNestedGroups(
           specs,
           nestedOptional,
           optional: true,
+          sealedByHand: sealedByHand,
         ))
           '$label $s',
       ]);
@@ -213,7 +226,8 @@ WrapperOverride _derive(
   ResourceDef def,
   List<BlockGroup> groups,
   List<NestedBlockSpec> nestedSpecs,
-  Map<String, ResolvedReference> refs, {
+  Map<String, ResolvedReference> refs,
+  List<HandSealedGroup> hand, {
   required List<String> skipped,
   required List<String> skippedAtMostOne,
   required List<SealedGroupName> names,
@@ -340,6 +354,8 @@ WrapperOverride _derive(
       if (!group.contains(n) || _hasClass(n, blocks, o))
         prefix + snakeToPascal(n),
   };
+  bool sealedByHand(List<String> members) =>
+      !members.any(order.contains) && coversGroup(hand, '', members);
   String? slotTaken(String concept, List<String> group) =>
       !group.contains(concept) &&
               (order.contains(concept) || slots.containsKey(concept)) ||
@@ -350,6 +366,7 @@ WrapperOverride _derive(
   for (final placement in placeGroups(groups)) {
     switch (placement) {
       case SinglePlacement(group: (members: final group, :final optional)):
+        if (sealedByHand(group)) continue;
         final label = '$where [${group.join(', ')}]';
         String? reason;
         final variants = <ExactlyOneVariant>[];
@@ -422,6 +439,7 @@ WrapperOverride _derive(
           argMapOrder = _replaceMembers(argMapOrder, group, slot);
         }
       case final JointPlacement joint:
+        if (joint.groups.every(sealedByHand)) continue;
         final members = joint.members;
         String? reason;
         final variants = <ExactlyOneVariant>[];

@@ -264,25 +264,40 @@ void main() {
       );
     });
 
-    test('clean: sealed virtual slot satisfies exactly_one', () {
+    test('a sealed virtual slot satisfies exactly_one when it covers it', () {
       const mm = MmResourceOverrides(
         fieldOverrides: {},
         exactlyOneOfGroups: [
           ['oidc', 'aws'],
         ],
       );
-      const o = WrapperOverride(
+      WrapperOverride withVariants(List<String> keys) => WrapperOverride(
         outputDir: 'iam',
-        paramOrder: ['trust_source'],
-        customSlots: {
+        paramOrder: const ['trust_source', 'oidc', 'aws'],
+        customSlots: const {
           'trust_source': CustomSlot(
             paramDeclaration: 'required TrustSource trustSource',
             argMapEntry:
                 'trustSource.blockKey: TfArg.literal(trustSource.encode()),',
           ),
         },
+        prelude: [
+          'sealed class TrustSource { const TrustSource(); }',
+          for (final k in keys)
+            'final class TrustSource$k extends TrustSource {\n'
+                '  const TrustSource$k();\n'
+                "  String get blockKey => '$k';\n"
+                '}',
+        ].join('\n'),
       );
-      expect(lintOverride('google_x', o, mm: mm), isEmpty);
+      expect(
+        lintOverride('google_x', withVariants(['oidc', 'aws']), mm: mm),
+        isEmpty,
+      );
+      expect(
+        lintOverride('google_x', withVariants(['oidc']), mm: mm).single.rule,
+        'exactly-one-paramorder-fanout',
+      );
     });
 
     test('curatedDoc with deriveClassDoc on does not trigger rule (d)', () {
