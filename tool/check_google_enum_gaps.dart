@@ -115,6 +115,61 @@ Set<String> ctorRawStringFields(String source) {
   return {for (final match in _rawCtorField.allMatches(ctor)) match.group(1)!};
 }
 
+final _factoryStart = RegExp(r'const\s+factory\s+[A-Za-z0-9_.]+\s*\(');
+
+/// `TfArg<String>` and `TfArg<List<String>>` parameters of sealed variant
+/// factories. A value set moved into a sealed argument is not on the
+/// resource constructor (`appEngineBundledServices(...)`).
+Set<String> sealedVariantRawStringFields(String source) {
+  final fields = <String>{};
+  for (final match in _factoryStart.allMatches(source)) {
+    final open = match.end - 1;
+    final close = _matchingParen(source, open);
+    if (close < 0) continue;
+    final params = source.substring(open + 1, close);
+    for (final field in _rawCtorField.allMatches(params)) {
+      fields.add(field.group(1)!);
+    }
+  }
+  return fields;
+}
+
+int _matchingParen(String source, int open) {
+  var depth = 0;
+  var quote = '';
+  for (var i = open; i < source.length; i++) {
+    final char = source[i];
+    if (quote.isNotEmpty) {
+      if (char == '\\' && i + 1 < source.length) {
+        i++;
+        continue;
+      }
+      if (char == quote) quote = '';
+      continue;
+    }
+    if (char == "'" || char == '"') {
+      quote = char;
+      continue;
+    }
+    if (char == '(') {
+      depth++;
+    } else if (char == ')') {
+      depth--;
+      if (depth == 0) return i;
+    }
+  }
+  return -1;
+}
+
+/// Output-only attribute: computed, and neither optional nor required.
+///
+/// Same meaning as `Constraints.computedOnly`. An optional computed input
+/// is still a constructor parameter.
+bool schemaAttrIsComputedOnly(Map<String, dynamic> meta) =>
+    meta['computed'] == true &&
+    meta['optional'] != true &&
+    meta['required'] != true;
+
 typedef _GapTarget = ({String terraformType, Map<String, dynamic>? schema});
 
 /// Schema block for an override file. Data-source files are
@@ -157,7 +212,10 @@ List<String> topLevelEnumGaps({
   );
   final schema = target.schema;
   if (schema == null || generatedSource == null) return const [];
-  final fields = ctorRawStringFields(generatedSource);
+  final fields = {
+    ...ctorRawStringFields(generatedSource),
+    ...sealedVariantRawStringFields(generatedSource),
+  };
   final rawDto = override['dartTypeOverrides'];
   final dto = rawDto is Map
       ? Map<String, dynamic>.from(rawDto)
@@ -169,7 +227,7 @@ List<String> topLevelEnumGaps({
   for (final entry in attrs.entries) {
     final attr = entry.key;
     final meta = Map<String, dynamic>.from(entry.value as Map);
-    if (meta['computed'] == true) continue;
+    if (schemaAttrIsComputedOnly(meta)) continue;
     final vals = parseEnumValuesFromDescription(meta['description'] as String?);
     if (vals == null) continue;
     final camel = _camel(attr);
@@ -212,6 +270,60 @@ bool _customSlotCoversBlock(Map<String, dynamic> ov, List<String> blockPath) {
     if (slotKeys.contains(blockPath[i - 1])) return true;
   }
   return false;
+}
+
+/// Generated source of the helper a custom slot uses for [blockPath], when
+/// that helper is a class in this package. A slot can point at a class in
+/// another file (`EventarcMessageBusLoggingConfig`), so the resource file
+/// alone does not show the field's type.
+String? _helperTextForBlock(Map<String, dynamic> ov, List<String> blockPath) {
+  final slots = ov['customSlots'];
+  if (slots is! Map) return null;
+  for (var i = blockPath.length; i > 0; i--) {
+    final slot = slots[blockPath[i - 1]];
+    if (slot is! Map) continue;
+    final declaration = slot['paramDeclaration'];
+    if (declaration is! String) continue;
+    final className = _helperClassName(declaration);
+    if (className == null) continue;
+    final text = _classSource(className);
+    if (text != null) return text;
+  }
+  return null;
+}
+
+const _helperClassSkip = {'List', 'Map', 'Set', 'TfArg', 'String', 'Object'};
+
+String? _helperClassName(String declaration) {
+  final names = [
+    for (final match in RegExp(
+      r'\b[A-Z][A-Za-z0-9]*\b',
+    ).allMatches(declaration))
+      if (!_helperClassSkip.contains(match.group(0))) match.group(0)!,
+  ];
+  if (names.isEmpty) return null;
+  return names.last;
+}
+
+Map<String, String>? _classSources;
+
+String? _classSource(String className) {
+  final index = _classSources ??= _indexClassSources();
+  return index[className];
+}
+
+Map<String, String> _indexClassSources() {
+  final out = <String, String>{};
+  if (!_genDir.existsSync()) return out;
+  final className = RegExp(r'\bclass ([A-Z][A-Za-z0-9]*)\b');
+  for (final file in _genDir.listSync(recursive: true).whereType<File>()) {
+    if (!file.path.endsWith('.dart')) continue;
+    final text = file.readAsStringSync();
+    for (final match in className.allMatches(text)) {
+      out.putIfAbsent(match.group(1)!, () => text);
+    }
+  }
+  return out;
 }
 
 /// Collapses runs of whitespace (including newlines) to a single space.
@@ -298,7 +410,7 @@ List<_NestedEnumSite> _collectNestedEnumSites(Map<String, dynamic> block) {
       final attrs = nested['attributes'] as Map<String, dynamic>? ?? {};
       for (final attrEntry in attrs.entries) {
         final meta = Map<String, dynamic>.from(attrEntry.value as Map);
-        if (meta['computed'] == true) continue;
+        if (schemaAttrIsComputedOnly(meta)) continue;
         final vals = parseEnumValuesFromDescription(
           meta['description'] as String?,
         );
@@ -359,6 +471,18 @@ void main(List<String> args) {
       final frozen = _isFrozenByExclude(ov, site.blockPath);
 
       if (!_nestedFieldDeclared(genText, camel)) {
+        final helper = _helperTextForBlock(ov, site.blockPath);
+        if (helper != null) {
+          final helperText = _normalizeWhitespace(helper);
+          if (_nestedFieldDeclared(helperText, camel)) {
+            if (nestedEnumFieldIsGap(helperText, camel)) {
+              nestedPartialGaps.add(
+                'NESTED_PARTIAL\t$tfType.$label\t${site.values.join(", ")}',
+              );
+            }
+            continue;
+          }
+        }
         final gap = 'NESTED_THIN\t$tfType.$label\t${site.values.join(", ")}';
         (frozen ? frozenByExcludeGaps : nestedThinGaps).add(gap);
         continue;
