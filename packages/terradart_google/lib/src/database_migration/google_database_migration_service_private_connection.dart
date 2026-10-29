@@ -8,6 +8,124 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleDatabaseMigrationServicePrivateConnectionSensitive =
     <String>{};
 
+/// Exactly one of `psc_interface_config`, `reserved_public_ip_config`, `vpc_peering_config` on `google_database_migration_service_private_connection`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.pscInterfaceConfig(...)`.
+sealed class DatabaseMigrationServicePrivateConnectionConnectivity {
+  const DatabaseMigrationServicePrivateConnectionConnectivity();
+
+  /// Sets `psc_interface_config`.
+  const factory DatabaseMigrationServicePrivateConnectionConnectivity.pscInterfaceConfig(
+    DatabaseMigrationServicePrivateConnectionPscInterfaceConfig
+    pscInterfaceConfig,
+  ) = DatabaseMigrationServicePrivateConnectionConnectivityPscInterfaceConfig;
+
+  /// Sets `reserved_public_ip_config`.
+  const factory DatabaseMigrationServicePrivateConnectionConnectivity.reservedPublicIpConfig(
+    DatabaseMigrationServicePrivateConnectionReservedPublicIpConfig
+    reservedPublicIpConfig,
+  ) = DatabaseMigrationServicePrivateConnectionConnectivityReservedPublicIpConfig;
+
+  /// Sets `vpc_peering_config`.
+  const factory DatabaseMigrationServicePrivateConnectionConnectivity.vpcPeeringConfig(
+    DatabaseMigrationServicePrivateConnectionVpcPeeringConfig vpcPeeringConfig,
+  ) = DatabaseMigrationServicePrivateConnectionConnectivityVpcPeeringConfig;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
+
+  @internal
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [DatabaseMigrationServicePrivateConnectionConnectivity.pscInterfaceConfig] choice: sets `psc_interface_config`.
+final class DatabaseMigrationServicePrivateConnectionConnectivityPscInterfaceConfig
+    extends DatabaseMigrationServicePrivateConnectionConnectivity {
+  const DatabaseMigrationServicePrivateConnectionConnectivityPscInterfaceConfig(
+    this.pscInterfaceConfig,
+  );
+
+  final DatabaseMigrationServicePrivateConnectionPscInterfaceConfig
+  pscInterfaceConfig;
+
+  @internal
+  @override
+  String get blockKey => 'psc_interface_config';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'psc_interface_config': pscInterfaceConfig.encode(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'psc_interface_config': TfArg.literal(pscInterfaceConfig.encode()),
+  };
+}
+
+/// The [DatabaseMigrationServicePrivateConnectionConnectivity.reservedPublicIpConfig] choice: sets `reserved_public_ip_config`.
+final class DatabaseMigrationServicePrivateConnectionConnectivityReservedPublicIpConfig
+    extends DatabaseMigrationServicePrivateConnectionConnectivity {
+  const DatabaseMigrationServicePrivateConnectionConnectivityReservedPublicIpConfig(
+    this.reservedPublicIpConfig,
+  );
+
+  final DatabaseMigrationServicePrivateConnectionReservedPublicIpConfig
+  reservedPublicIpConfig;
+
+  @internal
+  @override
+  String get blockKey => 'reserved_public_ip_config';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'reserved_public_ip_config': reservedPublicIpConfig.encode(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'reserved_public_ip_config': TfArg.literal(reservedPublicIpConfig.encode()),
+  };
+}
+
+/// The [DatabaseMigrationServicePrivateConnectionConnectivity.vpcPeeringConfig] choice: sets `vpc_peering_config`.
+final class DatabaseMigrationServicePrivateConnectionConnectivityVpcPeeringConfig
+    extends DatabaseMigrationServicePrivateConnectionConnectivity {
+  const DatabaseMigrationServicePrivateConnectionConnectivityVpcPeeringConfig(
+    this.vpcPeeringConfig,
+  );
+
+  final DatabaseMigrationServicePrivateConnectionVpcPeeringConfig
+  vpcPeeringConfig;
+
+  @internal
+  @override
+  String get blockKey => 'vpc_peering_config';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'vpc_peering_config': vpcPeeringConfig.encode(),
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'vpc_peering_config': TfArg.literal(vpcPeeringConfig.encode()),
+  };
+}
+
 /// Typed helper for the `psc_interface_config` block of
 /// `google_database_migration_service_private_connection` (derived from provider schema).
 @immutable
@@ -82,9 +200,7 @@ final class GoogleDatabaseMigrationServicePrivateConnection extends Resource {
     required TfArg<String> location,
     required TfArg<String> privateConnectionId,
     TfArg<String>? project,
-    DatabaseMigrationServicePrivateConnectionVpcPeeringConfig? vpcPeeringConfig,
-    DatabaseMigrationServicePrivateConnectionPscInterfaceConfig?
-    pscInterfaceConfig,
+    required DatabaseMigrationServicePrivateConnectionConnectivity connectivity,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -99,10 +215,7 @@ final class GoogleDatabaseMigrationServicePrivateConnection extends Resource {
            'location': location,
            'private_connection_id': privateConnectionId,
            'project': ?project,
-           if (vpcPeeringConfig != null)
-             'vpc_peering_config': TfArg.literal(vpcPeeringConfig.encode()),
-           if (pscInterfaceConfig != null)
-             'psc_interface_config': TfArg.literal(pscInterfaceConfig.encode()),
+           ...connectivity.argMap,
          },
        );
 

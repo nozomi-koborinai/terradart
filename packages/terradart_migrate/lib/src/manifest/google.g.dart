@@ -77676,20 +77676,20 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'vpc_peering_config',
-          dartName: 'vpcPeeringConfig',
-          kind: MigrateSlotKind.helper,
-          required: false,
+          tfName: '',
+          dartName: 'connectivity',
+          kind: MigrateSlotKind.sealed,
+          required: true,
           wrapped: false,
-          helper: 'DatabaseMigrationServicePrivateConnectionVpcPeeringConfig',
-        ),
-        MigrateSlot(
-          tfName: 'psc_interface_config',
-          dartName: 'pscInterfaceConfig',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'DatabaseMigrationServicePrivateConnectionPscInterfaceConfig',
+          merged: true,
+          variants: <String, String>{
+            'psc_interface_config':
+                'DatabaseMigrationServicePrivateConnectionConnectivityPscInterfaceConfig',
+            'reserved_public_ip_config':
+                'DatabaseMigrationServicePrivateConnectionConnectivityReservedPublicIpConfig',
+            'vpc_peering_config':
+                'DatabaseMigrationServicePrivateConnectionConnectivityVpcPeeringConfig',
+          },
         ),
       ],
       getters: <MigrateGetter>[
@@ -91123,12 +91123,19 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'DialogflowGeneratorTriggerEvent',
         ),
         MigrateSlot(
-          tfName: 'summarization_context',
-          dartName: 'summarizationContext',
-          kind: MigrateSlotKind.helper,
+          tfName: '',
+          dartName: 'context',
+          kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
-          helper: 'DialogflowGeneratorSummarizationContext',
+          merged: true,
+          variants: <String, String>{
+            'summarization_context':
+                'DialogflowGeneratorSummarizationContextChoice',
+            'free_form_context': 'DialogflowGeneratorFreeFormContextChoice',
+            'agent_coaching_context':
+                'DialogflowGeneratorAgentCoachingContextChoice',
+          },
         ),
         MigrateSlot(
           tfName: 'published_model',
@@ -157015,8 +157022,22 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           attribute: 'name',
         ),
         MigrateSlot(
-          tfName: 'secret_data',
-          dartName: 'secretData',
+          tfName: '',
+          dartName: 'payload',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'secret_data':
+                'SecretManagerRegionalSecretVersionPayloadSecretData',
+            'secret_data_wo':
+                'SecretManagerRegionalSecretVersionPayloadSecretDataWo',
+          },
+        ),
+        MigrateSlot(
+          tfName: 'secret_data_wo_version',
+          dartName: 'secretDataWoVersion',
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
@@ -189879,13 +189900,53 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
+          tfName: '',
+          dartName: 'password',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'password': 'BigqueryConnectionCloudSqlPasswordChoice',
+            'password_wo': 'BigqueryConnectionCloudSqlPasswordWo',
+          },
+        ),
+        MigrateSlot(
+          tfName: 'password_wo_version',
+          dartName: 'passwordWoVersion',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'BigqueryConnectionCloudSqlPasswordChoice': MigrateHelper(
+      className: 'BigqueryConnectionCloudSqlPasswordChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
           tfName: 'password',
           dartName: 'password',
           kind: MigrateSlotKind.scalar,
           required: true,
+          positional: true,
           dartType: 'String',
         ),
       ],
+      shorthand: 'password',
+    ),
+    'BigqueryConnectionCloudSqlPasswordWo': MigrateHelper(
+      className: 'BigqueryConnectionCloudSqlPasswordWo',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'password_wo',
+          dartName: 'passwordWo',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'passwordWo',
     ),
     'BigqueryConnectionConfiguration': MigrateHelper(
       className: 'BigqueryConnectionConfiguration',
@@ -254533,6 +254594,60 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           ],
           shorthand: 'vpcPeeringConnectivity',
         ),
+    'DatabaseMigrationServicePrivateConnectionConnectivityPscInterfaceConfig':
+        MigrateHelper(
+          className:
+              'DatabaseMigrationServicePrivateConnectionConnectivityPscInterfaceConfig',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'psc_interface_config',
+              dartName: 'pscInterfaceConfig',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              positional: true,
+              helper:
+                  'DatabaseMigrationServicePrivateConnectionPscInterfaceConfig',
+            ),
+          ],
+          shorthand: 'pscInterfaceConfig',
+        ),
+    'DatabaseMigrationServicePrivateConnectionConnectivityReservedPublicIpConfig':
+        MigrateHelper(
+          className:
+              'DatabaseMigrationServicePrivateConnectionConnectivityReservedPublicIpConfig',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'reserved_public_ip_config',
+              dartName: 'reservedPublicIpConfig',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              positional: true,
+              helper:
+                  'DatabaseMigrationServicePrivateConnectionReservedPublicIpConfig',
+            ),
+          ],
+          shorthand: 'reservedPublicIpConfig',
+        ),
+    'DatabaseMigrationServicePrivateConnectionConnectivityVpcPeeringConfig':
+        MigrateHelper(
+          className:
+              'DatabaseMigrationServicePrivateConnectionConnectivityVpcPeeringConfig',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'vpc_peering_config',
+              dartName: 'vpcPeeringConfig',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              positional: true,
+              helper:
+                  'DatabaseMigrationServicePrivateConnectionVpcPeeringConfig',
+            ),
+          ],
+          shorthand: 'vpcPeeringConfig',
+        ),
     'DatabaseMigrationServicePrivateConnectionPscInterfaceConfig':
         MigrateHelper(
           className:
@@ -270614,6 +270729,21 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'DialogflowGeneratorAgentCoachingContextChoice': MigrateHelper(
+      className: 'DialogflowGeneratorAgentCoachingContextChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'agent_coaching_context',
+          dartName: 'agentCoachingContext',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'DialogflowGeneratorAgentCoachingContext',
+        ),
+      ],
+      shorthand: 'agentCoachingContext',
+    ),
     'DialogflowGeneratorFreeFormContext': MigrateHelper(
       className: 'DialogflowGeneratorFreeFormContext',
       slots: <MigrateSlot>[
@@ -270625,6 +270755,21 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+    ),
+    'DialogflowGeneratorFreeFormContextChoice': MigrateHelper(
+      className: 'DialogflowGeneratorFreeFormContextChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'free_form_context',
+          dartName: 'freeFormContext',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'DialogflowGeneratorFreeFormContext',
+        ),
+      ],
+      shorthand: 'freeFormContext',
     ),
     'DialogflowGeneratorInferenceParameter': MigrateHelper(
       className: 'DialogflowGeneratorInferenceParameter',
@@ -270724,6 +270869,21 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+    ),
+    'DialogflowGeneratorSummarizationContextChoice': MigrateHelper(
+      className: 'DialogflowGeneratorSummarizationContextChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'summarization_context',
+          dartName: 'summarizationContext',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'DialogflowGeneratorSummarizationContext',
+        ),
+      ],
+      shorthand: 'summarizationContext',
     ),
     'DialogflowToolActions': MigrateHelper(
       className: 'DialogflowToolActions',
@@ -313950,6 +314110,34 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+    ),
+    'SecretManagerRegionalSecretVersionPayloadSecretData': MigrateHelper(
+      className: 'SecretManagerRegionalSecretVersionPayloadSecretData',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'secret_data',
+          dartName: 'secretData',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'secretData',
+    ),
+    'SecretManagerRegionalSecretVersionPayloadSecretDataWo': MigrateHelper(
+      className: 'SecretManagerRegionalSecretVersionPayloadSecretDataWo',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'secret_data_wo',
+          dartName: 'secretDataWo',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'secretDataWo',
     ),
     'SecretManagerSecretAuto': MigrateHelper(
       className: 'SecretManagerSecretAuto',

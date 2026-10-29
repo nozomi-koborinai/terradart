@@ -1255,6 +1255,74 @@ void main() {
     );
   });
 
+  test('a block kept as a map passthrough seals as its map', () {
+    final def = ResourceDef(
+      terraformType: 'aws_thing',
+      root: BlockDef(
+        attributes: [_attr('rule_json')],
+        nestedBlocks: [
+          NestedBlockDef(
+            name: 'rule',
+            nesting: NestingMode.set,
+            constraints: const Constraints(optional: true),
+            block: BlockDef(attributes: [_attr('name')]),
+          ),
+        ],
+      ),
+    );
+    _Derived derive({required bool excluded}) => _derive(
+      {
+        'aws_thing': WrapperOverride(
+          outputDir: 'thing',
+          deriveExactlyOne: true,
+          deriveNestedTypes: true,
+          nestedTypeExcludes: excluded ? const ['rule'] : null,
+          sealedNames: const {'rule, rule_json': 'rules'},
+        ),
+      },
+      {'aws_thing': def},
+      providerEnums: _hints(
+        atMostOne: {
+          'aws_thing': [
+            ['rule', 'rule_json'],
+          ],
+        },
+      ),
+      rawSchemas: {
+        'aws_thing': {
+          'attributes': {'rule_json': _optionalString()},
+          'block_types': {
+            'rule': {
+              'nesting_mode': 'set',
+              'block': {
+                'attributes': {'name': _optionalString()},
+              },
+            },
+          },
+        },
+      },
+    );
+    final derived = derive(excluded: true);
+    expect(derived.skippedAtMostOne, isEmpty);
+    final o = derived.overrides.resources['aws_thing']!;
+    expect(o.sealedArguments.single.members, ['rule', 'rule_json']);
+    final prelude = emittedPrelude(o, 'aws_thing');
+    expect(
+      prelude,
+      contains(
+        'const factory ThingRules.rule(TfArg<List<Map<String, dynamic>>> rule)',
+      ),
+    );
+    expect(prelude, contains("{'rule': rule}"));
+    expect(
+      derive(
+        excluded: false,
+      ).overrides.resources['aws_thing']!.sealedArguments.single.members,
+      ['rule', 'rule_json'],
+      reason: 'a derived helper seals as itself',
+    );
+  });
+
   test('a member that is an earlier group\'s concept is in that group', () {
     final derived = _derive(
       {'aws_thing': _derives},

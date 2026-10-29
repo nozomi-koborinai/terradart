@@ -41,7 +41,11 @@ export 'src/secret_manager/google_secret_manager_regional_secret_iam_member.dart
 export 'src/secret_manager/google_secret_manager_regional_secret_iam_policy.dart'
     show GoogleSecretManagerRegionalSecretIamPolicy;
 export 'src/secret_manager/google_secret_manager_regional_secret_version.dart'
-    show GoogleSecretManagerRegionalSecretVersion;
+    show
+        GoogleSecretManagerRegionalSecretVersion,
+        SecretManagerRegionalSecretVersionPayload,
+        SecretManagerRegionalSecretVersionPayloadSecretData,
+        SecretManagerRegionalSecretVersionPayloadSecretDataWo;
 export 'src/secret_manager/google_secret_manager_secret.dart'
     show
         GoogleSecretManagerSecret,

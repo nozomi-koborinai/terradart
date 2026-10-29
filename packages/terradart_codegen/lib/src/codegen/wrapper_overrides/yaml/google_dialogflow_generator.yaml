@@ -4,8 +4,9 @@ deriveExactlyOne: true
 deriveOutputGetters: true
 deriveEnums: true
 deriveNestedTypes: true
-# Replaced by the thin prelude [summarizationContext] slot. Nested
-# enum sites under few-shot / sections stay frozen-by-exclude.
+# `summarization_context` is the thin prelude helper, the
+# `.summarizationContext` variant of the derived `context`. Nested enum
+# sites under few-shot / sections stay frozen-by-exclude.
 nestedTypeExcludes:
   - summarization_context
   - few_shot_examples
@@ -17,7 +18,7 @@ curatedDoc: |-
   /// start a conversation, call DetectIntent, or run summarization.
   ///
   /// Prefer a thin smoke stack: [location] `global`, [triggerEvent]
-  /// `MANUAL_CALL`, and a [summarizationContext] with version `4.0`
+  /// `MANUAL_CALL`, and a summarization [context] with version `4.0`
   /// plus `en`. Omit [publishedModel], inference parameters, few-shot
   /// examples, and summarization sections. Set [deletionPolicy] to
   /// `DELETE`.
@@ -33,9 +34,11 @@ curatedDoc: |-
   ///   location: TfArg.literal('global'),
   ///   description: TfArg.literal('terradart summarization generator'),
   ///   triggerEvent: DialogflowGeneratorTriggerEvent.manualCall,
-  ///   summarizationContext: DialogflowGeneratorSummarizationContext(
-  ///     version: TfArg.literal('4.0'),
-  ///     outputLanguageCode: TfArg.literal('en'),
+  ///   context: .summarizationContext(
+  ///     DialogflowGeneratorSummarizationContext(
+  ///       version: TfArg.literal('4.0'),
+  ///       outputLanguageCode: TfArg.literal('en'),
+  ///     ),
   ///   ),
   ///   deletionPolicy: TfArg.literal('DELETE'),
   /// );
@@ -47,6 +50,8 @@ paramOrder:
   - description
   - trigger_event
   - summarization_context
+  - free_form_context
+  - agent_coaching_context
   - published_model
   - inference_parameter
   - project
@@ -78,5 +83,5 @@ prelude: |
 
 customSlots:
   summarization_context:
-    paramDeclaration: 'required DialogflowGeneratorSummarizationContext summarizationContext'
-    argMapEntry: "'summarization_context': TfArg.literal([summarizationContext.encode()]),"
+    paramDeclaration: 'DialogflowGeneratorSummarizationContext? summarizationContext'
+    argMapEntry: "if (summarizationContext != null) 'summarization_context': TfArg.literal([summarizationContext.encode()]),"

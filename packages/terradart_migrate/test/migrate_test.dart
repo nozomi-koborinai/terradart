@@ -133,33 +133,40 @@ void main() {
       expect(r.stackSource, isNot(contains('advancedExtra: .literal(')));
     });
 
-    test('a TfArg<Map> parameter keeps TfArg.literal, from tf.json and HCL', () {
-      const expected =
-          "objectLockConfiguration: .literal({'object_lock_enabled': 'Enabled'})";
-      final aws = {
-        'required_providers': {
-          'aws': {
-            'source': 'hashicorp/aws',
-            'version': kAwsProviderVersionConstraint,
-          },
-        },
-      };
-      final json = _migrateJson({
-        'terraform': aws,
-        'resource': {
-          'aws_s3_bucket': {
-            'logs': {
-              'bucket': 'logs',
-              'object_lock_configuration': {'object_lock_enabled': 'Enabled'},
+    test(
+      'a TfArg<Map> parameter keeps TfArg.literal, from tf.json and HCL',
+      () {
+        const expected =
+            'objectLock: .objectLockConfiguration('
+            ".literal({'object_lock_enabled': 'Enabled'}))";
+        final aws = {
+          'required_providers': {
+            'aws': {
+              'source': 'hashicorp/aws',
+              'version': kAwsProviderVersionConstraint,
             },
           },
-        },
-      });
-      expect(json.report.isComplete, isTrue, reason: json.report.renderText());
-      expect(json.stackSource, contains(expected));
+        };
+        final json = _migrateJson({
+          'terraform': aws,
+          'resource': {
+            'aws_s3_bucket': {
+              'logs': {
+                'bucket': 'logs',
+                'object_lock_configuration': {'object_lock_enabled': 'Enabled'},
+              },
+            },
+          },
+        });
+        expect(
+          json.report.isComplete,
+          isTrue,
+          reason: json.report.renderText(),
+        );
+        expect(json.stackSource, contains(expected));
 
-      // The block form: written once, it reads as one object, not a list.
-      final hcl = _migrateHcl('''
+        // The block form: written once, it reads as one object, not a list.
+        final hcl = _migrateHcl('''
 terraform {
   required_providers {
     aws = { source = "hashicorp/aws", version = "$kAwsProviderVersionConstraint" }
@@ -173,25 +180,26 @@ resource "aws_s3_bucket" "logs" {
   }
 }
 ''');
-      expect(hcl.report.isComplete, isTrue, reason: hcl.report.renderText());
-      expect(hcl.stackSource, contains(expected));
+        expect(hcl.report.isComplete, isTrue, reason: hcl.report.renderText());
+        expect(hcl.stackSource, contains(expected));
 
-      // The tf.json list form of a block written once fits a Map parameter.
-      final listForm = _migrateJson({
-        'terraform': aws,
-        'resource': {
-          'aws_s3_bucket': {
-            'logs': {
-              'bucket': 'logs',
-              'object_lock_configuration': [
-                {'object_lock_enabled': 'Enabled'},
-              ],
+        // The tf.json list form of a block written once fits a Map parameter.
+        final listForm = _migrateJson({
+          'terraform': aws,
+          'resource': {
+            'aws_s3_bucket': {
+              'logs': {
+                'bucket': 'logs',
+                'object_lock_configuration': [
+                  {'object_lock_enabled': 'Enabled'},
+                ],
+              },
             },
           },
-        },
-      });
-      expect(listForm.stackSource, contains(expected));
-    });
+        });
+        expect(listForm.stackSource, contains(expected));
+      },
+    );
   });
 
   group('pubsub_quickstart synth output', () {

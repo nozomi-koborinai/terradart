@@ -2,6 +2,34 @@
 
 ## Unreleased
 
+### Exclusive groups are one sealed argument
+
+**Breaking (`terradart_google`, `terradart_aws`).** Each group below was
+separate arguments, or left a member out of the constructor. It is now one
+sealed argument named for the concept, with one variant per member. The
+Terraform JSON for the same choice is unchanged.
+
+| Before | After |
+|---|---|
+| `GoogleDatabaseMigrationServicePrivateConnection('pc', vpcPeeringConfig: peering, ...)` | `GoogleDatabaseMigrationServicePrivateConnection('pc', connectivity: .vpcPeeringConfig(peering), ...)` |
+| `GoogleDatabaseMigrationServicePrivateConnection('pc', pscInterfaceConfig: psc, ...)` | `GoogleDatabaseMigrationServicePrivateConnection('pc', connectivity: .pscInterfaceConfig(psc), ...)` |
+| *(not available)* | `GoogleDatabaseMigrationServicePrivateConnection('pc', connectivity: .reservedPublicIpConfig(ip), ...)` |
+| `GoogleDialogflowGenerator('gen', summarizationContext: summary, ...)` | `GoogleDialogflowGenerator('gen', context: .summarizationContext(summary), ...)` |
+| *(not available)* | `GoogleDialogflowGenerator('gen', context: .freeFormContext(freeForm), ...)` or `.agentCoachingContext(coaching)` |
+| `GoogleSecretManagerRegionalSecretVersion('v1', secret: secret.ref, secretData: data)` | `GoogleSecretManagerRegionalSecretVersion('v1', secret: secret.ref, payload: .secretData(data))` |
+| *(not available)* | `GoogleSecretManagerRegionalSecretVersion('v1', secret: secret.ref, payload: .secretDataWo(data), secretDataWoVersion: .literal('1'))` |
+| `BigqueryConnectionCloudSqlCredential(username: user, password: password)` | `BigqueryConnectionCloudSqlCredential(username: user, password: .password(password))` |
+| *(not available)* | `BigqueryConnectionCloudSqlCredential(username: user, password: .passwordWo(password), passwordWoVersion: .literal('1'))` |
+| `AwsS3Bucket('logs', objectLockEnabled: .literal(true))` | `AwsS3Bucket('logs', objectLock: .objectLockEnabled(.literal(true)))` |
+| `AwsS3Bucket('logs', objectLockConfiguration: lock)` | `AwsS3Bucket('logs', objectLock: .objectLockConfiguration(lock))` |
+| `AwsWafv2WebAcl('acl', rule: rules, ...)` | `AwsWafv2WebAcl('acl', rules: .rule(rules), ...)` |
+| `AwsWafv2WebAcl('acl', ruleJson: json, ...)` | `AwsWafv2WebAcl('acl', rules: .ruleJson(json), ...)` |
+
+`connectivity`, `context`, `payload` and the credential `password` are
+required, because the provider takes exactly one member. `objectLock` and
+`rules` stay optional. The inline `rule` and `object_lock_configuration`
+blocks stay maps, as before.
+
 ### EMR instance fleets can set configuration blocks
 
 **Additive (`terradart_aws`).** `EmrClusterInstanceTypeConfigs` takes

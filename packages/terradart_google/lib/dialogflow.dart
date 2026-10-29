@@ -280,10 +280,14 @@ export 'src/dialogflow/google_dialogflow_fulfillment.dart'
 export 'src/dialogflow/google_dialogflow_generator.dart'
     show
         DialogflowGeneratorAgentCoachingContext,
+        DialogflowGeneratorAgentCoachingContextChoice,
+        DialogflowGeneratorContext,
         DialogflowGeneratorFreeFormContext,
+        DialogflowGeneratorFreeFormContextChoice,
         DialogflowGeneratorInferenceParameter,
         DialogflowGeneratorInstructions,
         DialogflowGeneratorSummarizationContext,
+        DialogflowGeneratorSummarizationContextChoice,
         DialogflowGeneratorTriggerEvent,
         DialogflowGeneratorTriggeringEvent,
         GoogleDialogflowGenerator;

@@ -4886,6 +4886,9 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'BigqueryConnectionCloudSqlType',
       'BigqueryConnectionBackend',
       'BigqueryConnectionCloudSqlCredential',
+      'BigqueryConnectionCloudSqlPassword',
+      'BigqueryConnectionCloudSqlPasswordChoice',
+      'BigqueryConnectionCloudSqlPasswordWo',
       'BigqueryConnectionCloudSql',
       'BigqueryConnectionCloudSpanner',
       'BigqueryConnectionAwsAccessRole',
@@ -4909,7 +4912,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'configuration.authentication.username_password.password.plaintext',
     ],
     docComment:
-        'Factory wrapper for `google_bigquery_connection`.\n\nA connection allows BigQuery connections to external data sources..\n\nA BigQuery **connection** stores the credentials and configuration\nBigQuery uses to read data from sources that live outside BigQuery\nstorage. Federated queries (`EXTERNAL_QUERY`), BigQuery Omni (multi-\ncloud reads), BigLake tables, stored procedures for Apache Spark, and\ngeneric Connector framework integrations all hang off a connection.\nThe credentials never travel through BigQuery query state — at query\ntime BigQuery loads them via the connection\'s service identity.\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_bigquery_connection.`).\n- [connectionId]: optional. When omitted the API auto-generates a\n  UUID-shaped id. Pin it explicitly for stable references from SQL\n  (`EXTERNAL_QUERY(\'projects/.../locations/.../connections/<id>\', ...)`).\n- [location]: BigQuery region (`US`, `EU`, `asia-northeast1`,\n  `us-central1`, ...). The connection target must be reachable from\n  this region. Cloud SQL `us-central1` maps to BigQuery `US`; Cloud\n  SQL `europe-west1` maps to BigQuery `EU`; AWS connections must be\n  in `aws-us-east-1`; Azure connections in `azure-eastus2`. Schema\n  marks `location` optional — set it for any non-default deployment.\n\n**Connection type**: the required [backend] argument picks exactly\none variant of [BigqueryConnectionBackend]. Use case per variant:\n- `.cloudSql(...)` — federated queries against Cloud SQL Postgres /\n  MySQL (the most common BigQuery federation pattern). Credentials\n  live inside the [BigqueryConnectionCloudSqlCredential] block.\n- `.cloudSpanner(...)` — federated reads against a Cloud Spanner\n  database, optionally via Spanner Data Boost / independent compute.\n- `.aws(...)` — BigQuery Omni federation into Amazon S3 / Glue\n  (BigLake on AWS). The Google-side identity (output-only) trusts a\n  customer-owned IAM role.\n- `.azure(...)` — BigQuery Omni federation into Azure Data Lake\n  Storage. Uses Azure AD federation; most fields are computed and\n  consumed by the Azure side of the bridge.\n- `.cloudResource()` — generic GCP delegation. Surfaces an\n  output-only service account id that the connection acts as for\n  cross-project reads (e.g. BigLake tables over Cloud Storage in a\n  different project).\n- `.spark(...)` — stored procedures for Apache Spark on BigQuery.\n  Optional wiring to a Dataproc Metastore and Spark History Server.\n- `.configuration(...)` — the BigQuery Connector framework (AlloyDB,\n  `google-cloudsql-mysql`, `google-cloudsql-postgres`, and other\n  connector ids). Includes its own nested asset / authentication /\n  endpoint / network configuration.\n\nVariants the plan mentioned but the schema does not yet expose:\n`vertex_ai`, `salesforce_data_cloud`. These are gated behind the\nbeta provider as of the pinned `~> 8.0` GA schema and will surface\nonce the upstream MagicModules definitions promote to GA.\n\nExample (Cloud SQL — federated queries against a Postgres replica):\n```dart\nfinal pg = GoogleBigqueryConnection(\n  \'analytics_pg\',\n  connectionId: TfArg.literal(\'analytics-pg\'),\n  location: TfArg.literal(\'US\'),\n  friendlyName: TfArg.literal(\'Analytics Postgres (read-replica)\'),\n  backend: .cloudSql(\n    instanceId: TfArg.literal(\'my-project:us-central1:analytics-ro\'),\n    database: TfArg.literal(\'analytics\'),\n    type: BigqueryConnectionCloudSqlType.postgres,\n    credential: .new(\n      username: TfArg.literal(\'bq_federation\'),\n      password: pgPasswordVar,\n    ),\n  ),\n);\n```\n\nExample (AWS — BigLake federation against S3 / Glue):\n```dart\nfinal s3 = GoogleBigqueryConnection(\n  \'biglake_s3\',\n  connectionId: TfArg.literal(\'biglake-s3\'),\n  location: TfArg.literal(\'aws-us-east-1\'),\n  backend: .aws(\n    .new(\n      iamRoleId:\n          TfArg.literal(\'arn:aws:iam::111122223333:role/biglake-bq\'),\n    ),\n  ),\n);\n```\n\nSensitive fields (round-trip through the generated `sensitiveFields`\nset; masked in serialized state by Terraform):\n- `cloud_sql.credential.password` — schema-flagged.\n- `configuration.authentication.username_password.password.plaintext`\n  — schema-flagged. Wire both to a secret resource or\n  sensitive variable rather than literals.\n\nOutput-only state:\n- [name]: full resource name\n  (`projects/{project}/locations/{location}/connections/{id}`).\n- [hasCredential]: `true` once the credential block is materialized\n  server-side.',
+        'Factory wrapper for `google_bigquery_connection`.\n\nA connection allows BigQuery connections to external data sources..\n\nA BigQuery **connection** stores the credentials and configuration\nBigQuery uses to read data from sources that live outside BigQuery\nstorage. Federated queries (`EXTERNAL_QUERY`), BigQuery Omni (multi-\ncloud reads), BigLake tables, stored procedures for Apache Spark, and\ngeneric Connector framework integrations all hang off a connection.\nThe credentials never travel through BigQuery query state — at query\ntime BigQuery loads them via the connection\'s service identity.\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_bigquery_connection.`).\n- [connectionId]: optional. When omitted the API auto-generates a\n  UUID-shaped id. Pin it explicitly for stable references from SQL\n  (`EXTERNAL_QUERY(\'projects/.../locations/.../connections/<id>\', ...)`).\n- [location]: BigQuery region (`US`, `EU`, `asia-northeast1`,\n  `us-central1`, ...). The connection target must be reachable from\n  this region. Cloud SQL `us-central1` maps to BigQuery `US`; Cloud\n  SQL `europe-west1` maps to BigQuery `EU`; AWS connections must be\n  in `aws-us-east-1`; Azure connections in `azure-eastus2`. Schema\n  marks `location` optional — set it for any non-default deployment.\n\n**Connection type**: the required [backend] argument picks exactly\none variant of [BigqueryConnectionBackend]. Use case per variant:\n- `.cloudSql(...)` — federated queries against Cloud SQL Postgres /\n  MySQL (the most common BigQuery federation pattern). Credentials\n  live inside the [BigqueryConnectionCloudSqlCredential] block.\n- `.cloudSpanner(...)` — federated reads against a Cloud Spanner\n  database, optionally via Spanner Data Boost / independent compute.\n- `.aws(...)` — BigQuery Omni federation into Amazon S3 / Glue\n  (BigLake on AWS). The Google-side identity (output-only) trusts a\n  customer-owned IAM role.\n- `.azure(...)` — BigQuery Omni federation into Azure Data Lake\n  Storage. Uses Azure AD federation; most fields are computed and\n  consumed by the Azure side of the bridge.\n- `.cloudResource()` — generic GCP delegation. Surfaces an\n  output-only service account id that the connection acts as for\n  cross-project reads (e.g. BigLake tables over Cloud Storage in a\n  different project).\n- `.spark(...)` — stored procedures for Apache Spark on BigQuery.\n  Optional wiring to a Dataproc Metastore and Spark History Server.\n- `.configuration(...)` — the BigQuery Connector framework (AlloyDB,\n  `google-cloudsql-mysql`, `google-cloudsql-postgres`, and other\n  connector ids). Includes its own nested asset / authentication /\n  endpoint / network configuration.\n\nVariants the plan mentioned but the schema does not yet expose:\n`vertex_ai`, `salesforce_data_cloud`. These are gated behind the\nbeta provider as of the pinned `~> 8.0` GA schema and will surface\nonce the upstream MagicModules definitions promote to GA.\n\nExample (Cloud SQL — federated queries against a Postgres replica):\n```dart\nfinal pg = GoogleBigqueryConnection(\n  \'analytics_pg\',\n  connectionId: TfArg.literal(\'analytics-pg\'),\n  location: TfArg.literal(\'US\'),\n  friendlyName: TfArg.literal(\'Analytics Postgres (read-replica)\'),\n  backend: .cloudSql(\n    instanceId: TfArg.literal(\'my-project:us-central1:analytics-ro\'),\n    database: TfArg.literal(\'analytics\'),\n    type: BigqueryConnectionCloudSqlType.postgres,\n    credential: .new(\n      username: TfArg.literal(\'bq_federation\'),\n      password: .passwordWo(pgPasswordVar),\n      passwordWoVersion: TfArg.literal(\'1\'),\n    ),\n  ),\n);\n```\n\nExample (AWS — BigLake federation against S3 / Glue):\n```dart\nfinal s3 = GoogleBigqueryConnection(\n  \'biglake_s3\',\n  connectionId: TfArg.literal(\'biglake-s3\'),\n  location: TfArg.literal(\'aws-us-east-1\'),\n  backend: .aws(\n    .new(\n      iamRoleId:\n          TfArg.literal(\'arn:aws:iam::111122223333:role/biglake-bq\'),\n    ),\n  ),\n);\n```\n\nSensitive fields (round-trip through the generated `sensitiveFields`\nset; masked in serialized state by Terraform):\n- `cloud_sql.credential.password` — schema-flagged.\n- `configuration.authentication.username_password.password.plaintext`\n  — schema-flagged. Wire both to a secret resource or\n  sensitive variable rather than literals.\n\nOutput-only state:\n- [name]: full resource name\n  (`projects/{project}/locations/{location}/connections/{id}`).\n- [hasCredential]: `true` once the credential block is materialized\n  server-side.',
   ),
   CatalogEntry(
     tfType: 'google_bigquery_connection_iam_binding',
@@ -19291,10 +19294,13 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'location',
       'privateConnectionId',
       'project',
-      'vpcPeeringConfig',
-      'pscInterfaceConfig',
+      'connectivity',
     ],
     nestedTypes: <String>[
+      'DatabaseMigrationServicePrivateConnectionConnectivity',
+      'DatabaseMigrationServicePrivateConnectionConnectivityPscInterfaceConfig',
+      'DatabaseMigrationServicePrivateConnectionConnectivityReservedPublicIpConfig',
+      'DatabaseMigrationServicePrivateConnectionConnectivityVpcPeeringConfig',
       'DatabaseMigrationServicePrivateConnectionPscInterfaceConfig',
       'DatabaseMigrationServicePrivateConnectionReservedPublicIpConfig',
       'DatabaseMigrationServicePrivateConnectionVpcPeeringConfig',
@@ -22891,7 +22897,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'generatorId',
       'description',
       'triggerEvent',
-      'summarizationContext',
+      'context',
       'publishedModel',
       'inferenceParameter',
       'project',
@@ -22900,6 +22906,10 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[
       'DialogflowGeneratorTriggerEvent',
       'DialogflowGeneratorSummarizationContext',
+      'DialogflowGeneratorContext',
+      'DialogflowGeneratorSummarizationContextChoice',
+      'DialogflowGeneratorFreeFormContextChoice',
+      'DialogflowGeneratorAgentCoachingContextChoice',
       'DialogflowGeneratorAgentCoachingContext',
       'DialogflowGeneratorInstructions',
       'DialogflowGeneratorTriggeringEvent',
@@ -22908,7 +22918,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_dialogflow_generator`.\n\nLLM generator.\n\nDialogflow **Agent Assist summarization generator** — LLM\ngenerator config metadata. Creating the generator does **not**\nstart a conversation, call DetectIntent, or run summarization.\n\nPrefer a thin smoke stack: [location] `global`, [triggerEvent]\n`MANUAL_CALL`, and a [summarizationContext] with version `4.0`\nplus `en`. Omit [publishedModel], inference parameters, few-shot\nexamples, and summarization sections. Set [deletionPolicy] to\n`DELETE`.\n\n`dialogflow_quickstart` is apply-smoke skipped (SIP trunk needs\na live carrier TLS peer), so this factory is synth +\n`terraform validate` only.\n\nExample:\n```dart\nGoogleDialogflowGenerator(\n  \'demo_summarizer\',\n  location: TfArg.literal(\'global\'),\n  description: TfArg.literal(\'terradart summarization generator\'),\n  triggerEvent: DialogflowGeneratorTriggerEvent.manualCall,\n  summarizationContext: DialogflowGeneratorSummarizationContext(\n    version: TfArg.literal(\'4.0\'),\n    outputLanguageCode: TfArg.literal(\'en\'),\n  ),\n  deletionPolicy: TfArg.literal(\'DELETE\'),\n);\n```',
+        'Factory wrapper for `google_dialogflow_generator`.\n\nLLM generator.\n\nDialogflow **Agent Assist summarization generator** — LLM\ngenerator config metadata. Creating the generator does **not**\nstart a conversation, call DetectIntent, or run summarization.\n\nPrefer a thin smoke stack: [location] `global`, [triggerEvent]\n`MANUAL_CALL`, and a summarization [context] with version `4.0`\nplus `en`. Omit [publishedModel], inference parameters, few-shot\nexamples, and summarization sections. Set [deletionPolicy] to\n`DELETE`.\n\n`dialogflow_quickstart` is apply-smoke skipped (SIP trunk needs\na live carrier TLS peer), so this factory is synth +\n`terraform validate` only.\n\nExample:\n```dart\nGoogleDialogflowGenerator(\n  \'demo_summarizer\',\n  location: TfArg.literal(\'global\'),\n  description: TfArg.literal(\'terradart summarization generator\'),\n  triggerEvent: DialogflowGeneratorTriggerEvent.manualCall,\n  context: .summarizationContext(\n    DialogflowGeneratorSummarizationContext(\n      version: TfArg.literal(\'4.0\'),\n      outputLanguageCode: TfArg.literal(\'en\'),\n    ),\n  ),\n  deletionPolicy: TfArg.literal(\'DELETE\'),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_dialogflow_intent',
@@ -38994,12 +39004,17 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     constructorParams: <String>[
       'localName',
       'secret',
-      'secretData',
+      'payload',
+      'secretDataWoVersion',
       'enabled',
       'isSecretDataBase64',
       'deletionPolicy',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'SecretManagerRegionalSecretVersionPayload',
+      'SecretManagerRegionalSecretVersionPayloadSecretData',
+      'SecretManagerRegionalSecretVersionPayloadSecretDataWo',
+    ],
     sensitiveFields: <String>['secret_data'],
     docComment:
         'Factory wrapper for `google_secret_manager_regional_secret_version`.\n\nA regional secret version resource.',

@@ -13,3 +13,8 @@ dedupeNestedTypes: true
 # aws_wafv2_web_acl_rule's (Wafv2WebAcl + Rule...), which owns them.
 nestedTypeExcludes:
   - rule
+
+# `Wafv2WebAclRuleJson`, the derived name, is a helper aws_wafv2_web_acl_rule
+# owns.
+sealedNames:
+  "rule, rule_json": rules

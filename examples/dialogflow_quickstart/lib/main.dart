@@ -72,9 +72,11 @@ final class DialogflowSipTrunkStack extends Stack {
         location: .literal('global'),
         description: .literal('terradart summarization generator'),
         triggerEvent: .manualCall,
-        summarizationContext: DialogflowGeneratorSummarizationContext(
-          version: .literal('4.0'),
-          outputLanguageCode: .literal('en'),
+        context: .summarizationContext(
+          DialogflowGeneratorSummarizationContext(
+            version: .literal('4.0'),
+            outputLanguageCode: .literal('en'),
+          ),
         ),
         deletionPolicy: .literal('DELETE'),
         dependsOn: apiDeps,

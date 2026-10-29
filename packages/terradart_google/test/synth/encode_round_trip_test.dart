@@ -249,7 +249,7 @@ final Map<String, Object Function()> _syntheticInstances = {
     type: BigqueryConnectionCloudSqlType.postgres,
     credential: BigqueryConnectionCloudSqlCredential(
       username: TfArg.literal('user'),
-      password: TfArg.literal('secret'),
+      password: .password(TfArg.literal('secret')),
     ),
   ),
   'BigqueryConnectionCloudSpanner': () =>
@@ -264,6 +264,10 @@ final Map<String, Object Function()> _syntheticInstances = {
   'BigqueryConnectionCloudResource': () =>
       const BigqueryConnectionCloudResource(),
   'BigqueryConnectionSpark': () => const BigqueryConnectionSpark(),
+  'BigqueryConnectionCloudSqlPasswordChoice': () =>
+      const BigqueryConnectionCloudSqlPasswordChoice(TfArg.literal('secret')),
+  'BigqueryConnectionCloudSqlPasswordWo': () =>
+      const BigqueryConnectionCloudSqlPasswordWo(TfArg.literal('secret')),
   'BigqueryConnectionConfiguration': () =>
       const BigqueryConnectionConfiguration(
         connectorId: TfArg.literal('google-cloudsql-postgres'),

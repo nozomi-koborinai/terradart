@@ -330,13 +330,14 @@ final class DeferredLeftoverStack extends Stack {
         deletionPolicy: .literal('DELETE'),
         location: .literal('us-central1'),
         privateConnectionId: .literal('terradart-leftover'),
-        vpcPeeringConfig:
-            DatabaseMigrationServicePrivateConnectionVpcPeeringConfig(
-              subnet: .literal('10.0.0.0/29'),
-              vpcName: .literal(
-                'projects/ci-test-project-id/global/networks/default',
-              ),
+        connectivity: .vpcPeeringConfig(
+          DatabaseMigrationServicePrivateConnectionVpcPeeringConfig(
+            subnet: .literal('10.0.0.0/29'),
+            vpcName: .literal(
+              'projects/ci-test-project-id/global/networks/default',
             ),
+          ),
+        ),
       ),
     );
 

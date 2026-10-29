@@ -307,6 +307,20 @@ WrapperOverride _derive(
         defaultValue: emptyBlockDefault(spec),
       );
     }
+    if (!o.deriveNestedTypes || (o.nestedTypeExcludes?.contains(m) ?? false)) {
+      final inner = nestedBlockIsObject(block)
+          ? 'Map<String, dynamic>'
+          : 'List<Map<String, dynamic>>';
+      return (
+        tfName: m,
+        ident: ident,
+        fieldType: 'TfArg<$inner>',
+        encodeExpr: '$ident.toTfJson()',
+        argMapExpr: ident,
+        deprecation: deprecation,
+        defaultValue: null,
+      );
+    }
     return null;
   }
 
