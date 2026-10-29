@@ -93,6 +93,7 @@ class WrapLane {
     this.referenceLane,
     this.typePrefix,
     this.siteTitle,
+    this.providerGuide,
   });
 
   final String name;
@@ -139,6 +140,10 @@ class WrapLane {
   /// Heading on the site's coverage page (`AWS`, `Google Cloud (beta-only)`).
   final String? siteTitle;
 
+  /// `providerGuide`: the providers-page stem when this lane has no page of
+  /// its own. Null means `providers/<name>.md`.
+  final String? providerGuide;
+
   WrapLane _withReferenceLane(WrapLane lane) => WrapLane(
     name: name,
     source: source,
@@ -157,6 +162,7 @@ class WrapLane {
     referenceLane: lane,
     typePrefix: typePrefix,
     siteTitle: siteTitle,
+    providerGuide: providerGuide,
   );
 
   /// Paths that must exist before any gate can say something meaningful.
@@ -334,6 +340,7 @@ WrapLane _parseLane(String name, Object? entry) {
     references: references,
     typePrefix: optionalString('typePrefix'),
     siteTitle: optionalString('siteTitle'),
+    providerGuide: optionalString('providerGuide'),
   );
 }
 
