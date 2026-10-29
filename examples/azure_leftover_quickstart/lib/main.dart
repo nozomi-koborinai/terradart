@@ -1,4 +1,4 @@
-// GENERATED — tool/generate_azure_leftover_example.dart
+// GENERATED — dart tool/coverage_stack.dart --lane azure
 // ignore_for_file: unused_element
 
 /// Coverage stack for leftover Azure factories at the current pin.
@@ -13167,7 +13167,7 @@ final class AzureLeftoverStack extends Stack {
     add(
       DataAzurermManagementGroup(
         'd_management_group',
-        identifier: .name(.literal(leftover)),
+        identifier: .displayName(.literal(leftover)),
       ),
     );
 
@@ -13780,21 +13780,21 @@ final class AzureLeftoverStack extends Stack {
     add(
       DataAzurermPolicyDefinition(
         'd_policy_definition',
-        identifier: .name(.literal(leftover)),
+        identifier: .displayName(.literal(leftover)),
       ),
     );
 
     add(
       DataAzurermPolicyDefinitionBuiltIn(
         'd_policy_definition_built_in',
-        identifier: .name(.literal(leftover)),
+        identifier: .displayName(.literal(leftover)),
       ),
     );
 
     add(
       DataAzurermPolicySetDefinition(
         'd_policy_set_definition',
-        identifier: .name(.literal(leftover)),
+        identifier: .displayName(.literal(leftover)),
       ),
     );
 

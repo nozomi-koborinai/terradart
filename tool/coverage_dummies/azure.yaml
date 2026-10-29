@@ -3413,7 +3413,7 @@ KubernetesAutomaticClusterIdentity.type:
 KubernetesFleetUpdateRunUpgrade.type:
   value: 'Full'
   why: 'azurerm_kubernetes_fleet_update_run.kubernetes_fleet_update_run.managed_cluster_update.upgrade.type rejected leftover: expected managed_cluster_update.0.upgrade.0.type to be one of ["Full" "NodeImageOnly"], got leftover (family one-of)'
-KustoClusterCustomerManagedKeyVaultIdOrManagedHsmKeyIdKeyVaultId.keyVaultId:
+KustoClusterCustomerManagedKeyIdentifierKeyVaultId.keyVaultId:
   value: '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.KeyVault/vaults/vaultValue'
   why: 'azurerm_kusto_cluster_customer_managed_key.kusto_cluster_customer_managed_key.key_vault_id rejected /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover: parsing "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover": parsing the KeyVault ID: the number of segments didn''t match (family azure-resource-id)'
 LogAnalyticsClusterIdentity.type:
@@ -3455,7 +3455,7 @@ NetworkFunctionCollectorPolicyIpfxEmission.destinationTypes:
 NetworkFunctionCollectorPolicyIpfxIngestion.sourceResourceIds:
   value: ['/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/leftover']
   why: 'azurerm_network_function_collector_policy.network_function_collector_policy.ipfx_ingestion.source_resource_ids[0] rejected leftover: cannot parse "ipfx_ingestion.0.source_resource_ids.0" as a resource id: cannot parse Azure ID: parse "leftover": invalid URI for request (family azure-id-uri)'
-NetworkManagerIpamPoolStaticCidrAddressPrefixesOrNumberOfIpAddressesToAllocateAddressPrefixes.addressPrefixes:
+NetworkManagerIpamPoolStaticCidrAllocationAddressPrefixes.addressPrefixes:
   value: ['10.0.0.0/24']
   why: 'azurerm_network_manager_ipam_pool_static_cidr.network_manager_ipam_pool_static_cidr.address_prefixes[0] rejected leftover: expected "address_prefixes.0" to be a valid CIDR Value, got leftover: invalid CIDR address: leftover (family cidr)'
 NetworkManagerScope.managementGroupIds:
@@ -3470,7 +3470,7 @@ NetworkManagerVerifierWorkspaceReachabilityAnalysisIntentIpTraffic.sourceIps:
 NetworkProfileIpConfiguration.subnetId:
   value: '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualNetworks/virtualNetworksValue/subnets/subnetValue'
   why: 'azurerm_network_profile.network_profile.container_network_interface.ip_configuration[0].subnet_id rejected /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover: parsing "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover": parsing the Subnet ID: the number of segments didn''t match (family azure-resource-id)'
-NetworkSecurityPerimeterAccessRuleAddressPrefixesOrFqdnsOrServiceTagsOrSubscriptionIdsAddressPrefixes.addressPrefixes:
+NetworkSecurityPerimeterAccessRuleSourceAddressPrefixes.addressPrefixes:
   value: ['10.0.0.0/24']
   why: 'azurerm_network_security_perimeter_access_rule.network_security_perimeter_access_rule.address_prefixes[0] rejected leftover: expected "address_prefixes.0" to be a valid CIDR Value, got leftover: invalid CIDR address: leftover (family cidr)'
 NewRelicMonitorPlan.effectiveDate:
@@ -3533,7 +3533,7 @@ PaloAltoNextGenerationFirewallVirtualNetworkStrataCloudManagerVnetConfiguration.
 PrivateDnsResolverInboundEndpointIpConfigurations.subnetId:
   value: '/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/virtualNetworks/virtualNetworksValue/subnets/subnetValue'
   why: 'azurerm_private_dns_resolver_inbound_endpoint.private_dns_resolver_inbound_endpoint.ip_configurations.subnet_id rejected /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover: parsing "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/leftover": parsing the Subnet ID: the number of segments didn''t match (family azure-resource-id)'
-PrivateLinkServiceDestinationIpAddressOrLoadBalancerFrontendIpConfigurationIdsDestinationIpAddress.destinationIpAddress:
+PrivateLinkServiceDestinationIpAddress.destinationIpAddress:
   value: '10.0.0.1'
   why: 'azurerm_private_link_service.private_link_service.destination_ip_address rejected leftover: expected destination_ip_address to contain a valid IPv4 address, got: leftover (family ipv4)'
 PrivateLinkServiceNatIpConfiguration.subnetId:

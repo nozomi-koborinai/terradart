@@ -51,7 +51,7 @@ final class EdgeStack extends Stack {
 }
 ```
 
-The app reads the host it is served from as `EdgeStackConstants.apiHost` instead of a second copy of the string. The Stack can sit next to a Google, AWS or Appwrite Stack in the same package, or share one Stack with them by listing both providers.
+The app reads the host it is served from as `EdgeStackConstants.apiHost` instead of a second copy of the string. The Stack can sit next to a Google, AWS, Appwrite or Azure Stack in the same package, or share one Stack with them by listing both providers.
 
 ## What the types carry
 

@@ -24,6 +24,7 @@ import 'coverage_verdict.dart';
 import 'example_synth_gates.dart' show synthExample;
 import 'generate_appwrite_leftover_example.dart' show appwriteLeftoverStack;
 import 'generate_aws_leftover_example.dart' show awsLeftoverStack;
+import 'generate_azure_leftover_example.dart' show azureLeftoverStack;
 import 'generate_cloudflare_leftover_example.dart' show cloudflareLeftoverStack;
 import 'generate_data_source_leftover_example.dart' show googleDataSourceStack;
 import 'provider_diagnostics.dart';
@@ -62,6 +63,7 @@ const Map<String, CoverageStackGenerator> kCoverageStacks = {
   'tool/generate_aws_leftover_example.dart': awsLeftoverStack,
   'tool/generate_cloudflare_leftover_example.dart': cloudflareLeftoverStack,
   'tool/generate_appwrite_leftover_example.dart': appwriteLeftoverStack,
+  'tool/generate_azure_leftover_example.dart': azureLeftoverStack,
 };
 
 /// Everything one lane's run needs, read and validated at the boundary.

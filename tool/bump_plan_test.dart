@@ -112,6 +112,7 @@ void main() {
     expect(covers['appwrite'], {'resource', 'dataSource'});
     expect(covers['cloudflare'], {'resource', 'dataSource'});
     expect(covers['aws'], {'resource', 'dataSource'});
+    expect(covers['azure'], {'resource', 'dataSource'});
   });
 
   group('bump.exampleCovers', () {
@@ -179,6 +180,21 @@ providers:
       expect(names(planLanes(lanes, schedule: '0 22 * * 3')), 'appwrite');
     },
   );
+
+  test('azure auto-merges, extracts every type and has a coverage stack', () {
+    final az = lanes.firstWhere((l) => l.lane.name == 'azure').toMatrix();
+    expect(az['mode'], 'auto');
+    expect(az['refresh'], 'extract');
+    expect(az['scaffold'], 'lane');
+    expect(az['data_sources'], isTrue);
+    expect(az['api_lanes'], 'azure');
+    expect(az['catalog'], 'packages/terradart_azure/lib/src/_catalog.g.dart');
+    expect(
+      az['example_generator'],
+      'tool/generate_azure_leftover_example.dart',
+    );
+    expect(names(planLanes(lanes, schedule: '0 22 * * 4')), 'azure');
+  });
 
   test('cloudflare is pr-only and extracts every type', () {
     final cf = lanes.firstWhere((l) => l.lane.name == 'cloudflare').toMatrix();

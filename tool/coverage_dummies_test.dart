@@ -6,6 +6,7 @@ import 'package:test/test.dart';
 import 'coverage_dummies.dart';
 import 'generate_appwrite_leftover_example.dart';
 import 'generate_aws_leftover_example.dart';
+import 'generate_azure_leftover_example.dart';
 import 'generate_cloudflare_leftover_example.dart';
 import 'generate_data_source_leftover_example.dart';
 import 'provider_diagnostics.dart' show AttrPath, TfAddress;
@@ -46,6 +47,7 @@ void main() {
     'google': (googleMigrateManifest, googleDataSourceStack.bindings),
     'appwrite': (appwriteMigrateManifest, appwriteLeftoverStack.bindings),
     'aws': (awsMigrateManifest, awsLeftoverStack.bindings),
+    'azure': (azureMigrateManifest, azureLeftoverStack.bindings),
     'cloudflare': (cloudflareMigrateManifest, cloudflareLeftoverStack.bindings),
   };
 

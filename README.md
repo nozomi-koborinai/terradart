@@ -9,7 +9,7 @@
 
 > **Type-safe IaC for Dart.**
 >
-> Write your infrastructure and your app in one typed Dart codebase. TerraDart synthesizes Terraform JSON for Google Cloud, AWS, Cloudflare and Appwrite, and hands the values your app needs — topic names, IDs, URLs — to it as typed Dart instead of copied strings. The `terradart` command plans and applies it with OpenTofu, and you never install Terraform.
+> Write your infrastructure and your app in one typed Dart codebase. TerraDart synthesizes Terraform JSON for Google Cloud, AWS, Cloudflare, Appwrite and Azure, and hands the values your app needs — topic names, IDs, URLs — to it as typed Dart instead of copied strings. The `terradart` command plans and applies it with OpenTofu, and you never install Terraform.
 
 **Alpha** — no SemVer until v1.0.0, but breaking changes land only on **minor** bumps. Pin `^0.35.0`, read [`MIGRATING.md`](MIGRATING.md) before minor bumps, and see [status on terradart.dev](https://terradart.dev/docs/status/).
 
@@ -259,7 +259,7 @@ final class EdgeStack extends Stack {
 }
 ```
 
-Credentials never enter the synthesized JSON: each provider authenticates at apply time through its usual environment variables or credential chain. Per-provider guides: [Google Cloud](https://terradart.dev/docs/providers/google/), [AWS](https://terradart.dev/docs/providers/aws/) (Lambda, HTTP API + DynamoDB, ECS Express Mode, S3 + CloudFront), [Cloudflare](https://terradart.dev/docs/providers/cloudflare/) and [Appwrite](https://terradart.dev/docs/providers/appwrite/).
+Credentials never enter the synthesized JSON: each provider authenticates at apply time through its usual environment variables or credential chain. Per-provider guides: [Google Cloud](https://terradart.dev/docs/providers/google/), [AWS](https://terradart.dev/docs/providers/aws/) (Lambda, HTTP API + DynamoDB, ECS Express Mode, S3 + CloudFront), [Cloudflare](https://terradart.dev/docs/providers/cloudflare/), [Appwrite](https://terradart.dev/docs/providers/appwrite/) and [Azure](https://terradart.dev/docs/providers/azure/).
 
 ---
 

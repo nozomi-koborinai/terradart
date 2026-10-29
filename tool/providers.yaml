@@ -32,6 +32,10 @@
 #                    every committed lane and checks the two strings match.
 #   siteTitle:       (optional) coverage-page heading. The coverage renderer
 #                    requires it on every committed lane.
+#   providerGuide:   (optional) providers-page stem when the lane has no page
+#                    of its own (`google` for google-beta). The docs agreement
+#                    test requires that page, its sidebar link, and a landing
+#                    row for every lane that leaves this unset.
 #   overridesRoot:   wrapper-override YAML registry (wrap --overrides-root)
 #   barrelsManifest: authored barrels manifest (wrap --barrels-manifest)
 #   resourceProvider: value for wrap --resource-provider, or null for the
@@ -153,6 +157,7 @@ providers:
     outputPackage: packages/terradart_google_beta
     typePrefix: google_
     siteTitle: 'Google Cloud (beta-only)'
+    providerGuide: google
     overridesRoot: packages/terradart_codegen/lib/src/codegen/wrapper_overrides/google_beta/yaml
     barrelsManifest: packages/terradart_codegen/lib/src/codegen/barrels/barrels_google_beta.yaml
     resourceProvider: google-beta
@@ -242,3 +247,12 @@ providers:
     migrateManifest: packages/terradart_migrate/lib/src/manifest/azure.g.dart
     providerEnums: true
     references: typed
+    bump:
+      mode: auto
+      repo: hashicorp/terraform-provider-azurerm
+      major: 5
+      cron: '0 22 * * 4' # Thursday 22:00 UTC
+      refresh: extract
+      dataSources: true
+      scaffold: lane
+      exampleGenerator: tool/generate_azure_leftover_example.dart
