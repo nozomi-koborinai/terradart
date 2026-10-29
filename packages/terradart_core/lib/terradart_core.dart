@@ -4,7 +4,8 @@ library;
 export 'src/app_constant.dart'
     show AppConstant, EnvironmentConstant, RefConstant, ValueConstant;
 export 'src/app_exports.dart' show AppExports;
-export 'src/backends.dart' show GcsBackend, LocalBackend, S3Backend;
+export 'src/backends.dart'
+    show AzurermBackend, GcsBackend, LocalBackend, S3Backend;
 export 'src/data.dart' show Data;
 export 'src/duplicate_resource_error.dart' show DuplicateResourceError;
 export 'src/duration_helper.dart' show TerraformDurationExt;

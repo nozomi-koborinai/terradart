@@ -31,6 +31,34 @@ void main() {
     }, timeout: const Timeout(Duration(minutes: 3)));
   }
 
+  test('one storage account uses one resource group', () async {
+    await terradart([
+      'init',
+      'app',
+      '--no-pub-get',
+      '--provider',
+      'google',
+      '--env',
+      'dev,prd',
+      '--backend',
+      'azurerm',
+      '--state-bucket',
+      'sharedacct',
+    ], cwd: root);
+    final app = p.join(root, 'app');
+    overrideWorkspacePackages(app);
+    await terradart(['synth'], cwd: app);
+    Map<dynamic, dynamic> azurerm(String env) =>
+        ((mainTf(app, env)['terraform'] as Map)['backend'] as Map)['azurerm']
+            as Map;
+    final dev = azurerm('dev');
+    final prd = azurerm('prd');
+    expect(dev['storage_account_name'], 'sharedacct');
+    expect(prd['storage_account_name'], 'sharedacct');
+    expect(dev['resource_group_name'], 'app-tfstate');
+    expect(prd['resource_group_name'], dev['resource_group_name']);
+  }, timeout: const Timeout(Duration(minutes: 3)));
+
   test('a Flutter app gets infra/ and the generated reader', () async {
     File(p.join(root, 'pubspec.yaml')).writeAsStringSync(
       'name: shop\ndependencies:\n  flutter:\n    sdk: flutter\n',

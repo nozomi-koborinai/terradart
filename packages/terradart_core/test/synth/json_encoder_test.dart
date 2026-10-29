@@ -127,6 +127,53 @@ void main() {
       expect(backend['skip_s3_checksum'], isTrue);
     });
 
+    test('Azurerm backend encodes the fields that are set', () {
+      final stack = TestStack(
+        providers: const [
+          FakeStackProvider(
+            providerName: 'google',
+            source: 'hashicorp/google',
+            versionConstraint: '~> 7.0',
+          ),
+        ],
+        backend: const AzurermBackend(
+          resourceGroupName: 'rg',
+          storageAccountName: 'tfstateacct',
+          containerName: 'tfstate',
+          key: 'prod.tfstate',
+        ),
+      );
+      final block = TfJsonEncoder.terraformBlock(stack);
+      expect(
+        block['backend'],
+        equals({
+          'azurerm': {
+            'resource_group_name': 'rg',
+            'storage_account_name': 'tfstateacct',
+            'container_name': 'tfstate',
+            'key': 'prod.tfstate',
+          },
+        }),
+      );
+    });
+
+    test('an empty Azurerm backend emits an empty block', () {
+      final stack = TestStack(
+        providers: const [
+          FakeStackProvider(
+            providerName: 'google',
+            source: 'hashicorp/google',
+            versionConstraint: '~> 7.0',
+          ),
+        ],
+        backend: const AzurermBackend(),
+      );
+      expect(
+        TfJsonEncoder.terraformBlock(stack)['backend'],
+        equals({'azurerm': <String, Object?>{}}),
+      );
+    });
+
     test('GCS backend without prefix omits the field', () {
       final stack = TestStack(
         providers: const [

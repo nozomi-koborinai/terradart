@@ -64,13 +64,15 @@ terradart init --provider azure --env dev,prd --backend local
 | `--gcp-project`, `--aws-region`, `--cloudflare-account`, `--appwrite-endpoint`, `--appwrite-project` | `<env>=<value>` pairs, or one value for every environment | a placeholder marked `TODO` |
 | `--aws-account` | the same; the provider then refuses credentials of another account | any account |
 | `--state-bucket` | the bucket that already holds the state, one name or `<env>=<name>` pairs; the backend follows the provider — google `gcs`, aws `s3`, cloudflare `r2` | |
-| `--backend` | `local`, `gcs`, `s3`, `r2` (Cloudflare R2, with `--provider cloudflare`) | required without a terminal unless `--state-bucket`; `--defaults`: `local` |
+| `--backend` | `local`, `gcs`, `s3`, `r2` (Cloudflare R2, with `--provider cloudflare`), `azurerm` (an Azure storage account) | required without a terminal unless `--state-bucket`; `--defaults`: `local` |
 | `--defaults` | take `--env dev,prd`, `--backend local`, placeholder IDs and the Flutter wiring for what the flags leave out; never the providers | |
 | `--[no-]flutter` | wiring to the Flutter app in the current directory | on when there is one |
 | `--[no-]agent-skill` | write the agent skill this CLI bundles into the project | asked in a terminal (yes); off without one or with `--defaults` |
 | `--agents` | where `--agent-skill` writes it: `agents`, `claude`, `cursor`, `windsurf`, `copilot`, `all`; implies `--agent-skill` | `agents,claude` |
 | `--dry-run` | list the files, write nothing | |
 | `--force` | overwrite existing files, scaffold next to existing Terraform | |
+
+`--backend azurerm` and `AzurermBackend` are not in the published 0.35.0 packages and arrive in the next release, after the packages publish.
 
 In a terminal, every flag left out is a question: the providers, the environments, each environment's IDs (a blank answer leaves a placeholder marked `TODO`), then *Do you already have a bucket for Terraform state?* — yes asks for its name, one for every environment or one each, and takes the kind from the provider (asking when the providers do not settle it); no keeps the state local — and last whether to install the agent skill. Without the skill, `AGENTS.md` says how to add it: `terradart skill install`, or the pinned `npx skills add` line. The run ends with `Re-run with: terradart init ...`, the same answers as flags.
 

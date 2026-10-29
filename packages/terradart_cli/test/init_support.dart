@@ -67,6 +67,20 @@ const scaffolds = <String, Scaffold>{
     resource: 'azurerm_resource_group',
     backend: 'local',
   ),
+  'azurerm': (
+    args: [
+      '--provider',
+      'google',
+      '--env',
+      'dev,prd',
+      '--gcp-project',
+      'dev=acme-dev',
+      '--backend',
+      'azurerm',
+    ],
+    resource: 'google_pubsub_topic',
+    backend: 'azurerm',
+  ),
 };
 
 /// Runs `terradart <args>` in [cwd] with the real process runner, failing

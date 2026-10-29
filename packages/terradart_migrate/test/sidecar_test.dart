@@ -156,12 +156,6 @@ output "label" {
         backend,
         contains(
           'terraform {\n'
-          '  # terradart-migrate: backend "azurerm" has no TerraDart type; it '
-          'stays in backend.tf\n'
-          '  backend "azurerm" {\n'
-          '    container_name = "tfstate"\n'
-          '  }\n'
-          '\n'
           '  required_providers {\n'
           '    # terradart-migrate: provider "azuread" has no TerraDart factory\n'
           '    azuread = { source = "hashicorp/azuread", version = "~> 3.0" }\n'
@@ -171,7 +165,11 @@ output "label" {
       );
       expect(backend, isNot(contains('google = {')));
       expect(backend, isNot(contains('required_version')));
-      expect(sidecar.placements['terraform.backend'], backendFileName);
+      expect(sidecar.placements['terraform.backend'], isNull);
+      expect(
+        r.stackSource,
+        contains("backend: const AzurermBackend(containerName: 'tfstate')"),
+      );
       expect(
         sidecar.placements['terraform.required_providers.azuread'],
         backendFileName,
@@ -240,9 +238,10 @@ output "label" {
         'resource "google_pubsub_topic" "t" {\n  name = "t"\n  no_such_arg = 2\n}',
       ),
     );
+    expect(sidecar.files[backendFileName], isNull);
     expect(
-      sidecar.files[backendFileName],
-      contains('  backend "azurerm" {\n    container_name = "tfstate"\n  }'),
+      r.stackSource,
+      contains("backend: const AzurermBackend(containerName: 'tfstate')"),
     );
     expect(
       sidecar.files[localsFileName],
