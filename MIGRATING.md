@@ -30,6 +30,28 @@ required, because the provider takes exactly one member. `objectLock` and
 `rules` stay optional. The inline `rule` and `object_lock_configuration`
 blocks stay maps, as before.
 
+Magic Modules wrote six more groups from another block's path, so `wrap`
+read them as inputs that do not exist. They now seal in the block they sit
+in. Each of these blocks is one choice, so the helper class itself is the
+sealed type.
+
+| Before | After |
+|---|---|
+| `CloudbuildTriggerDeveloperConnectEventConfig(gitRepositoryLink: link, push: .new(branch: .literal('main')))` | `CloudbuildTriggerDeveloperConnectEventConfig(gitRepositoryLink: link, event: .push(.new(revision: .branch(.literal('main')))))` |
+| `CloudbuildTriggerBitbucketServerTriggerConfigPush(...)` | `CloudbuildTriggerPush(...)`, which every `push` block of the trigger now shares |
+| `ComputeBackendServiceTlsSettings(subjectAltNames: [.new(dnsName: .literal('api.example.com'))])` | `ComputeBackendServiceTlsSettings(subjectAltNames: [.dnsName(.literal('api.example.com'))])` |
+| `ComputeRegionBackendServiceTlsSettings(subjectAltNames: [.new(uniformResourceIdentifier: uri)])` | `ComputeRegionBackendServiceTlsSettings(subjectAltNames: [.uniformResourceIdentifier(uri)])` |
+| `DatastreamConnectionProfilePostgresqlProfile(sslConfig: .new(serverVerification: verification), ...)` | `DatastreamConnectionProfilePostgresqlProfile(sslConfig: .serverVerification(verification), ...)` |
+| `defaultParsingConfig: .new(ocrParsingConfig: ocr)` on `google_discovery_engine_data_store` | `defaultParsingConfig: .ocrParsingConfig(ocr)` |
+| `engineFeaturesConfig: .new(mostPopularConfig: popular)` on `google_discovery_engine_recommendation_engine` | `engineFeaturesConfig: .mostPopularConfig(popular)` |
+
+**Additive (`terradart_google`).** Five derived helpers had no constructor
+argument. `GoogleAgenticApplicationsAnalystAgentPersona` takes
+`webSearchConfig`, `GoogleBigqueryAnalyticsHubQueryTemplate` takes
+`encryptionConfiguration`, `GoogleCesAgent` takes `remoteA2aAgent`,
+`GoogleContainerCluster` takes `managedOpentelemetryConfig`, and
+`GoogleContainerNodePool` takes `bestEffortProvisioning`.
+
 ### EMR instance fleets can set configuration blocks
 
 **Additive (`terradart_aws`).** `EmrClusterInstanceTypeConfigs` takes

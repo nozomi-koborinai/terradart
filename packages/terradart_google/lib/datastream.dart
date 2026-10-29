@@ -34,6 +34,8 @@ export 'src/datastream/google_datastream_connection_profile.dart'
         DatastreamConnectionProfileOracleProfile,
         DatastreamConnectionProfilePostgresqlProfile,
         DatastreamConnectionProfilePostgresqlProfileSslConfig,
+        DatastreamConnectionProfilePostgresqlProfileSslConfigServerAndClientVerification,
+        DatastreamConnectionProfilePostgresqlProfileSslConfigServerVerification,
         DatastreamConnectionProfilePrivateConnectivity,
         DatastreamConnectionProfilePrivateConnectivityChoice,
         DatastreamConnectionProfileServerAndClientVerification,

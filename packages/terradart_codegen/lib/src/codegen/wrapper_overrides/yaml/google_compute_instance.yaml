@@ -5,6 +5,12 @@ deriveExactlyOne: true
 deriveOutputGetters: true
 deriveNestedTypes: true
 
+unsealedGroups:
+  "guest_accelerators, reservation_affinity": >-
+    The MM YAML describes the REST API of a resource the provider hand-writes.
+    guest_accelerators is a REST field name, and the provider does not make
+    its guest_accelerator block conflict with reservation_affinity.
+
 curatedDoc: |-
   /// Required identity:
   /// - [localName]: Terraform local name (the address segment after

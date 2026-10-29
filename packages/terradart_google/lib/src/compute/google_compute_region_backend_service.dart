@@ -1184,24 +1184,65 @@ final class ComputeRegionBackendServiceTlsSettings {
   };
 }
 
-/// Typed helper for the `tls_settings.subject_alt_names` block of
-/// `google_compute_region_backend_service` (derived from provider schema).
-@immutable
-final class ComputeRegionBackendServiceSubjectAltNames {
-  const ComputeRegionBackendServiceSubjectAltNames({
-    this.dnsName,
-    this.uniformResourceIdentifier,
-  });
+/// Exactly one of `uniform_resource_identifier`, `dns_name` on the `tls_settings.subject_alt_names` block of `google_compute_region_backend_service`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.uniformResourceIdentifier(...)`.
+sealed class ComputeRegionBackendServiceSubjectAltNames {
+  const ComputeRegionBackendServiceSubjectAltNames();
 
-  final TfArg<String>? dnsName;
+  /// Sets `uniform_resource_identifier`.
+  const factory ComputeRegionBackendServiceSubjectAltNames.uniformResourceIdentifier(
+    TfArg<String> uniformResourceIdentifier,
+  ) = ComputeRegionBackendServiceSubjectAltNamesUniformResourceIdentifier;
 
-  final TfArg<String>? uniformResourceIdentifier;
+  /// Sets `dns_name`.
+  const factory ComputeRegionBackendServiceSubjectAltNames.dnsName(
+    TfArg<String> dnsName,
+  ) = ComputeRegionBackendServiceSubjectAltNamesDnsName;
+
+  /// The Terraform argument this choice sets.
+  @internal
+  String get blockKey;
 
   @internal
+  Map<String, Object?> encode();
+}
+
+/// The [ComputeRegionBackendServiceSubjectAltNames.uniformResourceIdentifier] choice: sets `uniform_resource_identifier`.
+final class ComputeRegionBackendServiceSubjectAltNamesUniformResourceIdentifier
+    extends ComputeRegionBackendServiceSubjectAltNames {
+  const ComputeRegionBackendServiceSubjectAltNamesUniformResourceIdentifier(
+    this.uniformResourceIdentifier,
+  );
+
+  final TfArg<String> uniformResourceIdentifier;
+
+  @internal
+  @override
+  String get blockKey => 'uniform_resource_identifier';
+
+  @internal
+  @override
   Map<String, Object?> encode() => {
-    'dns_name': ?dnsName?.toTfJson(),
-    'uniform_resource_identifier': ?uniformResourceIdentifier?.toTfJson(),
+    'uniform_resource_identifier': uniformResourceIdentifier.toTfJson(),
   };
+}
+
+/// The [ComputeRegionBackendServiceSubjectAltNames.dnsName] choice: sets `dns_name`.
+final class ComputeRegionBackendServiceSubjectAltNamesDnsName
+    extends ComputeRegionBackendServiceSubjectAltNames {
+  const ComputeRegionBackendServiceSubjectAltNamesDnsName(this.dnsName);
+
+  final TfArg<String> dnsName;
+
+  @internal
+  @override
+  String get blockKey => 'dns_name';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {'dns_name': dnsName.toTfJson()};
 }
 
 /// Factory wrapper for `google_compute_region_backend_service`.

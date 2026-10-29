@@ -1734,6 +1734,7 @@ final class GoogleContainerNodePool extends Resource {
     TfArg<String>? project,
     TfArg<String>? version,
     ContainerNodePoolAutoscaling? autoscaling,
+    ContainerNodePoolBestEffortProvisioning? bestEffortProvisioning,
     List<ContainerNodePoolMaintenancePolicy>? maintenancePolicy,
     ContainerNodePoolManagement? management,
     ContainerNodePoolNetworkConfig? networkConfig,
@@ -1763,6 +1764,10 @@ final class GoogleContainerNodePool extends Resource {
            'version': ?version,
            if (autoscaling != null)
              'autoscaling': TfArg.literal(autoscaling.encode()),
+           if (bestEffortProvisioning != null)
+             'best_effort_provisioning': TfArg.literal(
+               bestEffortProvisioning.encode(),
+             ),
            if (maintenancePolicy != null)
              'maintenance_policy': TfArg.literal([
                for (final e in maintenancePolicy) e.encode(),

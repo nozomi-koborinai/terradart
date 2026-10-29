@@ -48,6 +48,7 @@ import 'wrapper_overrides/yaml_loader.dart';
   List<String> skippedAtMostOne,
   List<SealedName> names,
   List<String> nameErrors,
+  List<UnsealedGroup> excused,
 })
 deriveExactlyOneSlots(
   LoadedOverrides overrides,
@@ -63,6 +64,7 @@ deriveExactlyOneSlots(
   final skippedAtMostOne = <String>[];
   final names = <SealedName>[];
   final nameErrors = <String>[];
+  final excused = <UnsealedGroup>[];
   Map<String, WrapperOverride> derive(WrapperOverrideKind kind) {
     final defs = ir.of(kind);
     final out = <String, WrapperOverride>{};
@@ -85,6 +87,13 @@ deriveExactlyOneSlots(
         continue;
       }
       final hand = handSealedGroups(o);
+      final reasons = unsealedGroupKeys(o);
+      bool excuse(String key) {
+        if (!reasons.contains(key)) return false;
+        excused.add((type: overrides.lintKey(type, kind), key: key));
+        return true;
+      }
+
       final specs = o.deriveNestedTypes
           ? collectNestedTypes(
               resourceBlock: rawSchemas.of(kind)[type]!,
@@ -113,6 +122,7 @@ deriveExactlyOneSlots(
               specs,
               refs,
               hand,
+              excuse,
               skipped: skipped,
               skippedAtMostOne: skippedAtMostOne,
               names: typeNames,
@@ -133,14 +143,11 @@ deriveExactlyOneSlots(
           nameErrors.add('$label sealedNames "$k" matches no sealed group');
         }
       }
-      bool sealedByHand(String path, List<String> members) =>
-          coversGroup(hand, path, members);
+      bool settled(String path, List<String> members) =>
+          coversGroup(hand, path, members) ||
+          excuse(sealedGroupKeyOf(path.split('.'), members));
       skipped.addAll([
-        for (final s in unsealedNestedGroups(
-          specs,
-          nested,
-          sealedByHand: sealedByHand,
-        ))
+        for (final s in unsealedNestedGroups(specs, nested, settled: settled))
           '$label $s',
       ]);
       skippedAtMostOne.addAll([
@@ -148,7 +155,7 @@ deriveExactlyOneSlots(
           specs,
           nestedOptional,
           optional: true,
-          sealedByHand: sealedByHand,
+          settled: settled,
         ))
           '$label $s',
       ]);
@@ -178,8 +185,19 @@ deriveExactlyOneSlots(
     skippedAtMostOne: skippedAtMostOne,
     names: names,
     nameErrors: nameErrors,
+    excused: excused,
   );
 }
+
+/// An `unsealedGroups` entry of the override [type] names (its
+/// [LoadedOverrides.lintKey]), by its [sealedGroupKeyOf] [key].
+typedef UnsealedGroup = ({String type, String key});
+
+/// The [sealedGroupKeyOf] key of each of [o]'s `unsealedGroups` entries.
+Set<String> unsealedGroupKeys(WrapperOverride o) => {
+  for (final k in (o.unsealedGroups ?? const <String, String>{}).keys)
+    sealedGroupKeyOf(const [], sealedGroupKey(k)),
+};
 
 /// The meta-arguments every factory constructor takes besides its inputs.
 const _metaParams = {
@@ -227,7 +245,8 @@ WrapperOverride _derive(
   List<BlockGroup> groups,
   List<NestedBlockSpec> nestedSpecs,
   Map<String, ResolvedReference> refs,
-  List<HandSealedGroup> hand, {
+  List<HandSealedGroup> hand,
+  bool Function(String key) excuse, {
   required List<String> skipped,
   required List<String> skippedAtMostOne,
   required List<SealedGroupName> names,
@@ -389,7 +408,9 @@ WrapperOverride _derive(
           if (reason != null) break;
         }
         if (reason != null) {
-          (optional ? skippedAtMostOne : skipped).add('$label: $reason');
+          if (!excuse(sealedGroupKeyOf(const [], group))) {
+            (optional ? skippedAtMostOne : skipped).add('$label: $reason');
+          }
           continue;
         }
         final key = sealedGroupKeyOf(const [], group);
@@ -463,7 +484,9 @@ WrapperOverride _derive(
         }
         if (reason != null) {
           for (final g in joint.groups) {
-            skipped.add('$where [${g.join(', ')}]: $reason');
+            if (!excuse(sealedGroupKeyOf(const [], g))) {
+              skipped.add('$where [${g.join(', ')}]: $reason');
+            }
           }
           continue;
         }

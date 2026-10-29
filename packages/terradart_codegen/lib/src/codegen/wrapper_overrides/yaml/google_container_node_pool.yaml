@@ -31,6 +31,7 @@ paramOrder:
   - project
   - version
   - autoscaling
+  - best_effort_provisioning
   - maintenance_policy
   - management
   - network_config

@@ -49,6 +49,7 @@ typedef _Derived = ({
   List<String> skippedAtMostOne,
   List<SealedName> names,
   List<String> nameErrors,
+  List<UnsealedGroup> excused,
 });
 
 /// [deriveExactlyOneSlots] over a lane of resources only.
@@ -478,6 +479,44 @@ void main() {
     );
     expect(off.overrides.resources['aws_thing']!.sealedArguments, isEmpty);
     expect(off.skipped, isEmpty);
+  });
+
+  test('an unsealedGroups entry excuses the group it names', () {
+    final def = ResourceDef(
+      terraformType: 'aws_thing',
+      root: BlockDef(
+        attributes: [
+          _attr('a'),
+          _attr('b'),
+          _attr('c', required: true),
+          _attr('d'),
+        ],
+      ),
+    );
+    final derived = _derive(
+      {
+        'aws_thing': const WrapperOverride(
+          outputDir: 'thing',
+          deriveExactlyOne: true,
+          unsealedGroups: {
+            'd, c': 'c is a required identity.',
+            'settings.y, settings.x': 'settings stays a map.',
+            'e, f': 'matches nothing.',
+          },
+        ),
+      },
+      {'aws_thing': def},
+      providerEnums: _groups,
+    );
+    expect(derived.skipped, isEmpty);
+    expect(derived.excused, [
+      (type: 'aws_thing', key: 'c, d'),
+      (type: 'aws_thing', key: 'settings.x, settings.y'),
+    ]);
+    expect(
+      derived.overrides.resources['aws_thing']!.sealedArguments.single.members,
+      ['a', 'b'],
+    );
   });
 
   test('a data source seals its own groups under the Data stem', () {

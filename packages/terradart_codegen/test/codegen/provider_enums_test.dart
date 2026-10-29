@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:path/path.dart' as p;
+import 'package:terradart_codegen/src/codegen/naming.dart';
 import 'package:terradart_codegen/src/codegen/nested_types/nested_type_collector.dart';
 import 'package:terradart_codegen/src/codegen/provider_enums.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_overrides/wrapper_override.dart';
@@ -234,7 +235,13 @@ properties:
           ),
         },
       );
-      final kept = enums.withinSchema(ir, dropped: dropped.add);
+      final kept = enums.withinSchema(
+        ir,
+        dropped: (g) => dropped.add(
+          '${g.kind.label(g.type)} [${g.members.join(', ')}] '
+          'missing ${g.missing.join(', ')}',
+        ),
+      );
       final root = kept.rootGroups('x_thing', _resource);
       expect(root.exactlyOne, [
         ['mode', 'other'],
@@ -249,10 +256,10 @@ properties:
       expect(nested.atMostOneGroups, isEmpty);
       expect(kept.rootGroups('x_thing', _data).exactlyOne, isEmpty);
       expect(dropped, [
-        'x_thing [mode, beta_only]',
-        'x_thing [mode, state]',
-        'x_thing [settings.level, wrong.depth]',
-        'data.x_thing [mode, other]',
+        'x_thing [mode, beta_only] missing beta_only',
+        'x_thing [mode, state] missing state',
+        'x_thing [settings.level, wrong.depth] missing wrong.depth',
+        'data.x_thing [mode, other] missing other',
       ]);
     },
   );

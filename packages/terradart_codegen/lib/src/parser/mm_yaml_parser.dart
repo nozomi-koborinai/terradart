@@ -53,6 +53,10 @@ class MmResourceOverrides {
   /// property below one.
   final Set<String> outputPaths;
 
+  /// Dotted Terraform paths of the `min_version: beta` properties, and of
+  /// every property below one: inputs only the google-beta provider has.
+  final Set<String> betaPaths;
+
   /// The resource's MM `name` (`RouterNat`), which [resourceRefs] resolve
   /// their `resource` against.
   final String? name;
@@ -73,6 +77,7 @@ class MmResourceOverrides {
     this.atMostOneOfPaths = const [],
     this.enumValuesByPath = const {},
     this.outputPaths = const {},
+    this.betaPaths = const {},
     this.resourceRefs = const {},
   });
 }
@@ -93,6 +98,10 @@ class MmYamlParser {
     final groups = <List<String>>[];
     final paths = _Relations();
     final enums = <String, List<String>>{};
+    final beta = <String>{};
+    for (final list in [doc['parameters'], doc['properties']]) {
+      if (list is YamlList) _terraformPaths(list, const [], paths.known, beta);
+    }
 
     // Top-level exactly_one_of (applies to direct children).
     final topGroup = _readExactlyOneOf(doc, prefix: '');
@@ -137,7 +146,41 @@ class MmYamlParser {
       outputPaths: {
         for (final o in paths.outputs) paths.terraformPath(o.split('.')),
       },
+      betaPaths: beta,
     );
+  }
+
+  /// Adds the Terraform path of every property under [props] to [sink]
+  /// (snake-cased `name`s below [prefix], `flatten_object` levels dropped),
+  /// and to [beta] when it or a parent is `min_version: beta`.
+  void _terraformPaths(
+    YamlList props,
+    List<String> prefix,
+    Set<String> sink,
+    Set<String> beta, {
+    bool inBeta = false,
+  }) {
+    for (final raw in props) {
+      if (raw is! YamlMap || raw['name'] is! String) continue;
+      final flat = raw['flatten_object'] == true;
+      final path = flat
+          ? prefix
+          : [...prefix, _toSnakeCase(raw['name'] as String)];
+      final isBeta = inBeta || raw['min_version'] == 'beta';
+      if (!flat) {
+        sink.add(path.join('.'));
+        if (isBeta) beta.add(path.join('.'));
+      }
+      final item = raw['item_type'];
+      for (final nested in [
+        raw['properties'],
+        if (item is YamlMap) item['properties'],
+      ]) {
+        if (nested is YamlList) {
+          _terraformPaths(nested, path, sink, beta, inBeta: isBeta);
+        }
+      }
+    }
   }
 
   /// Adds [node]'s `exactly_one_of`, `at_least_one_of` and `conflicts`,
@@ -154,15 +197,14 @@ class MmYamlParser {
       if (raw is! YamlList) return null;
       return [
         for (final v in raw)
-          () {
-            final segments = [
+          sink.resolve(
+            [
               for (final s in v.toString().split('.'))
                 if (int.tryParse(s) == null) _toSnakeCase(s),
-            ];
-            return segments.length == 1 && parent.isNotEmpty
-                ? '$parent.${segments.single}'
-                : sink.terraformPath(segments);
-          }(),
+            ],
+            parent: parent,
+            self: self,
+          ),
       ];
     }
 
@@ -387,5 +429,38 @@ final class _Relations {
       if (!flattened.contains([...out, s].join('.'))) out.add(s);
     }
     return out.join('.');
+  }
+
+  /// Terraform paths of every property, filled before the walk.
+  final known = <String>{};
+
+  /// The path a relation entry of the property at [self] (in the block at
+  /// [parent]) names. A bare name is a sibling, and a dotted one starts at
+  /// the resource root. When neither is a property, upstream wrote the path
+  /// from somewhere else, and the first of these that is one wins: the
+  /// root, for a bare name; the dotted path below an ancestor block
+  /// (`ssl_config.0.server_verification` inside `postgresql_profile`); a
+  /// sibling with the entry's last name; the property's own child
+  /// (`exactly_one_of: [branch, tag]` on `push`). An entry none resolves
+  /// keeps its sibling or root reading.
+  String resolve(
+    List<String> segments, {
+    required String parent,
+    required String? self,
+  }) {
+    final absolute = terraformPath(segments);
+    final reading = segments.length == 1 && parent.isNotEmpty
+        ? '$parent.${segments.single}'
+        : absolute;
+    if (known.contains(reading)) return reading;
+    final ancestors = parent.isEmpty ? const <String>[] : parent.split('.');
+    final candidates = [
+      absolute,
+      for (var i = ancestors.length; i > 0; i--)
+        '${ancestors.take(i).join('.')}.$absolute',
+      if (parent.isNotEmpty) '$parent.${segments.last}',
+      if (self != null) '$self.${segments.last}',
+    ];
+    return candidates.firstWhere(known.contains, orElse: () => reading);
   }
 }

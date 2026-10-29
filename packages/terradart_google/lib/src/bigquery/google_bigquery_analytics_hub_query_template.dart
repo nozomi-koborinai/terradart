@@ -90,6 +90,8 @@ final class GoogleBigqueryAnalyticsHubQueryTemplate extends Resource {
     TfArg<String>? primaryContact,
     BigqueryAnalyticsHubQueryTemplateRoutine? routine,
     TfArg<bool>? submit,
+    BigqueryAnalyticsHubQueryTemplateEncryptionConfiguration?
+    encryptionConfiguration,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,
@@ -108,6 +110,10 @@ final class GoogleBigqueryAnalyticsHubQueryTemplate extends Resource {
            'primary_contact': ?primaryContact,
            if (routine != null) 'routine': TfArg.literal(routine.encode()),
            'submit': ?submit,
+           if (encryptionConfiguration != null)
+             'encryption_configuration': TfArg.literal(
+               encryptionConfiguration.encode(),
+             ),
            'deletion_policy': ?deletionPolicy,
            'project': ?project,
          },
