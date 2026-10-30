@@ -324,12 +324,30 @@ final class WorkbenchInstanceConfidentialInstanceConfig {
     this.confidentialInstanceType,
   });
 
-  final TfArg<String>? confidentialInstanceType;
+  final WorkbenchInstanceConfidentialInstanceType? confidentialInstanceType;
 
   @internal
   Map<String, Object?> encode() => {
     'confidential_instance_type': ?confidentialInstanceType?.toTfJson(),
   };
+}
+
+/// `confidential_instance_type` — derived from the provider schema description.
+extension type const WorkbenchInstanceConfidentialInstanceType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  WorkbenchInstanceConfidentialInstanceType.variable(String name)
+    : this._(TfArg.variable(name));
+  WorkbenchInstanceConfidentialInstanceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const WorkbenchInstanceConfidentialInstanceType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const sev = WorkbenchInstanceConfidentialInstanceType._(
+    TfArgLiteral('SEV'),
+  );
+
+  static const List<WorkbenchInstanceConfidentialInstanceType> values = [sev];
 }
 
 /// Typed helper for the `gce_setup.container_image` block of

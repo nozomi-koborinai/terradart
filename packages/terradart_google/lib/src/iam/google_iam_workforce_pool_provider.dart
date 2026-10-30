@@ -202,7 +202,7 @@ final class IamWorkforcePoolProviderExtendedAttributesOauth2Client {
     this.queryParameters,
   });
 
-  final TfArg<String> attributesType;
+  final IamWorkforcePoolProviderExtendedAttributesType attributesType;
 
   final TfArg<String> clientId;
 
@@ -220,6 +220,27 @@ final class IamWorkforcePoolProviderExtendedAttributesOauth2Client {
     'client_secret': clientSecret.encode(),
     'query_parameters': ?queryParameters?.encode(),
   };
+}
+
+/// `attributes_type` — derived from the provider schema description.
+extension type const IamWorkforcePoolProviderExtendedAttributesType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  IamWorkforcePoolProviderExtendedAttributesType.variable(String name)
+    : this._(TfArg.variable(name));
+  IamWorkforcePoolProviderExtendedAttributesType.expression(String template)
+    : this._(TfArg.expression(template));
+  const IamWorkforcePoolProviderExtendedAttributesType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const azureAdGroupsId =
+      IamWorkforcePoolProviderExtendedAttributesType._(
+        TfArgLiteral('AZURE_AD_GROUPS_ID'),
+      );
+
+  static const List<IamWorkforcePoolProviderExtendedAttributesType> values = [
+    azureAdGroupsId,
+  ];
 }
 
 /// Typed helper for the `extended_attributes_oauth2_client.client_secret` block of

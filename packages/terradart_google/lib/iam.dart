@@ -133,6 +133,7 @@ export 'src/iam/google_iam_workforce_pool_provider.dart'
         IamWorkforcePoolProviderAttributesType,
         IamWorkforcePoolProviderClientSecret,
         IamWorkforcePoolProviderExtendedAttributesOauth2Client,
+        IamWorkforcePoolProviderExtendedAttributesType,
         IamWorkforcePoolProviderExtraAttributesOauth2Client,
         IamWorkforcePoolProviderGroupSource,
         IamWorkforcePoolProviderGroupSourceExtendedAttributesOauth2Client,

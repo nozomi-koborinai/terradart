@@ -208,3 +208,6 @@ prelude: |
   // ===========================================================================
   // vulnerability_scanning_config (max_items=1)
   // ===========================================================================
+
+typeNames:
+  remote_repository_config.python_repository.public_repository: ArtifactRegistryPythonPublicRepository

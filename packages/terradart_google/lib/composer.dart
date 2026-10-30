@@ -13,6 +13,7 @@ export 'src/composer/google_composer_environment.dart'
         ComposerEnvironmentCidrBlocks,
         ComposerEnvironmentCloudDataLineageIntegration,
         ComposerEnvironmentConfig,
+        ComposerEnvironmentConnectionType,
         ComposerEnvironmentDagProcessor,
         ComposerEnvironmentDataRetentionConfig,
         ComposerEnvironmentDatabaseConfig,

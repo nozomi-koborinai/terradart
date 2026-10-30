@@ -116,7 +116,7 @@ final class IdentityPlatformConfigMfa {
     this.providerConfigs,
   });
 
-  final TfArg<List<String>>? enabledProviders;
+  final List<IdentityPlatformConfigEnabledProviders>? enabledProviders;
 
   final IdentityPlatformConfigState? state;
 
@@ -124,11 +124,29 @@ final class IdentityPlatformConfigMfa {
 
   @internal
   Map<String, Object?> encode() => {
-    'enabled_providers': ?enabledProviders?.toTfJson(),
+    if (enabledProviders != null)
+      'enabled_providers': [for (final e in enabledProviders!) e.toTfJson()],
     'state': ?state?.toTfJson(),
     if (providerConfigs != null)
       'provider_configs': [for (final e in providerConfigs!) e.encode()],
   };
+}
+
+/// `enabled_providers` — derived from the provider schema description.
+extension type const IdentityPlatformConfigEnabledProviders._(TfArg<String> _)
+    implements TfArg<String> {
+  IdentityPlatformConfigEnabledProviders.variable(String name)
+    : this._(TfArg.variable(name));
+  IdentityPlatformConfigEnabledProviders.expression(String template)
+    : this._(TfArg.expression(template));
+  const IdentityPlatformConfigEnabledProviders.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const phoneSms = IdentityPlatformConfigEnabledProviders._(
+    TfArgLiteral('PHONE_SMS'),
+  );
+
+  static const List<IdentityPlatformConfigEnabledProviders> values = [phoneSms];
 }
 
 /// `state` — derived from the provider schema description.

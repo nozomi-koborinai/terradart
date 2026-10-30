@@ -295,7 +295,7 @@ final class ComputeInstanceAttachedDisk {
 
   final RefTo<GoogleKmsCryptoKey>? kmsKeySelfLink;
 
-  final TfArg<String>? mode;
+  final ComputeInstanceMode? mode;
 
   final TfArg<String> source;
 
@@ -311,6 +311,20 @@ final class ComputeInstanceAttachedDisk {
     'mode': ?mode?.toTfJson(),
     'source': source.toTfJson(),
   };
+}
+
+/// `mode` — derived from the provider schema description.
+extension type const ComputeInstanceMode._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInstanceMode.variable(String name) : this._(TfArg.variable(name));
+  ComputeInstanceMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const readOnly = ComputeInstanceMode._(TfArgLiteral('READ_ONLY'));
+  static const readWrite = ComputeInstanceMode._(TfArgLiteral('READ_WRITE'));
+
+  static const List<ComputeInstanceMode> values = [readOnly, readWrite];
 }
 
 /// Typed helper for the `boot_disk` block of
@@ -350,7 +364,7 @@ final class ComputeInstanceBootDisk {
 
   final RefTo<GoogleKmsCryptoKey>? kmsKeySelfLink;
 
-  final TfArg<String>? mode;
+  final ComputeInstanceMode? mode;
 
   final TfArg<String>? source;
 
@@ -396,7 +410,7 @@ final class ComputeInstanceInitializeParams {
     this.sourceSnapshotEncryptionKey,
   });
 
-  final TfArg<String>? architecture;
+  final ComputeInstanceArchitecture? architecture;
 
   final TfArg<bool>? enableConfidentialCompute;
 
@@ -444,6 +458,21 @@ final class ComputeInstanceInitializeParams {
     'source_image_encryption_key': ?sourceImageEncryptionKey?.encode(),
     'source_snapshot_encryption_key': ?sourceSnapshotEncryptionKey?.encode(),
   };
+}
+
+/// `architecture` — derived from the provider schema description.
+extension type const ComputeInstanceArchitecture._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInstanceArchitecture.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceArchitecture.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceArchitecture.arg(TfArg<String> arg) : this._(arg);
+
+  static const x8664 = ComputeInstanceArchitecture._(TfArgLiteral('X86_64'));
+  static const arm64 = ComputeInstanceArchitecture._(TfArgLiteral('ARM64'));
+
+  static const List<ComputeInstanceArchitecture> values = [x8664, arm64];
 }
 
 /// Typed helper for the `boot_disk.initialize_params.source_image_encryption_key` block of

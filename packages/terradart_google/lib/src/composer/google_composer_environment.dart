@@ -367,7 +367,7 @@ final class ComposerEnvironmentPrivateEnvironmentConfig {
 
   final TfArg<String>? cloudSqlIpv4CidrBlock;
 
-  final TfArg<String>? connectionType;
+  final ComposerEnvironmentConnectionType? connectionType;
 
   final TfArg<bool>? enablePrivateEndpoint;
 
@@ -391,6 +391,28 @@ final class ComposerEnvironmentPrivateEnvironmentConfig {
     'master_ipv4_cidr_block': ?masterIpv4CidrBlock?.toTfJson(),
     'web_server_ipv4_cidr_block': ?webServerIpv4CidrBlock?.toTfJson(),
   };
+}
+
+/// `connection_type` — derived from the provider schema description.
+extension type const ComposerEnvironmentConnectionType._(TfArg<String> _)
+    implements TfArg<String> {
+  ComposerEnvironmentConnectionType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComposerEnvironmentConnectionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComposerEnvironmentConnectionType.arg(TfArg<String> arg) : this._(arg);
+
+  static const vpcPeering = ComposerEnvironmentConnectionType._(
+    TfArgLiteral('VPC_PEERING'),
+  );
+  static const privateServiceConnect = ComposerEnvironmentConnectionType._(
+    TfArgLiteral('PRIVATE_SERVICE_CONNECT'),
+  );
+
+  static const List<ComposerEnvironmentConnectionType> values = [
+    vpcPeering,
+    privateServiceConnect,
+  ];
 }
 
 /// Typed helper for the `config.recovery_config` block of

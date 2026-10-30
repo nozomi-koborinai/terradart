@@ -39,6 +39,7 @@ export 'src/firestore/google_firestore_document.dart'
     show GoogleFirestoreDocument;
 export 'src/firestore/google_firestore_field.dart'
     show
+        FirestoreFieldArrayConfig,
         FirestoreFieldIndexConfig,
         FirestoreFieldIndexes,
         FirestoreFieldMode,

@@ -538,7 +538,7 @@ final class BigqueryTableCsvOptions {
 
   final TfArg<bool>? allowQuotedNewlines;
 
-  final TfArg<String>? encoding;
+  final BigqueryTableEncoding? encoding;
 
   final TfArg<String>? fieldDelimiter;
 
@@ -558,6 +558,20 @@ final class BigqueryTableCsvOptions {
     'skip_leading_rows': ?skipLeadingRows?.toTfJson(),
     'source_column_match': ?sourceColumnMatch?.toTfJson(),
   };
+}
+
+/// `encoding` — derived from the provider schema description.
+extension type const BigqueryTableEncoding._(TfArg<String> _)
+    implements TfArg<String> {
+  BigqueryTableEncoding.variable(String name) : this._(TfArg.variable(name));
+  BigqueryTableEncoding.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryTableEncoding.arg(TfArg<String> arg) : this._(arg);
+
+  static const utf8 = BigqueryTableEncoding._(TfArgLiteral('UTF-8'));
+  static const iso88591 = BigqueryTableEncoding._(TfArgLiteral('ISO-8859-1'));
+
+  static const List<BigqueryTableEncoding> values = [utf8, iso88591];
 }
 
 /// Typed helper for the `external_data_configuration.google_sheets_options` block of
@@ -712,10 +726,23 @@ final class BigqueryTableRange {
 final class BigqueryTableSchemaForeignTypeInfo {
   const BigqueryTableSchemaForeignTypeInfo({required this.typeSystem});
 
-  final TfArg<String> typeSystem;
+  final BigqueryTableTypeSystem typeSystem;
 
   @internal
   Map<String, Object?> encode() => {'type_system': typeSystem.toTfJson()};
+}
+
+/// `type_system` — derived from the provider schema description.
+extension type const BigqueryTableTypeSystem._(TfArg<String> _)
+    implements TfArg<String> {
+  BigqueryTableTypeSystem.variable(String name) : this._(TfArg.variable(name));
+  BigqueryTableTypeSystem.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryTableTypeSystem.arg(TfArg<String> arg) : this._(arg);
+
+  static const hive = BigqueryTableTypeSystem._(TfArgLiteral('HIVE'));
+
+  static const List<BigqueryTableTypeSystem> values = [hive];
 }
 
 /// Typed helper for the `table_constraints` block of

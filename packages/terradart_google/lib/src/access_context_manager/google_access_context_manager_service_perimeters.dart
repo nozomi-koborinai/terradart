@@ -441,7 +441,10 @@ final class AccessContextManagerServicePerimetersVpcAccessibleServices {
 
   final TfArg<bool>? enableRestriction;
 
-  final TfArg<List<String>>? servicePatternsEnforcementScopes;
+  final List<
+    AccessContextManagerServicePerimetersServicePatternsEnforcementScopes
+  >?
+  servicePatternsEnforcementScopes;
 
   final List<AccessContextManagerServicePerimetersAllowedServicePatterns>?
   allowedServicePatterns;
@@ -450,13 +453,40 @@ final class AccessContextManagerServicePerimetersVpcAccessibleServices {
   Map<String, Object?> encode() => {
     'allowed_services': ?allowedServices?.toTfJson(),
     'enable_restriction': ?enableRestriction?.toTfJson(),
-    'service_patterns_enforcement_scopes': ?servicePatternsEnforcementScopes
-        ?.toTfJson(),
+    if (servicePatternsEnforcementScopes != null)
+      'service_patterns_enforcement_scopes': [
+        for (final e in servicePatternsEnforcementScopes!) e.toTfJson(),
+      ],
     if (allowedServicePatterns != null)
       'allowed_service_patterns': [
         for (final e in allowedServicePatterns!) e.encode(),
       ],
   };
+}
+
+/// `service_patterns_enforcement_scopes` — derived from the provider schema description.
+extension type const AccessContextManagerServicePerimetersServicePatternsEnforcementScopes._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AccessContextManagerServicePerimetersServicePatternsEnforcementScopes.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  AccessContextManagerServicePerimetersServicePatternsEnforcementScopes.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const AccessContextManagerServicePerimetersServicePatternsEnforcementScopes.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const googleApisViaPrivatePath =
+      AccessContextManagerServicePerimetersServicePatternsEnforcementScopes._(
+        TfArgLiteral('GOOGLE_APIS_VIA_PRIVATE_PATH'),
+      );
+
+  static const List<
+    AccessContextManagerServicePerimetersServicePatternsEnforcementScopes
+  >
+  values = [googleApisViaPrivatePath];
 }
 
 /// Typed helper for the `service_perimeters.spec.vpc_accessible_services.allowed_service_patterns` block of

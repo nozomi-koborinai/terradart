@@ -24,7 +24,7 @@ final class IapSettingsAccessSettings {
     this.workforceIdentitySettings,
   });
 
-  final TfArg<List<String>>? identitySources;
+  final List<IapSettingsIdentitySources>? identitySources;
 
   final IapSettingsAllowedDomainsSettings? allowedDomainsSettings;
 
@@ -40,7 +40,8 @@ final class IapSettingsAccessSettings {
 
   @internal
   Map<String, Object?> encode() => {
-    'identity_sources': ?identitySources?.toTfJson(),
+    if (identitySources != null)
+      'identity_sources': [for (final e in identitySources!) e.toTfJson()],
     'allowed_domains_settings': ?allowedDomainsSettings?.encode(),
     'cors_settings': ?corsSettings?.encode(),
     'gcip_settings': ?gcipSettings?.encode(),
@@ -48,6 +49,24 @@ final class IapSettingsAccessSettings {
     'reauth_settings': ?reauthSettings?.encode(),
     'workforce_identity_settings': ?workforceIdentitySettings?.encode(),
   };
+}
+
+/// `identity_sources` — derived from the provider schema description.
+extension type const IapSettingsIdentitySources._(TfArg<String> _)
+    implements TfArg<String> {
+  IapSettingsIdentitySources.variable(String name)
+    : this._(TfArg.variable(name));
+  IapSettingsIdentitySources.expression(String template)
+    : this._(TfArg.expression(template));
+  const IapSettingsIdentitySources.arg(TfArg<String> arg) : this._(arg);
+
+  static const workforceIdentityFederation = IapSettingsIdentitySources._(
+    TfArgLiteral('WORKFORCE_IDENTITY_FEDERATION'),
+  );
+
+  static const List<IapSettingsIdentitySources> values = [
+    workforceIdentityFederation,
+  ];
 }
 
 /// Typed helper for the `access_settings.allowed_domains_settings` block of

@@ -14,6 +14,7 @@ export 'src/workbench/google_workbench_instance.dart'
         WorkbenchInstanceBootDisk,
         WorkbenchInstanceBootDiskType,
         WorkbenchInstanceConfidentialInstanceConfig,
+        WorkbenchInstanceConfidentialInstanceType,
         WorkbenchInstanceConsumeReservationType,
         WorkbenchInstanceContainerImage,
         WorkbenchInstanceContainerImageChoice,

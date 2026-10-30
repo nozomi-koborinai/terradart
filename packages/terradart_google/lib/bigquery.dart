@@ -73,6 +73,7 @@ export 'src/bigquery/google_bigquery_analytics_hub_query_template.dart'
     show
         BigqueryAnalyticsHubQueryTemplateEncryptionConfiguration,
         BigqueryAnalyticsHubQueryTemplateRoutine,
+        BigqueryAnalyticsHubQueryTemplateRoutineType,
         GoogleBigqueryAnalyticsHubQueryTemplate;
 export 'src/bigquery/google_bigquery_bi_reservation.dart'
     show BigqueryBiReservationPreferredTables, GoogleBigqueryBiReservation;
@@ -286,6 +287,7 @@ export 'src/bigquery/google_bigquery_table.dart'
         BigqueryTableColumnReferences,
         BigqueryTableConstraints,
         BigqueryTableCsvOptions,
+        BigqueryTableEncoding,
         BigqueryTableEncryptionConfiguration,
         BigqueryTableExternalCatalogTableOptions,
         BigqueryTableExternalDataConfiguration,
@@ -304,6 +306,7 @@ export 'src/bigquery/google_bigquery_table.dart'
         BigqueryTableSerdeInfo,
         BigqueryTableStorageDescriptor,
         BigqueryTableTimePartitioning,
+        BigqueryTableTypeSystem,
         BigqueryTableView,
         ExternalDataCompression,
         ExternalDataSourceFormat,

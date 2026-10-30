@@ -506,4 +506,35 @@ properties:
       expect(result.fieldOverrides.keys, ['mode']);
     },
   );
+
+  test('enumValuesByPath keys parameters and blocks by Terraform name', () {
+    final result = const MmYamlParser().parseString('''
+parameters:
+  - name: region
+    type: Enum
+    enum_values: [EU, US]
+properties:
+  - name: backend
+    api_name: backends
+    type: Array
+    item_type:
+      type: NestedObject
+      properties:
+        - name: balancingMode
+          type: Enum
+          enum_values: [RATE, UTILIZATION]
+  - name: settings
+    type: NestedObject
+    flatten_object: true
+    properties:
+      - name: tier
+        type: Enum
+        enum_values: [BASIC]
+''');
+    expect(result.enumValuesByPath, {
+      'region': ['EU', 'US'],
+      'backend.balancing_mode': ['RATE', 'UTILIZATION'],
+      'tier': ['BASIC'],
+    });
+  });
 }

@@ -1587,7 +1587,7 @@ void main() {
     );
   });
 
-  test('ProviderEnums.mmGroups seals groups without an MM value table', () {
+  test('ProviderEnums.mmGroups seals groups and reads the MM value table', () {
     const mm = {
       'google_thing': MmResourceOverrides(
         fieldOverrides: {},
@@ -1615,7 +1615,7 @@ void main() {
       groups.nestedHints('google_thing', _derives).enumValues([
         'e',
       ], 'no values'),
-      isNull,
+      ['X', 'Y'],
     );
     const data = WrapperOverride(
       outputDir: 'data',

@@ -78,7 +78,7 @@ final class StorageTransferJobNotificationConfig {
 
   final TfArg<List<String>>? eventTypes;
 
-  final TfArg<String> payloadFormat;
+  final StorageTransferJobPayloadFormat payloadFormat;
 
   final RefTo<GooglePubsubTopic> pubsubTopic;
 
@@ -88,6 +88,21 @@ final class StorageTransferJobNotificationConfig {
     'payload_format': payloadFormat.toTfJson(),
     'pubsub_topic': pubsubTopic.encodeAs('id').toTfJson(),
   };
+}
+
+/// `payload_format` — derived from the provider schema description.
+extension type const StorageTransferJobPayloadFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageTransferJobPayloadFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  StorageTransferJobPayloadFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageTransferJobPayloadFormat.arg(TfArg<String> arg) : this._(arg);
+
+  static const none = StorageTransferJobPayloadFormat._(TfArgLiteral('NONE'));
+  static const json = StorageTransferJobPayloadFormat._(TfArgLiteral('JSON'));
+
+  static const List<StorageTransferJobPayloadFormat> values = [none, json];
 }
 
 /// Typed helper for the `replication_spec` block of

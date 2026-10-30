@@ -815,13 +815,36 @@ final class DataLossPreventionDiscoveryConfigTableModifiedCadence {
 
   final DataLossPreventionDiscoveryConfigFrequency? frequency;
 
-  final TfArg<List<String>>? types;
+  final List<DataLossPreventionDiscoveryConfigTableModifiedCadenceTypes>? types;
 
   @internal
   Map<String, Object?> encode() => {
     'frequency': ?frequency?.toTfJson(),
-    'types': ?types?.toTfJson(),
+    if (types != null) 'types': [for (final e in types!) e.toTfJson()],
   };
+}
+
+/// `types` — derived from the provider schema description.
+extension type const DataLossPreventionDiscoveryConfigTableModifiedCadenceTypes._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataLossPreventionDiscoveryConfigTableModifiedCadenceTypes.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  DataLossPreventionDiscoveryConfigTableModifiedCadenceTypes.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const DataLossPreventionDiscoveryConfigTableModifiedCadenceTypes.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const tableModifiedTimestamp =
+      DataLossPreventionDiscoveryConfigTableModifiedCadenceTypes._(
+        TfArgLiteral('TABLE_MODIFIED_TIMESTAMP'),
+      );
+
+  static const List<DataLossPreventionDiscoveryConfigTableModifiedCadenceTypes>
+  values = [tableModifiedTimestamp];
 }
 
 /// Typed helper for the `targets.big_query_target.conditions` block of

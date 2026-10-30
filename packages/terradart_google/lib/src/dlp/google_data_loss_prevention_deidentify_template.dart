@@ -1317,7 +1317,7 @@ final class DataLossPreventionDeidentifyTemplateExpressions {
     this.conditions,
   });
 
-  final TfArg<String>? logicalOperator;
+  final DataLossPreventionDeidentifyTemplateLogicalOperator? logicalOperator;
 
   final DataLossPreventionDeidentifyTemplateConditions? conditions;
 
@@ -1326,6 +1326,27 @@ final class DataLossPreventionDeidentifyTemplateExpressions {
     'logical_operator': ?logicalOperator?.toTfJson(),
     'conditions': ?conditions?.encode(),
   };
+}
+
+/// `logical_operator` — derived from the provider schema description.
+extension type const DataLossPreventionDeidentifyTemplateLogicalOperator._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataLossPreventionDeidentifyTemplateLogicalOperator.variable(String name)
+    : this._(TfArg.variable(name));
+  DataLossPreventionDeidentifyTemplateLogicalOperator.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const DataLossPreventionDeidentifyTemplateLogicalOperator.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const and = DataLossPreventionDeidentifyTemplateLogicalOperator._(
+    TfArgLiteral('AND'),
+  );
+
+  static const List<DataLossPreventionDeidentifyTemplateLogicalOperator>
+  values = [and];
 }
 
 /// Typed helper for the `deidentify_config.record_transformations.field_transformations.condition.expressions.conditions` block of

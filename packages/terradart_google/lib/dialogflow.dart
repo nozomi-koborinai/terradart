@@ -277,6 +277,7 @@ export 'src/dialogflow/google_dialogflow_fulfillment.dart'
     show
         DialogflowFulfillmentFeatures,
         DialogflowFulfillmentGenericWebService,
+        DialogflowFulfillmentType,
         GoogleDialogflowFulfillment;
 export 'src/dialogflow/google_dialogflow_generator.dart'
     show
@@ -311,6 +312,7 @@ export 'src/dialogflow/google_dialogflow_tool.dart'
         DialogflowToolFunctionSpec,
         DialogflowToolMethodType,
         DialogflowToolOauthConfig,
+        DialogflowToolOauthGrantType,
         DialogflowToolOpenApiSpec,
         DialogflowToolOperation,
         DialogflowToolRequestLocation,

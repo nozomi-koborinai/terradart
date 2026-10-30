@@ -18,13 +18,33 @@ final class FolderAccessApprovalSettingsEnrolledServices {
 
   final TfArg<String> cloudProduct;
 
-  final TfArg<String>? enrollmentLevel;
+  final FolderAccessApprovalSettingsEnrollmentLevel? enrollmentLevel;
 
   @internal
   Map<String, Object?> encode() => {
     'cloud_product': cloudProduct.toTfJson(),
     'enrollment_level': ?enrollmentLevel?.toTfJson(),
   };
+}
+
+/// `enrollment_level` — derived from the provider schema description.
+extension type const FolderAccessApprovalSettingsEnrollmentLevel._(
+  TfArg<String> _
+) implements TfArg<String> {
+  FolderAccessApprovalSettingsEnrollmentLevel.variable(String name)
+    : this._(TfArg.variable(name));
+  FolderAccessApprovalSettingsEnrollmentLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const FolderAccessApprovalSettingsEnrollmentLevel.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const blockAll = FolderAccessApprovalSettingsEnrollmentLevel._(
+    TfArgLiteral('BLOCK_ALL'),
+  );
+
+  static const List<FolderAccessApprovalSettingsEnrollmentLevel> values = [
+    blockAll,
+  ];
 }
 
 /// Factory wrapper for `google_folder_access_approval_settings`.

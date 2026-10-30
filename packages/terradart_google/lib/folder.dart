@@ -16,6 +16,7 @@ export 'src/folder/google_folder.dart' show GoogleFolder;
 export 'src/folder/google_folder_access_approval_settings.dart'
     show
         FolderAccessApprovalSettingsEnrolledServices,
+        FolderAccessApprovalSettingsEnrollmentLevel,
         GoogleFolderAccessApprovalSettings;
 export 'src/folder/google_folder_iam_audit_config.dart'
     show FolderIamAuditConfigAuditLogConfig, GoogleFolderIamAuditConfig;

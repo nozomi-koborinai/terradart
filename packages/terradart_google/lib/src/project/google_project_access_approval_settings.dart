@@ -18,13 +18,33 @@ final class ProjectAccessApprovalSettingsEnrolledServices {
 
   final TfArg<String> cloudProduct;
 
-  final TfArg<String>? enrollmentLevel;
+  final ProjectAccessApprovalSettingsEnrollmentLevel? enrollmentLevel;
 
   @internal
   Map<String, Object?> encode() => {
     'cloud_product': cloudProduct.toTfJson(),
     'enrollment_level': ?enrollmentLevel?.toTfJson(),
   };
+}
+
+/// `enrollment_level` — derived from the provider schema description.
+extension type const ProjectAccessApprovalSettingsEnrollmentLevel._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ProjectAccessApprovalSettingsEnrollmentLevel.variable(String name)
+    : this._(TfArg.variable(name));
+  ProjectAccessApprovalSettingsEnrollmentLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const ProjectAccessApprovalSettingsEnrollmentLevel.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const blockAll = ProjectAccessApprovalSettingsEnrollmentLevel._(
+    TfArgLiteral('BLOCK_ALL'),
+  );
+
+  static const List<ProjectAccessApprovalSettingsEnrollmentLevel> values = [
+    blockAll,
+  ];
 }
 
 /// Factory wrapper for `google_project_access_approval_settings`.

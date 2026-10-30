@@ -15,7 +15,8 @@ export 'src/data/google_projects.dart' show DataGoogleProjects;
 export 'src/project/google_project_access_approval_settings.dart'
     show
         GoogleProjectAccessApprovalSettings,
-        ProjectAccessApprovalSettingsEnrolledServices;
+        ProjectAccessApprovalSettingsEnrolledServices,
+        ProjectAccessApprovalSettingsEnrollmentLevel;
 export 'src/project/google_project_default_service_accounts.dart'
     show GoogleProjectDefaultServiceAccounts;
 export 'src/project/google_project_organization_policy.dart'

@@ -254,6 +254,7 @@ export 'src/compute/google_compute_https_health_check.dart'
     show GoogleComputeHttpsHealthCheck;
 export 'src/compute/google_compute_image.dart'
     show
+        ComputeImageContainerType,
         ComputeImageDbs,
         ComputeImageDbxs,
         ComputeImageEncryptionKey,
@@ -285,6 +286,7 @@ export 'src/compute/google_compute_instance.dart'
         ComputeInstanceAccessConfig,
         ComputeInstanceAdvancedMachineFeatures,
         ComputeInstanceAliasIpRange,
+        ComputeInstanceArchitecture,
         ComputeInstanceAttachedDisk,
         ComputeInstanceBootDisk,
         ComputeInstanceConfidentialInstanceConfig,
@@ -294,6 +296,7 @@ export 'src/compute/google_compute_instance.dart'
         ComputeInstanceIpv6AccessConfig,
         ComputeInstanceLocalSsdRecoveryTimeout,
         ComputeInstanceMaxRunDuration,
+        ComputeInstanceMode,
         ComputeInstanceNetworkInterface,
         ComputeInstanceNetworkPerformanceConfig,
         ComputeInstanceNetworkPerformanceConfigTotalEgressBandwidthTier,
@@ -324,6 +327,7 @@ export 'src/compute/google_compute_instance_from_template.dart'
         ComputeInstanceFromTemplateAccessConfig,
         ComputeInstanceFromTemplateAdvancedMachineFeatures,
         ComputeInstanceFromTemplateAliasIpRange,
+        ComputeInstanceFromTemplateArchitecture,
         ComputeInstanceFromTemplateAttachedDisk,
         ComputeInstanceFromTemplateBootDisk,
         ComputeInstanceFromTemplateConfidentialInstanceConfig,
@@ -333,6 +337,7 @@ export 'src/compute/google_compute_instance_from_template.dart'
         ComputeInstanceFromTemplateIpv6AccessConfig,
         ComputeInstanceFromTemplateLocalSsdRecoveryTimeout,
         ComputeInstanceFromTemplateMaxRunDuration,
+        ComputeInstanceFromTemplateMode,
         ComputeInstanceFromTemplateNetworkInterface,
         ComputeInstanceFromTemplateNetworkPerformanceConfig,
         ComputeInstanceFromTemplateNicType,
@@ -618,6 +623,7 @@ export 'src/compute/google_compute_per_instance_config.dart'
 export 'src/compute/google_compute_preview_feature.dart'
     show
         ComputePreviewFeatureActivationStatus,
+        ComputePreviewFeaturePredefinedRolloutPlan,
         ComputePreviewFeatureRolloutInput,
         ComputePreviewFeatureRolloutOperation,
         GoogleComputePreviewFeature;
@@ -1027,6 +1033,7 @@ export 'src/compute/google_compute_resize_request.dart'
     show ComputeResizeRequestRequestedRunDuration, GoogleComputeResizeRequest;
 export 'src/compute/google_compute_resource_policy.dart'
     show
+        ComputeResourcePolicyCollocation,
         ComputeResourcePolicyDailySchedule,
         ComputeResourcePolicyDailyScheduleChoice,
         ComputeResourcePolicyDayOfWeeks,

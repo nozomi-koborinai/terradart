@@ -42,6 +42,7 @@ export 'src/identity/google_identity_platform_config.dart'
         IdentityPlatformConfigBlockingFunctions,
         IdentityPlatformConfigClient,
         IdentityPlatformConfigEmail,
+        IdentityPlatformConfigEnabledProviders,
         IdentityPlatformConfigForwardInboundCredentials,
         IdentityPlatformConfigMfa,
         IdentityPlatformConfigMonitoring,

@@ -143,14 +143,15 @@ final class DiscoveryEngineSearchEngineConfig {
   final DiscoveryEngineSearchEngineRequiredSubscriptionTier?
   requiredSubscriptionTier;
 
-  final TfArg<List<String>>? searchAddOns;
+  final List<DiscoveryEngineSearchEngineConfigSearchAddOns>? searchAddOns;
 
   final DiscoveryEngineSearchEngineTier? searchTier;
 
   @internal
   Map<String, Object?> encode() => {
     'required_subscription_tier': ?requiredSubscriptionTier?.toTfJson(),
-    'search_add_ons': ?searchAddOns?.toTfJson(),
+    if (searchAddOns != null)
+      'search_add_ons': [for (final e in searchAddOns!) e.toTfJson()],
     'search_tier': ?searchTier?.toTfJson(),
   };
 }
@@ -236,6 +237,26 @@ extension type const DiscoveryEngineSearchEngineRequiredSubscriptionTier._(
     subscriptionTierEduEmerging,
     subscriptionTierEduProEmerging,
     subscriptionTierFrontlineStarter,
+  ];
+}
+
+/// `search_add_ons` — derived from the provider schema description.
+extension type const DiscoveryEngineSearchEngineConfigSearchAddOns._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DiscoveryEngineSearchEngineConfigSearchAddOns.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineSearchEngineConfigSearchAddOns.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineSearchEngineConfigSearchAddOns.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const searchAddOnLlm = DiscoveryEngineSearchEngineConfigSearchAddOns._(
+    TfArgLiteral('SEARCH_ADD_ON_LLM'),
+  );
+
+  static const List<DiscoveryEngineSearchEngineConfigSearchAddOns> values = [
+    searchAddOnLlm,
   ];
 }
 

@@ -100,7 +100,10 @@ class MmYamlParser {
     final enums = <String, List<String>>{};
     final beta = <String>{};
     for (final list in [doc['parameters'], doc['properties']]) {
-      if (list is YamlList) _terraformPaths(list, const [], paths.known, beta);
+      if (list is YamlList) {
+        _terraformPaths(list, const [], paths.known, beta);
+        _enumPaths(list, const [], enums);
+      }
     }
 
     // Top-level exactly_one_of (applies to direct children).
@@ -111,7 +114,7 @@ class MmYamlParser {
     final props = doc['properties'];
     if (props is YamlList) {
       for (final p in props) {
-        _walkProperty(p as YamlMap, '', overrides, groups, paths, enums);
+        _walkProperty(p as YamlMap, '', overrides, groups, paths);
       }
     }
     final refs = <String, MmResourceRef>{};
@@ -227,14 +230,13 @@ class MmYamlParser {
 
   /// [sink] and [groupSink] are null below an `item_type`: they keep
   /// their historical scope (the google lane's merged IR and lint read
-  /// them), while [pathSink] and [enumSink] see every property.
+  /// them), while [pathSink] sees every property.
   void _walkProperty(
     YamlMap prop,
     String prefix,
     Map<String, Constraints>? sink,
     List<List<String>>? groupSink,
     _Relations pathSink,
-    Map<String, List<String>> enumSink,
   ) {
     final apiName =
         (prop['api_name'] as String?) ?? _toSnakeCase(prop['name'] as String);
@@ -254,7 +256,6 @@ class MmYamlParser {
     if (sink != null && _isMeaningful(c)) {
       sink[fullKey] = c;
     }
-    if (c.enumValues case final values?) enumSink[fullKey] = values;
 
     // An output-only property is never set, so the rules it declares
     // constrain nothing (upstream sometimes lists its enum values there).
@@ -280,14 +281,7 @@ class MmYamlParser {
     final nested = prop['properties'];
     if (nested is YamlList) {
       for (final n in nested) {
-        _walkProperty(
-          n as YamlMap,
-          childPrefix,
-          sink,
-          groupSink,
-          pathSink,
-          enumSink,
-        );
+        _walkProperty(n as YamlMap, childPrefix, sink, groupSink, pathSink);
       }
       // An object of output fields is an output itself, unless its empty
       // form is a value the caller sends (`allow_empty_object`).
@@ -309,14 +303,34 @@ class MmYamlParser {
     final itemProps = item is YamlMap ? item['properties'] : null;
     if (itemProps is YamlList) {
       for (final n in itemProps) {
-        _walkProperty(
-          n as YamlMap,
-          childPrefix,
-          null,
-          null,
-          pathSink,
-          enumSink,
-        );
+        _walkProperty(n as YamlMap, childPrefix, null, null, pathSink);
+      }
+    }
+  }
+
+  /// Adds the `enum_values` of every property under [props] to [sink], by
+  /// Terraform path below [prefix] (snake-cased `name`s, `flatten_object`
+  /// levels dropped, as [_terraformPaths]). `api_name` is the REST field:
+  /// `backends` with `name: backend` is the Terraform block `backend`.
+  void _enumPaths(
+    YamlList props,
+    List<String> prefix,
+    Map<String, List<String>> sink,
+  ) {
+    for (final raw in props) {
+      if (raw is! YamlMap || raw['name'] is! String) continue;
+      final path = raw['flatten_object'] == true
+          ? prefix
+          : [...prefix, _toSnakeCase(raw['name'] as String)];
+      if (_enumValues(raw) case final values? when path != prefix) {
+        sink[path.join('.')] = values;
+      }
+      final item = raw['item_type'];
+      for (final nested in [
+        raw['properties'],
+        if (item is YamlMap) item['properties'],
+      ]) {
+        if (nested is YamlList) _enumPaths(nested, path, sink);
       }
     }
   }

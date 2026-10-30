@@ -168,23 +168,14 @@ final class ProviderEnums {
     availableValuesDialect: false,
   );
 
-  /// `wrap --mm-groups`: only the `exactly_one_of` / `conflicts` groups of
-  /// [ProviderEnums.fromMm], for a lane whose enum values come from the
-  /// merged IR instead (google GA). No hint table and no `Available values:`
-  /// dialect: an input the merged IR leaves without values takes the
-  /// description dialects every lane reads, and [typeDerivedEnums] types
-  /// each `deriveEnums` input with the enum the wrapper declares.
-  factory ProviderEnums.mmGroups(Map<String, MmResourceOverrides> mm) {
-    final all = ProviderEnums.fromMm(mm)._tables.resources;
-    return ProviderEnums._(
-      enabled: true,
-      tables: (
-        resources: KindHints.empty._withGroups(all.exactlyOne, all.atMostOne),
-        dataSources: KindHints.empty,
-      ),
-      hasGroupSource: true,
-    );
-  }
+  /// `wrap --mm-groups` (google GA): [ProviderEnums.fromMm] for a lane whose
+  /// merged IR already carries the top-level `enum_values`. The Magic
+  /// Modules table also types the nested inputs the merged IR does not
+  /// reach, and an input it has no values for takes the description
+  /// dialects every lane reads. [typeDerivedEnums] types each `deriveEnums`
+  /// input with the enum the wrapper declares.
+  factory ProviderEnums.mmGroups(Map<String, MmResourceOverrides> mm) =>
+      ProviderEnums.fromMm(mm);
 
   /// Reads `providerHintsDir(sourceDir, kind)/*.yaml` into each kind's
   /// table (a missing directory means no hints).

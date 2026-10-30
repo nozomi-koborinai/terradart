@@ -98,8 +98,9 @@ sealed class FirestoreFieldMode {
       FirestoreFieldModeOrder;
 
   /// Sets `array_config`.
-  const factory FirestoreFieldMode.arrayConfig(TfArg<String> arrayConfig) =
-      FirestoreFieldModeArrayConfig;
+  const factory FirestoreFieldMode.arrayConfig(
+    FirestoreFieldArrayConfig arrayConfig,
+  ) = FirestoreFieldModeArrayConfig;
 
   /// The Terraform argument this choice sets.
   @internal
@@ -128,7 +129,7 @@ final class FirestoreFieldModeOrder extends FirestoreFieldMode {
 final class FirestoreFieldModeArrayConfig extends FirestoreFieldMode {
   const FirestoreFieldModeArrayConfig(this.arrayConfig);
 
-  final TfArg<String> arrayConfig;
+  final FirestoreFieldArrayConfig arrayConfig;
 
   @internal
   @override
@@ -137,6 +138,20 @@ final class FirestoreFieldModeArrayConfig extends FirestoreFieldMode {
   @internal
   @override
   Map<String, Object?> encode() => {'array_config': arrayConfig.toTfJson()};
+}
+
+/// `array_config` — derived from the provider schema description.
+extension type const FirestoreFieldArrayConfig._(TfArg<String> _)
+    implements TfArg<String> {
+  FirestoreFieldArrayConfig.variable(String name)
+    : this._(TfArg.variable(name));
+  FirestoreFieldArrayConfig.expression(String template)
+    : this._(TfArg.expression(template));
+  const FirestoreFieldArrayConfig.arg(TfArg<String> arg) : this._(arg);
+
+  static const contains = FirestoreFieldArrayConfig._(TfArgLiteral('CONTAINS'));
+
+  static const List<FirestoreFieldArrayConfig> values = [contains];
 }
 
 /// Typed helper for the `ttl_config` block of

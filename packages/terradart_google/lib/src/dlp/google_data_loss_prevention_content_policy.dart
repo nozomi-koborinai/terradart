@@ -210,7 +210,7 @@ final class DataLossPreventionContentPolicyCustomInfoTypes {
     this.surrogateType,
   });
 
-  final TfArg<String>? exclusionType;
+  final DataLossPreventionContentPolicyExclusionType? exclusionType;
 
   final DataLossPreventionContentPolicyLikelihood? likelihood;
 
@@ -248,6 +248,27 @@ final class DataLossPreventionContentPolicyCustomInfoTypes {
     'stored_type': ?storedType?.encode(),
     'surrogate_type': ?surrogateType?.encode(),
   };
+}
+
+/// `exclusion_type` — derived from the provider schema description.
+extension type const DataLossPreventionContentPolicyExclusionType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataLossPreventionContentPolicyExclusionType.variable(String name)
+    : this._(TfArg.variable(name));
+  DataLossPreventionContentPolicyExclusionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataLossPreventionContentPolicyExclusionType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const exclusionTypeExclude =
+      DataLossPreventionContentPolicyExclusionType._(
+        TfArgLiteral('EXCLUSION_TYPE_EXCLUDE'),
+      );
+
+  static const List<DataLossPreventionContentPolicyExclusionType> values = [
+    exclusionTypeExclude,
+  ];
 }
 
 /// `likelihood` — derived from the provider schema description.

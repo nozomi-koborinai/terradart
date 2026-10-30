@@ -30,6 +30,7 @@ export 'src/backup_dr/google_backup_dr_backup_vault.dart'
 export 'src/backup_dr/google_backup_dr_management_server.dart'
     show
         BackupDrManagementServerNetworks,
+        BackupDrManagementServerPeeringMode,
         BackupDrManagementServerType,
         GoogleBackupDrManagementServer;
 export 'src/backup_dr/google_backup_dr_restore_workload.dart'

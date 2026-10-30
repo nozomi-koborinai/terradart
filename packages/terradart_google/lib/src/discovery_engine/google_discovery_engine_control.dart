@@ -318,7 +318,7 @@ final class DiscoveryEngineControlInterpolationBoostSpec {
 
   final TfArg<String>? fieldName;
 
-  final TfArg<String>? interpolationType;
+  final DiscoveryEngineControlInterpolationType? interpolationType;
 
   final DiscoveryEngineControlPoint? controlPoint;
 
@@ -352,6 +352,23 @@ extension type const DiscoveryEngineControlAttributeType._(TfArg<String> _)
     numerical,
     freshness,
   ];
+}
+
+/// `interpolation_type` — derived from the provider schema description.
+extension type const DiscoveryEngineControlInterpolationType._(TfArg<String> _)
+    implements TfArg<String> {
+  DiscoveryEngineControlInterpolationType.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineControlInterpolationType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineControlInterpolationType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const linear = DiscoveryEngineControlInterpolationType._(
+    TfArgLiteral('LINEAR'),
+  );
+
+  static const List<DiscoveryEngineControlInterpolationType> values = [linear];
 }
 
 /// Typed helper for the `boost_action.interpolation_boost_spec.control_point` block of

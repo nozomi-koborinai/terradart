@@ -234,7 +234,7 @@ final class ComputeImageRawDisk {
     required this.source,
   });
 
-  final TfArg<String>? containerType;
+  final ComputeImageContainerType? containerType;
 
   final TfArg<String>? sha1;
 
@@ -246,6 +246,20 @@ final class ComputeImageRawDisk {
     'sha1': ?sha1?.toTfJson(),
     'source': source.toTfJson(),
   };
+}
+
+/// `container_type` — derived from the provider schema description.
+extension type const ComputeImageContainerType._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeImageContainerType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeImageContainerType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeImageContainerType.arg(TfArg<String> arg) : this._(arg);
+
+  static const tar = ComputeImageContainerType._(TfArgLiteral('TAR'));
+
+  static const List<ComputeImageContainerType> values = [tar];
 }
 
 /// Typed helper for the `shielded_instance_initial_state` block of

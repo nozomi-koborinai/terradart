@@ -31,6 +31,7 @@ export 'src/artifact_registry/google_artifact_registry_repository.dart'
         ArtifactRegistryMavenVersionPolicy,
         ArtifactRegistryMode,
         ArtifactRegistryNpmPublicRepository,
+        ArtifactRegistryPythonPublicRepository,
         ArtifactRegistryRepositoryAptRepository,
         ArtifactRegistryRepositoryAptRepositoryPublicRepository,
         ArtifactRegistryRepositoryCleanupPolicies,

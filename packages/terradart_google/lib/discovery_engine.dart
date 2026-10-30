@@ -55,6 +55,7 @@ export 'src/discovery_engine/google_discovery_engine_control.dart'
         DiscoveryEngineControlFilterActionChoice,
         DiscoveryEngineControlFixedBoost,
         DiscoveryEngineControlInterpolationBoostSpec,
+        DiscoveryEngineControlInterpolationType,
         DiscoveryEngineControlPoint,
         DiscoveryEngineControlPromoteAction,
         DiscoveryEngineControlPromoteActionChoice,
@@ -123,6 +124,7 @@ export 'src/discovery_engine/google_discovery_engine_search_engine.dart'
     show
         DiscoveryEngineSearchEngineCommonConfig,
         DiscoveryEngineSearchEngineConfig,
+        DiscoveryEngineSearchEngineConfigSearchAddOns,
         DiscoveryEngineSearchEngineFeatureConfig,
         DiscoveryEngineSearchEngineIndustryVertical,
         DiscoveryEngineSearchEngineKnowledgeGraphConfig,

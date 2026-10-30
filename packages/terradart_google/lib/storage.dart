@@ -196,6 +196,7 @@ export 'src/storage/google_storage_transfer_job.dart'
         StorageTransferJobMetadataOptions,
         StorageTransferJobNotificationConfig,
         StorageTransferJobObjectConditions,
+        StorageTransferJobPayloadFormat,
         StorageTransferJobPosixDataSink,
         StorageTransferJobPosixDataSource,
         StorageTransferJobReplicationSpec,

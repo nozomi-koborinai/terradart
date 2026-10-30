@@ -974,7 +974,7 @@ sealed class ArtifactRegistryRepositoryPythonRepository {
 
   /// Sets `public_repository`.
   const factory ArtifactRegistryRepositoryPythonRepository.publicRepository(
-    TfArg<String> publicRepository,
+    ArtifactRegistryPythonPublicRepository publicRepository,
   ) = ArtifactRegistryRepositoryPythonRepositoryPublicRepository;
 
   /// Sets `custom_repository`.
@@ -997,7 +997,7 @@ final class ArtifactRegistryRepositoryPythonRepositoryPublicRepository
     this.publicRepository,
   );
 
-  final TfArg<String> publicRepository;
+  final ArtifactRegistryPythonPublicRepository publicRepository;
 
   @internal
   @override
@@ -1028,6 +1028,23 @@ final class ArtifactRegistryRepositoryPythonRepositoryCustomRepository
   Map<String, Object?> encode() => {
     'custom_repository': customRepository.encode(),
   };
+}
+
+/// `public_repository` — derived from the provider schema description.
+extension type const ArtifactRegistryPythonPublicRepository._(TfArg<String> _)
+    implements TfArg<String> {
+  ArtifactRegistryPythonPublicRepository.variable(String name)
+    : this._(TfArg.variable(name));
+  ArtifactRegistryPythonPublicRepository.expression(String template)
+    : this._(TfArg.expression(template));
+  const ArtifactRegistryPythonPublicRepository.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const pypi = ArtifactRegistryPythonPublicRepository._(
+    TfArgLiteral('PYPI'),
+  );
+
+  static const List<ArtifactRegistryPythonPublicRepository> values = [pypi];
 }
 
 /// Typed helper for the `remote_repository_config.upstream_credentials` block of

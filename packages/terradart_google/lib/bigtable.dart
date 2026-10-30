@@ -32,6 +32,7 @@ export 'src/bigtable/google_bigtable_instance.dart'
         BigtableInstanceAutoscalingConfig,
         BigtableInstanceCluster,
         BigtableInstanceEdition,
+        BigtableInstanceNodeScalingFactor,
         BigtableInstanceType,
         GoogleBigtableInstance;
 export 'src/bigtable/google_bigtable_instance_iam_binding.dart'

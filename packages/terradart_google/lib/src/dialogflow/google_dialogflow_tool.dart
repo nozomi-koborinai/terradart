@@ -391,7 +391,7 @@ final class DialogflowToolOauthConfig {
 
   final Sensitive<String>? clientSecret;
 
-  final TfArg<String> oauthGrantType;
+  final DialogflowToolOauthGrantType oauthGrantType;
 
   final TfArg<List<String>>? scopes;
 
@@ -409,6 +409,22 @@ final class DialogflowToolOauthConfig {
         ?.toTfJson(),
     'token_endpoint': tokenEndpoint.toTfJson(),
   };
+}
+
+/// `oauth_grant_type` — derived from the provider schema description.
+extension type const DialogflowToolOauthGrantType._(TfArg<String> _)
+    implements TfArg<String> {
+  DialogflowToolOauthGrantType.variable(String name)
+    : this._(TfArg.variable(name));
+  DialogflowToolOauthGrantType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DialogflowToolOauthGrantType.arg(TfArg<String> arg) : this._(arg);
+
+  static const clientCredential = DialogflowToolOauthGrantType._(
+    TfArgLiteral('CLIENT_CREDENTIAL'),
+  );
+
+  static const List<DialogflowToolOauthGrantType> values = [clientCredential];
 }
 
 /// Typed helper for the `open_api_spec.authentication.service_agent_auth_config` block of
