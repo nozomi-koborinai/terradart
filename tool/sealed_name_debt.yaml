@@ -7,4 +7,5 @@
 # `sealedNames: {"<members>": <concept>}` to the override and
 # re-running wrap, which drops the entry. `wrap --check` fails
 # on a missing or stale entry.
-{}
+azurerm_mssql_managed_database:
+  "point_in_time_restore, recover_database_id": "awaiting-name: hashicorp/azurerm 5.12.0"

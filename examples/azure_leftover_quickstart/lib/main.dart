@@ -14033,6 +14033,14 @@ final class AzureLeftoverStack extends Stack {
       ),
     );
 
+    add(
+      DataAzurermRelayNamespace(
+        'd_relay_namespace',
+        name: .literal(leftover),
+        resourceGroupName: .literal(resourceGroupName),
+      ),
+    );
+
     add(DataAzurermResourceGroup('d_resource_group', name: .literal(leftover)));
 
     add(
