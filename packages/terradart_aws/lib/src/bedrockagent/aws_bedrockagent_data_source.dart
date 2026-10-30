@@ -1572,7 +1572,9 @@ final class BedrockagentDataSourceParsingConfiguration {
   final List<BedrockagentDataSourceBedrockDataAutomationConfiguration>?
   bedrockDataAutomationConfiguration;
 
-  final List<BedrockagentDataSourceParsingModelConfiguration>?
+  final List<
+    BedrockagentDataSourceParsingConfigurationBedrockFoundationModelConfiguration
+  >?
   bedrockFoundationModelConfiguration;
 
   @internal
@@ -1658,8 +1660,8 @@ extension type const BedrockagentDataSourceParsingModality._(TfArg<String> _)
 /// Typed helper for the `vector_ingestion_configuration.parsing_configuration.bedrock_foundation_model_configuration` block of
 /// `aws_bedrockagent_data_source` (derived from provider schema).
 @immutable
-final class BedrockagentDataSourceParsingModelConfiguration {
-  const BedrockagentDataSourceParsingModelConfiguration({
+final class BedrockagentDataSourceParsingConfigurationBedrockFoundationModelConfiguration {
+  const BedrockagentDataSourceParsingConfigurationBedrockFoundationModelConfiguration({
     required this.modelArn,
     this.parsingModality,
     this.parsingPrompt,

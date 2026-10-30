@@ -6153,7 +6153,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'BedrockagentDataSourceParsingStrategy',
       'BedrockagentDataSourceBedrockDataAutomationConfiguration',
       'BedrockagentDataSourceParsingModality',
-      'BedrockagentDataSourceParsingModelConfiguration',
+      'BedrockagentDataSourceParsingConfigurationBedrockFoundationModelConfiguration',
       'BedrockagentDataSourceParsingPrompt',
     ],
     sensitiveFields: <String>[],

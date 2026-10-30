@@ -234117,38 +234117,41 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           required: false,
           repeated: true,
           wrapped: false,
-          helper: 'BedrockagentDataSourceParsingModelConfiguration',
+          helper:
+              'BedrockagentDataSourceParsingConfigurationBedrockFoundationModelConfiguration',
         ),
       ],
     ),
-    'BedrockagentDataSourceParsingModelConfiguration': MigrateHelper(
-      className: 'BedrockagentDataSourceParsingModelConfiguration',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'model_arn',
-          dartName: 'modelArn',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          dartType: 'String',
+    'BedrockagentDataSourceParsingConfigurationBedrockFoundationModelConfiguration':
+        MigrateHelper(
+          className:
+              'BedrockagentDataSourceParsingConfigurationBedrockFoundationModelConfiguration',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'model_arn',
+              dartName: 'modelArn',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'parsing_modality',
+              dartName: 'parsingModality',
+              kind: MigrateSlotKind.enumValue,
+              required: false,
+              dartType: 'BedrockagentDataSourceParsingModality',
+            ),
+            MigrateSlot(
+              tfName: 'parsing_prompt',
+              dartName: 'parsingPrompt',
+              kind: MigrateSlotKind.helper,
+              required: false,
+              repeated: true,
+              wrapped: false,
+              helper: 'BedrockagentDataSourceParsingPrompt',
+            ),
+          ],
         ),
-        MigrateSlot(
-          tfName: 'parsing_modality',
-          dartName: 'parsingModality',
-          kind: MigrateSlotKind.enumValue,
-          required: false,
-          dartType: 'BedrockagentDataSourceParsingModality',
-        ),
-        MigrateSlot(
-          tfName: 'parsing_prompt',
-          dartName: 'parsingPrompt',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          repeated: true,
-          wrapped: false,
-          helper: 'BedrockagentDataSourceParsingPrompt',
-        ),
-      ],
-    ),
     'BedrockagentDataSourceParsingPrompt': MigrateHelper(
       className: 'BedrockagentDataSourceParsingPrompt',
       slots: <MigrateSlot>[
