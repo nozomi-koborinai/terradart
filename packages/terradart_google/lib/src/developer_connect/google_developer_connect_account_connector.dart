@@ -213,7 +213,7 @@ final class DeveloperConnectAccountConnectorProxyConfig {
 ///   accountConnectorId: TfArg.literal('terradart-github'),
 ///   providerOauthConfig:
 ///       DeveloperConnectAccountConnectorProviderOauthConfig(
-///     systemProviderId: TfArg.literal('GITHUB'),
+///     systemProviderId: .github,
 ///     scopes: TfArg.literal(['repo']),
 ///   ),
 ///   deletionPolicy: TfArg.literal('DELETE'),

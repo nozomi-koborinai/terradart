@@ -31,7 +31,7 @@ curatedDoc: |-
   ///       osPolicies: [
   ///         .new(
   ///           id: TfArg.literal('test-os-policy'),
-  ///           mode: TfArg.literal('VALIDATION'),
+  ///           mode: .validation,
   ///           resourceGroups: [
   ///             .new(
   ///               resources: [
@@ -40,7 +40,7 @@ curatedDoc: |-
   ///                   file: .new(
   ///                     content: .literal('file-content-tf'),
   ///                     path: .literal('file-path-tf-1'),
-  ///                     state: .literal('PRESENT'),
+  ///                     state: .present,
   ///                   ),
   ///                 ),
   ///               ],

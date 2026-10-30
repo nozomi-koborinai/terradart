@@ -116,8 +116,8 @@ extension type const ManagedKafkaAclPermissionType._(TfArg<String> _)
 ///   aclEntries: [
 ///     ManagedKafkaAclEntries(
 ///       principal: TfArg.literal('User:serviceAccount:sa@proj.iam.gserviceaccount.com'),
-///       operation: TfArg.literal('ALL'),
-///       permissionType: TfArg.literal('ALLOW'),
+///       operation: .all,
+///       permissionType: .allow,
 ///     ),
 ///   ],
 /// );

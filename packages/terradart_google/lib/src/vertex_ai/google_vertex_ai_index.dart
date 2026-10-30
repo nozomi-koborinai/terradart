@@ -279,7 +279,7 @@ final class VertexAiIndexTreeAhConfig {
 ///     config: .new(
 ///       dimensions: TfArg.literal(128),
 ///       approximateNeighborsCount: TfArg.literal(10),
-///       distanceMeasureType: TfArg.literal('DOT_PRODUCT_DISTANCE'),
+///       distanceMeasureType: .dotProductDistance,
 ///       algorithmConfig: .treeAhConfig(
 ///         .new(
 ///           leafNodeEmbeddingCount: TfArg.literal(1000),

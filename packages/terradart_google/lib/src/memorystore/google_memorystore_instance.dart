@@ -728,7 +728,7 @@ extension type const MemorystoreInstanceZoneDistributionConfigMode._(
 ///   location: TfArg.literal('us-central1'),
 ///   shardCount: TfArg.literal(1),
 ///   replicaCount: TfArg.literal(0),
-///   nodeType: TfArg.literal('SHARED_CORE_NANO'),
+///   nodeType: .sharedCoreNano,
 ///   desiredAutoCreatedEndpoints: [
 ///     MemorystoreInstanceDesiredAutoCreatedEndpoints(
 ///       network: network.ref,

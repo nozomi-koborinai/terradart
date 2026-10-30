@@ -1030,7 +1030,7 @@ final class OsConfigV2PolicyOrchestratorResourceHierarchySelector {
 ///       osPolicies: [
 ///         .new(
 ///           id: TfArg.literal('test-os-policy'),
-///           mode: TfArg.literal('VALIDATION'),
+///           mode: .validation,
 ///           resourceGroups: [
 ///             .new(
 ///               resources: [
@@ -1039,7 +1039,7 @@ final class OsConfigV2PolicyOrchestratorResourceHierarchySelector {
 ///                   file: .new(
 ///                     content: .literal('file-content-tf'),
 ///                     path: .literal('file-path-tf-1'),
-///                     state: .literal('PRESENT'),
+///                     state: .present,
 ///                   ),
 ///                 ),
 ///               ],

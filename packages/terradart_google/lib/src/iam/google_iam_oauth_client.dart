@@ -62,7 +62,7 @@ extension type const IamOauthClientType._(TfArg<String> _)
 ///   allowedGrantTypes: TfArg.literal(['AUTHORIZATION_CODE_GRANT']),
 ///   allowedRedirectUris: TfArg.literal(['https://www.example.com']),
 ///   allowedScopes: TfArg.literal(['openid']),
-///   clientType: TfArg.literal('PUBLIC_CLIENT'),
+///   clientType: .publicClient,
 ///   deletionPolicy: TfArg.literal('DELETE'),
 /// );
 /// ```

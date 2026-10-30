@@ -513,7 +513,7 @@ final class CesDeploymentPinWo extends CesDeploymentPin {
 ///   appVersion: version.ref,
 ///   displayName: TfArg.literal('terradart-ces-deploy'),
 ///   channelProfile: CesDeploymentChannelProfile(
-///     channelType: TfArg.literal('API'),
+///     channelType: .api,
 ///     profileId: TfArg.literal('terradart-ces-api'),
 ///   ),
 /// );
