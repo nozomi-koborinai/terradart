@@ -83410,6 +83410,20 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
+          tfName: '',
+          dartName: 'pointInTimeRestoreOrRecoverDatabaseId',
+          kind: MigrateSlotKind.sealed,
+          required: false,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'point_in_time_restore':
+                'MssqlManagedDatabasePointInTimeRestoreOrRecoverDatabaseIdPointInTimeRestore',
+            'recover_database_id':
+                'MssqlManagedDatabasePointInTimeRestoreOrRecoverDatabaseIdChoice',
+          },
+        ),
+        MigrateSlot(
           tfName: 'short_term_retention_days',
           dartName: 'shortTermRetentionDays',
           kind: MigrateSlotKind.scalar,
@@ -83431,14 +83445,6 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           wrapped: false,
           helper: 'MssqlManagedDatabaseLongTermRetentionPolicy',
         ),
-        MigrateSlot(
-          tfName: 'point_in_time_restore',
-          dartName: 'pointInTimeRestore',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'MssqlManagedDatabasePointInTimeRestore',
-        ),
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'name', dartType: 'String'),
@@ -83446,6 +83452,11 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'managed_instance_id',
           dartName: 'managedInstanceId',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'recover_database_id',
+          dartName: 'recoverDatabaseId',
           dartType: 'String',
         ),
         MigrateGetter(
@@ -106515,6 +106526,78 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           tfName: 'tags',
           dartName: 'tags',
           dartType: 'Map<String, String>',
+        ),
+      ],
+    ),
+    MigrateEntry(
+      tfType: 'azurerm_relay_namespace',
+      className: 'DataAzurermRelayNamespace',
+      barrel: 'relay',
+      kind: CatalogKind.dataSource,
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'name',
+          dartName: 'name',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'resource_group_name',
+          dartName: 'resourceGroupName',
+          kind: MigrateSlotKind.reference,
+          required: true,
+          dartType: 'AzurermResourceGroup',
+          attribute: 'name',
+        ),
+      ],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'name', dartName: 'name', dartType: 'String'),
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'location',
+          dartName: 'location',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'metric_id',
+          dartName: 'metricId',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'primary_connection_string',
+          dartName: 'primaryConnectionString',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'primary_key',
+          dartName: 'primaryKey',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'secondary_connection_string',
+          dartName: 'secondaryConnectionString',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'secondary_key',
+          dartName: 'secondaryKey',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'sku_name',
+          dartName: 'skuName',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'tags',
+          dartName: 'tags',
+          dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(
+          tfName: 'resource_group_name',
+          dartName: 'resourceGroupName',
+          dartType: 'String',
         ),
       ],
     ),
@@ -152141,6 +152224,13 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'ignore_status_code',
+          dartName: 'ignoreStatusCode',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
         ),
         MigrateSlot(
           tfName: 'ssl_cert_remaining_lifetime',
@@ -200912,6 +201002,39 @@ const MigrateManifest azureMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'MssqlManagedDatabasePointInTimeRestoreOrRecoverDatabaseIdChoice':
+        MigrateHelper(
+          className:
+              'MssqlManagedDatabasePointInTimeRestoreOrRecoverDatabaseIdChoice',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'recover_database_id',
+              dartName: 'recoverDatabaseId',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              positional: true,
+              dartType: 'String',
+            ),
+          ],
+          shorthand: 'recoverDatabaseId',
+        ),
+    'MssqlManagedDatabasePointInTimeRestoreOrRecoverDatabaseIdPointInTimeRestore':
+        MigrateHelper(
+          className:
+              'MssqlManagedDatabasePointInTimeRestoreOrRecoverDatabaseIdPointInTimeRestore',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'point_in_time_restore',
+              dartName: 'pointInTimeRestore',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              positional: true,
+              helper: 'MssqlManagedDatabasePointInTimeRestore',
+            ),
+          ],
+          shorthand: 'pointInTimeRestore',
+        ),
     'MssqlManagedInstanceAzureActiveDirectoryAdministrator': MigrateHelper(
       className: 'MssqlManagedInstanceAzureActiveDirectoryAdministrator',
       slots: <MigrateSlot>[

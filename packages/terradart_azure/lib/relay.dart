@@ -4,6 +4,7 @@
 library;
 
 export 'package:terradart_core/terradart_core.dart';
+export 'src/data/azurerm_relay_namespace.dart' show DataAzurermRelayNamespace;
 export 'src/relay/azurerm_relay_hybrid_connection.dart'
     show AzurermRelayHybridConnection;
 export 'src/relay/azurerm_relay_hybrid_connection_authorization_rule.dart'

@@ -586,6 +586,7 @@ export 'src/data/azurerm_public_maintenance_configurations.dart'
 export 'src/data/azurerm_recovery_services_vault.dart'
     show DataAzurermRecoveryServicesVault;
 export 'src/data/azurerm_redis_cache.dart' show DataAzurermRedisCache;
+export 'src/data/azurerm_relay_namespace.dart' show DataAzurermRelayNamespace;
 export 'src/data/azurerm_resource_group.dart' show DataAzurermResourceGroup;
 export 'src/data/azurerm_resource_group_template_deployment.dart'
     show DataAzurermResourceGroupTemplateDeployment;

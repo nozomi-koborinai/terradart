@@ -117,12 +117,15 @@ final class ApplicationInsightsStandardWebTestHeader {
 final class ApplicationInsightsStandardWebTestValidationRules {
   const ApplicationInsightsStandardWebTestValidationRules({
     this.expectedStatusCode,
+    this.ignoreStatusCode,
     this.sslCertRemainingLifetime,
     this.sslCheckEnabled,
     this.content,
   });
 
   final TfArg<num>? expectedStatusCode;
+
+  final TfArg<bool>? ignoreStatusCode;
 
   final TfArg<num>? sslCertRemainingLifetime;
 
@@ -133,6 +136,7 @@ final class ApplicationInsightsStandardWebTestValidationRules {
   @internal
   Map<String, Object?> encode() => {
     'expected_status_code': ?expectedStatusCode?.toTfJson(),
+    'ignore_status_code': ?ignoreStatusCode?.toTfJson(),
     'ssl_cert_remaining_lifetime': ?sslCertRemainingLifetime?.toTfJson(),
     'ssl_check_enabled': ?sslCheckEnabled?.toTfJson(),
     'content': ?content?.encode(),
