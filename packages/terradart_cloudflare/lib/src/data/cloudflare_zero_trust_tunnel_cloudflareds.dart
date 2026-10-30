@@ -7,6 +7,37 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 /// Sensitive field paths for `cloudflare_zero_trust_tunnel_cloudflareds`.
 const Set<String> _cloudflareZeroTrustTunnelCloudflaredsSensitive = <String>{};
 
+/// Data Zero Trust Tunnel Cloudflareds enum for `status`.
+extension type const DataZeroTrustTunnelCloudflaredsStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  DataZeroTrustTunnelCloudflaredsStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  DataZeroTrustTunnelCloudflaredsStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataZeroTrustTunnelCloudflaredsStatus.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const inactive = DataZeroTrustTunnelCloudflaredsStatus._(
+    TfArgLiteral('inactive'),
+  );
+  static const degraded = DataZeroTrustTunnelCloudflaredsStatus._(
+    TfArgLiteral('degraded'),
+  );
+  static const healthy = DataZeroTrustTunnelCloudflaredsStatus._(
+    TfArgLiteral('healthy'),
+  );
+  static const down = DataZeroTrustTunnelCloudflaredsStatus._(
+    TfArgLiteral('down'),
+  );
+
+  static const List<DataZeroTrustTunnelCloudflaredsStatus> values = [
+    inactive,
+    degraded,
+    healthy,
+    down,
+  ];
+}
+
 /// Factory wrapper for `cloudflare_zero_trust_tunnel_cloudflareds`.
 ///
 /// Accepted Permissions
@@ -26,7 +57,7 @@ final class DataCloudflareZeroTrustTunnelCloudflareds extends Data {
     TfArg<bool>? isDeleted,
     TfArg<num>? maxItems,
     TfArg<String>? name,
-    TfArg<String>? status,
+    DataZeroTrustTunnelCloudflaredsStatus? status,
     TfArg<String>? uuid,
     TfArg<String>? wasActiveAt,
     TfArg<String>? wasInactiveAt,

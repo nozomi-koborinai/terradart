@@ -6,13 +6,27 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_accounts`.
 const Set<String> _cloudflareAccountsSensitive = <String>{};
 
+/// Data Accounts enum for `direction`.
+extension type const DataAccountsDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  DataAccountsDirection.variable(String name) : this._(TfArg.variable(name));
+  DataAccountsDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataAccountsDirection.arg(TfArg<String> arg) : this._(arg);
+
+  static const asc = DataAccountsDirection._(TfArgLiteral('asc'));
+  static const desc = DataAccountsDirection._(TfArgLiteral('desc'));
+
+  static const List<DataAccountsDirection> values = [asc, desc];
+}
+
 /// Factory wrapper for `cloudflare_accounts`.
 final class DataCloudflareAccounts extends Data {
   static const String tfType = 'cloudflare_accounts';
 
   DataCloudflareAccounts(
     super.localName, {
-    TfArg<String>? direction,
+    DataAccountsDirection? direction,
     TfArg<num>? maxItems,
     TfArg<String>? name,
     super.provider,

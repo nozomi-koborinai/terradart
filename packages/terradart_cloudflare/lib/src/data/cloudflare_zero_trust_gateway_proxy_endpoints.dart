@@ -8,6 +8,58 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 const Set<String> _cloudflareZeroTrustGatewayProxyEndpointsSensitive =
     <String>{};
 
+/// Data Zero Trust Gateway Proxy Endpoints enum for `direction`.
+extension type const DataZeroTrustGatewayProxyEndpointsDirection._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataZeroTrustGatewayProxyEndpointsDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  DataZeroTrustGatewayProxyEndpointsDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataZeroTrustGatewayProxyEndpointsDirection.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const asc = DataZeroTrustGatewayProxyEndpointsDirection._(
+    TfArgLiteral('asc'),
+  );
+  static const desc = DataZeroTrustGatewayProxyEndpointsDirection._(
+    TfArgLiteral('desc'),
+  );
+
+  static const List<DataZeroTrustGatewayProxyEndpointsDirection> values = [
+    asc,
+    desc,
+  ];
+}
+
+/// Data Zero Trust Gateway Proxy Endpoints Order enum for `order_by`.
+extension type const DataZeroTrustGatewayProxyEndpointsOrderBy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataZeroTrustGatewayProxyEndpointsOrderBy.variable(String name)
+    : this._(TfArg.variable(name));
+  DataZeroTrustGatewayProxyEndpointsOrderBy.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataZeroTrustGatewayProxyEndpointsOrderBy.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const name = DataZeroTrustGatewayProxyEndpointsOrderBy._(
+    TfArgLiteral('name'),
+  );
+  static const createdAt = DataZeroTrustGatewayProxyEndpointsOrderBy._(
+    TfArgLiteral('created_at'),
+  );
+  static const updatedAt = DataZeroTrustGatewayProxyEndpointsOrderBy._(
+    TfArgLiteral('updated_at'),
+  );
+
+  static const List<DataZeroTrustGatewayProxyEndpointsOrderBy> values = [
+    name,
+    createdAt,
+    updatedAt,
+  ];
+}
+
 /// Factory wrapper for `cloudflare_zero_trust_gateway_proxy_endpoints`.
 final class DataCloudflareZeroTrustGatewayProxyEndpoints extends Data {
   static const String tfType = 'cloudflare_zero_trust_gateway_proxy_endpoints';
@@ -15,10 +67,10 @@ final class DataCloudflareZeroTrustGatewayProxyEndpoints extends Data {
   DataCloudflareZeroTrustGatewayProxyEndpoints(
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
-    TfArg<String>? direction,
+    DataZeroTrustGatewayProxyEndpointsDirection? direction,
     TfArg<List<String>>? filter,
     TfArg<num>? maxItems,
-    TfArg<String>? orderBy,
+    DataZeroTrustGatewayProxyEndpointsOrderBy? orderBy,
     TfArg<String>? search,
     super.provider,
     super.timeouts,

@@ -7,6 +7,82 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 /// Sensitive field paths for `cloudflare_email_security_block_senders`.
 const Set<String> _cloudflareEmailSecurityBlockSendersSensitive = <String>{};
 
+/// Data Email Security Block Senders enum for `direction`.
+extension type const DataEmailSecurityBlockSendersDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  DataEmailSecurityBlockSendersDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  DataEmailSecurityBlockSendersDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataEmailSecurityBlockSendersDirection.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const asc = DataEmailSecurityBlockSendersDirection._(
+    TfArgLiteral('asc'),
+  );
+  static const desc = DataEmailSecurityBlockSendersDirection._(
+    TfArgLiteral('desc'),
+  );
+
+  static const List<DataEmailSecurityBlockSendersDirection> values = [
+    asc,
+    desc,
+  ];
+}
+
+/// Data Email Security Block Senders enum for `order`.
+extension type const DataEmailSecurityBlockSendersOrder._(TfArg<String> _)
+    implements TfArg<String> {
+  DataEmailSecurityBlockSendersOrder.variable(String name)
+    : this._(TfArg.variable(name));
+  DataEmailSecurityBlockSendersOrder.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataEmailSecurityBlockSendersOrder.arg(TfArg<String> arg) : this._(arg);
+
+  static const pattern = DataEmailSecurityBlockSendersOrder._(
+    TfArgLiteral('pattern'),
+  );
+  static const createdAt = DataEmailSecurityBlockSendersOrder._(
+    TfArgLiteral('created_at'),
+  );
+
+  static const List<DataEmailSecurityBlockSendersOrder> values = [
+    pattern,
+    createdAt,
+  ];
+}
+
+/// Data Email Security Block Senders Pattern enum for `pattern_type`.
+extension type const DataEmailSecurityBlockSendersPatternType._(TfArg<String> _)
+    implements TfArg<String> {
+  DataEmailSecurityBlockSendersPatternType.variable(String name)
+    : this._(TfArg.variable(name));
+  DataEmailSecurityBlockSendersPatternType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataEmailSecurityBlockSendersPatternType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const email = DataEmailSecurityBlockSendersPatternType._(
+    TfArgLiteral('EMAIL'),
+  );
+  static const domain = DataEmailSecurityBlockSendersPatternType._(
+    TfArgLiteral('DOMAIN'),
+  );
+  static const ip = DataEmailSecurityBlockSendersPatternType._(
+    TfArgLiteral('IP'),
+  );
+  static const unknown = DataEmailSecurityBlockSendersPatternType._(
+    TfArgLiteral('UNKNOWN'),
+  );
+
+  static const List<DataEmailSecurityBlockSendersPatternType> values = [
+    email,
+    domain,
+    ip,
+    unknown,
+  ];
+}
+
 /// Factory wrapper for `cloudflare_email_security_block_senders`.
 ///
 /// Accepted Permissions
@@ -18,11 +94,11 @@ final class DataCloudflareEmailSecurityBlockSenders extends Data {
   DataCloudflareEmailSecurityBlockSenders(
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
-    TfArg<String>? direction,
+    DataEmailSecurityBlockSendersDirection? direction,
     TfArg<num>? maxItems,
-    TfArg<String>? order,
+    DataEmailSecurityBlockSendersOrder? order,
     TfArg<String>? pattern,
-    TfArg<String>? patternType,
+    DataEmailSecurityBlockSendersPatternType? patternType,
     TfArg<String>? search,
     super.provider,
     super.timeouts,

@@ -9,6 +9,58 @@ import '../zone/cloudflare_zone.dart' show CloudflareZone;
 /// Sensitive field paths for `cloudflare_custom_pages`.
 const Set<String> _cloudflareCustomPagesSensitive = <String>{};
 
+/// Data Custom Pages enum for `identifier`.
+extension type const DataCustomPagesIdentifier._(TfArg<String> _)
+    implements TfArg<String> {
+  DataCustomPagesIdentifier.variable(String name)
+    : this._(TfArg.variable(name));
+  DataCustomPagesIdentifier.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataCustomPagesIdentifier.arg(TfArg<String> arg) : this._(arg);
+
+  static const v1000Errors = DataCustomPagesIdentifier._(
+    TfArgLiteral('1000_errors'),
+  );
+  static const v500Errors = DataCustomPagesIdentifier._(
+    TfArgLiteral('500_errors'),
+  );
+  static const basicChallenge = DataCustomPagesIdentifier._(
+    TfArgLiteral('basic_challenge'),
+  );
+  static const countryChallenge = DataCustomPagesIdentifier._(
+    TfArgLiteral('country_challenge'),
+  );
+  static const ipBlock = DataCustomPagesIdentifier._(TfArgLiteral('ip_block'));
+  static const managedChallenge = DataCustomPagesIdentifier._(
+    TfArgLiteral('managed_challenge'),
+  );
+  static const ratelimitBlock = DataCustomPagesIdentifier._(
+    TfArgLiteral('ratelimit_block'),
+  );
+  static const underAttack = DataCustomPagesIdentifier._(
+    TfArgLiteral('under_attack'),
+  );
+  static const wafBlock = DataCustomPagesIdentifier._(
+    TfArgLiteral('waf_block'),
+  );
+  static const wafChallenge = DataCustomPagesIdentifier._(
+    TfArgLiteral('waf_challenge'),
+  );
+
+  static const List<DataCustomPagesIdentifier> values = [
+    v1000Errors,
+    v500Errors,
+    basicChallenge,
+    countryChallenge,
+    ipBlock,
+    managedChallenge,
+    ratelimitBlock,
+    underAttack,
+    wafBlock,
+    wafChallenge,
+  ];
+}
+
 /// Factory wrapper for `cloudflare_custom_pages`.
 ///
 /// Accepted Permissions
@@ -21,7 +73,7 @@ final class DataCloudflareCustomPages extends Data {
   DataCloudflareCustomPages(
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
-    required TfArg<String> identifier,
+    required DataCustomPagesIdentifier identifier,
     RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,

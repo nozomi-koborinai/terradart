@@ -8,7 +8,8 @@ export 'src/data/cloudflare_custom_page_asset.dart'
     show DataCloudflareCustomPageAsset;
 export 'src/data/cloudflare_custom_page_assets.dart'
     show DataCloudflareCustomPageAssets;
-export 'src/data/cloudflare_custom_pages.dart' show DataCloudflareCustomPages;
+export 'src/data/cloudflare_custom_pages.dart'
+    show DataCloudflareCustomPages, DataCustomPagesIdentifier;
 export 'src/data/cloudflare_custom_pages_list.dart'
     show DataCloudflareCustomPagesList;
 export 'src/data/cloudflare_pages_domain.dart' show DataCloudflarePagesDomain;

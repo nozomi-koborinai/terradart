@@ -373,19 +373,26 @@ List<String> staleHints(String schemaDir) {
   return stale..sort();
 }
 
-/// Each data override under [overridesRoot] that lacks `deriveEnums: true`
-/// or `deriveExactlyOne: true` while [schemaDir] has data-source hints, as
-/// `file: flag`. Without both flags a data factory reads its hint file for
-/// neither enums nor sealed groups.
-List<String> dataSourceDerivationGaps(String schemaDir, String overridesRoot) {
-  if (!hasDataSourceHints(schemaDir)) return const [];
+/// Each data override under [overridesRoot] that lacks a derivation flag,
+/// as `file: flag`. `deriveEnums: true` is required on a [providerEnums]
+/// lane, whose description dialects type data-source inputs with no hint
+/// file, and on a lane whose [schemaDir] has data-source hints; those hints
+/// also require `deriveExactlyOne: true`. Without the flag a data factory
+/// takes a free string for a fixed value set.
+List<String> dataSourceDerivationGaps(
+  String schemaDir,
+  String overridesRoot, {
+  bool providerEnums = false,
+}) {
+  final hints = hasDataSourceHints(schemaDir);
+  if (!hints && !providerEnums) return const [];
   return [
     for (final MapEntry(key: type, value: o) in YamlOverrideLoader(
       rootDir: overridesRoot,
     ).load().dataSources.entries)
       for (final (flag, set) in [
         ('deriveEnums', o.deriveEnums),
-        ('deriveExactlyOne', o.deriveExactlyOne),
+        if (hints) ('deriveExactlyOne', o.deriveExactlyOne),
       ])
         if (!set)
           '${overrideFileStem(terraformType: type, kind: .dataSource)}.yaml: '

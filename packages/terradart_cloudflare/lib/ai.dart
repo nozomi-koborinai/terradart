@@ -112,7 +112,10 @@ export 'src/data/cloudflare_ai_search_instance.dart'
         DataAiSearchInstanceOrderByDirection,
         DataCloudflareAiSearchInstance;
 export 'src/data/cloudflare_ai_search_instances.dart'
-    show DataCloudflareAiSearchInstances;
+    show
+        DataAiSearchInstancesOrderBy,
+        DataAiSearchInstancesOrderByDirection,
+        DataCloudflareAiSearchInstances;
 export 'src/data/cloudflare_ai_search_namespace.dart'
     show DataCloudflareAiSearchNamespace;
 export 'src/data/cloudflare_ai_search_namespaces.dart'

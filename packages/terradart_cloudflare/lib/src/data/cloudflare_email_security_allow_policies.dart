@@ -7,6 +7,84 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 /// Sensitive field paths for `cloudflare_email_security_allow_policies`.
 const Set<String> _cloudflareEmailSecurityAllowPoliciesSensitive = <String>{};
 
+/// Data Email Security Allow Policies enum for `direction`.
+extension type const DataEmailSecurityAllowPoliciesDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  DataEmailSecurityAllowPoliciesDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  DataEmailSecurityAllowPoliciesDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataEmailSecurityAllowPoliciesDirection.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const asc = DataEmailSecurityAllowPoliciesDirection._(
+    TfArgLiteral('asc'),
+  );
+  static const desc = DataEmailSecurityAllowPoliciesDirection._(
+    TfArgLiteral('desc'),
+  );
+
+  static const List<DataEmailSecurityAllowPoliciesDirection> values = [
+    asc,
+    desc,
+  ];
+}
+
+/// Data Email Security Allow Policies enum for `order`.
+extension type const DataEmailSecurityAllowPoliciesOrder._(TfArg<String> _)
+    implements TfArg<String> {
+  DataEmailSecurityAllowPoliciesOrder.variable(String name)
+    : this._(TfArg.variable(name));
+  DataEmailSecurityAllowPoliciesOrder.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataEmailSecurityAllowPoliciesOrder.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const pattern = DataEmailSecurityAllowPoliciesOrder._(
+    TfArgLiteral('pattern'),
+  );
+  static const createdAt = DataEmailSecurityAllowPoliciesOrder._(
+    TfArgLiteral('created_at'),
+  );
+
+  static const List<DataEmailSecurityAllowPoliciesOrder> values = [
+    pattern,
+    createdAt,
+  ];
+}
+
+/// Data Email Security Allow Policies Pattern enum for `pattern_type`.
+extension type const DataEmailSecurityAllowPoliciesPatternType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataEmailSecurityAllowPoliciesPatternType.variable(String name)
+    : this._(TfArg.variable(name));
+  DataEmailSecurityAllowPoliciesPatternType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataEmailSecurityAllowPoliciesPatternType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const email = DataEmailSecurityAllowPoliciesPatternType._(
+    TfArgLiteral('EMAIL'),
+  );
+  static const domain = DataEmailSecurityAllowPoliciesPatternType._(
+    TfArgLiteral('DOMAIN'),
+  );
+  static const ip = DataEmailSecurityAllowPoliciesPatternType._(
+    TfArgLiteral('IP'),
+  );
+  static const unknown = DataEmailSecurityAllowPoliciesPatternType._(
+    TfArgLiteral('UNKNOWN'),
+  );
+
+  static const List<DataEmailSecurityAllowPoliciesPatternType> values = [
+    email,
+    domain,
+    ip,
+    unknown,
+  ];
+}
+
 /// Factory wrapper for `cloudflare_email_security_allow_policies`.
 ///
 /// Accepted Permissions
@@ -18,14 +96,14 @@ final class DataCloudflareEmailSecurityAllowPolicies extends Data {
   DataCloudflareEmailSecurityAllowPolicies(
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
-    TfArg<String>? direction,
+    DataEmailSecurityAllowPoliciesDirection? direction,
     TfArg<bool>? isAcceptableSender,
     TfArg<bool>? isExemptRecipient,
     TfArg<bool>? isTrustedSender,
     TfArg<num>? maxItems,
-    TfArg<String>? order,
+    DataEmailSecurityAllowPoliciesOrder? order,
     TfArg<String>? pattern,
-    TfArg<String>? patternType,
+    DataEmailSecurityAllowPoliciesPatternType? patternType,
     TfArg<String>? search,
     TfArg<bool>? verifySender,
     super.provider,

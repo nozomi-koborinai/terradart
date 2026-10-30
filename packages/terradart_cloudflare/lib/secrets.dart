@@ -17,9 +17,15 @@ export 'src/data/cloudflare_secrets_store_secret.dart'
         DataSecretsStoreSecretFilter,
         DataSecretsStoreSecretOrder;
 export 'src/data/cloudflare_secrets_store_secrets.dart'
-    show DataCloudflareSecretsStoreSecrets;
+    show
+        DataCloudflareSecretsStoreSecrets,
+        DataSecretsStoreSecretsDirection,
+        DataSecretsStoreSecretsOrder;
 export 'src/data/cloudflare_secrets_stores.dart'
-    show DataCloudflareSecretsStores;
+    show
+        DataCloudflareSecretsStores,
+        DataSecretsStoresDirection,
+        DataSecretsStoresOrder;
 export 'src/secrets/cloudflare_secrets_store.dart' show CloudflareSecretsStore;
 export 'src/secrets/cloudflare_secrets_store_secret.dart'
     show CloudflareSecretsStoreSecret;

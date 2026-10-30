@@ -8,6 +8,26 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 const Set<String> _cloudflareConnectivityDirectoryServicesSensitive =
     <String>{};
 
+/// Data Connectivity Directory Services enum for `type`.
+extension type const DataConnectivityDirectoryServicesType._(TfArg<String> _)
+    implements TfArg<String> {
+  DataConnectivityDirectoryServicesType.variable(String name)
+    : this._(TfArg.variable(name));
+  DataConnectivityDirectoryServicesType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataConnectivityDirectoryServicesType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const tcp = DataConnectivityDirectoryServicesType._(
+    TfArgLiteral('tcp'),
+  );
+  static const http = DataConnectivityDirectoryServicesType._(
+    TfArgLiteral('http'),
+  );
+
+  static const List<DataConnectivityDirectoryServicesType> values = [tcp, http];
+}
+
 /// Factory wrapper for `cloudflare_connectivity_directory_services`.
 final class DataCloudflareConnectivityDirectoryServices extends Data {
   static const String tfType = 'cloudflare_connectivity_directory_services';
@@ -16,7 +36,7 @@ final class DataCloudflareConnectivityDirectoryServices extends Data {
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
-    TfArg<String>? type,
+    DataConnectivityDirectoryServicesType? type,
     super.provider,
     super.timeouts,
   }) : super(

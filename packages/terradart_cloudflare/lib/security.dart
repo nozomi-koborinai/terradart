@@ -20,11 +20,21 @@ export 'src/data/cloudflare_leaked_credential_check_rules.dart'
 export 'src/data/cloudflare_page_shield_connections.dart'
     show DataCloudflarePageShieldConnections;
 export 'src/data/cloudflare_page_shield_connections_list.dart'
-    show DataCloudflarePageShieldConnectionsList;
+    show
+        DataCloudflarePageShieldConnectionsList,
+        DataPageShieldConnectionsListDirection,
+        DataPageShieldConnectionsListExport,
+        DataPageShieldConnectionsListOrderBy;
 export 'src/data/cloudflare_page_shield_cookies.dart'
     show DataCloudflarePageShieldCookies;
 export 'src/data/cloudflare_page_shield_cookies_list.dart'
-    show DataCloudflarePageShieldCookiesList;
+    show
+        DataCloudflarePageShieldCookiesList,
+        DataPageShieldCookiesListDirection,
+        DataPageShieldCookiesListExport,
+        DataPageShieldCookiesListOrderBy,
+        DataPageShieldCookiesListSameSite,
+        DataPageShieldCookiesListType;
 export 'src/data/cloudflare_page_shield_policies.dart'
     show DataCloudflarePageShieldPolicies;
 export 'src/data/cloudflare_page_shield_policy.dart'
@@ -32,7 +42,11 @@ export 'src/data/cloudflare_page_shield_policy.dart'
 export 'src/data/cloudflare_page_shield_scripts.dart'
     show DataCloudflarePageShieldScripts;
 export 'src/data/cloudflare_page_shield_scripts_list.dart'
-    show DataCloudflarePageShieldScriptsList;
+    show
+        DataCloudflarePageShieldScriptsList,
+        DataPageShieldScriptsListDirection,
+        DataPageShieldScriptsListExport,
+        DataPageShieldScriptsListOrderBy;
 export 'src/data/cloudflare_rate_limit.dart' show DataCloudflareRateLimit;
 export 'src/data/cloudflare_user_agent_blocking_rule.dart'
     show DataCloudflareUserAgentBlockingRule, DataUserAgentBlockingRuleFilter;

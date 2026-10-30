@@ -7,6 +7,23 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 /// Sensitive field paths for `cloudflare_zero_trust_dex_tests`.
 const Set<String> _cloudflareZeroTrustDexTestsSensitive = <String>{};
 
+/// Data Zero Trust Dex Tests enum for `kind`.
+extension type const DataZeroTrustDexTestsKind._(TfArg<String> _)
+    implements TfArg<String> {
+  DataZeroTrustDexTestsKind.variable(String name)
+    : this._(TfArg.variable(name));
+  DataZeroTrustDexTestsKind.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataZeroTrustDexTestsKind.arg(TfArg<String> arg) : this._(arg);
+
+  static const http = DataZeroTrustDexTestsKind._(TfArgLiteral('http'));
+  static const traceroute = DataZeroTrustDexTestsKind._(
+    TfArgLiteral('traceroute'),
+  );
+
+  static const List<DataZeroTrustDexTestsKind> values = [http, traceroute];
+}
+
 /// Factory wrapper for `cloudflare_zero_trust_dex_tests`.
 ///
 /// Accepted Permissions
@@ -19,7 +36,7 @@ final class DataCloudflareZeroTrustDexTests extends Data {
   DataCloudflareZeroTrustDexTests(
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
-    TfArg<String>? kind,
+    DataZeroTrustDexTestsKind? kind,
     TfArg<num>? maxItems,
     TfArg<String>? testName,
     super.provider,

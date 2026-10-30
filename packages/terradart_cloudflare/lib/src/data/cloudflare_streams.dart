@@ -7,6 +7,37 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 /// Sensitive field paths for `cloudflare_streams`.
 const Set<String> _cloudflareStreamsSensitive = <String>{};
 
+/// Data Streams enum for `status`.
+extension type const DataStreamsStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  DataStreamsStatus.variable(String name) : this._(TfArg.variable(name));
+  DataStreamsStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataStreamsStatus.arg(TfArg<String> arg) : this._(arg);
+
+  static const pendingupload = DataStreamsStatus._(
+    TfArgLiteral('pendingupload'),
+  );
+  static const downloading = DataStreamsStatus._(TfArgLiteral('downloading'));
+  static const queued = DataStreamsStatus._(TfArgLiteral('queued'));
+  static const inprogress = DataStreamsStatus._(TfArgLiteral('inprogress'));
+  static const ready = DataStreamsStatus._(TfArgLiteral('ready'));
+  static const error = DataStreamsStatus._(TfArgLiteral('error'));
+  static const liveInprogress = DataStreamsStatus._(
+    TfArgLiteral('live-inprogress'),
+  );
+
+  static const List<DataStreamsStatus> values = [
+    pendingupload,
+    downloading,
+    queued,
+    inprogress,
+    ready,
+    error,
+    liveInprogress,
+  ];
+}
+
 /// Factory wrapper for `cloudflare_streams`.
 ///
 /// Accepted Permissions
@@ -30,7 +61,7 @@ final class DataCloudflareStreams extends Data {
     TfArg<String>? name,
     TfArg<String>? search,
     TfArg<String>? start,
-    TfArg<String>? status,
+    DataStreamsStatus? status,
     TfArg<String>? type,
     TfArg<String>? videoName,
     super.provider,

@@ -10,6 +10,169 @@ const Set<String> _cloudflareLogpushDatasetJobSensitive = <String>{
   'destination_conf',
 };
 
+/// Data Logpush Dataset Job Dataset enum for `dataset_id`.
+extension type const DataLogpushDatasetJobDatasetId._(TfArg<String> _)
+    implements TfArg<String> {
+  DataLogpushDatasetJobDatasetId.variable(String name)
+    : this._(TfArg.variable(name));
+  DataLogpushDatasetJobDatasetId.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataLogpushDatasetJobDatasetId.arg(TfArg<String> arg) : this._(arg);
+
+  static const accessRequests = DataLogpushDatasetJobDatasetId._(
+    TfArgLiteral('access_requests'),
+  );
+  static const accountAbuseProtectionEvents = DataLogpushDatasetJobDatasetId._(
+    TfArgLiteral('account_abuse_protection_events'),
+  );
+  static const auditLogs = DataLogpushDatasetJobDatasetId._(
+    TfArgLiteral('audit_logs'),
+  );
+  static const auditLogsV2 = DataLogpushDatasetJobDatasetId._(
+    TfArgLiteral('audit_logs_v2'),
+  );
+  static const bisoUserActions = DataLogpushDatasetJobDatasetId._(
+    TfArgLiteral('biso_user_actions'),
+  );
+  static const casbFindings = DataLogpushDatasetJobDatasetId._(
+    TfArgLiteral('casb_findings'),
+  );
+  static const devicePostureResults = DataLogpushDatasetJobDatasetId._(
+    TfArgLiteral('device_posture_results'),
+  );
+  static const dexApplicationTests = DataLogpushDatasetJobDatasetId._(
+    TfArgLiteral('dex_application_tests'),
+  );
+  static const dexDeviceStateEvents = DataLogpushDatasetJobDatasetId._(
+    TfArgLiteral('dex_device_state_events'),
+  );
+  static const dlpForensicCopies = DataLogpushDatasetJobDatasetId._(
+    TfArgLiteral('dlp_forensic_copies'),
+  );
+  static const dnsFirewallLogs = DataLogpushDatasetJobDatasetId._(
+    TfArgLiteral('dns_firewall_logs'),
+  );
+  static const dnsLogs = DataLogpushDatasetJobDatasetId._(
+    TfArgLiteral('dns_logs'),
+  );
+  static const emailSecurityAlerts = DataLogpushDatasetJobDatasetId._(
+    TfArgLiteral('email_security_alerts'),
+  );
+  static const emailSecurityPostDeliveryEvents =
+      DataLogpushDatasetJobDatasetId._(
+        TfArgLiteral('email_security_post_delivery_events'),
+      );
+  static const firewallEvents = DataLogpushDatasetJobDatasetId._(
+    TfArgLiteral('firewall_events'),
+  );
+  static const gatewayDns = DataLogpushDatasetJobDatasetId._(
+    TfArgLiteral('gateway_dns'),
+  );
+  static const gatewayHttp = DataLogpushDatasetJobDatasetId._(
+    TfArgLiteral('gateway_http'),
+  );
+  static const gatewayNetwork = DataLogpushDatasetJobDatasetId._(
+    TfArgLiteral('gateway_network'),
+  );
+  static const httpRequests = DataLogpushDatasetJobDatasetId._(
+    TfArgLiteral('http_requests'),
+  );
+  static const ipsecLogs = DataLogpushDatasetJobDatasetId._(
+    TfArgLiteral('ipsec_logs'),
+  );
+  static const magicBgpLogs = DataLogpushDatasetJobDatasetId._(
+    TfArgLiteral('magic_bgp_logs'),
+  );
+  static const magicIdsDetections = DataLogpushDatasetJobDatasetId._(
+    TfArgLiteral('magic_ids_detections'),
+  );
+  static const mcpPortalLogs = DataLogpushDatasetJobDatasetId._(
+    TfArgLiteral('mcp_portal_logs'),
+  );
+  static const mnmFlowLogs = DataLogpushDatasetJobDatasetId._(
+    TfArgLiteral('mnm_flow_logs'),
+  );
+  static const nelReports = DataLogpushDatasetJobDatasetId._(
+    TfArgLiteral('nel_reports'),
+  );
+  static const networkAnalyticsLogs = DataLogpushDatasetJobDatasetId._(
+    TfArgLiteral('network_analytics_logs'),
+  );
+  static const pageShieldEvents = DataLogpushDatasetJobDatasetId._(
+    TfArgLiteral('page_shield_events'),
+  );
+  static const sinkholeHttpLogs = DataLogpushDatasetJobDatasetId._(
+    TfArgLiteral('sinkhole_http_logs'),
+  );
+  static const spectrumEvents = DataLogpushDatasetJobDatasetId._(
+    TfArgLiteral('spectrum_events'),
+  );
+  static const sshLogs = DataLogpushDatasetJobDatasetId._(
+    TfArgLiteral('ssh_logs'),
+  );
+  static const turnstileEvents = DataLogpushDatasetJobDatasetId._(
+    TfArgLiteral('turnstile_events'),
+  );
+  static const warpConfigChanges = DataLogpushDatasetJobDatasetId._(
+    TfArgLiteral('warp_config_changes'),
+  );
+  static const warpToggleChanges = DataLogpushDatasetJobDatasetId._(
+    TfArgLiteral('warp_toggle_changes'),
+  );
+  static const websocketAnalytics = DataLogpushDatasetJobDatasetId._(
+    TfArgLiteral('websocket_analytics'),
+  );
+  static const workersTraceEvents = DataLogpushDatasetJobDatasetId._(
+    TfArgLiteral('workers_trace_events'),
+  );
+  static const zarazEvents = DataLogpushDatasetJobDatasetId._(
+    TfArgLiteral('zaraz_events'),
+  );
+  static const zeroTrustNetworkSessions = DataLogpushDatasetJobDatasetId._(
+    TfArgLiteral('zero_trust_network_sessions'),
+  );
+
+  static const List<DataLogpushDatasetJobDatasetId> values = [
+    accessRequests,
+    accountAbuseProtectionEvents,
+    auditLogs,
+    auditLogsV2,
+    bisoUserActions,
+    casbFindings,
+    devicePostureResults,
+    dexApplicationTests,
+    dexDeviceStateEvents,
+    dlpForensicCopies,
+    dnsFirewallLogs,
+    dnsLogs,
+    emailSecurityAlerts,
+    emailSecurityPostDeliveryEvents,
+    firewallEvents,
+    gatewayDns,
+    gatewayHttp,
+    gatewayNetwork,
+    httpRequests,
+    ipsecLogs,
+    magicBgpLogs,
+    magicIdsDetections,
+    mcpPortalLogs,
+    mnmFlowLogs,
+    nelReports,
+    networkAnalyticsLogs,
+    pageShieldEvents,
+    sinkholeHttpLogs,
+    spectrumEvents,
+    sshLogs,
+    turnstileEvents,
+    warpConfigChanges,
+    warpToggleChanges,
+    websocketAnalytics,
+    workersTraceEvents,
+    zarazEvents,
+    zeroTrustNetworkSessions,
+  ];
+}
+
 /// Factory wrapper for `cloudflare_logpush_dataset_job`.
 ///
 /// Accepted Permissions
@@ -21,7 +184,7 @@ final class DataCloudflareLogpushDatasetJob extends Data {
   DataCloudflareLogpushDatasetJob(
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
-    TfArg<String>? datasetId,
+    DataLogpushDatasetJobDatasetId? datasetId,
     RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,

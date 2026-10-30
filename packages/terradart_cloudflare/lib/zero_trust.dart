@@ -43,7 +43,10 @@ export 'src/data/cloudflare_zero_trust_access_infrastructure_target.dart'
         DataZeroTrustAccessInfrastructureTargetFilter,
         DataZeroTrustAccessInfrastructureTargetOrder;
 export 'src/data/cloudflare_zero_trust_access_infrastructure_targets.dart'
-    show DataCloudflareZeroTrustAccessInfrastructureTargets;
+    show
+        DataCloudflareZeroTrustAccessInfrastructureTargets,
+        DataZeroTrustAccessInfrastructureTargetsDirection,
+        DataZeroTrustAccessInfrastructureTargetsOrder;
 export 'src/data/cloudflare_zero_trust_access_key_configuration.dart'
     show DataCloudflareZeroTrustAccessKeyConfiguration;
 export 'src/data/cloudflare_zero_trust_access_mtls_certificate.dart'
@@ -78,7 +81,11 @@ export 'src/data/cloudflare_zero_trust_casb_integration.dart'
         DataZeroTrustCasbIntegrationFilterStatus,
         DataZeroTrustCasbIntegrationOrder;
 export 'src/data/cloudflare_zero_trust_casb_integrations.dart'
-    show DataCloudflareZeroTrustCasbIntegrations;
+    show
+        DataCloudflareZeroTrustCasbIntegrations,
+        DataZeroTrustCasbIntegrationsDirection,
+        DataZeroTrustCasbIntegrationsOrder,
+        DataZeroTrustCasbIntegrationsStatus;
 export 'src/data/cloudflare_zero_trust_casb_policies.dart'
     show DataCloudflareZeroTrustCasbPolicies;
 export 'src/data/cloudflare_zero_trust_casb_policy.dart'
@@ -97,7 +104,9 @@ export 'src/data/cloudflare_zero_trust_device_custom_profile.dart'
 export 'src/data/cloudflare_zero_trust_device_custom_profile_local_domain_fallback.dart'
     show DataCloudflareZeroTrustDeviceCustomProfileLocalDomainFallback;
 export 'src/data/cloudflare_zero_trust_device_custom_profiles.dart'
-    show DataCloudflareZeroTrustDeviceCustomProfiles;
+    show
+        DataCloudflareZeroTrustDeviceCustomProfiles,
+        DataZeroTrustDeviceCustomProfilesProfileType;
 export 'src/data/cloudflare_zero_trust_device_default_profile.dart'
     show DataCloudflareZeroTrustDeviceDefaultProfile;
 export 'src/data/cloudflare_zero_trust_device_default_profile_certificates.dart'
@@ -133,7 +142,10 @@ export 'src/data/cloudflare_zero_trust_device_subnet.dart'
 export 'src/data/cloudflare_zero_trust_dex_rule.dart'
     show DataCloudflareZeroTrustDexRule;
 export 'src/data/cloudflare_zero_trust_dex_rules.dart'
-    show DataCloudflareZeroTrustDexRules;
+    show
+        DataCloudflareZeroTrustDexRules,
+        DataZeroTrustDexRulesSortBy,
+        DataZeroTrustDexRulesSortOrder;
 export 'src/data/cloudflare_zero_trust_dex_test.dart'
     show
         DataCloudflareZeroTrustDexTest,
@@ -141,7 +153,7 @@ export 'src/data/cloudflare_zero_trust_dex_test.dart'
         DataZeroTrustDexTestKind,
         DataZeroTrustDexTestTargetPolicies;
 export 'src/data/cloudflare_zero_trust_dex_tests.dart'
-    show DataCloudflareZeroTrustDexTests;
+    show DataCloudflareZeroTrustDexTests, DataZeroTrustDexTestsKind;
 export 'src/data/cloudflare_zero_trust_dlp_custom_entries.dart'
     show DataCloudflareZeroTrustDlpCustomEntries;
 export 'src/data/cloudflare_zero_trust_dlp_custom_entry.dart'
@@ -201,7 +213,10 @@ export 'src/data/cloudflare_zero_trust_dns_location.dart'
         DataZeroTrustDnsLocationFilter,
         DataZeroTrustDnsLocationOrderBy;
 export 'src/data/cloudflare_zero_trust_dns_locations.dart'
-    show DataCloudflareZeroTrustDnsLocations;
+    show
+        DataCloudflareZeroTrustDnsLocations,
+        DataZeroTrustDnsLocationsDirection,
+        DataZeroTrustDnsLocationsOrderBy;
 export 'src/data/cloudflare_zero_trust_gateway_app_types_list.dart'
     show DataCloudflareZeroTrustGatewayAppTypesList;
 export 'src/data/cloudflare_zero_trust_gateway_categories_list.dart'
@@ -217,7 +232,10 @@ export 'src/data/cloudflare_zero_trust_gateway_pacfile.dart'
 export 'src/data/cloudflare_zero_trust_gateway_pacfiles.dart'
     show DataCloudflareZeroTrustGatewayPacfiles;
 export 'src/data/cloudflare_zero_trust_gateway_policies.dart'
-    show DataCloudflareZeroTrustGatewayPolicies;
+    show
+        DataCloudflareZeroTrustGatewayPolicies,
+        DataZeroTrustGatewayPoliciesDirection,
+        DataZeroTrustGatewayPoliciesOrderBy;
 export 'src/data/cloudflare_zero_trust_gateway_policy.dart'
     show
         DataCloudflareZeroTrustGatewayPolicy,
@@ -231,7 +249,10 @@ export 'src/data/cloudflare_zero_trust_gateway_proxy_endpoint.dart'
         DataZeroTrustGatewayProxyEndpointFilter,
         DataZeroTrustGatewayProxyEndpointOrderBy;
 export 'src/data/cloudflare_zero_trust_gateway_proxy_endpoints.dart'
-    show DataCloudflareZeroTrustGatewayProxyEndpoints;
+    show
+        DataCloudflareZeroTrustGatewayProxyEndpoints,
+        DataZeroTrustGatewayProxyEndpointsDirection,
+        DataZeroTrustGatewayProxyEndpointsOrderBy;
 export 'src/data/cloudflare_zero_trust_gateway_settings.dart'
     show DataCloudflareZeroTrustGatewaySettings;
 export 'src/data/cloudflare_zero_trust_list.dart'
@@ -242,7 +263,11 @@ export 'src/data/cloudflare_zero_trust_list.dart'
         DataZeroTrustListFilterType,
         DataZeroTrustListOrderBy;
 export 'src/data/cloudflare_zero_trust_lists.dart'
-    show DataCloudflareZeroTrustLists;
+    show
+        DataCloudflareZeroTrustLists,
+        DataZeroTrustListsDirection,
+        DataZeroTrustListsOrderBy,
+        DataZeroTrustListsType;
 export 'src/data/cloudflare_zero_trust_network_hostname_route.dart'
     show
         DataCloudflareZeroTrustNetworkHostnameRoute,
@@ -289,7 +314,9 @@ export 'src/data/cloudflare_zero_trust_tunnel_cloudflared_virtual_network.dart'
 export 'src/data/cloudflare_zero_trust_tunnel_cloudflared_virtual_networks.dart'
     show DataCloudflareZeroTrustTunnelCloudflaredVirtualNetworks;
 export 'src/data/cloudflare_zero_trust_tunnel_cloudflareds.dart'
-    show DataCloudflareZeroTrustTunnelCloudflareds;
+    show
+        DataCloudflareZeroTrustTunnelCloudflareds,
+        DataZeroTrustTunnelCloudflaredsStatus;
 export 'src/data/cloudflare_zero_trust_tunnel_warp_connector.dart'
     show
         DataCloudflareZeroTrustTunnelWarpConnector,
@@ -300,7 +327,9 @@ export 'src/data/cloudflare_zero_trust_tunnel_warp_connector_config.dart'
 export 'src/data/cloudflare_zero_trust_tunnel_warp_connector_token.dart'
     show DataCloudflareZeroTrustTunnelWarpConnectorToken;
 export 'src/data/cloudflare_zero_trust_tunnel_warp_connectors.dart'
-    show DataCloudflareZeroTrustTunnelWarpConnectors;
+    show
+        DataCloudflareZeroTrustTunnelWarpConnectors,
+        DataZeroTrustTunnelWarpConnectorsStatus;
 export 'src/zero_trust/cloudflare_zero_trust_access_ai_controls_mcp_portal.dart'
     show
         CloudflareZeroTrustAccessAiControlsMcpPortal,

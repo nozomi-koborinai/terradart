@@ -7,6 +7,45 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 /// Sensitive field paths for `cloudflare_zero_trust_dex_rules`.
 const Set<String> _cloudflareZeroTrustDexRulesSensitive = <String>{};
 
+/// Data Zero Trust Dex Rules Sort enum for `sort_by`.
+extension type const DataZeroTrustDexRulesSortBy._(TfArg<String> _)
+    implements TfArg<String> {
+  DataZeroTrustDexRulesSortBy.variable(String name)
+    : this._(TfArg.variable(name));
+  DataZeroTrustDexRulesSortBy.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataZeroTrustDexRulesSortBy.arg(TfArg<String> arg) : this._(arg);
+
+  static const name = DataZeroTrustDexRulesSortBy._(TfArgLiteral('name'));
+  static const createdAt = DataZeroTrustDexRulesSortBy._(
+    TfArgLiteral('created_at'),
+  );
+  static const updatedAt = DataZeroTrustDexRulesSortBy._(
+    TfArgLiteral('updated_at'),
+  );
+
+  static const List<DataZeroTrustDexRulesSortBy> values = [
+    name,
+    createdAt,
+    updatedAt,
+  ];
+}
+
+/// Data Zero Trust Dex Rules Sort enum for `sort_order`.
+extension type const DataZeroTrustDexRulesSortOrder._(TfArg<String> _)
+    implements TfArg<String> {
+  DataZeroTrustDexRulesSortOrder.variable(String name)
+    : this._(TfArg.variable(name));
+  DataZeroTrustDexRulesSortOrder.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataZeroTrustDexRulesSortOrder.arg(TfArg<String> arg) : this._(arg);
+
+  static const asc = DataZeroTrustDexRulesSortOrder._(TfArgLiteral('ASC'));
+  static const desc = DataZeroTrustDexRulesSortOrder._(TfArgLiteral('DESC'));
+
+  static const List<DataZeroTrustDexRulesSortOrder> values = [asc, desc];
+}
+
 /// Factory wrapper for `cloudflare_zero_trust_dex_rules`.
 ///
 /// Accepted Permissions
@@ -21,8 +60,8 @@ final class DataCloudflareZeroTrustDexRules extends Data {
     RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
     TfArg<String>? name,
-    TfArg<String>? sortBy,
-    TfArg<String>? sortOrder,
+    DataZeroTrustDexRulesSortBy? sortBy,
+    DataZeroTrustDexRulesSortOrder? sortOrder,
     super.provider,
     super.timeouts,
   }) : super(

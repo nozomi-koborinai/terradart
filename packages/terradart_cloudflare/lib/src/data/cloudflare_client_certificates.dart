@@ -7,6 +7,36 @@ import '../zone/cloudflare_zone.dart' show CloudflareZone;
 /// Sensitive field paths for `cloudflare_client_certificates`.
 const Set<String> _cloudflareClientCertificatesSensitive = <String>{};
 
+/// Data Client Certificates enum for `status`.
+extension type const DataClientCertificatesStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  DataClientCertificatesStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  DataClientCertificatesStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataClientCertificatesStatus.arg(TfArg<String> arg) : this._(arg);
+
+  static const all = DataClientCertificatesStatus._(TfArgLiteral('all'));
+  static const active = DataClientCertificatesStatus._(TfArgLiteral('active'));
+  static const pendingReactivation = DataClientCertificatesStatus._(
+    TfArgLiteral('pending_reactivation'),
+  );
+  static const pendingRevocation = DataClientCertificatesStatus._(
+    TfArgLiteral('pending_revocation'),
+  );
+  static const revoked = DataClientCertificatesStatus._(
+    TfArgLiteral('revoked'),
+  );
+
+  static const List<DataClientCertificatesStatus> values = [
+    all,
+    active,
+    pendingReactivation,
+    pendingRevocation,
+    revoked,
+  ];
+}
+
 /// Factory wrapper for `cloudflare_client_certificates`.
 ///
 /// Accepted Permissions
@@ -20,7 +50,7 @@ final class DataCloudflareClientCertificates extends Data {
     TfArg<num>? limit,
     TfArg<num>? maxItems,
     TfArg<num>? offset,
-    TfArg<String>? status,
+    DataClientCertificatesStatus? status,
     RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,

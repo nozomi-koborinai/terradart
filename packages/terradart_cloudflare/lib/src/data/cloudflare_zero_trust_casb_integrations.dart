@@ -7,6 +7,90 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 /// Sensitive field paths for `cloudflare_zero_trust_casb_integrations`.
 const Set<String> _cloudflareZeroTrustCasbIntegrationsSensitive = <String>{};
 
+/// Data Zero Trust Casb Integrations enum for `direction`.
+extension type const DataZeroTrustCasbIntegrationsDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  DataZeroTrustCasbIntegrationsDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  DataZeroTrustCasbIntegrationsDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataZeroTrustCasbIntegrationsDirection.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const asc = DataZeroTrustCasbIntegrationsDirection._(
+    TfArgLiteral('asc'),
+  );
+  static const desc = DataZeroTrustCasbIntegrationsDirection._(
+    TfArgLiteral('desc'),
+  );
+
+  static const List<DataZeroTrustCasbIntegrationsDirection> values = [
+    asc,
+    desc,
+  ];
+}
+
+/// Data Zero Trust Casb Integrations enum for `order`.
+extension type const DataZeroTrustCasbIntegrationsOrder._(TfArg<String> _)
+    implements TfArg<String> {
+  DataZeroTrustCasbIntegrationsOrder.variable(String name)
+    : this._(TfArg.variable(name));
+  DataZeroTrustCasbIntegrationsOrder.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataZeroTrustCasbIntegrationsOrder.arg(TfArg<String> arg) : this._(arg);
+
+  static const application = DataZeroTrustCasbIntegrationsOrder._(
+    TfArgLiteral('application'),
+  );
+  static const created = DataZeroTrustCasbIntegrationsOrder._(
+    TfArgLiteral('created'),
+  );
+  static const name = DataZeroTrustCasbIntegrationsOrder._(
+    TfArgLiteral('name'),
+  );
+  static const status = DataZeroTrustCasbIntegrationsOrder._(
+    TfArgLiteral('status'),
+  );
+
+  static const List<DataZeroTrustCasbIntegrationsOrder> values = [
+    application,
+    created,
+    name,
+    status,
+  ];
+}
+
+/// Data Zero Trust Casb Integrations enum for `status`.
+extension type const DataZeroTrustCasbIntegrationsStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  DataZeroTrustCasbIntegrationsStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  DataZeroTrustCasbIntegrationsStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataZeroTrustCasbIntegrationsStatus.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const healthy = DataZeroTrustCasbIntegrationsStatus._(
+    TfArgLiteral('Healthy'),
+  );
+  static const initializing = DataZeroTrustCasbIntegrationsStatus._(
+    TfArgLiteral('Initializing'),
+  );
+  static const offline = DataZeroTrustCasbIntegrationsStatus._(
+    TfArgLiteral('Offline'),
+  );
+  static const unhealthy = DataZeroTrustCasbIntegrationsStatus._(
+    TfArgLiteral('Unhealthy'),
+  );
+
+  static const List<DataZeroTrustCasbIntegrationsStatus> values = [
+    healthy,
+    initializing,
+    offline,
+    unhealthy,
+  ];
+}
+
 /// Factory wrapper for `cloudflare_zero_trust_casb_integrations`.
 final class DataCloudflareZeroTrustCasbIntegrations extends Data {
   static const String tfType = 'cloudflare_zero_trust_casb_integrations';
@@ -15,14 +99,14 @@ final class DataCloudflareZeroTrustCasbIntegrations extends Data {
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? application,
-    TfArg<String>? direction,
+    DataZeroTrustCasbIntegrationsDirection? direction,
     TfArg<bool>? dlpEnabled,
     TfArg<num>? maxItems,
-    TfArg<String>? order,
+    DataZeroTrustCasbIntegrationsOrder? order,
     TfArg<num>? page,
     TfArg<num>? pageSize,
     TfArg<String>? search,
-    TfArg<String>? status,
+    DataZeroTrustCasbIntegrationsStatus? status,
     TfArg<String>? useCases,
     super.provider,
     super.timeouts,

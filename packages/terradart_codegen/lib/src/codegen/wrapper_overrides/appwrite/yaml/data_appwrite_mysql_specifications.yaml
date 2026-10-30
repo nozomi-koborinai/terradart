@@ -1,5 +1,6 @@
 kind: data_source
 outputDir: data
 schemaStubBodyMode: bare
+deriveEnums: true
 deriveClassDoc: true
 deriveOutputGetters: true

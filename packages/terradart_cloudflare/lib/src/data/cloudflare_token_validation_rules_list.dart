@@ -7,6 +7,23 @@ import '../zone/cloudflare_zone.dart' show CloudflareZone;
 /// Sensitive field paths for `cloudflare_token_validation_rules_list`.
 const Set<String> _cloudflareTokenValidationRulesListSensitive = <String>{};
 
+/// Data Token Validation Rules List enum for `action`.
+extension type const DataTokenValidationRulesListAction._(TfArg<String> _)
+    implements TfArg<String> {
+  DataTokenValidationRulesListAction.variable(String name)
+    : this._(TfArg.variable(name));
+  DataTokenValidationRulesListAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataTokenValidationRulesListAction.arg(TfArg<String> arg) : this._(arg);
+
+  static const log = DataTokenValidationRulesListAction._(TfArgLiteral('log'));
+  static const block = DataTokenValidationRulesListAction._(
+    TfArgLiteral('block'),
+  );
+
+  static const List<DataTokenValidationRulesListAction> values = [log, block];
+}
+
 /// Factory wrapper for `cloudflare_token_validation_rules_list`.
 ///
 /// Accepted Permissions
@@ -18,7 +35,7 @@ final class DataCloudflareTokenValidationRulesList extends Data {
 
   DataCloudflareTokenValidationRulesList(
     super.localName, {
-    TfArg<String>? action,
+    DataTokenValidationRulesListAction? action,
     TfArg<bool>? enabled,
     TfArg<String>? host,
     TfArg<String>? hostname,

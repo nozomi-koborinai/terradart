@@ -7,6 +7,20 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 /// Sensitive field paths for `cloudflare_user_groups`.
 const Set<String> _cloudflareUserGroupsSensitive = <String>{};
 
+/// Data User Groups enum for `direction`.
+extension type const DataUserGroupsDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  DataUserGroupsDirection.variable(String name) : this._(TfArg.variable(name));
+  DataUserGroupsDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataUserGroupsDirection.arg(TfArg<String> arg) : this._(arg);
+
+  static const asc = DataUserGroupsDirection._(TfArgLiteral('asc'));
+  static const desc = DataUserGroupsDirection._(TfArgLiteral('desc'));
+
+  static const List<DataUserGroupsDirection> values = [asc, desc];
+}
+
 /// Factory wrapper for `cloudflare_user_groups`.
 ///
 /// Accepted Permissions
@@ -18,7 +32,7 @@ final class DataCloudflareUserGroups extends Data {
   DataCloudflareUserGroups(
     super.localName, {
     required RefTo<CloudflareAccount> accountId,
-    TfArg<String>? direction,
+    DataUserGroupsDirection? direction,
     TfArg<String>? fuzzyName,
     TfArg<num>? maxItems,
     TfArg<String>? name,

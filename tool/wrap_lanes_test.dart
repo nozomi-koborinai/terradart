@@ -430,8 +430,15 @@ providers:
     });
     tearDown(() => dir.deleteSync(recursive: true));
 
-    test('is empty while the lane has no data-source hints', () {
+    test('is empty while the lane derives no enums and has no data hints', () {
       expect(dataSourceDerivationGaps(schemaDir, overridesRoot), isEmpty);
+    });
+
+    test('names each data override a providerEnums lane leaves untyped', () {
+      expect(
+        dataSourceDerivationGaps(schemaDir, overridesRoot, providerEnums: true),
+        ['data_x_bare.yaml: deriveEnums'],
+      );
     });
 
     test('names each data override flag a lane with data hints lacks', () {
@@ -525,10 +532,14 @@ providers:
     );
   });
 
-  test('every data override of a lane with data hints derives them', () {
+  test('every data override of a lane with value sets derives them', () {
     for (final lane in parseWrapLanes(File(providersPath).readAsStringSync())) {
       expect(
-        dataSourceDerivationGaps(lane.schemaDir, lane.overridesRoot),
+        dataSourceDerivationGaps(
+          lane.schemaDir,
+          lane.overridesRoot,
+          providerEnums: lane.providerEnums,
+        ),
         isEmpty,
         reason: 'lane ${lane.name}',
       );

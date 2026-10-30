@@ -7,6 +7,47 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 /// Sensitive field paths for `cloudflare_zero_trust_dns_locations`.
 const Set<String> _cloudflareZeroTrustDnsLocationsSensitive = <String>{};
 
+/// Data Zero Trust Dns Locations enum for `direction`.
+extension type const DataZeroTrustDnsLocationsDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  DataZeroTrustDnsLocationsDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  DataZeroTrustDnsLocationsDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataZeroTrustDnsLocationsDirection.arg(TfArg<String> arg) : this._(arg);
+
+  static const asc = DataZeroTrustDnsLocationsDirection._(TfArgLiteral('asc'));
+  static const desc = DataZeroTrustDnsLocationsDirection._(
+    TfArgLiteral('desc'),
+  );
+
+  static const List<DataZeroTrustDnsLocationsDirection> values = [asc, desc];
+}
+
+/// Data Zero Trust Dns Locations Order enum for `order_by`.
+extension type const DataZeroTrustDnsLocationsOrderBy._(TfArg<String> _)
+    implements TfArg<String> {
+  DataZeroTrustDnsLocationsOrderBy.variable(String name)
+    : this._(TfArg.variable(name));
+  DataZeroTrustDnsLocationsOrderBy.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataZeroTrustDnsLocationsOrderBy.arg(TfArg<String> arg) : this._(arg);
+
+  static const name = DataZeroTrustDnsLocationsOrderBy._(TfArgLiteral('name'));
+  static const createdAt = DataZeroTrustDnsLocationsOrderBy._(
+    TfArgLiteral('created_at'),
+  );
+  static const updatedAt = DataZeroTrustDnsLocationsOrderBy._(
+    TfArgLiteral('updated_at'),
+  );
+
+  static const List<DataZeroTrustDnsLocationsOrderBy> values = [
+    name,
+    createdAt,
+    updatedAt,
+  ];
+}
+
 /// Factory wrapper for `cloudflare_zero_trust_dns_locations`.
 ///
 /// Accepted Permissions
@@ -19,10 +60,10 @@ final class DataCloudflareZeroTrustDnsLocations extends Data {
   DataCloudflareZeroTrustDnsLocations(
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
-    TfArg<String>? direction,
+    DataZeroTrustDnsLocationsDirection? direction,
     TfArg<List<String>>? filter,
     TfArg<num>? maxItems,
-    TfArg<String>? orderBy,
+    DataZeroTrustDnsLocationsOrderBy? orderBy,
     TfArg<String>? search,
     super.provider,
     super.timeouts,

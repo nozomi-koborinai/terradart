@@ -10,7 +10,9 @@ export 'src/data/cloudflare_email_routing_address.dart'
         DataEmailRoutingAddressDirection,
         DataEmailRoutingAddressFilter;
 export 'src/data/cloudflare_email_routing_addresses.dart'
-    show DataCloudflareEmailRoutingAddresses;
+    show
+        DataCloudflareEmailRoutingAddresses,
+        DataEmailRoutingAddressesDirection;
 export 'src/data/cloudflare_email_routing_catch_all.dart'
     show DataCloudflareEmailRoutingCatchAll;
 export 'src/data/cloudflare_email_routing_dns.dart'
@@ -22,7 +24,11 @@ export 'src/data/cloudflare_email_routing_rules.dart'
 export 'src/data/cloudflare_email_routing_settings.dart'
     show DataCloudflareEmailRoutingSettings;
 export 'src/data/cloudflare_email_security_allow_policies.dart'
-    show DataCloudflareEmailSecurityAllowPolicies;
+    show
+        DataCloudflareEmailSecurityAllowPolicies,
+        DataEmailSecurityAllowPoliciesDirection,
+        DataEmailSecurityAllowPoliciesOrder,
+        DataEmailSecurityAllowPoliciesPatternType;
 export 'src/data/cloudflare_email_security_allow_policy.dart'
     show
         DataCloudflareEmailSecurityAllowPolicy,
@@ -38,7 +44,11 @@ export 'src/data/cloudflare_email_security_block_sender.dart'
         DataEmailSecurityBlockSenderFilterPatternType,
         DataEmailSecurityBlockSenderOrder;
 export 'src/data/cloudflare_email_security_block_senders.dart'
-    show DataCloudflareEmailSecurityBlockSenders;
+    show
+        DataCloudflareEmailSecurityBlockSenders,
+        DataEmailSecurityBlockSendersDirection,
+        DataEmailSecurityBlockSendersOrder,
+        DataEmailSecurityBlockSendersPatternType;
 export 'src/data/cloudflare_email_security_domain.dart'
     show
         DataCloudflareEmailSecurityDomain,
@@ -49,9 +59,19 @@ export 'src/data/cloudflare_email_security_domain.dart'
         DataEmailSecurityDomainFilterStatus,
         DataEmailSecurityDomainOrder;
 export 'src/data/cloudflare_email_security_domains.dart'
-    show DataCloudflareEmailSecurityDomains;
+    show
+        DataCloudflareEmailSecurityDomains,
+        DataEmailSecurityDomainsActiveDeliveryMode,
+        DataEmailSecurityDomainsAllowedDeliveryMode,
+        DataEmailSecurityDomainsDirection,
+        DataEmailSecurityDomainsOrder,
+        DataEmailSecurityDomainsStatus;
 export 'src/data/cloudflare_email_security_impersonation_registries.dart'
-    show DataCloudflareEmailSecurityImpersonationRegistries;
+    show
+        DataCloudflareEmailSecurityImpersonationRegistries,
+        DataEmailSecurityImpersonationRegistriesDirection,
+        DataEmailSecurityImpersonationRegistriesOrder,
+        DataEmailSecurityImpersonationRegistriesProvenance;
 export 'src/data/cloudflare_email_security_impersonation_registry.dart'
     show
         DataCloudflareEmailSecurityImpersonationRegistry,
@@ -66,7 +86,10 @@ export 'src/data/cloudflare_email_security_trusted_domains.dart'
         DataEmailSecurityTrustedDomainsFilter,
         DataEmailSecurityTrustedDomainsOrder;
 export 'src/data/cloudflare_email_security_trusted_domains_list.dart'
-    show DataCloudflareEmailSecurityTrustedDomainsList;
+    show
+        DataCloudflareEmailSecurityTrustedDomainsList,
+        DataEmailSecurityTrustedDomainsListDirection,
+        DataEmailSecurityTrustedDomainsListOrder;
 export 'src/data/cloudflare_email_sending_subdomain.dart'
     show DataCloudflareEmailSendingSubdomain;
 export 'src/data/cloudflare_email_sending_subdomains.dart'

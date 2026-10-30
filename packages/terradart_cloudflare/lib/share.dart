@@ -24,7 +24,10 @@ export 'src/data/cloudflare_share_resource.dart'
         DataShareResourceFilterResourceType,
         DataShareResourceFilterStatus;
 export 'src/data/cloudflare_share_resources.dart'
-    show DataCloudflareShareResources;
+    show
+        DataCloudflareShareResources,
+        DataShareResourcesResourceType,
+        DataShareResourcesStatus;
 export 'src/share/cloudflare_share.dart'
     show CloudflareShare, ShareRecipients, ShareResourceType, ShareResources;
 export 'src/share/cloudflare_share_recipient.dart'

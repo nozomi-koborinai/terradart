@@ -71,6 +71,10 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'configuration',
     ],
     nestedTypes: <String>[
+      'DataAccessRulesDirection',
+      'DataAccessRulesMatch',
+      'DataAccessRulesMode',
+      'DataAccessRulesOrder',
       'DataAccessRulesConfiguration',
       'DataAccessRulesTarget',
     ],
@@ -233,7 +237,12 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'zoneName',
       'name',
     ],
-    nestedTypes: <String>['DataAccountDnsSettingsInternalViewsName'],
+    nestedTypes: <String>[
+      'DataAccountDnsSettingsInternalViewsDirection',
+      'DataAccountDnsSettingsInternalViewsMatch',
+      'DataAccountDnsSettingsInternalViewsOrder',
+      'DataAccountDnsSettingsInternalViewsName',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_account_dns_settings_internal_views`.\n\nAccepted Permissions\n\n- `DNS View Read` - `DNS View Write`',
@@ -296,7 +305,11 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'order',
       'status',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'DataAccountMembersDirection',
+      'DataAccountMembersOrder',
+      'DataAccountMembersStatus',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_account_members`.\n\nAccepted Permissions\n\n- `Account Settings Read` - `Account Settings Write` - `SCIM Provisioning`',
@@ -444,7 +457,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'includeExpired',
       'maxItems',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataAccountTokensDirection'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_account_tokens`.\n\nAccepted Permissions\n\n- `Account API Tokens Read` - `Account API Tokens Write`',
@@ -456,7 +469,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     kind: CatalogKind.dataSource,
     summary: 'Factory wrapper for `cloudflare_accounts`.',
     constructorParams: <String>['localName', 'direction', 'maxItems', 'name'],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataAccountsDirection'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `cloudflare_accounts`.',
   ),
@@ -758,7 +771,10 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'orderByDirection',
       'search',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'DataAiSearchInstancesOrderBy',
+      'DataAiSearchInstancesOrderByDirection',
+    ],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `cloudflare_ai_search_instances`.',
   ),
@@ -909,7 +925,12 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'state',
       'zoneId',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'DataApiShieldDiscoveryOperationsDirection',
+      'DataApiShieldDiscoveryOperationsOrder',
+      'DataApiShieldDiscoveryOperationsOrigin',
+      'DataApiShieldDiscoveryOperationsState',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_api_shield_discovery_operations`.\n\nAccepted Permissions\n\n- `Account API Gateway` - `Account API Gateway Read` - `Domain API Gateway`\n- `Domain API Gateway Read`',
@@ -1005,7 +1026,10 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'order',
       'zoneId',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'DataApiShieldOperationsDirection',
+      'DataApiShieldOperationsOrder',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_api_shield_operations`.\n\nAccepted Permissions\n\n- `Account API Gateway` - `Account API Gateway Read` - `Domain API Gateway`\n- `Domain API Gateway Read`',
@@ -1167,7 +1191,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'includeExpired',
       'maxItems',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataApiTokensDirection'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_api_tokens`.\n\nAccepted Permissions\n\n- `API Tokens Read` - `API Tokens Write`',
@@ -1631,7 +1655,10 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'status',
       'zoneId',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'DataCertificatePacksDeploy',
+      'DataCertificatePacksStatus',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_certificate_packs`.\n\nAccepted Permissions\n\n- `SSL and Certificates Read` - `SSL and Certificates Write`',
@@ -1688,7 +1715,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'status',
       'zoneId',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataClientCertificatesStatus'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_client_certificates`.\n\nAccepted Permissions\n\n- `SSL and Certificates Read` - `SSL and Certificates Write`',
@@ -1832,7 +1859,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'sortBy',
       'sortOrder',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataCloudforceOneRequestMessageSortOrder'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_cloudforce_one_request_message`.\n\nAccepted Permissions\n\n- `Cloudforce One Write`',
@@ -1891,7 +1918,10 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'sortOrder',
       'status',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'DataCloudforceOneRequestsSortOrder',
+      'DataCloudforceOneRequestsStatus',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_cloudforce_one_requests`.\n\nAccepted Permissions\n\n- `Cloudforce One Write`',
@@ -1954,7 +1984,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     summary:
         'Factory wrapper for `cloudflare_connectivity_directory_services`.',
     constructorParams: <String>['localName', 'accountId', 'maxItems', 'type'],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataConnectivityDirectoryServicesType'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_connectivity_directory_services`.',
@@ -2193,7 +2223,14 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'zoneId',
       'hostname',
     ],
-    nestedTypes: <String>['DataCustomHostnamesHostname'],
+    nestedTypes: <String>[
+      'DataCustomHostnamesCertificateAuthority',
+      'DataCustomHostnamesDirection',
+      'DataCustomHostnamesHostnameStatus',
+      'DataCustomHostnamesOrder',
+      'DataCustomHostnamesSslStatus',
+      'DataCustomHostnamesHostname',
+    ],
     sensitiveFields: <String>['result.ssl.custom_key'],
     docComment:
         'Factory wrapper for `cloudflare_custom_hostnames`.\n\nAccepted Permissions\n\n- `SSL and Certificates Read` - `SSL and Certificates Write`',
@@ -2321,7 +2358,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'identifier',
       'zoneId',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataCustomPagesIdentifier'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_custom_pages`.\n\nAccepted Permissions\n\n- `Account Custom Pages Read` - `Account Custom Pages Write` - `Account\nSettings Read` - `Account Settings Write` - `Zero Trust: PII Read`',
@@ -2401,7 +2438,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'status',
       'zoneId',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataCustomSslsMatch', 'DataCustomSslsStatus'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_custom_ssls`.\n\nAccepted Permissions\n\n- `Access: Mutual TLS Certificates Read` - `Access: Mutual TLS Certificates\nWrite` - `SSL and Certificates Read` - `SSL and Certificates Write`',
@@ -2653,6 +2690,11 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'tag',
     ],
     nestedTypes: <String>[
+      'DataDnsRecordsDirection',
+      'DataDnsRecordsMatch',
+      'DataDnsRecordsOrder',
+      'DataDnsRecordsTagMatch',
+      'DataDnsRecordsType',
       'DataDnsRecordsComment',
       'DataDnsRecordsContent',
       'DataDnsRecordsName',
@@ -2883,7 +2925,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'maxItems',
       'verified',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataEmailRoutingAddressesDirection'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_email_routing_addresses`.\n\nAccepted Permissions\n\n- `Email Routing Addresses Read` - `Email Routing Addresses Write`',
@@ -3053,7 +3095,11 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'search',
       'verifySender',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'DataEmailSecurityAllowPoliciesDirection',
+      'DataEmailSecurityAllowPoliciesOrder',
+      'DataEmailSecurityAllowPoliciesPatternType',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_email_security_allow_policies`.\n\nAccepted Permissions\n\n- `Cloud Email Security: Read` - `Cloud Email Security: Write`',
@@ -3155,7 +3201,11 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'patternType',
       'search',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'DataEmailSecurityBlockSendersDirection',
+      'DataEmailSecurityBlockSendersOrder',
+      'DataEmailSecurityBlockSendersPatternType',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_email_security_block_senders`.\n\nAccepted Permissions\n\n- `Cloud Email Security: Read` - `Cloud Email Security: Write`',
@@ -3224,7 +3274,13 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'search',
       'status',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'DataEmailSecurityDomainsActiveDeliveryMode',
+      'DataEmailSecurityDomainsAllowedDeliveryMode',
+      'DataEmailSecurityDomainsDirection',
+      'DataEmailSecurityDomainsOrder',
+      'DataEmailSecurityDomainsStatus',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_email_security_domains`.\n\nAccepted Permissions\n\n- `Cloud Email Security: Read` - `Cloud Email Security: Write`',
@@ -3245,7 +3301,11 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'provenance',
       'search',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'DataEmailSecurityImpersonationRegistriesDirection',
+      'DataEmailSecurityImpersonationRegistriesOrder',
+      'DataEmailSecurityImpersonationRegistriesProvenance',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_email_security_impersonation_registries`.\n\nAccepted Permissions\n\n- `Cloud Email Security: Read` - `Cloud Email Security: Write`',
@@ -3356,7 +3416,10 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'pattern',
       'search',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'DataEmailSecurityTrustedDomainsListDirection',
+      'DataEmailSecurityTrustedDomainsListOrder',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_email_security_trusted_domains_list`.\n\nAccepted Permissions\n\n- `Cloud Email Security: Read` - `Cloud Email Security: Write`',
@@ -3745,7 +3808,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     kind: CatalogKind.dataSource,
     summary: 'Factory wrapper for `cloudflare_hostname_tls_setting`.',
     constructorParams: <String>['localName', 'hostname', 'settingId', 'zoneId'],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataHostnameTlsSettingId'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `cloudflare_hostname_tls_setting`.',
   ),
@@ -3756,7 +3819,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     kind: CatalogKind.dataSource,
     summary: 'Factory wrapper for `cloudflare_hostname_tls_settings`.',
     constructorParams: <String>['localName', 'maxItems', 'settingId', 'zoneId'],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataHostnameTlsSettingsSettingId'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_hostname_tls_settings`.\n\nAccepted Permissions\n\n- `SSL and Certificates Read` - `SSL and Certificates Write`',
@@ -4406,7 +4469,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'datasetId',
       'zoneId',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataLogpushDatasetFieldDatasetId'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_logpush_dataset_field`.\n\nAccepted Permissions\n\n- `Logs Read`',
@@ -4423,7 +4486,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'datasetId',
       'zoneId',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataLogpushDatasetJobDatasetId'],
     sensitiveFields: <String>['destination_conf'],
     docComment:
         'Factory wrapper for `cloudflare_logpush_dataset_job`.\n\nAccepted Permissions\n\n- `Logs Write`',
@@ -4692,7 +4755,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'deviceType',
       'maxItems',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataMagicTransitConnectorsDeviceType'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_magic_transit_connectors`.\n\nAccepted Permissions\n\n- `Magic WAN Read` - `Magic WAN Write`',
@@ -5443,7 +5506,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     kind: CatalogKind.dataSource,
     summary: 'Factory wrapper for `cloudflare_observatory_scheduled_test`.',
     constructorParams: <String>['localName', 'region', 'url', 'zoneId'],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataObservatoryScheduledTestRegion'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_observatory_scheduled_test`.\n\nAccepted Permissions\n\n- `Zone Settings Read` - `Zone Settings Write`',
@@ -5733,7 +5796,11 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'urls',
       'zoneId',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'DataPageShieldConnectionsListDirection',
+      'DataPageShieldConnectionsListExport',
+      'DataPageShieldConnectionsListOrderBy',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_page_shield_connections_list`.\n\nAccepted Permissions\n\n- `Domain Page Shield` - `Domain Page Shield Read` - `Page Shield` - `Page\nShield Read` - `Zone Settings Read` - `Zone Settings Write`',
@@ -5775,7 +5842,13 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'type',
       'zoneId',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'DataPageShieldCookiesListDirection',
+      'DataPageShieldCookiesListExport',
+      'DataPageShieldCookiesListOrderBy',
+      'DataPageShieldCookiesListSameSite',
+      'DataPageShieldCookiesListType',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_page_shield_cookies_list`.\n\nAccepted Permissions\n\n- `Domain Page Shield` - `Domain Page Shield Read` - `Page Shield` - `Page\nShield Read` - `Zone Settings Read` - `Zone Settings Write`',
@@ -5860,7 +5933,11 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'urls',
       'zoneId',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'DataPageShieldScriptsListDirection',
+      'DataPageShieldScriptsListExport',
+      'DataPageShieldScriptsListOrderBy',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_page_shield_scripts_list`.\n\nAccepted Permissions\n\n- `Domain Page Shield` - `Domain Page Shield Read` - `Page Shield` - `Page\nShield Read` - `Zone Settings Read` - `Zone Settings Write`',
@@ -7104,7 +7181,10 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'search',
       'storeId',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'DataSecretsStoreSecretsDirection',
+      'DataSecretsStoreSecretsOrder',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_secrets_store_secrets`.\n\nAccepted Permissions\n\n- `Secrets Store Read` - `Secrets Store Write`',
@@ -7122,7 +7202,10 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'maxItems',
       'order',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'DataSecretsStoresDirection',
+      'DataSecretsStoresOrder',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_secrets_stores`.\n\nAccepted Permissions\n\n- `Secrets Store Read` - `Secrets Store Write`',
@@ -7281,7 +7364,10 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'shareId',
       'status',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'DataShareResourcesResourceType',
+      'DataShareResourcesStatus',
+    ],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `cloudflare_share_resources`.',
   ),
@@ -7305,7 +7391,13 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'tag',
       'targetType',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'DataSharesDirection',
+      'DataSharesKind',
+      'DataSharesOrder',
+      'DataSharesStatus',
+      'DataSharesTargetType',
+    ],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `cloudflare_shares`.',
   ),
@@ -7494,7 +7586,10 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'order',
       'zoneId',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'DataSpectrumApplicationsDirection',
+      'DataSpectrumApplicationsOrder',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_spectrum_applications`.\n\nAccepted Permissions\n\n- `Zone Settings Read` - `Zone Settings Write`',
@@ -7862,7 +7957,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'type',
       'videoName',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataStreamsStatus'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_streams`.\n\nAccepted Permissions\n\n- `Stream Read` - `Stream Write`',
@@ -8002,7 +8097,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'tokenConfiguration',
       'zoneId',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataTokenValidationRulesListAction'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_token_validation_rules_list`.\n\nAccepted Permissions\n\n- `Account API Gateway` - `Account API Gateway Read` - `Domain API Gateway`\n- `Domain API Gateway Read`',
@@ -8100,7 +8195,10 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'maxItems',
       'order',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'DataTurnstileWidgetsDirection',
+      'DataTurnstileWidgetsOrder',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_turnstile_widgets`.\n\nAccepted Permissions\n\n- `Account Settings Read` - `Account Settings Write` - `Turnstile Sites\nRead` - `Turnstile Sites Write`',
@@ -8309,7 +8407,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'fuzzyEmail',
       'userGroupId',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataUserGroupMembersDirection'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_user_group_members`.\n\nAccepted Permissions\n\n- `Account Settings Read` - `Account Settings Write` - `SCIM Provisioning`',
@@ -8328,7 +8426,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'maxItems',
       'name',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataUserGroupsDirection'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_user_groups`.\n\nAccepted Permissions\n\n- `Account Settings Read` - `Account Settings Write` - `SCIM Provisioning`',
@@ -8785,7 +8883,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'maxItems',
       'orderBy',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataWebAnalyticsSitesOrderBy'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_web_analytics_sites`.\n\nAccepted Permissions\n\n- `Account Settings Read`',
@@ -8937,7 +9035,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'versionId',
       'workerId',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataWorkerVersionInclude'],
     sensitiveFields: <String>[
       'assets.jwt',
       'bindings.key_base64',
@@ -8982,7 +9080,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'order',
       'orderBy',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataWorkersOrder', 'DataWorkersOrderBy'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_workers`.\n\nAccepted Permissions\n\n- `Workers Scripts Read` - `Workers Scripts Write` - `Workers Tail Read`',
@@ -9261,7 +9359,10 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'maxItems',
       'order',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'DataWorkersKvNamespacesDirection',
+      'DataWorkersKvNamespacesOrder',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_workers_kv_namespaces`.\n\nAccepted Permissions\n\n- `Workers KV Storage Read` - `Workers KV Storage Write`',
@@ -10091,7 +10192,10 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'targetIds',
       'virtualNetworkId',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'DataZeroTrustAccessInfrastructureTargetsDirection',
+      'DataZeroTrustAccessInfrastructureTargetsOrder',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_zero_trust_access_infrastructure_targets`.',
@@ -10517,7 +10621,11 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'status',
       'useCases',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'DataZeroTrustCasbIntegrationsDirection',
+      'DataZeroTrustCasbIntegrationsOrder',
+      'DataZeroTrustCasbIntegrationsStatus',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_zero_trust_casb_integrations`.',
@@ -10770,7 +10878,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'maxItems',
       'profileType',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataZeroTrustDeviceCustomProfilesProfileType'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_zero_trust_device_custom_profiles`.',
@@ -11267,7 +11375,10 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'sortBy',
       'sortOrder',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'DataZeroTrustDexRulesSortBy',
+      'DataZeroTrustDexRulesSortOrder',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_zero_trust_dex_rules`.\n\nAccepted Permissions\n\n- `Cloudflare DEX Read` - `Cloudflare DEX Write` - `Zero Trust Read` - `Zero\nTrust Report`',
@@ -11331,7 +11442,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'maxItems',
       'testName',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataZeroTrustDexTestsKind'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_zero_trust_dex_tests`.\n\nAccepted Permissions\n\n- `Cloudflare DEX Read` - `Cloudflare DEX Write` - `Zero Trust Read` - `Zero\nTrust Report`',
@@ -12047,7 +12158,10 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'orderBy',
       'search',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'DataZeroTrustDnsLocationsDirection',
+      'DataZeroTrustDnsLocationsOrderBy',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_zero_trust_dns_locations`.\n\nAccepted Permissions\n\n- `Cloudflare Zero Trust Secure DNS Locations Write` - `Zero Trust Read` -\n`Zero Trust Write`',
@@ -12210,7 +12324,10 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'orderBy',
       'search',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'DataZeroTrustGatewayPoliciesDirection',
+      'DataZeroTrustGatewayPoliciesOrderBy',
+    ],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `cloudflare_zero_trust_gateway_policies`.',
   ),
@@ -12344,7 +12461,10 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'orderBy',
       'search',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'DataZeroTrustGatewayProxyEndpointsDirection',
+      'DataZeroTrustGatewayProxyEndpointsOrderBy',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_zero_trust_gateway_proxy_endpoints`.',
@@ -12442,7 +12562,11 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'search',
       'type',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'DataZeroTrustListsDirection',
+      'DataZeroTrustListsOrderBy',
+      'DataZeroTrustListsType',
+    ],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `cloudflare_zero_trust_lists`.',
   ),
@@ -12951,7 +13075,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'wasActiveAt',
       'wasInactiveAt',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataZeroTrustTunnelCloudflaredsStatus'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_zero_trust_tunnel_cloudflareds`.\n\nAccepted Permissions\n\n- `Cloudflare One Connector: cloudflared Read` - `Cloudflare One Connector:\ncloudflared Write` - `Cloudflare One Connectors Read` - `Cloudflare One\nConnectors Write` - `Cloudflare Tunnel Read` - `Cloudflare Tunnel Write`',
@@ -13062,7 +13186,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'wasActiveAt',
       'wasInactiveAt',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataZeroTrustTunnelWarpConnectorsStatus'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_zero_trust_tunnel_warp_connectors`.\n\nAccepted Permissions\n\n- `Cloudflare One Connector: WARP Read` - `Cloudflare One Connector: WARP\nWrite` - `Cloudflare One Connectors Read` - `Cloudflare One Connectors\nWrite`',
@@ -13467,7 +13591,13 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'type',
       'account',
     ],
-    nestedTypes: <String>['DataZonesAccount'],
+    nestedTypes: <String>[
+      'DataZonesDirection',
+      'DataZonesMatch',
+      'DataZonesOrder',
+      'DataZonesStatus',
+      'DataZonesAccount',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_zones`.\n\nAccepted Permissions\n\n- `Zone Zone Read`',

@@ -42,9 +42,9 @@ export 'src/data/cloudflare_custom_ssl.dart'
         DataCustomSslFilterStatus,
         DataCustomSslMatch;
 export 'src/data/cloudflare_hostname_tls_setting.dart'
-    show DataCloudflareHostnameTlsSetting;
+    show DataCloudflareHostnameTlsSetting, DataHostnameTlsSettingId;
 export 'src/data/cloudflare_hostname_tls_settings.dart'
-    show DataCloudflareHostnameTlsSettings;
+    show DataCloudflareHostnameTlsSettings, DataHostnameTlsSettingsSettingId;
 export 'src/data/cloudflare_keyless_certificate.dart'
     show DataCloudflareKeylessCertificate;
 export 'src/data/cloudflare_mtls_certificate.dart'

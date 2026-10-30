@@ -11,7 +11,10 @@ export 'src/data/cloudflare_spectrum_application.dart'
         DataSpectrumApplicationFilter,
         DataSpectrumApplicationOrder;
 export 'src/data/cloudflare_spectrum_applications.dart'
-    show DataCloudflareSpectrumApplications;
+    show
+        DataCloudflareSpectrumApplications,
+        DataSpectrumApplicationsDirection,
+        DataSpectrumApplicationsOrder;
 export 'src/data/cloudflare_spectrum_protocols.dart'
     show DataCloudflareSpectrumProtocols;
 export 'src/spectrum/cloudflare_spectrum_application.dart'

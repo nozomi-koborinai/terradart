@@ -7,6 +7,23 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 /// Sensitive field paths for `cloudflare_email_routing_addresses`.
 const Set<String> _cloudflareEmailRoutingAddressesSensitive = <String>{};
 
+/// Data Email Routing Addresses enum for `direction`.
+extension type const DataEmailRoutingAddressesDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  DataEmailRoutingAddressesDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  DataEmailRoutingAddressesDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataEmailRoutingAddressesDirection.arg(TfArg<String> arg) : this._(arg);
+
+  static const asc = DataEmailRoutingAddressesDirection._(TfArgLiteral('asc'));
+  static const desc = DataEmailRoutingAddressesDirection._(
+    TfArgLiteral('desc'),
+  );
+
+  static const List<DataEmailRoutingAddressesDirection> values = [asc, desc];
+}
+
 /// Factory wrapper for `cloudflare_email_routing_addresses`.
 ///
 /// Accepted Permissions
@@ -18,7 +35,7 @@ final class DataCloudflareEmailRoutingAddresses extends Data {
   DataCloudflareEmailRoutingAddresses(
     super.localName, {
     RefTo<CloudflareAccount>? accountId,
-    TfArg<String>? direction,
+    DataEmailRoutingAddressesDirection? direction,
     TfArg<num>? maxItems,
     TfArg<bool>? verified,
     super.provider,
