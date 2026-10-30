@@ -60,6 +60,7 @@ void main() {
           'wrap',
           '--provider',
           'hashicorp/google',
+          '--mm-groups',
           '--source',
           p.join('test', 'fixtures', 'wrap', 'source'),
           '--output',
@@ -138,6 +139,7 @@ void main() {
           'wrap',
           '--provider',
           'hashicorp/google',
+          '--mm-groups',
           '--source',
           p.join('test', 'fixtures', 'wrap', 'source'),
           '--output',
@@ -168,6 +170,7 @@ void main() {
           'wrap',
           '--provider',
           'hashicorp/google',
+          '--mm-groups',
           '--source',
           p.join('test', 'fixtures', 'wrap', 'source'),
           '--output',
@@ -177,6 +180,7 @@ void main() {
           'wrap',
           '--provider',
           'hashicorp/google',
+          '--mm-groups',
           '--source',
           p.join('test', 'fixtures', 'wrap', 'source'),
           '--output',
@@ -196,6 +200,7 @@ void main() {
           'wrap',
           '--provider',
           'hashicorp/google',
+          '--mm-groups',
           '--source',
           p.join('test', 'fixtures', 'wrap', 'source'),
           '--output',
@@ -214,6 +219,7 @@ void main() {
           'wrap',
           '--provider',
           'hashicorp/google',
+          '--mm-groups',
           '--source',
           p.join('test', 'fixtures', 'wrap', 'source'),
           '--output',
@@ -233,6 +239,7 @@ void main() {
           'wrap',
           '--provider',
           'hashicorp/google',
+          '--mm-groups',
           '--source',
           p.join('test', 'fixtures', 'wrap', 'source'),
           '--output',
@@ -251,6 +258,7 @@ void main() {
           'wrap',
           '--provider',
           'hashicorp/google',
+          '--mm-groups',
           '--source',
           p.join('test', 'fixtures', 'wrap', 'source'),
           '--output',
@@ -275,6 +283,7 @@ void main() {
       'wrap',
       '--provider',
       'hashicorp/google',
+      '--mm-groups',
       '--source',
       p.join('test', 'fixtures', 'wrap', 'source'),
       '--output',
@@ -514,6 +523,7 @@ paramOrder:
           'wrap',
           '--provider',
           'hashicorp/google',
+          '--mm-groups',
           '--source',
           p.join('test', 'fixtures', 'wrap', 'source'),
           '--output',
@@ -538,6 +548,7 @@ paramOrder:
           'wrap',
           '--provider',
           'hashicorp/google',
+          '--mm-groups',
           '--source',
           p.join('test', 'fixtures', 'wrap', 'source'),
           '--output',
@@ -562,6 +573,7 @@ paramOrder:
           'wrap',
           '--provider',
           'hashicorp/google',
+          '--mm-groups',
           '--source',
           p.join('test', 'fixtures', 'wrap', 'source'),
           '--output',
@@ -600,6 +612,7 @@ paramOrder:
           'wrap',
           '--provider',
           'hashicorp/google',
+          '--mm-groups',
           '--source',
           p.join('test', 'fixtures', 'wrap', 'source'),
           '--output',
@@ -632,6 +645,7 @@ paramOrder:
           'wrap',
           '--provider',
           'hashicorp/google',
+          '--mm-groups',
           '--source',
           p.join('test', 'fixtures', 'wrap', 'source'),
           '--output',
@@ -675,6 +689,7 @@ paramOrder:
             'wrap',
             '--provider',
             'hashicorp/google',
+            '--mm-groups',
             '--source',
             tmpSrc.path,
             '--output',
@@ -732,6 +747,7 @@ paramOrder:
           'wrap',
           '--provider',
           'hashicorp/google',
+          '--mm-groups',
           '--source',
           tmpSrc.path,
           '--output',
@@ -772,20 +788,29 @@ paramOrder:
       () async {
         final tmpOut = await Directory.systemTemp.createTemp('phase4_fix_');
         try {
-          final code = await buildCliRunner().run([
-            'wrap',
-            '--provider',
-            'hashicorp/google',
-            '--source',
-            p.join('test', 'fixtures', 'wrap', 'source'),
-            '--output',
-            _libSrcOut(tmpOut),
-          ]);
-          expect(code, 0);
-
           final fixtureDir = Directory(
             p.join('test', 'fixtures', 'wrap', 'expected_output'),
           );
+          // The goldens freeze the emitter without the lane's --mm-groups,
+          // and a full-catalog run without it fails on typeNames entries
+          // that name Magic Modules enums, so wrap only the golden types.
+          for (final fixFile
+              in fixtureDir.listSync(recursive: true).whereType<File>()) {
+            final stem = p.basename(fixFile.path).split('.').first;
+            final code = await buildCliRunner().run([
+              'wrap',
+              '--provider',
+              'hashicorp/google',
+              '--source',
+              p.join('test', 'fixtures', 'wrap', 'source'),
+              '--output',
+              _libSrcOut(tmpOut),
+              '--only',
+              stem,
+            ]);
+            expect(code, 0, reason: stem);
+          }
+
           var checked = 0;
           for (final fixFile
               in fixtureDir.listSync(recursive: true).whereType<File>()) {
@@ -1133,6 +1158,7 @@ barrels:
             'wrap',
             '--provider',
             'hashicorp/google',
+            '--mm-groups',
             '--source',
             p.join('test', 'fixtures', 'wrap', 'source'),
             '--output',
@@ -1179,6 +1205,7 @@ barrels:
             'wrap',
             '--provider',
             'hashicorp/google',
+            '--mm-groups',
             '--source',
             p.join('test', 'fixtures', 'wrap', 'source'),
             '--output',
@@ -1196,6 +1223,7 @@ barrels:
             'wrap',
             '--provider',
             'hashicorp/google',
+            '--mm-groups',
             '--source',
             p.join('test', 'fixtures', 'wrap', 'source'),
             '--output',
@@ -1229,6 +1257,7 @@ barrels:
             'wrap',
             '--provider',
             'hashicorp/google',
+            '--mm-groups',
             '--source',
             p.join('test', 'fixtures', 'wrap', 'source'),
             '--output',
@@ -1256,6 +1285,7 @@ barrels:
           'wrap',
           '--provider',
           'hashicorp/google',
+          '--mm-groups',
           '--source',
           p.join('test', 'fixtures', 'wrap', 'source'),
           '--output',
@@ -1280,6 +1310,7 @@ barrels:
             'wrap',
             '--provider',
             'hashicorp/google',
+            '--mm-groups',
             '--source',
             p.join('test', 'fixtures', 'wrap', 'source'),
             '--output',
