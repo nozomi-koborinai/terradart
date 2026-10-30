@@ -505,7 +505,7 @@ final class IamShowcaseStack extends Stack {
         workforcePoolId: .literal('terradart-wf'),
         providerId: .literal('terradart-oidc'),
         keyId: .literal('terradart-key'),
-        use: .literal('ENCRYPTION'),
+        use: .encryption,
         keyData: IamWorkforcePoolProviderKeyData(keySpec: .rsa2048),
         deletionPolicy: .literal('DELETE'),
         dependsOn: [wfProvider],

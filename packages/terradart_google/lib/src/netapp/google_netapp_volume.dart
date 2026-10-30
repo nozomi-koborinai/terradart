@@ -717,7 +717,7 @@ extension type const NetappVolumeTierAction._(TfArg<String> _)
 ///   location: TfArg.literal('us-central1'),
 ///   storagePool: pool.name,
 ///   capacityGib: TfArg.literal('100'),
-///   protocols: TfArg.literal(['NFSV3']),
+///   protocols: [NetappVolumeProtocols.nfsv3],
 ///   shareName: TfArg.literal('data'),
 /// );
 /// ```

@@ -2724,8 +2724,8 @@ final class DataSourceLeftoverStack extends Stack {
       DataGoogleSiteVerificationToken(
         'site_verification_token',
         identifier: TfArg.literal(leftover),
-        type: TfArg.literal('INET_DOMAIN'),
-        verificationMethod: TfArg.literal('DNS_TXT'),
+        type: DataSiteVerificationTokenType.inetDomain,
+        verificationMethod: DataSiteVerificationTokenVerificationMethod.dnsTxt,
       ),
     );
 

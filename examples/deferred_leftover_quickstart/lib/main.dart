@@ -1299,7 +1299,7 @@ final class DeferredLeftoverStack extends Stack {
         agentConnectivityTemplateId: .literal('terradart-leftover'),
         location: .literal('us-central1'),
         accessPath: .agentToAnywhere,
-        accessTypes: .literal(['PRIVATE']),
+        accessTypes: [.private],
         egressNetworkConfig:
             NetworkServicesAgentConnectivityTemplateEgressNetworkConfig(
               networkAttachment: .literal(

@@ -117,9 +117,17 @@ final class _GoogleDataSourceStack implements CoverageStackGenerator {
           '${param.ref ? value.replaceFirst('TfArg.', 'RefTo.') : value},',
         );
       }
+      final enums = _enumMembers(src);
       String? missing;
       for (final m in RegExp(r'required (\w+) (\w+),').allMatches(ctor)) {
         final helperType = m.group(1)!;
+        if (enums[helperType] case final members?) {
+          args.add(
+            '      ${m.group(2)}: '
+            '${_enumMember(dummies, className, m.group(2)!, helperType, members)},',
+          );
+          continue;
+        }
         final value = _requiredHelpers[helperType];
         if (value == null) {
           missing ??=
@@ -239,6 +247,42 @@ const _requiredHelpers = <String, String>{
   'DataCloudIdentityGroupLookupGroupKey':
       'DataCloudIdentityGroupLookupGroupKey(id: .literal(leftover))',
 };
+
+final _enumDecl = RegExp(
+  r'extension\s+type\s+const\s+(\w+)\._\([^)]*\)\s+implements\s+TfArg<String>\s*\{(.*?)static\s+const\s+List<',
+  dotAll: true,
+);
+final _enumEntry = RegExp(
+  r"static\s+const\s+(\w+)\s*=\s*\w+\._\(\s*TfArgLiteral\(\s*'((?:[^'\\]|\\.)*)'",
+);
+
+/// Every enum [source] declares: name → (member, raw value) in declaration
+/// order.
+Map<String, List<(String, String)>> _enumMembers(String source) => {
+  for (final m in _enumDecl.allMatches(source))
+    m.group(1)!: [
+      for (final e in _enumEntry.allMatches(m.group(2)!))
+        (e.group(1)!, e.group(2)!),
+    ],
+};
+
+/// The member of [enumName] whose raw value is the ledger's dummy for the
+/// slot, else its first member.
+String _enumMember(
+  CoverageDummies dummies,
+  String className,
+  String name,
+  String enumName,
+  List<(String, String)> members,
+) {
+  final dummy = dummies.valueFor(className, name);
+  final preferred = dummy is LiteralDummy ? dummy.json : null;
+  final pick = members.firstWhere(
+    (m) => m.$2 == preferred,
+    orElse: () => members.first,
+  );
+  return '$enumName.${pick.$1}';
+}
 
 String _literal(
   CoverageDummies dummies,

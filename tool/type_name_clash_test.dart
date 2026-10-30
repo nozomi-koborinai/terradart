@@ -102,7 +102,7 @@ final class _NetappStack extends Stack {
         location: const .literal('us-central1'),
         storagePool: const .literal('terradart-pool'),
         capacityGib: const .literal('100'),
-        protocols: const .literal(['NFSV3']),
+        protocols: const [.nfsv3],
         shareName: const .literal('shared'),
         securityStyle: NetappVolumeSecurityStyle.unix,
         tieringPolicy: const NetappVolumeTieringPolicy(tierAction: .enabled),
