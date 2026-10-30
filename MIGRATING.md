@@ -22,6 +22,245 @@ omitted `pointInTimeRestore` still compiles. The 5.12.0 changelog adds
 | `AzurermMssqlManagedDatabase('db', managedInstanceId: instance.id, name: .literal('app'), pointInTimeRestore: MssqlManagedDatabasePointInTimeRestore(restorePointInTime: .literal('2026-01-01T00:00:00Z'), sourceDatabaseId: source.id))` | `AzurermMssqlManagedDatabase('db', managedInstanceId: instance.id, name: .literal('app'), pointInTimeRestoreOrRecoverDatabaseId: .pointInTimeRestore(MssqlManagedDatabasePointInTimeRestore(restorePointInTime: .literal('2026-01-01T00:00:00Z'), sourceDatabaseId: source.id)))` |
 | *(not available)* | `AzurermMssqlManagedDatabase('db', managedInstanceId: instance.id, name: .literal('app'), pointInTimeRestoreOrRecoverDatabaseId: .recoverDatabaseId(source.id))` |
 
+### Fixed value sets are enums
+
+**Breaking (`terradart_google`, `terradart_cloudflare`).** 55
+`terradart_google` inputs and 124 `terradart_cloudflare` data-source inputs
+took a raw string, or a list of strings, although the provider accepts only
+a fixed set of values. Each now takes an enum of that set. The Google value
+sets come from Magic Modules `enum_values` (also on list items) or from the
+description when Magic Modules has none. The Cloudflare ones come from
+`Available values:` in the schema and the provider hints. Pass a member with
+a dot shorthand. A value the enum does not list goes through
+`.arg(.literal(...))`, and `.variable` and `.expression` still work. The
+Terraform JSON for the same value is unchanged.
+
+| Before | After |
+|---|---|
+| `GoogleAlloydbBackup('b', type: .literal('ON_DEMAND'), ...)` | `GoogleAlloydbBackup('b', type: .onDemand, ...)` |
+| `GoogleDataCatalogTaxonomy('t', activatedPolicyTypes: .literal(['FINE_GRAINED_ACCESS_CONTROL']), ...)` | `GoogleDataCatalogTaxonomy('t', activatedPolicyTypes: [.fineGrainedAccessControl], ...)` |
+| `DataCloudflareAccessRules('rules', direction: .literal('desc'), ...)` | `DataCloudflareAccessRules('rules', direction: .desc, ...)` |
+
+`GoogleNetappVolume.protocols` takes `GoogleNetappVolumeProtocols`, because
+`terradart_azure` already publishes `NetappVolumeProtocols`.
+
+Every retyped `terradart_google` input:
+
+| Input | Before | After |
+|---|---|---|
+| `AppEngineStandardAppVersionLegacyServicesAppEngineBundledServices.appEngineBundledServices` | `TfArg<List<String>>` | `List<AppEngineStandardAppVersionAppEngineBundledServices>` |
+| `DataGoogleSiteVerificationToken.type` | `TfArg<String>` | `DataSiteVerificationTokenType` |
+| `DataGoogleSiteVerificationToken.verificationMethod` | `TfArg<String>` | `DataSiteVerificationTokenVerificationMethod` |
+| `GoogleAlloydbBackup.type` | `TfArg<String>` | `AlloydbBackupType` |
+| `GoogleAlloydbCluster.subscriptionType` | `TfArg<String>` | `AlloydbClusterSubscriptionType` |
+| `GoogleAlloydbInstance.activationPolicy` | `TfArg<String>` | `AlloydbInstanceActivationPolicy` |
+| `GoogleAlloydbInstance.availabilityType` | `TfArg<String>` | `AlloydbInstanceAvailabilityType` |
+| `GoogleAppEngineFlexibleAppVersion.inboundServices` | `TfArg<List<String>>` | `List<AppEngineFlexibleAppVersionInboundServices>` |
+| `GoogleAppEngineStandardAppVersion.inboundServices` | `TfArg<List<String>>` | `List<AppEngineStandardAppVersionInboundServices>` |
+| `GoogleBiglakeTable.type` | `TfArg<String>` | `BiglakeTableType` |
+| `GoogleBinaryAuthorizationPolicy.globalPolicyEvaluationMode` | `TfArg<String>` | `BinaryAuthorizationPolicyGlobalPolicyEvaluationMode` |
+| `GoogleChronicleBigQueryExport.bigQueryExportPackage` | `TfArg<String>` | `ChronicleBigQueryExportPackage` |
+| `GoogleCloudRunV2Instance.encryptionKeyRevocationAction` | `TfArg<String>` | `CloudRunV2InstanceEncryptionKeyRevocationAction` |
+| `GoogleCloudRunV2Instance.ingress` | `TfArg<String>` | `CloudRunV2InstanceIngress` |
+| `GoogleCloudRunV2Instance.launchStage` | `TfArg<String>` | `CloudRunV2InstanceLaunchStage` |
+| `GoogleCloudRunV2Instance.restartPolicy` | `TfArg<String>` | `CloudRunV2InstanceRestartPolicy` |
+| `GoogleComputeInterconnect.requestedFeatures` | `TfArg<List<String>>` | `List<ComputeInterconnectRequestedFeatures>` |
+| `GoogleComputeInterconnectAttachment.bandwidth` | `TfArg<String>` | `ComputeInterconnectAttachmentBandwidth` |
+| `GoogleComputeNetworkFirewallPolicy.policyType` | `TfArg<String>` | `ComputeNetworkFirewallPolicyType` |
+| `GoogleComputeNetworkFirewallPolicyRule.targetType` | `TfArg<String>` | `ComputeNetworkFirewallPolicyRuleTargetType` |
+| `GoogleComputeOrganizationSecurityPolicy.type` | `TfArg<String>` | `ComputeOrganizationSecurityPolicyType` |
+| `GoogleComputePacketMirroring.enable` | `TfArg<String>` | `ComputePacketMirroringEnable` |
+| `GoogleComputePublicAdvertisedPrefix.ipv6AccessType` | `TfArg<String>` | `ComputePublicAdvertisedPrefixIpv6AccessType` |
+| `GoogleComputeRegionNetworkFirewallPolicyWithRules.policyType` | `TfArg<String>` | `ComputeRegionNetworkFirewallPolicyWithRulesPolicyType` |
+| `GoogleDataCatalogTaxonomy.activatedPolicyTypes` | `TfArg<List<String>>` | `List<DataCatalogTaxonomyActivatedPolicyTypes>` |
+| `GoogleDatabaseMigrationServiceConnectionProfile.role` | `TfArg<String>` | `DatabaseMigrationServiceConnectionProfileRole` |
+| `GoogleDatabaseMigrationServiceMigrationJob.desiredState` | `TfArg<String>` | `DatabaseMigrationServiceMigrationJobDesiredState` |
+| `GoogleDialogflowCxSecuritySettings.purgeDataTypes` | `TfArg<List<String>>` | `List<DialogflowCxSecuritySettingsPurgeDataTypes>` |
+| `GoogleDialogflowIntent.defaultResponsePlatforms` | `TfArg<List<String>>` | `List<DialogflowIntentDefaultResponsePlatforms>` |
+| `GoogleDiscoveryEngineControl.useCases` | `TfArg<List<String>>` | `List<DiscoveryEngineControlUseCases>` |
+| `GoogleDiscoveryEngineDataStore.solutionTypes` | `TfArg<List<String>>` | `List<DiscoveryEngineDataStoreSolutionTypes>` |
+| `GoogleEdgecontainerCluster.releaseChannel` | `TfArg<String>` | `EdgecontainerClusterReleaseChannel` |
+| `GoogleGeminiLoggingSettingBinding.product` | `TfArg<String>` | `GeminiLoggingSettingBindingProduct` |
+| `GoogleGeminiReleaseChannelSettingBinding.product` | `TfArg<String>` | `GeminiReleaseChannelSettingBindingProduct` |
+| `GoogleGkeonpremVmwareCluster.skipValidations` | `TfArg<List<String>>` | `List<GkeonpremVmwareClusterSkipValidations>` |
+| `GoogleHealthcareFhirStore.complexDataTypeReferenceParsing` | `TfArg<String>` | `HealthcareFhirStoreComplexDataTypeReferenceParsing` |
+| `GoogleIamWorkforcePoolProviderKey.use` | `TfArg<String>` | `IamWorkforcePoolProviderKeyUse` |
+| `GoogleMemorystoreInstance.mode` | `TfArg<String>` | `MemorystoreInstanceMode` |
+| `GoogleNetappBackupVault.backupVaultType` | `TfArg<String>` | `NetappBackupVaultType` |
+| `GoogleNetappVolume.protocols` | `TfArg<List<String>>` | `List<GoogleNetappVolumeProtocols>` |
+| `GoogleNetappVolume.restrictedActions` | `TfArg<List<String>>` | `List<NetappVolumeRestrictedActions>` |
+| `GoogleNetappVolume.securityStyle` | `TfArg<String>` | `NetappVolumeSecurityStyle` |
+| `GoogleNetappVolume.smbSettings` | `TfArg<List<String>>` | `List<NetappVolumeSmbSettings>` |
+| `GoogleNetworkConnectivityHub.policyMode` | `TfArg<String>` | `NetworkConnectivityHubPolicyMode` |
+| `GoogleNetworkConnectivityHub.presetTopology` | `TfArg<String>` | `NetworkConnectivityHubPresetTopology` |
+| `GoogleNetworkConnectivityInternalRange.overlaps` | `TfArg<List<String>>` | `List<NetworkConnectivityInternalRangeOverlaps>` |
+| `GoogleNetworkManagementOrganizationVpcFlowLogsConfig.crossProjectMetadata` | `TfArg<String>` | `NetworkManagementOrganizationVpcFlowLogsConfigCrossProjectMetadata` |
+| `GoogleNetworkSecurityAuthzPolicy.policyProfile` | `TfArg<String>` | `NetworkSecurityAuthzPolicyProfile` |
+| `GoogleNetworkServicesAgentConnectivityTemplate.accessTypes` | `TfArg<List<String>>` | `List<NetworkServicesAgentConnectivityTemplateAccessTypes>` |
+| `GoogleNetworkServicesAgentGateway.protocols` | `TfArg<List<String>>` | `List<NetworkServicesAgentGatewayProtocols>` |
+| `GoogleNetworkServicesEdgeCacheOrigin.retryConditions` | `TfArg<List<String>>` | `List<NetworkServicesEdgeCacheOriginRetryConditions>` |
+| `GoogleSecureSourceManagerHook.events` | `TfArg<List<String>>` | `List<SecureSourceManagerHookEvents>` |
+| `GoogleSpannerInstance.defaultBackupScheduleType` | `TfArg<String>` | `SpannerInstanceDefaultBackupScheduleType` |
+| `GoogleSpannerInstance.instanceType` | `TfArg<String>` | `SpannerInstanceType` |
+| `GoogleVectorSearchIndex.distanceMetric` | `TfArg<String>` | `VectorSearchIndexDistanceMetric` |
+
+Every retyped `terradart_cloudflare` input:
+
+| Input | Before | After |
+|---|---|---|
+| `DataCloudflareAccessRules.direction` | `TfArg<String>` | `DataAccessRulesDirection` |
+| `DataCloudflareAccessRules.match` | `TfArg<String>` | `DataAccessRulesMatch` |
+| `DataCloudflareAccessRules.mode` | `TfArg<String>` | `DataAccessRulesMode` |
+| `DataCloudflareAccessRules.order` | `TfArg<String>` | `DataAccessRulesOrder` |
+| `DataCloudflareAccountDnsSettingsInternalViews.direction` | `TfArg<String>` | `DataAccountDnsSettingsInternalViewsDirection` |
+| `DataCloudflareAccountDnsSettingsInternalViews.match` | `TfArg<String>` | `DataAccountDnsSettingsInternalViewsMatch` |
+| `DataCloudflareAccountDnsSettingsInternalViews.order` | `TfArg<String>` | `DataAccountDnsSettingsInternalViewsOrder` |
+| `DataCloudflareAccountMembers.direction` | `TfArg<String>` | `DataAccountMembersDirection` |
+| `DataCloudflareAccountMembers.order` | `TfArg<String>` | `DataAccountMembersOrder` |
+| `DataCloudflareAccountMembers.status` | `TfArg<String>` | `DataAccountMembersStatus` |
+| `DataCloudflareAccountTokens.direction` | `TfArg<String>` | `DataAccountTokensDirection` |
+| `DataCloudflareAccounts.direction` | `TfArg<String>` | `DataAccountsDirection` |
+| `DataCloudflareAiSearchInstances.orderBy` | `TfArg<String>` | `DataAiSearchInstancesOrderBy` |
+| `DataCloudflareAiSearchInstances.orderByDirection` | `TfArg<String>` | `DataAiSearchInstancesOrderByDirection` |
+| `DataCloudflareApiShieldDiscoveryOperations.direction` | `TfArg<String>` | `DataApiShieldDiscoveryOperationsDirection` |
+| `DataCloudflareApiShieldDiscoveryOperations.order` | `TfArg<String>` | `DataApiShieldDiscoveryOperationsOrder` |
+| `DataCloudflareApiShieldDiscoveryOperations.origin` | `TfArg<String>` | `DataApiShieldDiscoveryOperationsOrigin` |
+| `DataCloudflareApiShieldDiscoveryOperations.state` | `TfArg<String>` | `DataApiShieldDiscoveryOperationsState` |
+| `DataCloudflareApiShieldOperations.direction` | `TfArg<String>` | `DataApiShieldOperationsDirection` |
+| `DataCloudflareApiShieldOperations.order` | `TfArg<String>` | `DataApiShieldOperationsOrder` |
+| `DataCloudflareApiTokens.direction` | `TfArg<String>` | `DataApiTokensDirection` |
+| `DataCloudflareCertificatePacks.deploy` | `TfArg<String>` | `DataCertificatePacksDeploy` |
+| `DataCloudflareCertificatePacks.status` | `TfArg<String>` | `DataCertificatePacksStatus` |
+| `DataCloudflareClientCertificates.status` | `TfArg<String>` | `DataClientCertificatesStatus` |
+| `DataCloudflareCloudforceOneRequestMessage.sortOrder` | `TfArg<String>` | `DataCloudforceOneRequestMessageSortOrder` |
+| `DataCloudflareCloudforceOneRequests.sortOrder` | `TfArg<String>` | `DataCloudforceOneRequestsSortOrder` |
+| `DataCloudflareCloudforceOneRequests.status` | `TfArg<String>` | `DataCloudforceOneRequestsStatus` |
+| `DataCloudflareConnectivityDirectoryServices.type` | `TfArg<String>` | `DataConnectivityDirectoryServicesType` |
+| `DataCloudflareCustomHostnames.certificateAuthority` | `TfArg<String>` | `DataCustomHostnamesCertificateAuthority` |
+| `DataCloudflareCustomHostnames.direction` | `TfArg<String>` | `DataCustomHostnamesDirection` |
+| `DataCloudflareCustomHostnames.hostnameStatus` | `TfArg<String>` | `DataCustomHostnamesHostnameStatus` |
+| `DataCloudflareCustomHostnames.order` | `TfArg<String>` | `DataCustomHostnamesOrder` |
+| `DataCloudflareCustomHostnames.sslStatus` | `TfArg<String>` | `DataCustomHostnamesSslStatus` |
+| `DataCloudflareCustomPages.identifier` | `TfArg<String>` | `DataCustomPagesIdentifier` |
+| `DataCloudflareCustomSsls.match` | `TfArg<String>` | `DataCustomSslsMatch` |
+| `DataCloudflareCustomSsls.status` | `TfArg<String>` | `DataCustomSslsStatus` |
+| `DataCloudflareDnsRecords.direction` | `TfArg<String>` | `DataDnsRecordsDirection` |
+| `DataCloudflareDnsRecords.match` | `TfArg<String>` | `DataDnsRecordsMatch` |
+| `DataCloudflareDnsRecords.order` | `TfArg<String>` | `DataDnsRecordsOrder` |
+| `DataCloudflareDnsRecords.tagMatch` | `TfArg<String>` | `DataDnsRecordsTagMatch` |
+| `DataCloudflareDnsRecords.type` | `TfArg<String>` | `DataDnsRecordsType` |
+| `DataCloudflareEmailRoutingAddresses.direction` | `TfArg<String>` | `DataEmailRoutingAddressesDirection` |
+| `DataCloudflareEmailSecurityAllowPolicies.direction` | `TfArg<String>` | `DataEmailSecurityAllowPoliciesDirection` |
+| `DataCloudflareEmailSecurityAllowPolicies.order` | `TfArg<String>` | `DataEmailSecurityAllowPoliciesOrder` |
+| `DataCloudflareEmailSecurityAllowPolicies.patternType` | `TfArg<String>` | `DataEmailSecurityAllowPoliciesPatternType` |
+| `DataCloudflareEmailSecurityBlockSenders.direction` | `TfArg<String>` | `DataEmailSecurityBlockSendersDirection` |
+| `DataCloudflareEmailSecurityBlockSenders.order` | `TfArg<String>` | `DataEmailSecurityBlockSendersOrder` |
+| `DataCloudflareEmailSecurityBlockSenders.patternType` | `TfArg<String>` | `DataEmailSecurityBlockSendersPatternType` |
+| `DataCloudflareEmailSecurityDomains.activeDeliveryMode` | `TfArg<String>` | `DataEmailSecurityDomainsActiveDeliveryMode` |
+| `DataCloudflareEmailSecurityDomains.allowedDeliveryMode` | `TfArg<String>` | `DataEmailSecurityDomainsAllowedDeliveryMode` |
+| `DataCloudflareEmailSecurityDomains.direction` | `TfArg<String>` | `DataEmailSecurityDomainsDirection` |
+| `DataCloudflareEmailSecurityDomains.order` | `TfArg<String>` | `DataEmailSecurityDomainsOrder` |
+| `DataCloudflareEmailSecurityDomains.status` | `TfArg<String>` | `DataEmailSecurityDomainsStatus` |
+| `DataCloudflareEmailSecurityImpersonationRegistries.direction` | `TfArg<String>` | `DataEmailSecurityImpersonationRegistriesDirection` |
+| `DataCloudflareEmailSecurityImpersonationRegistries.order` | `TfArg<String>` | `DataEmailSecurityImpersonationRegistriesOrder` |
+| `DataCloudflareEmailSecurityImpersonationRegistries.provenance` | `TfArg<String>` | `DataEmailSecurityImpersonationRegistriesProvenance` |
+| `DataCloudflareEmailSecurityTrustedDomainsList.direction` | `TfArg<String>` | `DataEmailSecurityTrustedDomainsListDirection` |
+| `DataCloudflareEmailSecurityTrustedDomainsList.order` | `TfArg<String>` | `DataEmailSecurityTrustedDomainsListOrder` |
+| `DataCloudflareHostnameTlsSetting.settingId` | `TfArg<String>` | `DataHostnameTlsSettingName` |
+| `DataCloudflareHostnameTlsSettings.settingId` | `TfArg<String>` | `DataHostnameTlsSettingsName` |
+| `DataCloudflareLogpushDatasetField.datasetId` | `TfArg<String>` | `DataLogpushDatasetFieldDatasetId` |
+| `DataCloudflareLogpushDatasetJob.datasetId` | `TfArg<String>` | `DataLogpushDatasetJobDatasetId` |
+| `DataCloudflareMagicTransitConnectors.deviceType` | `TfArg<String>` | `DataMagicTransitConnectorsDeviceType` |
+| `DataCloudflareObservatoryScheduledTest.region` | `TfArg<String>` | `DataObservatoryScheduledTestRegion` |
+| `DataCloudflarePageShieldConnectionsList.direction` | `TfArg<String>` | `DataPageShieldConnectionsListDirection` |
+| `DataCloudflarePageShieldConnectionsList.export` | `TfArg<String>` | `DataPageShieldConnectionsListExport` |
+| `DataCloudflarePageShieldConnectionsList.orderBy` | `TfArg<String>` | `DataPageShieldConnectionsListOrderBy` |
+| `DataCloudflarePageShieldCookiesList.direction` | `TfArg<String>` | `DataPageShieldCookiesListDirection` |
+| `DataCloudflarePageShieldCookiesList.export` | `TfArg<String>` | `DataPageShieldCookiesListExport` |
+| `DataCloudflarePageShieldCookiesList.orderBy` | `TfArg<String>` | `DataPageShieldCookiesListOrderBy` |
+| `DataCloudflarePageShieldCookiesList.sameSite` | `TfArg<String>` | `DataPageShieldCookiesListSameSite` |
+| `DataCloudflarePageShieldCookiesList.type` | `TfArg<String>` | `DataPageShieldCookiesListType` |
+| `DataCloudflarePageShieldScriptsList.direction` | `TfArg<String>` | `DataPageShieldScriptsListDirection` |
+| `DataCloudflarePageShieldScriptsList.export` | `TfArg<String>` | `DataPageShieldScriptsListExport` |
+| `DataCloudflarePageShieldScriptsList.orderBy` | `TfArg<String>` | `DataPageShieldScriptsListOrderBy` |
+| `DataCloudflareSecretsStoreSecrets.direction` | `TfArg<String>` | `DataSecretsStoreSecretsDirection` |
+| `DataCloudflareSecretsStoreSecrets.order` | `TfArg<String>` | `DataSecretsStoreSecretsOrder` |
+| `DataCloudflareSecretsStores.direction` | `TfArg<String>` | `DataSecretsStoresDirection` |
+| `DataCloudflareSecretsStores.order` | `TfArg<String>` | `DataSecretsStoresOrder` |
+| `DataCloudflareShareResources.resourceType` | `TfArg<String>` | `DataShareResourcesResourceType` |
+| `DataCloudflareShareResources.status` | `TfArg<String>` | `DataShareResourcesStatus` |
+| `DataCloudflareShares.direction` | `TfArg<String>` | `DataSharesDirection` |
+| `DataCloudflareShares.kind` | `TfArg<String>` | `DataSharesKind` |
+| `DataCloudflareShares.order` | `TfArg<String>` | `DataSharesOrder` |
+| `DataCloudflareShares.status` | `TfArg<String>` | `DataSharesStatus` |
+| `DataCloudflareShares.targetType` | `TfArg<String>` | `DataSharesTargetType` |
+| `DataCloudflareSpectrumApplications.direction` | `TfArg<String>` | `DataSpectrumApplicationsDirection` |
+| `DataCloudflareSpectrumApplications.order` | `TfArg<String>` | `DataSpectrumApplicationsOrder` |
+| `DataCloudflareStreams.status` | `TfArg<String>` | `DataStreamsStatus` |
+| `DataCloudflareTokenValidationRulesList.action` | `TfArg<String>` | `DataTokenValidationRulesListAction` |
+| `DataCloudflareTurnstileWidgets.direction` | `TfArg<String>` | `DataTurnstileWidgetsDirection` |
+| `DataCloudflareTurnstileWidgets.order` | `TfArg<String>` | `DataTurnstileWidgetsOrder` |
+| `DataCloudflareUserGroupMembers.direction` | `TfArg<String>` | `DataUserGroupMembersDirection` |
+| `DataCloudflareUserGroups.direction` | `TfArg<String>` | `DataUserGroupsDirection` |
+| `DataCloudflareWebAnalyticsSites.orderBy` | `TfArg<String>` | `DataWebAnalyticsSitesOrderBy` |
+| `DataCloudflareWorkerVersion.include` | `TfArg<String>` | `DataWorkerVersionInclude` |
+| `DataCloudflareWorkers.order` | `TfArg<String>` | `DataWorkersOrder` |
+| `DataCloudflareWorkers.orderBy` | `TfArg<String>` | `DataWorkersOrderBy` |
+| `DataCloudflareWorkersKvNamespaces.direction` | `TfArg<String>` | `DataWorkersKvNamespacesDirection` |
+| `DataCloudflareWorkersKvNamespaces.order` | `TfArg<String>` | `DataWorkersKvNamespacesOrder` |
+| `DataCloudflareZeroTrustAccessInfrastructureTargets.direction` | `TfArg<String>` | `DataZeroTrustAccessInfrastructureTargetsDirection` |
+| `DataCloudflareZeroTrustAccessInfrastructureTargets.order` | `TfArg<String>` | `DataZeroTrustAccessInfrastructureTargetsOrder` |
+| `DataCloudflareZeroTrustCasbIntegrations.direction` | `TfArg<String>` | `DataZeroTrustCasbIntegrationsDirection` |
+| `DataCloudflareZeroTrustCasbIntegrations.order` | `TfArg<String>` | `DataZeroTrustCasbIntegrationsOrder` |
+| `DataCloudflareZeroTrustCasbIntegrations.status` | `TfArg<String>` | `DataZeroTrustCasbIntegrationsStatus` |
+| `DataCloudflareZeroTrustDeviceCustomProfiles.profileType` | `TfArg<String>` | `DataZeroTrustDeviceCustomProfilesProfileType` |
+| `DataCloudflareZeroTrustDexRules.sortBy` | `TfArg<String>` | `DataZeroTrustDexRulesSortBy` |
+| `DataCloudflareZeroTrustDexRules.sortOrder` | `TfArg<String>` | `DataZeroTrustDexRulesSortOrder` |
+| `DataCloudflareZeroTrustDexTests.kind` | `TfArg<String>` | `DataZeroTrustDexTestsKind` |
+| `DataCloudflareZeroTrustDnsLocations.direction` | `TfArg<String>` | `DataZeroTrustDnsLocationsDirection` |
+| `DataCloudflareZeroTrustDnsLocations.orderBy` | `TfArg<String>` | `DataZeroTrustDnsLocationsOrderBy` |
+| `DataCloudflareZeroTrustGatewayPolicies.direction` | `TfArg<String>` | `DataZeroTrustGatewayPoliciesDirection` |
+| `DataCloudflareZeroTrustGatewayPolicies.orderBy` | `TfArg<String>` | `DataZeroTrustGatewayPoliciesOrderBy` |
+| `DataCloudflareZeroTrustGatewayProxyEndpoints.direction` | `TfArg<String>` | `DataZeroTrustGatewayProxyEndpointsDirection` |
+| `DataCloudflareZeroTrustGatewayProxyEndpoints.orderBy` | `TfArg<String>` | `DataZeroTrustGatewayProxyEndpointsOrderBy` |
+| `DataCloudflareZeroTrustLists.direction` | `TfArg<String>` | `DataZeroTrustListsDirection` |
+| `DataCloudflareZeroTrustLists.orderBy` | `TfArg<String>` | `DataZeroTrustListsOrderBy` |
+| `DataCloudflareZeroTrustLists.type` | `TfArg<String>` | `DataZeroTrustListsType` |
+| `DataCloudflareZeroTrustTunnelCloudflareds.status` | `TfArg<String>` | `DataZeroTrustTunnelCloudflaredsStatus` |
+| `DataCloudflareZeroTrustTunnelWarpConnectors.status` | `TfArg<String>` | `DataZeroTrustTunnelWarpConnectorsStatus` |
+| `DataCloudflareZones.direction` | `TfArg<String>` | `DataZonesDirection` |
+| `DataCloudflareZones.match` | `TfArg<String>` | `DataZonesMatch` |
+| `DataCloudflareZones.order` | `TfArg<String>` | `DataZonesOrder` |
+| `DataCloudflareZones.status` | `TfArg<String>` | `DataZonesStatus` |
+
+### Long and repeated type names are shorter
+
+**Breaking (`terradart_google`, `terradart_aws`, `terradart_cloudflare`).**
+These derived types had names over 80 characters, or repeated words of their
+resource name, and were held in `tool/type_name_length_debt.yaml` and
+`tool/type_name_stutter_debt.yaml`. Both files are now empty. Fields, enum
+members and the Terraform JSON are unchanged. Only the type name moves. A
+dot shorthand (`.new(...)`, `.static`) needs no change.
+
+| Before | After |
+|---|---|
+| `BedrockagentDataSourceContextEnrichmentConfigurationBedrockFoundationModelConfiguration` | `BedrockagentDataSourceContextEnrichmentModelConfiguration` |
+| `DataLossPreventionDeidentifyTemplateInfoTypeTransformationsPrimitiveTransformation` | `DataLossPreventionDeidentifyTemplateInfoTypePrimitiveTransformation` |
+| `DataLossPreventionDeidentifyTemplatePrimitiveTransformationCryptoDeterministicConfig` | `DataLossPreventionDeidentifyTemplateInfoTypeCryptoDeterministicConfig` |
+| `DataLossPreventionDeidentifyTemplatePrimitiveTransformationCryptoReplaceFfxFpeConfig` | `DataLossPreventionDeidentifyTemplateInfoTypeCryptoReplaceFfxFpeConfig` |
+| `DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesConditions` | `DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentConditions` |
+| `DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentRoutingPolicyRulesConditions` | `DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentRoutingConditions` |
+| `HostnameTlsSettingSettingId` | `HostnameTlsSettingName` |
+| `ObservabilityadminCentralizationRuleForOrganizationDestinationLogsConfigurationBackupConfiguration` | `ObservabilityadminCentralizationRuleForOrganizationLogsBackupConfiguration` |
+| `ObservabilityadminCentralizationRuleForOrganizationDestinationMetricsConfigurationBackupConfiguration` | `ObservabilityadminCentralizationRuleForOrganizationMetricsBackupConfiguration` |
+| `ResiliencehubResiliencyPolicyPolicyRegion` | `ResiliencehubResiliencyPolicyRegional` |
+| `Wafv2WebAclRuleRuleLabel` | `Wafv2WebAclRuleNamed` |
+| `ZeroTrustGatewaySettingsSettingsMode` | `ZeroTrustGatewaySettingsProxyInspectionMode` |
+
+`Wafv2WebAclRuleNamed` is the `{name}` block that `rule_label`,
+`single_header`, `single_query_argument` and `excluded_rule` share on
+`aws_wafv2_web_acl_rule`.
+
 ### Exclusive groups are one sealed argument
 
 **Breaking (`terradart_google`, `terradart_aws`).** Each group below was
