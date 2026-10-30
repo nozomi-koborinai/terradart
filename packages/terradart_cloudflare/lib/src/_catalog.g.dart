@@ -3819,7 +3819,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     kind: CatalogKind.dataSource,
     summary: 'Factory wrapper for `cloudflare_hostname_tls_settings`.',
     constructorParams: <String>['localName', 'maxItems', 'settingId', 'zoneId'],
-    nestedTypes: <String>['DataHostnameTlsSettingsSettingId'],
+    nestedTypes: <String>['DataHostnameTlsSettingsName'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_hostname_tls_settings`.\n\nAccepted Permissions\n\n- `SSL and Certificates Read` - `SSL and Certificates Write`',

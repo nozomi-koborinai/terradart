@@ -44,7 +44,7 @@ export 'src/data/cloudflare_custom_ssl.dart'
 export 'src/data/cloudflare_hostname_tls_setting.dart'
     show DataCloudflareHostnameTlsSetting, DataHostnameTlsSettingName;
 export 'src/data/cloudflare_hostname_tls_settings.dart'
-    show DataCloudflareHostnameTlsSettings, DataHostnameTlsSettingsSettingId;
+    show DataCloudflareHostnameTlsSettings, DataHostnameTlsSettingsName;
 export 'src/data/cloudflare_keyless_certificate.dart'
     show DataCloudflareKeylessCertificate;
 export 'src/data/cloudflare_mtls_certificate.dart'

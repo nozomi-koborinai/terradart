@@ -430,7 +430,7 @@ export 'src/data/cloudflare_healthchecks.dart' show DataCloudflareHealthchecks;
 export 'src/data/cloudflare_hostname_tls_setting.dart'
     show DataCloudflareHostnameTlsSetting, DataHostnameTlsSettingName;
 export 'src/data/cloudflare_hostname_tls_settings.dart'
-    show DataCloudflareHostnameTlsSettings, DataHostnameTlsSettingsSettingId;
+    show DataCloudflareHostnameTlsSettings, DataHostnameTlsSettingsName;
 export 'src/data/cloudflare_hyperdrive_config.dart'
     show DataCloudflareHyperdriveConfig;
 export 'src/data/cloudflare_hyperdrive_configs.dart'

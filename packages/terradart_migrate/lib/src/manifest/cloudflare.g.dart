@@ -15327,7 +15327,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'settingId',
           kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'DataHostnameTlsSettingsSettingId',
+          dartType: 'DataHostnameTlsSettingsName',
         ),
         MigrateSlot(
           tfName: 'zone_id',
@@ -78817,8 +78817,8 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         'http2': 'http2',
       },
     ),
-    'DataHostnameTlsSettingsSettingId': MigrateEnum(
-      name: 'DataHostnameTlsSettingsSettingId',
+    'DataHostnameTlsSettingsName': MigrateEnum(
+      name: 'DataHostnameTlsSettingsName',
       members: <String, String>{
         'ciphers': 'ciphers',
         'min_tls_version': 'minTlsVersion',
