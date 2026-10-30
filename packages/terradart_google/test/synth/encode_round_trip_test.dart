@@ -86,9 +86,7 @@ final Map<String, Object Function()> _syntheticInstances = {
         groupByEmail: TfArg.literal('group@example.com'),
       ),
   'BigqueryDatasetAccessSpecialGroup': () =>
-      const BigqueryDatasetAccessSpecialGroup(
-        specialGroup: .projectReaders,
-      ),
+      const BigqueryDatasetAccessSpecialGroup(specialGroup: .projectReaders),
   'BigqueryDatasetAccessDomain': () =>
       const BigqueryDatasetAccessDomain(domain: TfArg.literal('example.com')),
   'BigqueryDatasetAccessIamMember': () => const BigqueryDatasetAccessIamMember(
