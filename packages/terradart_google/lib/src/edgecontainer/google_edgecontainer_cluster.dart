@@ -424,7 +424,7 @@ final class GoogleEdgecontainerCluster extends Resource {
     EdgecontainerClusterSystemAddonsConfig? systemAddonsConfig,
     TfArg<List<String>>? externalLoadBalancerIpv4AddressPools,
     TfArg<String>? targetVersion,
-    TfArg<String>? releaseChannel,
+    EdgecontainerClusterReleaseChannel? releaseChannel,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,

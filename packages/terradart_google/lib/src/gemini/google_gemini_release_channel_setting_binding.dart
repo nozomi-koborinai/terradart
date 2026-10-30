@@ -70,7 +70,7 @@ final class GoogleGeminiReleaseChannelSettingBinding extends Resource {
     required TfArg<String> settingBindingId,
     required TfArg<String> target,
     TfArg<String>? location,
-    TfArg<String>? product,
+    GeminiReleaseChannelSettingBindingProduct? product,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? project,
     TfArg<String>? deletionPolicy,

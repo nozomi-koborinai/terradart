@@ -72,7 +72,7 @@ final class GoogleComputePublicAdvertisedPrefix extends Resource {
     TfArg<String>? description,
     TfArg<String>? dnsVerificationIp,
     required TfArg<String> ipCidrRange,
-    TfArg<String>? ipv6AccessType,
+    ComputePublicAdvertisedPrefixIpv6AccessType? ipv6AccessType,
     required TfArg<String> name,
     ComputePublicAdvertisedPrefixPdpScope? pdpScope,
     TfArg<String>? project,

@@ -9,6 +9,19 @@ import '../biglake/google_biglake_database.dart' show GoogleBiglakeDatabase;
 /// Sensitive field paths for `google_biglake_table`.
 const Set<String> _googleBiglakeTableSensitive = <String>{};
 
+/// Biglake Table enum for `type`.
+extension type const BiglakeTableType._(TfArg<String> _)
+    implements TfArg<String> {
+  BiglakeTableType.variable(String name) : this._(TfArg.variable(name));
+  BiglakeTableType.expression(String template)
+    : this._(TfArg.expression(template));
+  const BiglakeTableType.arg(TfArg<String> arg) : this._(arg);
+
+  static const hive = BiglakeTableType._(TfArgLiteral('HIVE'));
+
+  static const List<BiglakeTableType> values = [hive];
+}
+
 /// Typed helper for the `hive_options` block of
 /// `google_biglake_table` (derived from provider schema).
 @immutable
@@ -85,7 +98,7 @@ final class GoogleBiglakeTable extends Resource {
     super.localName, {
     required TfArg<String> name,
     RefTo<GoogleBiglakeDatabase>? database,
-    TfArg<String>? type,
+    BiglakeTableType? type,
     BiglakeTableHiveOptions? hiveOptions,
     TfArg<String>? deletionPolicy,
     super.lifecycle,

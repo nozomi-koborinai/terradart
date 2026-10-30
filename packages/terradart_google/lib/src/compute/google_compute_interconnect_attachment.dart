@@ -320,7 +320,7 @@ final class GoogleComputeInterconnectAttachment extends Resource {
     TfArg<String>? interconnect,
     RefTo<GoogleComputeRouter>? router,
     TfArg<String>? region,
-    TfArg<String>? bandwidth,
+    ComputeInterconnectAttachmentBandwidth? bandwidth,
     TfArg<num>? vlanTag8021q,
     TfArg<String>? mtu,
     ComputeInterconnectAttachmentEncryption? encryption,

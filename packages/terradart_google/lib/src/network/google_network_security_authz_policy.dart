@@ -989,7 +989,7 @@ final class GoogleNetworkSecurityAuthzPolicy extends Resource {
     TfArg<Map<String, String>>? labels,
     required TfArg<String> location,
     required TfArg<String> name,
-    TfArg<String>? policyProfile,
+    NetworkSecurityAuthzPolicyProfile? policyProfile,
     TfArg<String>? project,
     NetworkSecurityAuthzPolicyCustomProvider? customProvider,
     List<NetworkSecurityAuthzPolicyHttpRules>? httpRules,

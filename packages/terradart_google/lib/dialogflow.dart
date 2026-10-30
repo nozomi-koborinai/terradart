@@ -182,6 +182,7 @@ export 'src/dialogflow/google_dialogflow_cx_security_settings.dart'
         DialogflowCxSecuritySettingsAudioExportSettings,
         DialogflowCxSecuritySettingsAudioFormat,
         DialogflowCxSecuritySettingsInsightsExportSettings,
+        DialogflowCxSecuritySettingsPurgeDataTypes,
         DialogflowCxSecuritySettingsRedactionScope,
         DialogflowCxSecuritySettingsRedactionStrategy,
         DialogflowCxSecuritySettingsRetention,
@@ -292,7 +293,10 @@ export 'src/dialogflow/google_dialogflow_generator.dart'
         DialogflowGeneratorTriggeringEvent,
         GoogleDialogflowGenerator;
 export 'src/dialogflow/google_dialogflow_intent.dart'
-    show DialogflowIntentWebhookState, GoogleDialogflowIntent;
+    show
+        DialogflowIntentDefaultResponsePlatforms,
+        DialogflowIntentWebhookState,
+        GoogleDialogflowIntent;
 export 'src/dialogflow/google_dialogflow_sip_trunk.dart'
     show DialogflowSipTrunkDeletionPolicy, GoogleDialogflowSipTrunk;
 export 'src/dialogflow/google_dialogflow_tool.dart'

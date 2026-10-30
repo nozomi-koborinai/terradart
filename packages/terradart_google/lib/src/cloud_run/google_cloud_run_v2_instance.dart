@@ -12,6 +12,116 @@ import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
 /// Sensitive field paths for `google_cloud_run_v2_instance`.
 const Set<String> _googleCloudRunV2InstanceSensitive = <String>{};
 
+/// Cloud Run V2 Instance Encryption Key Revocation enum for `encryption_key_revocation_action`.
+extension type const CloudRunV2InstanceEncryptionKeyRevocationAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CloudRunV2InstanceEncryptionKeyRevocationAction.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudRunV2InstanceEncryptionKeyRevocationAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudRunV2InstanceEncryptionKeyRevocationAction.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const preventNew = CloudRunV2InstanceEncryptionKeyRevocationAction._(
+    TfArgLiteral('PREVENT_NEW'),
+  );
+  static const shutdown = CloudRunV2InstanceEncryptionKeyRevocationAction._(
+    TfArgLiteral('SHUTDOWN'),
+  );
+
+  static const List<CloudRunV2InstanceEncryptionKeyRevocationAction> values = [
+    preventNew,
+    shutdown,
+  ];
+}
+
+/// Cloud Run V2 Instance enum for `ingress`.
+extension type const CloudRunV2InstanceIngress._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudRunV2InstanceIngress.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudRunV2InstanceIngress.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudRunV2InstanceIngress.arg(TfArg<String> arg) : this._(arg);
+
+  static const ingressTrafficAll = CloudRunV2InstanceIngress._(
+    TfArgLiteral('INGRESS_TRAFFIC_ALL'),
+  );
+  static const ingressTrafficInternalOnly = CloudRunV2InstanceIngress._(
+    TfArgLiteral('INGRESS_TRAFFIC_INTERNAL_ONLY'),
+  );
+  static const ingressTrafficInternalLoadBalancer = CloudRunV2InstanceIngress._(
+    TfArgLiteral('INGRESS_TRAFFIC_INTERNAL_LOAD_BALANCER'),
+  );
+
+  static const List<CloudRunV2InstanceIngress> values = [
+    ingressTrafficAll,
+    ingressTrafficInternalOnly,
+    ingressTrafficInternalLoadBalancer,
+  ];
+}
+
+/// Cloud Run V2 Instance Launch enum for `launch_stage`.
+extension type const CloudRunV2InstanceLaunchStage._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudRunV2InstanceLaunchStage.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudRunV2InstanceLaunchStage.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudRunV2InstanceLaunchStage.arg(TfArg<String> arg) : this._(arg);
+
+  static const unimplemented = CloudRunV2InstanceLaunchStage._(
+    TfArgLiteral('UNIMPLEMENTED'),
+  );
+  static const prelaunch = CloudRunV2InstanceLaunchStage._(
+    TfArgLiteral('PRELAUNCH'),
+  );
+  static const earlyAccess = CloudRunV2InstanceLaunchStage._(
+    TfArgLiteral('EARLY_ACCESS'),
+  );
+  static const alpha = CloudRunV2InstanceLaunchStage._(TfArgLiteral('ALPHA'));
+  static const beta = CloudRunV2InstanceLaunchStage._(TfArgLiteral('BETA'));
+  static const ga = CloudRunV2InstanceLaunchStage._(TfArgLiteral('GA'));
+  static const deprecated = CloudRunV2InstanceLaunchStage._(
+    TfArgLiteral('DEPRECATED'),
+  );
+
+  static const List<CloudRunV2InstanceLaunchStage> values = [
+    unimplemented,
+    prelaunch,
+    earlyAccess,
+    alpha,
+    beta,
+    ga,
+    deprecated,
+  ];
+}
+
+/// Cloud Run V2 Instance Restart enum for `restart_policy`.
+extension type const CloudRunV2InstanceRestartPolicy._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudRunV2InstanceRestartPolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudRunV2InstanceRestartPolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudRunV2InstanceRestartPolicy.arg(TfArg<String> arg) : this._(arg);
+
+  static const always = CloudRunV2InstanceRestartPolicy._(
+    TfArgLiteral('ALWAYS'),
+  );
+  static const onFailure = CloudRunV2InstanceRestartPolicy._(
+    TfArgLiteral('ON_FAILURE'),
+  );
+  static const never = CloudRunV2InstanceRestartPolicy._(TfArgLiteral('NEVER'));
+
+  static const List<CloudRunV2InstanceRestartPolicy> values = [
+    always,
+    onFailure,
+    never,
+  ];
+}
+
 /// Typed helper for the `containers` block of
 /// `google_cloud_run_v2_instance` (derived from provider schema).
 @immutable
@@ -509,16 +619,17 @@ final class GoogleCloudRunV2Instance extends Resource {
     TfArg<bool>? defaultUriDisabled,
     TfArg<String>? deletionPolicy,
     TfArg<String>? encryptionKey,
-    TfArg<String>? encryptionKeyRevocationAction,
+    CloudRunV2InstanceEncryptionKeyRevocationAction?
+    encryptionKeyRevocationAction,
     TfArg<String>? encryptionKeyShutdownDuration,
-    TfArg<String>? ingress,
+    CloudRunV2InstanceIngress? ingress,
     TfArg<bool>? invokerIamDisabled,
     TfArg<Map<String, String>>? labels,
-    TfArg<String>? launchStage,
+    CloudRunV2InstanceLaunchStage? launchStage,
     required TfArg<String> location,
     required TfArg<String> name,
     TfArg<String>? project,
-    TfArg<String>? restartPolicy,
+    CloudRunV2InstanceRestartPolicy? restartPolicy,
     RefTo<GoogleServiceAccount>? serviceAccount,
     required List<CloudRunV2InstanceContainers> containers,
     List<CloudRunV2InstanceVolumes>? volumes,

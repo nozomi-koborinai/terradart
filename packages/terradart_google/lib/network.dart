@@ -44,7 +44,10 @@ export 'src/network/google_network_connectivity_group.dart'
         NetworkConnectivityGroupAutoAccept,
         NetworkConnectivityGroupName;
 export 'src/network/google_network_connectivity_hub.dart'
-    show GoogleNetworkConnectivityHub;
+    show
+        GoogleNetworkConnectivityHub,
+        NetworkConnectivityHubPolicyMode,
+        NetworkConnectivityHubPresetTopology;
 export 'src/network/google_network_connectivity_hub_iam_binding.dart'
     show
         GoogleNetworkConnectivityHubIamBinding,
@@ -61,6 +64,7 @@ export 'src/network/google_network_connectivity_internal_range.dart'
         NetworkConnectivityInternalRangeAllocationOptions,
         NetworkConnectivityInternalRangeAllocationStrategy,
         NetworkConnectivityInternalRangeMigration,
+        NetworkConnectivityInternalRangeOverlaps,
         NetworkConnectivityInternalRangePeering,
         NetworkConnectivityInternalRangeUsage;
 export 'src/network/google_network_connectivity_multicloud_data_transfer_config.dart'
@@ -127,7 +131,9 @@ export 'src/network/google_network_management_connectivity_test.dart'
 export 'src/network/google_network_management_network_monitoring_provider.dart'
     show GoogleNetworkManagementNetworkMonitoringProvider;
 export 'src/network/google_network_management_organization_vpc_flow_logs_config.dart'
-    show GoogleNetworkManagementOrganizationVpcFlowLogsConfig;
+    show
+        GoogleNetworkManagementOrganizationVpcFlowLogsConfig,
+        NetworkManagementOrganizationVpcFlowLogsConfigCrossProjectMetadata;
 export 'src/network/google_network_management_vpc_flow_logs_config.dart'
     show
         GoogleNetworkManagementVpcFlowLogsConfig,
@@ -305,6 +311,7 @@ export 'src/network/google_network_services_agent_connectivity_template.dart'
     show
         GoogleNetworkServicesAgentConnectivityTemplate,
         NetworkServicesAgentConnectivityTemplateAccessPath,
+        NetworkServicesAgentConnectivityTemplateAccessTypes,
         NetworkServicesAgentConnectivityTemplateAdditionalRoots,
         NetworkServicesAgentConnectivityTemplateDnsPeeringConfig,
         NetworkServicesAgentConnectivityTemplateEgressNetworkConfig,
@@ -319,6 +326,7 @@ export 'src/network/google_network_services_agent_gateway.dart'
         NetworkServicesAgentGatewayGoogleManaged,
         NetworkServicesAgentGatewayGoogleManagedGovernedAccessPath,
         NetworkServicesAgentGatewayNetworkConfig,
+        NetworkServicesAgentGatewayProtocols,
         NetworkServicesAgentGatewaySelfManaged;
 export 'src/network/google_network_services_authz_extension.dart'
     show
@@ -340,6 +348,7 @@ export 'src/network/google_network_services_edge_cache_origin.dart'
         NetworkServicesEdgeCacheOriginProtocol,
         NetworkServicesEdgeCacheOriginRedirect,
         NetworkServicesEdgeCacheOriginRequestHeadersToAdd,
+        NetworkServicesEdgeCacheOriginRetryConditions,
         NetworkServicesEdgeCacheOriginTimeout,
         NetworkServicesEdgeCacheOriginUrlRewrite;
 export 'src/network/google_network_services_edge_cache_service.dart'

@@ -364,8 +364,14 @@ class MmYamlParser {
     ];
   }
 
+  /// An `Array` of `Enum` carries its values on `item_type`.
   List<String>? _enumValues(YamlMap prop) {
-    final ev = prop['enum_values'];
+    final item = prop['item_type'];
+    final ev =
+        prop['enum_values'] ??
+        (prop['type'] == 'Array' && item is YamlMap && item['type'] == 'Enum'
+            ? item['enum_values']
+            : null);
     if (ev is! YamlList) return null;
     return [for (final v in ev) v.toString()];
   }

@@ -34,6 +34,46 @@ extension type const NetworkServicesEdgeCacheOriginProtocol._(TfArg<String> _)
   ];
 }
 
+/// Network Services Edge Cache Origin Retry enum for `retry_conditions`.
+extension type const NetworkServicesEdgeCacheOriginRetryConditions._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkServicesEdgeCacheOriginRetryConditions.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkServicesEdgeCacheOriginRetryConditions.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkServicesEdgeCacheOriginRetryConditions.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const connectFailure = NetworkServicesEdgeCacheOriginRetryConditions._(
+    TfArgLiteral('CONNECT_FAILURE'),
+  );
+  static const http5xx = NetworkServicesEdgeCacheOriginRetryConditions._(
+    TfArgLiteral('HTTP_5XX'),
+  );
+  static const gatewayError = NetworkServicesEdgeCacheOriginRetryConditions._(
+    TfArgLiteral('GATEWAY_ERROR'),
+  );
+  static const retriable4xx = NetworkServicesEdgeCacheOriginRetryConditions._(
+    TfArgLiteral('RETRIABLE_4XX'),
+  );
+  static const notFound = NetworkServicesEdgeCacheOriginRetryConditions._(
+    TfArgLiteral('NOT_FOUND'),
+  );
+  static const forbidden = NetworkServicesEdgeCacheOriginRetryConditions._(
+    TfArgLiteral('FORBIDDEN'),
+  );
+
+  static const List<NetworkServicesEdgeCacheOriginRetryConditions> values = [
+    connectFailure,
+    http5xx,
+    gatewayError,
+    retriable4xx,
+    notFound,
+    forbidden,
+  ];
+}
+
 /// Typed helper for the `aws_v4_authentication` block of
 /// `google_network_services_edge_cache_origin` (derived from provider schema).
 @immutable
@@ -217,7 +257,7 @@ final class GoogleNetworkServicesEdgeCacheOrigin extends Resource {
     NetworkServicesEdgeCacheOriginProtocol? protocol,
     TfArg<num>? port,
     TfArg<num>? maxAttempts,
-    TfArg<List<String>>? retryConditions,
+    List<NetworkServicesEdgeCacheOriginRetryConditions>? retryConditions,
     TfArg<String>? failoverOrigin,
     NetworkServicesEdgeCacheOriginTimeout? timeout,
     NetworkServicesEdgeCacheOriginAwsV4Authentication? awsV4Authentication,
@@ -240,7 +280,10 @@ final class GoogleNetworkServicesEdgeCacheOrigin extends Resource {
            'protocol': ?protocol,
            'port': ?port,
            'max_attempts': ?maxAttempts,
-           'retry_conditions': ?retryConditions,
+           if (retryConditions != null)
+             'retry_conditions': TfArg.literal([
+               for (final e in retryConditions) e.toTfJson(),
+             ]),
            'failover_origin': ?failoverOrigin,
            if (timeout != null) 'timeout': TfArg.literal(timeout.encode()),
            if (awsV4Authentication != null)

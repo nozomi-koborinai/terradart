@@ -6,6 +6,22 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_compute_network_firewall_policy`.
 const Set<String> _googleComputeNetworkFirewallPolicySensitive = <String>{};
 
+/// Compute Network Firewall Policy enum for `policy_type`.
+extension type const ComputeNetworkFirewallPolicyType._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeNetworkFirewallPolicyType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeNetworkFirewallPolicyType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeNetworkFirewallPolicyType.arg(TfArg<String> arg) : this._(arg);
+
+  static const vpcPolicy = ComputeNetworkFirewallPolicyType._(
+    TfArgLiteral('VPC_POLICY'),
+  );
+
+  static const List<ComputeNetworkFirewallPolicyType> values = [vpcPolicy];
+}
+
 /// Factory wrapper for `google_compute_network_firewall_policy`.
 ///
 /// The Compute NetworkFirewallPolicy resource
@@ -16,7 +32,7 @@ final class GoogleComputeNetworkFirewallPolicy extends Resource {
     super.localName, {
     required TfArg<String> name,
     TfArg<String>? description,
-    TfArg<String>? policyType,
+    ComputeNetworkFirewallPolicyType? policyType,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,

@@ -42,6 +42,28 @@ extension type const DiscoveryEngineControlSolutionType._(TfArg<String> _)
   ];
 }
 
+/// Discovery Engine Control Use enum for `use_cases`.
+extension type const DiscoveryEngineControlUseCases._(TfArg<String> _)
+    implements TfArg<String> {
+  DiscoveryEngineControlUseCases.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineControlUseCases.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineControlUseCases.arg(TfArg<String> arg) : this._(arg);
+
+  static const searchUseCaseSearch = DiscoveryEngineControlUseCases._(
+    TfArgLiteral('SEARCH_USE_CASE_SEARCH'),
+  );
+  static const searchUseCaseBrowse = DiscoveryEngineControlUseCases._(
+    TfArgLiteral('SEARCH_USE_CASE_BROWSE'),
+  );
+
+  static const List<DiscoveryEngineControlUseCases> values = [
+    searchUseCaseSearch,
+    searchUseCaseBrowse,
+  ];
+}
+
 /// Exactly one of `boost_action`, `filter_action`, `redirect_action`, `synonyms_action`, `promote_action` on `google_discovery_engine_control`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
@@ -533,7 +555,7 @@ final class GoogleDiscoveryEngineControl extends Resource {
     required TfArg<String> displayName,
     required DiscoveryEngineControlSolutionType solutionType,
     required DiscoveryEngineControlAction action,
-    TfArg<List<String>>? useCases,
+    List<DiscoveryEngineControlUseCases>? useCases,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     List<DiscoveryEngineControlConditions>? conditions,
@@ -550,7 +572,10 @@ final class GoogleDiscoveryEngineControl extends Resource {
            'control_id': controlId,
            'display_name': displayName,
            'solution_type': solutionType,
-           'use_cases': ?useCases,
+           if (useCases != null)
+             'use_cases': TfArg.literal([
+               for (final e in useCases) e.toTfJson(),
+             ]),
            'deletion_policy': ?deletionPolicy,
            'project': ?project,
            ...action.argMap,

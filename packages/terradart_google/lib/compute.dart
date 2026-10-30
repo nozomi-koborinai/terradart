@@ -444,11 +444,13 @@ export 'src/compute/google_compute_instant_snapshot_iam_policy.dart'
     show GoogleComputeInstantSnapshotIamPolicy;
 export 'src/compute/google_compute_interconnect.dart'
     show
+        ComputeInterconnectAvailableFeatures,
         ComputeInterconnectLinkType,
         ComputeInterconnectMacsec,
         ComputeInterconnectOperationalStatus,
         ComputeInterconnectParams,
         ComputeInterconnectPreSharedKeys,
+        ComputeInterconnectRequestedFeatures,
         ComputeInterconnectState,
         ComputeInterconnectType,
         GoogleComputeInterconnect;
@@ -503,7 +505,7 @@ export 'src/compute/google_compute_network_endpoint_group.dart'
 export 'src/compute/google_compute_network_endpoints.dart'
     show ComputeNetworkEndpoints, GoogleComputeNetworkEndpoints;
 export 'src/compute/google_compute_network_firewall_policy.dart'
-    show GoogleComputeNetworkFirewallPolicy;
+    show ComputeNetworkFirewallPolicyType, GoogleComputeNetworkFirewallPolicy;
 export 'src/compute/google_compute_network_firewall_policy_association.dart'
     show GoogleComputeNetworkFirewallPolicyAssociation;
 export 'src/compute/google_compute_network_firewall_policy_iam_binding.dart'
@@ -572,6 +574,7 @@ export 'src/compute/google_compute_organization_security_policy.dart'
         ComputeOrganizationSecurityPolicyJsonParsing,
         ComputeOrganizationSecurityPolicyLogLevel,
         ComputeOrganizationSecurityPolicyRequestBodyInspectionSize,
+        ComputeOrganizationSecurityPolicyType,
         GoogleComputeOrganizationSecurityPolicy;
 export 'src/compute/google_compute_organization_security_policy_association.dart'
     show GoogleComputeOrganizationSecurityPolicyAssociation;

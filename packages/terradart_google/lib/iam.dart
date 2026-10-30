@@ -154,7 +154,9 @@ export 'src/iam/google_iam_workforce_pool_provider_key.dart'
     show
         GoogleIamWorkforcePoolProviderKey,
         IamWorkforcePoolProviderKeyData,
-        IamWorkforcePoolProviderKeySpec;
+        IamWorkforcePoolProviderKeySpec,
+        IamWorkforcePoolProviderKeyState,
+        IamWorkforcePoolProviderKeyUse;
 export 'src/iam/google_iam_workforce_pool_provider_scim_tenant.dart'
     show GoogleIamWorkforcePoolProviderScimTenant;
 export 'src/iam/google_iam_workforce_pool_provider_scim_token.dart'

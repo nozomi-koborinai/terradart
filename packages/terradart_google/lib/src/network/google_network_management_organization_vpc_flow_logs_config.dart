@@ -7,6 +7,35 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String>
 _googleNetworkManagementOrganizationVpcFlowLogsConfigSensitive = <String>{};
 
+/// Network Management Organization Vpc Flow Logs Config Cross Project enum for `cross_project_metadata`.
+extension type const NetworkManagementOrganizationVpcFlowLogsConfigCrossProjectMetadata._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkManagementOrganizationVpcFlowLogsConfigCrossProjectMetadata.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  NetworkManagementOrganizationVpcFlowLogsConfigCrossProjectMetadata.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const NetworkManagementOrganizationVpcFlowLogsConfigCrossProjectMetadata.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const crossProjectMetadataEnabled =
+      NetworkManagementOrganizationVpcFlowLogsConfigCrossProjectMetadata._(
+        TfArgLiteral('CROSS_PROJECT_METADATA_ENABLED'),
+      );
+  static const crossProjectMetadataDisabled =
+      NetworkManagementOrganizationVpcFlowLogsConfigCrossProjectMetadata._(
+        TfArgLiteral('CROSS_PROJECT_METADATA_DISABLED'),
+      );
+
+  static const List<
+    NetworkManagementOrganizationVpcFlowLogsConfigCrossProjectMetadata
+  >
+  values = [crossProjectMetadataEnabled, crossProjectMetadataDisabled];
+}
+
 /// Factory wrapper for `google_network_management_organization_vpc_flow_logs_config`.
 ///
 /// VPC Flow Logs Config is a resource that lets you configure Flow Logs for
@@ -26,7 +55,8 @@ final class GoogleNetworkManagementOrganizationVpcFlowLogsConfig
   GoogleNetworkManagementOrganizationVpcFlowLogsConfig(
     super.localName, {
     TfArg<String>? aggregationInterval,
-    TfArg<String>? crossProjectMetadata,
+    NetworkManagementOrganizationVpcFlowLogsConfigCrossProjectMetadata?
+    crossProjectMetadata,
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,
     TfArg<String>? filterExpr,

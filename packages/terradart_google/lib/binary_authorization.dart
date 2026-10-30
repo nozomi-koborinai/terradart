@@ -27,6 +27,7 @@ export 'src/binary_authorization/google_binary_authorization_policy.dart'
         BinaryAuthorizationPolicyDefaultAdmissionRule,
         BinaryAuthorizationPolicyEnforcementMode,
         BinaryAuthorizationPolicyEvaluationMode,
+        BinaryAuthorizationPolicyGlobalPolicyEvaluationMode,
         GoogleBinaryAuthorizationPolicy;
 export 'src/data/google_binary_authorization_attestor_iam_policy.dart'
     show DataGoogleBinaryAuthorizationAttestorIamPolicy;

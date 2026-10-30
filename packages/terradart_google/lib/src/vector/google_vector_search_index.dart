@@ -163,7 +163,7 @@ final class GoogleVectorSearchIndex extends Resource {
     required TfArg<String> indexField,
     TfArg<String>? displayName,
     TfArg<String>? description,
-    TfArg<String>? distanceMetric,
+    VectorSearchIndexDistanceMetric? distanceMetric,
     TfArg<List<String>>? filterFields,
     TfArg<List<String>>? storeFields,
     VectorSearchIndexDenseScann? denseScann,

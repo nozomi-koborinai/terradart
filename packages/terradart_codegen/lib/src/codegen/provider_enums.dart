@@ -169,13 +169,15 @@ final class ProviderEnums {
   );
 
   /// `wrap --mm-groups`: only the `exactly_one_of` / `conflicts` groups of
-  /// [ProviderEnums.fromMm], for a lane whose enum typing comes from the
-  /// merged IR instead (google GA). The gate stays closed, so the enum
-  /// resolver, [enrich] and [typeDerivedEnums] behave as [off] does.
+  /// [ProviderEnums.fromMm], for a lane whose enum values come from the
+  /// merged IR instead (google GA). No hint table and no `Available values:`
+  /// dialect: an input the merged IR leaves without values takes the
+  /// description dialects every lane reads, and [typeDerivedEnums] types
+  /// each `deriveEnums` input with the enum the wrapper declares.
   factory ProviderEnums.mmGroups(Map<String, MmResourceOverrides> mm) {
     final all = ProviderEnums.fromMm(mm)._tables.resources;
     return ProviderEnums._(
-      enabled: false,
+      enabled: true,
       tables: (
         resources: KindHints.empty._withGroups(all.exactlyOne, all.atMostOne),
         dataSources: KindHints.empty,
@@ -565,10 +567,18 @@ Map<String, EnumName> topLevelEnums(
     laneInputs: laneInputs,
     named: override.typeNames ?? const {},
   );
+  final explicit = override.dartTypeOverrides ?? const <String, String>{};
+  final slots = override.customSlots ?? const <String, CustomSlot>{};
   return {
     for (final attr in def.root.attributes)
       if (attr.constraints.enumValues case final values?)
-        if (values.isNotEmpty)
+        if (values.isNotEmpty &&
+            _takesDerivedEnum(
+              explicit[attr.name],
+              names[attr.name]!,
+              override.prelude,
+            ) &&
+            !slots.containsKey(attr.name))
           attr.name: enumName(
             resourceType: def.terraformType,
             fieldPath: attr.name,
@@ -576,6 +586,22 @@ Map<String, EnumName> topLevelEnums(
             dartName: names[attr.name],
           ),
   };
+}
+
+/// An input whose `dartTypeOverrides` entry names another type, or a type
+/// the hand-written [prelude] declares, never takes the enum derived for
+/// it, so the wrapper does not declare one.
+bool _takesDerivedEnum(String? explicit, String derived, String? prelude) {
+  if (prelude != null &&
+      RegExp(
+        '\\b(?:enum|class|extension type(?: const)?) '
+        '${RegExp.escape(derived)}\\b',
+      ).hasMatch(prelude)) {
+    return false;
+  }
+  return explicit == null ||
+      explicit == derived ||
+      explicit == 'List<$derived>';
 }
 
 /// Throws a [StateError] naming each `typeNames` entry of [override] that no

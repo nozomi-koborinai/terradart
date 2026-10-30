@@ -7,6 +7,30 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_binary_authorization_policy`.
 const Set<String> _googleBinaryAuthorizationPolicySensitive = <String>{};
 
+/// Binary Authorization Policy Global Policy Evaluation enum for `global_policy_evaluation_mode`.
+extension type const BinaryAuthorizationPolicyGlobalPolicyEvaluationMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  BinaryAuthorizationPolicyGlobalPolicyEvaluationMode.variable(String name)
+    : this._(TfArg.variable(name));
+  BinaryAuthorizationPolicyGlobalPolicyEvaluationMode.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const BinaryAuthorizationPolicyGlobalPolicyEvaluationMode.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const enable = BinaryAuthorizationPolicyGlobalPolicyEvaluationMode._(
+    TfArgLiteral('ENABLE'),
+  );
+  static const disable = BinaryAuthorizationPolicyGlobalPolicyEvaluationMode._(
+    TfArgLiteral('DISABLE'),
+  );
+
+  static const List<BinaryAuthorizationPolicyGlobalPolicyEvaluationMode>
+  values = [enable, disable];
+}
+
 /// Typed helper for the `admission_whitelist_patterns` block of
 /// `google_binary_authorization_policy` (derived from provider schema).
 @immutable
@@ -152,7 +176,8 @@ final class GoogleBinaryAuthorizationPolicy extends Resource {
     super.localName, {
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,
-    TfArg<String>? globalPolicyEvaluationMode,
+    BinaryAuthorizationPolicyGlobalPolicyEvaluationMode?
+    globalPolicyEvaluationMode,
     TfArg<String>? project,
     List<BinaryAuthorizationPolicyAdmissionWhitelistPatterns>?
     admissionWhitelistPatterns,

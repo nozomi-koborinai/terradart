@@ -6,6 +6,57 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_dialogflow_intent`.
 const Set<String> _googleDialogflowIntentSensitive = <String>{};
 
+/// Dialogflow Intent Default Response enum for `default_response_platforms`.
+extension type const DialogflowIntentDefaultResponsePlatforms._(TfArg<String> _)
+    implements TfArg<String> {
+  DialogflowIntentDefaultResponsePlatforms.variable(String name)
+    : this._(TfArg.variable(name));
+  DialogflowIntentDefaultResponsePlatforms.expression(String template)
+    : this._(TfArg.expression(template));
+  const DialogflowIntentDefaultResponsePlatforms.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const facebook = DialogflowIntentDefaultResponsePlatforms._(
+    TfArgLiteral('FACEBOOK'),
+  );
+  static const slack = DialogflowIntentDefaultResponsePlatforms._(
+    TfArgLiteral('SLACK'),
+  );
+  static const telegram = DialogflowIntentDefaultResponsePlatforms._(
+    TfArgLiteral('TELEGRAM'),
+  );
+  static const kik = DialogflowIntentDefaultResponsePlatforms._(
+    TfArgLiteral('KIK'),
+  );
+  static const skype = DialogflowIntentDefaultResponsePlatforms._(
+    TfArgLiteral('SKYPE'),
+  );
+  static const line = DialogflowIntentDefaultResponsePlatforms._(
+    TfArgLiteral('LINE'),
+  );
+  static const viber = DialogflowIntentDefaultResponsePlatforms._(
+    TfArgLiteral('VIBER'),
+  );
+  static const actionsOnGoogle = DialogflowIntentDefaultResponsePlatforms._(
+    TfArgLiteral('ACTIONS_ON_GOOGLE'),
+  );
+  static const googleHangouts = DialogflowIntentDefaultResponsePlatforms._(
+    TfArgLiteral('GOOGLE_HANGOUTS'),
+  );
+
+  static const List<DialogflowIntentDefaultResponsePlatforms> values = [
+    facebook,
+    slack,
+    telegram,
+    kik,
+    skype,
+    line,
+    viber,
+    actionsOnGoogle,
+    googleHangouts,
+  ];
+}
+
 /// Dialogflow Intent Webhook enum for `webhook_state`.
 extension type const DialogflowIntentWebhookState._(TfArg<String> _)
     implements TfArg<String> {
@@ -52,7 +103,7 @@ final class GoogleDialogflowIntent extends Resource {
     super.localName, {
     required TfArg<String> displayName,
     TfArg<String>? action,
-    TfArg<List<String>>? defaultResponsePlatforms,
+    List<DialogflowIntentDefaultResponsePlatforms>? defaultResponsePlatforms,
     TfArg<List<String>>? events,
     TfArg<List<String>>? inputContextNames,
     TfArg<bool>? isFallback,
@@ -72,7 +123,10 @@ final class GoogleDialogflowIntent extends Resource {
          argMap: {
            'display_name': displayName,
            'action': ?action,
-           'default_response_platforms': ?defaultResponsePlatforms,
+           if (defaultResponsePlatforms != null)
+             'default_response_platforms': TfArg.literal([
+               for (final e in defaultResponsePlatforms) e.toTfJson(),
+             ]),
            'events': ?events,
            'input_context_names': ?inputContextNames,
            'is_fallback': ?isFallback,

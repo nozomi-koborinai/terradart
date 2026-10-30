@@ -587,7 +587,7 @@ final class GoogleMemorystoreInstance extends Resource {
     required TfArg<num> shardCount,
     TfArg<num>? replicaCount,
     TfArg<String>? nodeType,
-    TfArg<String>? mode,
+    MemorystoreInstanceMode? mode,
     TfArg<String>? engineVersion,
     TfArg<String>? authorizationMode,
     TfArg<String>? transitEncryptionMode,

@@ -7,6 +7,37 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_compute_interconnect`.
 const Set<String> _googleComputeInterconnectSensitive = <String>{};
 
+/// Compute Interconnect Available enum for `available_features`.
+extension type const ComputeInterconnectAvailableFeatures._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInterconnectAvailableFeatures.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInterconnectAvailableFeatures.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInterconnectAvailableFeatures.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const ifCrossSiteNetwork = ComputeInterconnectAvailableFeatures._(
+    TfArgLiteral('IF_CROSS_SITE_NETWORK'),
+  );
+  static const ifMacsec = ComputeInterconnectAvailableFeatures._(
+    TfArgLiteral('IF_MACSEC'),
+  );
+  static const macsec = ComputeInterconnectAvailableFeatures._(
+    TfArgLiteral('MACSEC'),
+  );
+  static const ifL2Forwarding = ComputeInterconnectAvailableFeatures._(
+    TfArgLiteral('IF_L2_FORWARDING'),
+  );
+
+  static const List<ComputeInterconnectAvailableFeatures> values = [
+    ifCrossSiteNetwork,
+    ifMacsec,
+    macsec,
+    ifL2Forwarding,
+  ];
+}
+
 /// Compute Interconnect enum for `interconnect_type`.
 extension type const ComputeInterconnectType._(TfArg<String> _)
     implements TfArg<String> {
@@ -78,6 +109,37 @@ extension type const ComputeInterconnectOperationalStatus._(TfArg<String> _)
     osActive,
     osUnprovisioned,
     osUnderMaintenance,
+  ];
+}
+
+/// Compute Interconnect Requested enum for `requested_features`.
+extension type const ComputeInterconnectRequestedFeatures._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInterconnectRequestedFeatures.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInterconnectRequestedFeatures.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInterconnectRequestedFeatures.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const macsec = ComputeInterconnectRequestedFeatures._(
+    TfArgLiteral('MACSEC'),
+  );
+  static const crossSiteNetwork = ComputeInterconnectRequestedFeatures._(
+    TfArgLiteral('CROSS_SITE_NETWORK'),
+  );
+  static const ifMacsec = ComputeInterconnectRequestedFeatures._(
+    TfArgLiteral('IF_MACSEC'),
+  );
+  static const ifL2Forwarding = ComputeInterconnectRequestedFeatures._(
+    TfArgLiteral('IF_L2_FORWARDING'),
+  );
+
+  static const List<ComputeInterconnectRequestedFeatures> values = [
+    macsec,
+    crossSiteNetwork,
+    ifMacsec,
+    ifL2Forwarding,
   ];
 }
 
@@ -179,7 +241,7 @@ final class GoogleComputeInterconnect extends Resource {
     TfArg<bool>? macsecEnabled,
     TfArg<String>? nocContactEmail,
     TfArg<String>? remoteLocation,
-    TfArg<List<String>>? requestedFeatures,
+    List<ComputeInterconnectRequestedFeatures>? requestedFeatures,
     TfArg<Map<String, String>>? labels,
     ComputeInterconnectMacsec? macsec,
     ComputeInterconnectParams? params,
@@ -203,7 +265,10 @@ final class GoogleComputeInterconnect extends Resource {
            'macsec_enabled': ?macsecEnabled,
            'noc_contact_email': ?nocContactEmail,
            'remote_location': ?remoteLocation,
-           'requested_features': ?requestedFeatures,
+           if (requestedFeatures != null)
+             'requested_features': TfArg.literal([
+               for (final e in requestedFeatures) e.toTfJson(),
+             ]),
            'labels': ?labels,
            if (macsec != null) 'macsec': TfArg.literal(macsec.encode()),
            if (params != null) 'params': TfArg.literal(params.encode()),

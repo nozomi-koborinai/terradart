@@ -8,6 +8,7 @@ deriveClassDoc: true
 deriveNestedTypes: true
 
 deriveOutputGetters: true
+deriveEnums: true
 
 deriveExactlyOne: true
 

@@ -7,6 +7,146 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_gkeonprem_vmware_cluster`.
 const Set<String> _googleGkeonpremVmwareClusterSensitive = <String>{};
 
+/// Gkeonprem Vmware Cluster Skip enum for `skip_validations`.
+extension type const GkeonpremVmwareClusterSkipValidations._(TfArg<String> _)
+    implements TfArg<String> {
+  GkeonpremVmwareClusterSkipValidations.variable(String name)
+    : this._(TfArg.variable(name));
+  GkeonpremVmwareClusterSkipValidations.expression(String template)
+    : this._(TfArg.expression(template));
+  const GkeonpremVmwareClusterSkipValidations.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const validationSkipUnspecified =
+      GkeonpremVmwareClusterSkipValidations._(
+        TfArgLiteral('VALIDATION_SKIP_UNSPECIFIED'),
+      );
+  static const all = GkeonpremVmwareClusterSkipValidations._(
+    TfArgLiteral('ALL'),
+  );
+  static const workstation = GkeonpremVmwareClusterSkipValidations._(
+    TfArgLiteral('WORKSTATION'),
+  );
+  static const config = GkeonpremVmwareClusterSkipValidations._(
+    TfArgLiteral('CONFIG'),
+  );
+  static const docker = GkeonpremVmwareClusterSkipValidations._(
+    TfArgLiteral('DOCKER'),
+  );
+  static const infra = GkeonpremVmwareClusterSkipValidations._(
+    TfArgLiteral('INFRA'),
+  );
+  static const loadBalancer = GkeonpremVmwareClusterSkipValidations._(
+    TfArgLiteral('LOAD_BALANCER'),
+  );
+  static const vips = GkeonpremVmwareClusterSkipValidations._(
+    TfArgLiteral('VIPS'),
+  );
+  static const nodeIps = GkeonpremVmwareClusterSkipValidations._(
+    TfArgLiteral('NODE_IPS'),
+  );
+  static const dns = GkeonpremVmwareClusterSkipValidations._(
+    TfArgLiteral('DNS'),
+  );
+  static const tod = GkeonpremVmwareClusterSkipValidations._(
+    TfArgLiteral('TOD'),
+  );
+  static const netConfig = GkeonpremVmwareClusterSkipValidations._(
+    TfArgLiteral('NET_CONFIG'),
+  );
+  static const storageDriver = GkeonpremVmwareClusterSkipValidations._(
+    TfArgLiteral('STORAGE_DRIVER'),
+  );
+  static const proxy = GkeonpremVmwareClusterSkipValidations._(
+    TfArgLiteral('PROXY'),
+  );
+  static const internet = GkeonpremVmwareClusterSkipValidations._(
+    TfArgLiteral('INTERNET'),
+  );
+  static const gcp = GkeonpremVmwareClusterSkipValidations._(
+    TfArgLiteral('GCP'),
+  );
+  static const gkehub = GkeonpremVmwareClusterSkipValidations._(
+    TfArgLiteral('GKEHUB'),
+  );
+  static const reservedIps = GkeonpremVmwareClusterSkipValidations._(
+    TfArgLiteral('RESERVED_IPS'),
+  );
+  static const stackdriver = GkeonpremVmwareClusterSkipValidations._(
+    TfArgLiteral('STACKDRIVER'),
+  );
+  static const nodepoolAutoscaling = GkeonpremVmwareClusterSkipValidations._(
+    TfArgLiteral('NODEPOOL_AUTOSCALING'),
+  );
+  static const osImages = GkeonpremVmwareClusterSkipValidations._(
+    TfArgLiteral('OS_IMAGES'),
+  );
+  static const clusterVersion = GkeonpremVmwareClusterSkipValidations._(
+    TfArgLiteral('CLUSTER_VERSION'),
+  );
+  static const clusterHealth = GkeonpremVmwareClusterSkipValidations._(
+    TfArgLiteral('CLUSTER_HEALTH'),
+  );
+  static const windows = GkeonpremVmwareClusterSkipValidations._(
+    TfArgLiteral('WINDOWS'),
+  );
+  static const hsmSecretEncryption = GkeonpremVmwareClusterSkipValidations._(
+    TfArgLiteral('HSM_SECRET_ENCRYPTION'),
+  );
+  static const backupAdmin = GkeonpremVmwareClusterSkipValidations._(
+    TfArgLiteral('BACKUP_ADMIN'),
+  );
+  static const connectivity = GkeonpremVmwareClusterSkipValidations._(
+    TfArgLiteral('CONNECTIVITY'),
+  );
+  static const clusterSecretsConfig = GkeonpremVmwareClusterSkipValidations._(
+    TfArgLiteral('CLUSTER_SECRETS_CONFIG'),
+  );
+  static const csiWorkload = GkeonpremVmwareClusterSkipValidations._(
+    TfArgLiteral('CSI_WORKLOAD'),
+  );
+  static const vsphereVersion = GkeonpremVmwareClusterSkipValidations._(
+    TfArgLiteral('VSPHERE_VERSION'),
+  );
+  static const migration = GkeonpremVmwareClusterSkipValidations._(
+    TfArgLiteral('MIGRATION'),
+  );
+
+  static const List<GkeonpremVmwareClusterSkipValidations> values = [
+    validationSkipUnspecified,
+    all,
+    workstation,
+    config,
+    docker,
+    infra,
+    loadBalancer,
+    vips,
+    nodeIps,
+    dns,
+    tod,
+    netConfig,
+    storageDriver,
+    proxy,
+    internet,
+    gcp,
+    gkehub,
+    reservedIps,
+    stackdriver,
+    nodepoolAutoscaling,
+    osImages,
+    clusterVersion,
+    clusterHealth,
+    windows,
+    hsmSecretEncryption,
+    backupAdmin,
+    connectivity,
+    clusterSecretsConfig,
+    csiWorkload,
+    vsphereVersion,
+    migration,
+  ];
+}
+
 /// Gkeonprem Vmware Cluster enum for `state`.
 extension type const GkeonpremVmwareClusterState._(TfArg<String> _)
     implements TfArg<String> {
@@ -725,7 +865,7 @@ final class GoogleGkeonpremVmwareCluster extends Resource {
     TfArg<bool>? enableAdvancedCluster,
     TfArg<bool>? disableBundledIngress,
     TfArg<bool>? vmTrackingEnabled,
-    TfArg<List<String>>? skipValidations,
+    List<GkeonpremVmwareClusterSkipValidations>? skipValidations,
     TfArg<Map<String, String>>? annotations,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
@@ -762,7 +902,10 @@ final class GoogleGkeonpremVmwareCluster extends Resource {
            'enable_advanced_cluster': ?enableAdvancedCluster,
            'disable_bundled_ingress': ?disableBundledIngress,
            'vm_tracking_enabled': ?vmTrackingEnabled,
-           'skip_validations': ?skipValidations,
+           if (skipValidations != null)
+             'skip_validations': TfArg.literal([
+               for (final e in skipValidations) e.toTfJson(),
+             ]),
            'annotations': ?annotations,
            'deletion_policy': ?deletionPolicy,
            'project': ?project,

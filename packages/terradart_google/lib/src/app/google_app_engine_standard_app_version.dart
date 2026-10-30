@@ -9,6 +9,141 @@ import '../iam/google_service_account.dart' show GoogleServiceAccount;
 /// Sensitive field paths for `google_app_engine_standard_app_version`.
 const Set<String> _googleAppEngineStandardAppVersionSensitive = <String>{};
 
+/// App Engine Standard App Version App Engine Bundled enum for `app_engine_bundled_services`.
+extension type const AppEngineStandardAppVersionAppEngineBundledServices._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AppEngineStandardAppVersionAppEngineBundledServices.variable(String name)
+    : this._(TfArg.variable(name));
+  AppEngineStandardAppVersionAppEngineBundledServices.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const AppEngineStandardAppVersionAppEngineBundledServices.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const bundledServiceTypeAppIdentityService =
+      AppEngineStandardAppVersionAppEngineBundledServices._(
+        TfArgLiteral('BUNDLED_SERVICE_TYPE_APP_IDENTITY_SERVICE'),
+      );
+  static const bundledServiceTypeBlobstore =
+      AppEngineStandardAppVersionAppEngineBundledServices._(
+        TfArgLiteral('BUNDLED_SERVICE_TYPE_BLOBSTORE'),
+      );
+  static const bundledServiceTypeCapabilityService =
+      AppEngineStandardAppVersionAppEngineBundledServices._(
+        TfArgLiteral('BUNDLED_SERVICE_TYPE_CAPABILITY_SERVICE'),
+      );
+  static const bundledServiceTypeDatastoreV3 =
+      AppEngineStandardAppVersionAppEngineBundledServices._(
+        TfArgLiteral('BUNDLED_SERVICE_TYPE_DATASTORE_V3'),
+      );
+  static const bundledServiceTypeImages =
+      AppEngineStandardAppVersionAppEngineBundledServices._(
+        TfArgLiteral('BUNDLED_SERVICE_TYPE_IMAGES'),
+      );
+  static const bundledServiceTypeMail =
+      AppEngineStandardAppVersionAppEngineBundledServices._(
+        TfArgLiteral('BUNDLED_SERVICE_TYPE_MAIL'),
+      );
+  static const bundledServiceTypeMemcache =
+      AppEngineStandardAppVersionAppEngineBundledServices._(
+        TfArgLiteral('BUNDLED_SERVICE_TYPE_MEMCACHE'),
+      );
+  static const bundledServiceTypeModules =
+      AppEngineStandardAppVersionAppEngineBundledServices._(
+        TfArgLiteral('BUNDLED_SERVICE_TYPE_MODULES'),
+      );
+  static const bundledServiceTypeSearch =
+      AppEngineStandardAppVersionAppEngineBundledServices._(
+        TfArgLiteral('BUNDLED_SERVICE_TYPE_SEARCH'),
+      );
+  static const bundledServiceTypeTaskqueues =
+      AppEngineStandardAppVersionAppEngineBundledServices._(
+        TfArgLiteral('BUNDLED_SERVICE_TYPE_TASKQUEUES'),
+      );
+  static const bundledServiceTypeUrlfetch =
+      AppEngineStandardAppVersionAppEngineBundledServices._(
+        TfArgLiteral('BUNDLED_SERVICE_TYPE_URLFETCH'),
+      );
+  static const bundledServiceTypeUsers =
+      AppEngineStandardAppVersionAppEngineBundledServices._(
+        TfArgLiteral('BUNDLED_SERVICE_TYPE_USERS'),
+      );
+
+  static const List<AppEngineStandardAppVersionAppEngineBundledServices>
+  values = [
+    bundledServiceTypeAppIdentityService,
+    bundledServiceTypeBlobstore,
+    bundledServiceTypeCapabilityService,
+    bundledServiceTypeDatastoreV3,
+    bundledServiceTypeImages,
+    bundledServiceTypeMail,
+    bundledServiceTypeMemcache,
+    bundledServiceTypeModules,
+    bundledServiceTypeSearch,
+    bundledServiceTypeTaskqueues,
+    bundledServiceTypeUrlfetch,
+    bundledServiceTypeUsers,
+  ];
+}
+
+/// App Engine Standard App Version Inbound enum for `inbound_services`.
+extension type const AppEngineStandardAppVersionInboundServices._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AppEngineStandardAppVersionInboundServices.variable(String name)
+    : this._(TfArg.variable(name));
+  AppEngineStandardAppVersionInboundServices.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppEngineStandardAppVersionInboundServices.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const inboundServiceMail =
+      AppEngineStandardAppVersionInboundServices._(
+        TfArgLiteral('INBOUND_SERVICE_MAIL'),
+      );
+  static const inboundServiceMailBounce =
+      AppEngineStandardAppVersionInboundServices._(
+        TfArgLiteral('INBOUND_SERVICE_MAIL_BOUNCE'),
+      );
+  static const inboundServiceXmppError =
+      AppEngineStandardAppVersionInboundServices._(
+        TfArgLiteral('INBOUND_SERVICE_XMPP_ERROR'),
+      );
+  static const inboundServiceXmppMessage =
+      AppEngineStandardAppVersionInboundServices._(
+        TfArgLiteral('INBOUND_SERVICE_XMPP_MESSAGE'),
+      );
+  static const inboundServiceXmppSubscribe =
+      AppEngineStandardAppVersionInboundServices._(
+        TfArgLiteral('INBOUND_SERVICE_XMPP_SUBSCRIBE'),
+      );
+  static const inboundServiceXmppPresence =
+      AppEngineStandardAppVersionInboundServices._(
+        TfArgLiteral('INBOUND_SERVICE_XMPP_PRESENCE'),
+      );
+  static const inboundServiceChannelPresence =
+      AppEngineStandardAppVersionInboundServices._(
+        TfArgLiteral('INBOUND_SERVICE_CHANNEL_PRESENCE'),
+      );
+  static const inboundServiceWarmup =
+      AppEngineStandardAppVersionInboundServices._(
+        TfArgLiteral('INBOUND_SERVICE_WARMUP'),
+      );
+
+  static const List<AppEngineStandardAppVersionInboundServices> values = [
+    inboundServiceMail,
+    inboundServiceMailBounce,
+    inboundServiceXmppError,
+    inboundServiceXmppMessage,
+    inboundServiceXmppSubscribe,
+    inboundServiceXmppPresence,
+    inboundServiceChannelPresence,
+    inboundServiceWarmup,
+  ];
+}
+
 /// At most one of `app_engine_apis`, `app_engine_bundled_services` on `google_app_engine_standard_app_version`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
@@ -24,7 +159,8 @@ sealed class AppEngineStandardAppVersionLegacyServices {
 
   /// Sets `app_engine_bundled_services`.
   const factory AppEngineStandardAppVersionLegacyServices.appEngineBundledServices(
-    TfArg<List<String>> appEngineBundledServices,
+    List<AppEngineStandardAppVersionAppEngineBundledServices>
+    appEngineBundledServices,
   ) = AppEngineStandardAppVersionLegacyServicesAppEngineBundledServices;
 
   /// The Terraform argument this choice sets.
@@ -71,7 +207,8 @@ final class AppEngineStandardAppVersionLegacyServicesAppEngineBundledServices
     this.appEngineBundledServices,
   );
 
-  final TfArg<List<String>> appEngineBundledServices;
+  final List<AppEngineStandardAppVersionAppEngineBundledServices>
+  appEngineBundledServices;
 
   @internal
   @override
@@ -80,13 +217,17 @@ final class AppEngineStandardAppVersionLegacyServicesAppEngineBundledServices
   @internal
   @override
   Map<String, Object?> encode() => {
-    'app_engine_bundled_services': appEngineBundledServices.toTfJson(),
+    'app_engine_bundled_services': [
+      for (final e in appEngineBundledServices) e.toTfJson(),
+    ],
   };
 
   @internal
   @override
   Map<String, TfArg<Object?>> get argMap => {
-    'app_engine_bundled_services': appEngineBundledServices,
+    'app_engine_bundled_services': TfArg.literal([
+      for (final e in appEngineBundledServices) e.toTfJson(),
+    ]),
   };
 }
 
@@ -647,7 +788,7 @@ final class GoogleAppEngineStandardAppVersion extends Resource {
     TfArg<bool>? noopOnDestroy,
     RefTo<GoogleServiceAccount>? serviceAccount,
     TfArg<bool>? threadsafe,
-    TfArg<List<String>>? inboundServices,
+    List<AppEngineStandardAppVersionInboundServices>? inboundServices,
     TfArg<String>? project,
     List<AppEngineStandardAppVersionLibraries>? libraries,
     super.lifecycle,
@@ -676,7 +817,10 @@ final class GoogleAppEngineStandardAppVersion extends Resource {
            'noop_on_destroy': ?noopOnDestroy,
            'service_account': ?serviceAccount?.encodeAs('email'),
            'threadsafe': ?threadsafe,
-           'inbound_services': ?inboundServices,
+           if (inboundServices != null)
+             'inbound_services': TfArg.literal([
+               for (final e in inboundServices) e.toTfJson(),
+             ]),
            'project': ?project,
            if (libraries != null)
              'libraries': TfArg.literal([

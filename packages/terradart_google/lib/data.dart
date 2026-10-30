@@ -773,7 +773,10 @@ export 'src/data/google_service_directory_service_iam_policy.dart'
 export 'src/data/google_service_networking_peered_dns_domain.dart'
     show DataGoogleServiceNetworkingPeeredDnsDomain;
 export 'src/data/google_site_verification_token.dart'
-    show DataGoogleSiteVerificationToken;
+    show
+        DataGoogleSiteVerificationToken,
+        DataSiteVerificationTokenType,
+        DataSiteVerificationTokenVerificationMethod;
 export 'src/data/google_sourcerepo_repository.dart'
     show DataGoogleSourcerepoRepository;
 export 'src/data/google_sourcerepo_repository_iam_policy.dart'

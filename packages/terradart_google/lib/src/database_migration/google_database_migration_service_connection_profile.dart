@@ -27,6 +27,58 @@ const Set<String> _googleDatabaseMigrationServiceConnectionProfileSensitive =
       'postgresql.ssl.client_key',
     };
 
+/// Database Migration Service Connection Profile enum for `role`.
+extension type const DatabaseMigrationServiceConnectionProfileRole._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DatabaseMigrationServiceConnectionProfileRole.variable(String name)
+    : this._(TfArg.variable(name));
+  DatabaseMigrationServiceConnectionProfileRole.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatabaseMigrationServiceConnectionProfileRole.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const source = DatabaseMigrationServiceConnectionProfileRole._(
+    TfArgLiteral('SOURCE'),
+  );
+  static const destination = DatabaseMigrationServiceConnectionProfileRole._(
+    TfArgLiteral('DESTINATION'),
+  );
+
+  static const List<DatabaseMigrationServiceConnectionProfileRole> values = [
+    source,
+    destination,
+  ];
+}
+
+/// Database Migration Service Connection Profile enum for `state`.
+extension type const DatabaseMigrationServiceConnectionProfileState._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DatabaseMigrationServiceConnectionProfileState.variable(String name)
+    : this._(TfArg.variable(name));
+  DatabaseMigrationServiceConnectionProfileState.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatabaseMigrationServiceConnectionProfileState.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const draft = DatabaseMigrationServiceConnectionProfileState._(
+    TfArgLiteral('DRAFT'),
+  );
+  static const ready = DatabaseMigrationServiceConnectionProfileState._(
+    TfArgLiteral('READY'),
+  );
+  static const failed = DatabaseMigrationServiceConnectionProfileState._(
+    TfArgLiteral('FAILED'),
+  );
+
+  static const List<DatabaseMigrationServiceConnectionProfileState> values = [
+    draft,
+    ready,
+    failed,
+  ];
+}
+
 /// Exactly one of `mysql`, `postgresql`, `oracle`, `cloudsql`, `alloydb` on `google_database_migration_service_connection_profile`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
@@ -1019,7 +1071,7 @@ final class GoogleDatabaseMigrationServiceConnectionProfile extends Resource {
     TfArg<Map<String, String>>? labels,
     TfArg<String>? location,
     TfArg<String>? project,
-    TfArg<String>? role,
+    DatabaseMigrationServiceConnectionProfileRole? role,
     required DatabaseMigrationServiceConnectionProfileEngine engine,
     super.lifecycle,
     super.dependsOn,

@@ -33,6 +33,30 @@ extension type const NetworkServicesAgentConnectivityTemplateAccessPath._(
       [clientToAgent, agentToAnywhere];
 }
 
+/// Network Services Agent Connectivity Template Access enum for `access_types`.
+extension type const NetworkServicesAgentConnectivityTemplateAccessTypes._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkServicesAgentConnectivityTemplateAccessTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkServicesAgentConnectivityTemplateAccessTypes.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const NetworkServicesAgentConnectivityTemplateAccessTypes.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const public = NetworkServicesAgentConnectivityTemplateAccessTypes._(
+    TfArgLiteral('PUBLIC'),
+  );
+  static const private = NetworkServicesAgentConnectivityTemplateAccessTypes._(
+    TfArgLiteral('PRIVATE'),
+  );
+
+  static const List<NetworkServicesAgentConnectivityTemplateAccessTypes>
+  values = [public, private];
+}
+
 /// Typed helper for the `egress_network_config` block of
 /// `google_network_services_agent_connectivity_template` (derived from provider schema).
 @immutable
@@ -167,7 +191,7 @@ final class GoogleNetworkServicesAgentConnectivityTemplate extends Resource {
     required TfArg<String> agentConnectivityTemplateId,
     required TfArg<String> location,
     required NetworkServicesAgentConnectivityTemplateAccessPath accessPath,
-    TfArg<List<String>>? accessTypes,
+    List<NetworkServicesAgentConnectivityTemplateAccessTypes>? accessTypes,
     NetworkServicesAgentConnectivityTemplateEgressNetworkConfig?
     egressNetworkConfig,
     TfArg<String>? description,
@@ -184,7 +208,10 @@ final class GoogleNetworkServicesAgentConnectivityTemplate extends Resource {
            'agent_connectivity_template_id': agentConnectivityTemplateId,
            'location': location,
            'access_path': accessPath,
-           'access_types': ?accessTypes,
+           if (accessTypes != null)
+             'access_types': TfArg.literal([
+               for (final e in accessTypes) e.toTfJson(),
+             ]),
            if (egressNetworkConfig != null)
              'egress_network_config': TfArg.literal(
                egressNetworkConfig.encode(),

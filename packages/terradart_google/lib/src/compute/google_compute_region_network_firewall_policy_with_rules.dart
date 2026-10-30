@@ -287,7 +287,7 @@ final class GoogleComputeRegionNetworkFirewallPolicyWithRules extends Resource {
     TfArg<String>? region,
     required List<ComputeRegionNetworkFirewallPolicyWithRulesRule> rule,
     TfArg<String>? description,
-    TfArg<String>? policyType,
+    ComputeRegionNetworkFirewallPolicyWithRulesPolicyType? policyType,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,

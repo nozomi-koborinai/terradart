@@ -3,6 +3,7 @@ deriveClassDoc: true
 deriveNestedTypes: true
 deriveExactlyOne: true
 deriveOutputGetters: true
+deriveEnums: true
 
 # policy_mode (PRESET/CUSTOM) and preset_topology (MESH/STAR) are optional+computed
 # in the provider schema, so the enum-gap gate skips them and they stay plain

@@ -10,6 +10,62 @@ import '../iam/google_service_account.dart' show GoogleServiceAccount;
 /// Sensitive field paths for `google_app_engine_flexible_app_version`.
 const Set<String> _googleAppEngineFlexibleAppVersionSensitive = <String>{};
 
+/// App Engine Flexible App Version Inbound enum for `inbound_services`.
+extension type const AppEngineFlexibleAppVersionInboundServices._(
+  TfArg<String> _
+) implements TfArg<String> {
+  AppEngineFlexibleAppVersionInboundServices.variable(String name)
+    : this._(TfArg.variable(name));
+  AppEngineFlexibleAppVersionInboundServices.expression(String template)
+    : this._(TfArg.expression(template));
+  const AppEngineFlexibleAppVersionInboundServices.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const inboundServiceMail =
+      AppEngineFlexibleAppVersionInboundServices._(
+        TfArgLiteral('INBOUND_SERVICE_MAIL'),
+      );
+  static const inboundServiceMailBounce =
+      AppEngineFlexibleAppVersionInboundServices._(
+        TfArgLiteral('INBOUND_SERVICE_MAIL_BOUNCE'),
+      );
+  static const inboundServiceXmppError =
+      AppEngineFlexibleAppVersionInboundServices._(
+        TfArgLiteral('INBOUND_SERVICE_XMPP_ERROR'),
+      );
+  static const inboundServiceXmppMessage =
+      AppEngineFlexibleAppVersionInboundServices._(
+        TfArgLiteral('INBOUND_SERVICE_XMPP_MESSAGE'),
+      );
+  static const inboundServiceXmppSubscribe =
+      AppEngineFlexibleAppVersionInboundServices._(
+        TfArgLiteral('INBOUND_SERVICE_XMPP_SUBSCRIBE'),
+      );
+  static const inboundServiceXmppPresence =
+      AppEngineFlexibleAppVersionInboundServices._(
+        TfArgLiteral('INBOUND_SERVICE_XMPP_PRESENCE'),
+      );
+  static const inboundServiceChannelPresence =
+      AppEngineFlexibleAppVersionInboundServices._(
+        TfArgLiteral('INBOUND_SERVICE_CHANNEL_PRESENCE'),
+      );
+  static const inboundServiceWarmup =
+      AppEngineFlexibleAppVersionInboundServices._(
+        TfArgLiteral('INBOUND_SERVICE_WARMUP'),
+      );
+
+  static const List<AppEngineFlexibleAppVersionInboundServices> values = [
+    inboundServiceMail,
+    inboundServiceMailBounce,
+    inboundServiceXmppError,
+    inboundServiceXmppMessage,
+    inboundServiceXmppSubscribe,
+    inboundServiceXmppPresence,
+    inboundServiceChannelPresence,
+    inboundServiceWarmup,
+  ];
+}
+
 /// App Engine Flexible App Version Serving enum for `serving_status`.
 extension type const AppEngineFlexibleAppVersionServingStatus._(TfArg<String> _)
     implements TfArg<String> {
@@ -740,7 +796,7 @@ final class GoogleAppEngineFlexibleAppVersion extends Resource {
     TfArg<String>? runtimeMainExecutablePath,
     RefTo<GoogleServiceAccount>? serviceAccount,
     AppEngineFlexibleAppVersionServingStatus? servingStatus,
-    TfArg<List<String>>? inboundServices,
+    List<AppEngineFlexibleAppVersionInboundServices>? inboundServices,
     TfArg<String>? project,
     AppEngineFlexibleAppVersionApiConfig? apiConfig,
     AppEngineFlexibleAppVersionDeployment? deployment,
@@ -778,7 +834,10 @@ final class GoogleAppEngineFlexibleAppVersion extends Resource {
            'runtime_main_executable_path': ?runtimeMainExecutablePath,
            'service_account': ?serviceAccount?.encodeAs('email'),
            'serving_status': ?servingStatus,
-           'inbound_services': ?inboundServices,
+           if (inboundServices != null)
+             'inbound_services': TfArg.literal([
+               for (final e in inboundServices) e.toTfJson(),
+             ]),
            'project': ?project,
            if (apiConfig != null)
              'api_config': TfArg.literal(apiConfig.encode()),

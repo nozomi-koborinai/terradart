@@ -14,6 +14,23 @@ const Set<String> _googleAlloydbClusterSensitive = <String>{
   'initial_user.password',
 };
 
+/// Alloydb Cluster Subscription enum for `subscription_type`.
+extension type const AlloydbClusterSubscriptionType._(TfArg<String> _)
+    implements TfArg<String> {
+  AlloydbClusterSubscriptionType.variable(String name)
+    : this._(TfArg.variable(name));
+  AlloydbClusterSubscriptionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const AlloydbClusterSubscriptionType.arg(TfArg<String> arg) : this._(arg);
+
+  static const trial = AlloydbClusterSubscriptionType._(TfArgLiteral('TRIAL'));
+  static const standard = AlloydbClusterSubscriptionType._(
+    TfArgLiteral('STANDARD'),
+  );
+
+  static const List<AlloydbClusterSubscriptionType> values = [trial, standard];
+}
+
 /// `cluster_type` — primary vs secondary cluster role.
 extension type const AlloydbClusterType._(TfArg<String> _)
     implements TfArg<String> {
@@ -767,7 +784,7 @@ final class GoogleAlloydbCluster extends Resource {
     TfArg<String>? etag,
     TfArg<String>? project,
     TfArg<bool>? skipAwaitMajorVersionUpgrade,
-    TfArg<String>? subscriptionType,
+    AlloydbClusterSubscriptionType? subscriptionType,
     AlloydbClusterContinuousBackupConfig? continuousBackupConfig,
     AlloydbClusterDataplexConfig? dataplexConfig,
     AlloydbClusterEncryptionConfig? encryptionConfig,

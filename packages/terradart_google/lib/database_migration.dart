@@ -42,6 +42,8 @@ export 'src/database_migration/google_database_migration_service_connection_prof
         DatabaseMigrationServiceConnectionProfilePrimaryInstanceSettings,
         DatabaseMigrationServiceConnectionProfilePrivateConnectivity,
         DatabaseMigrationServiceConnectionProfilePrivateConnectivityChoice,
+        DatabaseMigrationServiceConnectionProfileRole,
+        DatabaseMigrationServiceConnectionProfileState,
         DatabaseMigrationServiceConnectionProfileStaticServiceIpConnectivity,
         DatabaseMigrationServiceConnectionProfileStaticServiceIpConnectivityChoice,
         DatabaseMigrationServiceConnectionProfileType,
@@ -49,6 +51,7 @@ export 'src/database_migration/google_database_migration_service_connection_prof
 export 'src/database_migration/google_database_migration_service_migration_job.dart'
     show
         DatabaseMigrationServiceMigrationJobConnectivity,
+        DatabaseMigrationServiceMigrationJobDesiredState,
         DatabaseMigrationServiceMigrationJobDumpFlags,
         DatabaseMigrationServiceMigrationJobDumpFlagsDumpFlags,
         DatabaseMigrationServiceMigrationJobDumpParallelLevel,

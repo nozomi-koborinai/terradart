@@ -7,6 +7,48 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_iam_workforce_pool_provider_key`.
 const Set<String> _googleIamWorkforcePoolProviderKeySensitive = <String>{};
 
+/// Iam Workforce Pool Provider Key enum for `state`.
+extension type const IamWorkforcePoolProviderKeyState._(TfArg<String> _)
+    implements TfArg<String> {
+  IamWorkforcePoolProviderKeyState.variable(String name)
+    : this._(TfArg.variable(name));
+  IamWorkforcePoolProviderKeyState.expression(String template)
+    : this._(TfArg.expression(template));
+  const IamWorkforcePoolProviderKeyState.arg(TfArg<String> arg) : this._(arg);
+
+  static const stateUnspecified = IamWorkforcePoolProviderKeyState._(
+    TfArgLiteral('STATE_UNSPECIFIED'),
+  );
+  static const active = IamWorkforcePoolProviderKeyState._(
+    TfArgLiteral('ACTIVE'),
+  );
+  static const deleted = IamWorkforcePoolProviderKeyState._(
+    TfArgLiteral('DELETED'),
+  );
+
+  static const List<IamWorkforcePoolProviderKeyState> values = [
+    stateUnspecified,
+    active,
+    deleted,
+  ];
+}
+
+/// Iam Workforce Pool Provider Key enum for `use`.
+extension type const IamWorkforcePoolProviderKeyUse._(TfArg<String> _)
+    implements TfArg<String> {
+  IamWorkforcePoolProviderKeyUse.variable(String name)
+    : this._(TfArg.variable(name));
+  IamWorkforcePoolProviderKeyUse.expression(String template)
+    : this._(TfArg.expression(template));
+  const IamWorkforcePoolProviderKeyUse.arg(TfArg<String> arg) : this._(arg);
+
+  static const encryption = IamWorkforcePoolProviderKeyUse._(
+    TfArgLiteral('ENCRYPTION'),
+  );
+
+  static const List<IamWorkforcePoolProviderKeyUse> values = [encryption];
+}
+
 /// Typed helper for the `key_data` block of
 /// `google_iam_workforce_pool_provider_key` (derived from provider schema).
 @immutable
@@ -66,7 +108,7 @@ final class GoogleIamWorkforcePoolProviderKey extends Resource {
     required TfArg<String> keyId,
     required TfArg<String> location,
     required TfArg<String> providerId,
-    required TfArg<String> use,
+    required IamWorkforcePoolProviderKeyUse use,
     required TfArg<String> workforcePoolId,
     required IamWorkforcePoolProviderKeyData keyData,
     super.lifecycle,

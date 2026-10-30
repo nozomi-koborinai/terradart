@@ -909,7 +909,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'type',
       'encryptionConfig',
     ],
-    nestedTypes: <String>['AlloydbBackupEncryptionConfig'],
+    nestedTypes: <String>['AlloydbBackupType', 'AlloydbBackupEncryptionConfig'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_alloydb_backup`.\n\nAn AlloyDB Backup.\n\nAlloyDB backup — on-demand or scheduled backup of a cluster.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [backupId]: short backup ID.\n- [clusterName]: full cluster resource name — `cluster.id`.\n- [location]: region matching the cluster.\n\nExample:\n```dart\nGoogleAlloydbBackup(\n  \'nightly\',\n  backupId: TfArg.literal(\'nightly-backup\'),\n  clusterName: alloyCluster.ref,\n  location: TfArg.literal(\'asia-northeast1\'),\n);\n```',
@@ -946,6 +946,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'secondaryConfig',
     ],
     nestedTypes: <String>[
+      'AlloydbClusterSubscriptionType',
       'AlloydbClusterType',
       'AlloydbClusterDayOfWeek',
       'AlloydbClusterRestore',
@@ -1028,6 +1029,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'readPoolConfig',
     ],
     nestedTypes: <String>[
+      'AlloydbInstanceActivationPolicy',
+      'AlloydbInstanceAvailabilityType',
       'AlloydbInstanceType',
       'AlloydbInstanceClientConnectionConfig',
       'AlloydbInstanceSslConfig',
@@ -2358,6 +2361,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'resources',
     ],
     nestedTypes: <String>[
+      'AppEngineFlexibleAppVersionInboundServices',
       'AppEngineFlexibleAppVersionServingStatus',
       'AppEngineFlexibleAppVersionScaling',
       'AppEngineFlexibleAppVersionAutomaticScalingMode',
@@ -2462,6 +2466,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'libraries',
     ],
     nestedTypes: <String>[
+      'AppEngineStandardAppVersionAppEngineBundledServices',
+      'AppEngineStandardAppVersionInboundServices',
       'AppEngineStandardAppVersionLegacyServices',
       'AppEngineStandardAppVersionLegacyServicesAppEngineApis',
       'AppEngineStandardAppVersionLegacyServicesAppEngineBundledServices',
@@ -4506,6 +4512,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'deletionPolicy',
     ],
     nestedTypes: <String>[
+      'BiglakeTableType',
       'BiglakeTableHiveOptions',
       'BiglakeTableStorageDescriptor',
       'BiglakeTableSerdeInfo',
@@ -6466,6 +6473,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'defaultAdmissionRule',
     ],
     nestedTypes: <String>[
+      'BinaryAuthorizationPolicyGlobalPolicyEvaluationMode',
       'BinaryAuthorizationPolicyAdmissionWhitelistPatterns',
       'BinaryAuthorizationPolicyClusterAdmissionRules',
       'BinaryAuthorizationPolicyEnforcementMode',
@@ -8575,6 +8583,10 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'volumes',
     ],
     nestedTypes: <String>[
+      'CloudRunV2InstanceEncryptionKeyRevocationAction',
+      'CloudRunV2InstanceIngress',
+      'CloudRunV2InstanceLaunchStage',
+      'CloudRunV2InstanceRestartPolicy',
       'CloudRunV2InstanceContainers',
       'CloudRunV2InstanceEnv',
       'CloudRunV2InstanceValueSource',
@@ -12962,9 +12974,11 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
     ],
     nestedTypes: <String>[
+      'ComputeInterconnectAvailableFeatures',
       'ComputeInterconnectType',
       'ComputeInterconnectLinkType',
       'ComputeInterconnectOperationalStatus',
+      'ComputeInterconnectRequestedFeatures',
       'ComputeInterconnectState',
       'ComputeInterconnectMacsec',
       'ComputeInterconnectPreSharedKeys',
@@ -13354,7 +13368,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'policyType',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ComputeNetworkFirewallPolicyType'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_compute_network_firewall_policy`.\n\nThe Compute NetworkFirewallPolicy resource',
@@ -13682,6 +13696,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'advancedOptionsConfig',
     ],
     nestedTypes: <String>[
+      'ComputeOrganizationSecurityPolicyType',
       'ComputeOrganizationSecurityPolicyAdvancedOptionsConfig',
       'ComputeOrganizationSecurityPolicyJsonParsing',
       'ComputeOrganizationSecurityPolicyLogLevel',
@@ -18368,7 +18383,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'deletionPolicy',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataCatalogTaxonomyActivatedPolicyTypes'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_data_catalog_taxonomy`.\n\nA collection of policy tags that classify data along a common axis.\n\nData Catalog **taxonomy** — root container for [GoogleDataCatalogPolicyTag]\nhierarchies (legacy Data Catalog API). Prefer Dataplex Universal Catalog\nfor new work; this factory remains for stacks that still use\n`google_data_catalog_taxonomy`.\n\nEnable `datacatalog.googleapis.com` via [GoogleProjectService] before\napply. Note: some projects reject Data Catalog writes due to the\nupstream deprecation (HTTP 400) — synth / validate still cover the\nfactory.\n\nExample:\n```dart\nGoogleDataCatalogTaxonomy(\n  \'pii\',\n  displayName: TfArg.literal(\'PII taxonomy\'),\n  description: TfArg.literal(\'Policy tags for PII columns\'),\n  activatedPolicyTypes: TfArg.literal([\'FINE_GRAINED_ACCESS_CONTROL\']),\n  region: TfArg.literal(\'us-central1\'),\n);\n```',
@@ -19174,6 +19189,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'engine',
     ],
     nestedTypes: <String>[
+      'DatabaseMigrationServiceConnectionProfileRole',
+      'DatabaseMigrationServiceConnectionProfileState',
       'DatabaseMigrationServiceConnectionProfileEngine',
       'DatabaseMigrationServiceConnectionProfileEngineMysql',
       'DatabaseMigrationServiceConnectionProfileEnginePostgresql',
@@ -19262,6 +19279,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'connectivity',
     ],
     nestedTypes: <String>[
+      'DatabaseMigrationServiceMigrationJobDesiredState',
       'DatabaseMigrationServiceMigrationJobDumpType',
       'DatabaseMigrationServiceMigrationJobPhase',
       'DatabaseMigrationServiceMigrationJobState',
@@ -22625,6 +22643,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
     ],
     nestedTypes: <String>[
+      'DialogflowCxSecuritySettingsPurgeDataTypes',
       'DialogflowCxSecuritySettingsRedactionScope',
       'DialogflowCxSecuritySettingsRedactionStrategy',
       'DialogflowCxSecuritySettingsRetentionStrategy',
@@ -22955,7 +22974,10 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'deletionPolicy',
       'project',
     ],
-    nestedTypes: <String>['DialogflowIntentWebhookState'],
+    nestedTypes: <String>[
+      'DialogflowIntentDefaultResponsePlatforms',
+      'DialogflowIntentWebhookState',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_dialogflow_intent`.\n\nRepresents a Dialogflow intent. Intents convert a number of user expressions\nor patterns into an action. An action is an extraction of a user command or\nsentence semantics.\n\nDialogflow ES **intent** — maps user phrases to an action on the\nper-project ES agent.\n\n**Cost:** gcp-cost: Cloud Dialogflow `FBC0-AA4A-C89A` Intent Detection\nText Query Operations for Enterprise Essentials Agents `114B-F183-612D`\n**\$0.002/count**. billing-behavior: intents are design-time config;\nquery SKUs fire only on DetectIntent (this factory never invokes it).\nStandard-tier agents have no catalog query SKU. Enable\n`dialogflow.googleapis.com` before apply. The ES agent is a\nper-project singleton — create [GoogleDialogflowAgent] first.',
@@ -23172,6 +23194,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[
       'DiscoveryEngineControlSolutionType',
+      'DiscoveryEngineControlUseCases',
       'DiscoveryEngineControlAction',
       'DiscoveryEngineControlBoostActionChoice',
       'DiscoveryEngineControlFilterActionChoice',
@@ -23269,6 +23292,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[
       'DiscoveryEngineDataStoreContentConfig',
       'DiscoveryEngineDataStoreIndustryVertical',
+      'DiscoveryEngineDataStoreSolutionTypes',
       'DiscoveryEngineDataStoreAdvancedSiteSearchConfig',
       'DiscoveryEngineDataStoreDocumentProcessingConfig',
       'DiscoveryEngineDataStoreChunkingConfig',
@@ -27166,6 +27190,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
     ],
     nestedTypes: <String>[
+      'GkeonpremVmwareClusterSkipValidations',
       'GkeonpremVmwareClusterState',
       'GkeonpremVmwareClusterAntiAffinityGroups',
       'GkeonpremVmwareClusterAuthorization',
@@ -28270,6 +28295,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'keyData',
     ],
     nestedTypes: <String>[
+      'IamWorkforcePoolProviderKeyState',
+      'IamWorkforcePoolProviderKeyUse',
       'IamWorkforcePoolProviderKeyData',
       'IamWorkforcePoolProviderKeySpec',
     ],
@@ -32883,7 +32910,10 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'tieringPolicy',
     ],
     nestedTypes: <String>[
+      'NetappVolumeProtocols',
+      'NetappVolumeRestrictedActions',
       'NetappVolumeSecurityStyle',
+      'NetappVolumeSmbSettings',
       'NetappVolumeBackupConfig',
       'NetappVolumeBlockDevices',
       'NetappVolumeOsType',
@@ -33092,7 +33122,10 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'labels',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'NetworkConnectivityHubPolicyMode',
+      'NetworkConnectivityHubPresetTopology',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_network_connectivity_hub`.\n\nThe NetworkConnectivity Hub resource',
@@ -33187,6 +33220,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
     ],
     nestedTypes: <String>[
+      'NetworkConnectivityInternalRangeOverlaps',
       'NetworkConnectivityInternalRangeUsage',
       'NetworkConnectivityInternalRangePeering',
       'NetworkConnectivityInternalRangeAllocationStrategy',
@@ -33483,7 +33517,9 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'state',
       'vpcFlowLogsConfigId',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'NetworkManagementOrganizationVpcFlowLogsConfigCrossProjectMetadata',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_network_management_organization_vpc_flow_logs_config`.\n\nVPC Flow Logs Config is a resource that lets you configure Flow Logs for\nOrganization.\n\nLeftover factory on the apply-excluded path\n(synth + `terraform validate` only).\n\nNeeds an organization / folder / billing account /\nexternal artifact that standalone terradart-validate\ncannot supply. Do not apply.',
@@ -34314,6 +34350,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[
       'NetworkServicesAgentConnectivityTemplateAccessPath',
+      'NetworkServicesAgentConnectivityTemplateAccessTypes',
       'NetworkServicesAgentConnectivityTemplateEgressNetworkConfig',
       'NetworkServicesAgentConnectivityTemplateVpcEgress',
       'NetworkServicesAgentConnectivityTemplateDnsPeeringConfig',
@@ -34344,6 +34381,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
     ],
     nestedTypes: <String>[
+      'NetworkServicesAgentGatewayProtocols',
       'NetworkServicesAgentGatewayGoogleManagedGovernedAccessPath',
       'NetworkServicesAgentGatewayDeployment',
       'NetworkServicesAgentGatewayGoogleManaged',
@@ -34438,6 +34476,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[
       'NetworkServicesEdgeCacheOriginProtocol',
+      'NetworkServicesEdgeCacheOriginRetryConditions',
       'NetworkServicesEdgeCacheOriginAwsV4Authentication',
       'NetworkServicesEdgeCacheOriginFlexShielding',
       'NetworkServicesEdgeCacheOriginOverrideAction',
@@ -39327,7 +39366,10 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'deletionPolicy',
       'project',
     ],
-    nestedTypes: <String>['SecureSourceManagerHookPushOption'],
+    nestedTypes: <String>[
+      'SecureSourceManagerHookEvents',
+      'SecureSourceManagerHookPushOption',
+    ],
     sensitiveFields: <String>['sensitive_query_string'],
     docComment:
         'Factory wrapper for `google_secure_source_manager_hook`.\n\nHook is a user-defined HTTP callback triggered by an event.\n\nSecure Source Manager **webhook hook** — HTTP callback on repository\nevents.\n\n**Cost / apply:** gcp-cost: no hook SKU under Secure Source Manager\n`ADD4-3782-815A` (instance Fixed Pricing only, e.g. `9B40-B4AA-D8EE`\n**\$1000/mo**). billing-behavior: requires a never_apply\n[GoogleSecureSourceManagerInstance] (+ repository). Debt-only on\n`terradart-validate`. **Never** wire into apply-smoke.',
@@ -40097,7 +40139,10 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'type',
       'verificationMethod',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'DataSiteVerificationTokenType',
+      'DataSiteVerificationTokenVerificationMethod',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_site_verification_token`.\n\nRead-only data source on the apply-excluded leftover path\n(synth + `terraform validate` only). Do not apply.',

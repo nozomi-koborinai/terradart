@@ -9,6 +9,30 @@ const Set<String> _googleSecureSourceManagerHookSensitive = <String>{
   'sensitive_query_string',
 };
 
+/// Secure Source Manager Hook enum for `events`.
+extension type const SecureSourceManagerHookEvents._(TfArg<String> _)
+    implements TfArg<String> {
+  SecureSourceManagerHookEvents.variable(String name)
+    : this._(TfArg.variable(name));
+  SecureSourceManagerHookEvents.expression(String template)
+    : this._(TfArg.expression(template));
+  const SecureSourceManagerHookEvents.arg(TfArg<String> arg) : this._(arg);
+
+  static const push = SecureSourceManagerHookEvents._(TfArgLiteral('PUSH'));
+  static const pullRequest = SecureSourceManagerHookEvents._(
+    TfArgLiteral('PULL_REQUEST'),
+  );
+  static const pullRequestComment = SecureSourceManagerHookEvents._(
+    TfArgLiteral('PULL_REQUEST_COMMENT'),
+  );
+
+  static const List<SecureSourceManagerHookEvents> values = [
+    push,
+    pullRequest,
+    pullRequestComment,
+  ];
+}
+
 /// Typed helper for the `push_option` block of
 /// `google_secure_source_manager_hook` (derived from provider schema).
 @immutable
@@ -42,7 +66,7 @@ final class GoogleSecureSourceManagerHook extends Resource {
     required TfArg<String> location,
     required TfArg<String> repositoryId,
     required TfArg<String> targetUri,
-    TfArg<List<String>>? events,
+    List<SecureSourceManagerHookEvents>? events,
     TfArg<bool>? disabled,
     Sensitive<String>? sensitiveQueryString,
     SecureSourceManagerHookPushOption? pushOption,
@@ -59,7 +83,8 @@ final class GoogleSecureSourceManagerHook extends Resource {
            'location': location,
            'repository_id': repositoryId,
            'target_uri': targetUri,
-           'events': ?events,
+           if (events != null)
+             'events': TfArg.literal([for (final e in events) e.toTfJson()]),
            'disabled': ?disabled,
            'sensitive_query_string': ?sensitiveQueryString,
            if (pushOption != null)

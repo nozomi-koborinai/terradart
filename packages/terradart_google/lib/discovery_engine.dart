@@ -65,6 +65,7 @@ export 'src/discovery_engine/google_discovery_engine_control.dart'
         DiscoveryEngineControlSolutionType,
         DiscoveryEngineControlSynonymsAction,
         DiscoveryEngineControlSynonymsActionChoice,
+        DiscoveryEngineControlUseCases,
         GoogleDiscoveryEngineControl;
 export 'src/discovery_engine/google_discovery_engine_data_connector.dart'
     show
@@ -94,6 +95,7 @@ export 'src/discovery_engine/google_discovery_engine_data_store.dart'
         DiscoveryEngineDataStoreLayoutParsingConfig,
         DiscoveryEngineDataStoreOcrParsingConfig,
         DiscoveryEngineDataStoreParsingConfigOverrides,
+        DiscoveryEngineDataStoreSolutionTypes,
         GoogleDiscoveryEngineDataStore;
 export 'src/discovery_engine/google_discovery_engine_license_config.dart'
     show

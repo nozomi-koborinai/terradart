@@ -109,6 +109,7 @@ export 'src/biglake/google_biglake_table.dart'
         BiglakeTableHiveOptions,
         BiglakeTableSerdeInfo,
         BiglakeTableStorageDescriptor,
+        BiglakeTableType,
         GoogleBiglakeTable;
 export 'src/data/google_biglake_hive_catalog_iam_policy.dart'
     show DataGoogleBiglakeHiveCatalogIamPolicy;

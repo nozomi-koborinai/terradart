@@ -4,6 +4,7 @@ schemaStubBodyMode: bare
 deriveClassDoc: true
 deriveNestedTypes: true
 deriveOutputGetters: true
+deriveEnums: true
 
 curatedDoc: |-
   /// Read-only data source on the apply-excluded leftover path

@@ -162,6 +162,7 @@ export 'src/gkeonprem/google_gkeonprem_vmware_cluster.dart'
         GkeonpremVmwareClusterMetalLbConfig,
         GkeonpremVmwareClusterMetalLbConfigChoice,
         GkeonpremVmwareClusterNetworkConfig,
+        GkeonpremVmwareClusterSkipValidations,
         GkeonpremVmwareClusterState,
         GkeonpremVmwareClusterStaticIpConfig,
         GkeonpremVmwareClusterStaticIpConfigChoice,

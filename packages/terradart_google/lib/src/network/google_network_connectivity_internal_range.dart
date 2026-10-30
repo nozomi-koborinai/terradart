@@ -9,6 +9,30 @@ import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
 /// Sensitive field paths for `google_network_connectivity_internal_range`.
 const Set<String> _googleNetworkConnectivityInternalRangeSensitive = <String>{};
 
+/// Network Connectivity Internal Range enum for `overlaps`.
+extension type const NetworkConnectivityInternalRangeOverlaps._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkConnectivityInternalRangeOverlaps.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkConnectivityInternalRangeOverlaps.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkConnectivityInternalRangeOverlaps.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const overlapRouteRange = NetworkConnectivityInternalRangeOverlaps._(
+    TfArgLiteral('OVERLAP_ROUTE_RANGE'),
+  );
+  static const overlapExistingSubnetRange =
+      NetworkConnectivityInternalRangeOverlaps._(
+        TfArgLiteral('OVERLAP_EXISTING_SUBNET_RANGE'),
+      );
+
+  static const List<NetworkConnectivityInternalRangeOverlaps> values = [
+    overlapRouteRange,
+    overlapExistingSubnetRange,
+  ];
+}
+
 /// `usage` for [GoogleNetworkConnectivityInternalRange].
 extension type const NetworkConnectivityInternalRangeUsage._(TfArg<String> _)
     implements TfArg<String> {
@@ -169,7 +193,7 @@ final class GoogleNetworkConnectivityInternalRange extends Resource {
     NetworkConnectivityInternalRangeAllocationOptions? allocationOptions,
     TfArg<String>? description,
     TfArg<List<String>>? targetCidrRange,
-    TfArg<List<String>>? overlaps,
+    List<NetworkConnectivityInternalRangeOverlaps>? overlaps,
     TfArg<Map<String, String>>? labels,
     NetworkConnectivityInternalRangeMigration? migration,
     TfArg<String>? project,
@@ -190,7 +214,10 @@ final class GoogleNetworkConnectivityInternalRange extends Resource {
              'allocation_options': TfArg.literal([allocationOptions.encode()]),
            'description': ?description,
            'target_cidr_range': ?targetCidrRange,
-           'overlaps': ?overlaps,
+           if (overlaps != null)
+             'overlaps': TfArg.literal([
+               for (final e in overlaps) e.toTfJson(),
+             ]),
            'labels': ?labels,
            if (migration != null)
              'migration': TfArg.literal(migration.encode()),

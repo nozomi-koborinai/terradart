@@ -9,6 +9,26 @@ import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
 /// Sensitive field paths for `google_dialogflow_cx_security_settings`.
 const Set<String> _googleDialogflowCxSecuritySettingsSensitive = <String>{};
 
+/// Dialogflow Cx Security Settings Purge Data enum for `purge_data_types`.
+extension type const DialogflowCxSecuritySettingsPurgeDataTypes._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DialogflowCxSecuritySettingsPurgeDataTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  DialogflowCxSecuritySettingsPurgeDataTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const DialogflowCxSecuritySettingsPurgeDataTypes.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const dialogflowHistory = DialogflowCxSecuritySettingsPurgeDataTypes._(
+    TfArgLiteral('DIALOGFLOW_HISTORY'),
+  );
+
+  static const List<DialogflowCxSecuritySettingsPurgeDataTypes> values = [
+    dialogflowHistory,
+  ];
+}
+
 /// Dialogflow Cx Security Settings Redaction enum for `redaction_scope`.
 extension type const DialogflowCxSecuritySettingsRedactionScope._(
   TfArg<String> _
@@ -255,7 +275,7 @@ final class GoogleDialogflowCxSecuritySettings extends Resource {
     TfArg<String>? inspectTemplate,
     TfArg<String>? deidentifyTemplate,
     DialogflowCxSecuritySettingsRetention? retention,
-    TfArg<List<String>>? purgeDataTypes,
+    List<DialogflowCxSecuritySettingsPurgeDataTypes>? purgeDataTypes,
     DialogflowCxSecuritySettingsAudioExportSettings? audioExportSettings,
     DialogflowCxSecuritySettingsInsightsExportSettings? insightsExportSettings,
     TfArg<String>? deletionPolicy,
@@ -274,7 +294,10 @@ final class GoogleDialogflowCxSecuritySettings extends Resource {
            'inspect_template': ?inspectTemplate,
            'deidentify_template': ?deidentifyTemplate,
            ...?retention?.argMap,
-           'purge_data_types': ?purgeDataTypes,
+           if (purgeDataTypes != null)
+             'purge_data_types': TfArg.literal([
+               for (final e in purgeDataTypes) e.toTfJson(),
+             ]),
            if (audioExportSettings != null)
              'audio_export_settings': TfArg.literal(
                audioExportSettings.encode(),

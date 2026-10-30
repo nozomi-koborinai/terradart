@@ -7,6 +7,23 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_network_services_agent_gateway`.
 const Set<String> _googleNetworkServicesAgentGatewaySensitive = <String>{};
 
+/// Network Services Agent Gateway enum for `protocols`.
+extension type const NetworkServicesAgentGatewayProtocols._(TfArg<String> _)
+    implements TfArg<String> {
+  NetworkServicesAgentGatewayProtocols.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkServicesAgentGatewayProtocols.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkServicesAgentGatewayProtocols.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const mcp = NetworkServicesAgentGatewayProtocols._(
+    TfArgLiteral('MCP'),
+  );
+
+  static const List<NetworkServicesAgentGatewayProtocols> values = [mcp];
+}
+
 /// `governed_access_path` under `google_managed`.
 extension type const NetworkServicesAgentGatewayGoogleManagedGovernedAccessPath._(
   TfArg<String> _
@@ -183,7 +200,7 @@ final class GoogleNetworkServicesAgentGateway extends Resource {
     required TfArg<String> location,
     required NetworkServicesAgentGatewayDeployment deployment,
     TfArg<String>? description,
-    TfArg<List<String>>? protocols,
+    List<NetworkServicesAgentGatewayProtocols>? protocols,
     TfArg<List<String>>? registries,
     NetworkServicesAgentGatewayNetworkConfig? networkConfig,
     TfArg<Map<String, String>>? labels,
@@ -199,7 +216,10 @@ final class GoogleNetworkServicesAgentGateway extends Resource {
            'name': name,
            'location': location,
            'description': ?description,
-           'protocols': ?protocols,
+           if (protocols != null)
+             'protocols': TfArg.literal([
+               for (final e in protocols) e.toTfJson(),
+             ]),
            'registries': ?registries,
            if (networkConfig != null)
              'network_config': TfArg.literal(networkConfig.encode()),

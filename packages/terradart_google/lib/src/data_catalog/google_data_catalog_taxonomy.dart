@@ -6,6 +6,31 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_data_catalog_taxonomy`.
 const Set<String> _googleDataCatalogTaxonomySensitive = <String>{};
 
+/// Data Catalog Taxonomy Activated Policy enum for `activated_policy_types`.
+extension type const DataCatalogTaxonomyActivatedPolicyTypes._(TfArg<String> _)
+    implements TfArg<String> {
+  DataCatalogTaxonomyActivatedPolicyTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  DataCatalogTaxonomyActivatedPolicyTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataCatalogTaxonomyActivatedPolicyTypes.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const policyTypeUnspecified =
+      DataCatalogTaxonomyActivatedPolicyTypes._(
+        TfArgLiteral('POLICY_TYPE_UNSPECIFIED'),
+      );
+  static const fineGrainedAccessControl =
+      DataCatalogTaxonomyActivatedPolicyTypes._(
+        TfArgLiteral('FINE_GRAINED_ACCESS_CONTROL'),
+      );
+
+  static const List<DataCatalogTaxonomyActivatedPolicyTypes> values = [
+    policyTypeUnspecified,
+    fineGrainedAccessControl,
+  ];
+}
+
 /// Factory wrapper for `google_data_catalog_taxonomy`.
 ///
 /// A collection of policy tags that classify data along a common axis.
@@ -37,7 +62,7 @@ final class GoogleDataCatalogTaxonomy extends Resource {
     super.localName, {
     required TfArg<String> displayName,
     TfArg<String>? description,
-    TfArg<List<String>>? activatedPolicyTypes,
+    List<DataCatalogTaxonomyActivatedPolicyTypes>? activatedPolicyTypes,
     TfArg<String>? region,
     TfArg<String>? project,
     TfArg<String>? deletionPolicy,
@@ -50,7 +75,10 @@ final class GoogleDataCatalogTaxonomy extends Resource {
          argMap: {
            'display_name': displayName,
            'description': ?description,
-           'activated_policy_types': ?activatedPolicyTypes,
+           if (activatedPolicyTypes != null)
+             'activated_policy_types': TfArg.literal([
+               for (final e in activatedPolicyTypes) e.toTfJson(),
+             ]),
            'region': ?region,
            'project': ?project,
            'deletion_policy': ?deletionPolicy,

@@ -287,7 +287,7 @@ final class GoogleComputeNetworkFirewallPolicyRule extends Resource {
     TfArg<bool>? enableLogging,
     TfArg<List<String>>? targetServiceAccounts,
     List<ComputeNetworkFirewallPolicyRuleTargetSecureTags>? targetSecureTags,
-    TfArg<String>? targetType,
+    ComputeNetworkFirewallPolicyRuleTargetType? targetType,
     TfArg<List<String>>? targetForwardingRules,
     TfArg<String>? securityProfileGroup,
     TfArg<bool>? tlsInspect,

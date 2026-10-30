@@ -8,6 +8,30 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleDatabaseMigrationServiceMigrationJobSensitive =
     <String>{};
 
+/// Database Migration Service Migration Job Desired enum for `desired_state`.
+extension type const DatabaseMigrationServiceMigrationJobDesiredState._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DatabaseMigrationServiceMigrationJobDesiredState.variable(String name)
+    : this._(TfArg.variable(name));
+  DatabaseMigrationServiceMigrationJobDesiredState.expression(String template)
+    : this._(TfArg.expression(template));
+  const DatabaseMigrationServiceMigrationJobDesiredState.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const notStarted = DatabaseMigrationServiceMigrationJobDesiredState._(
+    TfArgLiteral('NOT_STARTED'),
+  );
+  static const running = DatabaseMigrationServiceMigrationJobDesiredState._(
+    TfArgLiteral('RUNNING'),
+  );
+
+  static const List<DatabaseMigrationServiceMigrationJobDesiredState> values = [
+    notStarted,
+    running,
+  ];
+}
+
 /// Database Migration Service Migration Job Dump enum for `dump_type`.
 extension type const DatabaseMigrationServiceMigrationJobDumpType._(
   TfArg<String> _
@@ -547,7 +571,7 @@ final class GoogleDatabaseMigrationServiceMigrationJob extends Resource {
   GoogleDatabaseMigrationServiceMigrationJob(
     super.localName, {
     TfArg<String>? deletionPolicy,
-    TfArg<String>? desiredState,
+    DatabaseMigrationServiceMigrationJobDesiredState? desiredState,
     required TfArg<String> destination,
     TfArg<String>? displayName,
     TfArg<String>? dumpPath,

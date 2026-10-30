@@ -63,6 +63,39 @@ extension type const DiscoveryEngineDataStoreIndustryVertical._(TfArg<String> _)
   ];
 }
 
+/// Discovery Engine Data Store Solution enum for `solution_types`.
+extension type const DiscoveryEngineDataStoreSolutionTypes._(TfArg<String> _)
+    implements TfArg<String> {
+  DiscoveryEngineDataStoreSolutionTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineDataStoreSolutionTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineDataStoreSolutionTypes.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const solutionTypeRecommendation =
+      DiscoveryEngineDataStoreSolutionTypes._(
+        TfArgLiteral('SOLUTION_TYPE_RECOMMENDATION'),
+      );
+  static const solutionTypeSearch = DiscoveryEngineDataStoreSolutionTypes._(
+    TfArgLiteral('SOLUTION_TYPE_SEARCH'),
+  );
+  static const solutionTypeChat = DiscoveryEngineDataStoreSolutionTypes._(
+    TfArgLiteral('SOLUTION_TYPE_CHAT'),
+  );
+  static const solutionTypeGenerativeChat =
+      DiscoveryEngineDataStoreSolutionTypes._(
+        TfArgLiteral('SOLUTION_TYPE_GENERATIVE_CHAT'),
+      );
+
+  static const List<DiscoveryEngineDataStoreSolutionTypes> values = [
+    solutionTypeRecommendation,
+    solutionTypeSearch,
+    solutionTypeChat,
+    solutionTypeGenerativeChat,
+  ];
+}
+
 /// Typed helper for the `advanced_site_search_config` block of
 /// `google_discovery_engine_data_store` (derived from provider schema).
 @immutable
@@ -353,7 +386,7 @@ final class GoogleDiscoveryEngineDataStore extends Resource {
     required TfArg<String> displayName,
     required DiscoveryEngineDataStoreIndustryVertical industryVertical,
     DiscoveryEngineDataStoreContentConfig? contentConfig,
-    TfArg<List<String>>? solutionTypes,
+    List<DiscoveryEngineDataStoreSolutionTypes>? solutionTypes,
     TfArg<bool>? skipDefaultSchemaCreation,
     TfArg<String>? project,
     TfArg<bool>? aclEnabled,
@@ -373,7 +406,10 @@ final class GoogleDiscoveryEngineDataStore extends Resource {
            'display_name': displayName,
            'industry_vertical': industryVertical,
            'content_config': ?contentConfig,
-           'solution_types': ?solutionTypes,
+           if (solutionTypes != null)
+             'solution_types': TfArg.literal([
+               for (final e in solutionTypes) e.toTfJson(),
+             ]),
            'skip_default_schema_creation': ?skipDefaultSchemaCreation,
            'project': ?project,
            'acl_enabled': ?aclEnabled,

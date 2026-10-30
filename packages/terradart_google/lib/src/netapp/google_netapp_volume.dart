@@ -7,6 +7,36 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_netapp_volume`.
 const Set<String> _googleNetappVolumeSensitive = <String>{};
 
+/// Netapp Volume enum for `protocols`.
+extension type const NetappVolumeProtocols._(TfArg<String> _)
+    implements TfArg<String> {
+  NetappVolumeProtocols.variable(String name) : this._(TfArg.variable(name));
+  NetappVolumeProtocols.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetappVolumeProtocols.arg(TfArg<String> arg) : this._(arg);
+
+  static const nfsv3 = NetappVolumeProtocols._(TfArgLiteral('NFSV3'));
+  static const nfsv4 = NetappVolumeProtocols._(TfArgLiteral('NFSV4'));
+  static const smb = NetappVolumeProtocols._(TfArgLiteral('SMB'));
+  static const iscsi = NetappVolumeProtocols._(TfArgLiteral('ISCSI'));
+
+  static const List<NetappVolumeProtocols> values = [nfsv3, nfsv4, smb, iscsi];
+}
+
+/// Netapp Volume Restricted enum for `restricted_actions`.
+extension type const NetappVolumeRestrictedActions._(TfArg<String> _)
+    implements TfArg<String> {
+  NetappVolumeRestrictedActions.variable(String name)
+    : this._(TfArg.variable(name));
+  NetappVolumeRestrictedActions.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetappVolumeRestrictedActions.arg(TfArg<String> arg) : this._(arg);
+
+  static const delete = NetappVolumeRestrictedActions._(TfArgLiteral('DELETE'));
+
+  static const List<NetappVolumeRestrictedActions> values = [delete];
+}
+
 /// Netapp Volume Security enum for `security_style`.
 extension type const NetappVolumeSecurityStyle._(TfArg<String> _)
     implements TfArg<String> {
@@ -20,6 +50,51 @@ extension type const NetappVolumeSecurityStyle._(TfArg<String> _)
   static const unix = NetappVolumeSecurityStyle._(TfArgLiteral('UNIX'));
 
   static const List<NetappVolumeSecurityStyle> values = [ntfs, unix];
+}
+
+/// Netapp Volume Smb enum for `smb_settings`.
+extension type const NetappVolumeSmbSettings._(TfArg<String> _)
+    implements TfArg<String> {
+  NetappVolumeSmbSettings.variable(String name) : this._(TfArg.variable(name));
+  NetappVolumeSmbSettings.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetappVolumeSmbSettings.arg(TfArg<String> arg) : this._(arg);
+
+  static const encryptData = NetappVolumeSmbSettings._(
+    TfArgLiteral('ENCRYPT_DATA'),
+  );
+  static const browsable = NetappVolumeSmbSettings._(TfArgLiteral('BROWSABLE'));
+  static const changeNotify = NetappVolumeSmbSettings._(
+    TfArgLiteral('CHANGE_NOTIFY'),
+  );
+  static const nonBrowsable = NetappVolumeSmbSettings._(
+    TfArgLiteral('NON_BROWSABLE'),
+  );
+  static const oplocks = NetappVolumeSmbSettings._(TfArgLiteral('OPLOCKS'));
+  static const showSnapshot = NetappVolumeSmbSettings._(
+    TfArgLiteral('SHOW_SNAPSHOT'),
+  );
+  static const showPreviousVersions = NetappVolumeSmbSettings._(
+    TfArgLiteral('SHOW_PREVIOUS_VERSIONS'),
+  );
+  static const accessBasedEnumeration = NetappVolumeSmbSettings._(
+    TfArgLiteral('ACCESS_BASED_ENUMERATION'),
+  );
+  static const continuouslyAvailable = NetappVolumeSmbSettings._(
+    TfArgLiteral('CONTINUOUSLY_AVAILABLE'),
+  );
+
+  static const List<NetappVolumeSmbSettings> values = [
+    encryptData,
+    browsable,
+    changeNotify,
+    nonBrowsable,
+    oplocks,
+    showSnapshot,
+    showPreviousVersions,
+    accessBasedEnumeration,
+    continuouslyAvailable,
+  ];
 }
 
 /// Typed helper for the `backup_config` block of
@@ -655,14 +730,14 @@ final class GoogleNetappVolume extends Resource {
     required TfArg<String> location,
     required TfArg<String> storagePool,
     required TfArg<String> capacityGib,
-    required TfArg<List<String>> protocols,
+    required List<NetappVolumeProtocols> protocols,
     TfArg<String>? shareName,
     TfArg<String>? description,
     TfArg<Map<String, String>>? labels,
-    TfArg<List<String>>? smbSettings,
+    List<NetappVolumeSmbSettings>? smbSettings,
     TfArg<String>? unixPermissions,
     TfArg<bool>? snapshotDirectory,
-    TfArg<String>? securityStyle,
+    NetappVolumeSecurityStyle? securityStyle,
     TfArg<bool>? kerberosEnabled,
     NetappVolumeExportPolicy? exportPolicy,
     NetappVolumeSnapshotPolicy? snapshotPolicy,
@@ -672,7 +747,7 @@ final class GoogleNetappVolume extends Resource {
     TfArg<String>? project,
     TfArg<bool>? largeCapacity,
     TfArg<bool>? multipleEndpoints,
-    TfArg<List<String>>? restrictedActions,
+    List<NetappVolumeRestrictedActions>? restrictedActions,
     TfArg<num>? throughputMibps,
     List<NetappVolumeBlockDevices>? blockDevices,
     NetappVolumeCacheParameters? cacheParameters,
@@ -690,11 +765,16 @@ final class GoogleNetappVolume extends Resource {
            'location': location,
            'storage_pool': storagePool,
            'capacity_gib': capacityGib,
-           'protocols': protocols,
+           'protocols': TfArg.literal([
+             for (final e in protocols) e.toTfJson(),
+           ]),
            'share_name': ?shareName,
            'description': ?description,
            'labels': ?labels,
-           'smb_settings': ?smbSettings,
+           if (smbSettings != null)
+             'smb_settings': TfArg.literal([
+               for (final e in smbSettings) e.toTfJson(),
+             ]),
            'unix_permissions': ?unixPermissions,
            'snapshot_directory': ?snapshotDirectory,
            'security_style': ?securityStyle,
@@ -711,7 +791,10 @@ final class GoogleNetappVolume extends Resource {
            'project': ?project,
            'large_capacity': ?largeCapacity,
            'multiple_endpoints': ?multipleEndpoints,
-           'restricted_actions': ?restrictedActions,
+           if (restrictedActions != null)
+             'restricted_actions': TfArg.literal([
+               for (final e in restrictedActions) e.toTfJson(),
+             ]),
            'throughput_mibps': ?throughputMibps,
            if (blockDevices != null)
              'block_devices': TfArg.literal([
