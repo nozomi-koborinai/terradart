@@ -61,7 +61,9 @@ export 'src/identity/google_identity_platform_config.dart'
         IdentityPlatformConfigTotpProviderConfig,
         IdentityPlatformConfigTriggers;
 export 'src/identity/google_identity_platform_default_supported_idp_config.dart'
-    show GoogleIdentityPlatformDefaultSupportedIdpConfig;
+    show
+        GoogleIdentityPlatformDefaultSupportedIdpConfig,
+        IdentityPlatformDefaultSupportedIdpConfigIdpId;
 export 'src/identity/google_identity_platform_inbound_saml_config.dart'
     show
         GoogleIdentityPlatformInboundSamlConfig,
@@ -79,7 +81,9 @@ export 'src/identity/google_identity_platform_tenant.dart'
         IdentityPlatformTenantDeletionPolicy,
         IdentityPlatformTenantPermissions;
 export 'src/identity/google_identity_platform_tenant_default_supported_idp_config.dart'
-    show GoogleIdentityPlatformTenantDefaultSupportedIdpConfig;
+    show
+        GoogleIdentityPlatformTenantDefaultSupportedIdpConfig,
+        IdentityPlatformTenantDefaultSupportedIdpConfigIdpId;
 export 'src/identity/google_identity_platform_tenant_inbound_saml_config.dart'
     show
         GoogleIdentityPlatformTenantInboundSamlConfig,

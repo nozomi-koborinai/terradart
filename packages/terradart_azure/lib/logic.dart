@@ -54,6 +54,7 @@ export 'src/logic/azurerm_logic_app_integration_account_session.dart'
 export 'src/logic/azurerm_logic_app_standard.dart'
     show
         AzurermLogicAppStandard,
+        LogicAppStandardAction,
         LogicAppStandardClientCertificateMode,
         LogicAppStandardConnectionString,
         LogicAppStandardCors,

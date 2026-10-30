@@ -21,6 +21,33 @@ const Set<String> _googleComputeInstanceFromTemplateSensitive = <String>{
   'boot_disk.initialize_params.source_snapshot_encryption_key.rsa_encrypted_key',
 };
 
+/// Compute Instance From Template Desired enum for `desired_status`.
+extension type const ComputeInstanceFromTemplateDesiredStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInstanceFromTemplateDesiredStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceFromTemplateDesiredStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceFromTemplateDesiredStatus.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const running = ComputeInstanceFromTemplateDesiredStatus._(
+    TfArgLiteral('RUNNING'),
+  );
+  static const suspended = ComputeInstanceFromTemplateDesiredStatus._(
+    TfArgLiteral('SUSPENDED'),
+  );
+  static const terminated = ComputeInstanceFromTemplateDesiredStatus._(
+    TfArgLiteral('TERMINATED'),
+  );
+
+  static const List<ComputeInstanceFromTemplateDesiredStatus> values = [
+    running,
+    suspended,
+    terminated,
+  ];
+}
+
 /// Typed helper for the `advanced_machine_features` block of
 /// `google_compute_instance_from_template` (derived from provider schema).
 @immutable
@@ -38,7 +65,8 @@ final class ComputeInstanceFromTemplateAdvancedMachineFeatures {
 
   final TfArg<bool>? enableUefiNetworking;
 
-  final TfArg<String>? performanceMonitoringUnit;
+  final ComputeInstanceFromTemplatePerformanceMonitoringUnit?
+  performanceMonitoringUnit;
 
   final TfArg<num>? threadsPerCore;
 
@@ -55,6 +83,36 @@ final class ComputeInstanceFromTemplateAdvancedMachineFeatures {
     'turbo_mode': ?turboMode?.toTfJson(),
     'visible_core_count': ?visibleCoreCount?.toTfJson(),
   };
+}
+
+/// `performance_monitoring_unit` — derived from the provider schema description.
+extension type const ComputeInstanceFromTemplatePerformanceMonitoringUnit._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeInstanceFromTemplatePerformanceMonitoringUnit.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceFromTemplatePerformanceMonitoringUnit.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ComputeInstanceFromTemplatePerformanceMonitoringUnit.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const standard =
+      ComputeInstanceFromTemplatePerformanceMonitoringUnit._(
+        TfArgLiteral('STANDARD'),
+      );
+  static const enhanced =
+      ComputeInstanceFromTemplatePerformanceMonitoringUnit._(
+        TfArgLiteral('ENHANCED'),
+      );
+  static const architectural =
+      ComputeInstanceFromTemplatePerformanceMonitoringUnit._(
+        TfArgLiteral('ARCHITECTURAL'),
+      );
+
+  static const List<ComputeInstanceFromTemplatePerformanceMonitoringUnit>
+  values = [standard, enhanced, architectural];
 }
 
 /// Typed helper for the `attached_disk` block of
@@ -157,7 +215,7 @@ final class ComputeInstanceFromTemplateBootDisk {
 
   final TfArg<List<String>>? guestOsFeatures;
 
-  final TfArg<String>? interface;
+  final ComputeInstanceFromTemplateInterface? interface;
 
   final RefTo<GoogleKmsCryptoKey>? kmsKeySelfLink;
 
@@ -183,6 +241,26 @@ final class ComputeInstanceFromTemplateBootDisk {
     'source': ?source?.toTfJson(),
     'initialize_params': ?initializeParams?.encode(),
   };
+}
+
+/// `interface` — derived from the provider schema description.
+extension type const ComputeInstanceFromTemplateInterface._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInstanceFromTemplateInterface.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceFromTemplateInterface.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceFromTemplateInterface.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const scsi = ComputeInstanceFromTemplateInterface._(
+    TfArgLiteral('SCSI'),
+  );
+  static const nvme = ComputeInstanceFromTemplateInterface._(
+    TfArgLiteral('NVME'),
+  );
+
+  static const List<ComputeInstanceFromTemplateInterface> values = [scsi, nvme];
 }
 
 /// Typed helper for the `boot_disk.initialize_params` block of
@@ -347,7 +425,8 @@ final class ComputeInstanceFromTemplateConfidentialInstanceConfig {
     this.enableConfidentialCompute,
   });
 
-  final TfArg<String>? confidentialInstanceType;
+  final ComputeInstanceFromTemplateConfidentialInstanceType?
+  confidentialInstanceType;
 
   final TfArg<bool>? enableConfidentialCompute;
 
@@ -356,6 +435,33 @@ final class ComputeInstanceFromTemplateConfidentialInstanceConfig {
     'confidential_instance_type': ?confidentialInstanceType?.toTfJson(),
     'enable_confidential_compute': ?enableConfidentialCompute?.toTfJson(),
   };
+}
+
+/// `confidential_instance_type` — derived from the provider schema description.
+extension type const ComputeInstanceFromTemplateConfidentialInstanceType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeInstanceFromTemplateConfidentialInstanceType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceFromTemplateConfidentialInstanceType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ComputeInstanceFromTemplateConfidentialInstanceType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const sev = ComputeInstanceFromTemplateConfidentialInstanceType._(
+    TfArgLiteral('SEV'),
+  );
+  static const sevSnp = ComputeInstanceFromTemplateConfidentialInstanceType._(
+    TfArgLiteral('SEV_SNP'),
+  );
+  static const tdx = ComputeInstanceFromTemplateConfidentialInstanceType._(
+    TfArgLiteral('TDX'),
+  );
+
+  static const List<ComputeInstanceFromTemplateConfidentialInstanceType>
+  values = [sev, sevSnp, tdx];
 }
 
 /// Typed helper for the `guest_accelerator` block of
@@ -527,7 +633,7 @@ final class ComputeInstanceFromTemplateAccessConfig {
 
   final TfArg<String>? natIp;
 
-  final TfArg<String>? networkTier;
+  final ComputeInstanceFromTemplateNetworkTier? networkTier;
 
   final TfArg<String>? publicPtrDomainName;
 
@@ -537,6 +643,29 @@ final class ComputeInstanceFromTemplateAccessConfig {
     'network_tier': ?networkTier?.toTfJson(),
     'public_ptr_domain_name': ?publicPtrDomainName?.toTfJson(),
   };
+}
+
+/// `network_tier` — derived from the provider schema description.
+extension type const ComputeInstanceFromTemplateNetworkTier._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInstanceFromTemplateNetworkTier.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceFromTemplateNetworkTier.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceFromTemplateNetworkTier.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const premium = ComputeInstanceFromTemplateNetworkTier._(
+    TfArgLiteral('PREMIUM'),
+  );
+  static const standard = ComputeInstanceFromTemplateNetworkTier._(
+    TfArgLiteral('STANDARD'),
+  );
+
+  static const List<ComputeInstanceFromTemplateNetworkTier> values = [
+    premium,
+    standard,
+  ];
 }
 
 /// Typed helper for the `network_interface.alias_ip_range` block of
@@ -718,11 +847,11 @@ final class ComputeInstanceFromTemplateScheduling {
 
   final TfArg<num>? minNodeCpus;
 
-  final TfArg<String>? onHostMaintenance;
+  final ComputeInstanceFromTemplateOnHostMaintenance? onHostMaintenance;
 
   final TfArg<bool>? preemptible;
 
-  final TfArg<String>? provisioningModel;
+  final ComputeInstanceFromTemplateProvisioningModel? provisioningModel;
 
   final TfArg<String>? terminationTime;
 
@@ -756,6 +885,63 @@ final class ComputeInstanceFromTemplateScheduling {
     'on_instance_stop_action': ?onInstanceStopAction?.encode(),
     'preemption_notice_duration': ?preemptionNoticeDuration?.encode(),
   };
+}
+
+/// `on_host_maintenance` — derived from the provider schema description.
+extension type const ComputeInstanceFromTemplateOnHostMaintenance._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeInstanceFromTemplateOnHostMaintenance.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceFromTemplateOnHostMaintenance.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceFromTemplateOnHostMaintenance.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const migrate = ComputeInstanceFromTemplateOnHostMaintenance._(
+    TfArgLiteral('MIGRATE'),
+  );
+  static const terminate = ComputeInstanceFromTemplateOnHostMaintenance._(
+    TfArgLiteral('TERMINATE'),
+  );
+
+  static const List<ComputeInstanceFromTemplateOnHostMaintenance> values = [
+    migrate,
+    terminate,
+  ];
+}
+
+/// `provisioning_model` — derived from the provider schema description.
+extension type const ComputeInstanceFromTemplateProvisioningModel._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeInstanceFromTemplateProvisioningModel.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceFromTemplateProvisioningModel.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceFromTemplateProvisioningModel.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const standard = ComputeInstanceFromTemplateProvisioningModel._(
+    TfArgLiteral('STANDARD'),
+  );
+  static const spot = ComputeInstanceFromTemplateProvisioningModel._(
+    TfArgLiteral('SPOT'),
+  );
+  static const flexStart = ComputeInstanceFromTemplateProvisioningModel._(
+    TfArgLiteral('FLEX_START'),
+  );
+  static const reservationBound =
+      ComputeInstanceFromTemplateProvisioningModel._(
+        TfArgLiteral('RESERVATION_BOUND'),
+      );
+
+  static const List<ComputeInstanceFromTemplateProvisioningModel> values = [
+    standard,
+    spot,
+    flexStart,
+    reservationBound,
+  ];
 }
 
 /// Typed helper for the `scheduling.local_ssd_recovery_timeout` block of
@@ -868,7 +1054,7 @@ final class ComputeInstanceFromTemplateScratchDisk {
 
   final TfArg<String>? deviceName;
 
-  final TfArg<String> interface;
+  final ComputeInstanceFromTemplateInterface interface;
 
   final TfArg<num>? size;
 
@@ -976,7 +1162,7 @@ final class GoogleComputeInstanceFromTemplate extends Resource {
     TfArg<bool>? allowStoppingForUpdate,
     TfArg<bool>? deletionProtection,
     TfArg<String>? deletionPolicy,
-    TfArg<String>? desiredStatus,
+    ComputeInstanceFromTemplateDesiredStatus? desiredStatus,
     TfArg<bool>? enableDisplay,
     TfArg<String>? hostname,
     TfArg<String>? keyRevocationActionType,

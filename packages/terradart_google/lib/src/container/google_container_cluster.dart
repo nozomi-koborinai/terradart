@@ -418,10 +418,24 @@ final class ContainerClusterStatefulHaConfig {
 final class ContainerClusterAnonymousAuthenticationConfig {
   const ContainerClusterAnonymousAuthenticationConfig({required this.mode});
 
-  final TfArg<String> mode;
+  final ContainerClusterMode mode;
 
   @internal
   Map<String, Object?> encode() => {'mode': mode.toTfJson()};
+}
+
+/// `mode` — derived from the provider schema description.
+extension type const ContainerClusterMode._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerClusterMode.variable(String name) : this._(TfArg.variable(name));
+  ContainerClusterMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerClusterMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const enabled = ContainerClusterMode._(TfArgLiteral('ENABLED'));
+  static const limited = ContainerClusterMode._(TfArgLiteral('LIMITED'));
+
+  static const List<ContainerClusterMode> values = [enabled, limited];
 }
 
 /// Typed helper for the `authenticator_groups_config` block of
@@ -1078,12 +1092,66 @@ final class ContainerClusterPodCidrOverprovisionConfig {
 final class ContainerClusterLoggingConfig {
   const ContainerClusterLoggingConfig({required this.enableComponents});
 
-  final TfArg<List<String>> enableComponents;
+  final List<ContainerClusterLoggingConfigEnableComponents> enableComponents;
 
   @internal
   Map<String, Object?> encode() => {
-    'enable_components': enableComponents.toTfJson(),
+    'enable_components': [for (final e in enableComponents) e.toTfJson()],
   };
+}
+
+/// `enable_components` — derived from the provider schema description.
+extension type const ContainerClusterLoggingConfigEnableComponents._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ContainerClusterLoggingConfigEnableComponents.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerClusterLoggingConfigEnableComponents.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerClusterLoggingConfigEnableComponents.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const systemComponents =
+      ContainerClusterLoggingConfigEnableComponents._(
+        TfArgLiteral('SYSTEM_COMPONENTS'),
+      );
+  static const apiserver = ContainerClusterLoggingConfigEnableComponents._(
+    TfArgLiteral('APISERVER'),
+  );
+  static const controllerManager =
+      ContainerClusterLoggingConfigEnableComponents._(
+        TfArgLiteral('CONTROLLER_MANAGER'),
+      );
+  static const kcpConnection = ContainerClusterLoggingConfigEnableComponents._(
+    TfArgLiteral('KCP_CONNECTION'),
+  );
+  static const kcpSshd = ContainerClusterLoggingConfigEnableComponents._(
+    TfArgLiteral('KCP_SSHD'),
+  );
+  static const kcpHpa = ContainerClusterLoggingConfigEnableComponents._(
+    TfArgLiteral('KCP_HPA'),
+  );
+  static const kcpVpa = ContainerClusterLoggingConfigEnableComponents._(
+    TfArgLiteral('KCP_VPA'),
+  );
+  static const scheduler = ContainerClusterLoggingConfigEnableComponents._(
+    TfArgLiteral('SCHEDULER'),
+  );
+  static const workloads = ContainerClusterLoggingConfigEnableComponents._(
+    TfArgLiteral('WORKLOADS'),
+  );
+
+  static const List<ContainerClusterLoggingConfigEnableComponents> values = [
+    systemComponents,
+    apiserver,
+    controllerManager,
+    kcpConnection,
+    kcpSshd,
+    kcpHpa,
+    kcpVpa,
+    scheduler,
+    workloads,
+  ];
 }
 
 /// Typed helper for the `maintenance_policy` block of
@@ -1412,7 +1480,8 @@ final class ContainerClusterMonitoringConfig {
     this.managedPrometheus,
   });
 
-  final TfArg<List<String>>? enableComponents;
+  final List<ContainerClusterMonitoringConfigEnableComponents>?
+  enableComponents;
 
   final ContainerClusterAdvancedDatapathObservabilityConfig?
   advancedDatapathObservabilityConfig;
@@ -1421,11 +1490,86 @@ final class ContainerClusterMonitoringConfig {
 
   @internal
   Map<String, Object?> encode() => {
-    'enable_components': ?enableComponents?.toTfJson(),
+    if (enableComponents != null)
+      'enable_components': [for (final e in enableComponents!) e.toTfJson()],
     'advanced_datapath_observability_config':
         ?advancedDatapathObservabilityConfig?.encode(),
     'managed_prometheus': ?managedPrometheus?.encode(),
   };
+}
+
+/// `enable_components` — derived from the provider schema description.
+extension type const ContainerClusterMonitoringConfigEnableComponents._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ContainerClusterMonitoringConfigEnableComponents.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerClusterMonitoringConfigEnableComponents.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerClusterMonitoringConfigEnableComponents.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const systemComponents =
+      ContainerClusterMonitoringConfigEnableComponents._(
+        TfArgLiteral('SYSTEM_COMPONENTS'),
+      );
+  static const apiserver = ContainerClusterMonitoringConfigEnableComponents._(
+    TfArgLiteral('APISERVER'),
+  );
+  static const scheduler = ContainerClusterMonitoringConfigEnableComponents._(
+    TfArgLiteral('SCHEDULER'),
+  );
+  static const controllerManager =
+      ContainerClusterMonitoringConfigEnableComponents._(
+        TfArgLiteral('CONTROLLER_MANAGER'),
+      );
+  static const storage = ContainerClusterMonitoringConfigEnableComponents._(
+    TfArgLiteral('STORAGE'),
+  );
+  static const hpa = ContainerClusterMonitoringConfigEnableComponents._(
+    TfArgLiteral('HPA'),
+  );
+  static const pod = ContainerClusterMonitoringConfigEnableComponents._(
+    TfArgLiteral('POD'),
+  );
+  static const daemonset = ContainerClusterMonitoringConfigEnableComponents._(
+    TfArgLiteral('DAEMONSET'),
+  );
+  static const deployment = ContainerClusterMonitoringConfigEnableComponents._(
+    TfArgLiteral('DEPLOYMENT'),
+  );
+  static const statefulset = ContainerClusterMonitoringConfigEnableComponents._(
+    TfArgLiteral('STATEFULSET'),
+  );
+  static const kubelet = ContainerClusterMonitoringConfigEnableComponents._(
+    TfArgLiteral('KUBELET'),
+  );
+  static const cadvisor = ContainerClusterMonitoringConfigEnableComponents._(
+    TfArgLiteral('CADVISOR'),
+  );
+  static const dcgm = ContainerClusterMonitoringConfigEnableComponents._(
+    TfArgLiteral('DCGM'),
+  );
+  static const jobset = ContainerClusterMonitoringConfigEnableComponents._(
+    TfArgLiteral('JOBSET'),
+  );
+
+  static const List<ContainerClusterMonitoringConfigEnableComponents> values = [
+    systemComponents,
+    apiserver,
+    scheduler,
+    controllerManager,
+    storage,
+    hpa,
+    pod,
+    daemonset,
+    deployment,
+    statefulset,
+    kubelet,
+    cadvisor,
+    dcgm,
+    jobset,
+  ];
 }
 
 /// Typed helper for the `monitoring_config.advanced_datapath_observability_config` block of
@@ -1482,7 +1626,6 @@ final class ContainerClusterAutoMonitoringConfig {
 
 /// Typed helper for the `network_performance_config` block of
 /// `google_container_cluster` (derived from provider schema).
-/// Shared by every block of this shape in the resource.
 @immutable
 final class ContainerClusterNetworkPerformanceConfig {
   const ContainerClusterNetworkPerformanceConfig({
@@ -1588,7 +1731,7 @@ final class ContainerClusterNodeConfig {
 
   final TfArg<String>? localSsdEncryptionMode;
 
-  final TfArg<String>? loggingVariant;
+  final ContainerClusterLoggingVariant? loggingVariant;
 
   final TfArg<String>? machineType;
 
@@ -1714,6 +1857,28 @@ final class ContainerClusterNodeConfig {
     'windows_node_config': ?windowsNodeConfig?.encode(),
     'workload_metadata_config': ?workloadMetadataConfig?.encode(),
   };
+}
+
+/// `logging_variant` — derived from the provider schema description.
+extension type const ContainerClusterLoggingVariant._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerClusterLoggingVariant.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerClusterLoggingVariant.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerClusterLoggingVariant.arg(TfArg<String> arg) : this._(arg);
+
+  static const defaultCase = ContainerClusterLoggingVariant._(
+    TfArgLiteral('DEFAULT'),
+  );
+  static const maxThroughput = ContainerClusterLoggingVariant._(
+    TfArgLiteral('MAX_THROUGHPUT'),
+  );
+
+  static const List<ContainerClusterLoggingVariant> values = [
+    defaultCase,
+    maxThroughput,
+  ];
 }
 
 /// Typed helper for the `node_config.advanced_machine_features` block of
@@ -2198,7 +2363,8 @@ final class ContainerClusterKubeletConfig {
 
   final TfArg<String>? imageMinimumGcAge;
 
-  final TfArg<String>? insecureKubeletReadonlyPortEnabled;
+  final ContainerClusterInsecureKubeletReadonlyPortEnabled?
+  insecureKubeletReadonlyPortEnabled;
 
   final TfArg<num>? maxParallelImagePulls;
 
@@ -2251,6 +2417,29 @@ final class ContainerClusterKubeletConfig {
     'memory_manager': ?memoryManager?.encode(),
     'topology_manager': ?topologyManager?.encode(),
   };
+}
+
+/// `insecure_kubelet_readonly_port_enabled` — derived from the provider schema description.
+extension type const ContainerClusterInsecureKubeletReadonlyPortEnabled._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ContainerClusterInsecureKubeletReadonlyPortEnabled.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerClusterInsecureKubeletReadonlyPortEnabled.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerClusterInsecureKubeletReadonlyPortEnabled.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const trueCase = ContainerClusterInsecureKubeletReadonlyPortEnabled._(
+    TfArgLiteral('TRUE'),
+  );
+  static const falseCase = ContainerClusterInsecureKubeletReadonlyPortEnabled._(
+    TfArgLiteral('FALSE'),
+  );
+
+  static const List<ContainerClusterInsecureKubeletReadonlyPortEnabled> values =
+      [trueCase, falseCase];
 }
 
 /// Typed helper for the `node_config.kubelet_config.crash_loop_back_off` block of
@@ -2401,13 +2590,27 @@ final class ContainerClusterTopologyManager {
 
   final TfArg<String>? policy;
 
-  final TfArg<String>? scope;
+  final ContainerClusterScope? scope;
 
   @internal
   Map<String, Object?> encode() => {
     'policy': ?policy?.toTfJson(),
     'scope': ?scope?.toTfJson(),
   };
+}
+
+/// `scope` — derived from the provider schema description.
+extension type const ContainerClusterScope._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerClusterScope.variable(String name) : this._(TfArg.variable(name));
+  ContainerClusterScope.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerClusterScope.arg(TfArg<String> arg) : this._(arg);
+
+  static const container = ContainerClusterScope._(TfArgLiteral('container'));
+  static const pod = ContainerClusterScope._(TfArgLiteral('pod'));
+
+  static const List<ContainerClusterScope> values = [container, pod];
 }
 
 /// Typed helper for the `node_config.linux_node_config` block of
@@ -2857,12 +3060,34 @@ final class ContainerClusterWorkloadMetadataConfig {
 final class ContainerClusterNodeCreationConfig {
   const ContainerClusterNodeCreationConfig({required this.nodeCreationMode});
 
-  final TfArg<String> nodeCreationMode;
+  final ContainerClusterNodeCreationMode nodeCreationMode;
 
   @internal
   Map<String, Object?> encode() => {
     'node_creation_mode': nodeCreationMode.toTfJson(),
   };
+}
+
+/// `node_creation_mode` — derived from the provider schema description.
+extension type const ContainerClusterNodeCreationMode._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerClusterNodeCreationMode.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerClusterNodeCreationMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerClusterNodeCreationMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const viaKubelet = ContainerClusterNodeCreationMode._(
+    TfArgLiteral('VIA_KUBELET'),
+  );
+  static const viaControlPlane = ContainerClusterNodeCreationMode._(
+    TfArgLiteral('VIA_CONTROL_PLANE'),
+  );
+
+  static const List<ContainerClusterNodeCreationMode> values = [
+    viaKubelet,
+    viaControlPlane,
+  ];
 }
 
 /// Typed helper for the `node_pool` block of
@@ -3070,7 +3295,8 @@ final class ContainerClusterNetworkConfig {
   final List<ContainerClusterAdditionalPodNetworkConfigs>?
   additionalPodNetworkConfigs;
 
-  final ContainerClusterNetworkPerformanceConfig? networkPerformanceConfig;
+  final ContainerClusterNetworkConfigNetworkPerformanceConfig?
+  networkPerformanceConfig;
 
   final ContainerClusterPodCidrOverprovisionConfig? podCidrOverprovisionConfig;
 
@@ -3137,6 +3363,45 @@ final class ContainerClusterAdditionalPodNetworkConfigs {
     'secondary_pod_range': ?secondaryPodRange?.toTfJson(),
     'subnetwork': ?subnetwork?.encodeAs('name').toTfJson(),
   };
+}
+
+/// Typed helper for the `node_pool.network_config.network_performance_config` block of
+/// `google_container_cluster` (derived from provider schema).
+@immutable
+final class ContainerClusterNetworkConfigNetworkPerformanceConfig {
+  const ContainerClusterNetworkConfigNetworkPerformanceConfig({
+    required this.totalEgressBandwidthTier,
+  });
+
+  final ContainerClusterTotalEgressBandwidthTier totalEgressBandwidthTier;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'total_egress_bandwidth_tier': totalEgressBandwidthTier.toTfJson(),
+  };
+}
+
+/// `total_egress_bandwidth_tier` — derived from the provider schema description.
+extension type const ContainerClusterTotalEgressBandwidthTier._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerClusterTotalEgressBandwidthTier.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerClusterTotalEgressBandwidthTier.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerClusterTotalEgressBandwidthTier.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const tier1 = ContainerClusterTotalEgressBandwidthTier._(
+    TfArgLiteral('TIER_1'),
+  );
+  static const tierUnspecified = ContainerClusterTotalEgressBandwidthTier._(
+    TfArgLiteral('TIER_UNSPECIFIED'),
+  );
+
+  static const List<ContainerClusterTotalEgressBandwidthTier> values = [
+    tier1,
+    tierUnspecified,
+  ];
 }
 
 /// Typed helper for the `node_pool.node_drain_config` block of
@@ -3316,7 +3581,8 @@ final class ContainerClusterNodeKubeletConfig {
     this.insecureKubeletReadonlyPortEnabled,
   });
 
-  final TfArg<String>? insecureKubeletReadonlyPortEnabled;
+  final ContainerClusterInsecureKubeletReadonlyPortEnabled?
+  insecureKubeletReadonlyPortEnabled;
 
   @internal
   Map<String, Object?> encode() => {
@@ -3350,9 +3616,10 @@ final class ContainerClusterNodeConfigDefaults {
     this.gcfsConfig,
   });
 
-  final TfArg<String>? insecureKubeletReadonlyPortEnabled;
+  final ContainerClusterInsecureKubeletReadonlyPortEnabled?
+  insecureKubeletReadonlyPortEnabled;
 
-  final TfArg<String>? loggingVariant;
+  final ContainerClusterLoggingVariant? loggingVariant;
 
   final ContainerClusterContainerdConfig? containerdConfig;
 
@@ -3410,10 +3677,42 @@ final class ContainerClusterPubsub {
 final class ContainerClusterFilter {
   const ContainerClusterFilter({required this.eventType});
 
-  final TfArg<List<String>> eventType;
+  final List<ContainerClusterEventType> eventType;
 
   @internal
-  Map<String, Object?> encode() => {'event_type': eventType.toTfJson()};
+  Map<String, Object?> encode() => {
+    'event_type': [for (final e in eventType) e.toTfJson()],
+  };
+}
+
+/// `event_type` — derived from the provider schema description.
+extension type const ContainerClusterEventType._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerClusterEventType.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerClusterEventType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerClusterEventType.arg(TfArg<String> arg) : this._(arg);
+
+  static const upgradeAvailableEvent = ContainerClusterEventType._(
+    TfArgLiteral('UPGRADE_AVAILABLE_EVENT'),
+  );
+  static const upgradeEvent = ContainerClusterEventType._(
+    TfArgLiteral('UPGRADE_EVENT'),
+  );
+  static const securityBulletinEvent = ContainerClusterEventType._(
+    TfArgLiteral('SECURITY_BULLETIN_EVENT'),
+  );
+  static const upgradeInfoEvent = ContainerClusterEventType._(
+    TfArgLiteral('UPGRADE_INFO_EVENT'),
+  );
+
+  static const List<ContainerClusterEventType> values = [
+    upgradeAvailableEvent,
+    upgradeEvent,
+    securityBulletinEvent,
+    upgradeInfoEvent,
+  ];
 }
 
 /// Typed helper for the `pod_autoscaling` block of
@@ -3500,10 +3799,35 @@ final class ContainerClusterRbacBindingConfig {
 final class ContainerClusterReleaseChannel {
   const ContainerClusterReleaseChannel({required this.channel});
 
-  final TfArg<String> channel;
+  final ContainerClusterChannel channel;
 
   @internal
   Map<String, Object?> encode() => {'channel': channel.toTfJson()};
+}
+
+/// `channel` — derived from the provider schema description.
+extension type const ContainerClusterChannel._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerClusterChannel.variable(String name) : this._(TfArg.variable(name));
+  ContainerClusterChannel.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerClusterChannel.arg(TfArg<String> arg) : this._(arg);
+
+  static const unspecified = ContainerClusterChannel._(
+    TfArgLiteral('UNSPECIFIED'),
+  );
+  static const rapid = ContainerClusterChannel._(TfArgLiteral('RAPID'));
+  static const regular = ContainerClusterChannel._(TfArgLiteral('REGULAR'));
+  static const stable = ContainerClusterChannel._(TfArgLiteral('STABLE'));
+  static const extended = ContainerClusterChannel._(TfArgLiteral('EXTENDED'));
+
+  static const List<ContainerClusterChannel> values = [
+    unspecified,
+    rapid,
+    regular,
+    stable,
+    extended,
+  ];
 }
 
 /// Typed helper for the `resource_usage_export_config` block of

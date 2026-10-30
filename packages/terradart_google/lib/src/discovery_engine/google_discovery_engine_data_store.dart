@@ -63,6 +63,24 @@ extension type const DiscoveryEngineDataStoreIndustryVertical._(TfArg<String> _)
   ];
 }
 
+/// Discovery Engine Data Store enum for `location`.
+extension type const DiscoveryEngineDataStoreLocation._(TfArg<String> _)
+    implements TfArg<String> {
+  DiscoveryEngineDataStoreLocation.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineDataStoreLocation.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineDataStoreLocation.arg(TfArg<String> arg) : this._(arg);
+
+  static const global = DiscoveryEngineDataStoreLocation._(
+    TfArgLiteral('global'),
+  );
+  static const us = DiscoveryEngineDataStoreLocation._(TfArgLiteral('us'));
+  static const eu = DiscoveryEngineDataStoreLocation._(TfArgLiteral('eu'));
+
+  static const List<DiscoveryEngineDataStoreLocation> values = [global, us, eu];
+}
+
 /// Discovery Engine Data Store Solution enum for `solution_types`.
 extension type const DiscoveryEngineDataStoreSolutionTypes._(TfArg<String> _)
     implements TfArg<String> {
@@ -381,7 +399,7 @@ final class GoogleDiscoveryEngineDataStore extends Resource {
 
   GoogleDiscoveryEngineDataStore(
     super.localName, {
-    required TfArg<String> location,
+    required DiscoveryEngineDataStoreLocation location,
     required TfArg<String> dataStoreId,
     required TfArg<String> displayName,
     required DiscoveryEngineDataStoreIndustryVertical industryVertical,

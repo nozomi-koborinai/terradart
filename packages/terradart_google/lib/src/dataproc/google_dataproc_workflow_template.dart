@@ -1046,9 +1046,9 @@ final class DataprocWorkflowTemplateDiskConfig {
 
   final TfArg<num>? bootDiskSizeGb;
 
-  final TfArg<String>? bootDiskType;
+  final DataprocWorkflowTemplateBootDiskType? bootDiskType;
 
-  final TfArg<String>? localSsdInterface;
+  final DataprocWorkflowTemplateLocalSsdInterface? localSsdInterface;
 
   final TfArg<num>? numLocalSsds;
 
@@ -1066,6 +1066,57 @@ final class DataprocWorkflowTemplateDiskConfig {
     if (attachedDiskConfig != null)
       'attached_disk_config': [for (final e in attachedDiskConfig!) e.encode()],
   };
+}
+
+/// `boot_disk_type` — derived from the provider schema description.
+extension type const DataprocWorkflowTemplateBootDiskType._(TfArg<String> _)
+    implements TfArg<String> {
+  DataprocWorkflowTemplateBootDiskType.variable(String name)
+    : this._(TfArg.variable(name));
+  DataprocWorkflowTemplateBootDiskType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataprocWorkflowTemplateBootDiskType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const pdBalanced = DataprocWorkflowTemplateBootDiskType._(
+    TfArgLiteral('pd-balanced'),
+  );
+  static const pdSsd = DataprocWorkflowTemplateBootDiskType._(
+    TfArgLiteral('pd-ssd'),
+  );
+  static const pdStandard = DataprocWorkflowTemplateBootDiskType._(
+    TfArgLiteral('pd-standard'),
+  );
+
+  static const List<DataprocWorkflowTemplateBootDiskType> values = [
+    pdBalanced,
+    pdSsd,
+    pdStandard,
+  ];
+}
+
+/// `local_ssd_interface` — derived from the provider schema description.
+extension type const DataprocWorkflowTemplateLocalSsdInterface._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataprocWorkflowTemplateLocalSsdInterface.variable(String name)
+    : this._(TfArg.variable(name));
+  DataprocWorkflowTemplateLocalSsdInterface.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataprocWorkflowTemplateLocalSsdInterface.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const scsi = DataprocWorkflowTemplateLocalSsdInterface._(
+    TfArgLiteral('scsi'),
+  );
+  static const nvme = DataprocWorkflowTemplateLocalSsdInterface._(
+    TfArgLiteral('nvme'),
+  );
+
+  static const List<DataprocWorkflowTemplateLocalSsdInterface> values = [
+    scsi,
+    nvme,
+  ];
 }
 
 /// Typed helper for the `placement.managed_cluster.config.master_config.disk_config.attached_disk_config` block of

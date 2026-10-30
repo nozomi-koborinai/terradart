@@ -223,12 +223,36 @@ final class ContainerNodePoolNetworkPerformanceConfig {
     required this.totalEgressBandwidthTier,
   });
 
-  final TfArg<String> totalEgressBandwidthTier;
+  final ContainerNodePoolTotalEgressBandwidthTier totalEgressBandwidthTier;
 
   @internal
   Map<String, Object?> encode() => {
     'total_egress_bandwidth_tier': totalEgressBandwidthTier.toTfJson(),
   };
+}
+
+/// `total_egress_bandwidth_tier` — derived from the provider schema description.
+extension type const ContainerNodePoolTotalEgressBandwidthTier._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ContainerNodePoolTotalEgressBandwidthTier.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerNodePoolTotalEgressBandwidthTier.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerNodePoolTotalEgressBandwidthTier.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const tier1 = ContainerNodePoolTotalEgressBandwidthTier._(
+    TfArgLiteral('TIER_1'),
+  );
+  static const tierUnspecified = ContainerNodePoolTotalEgressBandwidthTier._(
+    TfArgLiteral('TIER_UNSPECIFIED'),
+  );
+
+  static const List<ContainerNodePoolTotalEgressBandwidthTier> values = [
+    tier1,
+    tierUnspecified,
+  ];
 }
 
 /// Typed helper for the `network_config.pod_cidr_overprovision_config` block of
@@ -316,7 +340,7 @@ final class ContainerNodePoolNodeConfig {
 
   final TfArg<String>? localSsdEncryptionMode;
 
-  final TfArg<String>? loggingVariant;
+  final ContainerNodePoolLoggingVariant? loggingVariant;
 
   final TfArg<String>? machineType;
 
@@ -442,6 +466,28 @@ final class ContainerNodePoolNodeConfig {
     'windows_node_config': ?windowsNodeConfig?.encode(),
     'workload_metadata_config': ?workloadMetadataConfig?.encode(),
   };
+}
+
+/// `logging_variant` — derived from the provider schema description.
+extension type const ContainerNodePoolLoggingVariant._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerNodePoolLoggingVariant.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerNodePoolLoggingVariant.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerNodePoolLoggingVariant.arg(TfArg<String> arg) : this._(arg);
+
+  static const defaultCase = ContainerNodePoolLoggingVariant._(
+    TfArgLiteral('DEFAULT'),
+  );
+  static const maxThroughput = ContainerNodePoolLoggingVariant._(
+    TfArgLiteral('MAX_THROUGHPUT'),
+  );
+
+  static const List<ContainerNodePoolLoggingVariant> values = [
+    defaultCase,
+    maxThroughput,
+  ];
 }
 
 /// Typed helper for the `node_config.advanced_machine_features` block of
@@ -924,7 +970,8 @@ final class ContainerNodePoolKubeletConfig {
 
   final TfArg<String>? imageMinimumGcAge;
 
-  final TfArg<String>? insecureKubeletReadonlyPortEnabled;
+  final ContainerNodePoolInsecureKubeletReadonlyPortEnabled?
+  insecureKubeletReadonlyPortEnabled;
 
   final TfArg<num>? maxParallelImagePulls;
 
@@ -977,6 +1024,31 @@ final class ContainerNodePoolKubeletConfig {
     'memory_manager': ?memoryManager?.encode(),
     'topology_manager': ?topologyManager?.encode(),
   };
+}
+
+/// `insecure_kubelet_readonly_port_enabled` — derived from the provider schema description.
+extension type const ContainerNodePoolInsecureKubeletReadonlyPortEnabled._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ContainerNodePoolInsecureKubeletReadonlyPortEnabled.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerNodePoolInsecureKubeletReadonlyPortEnabled.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ContainerNodePoolInsecureKubeletReadonlyPortEnabled.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const trueCase = ContainerNodePoolInsecureKubeletReadonlyPortEnabled._(
+    TfArgLiteral('TRUE'),
+  );
+  static const falseCase =
+      ContainerNodePoolInsecureKubeletReadonlyPortEnabled._(
+        TfArgLiteral('FALSE'),
+      );
+
+  static const List<ContainerNodePoolInsecureKubeletReadonlyPortEnabled>
+  values = [trueCase, falseCase];
 }
 
 /// Typed helper for the `node_config.kubelet_config.crash_loop_back_off` block of
@@ -1121,13 +1193,27 @@ final class ContainerNodePoolTopologyManager {
 
   final TfArg<String>? policy;
 
-  final TfArg<String>? scope;
+  final ContainerNodePoolScope? scope;
 
   @internal
   Map<String, Object?> encode() => {
     'policy': ?policy?.toTfJson(),
     'scope': ?scope?.toTfJson(),
   };
+}
+
+/// `scope` — derived from the provider schema description.
+extension type const ContainerNodePoolScope._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerNodePoolScope.variable(String name) : this._(TfArg.variable(name));
+  ContainerNodePoolScope.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerNodePoolScope.arg(TfArg<String> arg) : this._(arg);
+
+  static const container = ContainerNodePoolScope._(TfArgLiteral('container'));
+  static const pod = ContainerNodePoolScope._(TfArgLiteral('pod'));
+
+  static const List<ContainerNodePoolScope> values = [container, pod];
 }
 
 /// Typed helper for the `node_config.linux_node_config` block of

@@ -675,8 +675,27 @@ class ComputeSecurityPolicyAdaptiveProtectionConfig {
   };
 }
 
+/// `adaptive_protection_config.layer_7_ddos_defense_config.rule_visibility`.
+extension type const SecurityPolicyRuleVisibility._(TfArg<String> _)
+    implements TfArg<String> {
+  SecurityPolicyRuleVisibility.variable(String name)
+    : this._(TfArg.variable(name));
+  SecurityPolicyRuleVisibility.expression(String template)
+    : this._(TfArg.expression(template));
+  const SecurityPolicyRuleVisibility.arg(TfArg<String> arg) : this._(arg);
+
+  static const standard = SecurityPolicyRuleVisibility._(
+    TfArgLiteral('STANDARD'),
+  );
+  static const premium = SecurityPolicyRuleVisibility._(
+    TfArgLiteral('PREMIUM'),
+  );
+
+  static const List<SecurityPolicyRuleVisibility> values = [standard, premium];
+}
+
 /// `layer_7_ddos_defense_config` block. Pair [enable] with [ruleVisibility]
-/// (typically `'STANDARD'`); per-segment thresholds can be tuned via
+/// (typically `.standard`); per-segment thresholds can be tuned via
 /// [thresholdConfigs] for tenants with predictable traffic shape.
 @immutable
 class ComputeSecurityPolicyLayer7DdosDefenseConfig {
@@ -689,10 +708,10 @@ class ComputeSecurityPolicyLayer7DdosDefenseConfig {
   /// Master switch for L7 adaptive protection on this policy.
   final TfArg<bool>? enable;
 
-  /// Which rule details are surfaced in attack alerts: `'STANDARD'`
-  /// (anonymised) or `'PREMIUM'` (full rule body). Premium requires
+  /// Which rule details are surfaced in attack alerts: `standard`
+  /// (anonymised) or `premium` (full rule body). Premium requires
   /// Managed Protection Plus.
-  final TfArg<String>? ruleVisibility;
+  final SecurityPolicyRuleVisibility? ruleVisibility;
 
   /// Per-named-config threshold overrides. Each entry must have a
   /// unique [ComputeSecurityPolicyAdaptiveProtectionThresholdConfig.name].

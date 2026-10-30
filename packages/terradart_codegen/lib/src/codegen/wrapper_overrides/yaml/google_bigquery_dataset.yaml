@@ -34,7 +34,7 @@ curatedDoc: |-
   ///       role: TfArgLiteral('OWNER'),
   ///     ),
   ///     BigqueryDatasetAccessSpecialGroup(
-  ///       specialGroup: TfArgLiteral('projectReaders'),
+  ///       specialGroup: .projectReaders,
   ///       role: TfArgLiteral('READER'),
   ///     ),
   ///   ],
@@ -96,6 +96,21 @@ prelude: |
     static const List<DatasetStorageBillingModel> values = [logical, physical];
   }
 
+  /// `access.special_group`: the project role group or audience an access
+  /// entry grants to. BigQuery treats the names as case-sensitive.
+  extension type const BigqueryDatasetSpecialGroup._(TfArg<String> _) implements TfArg<String> {
+    BigqueryDatasetSpecialGroup.variable(String name) : this._(TfArg.variable(name));
+    BigqueryDatasetSpecialGroup.expression(String template) : this._(TfArg.expression(template));
+    const BigqueryDatasetSpecialGroup.arg(TfArg<String> arg) : this._(arg);
+
+    static const projectOwners = BigqueryDatasetSpecialGroup._(TfArgLiteral('projectOwners'));
+    static const projectReaders = BigqueryDatasetSpecialGroup._(TfArgLiteral('projectReaders'));
+    static const projectWriters = BigqueryDatasetSpecialGroup._(TfArgLiteral('projectWriters'));
+    static const allAuthenticatedUsers = BigqueryDatasetSpecialGroup._(TfArgLiteral('allAuthenticatedUsers'));
+
+    static const List<BigqueryDatasetSpecialGroup> values = [projectOwners, projectReaders, projectWriters, allAuthenticatedUsers];
+  }
+
   // ===========================================================================
   // BigqueryDatasetAccess — sealed (8 variants matching BigQuery's discriminated union)
   // ===========================================================================
@@ -132,7 +147,7 @@ prelude: |
 
     /// `access` entry granting [role] to [specialGroup].
     const factory BigqueryDatasetAccess.specialGroup({
-      required TfArg<String> specialGroup,
+      required BigqueryDatasetSpecialGroup specialGroup,
       TfArg<String>? role,
       BigqueryDatasetAccessCondition? condition,
     }) = BigqueryDatasetAccessSpecialGroup;
@@ -220,9 +235,7 @@ prelude: |
     };
   }
 
-  /// `access` entry granting [role] to [specialGroup]. Documented values
-  /// include `projectOwners`, `projectReaders`, `projectWriters`,
-  /// `allAuthenticatedUsers` (BigQuery treats these as case-sensitive).
+  /// `access` entry granting [role] to [specialGroup].
   @immutable
   final class BigqueryDatasetAccessSpecialGroup extends BigqueryDatasetAccess {
     const BigqueryDatasetAccessSpecialGroup({
@@ -231,7 +244,7 @@ prelude: |
       super.condition,
     });
 
-    final TfArg<String> specialGroup;
+    final BigqueryDatasetSpecialGroup specialGroup;
     final TfArg<String>? role;
 
     @override

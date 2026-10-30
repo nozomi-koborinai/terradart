@@ -74,7 +74,7 @@ final class LinuxWebAppSlotAuthSettings {
 
   final TfArg<List<String>>? allowedExternalRedirectUrls;
 
-  final TfArg<String>? defaultProvider;
+  final LinuxWebAppSlotDefaultProvider? defaultProvider;
 
   final TfArg<bool> enabled;
 
@@ -86,7 +86,7 @@ final class LinuxWebAppSlotAuthSettings {
 
   final TfArg<bool>? tokenStoreEnabled;
 
-  final TfArg<String>? unauthenticatedClientAction;
+  final LinuxWebAppSlotUnauthenticatedClientAction? unauthenticatedClientAction;
 
   final LinuxWebAppSlotActiveDirectory? activeDirectory;
 
@@ -118,6 +118,69 @@ final class LinuxWebAppSlotAuthSettings {
     'microsoft': ?microsoft?.encode(),
     'twitter': ?twitter?.encode(),
   };
+}
+
+/// `default_provider` — derived from the provider schema description.
+extension type const LinuxWebAppSlotDefaultProvider._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxWebAppSlotDefaultProvider.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxWebAppSlotDefaultProvider.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxWebAppSlotDefaultProvider.arg(TfArg<String> arg) : this._(arg);
+
+  static const azureactivedirectory = LinuxWebAppSlotDefaultProvider._(
+    TfArgLiteral('AzureActiveDirectory'),
+  );
+  static const facebook = LinuxWebAppSlotDefaultProvider._(
+    TfArgLiteral('Facebook'),
+  );
+  static const google = LinuxWebAppSlotDefaultProvider._(
+    TfArgLiteral('Google'),
+  );
+  static const microsoftaccount = LinuxWebAppSlotDefaultProvider._(
+    TfArgLiteral('MicrosoftAccount'),
+  );
+  static const twitter = LinuxWebAppSlotDefaultProvider._(
+    TfArgLiteral('Twitter'),
+  );
+  static const github = LinuxWebAppSlotDefaultProvider._(
+    TfArgLiteral('Github'),
+  );
+
+  static const List<LinuxWebAppSlotDefaultProvider> values = [
+    azureactivedirectory,
+    facebook,
+    google,
+    microsoftaccount,
+    twitter,
+    github,
+  ];
+}
+
+/// `unauthenticated_client_action` — derived from the provider schema description.
+extension type const LinuxWebAppSlotUnauthenticatedClientAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  LinuxWebAppSlotUnauthenticatedClientAction.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxWebAppSlotUnauthenticatedClientAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxWebAppSlotUnauthenticatedClientAction.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const redirecttologinpage =
+      LinuxWebAppSlotUnauthenticatedClientAction._(
+        TfArgLiteral('RedirectToLoginPage'),
+      );
+  static const allowanonymous = LinuxWebAppSlotUnauthenticatedClientAction._(
+    TfArgLiteral('AllowAnonymous'),
+  );
+
+  static const List<LinuxWebAppSlotUnauthenticatedClientAction> values = [
+    redirecttologinpage,
+    allowanonymous,
+  ];
 }
 
 /// Typed helper for the `auth_settings.active_directory` block of
@@ -321,7 +384,7 @@ final class LinuxWebAppSlotAuthSettingsV2 {
 
   final TfArg<List<String>>? excludedPaths;
 
-  final TfArg<String>? forwardProxyConvention;
+  final LinuxWebAppSlotForwardProxyConvention? forwardProxyConvention;
 
   final TfArg<String>? forwardProxyCustomHostHeaderName;
 
@@ -335,7 +398,7 @@ final class LinuxWebAppSlotAuthSettingsV2 {
 
   final TfArg<String>? runtimeVersion;
 
-  final TfArg<String>? unauthenticatedAction;
+  final LinuxWebAppSlotUnauthenticatedAction? unauthenticatedAction;
 
   final LinuxWebAppSlotActiveDirectoryV2? activeDirectoryV2;
 
@@ -385,6 +448,67 @@ final class LinuxWebAppSlotAuthSettingsV2 {
     'microsoft_v2': ?microsoftV2?.encode(),
     'twitter_v2': ?twitterV2?.encode(),
   };
+}
+
+/// `forward_proxy_convention` — derived from the provider schema description.
+extension type const LinuxWebAppSlotForwardProxyConvention._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxWebAppSlotForwardProxyConvention.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxWebAppSlotForwardProxyConvention.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxWebAppSlotForwardProxyConvention.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const forwardproxyconventionnoproxy =
+      LinuxWebAppSlotForwardProxyConvention._(
+        TfArgLiteral('ForwardProxyConventionNoProxy'),
+      );
+  static const forwardproxyconventionstandard =
+      LinuxWebAppSlotForwardProxyConvention._(
+        TfArgLiteral('ForwardProxyConventionStandard'),
+      );
+  static const forwardproxyconventioncustom =
+      LinuxWebAppSlotForwardProxyConvention._(
+        TfArgLiteral('ForwardProxyConventionCustom'),
+      );
+
+  static const List<LinuxWebAppSlotForwardProxyConvention> values = [
+    forwardproxyconventionnoproxy,
+    forwardproxyconventionstandard,
+    forwardproxyconventioncustom,
+  ];
+}
+
+/// `unauthenticated_action` — derived from the provider schema description.
+extension type const LinuxWebAppSlotUnauthenticatedAction._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxWebAppSlotUnauthenticatedAction.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxWebAppSlotUnauthenticatedAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxWebAppSlotUnauthenticatedAction.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const redirecttologinpage = LinuxWebAppSlotUnauthenticatedAction._(
+    TfArgLiteral('RedirectToLoginPage'),
+  );
+  static const allowanonymous = LinuxWebAppSlotUnauthenticatedAction._(
+    TfArgLiteral('AllowAnonymous'),
+  );
+  static const return401 = LinuxWebAppSlotUnauthenticatedAction._(
+    TfArgLiteral('Return401'),
+  );
+  static const return403 = LinuxWebAppSlotUnauthenticatedAction._(
+    TfArgLiteral('Return403'),
+  );
+
+  static const List<LinuxWebAppSlotUnauthenticatedAction> values = [
+    redirecttologinpage,
+    allowanonymous,
+    return401,
+    return403,
+  ];
 }
 
 /// Typed helper for the `auth_settings_v2.active_directory_v2` block of
@@ -613,7 +737,7 @@ final class LinuxWebAppSlotLogin {
 
   final TfArg<List<String>>? allowedExternalRedirectUrls;
 
-  final TfArg<String>? cookieExpirationConvention;
+  final LinuxWebAppSlotCookieExpirationConvention? cookieExpirationConvention;
 
   final TfArg<String>? cookieExpirationTime;
 
@@ -648,6 +772,31 @@ final class LinuxWebAppSlotLogin {
     'token_store_sas_setting_name': ?tokenStoreSasSettingName?.toTfJson(),
     'validate_nonce': ?validateNonce?.toTfJson(),
   };
+}
+
+/// `cookie_expiration_convention` — derived from the provider schema description.
+extension type const LinuxWebAppSlotCookieExpirationConvention._(
+  TfArg<String> _
+) implements TfArg<String> {
+  LinuxWebAppSlotCookieExpirationConvention.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxWebAppSlotCookieExpirationConvention.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxWebAppSlotCookieExpirationConvention.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const fixedtime = LinuxWebAppSlotCookieExpirationConvention._(
+    TfArgLiteral('FixedTime'),
+  );
+  static const identityproviderderived =
+      LinuxWebAppSlotCookieExpirationConvention._(
+        TfArgLiteral('IdentityProviderDerived'),
+      );
+
+  static const List<LinuxWebAppSlotCookieExpirationConvention> values = [
+    fixedtime,
+    identityproviderderived,
+  ];
 }
 
 /// Typed helper for the `auth_settings_v2.microsoft_v2` block of
@@ -740,7 +889,7 @@ final class LinuxWebAppSlotSchedule {
 
   final TfArg<num> frequencyInterval;
 
-  final TfArg<String> frequencyUnit;
+  final LinuxWebAppSlotFrequencyUnit frequencyUnit;
 
   final TfArg<bool>? keepAtLeastOneBackup;
 
@@ -758,6 +907,21 @@ final class LinuxWebAppSlotSchedule {
   };
 }
 
+/// `frequency_unit` — derived from the provider schema description.
+extension type const LinuxWebAppSlotFrequencyUnit._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxWebAppSlotFrequencyUnit.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxWebAppSlotFrequencyUnit.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxWebAppSlotFrequencyUnit.arg(TfArg<String> arg) : this._(arg);
+
+  static const day = LinuxWebAppSlotFrequencyUnit._(TfArgLiteral('Day'));
+  static const hour = LinuxWebAppSlotFrequencyUnit._(TfArgLiteral('Hour'));
+
+  static const List<LinuxWebAppSlotFrequencyUnit> values = [day, hour];
+}
+
 /// Typed helper for the `connection_string` block of
 /// `azurerm_linux_web_app_slot` (derived from provider schema).
 @immutable
@@ -770,7 +934,7 @@ final class LinuxWebAppSlotConnectionString {
 
   final TfArg<String> name;
 
-  final TfArg<String> type;
+  final LinuxWebAppSlotType type;
 
   final Sensitive<String> value;
 
@@ -780,6 +944,43 @@ final class LinuxWebAppSlotConnectionString {
     'type': type.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+extension type const LinuxWebAppSlotType._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxWebAppSlotType.variable(String name) : this._(TfArg.variable(name));
+  LinuxWebAppSlotType.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxWebAppSlotType.arg(TfArg<String> arg) : this._(arg);
+
+  static const mysql = LinuxWebAppSlotType._(TfArgLiteral('MySQL'));
+  static const sqlserver = LinuxWebAppSlotType._(TfArgLiteral('SQLServer'));
+  static const sqlazure = LinuxWebAppSlotType._(TfArgLiteral('SQLAzure'));
+  static const custom = LinuxWebAppSlotType._(TfArgLiteral('Custom'));
+  static const notificationhub = LinuxWebAppSlotType._(
+    TfArgLiteral('NotificationHub'),
+  );
+  static const servicebus = LinuxWebAppSlotType._(TfArgLiteral('ServiceBus'));
+  static const eventhub = LinuxWebAppSlotType._(TfArgLiteral('EventHub'));
+  static const apihub = LinuxWebAppSlotType._(TfArgLiteral('APIHub'));
+  static const docdb = LinuxWebAppSlotType._(TfArgLiteral('DocDb'));
+  static const rediscache = LinuxWebAppSlotType._(TfArgLiteral('RedisCache'));
+  static const postgresql = LinuxWebAppSlotType._(TfArgLiteral('PostgreSQL'));
+
+  static const List<LinuxWebAppSlotType> values = [
+    mysql,
+    sqlserver,
+    sqlazure,
+    custom,
+    notificationhub,
+    servicebus,
+    eventhub,
+    apihub,
+    docdb,
+    rediscache,
+    postgresql,
+  ];
 }
 
 /// Typed helper for the `identity` block of
@@ -1340,7 +1541,7 @@ final class LinuxWebAppSlotIpRestriction {
     this.virtualNetworkSubnetId,
   });
 
-  final TfArg<String>? action;
+  final LinuxWebAppSlotIpRestrictionAction? action;
 
   final TfArg<String>? description;
 
@@ -1369,6 +1570,25 @@ final class LinuxWebAppSlotIpRestriction {
   };
 }
 
+/// `action` — derived from the provider schema description.
+extension type const LinuxWebAppSlotIpRestrictionAction._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxWebAppSlotIpRestrictionAction.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxWebAppSlotIpRestrictionAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxWebAppSlotIpRestrictionAction.arg(TfArg<String> arg) : this._(arg);
+
+  static const allow = LinuxWebAppSlotIpRestrictionAction._(
+    TfArgLiteral('Allow'),
+  );
+  static const deny = LinuxWebAppSlotIpRestrictionAction._(
+    TfArgLiteral('Deny'),
+  );
+
+  static const List<LinuxWebAppSlotIpRestrictionAction> values = [allow, deny];
+}
+
 /// Typed helper for the `site_config.scm_ip_restriction` block of
 /// `azurerm_linux_web_app_slot` (derived from provider schema).
 @immutable
@@ -1384,7 +1604,7 @@ final class LinuxWebAppSlotScmIpRestriction {
     this.virtualNetworkSubnetId,
   });
 
-  final TfArg<String>? action;
+  final LinuxWebAppSlotIpRestrictionAction? action;
 
   final TfArg<String>? description;
 

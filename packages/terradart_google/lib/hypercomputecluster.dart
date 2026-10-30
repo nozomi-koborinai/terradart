@@ -36,7 +36,10 @@ export 'src/hypercomputecluster/google_hypercomputecluster_cluster.dart'
         HypercomputeclusterClusterPartitions,
         HypercomputeclusterClusterProtocol,
         HypercomputeclusterClusterSlurm,
+        HypercomputeclusterClusterStorageClass,
         HypercomputeclusterClusterStorageConfigs,
         HypercomputeclusterClusterStorageResources,
         HypercomputeclusterClusterStorageResourcesConfig,
+        HypercomputeclusterClusterTerminalStorageClass,
+        HypercomputeclusterClusterTerminationAction,
         HypercomputeclusterClusterTier;

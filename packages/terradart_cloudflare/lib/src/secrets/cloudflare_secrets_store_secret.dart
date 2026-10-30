@@ -8,6 +8,29 @@ import '../account/cloudflare_account.dart' show CloudflareAccount;
 /// Sensitive field paths for `cloudflare_secrets_store_secret`.
 const Set<String> _cloudflareSecretsStoreSecretSensitive = <String>{'value'};
 
+/// Secrets Store Secret enum for `scopes`.
+extension type const SecretsStoreSecretScopes._(TfArg<String> _)
+    implements TfArg<String> {
+  SecretsStoreSecretScopes.variable(String name) : this._(TfArg.variable(name));
+  SecretsStoreSecretScopes.expression(String template)
+    : this._(TfArg.expression(template));
+  const SecretsStoreSecretScopes.arg(TfArg<String> arg) : this._(arg);
+
+  static const workers = SecretsStoreSecretScopes._(TfArgLiteral('workers'));
+  static const aiGateway = SecretsStoreSecretScopes._(
+    TfArgLiteral('ai_gateway'),
+  );
+  static const dex = SecretsStoreSecretScopes._(TfArgLiteral('dex'));
+  static const access = SecretsStoreSecretScopes._(TfArgLiteral('access'));
+
+  static const List<SecretsStoreSecretScopes> values = [
+    workers,
+    aiGateway,
+    dex,
+    access,
+  ];
+}
+
 /// Factory wrapper for `cloudflare_secrets_store_secret`.
 ///
 /// Accepted Permissions
@@ -21,7 +44,7 @@ final class CloudflareSecretsStoreSecret extends Resource {
     required RefTo<CloudflareAccount> accountId,
     TfArg<String>? comment,
     required TfArg<String> name,
-    required TfArg<List<String>> scopes,
+    required List<SecretsStoreSecretScopes> scopes,
     required TfArg<String> storeId,
     required Sensitive<String> value,
     super.lifecycle,
@@ -34,7 +57,7 @@ final class CloudflareSecretsStoreSecret extends Resource {
            'account_id': accountId.encodeAs('id'),
            'comment': ?comment,
            'name': name,
-           'scopes': scopes,
+           'scopes': TfArg.literal([for (final e in scopes) e.toTfJson()]),
            'store_id': storeId,
            'value': value,
          },

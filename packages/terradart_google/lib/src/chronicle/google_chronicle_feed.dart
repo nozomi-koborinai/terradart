@@ -1996,9 +1996,9 @@ final class ChronicleFeedAmazonS3Settings {
 
   final TfArg<String> s3Uri;
 
-  final TfArg<String> sourceDeletionOption;
+  final ChronicleFeedAmazonS3SettingsSourceDeletionOption sourceDeletionOption;
 
-  final TfArg<String> sourceType;
+  final ChronicleFeedAmazonS3SettingsSourceType sourceType;
 
   final ChronicleFeedAmazonS3SettingsAuthentication? authentication;
 
@@ -2009,6 +2009,65 @@ final class ChronicleFeedAmazonS3Settings {
     'source_type': sourceType.toTfJson(),
     'authentication': ?authentication?.encode(),
   };
+}
+
+/// `source_deletion_option` — derived from the provider schema description.
+extension type const ChronicleFeedAmazonS3SettingsSourceDeletionOption._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ChronicleFeedAmazonS3SettingsSourceDeletionOption.variable(String name)
+    : this._(TfArg.variable(name));
+  ChronicleFeedAmazonS3SettingsSourceDeletionOption.expression(String template)
+    : this._(TfArg.expression(template));
+  const ChronicleFeedAmazonS3SettingsSourceDeletionOption.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const sourceDeletionNever =
+      ChronicleFeedAmazonS3SettingsSourceDeletionOption._(
+        TfArgLiteral('SOURCE_DELETION_NEVER'),
+      );
+  static const sourceDeletionOnSuccess =
+      ChronicleFeedAmazonS3SettingsSourceDeletionOption._(
+        TfArgLiteral('SOURCE_DELETION_ON_SUCCESS'),
+      );
+  static const sourceDeletionOnSuccessFilesOnly =
+      ChronicleFeedAmazonS3SettingsSourceDeletionOption._(
+        TfArgLiteral('SOURCE_DELETION_ON_SUCCESS_FILES_ONLY'),
+      );
+
+  static const List<ChronicleFeedAmazonS3SettingsSourceDeletionOption> values =
+      [
+        sourceDeletionNever,
+        sourceDeletionOnSuccess,
+        sourceDeletionOnSuccessFilesOnly,
+      ];
+}
+
+/// `source_type` — derived from the provider schema description.
+extension type const ChronicleFeedAmazonS3SettingsSourceType._(TfArg<String> _)
+    implements TfArg<String> {
+  ChronicleFeedAmazonS3SettingsSourceType.variable(String name)
+    : this._(TfArg.variable(name));
+  ChronicleFeedAmazonS3SettingsSourceType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ChronicleFeedAmazonS3SettingsSourceType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const files = ChronicleFeedAmazonS3SettingsSourceType._(
+    TfArgLiteral('FILES'),
+  );
+  static const folders = ChronicleFeedAmazonS3SettingsSourceType._(
+    TfArgLiteral('FOLDERS'),
+  );
+  static const foldersRecursive = ChronicleFeedAmazonS3SettingsSourceType._(
+    TfArgLiteral('FOLDERS_RECURSIVE'),
+  );
+
+  static const List<ChronicleFeedAmazonS3SettingsSourceType> values = [
+    files,
+    folders,
+    foldersRecursive,
+  ];
 }
 
 /// Typed helper for the `details.amazon_s3_settings.authentication` block of
@@ -2032,7 +2091,7 @@ final class ChronicleFeedAmazonS3SettingsAuthentication {
 
   final Sensitive<String>? refreshUri;
 
-  final TfArg<String> region;
+  final ChronicleFeedRegion region;
 
   final TfArg<String>? secretAccessKey;
 
@@ -2045,6 +2104,103 @@ final class ChronicleFeedAmazonS3SettingsAuthentication {
     'region': region.toTfJson(),
     'secret_access_key': ?secretAccessKey?.toTfJson(),
   };
+}
+
+/// `region` — derived from the provider schema description.
+extension type const ChronicleFeedRegion._(TfArg<String> _)
+    implements TfArg<String> {
+  ChronicleFeedRegion.variable(String name) : this._(TfArg.variable(name));
+  ChronicleFeedRegion.expression(String template)
+    : this._(TfArg.expression(template));
+  const ChronicleFeedRegion.arg(TfArg<String> arg) : this._(arg);
+
+  static const usEast1 = ChronicleFeedRegion._(TfArgLiteral('US_EAST_1'));
+  static const usEast2 = ChronicleFeedRegion._(TfArgLiteral('US_EAST_2'));
+  static const usWest1 = ChronicleFeedRegion._(TfArgLiteral('US_WEST_1'));
+  static const usWest2 = ChronicleFeedRegion._(TfArgLiteral('US_WEST_2'));
+  static const usGovCloud = ChronicleFeedRegion._(TfArgLiteral('US_GOV_CLOUD'));
+  static const usGovEast1 = ChronicleFeedRegion._(
+    TfArgLiteral('US_GOV_EAST_1'),
+  );
+  static const euWest1 = ChronicleFeedRegion._(TfArgLiteral('EU_WEST_1'));
+  static const euWest2 = ChronicleFeedRegion._(TfArgLiteral('EU_WEST_2'));
+  static const euWest3 = ChronicleFeedRegion._(TfArgLiteral('EU_WEST_3'));
+  static const euCentral1 = ChronicleFeedRegion._(TfArgLiteral('EU_CENTRAL_1'));
+  static const euNorth1 = ChronicleFeedRegion._(TfArgLiteral('EU_NORTH_1'));
+  static const euSouth1 = ChronicleFeedRegion._(TfArgLiteral('EU_SOUTH_1'));
+  static const apSouth1 = ChronicleFeedRegion._(TfArgLiteral('AP_SOUTH_1'));
+  static const apSoutheast1 = ChronicleFeedRegion._(
+    TfArgLiteral('AP_SOUTHEAST_1'),
+  );
+  static const apSoutheast2 = ChronicleFeedRegion._(
+    TfArgLiteral('AP_SOUTHEAST_2'),
+  );
+  static const apSoutheast3 = ChronicleFeedRegion._(
+    TfArgLiteral('AP_SOUTHEAST_3'),
+  );
+  static const apNortheast1 = ChronicleFeedRegion._(
+    TfArgLiteral('AP_NORTHEAST_1'),
+  );
+  static const apNortheast2 = ChronicleFeedRegion._(
+    TfArgLiteral('AP_NORTHEAST_2'),
+  );
+  static const apNortheast3 = ChronicleFeedRegion._(
+    TfArgLiteral('AP_NORTHEAST_3'),
+  );
+  static const apEast1 = ChronicleFeedRegion._(TfArgLiteral('AP_EAST_1'));
+  static const saEast1 = ChronicleFeedRegion._(TfArgLiteral('SA_EAST_1'));
+  static const cnNorth1 = ChronicleFeedRegion._(TfArgLiteral('CN_NORTH_1'));
+  static const cnNorthwest1 = ChronicleFeedRegion._(
+    TfArgLiteral('CN_NORTHWEST_1'),
+  );
+  static const caCentral1 = ChronicleFeedRegion._(TfArgLiteral('CA_CENTRAL_1'));
+  static const afSouth1 = ChronicleFeedRegion._(TfArgLiteral('AF_SOUTH_1'));
+  static const meSouth1 = ChronicleFeedRegion._(TfArgLiteral('ME_SOUTH_1'));
+  static const apSouth2 = ChronicleFeedRegion._(TfArgLiteral('AP_SOUTH_2'));
+  static const apSoutheast4 = ChronicleFeedRegion._(
+    TfArgLiteral('AP_SOUTHEAST_4'),
+  );
+  static const caWest1 = ChronicleFeedRegion._(TfArgLiteral('CA_WEST_1'));
+  static const euSouth2 = ChronicleFeedRegion._(TfArgLiteral('EU_SOUTH_2'));
+  static const euCentral2 = ChronicleFeedRegion._(TfArgLiteral('EU_CENTRAL_2'));
+  static const ilCentral1 = ChronicleFeedRegion._(TfArgLiteral('IL_CENTRAL_1'));
+  static const meCentral1 = ChronicleFeedRegion._(TfArgLiteral('ME_CENTRAL_1'));
+
+  static const List<ChronicleFeedRegion> values = [
+    usEast1,
+    usEast2,
+    usWest1,
+    usWest2,
+    usGovCloud,
+    usGovEast1,
+    euWest1,
+    euWest2,
+    euWest3,
+    euCentral1,
+    euNorth1,
+    euSouth1,
+    apSouth1,
+    apSoutheast1,
+    apSoutheast2,
+    apSoutheast3,
+    apNortheast1,
+    apNortheast2,
+    apNortheast3,
+    apEast1,
+    saEast1,
+    cnNorth1,
+    cnNorthwest1,
+    caCentral1,
+    afSouth1,
+    meSouth1,
+    apSouth2,
+    apSoutheast4,
+    caWest1,
+    euSouth2,
+    euCentral2,
+    ilCentral1,
+    meCentral1,
+  ];
 }
 
 /// Typed helper for the `details.amazon_s3_v2_settings` block of
@@ -2062,7 +2218,8 @@ final class ChronicleFeedAmazonS3V2Settings {
 
   final TfArg<String> s3Uri;
 
-  final TfArg<String>? sourceDeletionOption;
+  final ChronicleFeedAmazonS3V2SettingsSourceDeletionOption?
+  sourceDeletionOption;
 
   final ChronicleFeedAmazonS3V2SettingsAuthentication authentication;
 
@@ -2073,6 +2230,31 @@ final class ChronicleFeedAmazonS3V2Settings {
     'source_deletion_option': ?sourceDeletionOption?.toTfJson(),
     'authentication': authentication.encode(),
   };
+}
+
+/// `source_deletion_option` — derived from the provider schema description.
+extension type const ChronicleFeedAmazonS3V2SettingsSourceDeletionOption._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ChronicleFeedAmazonS3V2SettingsSourceDeletionOption.variable(String name)
+    : this._(TfArg.variable(name));
+  ChronicleFeedAmazonS3V2SettingsSourceDeletionOption.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ChronicleFeedAmazonS3V2SettingsSourceDeletionOption.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const never = ChronicleFeedAmazonS3V2SettingsSourceDeletionOption._(
+    TfArgLiteral('NEVER'),
+  );
+  static const onSuccess =
+      ChronicleFeedAmazonS3V2SettingsSourceDeletionOption._(
+        TfArgLiteral('ON_SUCCESS'),
+      );
+
+  static const List<ChronicleFeedAmazonS3V2SettingsSourceDeletionOption>
+  values = [never, onSuccess];
 }
 
 /// Typed helper for the `details.amazon_s3_v2_settings.authentication` block of
@@ -2149,9 +2331,9 @@ final class ChronicleFeedAmazonSqsSettings {
 
   final TfArg<String>? queue;
 
-  final TfArg<String>? region;
+  final ChronicleFeedRegion? region;
 
-  final TfArg<String>? sourceDeletionOption;
+  final ChronicleFeedAmazonS3SettingsSourceDeletionOption? sourceDeletionOption;
 
   final ChronicleFeedAmazonSqsSettingsAuthentication? authentication;
 
@@ -2245,7 +2427,8 @@ final class ChronicleFeedAmazonSqsV2Settings {
 
   final TfArg<String> s3Uri;
 
-  final TfArg<String>? sourceDeletionOption;
+  final ChronicleFeedAmazonS3V2SettingsSourceDeletionOption?
+  sourceDeletionOption;
 
   final ChronicleFeedAmazonSqsV2SettingsAuthentication authentication;
 
@@ -2379,7 +2562,7 @@ final class ChronicleFeedAwsEc2VpcsSettings {
 final class ChronicleFeedAwsIamSettings {
   const ChronicleFeedAwsIamSettings({this.apiType, this.authentication});
 
-  final TfArg<String>? apiType;
+  final ChronicleFeedAwsIamSettingsApiType? apiType;
 
   final ChronicleFeedAnomaliSettingsAuthentication? authentication;
 
@@ -2388,6 +2571,32 @@ final class ChronicleFeedAwsIamSettings {
     'api_type': ?apiType?.toTfJson(),
     'authentication': ?authentication?.encode(),
   };
+}
+
+/// `api_type` — derived from the provider schema description.
+extension type const ChronicleFeedAwsIamSettingsApiType._(TfArg<String> _)
+    implements TfArg<String> {
+  ChronicleFeedAwsIamSettingsApiType.variable(String name)
+    : this._(TfArg.variable(name));
+  ChronicleFeedAwsIamSettingsApiType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ChronicleFeedAwsIamSettingsApiType.arg(TfArg<String> arg) : this._(arg);
+
+  static const users = ChronicleFeedAwsIamSettingsApiType._(
+    TfArgLiteral('USERS'),
+  );
+  static const roles = ChronicleFeedAwsIamSettingsApiType._(
+    TfArgLiteral('ROLES'),
+  );
+  static const groups = ChronicleFeedAwsIamSettingsApiType._(
+    TfArgLiteral('GROUPS'),
+  );
+
+  static const List<ChronicleFeedAwsIamSettingsApiType> values = [
+    users,
+    roles,
+    groups,
+  ];
 }
 
 /// Typed helper for the `details.azure_ad_audit_settings` block of
@@ -2516,9 +2725,9 @@ final class ChronicleFeedAzureBlobStoreSettings {
 
   final TfArg<String>? azureUri;
 
-  final TfArg<String>? sourceDeletionOption;
+  final ChronicleFeedAmazonS3SettingsSourceDeletionOption? sourceDeletionOption;
 
-  final TfArg<String>? sourceType;
+  final ChronicleFeedAmazonS3SettingsSourceType? sourceType;
 
   final ChronicleFeedAzureBlobStoreSettingsAuthentication? authentication;
 
@@ -2566,7 +2775,8 @@ final class ChronicleFeedAzureBlobStoreV2Settings {
 
   final TfArg<num>? maxLookbackDays;
 
-  final TfArg<String>? sourceDeletionOption;
+  final ChronicleFeedAmazonS3V2SettingsSourceDeletionOption?
+  sourceDeletionOption;
 
   final ChronicleFeedAzureBlobStoreV2SettingsAuthentication authentication;
 
@@ -2784,7 +2994,7 @@ final class ChronicleFeedCrowdstrikeAlertsSettings {
 
   final TfArg<String> hostname;
 
-  final TfArg<String>? ingestionType;
+  final ChronicleFeedCrowdstrikeAlertsSettingsIngestionType? ingestionType;
 
   final ChronicleFeedCrowdstrikeAlertsSettingsAuthentication authentication;
 
@@ -2794,6 +3004,32 @@ final class ChronicleFeedCrowdstrikeAlertsSettings {
     'ingestion_type': ?ingestionType?.toTfJson(),
     'authentication': authentication.encode(),
   };
+}
+
+/// `ingestion_type` — derived from the provider schema description.
+extension type const ChronicleFeedCrowdstrikeAlertsSettingsIngestionType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ChronicleFeedCrowdstrikeAlertsSettingsIngestionType.variable(String name)
+    : this._(TfArg.variable(name));
+  ChronicleFeedCrowdstrikeAlertsSettingsIngestionType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ChronicleFeedCrowdstrikeAlertsSettingsIngestionType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const bringAllAlerts =
+      ChronicleFeedCrowdstrikeAlertsSettingsIngestionType._(
+        TfArgLiteral('BRING_ALL_ALERTS'),
+      );
+  static const bringOnlyNewAlerts =
+      ChronicleFeedCrowdstrikeAlertsSettingsIngestionType._(
+        TfArgLiteral('BRING_ONLY_NEW_ALERTS'),
+      );
+
+  static const List<ChronicleFeedCrowdstrikeAlertsSettingsIngestionType>
+  values = [bringAllAlerts, bringOnlyNewAlerts];
 }
 
 /// Typed helper for the `details.crowdstrike_alerts_settings.authentication` block of
@@ -2833,7 +3069,7 @@ final class ChronicleFeedCrowdstrikeDetectsSettings {
 
   final TfArg<String>? hostname;
 
-  final TfArg<String>? ingestionType;
+  final ChronicleFeedCrowdstrikeDetectsSettingsIngestionType? ingestionType;
 
   final ChronicleFeedCrowdstrikeAlertsSettingsAuthentication? authentication;
 
@@ -2843,6 +3079,32 @@ final class ChronicleFeedCrowdstrikeDetectsSettings {
     'ingestion_type': ?ingestionType?.toTfJson(),
     'authentication': ?authentication?.encode(),
   };
+}
+
+/// `ingestion_type` — derived from the provider schema description.
+extension type const ChronicleFeedCrowdstrikeDetectsSettingsIngestionType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ChronicleFeedCrowdstrikeDetectsSettingsIngestionType.variable(String name)
+    : this._(TfArg.variable(name));
+  ChronicleFeedCrowdstrikeDetectsSettingsIngestionType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ChronicleFeedCrowdstrikeDetectsSettingsIngestionType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const bringOnlyNewDetections =
+      ChronicleFeedCrowdstrikeDetectsSettingsIngestionType._(
+        TfArgLiteral('BRING_ONLY_NEW_DETECTIONS'),
+      );
+  static const bringAllDetections =
+      ChronicleFeedCrowdstrikeDetectsSettingsIngestionType._(
+        TfArgLiteral('BRING_ALL_DETECTIONS'),
+      );
+
+  static const List<ChronicleFeedCrowdstrikeDetectsSettingsIngestionType>
+  values = [bringOnlyNewDetections, bringAllDetections];
 }
 
 /// Typed helper for the `details.dummy_log_type_settings` block of
@@ -2959,9 +3221,9 @@ final class ChronicleFeedGcsSettings {
 
   final TfArg<String>? bucketUri;
 
-  final TfArg<String>? sourceDeletionOption;
+  final ChronicleFeedAmazonS3SettingsSourceDeletionOption? sourceDeletionOption;
 
-  final TfArg<String>? sourceType;
+  final ChronicleFeedAmazonS3SettingsSourceType? sourceType;
 
   @internal
   Map<String, Object?> encode() => {
@@ -2985,7 +3247,8 @@ final class ChronicleFeedGcsV2Settings {
 
   final TfArg<num>? maxLookbackDays;
 
-  final TfArg<String>? sourceDeletionOption;
+  final ChronicleFeedAmazonS3V2SettingsSourceDeletionOption?
+  sourceDeletionOption;
 
   @internal
   Map<String, Object?> encode() => {
@@ -3109,7 +3372,8 @@ final class ChronicleFeedGoogleCloudStorageEventDrivenSettings {
 
   final TfArg<String> pubsubSubscription;
 
-  final TfArg<String>? sourceDeletionOption;
+  final ChronicleFeedAmazonS3V2SettingsSourceDeletionOption?
+  sourceDeletionOption;
 
   @internal
   Map<String, Object?> encode() => {
@@ -3130,9 +3394,9 @@ final class ChronicleFeedHttpSettings {
     this.uri,
   });
 
-  final TfArg<String>? sourceDeletionOption;
+  final ChronicleFeedAmazonS3SettingsSourceDeletionOption? sourceDeletionOption;
 
-  final TfArg<String>? sourceType;
+  final ChronicleFeedAmazonS3SettingsSourceType? sourceType;
 
   final TfArg<String>? uri;
 
@@ -3397,7 +3661,7 @@ final class ChronicleFeedOffice365Settings {
 
   final TfArg<String>? authEndpoint;
 
-  final TfArg<String>? contentType;
+  final ChronicleFeedContentType? contentType;
 
   final TfArg<String>? hostname;
 
@@ -3413,6 +3677,37 @@ final class ChronicleFeedOffice365Settings {
     'tenant_id': ?tenantId?.toTfJson(),
     'authentication': ?authentication?.encode(),
   };
+}
+
+/// `content_type` — derived from the provider schema description.
+extension type const ChronicleFeedContentType._(TfArg<String> _)
+    implements TfArg<String> {
+  ChronicleFeedContentType.variable(String name) : this._(TfArg.variable(name));
+  ChronicleFeedContentType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ChronicleFeedContentType.arg(TfArg<String> arg) : this._(arg);
+
+  static const auditAzureActiveDirectory = ChronicleFeedContentType._(
+    TfArgLiteral('AUDIT_AZURE_ACTIVE_DIRECTORY'),
+  );
+  static const auditExchange = ChronicleFeedContentType._(
+    TfArgLiteral('AUDIT_EXCHANGE'),
+  );
+  static const auditSharePoint = ChronicleFeedContentType._(
+    TfArgLiteral('AUDIT_SHARE_POINT'),
+  );
+  static const auditGeneral = ChronicleFeedContentType._(
+    TfArgLiteral('AUDIT_GENERAL'),
+  );
+  static const dlpAll = ChronicleFeedContentType._(TfArgLiteral('DLP_ALL'));
+
+  static const List<ChronicleFeedContentType> values = [
+    auditAzureActiveDirectory,
+    auditExchange,
+    auditSharePoint,
+    auditGeneral,
+    dlpAll,
+  ];
 }
 
 /// Typed helper for the `details.okta_settings` block of
@@ -3578,7 +3873,7 @@ final class ChronicleFeedQualysScanSettings {
     this.authentication,
   });
 
-  final TfArg<String>? apiType;
+  final ChronicleFeedQualysScanSettingsApiType? apiType;
 
   final TfArg<String>? hostname;
 
@@ -3590,6 +3885,34 @@ final class ChronicleFeedQualysScanSettings {
     'hostname': ?hostname?.toTfJson(),
     'authentication': ?authentication?.encode(),
   };
+}
+
+/// `api_type` — derived from the provider schema description.
+extension type const ChronicleFeedQualysScanSettingsApiType._(TfArg<String> _)
+    implements TfArg<String> {
+  ChronicleFeedQualysScanSettingsApiType.variable(String name)
+    : this._(TfArg.variable(name));
+  ChronicleFeedQualysScanSettingsApiType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ChronicleFeedQualysScanSettingsApiType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const scanSummaryOutput = ChronicleFeedQualysScanSettingsApiType._(
+    TfArgLiteral('SCAN_SUMMARY_OUTPUT'),
+  );
+  static const scanComplianceOutput = ChronicleFeedQualysScanSettingsApiType._(
+    TfArgLiteral('SCAN_COMPLIANCE_OUTPUT'),
+  );
+  static const scanComplianceControlOutput =
+      ChronicleFeedQualysScanSettingsApiType._(
+        TfArgLiteral('SCAN_COMPLIANCE_CONTROL_OUTPUT'),
+      );
+
+  static const List<ChronicleFeedQualysScanSettingsApiType> values = [
+    scanSummaryOutput,
+    scanComplianceOutput,
+    scanComplianceControlOutput,
+  ];
 }
 
 /// Typed helper for the `details.qualys_vm_settings` block of
@@ -3804,9 +4127,9 @@ final class ChronicleFeedSftpSettings {
     this.authentication,
   });
 
-  final TfArg<String>? sourceDeletionOption;
+  final ChronicleFeedAmazonS3SettingsSourceDeletionOption? sourceDeletionOption;
 
-  final TfArg<String>? sourceType;
+  final ChronicleFeedAmazonS3SettingsSourceType? sourceType;
 
   final TfArg<String>? uri;
 
@@ -4380,7 +4703,7 @@ final class ChronicleFeedWorkspaceUsersSettings {
     this.authentication,
   });
 
-  final TfArg<String>? projectionType;
+  final ChronicleFeedProjectionType? projectionType;
 
   final TfArg<String>? workspaceCustomerId;
 
@@ -4393,6 +4716,28 @@ final class ChronicleFeedWorkspaceUsersSettings {
     'workspace_customer_id': ?workspaceCustomerId?.toTfJson(),
     'authentication': ?authentication?.encode(),
   };
+}
+
+/// `projection_type` — derived from the provider schema description.
+extension type const ChronicleFeedProjectionType._(TfArg<String> _)
+    implements TfArg<String> {
+  ChronicleFeedProjectionType.variable(String name)
+    : this._(TfArg.variable(name));
+  ChronicleFeedProjectionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ChronicleFeedProjectionType.arg(TfArg<String> arg) : this._(arg);
+
+  static const basicProjection = ChronicleFeedProjectionType._(
+    TfArgLiteral('BASIC_PROJECTION'),
+  );
+  static const fullProjection = ChronicleFeedProjectionType._(
+    TfArgLiteral('FULL_PROJECTION'),
+  );
+
+  static const List<ChronicleFeedProjectionType> values = [
+    basicProjection,
+    fullProjection,
+  ];
 }
 
 /// Factory wrapper for `google_chronicle_feed`.

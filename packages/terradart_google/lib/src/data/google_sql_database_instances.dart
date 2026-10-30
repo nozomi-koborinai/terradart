@@ -6,6 +6,46 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_sql_database_instances`.
 const Set<String> _googleSqlDatabaseInstancesSensitive = <String>{};
 
+/// Data Sql Database Instances enum for `state`.
+extension type const DataSqlDatabaseInstancesState._(TfArg<String> _)
+    implements TfArg<String> {
+  DataSqlDatabaseInstancesState.variable(String name)
+    : this._(TfArg.variable(name));
+  DataSqlDatabaseInstancesState.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataSqlDatabaseInstancesState.arg(TfArg<String> arg) : this._(arg);
+
+  static const sqlInstanceStateUnspecified = DataSqlDatabaseInstancesState._(
+    TfArgLiteral('SQL_INSTANCE_STATE_UNSPECIFIED'),
+  );
+  static const runnable = DataSqlDatabaseInstancesState._(
+    TfArgLiteral('RUNNABLE'),
+  );
+  static const suspended = DataSqlDatabaseInstancesState._(
+    TfArgLiteral('SUSPENDED'),
+  );
+  static const pendingDelete = DataSqlDatabaseInstancesState._(
+    TfArgLiteral('PENDING_DELETE'),
+  );
+  static const pendingCreate = DataSqlDatabaseInstancesState._(
+    TfArgLiteral('PENDING_CREATE'),
+  );
+  static const maintenance = DataSqlDatabaseInstancesState._(
+    TfArgLiteral('MAINTENANCE'),
+  );
+  static const failed = DataSqlDatabaseInstancesState._(TfArgLiteral('FAILED'));
+
+  static const List<DataSqlDatabaseInstancesState> values = [
+    sqlInstanceStateUnspecified,
+    runnable,
+    suspended,
+    pendingDelete,
+    pendingCreate,
+    maintenance,
+    failed,
+  ];
+}
+
 /// Factory wrapper for `google_sql_database_instances`.
 ///
 /// Read-only data source on the apply-excluded leftover path
@@ -18,7 +58,7 @@ final class DataGoogleSqlDatabaseInstances extends Data {
     TfArg<String>? databaseVersion,
     TfArg<String>? project,
     TfArg<String>? region,
-    TfArg<String>? state,
+    DataSqlDatabaseInstancesState? state,
     TfArg<String>? tier,
     TfArg<String>? zone,
     super.provider,

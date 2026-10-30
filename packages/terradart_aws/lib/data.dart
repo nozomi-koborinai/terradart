@@ -905,7 +905,9 @@ export 'src/data/aws_opensearchserverless_security_config.dart'
         DataOpensearchserverlessSecurityConfigIamIdentityCenterOptions,
         DataOpensearchserverlessSecurityConfigSamlOptions;
 export 'src/data/aws_opensearchserverless_security_policy.dart'
-    show DataAwsOpensearchserverlessSecurityPolicy;
+    show
+        DataAwsOpensearchserverlessSecurityPolicy,
+        DataOpensearchserverlessSecurityPolicyType;
 export 'src/data/aws_opensearchserverless_vpc_endpoint.dart'
     show DataAwsOpensearchserverlessVpcEndpoint;
 export 'src/data/aws_organizations_account.dart'

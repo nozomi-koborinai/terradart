@@ -87,6 +87,8 @@ export 'src/biglake/google_biglake_iceberg_namespace_iam_policy.dart'
     show GoogleBiglakeIcebergNamespaceIamPolicy;
 export 'src/biglake/google_biglake_iceberg_table.dart'
     show
+        BiglakeIcebergTableDirection,
+        BiglakeIcebergTableNullOrder,
         BiglakeIcebergTablePartitionSpec,
         BiglakeIcebergTablePartitionSpecFields,
         BiglakeIcebergTableSchema,

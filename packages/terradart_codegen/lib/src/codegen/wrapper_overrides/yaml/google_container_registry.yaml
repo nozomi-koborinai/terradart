@@ -1,4 +1,5 @@
 outputDir: container
+deriveEnums: true
 deriveClassDoc: true
 deriveExactlyOne: true
 deriveOutputGetters: true

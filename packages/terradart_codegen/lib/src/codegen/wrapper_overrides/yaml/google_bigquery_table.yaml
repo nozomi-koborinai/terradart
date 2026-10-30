@@ -5,6 +5,9 @@ deriveExactlyOne: true
 deriveOutputGetters: true
 deriveNestedTypes: true
 
+typeNames:
+  external_data_configuration.csv_options.encoding: BigqueryTableEncoding
+
 curatedDoc: |-
   /// Required identity:
   /// - [localName]: Terraform local name (the address segment after

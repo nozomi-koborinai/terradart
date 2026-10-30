@@ -20,13 +20,39 @@ final class FolderIamAuditConfigAuditLogConfig {
 
   final TfArg<List<IamPrincipal>>? exemptedMembers;
 
-  final TfArg<String> logType;
+  final FolderIamAuditConfigLogType logType;
 
   @internal
   Map<String, Object?> encode() => {
     'exempted_members': ?exemptedMembers?.toTfJson(),
     'log_type': logType.toTfJson(),
   };
+}
+
+/// `log_type` — derived from the provider schema description.
+extension type const FolderIamAuditConfigLogType._(TfArg<String> _)
+    implements TfArg<String> {
+  FolderIamAuditConfigLogType.variable(String name)
+    : this._(TfArg.variable(name));
+  FolderIamAuditConfigLogType.expression(String template)
+    : this._(TfArg.expression(template));
+  const FolderIamAuditConfigLogType.arg(TfArg<String> arg) : this._(arg);
+
+  static const dataRead = FolderIamAuditConfigLogType._(
+    TfArgLiteral('DATA_READ'),
+  );
+  static const dataWrite = FolderIamAuditConfigLogType._(
+    TfArgLiteral('DATA_WRITE'),
+  );
+  static const adminRead = FolderIamAuditConfigLogType._(
+    TfArgLiteral('ADMIN_READ'),
+  );
+
+  static const List<FolderIamAuditConfigLogType> values = [
+    dataRead,
+    dataWrite,
+    adminRead,
+  ];
 }
 
 /// Factory wrapper for `google_folder_iam_audit_config`.

@@ -7,6 +7,33 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_container_attached_cluster`.
 const Set<String> _googleContainerAttachedClusterSensitive = <String>{};
 
+/// Container Attached Cluster enum for `distribution`.
+extension type const ContainerAttachedClusterDistribution._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerAttachedClusterDistribution.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerAttachedClusterDistribution.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerAttachedClusterDistribution.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const eks = ContainerAttachedClusterDistribution._(
+    TfArgLiteral('eks'),
+  );
+  static const aks = ContainerAttachedClusterDistribution._(
+    TfArgLiteral('aks'),
+  );
+  static const generic = ContainerAttachedClusterDistribution._(
+    TfArgLiteral('generic'),
+  );
+
+  static const List<ContainerAttachedClusterDistribution> values = [
+    eks,
+    aks,
+    generic,
+  ];
+}
+
 /// Typed helper for the `authorization` block of
 /// `google_container_attached_cluster` (derived from provider schema).
 @immutable
@@ -278,7 +305,7 @@ final class GoogleContainerAttachedCluster extends Resource {
     super.localName, {
     required TfArg<String> name,
     required TfArg<String> location,
-    required TfArg<String> distribution,
+    required ContainerAttachedClusterDistribution distribution,
     required TfArg<String> platformVersion,
     required ContainerAttachedClusterFleet fleet,
     required ContainerAttachedClusterOidcConfig oidcConfig,

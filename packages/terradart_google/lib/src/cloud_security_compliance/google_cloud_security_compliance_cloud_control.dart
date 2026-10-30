@@ -8,6 +8,38 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleCloudSecurityComplianceCloudControlSensitive =
     <String>{};
 
+/// Cloud Security Compliance Cloud Control enum for `severity`.
+extension type const CloudSecurityComplianceCloudControlSeverity._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CloudSecurityComplianceCloudControlSeverity.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudSecurityComplianceCloudControlSeverity.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudSecurityComplianceCloudControlSeverity.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const critical = CloudSecurityComplianceCloudControlSeverity._(
+    TfArgLiteral('CRITICAL'),
+  );
+  static const high = CloudSecurityComplianceCloudControlSeverity._(
+    TfArgLiteral('HIGH'),
+  );
+  static const medium = CloudSecurityComplianceCloudControlSeverity._(
+    TfArgLiteral('MEDIUM'),
+  );
+  static const low = CloudSecurityComplianceCloudControlSeverity._(
+    TfArgLiteral('LOW'),
+  );
+
+  static const List<CloudSecurityComplianceCloudControlSeverity> values = [
+    critical,
+    high,
+    medium,
+    low,
+  ];
+}
+
 /// Typed helper for the `parameter_spec` block of
 /// `google_cloud_security_compliance_cloud_control` (derived from provider schema).
 @immutable
@@ -32,7 +64,7 @@ final class CloudSecurityComplianceCloudControlParameterSpec {
 
   final TfArg<String> name;
 
-  final TfArg<String> valueType;
+  final CloudSecurityComplianceCloudControlValueType valueType;
 
   final CloudSecurityComplianceCloudControlDefaultValue? defaultValue;
 
@@ -57,6 +89,42 @@ final class CloudSecurityComplianceCloudControlParameterSpec {
       'substitution_rules': [for (final e in substitutionRules!) e.encode()],
     'validation': ?validation?.encode(),
   };
+}
+
+/// `value_type` — derived from the provider schema description.
+extension type const CloudSecurityComplianceCloudControlValueType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CloudSecurityComplianceCloudControlValueType.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudSecurityComplianceCloudControlValueType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudSecurityComplianceCloudControlValueType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const string = CloudSecurityComplianceCloudControlValueType._(
+    TfArgLiteral('STRING'),
+  );
+  static const boolean = CloudSecurityComplianceCloudControlValueType._(
+    TfArgLiteral('BOOLEAN'),
+  );
+  static const stringlist = CloudSecurityComplianceCloudControlValueType._(
+    TfArgLiteral('STRINGLIST'),
+  );
+  static const number = CloudSecurityComplianceCloudControlValueType._(
+    TfArgLiteral('NUMBER'),
+  );
+  static const oneof = CloudSecurityComplianceCloudControlValueType._(
+    TfArgLiteral('ONEOF'),
+  );
+
+  static const List<CloudSecurityComplianceCloudControlValueType> values = [
+    string,
+    boolean,
+    stringlist,
+    number,
+    oneof,
+  ];
 }
 
 /// Typed helper for the `parameter_spec.default_value` block of
@@ -240,7 +308,7 @@ final class CloudSecurityComplianceCloudControlSubParameters {
 
   final TfArg<String> name;
 
-  final TfArg<String> valueType;
+  final CloudSecurityComplianceCloudControlValueType valueType;
 
   final CloudSecurityComplianceCloudControlDefaultValue? defaultValue;
 
@@ -294,7 +362,7 @@ final class CloudSecurityComplianceCloudControlSubParametersSubParameters {
 
   final TfArg<String>? subParameters;
 
-  final TfArg<String> valueType;
+  final CloudSecurityComplianceCloudControlValueType valueType;
 
   final CloudSecurityComplianceCloudControlSubParametersDefaultValue?
   defaultValue;
@@ -673,7 +741,7 @@ final class GoogleCloudSecurityComplianceCloudControl extends Resource {
     required TfArg<String> location,
     TfArg<String>? parent,
     TfArg<String>? remediationSteps,
-    TfArg<String>? severity,
+    CloudSecurityComplianceCloudControlSeverity? severity,
     TfArg<List<String>>? supportedCloudProviders,
     List<CloudSecurityComplianceCloudControlParameterSpec>? parameterSpec,
     List<CloudSecurityComplianceCloudControlRules>? rules,

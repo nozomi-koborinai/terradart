@@ -17,7 +17,8 @@ final class CloudSecurityComplianceFrameworkDeploymentCloudControlMetadata {
     required this.cloudControlDetails,
   });
 
-  final TfArg<String> enforcementMode;
+  final CloudSecurityComplianceFrameworkDeploymentEnforcementMode
+  enforcementMode;
 
   final CloudSecurityComplianceFrameworkDeploymentCloudControlDetails
   cloudControlDetails;
@@ -27,6 +28,37 @@ final class CloudSecurityComplianceFrameworkDeploymentCloudControlMetadata {
     'enforcement_mode': enforcementMode.toTfJson(),
     'cloud_control_details': cloudControlDetails.encode(),
   };
+}
+
+/// `enforcement_mode` — derived from the provider schema description.
+extension type const CloudSecurityComplianceFrameworkDeploymentEnforcementMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CloudSecurityComplianceFrameworkDeploymentEnforcementMode.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  CloudSecurityComplianceFrameworkDeploymentEnforcementMode.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const CloudSecurityComplianceFrameworkDeploymentEnforcementMode.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const preventive =
+      CloudSecurityComplianceFrameworkDeploymentEnforcementMode._(
+        TfArgLiteral('PREVENTIVE'),
+      );
+  static const detective =
+      CloudSecurityComplianceFrameworkDeploymentEnforcementMode._(
+        TfArgLiteral('DETECTIVE'),
+      );
+  static const audit =
+      CloudSecurityComplianceFrameworkDeploymentEnforcementMode._(
+        TfArgLiteral('AUDIT'),
+      );
+
+  static const List<CloudSecurityComplianceFrameworkDeploymentEnforcementMode>
+  values = [preventive, detective, audit];
 }
 
 /// Typed helper for the `cloud_control_metadata.cloud_control_details` block of

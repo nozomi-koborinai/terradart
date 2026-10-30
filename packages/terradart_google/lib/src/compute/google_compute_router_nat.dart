@@ -33,6 +33,32 @@ extension type const ComputeRouterNatAutoNetworkTier._(TfArg<String> _)
   ];
 }
 
+/// Compute Router Nat Endpoint enum for `endpoint_types`.
+extension type const ComputeRouterNatEndpointTypes._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeRouterNatEndpointTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRouterNatEndpointTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeRouterNatEndpointTypes.arg(TfArg<String> arg) : this._(arg);
+
+  static const endpointTypeVm = ComputeRouterNatEndpointTypes._(
+    TfArgLiteral('ENDPOINT_TYPE_VM'),
+  );
+  static const endpointTypeSwg = ComputeRouterNatEndpointTypes._(
+    TfArgLiteral('ENDPOINT_TYPE_SWG'),
+  );
+  static const endpointTypeManagedProxyLb = ComputeRouterNatEndpointTypes._(
+    TfArgLiteral('ENDPOINT_TYPE_MANAGED_PROXY_LB'),
+  );
+
+  static const List<ComputeRouterNatEndpointTypes> values = [
+    endpointTypeVm,
+    endpointTypeSwg,
+    endpointTypeManagedProxyLb,
+  ];
+}
+
 /// Compute Router Nat Ip Allocate enum for `nat_ip_allocate_option`.
 extension type const ComputeRouterNatIpAllocateOption._(TfArg<String> _)
     implements TfArg<String> {
@@ -258,14 +284,43 @@ final class ComputeRouterNatSubnetwork {
 
   final TfArg<List<String>>? secondaryIpRangeNames;
 
-  final TfArg<List<String>> sourceIpRangesToNat;
+  final List<ComputeRouterNatSourceIpRangesToNat> sourceIpRangesToNat;
 
   @internal
   Map<String, Object?> encode() => {
     'name': name.encodeAs('self_link').toTfJson(),
     'secondary_ip_range_names': ?secondaryIpRangeNames?.toTfJson(),
-    'source_ip_ranges_to_nat': sourceIpRangesToNat.toTfJson(),
+    'source_ip_ranges_to_nat': [
+      for (final e in sourceIpRangesToNat) e.toTfJson(),
+    ],
   };
+}
+
+/// `source_ip_ranges_to_nat` — derived from the provider schema description.
+extension type const ComputeRouterNatSourceIpRangesToNat._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeRouterNatSourceIpRangesToNat.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRouterNatSourceIpRangesToNat.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeRouterNatSourceIpRangesToNat.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const allIpRanges = ComputeRouterNatSourceIpRangesToNat._(
+    TfArgLiteral('ALL_IP_RANGES'),
+  );
+  static const listOfSecondaryIpRanges = ComputeRouterNatSourceIpRangesToNat._(
+    TfArgLiteral('LIST_OF_SECONDARY_IP_RANGES'),
+  );
+  static const primaryIpRange = ComputeRouterNatSourceIpRangesToNat._(
+    TfArgLiteral('PRIMARY_IP_RANGE'),
+  );
+
+  static const List<ComputeRouterNatSourceIpRangesToNat> values = [
+    allIpRanges,
+    listOfSecondaryIpRanges,
+    primaryIpRange,
+  ];
 }
 
 /// Factory wrapper for `google_compute_router_nat`.
@@ -304,7 +359,7 @@ final class GoogleComputeRouterNat extends Resource {
     TfArg<num>? tcpTimeWaitTimeoutSec,
     TfArg<num>? udpIdleTimeoutSec,
     ComputeRouterNatAutoNetworkTier? autoNetworkTier,
-    TfArg<List<String>>? endpointTypes,
+    List<ComputeRouterNatEndpointTypes>? endpointTypes,
     ComputeRouterNatSourceSubnetworkIpRangesToNat64?
     sourceSubnetworkIpRangesToNat64,
     TfArg<String>? deletionPolicy,
@@ -340,7 +395,10 @@ final class GoogleComputeRouterNat extends Resource {
            'tcp_time_wait_timeout_sec': ?tcpTimeWaitTimeoutSec,
            'udp_idle_timeout_sec': ?udpIdleTimeoutSec,
            'auto_network_tier': ?autoNetworkTier,
-           'endpoint_types': ?endpointTypes,
+           if (endpointTypes != null)
+             'endpoint_types': TfArg.literal([
+               for (final e in endpointTypes) e.toTfJson(),
+             ]),
            'source_subnetwork_ip_ranges_to_nat64':
                ?sourceSubnetworkIpRangesToNat64,
            'deletion_policy': ?deletionPolicy,

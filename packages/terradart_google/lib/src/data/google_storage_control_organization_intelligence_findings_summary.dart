@@ -8,6 +8,35 @@ const Set<String>
 _googleStorageControlOrganizationIntelligenceFindingsSummarySensitive =
     <String>{};
 
+/// Data Storage Control Organization Intelligence Findings Summary Resource enum for `resource_scope`.
+extension type const DataStorageControlOrganizationIntelligenceFindingsSummaryResourceScope._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataStorageControlOrganizationIntelligenceFindingsSummaryResourceScope.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  DataStorageControlOrganizationIntelligenceFindingsSummaryResourceScope.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const DataStorageControlOrganizationIntelligenceFindingsSummaryResourceScope.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const parent =
+      DataStorageControlOrganizationIntelligenceFindingsSummaryResourceScope._(
+        TfArgLiteral('PARENT'),
+      );
+  static const project =
+      DataStorageControlOrganizationIntelligenceFindingsSummaryResourceScope._(
+        TfArgLiteral('PROJECT'),
+      );
+
+  static const List<
+    DataStorageControlOrganizationIntelligenceFindingsSummaryResourceScope
+  >
+  values = [parent, project];
+}
+
 /// Factory wrapper for `google_storage_control_organization_intelligence_findings_summary`.
 ///
 /// Read-only data source on the apply-excluded leftover path
@@ -22,7 +51,8 @@ final class DataGoogleStorageControlOrganizationIntelligenceFindingsSummary
     TfArg<String>? filter,
     TfArg<String>? location,
     required TfArg<String> organization,
-    TfArg<String>? resourceScope,
+    DataStorageControlOrganizationIntelligenceFindingsSummaryResourceScope?
+    resourceScope,
     super.provider,
     super.timeouts,
   }) : super(

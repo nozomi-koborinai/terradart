@@ -76,6 +76,7 @@ export 'src/network/google_network_connectivity_policy_based_route.dart'
         GoogleNetworkConnectivityPolicyBasedRoute,
         NetworkConnectivityPolicyBasedRouteFilter,
         NetworkConnectivityPolicyBasedRouteInterconnectAttachment,
+        NetworkConnectivityPolicyBasedRouteIpProtocol,
         NetworkConnectivityPolicyBasedRouteNextHop,
         NetworkConnectivityPolicyBasedRouteNextHopIlbIp,
         NetworkConnectivityPolicyBasedRouteNextHopOtherRoutes,
@@ -133,7 +134,10 @@ export 'src/network/google_network_management_network_monitoring_provider.dart'
 export 'src/network/google_network_management_organization_vpc_flow_logs_config.dart'
     show
         GoogleNetworkManagementOrganizationVpcFlowLogsConfig,
-        NetworkManagementOrganizationVpcFlowLogsConfigCrossProjectMetadata;
+        NetworkManagementOrganizationVpcFlowLogsConfigAggregationInterval,
+        NetworkManagementOrganizationVpcFlowLogsConfigCrossProjectMetadata,
+        NetworkManagementOrganizationVpcFlowLogsConfigMetadata,
+        NetworkManagementOrganizationVpcFlowLogsConfigState;
 export 'src/network/google_network_management_vpc_flow_logs_config.dart'
     show
         GoogleNetworkManagementVpcFlowLogsConfig,
@@ -247,7 +251,8 @@ export 'src/network/google_network_security_mirroring_endpoint_group.dart'
         GoogleNetworkSecurityMirroringEndpointGroup,
         NetworkSecurityMirroringEndpointGroupBrokerDeploymentLink,
         NetworkSecurityMirroringEndpointGroupDeploymentLink,
-        NetworkSecurityMirroringEndpointGroupDirectDeploymentLink;
+        NetworkSecurityMirroringEndpointGroupDirectDeploymentLink,
+        NetworkSecurityMirroringEndpointGroupType;
 export 'src/network/google_network_security_mirroring_endpoint_group_association.dart'
     show GoogleNetworkSecurityMirroringEndpointGroupAssociation;
 export 'src/network/google_network_security_security_profile.dart'
@@ -313,6 +318,8 @@ export 'src/network/google_network_services_agent_connectivity_template.dart'
         NetworkServicesAgentConnectivityTemplateAccessPath,
         NetworkServicesAgentConnectivityTemplateAccessTypes,
         NetworkServicesAgentConnectivityTemplateAdditionalRoots,
+        NetworkServicesAgentConnectivityTemplateAgentCompute,
+        NetworkServicesAgentConnectivityTemplateDeploymentModel,
         NetworkServicesAgentConnectivityTemplateDnsPeeringConfig,
         NetworkServicesAgentConnectivityTemplateEgressNetworkConfig,
         NetworkServicesAgentConnectivityTemplateTlsConfig,
@@ -343,6 +350,7 @@ export 'src/network/google_network_services_edge_cache_origin.dart'
         GoogleNetworkServicesEdgeCacheOrigin,
         NetworkServicesEdgeCacheOriginAwsV4Authentication,
         NetworkServicesEdgeCacheOriginFlexShielding,
+        NetworkServicesEdgeCacheOriginFlexShieldingRegions,
         NetworkServicesEdgeCacheOriginHeaderAction,
         NetworkServicesEdgeCacheOriginOverrideAction,
         NetworkServicesEdgeCacheOriginProtocol,
@@ -466,14 +474,16 @@ export 'src/network/google_network_services_lb_route_extension.dart'
         NetworkServicesLbRouteExtensionExtensions,
         NetworkServicesLbRouteExtensionLoadBalancingScheme,
         NetworkServicesLbRouteExtensionMatchCondition,
-        NetworkServicesLbRouteExtensionRequestBodySendMode;
+        NetworkServicesLbRouteExtensionRequestBodySendMode,
+        NetworkServicesLbRouteExtensionSupportedEvents;
 export 'src/network/google_network_services_lb_traffic_extension.dart'
     show
         GoogleNetworkServicesLbTrafficExtension,
         NetworkServicesLbTrafficExtensionChains,
         NetworkServicesLbTrafficExtensionExtensions,
         NetworkServicesLbTrafficExtensionLoadBalancingScheme,
-        NetworkServicesLbTrafficExtensionMatchCondition;
+        NetworkServicesLbTrafficExtensionMatchCondition,
+        NetworkServicesLbTrafficExtensionSupportedEvents;
 export 'src/network/google_network_services_mesh.dart'
     show GoogleNetworkServicesMesh;
 export 'src/network/google_network_services_multicast_consumer_association.dart'
@@ -482,6 +492,7 @@ export 'src/network/google_network_services_multicast_domain.dart'
     show
         GoogleNetworkServicesMulticastDomain,
         NetworkServicesMulticastDomainConnectionConfig,
+        NetworkServicesMulticastDomainConnectionType,
         NetworkServicesMulticastDomainUllMulticastDomain;
 export 'src/network/google_network_services_multicast_domain_activation.dart'
     show
@@ -498,6 +509,7 @@ export 'src/network/google_network_services_multicast_group_producer_activation.
 export 'src/network/google_network_services_multicast_group_range.dart'
     show
         GoogleNetworkServicesMulticastGroupRange,
+        NetworkServicesMulticastGroupRangeDistributionScope,
         NetworkServicesMulticastGroupRangeLogConfig;
 export 'src/network/google_network_services_multicast_group_range_activation.dart'
     show

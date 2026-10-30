@@ -579,7 +579,7 @@ final class BigqueryJobLoad {
 
   final BigqueryJobCreateDisposition? createDisposition;
 
-  final TfArg<String>? encoding;
+  final BigqueryJobEncoding? encoding;
 
   final TfArg<String>? fieldDelimiter;
 
@@ -639,6 +639,20 @@ final class BigqueryJobLoad {
     'parquet_options': ?parquetOptions?.encode(),
     'time_partitioning': ?timePartitioning?.encode(),
   };
+}
+
+/// `encoding` — derived from the provider schema description.
+extension type const BigqueryJobEncoding._(TfArg<String> _)
+    implements TfArg<String> {
+  BigqueryJobEncoding.variable(String name) : this._(TfArg.variable(name));
+  BigqueryJobEncoding.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryJobEncoding.arg(TfArg<String> arg) : this._(arg);
+
+  static const utf8 = BigqueryJobEncoding._(TfArgLiteral('UTF-8'));
+  static const iso88591 = BigqueryJobEncoding._(TfArgLiteral('ISO-8859-1'));
+
+  static const List<BigqueryJobEncoding> values = [utf8, iso88591];
 }
 
 /// Typed helper for the `load.parquet_options` block of

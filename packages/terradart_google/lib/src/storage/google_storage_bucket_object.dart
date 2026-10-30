@@ -166,6 +166,28 @@ class StorageBucketObjectCustomerEncryption {
   };
 }
 
+/// `retention.mode`: whether the retention period can still be shortened.
+extension type const StorageBucketObjectRetentionMode._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageBucketObjectRetentionMode.variable(String name)
+    : this._(TfArg.variable(name));
+  StorageBucketObjectRetentionMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageBucketObjectRetentionMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const unlocked = StorageBucketObjectRetentionMode._(
+    TfArgLiteral('Unlocked'),
+  );
+  static const locked = StorageBucketObjectRetentionMode._(
+    TfArgLiteral('Locked'),
+  );
+
+  static const List<StorageBucketObjectRetentionMode> values = [
+    unlocked,
+    locked,
+  ];
+}
+
 /// Object-level retention policy (`retention` block).
 ///
 /// Conflicts with `eventBasedHold` at the provider level — the schema
@@ -177,8 +199,8 @@ class StorageBucketObjectRetention {
     required this.retainUntilTime,
   });
 
-  /// Retention mode. Supported values: `'Unlocked'`, `'Locked'`.
-  final TfArg<String> mode;
+  /// Retention mode.
+  final StorageBucketObjectRetentionMode mode;
 
   /// RFC 3339 timestamp until which the object is retained.
   final TfArg<String> retainUntilTime;

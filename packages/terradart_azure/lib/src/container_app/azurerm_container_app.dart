@@ -36,7 +36,7 @@ final class ContainerAppDapr {
 
   final TfArg<num>? appPort;
 
-  final TfArg<String>? appProtocol;
+  final ContainerAppProtocol? appProtocol;
 
   @internal
   Map<String, Object?> encode() => {
@@ -44,6 +44,20 @@ final class ContainerAppDapr {
     'app_port': ?appPort?.toTfJson(),
     'app_protocol': ?appProtocol?.toTfJson(),
   };
+}
+
+/// `app_protocol` — derived from the provider schema description.
+extension type const ContainerAppProtocol._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerAppProtocol.variable(String name) : this._(TfArg.variable(name));
+  ContainerAppProtocol.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerAppProtocol.arg(TfArg<String> arg) : this._(arg);
+
+  static const http = ContainerAppProtocol._(TfArgLiteral('http'));
+  static const grpc = ContainerAppProtocol._(TfArgLiteral('grpc'));
+
+  static const List<ContainerAppProtocol> values = [http, grpc];
 }
 
 /// Typed helper for the `identity` block of
@@ -89,7 +103,7 @@ final class ContainerAppIngress {
 
   final TfArg<num> targetPort;
 
-  final TfArg<String>? transport;
+  final ContainerAppTransport? transport;
 
   final ContainerAppCors? cors;
 
@@ -112,6 +126,22 @@ final class ContainerAppIngress {
       ],
     'traffic_weight': [for (final e in trafficWeight) e.encode()],
   };
+}
+
+/// `transport` — derived from the provider schema description.
+extension type const ContainerAppTransport._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerAppTransport.variable(String name) : this._(TfArg.variable(name));
+  ContainerAppTransport.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerAppTransport.arg(TfArg<String> arg) : this._(arg);
+
+  static const auto = ContainerAppTransport._(TfArgLiteral('auto'));
+  static const http = ContainerAppTransport._(TfArgLiteral('http'));
+  static const http2 = ContainerAppTransport._(TfArgLiteral('http2'));
+  static const tcp = ContainerAppTransport._(TfArgLiteral('tcp'));
+
+  static const List<ContainerAppTransport> values = [auto, http, http2, tcp];
 }
 
 /// Typed helper for the `ingress.cors` block of
@@ -494,7 +524,7 @@ final class ContainerAppLivenessProbe {
 
   final TfArg<num>? timeout;
 
-  final TfArg<String> transport;
+  final ContainerAppLivenessProbeTransport transport;
 
   final List<ContainerAppHeader>? header;
 
@@ -510,6 +540,30 @@ final class ContainerAppLivenessProbe {
     'transport': transport.toTfJson(),
     if (header != null) 'header': [for (final e in header!) e.encode()],
   };
+}
+
+/// `transport` — derived from the provider schema description.
+extension type const ContainerAppLivenessProbeTransport._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerAppLivenessProbeTransport.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerAppLivenessProbeTransport.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerAppLivenessProbeTransport.arg(TfArg<String> arg) : this._(arg);
+
+  static const tcp = ContainerAppLivenessProbeTransport._(TfArgLiteral('TCP'));
+  static const http = ContainerAppLivenessProbeTransport._(
+    TfArgLiteral('HTTP'),
+  );
+  static const https = ContainerAppLivenessProbeTransport._(
+    TfArgLiteral('HTTPS'),
+  );
+
+  static const List<ContainerAppLivenessProbeTransport> values = [
+    tcp,
+    http,
+    https,
+  ];
 }
 
 /// Typed helper for the `template.container.liveness_probe.header` block of
@@ -563,7 +617,7 @@ final class ContainerAppReadinessProbe {
 
   final TfArg<num>? timeout;
 
-  final TfArg<String> transport;
+  final ContainerAppLivenessProbeTransport transport;
 
   final List<ContainerAppHeader>? header;
 
@@ -612,7 +666,7 @@ final class ContainerAppStartupProbe {
 
   final TfArg<num>? timeout;
 
-  final TfArg<String> transport;
+  final ContainerAppLivenessProbeTransport transport;
 
   final List<ContainerAppHeader>? header;
 
@@ -821,7 +875,7 @@ final class ContainerAppVolume {
 
   final TfArg<String>? storageName;
 
-  final TfArg<String>? storageType;
+  final ContainerAppStorageType? storageType;
 
   @internal
   Map<String, Object?> encode() => {
@@ -830,6 +884,20 @@ final class ContainerAppVolume {
     'storage_name': ?storageName?.toTfJson(),
     'storage_type': ?storageType?.toTfJson(),
   };
+}
+
+/// `storage_type` — derived from the provider schema description.
+extension type const ContainerAppStorageType._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerAppStorageType.variable(String name) : this._(TfArg.variable(name));
+  ContainerAppStorageType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerAppStorageType.arg(TfArg<String> arg) : this._(arg);
+
+  static const azurefile = ContainerAppStorageType._(TfArgLiteral('AzureFile'));
+  static const emptydir = ContainerAppStorageType._(TfArgLiteral('EmptyDir'));
+
+  static const List<ContainerAppStorageType> values = [azurefile, emptydir];
 }
 
 /// Factory wrapper for `azurerm_container_app`.

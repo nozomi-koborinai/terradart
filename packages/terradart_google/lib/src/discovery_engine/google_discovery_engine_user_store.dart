@@ -6,6 +6,24 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_discovery_engine_user_store`.
 const Set<String> _googleDiscoveryEngineUserStoreSensitive = <String>{};
 
+/// Discovery Engine User Store enum for `location`.
+extension type const DiscoveryEngineUserStoreLocation._(TfArg<String> _)
+    implements TfArg<String> {
+  DiscoveryEngineUserStoreLocation.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineUserStoreLocation.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineUserStoreLocation.arg(TfArg<String> arg) : this._(arg);
+
+  static const global = DiscoveryEngineUserStoreLocation._(
+    TfArgLiteral('global'),
+  );
+  static const us = DiscoveryEngineUserStoreLocation._(TfArgLiteral('us'));
+  static const eu = DiscoveryEngineUserStoreLocation._(TfArgLiteral('eu'));
+
+  static const List<DiscoveryEngineUserStoreLocation> values = [global, us, eu];
+}
+
 /// Factory wrapper for `google_discovery_engine_user_store`.
 ///
 /// Represents a user store.
@@ -26,7 +44,7 @@ final class GoogleDiscoveryEngineUserStore extends Resource {
 
   GoogleDiscoveryEngineUserStore(
     super.localName, {
-    required TfArg<String> location,
+    required DiscoveryEngineUserStoreLocation location,
     TfArg<String>? userStoreId,
     TfArg<String>? defaultLicenseConfig,
     TfArg<bool>? enableLicenseAutoRegister,

@@ -8,9 +8,13 @@ library;
 
 export 'package:terradart_core/terradart_core.dart';
 export 'src/data/google_discovery_engine_data_store.dart'
-    show DataGoogleDiscoveryEngineDataStore;
+    show
+        DataDiscoveryEngineDataStoreLocation,
+        DataGoogleDiscoveryEngineDataStore;
 export 'src/data/google_discovery_engine_data_stores.dart'
-    show DataGoogleDiscoveryEngineDataStores;
+    show
+        DataDiscoveryEngineDataStoresLocation,
+        DataGoogleDiscoveryEngineDataStores;
 export 'src/data/google_discovery_engine_search_engine_iam_policy.dart'
     show DataGoogleDiscoveryEngineSearchEngineIamPolicy;
 export 'src/discovery_engine/google_discovery_engine_acl_config.dart'
@@ -18,14 +22,19 @@ export 'src/discovery_engine/google_discovery_engine_acl_config.dart'
         DiscoveryEngineAclConfigExternalIdpConfig,
         DiscoveryEngineAclConfigIdpConfig,
         DiscoveryEngineAclConfigIdpType,
+        DiscoveryEngineAclConfigLocation,
         GoogleDiscoveryEngineAclConfig;
 export 'src/discovery_engine/google_discovery_engine_assistant.dart'
     show
         DiscoveryEngineAssistantBannedPhrases,
         DiscoveryEngineAssistantCustomerPolicy,
+        DiscoveryEngineAssistantFailureMode,
         DiscoveryEngineAssistantGenerationConfig,
+        DiscoveryEngineAssistantLocation,
+        DiscoveryEngineAssistantMatchType,
         DiscoveryEngineAssistantModelArmorConfig,
         DiscoveryEngineAssistantSystemInstruction,
+        DiscoveryEngineAssistantWebGroundingType,
         GoogleDiscoveryEngineAssistant;
 export 'src/discovery_engine/google_discovery_engine_chat_engine.dart'
     show
@@ -39,6 +48,7 @@ export 'src/discovery_engine/google_discovery_engine_chat_engine.dart'
         GoogleDiscoveryEngineChatEngine;
 export 'src/discovery_engine/google_discovery_engine_cmek_config.dart'
     show
+        DiscoveryEngineCmekConfigLocation,
         DiscoveryEngineCmekConfigSingleRegionKeys,
         GoogleDiscoveryEngineCmekConfig;
 export 'src/discovery_engine/google_discovery_engine_control.dart'
@@ -56,6 +66,7 @@ export 'src/discovery_engine/google_discovery_engine_control.dart'
         DiscoveryEngineControlFixedBoost,
         DiscoveryEngineControlInterpolationBoostSpec,
         DiscoveryEngineControlInterpolationType,
+        DiscoveryEngineControlLocation,
         DiscoveryEngineControlPoint,
         DiscoveryEngineControlPromoteAction,
         DiscoveryEngineControlPromoteActionChoice,
@@ -74,8 +85,10 @@ export 'src/discovery_engine/google_discovery_engine_data_connector.dart'
         DiscoveryEngineDataConnectorBapConfig,
         DiscoveryEngineDataConnectorDestinationConfigs,
         DiscoveryEngineDataConnectorDestinations,
+        DiscoveryEngineDataConnectorEnabledActions,
         DiscoveryEngineDataConnectorEntities,
         DiscoveryEngineDataConnectorJsonParams,
+        DiscoveryEngineDataConnectorLocation,
         DiscoveryEngineDataConnectorMetadata,
         DiscoveryEngineDataConnectorParams,
         DiscoveryEngineDataConnectorParamsChoice,
@@ -94,6 +107,7 @@ export 'src/discovery_engine/google_discovery_engine_data_store.dart'
         DiscoveryEngineDataStoreIndustryVertical,
         DiscoveryEngineDataStoreLayoutBasedChunkingConfig,
         DiscoveryEngineDataStoreLayoutParsingConfig,
+        DiscoveryEngineDataStoreLocation,
         DiscoveryEngineDataStoreOcrParsingConfig,
         DiscoveryEngineDataStoreParsingConfigOverrides,
         DiscoveryEngineDataStoreSolutionTypes,
@@ -101,6 +115,7 @@ export 'src/discovery_engine/google_discovery_engine_data_store.dart'
 export 'src/discovery_engine/google_discovery_engine_license_config.dart'
     show
         DiscoveryEngineLicenseConfigEndDate,
+        DiscoveryEngineLicenseConfigLocation,
         DiscoveryEngineLicenseConfigStartDate,
         DiscoveryEngineLicenseConfigSubscriptionTerm,
         DiscoveryEngineLicenseConfigSubscriptionTier,
@@ -108,20 +123,26 @@ export 'src/discovery_engine/google_discovery_engine_license_config.dart'
 export 'src/discovery_engine/google_discovery_engine_recommendation_engine.dart'
     show
         DiscoveryEngineRecommendationEngineCommonConfig,
+        DiscoveryEngineRecommendationEngineContextEventType,
         DiscoveryEngineRecommendationEngineFeaturesConfig,
         DiscoveryEngineRecommendationEngineFeaturesConfigMostPopularConfig,
         DiscoveryEngineRecommendationEngineFeaturesConfigRecommendedForYouConfig,
         DiscoveryEngineRecommendationEngineIndustryVertical,
+        DiscoveryEngineRecommendationEngineLocation,
         DiscoveryEngineRecommendationEngineMediaRecommendationEngineConfig,
         DiscoveryEngineRecommendationEngineMostPopularConfig,
+        DiscoveryEngineRecommendationEngineOptimizationObjective,
         DiscoveryEngineRecommendationEngineOptimizationObjectiveConfig,
         DiscoveryEngineRecommendationEngineRecommendedForYouConfig,
+        DiscoveryEngineRecommendationEngineTargetField,
         DiscoveryEngineRecommendationEngineTrainingState,
+        DiscoveryEngineRecommendationEngineType,
         GoogleDiscoveryEngineRecommendationEngine;
 export 'src/discovery_engine/google_discovery_engine_schema.dart'
-    show GoogleDiscoveryEngineSchema;
+    show DiscoveryEngineSchemaLocation, GoogleDiscoveryEngineSchema;
 export 'src/discovery_engine/google_discovery_engine_search_engine.dart'
     show
+        DiscoveryEngineSearchEngineAppType,
         DiscoveryEngineSearchEngineCommonConfig,
         DiscoveryEngineSearchEngineConfig,
         DiscoveryEngineSearchEngineConfigSearchAddOns,
@@ -142,16 +163,19 @@ export 'src/discovery_engine/google_discovery_engine_search_engine_iam_member.da
 export 'src/discovery_engine/google_discovery_engine_search_engine_iam_policy.dart'
     show GoogleDiscoveryEngineSearchEngineIamPolicy;
 export 'src/discovery_engine/google_discovery_engine_serving_config.dart'
-    show GoogleDiscoveryEngineServingConfig;
+    show
+        DiscoveryEngineServingConfigLocation,
+        GoogleDiscoveryEngineServingConfig;
 export 'src/discovery_engine/google_discovery_engine_sitemap.dart'
-    show GoogleDiscoveryEngineSitemap;
+    show DiscoveryEngineSitemapLocation, GoogleDiscoveryEngineSitemap;
 export 'src/discovery_engine/google_discovery_engine_target_site.dart'
     show
         DiscoveryEngineTargetSiteIndexingStatus,
+        DiscoveryEngineTargetSiteLocation,
         DiscoveryEngineTargetSiteType,
         GoogleDiscoveryEngineTargetSite;
 export 'src/discovery_engine/google_discovery_engine_user_store.dart'
-    show GoogleDiscoveryEngineUserStore;
+    show DiscoveryEngineUserStoreLocation, GoogleDiscoveryEngineUserStore;
 export 'src/discovery_engine/google_discovery_engine_widget_config.dart'
     show
         DiscoveryEngineWidgetConfigAccessSettings,
@@ -164,6 +188,7 @@ export 'src/discovery_engine/google_discovery_engine_widget_config.dart'
         DiscoveryEngineWidgetConfigIcon,
         DiscoveryEngineWidgetConfigImageSource,
         DiscoveryEngineWidgetConfigInteractionType,
+        DiscoveryEngineWidgetConfigLocation,
         DiscoveryEngineWidgetConfigLogo,
         DiscoveryEngineWidgetConfigResultDescriptionType,
         DiscoveryEngineWidgetConfigSearchAddonSpec,

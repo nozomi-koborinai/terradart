@@ -10,6 +10,67 @@ import '../compute/google_compute_instance_group_manager.dart'
 /// Sensitive field paths for `google_compute_per_instance_config`.
 const Set<String> _googleComputePerInstanceConfigSensitive = <String>{};
 
+/// Compute Per Instance Config Minimal enum for `minimal_action`.
+extension type const ComputePerInstanceConfigMinimalAction._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputePerInstanceConfigMinimalAction.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputePerInstanceConfigMinimalAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputePerInstanceConfigMinimalAction.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const replace = ComputePerInstanceConfigMinimalAction._(
+    TfArgLiteral('REPLACE'),
+  );
+  static const restart = ComputePerInstanceConfigMinimalAction._(
+    TfArgLiteral('RESTART'),
+  );
+  static const refresh = ComputePerInstanceConfigMinimalAction._(
+    TfArgLiteral('REFRESH'),
+  );
+  static const none = ComputePerInstanceConfigMinimalAction._(
+    TfArgLiteral('NONE'),
+  );
+
+  static const List<ComputePerInstanceConfigMinimalAction> values = [
+    replace,
+    restart,
+    refresh,
+    none,
+  ];
+}
+
+/// Compute Per Instance Config Most Disruptive Allowed enum for `most_disruptive_allowed_action`.
+extension type const ComputePerInstanceConfigMostDisruptiveAllowedAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputePerInstanceConfigMostDisruptiveAllowedAction.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputePerInstanceConfigMostDisruptiveAllowedAction.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ComputePerInstanceConfigMostDisruptiveAllowedAction.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const replace = ComputePerInstanceConfigMostDisruptiveAllowedAction._(
+    TfArgLiteral('REPLACE'),
+  );
+  static const restart = ComputePerInstanceConfigMostDisruptiveAllowedAction._(
+    TfArgLiteral('RESTART'),
+  );
+  static const refresh = ComputePerInstanceConfigMostDisruptiveAllowedAction._(
+    TfArgLiteral('REFRESH'),
+  );
+  static const none = ComputePerInstanceConfigMostDisruptiveAllowedAction._(
+    TfArgLiteral('NONE'),
+  );
+
+  static const List<ComputePerInstanceConfigMostDisruptiveAllowedAction>
+  values = [replace, restart, refresh, none];
+}
+
 /// Typed helper for the `preserved_state` block of
 /// `google_compute_per_instance_config` (derived from provider schema).
 @immutable
@@ -217,8 +278,9 @@ final class GoogleComputePerInstanceConfig extends Resource {
     required TfArg<String> name,
     TfArg<String>? zone,
     ComputePerInstanceConfigPreservedState? preservedState,
-    TfArg<String>? minimalAction,
-    TfArg<String>? mostDisruptiveAllowedAction,
+    ComputePerInstanceConfigMinimalAction? minimalAction,
+    ComputePerInstanceConfigMostDisruptiveAllowedAction?
+    mostDisruptiveAllowedAction,
     TfArg<bool>? removeInstanceOnDestroy,
     TfArg<bool>? removeInstanceStateOnDestroy,
     TfArg<String>? deletionPolicy,

@@ -22902,9 +22902,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'value',
           dartName: 'value',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'OriginTlsComplianceModesValue',
         ),
         MigrateSlot(
           tfName: 'zone_id',
@@ -23274,9 +23275,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'status',
           dartName: 'status',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataPageShieldConnectionsListStatus',
         ),
         MigrateSlot(
           tfName: 'urls',
@@ -23972,9 +23973,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'status',
           dartName: 'status',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'DataPageShieldScriptsListStatus',
         ),
         MigrateSlot(
           tfName: 'urls',
@@ -27528,9 +27529,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'scopes',
           dartName: 'scopes',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'List<String>',
+          repeated: true,
+          dartType: 'SecretsStoreSecretScopes',
         ),
         MigrateSlot(
           tfName: 'store_id',
@@ -78960,6 +78962,14 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         'last_seen_at': 'lastSeenAt',
       },
     ),
+    'DataPageShieldConnectionsListStatus': MigrateEnum(
+      name: 'DataPageShieldConnectionsListStatus',
+      members: <String, String>{
+        'active': 'active',
+        'infrequent': 'infrequent',
+        'inactive': 'inactive',
+      },
+    ),
     'DataPageShieldCookiesListDirection': MigrateEnum(
       name: 'DataPageShieldCookiesListDirection',
       members: <String, String>{'asc': 'asc', 'desc': 'desc'},
@@ -79003,6 +79013,14 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       members: <String, String>{
         'first_seen_at': 'firstSeenAt',
         'last_seen_at': 'lastSeenAt',
+      },
+    ),
+    'DataPageShieldScriptsListStatus': MigrateEnum(
+      name: 'DataPageShieldScriptsListStatus',
+      members: <String, String>{
+        'active': 'active',
+        'infrequent': 'infrequent',
+        'inactive': 'inactive',
       },
     ),
     'DataSecretsStoreDirection': MigrateEnum(
@@ -80322,6 +80340,10 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         'oci': 'oci',
       },
     ),
+    'OriginTlsComplianceModesValue': MigrateEnum(
+      name: 'OriginTlsComplianceModesValue',
+      members: <String, String>{'fips': 'fips', 'pqh': 'pqh'},
+    ),
     'PageRuleAutomaticHttpsRewrites': MigrateEnum(
       name: 'PageRuleAutomaticHttpsRewrites',
       members: <String, String>{'on': 'on', 'off': 'off'},
@@ -81027,6 +81049,15 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     'SchemaValidationSettingsValidationOverrideMitigationAction': MigrateEnum(
       name: 'SchemaValidationSettingsValidationOverrideMitigationAction',
       members: <String, String>{'none': 'none'},
+    ),
+    'SecretsStoreSecretScopes': MigrateEnum(
+      name: 'SecretsStoreSecretScopes',
+      members: <String, String>{
+        'workers': 'workers',
+        'ai_gateway': 'aiGateway',
+        'dex': 'dex',
+        'access': 'access',
+      },
     ),
     'ShareResourceResourceType': MigrateEnum(
       name: 'ShareResourceResourceType',

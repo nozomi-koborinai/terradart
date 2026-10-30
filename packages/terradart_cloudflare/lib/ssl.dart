@@ -100,7 +100,7 @@ export 'src/ssl/cloudflare_mtls_certificate.dart'
 export 'src/ssl/cloudflare_origin_ca_certificate.dart'
     show CloudflareOriginCaCertificate, OriginCaCertificateRequestType;
 export 'src/ssl/cloudflare_origin_tls_compliance_modes.dart'
-    show CloudflareOriginTlsComplianceModes;
+    show CloudflareOriginTlsComplianceModes, OriginTlsComplianceModesValue;
 export 'src/ssl/cloudflare_total_tls.dart'
     show CloudflareTotalTls, TotalTlsCertificateAuthority;
 export 'src/ssl/cloudflare_universal_ssl_setting.dart'

@@ -131,9 +131,9 @@ final class BiglakeIcebergTableSortOrderFields {
     required this.transform,
   });
 
-  final TfArg<String> direction;
+  final BiglakeIcebergTableDirection direction;
 
-  final TfArg<String> nullOrder;
+  final BiglakeIcebergTableNullOrder nullOrder;
 
   final TfArg<num> sourceId;
 
@@ -146,6 +146,43 @@ final class BiglakeIcebergTableSortOrderFields {
     'source_id': sourceId.toTfJson(),
     'transform': transform.toTfJson(),
   };
+}
+
+/// `direction` — derived from the provider schema description.
+extension type const BiglakeIcebergTableDirection._(TfArg<String> _)
+    implements TfArg<String> {
+  BiglakeIcebergTableDirection.variable(String name)
+    : this._(TfArg.variable(name));
+  BiglakeIcebergTableDirection.expression(String template)
+    : this._(TfArg.expression(template));
+  const BiglakeIcebergTableDirection.arg(TfArg<String> arg) : this._(arg);
+
+  static const asc = BiglakeIcebergTableDirection._(TfArgLiteral('asc'));
+  static const desc = BiglakeIcebergTableDirection._(TfArgLiteral('desc'));
+
+  static const List<BiglakeIcebergTableDirection> values = [asc, desc];
+}
+
+/// `null_order` — derived from the provider schema description.
+extension type const BiglakeIcebergTableNullOrder._(TfArg<String> _)
+    implements TfArg<String> {
+  BiglakeIcebergTableNullOrder.variable(String name)
+    : this._(TfArg.variable(name));
+  BiglakeIcebergTableNullOrder.expression(String template)
+    : this._(TfArg.expression(template));
+  const BiglakeIcebergTableNullOrder.arg(TfArg<String> arg) : this._(arg);
+
+  static const nullsFirst = BiglakeIcebergTableNullOrder._(
+    TfArgLiteral('nulls-first'),
+  );
+  static const nullsLast = BiglakeIcebergTableNullOrder._(
+    TfArgLiteral('nulls-last'),
+  );
+
+  static const List<BiglakeIcebergTableNullOrder> values = [
+    nullsFirst,
+    nullsLast,
+  ];
 }
 
 /// Factory wrapper for `google_biglake_iceberg_table`.

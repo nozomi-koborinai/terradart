@@ -168,7 +168,7 @@ final class VmwareengineClusterDatastoreMountConfig {
     required this.datastoreNetwork,
   });
 
-  final TfArg<String>? accessMode;
+  final VmwareengineClusterAccessMode? accessMode;
 
   final TfArg<String> datastore;
 
@@ -186,6 +186,28 @@ final class VmwareengineClusterDatastoreMountConfig {
     'nfs_version': ?nfsVersion?.toTfJson(),
     'datastore_network': datastoreNetwork.encode(),
   };
+}
+
+/// `access_mode` — derived from the provider schema description.
+extension type const VmwareengineClusterAccessMode._(TfArg<String> _)
+    implements TfArg<String> {
+  VmwareengineClusterAccessMode.variable(String name)
+    : this._(TfArg.variable(name));
+  VmwareengineClusterAccessMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const VmwareengineClusterAccessMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const readOnly = VmwareengineClusterAccessMode._(
+    TfArgLiteral('READ_ONLY'),
+  );
+  static const readWrite = VmwareengineClusterAccessMode._(
+    TfArgLiteral('READ_WRITE'),
+  );
+
+  static const List<VmwareengineClusterAccessMode> values = [
+    readOnly,
+    readWrite,
+  ];
 }
 
 /// Typed helper for the `datastore_mount_config.datastore_network` block of

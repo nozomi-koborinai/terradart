@@ -33,7 +33,8 @@ export 'src/organization/google_organization_access_approval_settings.dart'
 export 'src/organization/google_organization_iam_audit_config.dart'
     show
         GoogleOrganizationIamAuditConfig,
-        OrganizationIamAuditConfigAuditLogConfig;
+        OrganizationIamAuditConfigAuditLogConfig,
+        OrganizationIamAuditConfigLogType;
 export 'src/organization/google_organization_iam_binding.dart'
     show GoogleOrganizationIamBinding, OrganizationIamBindingCondition;
 export 'src/organization/google_organization_iam_custom_role.dart'

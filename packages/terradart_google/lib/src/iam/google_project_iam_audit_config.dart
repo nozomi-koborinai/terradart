@@ -9,7 +9,27 @@ import '../iam/iam_principal.dart' show IamPrincipal;
 /// Sensitive field paths for `google_project_iam_audit_config`.
 const Set<String> _googleProjectIamAuditConfigSensitive = <String>{};
 
-/// Permission type for which IAM audit logging is configured.
+/// Typed helper for the `audit_log_config` block of
+/// `google_project_iam_audit_config` (derived from provider schema).
+@immutable
+final class ProjectIamAuditConfigAuditLogConfig {
+  const ProjectIamAuditConfigAuditLogConfig({
+    this.exemptedMembers,
+    required this.logType,
+  });
+
+  final TfArg<List<IamPrincipal>>? exemptedMembers;
+
+  final ProjectIamAuditConfigAuditLogConfigLogType logType;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'exempted_members': ?exemptedMembers?.toTfJson(),
+    'log_type': logType.toTfJson(),
+  };
+}
+
+/// `log_type` — derived from the provider schema description.
 extension type const ProjectIamAuditConfigAuditLogConfigLogType._(
   TfArg<String> _
 ) implements TfArg<String> {
@@ -35,26 +55,6 @@ extension type const ProjectIamAuditConfigAuditLogConfigLogType._(
     dataWrite,
     adminRead,
   ];
-}
-
-/// Typed helper for the `audit_log_config` block of
-/// `google_project_iam_audit_config` (derived from provider schema).
-@immutable
-final class ProjectIamAuditConfigAuditLogConfig {
-  const ProjectIamAuditConfigAuditLogConfig({
-    this.exemptedMembers,
-    required this.logType,
-  });
-
-  final TfArg<List<IamPrincipal>>? exemptedMembers;
-
-  final TfArg<String> logType;
-
-  @internal
-  Map<String, Object?> encode() => {
-    'exempted_members': ?exemptedMembers?.toTfJson(),
-    'log_type': logType.toTfJson(),
-  };
 }
 
 /// Factory wrapper for `google_project_iam_audit_config`.

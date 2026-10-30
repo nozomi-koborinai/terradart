@@ -16,7 +16,7 @@ final class NetworkServicesMulticastDomainConnectionConfig {
     this.nccHub,
   });
 
-  final TfArg<String> connectionType;
+  final NetworkServicesMulticastDomainConnectionType connectionType;
 
   final TfArg<String>? nccHub;
 
@@ -25,6 +25,30 @@ final class NetworkServicesMulticastDomainConnectionConfig {
     'connection_type': connectionType.toTfJson(),
     'ncc_hub': ?nccHub?.toTfJson(),
   };
+}
+
+/// `connection_type` — derived from the provider schema description.
+extension type const NetworkServicesMulticastDomainConnectionType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkServicesMulticastDomainConnectionType.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkServicesMulticastDomainConnectionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkServicesMulticastDomainConnectionType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const ncc = NetworkServicesMulticastDomainConnectionType._(
+    TfArgLiteral('NCC'),
+  );
+  static const sameVpc = NetworkServicesMulticastDomainConnectionType._(
+    TfArgLiteral('SAME_VPC'),
+  );
+
+  static const List<NetworkServicesMulticastDomainConnectionType> values = [
+    ncc,
+    sameVpc,
+  ];
 }
 
 /// Typed helper for the `ull_multicast_domain` block of

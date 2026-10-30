@@ -34,7 +34,7 @@ final class DeveloperConnectAccountConnectorCustomOauthConfig {
 
   final TfArg<bool>? pkceDisabled;
 
-  final TfArg<String> scmProvider;
+  final DeveloperConnectAccountConnectorScmProvider scmProvider;
 
   final TfArg<List<String>> scopes;
 
@@ -58,6 +58,40 @@ final class DeveloperConnectAccountConnectorCustomOauthConfig {
     'token_uri': tokenUri.toTfJson(),
     'service_directory_config': ?serviceDirectoryConfig?.encode(),
   };
+}
+
+/// `scm_provider` — derived from the provider schema description.
+extension type const DeveloperConnectAccountConnectorScmProvider._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DeveloperConnectAccountConnectorScmProvider.variable(String name)
+    : this._(TfArg.variable(name));
+  DeveloperConnectAccountConnectorScmProvider.expression(String template)
+    : this._(TfArg.expression(template));
+  const DeveloperConnectAccountConnectorScmProvider.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const scmProviderUnknown =
+      DeveloperConnectAccountConnectorScmProvider._(
+        TfArgLiteral('SCM_PROVIDER_UNKNOWN'),
+      );
+  static const githubEnterprise = DeveloperConnectAccountConnectorScmProvider._(
+    TfArgLiteral('GITHUB_ENTERPRISE'),
+  );
+  static const gitlabEnterprise = DeveloperConnectAccountConnectorScmProvider._(
+    TfArgLiteral('GITLAB_ENTERPRISE'),
+  );
+  static const bitbucketDataCenter =
+      DeveloperConnectAccountConnectorScmProvider._(
+        TfArgLiteral('BITBUCKET_DATA_CENTER'),
+      );
+
+  static const List<DeveloperConnectAccountConnectorScmProvider> values = [
+    scmProviderUnknown,
+    githubEnterprise,
+    gitlabEnterprise,
+    bitbucketDataCenter,
+  ];
 }
 
 /// Typed helper for the `custom_oauth_config.service_directory_config` block of
@@ -85,13 +119,61 @@ final class DeveloperConnectAccountConnectorProviderOauthConfig {
 
   final TfArg<List<String>> scopes;
 
-  final TfArg<String>? systemProviderId;
+  final DeveloperConnectAccountConnectorSystemProviderId? systemProviderId;
 
   @internal
   Map<String, Object?> encode() => {
     'scopes': scopes.toTfJson(),
     'system_provider_id': ?systemProviderId?.toTfJson(),
   };
+}
+
+/// `system_provider_id` — derived from the provider schema description.
+extension type const DeveloperConnectAccountConnectorSystemProviderId._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DeveloperConnectAccountConnectorSystemProviderId.variable(String name)
+    : this._(TfArg.variable(name));
+  DeveloperConnectAccountConnectorSystemProviderId.expression(String template)
+    : this._(TfArg.expression(template));
+  const DeveloperConnectAccountConnectorSystemProviderId.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const github = DeveloperConnectAccountConnectorSystemProviderId._(
+    TfArgLiteral('GITHUB'),
+  );
+  static const gitlab = DeveloperConnectAccountConnectorSystemProviderId._(
+    TfArgLiteral('GITLAB'),
+  );
+  static const google = DeveloperConnectAccountConnectorSystemProviderId._(
+    TfArgLiteral('GOOGLE'),
+  );
+  static const sentry = DeveloperConnectAccountConnectorSystemProviderId._(
+    TfArgLiteral('SENTRY'),
+  );
+  static const rovo = DeveloperConnectAccountConnectorSystemProviderId._(
+    TfArgLiteral('ROVO'),
+  );
+  static const newRelic = DeveloperConnectAccountConnectorSystemProviderId._(
+    TfArgLiteral('NEW_RELIC'),
+  );
+  static const datastax = DeveloperConnectAccountConnectorSystemProviderId._(
+    TfArgLiteral('DATASTAX'),
+  );
+  static const dynatrace = DeveloperConnectAccountConnectorSystemProviderId._(
+    TfArgLiteral('DYNATRACE'),
+  );
+
+  static const List<DeveloperConnectAccountConnectorSystemProviderId> values = [
+    github,
+    gitlab,
+    google,
+    sentry,
+    rovo,
+    newRelic,
+    datastax,
+    dynatrace,
+  ];
 }
 
 /// Typed helper for the `proxy_config` block of

@@ -17,6 +17,34 @@ const Set<String> _googleComputeInstanceFromMachineImageSensitive = <String>{
   'source_machine_image_encryption_key.rsa_encrypted_key',
 };
 
+/// Compute Instance From Machine Image Desired enum for `desired_status`.
+extension type const ComputeInstanceFromMachineImageDesiredStatus._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeInstanceFromMachineImageDesiredStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceFromMachineImageDesiredStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceFromMachineImageDesiredStatus.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const running = ComputeInstanceFromMachineImageDesiredStatus._(
+    TfArgLiteral('RUNNING'),
+  );
+  static const suspended = ComputeInstanceFromMachineImageDesiredStatus._(
+    TfArgLiteral('SUSPENDED'),
+  );
+  static const terminated = ComputeInstanceFromMachineImageDesiredStatus._(
+    TfArgLiteral('TERMINATED'),
+  );
+
+  static const List<ComputeInstanceFromMachineImageDesiredStatus> values = [
+    running,
+    suspended,
+    terminated,
+  ];
+}
+
 /// Typed helper for the `advanced_machine_features` block of
 /// `google_compute_instance_from_machine_image` (derived from provider schema).
 @immutable
@@ -34,7 +62,8 @@ final class ComputeInstanceFromMachineImageAdvancedMachineFeatures {
 
   final TfArg<bool>? enableUefiNetworking;
 
-  final TfArg<String>? performanceMonitoringUnit;
+  final ComputeInstanceFromMachineImagePerformanceMonitoringUnit?
+  performanceMonitoringUnit;
 
   final TfArg<num>? threadsPerCore;
 
@@ -53,6 +82,36 @@ final class ComputeInstanceFromMachineImageAdvancedMachineFeatures {
   };
 }
 
+/// `performance_monitoring_unit` — derived from the provider schema description.
+extension type const ComputeInstanceFromMachineImagePerformanceMonitoringUnit._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeInstanceFromMachineImagePerformanceMonitoringUnit.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceFromMachineImagePerformanceMonitoringUnit.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ComputeInstanceFromMachineImagePerformanceMonitoringUnit.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const standard =
+      ComputeInstanceFromMachineImagePerformanceMonitoringUnit._(
+        TfArgLiteral('STANDARD'),
+      );
+  static const enhanced =
+      ComputeInstanceFromMachineImagePerformanceMonitoringUnit._(
+        TfArgLiteral('ENHANCED'),
+      );
+  static const architectural =
+      ComputeInstanceFromMachineImagePerformanceMonitoringUnit._(
+        TfArgLiteral('ARCHITECTURAL'),
+      );
+
+  static const List<ComputeInstanceFromMachineImagePerformanceMonitoringUnit>
+  values = [standard, enhanced, architectural];
+}
+
 /// Typed helper for the `confidential_instance_config` block of
 /// `google_compute_instance_from_machine_image` (derived from provider schema).
 @immutable
@@ -62,7 +121,8 @@ final class ComputeInstanceFromMachineImageConfidentialInstanceConfig {
     this.enableConfidentialCompute,
   });
 
-  final TfArg<String>? confidentialInstanceType;
+  final ComputeInstanceFromMachineImageConfidentialInstanceType?
+  confidentialInstanceType;
 
   final TfArg<bool>? enableConfidentialCompute;
 
@@ -71,6 +131,34 @@ final class ComputeInstanceFromMachineImageConfidentialInstanceConfig {
     'confidential_instance_type': ?confidentialInstanceType?.toTfJson(),
     'enable_confidential_compute': ?enableConfidentialCompute?.toTfJson(),
   };
+}
+
+/// `confidential_instance_type` — derived from the provider schema description.
+extension type const ComputeInstanceFromMachineImageConfidentialInstanceType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeInstanceFromMachineImageConfidentialInstanceType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceFromMachineImageConfidentialInstanceType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ComputeInstanceFromMachineImageConfidentialInstanceType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const sev = ComputeInstanceFromMachineImageConfidentialInstanceType._(
+    TfArgLiteral('SEV'),
+  );
+  static const sevSnp =
+      ComputeInstanceFromMachineImageConfidentialInstanceType._(
+        TfArgLiteral('SEV_SNP'),
+      );
+  static const tdx = ComputeInstanceFromMachineImageConfidentialInstanceType._(
+    TfArgLiteral('TDX'),
+  );
+
+  static const List<ComputeInstanceFromMachineImageConfidentialInstanceType>
+  values = [sev, sevSnp, tdx];
 }
 
 /// Typed helper for the `guest_accelerator` block of
@@ -252,7 +340,7 @@ final class ComputeInstanceFromMachineImageAccessConfig {
 
   final TfArg<String>? natIp;
 
-  final TfArg<String>? networkTier;
+  final ComputeInstanceFromMachineImageNetworkTier? networkTier;
 
   final TfArg<String>? publicPtrDomainName;
 
@@ -262,6 +350,30 @@ final class ComputeInstanceFromMachineImageAccessConfig {
     'network_tier': ?networkTier?.toTfJson(),
     'public_ptr_domain_name': ?publicPtrDomainName?.toTfJson(),
   };
+}
+
+/// `network_tier` — derived from the provider schema description.
+extension type const ComputeInstanceFromMachineImageNetworkTier._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeInstanceFromMachineImageNetworkTier.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceFromMachineImageNetworkTier.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceFromMachineImageNetworkTier.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const premium = ComputeInstanceFromMachineImageNetworkTier._(
+    TfArgLiteral('PREMIUM'),
+  );
+  static const standard = ComputeInstanceFromMachineImageNetworkTier._(
+    TfArgLiteral('STANDARD'),
+  );
+
+  static const List<ComputeInstanceFromMachineImageNetworkTier> values = [
+    premium,
+    standard,
+  ];
 }
 
 /// Typed helper for the `network_interface.alias_ip_range` block of
@@ -469,11 +581,11 @@ final class ComputeInstanceFromMachineImageScheduling {
 
   final TfArg<num>? minNodeCpus;
 
-  final TfArg<String>? onHostMaintenance;
+  final ComputeInstanceFromMachineImageOnHostMaintenance? onHostMaintenance;
 
   final TfArg<bool>? preemptible;
 
-  final TfArg<String>? provisioningModel;
+  final ComputeInstanceFromMachineImageProvisioningModel? provisioningModel;
 
   final TfArg<bool>? skipGuestOsShutdown;
 
@@ -515,6 +627,63 @@ final class ComputeInstanceFromMachineImageScheduling {
     'on_instance_stop_action': ?onInstanceStopAction?.encode(),
     'preemption_notice_duration': ?preemptionNoticeDuration?.encode(),
   };
+}
+
+/// `on_host_maintenance` — derived from the provider schema description.
+extension type const ComputeInstanceFromMachineImageOnHostMaintenance._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeInstanceFromMachineImageOnHostMaintenance.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceFromMachineImageOnHostMaintenance.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceFromMachineImageOnHostMaintenance.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const migrate = ComputeInstanceFromMachineImageOnHostMaintenance._(
+    TfArgLiteral('MIGRATE'),
+  );
+  static const terminate = ComputeInstanceFromMachineImageOnHostMaintenance._(
+    TfArgLiteral('TERMINATE'),
+  );
+
+  static const List<ComputeInstanceFromMachineImageOnHostMaintenance> values = [
+    migrate,
+    terminate,
+  ];
+}
+
+/// `provisioning_model` — derived from the provider schema description.
+extension type const ComputeInstanceFromMachineImageProvisioningModel._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ComputeInstanceFromMachineImageProvisioningModel.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceFromMachineImageProvisioningModel.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceFromMachineImageProvisioningModel.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const standard = ComputeInstanceFromMachineImageProvisioningModel._(
+    TfArgLiteral('STANDARD'),
+  );
+  static const spot = ComputeInstanceFromMachineImageProvisioningModel._(
+    TfArgLiteral('SPOT'),
+  );
+  static const flexStart = ComputeInstanceFromMachineImageProvisioningModel._(
+    TfArgLiteral('FLEX_START'),
+  );
+  static const reservationBound =
+      ComputeInstanceFromMachineImageProvisioningModel._(
+        TfArgLiteral('RESERVATION_BOUND'),
+      );
+
+  static const List<ComputeInstanceFromMachineImageProvisioningModel> values = [
+    standard,
+    spot,
+    flexStart,
+    reservationBound,
+  ];
 }
 
 /// Typed helper for the `scheduling.graceful_shutdown` block of
@@ -760,7 +929,7 @@ final class GoogleComputeInstanceFromMachineImage extends Resource {
     TfArg<String>? deletionPolicy,
     TfArg<bool>? deletionProtection,
     TfArg<String>? description,
-    TfArg<String>? desiredStatus,
+    ComputeInstanceFromMachineImageDesiredStatus? desiredStatus,
     TfArg<bool>? enableDisplay,
     TfArg<bool>? eraseWindowsVssSignature,
     TfArg<String>? hostname,

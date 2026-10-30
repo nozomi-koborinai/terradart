@@ -9,6 +9,21 @@ import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 /// Sensitive field paths for `google_discovery_engine_cmek_config`.
 const Set<String> _googleDiscoveryEngineCmekConfigSensitive = <String>{};
 
+/// Discovery Engine Cmek Config enum for `location`.
+extension type const DiscoveryEngineCmekConfigLocation._(TfArg<String> _)
+    implements TfArg<String> {
+  DiscoveryEngineCmekConfigLocation.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineCmekConfigLocation.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineCmekConfigLocation.arg(TfArg<String> arg) : this._(arg);
+
+  static const us = DiscoveryEngineCmekConfigLocation._(TfArgLiteral('us'));
+  static const eu = DiscoveryEngineCmekConfigLocation._(TfArgLiteral('eu'));
+
+  static const List<DiscoveryEngineCmekConfigLocation> values = [us, eu];
+}
+
 /// Typed helper for the `single_region_keys` block of
 /// `google_discovery_engine_cmek_config` (derived from provider schema).
 @immutable
@@ -41,7 +56,7 @@ final class GoogleDiscoveryEngineCmekConfig extends Resource {
     required TfArg<String> cmekConfigId,
     TfArg<String>? deletionPolicy,
     required RefTo<GoogleKmsCryptoKey> kmsKey,
-    required TfArg<String> location,
+    required DiscoveryEngineCmekConfigLocation location,
     TfArg<String>? project,
     TfArg<bool>? setDefault,
     List<DiscoveryEngineCmekConfigSingleRegionKeys>? singleRegionKeys,

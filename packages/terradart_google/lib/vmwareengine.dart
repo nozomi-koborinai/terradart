@@ -36,6 +36,7 @@ export 'src/data/google_vmwareengine_vcenter_credentials.dart'
 export 'src/vmwareengine/google_vmwareengine_cluster.dart'
     show
         GoogleVmwareengineCluster,
+        VmwareengineClusterAccessMode,
         VmwareengineClusterAutoscalingPolicies,
         VmwareengineClusterAutoscalingSettings,
         VmwareengineClusterConsumedMemoryThresholds,

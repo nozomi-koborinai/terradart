@@ -9,6 +9,21 @@ import '../iam/google_service_account.dart' show GoogleServiceAccount;
 /// Sensitive field paths for `google_apikeys_key`.
 const Set<String> _googleApikeysKeySensitive = <String>{'key_string'};
 
+/// Apikeys Key Check Existing enum for `check_existing_usage`.
+extension type const ApikeysKeyCheckExistingUsage._(TfArg<String> _)
+    implements TfArg<String> {
+  ApikeysKeyCheckExistingUsage.variable(String name)
+    : this._(TfArg.variable(name));
+  ApikeysKeyCheckExistingUsage.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApikeysKeyCheckExistingUsage.arg(TfArg<String> arg) : this._(arg);
+
+  static const skip = ApikeysKeyCheckExistingUsage._(TfArgLiteral('SKIP'));
+  static const check = ApikeysKeyCheckExistingUsage._(TfArgLiteral('CHECK'));
+
+  static const List<ApikeysKeyCheckExistingUsage> values = [skip, check];
+}
+
 /// Typed helper for the `restrictions` block of
 /// `google_apikeys_key` (derived from provider schema).
 @immutable
@@ -159,7 +174,7 @@ final class GoogleApikeysKey extends Resource {
     TfArg<String>? project,
     TfArg<String>? deletionPolicy,
     RefTo<GoogleServiceAccount>? serviceAccountEmail,
-    TfArg<String>? checkExistingUsage,
+    ApikeysKeyCheckExistingUsage? checkExistingUsage,
     super.lifecycle,
     super.dependsOn,
     super.provider,

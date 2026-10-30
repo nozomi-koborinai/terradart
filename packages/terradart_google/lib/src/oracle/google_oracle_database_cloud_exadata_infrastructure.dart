@@ -119,9 +119,9 @@ final class OracleDatabaseCloudExadataInfrastructureMaintenanceWindow {
 
   final TfArg<List<String>>? months;
 
-  final TfArg<String>? patchingMode;
+  final OracleDatabaseCloudExadataInfrastructurePatchingMode? patchingMode;
 
-  final TfArg<String>? preference;
+  final OracleDatabaseCloudExadataInfrastructurePreference? preference;
 
   final TfArg<List<num>>? weeksOfMonth;
 
@@ -138,6 +138,64 @@ final class OracleDatabaseCloudExadataInfrastructureMaintenanceWindow {
     'preference': ?preference?.toTfJson(),
     'weeks_of_month': ?weeksOfMonth?.toTfJson(),
   };
+}
+
+/// `patching_mode` — derived from the provider schema description.
+extension type const OracleDatabaseCloudExadataInfrastructurePatchingMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OracleDatabaseCloudExadataInfrastructurePatchingMode.variable(String name)
+    : this._(TfArg.variable(name));
+  OracleDatabaseCloudExadataInfrastructurePatchingMode.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const OracleDatabaseCloudExadataInfrastructurePatchingMode.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const patchingModeUnspecified =
+      OracleDatabaseCloudExadataInfrastructurePatchingMode._(
+        TfArgLiteral('PATCHING_MODE_UNSPECIFIED'),
+      );
+  static const rolling = OracleDatabaseCloudExadataInfrastructurePatchingMode._(
+    TfArgLiteral('ROLLING'),
+  );
+  static const nonRolling =
+      OracleDatabaseCloudExadataInfrastructurePatchingMode._(
+        TfArgLiteral('NON_ROLLING'),
+      );
+
+  static const List<OracleDatabaseCloudExadataInfrastructurePatchingMode>
+  values = [patchingModeUnspecified, rolling, nonRolling];
+}
+
+/// `preference` — derived from the provider schema description.
+extension type const OracleDatabaseCloudExadataInfrastructurePreference._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OracleDatabaseCloudExadataInfrastructurePreference.variable(String name)
+    : this._(TfArg.variable(name));
+  OracleDatabaseCloudExadataInfrastructurePreference.expression(String template)
+    : this._(TfArg.expression(template));
+  const OracleDatabaseCloudExadataInfrastructurePreference.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const maintenanceWindowPreferenceUnspecified =
+      OracleDatabaseCloudExadataInfrastructurePreference._(
+        TfArgLiteral('MAINTENANCE_WINDOW_PREFERENCE_UNSPECIFIED'),
+      );
+  static const customPreference =
+      OracleDatabaseCloudExadataInfrastructurePreference._(
+        TfArgLiteral('CUSTOM_PREFERENCE'),
+      );
+  static const noPreference =
+      OracleDatabaseCloudExadataInfrastructurePreference._(
+        TfArgLiteral('NO_PREFERENCE'),
+      );
+
+  static const List<OracleDatabaseCloudExadataInfrastructurePreference> values =
+      [maintenanceWindowPreferenceUnspecified, customPreference, noPreference];
 }
 
 /// Factory wrapper for `google_oracle_database_cloud_exadata_infrastructure`.

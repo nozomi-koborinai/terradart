@@ -10,6 +10,24 @@ import '../discovery_engine/google_discovery_engine_search_engine.dart'
 /// Sensitive field paths for `google_discovery_engine_control`.
 const Set<String> _googleDiscoveryEngineControlSensitive = <String>{};
 
+/// Discovery Engine Control enum for `location`.
+extension type const DiscoveryEngineControlLocation._(TfArg<String> _)
+    implements TfArg<String> {
+  DiscoveryEngineControlLocation.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineControlLocation.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineControlLocation.arg(TfArg<String> arg) : this._(arg);
+
+  static const global = DiscoveryEngineControlLocation._(
+    TfArgLiteral('global'),
+  );
+  static const us = DiscoveryEngineControlLocation._(TfArgLiteral('us'));
+  static const eu = DiscoveryEngineControlLocation._(TfArgLiteral('eu'));
+
+  static const List<DiscoveryEngineControlLocation> values = [global, us, eu];
+}
+
 /// Discovery Engine Control Solution enum for `solution_type`.
 extension type const DiscoveryEngineControlSolutionType._(TfArg<String> _)
     implements TfArg<String> {
@@ -565,7 +583,7 @@ final class GoogleDiscoveryEngineControl extends Resource {
 
   GoogleDiscoveryEngineControl(
     super.localName, {
-    required TfArg<String> location,
+    required DiscoveryEngineControlLocation location,
     TfArg<String>? collectionId,
     required RefTo<GoogleDiscoveryEngineSearchEngine> engineId,
     required TfArg<String> controlId,

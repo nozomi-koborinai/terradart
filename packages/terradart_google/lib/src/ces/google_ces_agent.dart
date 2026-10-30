@@ -428,7 +428,7 @@ final class CesAgentApiKeyConfig {
 
   final TfArg<String> keyName;
 
-  final TfArg<String> requestLocation;
+  final CesAgentRequestLocation requestLocation;
 
   @internal
   Map<String, Object?> encode() => {
@@ -436,6 +436,22 @@ final class CesAgentApiKeyConfig {
     'key_name': keyName.toTfJson(),
     'request_location': requestLocation.toTfJson(),
   };
+}
+
+/// `request_location` — derived from the provider schema description.
+extension type const CesAgentRequestLocation._(TfArg<String> _)
+    implements TfArg<String> {
+  CesAgentRequestLocation.variable(String name) : this._(TfArg.variable(name));
+  CesAgentRequestLocation.expression(String template)
+    : this._(TfArg.expression(template));
+  const CesAgentRequestLocation.arg(TfArg<String> arg) : this._(arg);
+
+  static const header = CesAgentRequestLocation._(TfArgLiteral('HEADER'));
+  static const queryString = CesAgentRequestLocation._(
+    TfArgLiteral('QUERY_STRING'),
+  );
+
+  static const List<CesAgentRequestLocation> values = [header, queryString];
 }
 
 /// Typed helper for the `remote_a2a_agent.a2a_config.api_authentication.bearer_token_config` block of

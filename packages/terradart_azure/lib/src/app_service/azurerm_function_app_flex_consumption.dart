@@ -169,7 +169,7 @@ final class FunctionAppFlexConsumptionAuthSettings {
 
   final TfArg<List<String>>? allowedExternalRedirectUrls;
 
-  final TfArg<String>? defaultProvider;
+  final FunctionAppFlexConsumptionDefaultProvider? defaultProvider;
 
   final TfArg<bool> enabled;
 
@@ -181,7 +181,8 @@ final class FunctionAppFlexConsumptionAuthSettings {
 
   final TfArg<bool>? tokenStoreEnabled;
 
-  final TfArg<String>? unauthenticatedClientAction;
+  final FunctionAppFlexConsumptionUnauthenticatedClientAction?
+  unauthenticatedClientAction;
 
   final FunctionAppFlexConsumptionActiveDirectory? activeDirectory;
 
@@ -213,6 +214,73 @@ final class FunctionAppFlexConsumptionAuthSettings {
     'microsoft': ?microsoft?.encode(),
     'twitter': ?twitter?.encode(),
   };
+}
+
+/// `default_provider` — derived from the provider schema description.
+extension type const FunctionAppFlexConsumptionDefaultProvider._(
+  TfArg<String> _
+) implements TfArg<String> {
+  FunctionAppFlexConsumptionDefaultProvider.variable(String name)
+    : this._(TfArg.variable(name));
+  FunctionAppFlexConsumptionDefaultProvider.expression(String template)
+    : this._(TfArg.expression(template));
+  const FunctionAppFlexConsumptionDefaultProvider.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const azureactivedirectory =
+      FunctionAppFlexConsumptionDefaultProvider._(
+        TfArgLiteral('AzureActiveDirectory'),
+      );
+  static const facebook = FunctionAppFlexConsumptionDefaultProvider._(
+    TfArgLiteral('Facebook'),
+  );
+  static const google = FunctionAppFlexConsumptionDefaultProvider._(
+    TfArgLiteral('Google'),
+  );
+  static const microsoftaccount = FunctionAppFlexConsumptionDefaultProvider._(
+    TfArgLiteral('MicrosoftAccount'),
+  );
+  static const twitter = FunctionAppFlexConsumptionDefaultProvider._(
+    TfArgLiteral('Twitter'),
+  );
+  static const github = FunctionAppFlexConsumptionDefaultProvider._(
+    TfArgLiteral('Github'),
+  );
+
+  static const List<FunctionAppFlexConsumptionDefaultProvider> values = [
+    azureactivedirectory,
+    facebook,
+    google,
+    microsoftaccount,
+    twitter,
+    github,
+  ];
+}
+
+/// `unauthenticated_client_action` — derived from the provider schema description.
+extension type const FunctionAppFlexConsumptionUnauthenticatedClientAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  FunctionAppFlexConsumptionUnauthenticatedClientAction.variable(String name)
+    : this._(TfArg.variable(name));
+  FunctionAppFlexConsumptionUnauthenticatedClientAction.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const FunctionAppFlexConsumptionUnauthenticatedClientAction.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const redirecttologinpage =
+      FunctionAppFlexConsumptionUnauthenticatedClientAction._(
+        TfArgLiteral('RedirectToLoginPage'),
+      );
+  static const allowanonymous =
+      FunctionAppFlexConsumptionUnauthenticatedClientAction._(
+        TfArgLiteral('AllowAnonymous'),
+      );
+
+  static const List<FunctionAppFlexConsumptionUnauthenticatedClientAction>
+  values = [redirecttologinpage, allowanonymous];
 }
 
 /// Typed helper for the `auth_settings.active_directory` block of
@@ -416,7 +484,8 @@ final class FunctionAppFlexConsumptionAuthSettingsV2 {
 
   final TfArg<List<String>>? excludedPaths;
 
-  final TfArg<String>? forwardProxyConvention;
+  final FunctionAppFlexConsumptionForwardProxyConvention?
+  forwardProxyConvention;
 
   final TfArg<String>? forwardProxyCustomHostHeaderName;
 
@@ -430,7 +499,7 @@ final class FunctionAppFlexConsumptionAuthSettingsV2 {
 
   final TfArg<String>? runtimeVersion;
 
-  final TfArg<String>? unauthenticatedAction;
+  final FunctionAppFlexConsumptionUnauthenticatedAction? unauthenticatedAction;
 
   final FunctionAppFlexConsumptionActiveDirectoryV2? activeDirectoryV2;
 
@@ -480,6 +549,71 @@ final class FunctionAppFlexConsumptionAuthSettingsV2 {
     'microsoft_v2': ?microsoftV2?.encode(),
     'twitter_v2': ?twitterV2?.encode(),
   };
+}
+
+/// `forward_proxy_convention` — derived from the provider schema description.
+extension type const FunctionAppFlexConsumptionForwardProxyConvention._(
+  TfArg<String> _
+) implements TfArg<String> {
+  FunctionAppFlexConsumptionForwardProxyConvention.variable(String name)
+    : this._(TfArg.variable(name));
+  FunctionAppFlexConsumptionForwardProxyConvention.expression(String template)
+    : this._(TfArg.expression(template));
+  const FunctionAppFlexConsumptionForwardProxyConvention.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const forwardproxyconventionnoproxy =
+      FunctionAppFlexConsumptionForwardProxyConvention._(
+        TfArgLiteral('ForwardProxyConventionNoProxy'),
+      );
+  static const forwardproxyconventionstandard =
+      FunctionAppFlexConsumptionForwardProxyConvention._(
+        TfArgLiteral('ForwardProxyConventionStandard'),
+      );
+  static const forwardproxyconventioncustom =
+      FunctionAppFlexConsumptionForwardProxyConvention._(
+        TfArgLiteral('ForwardProxyConventionCustom'),
+      );
+
+  static const List<FunctionAppFlexConsumptionForwardProxyConvention> values = [
+    forwardproxyconventionnoproxy,
+    forwardproxyconventionstandard,
+    forwardproxyconventioncustom,
+  ];
+}
+
+/// `unauthenticated_action` — derived from the provider schema description.
+extension type const FunctionAppFlexConsumptionUnauthenticatedAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  FunctionAppFlexConsumptionUnauthenticatedAction.variable(String name)
+    : this._(TfArg.variable(name));
+  FunctionAppFlexConsumptionUnauthenticatedAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const FunctionAppFlexConsumptionUnauthenticatedAction.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const redirecttologinpage =
+      FunctionAppFlexConsumptionUnauthenticatedAction._(
+        TfArgLiteral('RedirectToLoginPage'),
+      );
+  static const allowanonymous =
+      FunctionAppFlexConsumptionUnauthenticatedAction._(
+        TfArgLiteral('AllowAnonymous'),
+      );
+  static const return401 = FunctionAppFlexConsumptionUnauthenticatedAction._(
+    TfArgLiteral('Return401'),
+  );
+  static const return403 = FunctionAppFlexConsumptionUnauthenticatedAction._(
+    TfArgLiteral('Return403'),
+  );
+
+  static const List<FunctionAppFlexConsumptionUnauthenticatedAction> values = [
+    redirecttologinpage,
+    allowanonymous,
+    return401,
+    return403,
+  ];
 }
 
 /// Typed helper for the `auth_settings_v2.active_directory_v2` block of
@@ -708,7 +842,8 @@ final class FunctionAppFlexConsumptionLogin {
 
   final TfArg<List<String>>? allowedExternalRedirectUrls;
 
-  final TfArg<String>? cookieExpirationConvention;
+  final FunctionAppFlexConsumptionCookieExpirationConvention?
+  cookieExpirationConvention;
 
   final TfArg<String>? cookieExpirationTime;
 
@@ -743,6 +878,32 @@ final class FunctionAppFlexConsumptionLogin {
     'token_store_sas_setting_name': ?tokenStoreSasSettingName?.toTfJson(),
     'validate_nonce': ?validateNonce?.toTfJson(),
   };
+}
+
+/// `cookie_expiration_convention` — derived from the provider schema description.
+extension type const FunctionAppFlexConsumptionCookieExpirationConvention._(
+  TfArg<String> _
+) implements TfArg<String> {
+  FunctionAppFlexConsumptionCookieExpirationConvention.variable(String name)
+    : this._(TfArg.variable(name));
+  FunctionAppFlexConsumptionCookieExpirationConvention.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const FunctionAppFlexConsumptionCookieExpirationConvention.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const fixedtime =
+      FunctionAppFlexConsumptionCookieExpirationConvention._(
+        TfArgLiteral('FixedTime'),
+      );
+  static const identityproviderderived =
+      FunctionAppFlexConsumptionCookieExpirationConvention._(
+        TfArgLiteral('IdentityProviderDerived'),
+      );
+
+  static const List<FunctionAppFlexConsumptionCookieExpirationConvention>
+  values = [fixedtime, identityproviderderived];
 }
 
 /// Typed helper for the `auth_settings_v2.microsoft_v2` block of
@@ -805,7 +966,7 @@ final class FunctionAppFlexConsumptionConnectionString {
 
   final TfArg<String> name;
 
-  final TfArg<String> type;
+  final FunctionAppFlexConsumptionType type;
 
   final Sensitive<String> value;
 
@@ -815,6 +976,60 @@ final class FunctionAppFlexConsumptionConnectionString {
     'type': type.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+extension type const FunctionAppFlexConsumptionType._(TfArg<String> _)
+    implements TfArg<String> {
+  FunctionAppFlexConsumptionType.variable(String name)
+    : this._(TfArg.variable(name));
+  FunctionAppFlexConsumptionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const FunctionAppFlexConsumptionType.arg(TfArg<String> arg) : this._(arg);
+
+  static const mysql = FunctionAppFlexConsumptionType._(TfArgLiteral('MySQL'));
+  static const sqlserver = FunctionAppFlexConsumptionType._(
+    TfArgLiteral('SQLServer'),
+  );
+  static const sqlazure = FunctionAppFlexConsumptionType._(
+    TfArgLiteral('SQLAzure'),
+  );
+  static const custom = FunctionAppFlexConsumptionType._(
+    TfArgLiteral('Custom'),
+  );
+  static const notificationhub = FunctionAppFlexConsumptionType._(
+    TfArgLiteral('NotificationHub'),
+  );
+  static const servicebus = FunctionAppFlexConsumptionType._(
+    TfArgLiteral('ServiceBus'),
+  );
+  static const eventhub = FunctionAppFlexConsumptionType._(
+    TfArgLiteral('EventHub'),
+  );
+  static const apihub = FunctionAppFlexConsumptionType._(
+    TfArgLiteral('APIHub'),
+  );
+  static const docdb = FunctionAppFlexConsumptionType._(TfArgLiteral('DocDb'));
+  static const rediscache = FunctionAppFlexConsumptionType._(
+    TfArgLiteral('RedisCache'),
+  );
+  static const postgresql = FunctionAppFlexConsumptionType._(
+    TfArgLiteral('PostgreSQL'),
+  );
+
+  static const List<FunctionAppFlexConsumptionType> values = [
+    mysql,
+    sqlserver,
+    sqlazure,
+    custom,
+    notificationhub,
+    servicebus,
+    eventhub,
+    apihub,
+    docdb,
+    rediscache,
+    postgresql,
+  ];
 }
 
 /// Typed helper for the `identity` block of
@@ -900,11 +1115,11 @@ final class FunctionAppFlexConsumptionSiteConfig {
 
   final TfArg<String>? ipRestrictionDefaultAction;
 
-  final TfArg<String>? loadBalancingMode;
+  final FunctionAppFlexConsumptionLoadBalancingMode? loadBalancingMode;
 
-  final TfArg<String>? managedPipelineMode;
+  final FunctionAppFlexConsumptionManagedPipelineMode? managedPipelineMode;
 
-  final TfArg<String>? minimumTlsVersion;
+  final FunctionAppFlexConsumptionMinimumTlsVersion? minimumTlsVersion;
 
   final TfArg<bool>? remoteDebuggingEnabled;
 
@@ -914,7 +1129,7 @@ final class FunctionAppFlexConsumptionSiteConfig {
 
   final TfArg<String>? scmIpRestrictionDefaultAction;
 
-  final TfArg<String>? scmMinimumTlsVersion;
+  final FunctionAppFlexConsumptionScmMinimumTlsVersion? scmMinimumTlsVersion;
 
   final TfArg<bool>? scmUseMainIpRestriction;
 
@@ -977,6 +1192,130 @@ final class FunctionAppFlexConsumptionSiteConfig {
   };
 }
 
+/// `load_balancing_mode` — derived from the provider schema description.
+extension type const FunctionAppFlexConsumptionLoadBalancingMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  FunctionAppFlexConsumptionLoadBalancingMode.variable(String name)
+    : this._(TfArg.variable(name));
+  FunctionAppFlexConsumptionLoadBalancingMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const FunctionAppFlexConsumptionLoadBalancingMode.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const weightedroundrobin =
+      FunctionAppFlexConsumptionLoadBalancingMode._(
+        TfArgLiteral('WeightedRoundRobin'),
+      );
+  static const leastrequests = FunctionAppFlexConsumptionLoadBalancingMode._(
+    TfArgLiteral('LeastRequests'),
+  );
+  static const leastresponsetime =
+      FunctionAppFlexConsumptionLoadBalancingMode._(
+        TfArgLiteral('LeastResponseTime'),
+      );
+  static const weightedtotaltraffic =
+      FunctionAppFlexConsumptionLoadBalancingMode._(
+        TfArgLiteral('WeightedTotalTraffic'),
+      );
+  static const requesthash = FunctionAppFlexConsumptionLoadBalancingMode._(
+    TfArgLiteral('RequestHash'),
+  );
+  static const persiteroundrobin =
+      FunctionAppFlexConsumptionLoadBalancingMode._(
+        TfArgLiteral('PerSiteRoundRobin'),
+      );
+
+  static const List<FunctionAppFlexConsumptionLoadBalancingMode> values = [
+    weightedroundrobin,
+    leastrequests,
+    leastresponsetime,
+    weightedtotaltraffic,
+    requesthash,
+    persiteroundrobin,
+  ];
+}
+
+/// `managed_pipeline_mode` — derived from the provider schema description.
+extension type const FunctionAppFlexConsumptionManagedPipelineMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  FunctionAppFlexConsumptionManagedPipelineMode.variable(String name)
+    : this._(TfArg.variable(name));
+  FunctionAppFlexConsumptionManagedPipelineMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const FunctionAppFlexConsumptionManagedPipelineMode.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const integrated = FunctionAppFlexConsumptionManagedPipelineMode._(
+    TfArgLiteral('Integrated'),
+  );
+  static const classic = FunctionAppFlexConsumptionManagedPipelineMode._(
+    TfArgLiteral('Classic'),
+  );
+
+  static const List<FunctionAppFlexConsumptionManagedPipelineMode> values = [
+    integrated,
+    classic,
+  ];
+}
+
+/// `minimum_tls_version` — derived from the provider schema description.
+extension type const FunctionAppFlexConsumptionMinimumTlsVersion._(
+  TfArg<String> _
+) implements TfArg<String> {
+  FunctionAppFlexConsumptionMinimumTlsVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  FunctionAppFlexConsumptionMinimumTlsVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const FunctionAppFlexConsumptionMinimumTlsVersion.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const v1p0 = FunctionAppFlexConsumptionMinimumTlsVersion._(
+    TfArgLiteral('1.0'),
+  );
+  static const v1p1 = FunctionAppFlexConsumptionMinimumTlsVersion._(
+    TfArgLiteral('1.1'),
+  );
+  static const v1p2 = FunctionAppFlexConsumptionMinimumTlsVersion._(
+    TfArgLiteral('1.2'),
+  );
+
+  static const List<FunctionAppFlexConsumptionMinimumTlsVersion> values = [
+    v1p0,
+    v1p1,
+    v1p2,
+  ];
+}
+
+/// `scm_minimum_tls_version` — derived from the provider schema description.
+extension type const FunctionAppFlexConsumptionScmMinimumTlsVersion._(
+  TfArg<String> _
+) implements TfArg<String> {
+  FunctionAppFlexConsumptionScmMinimumTlsVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  FunctionAppFlexConsumptionScmMinimumTlsVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const FunctionAppFlexConsumptionScmMinimumTlsVersion.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const v1p0 = FunctionAppFlexConsumptionScmMinimumTlsVersion._(
+    TfArgLiteral('1.0'),
+  );
+  static const v1p1 = FunctionAppFlexConsumptionScmMinimumTlsVersion._(
+    TfArgLiteral('1.1'),
+  );
+  static const v1p2 = FunctionAppFlexConsumptionScmMinimumTlsVersion._(
+    TfArgLiteral('1.2'),
+  );
+
+  static const List<FunctionAppFlexConsumptionScmMinimumTlsVersion> values = [
+    v1p0,
+    v1p1,
+    v1p2,
+  ];
+}
+
 /// Typed helper for the `site_config.app_service_logs` block of
 /// `azurerm_function_app_flex_consumption` (derived from provider schema).
 @immutable
@@ -1032,7 +1371,7 @@ final class FunctionAppFlexConsumptionIpRestriction {
     this.virtualNetworkSubnetId,
   });
 
-  final TfArg<String>? action;
+  final FunctionAppFlexConsumptionAction? action;
 
   final TfArg<String>? description;
 
@@ -1061,6 +1400,23 @@ final class FunctionAppFlexConsumptionIpRestriction {
   };
 }
 
+/// `action` — derived from the provider schema description.
+extension type const FunctionAppFlexConsumptionAction._(TfArg<String> _)
+    implements TfArg<String> {
+  FunctionAppFlexConsumptionAction.variable(String name)
+    : this._(TfArg.variable(name));
+  FunctionAppFlexConsumptionAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const FunctionAppFlexConsumptionAction.arg(TfArg<String> arg) : this._(arg);
+
+  static const allow = FunctionAppFlexConsumptionAction._(
+    TfArgLiteral('Allow'),
+  );
+  static const deny = FunctionAppFlexConsumptionAction._(TfArgLiteral('Deny'));
+
+  static const List<FunctionAppFlexConsumptionAction> values = [allow, deny];
+}
+
 /// Typed helper for the `site_config.scm_ip_restriction` block of
 /// `azurerm_function_app_flex_consumption` (derived from provider schema).
 @immutable
@@ -1076,7 +1432,7 @@ final class FunctionAppFlexConsumptionScmIpRestriction {
     this.virtualNetworkSubnetId,
   });
 
-  final TfArg<String>? action;
+  final FunctionAppFlexConsumptionAction? action;
 
   final TfArg<String>? description;
 

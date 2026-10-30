@@ -67,7 +67,7 @@ export 'src/apigee/google_apigee_endpoint_attachment.dart'
 export 'src/apigee/google_apigee_env_keystore.dart'
     show GoogleApigeeEnvKeystore;
 export 'src/apigee/google_apigee_env_references.dart'
-    show GoogleApigeeEnvReferences;
+    show ApigeeEnvReferencesResourceType, GoogleApigeeEnvReferences;
 export 'src/apigee/google_apigee_envgroup.dart' show GoogleApigeeEnvgroup;
 export 'src/apigee/google_apigee_envgroup_attachment.dart'
     show GoogleApigeeEnvgroupAttachment;
@@ -100,7 +100,8 @@ export 'src/apigee/google_apigee_environment_keyvaluemaps.dart'
     show GoogleApigeeEnvironmentKeyvaluemaps;
 export 'src/apigee/google_apigee_environment_keyvaluemaps_entries.dart'
     show GoogleApigeeEnvironmentKeyvaluemapsEntries;
-export 'src/apigee/google_apigee_flowhook.dart' show GoogleApigeeFlowhook;
+export 'src/apigee/google_apigee_flowhook.dart'
+    show ApigeeFlowhookFlowHookPoint, GoogleApigeeFlowhook;
 export 'src/apigee/google_apigee_instance.dart'
     show ApigeeInstanceAccessLoggingConfig, GoogleApigeeInstance;
 export 'src/apigee/google_apigee_instance_attachment.dart'
@@ -137,6 +138,7 @@ export 'src/apigee/google_apigee_security_action.dart'
         ApigeeSecurityActionExpirationTtl,
         ApigeeSecurityActionFlag,
         ApigeeSecurityActionHeaders,
+        ApigeeSecurityActionHttpMethods,
         ApigeeSecurityActionState,
         GoogleApigeeSecurityAction;
 export 'src/apigee/google_apigee_security_feedback.dart'

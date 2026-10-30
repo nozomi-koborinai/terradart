@@ -178,7 +178,7 @@ final class VertexAiReasoningEngineEvents {
 final class VertexAiReasoningEngineContent {
   const VertexAiReasoningEngineContent({this.role, required this.parts});
 
-  final TfArg<String>? role;
+  final VertexAiReasoningEngineRole? role;
 
   final List<VertexAiReasoningEngineParts> parts;
 
@@ -187,6 +187,21 @@ final class VertexAiReasoningEngineContent {
     'role': ?role?.toTfJson(),
     'parts': [for (final e in parts) e.encode()],
   };
+}
+
+/// `role` — derived from the provider schema description.
+extension type const VertexAiReasoningEngineRole._(TfArg<String> _)
+    implements TfArg<String> {
+  VertexAiReasoningEngineRole.variable(String name)
+    : this._(TfArg.variable(name));
+  VertexAiReasoningEngineRole.expression(String template)
+    : this._(TfArg.expression(template));
+  const VertexAiReasoningEngineRole.arg(TfArg<String> arg) : this._(arg);
+
+  static const user = VertexAiReasoningEngineRole._(TfArgLiteral('user'));
+  static const model = VertexAiReasoningEngineRole._(TfArgLiteral('model'));
+
+  static const List<VertexAiReasoningEngineRole> values = [user, model];
 }
 
 /// Typed helper for the `context_spec.memory_bank_config.customization_configs.generate_memories_examples.conversation_source.events.content.parts` block of

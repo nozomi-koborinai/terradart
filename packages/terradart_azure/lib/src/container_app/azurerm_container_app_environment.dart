@@ -11,6 +11,29 @@ const Set<String> _azurermContainerAppEnvironmentSensitive = <String>{
   'dapr_application_insights_connection_string',
 };
 
+/// Container App Environment Logs enum for `logs_destination`.
+extension type const ContainerAppEnvironmentLogsDestination._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerAppEnvironmentLogsDestination.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerAppEnvironmentLogsDestination.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerAppEnvironmentLogsDestination.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const logAnalytics = ContainerAppEnvironmentLogsDestination._(
+    TfArgLiteral('log-analytics'),
+  );
+  static const azureMonitor = ContainerAppEnvironmentLogsDestination._(
+    TfArgLiteral('azure-monitor'),
+  );
+
+  static const List<ContainerAppEnvironmentLogsDestination> values = [
+    logAnalytics,
+    azureMonitor,
+  ];
+}
+
 /// Container App Environment Public Network enum for `public_network_access`.
 extension type const ContainerAppEnvironmentPublicNetworkAccess._(
   TfArg<String> _
@@ -92,7 +115,7 @@ final class AzurermContainerAppEnvironment extends Resource {
     TfArg<bool>? internalLoadBalancerEnabled,
     required TfArg<String> location,
     TfArg<String>? logAnalyticsWorkspaceId,
-    TfArg<String>? logsDestination,
+    ContainerAppEnvironmentLogsDestination? logsDestination,
     TfArg<bool>? mutualTlsEnabled,
     required TfArg<String> name,
     ContainerAppEnvironmentPublicNetworkAccess? publicNetworkAccess,

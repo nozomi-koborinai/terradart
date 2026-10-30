@@ -23,7 +23,7 @@ final class LustreInstanceAccessRulesOptions {
 
   final TfArg<num>? defaultSquashGid;
 
-  final TfArg<String> defaultSquashMode;
+  final LustreInstanceDefaultSquashMode defaultSquashMode;
 
   final TfArg<num>? defaultSquashUid;
 
@@ -37,6 +37,28 @@ final class LustreInstanceAccessRulesOptions {
     if (accessRules != null)
       'access_rules': [for (final e in accessRules!) e.encode()],
   };
+}
+
+/// `default_squash_mode` — derived from the provider schema description.
+extension type const LustreInstanceDefaultSquashMode._(TfArg<String> _)
+    implements TfArg<String> {
+  LustreInstanceDefaultSquashMode.variable(String name)
+    : this._(TfArg.variable(name));
+  LustreInstanceDefaultSquashMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const LustreInstanceDefaultSquashMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const noSquash = LustreInstanceDefaultSquashMode._(
+    TfArgLiteral('NO_SQUASH'),
+  );
+  static const rootSquash = LustreInstanceDefaultSquashMode._(
+    TfArgLiteral('ROOT_SQUASH'),
+  );
+
+  static const List<LustreInstanceDefaultSquashMode> values = [
+    noSquash,
+    rootSquash,
+  ];
 }
 
 /// Typed helper for the `access_rules_options.access_rules` block of
@@ -53,7 +75,7 @@ final class LustreInstanceAccessRules {
 
   final TfArg<String> name;
 
-  final TfArg<String> squashMode;
+  final LustreInstanceSquashMode squashMode;
 
   @internal
   Map<String, Object?> encode() => {
@@ -63,16 +85,48 @@ final class LustreInstanceAccessRules {
   };
 }
 
+/// `squash_mode` — derived from the provider schema description.
+extension type const LustreInstanceSquashMode._(TfArg<String> _)
+    implements TfArg<String> {
+  LustreInstanceSquashMode.variable(String name) : this._(TfArg.variable(name));
+  LustreInstanceSquashMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const LustreInstanceSquashMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const noSquash = LustreInstanceSquashMode._(TfArgLiteral('NO_SQUASH'));
+  static const rootSquash = LustreInstanceSquashMode._(
+    TfArgLiteral('ROOT_SQUASH'),
+  );
+
+  static const List<LustreInstanceSquashMode> values = [noSquash, rootSquash];
+}
+
 /// Typed helper for the `dynamic_tier_options` block of
 /// `google_lustre_instance` (derived from provider schema).
 @immutable
 final class LustreInstanceDynamicTierOptions {
   const LustreInstanceDynamicTierOptions({required this.mode});
 
-  final TfArg<String> mode;
+  final LustreInstanceMode mode;
 
   @internal
   Map<String, Object?> encode() => {'mode': mode.toTfJson()};
+}
+
+/// `mode` — derived from the provider schema description.
+extension type const LustreInstanceMode._(TfArg<String> _)
+    implements TfArg<String> {
+  LustreInstanceMode.variable(String name) : this._(TfArg.variable(name));
+  LustreInstanceMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const LustreInstanceMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const disabled = LustreInstanceMode._(TfArgLiteral('DISABLED'));
+  static const defaultCache = LustreInstanceMode._(
+    TfArgLiteral('DEFAULT_CACHE'),
+  );
+
+  static const List<LustreInstanceMode> values = [disabled, defaultCache];
 }
 
 /// Typed helper for the `maintenance_policy` block of
@@ -196,7 +250,7 @@ final class LustreInstanceWeeklyMaintenanceWindows {
     required this.startTime,
   });
 
-  final TfArg<String> dayOfWeek;
+  final LustreInstanceDayOfWeek dayOfWeek;
 
   final LustreInstanceStartTime startTime;
 
@@ -205,6 +259,33 @@ final class LustreInstanceWeeklyMaintenanceWindows {
     'day_of_week': dayOfWeek.toTfJson(),
     'start_time': startTime.encode(),
   };
+}
+
+/// `day_of_week` — derived from the provider schema description.
+extension type const LustreInstanceDayOfWeek._(TfArg<String> _)
+    implements TfArg<String> {
+  LustreInstanceDayOfWeek.variable(String name) : this._(TfArg.variable(name));
+  LustreInstanceDayOfWeek.expression(String template)
+    : this._(TfArg.expression(template));
+  const LustreInstanceDayOfWeek.arg(TfArg<String> arg) : this._(arg);
+
+  static const monday = LustreInstanceDayOfWeek._(TfArgLiteral('MONDAY'));
+  static const tuesday = LustreInstanceDayOfWeek._(TfArgLiteral('TUESDAY'));
+  static const wednesday = LustreInstanceDayOfWeek._(TfArgLiteral('WEDNESDAY'));
+  static const thursday = LustreInstanceDayOfWeek._(TfArgLiteral('THURSDAY'));
+  static const friday = LustreInstanceDayOfWeek._(TfArgLiteral('FRIDAY'));
+  static const saturday = LustreInstanceDayOfWeek._(TfArgLiteral('SATURDAY'));
+  static const sunday = LustreInstanceDayOfWeek._(TfArgLiteral('SUNDAY'));
+
+  static const List<LustreInstanceDayOfWeek> values = [
+    monday,
+    tuesday,
+    wednesday,
+    thursday,
+    friday,
+    saturday,
+    sunday,
+  ];
 }
 
 /// Typed helper for the `maintenance_policy.weekly_maintenance_windows.start_time` block of

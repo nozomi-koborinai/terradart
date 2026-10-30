@@ -7,6 +7,35 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String>
 _googleStorageControlFolderIntelligenceFindingsSummarySensitive = <String>{};
 
+/// Data Storage Control Folder Intelligence Findings Summary Resource enum for `resource_scope`.
+extension type const DataStorageControlFolderIntelligenceFindingsSummaryResourceScope._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DataStorageControlFolderIntelligenceFindingsSummaryResourceScope.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  DataStorageControlFolderIntelligenceFindingsSummaryResourceScope.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const DataStorageControlFolderIntelligenceFindingsSummaryResourceScope.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const parent =
+      DataStorageControlFolderIntelligenceFindingsSummaryResourceScope._(
+        TfArgLiteral('PARENT'),
+      );
+  static const project =
+      DataStorageControlFolderIntelligenceFindingsSummaryResourceScope._(
+        TfArgLiteral('PROJECT'),
+      );
+
+  static const List<
+    DataStorageControlFolderIntelligenceFindingsSummaryResourceScope
+  >
+  values = [parent, project];
+}
+
 /// Factory wrapper for `google_storage_control_folder_intelligence_findings_summary`.
 ///
 /// Read-only data source on the apply-excluded leftover path
@@ -21,7 +50,8 @@ final class DataGoogleStorageControlFolderIntelligenceFindingsSummary
     TfArg<String>? filter,
     required TfArg<String> folder,
     TfArg<String>? location,
-    TfArg<String>? resourceScope,
+    DataStorageControlFolderIntelligenceFindingsSummaryResourceScope?
+    resourceScope,
     super.provider,
     super.timeouts,
   }) : super(

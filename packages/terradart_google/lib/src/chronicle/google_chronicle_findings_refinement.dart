@@ -17,7 +17,7 @@ final class ChronicleFindingsRefinementOutcomeFilters {
     required this.outcomeVariable,
   });
 
-  final TfArg<String> outcomeFilterOperator;
+  final ChronicleFindingsRefinementOutcomeFilterOperator outcomeFilterOperator;
 
   final TfArg<String> outcomeValue;
 
@@ -29,6 +29,39 @@ final class ChronicleFindingsRefinementOutcomeFilters {
     'outcome_value': outcomeValue.toTfJson(),
     'outcome_variable': outcomeVariable.toTfJson(),
   };
+}
+
+/// `outcome_filter_operator` — derived from the provider schema description.
+extension type const ChronicleFindingsRefinementOutcomeFilterOperator._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ChronicleFindingsRefinementOutcomeFilterOperator.variable(String name)
+    : this._(TfArg.variable(name));
+  ChronicleFindingsRefinementOutcomeFilterOperator.expression(String template)
+    : this._(TfArg.expression(template));
+  const ChronicleFindingsRefinementOutcomeFilterOperator.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const equal = ChronicleFindingsRefinementOutcomeFilterOperator._(
+    TfArgLiteral('EQUAL'),
+  );
+  static const contains = ChronicleFindingsRefinementOutcomeFilterOperator._(
+    TfArgLiteral('CONTAINS'),
+  );
+  static const matchesRegex =
+      ChronicleFindingsRefinementOutcomeFilterOperator._(
+        TfArgLiteral('MATCHES_REGEX'),
+      );
+  static const matchesCidr = ChronicleFindingsRefinementOutcomeFilterOperator._(
+    TfArgLiteral('MATCHES_CIDR'),
+  );
+
+  static const List<ChronicleFindingsRefinementOutcomeFilterOperator> values = [
+    equal,
+    contains,
+    matchesRegex,
+    matchesCidr,
+  ];
 }
 
 /// Factory wrapper for `google_chronicle_findings_refinement`.

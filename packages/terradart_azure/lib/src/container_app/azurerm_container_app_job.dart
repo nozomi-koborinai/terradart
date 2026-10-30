@@ -474,7 +474,7 @@ final class ContainerAppJobLivenessProbe {
 
   final TfArg<num>? timeout;
 
-  final TfArg<String> transport;
+  final ContainerAppJobTransport transport;
 
   final List<ContainerAppJobHeader>? header;
 
@@ -490,6 +490,21 @@ final class ContainerAppJobLivenessProbe {
     'transport': transport.toTfJson(),
     if (header != null) 'header': [for (final e in header!) e.encode()],
   };
+}
+
+/// `transport` — derived from the provider schema description.
+extension type const ContainerAppJobTransport._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerAppJobTransport.variable(String name) : this._(TfArg.variable(name));
+  ContainerAppJobTransport.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerAppJobTransport.arg(TfArg<String> arg) : this._(arg);
+
+  static const tcp = ContainerAppJobTransport._(TfArgLiteral('TCP'));
+  static const http = ContainerAppJobTransport._(TfArgLiteral('HTTP'));
+  static const https = ContainerAppJobTransport._(TfArgLiteral('HTTPS'));
+
+  static const List<ContainerAppJobTransport> values = [tcp, http, https];
 }
 
 /// Typed helper for the `template.container.liveness_probe.header` block of
@@ -543,7 +558,7 @@ final class ContainerAppJobReadinessProbe {
 
   final TfArg<num>? timeout;
 
-  final TfArg<String> transport;
+  final ContainerAppJobTransport transport;
 
   final List<ContainerAppJobHeader>? header;
 
@@ -592,7 +607,7 @@ final class ContainerAppJobStartupProbe {
 
   final TfArg<num>? timeout;
 
-  final TfArg<String> transport;
+  final ContainerAppJobTransport transport;
 
   final List<ContainerAppJobHeader>? header;
 
@@ -697,7 +712,7 @@ final class ContainerAppJobVolume {
 
   final TfArg<String>? storageName;
 
-  final TfArg<String>? storageType;
+  final ContainerAppJobStorageType? storageType;
 
   @internal
   Map<String, Object?> encode() => {
@@ -706,6 +721,25 @@ final class ContainerAppJobVolume {
     'storage_name': ?storageName?.toTfJson(),
     'storage_type': ?storageType?.toTfJson(),
   };
+}
+
+/// `storage_type` — derived from the provider schema description.
+extension type const ContainerAppJobStorageType._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerAppJobStorageType.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerAppJobStorageType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerAppJobStorageType.arg(TfArg<String> arg) : this._(arg);
+
+  static const azurefile = ContainerAppJobStorageType._(
+    TfArgLiteral('AzureFile'),
+  );
+  static const emptydir = ContainerAppJobStorageType._(
+    TfArgLiteral('EmptyDir'),
+  );
+
+  static const List<ContainerAppJobStorageType> values = [azurefile, emptydir];
 }
 
 /// Factory wrapper for `azurerm_container_app_job`.

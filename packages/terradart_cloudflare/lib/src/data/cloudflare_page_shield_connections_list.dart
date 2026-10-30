@@ -68,6 +68,33 @@ extension type const DataPageShieldConnectionsListOrderBy._(TfArg<String> _)
   ];
 }
 
+/// Data Page Shield Connections List enum for `status`.
+extension type const DataPageShieldConnectionsListStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  DataPageShieldConnectionsListStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  DataPageShieldConnectionsListStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataPageShieldConnectionsListStatus.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const active = DataPageShieldConnectionsListStatus._(
+    TfArgLiteral('active'),
+  );
+  static const infrequent = DataPageShieldConnectionsListStatus._(
+    TfArgLiteral('infrequent'),
+  );
+  static const inactive = DataPageShieldConnectionsListStatus._(
+    TfArgLiteral('inactive'),
+  );
+
+  static const List<DataPageShieldConnectionsListStatus> values = [
+    active,
+    infrequent,
+    inactive,
+  ];
+}
+
 /// Factory wrapper for `cloudflare_page_shield_connections_list`.
 ///
 /// Accepted Permissions
@@ -90,7 +117,7 @@ final class DataCloudflarePageShieldConnectionsList extends Data {
     TfArg<String>? pageUrl,
     TfArg<num>? perPage,
     TfArg<bool>? prioritizeMalicious,
-    TfArg<String>? status,
+    DataPageShieldConnectionsListStatus? status,
     TfArg<String>? urls,
     RefTo<CloudflareZone>? zoneId,
     super.provider,

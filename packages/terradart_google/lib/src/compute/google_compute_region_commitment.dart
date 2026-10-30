@@ -75,6 +75,64 @@ extension type const ComputeRegionCommitmentStatus._(TfArg<String> _)
   ];
 }
 
+/// Compute Region Commitment enum for `type`.
+extension type const ComputeRegionCommitmentType._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeRegionCommitmentType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRegionCommitmentType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeRegionCommitmentType.arg(TfArg<String> arg) : this._(arg);
+
+  static const memoryOptimized = ComputeRegionCommitmentType._(
+    TfArgLiteral('MEMORY_OPTIMIZED'),
+  );
+  static const acceleratorOptimized = ComputeRegionCommitmentType._(
+    TfArgLiteral('ACCELERATOR_OPTIMIZED'),
+  );
+  static const generalPurpose = ComputeRegionCommitmentType._(
+    TfArgLiteral('GENERAL_PURPOSE'),
+  );
+  static const generalPurposeN2 = ComputeRegionCommitmentType._(
+    TfArgLiteral('GENERAL_PURPOSE_N2'),
+  );
+  static const generalPurposeN2d = ComputeRegionCommitmentType._(
+    TfArgLiteral('GENERAL_PURPOSE_N2D'),
+  );
+  static const generalPurposeE2 = ComputeRegionCommitmentType._(
+    TfArgLiteral('GENERAL_PURPOSE_E2'),
+  );
+  static const generalPurposeT2d = ComputeRegionCommitmentType._(
+    TfArgLiteral('GENERAL_PURPOSE_T2D'),
+  );
+  static const generalPurposeC3 = ComputeRegionCommitmentType._(
+    TfArgLiteral('GENERAL_PURPOSE_C3'),
+  );
+  static const computeOptimizedC2 = ComputeRegionCommitmentType._(
+    TfArgLiteral('COMPUTE_OPTIMIZED_C2'),
+  );
+  static const computeOptimizedC2d = ComputeRegionCommitmentType._(
+    TfArgLiteral('COMPUTE_OPTIMIZED_C2D'),
+  );
+  static const graphicsOptimizedG2 = ComputeRegionCommitmentType._(
+    TfArgLiteral('GRAPHICS_OPTIMIZED_G2'),
+  );
+
+  static const List<ComputeRegionCommitmentType> values = [
+    memoryOptimized,
+    acceleratorOptimized,
+    generalPurpose,
+    generalPurposeN2,
+    generalPurposeN2d,
+    generalPurposeE2,
+    generalPurposeT2d,
+    generalPurposeC3,
+    computeOptimizedC2,
+    computeOptimizedC2d,
+    graphicsOptimizedG2,
+  ];
+}
+
 /// Typed helper for the `license_resource` block of
 /// `google_compute_region_commitment` (derived from provider schema).
 @immutable
@@ -127,7 +185,7 @@ final class ComputeRegionCommitmentResources {
 
   final TfArg<String>? amount;
 
-  final TfArg<String>? type;
+  final ComputeRegionCommitmentResourcesType? type;
 
   @internal
   Map<String, Object?> encode() => {
@@ -135,6 +193,37 @@ final class ComputeRegionCommitmentResources {
     'amount': ?amount?.toTfJson(),
     'type': ?type?.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+extension type const ComputeRegionCommitmentResourcesType._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeRegionCommitmentResourcesType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeRegionCommitmentResourcesType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeRegionCommitmentResourcesType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const vcpu = ComputeRegionCommitmentResourcesType._(
+    TfArgLiteral('VCPU'),
+  );
+  static const memory = ComputeRegionCommitmentResourcesType._(
+    TfArgLiteral('MEMORY'),
+  );
+  static const localSsd = ComputeRegionCommitmentResourcesType._(
+    TfArgLiteral('LOCAL_SSD'),
+  );
+  static const accelerator = ComputeRegionCommitmentResourcesType._(
+    TfArgLiteral('ACCELERATOR'),
+  );
+
+  static const List<ComputeRegionCommitmentResourcesType> values = [
+    vcpu,
+    memory,
+    localSsd,
+    accelerator,
+  ];
 }
 
 /// Factory wrapper for `google_compute_region_commitment`.
@@ -170,7 +259,7 @@ final class GoogleComputeRegionCommitment extends Resource {
     required ComputeRegionCommitmentPlan plan,
     TfArg<String>? region,
     List<ComputeRegionCommitmentResources>? resources,
-    TfArg<String>? type,
+    ComputeRegionCommitmentType? type,
     ComputeRegionCommitmentCategory? category,
     TfArg<String>? description,
     TfArg<bool>? autoRenew,

@@ -65,6 +65,7 @@ export 'src/odb/aws_odb_autonomous_database_secrets_manager_integration.dart'
 export 'src/odb/aws_odb_cloud_autonomous_vm_cluster.dart'
     show
         AwsOdbCloudAutonomousVmCluster,
+        OdbCloudAutonomousVmClusterLicenseModel,
         OdbCloudAutonomousVmClusterMaintenanceWindow,
         OdbCloudAutonomousVmClusterPreference;
 export 'src/odb/aws_odb_cloud_exadata_infrastructure.dart'

@@ -10,6 +10,7 @@ export 'src/apikeys/google_apikeys_key.dart'
         ApikeysKeyAndroidKeyRestrictions,
         ApikeysKeyApiTargets,
         ApikeysKeyBrowserKeyRestrictions,
+        ApikeysKeyCheckExistingUsage,
         ApikeysKeyIosKeyRestrictions,
         ApikeysKeyRestrictions,
         ApikeysKeyServerKeyRestrictions,

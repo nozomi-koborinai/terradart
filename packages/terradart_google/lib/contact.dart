@@ -30,7 +30,9 @@ export 'src/contact/google_contact_center_insights_qa_question.dart'
         ContactCenterInsightsQaQuestionConversationDataOptions,
         ContactCenterInsightsQaQuestionDataOptions,
         ContactCenterInsightsQaQuestionPredefinedQuestionConfig,
+        ContactCenterInsightsQaQuestionPredefinedQuestionConfigType,
         ContactCenterInsightsQaQuestionTuningMetadata,
+        ContactCenterInsightsQaQuestionType,
         GoogleContactCenterInsightsQaQuestion;
 export 'src/contact/google_contact_center_insights_qa_scorecard.dart'
     show

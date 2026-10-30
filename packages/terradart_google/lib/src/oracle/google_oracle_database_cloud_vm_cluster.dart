@@ -81,13 +81,13 @@ final class OracleDatabaseCloudVmClusterProperties {
 
   final TfArg<List<String>>? dbServerOcids;
 
-  final TfArg<String>? diskRedundancy;
+  final OracleDatabaseCloudVmClusterDiskRedundancy? diskRedundancy;
 
   final TfArg<String>? giVersion;
 
   final TfArg<String>? hostnamePrefix;
 
-  final TfArg<String> licenseType;
+  final OracleDatabaseCloudVmClusterLicenseType licenseType;
 
   final TfArg<bool>? localBackupEnabled;
 
@@ -101,9 +101,10 @@ final class OracleDatabaseCloudVmClusterProperties {
 
   final TfArg<List<String>>? sshPublicKeys;
 
-  final TfArg<String>? vmBackupStorageType;
+  final OracleDatabaseCloudVmClusterVmBackupStorageType? vmBackupStorageType;
 
-  final TfArg<String>? vmFileSystemStorageType;
+  final OracleDatabaseCloudVmClusterVmFileSystemStorageType?
+  vmFileSystemStorageType;
 
   final OracleDatabaseCloudVmClusterDiagnosticsDataCollectionOptions?
   diagnosticsDataCollectionOptions;
@@ -133,6 +134,128 @@ final class OracleDatabaseCloudVmClusterProperties {
         ?.encode(),
     'time_zone': ?timeZone?.encode(),
   };
+}
+
+/// `disk_redundancy` — derived from the provider schema description.
+extension type const OracleDatabaseCloudVmClusterDiskRedundancy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OracleDatabaseCloudVmClusterDiskRedundancy.variable(String name)
+    : this._(TfArg.variable(name));
+  OracleDatabaseCloudVmClusterDiskRedundancy.expression(String template)
+    : this._(TfArg.expression(template));
+  const OracleDatabaseCloudVmClusterDiskRedundancy.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const diskRedundancyUnspecified =
+      OracleDatabaseCloudVmClusterDiskRedundancy._(
+        TfArgLiteral('DISK_REDUNDANCY_UNSPECIFIED'),
+      );
+  static const high = OracleDatabaseCloudVmClusterDiskRedundancy._(
+    TfArgLiteral('HIGH'),
+  );
+  static const normal = OracleDatabaseCloudVmClusterDiskRedundancy._(
+    TfArgLiteral('NORMAL'),
+  );
+
+  static const List<OracleDatabaseCloudVmClusterDiskRedundancy> values = [
+    diskRedundancyUnspecified,
+    high,
+    normal,
+  ];
+}
+
+/// `license_type` — derived from the provider schema description.
+extension type const OracleDatabaseCloudVmClusterLicenseType._(TfArg<String> _)
+    implements TfArg<String> {
+  OracleDatabaseCloudVmClusterLicenseType.variable(String name)
+    : this._(TfArg.variable(name));
+  OracleDatabaseCloudVmClusterLicenseType.expression(String template)
+    : this._(TfArg.expression(template));
+  const OracleDatabaseCloudVmClusterLicenseType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const licenseTypeUnspecified =
+      OracleDatabaseCloudVmClusterLicenseType._(
+        TfArgLiteral('LICENSE_TYPE_UNSPECIFIED'),
+      );
+  static const licenseIncluded = OracleDatabaseCloudVmClusterLicenseType._(
+    TfArgLiteral('LICENSE_INCLUDED'),
+  );
+  static const bringYourOwnLicense = OracleDatabaseCloudVmClusterLicenseType._(
+    TfArgLiteral('BRING_YOUR_OWN_LICENSE'),
+  );
+
+  static const List<OracleDatabaseCloudVmClusterLicenseType> values = [
+    licenseTypeUnspecified,
+    licenseIncluded,
+    bringYourOwnLicense,
+  ];
+}
+
+/// `vm_backup_storage_type` — derived from the provider schema description.
+extension type const OracleDatabaseCloudVmClusterVmBackupStorageType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OracleDatabaseCloudVmClusterVmBackupStorageType.variable(String name)
+    : this._(TfArg.variable(name));
+  OracleDatabaseCloudVmClusterVmBackupStorageType.expression(String template)
+    : this._(TfArg.expression(template));
+  const OracleDatabaseCloudVmClusterVmBackupStorageType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const vmBackupStorageTypeUnspecified =
+      OracleDatabaseCloudVmClusterVmBackupStorageType._(
+        TfArgLiteral('VM_BACKUP_STORAGE_TYPE_UNSPECIFIED'),
+      );
+  static const vmBackupStorageTypeLocal =
+      OracleDatabaseCloudVmClusterVmBackupStorageType._(
+        TfArgLiteral('VM_BACKUP_STORAGE_TYPE_LOCAL'),
+      );
+  static const vmBackupStorageTypeExascale =
+      OracleDatabaseCloudVmClusterVmBackupStorageType._(
+        TfArgLiteral('VM_BACKUP_STORAGE_TYPE_EXASCALE'),
+      );
+
+  static const List<OracleDatabaseCloudVmClusterVmBackupStorageType> values = [
+    vmBackupStorageTypeUnspecified,
+    vmBackupStorageTypeLocal,
+    vmBackupStorageTypeExascale,
+  ];
+}
+
+/// `vm_file_system_storage_type` — derived from the provider schema description.
+extension type const OracleDatabaseCloudVmClusterVmFileSystemStorageType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OracleDatabaseCloudVmClusterVmFileSystemStorageType.variable(String name)
+    : this._(TfArg.variable(name));
+  OracleDatabaseCloudVmClusterVmFileSystemStorageType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const OracleDatabaseCloudVmClusterVmFileSystemStorageType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const vmFileSystemStorageTypeUnspecified =
+      OracleDatabaseCloudVmClusterVmFileSystemStorageType._(
+        TfArgLiteral('VM_FILE_SYSTEM_STORAGE_TYPE_UNSPECIFIED'),
+      );
+  static const vmFileSystemStorageTypeLocal =
+      OracleDatabaseCloudVmClusterVmFileSystemStorageType._(
+        TfArgLiteral('VM_FILE_SYSTEM_STORAGE_TYPE_LOCAL'),
+      );
+  static const vmFileSystemStorageTypeExascale =
+      OracleDatabaseCloudVmClusterVmFileSystemStorageType._(
+        TfArgLiteral('VM_FILE_SYSTEM_STORAGE_TYPE_EXASCALE'),
+      );
+
+  static const List<OracleDatabaseCloudVmClusterVmFileSystemStorageType>
+  values = [
+    vmFileSystemStorageTypeUnspecified,
+    vmFileSystemStorageTypeLocal,
+    vmFileSystemStorageTypeExascale,
+  ];
 }
 
 /// Typed helper for the `properties.diagnostics_data_collection_options` block of

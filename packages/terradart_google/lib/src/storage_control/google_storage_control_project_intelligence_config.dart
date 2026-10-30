@@ -8,7 +8,7 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleStorageControlProjectIntelligenceConfigSensitive =
     <String>{};
 
-/// Edition configuration of the Storage Intelligence resource.
+/// Storage Control Project Intelligence Config Edition enum for `edition_config`.
 extension type const StorageControlProjectIntelligenceConfigEditionConfig._(
   TfArg<String> _
 ) implements TfArg<String> {

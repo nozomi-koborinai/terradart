@@ -6,6 +6,22 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_container_registry`.
 const Set<String> _googleContainerRegistrySensitive = <String>{};
 
+/// Container Registry enum for `location`.
+extension type const ContainerRegistryLocation._(TfArg<String> _)
+    implements TfArg<String> {
+  ContainerRegistryLocation.variable(String name)
+    : this._(TfArg.variable(name));
+  ContainerRegistryLocation.expression(String template)
+    : this._(TfArg.expression(template));
+  const ContainerRegistryLocation.arg(TfArg<String> arg) : this._(arg);
+
+  static const asia = ContainerRegistryLocation._(TfArgLiteral('ASIA'));
+  static const eu = ContainerRegistryLocation._(TfArgLiteral('EU'));
+  static const us = ContainerRegistryLocation._(TfArgLiteral('US'));
+
+  static const List<ContainerRegistryLocation> values = [asia, eu, us];
+}
+
 /// Factory wrapper for `google_container_registry`.
 ///
 /// Leftover factory on the apply-excluded path
@@ -19,7 +35,7 @@ final class GoogleContainerRegistry extends Resource {
 
   GoogleContainerRegistry(
     super.localName, {
-    TfArg<String>? location,
+    ContainerRegistryLocation? location,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,

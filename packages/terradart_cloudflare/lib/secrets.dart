@@ -28,4 +28,4 @@ export 'src/data/cloudflare_secrets_stores.dart'
         DataSecretsStoresOrder;
 export 'src/secrets/cloudflare_secrets_store.dart' show CloudflareSecretsStore;
 export 'src/secrets/cloudflare_secrets_store_secret.dart'
-    show CloudflareSecretsStoreSecret;
+    show CloudflareSecretsStoreSecret, SecretsStoreSecretScopes;

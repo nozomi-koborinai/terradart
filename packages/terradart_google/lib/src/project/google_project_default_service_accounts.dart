@@ -6,6 +6,62 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_project_default_service_accounts`.
 const Set<String> _googleProjectDefaultServiceAccountsSensitive = <String>{};
 
+/// Project Default Service Accounts enum for `action`.
+extension type const ProjectDefaultServiceAccountsAction._(TfArg<String> _)
+    implements TfArg<String> {
+  ProjectDefaultServiceAccountsAction.variable(String name)
+    : this._(TfArg.variable(name));
+  ProjectDefaultServiceAccountsAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const ProjectDefaultServiceAccountsAction.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const deprivilege = ProjectDefaultServiceAccountsAction._(
+    TfArgLiteral('DEPRIVILEGE'),
+  );
+  static const delete = ProjectDefaultServiceAccountsAction._(
+    TfArgLiteral('DELETE'),
+  );
+  static const disable = ProjectDefaultServiceAccountsAction._(
+    TfArgLiteral('DISABLE'),
+  );
+
+  static const List<ProjectDefaultServiceAccountsAction> values = [
+    deprivilege,
+    delete,
+    disable,
+  ];
+}
+
+/// Project Default Service Accounts Restore enum for `restore_policy`.
+extension type const ProjectDefaultServiceAccountsRestorePolicy._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ProjectDefaultServiceAccountsRestorePolicy.variable(String name)
+    : this._(TfArg.variable(name));
+  ProjectDefaultServiceAccountsRestorePolicy.expression(String template)
+    : this._(TfArg.expression(template));
+  const ProjectDefaultServiceAccountsRestorePolicy.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const none = ProjectDefaultServiceAccountsRestorePolicy._(
+    TfArgLiteral('NONE'),
+  );
+  static const revert = ProjectDefaultServiceAccountsRestorePolicy._(
+    TfArgLiteral('REVERT'),
+  );
+  static const revertAndIgnoreFailure =
+      ProjectDefaultServiceAccountsRestorePolicy._(
+        TfArgLiteral('REVERT_AND_IGNORE_FAILURE'),
+      );
+
+  static const List<ProjectDefaultServiceAccountsRestorePolicy> values = [
+    none,
+    revert,
+    revertAndIgnoreFailure,
+  ];
+}
+
 /// Factory wrapper for `google_project_default_service_accounts`.
 ///
 /// Leftover factory on the apply-excluded path
@@ -19,9 +75,9 @@ final class GoogleProjectDefaultServiceAccounts extends Resource {
 
   GoogleProjectDefaultServiceAccounts(
     super.localName, {
-    required TfArg<String> action,
+    required ProjectDefaultServiceAccountsAction action,
     required TfArg<String> project,
-    TfArg<String>? restorePolicy,
+    ProjectDefaultServiceAccountsRestorePolicy? restorePolicy,
     super.lifecycle,
     super.dependsOn,
     super.provider,

@@ -484,7 +484,7 @@ final class ComposerEnvironmentSoftwareConfig {
 
   final TfArg<num>? schedulerCount;
 
-  final TfArg<String>? webServerPluginsMode;
+  final ComposerEnvironmentWebServerPluginsMode? webServerPluginsMode;
 
   final ComposerEnvironmentCloudDataLineageIntegration?
   cloudDataLineageIntegration;
@@ -500,6 +500,29 @@ final class ComposerEnvironmentSoftwareConfig {
     'web_server_plugins_mode': ?webServerPluginsMode?.toTfJson(),
     'cloud_data_lineage_integration': ?cloudDataLineageIntegration?.encode(),
   };
+}
+
+/// `web_server_plugins_mode` — derived from the provider schema description.
+extension type const ComposerEnvironmentWebServerPluginsMode._(TfArg<String> _)
+    implements TfArg<String> {
+  ComposerEnvironmentWebServerPluginsMode.variable(String name)
+    : this._(TfArg.variable(name));
+  ComposerEnvironmentWebServerPluginsMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComposerEnvironmentWebServerPluginsMode.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const enabled = ComposerEnvironmentWebServerPluginsMode._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = ComposerEnvironmentWebServerPluginsMode._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<ComposerEnvironmentWebServerPluginsMode> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// Typed helper for the `config.software_config.cloud_data_lineage_integration` block of

@@ -232,7 +232,7 @@ final class ApigeeSecurityActionConditionConfig {
 
   final TfArg<List<String>>? developers;
 
-  final TfArg<List<String>>? httpMethods;
+  final List<ApigeeSecurityActionHttpMethods>? httpMethods;
 
   final TfArg<List<String>>? ipAddressRanges;
 
@@ -249,11 +249,50 @@ final class ApigeeSecurityActionConditionConfig {
     'bot_reasons': ?botReasons?.toTfJson(),
     'developer_apps': ?developerApps?.toTfJson(),
     'developers': ?developers?.toTfJson(),
-    'http_methods': ?httpMethods?.toTfJson(),
+    if (httpMethods != null)
+      'http_methods': [for (final e in httpMethods!) e.toTfJson()],
     'ip_address_ranges': ?ipAddressRanges?.toTfJson(),
     'region_codes': ?regionCodes?.toTfJson(),
     'user_agents': ?userAgents?.toTfJson(),
   };
+}
+
+/// `http_methods` — derived from the provider schema description.
+extension type const ApigeeSecurityActionHttpMethods._(TfArg<String> _)
+    implements TfArg<String> {
+  ApigeeSecurityActionHttpMethods.variable(String name)
+    : this._(TfArg.variable(name));
+  ApigeeSecurityActionHttpMethods.expression(String template)
+    : this._(TfArg.expression(template));
+  const ApigeeSecurityActionHttpMethods.arg(TfArg<String> arg) : this._(arg);
+
+  static const get = ApigeeSecurityActionHttpMethods._(TfArgLiteral('GET'));
+  static const head = ApigeeSecurityActionHttpMethods._(TfArgLiteral('HEAD'));
+  static const post = ApigeeSecurityActionHttpMethods._(TfArgLiteral('POST'));
+  static const put = ApigeeSecurityActionHttpMethods._(TfArgLiteral('PUT'));
+  static const delete = ApigeeSecurityActionHttpMethods._(
+    TfArgLiteral('DELETE'),
+  );
+  static const connect = ApigeeSecurityActionHttpMethods._(
+    TfArgLiteral('CONNECT'),
+  );
+  static const options = ApigeeSecurityActionHttpMethods._(
+    TfArgLiteral('OPTIONS'),
+  );
+  static const trace = ApigeeSecurityActionHttpMethods._(TfArgLiteral('TRACE'));
+  static const patch = ApigeeSecurityActionHttpMethods._(TfArgLiteral('PATCH'));
+
+  static const List<ApigeeSecurityActionHttpMethods> values = [
+    get,
+    head,
+    post,
+    put,
+    delete,
+    connect,
+    options,
+    trace,
+    patch,
+  ];
 }
 
 /// Typed helper for the `deny` block of

@@ -583,7 +583,8 @@ export 'src/data/cloudflare_page_shield_connections_list.dart'
         DataCloudflarePageShieldConnectionsList,
         DataPageShieldConnectionsListDirection,
         DataPageShieldConnectionsListExport,
-        DataPageShieldConnectionsListOrderBy;
+        DataPageShieldConnectionsListOrderBy,
+        DataPageShieldConnectionsListStatus;
 export 'src/data/cloudflare_page_shield_cookies.dart'
     show DataCloudflarePageShieldCookies;
 export 'src/data/cloudflare_page_shield_cookies_list.dart'
@@ -605,7 +606,8 @@ export 'src/data/cloudflare_page_shield_scripts_list.dart'
         DataCloudflarePageShieldScriptsList,
         DataPageShieldScriptsListDirection,
         DataPageShieldScriptsListExport,
-        DataPageShieldScriptsListOrderBy;
+        DataPageShieldScriptsListOrderBy,
+        DataPageShieldScriptsListStatus;
 export 'src/data/cloudflare_pages_domain.dart' show DataCloudflarePagesDomain;
 export 'src/data/cloudflare_pages_domains.dart' show DataCloudflarePagesDomains;
 export 'src/data/cloudflare_pages_project.dart' show DataCloudflarePagesProject;

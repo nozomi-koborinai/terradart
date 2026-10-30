@@ -7,6 +7,35 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _azurermContainerAppEnvironmentManagedCertificateSensitive =
     <String>{};
 
+/// Container App Environment Managed Certificate Domain Control enum for `domain_control_validation`.
+extension type const ContainerAppEnvironmentManagedCertificateDomainControlValidation._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ContainerAppEnvironmentManagedCertificateDomainControlValidation.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  ContainerAppEnvironmentManagedCertificateDomainControlValidation.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const ContainerAppEnvironmentManagedCertificateDomainControlValidation.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const cname =
+      ContainerAppEnvironmentManagedCertificateDomainControlValidation._(
+        TfArgLiteral('CNAME'),
+      );
+  static const http =
+      ContainerAppEnvironmentManagedCertificateDomainControlValidation._(
+        TfArgLiteral('HTTP'),
+      );
+
+  static const List<
+    ContainerAppEnvironmentManagedCertificateDomainControlValidation
+  >
+  values = [cname, http];
+}
+
 /// Factory wrapper for `azurerm_container_app_environment_managed_certificate`.
 final class AzurermContainerAppEnvironmentManagedCertificate extends Resource {
   static const String tfType =
@@ -15,7 +44,8 @@ final class AzurermContainerAppEnvironmentManagedCertificate extends Resource {
   AzurermContainerAppEnvironmentManagedCertificate(
     super.localName, {
     required TfArg<String> containerAppEnvironmentId,
-    TfArg<String>? domainControlValidation,
+    ContainerAppEnvironmentManagedCertificateDomainControlValidation?
+    domainControlValidation,
     required TfArg<String> name,
     required TfArg<String> subjectName,
     TfArg<Map<String, String>>? tags,

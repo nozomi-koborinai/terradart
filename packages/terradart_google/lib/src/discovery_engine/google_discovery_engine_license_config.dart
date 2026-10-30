@@ -7,6 +7,29 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_discovery_engine_license_config`.
 const Set<String> _googleDiscoveryEngineLicenseConfigSensitive = <String>{};
 
+/// Discovery Engine License Config enum for `location`.
+extension type const DiscoveryEngineLicenseConfigLocation._(TfArg<String> _)
+    implements TfArg<String> {
+  DiscoveryEngineLicenseConfigLocation.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineLicenseConfigLocation.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineLicenseConfigLocation.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const global = DiscoveryEngineLicenseConfigLocation._(
+    TfArgLiteral('global'),
+  );
+  static const us = DiscoveryEngineLicenseConfigLocation._(TfArgLiteral('us'));
+  static const eu = DiscoveryEngineLicenseConfigLocation._(TfArgLiteral('eu'));
+
+  static const List<DiscoveryEngineLicenseConfigLocation> values = [
+    global,
+    us,
+    eu,
+  ];
+}
+
 /// Discovery Engine License Config Subscription enum for `subscription_term`.
 extension type const DiscoveryEngineLicenseConfigSubscriptionTerm._(
   TfArg<String> _
@@ -194,7 +217,7 @@ final class GoogleDiscoveryEngineLicenseConfig extends Resource {
   GoogleDiscoveryEngineLicenseConfig(
     super.localName, {
     required TfArg<String> licenseConfigId,
-    required TfArg<String> location,
+    required DiscoveryEngineLicenseConfigLocation location,
     required TfArg<num> licenseCount,
     required DiscoveryEngineLicenseConfigSubscriptionTier subscriptionTier,
     required DiscoveryEngineLicenseConfigSubscriptionTerm subscriptionTerm,

@@ -149,7 +149,7 @@ final class DeveloperConnectConnectionGithubConfig {
 
   final TfArg<String>? appInstallationId;
 
-  final TfArg<String> githubApp;
+  final DeveloperConnectConnectionGithubApp githubApp;
 
   final DeveloperConnectConnectionGithubConfigAuthorizerCredential?
   authorizerCredential;
@@ -160,6 +160,33 @@ final class DeveloperConnectConnectionGithubConfig {
     'github_app': githubApp.toTfJson(),
     'authorizer_credential': ?authorizerCredential?.encode(),
   };
+}
+
+/// `github_app` — derived from the provider schema description.
+extension type const DeveloperConnectConnectionGithubApp._(TfArg<String> _)
+    implements TfArg<String> {
+  DeveloperConnectConnectionGithubApp.variable(String name)
+    : this._(TfArg.variable(name));
+  DeveloperConnectConnectionGithubApp.expression(String template)
+    : this._(TfArg.expression(template));
+  const DeveloperConnectConnectionGithubApp.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const gitHubAppUnspecified = DeveloperConnectConnectionGithubApp._(
+    TfArgLiteral('GIT_HUB_APP_UNSPECIFIED'),
+  );
+  static const developerConnect = DeveloperConnectConnectionGithubApp._(
+    TfArgLiteral('DEVELOPER_CONNECT'),
+  );
+  static const firebase = DeveloperConnectConnectionGithubApp._(
+    TfArgLiteral('FIREBASE'),
+  );
+
+  static const List<DeveloperConnectConnectionGithubApp> values = [
+    gitHubAppUnspecified,
+    developerConnect,
+    firebase,
+  ];
 }
 
 /// Typed helper for the `github_config.authorizer_credential` block of

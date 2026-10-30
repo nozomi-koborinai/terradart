@@ -6,6 +6,10 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 
+typeNames:
+  open_api_toolset.api_authentication: CesToolsetApiAuthentication
+  open_api_toolset.api_authentication.api_key_config: CesToolsetApiKeyConfig
+
 extraImports:
   - "import 'package:meta/meta.dart';"
 

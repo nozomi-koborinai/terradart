@@ -20,9 +20,9 @@ final class ManagedKafkaAclEntries {
 
   final TfArg<String>? host;
 
-  final TfArg<String> operation;
+  final ManagedKafkaAclOperation operation;
 
-  final TfArg<String>? permissionType;
+  final ManagedKafkaAclPermissionType? permissionType;
 
   final TfArg<String> principal;
 
@@ -33,6 +33,64 @@ final class ManagedKafkaAclEntries {
     'permission_type': ?permissionType?.toTfJson(),
     'principal': principal.toTfJson(),
   };
+}
+
+/// `operation` — derived from the provider schema description.
+extension type const ManagedKafkaAclOperation._(TfArg<String> _)
+    implements TfArg<String> {
+  ManagedKafkaAclOperation.variable(String name) : this._(TfArg.variable(name));
+  ManagedKafkaAclOperation.expression(String template)
+    : this._(TfArg.expression(template));
+  const ManagedKafkaAclOperation.arg(TfArg<String> arg) : this._(arg);
+
+  static const all = ManagedKafkaAclOperation._(TfArgLiteral('ALL'));
+  static const read = ManagedKafkaAclOperation._(TfArgLiteral('READ'));
+  static const write = ManagedKafkaAclOperation._(TfArgLiteral('WRITE'));
+  static const create = ManagedKafkaAclOperation._(TfArgLiteral('CREATE'));
+  static const delete = ManagedKafkaAclOperation._(TfArgLiteral('DELETE'));
+  static const alter = ManagedKafkaAclOperation._(TfArgLiteral('ALTER'));
+  static const describe = ManagedKafkaAclOperation._(TfArgLiteral('DESCRIBE'));
+  static const clusterAction = ManagedKafkaAclOperation._(
+    TfArgLiteral('CLUSTER_ACTION'),
+  );
+  static const describeConfigs = ManagedKafkaAclOperation._(
+    TfArgLiteral('DESCRIBE_CONFIGS'),
+  );
+  static const alterConfigs = ManagedKafkaAclOperation._(
+    TfArgLiteral('ALTER_CONFIGS'),
+  );
+  static const idempotentWrite = ManagedKafkaAclOperation._(
+    TfArgLiteral('IDEMPOTENT_WRITE'),
+  );
+
+  static const List<ManagedKafkaAclOperation> values = [
+    all,
+    read,
+    write,
+    create,
+    delete,
+    alter,
+    describe,
+    clusterAction,
+    describeConfigs,
+    alterConfigs,
+    idempotentWrite,
+  ];
+}
+
+/// `permission_type` — derived from the provider schema description.
+extension type const ManagedKafkaAclPermissionType._(TfArg<String> _)
+    implements TfArg<String> {
+  ManagedKafkaAclPermissionType.variable(String name)
+    : this._(TfArg.variable(name));
+  ManagedKafkaAclPermissionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ManagedKafkaAclPermissionType.arg(TfArg<String> arg) : this._(arg);
+
+  static const allow = ManagedKafkaAclPermissionType._(TfArgLiteral('ALLOW'));
+  static const deny = ManagedKafkaAclPermissionType._(TfArgLiteral('DENY'));
+
+  static const List<ManagedKafkaAclPermissionType> values = [allow, deny];
 }
 
 /// Factory wrapper for `google_managed_kafka_acl`.

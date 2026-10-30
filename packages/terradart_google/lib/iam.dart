@@ -74,10 +74,12 @@ export 'src/iam/google_iam_folders_policy_binding.dart'
     show
         GoogleIamFoldersPolicyBinding,
         IamFoldersPolicyBindingCondition,
+        IamFoldersPolicyBindingPolicyKind,
         IamFoldersPolicyBindingTarget,
         IamFoldersPolicyBindingTargetPrincipalSet,
         IamFoldersPolicyBindingTargetResource;
-export 'src/iam/google_iam_oauth_client.dart' show GoogleIamOauthClient;
+export 'src/iam/google_iam_oauth_client.dart'
+    show GoogleIamOauthClient, IamOauthClientType;
 export 'src/iam/google_iam_oauth_client_credential.dart'
     show GoogleIamOauthClientCredential;
 export 'src/iam/google_iam_organization_access_policy.dart'
@@ -92,6 +94,7 @@ export 'src/iam/google_iam_organizations_policy_binding.dart'
     show
         GoogleIamOrganizationsPolicyBinding,
         IamOrganizationsPolicyBindingCondition,
+        IamOrganizationsPolicyBindingPolicyKind,
         IamOrganizationsPolicyBindingTarget,
         IamOrganizationsPolicyBindingTargetPrincipalSet,
         IamOrganizationsPolicyBindingTargetResource;
@@ -112,6 +115,7 @@ export 'src/iam/google_iam_projects_policy_binding.dart'
     show
         GoogleIamProjectsPolicyBinding,
         IamProjectsPolicyBindingCondition,
+        IamProjectsPolicyBindingPolicyKind,
         IamProjectsPolicyBindingTarget,
         IamProjectsPolicyBindingTargetPrincipalSet,
         IamProjectsPolicyBindingTargetResource;

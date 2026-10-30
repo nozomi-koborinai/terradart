@@ -8,6 +8,30 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleNetworkSecurityMirroringEndpointGroupSensitive =
     <String>{};
 
+/// Network Security Mirroring Endpoint Group enum for `type`.
+extension type const NetworkSecurityMirroringEndpointGroupType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkSecurityMirroringEndpointGroupType.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkSecurityMirroringEndpointGroupType.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkSecurityMirroringEndpointGroupType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const direct = NetworkSecurityMirroringEndpointGroupType._(
+    TfArgLiteral('DIRECT'),
+  );
+  static const broker = NetworkSecurityMirroringEndpointGroupType._(
+    TfArgLiteral('BROKER'),
+  );
+
+  static const List<NetworkSecurityMirroringEndpointGroupType> values = [
+    direct,
+    broker,
+  ];
+}
+
 /// Exactly-one link from a mirroring endpoint group to its deployment
 /// group(s). DIRECT uses a single group; BROKER uses a list.
 sealed class NetworkSecurityMirroringEndpointGroupDeploymentLink {
@@ -105,7 +129,7 @@ final class GoogleNetworkSecurityMirroringEndpointGroup extends Resource {
     required TfArg<String> location,
     required TfArg<String> mirroringEndpointGroupId,
     required NetworkSecurityMirroringEndpointGroupDeploymentLink deploymentLink,
-    TfArg<String>? type,
+    NetworkSecurityMirroringEndpointGroupType? type,
     TfArg<String>? description,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? project,

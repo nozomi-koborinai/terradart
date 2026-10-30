@@ -154,7 +154,7 @@ final class ChronicleParserExtensionFieldExtractors {
 
   final TfArg<bool>? appendRepeatedFields;
 
-  final TfArg<String>? logFormat;
+  final ChronicleParserExtensionLogFormat? logFormat;
 
   final List<ChronicleParserExtensionExtractors>? extractors;
 
@@ -168,6 +168,26 @@ final class ChronicleParserExtensionFieldExtractors {
       'extractors': [for (final e in extractors!) e.encode()],
     'preprocess_config': ?preprocessConfig?.encode(),
   };
+}
+
+/// `log_format` — derived from the provider schema description.
+extension type const ChronicleParserExtensionLogFormat._(TfArg<String> _)
+    implements TfArg<String> {
+  ChronicleParserExtensionLogFormat.variable(String name)
+    : this._(TfArg.variable(name));
+  ChronicleParserExtensionLogFormat.expression(String template)
+    : this._(TfArg.expression(template));
+  const ChronicleParserExtensionLogFormat.arg(TfArg<String> arg) : this._(arg);
+
+  static const json = ChronicleParserExtensionLogFormat._(TfArgLiteral('JSON'));
+  static const csv = ChronicleParserExtensionLogFormat._(TfArgLiteral('CSV'));
+  static const xml = ChronicleParserExtensionLogFormat._(TfArgLiteral('XML'));
+
+  static const List<ChronicleParserExtensionLogFormat> values = [
+    json,
+    csv,
+    xml,
+  ];
 }
 
 /// Typed helper for the `field_extractors.extractors` block of
@@ -187,7 +207,7 @@ final class ChronicleParserExtensionExtractors {
 
   final TfArg<String>? fieldPath;
 
-  final TfArg<String>? preconditionOp;
+  final ChronicleParserExtensionPreconditionOp? preconditionOp;
 
   final TfArg<String>? preconditionPath;
 
@@ -204,6 +224,29 @@ final class ChronicleParserExtensionExtractors {
     'precondition_value': ?preconditionValue?.toTfJson(),
     'value': ?value?.toTfJson(),
   };
+}
+
+/// `precondition_op` — derived from the provider schema description.
+extension type const ChronicleParserExtensionPreconditionOp._(TfArg<String> _)
+    implements TfArg<String> {
+  ChronicleParserExtensionPreconditionOp.variable(String name)
+    : this._(TfArg.variable(name));
+  ChronicleParserExtensionPreconditionOp.expression(String template)
+    : this._(TfArg.expression(template));
+  const ChronicleParserExtensionPreconditionOp.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const equals = ChronicleParserExtensionPreconditionOp._(
+    TfArgLiteral('EQUALS'),
+  );
+  static const notEquals = ChronicleParserExtensionPreconditionOp._(
+    TfArgLiteral('NOT_EQUALS'),
+  );
+
+  static const List<ChronicleParserExtensionPreconditionOp> values = [
+    equals,
+    notEquals,
+  ];
 }
 
 /// Typed helper for the `field_extractors.preprocess_config` block of

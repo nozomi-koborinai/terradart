@@ -240,7 +240,7 @@ final class WindowsFunctionAppAuthSettings {
 
   final TfArg<List<String>>? allowedExternalRedirectUrls;
 
-  final TfArg<String>? defaultProvider;
+  final WindowsFunctionAppDefaultProvider? defaultProvider;
 
   final TfArg<bool> enabled;
 
@@ -252,7 +252,8 @@ final class WindowsFunctionAppAuthSettings {
 
   final TfArg<bool>? tokenStoreEnabled;
 
-  final TfArg<String>? unauthenticatedClientAction;
+  final WindowsFunctionAppUnauthenticatedClientAction?
+  unauthenticatedClientAction;
 
   final WindowsFunctionAppActiveDirectory? activeDirectory;
 
@@ -284,6 +285,69 @@ final class WindowsFunctionAppAuthSettings {
     'microsoft': ?microsoft?.encode(),
     'twitter': ?twitter?.encode(),
   };
+}
+
+/// `default_provider` — derived from the provider schema description.
+extension type const WindowsFunctionAppDefaultProvider._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsFunctionAppDefaultProvider.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsFunctionAppDefaultProvider.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsFunctionAppDefaultProvider.arg(TfArg<String> arg) : this._(arg);
+
+  static const azureactivedirectory = WindowsFunctionAppDefaultProvider._(
+    TfArgLiteral('AzureActiveDirectory'),
+  );
+  static const facebook = WindowsFunctionAppDefaultProvider._(
+    TfArgLiteral('Facebook'),
+  );
+  static const google = WindowsFunctionAppDefaultProvider._(
+    TfArgLiteral('Google'),
+  );
+  static const microsoftaccount = WindowsFunctionAppDefaultProvider._(
+    TfArgLiteral('MicrosoftAccount'),
+  );
+  static const twitter = WindowsFunctionAppDefaultProvider._(
+    TfArgLiteral('Twitter'),
+  );
+  static const github = WindowsFunctionAppDefaultProvider._(
+    TfArgLiteral('Github'),
+  );
+
+  static const List<WindowsFunctionAppDefaultProvider> values = [
+    azureactivedirectory,
+    facebook,
+    google,
+    microsoftaccount,
+    twitter,
+    github,
+  ];
+}
+
+/// `unauthenticated_client_action` — derived from the provider schema description.
+extension type const WindowsFunctionAppUnauthenticatedClientAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  WindowsFunctionAppUnauthenticatedClientAction.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsFunctionAppUnauthenticatedClientAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsFunctionAppUnauthenticatedClientAction.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const redirecttologinpage =
+      WindowsFunctionAppUnauthenticatedClientAction._(
+        TfArgLiteral('RedirectToLoginPage'),
+      );
+  static const allowanonymous = WindowsFunctionAppUnauthenticatedClientAction._(
+    TfArgLiteral('AllowAnonymous'),
+  );
+
+  static const List<WindowsFunctionAppUnauthenticatedClientAction> values = [
+    redirecttologinpage,
+    allowanonymous,
+  ];
 }
 
 /// Typed helper for the `auth_settings.active_directory` block of
@@ -487,7 +551,7 @@ final class WindowsFunctionAppAuthSettingsV2 {
 
   final TfArg<List<String>>? excludedPaths;
 
-  final TfArg<String>? forwardProxyConvention;
+  final WindowsFunctionAppForwardProxyConvention? forwardProxyConvention;
 
   final TfArg<String>? forwardProxyCustomHostHeaderName;
 
@@ -501,7 +565,7 @@ final class WindowsFunctionAppAuthSettingsV2 {
 
   final TfArg<String>? runtimeVersion;
 
-  final TfArg<String>? unauthenticatedAction;
+  final WindowsFunctionAppUnauthenticatedAction? unauthenticatedAction;
 
   final WindowsFunctionAppActiveDirectoryV2? activeDirectoryV2;
 
@@ -551,6 +615,67 @@ final class WindowsFunctionAppAuthSettingsV2 {
     'microsoft_v2': ?microsoftV2?.encode(),
     'twitter_v2': ?twitterV2?.encode(),
   };
+}
+
+/// `forward_proxy_convention` — derived from the provider schema description.
+extension type const WindowsFunctionAppForwardProxyConvention._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsFunctionAppForwardProxyConvention.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsFunctionAppForwardProxyConvention.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsFunctionAppForwardProxyConvention.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const forwardproxyconventionnoproxy =
+      WindowsFunctionAppForwardProxyConvention._(
+        TfArgLiteral('ForwardProxyConventionNoProxy'),
+      );
+  static const forwardproxyconventionstandard =
+      WindowsFunctionAppForwardProxyConvention._(
+        TfArgLiteral('ForwardProxyConventionStandard'),
+      );
+  static const forwardproxyconventioncustom =
+      WindowsFunctionAppForwardProxyConvention._(
+        TfArgLiteral('ForwardProxyConventionCustom'),
+      );
+
+  static const List<WindowsFunctionAppForwardProxyConvention> values = [
+    forwardproxyconventionnoproxy,
+    forwardproxyconventionstandard,
+    forwardproxyconventioncustom,
+  ];
+}
+
+/// `unauthenticated_action` — derived from the provider schema description.
+extension type const WindowsFunctionAppUnauthenticatedAction._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsFunctionAppUnauthenticatedAction.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsFunctionAppUnauthenticatedAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsFunctionAppUnauthenticatedAction.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const redirecttologinpage = WindowsFunctionAppUnauthenticatedAction._(
+    TfArgLiteral('RedirectToLoginPage'),
+  );
+  static const allowanonymous = WindowsFunctionAppUnauthenticatedAction._(
+    TfArgLiteral('AllowAnonymous'),
+  );
+  static const return401 = WindowsFunctionAppUnauthenticatedAction._(
+    TfArgLiteral('Return401'),
+  );
+  static const return403 = WindowsFunctionAppUnauthenticatedAction._(
+    TfArgLiteral('Return403'),
+  );
+
+  static const List<WindowsFunctionAppUnauthenticatedAction> values = [
+    redirecttologinpage,
+    allowanonymous,
+    return401,
+    return403,
+  ];
 }
 
 /// Typed helper for the `auth_settings_v2.active_directory_v2` block of
@@ -779,7 +904,8 @@ final class WindowsFunctionAppLogin {
 
   final TfArg<List<String>>? allowedExternalRedirectUrls;
 
-  final TfArg<String>? cookieExpirationConvention;
+  final WindowsFunctionAppCookieExpirationConvention?
+  cookieExpirationConvention;
 
   final TfArg<String>? cookieExpirationTime;
 
@@ -814,6 +940,31 @@ final class WindowsFunctionAppLogin {
     'token_store_sas_setting_name': ?tokenStoreSasSettingName?.toTfJson(),
     'validate_nonce': ?validateNonce?.toTfJson(),
   };
+}
+
+/// `cookie_expiration_convention` — derived from the provider schema description.
+extension type const WindowsFunctionAppCookieExpirationConvention._(
+  TfArg<String> _
+) implements TfArg<String> {
+  WindowsFunctionAppCookieExpirationConvention.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsFunctionAppCookieExpirationConvention.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsFunctionAppCookieExpirationConvention.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const fixedtime = WindowsFunctionAppCookieExpirationConvention._(
+    TfArgLiteral('FixedTime'),
+  );
+  static const identityproviderderived =
+      WindowsFunctionAppCookieExpirationConvention._(
+        TfArgLiteral('IdentityProviderDerived'),
+      );
+
+  static const List<WindowsFunctionAppCookieExpirationConvention> values = [
+    fixedtime,
+    identityproviderderived,
+  ];
 }
 
 /// Typed helper for the `auth_settings_v2.microsoft_v2` block of
@@ -906,7 +1057,7 @@ final class WindowsFunctionAppSchedule {
 
   final TfArg<num> frequencyInterval;
 
-  final TfArg<String> frequencyUnit;
+  final WindowsFunctionAppFrequencyUnit frequencyUnit;
 
   final TfArg<bool>? keepAtLeastOneBackup;
 
@@ -924,6 +1075,21 @@ final class WindowsFunctionAppSchedule {
   };
 }
 
+/// `frequency_unit` — derived from the provider schema description.
+extension type const WindowsFunctionAppFrequencyUnit._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsFunctionAppFrequencyUnit.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsFunctionAppFrequencyUnit.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsFunctionAppFrequencyUnit.arg(TfArg<String> arg) : this._(arg);
+
+  static const day = WindowsFunctionAppFrequencyUnit._(TfArgLiteral('Day'));
+  static const hour = WindowsFunctionAppFrequencyUnit._(TfArgLiteral('Hour'));
+
+  static const List<WindowsFunctionAppFrequencyUnit> values = [day, hour];
+}
+
 /// Typed helper for the `connection_string` block of
 /// `azurerm_windows_function_app` (derived from provider schema).
 @immutable
@@ -936,7 +1102,7 @@ final class WindowsFunctionAppConnectionString {
 
   final TfArg<String> name;
 
-  final TfArg<String> type;
+  final WindowsFunctionAppType type;
 
   final Sensitive<String> value;
 
@@ -946,6 +1112,49 @@ final class WindowsFunctionAppConnectionString {
     'type': type.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+extension type const WindowsFunctionAppType._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsFunctionAppType.variable(String name) : this._(TfArg.variable(name));
+  WindowsFunctionAppType.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsFunctionAppType.arg(TfArg<String> arg) : this._(arg);
+
+  static const mysql = WindowsFunctionAppType._(TfArgLiteral('MySQL'));
+  static const sqlserver = WindowsFunctionAppType._(TfArgLiteral('SQLServer'));
+  static const sqlazure = WindowsFunctionAppType._(TfArgLiteral('SQLAzure'));
+  static const custom = WindowsFunctionAppType._(TfArgLiteral('Custom'));
+  static const notificationhub = WindowsFunctionAppType._(
+    TfArgLiteral('NotificationHub'),
+  );
+  static const servicebus = WindowsFunctionAppType._(
+    TfArgLiteral('ServiceBus'),
+  );
+  static const eventhub = WindowsFunctionAppType._(TfArgLiteral('EventHub'));
+  static const apihub = WindowsFunctionAppType._(TfArgLiteral('APIHub'));
+  static const docdb = WindowsFunctionAppType._(TfArgLiteral('DocDb'));
+  static const rediscache = WindowsFunctionAppType._(
+    TfArgLiteral('RedisCache'),
+  );
+  static const postgresql = WindowsFunctionAppType._(
+    TfArgLiteral('PostgreSQL'),
+  );
+
+  static const List<WindowsFunctionAppType> values = [
+    mysql,
+    sqlserver,
+    sqlazure,
+    custom,
+    notificationhub,
+    servicebus,
+    eventhub,
+    apihub,
+    docdb,
+    rediscache,
+    postgresql,
+  ];
 }
 
 /// Typed helper for the `identity` block of
@@ -1024,7 +1233,7 @@ final class WindowsFunctionAppSiteConfig {
 
   final TfArg<num>? elasticInstanceMinimum;
 
-  final TfArg<String>? ftpsState;
+  final WindowsFunctionAppFtpsState? ftpsState;
 
   final TfArg<num>? healthCheckEvictionTimeInMin;
 
@@ -1034,13 +1243,13 @@ final class WindowsFunctionAppSiteConfig {
 
   final TfArg<String>? ipRestrictionDefaultAction;
 
-  final TfArg<String>? loadBalancingMode;
+  final WindowsFunctionAppLoadBalancingMode? loadBalancingMode;
 
-  final TfArg<String>? managedPipelineMode;
+  final WindowsFunctionAppManagedPipelineMode? managedPipelineMode;
 
   final TfArg<String>? minimumTlsCipherSuite;
 
-  final TfArg<String>? minimumTlsVersion;
+  final WindowsFunctionAppMinimumTlsVersion? minimumTlsVersion;
 
   final TfArg<num>? preWarmedInstanceCount;
 
@@ -1052,7 +1261,7 @@ final class WindowsFunctionAppSiteConfig {
 
   final TfArg<String>? scmIpRestrictionDefaultAction;
 
-  final TfArg<String>? scmMinimumTlsVersion;
+  final WindowsFunctionAppScmMinimumTlsVersion? scmMinimumTlsVersion;
 
   final TfArg<bool>? scmUseMainIpRestriction;
 
@@ -1119,6 +1328,152 @@ final class WindowsFunctionAppSiteConfig {
   };
 }
 
+/// `ftps_state` — derived from the provider schema description.
+extension type const WindowsFunctionAppFtpsState._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsFunctionAppFtpsState.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsFunctionAppFtpsState.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsFunctionAppFtpsState.arg(TfArg<String> arg) : this._(arg);
+
+  static const allallowed = WindowsFunctionAppFtpsState._(
+    TfArgLiteral('AllAllowed'),
+  );
+  static const ftpsonly = WindowsFunctionAppFtpsState._(
+    TfArgLiteral('FtpsOnly'),
+  );
+  static const disabled = WindowsFunctionAppFtpsState._(
+    TfArgLiteral('Disabled'),
+  );
+
+  static const List<WindowsFunctionAppFtpsState> values = [
+    allallowed,
+    ftpsonly,
+    disabled,
+  ];
+}
+
+/// `load_balancing_mode` — derived from the provider schema description.
+extension type const WindowsFunctionAppLoadBalancingMode._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsFunctionAppLoadBalancingMode.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsFunctionAppLoadBalancingMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsFunctionAppLoadBalancingMode.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const weightedroundrobin = WindowsFunctionAppLoadBalancingMode._(
+    TfArgLiteral('WeightedRoundRobin'),
+  );
+  static const leastrequests = WindowsFunctionAppLoadBalancingMode._(
+    TfArgLiteral('LeastRequests'),
+  );
+  static const leastresponsetime = WindowsFunctionAppLoadBalancingMode._(
+    TfArgLiteral('LeastResponseTime'),
+  );
+  static const weightedtotaltraffic = WindowsFunctionAppLoadBalancingMode._(
+    TfArgLiteral('WeightedTotalTraffic'),
+  );
+  static const requesthash = WindowsFunctionAppLoadBalancingMode._(
+    TfArgLiteral('RequestHash'),
+  );
+  static const persiteroundrobin = WindowsFunctionAppLoadBalancingMode._(
+    TfArgLiteral('PerSiteRoundRobin'),
+  );
+
+  static const List<WindowsFunctionAppLoadBalancingMode> values = [
+    weightedroundrobin,
+    leastrequests,
+    leastresponsetime,
+    weightedtotaltraffic,
+    requesthash,
+    persiteroundrobin,
+  ];
+}
+
+/// `managed_pipeline_mode` — derived from the provider schema description.
+extension type const WindowsFunctionAppManagedPipelineMode._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsFunctionAppManagedPipelineMode.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsFunctionAppManagedPipelineMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsFunctionAppManagedPipelineMode.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const integrated = WindowsFunctionAppManagedPipelineMode._(
+    TfArgLiteral('Integrated'),
+  );
+  static const classic = WindowsFunctionAppManagedPipelineMode._(
+    TfArgLiteral('Classic'),
+  );
+
+  static const List<WindowsFunctionAppManagedPipelineMode> values = [
+    integrated,
+    classic,
+  ];
+}
+
+/// `minimum_tls_version` — derived from the provider schema description.
+extension type const WindowsFunctionAppMinimumTlsVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsFunctionAppMinimumTlsVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsFunctionAppMinimumTlsVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsFunctionAppMinimumTlsVersion.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const v1p0 = WindowsFunctionAppMinimumTlsVersion._(
+    TfArgLiteral('1.0'),
+  );
+  static const v1p1 = WindowsFunctionAppMinimumTlsVersion._(
+    TfArgLiteral('1.1'),
+  );
+  static const v1p2 = WindowsFunctionAppMinimumTlsVersion._(
+    TfArgLiteral('1.2'),
+  );
+
+  static const List<WindowsFunctionAppMinimumTlsVersion> values = [
+    v1p0,
+    v1p1,
+    v1p2,
+  ];
+}
+
+/// `scm_minimum_tls_version` — derived from the provider schema description.
+extension type const WindowsFunctionAppScmMinimumTlsVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsFunctionAppScmMinimumTlsVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsFunctionAppScmMinimumTlsVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsFunctionAppScmMinimumTlsVersion.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const v1p0 = WindowsFunctionAppScmMinimumTlsVersion._(
+    TfArgLiteral('1.0'),
+  );
+  static const v1p1 = WindowsFunctionAppScmMinimumTlsVersion._(
+    TfArgLiteral('1.1'),
+  );
+  static const v1p2 = WindowsFunctionAppScmMinimumTlsVersion._(
+    TfArgLiteral('1.2'),
+  );
+  static const v1p3 = WindowsFunctionAppScmMinimumTlsVersion._(
+    TfArgLiteral('1.3'),
+  );
+
+  static const List<WindowsFunctionAppScmMinimumTlsVersion> values = [
+    v1p0,
+    v1p1,
+    v1p2,
+    v1p3,
+  ];
+}
+
 /// Typed helper for the `site_config.app_service_logs` block of
 /// `azurerm_windows_function_app` (derived from provider schema).
 @immutable
@@ -1152,13 +1507,13 @@ final class WindowsFunctionAppApplicationStack {
     this.useDotnetIsolatedRuntime,
   });
 
-  final TfArg<String>? dotnetVersion;
+  final WindowsFunctionAppDotnetVersion? dotnetVersion;
 
-  final TfArg<String>? javaVersion;
+  final WindowsFunctionAppJavaVersion? javaVersion;
 
-  final TfArg<String>? nodeVersion;
+  final WindowsFunctionAppNodeVersion? nodeVersion;
 
-  final TfArg<String>? powershellCoreVersion;
+  final WindowsFunctionAppPowershellCoreVersion? powershellCoreVersion;
 
   final TfArg<bool>? useCustomRuntime;
 
@@ -1173,6 +1528,117 @@ final class WindowsFunctionAppApplicationStack {
     'use_custom_runtime': ?useCustomRuntime?.toTfJson(),
     'use_dotnet_isolated_runtime': ?useDotnetIsolatedRuntime?.toTfJson(),
   };
+}
+
+/// `dotnet_version` — derived from the provider schema description.
+extension type const WindowsFunctionAppDotnetVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsFunctionAppDotnetVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsFunctionAppDotnetVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsFunctionAppDotnetVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const v3p0 = WindowsFunctionAppDotnetVersion._(TfArgLiteral('v3.0'));
+  static const v4p0 = WindowsFunctionAppDotnetVersion._(TfArgLiteral('v4.0'));
+  static const v6p0 = WindowsFunctionAppDotnetVersion._(TfArgLiteral('v6.0'));
+  static const v7p0 = WindowsFunctionAppDotnetVersion._(TfArgLiteral('v7.0'));
+  static const v8p0 = WindowsFunctionAppDotnetVersion._(TfArgLiteral('v8.0'));
+  static const v9p0 = WindowsFunctionAppDotnetVersion._(TfArgLiteral('v9.0'));
+  static const v10p0 = WindowsFunctionAppDotnetVersion._(TfArgLiteral('v10.0'));
+
+  static const List<WindowsFunctionAppDotnetVersion> values = [
+    v3p0,
+    v4p0,
+    v6p0,
+    v7p0,
+    v8p0,
+    v9p0,
+    v10p0,
+  ];
+}
+
+/// `java_version` — derived from the provider schema description.
+extension type const WindowsFunctionAppJavaVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsFunctionAppJavaVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsFunctionAppJavaVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsFunctionAppJavaVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const v1p8 = WindowsFunctionAppJavaVersion._(TfArgLiteral('1.8'));
+  static const v11 = WindowsFunctionAppJavaVersion._(TfArgLiteral('11'));
+  static const v17 = WindowsFunctionAppJavaVersion._(TfArgLiteral('17'));
+  static const v21 = WindowsFunctionAppJavaVersion._(TfArgLiteral('21'));
+  static const v25 = WindowsFunctionAppJavaVersion._(TfArgLiteral('25'));
+
+  static const List<WindowsFunctionAppJavaVersion> values = [
+    v1p8,
+    v11,
+    v17,
+    v21,
+    v25,
+  ];
+}
+
+/// `node_version` — derived from the provider schema description.
+extension type const WindowsFunctionAppNodeVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsFunctionAppNodeVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsFunctionAppNodeVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsFunctionAppNodeVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const v12 = WindowsFunctionAppNodeVersion._(TfArgLiteral('~12'));
+  static const v14 = WindowsFunctionAppNodeVersion._(TfArgLiteral('~14'));
+  static const v16 = WindowsFunctionAppNodeVersion._(TfArgLiteral('~16'));
+  static const v18 = WindowsFunctionAppNodeVersion._(TfArgLiteral('~18'));
+  static const v20 = WindowsFunctionAppNodeVersion._(TfArgLiteral('~20'));
+  static const v22 = WindowsFunctionAppNodeVersion._(TfArgLiteral('~22'));
+  static const v24 = WindowsFunctionAppNodeVersion._(TfArgLiteral('~24'));
+
+  static const List<WindowsFunctionAppNodeVersion> values = [
+    v12,
+    v14,
+    v16,
+    v18,
+    v20,
+    v22,
+    v24,
+  ];
+}
+
+/// `powershell_core_version` — derived from the provider schema description.
+extension type const WindowsFunctionAppPowershellCoreVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsFunctionAppPowershellCoreVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsFunctionAppPowershellCoreVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsFunctionAppPowershellCoreVersion.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const v7 = WindowsFunctionAppPowershellCoreVersion._(
+    TfArgLiteral('7'),
+  );
+  static const v7p2 = WindowsFunctionAppPowershellCoreVersion._(
+    TfArgLiteral('7.2'),
+  );
+  static const v7p4 = WindowsFunctionAppPowershellCoreVersion._(
+    TfArgLiteral('7.4'),
+  );
+  static const v7p6 = WindowsFunctionAppPowershellCoreVersion._(
+    TfArgLiteral('7.6'),
+  );
+
+  static const List<WindowsFunctionAppPowershellCoreVersion> values = [
+    v7,
+    v7p2,
+    v7p4,
+    v7p6,
+  ];
 }
 
 /// Typed helper for the `site_config.cors` block of
@@ -1207,7 +1673,7 @@ final class WindowsFunctionAppIpRestriction {
     this.virtualNetworkSubnetId,
   });
 
-  final TfArg<String>? action;
+  final WindowsFunctionAppAction? action;
 
   final TfArg<String>? description;
 
@@ -1236,6 +1702,20 @@ final class WindowsFunctionAppIpRestriction {
   };
 }
 
+/// `action` — derived from the provider schema description.
+extension type const WindowsFunctionAppAction._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsFunctionAppAction.variable(String name) : this._(TfArg.variable(name));
+  WindowsFunctionAppAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsFunctionAppAction.arg(TfArg<String> arg) : this._(arg);
+
+  static const allow = WindowsFunctionAppAction._(TfArgLiteral('Allow'));
+  static const deny = WindowsFunctionAppAction._(TfArgLiteral('Deny'));
+
+  static const List<WindowsFunctionAppAction> values = [allow, deny];
+}
+
 /// Typed helper for the `site_config.scm_ip_restriction` block of
 /// `azurerm_windows_function_app` (derived from provider schema).
 @immutable
@@ -1251,7 +1731,7 @@ final class WindowsFunctionAppScmIpRestriction {
     this.virtualNetworkSubnetId,
   });
 
-  final TfArg<String>? action;
+  final WindowsFunctionAppAction? action;
 
   final TfArg<String>? description;
 

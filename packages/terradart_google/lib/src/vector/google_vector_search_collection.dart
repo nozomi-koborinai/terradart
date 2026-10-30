@@ -79,7 +79,7 @@ final class VectorSearchCollectionVertexEmbeddingConfig {
 
   final TfArg<String> modelId;
 
-  final TfArg<String> taskType;
+  final VectorSearchCollectionTaskType taskType;
 
   final TfArg<String> textTemplate;
 
@@ -89,6 +89,52 @@ final class VectorSearchCollectionVertexEmbeddingConfig {
     'task_type': taskType.toTfJson(),
     'text_template': textTemplate.toTfJson(),
   };
+}
+
+/// `task_type` — derived from the provider schema description.
+extension type const VectorSearchCollectionTaskType._(TfArg<String> _)
+    implements TfArg<String> {
+  VectorSearchCollectionTaskType.variable(String name)
+    : this._(TfArg.variable(name));
+  VectorSearchCollectionTaskType.expression(String template)
+    : this._(TfArg.expression(template));
+  const VectorSearchCollectionTaskType.arg(TfArg<String> arg) : this._(arg);
+
+  static const retrievalQuery = VectorSearchCollectionTaskType._(
+    TfArgLiteral('RETRIEVAL_QUERY'),
+  );
+  static const retrievalDocument = VectorSearchCollectionTaskType._(
+    TfArgLiteral('RETRIEVAL_DOCUMENT'),
+  );
+  static const semanticSimilarity = VectorSearchCollectionTaskType._(
+    TfArgLiteral('SEMANTIC_SIMILARITY'),
+  );
+  static const classification = VectorSearchCollectionTaskType._(
+    TfArgLiteral('CLASSIFICATION'),
+  );
+  static const clustering = VectorSearchCollectionTaskType._(
+    TfArgLiteral('CLUSTERING'),
+  );
+  static const questionAnswering = VectorSearchCollectionTaskType._(
+    TfArgLiteral('QUESTION_ANSWERING'),
+  );
+  static const factVerification = VectorSearchCollectionTaskType._(
+    TfArgLiteral('FACT_VERIFICATION'),
+  );
+  static const codeRetrievalQuery = VectorSearchCollectionTaskType._(
+    TfArgLiteral('CODE_RETRIEVAL_QUERY'),
+  );
+
+  static const List<VectorSearchCollectionTaskType> values = [
+    retrievalQuery,
+    retrievalDocument,
+    semanticSimilarity,
+    classification,
+    clustering,
+    questionAnswering,
+    factVerification,
+    codeRetrievalQuery,
+  ];
 }
 
 /// Typed helper for the `vector_schema.sparse_vector` block of

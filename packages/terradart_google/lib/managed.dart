@@ -6,7 +6,11 @@ library;
 
 export 'package:terradart_core/terradart_core.dart';
 export 'src/managed/google_managed_kafka_acl.dart'
-    show GoogleManagedKafkaAcl, ManagedKafkaAclEntries;
+    show
+        GoogleManagedKafkaAcl,
+        ManagedKafkaAclEntries,
+        ManagedKafkaAclOperation,
+        ManagedKafkaAclPermissionType;
 export 'src/managed/google_managed_kafka_cluster.dart'
     show
         GoogleManagedKafkaCluster,
@@ -15,6 +19,7 @@ export 'src/managed/google_managed_kafka_cluster.dart'
         ManagedKafkaClusterCapacityConfig,
         ManagedKafkaClusterCasConfigs,
         ManagedKafkaClusterGcpConfig,
+        ManagedKafkaClusterMode,
         ManagedKafkaClusterNetworkConfigs,
         ManagedKafkaClusterPublicClusterConfig,
         ManagedKafkaClusterRebalanceConfig,

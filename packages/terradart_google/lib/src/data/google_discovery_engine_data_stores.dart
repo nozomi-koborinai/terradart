@@ -6,6 +6,29 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_discovery_engine_data_stores`.
 const Set<String> _googleDiscoveryEngineDataStoresSensitive = <String>{};
 
+/// Data Discovery Engine Data Stores enum for `location`.
+extension type const DataDiscoveryEngineDataStoresLocation._(TfArg<String> _)
+    implements TfArg<String> {
+  DataDiscoveryEngineDataStoresLocation.variable(String name)
+    : this._(TfArg.variable(name));
+  DataDiscoveryEngineDataStoresLocation.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataDiscoveryEngineDataStoresLocation.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const global = DataDiscoveryEngineDataStoresLocation._(
+    TfArgLiteral('global'),
+  );
+  static const us = DataDiscoveryEngineDataStoresLocation._(TfArgLiteral('us'));
+  static const eu = DataDiscoveryEngineDataStoresLocation._(TfArgLiteral('eu'));
+
+  static const List<DataDiscoveryEngineDataStoresLocation> values = [
+    global,
+    us,
+    eu,
+  ];
+}
+
 /// Factory wrapper for `google_discovery_engine_data_stores`.
 ///
 /// Read-only data source on the apply-excluded leftover path
@@ -15,7 +38,7 @@ final class DataGoogleDiscoveryEngineDataStores extends Data {
 
   DataGoogleDiscoveryEngineDataStores(
     super.localName, {
-    TfArg<String>? location,
+    DataDiscoveryEngineDataStoresLocation? location,
     TfArg<String>? project,
     super.provider,
     super.timeouts,

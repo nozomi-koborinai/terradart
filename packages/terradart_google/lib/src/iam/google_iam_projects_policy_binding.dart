@@ -7,6 +7,32 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_iam_projects_policy_binding`.
 const Set<String> _googleIamProjectsPolicyBindingSensitive = <String>{};
 
+/// Iam Projects Policy Binding Policy enum for `policy_kind`.
+extension type const IamProjectsPolicyBindingPolicyKind._(TfArg<String> _)
+    implements TfArg<String> {
+  IamProjectsPolicyBindingPolicyKind.variable(String name)
+    : this._(TfArg.variable(name));
+  IamProjectsPolicyBindingPolicyKind.expression(String template)
+    : this._(TfArg.expression(template));
+  const IamProjectsPolicyBindingPolicyKind.arg(TfArg<String> arg) : this._(arg);
+
+  static const policyKindUnspecified = IamProjectsPolicyBindingPolicyKind._(
+    TfArgLiteral('POLICY_KIND_UNSPECIFIED'),
+  );
+  static const principalAccessBoundary = IamProjectsPolicyBindingPolicyKind._(
+    TfArgLiteral('PRINCIPAL_ACCESS_BOUNDARY'),
+  );
+  static const access = IamProjectsPolicyBindingPolicyKind._(
+    TfArgLiteral('ACCESS'),
+  );
+
+  static const List<IamProjectsPolicyBindingPolicyKind> values = [
+    policyKindUnspecified,
+    principalAccessBoundary,
+    access,
+  ];
+}
+
 /// Typed helper for the `condition` block of
 /// `google_iam_projects_policy_binding` (derived from provider schema).
 @immutable
@@ -114,7 +140,7 @@ final class GoogleIamProjectsPolicyBinding extends Resource {
     required TfArg<String> location,
     required TfArg<String> policy,
     required TfArg<String> policyBindingId,
-    TfArg<String>? policyKind,
+    IamProjectsPolicyBindingPolicyKind? policyKind,
     TfArg<String>? project,
     IamProjectsPolicyBindingCondition? condition,
     required IamProjectsPolicyBindingTarget target,

@@ -9,6 +9,24 @@ import '../ces/google_ces_app.dart' show GoogleCesApp;
 /// Sensitive field paths for `google_ces_tool`.
 const Set<String> _googleCesToolSensitive = <String>{};
 
+/// Ces Tool Execution enum for `execution_type`.
+extension type const CesToolExecutionType._(TfArg<String> _)
+    implements TfArg<String> {
+  CesToolExecutionType.variable(String name) : this._(TfArg.variable(name));
+  CesToolExecutionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CesToolExecutionType.arg(TfArg<String> arg) : this._(arg);
+
+  static const synchronous = CesToolExecutionType._(
+    TfArgLiteral('SYNCHRONOUS'),
+  );
+  static const asynchronous = CesToolExecutionType._(
+    TfArgLiteral('ASYNCHRONOUS'),
+  );
+
+  static const List<CesToolExecutionType> values = [synchronous, asynchronous];
+}
+
 /// Typed helper for the `agent_tool` block of
 /// `google_ces_tool` (derived from provider schema).
 @immutable
@@ -118,7 +136,7 @@ final class CesToolParameters {
 
   final TfArg<String>? title;
 
-  final TfArg<String> type;
+  final CesToolParametersType type;
 
   final TfArg<bool>? uniqueItems;
 
@@ -144,6 +162,31 @@ final class CesToolParameters {
     'type': type.toTfJson(),
     'unique_items': ?uniqueItems?.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+extension type const CesToolParametersType._(TfArg<String> _)
+    implements TfArg<String> {
+  CesToolParametersType.variable(String name) : this._(TfArg.variable(name));
+  CesToolParametersType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CesToolParametersType.arg(TfArg<String> arg) : this._(arg);
+
+  static const string = CesToolParametersType._(TfArgLiteral('STRING'));
+  static const integer = CesToolParametersType._(TfArgLiteral('INTEGER'));
+  static const number = CesToolParametersType._(TfArgLiteral('NUMBER'));
+  static const boolean = CesToolParametersType._(TfArgLiteral('BOOLEAN'));
+  static const object = CesToolParametersType._(TfArgLiteral('OBJECT'));
+  static const array = CesToolParametersType._(TfArgLiteral('ARRAY'));
+
+  static const List<CesToolParametersType> values = [
+    string,
+    integer,
+    number,
+    boolean,
+    object,
+    array,
+  ];
 }
 
 /// Typed helper for the `client_function.response` block of
@@ -206,7 +249,7 @@ final class CesToolResponse {
 
   final TfArg<String>? title;
 
-  final TfArg<String> type;
+  final CesToolParametersType type;
 
   final TfArg<bool>? uniqueItems;
 
@@ -373,7 +416,7 @@ final class CesToolBoostControlSpec {
     this.controlPoints,
   });
 
-  final TfArg<String>? attributeType;
+  final CesToolAttributeType? attributeType;
 
   final TfArg<String>? fieldName;
 
@@ -389,6 +432,20 @@ final class CesToolBoostControlSpec {
     if (controlPoints != null)
       'control_points': [for (final e in controlPoints!) e.encode()],
   };
+}
+
+/// `attribute_type` — derived from the provider schema description.
+extension type const CesToolAttributeType._(TfArg<String> _)
+    implements TfArg<String> {
+  CesToolAttributeType.variable(String name) : this._(TfArg.variable(name));
+  CesToolAttributeType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CesToolAttributeType.arg(TfArg<String> arg) : this._(arg);
+
+  static const numerical = CesToolAttributeType._(TfArgLiteral('NUMERICAL'));
+  static const freshness = CesToolAttributeType._(TfArgLiteral('FRESHNESS'));
+
+  static const List<CesToolAttributeType> values = [numerical, freshness];
 }
 
 /// Typed helper for the `data_store_tool.boost_specs.spec.condition_boost_specs.boost_control_spec.control_points` block of
@@ -492,7 +549,7 @@ final class CesToolModalityConfigs {
     this.summarizationConfig,
   });
 
-  final TfArg<String> modalityType;
+  final CesToolModalityType modalityType;
 
   final CesToolGroundingConfig? groundingConfig;
 
@@ -510,6 +567,20 @@ final class CesToolModalityConfigs {
     'snippets_config': ?snippetsConfig?.encode(),
     'summarization_config': ?summarizationConfig?.encode(),
   };
+}
+
+/// `modality_type` — derived from the provider schema description.
+extension type const CesToolModalityType._(TfArg<String> _)
+    implements TfArg<String> {
+  CesToolModalityType.variable(String name) : this._(TfArg.variable(name));
+  CesToolModalityType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CesToolModalityType.arg(TfArg<String> arg) : this._(arg);
+
+  static const text = CesToolModalityType._(TfArgLiteral('TEXT'));
+  static const audio = CesToolModalityType._(TfArgLiteral('AUDIO'));
+
+  static const List<CesToolModalityType> values = [text, audio];
 }
 
 /// Typed helper for the `data_store_tool.modality_configs.grounding_config` block of
@@ -1053,7 +1124,7 @@ final class GoogleCesTool extends Resource {
     TfArg<String>? location,
     required RefTo<GoogleCesApp> app,
     required TfArg<String> toolId,
-    TfArg<String>? executionType,
+    CesToolExecutionType? executionType,
     TfArg<String>? timeout,
     CesToolGoogleSearchTool? googleSearchTool,
     CesToolPythonFunction? pythonFunction,

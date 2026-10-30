@@ -1,5 +1,6 @@
 outputDir: parallelstore
 deriveClassDoc: true
+deriveEnums: true
 deriveExactlyOne: true
 deriveNestedTypes: true
 deriveOutputGetters: true

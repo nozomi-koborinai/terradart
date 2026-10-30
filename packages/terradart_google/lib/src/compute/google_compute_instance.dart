@@ -24,6 +24,32 @@ const Set<String> _googleComputeInstanceSensitive = <String>{
   'metadata_startup_script',
 };
 
+/// Compute Instance Desired enum for `desired_status`.
+extension type const ComputeInstanceDesiredStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInstanceDesiredStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceDesiredStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceDesiredStatus.arg(TfArg<String> arg) : this._(arg);
+
+  static const running = ComputeInstanceDesiredStatus._(
+    TfArgLiteral('RUNNING'),
+  );
+  static const suspended = ComputeInstanceDesiredStatus._(
+    TfArgLiteral('SUSPENDED'),
+  );
+  static const terminated = ComputeInstanceDesiredStatus._(
+    TfArgLiteral('TERMINATED'),
+  );
+
+  static const List<ComputeInstanceDesiredStatus> values = [
+    running,
+    suspended,
+    terminated,
+  ];
+}
+
 // ===========================================================================
 // Enums
 // ===========================================================================
@@ -360,7 +386,7 @@ final class ComputeInstanceBootDisk {
 
   final TfArg<List<String>>? guestOsFeatures;
 
-  final TfArg<String>? interface;
+  final ComputeInstanceInterface? interface;
 
   final RefTo<GoogleKmsCryptoKey>? kmsKeySelfLink;
 
@@ -386,6 +412,20 @@ final class ComputeInstanceBootDisk {
     'source': ?source?.toTfJson(),
     'initialize_params': ?initializeParams?.encode(),
   };
+}
+
+/// `interface` — derived from the provider schema description.
+extension type const ComputeInstanceInterface._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInstanceInterface.variable(String name) : this._(TfArg.variable(name));
+  ComputeInstanceInterface.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceInterface.arg(TfArg<String> arg) : this._(arg);
+
+  static const scsi = ComputeInstanceInterface._(TfArgLiteral('SCSI'));
+  static const nvme = ComputeInstanceInterface._(TfArgLiteral('NVME'));
+
+  static const List<ComputeInstanceInterface> values = [scsi, nvme];
 }
 
 /// Typed helper for the `boot_disk.initialize_params` block of
@@ -1122,7 +1162,7 @@ final class GoogleComputeInstance extends Resource {
     TfArg<bool>? canIpForward,
     TfArg<bool>? deletionProtection,
     TfArg<bool>? allowStoppingForUpdate,
-    TfArg<String>? desiredStatus,
+    ComputeInstanceDesiredStatus? desiredStatus,
     TfArg<String>? minCpuPlatform,
     TfArg<bool>? enableDisplay,
     TfArg<List<String>>? resourcePolicies,

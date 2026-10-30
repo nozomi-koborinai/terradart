@@ -2237,9 +2237,9 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'desired_status',
           dartName: 'desiredStatus',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeInstanceFromMachineImageDesiredStatus',
         ),
         MigrateSlot(
           tfName: 'enable_display',
@@ -7740,9 +7740,9 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'management_mode',
           dartName: 'managementMode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'SaasRuntimeUnitManagementMode',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -11907,9 +11907,9 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'network_tier',
           dartName: 'networkTier',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeInstanceFromMachineImageNetworkTier',
         ),
         MigrateSlot(
           tfName: 'public_ptr_domain_name',
@@ -11940,9 +11940,9 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'performance_monitoring_unit',
           dartName: 'performanceMonitoringUnit',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeInstanceFromMachineImagePerformanceMonitoringUnit',
         ),
         MigrateSlot(
           tfName: 'threads_per_core',
@@ -12011,9 +12011,9 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'confidential_instance_type',
           dartName: 'confidentialInstanceType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeInstanceFromMachineImageConfidentialInstanceType',
         ),
         MigrateSlot(
           tfName: 'enable_confidential_compute',
@@ -12477,9 +12477,9 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'on_host_maintenance',
           dartName: 'onHostMaintenance',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeInstanceFromMachineImageOnHostMaintenance',
         ),
         MigrateSlot(
           tfName: 'preemptible',
@@ -12491,9 +12491,9 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'provisioning_model',
           dartName: 'provisioningModel',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'ComputeInstanceFromMachineImageProvisioningModel',
         ),
         MigrateSlot(
           tfName: 'skip_guest_os_shutdown',
@@ -13287,9 +13287,9 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'mode',
           dartName: 'mode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'FirebaseAiLogicConfigMode',
         ),
         MigrateSlot(
           tfName: 'sampling_rate',
@@ -14997,9 +14997,9 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'SaasRuntimeUnitKindType',
         ),
       ],
     ),
@@ -15051,9 +15051,9 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'SaasRuntimeUnitOperationType',
         ),
         MigrateSlot(
           tfName: 'value',
@@ -15974,6 +15974,26 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         'UNSPECIFIED': 'unspecified',
       },
     ),
+    'ComputeInstanceFromMachineImageConfidentialInstanceType': MigrateEnum(
+      name: 'ComputeInstanceFromMachineImageConfidentialInstanceType',
+      members: <String, String>{
+        'SEV': 'sev',
+        'SEV_SNP': 'sevSnp',
+        'TDX': 'tdx',
+      },
+    ),
+    'ComputeInstanceFromMachineImageDesiredStatus': MigrateEnum(
+      name: 'ComputeInstanceFromMachineImageDesiredStatus',
+      members: <String, String>{
+        'RUNNING': 'running',
+        'SUSPENDED': 'suspended',
+        'TERMINATED': 'terminated',
+      },
+    ),
+    'ComputeInstanceFromMachineImageNetworkTier': MigrateEnum(
+      name: 'ComputeInstanceFromMachineImageNetworkTier',
+      members: <String, String>{'PREMIUM': 'premium', 'STANDARD': 'standard'},
+    ),
     'ComputeInstanceFromMachineImageNicType': MigrateEnum(
       name: 'ComputeInstanceFromMachineImageNicType',
       members: <String, String>{
@@ -15982,6 +16002,27 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         'IDPF': 'idpf',
         'MRDMA': 'mrdma',
         'IRDMA': 'irdma',
+      },
+    ),
+    'ComputeInstanceFromMachineImageOnHostMaintenance': MigrateEnum(
+      name: 'ComputeInstanceFromMachineImageOnHostMaintenance',
+      members: <String, String>{'MIGRATE': 'migrate', 'TERMINATE': 'terminate'},
+    ),
+    'ComputeInstanceFromMachineImagePerformanceMonitoringUnit': MigrateEnum(
+      name: 'ComputeInstanceFromMachineImagePerformanceMonitoringUnit',
+      members: <String, String>{
+        'STANDARD': 'standard',
+        'ENHANCED': 'enhanced',
+        'ARCHITECTURAL': 'architectural',
+      },
+    ),
+    'ComputeInstanceFromMachineImageProvisioningModel': MigrateEnum(
+      name: 'ComputeInstanceFromMachineImageProvisioningModel',
+      members: <String, String>{
+        'STANDARD': 'standard',
+        'SPOT': 'spot',
+        'FLEX_START': 'flexStart',
+        'RESERVATION_BOUND': 'reservationBound',
       },
     ),
     'ComputeInstanceFromMachineImageTotalEgressBandwidthTier': MigrateEnum(
@@ -16021,6 +16062,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       members: <String, String>{
         'apply_traffic_classification': 'applyTrafficClassification',
       },
+    ),
+    'FirebaseAiLogicConfigMode': MigrateEnum(
+      name: 'FirebaseAiLogicConfigMode',
+      members: <String, String>{'NONE': 'none', 'ALL': 'all'},
     ),
     'FirebaseDatabaseInstanceDesiredState': MigrateEnum(
       name: 'FirebaseDatabaseInstanceDesiredState',
@@ -16319,6 +16364,28 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       members: <String, String>{
         'UPDATE_UNIT_KIND_STRATEGY_ON_START': 'updateUnitKindStrategyOnStart',
         'UPDATE_UNIT_KIND_STRATEGY_NEVER': 'updateUnitKindStrategyNever',
+      },
+    ),
+    'SaasRuntimeUnitKindType': MigrateEnum(
+      name: 'SaasRuntimeUnitKindType',
+      members: <String, String>{
+        'TYPE_REGIONAL': 'typeRegional',
+        'TYPE_GLOBAL': 'typeGlobal',
+      },
+    ),
+    'SaasRuntimeUnitManagementMode': MigrateEnum(
+      name: 'SaasRuntimeUnitManagementMode',
+      members: <String, String>{
+        'MANAGEMENT_MODE_USER': 'managementModeUser',
+        'MANAGEMENT_MODE_SYSTEM': 'managementModeSystem',
+      },
+    ),
+    'SaasRuntimeUnitOperationType': MigrateEnum(
+      name: 'SaasRuntimeUnitOperationType',
+      members: <String, String>{
+        'STRING': 'string',
+        'INT': 'int',
+        'BOOL': 'bool',
       },
     ),
     'SecurityScannerScanConfigExportToSecurityCommandCenter': MigrateEnum(

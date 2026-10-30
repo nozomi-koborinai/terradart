@@ -139395,9 +139395,9 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'license_model',
           dartName: 'licenseModel',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'OdbCloudAutonomousVmClusterLicenseModel',
         ),
         MigrateSlot(
           tfName: 'memory_per_oracle_compute_unit_in_gbs',
@@ -143384,9 +143384,9 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'standby_replicas',
           dartName: 'standbyReplicas',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'OpensearchserverlessCollectionStandbyReplicas',
         ),
         MigrateSlot(
           tfName: 'tags',
@@ -143398,9 +143398,9 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'OpensearchserverlessCollectionType',
         ),
         MigrateSlot(
           tfName: 'vector_options',
@@ -144068,9 +144068,9 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'DataOpensearchserverlessSecurityPolicyType',
         ),
       ],
       getters: <MigrateGetter>[
@@ -403449,9 +403449,9 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
             MigrateSlot(
               tfName: 'payload_type',
               dartName: 'payloadType',
-              kind: MigrateSlotKind.scalar,
+              kind: MigrateSlotKind.enumValue,
               required: true,
-              dartType: 'String',
+              dartType: 'Wafv2WebAclRuleGroupAssociationPayloadType',
             ),
             MigrateSlot(
               tfName: 'address_fields',
@@ -403569,9 +403569,9 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
             MigrateSlot(
               tfName: 'payload_type',
               dartName: 'payloadType',
-              kind: MigrateSlotKind.scalar,
+              kind: MigrateSlotKind.enumValue,
               required: true,
-              dartType: 'String',
+              dartType: 'Wafv2WebAclRuleGroupAssociationPayloadType',
             ),
             MigrateSlot(
               tfName: 'password_field',
@@ -404453,9 +404453,9 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'scope',
           dartName: 'scope',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'Wafv2WebAclRuleScope',
         ),
       ],
     ),
@@ -404685,9 +404685,9 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'aggregate_key_type',
           dartName: 'aggregateKeyType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'Wafv2WebAclRuleAggregateKeyType',
         ),
         MigrateSlot(
           tfName: 'evaluation_window_sec',
@@ -404971,9 +404971,9 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'sensitivity_level',
           dartName: 'sensitivityLevel',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'Wafv2WebAclRuleSensitivityLevel',
         ),
         MigrateSlot(
           tfName: 'field_to_match',
@@ -413006,6 +413006,13 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         'ACTIVE': 'active',
       },
     ),
+    'DataOpensearchserverlessSecurityPolicyType': MigrateEnum(
+      name: 'DataOpensearchserverlessSecurityPolicyType',
+      members: <String, String>{
+        'encryption': 'encryption',
+        'network': 'network',
+      },
+    ),
     'DataexchangeDataSetAssetType': MigrateEnum(
       name: 'DataexchangeDataSetAssetType',
       members: <String, String>{
@@ -420979,6 +420986,13 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         'YEARLY': 'yearly',
       },
     ),
+    'OdbCloudAutonomousVmClusterLicenseModel': MigrateEnum(
+      name: 'OdbCloudAutonomousVmClusterLicenseModel',
+      members: <String, String>{
+        'LICENSE_INCLUDED': 'licenseIncluded',
+        'BRING_YOUR_OWN_LICENSE': 'bringYourOwnLicense',
+      },
+    ),
     'OdbCloudAutonomousVmClusterPreference': MigrateEnum(
       name: 'OdbCloudAutonomousVmClusterPreference',
       members: <String, String>{
@@ -421123,6 +421137,18 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
     'OpensearchserverlessCollectionGroupStandbyReplicas': MigrateEnum(
       name: 'OpensearchserverlessCollectionGroupStandbyReplicas',
       members: <String, String>{'ENABLED': 'enabled', 'DISABLED': 'disabled'},
+    ),
+    'OpensearchserverlessCollectionStandbyReplicas': MigrateEnum(
+      name: 'OpensearchserverlessCollectionStandbyReplicas',
+      members: <String, String>{'ENABLED': 'enabled', 'DISABLED': 'disabled'},
+    ),
+    'OpensearchserverlessCollectionType': MigrateEnum(
+      name: 'OpensearchserverlessCollectionType',
+      members: <String, String>{
+        'SEARCH': 'search',
+        'TIMESERIES': 'timeseries',
+        'VECTORSEARCH': 'vectorsearch',
+      },
     ),
     'OpensearchserverlessLifecyclePolicyType': MigrateEnum(
       name: 'OpensearchserverlessLifecyclePolicyType',
@@ -430185,9 +430211,30 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         'MEETS_ANY': 'meetsAny',
       },
     ),
+    'Wafv2WebAclRuleAggregateKeyType': MigrateEnum(
+      name: 'Wafv2WebAclRuleAggregateKeyType',
+      members: <String, String>{
+        'IP': 'ip',
+        'FORWARDED_IP': 'forwardedIp',
+        'CUSTOM_KEYS': 'customKeys',
+        'CONSTANT': 'constant',
+      },
+    ),
     'Wafv2WebAclRuleGroupAssociationOverrideAction': MigrateEnum(
       name: 'Wafv2WebAclRuleGroupAssociationOverrideAction',
       members: <String, String>{'none': 'none', 'count': 'count'},
+    ),
+    'Wafv2WebAclRuleGroupAssociationPayloadType': MigrateEnum(
+      name: 'Wafv2WebAclRuleGroupAssociationPayloadType',
+      members: <String, String>{'JSON': 'json', 'FORM_ENCODED': 'formEncoded'},
+    ),
+    'Wafv2WebAclRuleScope': MigrateEnum(
+      name: 'Wafv2WebAclRuleScope',
+      members: <String, String>{'LABEL': 'label', 'NAMESPACE': 'namespace'},
+    ),
+    'Wafv2WebAclRuleSensitivityLevel': MigrateEnum(
+      name: 'Wafv2WebAclRuleSensitivityLevel',
+      members: <String, String>{'HIGH': 'high', 'LOW': 'low'},
     ),
     'Wafv2WebAclScope': MigrateEnum(
       name: 'Wafv2WebAclScope',

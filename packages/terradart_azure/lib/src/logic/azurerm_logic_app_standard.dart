@@ -332,7 +332,7 @@ final class LogicAppStandardIpRestriction {
     this.virtualNetworkSubnetId,
   });
 
-  final TfArg<String>? action;
+  final LogicAppStandardAction? action;
 
   final TfArg<String>? description;
 
@@ -361,6 +361,20 @@ final class LogicAppStandardIpRestriction {
   };
 }
 
+/// `action` — derived from the provider schema description.
+extension type const LogicAppStandardAction._(TfArg<String> _)
+    implements TfArg<String> {
+  LogicAppStandardAction.variable(String name) : this._(TfArg.variable(name));
+  LogicAppStandardAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const LogicAppStandardAction.arg(TfArg<String> arg) : this._(arg);
+
+  static const allow = LogicAppStandardAction._(TfArgLiteral('Allow'));
+  static const deny = LogicAppStandardAction._(TfArgLiteral('Deny'));
+
+  static const List<LogicAppStandardAction> values = [allow, deny];
+}
+
 /// Typed helper for the `site_config.scm_ip_restriction` block of
 /// `azurerm_logic_app_standard` (derived from provider schema).
 @immutable
@@ -376,7 +390,7 @@ final class LogicAppStandardScmIpRestriction {
     this.virtualNetworkSubnetId,
   });
 
-  final TfArg<String>? action;
+  final LogicAppStandardAction? action;
 
   final TfArg<String>? description;
 

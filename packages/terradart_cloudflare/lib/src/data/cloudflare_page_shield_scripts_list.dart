@@ -60,6 +60,32 @@ extension type const DataPageShieldScriptsListOrderBy._(TfArg<String> _)
   ];
 }
 
+/// Data Page Shield Scripts List enum for `status`.
+extension type const DataPageShieldScriptsListStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  DataPageShieldScriptsListStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  DataPageShieldScriptsListStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataPageShieldScriptsListStatus.arg(TfArg<String> arg) : this._(arg);
+
+  static const active = DataPageShieldScriptsListStatus._(
+    TfArgLiteral('active'),
+  );
+  static const infrequent = DataPageShieldScriptsListStatus._(
+    TfArgLiteral('infrequent'),
+  );
+  static const inactive = DataPageShieldScriptsListStatus._(
+    TfArgLiteral('inactive'),
+  );
+
+  static const List<DataPageShieldScriptsListStatus> values = [
+    active,
+    infrequent,
+    inactive,
+  ];
+}
+
 /// Factory wrapper for `cloudflare_page_shield_scripts_list`.
 ///
 /// Accepted Permissions
@@ -83,7 +109,7 @@ final class DataCloudflarePageShieldScriptsList extends Data {
     TfArg<String>? pageUrl,
     TfArg<num>? perPage,
     TfArg<bool>? prioritizeMalicious,
-    TfArg<String>? status,
+    DataPageShieldScriptsListStatus? status,
     TfArg<String>? urls,
     RefTo<CloudflareZone>? zoneId,
     super.provider,

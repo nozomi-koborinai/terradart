@@ -43,12 +43,35 @@ final class ModelArmorTemplateFilterConfig {
 final class ModelArmorTemplateMaliciousUriFilterSettings {
   const ModelArmorTemplateMaliciousUriFilterSettings({this.filterEnforcement});
 
-  final TfArg<String>? filterEnforcement;
+  final ModelArmorTemplateFilterEnforcement? filterEnforcement;
 
   @internal
   Map<String, Object?> encode() => {
     'filter_enforcement': ?filterEnforcement?.toTfJson(),
   };
+}
+
+/// `filter_enforcement` — derived from the provider schema description.
+extension type const ModelArmorTemplateFilterEnforcement._(TfArg<String> _)
+    implements TfArg<String> {
+  ModelArmorTemplateFilterEnforcement.variable(String name)
+    : this._(TfArg.variable(name));
+  ModelArmorTemplateFilterEnforcement.expression(String template)
+    : this._(TfArg.expression(template));
+  const ModelArmorTemplateFilterEnforcement.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const enabled = ModelArmorTemplateFilterEnforcement._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = ModelArmorTemplateFilterEnforcement._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<ModelArmorTemplateFilterEnforcement> values = [
+    enabled,
+    disabled,
+  ];
 }
 
 /// Typed helper for the `filter_config.pi_and_jailbreak_filter_settings` block of
@@ -60,15 +83,39 @@ final class ModelArmorTemplatePiAndJailbreakFilterSettings {
     this.filterEnforcement,
   });
 
-  final TfArg<String>? confidenceLevel;
+  final ModelArmorTemplateConfidenceLevel? confidenceLevel;
 
-  final TfArg<String>? filterEnforcement;
+  final ModelArmorTemplateFilterEnforcement? filterEnforcement;
 
   @internal
   Map<String, Object?> encode() => {
     'confidence_level': ?confidenceLevel?.toTfJson(),
     'filter_enforcement': ?filterEnforcement?.toTfJson(),
   };
+}
+
+/// `confidence_level` — derived from the provider schema description.
+extension type const ModelArmorTemplateConfidenceLevel._(TfArg<String> _)
+    implements TfArg<String> {
+  ModelArmorTemplateConfidenceLevel.variable(String name)
+    : this._(TfArg.variable(name));
+  ModelArmorTemplateConfidenceLevel.expression(String template)
+    : this._(TfArg.expression(template));
+  const ModelArmorTemplateConfidenceLevel.arg(TfArg<String> arg) : this._(arg);
+
+  static const lowAndAbove = ModelArmorTemplateConfidenceLevel._(
+    TfArgLiteral('LOW_AND_ABOVE'),
+  );
+  static const mediumAndAbove = ModelArmorTemplateConfidenceLevel._(
+    TfArgLiteral('MEDIUM_AND_ABOVE'),
+  );
+  static const high = ModelArmorTemplateConfidenceLevel._(TfArgLiteral('HIGH'));
+
+  static const List<ModelArmorTemplateConfidenceLevel> values = [
+    lowAndAbove,
+    mediumAndAbove,
+    high,
+  ];
 }
 
 /// Typed helper for the `filter_config.rai_settings` block of
@@ -94,15 +141,45 @@ final class ModelArmorTemplateRaiFilters {
     required this.filterType,
   });
 
-  final TfArg<String>? confidenceLevel;
+  final ModelArmorTemplateConfidenceLevel? confidenceLevel;
 
-  final TfArg<String> filterType;
+  final ModelArmorTemplateFilterType filterType;
 
   @internal
   Map<String, Object?> encode() => {
     'confidence_level': ?confidenceLevel?.toTfJson(),
     'filter_type': filterType.toTfJson(),
   };
+}
+
+/// `filter_type` — derived from the provider schema description.
+extension type const ModelArmorTemplateFilterType._(TfArg<String> _)
+    implements TfArg<String> {
+  ModelArmorTemplateFilterType.variable(String name)
+    : this._(TfArg.variable(name));
+  ModelArmorTemplateFilterType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ModelArmorTemplateFilterType.arg(TfArg<String> arg) : this._(arg);
+
+  static const sexuallyExplicit = ModelArmorTemplateFilterType._(
+    TfArgLiteral('SEXUALLY_EXPLICIT'),
+  );
+  static const hateSpeech = ModelArmorTemplateFilterType._(
+    TfArgLiteral('HATE_SPEECH'),
+  );
+  static const harassment = ModelArmorTemplateFilterType._(
+    TfArgLiteral('HARASSMENT'),
+  );
+  static const dangerous = ModelArmorTemplateFilterType._(
+    TfArgLiteral('DANGEROUS'),
+  );
+
+  static const List<ModelArmorTemplateFilterType> values = [
+    sexuallyExplicit,
+    hateSpeech,
+    harassment,
+    dangerous,
+  ];
 }
 
 /// At most one of `advanced_config`, `basic_config` on the `filter_config.sdp_settings` block of `google_model_armor_template`: the provider rejects
@@ -189,7 +266,7 @@ final class ModelArmorTemplateAdvancedConfig {
 final class ModelArmorTemplateBasicConfig {
   const ModelArmorTemplateBasicConfig({this.filterEnforcement});
 
-  final TfArg<String>? filterEnforcement;
+  final ModelArmorTemplateFilterEnforcement? filterEnforcement;
 
   @internal
   Map<String, Object?> encode() => {
@@ -223,7 +300,7 @@ final class ModelArmorTemplateMetadata {
 
   final TfArg<String>? customPromptSafetyErrorMessage;
 
-  final TfArg<String>? enforcementType;
+  final ModelArmorTemplateEnforcementType? enforcementType;
 
   final TfArg<bool>? ignorePartialInvocationFailures;
 
@@ -231,7 +308,7 @@ final class ModelArmorTemplateMetadata {
 
   final TfArg<bool>? logTemplateOperations;
 
-  final TfArg<List<String>>? modalities;
+  final List<ModelArmorTemplateModalities>? modalities;
 
   final ModelArmorTemplateFilterVersionSelector? filterVersionSelector;
 
@@ -251,10 +328,55 @@ final class ModelArmorTemplateMetadata {
         ?.toTfJson(),
     'log_sanitize_operations': ?logSanitizeOperations?.toTfJson(),
     'log_template_operations': ?logTemplateOperations?.toTfJson(),
-    'modalities': ?modalities?.toTfJson(),
+    if (modalities != null)
+      'modalities': [for (final e in modalities!) e.toTfJson()],
     'filter_version_selector': ?filterVersionSelector?.encode(),
     'multi_language_detection': ?multiLanguageDetection?.encode(),
   };
+}
+
+/// `enforcement_type` — derived from the provider schema description.
+extension type const ModelArmorTemplateEnforcementType._(TfArg<String> _)
+    implements TfArg<String> {
+  ModelArmorTemplateEnforcementType.variable(String name)
+    : this._(TfArg.variable(name));
+  ModelArmorTemplateEnforcementType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ModelArmorTemplateEnforcementType.arg(TfArg<String> arg) : this._(arg);
+
+  static const inspectOnly = ModelArmorTemplateEnforcementType._(
+    TfArgLiteral('INSPECT_ONLY'),
+  );
+  static const inspectAndBlock = ModelArmorTemplateEnforcementType._(
+    TfArgLiteral('INSPECT_AND_BLOCK'),
+  );
+
+  static const List<ModelArmorTemplateEnforcementType> values = [
+    inspectOnly,
+    inspectAndBlock,
+  ];
+}
+
+/// `modalities` — derived from the provider schema description.
+extension type const ModelArmorTemplateModalities._(TfArg<String> _)
+    implements TfArg<String> {
+  ModelArmorTemplateModalities.variable(String name)
+    : this._(TfArg.variable(name));
+  ModelArmorTemplateModalities.expression(String template)
+    : this._(TfArg.expression(template));
+  const ModelArmorTemplateModalities.arg(TfArg<String> arg) : this._(arg);
+
+  static const modalityText = ModelArmorTemplateModalities._(
+    TfArgLiteral('MODALITY_TEXT'),
+  );
+  static const modalityImage = ModelArmorTemplateModalities._(
+    TfArgLiteral('MODALITY_IMAGE'),
+  );
+
+  static const List<ModelArmorTemplateModalities> values = [
+    modalityText,
+    modalityImage,
+  ];
 }
 
 /// At most one of `alias`, `version` on the `template_metadata.filter_version_selector` block of `google_model_armor_template`: the provider rejects
@@ -267,7 +389,7 @@ sealed class ModelArmorTemplateFilterVersionSelector {
 
   /// Sets `alias`.
   const factory ModelArmorTemplateFilterVersionSelector.alias(
-    TfArg<String> alias,
+    ModelArmorTemplateAlias alias,
   ) = ModelArmorTemplateFilterVersionSelectorAlias;
 
   /// Sets `version`.
@@ -288,7 +410,7 @@ final class ModelArmorTemplateFilterVersionSelectorAlias
     extends ModelArmorTemplateFilterVersionSelector {
   const ModelArmorTemplateFilterVersionSelectorAlias(this.alias);
 
-  final TfArg<String> alias;
+  final ModelArmorTemplateAlias alias;
 
   @internal
   @override
@@ -313,6 +435,27 @@ final class ModelArmorTemplateFilterVersionSelectorVersion
   @internal
   @override
   Map<String, Object?> encode() => {'version': version.toTfJson()};
+}
+
+/// `alias` — derived from the provider schema description.
+extension type const ModelArmorTemplateAlias._(TfArg<String> _)
+    implements TfArg<String> {
+  ModelArmorTemplateAlias.variable(String name) : this._(TfArg.variable(name));
+  ModelArmorTemplateAlias.expression(String template)
+    : this._(TfArg.expression(template));
+  const ModelArmorTemplateAlias.arg(TfArg<String> arg) : this._(arg);
+
+  static const filterVersionAliasStable = ModelArmorTemplateAlias._(
+    TfArgLiteral('FILTER_VERSION_ALIAS_STABLE'),
+  );
+  static const filterVersionAliasLatest = ModelArmorTemplateAlias._(
+    TfArgLiteral('FILTER_VERSION_ALIAS_LATEST'),
+  );
+
+  static const List<ModelArmorTemplateAlias> values = [
+    filterVersionAliasStable,
+    filterVersionAliasLatest,
+  ];
 }
 
 /// Typed helper for the `template_metadata.multi_language_detection` block of

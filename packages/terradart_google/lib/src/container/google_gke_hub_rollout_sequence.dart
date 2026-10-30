@@ -27,10 +27,43 @@ final class GkeHubRolloutSequenceAutoUpgradeConfig {
 final class GkeHubRolloutSequenceRolloutCreationScope {
   const GkeHubRolloutSequenceRolloutCreationScope({this.upgradeTypes});
 
-  final TfArg<List<String>>? upgradeTypes;
+  final List<GkeHubRolloutSequenceUpgradeTypes>? upgradeTypes;
 
   @internal
-  Map<String, Object?> encode() => {'upgrade_types': ?upgradeTypes?.toTfJson()};
+  Map<String, Object?> encode() => {
+    if (upgradeTypes != null)
+      'upgrade_types': [for (final e in upgradeTypes!) e.toTfJson()],
+  };
+}
+
+/// `upgrade_types` — derived from the provider schema description.
+extension type const GkeHubRolloutSequenceUpgradeTypes._(TfArg<String> _)
+    implements TfArg<String> {
+  GkeHubRolloutSequenceUpgradeTypes.variable(String name)
+    : this._(TfArg.variable(name));
+  GkeHubRolloutSequenceUpgradeTypes.expression(String template)
+    : this._(TfArg.expression(template));
+  const GkeHubRolloutSequenceUpgradeTypes.arg(TfArg<String> arg) : this._(arg);
+
+  static const controlPlaneMinor = GkeHubRolloutSequenceUpgradeTypes._(
+    TfArgLiteral('CONTROL_PLANE_MINOR'),
+  );
+  static const controlPlanePatch = GkeHubRolloutSequenceUpgradeTypes._(
+    TfArgLiteral('CONTROL_PLANE_PATCH'),
+  );
+  static const nodeMinor = GkeHubRolloutSequenceUpgradeTypes._(
+    TfArgLiteral('NODE_MINOR'),
+  );
+  static const nodePatch = GkeHubRolloutSequenceUpgradeTypes._(
+    TfArgLiteral('NODE_PATCH'),
+  );
+
+  static const List<GkeHubRolloutSequenceUpgradeTypes> values = [
+    controlPlaneMinor,
+    controlPlanePatch,
+    nodeMinor,
+    nodePatch,
+  ];
 }
 
 /// Typed helper for the `ignored_clusters_selector` block of

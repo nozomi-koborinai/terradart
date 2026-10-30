@@ -67,7 +67,7 @@ final class OracleDatabaseGoldengateDeploymentProperties {
 
   final TfArg<bool>? isAutoScalingEnabled;
 
-  final TfArg<String>? licenseModel;
+  final OracleDatabaseGoldengateDeploymentLicenseModel? licenseModel;
 
   final OracleDatabaseGoldengateDeploymentMaintenanceConfig? maintenanceConfig;
 
@@ -87,6 +87,32 @@ final class OracleDatabaseGoldengateDeploymentProperties {
     'maintenance_window': ?maintenanceWindow?.encode(),
     'ogg_data': oggData.encode(),
   };
+}
+
+/// `license_model` — derived from the provider schema description.
+extension type const OracleDatabaseGoldengateDeploymentLicenseModel._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OracleDatabaseGoldengateDeploymentLicenseModel.variable(String name)
+    : this._(TfArg.variable(name));
+  OracleDatabaseGoldengateDeploymentLicenseModel.expression(String template)
+    : this._(TfArg.expression(template));
+  const OracleDatabaseGoldengateDeploymentLicenseModel.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const licenseIncluded =
+      OracleDatabaseGoldengateDeploymentLicenseModel._(
+        TfArgLiteral('LICENSE_INCLUDED'),
+      );
+  static const bringYourOwnLicense =
+      OracleDatabaseGoldengateDeploymentLicenseModel._(
+        TfArgLiteral('BRING_YOUR_OWN_LICENSE'),
+      );
+
+  static const List<OracleDatabaseGoldengateDeploymentLicenseModel> values = [
+    licenseIncluded,
+    bringYourOwnLicense,
+  ];
 }
 
 /// Typed helper for the `properties.maintenance_config` block of
@@ -135,7 +161,7 @@ final class OracleDatabaseGoldengateDeploymentMaintenanceWindow {
     required this.startHour,
   });
 
-  final TfArg<String> day;
+  final OracleDatabaseGoldengateDeploymentDay day;
 
   final TfArg<num> startHour;
 
@@ -144,6 +170,49 @@ final class OracleDatabaseGoldengateDeploymentMaintenanceWindow {
     'day': day.toTfJson(),
     'start_hour': startHour.toTfJson(),
   };
+}
+
+/// `day` — derived from the provider schema description.
+extension type const OracleDatabaseGoldengateDeploymentDay._(TfArg<String> _)
+    implements TfArg<String> {
+  OracleDatabaseGoldengateDeploymentDay.variable(String name)
+    : this._(TfArg.variable(name));
+  OracleDatabaseGoldengateDeploymentDay.expression(String template)
+    : this._(TfArg.expression(template));
+  const OracleDatabaseGoldengateDeploymentDay.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const monday = OracleDatabaseGoldengateDeploymentDay._(
+    TfArgLiteral('MONDAY'),
+  );
+  static const tuesday = OracleDatabaseGoldengateDeploymentDay._(
+    TfArgLiteral('TUESDAY'),
+  );
+  static const wednesday = OracleDatabaseGoldengateDeploymentDay._(
+    TfArgLiteral('WEDNESDAY'),
+  );
+  static const thursday = OracleDatabaseGoldengateDeploymentDay._(
+    TfArgLiteral('THURSDAY'),
+  );
+  static const friday = OracleDatabaseGoldengateDeploymentDay._(
+    TfArgLiteral('FRIDAY'),
+  );
+  static const saturday = OracleDatabaseGoldengateDeploymentDay._(
+    TfArgLiteral('SATURDAY'),
+  );
+  static const sunday = OracleDatabaseGoldengateDeploymentDay._(
+    TfArgLiteral('SUNDAY'),
+  );
+
+  static const List<OracleDatabaseGoldengateDeploymentDay> values = [
+    monday,
+    tuesday,
+    wednesday,
+    thursday,
+    friday,
+    saturday,
+    sunday,
+  ];
 }
 
 /// Typed helper for the `properties.ogg_data` block of

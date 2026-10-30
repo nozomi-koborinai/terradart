@@ -22,14 +22,18 @@ export 'src/container_app/azurerm_container_app.dart'
         ContainerAppInitContainer,
         ContainerAppIpSecurityRestriction,
         ContainerAppLivenessProbe,
+        ContainerAppLivenessProbeTransport,
+        ContainerAppProtocol,
         ContainerAppReadinessProbe,
         ContainerAppRegistry,
         ContainerAppRevisionMode,
         ContainerAppSecret,
         ContainerAppStartupProbe,
+        ContainerAppStorageType,
         ContainerAppTcpScaleRule,
         ContainerAppTemplate,
         ContainerAppTrafficWeight,
+        ContainerAppTransport,
         ContainerAppVolume,
         ContainerAppVolumeMounts;
 export 'src/container_app/azurerm_container_app_custom_domain.dart'
@@ -40,6 +44,7 @@ export 'src/container_app/azurerm_container_app_environment.dart'
     show
         AzurermContainerAppEnvironment,
         ContainerAppEnvironmentIdentity,
+        ContainerAppEnvironmentLogsDestination,
         ContainerAppEnvironmentPublicNetworkAccess,
         ContainerAppEnvironmentWorkloadProfile;
 export 'src/container_app/azurerm_container_app_environment_certificate.dart'
@@ -57,7 +62,9 @@ export 'src/container_app/azurerm_container_app_environment_dapr_component.dart'
         ContainerAppEnvironmentDaprComponentMetadata,
         ContainerAppEnvironmentDaprComponentSecret;
 export 'src/container_app/azurerm_container_app_environment_managed_certificate.dart'
-    show AzurermContainerAppEnvironmentManagedCertificate;
+    show
+        AzurermContainerAppEnvironmentManagedCertificate,
+        ContainerAppEnvironmentManagedCertificateDomainControlValidation;
 export 'src/container_app/azurerm_container_app_environment_storage.dart'
     show
         AzurermContainerAppEnvironmentStorage,
@@ -87,7 +94,9 @@ export 'src/container_app/azurerm_container_app_job.dart'
         ContainerAppJobScheduleTriggerConfigChoice,
         ContainerAppJobSecret,
         ContainerAppJobStartupProbe,
+        ContainerAppJobStorageType,
         ContainerAppJobTemplate,
+        ContainerAppJobTransport,
         ContainerAppJobTriggerConfig,
         ContainerAppJobVolume,
         ContainerAppJobVolumeMounts;

@@ -67,12 +67,16 @@ export 'src/storage/google_storage_bucket.dart'
         StorageBucketIpFilter,
         StorageBucketLifecycleRule,
         StorageBucketLogging,
+        StorageBucketMatchesStorageClass,
+        StorageBucketMode,
         StorageBucketPublicNetworkSource,
         StorageBucketRetentionPolicy,
         StorageBucketSoftDeletePolicy,
+        StorageBucketTerminalStorageClass,
         StorageBucketVersioning,
         StorageBucketVpcNetworkSources,
-        StorageBucketWebsite;
+        StorageBucketWebsite,
+        StorageBucketWithState;
 export 'src/storage/google_storage_bucket_access_control.dart'
     show GoogleStorageBucketAccessControl, StorageBucketAccessControlRole;
 export 'src/storage/google_storage_bucket_acl.dart' show GoogleStorageBucketAcl;
@@ -92,7 +96,8 @@ export 'src/storage/google_storage_bucket_object.dart'
         StorageBucketObjectContexts,
         StorageBucketObjectCustom,
         StorageBucketObjectCustomerEncryption,
-        StorageBucketObjectRetention;
+        StorageBucketObjectRetention,
+        StorageBucketObjectRetentionMode;
 export 'src/storage/google_storage_default_object_access_control.dart'
     show
         GoogleStorageDefaultObjectAccessControl,

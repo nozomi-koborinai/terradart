@@ -9,6 +9,29 @@ import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 /// Sensitive field paths for `google_discovery_engine_data_connector`.
 const Set<String> _googleDiscoveryEngineDataConnectorSensitive = <String>{};
 
+/// Discovery Engine Data Connector enum for `location`.
+extension type const DiscoveryEngineDataConnectorLocation._(TfArg<String> _)
+    implements TfArg<String> {
+  DiscoveryEngineDataConnectorLocation.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineDataConnectorLocation.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineDataConnectorLocation.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const global = DiscoveryEngineDataConnectorLocation._(
+    TfArgLiteral('global'),
+  );
+  static const us = DiscoveryEngineDataConnectorLocation._(TfArgLiteral('us'));
+  static const eu = DiscoveryEngineDataConnectorLocation._(TfArgLiteral('eu'));
+
+  static const List<DiscoveryEngineDataConnectorLocation> values = [
+    global,
+    us,
+    eu,
+  ];
+}
+
 /// Exactly one of `params`, `json_params` on `google_discovery_engine_data_connector`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
@@ -108,15 +131,56 @@ final class DiscoveryEngineDataConnectorBapConfig {
     this.supportedConnectorModes,
   });
 
-  final TfArg<List<String>>? enabledActions;
+  final List<DiscoveryEngineDataConnectorEnabledActions>? enabledActions;
 
   final TfArg<List<String>>? supportedConnectorModes;
 
   @internal
   Map<String, Object?> encode() => {
-    'enabled_actions': ?enabledActions?.toTfJson(),
+    if (enabledActions != null)
+      'enabled_actions': [for (final e in enabledActions!) e.toTfJson()],
     'supported_connector_modes': ?supportedConnectorModes?.toTfJson(),
   };
+}
+
+/// `enabled_actions` — derived from the provider schema description.
+extension type const DiscoveryEngineDataConnectorEnabledActions._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DiscoveryEngineDataConnectorEnabledActions.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineDataConnectorEnabledActions.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineDataConnectorEnabledActions.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const createIssue = DiscoveryEngineDataConnectorEnabledActions._(
+    TfArgLiteral('create_issue'),
+  );
+  static const updateIssue = DiscoveryEngineDataConnectorEnabledActions._(
+    TfArgLiteral('update_issue'),
+  );
+  static const changeIssueStatus = DiscoveryEngineDataConnectorEnabledActions._(
+    TfArgLiteral('change_issue_status'),
+  );
+  static const createComment = DiscoveryEngineDataConnectorEnabledActions._(
+    TfArgLiteral('create_comment'),
+  );
+  static const updateComment = DiscoveryEngineDataConnectorEnabledActions._(
+    TfArgLiteral('update_comment'),
+  );
+  static const uploadAttachment = DiscoveryEngineDataConnectorEnabledActions._(
+    TfArgLiteral('upload_attachment'),
+  );
+
+  static const List<DiscoveryEngineDataConnectorEnabledActions> values = [
+    createIssue,
+    updateIssue,
+    changeIssueStatus,
+    createComment,
+    updateComment,
+    uploadAttachment,
+  ];
 }
 
 /// Typed helper for the `destination_configs` block of
@@ -246,7 +310,7 @@ final class GoogleDiscoveryEngineDataConnector extends Resource {
     TfArg<bool>? incrementalSyncDisabled,
     required DiscoveryEngineDataConnectorParams params,
     RefTo<GoogleKmsCryptoKey>? kmsKeyName,
-    required TfArg<String> location,
+    required DiscoveryEngineDataConnectorLocation location,
     TfArg<String>? project,
     required TfArg<String> refreshInterval,
     TfArg<bool>? staticIpEnabled,

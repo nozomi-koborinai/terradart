@@ -241,7 +241,7 @@ final class LinuxFunctionAppAuthSettings {
 
   final TfArg<List<String>>? allowedExternalRedirectUrls;
 
-  final TfArg<String>? defaultProvider;
+  final LinuxFunctionAppDefaultProvider? defaultProvider;
 
   final TfArg<bool> enabled;
 
@@ -253,7 +253,8 @@ final class LinuxFunctionAppAuthSettings {
 
   final TfArg<bool>? tokenStoreEnabled;
 
-  final TfArg<String>? unauthenticatedClientAction;
+  final LinuxFunctionAppUnauthenticatedClientAction?
+  unauthenticatedClientAction;
 
   final LinuxFunctionAppActiveDirectory? activeDirectory;
 
@@ -285,6 +286,69 @@ final class LinuxFunctionAppAuthSettings {
     'microsoft': ?microsoft?.encode(),
     'twitter': ?twitter?.encode(),
   };
+}
+
+/// `default_provider` — derived from the provider schema description.
+extension type const LinuxFunctionAppDefaultProvider._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxFunctionAppDefaultProvider.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxFunctionAppDefaultProvider.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxFunctionAppDefaultProvider.arg(TfArg<String> arg) : this._(arg);
+
+  static const azureactivedirectory = LinuxFunctionAppDefaultProvider._(
+    TfArgLiteral('AzureActiveDirectory'),
+  );
+  static const facebook = LinuxFunctionAppDefaultProvider._(
+    TfArgLiteral('Facebook'),
+  );
+  static const google = LinuxFunctionAppDefaultProvider._(
+    TfArgLiteral('Google'),
+  );
+  static const microsoftaccount = LinuxFunctionAppDefaultProvider._(
+    TfArgLiteral('MicrosoftAccount'),
+  );
+  static const twitter = LinuxFunctionAppDefaultProvider._(
+    TfArgLiteral('Twitter'),
+  );
+  static const github = LinuxFunctionAppDefaultProvider._(
+    TfArgLiteral('Github'),
+  );
+
+  static const List<LinuxFunctionAppDefaultProvider> values = [
+    azureactivedirectory,
+    facebook,
+    google,
+    microsoftaccount,
+    twitter,
+    github,
+  ];
+}
+
+/// `unauthenticated_client_action` — derived from the provider schema description.
+extension type const LinuxFunctionAppUnauthenticatedClientAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  LinuxFunctionAppUnauthenticatedClientAction.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxFunctionAppUnauthenticatedClientAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxFunctionAppUnauthenticatedClientAction.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const redirecttologinpage =
+      LinuxFunctionAppUnauthenticatedClientAction._(
+        TfArgLiteral('RedirectToLoginPage'),
+      );
+  static const allowanonymous = LinuxFunctionAppUnauthenticatedClientAction._(
+    TfArgLiteral('AllowAnonymous'),
+  );
+
+  static const List<LinuxFunctionAppUnauthenticatedClientAction> values = [
+    redirecttologinpage,
+    allowanonymous,
+  ];
 }
 
 /// Typed helper for the `auth_settings.active_directory` block of
@@ -488,7 +552,7 @@ final class LinuxFunctionAppAuthSettingsV2 {
 
   final TfArg<List<String>>? excludedPaths;
 
-  final TfArg<String>? forwardProxyConvention;
+  final LinuxFunctionAppForwardProxyConvention? forwardProxyConvention;
 
   final TfArg<String>? forwardProxyCustomHostHeaderName;
 
@@ -502,7 +566,7 @@ final class LinuxFunctionAppAuthSettingsV2 {
 
   final TfArg<String>? runtimeVersion;
 
-  final TfArg<String>? unauthenticatedAction;
+  final LinuxFunctionAppUnauthenticatedAction? unauthenticatedAction;
 
   final LinuxFunctionAppActiveDirectoryV2? activeDirectoryV2;
 
@@ -552,6 +616,67 @@ final class LinuxFunctionAppAuthSettingsV2 {
     'microsoft_v2': ?microsoftV2?.encode(),
     'twitter_v2': ?twitterV2?.encode(),
   };
+}
+
+/// `forward_proxy_convention` — derived from the provider schema description.
+extension type const LinuxFunctionAppForwardProxyConvention._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxFunctionAppForwardProxyConvention.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxFunctionAppForwardProxyConvention.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxFunctionAppForwardProxyConvention.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const forwardproxyconventionnoproxy =
+      LinuxFunctionAppForwardProxyConvention._(
+        TfArgLiteral('ForwardProxyConventionNoProxy'),
+      );
+  static const forwardproxyconventionstandard =
+      LinuxFunctionAppForwardProxyConvention._(
+        TfArgLiteral('ForwardProxyConventionStandard'),
+      );
+  static const forwardproxyconventioncustom =
+      LinuxFunctionAppForwardProxyConvention._(
+        TfArgLiteral('ForwardProxyConventionCustom'),
+      );
+
+  static const List<LinuxFunctionAppForwardProxyConvention> values = [
+    forwardproxyconventionnoproxy,
+    forwardproxyconventionstandard,
+    forwardproxyconventioncustom,
+  ];
+}
+
+/// `unauthenticated_action` — derived from the provider schema description.
+extension type const LinuxFunctionAppUnauthenticatedAction._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxFunctionAppUnauthenticatedAction.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxFunctionAppUnauthenticatedAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxFunctionAppUnauthenticatedAction.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const redirecttologinpage = LinuxFunctionAppUnauthenticatedAction._(
+    TfArgLiteral('RedirectToLoginPage'),
+  );
+  static const allowanonymous = LinuxFunctionAppUnauthenticatedAction._(
+    TfArgLiteral('AllowAnonymous'),
+  );
+  static const return401 = LinuxFunctionAppUnauthenticatedAction._(
+    TfArgLiteral('Return401'),
+  );
+  static const return403 = LinuxFunctionAppUnauthenticatedAction._(
+    TfArgLiteral('Return403'),
+  );
+
+  static const List<LinuxFunctionAppUnauthenticatedAction> values = [
+    redirecttologinpage,
+    allowanonymous,
+    return401,
+    return403,
+  ];
 }
 
 /// Typed helper for the `auth_settings_v2.active_directory_v2` block of
@@ -780,7 +905,7 @@ final class LinuxFunctionAppLogin {
 
   final TfArg<List<String>>? allowedExternalRedirectUrls;
 
-  final TfArg<String>? cookieExpirationConvention;
+  final LinuxFunctionAppCookieExpirationConvention? cookieExpirationConvention;
 
   final TfArg<String>? cookieExpirationTime;
 
@@ -815,6 +940,31 @@ final class LinuxFunctionAppLogin {
     'token_store_sas_setting_name': ?tokenStoreSasSettingName?.toTfJson(),
     'validate_nonce': ?validateNonce?.toTfJson(),
   };
+}
+
+/// `cookie_expiration_convention` — derived from the provider schema description.
+extension type const LinuxFunctionAppCookieExpirationConvention._(
+  TfArg<String> _
+) implements TfArg<String> {
+  LinuxFunctionAppCookieExpirationConvention.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxFunctionAppCookieExpirationConvention.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxFunctionAppCookieExpirationConvention.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const fixedtime = LinuxFunctionAppCookieExpirationConvention._(
+    TfArgLiteral('FixedTime'),
+  );
+  static const identityproviderderived =
+      LinuxFunctionAppCookieExpirationConvention._(
+        TfArgLiteral('IdentityProviderDerived'),
+      );
+
+  static const List<LinuxFunctionAppCookieExpirationConvention> values = [
+    fixedtime,
+    identityproviderderived,
+  ];
 }
 
 /// Typed helper for the `auth_settings_v2.microsoft_v2` block of
@@ -907,7 +1057,7 @@ final class LinuxFunctionAppSchedule {
 
   final TfArg<num> frequencyInterval;
 
-  final TfArg<String> frequencyUnit;
+  final LinuxFunctionAppFrequencyUnit frequencyUnit;
 
   final TfArg<bool>? keepAtLeastOneBackup;
 
@@ -925,6 +1075,21 @@ final class LinuxFunctionAppSchedule {
   };
 }
 
+/// `frequency_unit` — derived from the provider schema description.
+extension type const LinuxFunctionAppFrequencyUnit._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxFunctionAppFrequencyUnit.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxFunctionAppFrequencyUnit.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxFunctionAppFrequencyUnit.arg(TfArg<String> arg) : this._(arg);
+
+  static const day = LinuxFunctionAppFrequencyUnit._(TfArgLiteral('Day'));
+  static const hour = LinuxFunctionAppFrequencyUnit._(TfArgLiteral('Hour'));
+
+  static const List<LinuxFunctionAppFrequencyUnit> values = [day, hour];
+}
+
 /// Typed helper for the `connection_string` block of
 /// `azurerm_linux_function_app` (derived from provider schema).
 @immutable
@@ -937,7 +1102,7 @@ final class LinuxFunctionAppConnectionString {
 
   final TfArg<String> name;
 
-  final TfArg<String> type;
+  final LinuxFunctionAppType type;
 
   final Sensitive<String> value;
 
@@ -947,6 +1112,43 @@ final class LinuxFunctionAppConnectionString {
     'type': type.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+extension type const LinuxFunctionAppType._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxFunctionAppType.variable(String name) : this._(TfArg.variable(name));
+  LinuxFunctionAppType.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxFunctionAppType.arg(TfArg<String> arg) : this._(arg);
+
+  static const mysql = LinuxFunctionAppType._(TfArgLiteral('MySQL'));
+  static const sqlserver = LinuxFunctionAppType._(TfArgLiteral('SQLServer'));
+  static const sqlazure = LinuxFunctionAppType._(TfArgLiteral('SQLAzure'));
+  static const custom = LinuxFunctionAppType._(TfArgLiteral('Custom'));
+  static const notificationhub = LinuxFunctionAppType._(
+    TfArgLiteral('NotificationHub'),
+  );
+  static const servicebus = LinuxFunctionAppType._(TfArgLiteral('ServiceBus'));
+  static const eventhub = LinuxFunctionAppType._(TfArgLiteral('EventHub'));
+  static const apihub = LinuxFunctionAppType._(TfArgLiteral('APIHub'));
+  static const docdb = LinuxFunctionAppType._(TfArgLiteral('DocDb'));
+  static const rediscache = LinuxFunctionAppType._(TfArgLiteral('RedisCache'));
+  static const postgresql = LinuxFunctionAppType._(TfArgLiteral('PostgreSQL'));
+
+  static const List<LinuxFunctionAppType> values = [
+    mysql,
+    sqlserver,
+    sqlazure,
+    custom,
+    notificationhub,
+    servicebus,
+    eventhub,
+    apihub,
+    docdb,
+    rediscache,
+    postgresql,
+  ];
 }
 
 /// Typed helper for the `identity` block of
@@ -1031,7 +1233,7 @@ final class LinuxFunctionAppSiteConfig {
 
   final TfArg<num>? elasticInstanceMinimum;
 
-  final TfArg<String>? ftpsState;
+  final LinuxFunctionAppFtpsState? ftpsState;
 
   final TfArg<num>? healthCheckEvictionTimeInMin;
 
@@ -1041,13 +1243,13 @@ final class LinuxFunctionAppSiteConfig {
 
   final TfArg<String>? ipRestrictionDefaultAction;
 
-  final TfArg<String>? loadBalancingMode;
+  final LinuxFunctionAppLoadBalancingMode? loadBalancingMode;
 
-  final TfArg<String>? managedPipelineMode;
+  final LinuxFunctionAppManagedPipelineMode? managedPipelineMode;
 
   final TfArg<String>? minimumTlsCipherSuite;
 
-  final TfArg<String>? minimumTlsVersion;
+  final LinuxFunctionAppMinimumTlsVersion? minimumTlsVersion;
 
   final TfArg<num>? preWarmedInstanceCount;
 
@@ -1059,7 +1261,7 @@ final class LinuxFunctionAppSiteConfig {
 
   final TfArg<String>? scmIpRestrictionDefaultAction;
 
-  final TfArg<String>? scmMinimumTlsVersion;
+  final LinuxFunctionAppScmMinimumTlsVersion? scmMinimumTlsVersion;
 
   final TfArg<bool>? scmUseMainIpRestriction;
 
@@ -1130,6 +1332,140 @@ final class LinuxFunctionAppSiteConfig {
   };
 }
 
+/// `ftps_state` — derived from the provider schema description.
+extension type const LinuxFunctionAppFtpsState._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxFunctionAppFtpsState.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxFunctionAppFtpsState.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxFunctionAppFtpsState.arg(TfArg<String> arg) : this._(arg);
+
+  static const allallowed = LinuxFunctionAppFtpsState._(
+    TfArgLiteral('AllAllowed'),
+  );
+  static const ftpsonly = LinuxFunctionAppFtpsState._(TfArgLiteral('FtpsOnly'));
+  static const disabled = LinuxFunctionAppFtpsState._(TfArgLiteral('Disabled'));
+
+  static const List<LinuxFunctionAppFtpsState> values = [
+    allallowed,
+    ftpsonly,
+    disabled,
+  ];
+}
+
+/// `load_balancing_mode` — derived from the provider schema description.
+extension type const LinuxFunctionAppLoadBalancingMode._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxFunctionAppLoadBalancingMode.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxFunctionAppLoadBalancingMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxFunctionAppLoadBalancingMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const weightedroundrobin = LinuxFunctionAppLoadBalancingMode._(
+    TfArgLiteral('WeightedRoundRobin'),
+  );
+  static const leastrequests = LinuxFunctionAppLoadBalancingMode._(
+    TfArgLiteral('LeastRequests'),
+  );
+  static const leastresponsetime = LinuxFunctionAppLoadBalancingMode._(
+    TfArgLiteral('LeastResponseTime'),
+  );
+  static const weightedtotaltraffic = LinuxFunctionAppLoadBalancingMode._(
+    TfArgLiteral('WeightedTotalTraffic'),
+  );
+  static const requesthash = LinuxFunctionAppLoadBalancingMode._(
+    TfArgLiteral('RequestHash'),
+  );
+  static const persiteroundrobin = LinuxFunctionAppLoadBalancingMode._(
+    TfArgLiteral('PerSiteRoundRobin'),
+  );
+
+  static const List<LinuxFunctionAppLoadBalancingMode> values = [
+    weightedroundrobin,
+    leastrequests,
+    leastresponsetime,
+    weightedtotaltraffic,
+    requesthash,
+    persiteroundrobin,
+  ];
+}
+
+/// `managed_pipeline_mode` — derived from the provider schema description.
+extension type const LinuxFunctionAppManagedPipelineMode._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxFunctionAppManagedPipelineMode.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxFunctionAppManagedPipelineMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxFunctionAppManagedPipelineMode.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const integrated = LinuxFunctionAppManagedPipelineMode._(
+    TfArgLiteral('Integrated'),
+  );
+  static const classic = LinuxFunctionAppManagedPipelineMode._(
+    TfArgLiteral('Classic'),
+  );
+
+  static const List<LinuxFunctionAppManagedPipelineMode> values = [
+    integrated,
+    classic,
+  ];
+}
+
+/// `minimum_tls_version` — derived from the provider schema description.
+extension type const LinuxFunctionAppMinimumTlsVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxFunctionAppMinimumTlsVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxFunctionAppMinimumTlsVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxFunctionAppMinimumTlsVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const v1p0 = LinuxFunctionAppMinimumTlsVersion._(TfArgLiteral('1.0'));
+  static const v1p1 = LinuxFunctionAppMinimumTlsVersion._(TfArgLiteral('1.1'));
+  static const v1p2 = LinuxFunctionAppMinimumTlsVersion._(TfArgLiteral('1.2'));
+
+  static const List<LinuxFunctionAppMinimumTlsVersion> values = [
+    v1p0,
+    v1p1,
+    v1p2,
+  ];
+}
+
+/// `scm_minimum_tls_version` — derived from the provider schema description.
+extension type const LinuxFunctionAppScmMinimumTlsVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxFunctionAppScmMinimumTlsVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxFunctionAppScmMinimumTlsVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxFunctionAppScmMinimumTlsVersion.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const v1p0 = LinuxFunctionAppScmMinimumTlsVersion._(
+    TfArgLiteral('1.0'),
+  );
+  static const v1p1 = LinuxFunctionAppScmMinimumTlsVersion._(
+    TfArgLiteral('1.1'),
+  );
+  static const v1p2 = LinuxFunctionAppScmMinimumTlsVersion._(
+    TfArgLiteral('1.2'),
+  );
+  static const v1p3 = LinuxFunctionAppScmMinimumTlsVersion._(
+    TfArgLiteral('1.3'),
+  );
+
+  static const List<LinuxFunctionAppScmMinimumTlsVersion> values = [
+    v1p0,
+    v1p1,
+    v1p2,
+    v1p3,
+  ];
+}
+
 /// Typed helper for the `site_config.app_service_logs` block of
 /// `azurerm_linux_function_app` (derived from provider schema).
 @immutable
@@ -1165,15 +1501,15 @@ final class LinuxFunctionAppApplicationStack {
     this.docker,
   });
 
-  final TfArg<String>? dotnetVersion;
+  final LinuxFunctionAppDotnetVersion? dotnetVersion;
 
-  final TfArg<String>? javaVersion;
+  final LinuxFunctionAppJavaVersion? javaVersion;
 
-  final TfArg<String>? nodeVersion;
+  final LinuxFunctionAppNodeVersion? nodeVersion;
 
   final TfArg<String>? powershellCoreVersion;
 
-  final TfArg<String>? pythonVersion;
+  final LinuxFunctionAppPythonVersion? pythonVersion;
 
   final TfArg<bool>? useCustomRuntime;
 
@@ -1192,6 +1528,112 @@ final class LinuxFunctionAppApplicationStack {
     'use_dotnet_isolated_runtime': ?useDotnetIsolatedRuntime?.toTfJson(),
     if (docker != null) 'docker': [for (final e in docker!) e.encode()],
   };
+}
+
+/// `dotnet_version` — derived from the provider schema description.
+extension type const LinuxFunctionAppDotnetVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxFunctionAppDotnetVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxFunctionAppDotnetVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxFunctionAppDotnetVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const v3p1 = LinuxFunctionAppDotnetVersion._(TfArgLiteral('3.1'));
+  static const v6p0 = LinuxFunctionAppDotnetVersion._(TfArgLiteral('6.0'));
+  static const v7p0 = LinuxFunctionAppDotnetVersion._(TfArgLiteral('7.0'));
+  static const v8p0 = LinuxFunctionAppDotnetVersion._(TfArgLiteral('8.0'));
+  static const v9p0 = LinuxFunctionAppDotnetVersion._(TfArgLiteral('9.0'));
+
+  static const List<LinuxFunctionAppDotnetVersion> values = [
+    v3p1,
+    v6p0,
+    v7p0,
+    v8p0,
+    v9p0,
+  ];
+}
+
+/// `java_version` — derived from the provider schema description.
+extension type const LinuxFunctionAppJavaVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxFunctionAppJavaVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxFunctionAppJavaVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxFunctionAppJavaVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const v8 = LinuxFunctionAppJavaVersion._(TfArgLiteral('8'));
+  static const v11 = LinuxFunctionAppJavaVersion._(TfArgLiteral('11'));
+  static const v17 = LinuxFunctionAppJavaVersion._(TfArgLiteral('17'));
+  static const v21 = LinuxFunctionAppJavaVersion._(TfArgLiteral('21'));
+  static const v25 = LinuxFunctionAppJavaVersion._(TfArgLiteral('25'));
+
+  static const List<LinuxFunctionAppJavaVersion> values = [
+    v8,
+    v11,
+    v17,
+    v21,
+    v25,
+  ];
+}
+
+/// `node_version` — derived from the provider schema description.
+extension type const LinuxFunctionAppNodeVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxFunctionAppNodeVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxFunctionAppNodeVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxFunctionAppNodeVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const v12 = LinuxFunctionAppNodeVersion._(TfArgLiteral('12'));
+  static const v14 = LinuxFunctionAppNodeVersion._(TfArgLiteral('14'));
+  static const v16 = LinuxFunctionAppNodeVersion._(TfArgLiteral('16'));
+  static const v18 = LinuxFunctionAppNodeVersion._(TfArgLiteral('18'));
+  static const v20 = LinuxFunctionAppNodeVersion._(TfArgLiteral('20'));
+  static const v22 = LinuxFunctionAppNodeVersion._(TfArgLiteral('22'));
+  static const v24 = LinuxFunctionAppNodeVersion._(TfArgLiteral('24'));
+
+  static const List<LinuxFunctionAppNodeVersion> values = [
+    v12,
+    v14,
+    v16,
+    v18,
+    v20,
+    v22,
+    v24,
+  ];
+}
+
+/// `python_version` — derived from the provider schema description.
+extension type const LinuxFunctionAppPythonVersion._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxFunctionAppPythonVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  LinuxFunctionAppPythonVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxFunctionAppPythonVersion.arg(TfArg<String> arg) : this._(arg);
+
+  static const v3p14 = LinuxFunctionAppPythonVersion._(TfArgLiteral('3.14'));
+  static const v3p13 = LinuxFunctionAppPythonVersion._(TfArgLiteral('3.13'));
+  static const v3p12 = LinuxFunctionAppPythonVersion._(TfArgLiteral('3.12'));
+  static const v3p11 = LinuxFunctionAppPythonVersion._(TfArgLiteral('3.11'));
+  static const v3p10 = LinuxFunctionAppPythonVersion._(TfArgLiteral('3.10'));
+  static const v3p9 = LinuxFunctionAppPythonVersion._(TfArgLiteral('3.9'));
+  static const v3p8 = LinuxFunctionAppPythonVersion._(TfArgLiteral('3.8'));
+  static const v3p7 = LinuxFunctionAppPythonVersion._(TfArgLiteral('3.7'));
+
+  static const List<LinuxFunctionAppPythonVersion> values = [
+    v3p14,
+    v3p13,
+    v3p12,
+    v3p11,
+    v3p10,
+    v3p9,
+    v3p8,
+    v3p7,
+  ];
 }
 
 /// Typed helper for the `site_config.application_stack.docker` block of
@@ -1258,7 +1700,7 @@ final class LinuxFunctionAppIpRestriction {
     this.virtualNetworkSubnetId,
   });
 
-  final TfArg<String>? action;
+  final LinuxFunctionAppAction? action;
 
   final TfArg<String>? description;
 
@@ -1287,6 +1729,20 @@ final class LinuxFunctionAppIpRestriction {
   };
 }
 
+/// `action` — derived from the provider schema description.
+extension type const LinuxFunctionAppAction._(TfArg<String> _)
+    implements TfArg<String> {
+  LinuxFunctionAppAction.variable(String name) : this._(TfArg.variable(name));
+  LinuxFunctionAppAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const LinuxFunctionAppAction.arg(TfArg<String> arg) : this._(arg);
+
+  static const allow = LinuxFunctionAppAction._(TfArgLiteral('Allow'));
+  static const deny = LinuxFunctionAppAction._(TfArgLiteral('Deny'));
+
+  static const List<LinuxFunctionAppAction> values = [allow, deny];
+}
+
 /// Typed helper for the `site_config.scm_ip_restriction` block of
 /// `azurerm_linux_function_app` (derived from provider schema).
 @immutable
@@ -1302,7 +1758,7 @@ final class LinuxFunctionAppScmIpRestriction {
     this.virtualNetworkSubnetId,
   });
 
-  final TfArg<String>? action;
+  final LinuxFunctionAppAction? action;
 
   final TfArg<String>? description;
 

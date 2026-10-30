@@ -5685,7 +5685,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     kind: CatalogKind.resource,
     summary: 'Factory wrapper for `cloudflare_origin_tls_compliance_modes`.',
     constructorParams: <String>['localName', 'value', 'zoneId'],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['OriginTlsComplianceModesValue'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `cloudflare_origin_tls_compliance_modes`.',
   ),
@@ -5800,6 +5800,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'DataPageShieldConnectionsListDirection',
       'DataPageShieldConnectionsListExport',
       'DataPageShieldConnectionsListOrderBy',
+      'DataPageShieldConnectionsListStatus',
     ],
     sensitiveFields: <String>[],
     docComment:
@@ -5937,6 +5938,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'DataPageShieldScriptsListDirection',
       'DataPageShieldScriptsListExport',
       'DataPageShieldScriptsListOrderBy',
+      'DataPageShieldScriptsListStatus',
     ],
     sensitiveFields: <String>[],
     docComment:
@@ -7138,7 +7140,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'storeId',
       'value',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['SecretsStoreSecretScopes'],
     sensitiveFields: <String>['value'],
     docComment:
         'Factory wrapper for `cloudflare_secrets_store_secret`.\n\nAccepted Permissions\n\n- `Secrets Store Read` - `Secrets Store Write`',

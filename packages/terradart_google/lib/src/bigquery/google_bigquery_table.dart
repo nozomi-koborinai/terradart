@@ -546,7 +546,7 @@ final class BigqueryTableCsvOptions {
 
   final TfArg<num>? skipLeadingRows;
 
-  final TfArg<String>? sourceColumnMatch;
+  final BigqueryTableSourceColumnMatch? sourceColumnMatch;
 
   @internal
   Map<String, Object?> encode() => {
@@ -572,6 +572,23 @@ extension type const BigqueryTableEncoding._(TfArg<String> _)
   static const iso88591 = BigqueryTableEncoding._(TfArgLiteral('ISO-8859-1'));
 
   static const List<BigqueryTableEncoding> values = [utf8, iso88591];
+}
+
+/// `source_column_match` — derived from the provider schema description.
+extension type const BigqueryTableSourceColumnMatch._(TfArg<String> _)
+    implements TfArg<String> {
+  BigqueryTableSourceColumnMatch.variable(String name)
+    : this._(TfArg.variable(name));
+  BigqueryTableSourceColumnMatch.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryTableSourceColumnMatch.arg(TfArg<String> arg) : this._(arg);
+
+  static const position = BigqueryTableSourceColumnMatch._(
+    TfArgLiteral('POSITION'),
+  );
+  static const name = BigqueryTableSourceColumnMatch._(TfArgLiteral('NAME'));
+
+  static const List<BigqueryTableSourceColumnMatch> values = [position, name];
 }
 
 /// Typed helper for the `external_data_configuration.google_sheets_options` block of
@@ -621,10 +638,42 @@ final class BigqueryTableHivePartitioningOptions {
 final class BigqueryTableJsonOptions {
   const BigqueryTableJsonOptions({this.encoding});
 
-  final TfArg<String>? encoding;
+  final BigqueryTableJsonOptionsEncoding? encoding;
 
   @internal
   Map<String, Object?> encode() => {'encoding': ?encoding?.toTfJson()};
+}
+
+/// `encoding` — derived from the provider schema description.
+extension type const BigqueryTableJsonOptionsEncoding._(TfArg<String> _)
+    implements TfArg<String> {
+  BigqueryTableJsonOptionsEncoding.variable(String name)
+    : this._(TfArg.variable(name));
+  BigqueryTableJsonOptionsEncoding.expression(String template)
+    : this._(TfArg.expression(template));
+  const BigqueryTableJsonOptionsEncoding.arg(TfArg<String> arg) : this._(arg);
+
+  static const utf8 = BigqueryTableJsonOptionsEncoding._(TfArgLiteral('UTF-8'));
+  static const utf16be = BigqueryTableJsonOptionsEncoding._(
+    TfArgLiteral('UTF-16BE'),
+  );
+  static const utf16le = BigqueryTableJsonOptionsEncoding._(
+    TfArgLiteral('UTF-16LE'),
+  );
+  static const utf32be = BigqueryTableJsonOptionsEncoding._(
+    TfArgLiteral('UTF-32BE'),
+  );
+  static const utf32le = BigqueryTableJsonOptionsEncoding._(
+    TfArgLiteral('UTF-32LE'),
+  );
+
+  static const List<BigqueryTableJsonOptionsEncoding> values = [
+    utf8,
+    utf16be,
+    utf16le,
+    utf32be,
+    utf32le,
+  ];
 }
 
 /// Typed helper for the `external_data_configuration.parquet_options` block of

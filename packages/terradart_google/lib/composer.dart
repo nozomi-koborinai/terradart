@@ -33,6 +33,7 @@ export 'src/composer/google_composer_environment.dart'
         ComposerEnvironmentWebServer,
         ComposerEnvironmentWebServerConfig,
         ComposerEnvironmentWebServerNetworkAccessControl,
+        ComposerEnvironmentWebServerPluginsMode,
         ComposerEnvironmentWorker,
         ComposerEnvironmentWorkloadsConfig,
         GoogleComposerEnvironment;

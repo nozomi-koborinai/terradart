@@ -92,7 +92,7 @@ final class NetworkServicesLbRouteExtensionExtensions {
 
   final TfArg<String> service;
 
-  final TfArg<List<String>>? supportedEvents;
+  final List<NetworkServicesLbRouteExtensionSupportedEvents>? supportedEvents;
 
   final TfArg<String>? timeout;
 
@@ -107,7 +107,8 @@ final class NetworkServicesLbRouteExtensionExtensions {
     'observability_mode': ?observabilityMode?.toTfJson(),
     'request_body_send_mode': ?requestBodySendMode?.toTfJson(),
     'service': service.toTfJson(),
-    'supported_events': ?supportedEvents?.toTfJson(),
+    if (supportedEvents != null)
+      'supported_events': [for (final e in supportedEvents!) e.toTfJson()],
     'timeout': ?timeout?.toTfJson(),
   };
 }
@@ -143,6 +144,36 @@ extension type const NetworkServicesLbRouteExtensionRequestBodySendMode._(
         bodySendModeStreamed,
         bodySendModeFullDuplexStreamed,
       ];
+}
+
+/// `supported_events` — derived from the provider schema description.
+extension type const NetworkServicesLbRouteExtensionSupportedEvents._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkServicesLbRouteExtensionSupportedEvents.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkServicesLbRouteExtensionSupportedEvents.expression(String template)
+    : this._(TfArg.expression(template));
+  const NetworkServicesLbRouteExtensionSupportedEvents.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const requestHeaders =
+      NetworkServicesLbRouteExtensionSupportedEvents._(
+        TfArgLiteral('REQUEST_HEADERS'),
+      );
+  static const requestBody = NetworkServicesLbRouteExtensionSupportedEvents._(
+    TfArgLiteral('REQUEST_BODY'),
+  );
+  static const requestTrailers =
+      NetworkServicesLbRouteExtensionSupportedEvents._(
+        TfArgLiteral('REQUEST_TRAILERS'),
+      );
+
+  static const List<NetworkServicesLbRouteExtensionSupportedEvents> values = [
+    requestHeaders,
+    requestBody,
+    requestTrailers,
+  ];
 }
 
 /// Typed helper for the `extension_chains.match_condition` block of

@@ -32,6 +32,34 @@ extension type const DiscoveryEngineRecommendationEngineIndustryVertical._(
   values = [generic, media];
 }
 
+/// Discovery Engine Recommendation Engine enum for `location`.
+extension type const DiscoveryEngineRecommendationEngineLocation._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DiscoveryEngineRecommendationEngineLocation.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineRecommendationEngineLocation.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineRecommendationEngineLocation.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const global = DiscoveryEngineRecommendationEngineLocation._(
+    TfArgLiteral('global'),
+  );
+  static const us = DiscoveryEngineRecommendationEngineLocation._(
+    TfArgLiteral('us'),
+  );
+  static const eu = DiscoveryEngineRecommendationEngineLocation._(
+    TfArgLiteral('eu'),
+  );
+
+  static const List<DiscoveryEngineRecommendationEngineLocation> values = [
+    global,
+    us,
+    eu,
+  ];
+}
+
 /// Typed helper for the `common_config` block of
 /// `google_discovery_engine_recommendation_engine` (derived from provider schema).
 @immutable
@@ -56,11 +84,12 @@ final class DiscoveryEngineRecommendationEngineMediaRecommendationEngineConfig {
     this.optimizationObjectiveConfig,
   });
 
-  final TfArg<String>? optimizationObjective;
+  final DiscoveryEngineRecommendationEngineOptimizationObjective?
+  optimizationObjective;
 
   final DiscoveryEngineRecommendationEngineTrainingState? trainingState;
 
-  final TfArg<String>? type;
+  final DiscoveryEngineRecommendationEngineType? type;
 
   final DiscoveryEngineRecommendationEngineFeaturesConfig? engineFeaturesConfig;
 
@@ -75,6 +104,30 @@ final class DiscoveryEngineRecommendationEngineMediaRecommendationEngineConfig {
     'engine_features_config': ?engineFeaturesConfig?.encode(),
     'optimization_objective_config': ?optimizationObjectiveConfig?.encode(),
   };
+}
+
+/// `optimization_objective` — derived from the provider schema description.
+extension type const DiscoveryEngineRecommendationEngineOptimizationObjective._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DiscoveryEngineRecommendationEngineOptimizationObjective.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineRecommendationEngineOptimizationObjective.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const DiscoveryEngineRecommendationEngineOptimizationObjective.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const ctr = DiscoveryEngineRecommendationEngineOptimizationObjective._(
+    TfArgLiteral('ctr'),
+  );
+  static const cvr = DiscoveryEngineRecommendationEngineOptimizationObjective._(
+    TfArgLiteral('cvr'),
+  );
+
+  static const List<DiscoveryEngineRecommendationEngineOptimizationObjective>
+  values = [ctr, cvr];
 }
 
 /// `training_state` — derived from the provider schema description.
@@ -98,6 +151,37 @@ extension type const DiscoveryEngineRecommendationEngineTrainingState._(
   static const List<DiscoveryEngineRecommendationEngineTrainingState> values = [
     paused,
     training,
+  ];
+}
+
+/// `type` — derived from the provider schema description.
+extension type const DiscoveryEngineRecommendationEngineType._(TfArg<String> _)
+    implements TfArg<String> {
+  DiscoveryEngineRecommendationEngineType.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineRecommendationEngineType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineRecommendationEngineType.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const recommendedForYou = DiscoveryEngineRecommendationEngineType._(
+    TfArgLiteral('recommended-for-you'),
+  );
+  static const othersYouMayLike = DiscoveryEngineRecommendationEngineType._(
+    TfArgLiteral('others-you-may-like'),
+  );
+  static const moreLikeThis = DiscoveryEngineRecommendationEngineType._(
+    TfArgLiteral('more-like-this'),
+  );
+  static const mostPopularItems = DiscoveryEngineRecommendationEngineType._(
+    TfArgLiteral('most-popular-items'),
+  );
+
+  static const List<DiscoveryEngineRecommendationEngineType> values = [
+    recommendedForYou,
+    othersYouMayLike,
+    moreLikeThis,
+    mostPopularItems,
   ];
 }
 
@@ -192,12 +276,37 @@ final class DiscoveryEngineRecommendationEngineRecommendedForYouConfig {
     this.contextEventType,
   });
 
-  final TfArg<String>? contextEventType;
+  final DiscoveryEngineRecommendationEngineContextEventType? contextEventType;
 
   @internal
   Map<String, Object?> encode() => {
     'context_event_type': ?contextEventType?.toTfJson(),
   };
+}
+
+/// `context_event_type` — derived from the provider schema description.
+extension type const DiscoveryEngineRecommendationEngineContextEventType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DiscoveryEngineRecommendationEngineContextEventType.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineRecommendationEngineContextEventType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const DiscoveryEngineRecommendationEngineContextEventType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const viewHomePage =
+      DiscoveryEngineRecommendationEngineContextEventType._(
+        TfArgLiteral('view-home-page'),
+      );
+  static const generic = DiscoveryEngineRecommendationEngineContextEventType._(
+    TfArgLiteral('generic'),
+  );
+
+  static const List<DiscoveryEngineRecommendationEngineContextEventType>
+  values = [viewHomePage, generic];
 }
 
 /// Typed helper for the `media_recommendation_engine_config.optimization_objective_config` block of
@@ -209,7 +318,7 @@ final class DiscoveryEngineRecommendationEngineOptimizationObjectiveConfig {
     this.targetFieldValueFloat,
   });
 
-  final TfArg<String>? targetField;
+  final DiscoveryEngineRecommendationEngineTargetField? targetField;
 
   final TfArg<num>? targetFieldValueFloat;
 
@@ -218,6 +327,31 @@ final class DiscoveryEngineRecommendationEngineOptimizationObjectiveConfig {
     'target_field': ?targetField?.toTfJson(),
     'target_field_value_float': ?targetFieldValueFloat?.toTfJson(),
   };
+}
+
+/// `target_field` — derived from the provider schema description.
+extension type const DiscoveryEngineRecommendationEngineTargetField._(
+  TfArg<String> _
+) implements TfArg<String> {
+  DiscoveryEngineRecommendationEngineTargetField.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineRecommendationEngineTargetField.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineRecommendationEngineTargetField.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const watchPercentage =
+      DiscoveryEngineRecommendationEngineTargetField._(
+        TfArgLiteral('watch-percentage'),
+      );
+  static const watchTime = DiscoveryEngineRecommendationEngineTargetField._(
+    TfArgLiteral('watch-time'),
+  );
+
+  static const List<DiscoveryEngineRecommendationEngineTargetField> values = [
+    watchPercentage,
+    watchTime,
+  ];
 }
 
 /// Factory wrapper for `google_discovery_engine_recommendation_engine`.
@@ -238,7 +372,7 @@ final class GoogleDiscoveryEngineRecommendationEngine extends Resource {
 
   GoogleDiscoveryEngineRecommendationEngine(
     super.localName, {
-    required TfArg<String> location,
+    required DiscoveryEngineRecommendationEngineLocation location,
     required TfArg<String> engineId,
     required TfArg<String> displayName,
     required TfArg<List<String>> dataStoreIds,

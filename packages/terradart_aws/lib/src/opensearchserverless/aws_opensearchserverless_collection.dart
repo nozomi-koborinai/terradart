@@ -6,6 +6,56 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_opensearchserverless_collection`.
 const Set<String> _awsOpensearchserverlessCollectionSensitive = <String>{};
 
+/// Opensearchserverless Collection Standby enum for `standby_replicas`.
+extension type const OpensearchserverlessCollectionStandbyReplicas._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OpensearchserverlessCollectionStandbyReplicas.variable(String name)
+    : this._(TfArg.variable(name));
+  OpensearchserverlessCollectionStandbyReplicas.expression(String template)
+    : this._(TfArg.expression(template));
+  const OpensearchserverlessCollectionStandbyReplicas.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const enabled = OpensearchserverlessCollectionStandbyReplicas._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = OpensearchserverlessCollectionStandbyReplicas._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<OpensearchserverlessCollectionStandbyReplicas> values = [
+    enabled,
+    disabled,
+  ];
+}
+
+/// Opensearchserverless Collection enum for `type`.
+extension type const OpensearchserverlessCollectionType._(TfArg<String> _)
+    implements TfArg<String> {
+  OpensearchserverlessCollectionType.variable(String name)
+    : this._(TfArg.variable(name));
+  OpensearchserverlessCollectionType.expression(String template)
+    : this._(TfArg.expression(template));
+  const OpensearchserverlessCollectionType.arg(TfArg<String> arg) : this._(arg);
+
+  static const search = OpensearchserverlessCollectionType._(
+    TfArgLiteral('SEARCH'),
+  );
+  static const timeseries = OpensearchserverlessCollectionType._(
+    TfArgLiteral('TIMESERIES'),
+  );
+  static const vectorsearch = OpensearchserverlessCollectionType._(
+    TfArgLiteral('VECTORSEARCH'),
+  );
+
+  static const List<OpensearchserverlessCollectionType> values = [
+    search,
+    timeseries,
+    vectorsearch,
+  ];
+}
+
 /// Factory wrapper for `aws_opensearchserverless_collection`.
 final class AwsOpensearchserverlessCollection extends Resource {
   static const String tfType = 'aws_opensearchserverless_collection';
@@ -17,9 +67,9 @@ final class AwsOpensearchserverlessCollection extends Resource {
     TfArg<List<Map<String, Object?>>>? encryptionConfig,
     required TfArg<String> name,
     TfArg<String>? region,
-    TfArg<String>? standbyReplicas,
+    OpensearchserverlessCollectionStandbyReplicas? standbyReplicas,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? type,
+    OpensearchserverlessCollectionType? type,
     TfArg<List<Map<String, Object?>>>? vectorOptions,
     super.lifecycle,
     super.dependsOn,

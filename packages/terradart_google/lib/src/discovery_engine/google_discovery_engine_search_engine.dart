@@ -9,6 +9,28 @@ import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 /// Sensitive field paths for `google_discovery_engine_search_engine`.
 const Set<String> _googleDiscoveryEngineSearchEngineSensitive = <String>{};
 
+/// Discovery Engine Search Engine App enum for `app_type`.
+extension type const DiscoveryEngineSearchEngineAppType._(TfArg<String> _)
+    implements TfArg<String> {
+  DiscoveryEngineSearchEngineAppType.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineSearchEngineAppType.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineSearchEngineAppType.arg(TfArg<String> arg) : this._(arg);
+
+  static const appTypeUnspecified = DiscoveryEngineSearchEngineAppType._(
+    TfArgLiteral('APP_TYPE_UNSPECIFIED'),
+  );
+  static const appTypeIntranet = DiscoveryEngineSearchEngineAppType._(
+    TfArgLiteral('APP_TYPE_INTRANET'),
+  );
+
+  static const List<DiscoveryEngineSearchEngineAppType> values = [
+    appTypeUnspecified,
+    appTypeIntranet,
+  ];
+}
+
 /// Discovery Engine Search Engine Industry enum for `industry_vertical`.
 extension type const DiscoveryEngineSearchEngineIndustryVertical._(
   TfArg<String> _
@@ -277,7 +299,7 @@ final class GoogleDiscoveryEngineSearchEngine extends Resource {
     required DiscoveryEngineSearchEngineConfig searchEngineConfig,
     DiscoveryEngineSearchEngineIndustryVertical? industryVertical,
     TfArg<String>? project,
-    TfArg<String>? appType,
+    DiscoveryEngineSearchEngineAppType? appType,
     TfArg<bool>? disableAnalytics,
     TfArg<Map<String, String>>? features,
     RefTo<GoogleKmsCryptoKey>? kmsKeyName,

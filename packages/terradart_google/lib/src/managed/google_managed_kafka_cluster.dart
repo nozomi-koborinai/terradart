@@ -113,10 +113,35 @@ final class ManagedKafkaClusterPublicClusterConfig {
 final class ManagedKafkaClusterRebalanceConfig {
   const ManagedKafkaClusterRebalanceConfig({this.mode});
 
-  final TfArg<String>? mode;
+  final ManagedKafkaClusterMode? mode;
 
   @internal
   Map<String, Object?> encode() => {'mode': ?mode?.toTfJson()};
+}
+
+/// `mode` — derived from the provider schema description.
+extension type const ManagedKafkaClusterMode._(TfArg<String> _)
+    implements TfArg<String> {
+  ManagedKafkaClusterMode.variable(String name) : this._(TfArg.variable(name));
+  ManagedKafkaClusterMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const ManagedKafkaClusterMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const modeUnspecified = ManagedKafkaClusterMode._(
+    TfArgLiteral('MODE_UNSPECIFIED'),
+  );
+  static const noRebalance = ManagedKafkaClusterMode._(
+    TfArgLiteral('NO_REBALANCE'),
+  );
+  static const autoRebalanceOnScaleUp = ManagedKafkaClusterMode._(
+    TfArgLiteral('AUTO_REBALANCE_ON_SCALE_UP'),
+  );
+
+  static const List<ManagedKafkaClusterMode> values = [
+    modeUnspecified,
+    noRebalance,
+    autoRebalanceOnScaleUp,
+  ];
 }
 
 /// Typed helper for the `tls_config` block of

@@ -76,13 +76,13 @@ final class OracleDatabaseExadbVmClusterProperties {
 
   final TfArg<String> hostnamePrefix;
 
-  final TfArg<String>? licenseModel;
+  final OracleDatabaseExadbVmClusterLicenseModel? licenseModel;
 
   final TfArg<num> nodeCount;
 
   final TfArg<num>? scanListenerPortTcp;
 
-  final TfArg<String> shapeAttribute;
+  final OracleDatabaseExadbVmClusterShapeAttribute shapeAttribute;
 
   final TfArg<List<String>> sshPublicKeys;
 
@@ -112,6 +112,53 @@ final class OracleDatabaseExadbVmClusterProperties {
     'time_zone': ?timeZone?.encode(),
     'vm_file_system_storage': vmFileSystemStorage.encode(),
   };
+}
+
+/// `license_model` — derived from the provider schema description.
+extension type const OracleDatabaseExadbVmClusterLicenseModel._(TfArg<String> _)
+    implements TfArg<String> {
+  OracleDatabaseExadbVmClusterLicenseModel.variable(String name)
+    : this._(TfArg.variable(name));
+  OracleDatabaseExadbVmClusterLicenseModel.expression(String template)
+    : this._(TfArg.expression(template));
+  const OracleDatabaseExadbVmClusterLicenseModel.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const licenseIncluded = OracleDatabaseExadbVmClusterLicenseModel._(
+    TfArgLiteral('LICENSE_INCLUDED'),
+  );
+  static const bringYourOwnLicense = OracleDatabaseExadbVmClusterLicenseModel._(
+    TfArgLiteral('BRING_YOUR_OWN_LICENSE'),
+  );
+
+  static const List<OracleDatabaseExadbVmClusterLicenseModel> values = [
+    licenseIncluded,
+    bringYourOwnLicense,
+  ];
+}
+
+/// `shape_attribute` — derived from the provider schema description.
+extension type const OracleDatabaseExadbVmClusterShapeAttribute._(
+  TfArg<String> _
+) implements TfArg<String> {
+  OracleDatabaseExadbVmClusterShapeAttribute.variable(String name)
+    : this._(TfArg.variable(name));
+  OracleDatabaseExadbVmClusterShapeAttribute.expression(String template)
+    : this._(TfArg.expression(template));
+  const OracleDatabaseExadbVmClusterShapeAttribute.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const smartStorage = OracleDatabaseExadbVmClusterShapeAttribute._(
+    TfArgLiteral('SMART_STORAGE'),
+  );
+  static const blockStorage = OracleDatabaseExadbVmClusterShapeAttribute._(
+    TfArgLiteral('BLOCK_STORAGE'),
+  );
+
+  static const List<OracleDatabaseExadbVmClusterShapeAttribute> values = [
+    smartStorage,
+    blockStorage,
+  ];
 }
 
 /// Typed helper for the `properties.data_collection_options` block of

@@ -57,6 +57,57 @@ extension type const NetworkServicesAgentConnectivityTemplateAccessTypes._(
   values = [public, private];
 }
 
+/// Network Services Agent Connectivity Template Agent enum for `agent_compute`.
+extension type const NetworkServicesAgentConnectivityTemplateAgentCompute._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkServicesAgentConnectivityTemplateAgentCompute.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkServicesAgentConnectivityTemplateAgentCompute.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const NetworkServicesAgentConnectivityTemplateAgentCompute.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const gke = NetworkServicesAgentConnectivityTemplateAgentCompute._(
+    TfArgLiteral('GKE'),
+  );
+  static const cloudRun =
+      NetworkServicesAgentConnectivityTemplateAgentCompute._(
+        TfArgLiteral('CLOUD_RUN'),
+      );
+
+  static const List<NetworkServicesAgentConnectivityTemplateAgentCompute>
+  values = [gke, cloudRun];
+}
+
+/// Network Services Agent Connectivity Template Deployment enum for `deployment_model`.
+extension type const NetworkServicesAgentConnectivityTemplateDeploymentModel._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkServicesAgentConnectivityTemplateDeploymentModel.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkServicesAgentConnectivityTemplateDeploymentModel.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const NetworkServicesAgentConnectivityTemplateDeploymentModel.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const centralized =
+      NetworkServicesAgentConnectivityTemplateDeploymentModel._(
+        TfArgLiteral('CENTRALIZED'),
+      );
+  static const ambient =
+      NetworkServicesAgentConnectivityTemplateDeploymentModel._(
+        TfArgLiteral('AMBIENT'),
+      );
+
+  static const List<NetworkServicesAgentConnectivityTemplateDeploymentModel>
+  values = [centralized, ambient];
+}
+
 /// Typed helper for the `egress_network_config` block of
 /// `google_network_services_agent_connectivity_template` (derived from provider schema).
 @immutable

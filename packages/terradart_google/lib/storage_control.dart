@@ -9,11 +9,15 @@ export 'package:terradart_core/terradart_core.dart';
 export 'src/data/google_storage_control_folder_intelligence_config.dart'
     show DataGoogleStorageControlFolderIntelligenceConfig;
 export 'src/data/google_storage_control_folder_intelligence_findings_summary.dart'
-    show DataGoogleStorageControlFolderIntelligenceFindingsSummary;
+    show
+        DataGoogleStorageControlFolderIntelligenceFindingsSummary,
+        DataStorageControlFolderIntelligenceFindingsSummaryResourceScope;
 export 'src/data/google_storage_control_organization_intelligence_config.dart'
     show DataGoogleStorageControlOrganizationIntelligenceConfig;
 export 'src/data/google_storage_control_organization_intelligence_findings_summary.dart'
-    show DataGoogleStorageControlOrganizationIntelligenceFindingsSummary;
+    show
+        DataGoogleStorageControlOrganizationIntelligenceFindingsSummary,
+        DataStorageControlOrganizationIntelligenceFindingsSummaryResourceScope;
 export 'src/data/google_storage_control_project_intelligence_config.dart'
     show DataGoogleStorageControlProjectIntelligenceConfig;
 export 'src/data/google_storage_control_project_intelligence_finding.dart'
@@ -25,12 +29,15 @@ export 'src/data/google_storage_control_project_intelligence_finding_revisions.d
 export 'src/data/google_storage_control_project_intelligence_findings.dart'
     show DataGoogleStorageControlProjectIntelligenceFindings;
 export 'src/data/google_storage_control_project_intelligence_findings_summary.dart'
-    show DataGoogleStorageControlProjectIntelligenceFindingsSummary;
+    show
+        DataGoogleStorageControlProjectIntelligenceFindingsSummary,
+        DataStorageControlProjectIntelligenceFindingsSummaryResourceScope;
 export 'src/storage_control/google_storage_control_folder_intelligence_config.dart'
     show
         GoogleStorageControlFolderIntelligenceConfig,
         StorageControlFolderIntelligenceConfigCloudStorageBuckets,
         StorageControlFolderIntelligenceConfigCloudStorageLocations,
+        StorageControlFolderIntelligenceConfigEditionConfig,
         StorageControlFolderIntelligenceConfigExcludedCloudStorageBuckets,
         StorageControlFolderIntelligenceConfigExcludedCloudStorageBucketsChoice,
         StorageControlFolderIntelligenceConfigExcludedCloudStorageLocations,
@@ -45,6 +52,7 @@ export 'src/storage_control/google_storage_control_organization_intelligence_con
         GoogleStorageControlOrganizationIntelligenceConfig,
         StorageControlOrganizationIntelligenceConfigCloudStorageBuckets,
         StorageControlOrganizationIntelligenceConfigCloudStorageLocations,
+        StorageControlOrganizationIntelligenceConfigEditionConfig,
         StorageControlOrganizationIntelligenceConfigExcludedCloudStorageBuckets,
         StorageControlOrganizationIntelligenceConfigExcludedCloudStorageBucketsChoice,
         StorageControlOrganizationIntelligenceConfigExcludedCloudStorageLocations,

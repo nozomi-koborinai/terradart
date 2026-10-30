@@ -4,28 +4,7 @@ deriveClassDoc: true
 deriveExactlyOne: true
 deriveNestedTypes: true
 deriveOutputGetters: true
-# MM ProjectIntelligenceConfig.yaml documents editionConfig as String with
-# "Valid values are INHERIT, TRIAL, DISABLED and STANDARD" (no enum_values),
-# so deriveEnums cannot emit — hand-write the enum in prelude.
-deriveEnums: false
-
-dartTypeOverrides:
-  edition_config: StorageControlProjectIntelligenceConfigEditionConfig
-
-prelude: |
-  /// Edition configuration of the Storage Intelligence resource.
-  extension type const StorageControlProjectIntelligenceConfigEditionConfig._(TfArg<String> _) implements TfArg<String> {
-    StorageControlProjectIntelligenceConfigEditionConfig.variable(String name) : this._(TfArg.variable(name));
-    StorageControlProjectIntelligenceConfigEditionConfig.expression(String template) : this._(TfArg.expression(template));
-    const StorageControlProjectIntelligenceConfigEditionConfig.arg(TfArg<String> arg) : this._(arg);
-
-    static const inherit = StorageControlProjectIntelligenceConfigEditionConfig._(TfArgLiteral('INHERIT'));
-    static const trial = StorageControlProjectIntelligenceConfigEditionConfig._(TfArgLiteral('TRIAL'));
-    static const disabled = StorageControlProjectIntelligenceConfigEditionConfig._(TfArgLiteral('DISABLED'));
-    static const standard = StorageControlProjectIntelligenceConfigEditionConfig._(TfArgLiteral('STANDARD'));
-
-    static const List<StorageControlProjectIntelligenceConfigEditionConfig> values = [inherit, trial, disabled, standard];
-  }
+deriveEnums: true
 
 curatedDoc: |-
   /// Project-level **Cloud Storage Intelligence config** — a singleton that

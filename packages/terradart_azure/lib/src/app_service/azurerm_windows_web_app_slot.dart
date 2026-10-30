@@ -75,7 +75,7 @@ final class WindowsWebAppSlotAuthSettings {
 
   final TfArg<List<String>>? allowedExternalRedirectUrls;
 
-  final TfArg<String>? defaultProvider;
+  final WindowsWebAppSlotDefaultProvider? defaultProvider;
 
   final TfArg<bool> enabled;
 
@@ -87,7 +87,8 @@ final class WindowsWebAppSlotAuthSettings {
 
   final TfArg<bool>? tokenStoreEnabled;
 
-  final TfArg<String>? unauthenticatedClientAction;
+  final WindowsWebAppSlotUnauthenticatedClientAction?
+  unauthenticatedClientAction;
 
   final WindowsWebAppSlotActiveDirectory? activeDirectory;
 
@@ -119,6 +120,69 @@ final class WindowsWebAppSlotAuthSettings {
     'microsoft': ?microsoft?.encode(),
     'twitter': ?twitter?.encode(),
   };
+}
+
+/// `default_provider` — derived from the provider schema description.
+extension type const WindowsWebAppSlotDefaultProvider._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsWebAppSlotDefaultProvider.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsWebAppSlotDefaultProvider.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppSlotDefaultProvider.arg(TfArg<String> arg) : this._(arg);
+
+  static const azureactivedirectory = WindowsWebAppSlotDefaultProvider._(
+    TfArgLiteral('AzureActiveDirectory'),
+  );
+  static const facebook = WindowsWebAppSlotDefaultProvider._(
+    TfArgLiteral('Facebook'),
+  );
+  static const google = WindowsWebAppSlotDefaultProvider._(
+    TfArgLiteral('Google'),
+  );
+  static const microsoftaccount = WindowsWebAppSlotDefaultProvider._(
+    TfArgLiteral('MicrosoftAccount'),
+  );
+  static const twitter = WindowsWebAppSlotDefaultProvider._(
+    TfArgLiteral('Twitter'),
+  );
+  static const github = WindowsWebAppSlotDefaultProvider._(
+    TfArgLiteral('Github'),
+  );
+
+  static const List<WindowsWebAppSlotDefaultProvider> values = [
+    azureactivedirectory,
+    facebook,
+    google,
+    microsoftaccount,
+    twitter,
+    github,
+  ];
+}
+
+/// `unauthenticated_client_action` — derived from the provider schema description.
+extension type const WindowsWebAppSlotUnauthenticatedClientAction._(
+  TfArg<String> _
+) implements TfArg<String> {
+  WindowsWebAppSlotUnauthenticatedClientAction.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsWebAppSlotUnauthenticatedClientAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppSlotUnauthenticatedClientAction.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const redirecttologinpage =
+      WindowsWebAppSlotUnauthenticatedClientAction._(
+        TfArgLiteral('RedirectToLoginPage'),
+      );
+  static const allowanonymous = WindowsWebAppSlotUnauthenticatedClientAction._(
+    TfArgLiteral('AllowAnonymous'),
+  );
+
+  static const List<WindowsWebAppSlotUnauthenticatedClientAction> values = [
+    redirecttologinpage,
+    allowanonymous,
+  ];
 }
 
 /// Typed helper for the `auth_settings.active_directory` block of
@@ -322,7 +386,7 @@ final class WindowsWebAppSlotAuthSettingsV2 {
 
   final TfArg<List<String>>? excludedPaths;
 
-  final TfArg<String>? forwardProxyConvention;
+  final WindowsWebAppSlotForwardProxyConvention? forwardProxyConvention;
 
   final TfArg<String>? forwardProxyCustomHostHeaderName;
 
@@ -336,7 +400,7 @@ final class WindowsWebAppSlotAuthSettingsV2 {
 
   final TfArg<String>? runtimeVersion;
 
-  final TfArg<String>? unauthenticatedAction;
+  final WindowsWebAppSlotUnauthenticatedAction? unauthenticatedAction;
 
   final WindowsWebAppSlotActiveDirectoryV2? activeDirectoryV2;
 
@@ -386,6 +450,67 @@ final class WindowsWebAppSlotAuthSettingsV2 {
     'microsoft_v2': ?microsoftV2?.encode(),
     'twitter_v2': ?twitterV2?.encode(),
   };
+}
+
+/// `forward_proxy_convention` — derived from the provider schema description.
+extension type const WindowsWebAppSlotForwardProxyConvention._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsWebAppSlotForwardProxyConvention.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsWebAppSlotForwardProxyConvention.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppSlotForwardProxyConvention.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const forwardproxyconventionnoproxy =
+      WindowsWebAppSlotForwardProxyConvention._(
+        TfArgLiteral('ForwardProxyConventionNoProxy'),
+      );
+  static const forwardproxyconventionstandard =
+      WindowsWebAppSlotForwardProxyConvention._(
+        TfArgLiteral('ForwardProxyConventionStandard'),
+      );
+  static const forwardproxyconventioncustom =
+      WindowsWebAppSlotForwardProxyConvention._(
+        TfArgLiteral('ForwardProxyConventionCustom'),
+      );
+
+  static const List<WindowsWebAppSlotForwardProxyConvention> values = [
+    forwardproxyconventionnoproxy,
+    forwardproxyconventionstandard,
+    forwardproxyconventioncustom,
+  ];
+}
+
+/// `unauthenticated_action` — derived from the provider schema description.
+extension type const WindowsWebAppSlotUnauthenticatedAction._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsWebAppSlotUnauthenticatedAction.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsWebAppSlotUnauthenticatedAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppSlotUnauthenticatedAction.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const redirecttologinpage = WindowsWebAppSlotUnauthenticatedAction._(
+    TfArgLiteral('RedirectToLoginPage'),
+  );
+  static const allowanonymous = WindowsWebAppSlotUnauthenticatedAction._(
+    TfArgLiteral('AllowAnonymous'),
+  );
+  static const return401 = WindowsWebAppSlotUnauthenticatedAction._(
+    TfArgLiteral('Return401'),
+  );
+  static const return403 = WindowsWebAppSlotUnauthenticatedAction._(
+    TfArgLiteral('Return403'),
+  );
+
+  static const List<WindowsWebAppSlotUnauthenticatedAction> values = [
+    redirecttologinpage,
+    allowanonymous,
+    return401,
+    return403,
+  ];
 }
 
 /// Typed helper for the `auth_settings_v2.active_directory_v2` block of
@@ -614,7 +739,7 @@ final class WindowsWebAppSlotLogin {
 
   final TfArg<List<String>>? allowedExternalRedirectUrls;
 
-  final TfArg<String>? cookieExpirationConvention;
+  final WindowsWebAppSlotCookieExpirationConvention? cookieExpirationConvention;
 
   final TfArg<String>? cookieExpirationTime;
 
@@ -649,6 +774,31 @@ final class WindowsWebAppSlotLogin {
     'token_store_sas_setting_name': ?tokenStoreSasSettingName?.toTfJson(),
     'validate_nonce': ?validateNonce?.toTfJson(),
   };
+}
+
+/// `cookie_expiration_convention` — derived from the provider schema description.
+extension type const WindowsWebAppSlotCookieExpirationConvention._(
+  TfArg<String> _
+) implements TfArg<String> {
+  WindowsWebAppSlotCookieExpirationConvention.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsWebAppSlotCookieExpirationConvention.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppSlotCookieExpirationConvention.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const fixedtime = WindowsWebAppSlotCookieExpirationConvention._(
+    TfArgLiteral('FixedTime'),
+  );
+  static const identityproviderderived =
+      WindowsWebAppSlotCookieExpirationConvention._(
+        TfArgLiteral('IdentityProviderDerived'),
+      );
+
+  static const List<WindowsWebAppSlotCookieExpirationConvention> values = [
+    fixedtime,
+    identityproviderderived,
+  ];
 }
 
 /// Typed helper for the `auth_settings_v2.microsoft_v2` block of
@@ -741,7 +891,7 @@ final class WindowsWebAppSlotSchedule {
 
   final TfArg<num> frequencyInterval;
 
-  final TfArg<String> frequencyUnit;
+  final WindowsWebAppSlotFrequencyUnit frequencyUnit;
 
   final TfArg<bool>? keepAtLeastOneBackup;
 
@@ -759,6 +909,21 @@ final class WindowsWebAppSlotSchedule {
   };
 }
 
+/// `frequency_unit` — derived from the provider schema description.
+extension type const WindowsWebAppSlotFrequencyUnit._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsWebAppSlotFrequencyUnit.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsWebAppSlotFrequencyUnit.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppSlotFrequencyUnit.arg(TfArg<String> arg) : this._(arg);
+
+  static const day = WindowsWebAppSlotFrequencyUnit._(TfArgLiteral('Day'));
+  static const hour = WindowsWebAppSlotFrequencyUnit._(TfArgLiteral('Hour'));
+
+  static const List<WindowsWebAppSlotFrequencyUnit> values = [day, hour];
+}
+
 /// Typed helper for the `connection_string` block of
 /// `azurerm_windows_web_app_slot` (derived from provider schema).
 @immutable
@@ -771,7 +936,7 @@ final class WindowsWebAppSlotConnectionString {
 
   final TfArg<String> name;
 
-  final TfArg<String> type;
+  final WindowsWebAppSlotType type;
 
   final Sensitive<String> value;
 
@@ -781,6 +946,43 @@ final class WindowsWebAppSlotConnectionString {
     'type': type.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+extension type const WindowsWebAppSlotType._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsWebAppSlotType.variable(String name) : this._(TfArg.variable(name));
+  WindowsWebAppSlotType.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppSlotType.arg(TfArg<String> arg) : this._(arg);
+
+  static const mysql = WindowsWebAppSlotType._(TfArgLiteral('MySQL'));
+  static const sqlserver = WindowsWebAppSlotType._(TfArgLiteral('SQLServer'));
+  static const sqlazure = WindowsWebAppSlotType._(TfArgLiteral('SQLAzure'));
+  static const custom = WindowsWebAppSlotType._(TfArgLiteral('Custom'));
+  static const notificationhub = WindowsWebAppSlotType._(
+    TfArgLiteral('NotificationHub'),
+  );
+  static const servicebus = WindowsWebAppSlotType._(TfArgLiteral('ServiceBus'));
+  static const eventhub = WindowsWebAppSlotType._(TfArgLiteral('EventHub'));
+  static const apihub = WindowsWebAppSlotType._(TfArgLiteral('APIHub'));
+  static const docdb = WindowsWebAppSlotType._(TfArgLiteral('DocDb'));
+  static const rediscache = WindowsWebAppSlotType._(TfArgLiteral('RedisCache'));
+  static const postgresql = WindowsWebAppSlotType._(TfArgLiteral('PostgreSQL'));
+
+  static const List<WindowsWebAppSlotType> values = [
+    mysql,
+    sqlserver,
+    sqlazure,
+    custom,
+    notificationhub,
+    servicebus,
+    eventhub,
+    apihub,
+    docdb,
+    rediscache,
+    postgresql,
+  ];
 }
 
 /// Typed helper for the `identity` block of
@@ -1421,7 +1623,7 @@ final class WindowsWebAppSlotIpRestriction {
     this.virtualNetworkSubnetId,
   });
 
-  final TfArg<String>? action;
+  final WindowsWebAppSlotIpRestrictionAction? action;
 
   final TfArg<String>? description;
 
@@ -1450,6 +1652,29 @@ final class WindowsWebAppSlotIpRestriction {
   };
 }
 
+/// `action` — derived from the provider schema description.
+extension type const WindowsWebAppSlotIpRestrictionAction._(TfArg<String> _)
+    implements TfArg<String> {
+  WindowsWebAppSlotIpRestrictionAction.variable(String name)
+    : this._(TfArg.variable(name));
+  WindowsWebAppSlotIpRestrictionAction.expression(String template)
+    : this._(TfArg.expression(template));
+  const WindowsWebAppSlotIpRestrictionAction.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const allow = WindowsWebAppSlotIpRestrictionAction._(
+    TfArgLiteral('Allow'),
+  );
+  static const deny = WindowsWebAppSlotIpRestrictionAction._(
+    TfArgLiteral('Deny'),
+  );
+
+  static const List<WindowsWebAppSlotIpRestrictionAction> values = [
+    allow,
+    deny,
+  ];
+}
+
 /// Typed helper for the `site_config.scm_ip_restriction` block of
 /// `azurerm_windows_web_app_slot` (derived from provider schema).
 @immutable
@@ -1465,7 +1690,7 @@ final class WindowsWebAppSlotScmIpRestriction {
     this.virtualNetworkSubnetId,
   });
 
-  final TfArg<String>? action;
+  final WindowsWebAppSlotIpRestrictionAction? action;
 
   final TfArg<String>? description;
 

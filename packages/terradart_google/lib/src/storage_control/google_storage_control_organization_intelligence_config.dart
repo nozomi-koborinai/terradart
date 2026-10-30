@@ -8,6 +8,41 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleStorageControlOrganizationIntelligenceConfigSensitive =
     <String>{};
 
+/// Storage Control Organization Intelligence Config Edition enum for `edition_config`.
+extension type const StorageControlOrganizationIntelligenceConfigEditionConfig._(
+  TfArg<String> _
+) implements TfArg<String> {
+  StorageControlOrganizationIntelligenceConfigEditionConfig.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  StorageControlOrganizationIntelligenceConfigEditionConfig.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const StorageControlOrganizationIntelligenceConfigEditionConfig.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const inherit =
+      StorageControlOrganizationIntelligenceConfigEditionConfig._(
+        TfArgLiteral('INHERIT'),
+      );
+  static const disabled =
+      StorageControlOrganizationIntelligenceConfigEditionConfig._(
+        TfArgLiteral('DISABLED'),
+      );
+  static const trial =
+      StorageControlOrganizationIntelligenceConfigEditionConfig._(
+        TfArgLiteral('TRIAL'),
+      );
+  static const standard =
+      StorageControlOrganizationIntelligenceConfigEditionConfig._(
+        TfArgLiteral('STANDARD'),
+      );
+
+  static const List<StorageControlOrganizationIntelligenceConfigEditionConfig>
+  values = [inherit, disabled, trial, standard];
+}
+
 /// Typed helper for the `filter` block of
 /// `google_storage_control_organization_intelligence_config` (derived from provider schema).
 @immutable
@@ -252,7 +287,7 @@ final class GoogleStorageControlOrganizationIntelligenceConfig
 
   GoogleStorageControlOrganizationIntelligenceConfig(
     super.localName, {
-    TfArg<String>? editionConfig,
+    StorageControlOrganizationIntelligenceConfigEditionConfig? editionConfig,
     required TfArg<String> name,
     StorageControlOrganizationIntelligenceConfigFilter? filter,
     super.lifecycle,

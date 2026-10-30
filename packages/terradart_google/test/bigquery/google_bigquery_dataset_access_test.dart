@@ -31,7 +31,7 @@ void main() {
           role: TfArg.literal('READER'),
         ),
         'special_group': const BigqueryDatasetAccessSpecialGroup(
-          specialGroup: TfArg.literal('projectOwners'),
+          specialGroup: .projectOwners,
           role: TfArg.literal('OWNER'),
         ),
         'domain': const BigqueryDatasetAccessDomain(

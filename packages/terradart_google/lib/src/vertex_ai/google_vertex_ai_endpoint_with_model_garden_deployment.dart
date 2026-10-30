@@ -179,7 +179,8 @@ final class VertexAiEndpointWithModelGardenDeploymentMachineSpec {
 
   final TfArg<num>? acceleratorCount;
 
-  final TfArg<String>? acceleratorType;
+  final VertexAiEndpointWithModelGardenDeploymentAcceleratorType?
+  acceleratorType;
 
   final TfArg<String>? machineType;
 
@@ -201,6 +202,110 @@ final class VertexAiEndpointWithModelGardenDeploymentMachineSpec {
   };
 }
 
+/// `accelerator_type` — derived from the provider schema description.
+extension type const VertexAiEndpointWithModelGardenDeploymentAcceleratorType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  VertexAiEndpointWithModelGardenDeploymentAcceleratorType.variable(String name)
+    : this._(TfArg.variable(name));
+  VertexAiEndpointWithModelGardenDeploymentAcceleratorType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const VertexAiEndpointWithModelGardenDeploymentAcceleratorType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const acceleratorTypeUnspecified =
+      VertexAiEndpointWithModelGardenDeploymentAcceleratorType._(
+        TfArgLiteral('ACCELERATOR_TYPE_UNSPECIFIED'),
+      );
+  static const nvidiaTeslaK80 =
+      VertexAiEndpointWithModelGardenDeploymentAcceleratorType._(
+        TfArgLiteral('NVIDIA_TESLA_K80'),
+      );
+  static const nvidiaTeslaP100 =
+      VertexAiEndpointWithModelGardenDeploymentAcceleratorType._(
+        TfArgLiteral('NVIDIA_TESLA_P100'),
+      );
+  static const nvidiaTeslaV100 =
+      VertexAiEndpointWithModelGardenDeploymentAcceleratorType._(
+        TfArgLiteral('NVIDIA_TESLA_V100'),
+      );
+  static const nvidiaTeslaP4 =
+      VertexAiEndpointWithModelGardenDeploymentAcceleratorType._(
+        TfArgLiteral('NVIDIA_TESLA_P4'),
+      );
+  static const nvidiaTeslaT4 =
+      VertexAiEndpointWithModelGardenDeploymentAcceleratorType._(
+        TfArgLiteral('NVIDIA_TESLA_T4'),
+      );
+  static const nvidiaTeslaA100 =
+      VertexAiEndpointWithModelGardenDeploymentAcceleratorType._(
+        TfArgLiteral('NVIDIA_TESLA_A100'),
+      );
+  static const nvidiaA10080gb =
+      VertexAiEndpointWithModelGardenDeploymentAcceleratorType._(
+        TfArgLiteral('NVIDIA_A100_80GB'),
+      );
+  static const nvidiaL4 =
+      VertexAiEndpointWithModelGardenDeploymentAcceleratorType._(
+        TfArgLiteral('NVIDIA_L4'),
+      );
+  static const nvidiaH10080gb =
+      VertexAiEndpointWithModelGardenDeploymentAcceleratorType._(
+        TfArgLiteral('NVIDIA_H100_80GB'),
+      );
+  static const nvidiaH100Mega80gb =
+      VertexAiEndpointWithModelGardenDeploymentAcceleratorType._(
+        TfArgLiteral('NVIDIA_H100_MEGA_80GB'),
+      );
+  static const nvidiaH200141gb =
+      VertexAiEndpointWithModelGardenDeploymentAcceleratorType._(
+        TfArgLiteral('NVIDIA_H200_141GB'),
+      );
+  static const nvidiaB200 =
+      VertexAiEndpointWithModelGardenDeploymentAcceleratorType._(
+        TfArgLiteral('NVIDIA_B200'),
+      );
+  static const tpuV2 =
+      VertexAiEndpointWithModelGardenDeploymentAcceleratorType._(
+        TfArgLiteral('TPU_V2'),
+      );
+  static const tpuV3 =
+      VertexAiEndpointWithModelGardenDeploymentAcceleratorType._(
+        TfArgLiteral('TPU_V3'),
+      );
+  static const tpuV4Pod =
+      VertexAiEndpointWithModelGardenDeploymentAcceleratorType._(
+        TfArgLiteral('TPU_V4_POD'),
+      );
+  static const tpuV5Litepod =
+      VertexAiEndpointWithModelGardenDeploymentAcceleratorType._(
+        TfArgLiteral('TPU_V5_LITEPOD'),
+      );
+
+  static const List<VertexAiEndpointWithModelGardenDeploymentAcceleratorType>
+  values = [
+    acceleratorTypeUnspecified,
+    nvidiaTeslaK80,
+    nvidiaTeslaP100,
+    nvidiaTeslaV100,
+    nvidiaTeslaP4,
+    nvidiaTeslaT4,
+    nvidiaTeslaA100,
+    nvidiaA10080gb,
+    nvidiaL4,
+    nvidiaH10080gb,
+    nvidiaH100Mega80gb,
+    nvidiaH200141gb,
+    nvidiaB200,
+    tpuV2,
+    tpuV3,
+    tpuV4Pod,
+    tpuV5Litepod,
+  ];
+}
+
 /// Typed helper for the `deploy_config.dedicated_resources.machine_spec.reservation_affinity` block of
 /// `google_vertex_ai_endpoint_with_model_garden_deployment` (derived from provider schema).
 @immutable
@@ -213,7 +318,8 @@ final class VertexAiEndpointWithModelGardenDeploymentReservationAffinity {
 
   final TfArg<String>? key;
 
-  final TfArg<String> reservationAffinityType;
+  final VertexAiEndpointWithModelGardenDeploymentReservationAffinityType
+  reservationAffinityType;
 
   final TfArg<List<String>>? values;
 
@@ -223,6 +329,48 @@ final class VertexAiEndpointWithModelGardenDeploymentReservationAffinity {
     'reservation_affinity_type': reservationAffinityType.toTfJson(),
     'values': ?values?.toTfJson(),
   };
+}
+
+/// `reservation_affinity_type` — derived from the provider schema description.
+extension type const VertexAiEndpointWithModelGardenDeploymentReservationAffinityType._(
+  TfArg<String> _
+) implements TfArg<String> {
+  VertexAiEndpointWithModelGardenDeploymentReservationAffinityType.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  VertexAiEndpointWithModelGardenDeploymentReservationAffinityType.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const VertexAiEndpointWithModelGardenDeploymentReservationAffinityType.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const typeUnspecified =
+      VertexAiEndpointWithModelGardenDeploymentReservationAffinityType._(
+        TfArgLiteral('TYPE_UNSPECIFIED'),
+      );
+  static const noReservation =
+      VertexAiEndpointWithModelGardenDeploymentReservationAffinityType._(
+        TfArgLiteral('NO_RESERVATION'),
+      );
+  static const anyReservation =
+      VertexAiEndpointWithModelGardenDeploymentReservationAffinityType._(
+        TfArgLiteral('ANY_RESERVATION'),
+      );
+  static const specificReservation =
+      VertexAiEndpointWithModelGardenDeploymentReservationAffinityType._(
+        TfArgLiteral('SPECIFIC_RESERVATION'),
+      );
+
+  static const List<
+    VertexAiEndpointWithModelGardenDeploymentReservationAffinityType
+  >
+  values = [
+    typeUnspecified,
+    noReservation,
+    anyReservation,
+    specificReservation,
+  ];
 }
 
 /// Typed helper for the `endpoint_config` block of
@@ -529,7 +677,7 @@ final class VertexAiEndpointWithModelGardenDeploymentHttpGet {
 
   final TfArg<num>? port;
 
-  final TfArg<String>? scheme;
+  final VertexAiEndpointWithModelGardenDeploymentScheme? scheme;
 
   final List<VertexAiEndpointWithModelGardenDeploymentHttpHeaders>? httpHeaders;
 
@@ -542,6 +690,30 @@ final class VertexAiEndpointWithModelGardenDeploymentHttpGet {
     if (httpHeaders != null)
       'http_headers': [for (final e in httpHeaders!) e.encode()],
   };
+}
+
+/// `scheme` — derived from the provider schema description.
+extension type const VertexAiEndpointWithModelGardenDeploymentScheme._(
+  TfArg<String> _
+) implements TfArg<String> {
+  VertexAiEndpointWithModelGardenDeploymentScheme.variable(String name)
+    : this._(TfArg.variable(name));
+  VertexAiEndpointWithModelGardenDeploymentScheme.expression(String template)
+    : this._(TfArg.expression(template));
+  const VertexAiEndpointWithModelGardenDeploymentScheme.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const http = VertexAiEndpointWithModelGardenDeploymentScheme._(
+    TfArgLiteral('HTTP'),
+  );
+  static const https = VertexAiEndpointWithModelGardenDeploymentScheme._(
+    TfArgLiteral('HTTPS'),
+  );
+
+  static const List<VertexAiEndpointWithModelGardenDeploymentScheme> values = [
+    http,
+    https,
+  ];
 }
 
 /// Typed helper for the `model_config.container_spec.health_probe.http_get.http_headers` block of

@@ -24,7 +24,8 @@ export 'src/data/cloudflare_page_shield_connections_list.dart'
         DataCloudflarePageShieldConnectionsList,
         DataPageShieldConnectionsListDirection,
         DataPageShieldConnectionsListExport,
-        DataPageShieldConnectionsListOrderBy;
+        DataPageShieldConnectionsListOrderBy,
+        DataPageShieldConnectionsListStatus;
 export 'src/data/cloudflare_page_shield_cookies.dart'
     show DataCloudflarePageShieldCookies;
 export 'src/data/cloudflare_page_shield_cookies_list.dart'
@@ -46,7 +47,8 @@ export 'src/data/cloudflare_page_shield_scripts_list.dart'
         DataCloudflarePageShieldScriptsList,
         DataPageShieldScriptsListDirection,
         DataPageShieldScriptsListExport,
-        DataPageShieldScriptsListOrderBy;
+        DataPageShieldScriptsListOrderBy,
+        DataPageShieldScriptsListStatus;
 export 'src/data/cloudflare_rate_limit.dart' show DataCloudflareRateLimit;
 export 'src/data/cloudflare_user_agent_blocking_rule.dart'
     show DataCloudflareUserAgentBlockingRule, DataUserAgentBlockingRuleFilter;

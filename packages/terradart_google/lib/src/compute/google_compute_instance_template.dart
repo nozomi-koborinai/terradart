@@ -346,7 +346,7 @@ final class ComputeInstanceTemplateDisk {
     this.sourceSnapshotEncryptionKey,
   });
 
-  final TfArg<String>? architecture;
+  final ComputeInstanceTemplateArchitecture? architecture;
 
   final TfArg<bool>? autoDelete;
 
@@ -384,7 +384,7 @@ final class ComputeInstanceTemplateDisk {
 
   final TfArg<String>? storagePool;
 
-  final TfArg<String>? type;
+  final ComputeInstanceTemplateType? type;
 
   final ComputeInstanceTemplateDiskEncryptionKey? diskEncryptionKey;
 
@@ -420,6 +420,46 @@ final class ComputeInstanceTemplateDisk {
     'source_image_encryption_key': ?sourceImageEncryptionKey?.encode(),
     'source_snapshot_encryption_key': ?sourceSnapshotEncryptionKey?.encode(),
   };
+}
+
+/// `architecture` — derived from the provider schema description.
+extension type const ComputeInstanceTemplateArchitecture._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInstanceTemplateArchitecture.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceTemplateArchitecture.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceTemplateArchitecture.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const arm64 = ComputeInstanceTemplateArchitecture._(
+    TfArgLiteral('ARM64'),
+  );
+  static const x8664 = ComputeInstanceTemplateArchitecture._(
+    TfArgLiteral('X86_64'),
+  );
+
+  static const List<ComputeInstanceTemplateArchitecture> values = [
+    arm64,
+    x8664,
+  ];
+}
+
+/// `type` — derived from the provider schema description.
+extension type const ComputeInstanceTemplateType._(TfArg<String> _)
+    implements TfArg<String> {
+  ComputeInstanceTemplateType.variable(String name)
+    : this._(TfArg.variable(name));
+  ComputeInstanceTemplateType.expression(String template)
+    : this._(TfArg.expression(template));
+  const ComputeInstanceTemplateType.arg(TfArg<String> arg) : this._(arg);
+
+  static const scratch = ComputeInstanceTemplateType._(TfArgLiteral('SCRATCH'));
+  static const persistent = ComputeInstanceTemplateType._(
+    TfArgLiteral('PERSISTENT'),
+  );
+
+  static const List<ComputeInstanceTemplateType> values = [scratch, persistent];
 }
 
 /// Typed helper for the `disk.disk_encryption_key` block of

@@ -9,6 +9,24 @@ import '../discovery_engine/google_discovery_engine_data_store.dart'
 /// Sensitive field paths for `google_discovery_engine_sitemap`.
 const Set<String> _googleDiscoveryEngineSitemapSensitive = <String>{};
 
+/// Discovery Engine Sitemap enum for `location`.
+extension type const DiscoveryEngineSitemapLocation._(TfArg<String> _)
+    implements TfArg<String> {
+  DiscoveryEngineSitemapLocation.variable(String name)
+    : this._(TfArg.variable(name));
+  DiscoveryEngineSitemapLocation.expression(String template)
+    : this._(TfArg.expression(template));
+  const DiscoveryEngineSitemapLocation.arg(TfArg<String> arg) : this._(arg);
+
+  static const global = DiscoveryEngineSitemapLocation._(
+    TfArgLiteral('global'),
+  );
+  static const us = DiscoveryEngineSitemapLocation._(TfArgLiteral('us'));
+  static const eu = DiscoveryEngineSitemapLocation._(TfArgLiteral('eu'));
+
+  static const List<DiscoveryEngineSitemapLocation> values = [global, us, eu];
+}
+
 /// Factory wrapper for `google_discovery_engine_sitemap`.
 ///
 /// Sitemap is a file where you provide information about the pages, videos, and
@@ -28,7 +46,7 @@ final class GoogleDiscoveryEngineSitemap extends Resource {
 
   GoogleDiscoveryEngineSitemap(
     super.localName, {
-    required TfArg<String> location,
+    required DiscoveryEngineSitemapLocation location,
     required RefTo<GoogleDiscoveryEngineDataStore> dataStoreId,
     TfArg<String>? uri,
     TfArg<String>? deletionPolicy,

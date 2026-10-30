@@ -52,7 +52,7 @@ final class CesAppAmbientSoundConfig {
 
   final TfArg<String>? gcsUri;
 
-  final TfArg<String>? prebuiltAmbientSound;
+  final CesAppPrebuiltAmbientSound? prebuiltAmbientSound;
 
   final TfArg<num>? volumeGainDb;
 
@@ -62,6 +62,52 @@ final class CesAppAmbientSoundConfig {
     'prebuilt_ambient_sound': ?prebuiltAmbientSound?.toTfJson(),
     'volume_gain_db': ?volumeGainDb?.toTfJson(),
   };
+}
+
+/// `prebuilt_ambient_sound` — derived from the provider schema description.
+extension type const CesAppPrebuiltAmbientSound._(TfArg<String> _)
+    implements TfArg<String> {
+  CesAppPrebuiltAmbientSound.variable(String name)
+    : this._(TfArg.variable(name));
+  CesAppPrebuiltAmbientSound.expression(String template)
+    : this._(TfArg.expression(template));
+  const CesAppPrebuiltAmbientSound.arg(TfArg<String> arg) : this._(arg);
+
+  static const coffeeShop = CesAppPrebuiltAmbientSound._(
+    TfArgLiteral('coffee_shop'),
+  );
+  static const keyboard = CesAppPrebuiltAmbientSound._(
+    TfArgLiteral('keyboard'),
+  );
+  static const keypad = CesAppPrebuiltAmbientSound._(TfArgLiteral('keypad'));
+  static const hum = CesAppPrebuiltAmbientSound._(TfArgLiteral('hum'));
+  static const office1 = CesAppPrebuiltAmbientSound._(TfArgLiteral('office_1'));
+  static const office2 = CesAppPrebuiltAmbientSound._(TfArgLiteral('office_2'));
+  static const office3 = CesAppPrebuiltAmbientSound._(TfArgLiteral('office_3'));
+  static const room1 = CesAppPrebuiltAmbientSound._(TfArgLiteral('room_1'));
+  static const room2 = CesAppPrebuiltAmbientSound._(TfArgLiteral('room_2'));
+  static const room3 = CesAppPrebuiltAmbientSound._(TfArgLiteral('room_3'));
+  static const room4 = CesAppPrebuiltAmbientSound._(TfArgLiteral('room_4'));
+  static const room5 = CesAppPrebuiltAmbientSound._(TfArgLiteral('room_5'));
+  static const airConditioner = CesAppPrebuiltAmbientSound._(
+    TfArgLiteral('air_conditioner'),
+  );
+
+  static const List<CesAppPrebuiltAmbientSound> values = [
+    coffeeShop,
+    keyboard,
+    keypad,
+    hum,
+    office1,
+    office2,
+    office3,
+    room1,
+    room2,
+    room3,
+    room4,
+    room5,
+    airConditioner,
+  ];
 }
 
 /// Typed helper for the `audio_processing_config.barge_in_config` block of
@@ -148,7 +194,7 @@ final class CesAppDefaultChannelProfile {
     this.whatsappConfig,
   });
 
-  final TfArg<String>? channelType;
+  final CesAppChannelType? channelType;
 
   final TfArg<bool>? disableBargeInControl;
 
@@ -174,16 +220,59 @@ final class CesAppDefaultChannelProfile {
   };
 }
 
+/// `channel_type` — derived from the provider schema description.
+extension type const CesAppChannelType._(TfArg<String> _)
+    implements TfArg<String> {
+  CesAppChannelType.variable(String name) : this._(TfArg.variable(name));
+  CesAppChannelType.expression(String template)
+    : this._(TfArg.expression(template));
+  const CesAppChannelType.arg(TfArg<String> arg) : this._(arg);
+
+  static const unknown = CesAppChannelType._(TfArgLiteral('UNKNOWN'));
+  static const webUi = CesAppChannelType._(TfArgLiteral('WEB_UI'));
+  static const api = CesAppChannelType._(TfArgLiteral('API'));
+  static const twilio = CesAppChannelType._(TfArgLiteral('TWILIO'));
+  static const googleTelephonyPlatform = CesAppChannelType._(
+    TfArgLiteral('GOOGLE_TELEPHONY_PLATFORM'),
+  );
+  static const contactCenterAsAService = CesAppChannelType._(
+    TfArgLiteral('CONTACT_CENTER_AS_A_SERVICE'),
+  );
+
+  static const List<CesAppChannelType> values = [
+    unknown,
+    webUi,
+    api,
+    twilio,
+    googleTelephonyPlatform,
+    contactCenterAsAService,
+  ];
+}
+
 /// Typed helper for the `default_channel_profile.persona_property` block of
 /// `google_ces_app` (derived from provider schema).
 @immutable
 final class CesAppPersonaProperty {
   const CesAppPersonaProperty({this.persona});
 
-  final TfArg<String>? persona;
+  final CesAppPersona? persona;
 
   @internal
   Map<String, Object?> encode() => {'persona': ?persona?.toTfJson()};
+}
+
+/// `persona` — derived from the provider schema description.
+extension type const CesAppPersona._(TfArg<String> _) implements TfArg<String> {
+  CesAppPersona.variable(String name) : this._(TfArg.variable(name));
+  CesAppPersona.expression(String template)
+    : this._(TfArg.expression(template));
+  const CesAppPersona.arg(TfArg<String> arg) : this._(arg);
+
+  static const unknown = CesAppPersona._(TfArgLiteral('UNKNOWN'));
+  static const concise = CesAppPersona._(TfArgLiteral('CONCISE'));
+  static const chatty = CesAppPersona._(TfArgLiteral('CHATTY'));
+
+  static const List<CesAppPersona> values = [unknown, concise, chatty];
 }
 
 /// Typed helper for the `default_channel_profile.web_widget_config` block of
@@ -197,9 +286,9 @@ final class CesAppWebWidgetConfig {
     this.securitySettings,
   });
 
-  final TfArg<String>? modality;
+  final CesAppModality? modality;
 
-  final TfArg<String>? theme;
+  final CesAppTheme? theme;
 
   final TfArg<String>? webWidgetTitle;
 
@@ -212,6 +301,42 @@ final class CesAppWebWidgetConfig {
     'web_widget_title': ?webWidgetTitle?.toTfJson(),
     'security_settings': ?securitySettings?.encode(),
   };
+}
+
+/// `modality` — derived from the provider schema description.
+extension type const CesAppModality._(TfArg<String> _)
+    implements TfArg<String> {
+  CesAppModality.variable(String name) : this._(TfArg.variable(name));
+  CesAppModality.expression(String template)
+    : this._(TfArg.expression(template));
+  const CesAppModality.arg(TfArg<String> arg) : this._(arg);
+
+  static const unknownModality = CesAppModality._(
+    TfArgLiteral('UNKNOWN_MODALITY'),
+  );
+  static const chatAndVoice = CesAppModality._(TfArgLiteral('CHAT_AND_VOICE'));
+  static const voiceOnly = CesAppModality._(TfArgLiteral('VOICE_ONLY'));
+  static const chatOnly = CesAppModality._(TfArgLiteral('CHAT_ONLY'));
+
+  static const List<CesAppModality> values = [
+    unknownModality,
+    chatAndVoice,
+    voiceOnly,
+    chatOnly,
+  ];
+}
+
+/// `theme` — derived from the provider schema description.
+extension type const CesAppTheme._(TfArg<String> _) implements TfArg<String> {
+  CesAppTheme.variable(String name) : this._(TfArg.variable(name));
+  CesAppTheme.expression(String template) : this._(TfArg.expression(template));
+  const CesAppTheme.arg(TfArg<String> arg) : this._(arg);
+
+  static const unknownTheme = CesAppTheme._(TfArgLiteral('UNKNOWN_THEME'));
+  static const light = CesAppTheme._(TfArgLiteral('LIGHT'));
+  static const dark = CesAppTheme._(TfArgLiteral('DARK'));
+
+  static const List<CesAppTheme> values = [unknownTheme, light, dark];
 }
 
 /// Typed helper for the `default_channel_profile.web_widget_config.security_settings` block of
@@ -276,7 +401,7 @@ final class CesAppErrorHandlingSettings {
     this.fallbackResponseConfig,
   });
 
-  final TfArg<String>? errorHandlingStrategy;
+  final CesAppErrorHandlingStrategy? errorHandlingStrategy;
 
   final CesAppEndSessionConfig? endSessionConfig;
 
@@ -288,6 +413,30 @@ final class CesAppErrorHandlingSettings {
     'end_session_config': ?endSessionConfig?.encode(),
     'fallback_response_config': ?fallbackResponseConfig?.encode(),
   };
+}
+
+/// `error_handling_strategy` — derived from the provider schema description.
+extension type const CesAppErrorHandlingStrategy._(TfArg<String> _)
+    implements TfArg<String> {
+  CesAppErrorHandlingStrategy.variable(String name)
+    : this._(TfArg.variable(name));
+  CesAppErrorHandlingStrategy.expression(String template)
+    : this._(TfArg.expression(template));
+  const CesAppErrorHandlingStrategy.arg(TfArg<String> arg) : this._(arg);
+
+  static const none = CesAppErrorHandlingStrategy._(TfArgLiteral('NONE'));
+  static const fallbackResponse = CesAppErrorHandlingStrategy._(
+    TfArgLiteral('FALLBACK_RESPONSE'),
+  );
+  static const endSession = CesAppErrorHandlingStrategy._(
+    TfArgLiteral('END_SESSION'),
+  );
+
+  static const List<CesAppErrorHandlingStrategy> values = [
+    none,
+    fallbackResponse,
+    endSession,
+  ];
 }
 
 /// Typed helper for the `error_handling_settings.end_session_config` block of
@@ -485,7 +634,7 @@ final class CesAppTurnLevelMetricsThresholds {
 
   final TfArg<num>? overallToolInvocationCorrectnessThreshold;
 
-  final TfArg<String>? semanticSimilarityChannel;
+  final CesAppSemanticSimilarityChannel? semanticSimilarityChannel;
 
   final TfArg<num>? semanticSimilaritySuccessThreshold;
 
@@ -497,6 +646,29 @@ final class CesAppTurnLevelMetricsThresholds {
     'semantic_similarity_success_threshold': ?semanticSimilaritySuccessThreshold
         ?.toTfJson(),
   };
+}
+
+/// `semantic_similarity_channel` — derived from the provider schema description.
+extension type const CesAppSemanticSimilarityChannel._(TfArg<String> _)
+    implements TfArg<String> {
+  CesAppSemanticSimilarityChannel.variable(String name)
+    : this._(TfArg.variable(name));
+  CesAppSemanticSimilarityChannel.expression(String template)
+    : this._(TfArg.expression(template));
+  const CesAppSemanticSimilarityChannel.arg(TfArg<String> arg) : this._(arg);
+
+  static const semanticSimilarityChannelUnspecified =
+      CesAppSemanticSimilarityChannel._(
+        TfArgLiteral('SEMANTIC_SIMILARITY_CHANNEL_UNSPECIFIED'),
+      );
+  static const text = CesAppSemanticSimilarityChannel._(TfArgLiteral('TEXT'));
+  static const audio = CesAppSemanticSimilarityChannel._(TfArgLiteral('AUDIO'));
+
+  static const List<CesAppSemanticSimilarityChannel> values = [
+    semanticSimilarityChannelUnspecified,
+    text,
+    audio,
+  ];
 }
 
 /// Typed helper for the `language_settings` block of
@@ -801,7 +973,7 @@ final class CesAppSchema {
 
   final TfArg<String>? title;
 
-  final TfArg<String> type;
+  final CesAppType type;
 
   final TfArg<bool>? uniqueItems;
 
@@ -823,6 +995,29 @@ final class CesAppSchema {
     'type': type.toTfJson(),
     'unique_items': ?uniqueItems?.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+extension type const CesAppType._(TfArg<String> _) implements TfArg<String> {
+  CesAppType.variable(String name) : this._(TfArg.variable(name));
+  CesAppType.expression(String template) : this._(TfArg.expression(template));
+  const CesAppType.arg(TfArg<String> arg) : this._(arg);
+
+  static const string = CesAppType._(TfArgLiteral('STRING'));
+  static const integer = CesAppType._(TfArgLiteral('INTEGER'));
+  static const number = CesAppType._(TfArgLiteral('NUMBER'));
+  static const boolean = CesAppType._(TfArgLiteral('BOOLEAN'));
+  static const object = CesAppType._(TfArgLiteral('OBJECT'));
+  static const array = CesAppType._(TfArgLiteral('ARRAY'));
+
+  static const List<CesAppType> values = [
+    string,
+    integer,
+    number,
+    boolean,
+    object,
+    array,
+  ];
 }
 
 /// Typed helper for the `vpc_sc_settings` block of

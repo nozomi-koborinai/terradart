@@ -90,7 +90,7 @@ final class FirebaseAiLogicConfigApiKeyWo extends FirebaseAiLogicConfigApiKey {
 final class FirebaseAiLogicConfigTelemetryConfig {
   const FirebaseAiLogicConfigTelemetryConfig({this.mode, this.samplingRate});
 
-  final TfArg<String>? mode;
+  final FirebaseAiLogicConfigMode? mode;
 
   final TfArg<num>? samplingRate;
 
@@ -99,6 +99,21 @@ final class FirebaseAiLogicConfigTelemetryConfig {
     'mode': ?mode?.toTfJson(),
     'sampling_rate': ?samplingRate?.toTfJson(),
   };
+}
+
+/// `mode` — derived from the provider schema description.
+extension type const FirebaseAiLogicConfigMode._(TfArg<String> _)
+    implements TfArg<String> {
+  FirebaseAiLogicConfigMode.variable(String name)
+    : this._(TfArg.variable(name));
+  FirebaseAiLogicConfigMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const FirebaseAiLogicConfigMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const none = FirebaseAiLogicConfigMode._(TfArgLiteral('NONE'));
+  static const all = FirebaseAiLogicConfigMode._(TfArgLiteral('ALL'));
+
+  static const List<FirebaseAiLogicConfigMode> values = [none, all];
 }
 
 /// Typed helper for the `traffic_filter` block of

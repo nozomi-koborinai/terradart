@@ -8,6 +8,32 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleNetworkServicesMulticastGroupRangeSensitive =
     <String>{};
 
+/// Network Services Multicast Group Range Distribution enum for `distribution_scope`.
+extension type const NetworkServicesMulticastGroupRangeDistributionScope._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkServicesMulticastGroupRangeDistributionScope.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkServicesMulticastGroupRangeDistributionScope.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const NetworkServicesMulticastGroupRangeDistributionScope.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const intraZone =
+      NetworkServicesMulticastGroupRangeDistributionScope._(
+        TfArgLiteral('INTRA_ZONE'),
+      );
+  static const intraRegion =
+      NetworkServicesMulticastGroupRangeDistributionScope._(
+        TfArgLiteral('INTRA_REGION'),
+      );
+
+  static const List<NetworkServicesMulticastGroupRangeDistributionScope>
+  values = [intraZone, intraRegion];
+}
+
 /// Typed helper for the `log_config` block of
 /// `google_network_services_multicast_group_range` (derived from provider schema).
 @immutable
@@ -44,7 +70,7 @@ final class GoogleNetworkServicesMulticastGroupRange extends Resource {
     required TfArg<String> multicastGroupRangeId,
     required TfArg<String> multicastDomain,
     required TfArg<String> reservedInternalRange,
-    TfArg<String>? distributionScope,
+    NetworkServicesMulticastGroupRangeDistributionScope? distributionScope,
     TfArg<bool>? requireExplicitAccept,
     TfArg<List<String>>? consumerAcceptList,
     NetworkServicesMulticastGroupRangeLogConfig? logConfig,

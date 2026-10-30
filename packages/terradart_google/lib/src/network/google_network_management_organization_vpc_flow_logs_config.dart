@@ -7,6 +7,58 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String>
 _googleNetworkManagementOrganizationVpcFlowLogsConfigSensitive = <String>{};
 
+/// Network Management Organization Vpc Flow Logs Config Aggregation enum for `aggregation_interval`.
+extension type const NetworkManagementOrganizationVpcFlowLogsConfigAggregationInterval._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkManagementOrganizationVpcFlowLogsConfigAggregationInterval.variable(
+    String name,
+  ) : this._(TfArg.variable(name));
+  NetworkManagementOrganizationVpcFlowLogsConfigAggregationInterval.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const NetworkManagementOrganizationVpcFlowLogsConfigAggregationInterval.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const interval5Sec =
+      NetworkManagementOrganizationVpcFlowLogsConfigAggregationInterval._(
+        TfArgLiteral('INTERVAL_5_SEC'),
+      );
+  static const interval30Sec =
+      NetworkManagementOrganizationVpcFlowLogsConfigAggregationInterval._(
+        TfArgLiteral('INTERVAL_30_SEC'),
+      );
+  static const interval1Min =
+      NetworkManagementOrganizationVpcFlowLogsConfigAggregationInterval._(
+        TfArgLiteral('INTERVAL_1_MIN'),
+      );
+  static const interval5Min =
+      NetworkManagementOrganizationVpcFlowLogsConfigAggregationInterval._(
+        TfArgLiteral('INTERVAL_5_MIN'),
+      );
+  static const interval10Min =
+      NetworkManagementOrganizationVpcFlowLogsConfigAggregationInterval._(
+        TfArgLiteral('INTERVAL_10_MIN'),
+      );
+  static const interval15Min =
+      NetworkManagementOrganizationVpcFlowLogsConfigAggregationInterval._(
+        TfArgLiteral('INTERVAL_15_MIN'),
+      );
+
+  static const List<
+    NetworkManagementOrganizationVpcFlowLogsConfigAggregationInterval
+  >
+  values = [
+    interval5Sec,
+    interval30Sec,
+    interval1Min,
+    interval5Min,
+    interval10Min,
+    interval15Min,
+  ];
+}
+
 /// Network Management Organization Vpc Flow Logs Config Cross Project enum for `cross_project_metadata`.
 extension type const NetworkManagementOrganizationVpcFlowLogsConfigCrossProjectMetadata._(
   TfArg<String> _
@@ -36,6 +88,69 @@ extension type const NetworkManagementOrganizationVpcFlowLogsConfigCrossProjectM
   values = [crossProjectMetadataEnabled, crossProjectMetadataDisabled];
 }
 
+/// Network Management Organization Vpc Flow Logs Config enum for `metadata`.
+extension type const NetworkManagementOrganizationVpcFlowLogsConfigMetadata._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkManagementOrganizationVpcFlowLogsConfigMetadata.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkManagementOrganizationVpcFlowLogsConfigMetadata.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const NetworkManagementOrganizationVpcFlowLogsConfigMetadata.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const metadataUnspecified =
+      NetworkManagementOrganizationVpcFlowLogsConfigMetadata._(
+        TfArgLiteral('METADATA_UNSPECIFIED'),
+      );
+  static const includeAllMetadata =
+      NetworkManagementOrganizationVpcFlowLogsConfigMetadata._(
+        TfArgLiteral('INCLUDE_ALL_METADATA'),
+      );
+  static const excludeAllMetadata =
+      NetworkManagementOrganizationVpcFlowLogsConfigMetadata._(
+        TfArgLiteral('EXCLUDE_ALL_METADATA'),
+      );
+  static const customMetadata =
+      NetworkManagementOrganizationVpcFlowLogsConfigMetadata._(
+        TfArgLiteral('CUSTOM_METADATA'),
+      );
+
+  static const List<NetworkManagementOrganizationVpcFlowLogsConfigMetadata>
+  values = [
+    metadataUnspecified,
+    includeAllMetadata,
+    excludeAllMetadata,
+    customMetadata,
+  ];
+}
+
+/// Network Management Organization Vpc Flow Logs Config enum for `state`.
+extension type const NetworkManagementOrganizationVpcFlowLogsConfigState._(
+  TfArg<String> _
+) implements TfArg<String> {
+  NetworkManagementOrganizationVpcFlowLogsConfigState.variable(String name)
+    : this._(TfArg.variable(name));
+  NetworkManagementOrganizationVpcFlowLogsConfigState.expression(
+    String template,
+  ) : this._(TfArg.expression(template));
+  const NetworkManagementOrganizationVpcFlowLogsConfigState.arg(
+    TfArg<String> arg,
+  ) : this._(arg);
+
+  static const enabled = NetworkManagementOrganizationVpcFlowLogsConfigState._(
+    TfArgLiteral('ENABLED'),
+  );
+  static const disabled = NetworkManagementOrganizationVpcFlowLogsConfigState._(
+    TfArgLiteral('DISABLED'),
+  );
+
+  static const List<NetworkManagementOrganizationVpcFlowLogsConfigState>
+  values = [enabled, disabled];
+}
+
 /// Factory wrapper for `google_network_management_organization_vpc_flow_logs_config`.
 ///
 /// VPC Flow Logs Config is a resource that lets you configure Flow Logs for
@@ -54,7 +169,8 @@ final class GoogleNetworkManagementOrganizationVpcFlowLogsConfig
 
   GoogleNetworkManagementOrganizationVpcFlowLogsConfig(
     super.localName, {
-    TfArg<String>? aggregationInterval,
+    NetworkManagementOrganizationVpcFlowLogsConfigAggregationInterval?
+    aggregationInterval,
     NetworkManagementOrganizationVpcFlowLogsConfigCrossProjectMetadata?
     crossProjectMetadata,
     TfArg<String>? deletionPolicy,
@@ -63,10 +179,10 @@ final class GoogleNetworkManagementOrganizationVpcFlowLogsConfig
     TfArg<num>? flowSampling,
     TfArg<Map<String, String>>? labels,
     required TfArg<String> location,
-    TfArg<String>? metadata,
+    NetworkManagementOrganizationVpcFlowLogsConfigMetadata? metadata,
     TfArg<List<String>>? metadataFields,
     required TfArg<String> organization,
-    TfArg<String>? state,
+    NetworkManagementOrganizationVpcFlowLogsConfigState? state,
     required TfArg<String> vpcFlowLogsConfigId,
     super.lifecycle,
     super.dependsOn,

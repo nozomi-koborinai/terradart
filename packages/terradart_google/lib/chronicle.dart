@@ -87,8 +87,11 @@ export 'src/chronicle/google_chronicle_feed.dart'
         ChronicleFeedAmazonKinesisFirehoseSettings,
         ChronicleFeedAmazonS3Settings,
         ChronicleFeedAmazonS3SettingsAuthentication,
+        ChronicleFeedAmazonS3SettingsSourceDeletionOption,
+        ChronicleFeedAmazonS3SettingsSourceType,
         ChronicleFeedAmazonS3V2Settings,
         ChronicleFeedAmazonS3V2SettingsAuthentication,
+        ChronicleFeedAmazonS3V2SettingsSourceDeletionOption,
         ChronicleFeedAmazonSqsSettings,
         ChronicleFeedAmazonSqsSettingsAuthentication,
         ChronicleFeedAmazonSqsV2Settings,
@@ -101,6 +104,7 @@ export 'src/chronicle/google_chronicle_feed.dart'
         ChronicleFeedAwsEc2VpcsSettings,
         ChronicleFeedAwsIamRoleAuth,
         ChronicleFeedAwsIamSettings,
+        ChronicleFeedAwsIamSettingsApiType,
         ChronicleFeedAzureAdAuditSettings,
         ChronicleFeedAzureAdAuditSettingsAuthentication,
         ChronicleFeedAzureAdContextSettings,
@@ -114,11 +118,14 @@ export 'src/chronicle/google_chronicle_feed.dart'
         ChronicleFeedAzureV2WorkloadIdentityFederation,
         ChronicleFeedClaims,
         ChronicleFeedCloudPassageSettings,
+        ChronicleFeedContentType,
         ChronicleFeedCortexXdrSettings,
         ChronicleFeedCortexXdrSettingsAuthentication,
         ChronicleFeedCrowdstrikeAlertsSettings,
         ChronicleFeedCrowdstrikeAlertsSettingsAuthentication,
+        ChronicleFeedCrowdstrikeAlertsSettingsIngestionType,
         ChronicleFeedCrowdstrikeDetectsSettings,
+        ChronicleFeedCrowdstrikeDetectsSettingsIngestionType,
         ChronicleFeedDetails,
         ChronicleFeedDummyLogTypeSettings,
         ChronicleFeedDuoAuthSettings,
@@ -151,13 +158,16 @@ export 'src/chronicle/google_chronicle_feed.dart'
         ChronicleFeedPanIocSettings,
         ChronicleFeedPanPrismaCloudSettings,
         ChronicleFeedPanPrismaCloudSettingsAuthentication,
+        ChronicleFeedProjectionType,
         ChronicleFeedProofpointMailSettings,
         ChronicleFeedProofpointOnDemandSettings,
         ChronicleFeedPubsubSettings,
         ChronicleFeedQualysScanSettings,
+        ChronicleFeedQualysScanSettingsApiType,
         ChronicleFeedQualysVmSettings,
         ChronicleFeedRapid7InsightSettings,
         ChronicleFeedRecordedFutureIocSettings,
+        ChronicleFeedRegion,
         ChronicleFeedRhIsacIocSettings,
         ChronicleFeedRsCredentials,
         ChronicleFeedSalesforceSettings,
@@ -272,6 +282,7 @@ export 'src/chronicle/google_chronicle_feed.dart'
         GoogleChronicleFeed;
 export 'src/chronicle/google_chronicle_findings_refinement.dart'
     show
+        ChronicleFindingsRefinementOutcomeFilterOperator,
         ChronicleFindingsRefinementOutcomeFilters,
         GoogleChronicleFindingsRefinement;
 export 'src/chronicle/google_chronicle_findings_refinement_deployment.dart'
@@ -294,7 +305,9 @@ export 'src/chronicle/google_chronicle_parser.dart'
     show
         ChronicleParserExtractors,
         ChronicleParserFieldExtractors,
+        ChronicleParserLogFormat,
         ChronicleParserLowCode,
+        ChronicleParserPreconditionOp,
         ChronicleParserPreprocessConfig,
         ChronicleParserVersionInfo,
         GoogleChronicleParser;
@@ -307,7 +320,9 @@ export 'src/chronicle/google_chronicle_parser_extension.dart'
         ChronicleParserExtensionDynamicParsing,
         ChronicleParserExtensionExtractors,
         ChronicleParserExtensionFieldExtractors,
+        ChronicleParserExtensionLogFormat,
         ChronicleParserExtensionOptedFields,
+        ChronicleParserExtensionPreconditionOp,
         ChronicleParserExtensionPreprocessConfig,
         GoogleChronicleParserExtension;
 export 'src/chronicle/google_chronicle_reference_list.dart'
@@ -315,12 +330,14 @@ export 'src/chronicle/google_chronicle_reference_list.dart'
         ChronicleReferenceListEntries,
         ChronicleReferenceListScope,
         ChronicleReferenceListScopeInfo,
+        ChronicleReferenceListSyntaxType,
         GoogleChronicleReferenceList;
 export 'src/chronicle/google_chronicle_retrohunt.dart'
     show ChronicleRetrohuntProcessInterval, GoogleChronicleRetrohunt;
 export 'src/chronicle/google_chronicle_rule.dart' show GoogleChronicleRule;
 export 'src/chronicle/google_chronicle_rule_deployment.dart'
     show
+        ChronicleRuleDeploymentRunFrequency,
         ChronicleRuleDeploymentScheduleCustomizations,
         GoogleChronicleRuleDeployment;
 export 'src/chronicle/google_chronicle_soar_network.dart'

@@ -21,7 +21,9 @@ export 'src/data/aws_opensearchserverless_security_config.dart'
         DataOpensearchserverlessSecurityConfigIamIdentityCenterOptions,
         DataOpensearchserverlessSecurityConfigSamlOptions;
 export 'src/data/aws_opensearchserverless_security_policy.dart'
-    show DataAwsOpensearchserverlessSecurityPolicy;
+    show
+        DataAwsOpensearchserverlessSecurityPolicy,
+        DataOpensearchserverlessSecurityPolicyType;
 export 'src/data/aws_opensearchserverless_vpc_endpoint.dart'
     show DataAwsOpensearchserverlessVpcEndpoint;
 export 'src/opensearchserverless/aws_opensearchserverless_access_policy.dart'
@@ -29,7 +31,10 @@ export 'src/opensearchserverless/aws_opensearchserverless_access_policy.dart'
         AwsOpensearchserverlessAccessPolicy,
         OpensearchserverlessAccessPolicyType;
 export 'src/opensearchserverless/aws_opensearchserverless_collection.dart'
-    show AwsOpensearchserverlessCollection;
+    show
+        AwsOpensearchserverlessCollection,
+        OpensearchserverlessCollectionStandbyReplicas,
+        OpensearchserverlessCollectionType;
 export 'src/opensearchserverless/aws_opensearchserverless_collection_group.dart'
     show
         AwsOpensearchserverlessCollectionGroup,

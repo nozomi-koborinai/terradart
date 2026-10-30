@@ -230,7 +230,7 @@ final class DataprocClusterNodeGroupConfigDiskConfig {
 
   final TfArg<String>? bootDiskType;
 
-  final TfArg<String>? localSsdInterface;
+  final DataprocClusterLocalSsdInterface? localSsdInterface;
 
   final TfArg<num>? numLocalSsds;
 
@@ -244,6 +244,21 @@ final class DataprocClusterNodeGroupConfigDiskConfig {
     'local_ssd_interface': ?localSsdInterface?.toTfJson(),
     'num_local_ssds': ?numLocalSsds?.toTfJson(),
   };
+}
+
+/// `local_ssd_interface` — derived from the provider schema description.
+extension type const DataprocClusterLocalSsdInterface._(TfArg<String> _)
+    implements TfArg<String> {
+  DataprocClusterLocalSsdInterface.variable(String name)
+    : this._(TfArg.variable(name));
+  DataprocClusterLocalSsdInterface.expression(String template)
+    : this._(TfArg.expression(template));
+  const DataprocClusterLocalSsdInterface.arg(TfArg<String> arg) : this._(arg);
+
+  static const scsi = DataprocClusterLocalSsdInterface._(TfArgLiteral('scsi'));
+  static const nvme = DataprocClusterLocalSsdInterface._(TfArgLiteral('nvme'));
+
+  static const List<DataprocClusterLocalSsdInterface> values = [scsi, nvme];
 }
 
 /// Typed helper for the `cluster_config.dataproc_metric_config` block of
@@ -565,7 +580,7 @@ final class DataprocClusterDiskConfig {
 
   final TfArg<String>? bootDiskType;
 
-  final TfArg<String>? localSsdInterface;
+  final DataprocClusterLocalSsdInterface? localSsdInterface;
 
   final TfArg<num>? numLocalSsds;
 

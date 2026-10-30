@@ -70,13 +70,35 @@ final class StorageBucketAutoclass {
 
   final TfArg<bool> enabled;
 
-  final TfArg<String>? terminalStorageClass;
+  final StorageBucketTerminalStorageClass? terminalStorageClass;
 
   @internal
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'terminal_storage_class': ?terminalStorageClass?.toTfJson(),
   };
+}
+
+/// `terminal_storage_class` — derived from the provider schema description.
+extension type const StorageBucketTerminalStorageClass._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageBucketTerminalStorageClass.variable(String name)
+    : this._(TfArg.variable(name));
+  StorageBucketTerminalStorageClass.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageBucketTerminalStorageClass.arg(TfArg<String> arg) : this._(arg);
+
+  static const nearline = StorageBucketTerminalStorageClass._(
+    TfArgLiteral('NEARLINE'),
+  );
+  static const archive = StorageBucketTerminalStorageClass._(
+    TfArgLiteral('ARCHIVE'),
+  );
+
+  static const List<StorageBucketTerminalStorageClass> values = [
+    nearline,
+    archive,
+  ];
 }
 
 /// Typed helper for the `cors` block of
@@ -229,7 +251,7 @@ final class StorageBucketIpFilter {
 
   final TfArg<bool>? allowCrossOrgVpcs;
 
-  final TfArg<String> mode;
+  final StorageBucketMode mode;
 
   final StorageBucketPublicNetworkSource? publicNetworkSource;
 
@@ -244,6 +266,20 @@ final class StorageBucketIpFilter {
     if (vpcNetworkSources != null)
       'vpc_network_sources': [for (final e in vpcNetworkSources!) e.encode()],
   };
+}
+
+/// `mode` — derived from the provider schema description.
+extension type const StorageBucketMode._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageBucketMode.variable(String name) : this._(TfArg.variable(name));
+  StorageBucketMode.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageBucketMode.arg(TfArg<String> arg) : this._(arg);
+
+  static const enabled = StorageBucketMode._(TfArgLiteral('Enabled'));
+  static const disabled = StorageBucketMode._(TfArgLiteral('Disabled'));
+
+  static const List<StorageBucketMode> values = [enabled, disabled];
 }
 
 /// Typed helper for the `ip_filter.public_network_source` block of
@@ -353,7 +389,7 @@ final class StorageBucketCondition {
 
   final TfArg<List<String>>? matchesPrefix;
 
-  final TfArg<List<String>>? matchesStorageClass;
+  final List<StorageBucketMatchesStorageClass>? matchesStorageClass;
 
   final TfArg<List<String>>? matchesSuffix;
 
@@ -373,7 +409,7 @@ final class StorageBucketCondition {
 
   final TfArg<num>? sizeBelowBytes;
 
-  final TfArg<String>? withState;
+  final StorageBucketWithState? withState;
 
   @internal
   Map<String, Object?> encode() => {
@@ -383,7 +419,10 @@ final class StorageBucketCondition {
     'days_since_custom_time': ?daysSinceCustomTime?.toTfJson(),
     'days_since_noncurrent_time': ?daysSinceNoncurrentTime?.toTfJson(),
     'matches_prefix': ?matchesPrefix?.toTfJson(),
-    'matches_storage_class': ?matchesStorageClass?.toTfJson(),
+    if (matchesStorageClass != null)
+      'matches_storage_class': [
+        for (final e in matchesStorageClass!) e.toTfJson(),
+      ],
     'matches_suffix': ?matchesSuffix?.toTfJson(),
     'noncurrent_time_before': ?noncurrentTimeBefore?.toTfJson(),
     'num_newer_versions': ?numNewerVersions?.toTfJson(),
@@ -397,6 +436,63 @@ final class StorageBucketCondition {
     'size_below_bytes': ?sizeBelowBytes?.toTfJson(),
     'with_state': ?withState?.toTfJson(),
   };
+}
+
+/// `matches_storage_class` — derived from the provider schema description.
+extension type const StorageBucketMatchesStorageClass._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageBucketMatchesStorageClass.variable(String name)
+    : this._(TfArg.variable(name));
+  StorageBucketMatchesStorageClass.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageBucketMatchesStorageClass.arg(TfArg<String> arg) : this._(arg);
+
+  static const multiRegional = StorageBucketMatchesStorageClass._(
+    TfArgLiteral('MULTI_REGIONAL'),
+  );
+  static const regional = StorageBucketMatchesStorageClass._(
+    TfArgLiteral('REGIONAL'),
+  );
+  static const nearline = StorageBucketMatchesStorageClass._(
+    TfArgLiteral('NEARLINE'),
+  );
+  static const coldline = StorageBucketMatchesStorageClass._(
+    TfArgLiteral('COLDLINE'),
+  );
+  static const archive = StorageBucketMatchesStorageClass._(
+    TfArgLiteral('ARCHIVE'),
+  );
+  static const standard = StorageBucketMatchesStorageClass._(
+    TfArgLiteral('STANDARD'),
+  );
+  static const durableReducedAvailability = StorageBucketMatchesStorageClass._(
+    TfArgLiteral('DURABLE_REDUCED_AVAILABILITY'),
+  );
+
+  static const List<StorageBucketMatchesStorageClass> values = [
+    multiRegional,
+    regional,
+    nearline,
+    coldline,
+    archive,
+    standard,
+    durableReducedAvailability,
+  ];
+}
+
+/// `with_state` — derived from the provider schema description.
+extension type const StorageBucketWithState._(TfArg<String> _)
+    implements TfArg<String> {
+  StorageBucketWithState.variable(String name) : this._(TfArg.variable(name));
+  StorageBucketWithState.expression(String template)
+    : this._(TfArg.expression(template));
+  const StorageBucketWithState.arg(TfArg<String> arg) : this._(arg);
+
+  static const live = StorageBucketWithState._(TfArgLiteral('LIVE'));
+  static const archived = StorageBucketWithState._(TfArgLiteral('ARCHIVED'));
+  static const any = StorageBucketWithState._(TfArgLiteral('ANY'));
+
+  static const List<StorageBucketWithState> values = [live, archived, any];
 }
 
 /// Typed helper for the `logging` block of

@@ -8,6 +8,118 @@ const Set<String> _googleSqlSourceRepresentationInstanceSensitive = <String>{
   'password',
 };
 
+/// Sql Source Representation Instance Database enum for `database_version`.
+extension type const SqlSourceRepresentationInstanceDatabaseVersion._(
+  TfArg<String> _
+) implements TfArg<String> {
+  SqlSourceRepresentationInstanceDatabaseVersion.variable(String name)
+    : this._(TfArg.variable(name));
+  SqlSourceRepresentationInstanceDatabaseVersion.expression(String template)
+    : this._(TfArg.expression(template));
+  const SqlSourceRepresentationInstanceDatabaseVersion.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const mysql56 = SqlSourceRepresentationInstanceDatabaseVersion._(
+    TfArgLiteral('MYSQL_5_6'),
+  );
+  static const mysql57 = SqlSourceRepresentationInstanceDatabaseVersion._(
+    TfArgLiteral('MYSQL_5_7'),
+  );
+  static const mysql80 = SqlSourceRepresentationInstanceDatabaseVersion._(
+    TfArgLiteral('MYSQL_8_0'),
+  );
+  static const mysql84 = SqlSourceRepresentationInstanceDatabaseVersion._(
+    TfArgLiteral('MYSQL_8_4'),
+  );
+  static const postgres96 = SqlSourceRepresentationInstanceDatabaseVersion._(
+    TfArgLiteral('POSTGRES_9_6'),
+  );
+  static const postgres10 = SqlSourceRepresentationInstanceDatabaseVersion._(
+    TfArgLiteral('POSTGRES_10'),
+  );
+  static const postgres11 = SqlSourceRepresentationInstanceDatabaseVersion._(
+    TfArgLiteral('POSTGRES_11'),
+  );
+  static const postgres12 = SqlSourceRepresentationInstanceDatabaseVersion._(
+    TfArgLiteral('POSTGRES_12'),
+  );
+  static const postgres13 = SqlSourceRepresentationInstanceDatabaseVersion._(
+    TfArgLiteral('POSTGRES_13'),
+  );
+  static const postgres14 = SqlSourceRepresentationInstanceDatabaseVersion._(
+    TfArgLiteral('POSTGRES_14'),
+  );
+  static const postgres15 = SqlSourceRepresentationInstanceDatabaseVersion._(
+    TfArgLiteral('POSTGRES_15'),
+  );
+  static const postgres16 = SqlSourceRepresentationInstanceDatabaseVersion._(
+    TfArgLiteral('POSTGRES_16'),
+  );
+  static const postgres17 = SqlSourceRepresentationInstanceDatabaseVersion._(
+    TfArgLiteral('POSTGRES_17'),
+  );
+  static const postgres18 = SqlSourceRepresentationInstanceDatabaseVersion._(
+    TfArgLiteral('POSTGRES_18'),
+  );
+  static const sqlserver2022Standard =
+      SqlSourceRepresentationInstanceDatabaseVersion._(
+        TfArgLiteral('SQLSERVER_2022_STANDARD'),
+      );
+  static const sqlserver2022Enterprise =
+      SqlSourceRepresentationInstanceDatabaseVersion._(
+        TfArgLiteral('SQLSERVER_2022_ENTERPRISE'),
+      );
+  static const sqlserver2022Express =
+      SqlSourceRepresentationInstanceDatabaseVersion._(
+        TfArgLiteral('SQLSERVER_2022_EXPRESS'),
+      );
+  static const sqlserver2022Web =
+      SqlSourceRepresentationInstanceDatabaseVersion._(
+        TfArgLiteral('SQLSERVER_2022_WEB'),
+      );
+  static const sqlserver2025Standard =
+      SqlSourceRepresentationInstanceDatabaseVersion._(
+        TfArgLiteral('SQLSERVER_2025_STANDARD'),
+      );
+  static const sqlserver2025Enterprise =
+      SqlSourceRepresentationInstanceDatabaseVersion._(
+        TfArgLiteral('SQLSERVER_2025_ENTERPRISE'),
+      );
+  static const sqlserver2025Express =
+      SqlSourceRepresentationInstanceDatabaseVersion._(
+        TfArgLiteral('SQLSERVER_2025_EXPRESS'),
+      );
+  static const sqlserver2025Web =
+      SqlSourceRepresentationInstanceDatabaseVersion._(
+        TfArgLiteral('SQLSERVER_2025_WEB'),
+      );
+
+  static const List<SqlSourceRepresentationInstanceDatabaseVersion> values = [
+    mysql56,
+    mysql57,
+    mysql80,
+    mysql84,
+    postgres96,
+    postgres10,
+    postgres11,
+    postgres12,
+    postgres13,
+    postgres14,
+    postgres15,
+    postgres16,
+    postgres17,
+    postgres18,
+    sqlserver2022Standard,
+    sqlserver2022Enterprise,
+    sqlserver2022Express,
+    sqlserver2022Web,
+    sqlserver2025Standard,
+    sqlserver2025Enterprise,
+    sqlserver2025Express,
+    sqlserver2025Web,
+  ];
+}
+
 /// Factory wrapper for `google_sql_source_representation_instance`.
 ///
 /// A source representation instance is a Cloud SQL instance that represents the
@@ -23,7 +135,7 @@ final class GoogleSqlSourceRepresentationInstance extends Resource {
     TfArg<String>? caCertificate,
     TfArg<String>? clientCertificate,
     TfArg<String>? clientKey,
-    required TfArg<String> databaseVersion,
+    required SqlSourceRepresentationInstanceDatabaseVersion databaseVersion,
     TfArg<String>? dumpFilePath,
     required TfArg<String> host,
     required TfArg<String> name,

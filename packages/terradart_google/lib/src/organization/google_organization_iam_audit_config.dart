@@ -20,13 +20,39 @@ final class OrganizationIamAuditConfigAuditLogConfig {
 
   final TfArg<List<IamPrincipal>>? exemptedMembers;
 
-  final TfArg<String> logType;
+  final OrganizationIamAuditConfigLogType logType;
 
   @internal
   Map<String, Object?> encode() => {
     'exempted_members': ?exemptedMembers?.toTfJson(),
     'log_type': logType.toTfJson(),
   };
+}
+
+/// `log_type` — derived from the provider schema description.
+extension type const OrganizationIamAuditConfigLogType._(TfArg<String> _)
+    implements TfArg<String> {
+  OrganizationIamAuditConfigLogType.variable(String name)
+    : this._(TfArg.variable(name));
+  OrganizationIamAuditConfigLogType.expression(String template)
+    : this._(TfArg.expression(template));
+  const OrganizationIamAuditConfigLogType.arg(TfArg<String> arg) : this._(arg);
+
+  static const dataRead = OrganizationIamAuditConfigLogType._(
+    TfArgLiteral('DATA_READ'),
+  );
+  static const dataWrite = OrganizationIamAuditConfigLogType._(
+    TfArgLiteral('DATA_WRITE'),
+  );
+  static const adminRead = OrganizationIamAuditConfigLogType._(
+    TfArgLiteral('ADMIN_READ'),
+  );
+
+  static const List<OrganizationIamAuditConfigLogType> values = [
+    dataRead,
+    dataWrite,
+    adminRead,
+  ];
 }
 
 /// Factory wrapper for `google_organization_iam_audit_config`.

@@ -11,6 +11,7 @@ export 'src/container_attached/google_container_attached_cluster.dart'
         ContainerAttachedClusterAuthorization,
         ContainerAttachedClusterBinaryAuthorization,
         ContainerAttachedClusterComponentConfig,
+        ContainerAttachedClusterDistribution,
         ContainerAttachedClusterEnableComponents,
         ContainerAttachedClusterEvaluationMode,
         ContainerAttachedClusterFleet,

@@ -526,6 +526,47 @@ prelude: |
   // instance_lifecycle_policy block (max_items=1)
   // ===========================================================================
 
+  /// `instance_lifecycle_policy.default_action_on_failure`: what the MIG
+  /// does with a failed VM.
+  extension type const RegionInstanceGroupManagerDefaultActionOnFailure._(TfArg<String> _) implements TfArg<String> {
+    RegionInstanceGroupManagerDefaultActionOnFailure.variable(String name) : this._(TfArg.variable(name));
+    RegionInstanceGroupManagerDefaultActionOnFailure.expression(String template) : this._(TfArg.expression(template));
+    const RegionInstanceGroupManagerDefaultActionOnFailure.arg(TfArg<String> arg) : this._(arg);
+
+    static const repair = RegionInstanceGroupManagerDefaultActionOnFailure._(TfArgLiteral('REPAIR'));
+    static const doNothing = RegionInstanceGroupManagerDefaultActionOnFailure._(TfArgLiteral('DO_NOTHING'));
+
+    static const List<RegionInstanceGroupManagerDefaultActionOnFailure> values = [repair, doNothing];
+  }
+
+  /// `instance_lifecycle_policy.on_failed_health_check`: what the MIG does
+  /// with a VM that fails a health check. `defaultAction` follows
+  /// `default_action_on_failure`.
+  extension type const RegionInstanceGroupManagerOnFailedHealthCheck._(TfArg<String> _) implements TfArg<String> {
+    RegionInstanceGroupManagerOnFailedHealthCheck.variable(String name) : this._(TfArg.variable(name));
+    RegionInstanceGroupManagerOnFailedHealthCheck.expression(String template) : this._(TfArg.expression(template));
+    const RegionInstanceGroupManagerOnFailedHealthCheck.arg(TfArg<String> arg) : this._(arg);
+
+    static const defaultAction = RegionInstanceGroupManagerOnFailedHealthCheck._(TfArgLiteral('DEFAULT_ACTION'));
+    static const doNothing = RegionInstanceGroupManagerOnFailedHealthCheck._(TfArgLiteral('DO_NOTHING'));
+    static const repair = RegionInstanceGroupManagerOnFailedHealthCheck._(TfArgLiteral('REPAIR'));
+
+    static const List<RegionInstanceGroupManagerOnFailedHealthCheck> values = [defaultAction, doNothing, repair];
+  }
+
+  /// `instance_lifecycle_policy.force_update_on_repair`: whether a repair
+  /// applies the latest template and per-instance configuration.
+  extension type const RegionInstanceGroupManagerForceUpdateOnRepair._(TfArg<String> _) implements TfArg<String> {
+    RegionInstanceGroupManagerForceUpdateOnRepair.variable(String name) : this._(TfArg.variable(name));
+    RegionInstanceGroupManagerForceUpdateOnRepair.expression(String template) : this._(TfArg.expression(template));
+    const RegionInstanceGroupManagerForceUpdateOnRepair.arg(TfArg<String> arg) : this._(arg);
+
+    static const yes = RegionInstanceGroupManagerForceUpdateOnRepair._(TfArgLiteral('YES'));
+    static const no = RegionInstanceGroupManagerForceUpdateOnRepair._(TfArgLiteral('NO'));
+
+    static const List<RegionInstanceGroupManagerForceUpdateOnRepair> values = [yes, no];
+  }
+
   /// `instance_lifecycle_policy` block — fine-grained behavior on
   /// failures and template updates.
   @immutable
@@ -533,20 +574,26 @@ prelude: |
     const ComputeRegionInstanceGroupManagerInstanceLifecyclePolicy({
       this.defaultActionOnFailure,
       this.forceUpdateOnRepair,
+      this.onFailedHealthCheck,
     });
 
     /// Default behavior for instance or health check failures.
-    final TfArg<String>? defaultActionOnFailure;
+    final RegionInstanceGroupManagerDefaultActionOnFailure? defaultActionOnFailure;
 
-    /// `YES` to apply the latest template when repairing a VM; `NO`
+    /// `yes` to apply the latest template when repairing a VM; `no`
     /// (default) to honor the update policy.
-    final TfArg<String>? forceUpdateOnRepair;
+    final RegionInstanceGroupManagerForceUpdateOnRepair? forceUpdateOnRepair;
+
+    /// Behavior for a VM that fails a health check.
+    final RegionInstanceGroupManagerOnFailedHealthCheck? onFailedHealthCheck;
 
     Map<String, Object?> toArgMap() => {
       if (defaultActionOnFailure != null)
         'default_action_on_failure': defaultActionOnFailure!.toTfJson(),
       if (forceUpdateOnRepair != null)
         'force_update_on_repair': forceUpdateOnRepair!.toTfJson(),
+      if (onFailedHealthCheck != null)
+        'on_failed_health_check': onFailedHealthCheck!.toTfJson(),
     };
   }
 

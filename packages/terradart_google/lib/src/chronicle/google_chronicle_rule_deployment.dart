@@ -7,6 +7,41 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_chronicle_rule_deployment`.
 const Set<String> _googleChronicleRuleDeploymentSensitive = <String>{};
 
+/// Chronicle Rule Deployment Run enum for `run_frequency`.
+extension type const ChronicleRuleDeploymentRunFrequency._(TfArg<String> _)
+    implements TfArg<String> {
+  ChronicleRuleDeploymentRunFrequency.variable(String name)
+    : this._(TfArg.variable(name));
+  ChronicleRuleDeploymentRunFrequency.expression(String template)
+    : this._(TfArg.expression(template));
+  const ChronicleRuleDeploymentRunFrequency.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const live = ChronicleRuleDeploymentRunFrequency._(
+    TfArgLiteral('LIVE'),
+  );
+  static const hourly = ChronicleRuleDeploymentRunFrequency._(
+    TfArgLiteral('HOURLY'),
+  );
+  static const daily = ChronicleRuleDeploymentRunFrequency._(
+    TfArgLiteral('DAILY'),
+  );
+  static const liveCustomizable = ChronicleRuleDeploymentRunFrequency._(
+    TfArgLiteral('LIVE_CUSTOMIZABLE'),
+  );
+  static const hourlyCustomizable = ChronicleRuleDeploymentRunFrequency._(
+    TfArgLiteral('HOURLY_CUSTOMIZABLE'),
+  );
+
+  static const List<ChronicleRuleDeploymentRunFrequency> values = [
+    live,
+    hourly,
+    daily,
+    liveCustomizable,
+    hourlyCustomizable,
+  ];
+}
+
 /// Typed helper for the `schedule_customizations` block of
 /// `google_chronicle_rule_deployment` (derived from provider schema).
 @immutable
@@ -54,7 +89,7 @@ final class GoogleChronicleRuleDeployment extends Resource {
     TfArg<bool>? enabled,
     TfArg<bool>? alerting,
     TfArg<bool>? archived,
-    TfArg<String>? runFrequency,
+    ChronicleRuleDeploymentRunFrequency? runFrequency,
     TfArg<String>? project,
     ChronicleRuleDeploymentScheduleCustomizations? scheduleCustomizations,
     super.lifecycle,

@@ -10,6 +10,113 @@ import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 /// Sensitive field paths for `google_cloudfunctions_function`.
 const Set<String> _googleCloudfunctionsFunctionSensitive = <String>{};
 
+/// Cloudfunctions Function Docker enum for `docker_registry`.
+extension type const CloudfunctionsFunctionDockerRegistry._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudfunctionsFunctionDockerRegistry.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudfunctionsFunctionDockerRegistry.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudfunctionsFunctionDockerRegistry.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const artifactRegistry = CloudfunctionsFunctionDockerRegistry._(
+    TfArgLiteral('ARTIFACT_REGISTRY'),
+  );
+  static const containerRegistry = CloudfunctionsFunctionDockerRegistry._(
+    TfArgLiteral('CONTAINER_REGISTRY'),
+  );
+
+  static const List<CloudfunctionsFunctionDockerRegistry> values = [
+    artifactRegistry,
+    containerRegistry,
+  ];
+}
+
+/// Cloudfunctions Function Ingress enum for `ingress_settings`.
+extension type const CloudfunctionsFunctionIngressSettings._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudfunctionsFunctionIngressSettings.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudfunctionsFunctionIngressSettings.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudfunctionsFunctionIngressSettings.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const allowAll = CloudfunctionsFunctionIngressSettings._(
+    TfArgLiteral('ALLOW_ALL'),
+  );
+  static const allowInternalOnly = CloudfunctionsFunctionIngressSettings._(
+    TfArgLiteral('ALLOW_INTERNAL_ONLY'),
+  );
+
+  static const List<CloudfunctionsFunctionIngressSettings> values = [
+    allowAll,
+    allowInternalOnly,
+  ];
+}
+
+/// Cloudfunctions Function enum for `status`.
+extension type const CloudfunctionsFunctionStatus._(TfArg<String> _)
+    implements TfArg<String> {
+  CloudfunctionsFunctionStatus.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudfunctionsFunctionStatus.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudfunctionsFunctionStatus.arg(TfArg<String> arg) : this._(arg);
+
+  static const cloudFunctionStatusUnspecified = CloudfunctionsFunctionStatus._(
+    TfArgLiteral('CLOUD_FUNCTION_STATUS_UNSPECIFIED'),
+  );
+  static const actove = CloudfunctionsFunctionStatus._(TfArgLiteral('ACTOVE'));
+  static const offline = CloudfunctionsFunctionStatus._(
+    TfArgLiteral('OFFLINE'),
+  );
+  static const deployInProgress = CloudfunctionsFunctionStatus._(
+    TfArgLiteral('DEPLOY_IN_PROGRESS'),
+  );
+  static const deleteInProgress = CloudfunctionsFunctionStatus._(
+    TfArgLiteral('DELETE_IN_PROGRESS'),
+  );
+  static const unknown = CloudfunctionsFunctionStatus._(
+    TfArgLiteral('UNKNOWN'),
+  );
+
+  static const List<CloudfunctionsFunctionStatus> values = [
+    cloudFunctionStatusUnspecified,
+    actove,
+    offline,
+    deployInProgress,
+    deleteInProgress,
+    unknown,
+  ];
+}
+
+/// Cloudfunctions Function Vpc Connector Egress enum for `vpc_connector_egress_settings`.
+extension type const CloudfunctionsFunctionVpcConnectorEgressSettings._(
+  TfArg<String> _
+) implements TfArg<String> {
+  CloudfunctionsFunctionVpcConnectorEgressSettings.variable(String name)
+    : this._(TfArg.variable(name));
+  CloudfunctionsFunctionVpcConnectorEgressSettings.expression(String template)
+    : this._(TfArg.expression(template));
+  const CloudfunctionsFunctionVpcConnectorEgressSettings.arg(TfArg<String> arg)
+    : this._(arg);
+
+  static const allTraffic = CloudfunctionsFunctionVpcConnectorEgressSettings._(
+    TfArgLiteral('ALL_TRAFFIC'),
+  );
+  static const privateRangesOnly =
+      CloudfunctionsFunctionVpcConnectorEgressSettings._(
+        TfArgLiteral('PRIVATE_RANGES_ONLY'),
+      );
+
+  static const List<CloudfunctionsFunctionVpcConnectorEgressSettings> values = [
+    allTraffic,
+    privateRangesOnly,
+  ];
+}
+
 /// Typed helper for the `automatic_update_policy` block of
 /// `google_cloudfunctions_function` (derived from provider schema).
 @immutable
@@ -176,13 +283,13 @@ final class GoogleCloudfunctionsFunction extends Resource {
     TfArg<String>? buildWorkerPool,
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,
-    TfArg<String>? dockerRegistry,
+    CloudfunctionsFunctionDockerRegistry? dockerRegistry,
     TfArg<String>? dockerRepository,
     TfArg<String>? entryPoint,
     TfArg<Map<String, String>>? environmentVariables,
     TfArg<String>? httpsTriggerSecurityLevel,
     TfArg<String>? httpsTriggerUrl,
-    TfArg<String>? ingressSettings,
+    CloudfunctionsFunctionIngressSettings? ingressSettings,
     RefTo<GoogleKmsCryptoKey>? kmsKeyName,
     TfArg<Map<String, String>>? labels,
     TfArg<num>? maxInstances,
@@ -197,7 +304,8 @@ final class GoogleCloudfunctionsFunction extends Resource {
     TfArg<num>? timeout,
     TfArg<bool>? triggerHttp,
     TfArg<String>? vpcConnector,
-    TfArg<String>? vpcConnectorEgressSettings,
+    CloudfunctionsFunctionVpcConnectorEgressSettings?
+    vpcConnectorEgressSettings,
     CloudfunctionsFunctionAutomaticUpdatePolicy? automaticUpdatePolicy,
     CloudfunctionsFunctionEventTrigger? eventTrigger,
     CloudfunctionsFunctionOnDeployUpdatePolicy? onDeployUpdatePolicy,
