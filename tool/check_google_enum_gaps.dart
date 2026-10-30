@@ -14,9 +14,13 @@
 // NESTED_THIN (whole block still TfArg<Map>) prints as advisory unless
 // --strict-nested is passed.
 //
+// A top-level input's value set is the one its schema description lists,
+// else its Magic Modules `enum_values`.
+//
 // Usage:
 //   dart tool/check_google_enum_gaps.dart
 //   dart tool/check_google_enum_gaps.dart --strict-nested
+//   dart tool/check_google_enum_gaps.dart --generated-root <dir>
 
 import 'dart:convert';
 import 'dart:io';
@@ -57,9 +61,13 @@ final _overrideDir = Directory(
   ),
 );
 
-final _genDir = Directory(
-  p.join(_root.path, 'packages/terradart_google/lib/src'),
+final _mmDir = Directory(
+  p.join(_root.path, 'packages/terradart_codegen/test/fixtures/wrap/source/mm'),
 );
+
+/// `--generated-root <dir>` reads the wrappers from another tree, so a test
+/// can seed a gap without touching the package.
+late final Directory _genDir;
 
 typedef _NestedEnumSite = ({
   List<String> blockPath,
@@ -196,13 +204,16 @@ _GapTarget _gapTarget({
 
 /// Top-level `THIN` / `PARTIAL` lines for one override.
 ///
-/// [stem] is the override file name without `.yaml`.
+/// [stem] is the override file name without `.yaml`. An input's value set
+/// is the one its schema description lists, else [mmValues] (Terraform
+/// input name → the Magic Modules `enum_values`, [mmTopLevelEnumValues]).
 List<String> topLevelEnumGaps({
   required String stem,
   required Map<String, dynamic> override,
   required Map<String, dynamic> resourceSchemas,
   required Map<String, dynamic> dataSourceSchemas,
   required String? generatedSource,
+  Map<String, List<String>> mmValues = const {},
 }) {
   final target = _gapTarget(
     stem: stem,
@@ -216,10 +227,6 @@ List<String> topLevelEnumGaps({
     ...ctorRawStringFields(generatedSource),
     ...sealedVariantRawStringFields(generatedSource),
   };
-  final rawDto = override['dartTypeOverrides'];
-  final dto = rawDto is Map
-      ? Map<String, dynamic>.from(rawDto)
-      : const <String, dynamic>{};
   final thin = _isThin(override);
   final gaps = <String>[];
   final attrs =
@@ -228,16 +235,55 @@ List<String> topLevelEnumGaps({
     final attr = entry.key;
     final meta = Map<String, dynamic>.from(entry.value as Map);
     if (schemaAttrIsComputedOnly(meta)) continue;
-    final vals = parseEnumValuesFromDescription(meta['description'] as String?);
+    final vals =
+        parseEnumValuesFromDescription(meta['description'] as String?) ??
+        mmValues[attr];
     if (vals == null) continue;
     final camel = _camel(attr);
     if (!fields.contains(camel)) continue;
-    if (dto.containsKey(attr)) continue;
     gaps.add(
       '${thin ? "THIN" : "PARTIAL"}\t${target.terraformType}.$attr\t${vals.join(", ")}',
     );
   }
   return gaps;
+}
+
+/// The `enum_values` of every top-level Magic Modules input in [mmYaml]
+/// (`parameters` and `properties`; an `Array` of `Enum` carries them on
+/// `item_type`), keyed by Terraform input name. Output-only properties are
+/// left out.
+Map<String, List<String>> mmTopLevelEnumValues(String mmYaml) {
+  final doc = loadYaml(mmYaml);
+  if (doc is! YamlMap) return const {};
+  final out = <String, List<String>>{};
+  for (final prop in [
+    ...?(doc['parameters'] as YamlList?),
+    ...?(doc['properties'] as YamlList?),
+  ]) {
+    if (prop is! YamlMap || prop['output'] == true) continue;
+    final name = prop['name'];
+    if (name is! String) continue;
+    final item = prop['item_type'];
+    final values =
+        prop['enum_values'] ??
+        (prop['type'] == 'Array' && item is YamlMap && item['type'] == 'Enum'
+            ? item['enum_values']
+            : null);
+    if (values is! YamlList) continue;
+    out[_snake(name)] = [for (final v in values) v.toString()];
+  }
+  return out;
+}
+
+String _snake(String camel) => camel.replaceAllMapped(
+  RegExp('[A-Z]'),
+  (m) => '_${m.group(0)!.toLowerCase()}',
+);
+
+Map<String, List<String>> _mmValues(String tfType) {
+  final file = File(p.join(_mmDir.path, '$tfType.yaml'));
+  if (!file.existsSync()) return const {};
+  return mmTopLevelEnumValues(file.readAsStringSync());
 }
 
 String? _generatedSource(String tfType, Map<String, dynamic> ov) {
@@ -428,6 +474,12 @@ List<_NestedEnumSite> _collectNestedEnumSites(Map<String, dynamic> block) {
 
 void main(List<String> args) {
   final strictNested = args.contains('--strict-nested');
+  final rootAt = args.indexOf('--generated-root');
+  _genDir = Directory(
+    rootAt >= 0 && rootAt + 1 < args.length
+        ? args[rootAt + 1]
+        : p.join(_root.path, 'packages/terradart_google/lib/src'),
+  );
 
   final topLevelGaps = <String>[];
   final nestedPartialGaps = <String>[];
@@ -459,6 +511,7 @@ void main(List<String> args) {
         resourceSchemas: _resourceSchemas,
         dataSourceSchemas: _dataSourceSchemas,
         generatedSource: genTextRaw,
+        mmValues: _mmValues(tfType),
       ),
     );
 

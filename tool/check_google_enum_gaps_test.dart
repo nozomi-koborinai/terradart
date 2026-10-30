@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:test/test.dart';
 
 import 'check_google_enum_gaps.dart';
@@ -159,6 +161,112 @@ const factory AppEngineStandardAppVersionLegacyServices.appEngineBundledServices
       ),
       isTrue,
     );
+  });
+
+  test('a Magic Modules value set the description omits is seen', () {
+    final gaps = topLevelEnumGaps(
+      stem: 'google_netapp_volume',
+      override: const {'outputDir': 'netapp'},
+      resourceSchemas: {
+        'google_netapp_volume': _schema({
+          'restricted_actions': {
+            'type': ['list', 'string'],
+            'optional': true,
+            'description':
+                'List of actions that are restricted on this volume.',
+          },
+        }),
+      },
+      dataSourceSchemas: const {},
+      generatedSource: '''
+GoogleNetappVolume(super.localName, {
+  TfArg<List<String>>? restrictedActions,
+}) : super(
+''',
+      mmValues: mmTopLevelEnumValues('''
+properties:
+  - name: restrictedActions
+    type: Array
+    item_type:
+      type: Enum
+      enum_values:
+        - DELETE
+  - name: state
+    type: Enum
+    output: true
+    enum_values:
+      - READY
+'''),
+    );
+    expect(gaps.map(_gapKey), ['google_netapp_volume.restricted_actions']);
+  });
+
+  test('a dartTypeOverrides entry does not hide a raw string input', () {
+    final gaps = topLevelEnumGaps(
+      stem: 'google_alloydb_backup',
+      override: const {
+        'outputDir': 'alloydb',
+        'dartTypeOverrides': {'type': 'String'},
+      },
+      resourceSchemas: {
+        'google_alloydb_backup': _schema({
+          'type': {
+            'type': 'string',
+            'optional': true,
+            'description': 'Possible values: ["ON_DEMAND", "AUTOMATED"]',
+          },
+        }),
+      },
+      dataSourceSchemas: const {},
+      generatedSource: '''
+GoogleAlloydbBackup(super.localName, {
+  TfArg<String>? type,
+}) : super(
+''',
+    );
+    expect(gaps.map(_gapKey), ['google_alloydb_backup.type']);
+  });
+
+  group('the checker on the generated wrappers', () {
+    const wrapper = 'alloydb/google_alloydb_backup.dart';
+    late Directory root;
+
+    setUp(() {
+      root = Directory.systemTemp.createTempSync('enum_gap_seed_');
+      File('${root.path}/$wrapper')
+        ..createSync(recursive: true)
+        ..writeAsStringSync(
+          File('packages/terradart_google/lib/src/$wrapper').readAsStringSync(),
+        );
+    });
+
+    tearDown(() => root.deleteSync(recursive: true));
+
+    ProcessResult check() => Process.runSync(Platform.resolvedExecutable, [
+      'tool/check_google_enum_gaps.dart',
+      '--strict-nested',
+      '--generated-root',
+      root.path,
+    ]);
+
+    test('passes on the committed wrapper', () {
+      final result = check();
+      expect(result.exitCode, 0, reason: '${result.stdout}');
+    });
+
+    test('fails on a seeded TfArg<String> value-set input', () {
+      final file = File('${root.path}/$wrapper');
+      final source = file.readAsStringSync();
+      final seeded = source.replaceFirst(
+        RegExp(r'AlloydbBackupType\?\s+type,'),
+        'TfArg<String>? type,',
+      );
+      expect(seeded, isNot(source));
+      file.writeAsStringSync(seeded);
+      final result = check();
+      expect(result.exitCode, 1);
+      expect(result.stdout, contains('google_alloydb_backup.type'));
+    });
   });
 }
 
