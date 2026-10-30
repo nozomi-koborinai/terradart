@@ -183,7 +183,7 @@ GoogleNetappVolume(super.localName, {
   TfArg<List<String>>? restrictedActions,
 }) : super(
 ''',
-      mmValues: mmTopLevelEnumValues('''
+      mmValues: mmEnumValues('''
 properties:
   - name: restrictedActions
     type: Array
@@ -227,17 +227,71 @@ GoogleAlloydbBackup(super.localName, {
     expect(gaps.map(_gapKey), ['google_alloydb_backup.type']);
   });
 
+  test('a nested input takes its Magic Modules value set', () {
+    final sites = collectNestedEnumSites(
+      {
+        'block_types': {
+          'enrolled_services': {
+            'block': {
+              'attributes': {
+                'enrollment_level': {
+                  'type': 'string',
+                  'optional': true,
+                  'description': 'The enrollment level of the service.',
+                },
+              },
+            },
+          },
+        },
+      },
+      mmValues: mmEnumValues('''
+properties:
+  - name: enrolledServices
+    type: Array
+    item_type:
+      type: NestedObject
+      properties:
+        - name: enrollmentLevel
+          type: Enum
+          enum_values:
+            - BLOCK_ALL
+'''),
+    );
+    expect(
+      [
+        for (final s in sites)
+          '${s.blockPath.join('.')}.${s.attr}: ${s.values}',
+      ],
+      ['enrolled_services.enrollment_level: [BLOCK_ALL]'],
+    );
+  });
+
+  test('a fixed literal in a hand-written variant covers its value set', () {
+    const source =
+        "Map<String, Object?> encode() => {'array_config': 'CONTAINS'};";
+    expect(encodesFixedValue(source, 'array_config', ['CONTAINS']), isTrue);
+    expect(encodesFixedValue(source, 'array_config', ['OTHER']), isFalse);
+  });
+
   group('the checker on the generated wrappers', () {
-    const wrapper = 'alloydb/google_alloydb_backup.dart';
+    const wrappers = [
+      'alloydb/google_alloydb_backup.dart',
+      'folder/google_folder_access_approval_settings.dart',
+      'compute/google_compute_instance.dart',
+    ];
     late Directory root;
 
     setUp(() {
       root = Directory.systemTemp.createTempSync('enum_gap_seed_');
-      File('${root.path}/$wrapper')
-        ..createSync(recursive: true)
-        ..writeAsStringSync(
-          File('packages/terradart_google/lib/src/$wrapper').readAsStringSync(),
-        );
+      for (final wrapper in wrappers) {
+        File('${root.path}/$wrapper')
+          ..createSync(recursive: true)
+          ..writeAsStringSync(
+            File(
+              'packages/terradart_google/lib/src/$wrapper',
+            ).readAsStringSync(),
+          );
+      }
     });
 
     tearDown(() => root.deleteSync(recursive: true));
@@ -249,23 +303,60 @@ GoogleAlloydbBackup(super.localName, {
       root.path,
     ]);
 
-    test('passes on the committed wrapper', () {
+    void seed(String wrapper, Pattern typed, String raw) {
+      final file = File('${root.path}/$wrapper');
+      final source = file.readAsStringSync();
+      final seeded = source.replaceAll(typed, raw);
+      expect(seeded, isNot(source));
+      file.writeAsStringSync(seeded);
+    }
+
+    test('passes on the committed wrappers', () {
       final result = check();
       expect(result.exitCode, 0, reason: '${result.stdout}');
     });
 
     test('fails on a seeded TfArg<String> value-set input', () {
-      final file = File('${root.path}/$wrapper');
-      final source = file.readAsStringSync();
-      final seeded = source.replaceFirst(
+      seed(
+        wrappers[0],
         RegExp(r'AlloydbBackupType\?\s+type,'),
         'TfArg<String>? type,',
       );
-      expect(seeded, isNot(source));
-      file.writeAsStringSync(seeded);
       final result = check();
       expect(result.exitCode, 1);
       expect(result.stdout, contains('google_alloydb_backup.type'));
+    });
+
+    test('fails on a nested Magic Modules value set left a string', () {
+      seed(
+        wrappers[1],
+        'final FolderAccessApprovalSettingsEnrollmentLevel? enrollmentLevel;',
+        'final TfArg<String>? enrollmentLevel;',
+      );
+      final result = check();
+      expect(result.exitCode, 1);
+      expect(
+        result.stdout,
+        contains(
+          'google_folder_access_approval_settings.enrolled_services'
+          '.enrollment_level',
+        ),
+      );
+    });
+
+    test('fails on a One of ... or ... value set left a string', () {
+      seed(
+        wrappers[2],
+        'final ComputeInstanceMode? mode;',
+        'final TfArg<String>? mode;',
+      );
+      final result = check();
+      expect(result.exitCode, 1);
+      expect(result.stdout, contains('google_compute_instance.boot_disk.mode'));
+      expect(
+        result.stdout,
+        contains('google_compute_instance.attached_disk.mode'),
+      );
     });
   });
 }

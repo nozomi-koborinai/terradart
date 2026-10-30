@@ -14,8 +14,9 @@
 // NESTED_THIN (whole block still TfArg<Map>) prints as advisory unless
 // --strict-nested is passed.
 //
-// A top-level input's value set is the one its schema description lists,
-// else its Magic Modules `enum_values`.
+// An input's value set is its Magic Modules `enum_values` (top-level or
+// nested), else the one its schema description lists: the order and the
+// parsers `wrap` types inputs with.
 //
 // Usage:
 //   dart tool/check_google_enum_gaps.dart
@@ -29,6 +30,7 @@ import 'package:path/path.dart' as p;
 import 'package:terradart_codegen/src/codegen/enum_value_parser.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_overrides/wrapper_override.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_overrides/yaml_loader.dart';
+import 'package:terradart_codegen/src/parser/mm_yaml_parser.dart';
 import 'package:yaml/yaml.dart';
 
 final _root = Directory.current;
@@ -69,7 +71,7 @@ final _mmDir = Directory(
 /// can seed a gap without touching the package.
 late final Directory _genDir;
 
-typedef _NestedEnumSite = ({
+typedef NestedEnumSite = ({
   List<String> blockPath,
   String attr,
   List<String> values,
@@ -205,8 +207,8 @@ _GapTarget _gapTarget({
 /// Top-level `THIN` / `PARTIAL` lines for one override.
 ///
 /// [stem] is the override file name without `.yaml`. An input's value set
-/// is the one its schema description lists, else [mmValues] (Terraform
-/// input name → the Magic Modules `enum_values`, [mmTopLevelEnumValues]).
+/// is its Magic Modules `enum_values` in [mmValues] ([mmEnumValues]), else
+/// the one its schema description lists, the order `wrap` reads them in.
 List<String> topLevelEnumGaps({
   required String stem,
   required Map<String, dynamic> override,
@@ -236,8 +238,8 @@ List<String> topLevelEnumGaps({
     final meta = Map<String, dynamic>.from(entry.value as Map);
     if (schemaAttrIsComputedOnly(meta)) continue;
     final vals =
-        parseEnumValuesFromDescription(meta['description'] as String?) ??
-        mmValues[attr];
+        mmValues[attr] ??
+        parseEnumValuesFromDescription(meta['description'] as String?);
     if (vals == null) continue;
     final camel = _camel(attr);
     if (!fields.contains(camel)) continue;
@@ -248,42 +250,16 @@ List<String> topLevelEnumGaps({
   return gaps;
 }
 
-/// The `enum_values` of every top-level Magic Modules input in [mmYaml]
-/// (`parameters` and `properties`; an `Array` of `Enum` carries them on
-/// `item_type`), keyed by Terraform input name. Output-only properties are
-/// left out.
-Map<String, List<String>> mmTopLevelEnumValues(String mmYaml) {
-  final doc = loadYaml(mmYaml);
-  if (doc is! YamlMap) return const {};
-  final out = <String, List<String>>{};
-  for (final prop in [
-    ...?(doc['parameters'] as YamlList?),
-    ...?(doc['properties'] as YamlList?),
-  ]) {
-    if (prop is! YamlMap || prop['output'] == true) continue;
-    final name = prop['name'];
-    if (name is! String) continue;
-    final item = prop['item_type'];
-    final values =
-        prop['enum_values'] ??
-        (prop['type'] == 'Array' && item is YamlMap && item['type'] == 'Enum'
-            ? item['enum_values']
-            : null);
-    if (values is! YamlList) continue;
-    out[_snake(name)] = [for (final v in values) v.toString()];
-  }
-  return out;
-}
-
-String _snake(String camel) => camel.replaceAllMapped(
-  RegExp('[A-Z]'),
-  (m) => '_${m.group(0)!.toLowerCase()}',
-);
+/// The `enum_values` of every Magic Modules input in [mmYaml], keyed by
+/// dotted Terraform path: the table `wrap --mm-groups` types inputs from
+/// ([MmResourceOverrides.enumValuesByPath]).
+Map<String, List<String>> mmEnumValues(String mmYaml) =>
+    const MmYamlParser().parseString(mmYaml).enumValuesByPath;
 
 Map<String, List<String>> _mmValues(String tfType) {
   final file = File(p.join(_mmDir.path, '$tfType.yaml'));
   if (!file.existsSync()) return const {};
-  return mmTopLevelEnumValues(file.readAsStringSync());
+  return mmEnumValues(file.readAsStringSync());
 }
 
 String? _generatedSource(String tfType, Map<String, dynamic> ov) {
@@ -411,6 +387,14 @@ const _rawGapTypes = {
   'TfArg<List<String>>?',
 };
 
+/// Whether [genText] encodes [attr] as one of [values] in a literal, the
+/// way a hand-written variant pins a single-value input
+/// (`'array_config': 'CONTAINS'`): the caller never passes a string.
+bool encodesFixedValue(String genText, String attr, List<String> values) =>
+    RegExp(
+      "'${RegExp.escape(attr)}': '(?:${values.map(RegExp.escape).join('|')})'",
+    ).hasMatch(genText);
+
 bool nestedEnumFieldIsGap(String genText, String camel) {
   var sawRaw = false;
   for (final type in _declaredFieldTypes(genText, camel)) {
@@ -441,8 +425,11 @@ bool _isFrozenByExclude(Map<String, dynamic> ov, List<String> blockPath) {
   return false;
 }
 
-List<_NestedEnumSite> _collectNestedEnumSites(Map<String, dynamic> block) {
-  final sites = <_NestedEnumSite>[];
+List<NestedEnumSite> collectNestedEnumSites(
+  Map<String, dynamic> block, {
+  Map<String, List<String>> mmValues = const {},
+}) {
+  final sites = <NestedEnumSite>[];
 
   void walk(Map<String, dynamic> node, List<String> path) {
     final blockTypes = node['block_types'] as Map<String, dynamic>? ?? {};
@@ -457,9 +444,9 @@ List<_NestedEnumSite> _collectNestedEnumSites(Map<String, dynamic> block) {
       for (final attrEntry in attrs.entries) {
         final meta = Map<String, dynamic>.from(attrEntry.value as Map);
         if (schemaAttrIsComputedOnly(meta)) continue;
-        final vals = parseEnumValuesFromDescription(
-          meta['description'] as String?,
-        );
+        final vals =
+            mmValues[[...nextPath, attrEntry.key].join('.')] ??
+            parseEnumValuesFromDescription(meta['description'] as String?);
         if (vals == null) continue;
         sites.add((blockPath: nextPath, attr: attrEntry.key, values: vals));
       }
@@ -518,12 +505,16 @@ void main(List<String> args) {
     if (genText == null) continue;
 
     final block = Map<String, dynamic>.from(((schema as Map)['block'] as Map));
-    for (final site in _collectNestedEnumSites(block)) {
+    for (final site in collectNestedEnumSites(
+      block,
+      mmValues: _mmValues(tfType),
+    )) {
       final label = _blockPathLabel(site.blockPath, site.attr);
       final camel = _camel(site.attr);
       final frozen = _isFrozenByExclude(ov, site.blockPath);
 
       if (!_nestedFieldDeclared(genText, camel)) {
+        if (encodesFixedValue(genText, site.attr, site.values)) continue;
         final helper = _helperTextForBlock(ov, site.blockPath);
         if (helper != null) {
           final helperText = _normalizeWhitespace(helper);
