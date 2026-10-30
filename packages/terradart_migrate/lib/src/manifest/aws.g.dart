@@ -209984,7 +209984,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           required: false,
           repeated: true,
           wrapped: false,
-          helper: 'Wafv2WebAclRuleAddedLabel',
+          helper: 'Wafv2WebAclRuleNamed',
         ),
         MigrateSlot(
           tfName: 'statement',
@@ -233564,34 +233564,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'BedrockagentDataSourceBedrockFoundationModelConfiguration': MigrateHelper(
-      className: 'BedrockagentDataSourceBedrockFoundationModelConfiguration',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'model_arn',
-          dartName: 'modelArn',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'parsing_modality',
-          dartName: 'parsingModality',
-          kind: MigrateSlotKind.enumValue,
-          required: false,
-          dartType: 'BedrockagentDataSourceParsingModality',
-        ),
-        MigrateSlot(
-          tfName: 'parsing_prompt',
-          dartName: 'parsingPrompt',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          repeated: true,
-          wrapped: false,
-          helper: 'BedrockagentDataSourceParsingPrompt',
-        ),
-      ],
-    ),
     'BedrockagentDataSourceChunkingConfiguration': MigrateHelper(
       className: 'BedrockagentDataSourceChunkingConfiguration',
       slots: <MigrateSlot>[
@@ -234145,7 +234117,35 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           required: false,
           repeated: true,
           wrapped: false,
-          helper: 'BedrockagentDataSourceBedrockFoundationModelConfiguration',
+          helper: 'BedrockagentDataSourceParsingModelConfiguration',
+        ),
+      ],
+    ),
+    'BedrockagentDataSourceParsingModelConfiguration': MigrateHelper(
+      className: 'BedrockagentDataSourceParsingModelConfiguration',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'model_arn',
+          dartName: 'modelArn',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'parsing_modality',
+          dartName: 'parsingModality',
+          kind: MigrateSlotKind.enumValue,
+          required: false,
+          dartType: 'BedrockagentDataSourceParsingModality',
+        ),
+        MigrateSlot(
+          tfName: 'parsing_prompt',
+          dartName: 'parsingPrompt',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'BedrockagentDataSourceParsingPrompt',
         ),
       ],
     ),
@@ -263783,6 +263783,41 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentConditions':
+        MigrateHelper(
+          className:
+              'DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentConditions',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'key',
+              dartName: 'key',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'operator',
+              dartName: 'operator',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'type',
+              dartName: 'type',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'value',
+              dartName: 'value',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+          ],
+        ),
     'DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPolicies': MigrateHelper(
       className:
           'DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPolicies',
@@ -263824,7 +263859,8 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           required: true,
           repeated: true,
           wrapped: false,
-          helper: 'DataNetworkmanagerCoreNetworkPolicyDocumentConditions',
+          helper:
+              'DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentConditions',
         ),
       ],
     ),
@@ -263952,39 +263988,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
             ),
           ],
         ),
-    'DataNetworkmanagerCoreNetworkPolicyDocumentConditions': MigrateHelper(
-      className: 'DataNetworkmanagerCoreNetworkPolicyDocumentConditions',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'key',
-          dartName: 'key',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'operator',
-          dartName: 'operator',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'type',
-          dartName: 'type',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'value',
-          dartName: 'value',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-      ],
-    ),
     'DataNetworkmanagerCoreNetworkPolicyDocumentCoreNetworkConfiguration':
         MigrateHelper(
           className:
@@ -402293,18 +402296,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'Wafv2WebAclRuleAddedLabel': MigrateHelper(
-      className: 'Wafv2WebAclRuleAddedLabel',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'name',
-          dartName: 'name',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          dartType: 'String',
-        ),
-      ],
-    ),
     'Wafv2WebAclRuleAddressFields': MigrateHelper(
       className: 'Wafv2WebAclRuleAddressFields',
       slots: <MigrateSlot>[
@@ -403255,7 +403246,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           required: false,
           repeated: true,
           wrapped: false,
-          helper: 'Wafv2WebAclRuleAddedLabel',
+          helper: 'Wafv2WebAclRuleNamed',
         ),
         MigrateSlot(
           tfName: 'single_query_argument',
@@ -403264,7 +403255,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           required: false,
           repeated: true,
           wrapped: false,
-          helper: 'Wafv2WebAclRuleAddedLabel',
+          helper: 'Wafv2WebAclRuleNamed',
         ),
         MigrateSlot(
           tfName: 'uri_fragment',
@@ -404624,6 +404615,18 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'Wafv2WebAclRuleNamed': MigrateHelper(
+      className: 'Wafv2WebAclRuleNamed',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'name',
+          dartName: 'name',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
     'Wafv2WebAclRuleOverrideAction': MigrateHelper(
       className: 'Wafv2WebAclRuleOverrideAction',
       slots: <MigrateSlot>[
@@ -405291,7 +405294,7 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
           required: false,
           repeated: true,
           wrapped: false,
-          helper: 'Wafv2WebAclRuleAddedLabel',
+          helper: 'Wafv2WebAclRuleNamed',
         ),
         MigrateSlot(
           tfName: 'rule_action_override',

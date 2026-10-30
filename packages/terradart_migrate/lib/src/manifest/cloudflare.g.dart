@@ -76403,7 +76403,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'mode',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'ZeroTrustGatewaySettingsMode',
+          dartType: 'ZeroTrustGatewaySettingsBlockPageMode',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -76457,7 +76457,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'inspectionMode',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'ZeroTrustGatewaySettingsInspectionMode',
+          dartType: 'ZeroTrustGatewaySettingsBodyScanningInspectionMode',
         ),
       ],
     ),
@@ -82234,21 +82234,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       name: 'ZeroTrustGatewayProxyEndpointKind',
       members: <String, String>{'ip': 'ip', 'identity': 'identity'},
     ),
-    'ZeroTrustGatewaySettingsFallbackAction': MigrateEnum(
-      name: 'ZeroTrustGatewaySettingsFallbackAction',
-      members: <String, String>{'allow': 'allow', 'block': 'block'},
-    ),
-    'ZeroTrustGatewaySettingsInspectionMode': MigrateEnum(
-      name: 'ZeroTrustGatewaySettingsInspectionMode',
-      members: <String, String>{'deep': 'deep', 'shallow': 'shallow'},
-    ),
-    'ZeroTrustGatewaySettingsMode': MigrateEnum(
-      name: 'ZeroTrustGatewaySettingsMode',
+    'ZeroTrustGatewaySettingsBlockPageMode': MigrateEnum(
+      name: 'ZeroTrustGatewaySettingsBlockPageMode',
       members: <String, String>{
         '': 'empty',
         'customized_block_page': 'customizedBlockPage',
         'redirect_uri': 'redirectUri',
       },
+    ),
+    'ZeroTrustGatewaySettingsBodyScanningInspectionMode': MigrateEnum(
+      name: 'ZeroTrustGatewaySettingsBodyScanningInspectionMode',
+      members: <String, String>{'deep': 'deep', 'shallow': 'shallow'},
+    ),
+    'ZeroTrustGatewaySettingsFallbackAction': MigrateEnum(
+      name: 'ZeroTrustGatewaySettingsFallbackAction',
+      members: <String, String>{'allow': 'allow', 'block': 'block'},
     ),
     'ZeroTrustGatewaySettingsProxyInspectionMode': MigrateEnum(
       name: 'ZeroTrustGatewaySettingsProxyInspectionMode',

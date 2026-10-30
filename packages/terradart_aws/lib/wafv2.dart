@@ -148,7 +148,6 @@ export 'src/wafv2/aws_wafv2_web_acl_rule.dart'
     show
         AwsWafv2WebAclRule,
         Wafv2WebAclRuleAction,
-        Wafv2WebAclRuleAddedLabel,
         Wafv2WebAclRuleAddressFields,
         Wafv2WebAclRuleAllow,
         Wafv2WebAclRuleAndStatement,
@@ -199,6 +198,7 @@ export 'src/wafv2/aws_wafv2_web_acl_rule.dart'
         Wafv2WebAclRuleManagedRuleGroupConfigs,
         Wafv2WebAclRuleManagedRuleGroupStatement,
         Wafv2WebAclRuleManagedRuleGroupStatementRuleActionOverride,
+        Wafv2WebAclRuleNamed,
         Wafv2WebAclRuleOverrideAction,
         Wafv2WebAclRulePasswordField,
         Wafv2WebAclRuleQueryString,

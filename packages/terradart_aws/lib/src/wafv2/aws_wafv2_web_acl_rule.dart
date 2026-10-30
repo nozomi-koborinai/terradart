@@ -278,8 +278,8 @@ final class Wafv2WebAclRuleCount {
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
 @immutable
-final class Wafv2WebAclRuleAddedLabel {
-  const Wafv2WebAclRuleAddedLabel({required this.name});
+final class Wafv2WebAclRuleNamed {
+  const Wafv2WebAclRuleNamed({required this.name});
 
   final TfArg<String> name;
 
@@ -875,9 +875,9 @@ final class Wafv2WebAclRuleFieldToMatch {
 
   final List<Wafv2WebAclRuleCount>? queryString;
 
-  final List<Wafv2WebAclRuleAddedLabel>? singleHeader;
+  final List<Wafv2WebAclRuleNamed>? singleHeader;
 
-  final List<Wafv2WebAclRuleAddedLabel>? singleQueryArgument;
+  final List<Wafv2WebAclRuleNamed>? singleQueryArgument;
 
   final List<Wafv2WebAclRuleUriFragment>? uriFragment;
 
@@ -2130,7 +2130,7 @@ final class Wafv2WebAclRuleStatementRuleGroupReferenceStatement {
 
   final TfArg<String> arn;
 
-  final List<Wafv2WebAclRuleAddedLabel>? excludedRule;
+  final List<Wafv2WebAclRuleNamed>? excludedRule;
 
   final List<Wafv2WebAclRuleManagedRuleGroupStatementRuleActionOverride>?
   ruleActionOverride;
@@ -2182,7 +2182,7 @@ final class AwsWafv2WebAclRule extends Resource {
     Wafv2WebAclRuleBehavior? behavior,
     List<Wafv2WebAclRuleCaptchaConfig>? captchaConfig,
     List<Wafv2WebAclRuleCaptchaConfig>? challengeConfig,
-    List<Wafv2WebAclRuleAddedLabel>? ruleLabel,
+    List<Wafv2WebAclRuleNamed>? ruleLabel,
     List<Wafv2WebAclRuleStatement>? statement,
     List<Wafv2WebAclRuleVisibilityConfig>? visibilityConfig,
     super.lifecycle,

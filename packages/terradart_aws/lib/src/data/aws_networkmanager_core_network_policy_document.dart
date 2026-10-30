@@ -29,7 +29,8 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPolicies {
   final DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesAction
   action;
 
-  final List<DataNetworkmanagerCoreNetworkPolicyDocumentConditions> conditions;
+  final List<DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentConditions>
+  conditions;
 
   @internal
   Map<String, Object?> encode() => {
@@ -76,8 +77,8 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesAction 
 /// Typed helper for the `attachment_policies.conditions` block of
 /// `aws_networkmanager_core_network_policy_document` (derived from provider schema).
 @immutable
-final class DataNetworkmanagerCoreNetworkPolicyDocumentConditions {
-  const DataNetworkmanagerCoreNetworkPolicyDocumentConditions({
+final class DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentConditions {
+  const DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentConditions({
     this.key,
     this.operator,
     required this.type,
