@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:terradart_codegen/src/codegen/enum_value_parser.dart';
 import 'package:test/test.dart';
 
 import 'check_google_enum_gaps.dart';
@@ -266,6 +267,86 @@ properties:
     );
   });
 
+  group('the checker reads each value-set wording', () {
+    const wordings = {
+      'Possible values separated by spaces':
+          'Possible values: SYNCHRONOUS ASYNCHRONOUS',
+      'an unquoted One of': 'The disk interface. One of SCSI or NVME.',
+      'Must be one of PascalCase names':
+          'Where the hook runs. Must be one of PreProxyFlowHook, '
+          'PostProxyFlowHook, or PostTargetFlowHook.',
+      'Allowed values':
+          'Allowed values are ARTIFACT_REGISTRY (default) and '
+          'CONTAINER_REGISTRY.',
+      'Supported values': 'Supported values include: "Unlocked", "Locked".',
+      'Valid values': 'Valid values: DEPRIVILEGE, DELETE, DISABLE.',
+      'Accepted values': 'Accepted values are (case insensitive): ALLOW, DENY.',
+      'either X or Y': 'The disk mode, either READ_WRITE or READ_ONLY.',
+    };
+
+    for (final MapEntry(key: wording, value: description) in wordings.entries) {
+      test('$wording without the parser', () {
+        expect(cueValues(description), hasLength(greaterThanOrEqualTo(2)));
+      });
+
+      test('$wording left a string is a gap', () {
+        final gaps = topLevelEnumGaps(
+          stem: 'google_example_thing',
+          override: const {'outputDir': 'example'},
+          resourceSchemas: {
+            'google_example_thing': _schema({
+              'mode': {
+                'type': 'string',
+                'optional': true,
+                'description': description,
+              },
+            }),
+          },
+          dataSourceSchemas: const {},
+          generatedSource: '''
+GoogleExampleThing(super.localName, {
+  TfArg<String>? mode,
+}) : super(
+''',
+        );
+        expect(gaps.map(_gapKey), ['google_example_thing.mode']);
+      });
+    }
+
+    test('a wording the parser skips is still a gap, tagged cue', () {
+      const description = 'Possible values: ALPHA, BETA or any other region.';
+      expect(parseEnumValuesFromDescription(description), isNull);
+      final gaps = topLevelEnumGaps(
+        stem: 'google_example_thing',
+        override: const {'outputDir': 'example'},
+        resourceSchemas: {
+          'google_example_thing': _schema({
+            'region': {
+              'type': 'string',
+              'optional': true,
+              'description': description,
+            },
+          }),
+        },
+        dataSourceSchemas: const {},
+        generatedSource: '''
+GoogleExampleThing(super.localName, {
+  TfArg<String>? region,
+}) : super(
+''',
+      );
+      expect(gaps, hasLength(1));
+      expect(gaps.single, endsWith('\tcue'));
+    });
+
+    test('prose with no cue is not a gap', () {
+      expect(
+        cueValues('The name of the bucket. Must be unique within a project.'),
+        isNull,
+      );
+    });
+  });
+
   test('a fixed literal in a hand-written variant covers its value set', () {
     const source =
         "Map<String, Object?> encode() => {'array_config': 'CONTAINS'};";
@@ -278,6 +359,11 @@ properties:
       'alloydb/google_alloydb_backup.dart',
       'folder/google_folder_access_approval_settings.dart',
       'compute/google_compute_instance.dart',
+      'agentic/google_agentic_applications_analyst_agent_persona.dart',
+      'cloudfunctions/google_cloudfunctions_function.dart',
+      'storage/google_storage_bucket_object.dart',
+      'colab/google_colab_schedule.dart',
+      'managed/google_managed_kafka_acl.dart',
     ];
     late Directory root;
 
@@ -358,6 +444,69 @@ properties:
         contains('google_compute_instance.attached_disk.mode'),
       );
     });
+
+    // One seeded field per value-set wording. None of them has Magic
+    // Modules `enum_values`, so each fails only if the checker reads its
+    // description.
+    final seeds = <String, (int, Pattern, String, String)>{
+      'Possible values separated by spaces': (
+        3,
+        RegExp(
+          r'final AgenticApplicationsAnalystAgentPersonaDocumentGeneration'
+          r'OptionsExportFormat\?\s+exportFormat;',
+        ),
+        'final TfArg<String>? exportFormat;',
+        'google_agentic_applications_analyst_agent_persona.artifacts_config'
+            '.document_generation_options.export_format',
+      ),
+      'an unquoted One of': (
+        2,
+        'final ComputeInstanceInterface? interface;',
+        'final TfArg<String>? interface;',
+        'google_compute_instance.boot_disk.interface',
+      ),
+      'either X or Y': (
+        2,
+        'ComputeInstanceDesiredStatus? desiredStatus,',
+        'TfArg<String>? desiredStatus,',
+        'google_compute_instance.desired_status',
+      ),
+      'Allowed values': (
+        4,
+        'CloudfunctionsFunctionDockerRegistry? dockerRegistry,',
+        'TfArg<String>? dockerRegistry,',
+        'google_cloudfunctions_function.docker_registry',
+      ),
+      'Supported values': (
+        5,
+        'final StorageBucketObjectRetentionMode mode;',
+        'final TfArg<String> mode;',
+        'google_storage_bucket_object.retention.mode',
+      ),
+      'Valid values': (
+        6,
+        'final ColabScheduleDiskType? diskType;',
+        'final TfArg<String>? diskType;',
+        'google_colab_schedule.create_notebook_execution_job_request'
+            '.notebook_execution_job.custom_environment_spec'
+            '.persistent_disk_spec.disk_type',
+      ),
+      'Accepted values': (
+        7,
+        'final ManagedKafkaAclPermissionType? permissionType;',
+        'final TfArg<String>? permissionType;',
+        'google_managed_kafka_acl.acl_entries.permission_type',
+      ),
+    };
+    for (final MapEntry(key: wording, value: (i, typed, raw, gap))
+        in seeds.entries) {
+      test('fails on a seeded $wording field left a string', () {
+        seed(wrappers[i], typed, raw);
+        final result = check();
+        expect(result.exitCode, 1, reason: '${result.stdout}');
+        expect(result.stdout, contains(gap));
+      });
+    }
   });
 }
 

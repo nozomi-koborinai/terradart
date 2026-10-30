@@ -16,7 +16,11 @@
 //
 // An input's value set is its Magic Modules `enum_values` (top-level or
 // nested), else the one its schema description lists: the order and the
-// parsers `wrap` types inputs with.
+// parsers `wrap` types inputs with. A description neither of those reads is
+// still read by [cueValues], a looser reader that does not share the
+// parser's grammar, so a wording the parser skips fails here instead of
+// passing unseen. Its gaps end in `\tcue`; one that is prose, not a value
+// set, needs a reasoned line in tool/enum_gap_cue_prose.yaml.
 //
 // Usage:
 //   dart tool/check_google_enum_gaps.dart
@@ -75,6 +79,7 @@ typedef NestedEnumSite = ({
   List<String> blockPath,
   String attr,
   List<String> values,
+  bool cueOnly,
 });
 
 Map<String, dynamic> _loadOverride(String tfType) {
@@ -204,6 +209,51 @@ _GapTarget _gapTarget({
   );
 }
 
+final _cue = RegExp(
+  r'\b(?:(?:possible|allowed|supported|valid|accepted|acceptable)\s+'
+  r'(?:values|options)|one\s+of|either)\b',
+  caseSensitive: false,
+);
+final _sentenceEnd = RegExp(r'\.(?:\s|$)');
+final _cueToken = RegExp(
+  r'''"[^"\s]+"|'[^'\s]+'|\b[A-Z][A-Z0-9]*(?:[_-][A-Z0-9]+)*[A-Z0-9]\b|'''
+  r'\b[A-Z][a-z0-9]+(?:[A-Z][a-z0-9]*)+\b',
+);
+
+/// The values a description names after a value-set cue, read without
+/// `parseEnumValuesFromDescription`, so a wording the parser skips still
+/// reaches the gap report. Deliberately looser than the parser: it takes
+/// every quoted, upper-case or PascalCase word between a cue (`Possible
+/// values`, `Valid options`, `One of`, `either`) and the end of its
+/// sentence.
+List<String>? cueValues(String? description) {
+  if (description == null) return null;
+  for (final m in _cue.allMatches(description)) {
+    final rest = description.substring(m.end);
+    final end = _sentenceEnd.firstMatch(rest)?.start ?? rest.length;
+    final values = <String>{
+      for (final t in _cueToken.allMatches(rest.substring(0, end)))
+        t.group(0)!.replaceAll(RegExp('^["\']|["\']\$'), ''),
+    }.toList();
+    if (values.length >= 2) return values;
+  }
+  return null;
+}
+
+/// The value set the gap report holds an input to: Magic Modules
+/// `enum_values`, else the parser's reading, else [cueValues] (`cueOnly`).
+({List<String> values, bool cueOnly})? describedValues(
+  String? description,
+  List<String>? mm,
+) {
+  final known = mm ?? parseEnumValuesFromDescription(description);
+  if (known != null) return (values: known, cueOnly: false);
+  final cue = cueValues(description);
+  return cue == null ? null : (values: cue, cueOnly: true);
+}
+
+String _cueTag(bool cueOnly) => cueOnly ? '\tcue' : '';
+
 /// Top-level `THIN` / `PARTIAL` lines for one override.
 ///
 /// [stem] is the override file name without `.yaml`. An input's value set
@@ -237,14 +287,16 @@ List<String> topLevelEnumGaps({
     final attr = entry.key;
     final meta = Map<String, dynamic>.from(entry.value as Map);
     if (schemaAttrIsComputedOnly(meta)) continue;
-    final vals =
-        mmValues[attr] ??
-        parseEnumValuesFromDescription(meta['description'] as String?);
-    if (vals == null) continue;
+    final found = describedValues(
+      meta['description'] as String?,
+      mmValues[attr],
+    );
+    if (found == null) continue;
     final camel = _camel(attr);
     if (!fields.contains(camel)) continue;
     gaps.add(
-      '${thin ? "THIN" : "PARTIAL"}\t${target.terraformType}.$attr\t${vals.join(", ")}',
+      '${thin ? "THIN" : "PARTIAL"}\t${target.terraformType}.$attr\t'
+      '${found.values.join(", ")}${_cueTag(found.cueOnly)}',
     );
   }
   return gaps;
@@ -395,6 +447,21 @@ bool encodesFixedValue(String genText, String attr, List<String> values) =>
       "'${RegExp.escape(attr)}': '(?:${values.map(RegExp.escape).join('|')})'",
     ).hasMatch(genText);
 
+/// The generated helper class for [blockPath] in [genText], found by the
+/// "Typed helper for the block" doc comment `wrap` writes on it, or
+/// null when the block has no class of its own (a shared, sealed or
+/// hand-written helper). A field name repeats across helpers
+/// (`boot_disk.interface`, `scratch_disk.interface`), so only the block's own
+/// class says how its field is typed.
+String? helperClassText(String genText, List<String> blockPath) {
+  final start = genText.indexOf(
+    '/// Typed helper for the `${blockPath.join('.')}` block of',
+  );
+  if (start < 0) return null;
+  final end = genText.indexOf('\n}\n', start);
+  return genText.substring(start, end < 0 ? genText.length : end + 2);
+}
+
 bool nestedEnumFieldIsGap(String genText, String camel) {
   var sawRaw = false;
   for (final type in _declaredFieldTypes(genText, camel)) {
@@ -444,11 +511,17 @@ List<NestedEnumSite> collectNestedEnumSites(
       for (final attrEntry in attrs.entries) {
         final meta = Map<String, dynamic>.from(attrEntry.value as Map);
         if (schemaAttrIsComputedOnly(meta)) continue;
-        final vals =
-            mmValues[[...nextPath, attrEntry.key].join('.')] ??
-            parseEnumValuesFromDescription(meta['description'] as String?);
-        if (vals == null) continue;
-        sites.add((blockPath: nextPath, attr: attrEntry.key, values: vals));
+        final found = describedValues(
+          meta['description'] as String?,
+          mmValues[[...nextPath, attrEntry.key].join('.')],
+        );
+        if (found == null) continue;
+        sites.add((
+          blockPath: nextPath,
+          attr: attrEntry.key,
+          values: found.values,
+          cueOnly: found.cueOnly,
+        ));
       }
 
       walk(nested, nextPath);
@@ -472,6 +545,8 @@ void main(List<String> args) {
   final nestedPartialGaps = <String>[];
   final nestedThinGaps = <String>[];
   final frozenByExcludeGaps = <String>[];
+  final cueInputs = <String>{};
+  final checkedTypes = <String>{};
 
   for (final ent in _overrideDir.listSync().whereType<File>()) {
     if (!ent.path.endsWith('.yaml')) continue;
@@ -488,7 +563,7 @@ void main(List<String> args) {
     final tfType = target.terraformType;
 
     final genTextRaw = _generatedSource(tfType, ov);
-    final genText = genTextRaw == null
+    final fileText = genTextRaw == null
         ? null
         : _normalizeWhitespace(genTextRaw);
     topLevelGaps.addAll(
@@ -502,16 +577,35 @@ void main(List<String> args) {
       ),
     );
 
-    if (genText == null) continue;
+    final attrs =
+        ((schema as Map)['block'] as Map)['attributes'] as Map<String, dynamic>;
+    final mm = _mmValues(tfType);
+    for (final attr in attrs.entries) {
+      final description = (attr.value as Map)['description'] as String?;
+      if (describedValues(description, mm[attr.key])?.cueOnly ?? false) {
+        cueInputs.add('$tfType.${attr.key}');
+      }
+    }
+    final block = Map<String, dynamic>.from((schema['block'] as Map));
+    final sites = collectNestedEnumSites(block, mmValues: mm);
+    for (final site in sites) {
+      if (site.cueOnly) {
+        cueInputs.add('$tfType.${_blockPathLabel(site.blockPath, site.attr)}');
+      }
+    }
 
-    final block = Map<String, dynamic>.from(((schema as Map)['block'] as Map));
-    for (final site in collectNestedEnumSites(
-      block,
-      mmValues: _mmValues(tfType),
-    )) {
+    if (fileText == null) continue;
+    checkedTypes.add(tfType);
+
+    for (final site in sites) {
       final label = _blockPathLabel(site.blockPath, site.attr);
       final camel = _camel(site.attr);
       final frozen = _isFrozenByExclude(ov, site.blockPath);
+      final ownClass = helperClassText(genTextRaw!, site.blockPath);
+      final scoped = ownClass == null ? null : _normalizeWhitespace(ownClass);
+      final genText = scoped != null && _nestedFieldDeclared(scoped, camel)
+          ? scoped
+          : fileText;
 
       if (!_nestedFieldDeclared(genText, camel)) {
         if (encodesFixedValue(genText, site.attr, site.values)) continue;
@@ -521,13 +615,14 @@ void main(List<String> args) {
           if (_nestedFieldDeclared(helperText, camel)) {
             if (nestedEnumFieldIsGap(helperText, camel)) {
               nestedPartialGaps.add(
-                'NESTED_PARTIAL\t$tfType.$label\t${site.values.join(", ")}',
+                'NESTED_PARTIAL\t$tfType.$label\t${site.values.join(", ")}${_cueTag(site.cueOnly)}',
               );
             }
             continue;
           }
         }
-        final gap = 'NESTED_THIN\t$tfType.$label\t${site.values.join(", ")}';
+        final gap =
+            'NESTED_THIN\t$tfType.$label\t${site.values.join(", ")}${_cueTag(site.cueOnly)}';
         (frozen ? frozenByExcludeGaps : nestedThinGaps).add(gap);
         continue;
       }
@@ -538,14 +633,54 @@ void main(List<String> args) {
 
       if (_customSlotCoversBlock(ov, site.blockPath)) {
         nestedPartialGaps.add(
-          'NESTED_PARTIAL\t$tfType.$label\t${site.values.join(", ")}',
+          'NESTED_PARTIAL\t$tfType.$label\t${site.values.join(", ")}${_cueTag(site.cueOnly)}',
         );
       } else {
-        final gap = 'NESTED_THIN\t$tfType.$label\t${site.values.join(", ")}';
+        final gap =
+            'NESTED_THIN\t$tfType.$label\t${site.values.join(", ")}${_cueTag(site.cueOnly)}';
         (frozen ? frozenByExcludeGaps : nestedThinGaps).add(gap);
       }
     }
   }
+
+  // tool/enum_gap_cue_prose.yaml names the inputs whose value-set cue only
+  // [cueValues] reads and a reviewer found to be prose (a format, an
+  // example, a mutual-exclusion note), each with a reason. It can only
+  // excuse a `cue` gap: an input the parser or Magic Modules reads is a
+  // value set, and a line naming one is stale.
+  final prose = _ledger('enum_gap_cue_prose.yaml');
+  String keyOf(String gap) => gap.split('\t')[1];
+  final cueKeys = {
+    for (final g in [
+      ...topLevelGaps,
+      ...nestedPartialGaps,
+      ...nestedThinGaps,
+      ...frozenByExcludeGaps,
+    ])
+      if (g.endsWith('\tcue')) keyOf(g),
+  };
+  final staleProse = prose.keys
+      .where(
+        (k) =>
+            !cueInputs.contains(k) ||
+            (checkedTypes.contains(k.split('.').first) && !cueKeys.contains(k)),
+      )
+      .toList();
+  if (staleProse.isNotEmpty) {
+    print(
+      'check_google_enum_gaps: stale tool/enum_gap_cue_prose.yaml entries '
+      '(not a cue-only gap: remove the lines):',
+    );
+    for (final k in staleProse) {
+      print('  $k');
+    }
+    exit(1);
+  }
+  bool unreviewed(String g) => !prose.containsKey(keyOf(g));
+  topLevelGaps.retainWhere(unreviewed);
+  nestedPartialGaps.retainWhere(unreviewed);
+  nestedThinGaps.retainWhere(unreviewed);
+  frozenByExcludeGaps.retainWhere(unreviewed);
 
   final nestedThinAdvisory = nestedThinGaps;
   final failing = [
@@ -559,8 +694,7 @@ void main(List<String> args) {
   // gap down waits for a breaking minor). Same ledger contract as
   // example_debt.yaml: adding a line is a reviewed decision, and a stale
   // line (no longer matching any reported gap) fails so it cannot rot.
-  final debt = _gapDebt();
-  String keyOf(String gap) => gap.split('\t')[1];
+  final debt = _ledger('enum_gap_debt.yaml');
   final allGapKeys = {
     ...failing.map(keyOf),
     ...nestedThinAdvisory.map(keyOf),
@@ -579,9 +713,10 @@ void main(List<String> args) {
   }
   final suppressed = failing.where((g) => debt.containsKey(keyOf(g))).length;
   final effective = failing.where((g) => !debt.containsKey(keyOf(g))).toList();
-  final debtNote = suppressed == 0
-      ? ''
-      : '; $suppressed in tool/enum_gap_debt.yaml';
+  final debtNote =
+      '${suppressed == 0 ? '' : '; $suppressed in tool/enum_gap_debt.yaml'}'
+      '${prose.isEmpty ? '' : '; ${prose.length} reviewed prose in '
+                'tool/enum_gap_cue_prose.yaml'}';
 
   // `frozenByExcludeGaps` never fails, even under --strict-nested — it's a
   // maintainer's reviewed `nestedTypeExcludes` decision (recorded on the
@@ -636,9 +771,9 @@ void main(List<String> args) {
   exit(1);
 }
 
-/// Parses `tool/enum_gap_debt.yaml` (`<tfType>.<attrPath>: <reason>` lines).
-Map<String, String> _gapDebt() {
-  final file = File(p.join(_root.path, 'tool', 'enum_gap_debt.yaml'));
+/// Parses a `tool/<name>` ledger (`<tfType>.<attrPath>: <reason>` lines).
+Map<String, String> _ledger(String name) {
+  final file = File(p.join(_root.path, 'tool', name));
   if (!file.existsSync()) return const {};
   final entries = <String, String>{};
   for (final raw in file.readAsLinesSync()) {
@@ -646,13 +781,13 @@ Map<String, String> _gapDebt() {
     if (line.isEmpty || line.startsWith('#')) continue;
     final sep = line.indexOf(': ');
     if (sep <= 0) {
-      print('tool/enum_gap_debt.yaml: unparsable line "$raw"');
+      print('tool/$name: unparsable line "$raw"');
       exit(1);
     }
     final key = line.substring(0, sep).trim();
     final reason = line.substring(sep + 2).trim();
     if (reason.isEmpty) {
-      print('tool/enum_gap_debt.yaml: $key needs a reason');
+      print('tool/$name: $key needs a reason');
       exit(1);
     }
     entries[key] = reason;

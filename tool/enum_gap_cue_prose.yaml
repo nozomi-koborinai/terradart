@@ -1,0 +1,96 @@
+# Inputs whose description has a value-set cue (`Possible values`, `Valid
+# options`, `One of`, `either`) that only the checker's loose reader
+# (`cueValues` in check_google_enum_gaps.dart) reads, and that a reviewer
+# found to be prose rather than a value set, each with the reason.
+#
+# This is not gap debt: an input listed here has no fixed value set, so it
+# stays a string by design. A line can only name a `cue` gap. An input the
+# enum parser or Magic Modules reads is a value set and cannot be excused
+# here, and a line that no longer matches a cue-only gap fails the check.
+# A new wording the parser skips therefore fails the gate until the parser
+# reads it or a reviewer adds a line here.
+
+# The cue names sibling inputs of a mutual-exclusion group, not values.
+google_compute_firewall.source_ranges: one of 'source_ranges', 'source_tags' or 'source_service_accounts' is required (sibling inputs)
+google_compute_firewall.source_service_accounts: one of 'source_ranges', 'source_tags' or 'source_service_accounts' is required (sibling inputs)
+google_compute_firewall.source_tags: one of 'source_ranges', 'source_tags' or 'source_service_accounts' is required (sibling inputs)
+google_secret_manager_secret.expire_time: only one of 'expire_time' or 'ttl' can be provided (sibling inputs)
+google_secret_manager_secret.ttl: only one of 'ttl' or 'expire_time' can be provided (sibling inputs)
+google_secret_manager_regional_secret.expire_time: only one of 'expire_time' or 'ttl' can be provided (sibling inputs)
+google_secret_manager_regional_secret.ttl: only one of 'ttl' or 'expire_time' can be provided (sibling inputs)
+google_dialogflow_cx_flow.knowledge_connector_settings.target_flow: only one of 'targetPage' or 'targetFlow' may be set (union members)
+google_dialogflow_cx_flow.knowledge_connector_settings.target_page: only one of 'targetPage' or 'targetFlow' may be set (union members)
+google_dialogflow_cx_flow.knowledge_connector_settings.trigger_fulfillment.messages.payload: only one of the message union members may be set; the payload is a JSON string
+google_dialogflow_cx_flow.knowledge_connector_settings.trigger_fulfillment.messages.output_audio_text.ssml: only one of 'text' or 'ssml' may be set; the value is SSML text
+google_dialogflow_cx_page.knowledge_connector_settings.target_flow: only one of 'targetPage' or 'targetFlow' may be set (union members)
+google_dialogflow_cx_page.knowledge_connector_settings.target_page: only one of 'targetPage' or 'targetFlow' may be set (union members)
+google_dialogflow_cx_page.knowledge_connector_settings.trigger_fulfillment.messages.payload: only one of the message union members may be set; the payload is a JSON string
+google_dialogflow_cx_page.knowledge_connector_settings.trigger_fulfillment.messages.output_audio_text.ssml: only one of 'text' or 'ssml' may be set; the value is SSML text
+google_discovery_engine_chat_engine.chat_engine_config.dialogflow_agent_to_link: exactly one of 'agent_creation_config' or 'dialogflow_agent_to_link' must be set; the value is an agent resource name
+google_monitoring_slo.windows_based_sli.good_bad_metric_filter: one of four sibling inputs must be set; the value is a monitoring filter
+google_data_loss_prevention_deidentify_template.deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.crypto_replace_ffx_fpe_config.custom_alphabet: only one of this, 'common_alphabet' or 'radix' must be specified; the value is a custom alphabet string
+
+# The cue lists the values of another input.
+google_sql_user.password_wo: "either CLOUD_IAM_USER or CLOUD_IAM_SERVICE_ACCOUNT" are values of 'type'; this input is a password
+google_compute_ssl_policy.custom_features: the 'COMPATIBLE' ... 'CUSTOM' list describes 'profile'; this input lists SSL feature names
+google_composer_environment.config.maintenance_window.recurrence: the allowed 'FREQ' values constrain one RRULE field; the input is a full RFC 5545 rule
+google_iam_workload_identity_pool_provider.oidc.allowed_audiences: acceptable values for the token's 'aud' claim, which are any audience strings
+
+# The cue introduces formats, paths or URLs of a resource name, not values.
+google_cloud_security_compliance_cloud_control.parent: one of the formats 'projects/{{project}}' or 'organizations/{{organization}}'
+google_cloud_security_compliance_framework.parent: one of the formats 'projects/{{project}}' or 'organizations/{{organization}}'
+google_cloud_security_compliance_framework_deployment.parent: one of the formats 'projects/{{project}}' or 'organizations/{{organization}}'
+google_data_loss_prevention_job_trigger.parent: either the format 'projects/{{project}}' or 'projects/{{project}}/locations/{{location}}'
+google_model_armor_floorsetting.parent: one of the formats 'projects/{project}', 'folders/{folder}' or 'organizations/{organizationId}'
+google_org_policy_policy.name: one of the policy resource name formats
+google_logging_folder_sink.folder: either a folder ID or 'folders/[FOLDER_ID]'
+google_compute_disk.image: one of the image reference formats (self link, project/family paths, names)
+google_compute_region_disk.image: one of the image reference formats (self link, project/family paths, names)
+google_compute_address.ip_collection: a PublicDelegatedPrefix URL in one of the listed formats
+google_compute_subnetwork.ip_collection: a PublicDelegatedPrefix URL in one of the listed formats
+google_compute_forwarding_rule.ip_collection: a PublicDelegatedPrefix URL in one of the listed formats
+google_compute_forwarding_rule.ip_address: an IP address, range or address URL in one of the listed formats
+google_compute_global_forwarding_rule.ip_address: an IP address, range or address URL in one of the listed formats
+google_network_connectivity_regional_endpoint.address: an IPv4 address or an address resource URI
+google_compute_storage_pool.storage_pool_type: example storage pool type URLs and names, not a closed list
+google_managed_kafka_acl.acl_id: one of the ACL id path patterns ('topic/{resource_name}', ...)
+google_storage_object_access_control.entity: one of the entity forms ('user-{{email}}', 'group-{{groupId}}', ...)
+google_storage_default_object_access_control.entity: one of the entity forms ('user-{{email}}', 'group-{{groupId}}', ...)
+google_iam_projects_policy_binding.target.principal_set: example principal set resource names for each supported type
+google_iam_organizations_policy_binding.target.principal_set: example principal set resource names for each supported type
+google_monitoring_alert_policy.alert_strategy.notification_channel_strategy.notification_channel_names: notification channel resource names
+google_network_connectivity_service_connection_policy.psc_config.allowed_google_producers_resource_hierarchy_level: 'projects/<id>', 'folders/<id>' or 'organizations/<id>' resource names
+google_app_engine_flexible_app_version.runtime_api_version: a runtime API version from the app.yaml reference, per language
+google_app_engine_standard_app_version.runtime_api_version: a runtime API version from the app.yaml reference, per language
+
+# The cue gives examples of an open set (an address, a URI, a name).
+google_apigee_environment.forward_proxy_uri: the scheme part of a URI must be http or https; the value is a full URI
+google_compute_forwarding_rule.source_ip_ranges: each entry is either an IP address or a CIDR range
+google_compute_global_forwarding_rule.source_ip_ranges: each entry is either an IP address or a CIDR range
+google_compute_route.next_hop_ilb: an IP address or a forwarding rule URL
+google_compute_external_vpn_gateway.interface.ip_address: an IPv4 address that can be either on-premise or from another cloud
+google_compute_external_vpn_gateway.interface.ipv6_address: an IPv6 address that can be either on-premise or from another cloud
+google_eventarc_trigger.destination.http_endpoint.uri: an HTTP URI whose host can be either a static IP or an internal DNS name
+google_filestore_instance.directory_services.ldap.servers: LDAP server names, either all DNS names or all IP addresses
+google_clouddeploy_target.execution_configs.artifact_storage: either a bucket or a path within a bucket
+google_clouddeploy_target.execution_configs.default_pool.artifact_storage: either a bucket or a path within a bucket
+google_clouddeploy_target.execution_configs.private_pool.artifact_storage: either a bucket or a path within a bucket
+google_healthcare_dataset.time_zone: either an IANA time zone name or empty
+google_composer_environment.config.recovery_config.scheduled_snapshots_config.time_zone: a UTC offset from UTC-12 to UTC+12
+google_dataproc_workflow_template.placement.managed_cluster.config.software_config.image_version: one of the supported Dataproc versions, an open list given by example
+google_monitoring_notification_channel.type: a notification channel descriptor type; the docs list valid values "such as" email and slack
+google_bigquery_connection.configuration.connector_id: possible values include three IDs "and other connector IDs"
+google_vertex_ai_deployment_resource_pool.dedicated_resources.machine_spec.accelerator_type: possible values are linked, not listed
+google_container_analysis_occurrence.attestation.signatures.public_key_id: examples of valid key ID URIs
+google_binary_authorization_attestor.attestation_authority_note.public_keys.ascii_armored_pgp_public_key: a PGP key with either LF or CRLF line endings
+google_compute_addresses.filter: the filter expression may use either of the listed operators
+google_compute_security_policy.rule.rate_limit_options.exceed_action: "deny(STATUS)" takes a status code, so the values are not a closed list
+google_lustre_instance.capacity_gib: allowed values are a numeric range
+google_compute_region_security_policy.rules.network_match.ip_protocols: each element is a protocol name, an 8-bit decimal number, or a range
+google_compute_region_security_policy_rule.network_match.ip_protocols: each element is a protocol name, an 8-bit decimal number, or a range
+
+# The value set depends on another input, so one enum would admit values the
+# API rejects.
+google_app_engine_flexible_app_version.instance_class: the valid classes depend on the scaling mode (F classes for automatic, B classes for manual)
+google_app_engine_standard_app_version.instance_class: the valid classes depend on the scaling mode (F classes for automatic, B classes for basic or manual)
+google_discovery_engine_data_connector.entities.entity_name: the valid entity names depend on the data source (Salesforce, Jira, Confluence)
