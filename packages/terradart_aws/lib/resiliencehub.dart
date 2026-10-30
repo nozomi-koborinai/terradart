@@ -11,6 +11,6 @@ export 'src/resiliencehub/aws_resiliencehub_resiliency_policy.dart'
         ResiliencehubResiliencyPolicyAz,
         ResiliencehubResiliencyPolicyDataLocationConstraint,
         ResiliencehubResiliencyPolicyHardware,
-        ResiliencehubResiliencyPolicyPolicyRegion,
+        ResiliencehubResiliencyPolicyRegional,
         ResiliencehubResiliencyPolicySoftware,
         ResiliencehubResiliencyPolicyTier;

@@ -9,20 +9,21 @@ import '../zone/cloudflare_zone.dart' show CloudflareZone;
 const Set<String> _cloudflareHostnameTlsSettingSensitive = <String>{};
 
 /// Data Hostname Tls Setting enum for `setting_id`.
-extension type const DataHostnameTlsSettingId._(TfArg<String> _)
+extension type const DataHostnameTlsSettingName._(TfArg<String> _)
     implements TfArg<String> {
-  DataHostnameTlsSettingId.variable(String name) : this._(TfArg.variable(name));
-  DataHostnameTlsSettingId.expression(String template)
+  DataHostnameTlsSettingName.variable(String name)
+    : this._(TfArg.variable(name));
+  DataHostnameTlsSettingName.expression(String template)
     : this._(TfArg.expression(template));
-  const DataHostnameTlsSettingId.arg(TfArg<String> arg) : this._(arg);
+  const DataHostnameTlsSettingName.arg(TfArg<String> arg) : this._(arg);
 
-  static const ciphers = DataHostnameTlsSettingId._(TfArgLiteral('ciphers'));
-  static const minTlsVersion = DataHostnameTlsSettingId._(
+  static const ciphers = DataHostnameTlsSettingName._(TfArgLiteral('ciphers'));
+  static const minTlsVersion = DataHostnameTlsSettingName._(
     TfArgLiteral('min_tls_version'),
   );
-  static const http2 = DataHostnameTlsSettingId._(TfArgLiteral('http2'));
+  static const http2 = DataHostnameTlsSettingName._(TfArgLiteral('http2'));
 
-  static const List<DataHostnameTlsSettingId> values = [
+  static const List<DataHostnameTlsSettingName> values = [
     ciphers,
     minTlsVersion,
     http2,
@@ -36,7 +37,7 @@ final class DataCloudflareHostnameTlsSetting extends Data {
   DataCloudflareHostnameTlsSetting(
     super.localName, {
     required TfArg<String> hostname,
-    required DataHostnameTlsSettingId settingId,
+    required DataHostnameTlsSettingName settingId,
     RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,

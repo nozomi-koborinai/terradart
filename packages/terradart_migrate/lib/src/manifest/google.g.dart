@@ -130420,7 +130420,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.enumValue,
           required: true,
           repeated: true,
-          dartType: 'NetappVolumeProtocols',
+          dartType: 'GoogleNetappVolumeProtocols',
         ),
         MigrateSlot(
           tfName: 'share_name',
@@ -248289,42 +248289,95 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'DataLossPreventionDeidentifyTemplateInfoTypeTransformations':
+    'DataLossPreventionDeidentifyTemplateInfoTypeCryptoDeterministicConfig':
         MigrateHelper(
           className:
-              'DataLossPreventionDeidentifyTemplateInfoTypeTransformations',
+              'DataLossPreventionDeidentifyTemplateInfoTypeCryptoDeterministicConfig',
           slots: <MigrateSlot>[
             MigrateSlot(
-              tfName: 'transformations',
-              dartName: 'transformations',
+              tfName: 'context',
+              dartName: 'context',
               kind: MigrateSlotKind.helper,
-              required: true,
-              repeated: true,
-              wrapped: false,
-              helper: 'DataLossPreventionDeidentifyTemplateTransformations',
-            ),
-          ],
-        ),
-    'DataLossPreventionDeidentifyTemplateInfoTypeTransformationsBucketingConfig':
-        MigrateHelper(
-          className:
-              'DataLossPreventionDeidentifyTemplateInfoTypeTransformationsBucketingConfig',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'buckets',
-              dartName: 'buckets',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              repeated: true,
+              required: false,
               wrapped: false,
               helper:
-                  'DataLossPreventionDeidentifyTemplateTransformationsBuckets',
+                  'DataLossPreventionDeidentifyTemplateDateShiftConfigContext',
+            ),
+            MigrateSlot(
+              tfName: 'crypto_key',
+              dartName: 'cryptoKey',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              helper: 'DataLossPreventionDeidentifyTemplateCryptoKey',
+            ),
+            MigrateSlot(
+              tfName: 'surrogate_info_type',
+              dartName: 'surrogateInfoType',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              helper:
+                  'DataLossPreventionDeidentifyTemplateCryptoDeterministicConfigSurrogateInfoType',
             ),
           ],
         ),
-    'DataLossPreventionDeidentifyTemplateInfoTypeTransformationsPrimitiveTransformation': MigrateHelper(
+    'DataLossPreventionDeidentifyTemplateInfoTypeCryptoReplaceFfxFpeConfig': MigrateHelper(
       className:
-          'DataLossPreventionDeidentifyTemplateInfoTypeTransformationsPrimitiveTransformation',
+          'DataLossPreventionDeidentifyTemplateInfoTypeCryptoReplaceFfxFpeConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'common_alphabet',
+          dartName: 'commonAlphabet',
+          kind: MigrateSlotKind.enumValue,
+          required: false,
+          dartType:
+              'DataLossPreventionDeidentifyTemplateCryptoReplaceFfxFpeConfigCommonAlphabet',
+        ),
+        MigrateSlot(
+          tfName: 'custom_alphabet',
+          dartName: 'customAlphabet',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'radix',
+          dartName: 'radix',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'context',
+          dartName: 'context',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'DataLossPreventionDeidentifyTemplateDateShiftConfigContext',
+        ),
+        MigrateSlot(
+          tfName: 'crypto_key',
+          dartName: 'cryptoKey',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'DataLossPreventionDeidentifyTemplateCryptoKey',
+        ),
+        MigrateSlot(
+          tfName: 'surrogate_info_type',
+          dartName: 'surrogateInfoType',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'DataLossPreventionDeidentifyTemplateCryptoDeterministicConfigSurrogateInfoType',
+        ),
+      ],
+    ),
+    'DataLossPreventionDeidentifyTemplateInfoTypePrimitiveTransformation': MigrateHelper(
+      className:
+          'DataLossPreventionDeidentifyTemplateInfoTypePrimitiveTransformation',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'bucketing_config',
@@ -248350,7 +248403,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           required: false,
           wrapped: false,
           helper:
-              'DataLossPreventionDeidentifyTemplatePrimitiveTransformationCryptoDeterministicConfig',
+              'DataLossPreventionDeidentifyTemplateInfoTypeCryptoDeterministicConfig',
         ),
         MigrateSlot(
           tfName: 'crypto_hash_config',
@@ -248368,7 +248421,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           required: false,
           wrapped: false,
           helper:
-              'DataLossPreventionDeidentifyTemplatePrimitiveTransformationCryptoReplaceFfxFpeConfig',
+              'DataLossPreventionDeidentifyTemplateInfoTypeCryptoReplaceFfxFpeConfig',
         ),
         MigrateSlot(
           tfName: 'date_shift_config',
@@ -248434,6 +248487,39 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'DataLossPreventionDeidentifyTemplateInfoTypeTransformations':
+        MigrateHelper(
+          className:
+              'DataLossPreventionDeidentifyTemplateInfoTypeTransformations',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'transformations',
+              dartName: 'transformations',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              repeated: true,
+              wrapped: false,
+              helper: 'DataLossPreventionDeidentifyTemplateTransformations',
+            ),
+          ],
+        ),
+    'DataLossPreventionDeidentifyTemplateInfoTypeTransformationsBucketingConfig':
+        MigrateHelper(
+          className:
+              'DataLossPreventionDeidentifyTemplateInfoTypeTransformationsBucketingConfig',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'buckets',
+              dartName: 'buckets',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              repeated: true,
+              wrapped: false,
+              helper:
+                  'DataLossPreventionDeidentifyTemplateTransformationsBuckets',
+            ),
+          ],
+        ),
     'DataLossPreventionDeidentifyTemplateInfoTypeTransformationsTransformations':
         MigrateHelper(
           className:
@@ -248455,7 +248541,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
               required: true,
               wrapped: false,
               helper:
-                  'DataLossPreventionDeidentifyTemplateInfoTypeTransformationsPrimitiveTransformation',
+                  'DataLossPreventionDeidentifyTemplateInfoTypePrimitiveTransformation',
             ),
           ],
         ),
@@ -248506,39 +248592,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'DataLossPreventionDeidentifyTemplatePrimitiveTransformationCryptoDeterministicConfig':
-        MigrateHelper(
-          className:
-              'DataLossPreventionDeidentifyTemplatePrimitiveTransformationCryptoDeterministicConfig',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'context',
-              dartName: 'context',
-              kind: MigrateSlotKind.helper,
-              required: false,
-              wrapped: false,
-              helper:
-                  'DataLossPreventionDeidentifyTemplateDateShiftConfigContext',
-            ),
-            MigrateSlot(
-              tfName: 'crypto_key',
-              dartName: 'cryptoKey',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              helper: 'DataLossPreventionDeidentifyTemplateCryptoKey',
-            ),
-            MigrateSlot(
-              tfName: 'surrogate_info_type',
-              dartName: 'surrogateInfoType',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              helper:
-                  'DataLossPreventionDeidentifyTemplateCryptoDeterministicConfigSurrogateInfoType',
-            ),
-          ],
-        ),
     'DataLossPreventionDeidentifyTemplatePrimitiveTransformationCryptoHashConfig':
         MigrateHelper(
           className:
@@ -248551,61 +248604,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
               required: true,
               wrapped: false,
               helper: 'DataLossPreventionDeidentifyTemplateCryptoKey',
-            ),
-          ],
-        ),
-    'DataLossPreventionDeidentifyTemplatePrimitiveTransformationCryptoReplaceFfxFpeConfig':
-        MigrateHelper(
-          className:
-              'DataLossPreventionDeidentifyTemplatePrimitiveTransformationCryptoReplaceFfxFpeConfig',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'common_alphabet',
-              dartName: 'commonAlphabet',
-              kind: MigrateSlotKind.enumValue,
-              required: false,
-              dartType:
-                  'DataLossPreventionDeidentifyTemplateCryptoReplaceFfxFpeConfigCommonAlphabet',
-            ),
-            MigrateSlot(
-              tfName: 'custom_alphabet',
-              dartName: 'customAlphabet',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'radix',
-              dartName: 'radix',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'num',
-            ),
-            MigrateSlot(
-              tfName: 'context',
-              dartName: 'context',
-              kind: MigrateSlotKind.helper,
-              required: false,
-              wrapped: false,
-              helper:
-                  'DataLossPreventionDeidentifyTemplateDateShiftConfigContext',
-            ),
-            MigrateSlot(
-              tfName: 'crypto_key',
-              dartName: 'cryptoKey',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              helper: 'DataLossPreventionDeidentifyTemplateCryptoKey',
-            ),
-            MigrateSlot(
-              tfName: 'surrogate_info_type',
-              dartName: 'surrogateInfoType',
-              kind: MigrateSlotKind.helper,
-              required: false,
-              wrapped: false,
-              helper:
-                  'DataLossPreventionDeidentifyTemplateCryptoDeterministicConfigSurrogateInfoType',
             ),
           ],
         ),
@@ -333459,6 +333457,15 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'INTERNET_IP_PORT': 'internetIpPort',
       },
     ),
+    'GoogleNetappVolumeProtocols': MigrateEnum(
+      name: 'GoogleNetappVolumeProtocols',
+      members: <String, String>{
+        'NFSV3': 'nfsv3',
+        'NFSV4': 'nfsv4',
+        'SMB': 'smb',
+        'ISCSI': 'iscsi',
+      },
+    ),
     'HealthCheckPortSpecification': MigrateEnum(
       name: 'HealthCheckPortSpecification',
       members: <String, String>{
@@ -334481,15 +334488,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'LINUX': 'linux',
         'WINDOWS': 'windows',
         'ESXI': 'esxi',
-      },
-    ),
-    'NetappVolumeProtocols': MigrateEnum(
-      name: 'NetappVolumeProtocols',
-      members: <String, String>{
-        'NFSV3': 'nfsv3',
-        'NFSV4': 'nfsv4',
-        'SMB': 'smb',
-        'ISCSI': 'iscsi',
       },
     ),
     'NetappVolumeQuotaRuleType': MigrateEnum(

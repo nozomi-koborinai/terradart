@@ -4,3 +4,5 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 deriveExactlyOne: true
+typeNames:
+  settings.inspection.mode: ZeroTrustGatewaySettingsProxyInspectionMode

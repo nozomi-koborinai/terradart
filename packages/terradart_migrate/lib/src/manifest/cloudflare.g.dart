@@ -15201,7 +15201,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'settingId',
           kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'HostnameTlsSettingSettingId',
+          dartType: 'HostnameTlsSettingName',
         ),
         MigrateSlot(
           tfName: 'value',
@@ -15268,7 +15268,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'settingId',
           kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'DataHostnameTlsSettingId',
+          dartType: 'DataHostnameTlsSettingName',
         ),
         MigrateSlot(
           tfName: 'zone_id',
@@ -76403,7 +76403,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'mode',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'ZeroTrustGatewaySettingsBlockPageMode',
+          dartType: 'ZeroTrustGatewaySettingsMode',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -76457,7 +76457,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'inspectionMode',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'ZeroTrustGatewaySettingsBodyScanningInspectionMode',
+          dartType: 'ZeroTrustGatewaySettingsInspectionMode',
         ),
       ],
     ),
@@ -76569,7 +76569,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'mode',
           kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'ZeroTrustGatewaySettingsSettingsMode',
+          dartType: 'ZeroTrustGatewaySettingsProxyInspectionMode',
         ),
       ],
     ),
@@ -78809,8 +78809,8 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         'created_at': 'createdAt',
       },
     ),
-    'DataHostnameTlsSettingId': MigrateEnum(
-      name: 'DataHostnameTlsSettingId',
+    'DataHostnameTlsSettingName': MigrateEnum(
+      name: 'DataHostnameTlsSettingName',
       members: <String, String>{
         'ciphers': 'ciphers',
         'min_tls_version': 'minTlsVersion',
@@ -79789,8 +79789,8 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         'connection_established': 'connectionEstablished',
       },
     ),
-    'HostnameTlsSettingSettingId': MigrateEnum(
-      name: 'HostnameTlsSettingSettingId',
+    'HostnameTlsSettingName': MigrateEnum(
+      name: 'HostnameTlsSettingName',
       members: <String, String>{
         'ciphers': 'ciphers',
         'min_tls_version': 'minTlsVersion',
@@ -82234,24 +82234,24 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       name: 'ZeroTrustGatewayProxyEndpointKind',
       members: <String, String>{'ip': 'ip', 'identity': 'identity'},
     ),
-    'ZeroTrustGatewaySettingsBlockPageMode': MigrateEnum(
-      name: 'ZeroTrustGatewaySettingsBlockPageMode',
+    'ZeroTrustGatewaySettingsFallbackAction': MigrateEnum(
+      name: 'ZeroTrustGatewaySettingsFallbackAction',
+      members: <String, String>{'allow': 'allow', 'block': 'block'},
+    ),
+    'ZeroTrustGatewaySettingsInspectionMode': MigrateEnum(
+      name: 'ZeroTrustGatewaySettingsInspectionMode',
+      members: <String, String>{'deep': 'deep', 'shallow': 'shallow'},
+    ),
+    'ZeroTrustGatewaySettingsMode': MigrateEnum(
+      name: 'ZeroTrustGatewaySettingsMode',
       members: <String, String>{
         '': 'empty',
         'customized_block_page': 'customizedBlockPage',
         'redirect_uri': 'redirectUri',
       },
     ),
-    'ZeroTrustGatewaySettingsBodyScanningInspectionMode': MigrateEnum(
-      name: 'ZeroTrustGatewaySettingsBodyScanningInspectionMode',
-      members: <String, String>{'deep': 'deep', 'shallow': 'shallow'},
-    ),
-    'ZeroTrustGatewaySettingsFallbackAction': MigrateEnum(
-      name: 'ZeroTrustGatewaySettingsFallbackAction',
-      members: <String, String>{'allow': 'allow', 'block': 'block'},
-    ),
-    'ZeroTrustGatewaySettingsSettingsMode': MigrateEnum(
-      name: 'ZeroTrustGatewaySettingsSettingsMode',
+    'ZeroTrustGatewaySettingsProxyInspectionMode': MigrateEnum(
+      name: 'ZeroTrustGatewaySettingsProxyInspectionMode',
       members: <String, String>{'static': 'static', 'dynamic': 'dynamic'},
     ),
     'ZeroTrustListType': MigrateEnum(

@@ -187,7 +187,7 @@ final class ZeroTrustGatewaySettingsBlockPage {
 
   final TfArg<String>? mailtoSubject;
 
-  final ZeroTrustGatewaySettingsBlockPageMode? mode;
+  final ZeroTrustGatewaySettingsMode? mode;
 
   final TfArg<String>? name;
 
@@ -222,26 +222,23 @@ final class ZeroTrustGatewaySettingsBlockPage {
 }
 
 /// `mode` — derived from the provider schema description.
-extension type const ZeroTrustGatewaySettingsBlockPageMode._(TfArg<String> _)
+extension type const ZeroTrustGatewaySettingsMode._(TfArg<String> _)
     implements TfArg<String> {
-  ZeroTrustGatewaySettingsBlockPageMode.variable(String name)
+  ZeroTrustGatewaySettingsMode.variable(String name)
     : this._(TfArg.variable(name));
-  ZeroTrustGatewaySettingsBlockPageMode.expression(String template)
+  ZeroTrustGatewaySettingsMode.expression(String template)
     : this._(TfArg.expression(template));
-  const ZeroTrustGatewaySettingsBlockPageMode.arg(TfArg<String> arg)
-    : this._(arg);
+  const ZeroTrustGatewaySettingsMode.arg(TfArg<String> arg) : this._(arg);
 
-  static const empty = ZeroTrustGatewaySettingsBlockPageMode._(
-    TfArgLiteral(''),
-  );
-  static const customizedBlockPage = ZeroTrustGatewaySettingsBlockPageMode._(
+  static const empty = ZeroTrustGatewaySettingsMode._(TfArgLiteral(''));
+  static const customizedBlockPage = ZeroTrustGatewaySettingsMode._(
     TfArgLiteral('customized_block_page'),
   );
-  static const redirectUri = ZeroTrustGatewaySettingsBlockPageMode._(
+  static const redirectUri = ZeroTrustGatewaySettingsMode._(
     TfArgLiteral('redirect_uri'),
   );
 
-  static const List<ZeroTrustGatewaySettingsBlockPageMode> values = [
+  static const List<ZeroTrustGatewaySettingsMode> values = [
     empty,
     customizedBlockPage,
     redirectUri,
@@ -254,7 +251,7 @@ extension type const ZeroTrustGatewaySettingsBlockPageMode._(TfArg<String> _)
 final class ZeroTrustGatewaySettingsBodyScanning {
   const ZeroTrustGatewaySettingsBodyScanning({this.inspectionMode});
 
-  final ZeroTrustGatewaySettingsBodyScanningInspectionMode? inspectionMode;
+  final ZeroTrustGatewaySettingsInspectionMode? inspectionMode;
 
   @internal
   Map<String, Object?> encode() => {
@@ -263,26 +260,26 @@ final class ZeroTrustGatewaySettingsBodyScanning {
 }
 
 /// `inspection_mode` — derived from the provider schema description.
-extension type const ZeroTrustGatewaySettingsBodyScanningInspectionMode._(
-  TfArg<String> _
-) implements TfArg<String> {
-  ZeroTrustGatewaySettingsBodyScanningInspectionMode.variable(String name)
+extension type const ZeroTrustGatewaySettingsInspectionMode._(TfArg<String> _)
+    implements TfArg<String> {
+  ZeroTrustGatewaySettingsInspectionMode.variable(String name)
     : this._(TfArg.variable(name));
-  ZeroTrustGatewaySettingsBodyScanningInspectionMode.expression(String template)
+  ZeroTrustGatewaySettingsInspectionMode.expression(String template)
     : this._(TfArg.expression(template));
-  const ZeroTrustGatewaySettingsBodyScanningInspectionMode.arg(
-    TfArg<String> arg,
-  ) : this._(arg);
+  const ZeroTrustGatewaySettingsInspectionMode.arg(TfArg<String> arg)
+    : this._(arg);
 
-  static const deep = ZeroTrustGatewaySettingsBodyScanningInspectionMode._(
+  static const deep = ZeroTrustGatewaySettingsInspectionMode._(
     TfArgLiteral('deep'),
   );
-  static const shallow = ZeroTrustGatewaySettingsBodyScanningInspectionMode._(
+  static const shallow = ZeroTrustGatewaySettingsInspectionMode._(
     TfArgLiteral('shallow'),
   );
 
-  static const List<ZeroTrustGatewaySettingsBodyScanningInspectionMode> values =
-      [deep, shallow];
+  static const List<ZeroTrustGatewaySettingsInspectionMode> values = [
+    deep,
+    shallow,
+  ];
 }
 
 /// Typed helper for the `settings.browser_isolation` block of
@@ -387,30 +384,31 @@ final class ZeroTrustGatewaySettingsHostSelector {
 final class ZeroTrustGatewaySettingsInspection {
   const ZeroTrustGatewaySettingsInspection({this.mode});
 
-  final ZeroTrustGatewaySettingsSettingsMode? mode;
+  final ZeroTrustGatewaySettingsProxyInspectionMode? mode;
 
   @internal
   Map<String, Object?> encode() => {'mode': ?mode?.toTfJson()};
 }
 
 /// `mode` — derived from the provider schema description.
-extension type const ZeroTrustGatewaySettingsSettingsMode._(TfArg<String> _)
-    implements TfArg<String> {
-  ZeroTrustGatewaySettingsSettingsMode.variable(String name)
+extension type const ZeroTrustGatewaySettingsProxyInspectionMode._(
+  TfArg<String> _
+) implements TfArg<String> {
+  ZeroTrustGatewaySettingsProxyInspectionMode.variable(String name)
     : this._(TfArg.variable(name));
-  ZeroTrustGatewaySettingsSettingsMode.expression(String template)
+  ZeroTrustGatewaySettingsProxyInspectionMode.expression(String template)
     : this._(TfArg.expression(template));
-  const ZeroTrustGatewaySettingsSettingsMode.arg(TfArg<String> arg)
+  const ZeroTrustGatewaySettingsProxyInspectionMode.arg(TfArg<String> arg)
     : this._(arg);
 
-  static const static = ZeroTrustGatewaySettingsSettingsMode._(
+  static const static = ZeroTrustGatewaySettingsProxyInspectionMode._(
     TfArgLiteral('static'),
   );
-  static const dynamic = ZeroTrustGatewaySettingsSettingsMode._(
+  static const dynamic = ZeroTrustGatewaySettingsProxyInspectionMode._(
     TfArgLiteral('dynamic'),
   );
 
-  static const List<ZeroTrustGatewaySettingsSettingsMode> values = [
+  static const List<ZeroTrustGatewaySettingsProxyInspectionMode> values = [
     static,
     dynamic,
   ];

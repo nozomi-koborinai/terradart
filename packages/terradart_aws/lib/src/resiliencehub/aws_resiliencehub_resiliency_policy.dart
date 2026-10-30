@@ -90,7 +90,7 @@ final class ResiliencehubResiliencyPolicy {
 
   final List<ResiliencehubResiliencyPolicyHardware>? hardware;
 
-  final List<ResiliencehubResiliencyPolicyPolicyRegion>? region;
+  final List<ResiliencehubResiliencyPolicyRegional>? region;
 
   final List<ResiliencehubResiliencyPolicySoftware>? software;
 
@@ -143,8 +143,8 @@ final class ResiliencehubResiliencyPolicyHardware {
 /// Typed helper for the `policy.region` block of
 /// `aws_resiliencehub_resiliency_policy` (derived from provider schema).
 @immutable
-final class ResiliencehubResiliencyPolicyPolicyRegion {
-  const ResiliencehubResiliencyPolicyPolicyRegion({this.rpo, this.rto});
+final class ResiliencehubResiliencyPolicyRegional {
+  const ResiliencehubResiliencyPolicyRegional({this.rpo, this.rto});
 
   final TfArg<String>? rpo;
 

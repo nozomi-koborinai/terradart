@@ -32,6 +32,7 @@ export 'src/netapp/google_netapp_storage_pool.dart'
 export 'src/netapp/google_netapp_volume.dart'
     show
         GoogleNetappVolume,
+        GoogleNetappVolumeProtocols,
         NetappVolumeAccessType,
         NetappVolumeBackupConfig,
         NetappVolumeBlockDevices,
@@ -45,7 +46,6 @@ export 'src/netapp/google_netapp_volume.dart'
         NetappVolumeLargeCapacityConfig,
         NetappVolumeMonthlySchedule,
         NetappVolumeOsType,
-        NetappVolumeProtocols,
         NetappVolumeReplicationSchedule,
         NetappVolumeRestoreParameters,
         NetappVolumeRestoreParametersSourceBackup,

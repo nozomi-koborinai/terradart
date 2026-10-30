@@ -4,6 +4,8 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 deriveExactlyOne: true
+typeNames:
+  rule_label: Wafv2WebAclRuleAddedLabel
 
 # Nesting reaches depth 14 with thousands of blocks that repeat a few hundred
 # shapes; one helper per shape keeps the file small.

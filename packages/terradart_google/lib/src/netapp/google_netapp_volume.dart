@@ -7,20 +7,26 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_netapp_volume`.
 const Set<String> _googleNetappVolumeSensitive = <String>{};
 
-/// Netapp Volume enum for `protocols`.
-extension type const NetappVolumeProtocols._(TfArg<String> _)
+/// Google Netapp Volume enum for `protocols`.
+extension type const GoogleNetappVolumeProtocols._(TfArg<String> _)
     implements TfArg<String> {
-  NetappVolumeProtocols.variable(String name) : this._(TfArg.variable(name));
-  NetappVolumeProtocols.expression(String template)
+  GoogleNetappVolumeProtocols.variable(String name)
+    : this._(TfArg.variable(name));
+  GoogleNetappVolumeProtocols.expression(String template)
     : this._(TfArg.expression(template));
-  const NetappVolumeProtocols.arg(TfArg<String> arg) : this._(arg);
+  const GoogleNetappVolumeProtocols.arg(TfArg<String> arg) : this._(arg);
 
-  static const nfsv3 = NetappVolumeProtocols._(TfArgLiteral('NFSV3'));
-  static const nfsv4 = NetappVolumeProtocols._(TfArgLiteral('NFSV4'));
-  static const smb = NetappVolumeProtocols._(TfArgLiteral('SMB'));
-  static const iscsi = NetappVolumeProtocols._(TfArgLiteral('ISCSI'));
+  static const nfsv3 = GoogleNetappVolumeProtocols._(TfArgLiteral('NFSV3'));
+  static const nfsv4 = GoogleNetappVolumeProtocols._(TfArgLiteral('NFSV4'));
+  static const smb = GoogleNetappVolumeProtocols._(TfArgLiteral('SMB'));
+  static const iscsi = GoogleNetappVolumeProtocols._(TfArgLiteral('ISCSI'));
 
-  static const List<NetappVolumeProtocols> values = [nfsv3, nfsv4, smb, iscsi];
+  static const List<GoogleNetappVolumeProtocols> values = [
+    nfsv3,
+    nfsv4,
+    smb,
+    iscsi,
+  ];
 }
 
 /// Netapp Volume Restricted enum for `restricted_actions`.
@@ -717,7 +723,7 @@ extension type const NetappVolumeTierAction._(TfArg<String> _)
 ///   location: TfArg.literal('us-central1'),
 ///   storagePool: pool.name,
 ///   capacityGib: TfArg.literal('100'),
-///   protocols: [NetappVolumeProtocols.nfsv3],
+///   protocols: [GoogleNetappVolumeProtocols.nfsv3],
 ///   shareName: TfArg.literal('data'),
 /// );
 /// ```
@@ -730,7 +736,7 @@ final class GoogleNetappVolume extends Resource {
     required TfArg<String> location,
     required TfArg<String> storagePool,
     required TfArg<String> capacityGib,
-    required List<NetappVolumeProtocols> protocols,
+    required List<GoogleNetappVolumeProtocols> protocols,
     TfArg<String>? shareName,
     TfArg<String>? description,
     TfArg<Map<String, String>>? labels,

@@ -777,9 +777,7 @@ export 'src/zero_trust/cloudflare_zero_trust_gateway_settings.dart'
         ZeroTrustGatewaySettingsActivityLog,
         ZeroTrustGatewaySettingsAntivirus,
         ZeroTrustGatewaySettingsBlockPage,
-        ZeroTrustGatewaySettingsBlockPageMode,
         ZeroTrustGatewaySettingsBodyScanning,
-        ZeroTrustGatewaySettingsBodyScanningInspectionMode,
         ZeroTrustGatewaySettingsBrowserIsolation,
         ZeroTrustGatewaySettingsCertificate,
         ZeroTrustGatewaySettingsCustomCertificate,
@@ -788,10 +786,12 @@ export 'src/zero_trust/cloudflare_zero_trust_gateway_settings.dart'
         ZeroTrustGatewaySettingsFips,
         ZeroTrustGatewaySettingsHostSelector,
         ZeroTrustGatewaySettingsInspection,
+        ZeroTrustGatewaySettingsInspectionMode,
+        ZeroTrustGatewaySettingsMode,
         ZeroTrustGatewaySettingsNotificationSettings,
         ZeroTrustGatewaySettingsProtocolDetection,
+        ZeroTrustGatewaySettingsProxyInspectionMode,
         ZeroTrustGatewaySettingsSandbox,
-        ZeroTrustGatewaySettingsSettingsMode,
         ZeroTrustGatewaySettingsTlsDecrypt;
 export 'src/zero_trust/cloudflare_zero_trust_list.dart'
     show CloudflareZeroTrustList, ZeroTrustListItems, ZeroTrustListType;

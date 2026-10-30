@@ -29,10 +29,7 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPolicies {
   final DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesAction
   action;
 
-  final List<
-    DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesConditions
-  >
-  conditions;
+  final List<DataNetworkmanagerCoreNetworkPolicyDocumentConditions> conditions;
 
   @internal
   Map<String, Object?> encode() => {
@@ -79,8 +76,8 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesAction 
 /// Typed helper for the `attachment_policies.conditions` block of
 /// `aws_networkmanager_core_network_policy_document` (derived from provider schema).
 @immutable
-final class DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesConditions {
-  const DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesConditions({
+final class DataNetworkmanagerCoreNetworkPolicyDocumentConditions {
+  const DataNetworkmanagerCoreNetworkPolicyDocumentConditions({
     this.key,
     this.operator,
     required this.type,
@@ -126,7 +123,7 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentRoutingPolicyRu
   action;
 
   final List<
-    DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentRoutingPolicyRulesConditions
+    DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentRoutingConditions
   >
   conditions;
 
@@ -159,8 +156,8 @@ final class DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentRoutingPolicyRu
 /// Typed helper for the `attachment_routing_policy_rules.conditions` block of
 /// `aws_networkmanager_core_network_policy_document` (derived from provider schema).
 @immutable
-final class DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentRoutingPolicyRulesConditions {
-  const DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentRoutingPolicyRulesConditions({
+final class DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentRoutingConditions {
+  const DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentRoutingConditions({
     required this.type,
     required this.value,
   });

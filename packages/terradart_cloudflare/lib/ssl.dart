@@ -42,7 +42,7 @@ export 'src/data/cloudflare_custom_ssl.dart'
         DataCustomSslFilterStatus,
         DataCustomSslMatch;
 export 'src/data/cloudflare_hostname_tls_setting.dart'
-    show DataCloudflareHostnameTlsSetting, DataHostnameTlsSettingId;
+    show DataCloudflareHostnameTlsSetting, DataHostnameTlsSettingName;
 export 'src/data/cloudflare_hostname_tls_settings.dart'
     show DataCloudflareHostnameTlsSettings, DataHostnameTlsSettingsSettingId;
 export 'src/data/cloudflare_keyless_certificate.dart'
@@ -89,7 +89,7 @@ export 'src/ssl/cloudflare_custom_ssl.dart'
         CustomSslLabel,
         CustomSslType;
 export 'src/ssl/cloudflare_hostname_tls_setting.dart'
-    show CloudflareHostnameTlsSetting, HostnameTlsSettingSettingId;
+    show CloudflareHostnameTlsSetting, HostnameTlsSettingName;
 export 'src/ssl/cloudflare_keyless_certificate.dart'
     show
         CloudflareKeylessCertificate,

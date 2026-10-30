@@ -4,3 +4,6 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 deriveExactlyOne: true
+typeNames:
+  rule.destination.destination_logs_configuration.backup_configuration: ObservabilityadminCentralizationRuleForOrganizationLogsBackupConfiguration
+  rule.destination.destination_metrics_configuration.backup_configuration: ObservabilityadminCentralizationRuleForOrganizationMetricsBackupConfiguration

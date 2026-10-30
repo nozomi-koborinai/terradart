@@ -5,3 +5,5 @@ deriveEnums: true
 deriveClassDoc: true
 deriveOutputGetters: true
 deriveNestedTypes: true
+typeNames:
+  setting_id: DataHostnameTlsSettingName

@@ -1516,7 +1516,7 @@ final class DataLossPreventionDeidentifyTemplateInfoTypeTransformationsTransform
 
   final List<DataLossPreventionDeidentifyTemplateInfoTypes>? infoTypes;
 
-  final DataLossPreventionDeidentifyTemplateInfoTypeTransformationsPrimitiveTransformation
+  final DataLossPreventionDeidentifyTemplateInfoTypePrimitiveTransformation
   primitiveTransformation;
 
   @internal
@@ -1530,8 +1530,8 @@ final class DataLossPreventionDeidentifyTemplateInfoTypeTransformationsTransform
 /// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
 @immutable
-final class DataLossPreventionDeidentifyTemplateInfoTypeTransformationsPrimitiveTransformation {
-  const DataLossPreventionDeidentifyTemplateInfoTypeTransformationsPrimitiveTransformation({
+final class DataLossPreventionDeidentifyTemplateInfoTypePrimitiveTransformation {
+  const DataLossPreventionDeidentifyTemplateInfoTypePrimitiveTransformation({
     this.bucketingConfig,
     this.characterMaskConfig,
     this.cryptoDeterministicConfig,
@@ -1552,13 +1552,13 @@ final class DataLossPreventionDeidentifyTemplateInfoTypeTransformationsPrimitive
   final DataLossPreventionDeidentifyTemplateCharacterMaskConfig?
   characterMaskConfig;
 
-  final DataLossPreventionDeidentifyTemplatePrimitiveTransformationCryptoDeterministicConfig?
+  final DataLossPreventionDeidentifyTemplateInfoTypeCryptoDeterministicConfig?
   cryptoDeterministicConfig;
 
   final DataLossPreventionDeidentifyTemplatePrimitiveTransformationCryptoHashConfig?
   cryptoHashConfig;
 
-  final DataLossPreventionDeidentifyTemplatePrimitiveTransformationCryptoReplaceFfxFpeConfig?
+  final DataLossPreventionDeidentifyTemplateInfoTypeCryptoReplaceFfxFpeConfig?
   cryptoReplaceFfxFpeConfig;
 
   final DataLossPreventionDeidentifyTemplateTransformationsDateShiftConfig?
@@ -1618,8 +1618,8 @@ final class DataLossPreventionDeidentifyTemplateInfoTypeTransformationsBucketing
 /// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.crypto_deterministic_config` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
 @immutable
-final class DataLossPreventionDeidentifyTemplatePrimitiveTransformationCryptoDeterministicConfig {
-  const DataLossPreventionDeidentifyTemplatePrimitiveTransformationCryptoDeterministicConfig({
+final class DataLossPreventionDeidentifyTemplateInfoTypeCryptoDeterministicConfig {
+  const DataLossPreventionDeidentifyTemplateInfoTypeCryptoDeterministicConfig({
     this.context,
     required this.cryptoKey,
     required this.surrogateInfoType,
@@ -1682,8 +1682,8 @@ final class DataLossPreventionDeidentifyTemplatePrimitiveTransformationCryptoHas
 /// Typed helper for the `deidentify_config.record_transformations.field_transformations.info_type_transformations.transformations.primitive_transformation.crypto_replace_ffx_fpe_config` block of
 /// `google_data_loss_prevention_deidentify_template` (derived from provider schema).
 @immutable
-final class DataLossPreventionDeidentifyTemplatePrimitiveTransformationCryptoReplaceFfxFpeConfig {
-  const DataLossPreventionDeidentifyTemplatePrimitiveTransformationCryptoReplaceFfxFpeConfig({
+final class DataLossPreventionDeidentifyTemplateInfoTypeCryptoReplaceFfxFpeConfig {
+  const DataLossPreventionDeidentifyTemplateInfoTypeCryptoReplaceFfxFpeConfig({
     this.commonAlphabet,
     this.customAlphabet,
     this.radix,

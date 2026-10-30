@@ -428,7 +428,7 @@ export 'src/data/cloudflare_google_tag_gateway.dart'
 export 'src/data/cloudflare_healthcheck.dart' show DataCloudflareHealthcheck;
 export 'src/data/cloudflare_healthchecks.dart' show DataCloudflareHealthchecks;
 export 'src/data/cloudflare_hostname_tls_setting.dart'
-    show DataCloudflareHostnameTlsSetting, DataHostnameTlsSettingId;
+    show DataCloudflareHostnameTlsSetting, DataHostnameTlsSettingName;
 export 'src/data/cloudflare_hostname_tls_settings.dart'
     show DataCloudflareHostnameTlsSettings, DataHostnameTlsSettingsSettingId;
 export 'src/data/cloudflare_hyperdrive_config.dart'

@@ -18794,12 +18794,12 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'DataLossPreventionDeidentifyTemplateFields',
       'DataLossPreventionDeidentifyTemplateFieldTransformationsInfoTypeTransformations',
       'DataLossPreventionDeidentifyTemplateInfoTypeTransformationsTransformations',
-      'DataLossPreventionDeidentifyTemplateInfoTypeTransformationsPrimitiveTransformation',
+      'DataLossPreventionDeidentifyTemplateInfoTypePrimitiveTransformation',
       'DataLossPreventionDeidentifyTemplateInfoTypeTransformationsBucketingConfig',
-      'DataLossPreventionDeidentifyTemplatePrimitiveTransformationCryptoDeterministicConfig',
+      'DataLossPreventionDeidentifyTemplateInfoTypeCryptoDeterministicConfig',
       'DataLossPreventionDeidentifyTemplateCryptoDeterministicConfigSurrogateInfoType',
       'DataLossPreventionDeidentifyTemplatePrimitiveTransformationCryptoHashConfig',
-      'DataLossPreventionDeidentifyTemplatePrimitiveTransformationCryptoReplaceFfxFpeConfig',
+      'DataLossPreventionDeidentifyTemplateInfoTypeCryptoReplaceFfxFpeConfig',
       'DataLossPreventionDeidentifyTemplateCryptoReplaceFfxFpeConfigCommonAlphabet',
       'DataLossPreventionDeidentifyTemplateFieldTransformationsReplaceConfig',
       'DataLossPreventionDeidentifyTemplateFieldTransformationsNewValue',
@@ -32910,7 +32910,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'tieringPolicy',
     ],
     nestedTypes: <String>[
-      'NetappVolumeProtocols',
+      'GoogleNetappVolumeProtocols',
       'NetappVolumeRestrictedActions',
       'NetappVolumeSecurityStyle',
       'NetappVolumeSmbSettings',
@@ -32940,7 +32940,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_netapp_volume`.\n\nA volume is a file system container in a storage pool that stores\napplication, database, and user data.\n\nYou can create a volume\'s capacity using the available capacity in the\nstorage pool and you can define and resize the capacity without disruption\nto any processes.\n\nStorage pool settings apply to the volumes contained within them\nautomatically.\n\nNetApp Volumes **volume** carved from a [GoogleNetappStoragePool].\n\n**Cost:** no separate pool-capacity SKU beyond the parent storage\npool (`FC86-5113-7C81` capacity GiBy·mo). Deferred with the pool\n(no apply-smoke quickstart).\n\nExample:\n```dart\nGoogleNetappVolume(\n  \'vol\',\n  name: TfArg.literal(\'data\'),\n  location: TfArg.literal(\'us-central1\'),\n  storagePool: pool.name,\n  capacityGib: TfArg.literal(\'100\'),\n  protocols: [NetappVolumeProtocols.nfsv3],\n  shareName: TfArg.literal(\'data\'),\n);\n```',
+        'Factory wrapper for `google_netapp_volume`.\n\nA volume is a file system container in a storage pool that stores\napplication, database, and user data.\n\nYou can create a volume\'s capacity using the available capacity in the\nstorage pool and you can define and resize the capacity without disruption\nto any processes.\n\nStorage pool settings apply to the volumes contained within them\nautomatically.\n\nNetApp Volumes **volume** carved from a [GoogleNetappStoragePool].\n\n**Cost:** no separate pool-capacity SKU beyond the parent storage\npool (`FC86-5113-7C81` capacity GiBy·mo). Deferred with the pool\n(no apply-smoke quickstart).\n\nExample:\n```dart\nGoogleNetappVolume(\n  \'vol\',\n  name: TfArg.literal(\'data\'),\n  location: TfArg.literal(\'us-central1\'),\n  storagePool: pool.name,\n  capacityGib: TfArg.literal(\'100\'),\n  protocols: [GoogleNetappVolumeProtocols.nfsv3],\n  shareName: TfArg.literal(\'data\'),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_netapp_volume_quota_rule',

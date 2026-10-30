@@ -84,7 +84,7 @@ final class ObservabilityadminCentralizationRuleForOrganizationDestinationLogsCo
   });
 
   final List<
-    ObservabilityadminCentralizationRuleForOrganizationDestinationLogsConfigurationBackupConfiguration
+    ObservabilityadminCentralizationRuleForOrganizationLogsBackupConfiguration
   >?
   backupConfiguration;
 
@@ -127,8 +127,8 @@ final class ObservabilityadminCentralizationRuleForOrganizationDestinationLogsCo
 /// Typed helper for the `rule.destination.destination_logs_configuration.backup_configuration` block of
 /// `aws_observabilityadmin_centralization_rule_for_organization` (derived from provider schema).
 @immutable
-final class ObservabilityadminCentralizationRuleForOrganizationDestinationLogsConfigurationBackupConfiguration {
-  const ObservabilityadminCentralizationRuleForOrganizationDestinationLogsConfigurationBackupConfiguration({
+final class ObservabilityadminCentralizationRuleForOrganizationLogsBackupConfiguration {
+  const ObservabilityadminCentralizationRuleForOrganizationLogsBackupConfiguration({
     this.kmsKeyArn,
     this.region,
   });
@@ -343,7 +343,7 @@ final class ObservabilityadminCentralizationRuleForOrganizationDestinationMetric
   });
 
   final List<
-    ObservabilityadminCentralizationRuleForOrganizationDestinationMetricsConfigurationBackupConfiguration
+    ObservabilityadminCentralizationRuleForOrganizationMetricsBackupConfiguration
   >?
   backupConfiguration;
 
@@ -359,8 +359,8 @@ final class ObservabilityadminCentralizationRuleForOrganizationDestinationMetric
 /// Typed helper for the `rule.destination.destination_metrics_configuration.backup_configuration` block of
 /// `aws_observabilityadmin_centralization_rule_for_organization` (derived from provider schema).
 @immutable
-final class ObservabilityadminCentralizationRuleForOrganizationDestinationMetricsConfigurationBackupConfiguration {
-  const ObservabilityadminCentralizationRuleForOrganizationDestinationMetricsConfigurationBackupConfiguration({
+final class ObservabilityadminCentralizationRuleForOrganizationMetricsBackupConfiguration {
+  const ObservabilityadminCentralizationRuleForOrganizationMetricsBackupConfiguration({
     required this.region,
   });
 

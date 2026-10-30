@@ -148,6 +148,7 @@ export 'src/wafv2/aws_wafv2_web_acl_rule.dart'
     show
         AwsWafv2WebAclRule,
         Wafv2WebAclRuleAction,
+        Wafv2WebAclRuleAddedLabel,
         Wafv2WebAclRuleAddressFields,
         Wafv2WebAclRuleAllow,
         Wafv2WebAclRuleAndStatement,
@@ -205,7 +206,6 @@ export 'src/wafv2/aws_wafv2_web_acl_rule.dart'
         Wafv2WebAclRuleRegexMatchStatement,
         Wafv2WebAclRuleRegexPatternSetReferenceStatement,
         Wafv2WebAclRuleResponseInspection,
-        Wafv2WebAclRuleRuleLabel,
         Wafv2WebAclRuleScopeDownStatement,
         Wafv2WebAclRuleSizeConstraintStatement,
         Wafv2WebAclRuleSqliMatchStatement,
