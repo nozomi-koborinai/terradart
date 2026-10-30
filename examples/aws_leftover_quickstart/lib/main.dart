@@ -17609,7 +17609,7 @@ final class AwsLeftoverStack extends Stack {
       DataAwsOpensearchserverlessSecurityPolicy(
         'd_opensearchserverless_security_policy',
         name: .literal(leftover),
-        type: .literal('encryption'),
+        type: .encryption,
       ),
     );
 

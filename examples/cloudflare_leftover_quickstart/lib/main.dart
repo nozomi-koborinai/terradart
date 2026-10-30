@@ -1088,7 +1088,7 @@ final class CloudflareLeftoverStack extends Stack {
     add(
       CloudflareOriginTlsComplianceModes(
         'origin_tls_compliance_modes',
-        value: .literal([leftover]),
+        value: [.fips],
         zoneId: .literal(zoneId),
       ),
     );
@@ -1335,7 +1335,7 @@ final class CloudflareLeftoverStack extends Stack {
         'secrets_store_secret',
         accountId: .literal(accountId),
         name: .literal(leftover),
-        scopes: .literal([leftover]),
+        scopes: [.workers],
         storeId: .literal('00000000000000000000000000000001'),
         value: leftoverSecret,
       ),

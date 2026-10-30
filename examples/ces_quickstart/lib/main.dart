@@ -172,7 +172,7 @@ final class CesStack extends Stack {
         appVersion: version.ref,
         displayName: .literal('terradart-ces-deploy'),
         channelProfile: CesDeploymentChannelProfile(
-          channelType: .literal('API'),
+          channelType: .api,
           profileId: .literal('terradart-ces-api'),
         ),
         dependsOn: [app, version],

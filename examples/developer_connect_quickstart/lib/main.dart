@@ -34,7 +34,7 @@ final class DeveloperConnectStack extends Stack {
         accountConnectorId: .literal('terradart-github'),
         providerOauthConfig:
             DeveloperConnectAccountConnectorProviderOauthConfig(
-              systemProviderId: .literal('GITHUB'),
+              systemProviderId: .github,
               scopes: .literal(['repo']),
             ),
         deletionPolicy: .literal('DELETE'),

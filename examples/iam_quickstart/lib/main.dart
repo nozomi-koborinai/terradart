@@ -452,7 +452,7 @@ final class IamShowcaseStack extends Stack {
         allowedGrantTypes: .literal(['AUTHORIZATION_CODE_GRANT']),
         allowedRedirectUris: .literal(['https://www.example.com']),
         allowedScopes: .literal(['openid']),
-        clientType: .literal('PUBLIC_CLIENT'),
+        clientType: .publicClient,
         deletionPolicy: .literal('DELETE'),
       ),
     );

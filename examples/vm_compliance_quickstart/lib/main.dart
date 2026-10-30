@@ -169,7 +169,7 @@ final class VmComplianceStack extends Stack {
             osPolicies: [
               .new(
                 id: .literal('test-os-policy'),
-                mode: .literal('VALIDATION'),
+                mode: .validation,
                 resourceGroups: [
                   .new(
                     resources: [
@@ -178,7 +178,7 @@ final class VmComplianceStack extends Stack {
                         file: .new(
                           content: .literal('file-content-tf'),
                           path: .literal('file-path-tf-1'),
-                          state: .literal('PRESENT'),
+                          state: .present,
                         ),
                       ),
                     ],

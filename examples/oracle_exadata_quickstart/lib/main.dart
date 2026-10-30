@@ -102,7 +102,7 @@ final class OracleExadataStack extends Stack {
         gridImageId: .literal(_placeholderGridImageId),
         hostnamePrefix: .literal('exadb1'),
         nodeCount: .literal(1),
-        shapeAttribute: .literal('SMART_STORAGE'),
+        shapeAttribute: .smartStorage,
         sshPublicKeys: .literal([_placeholderSshPublicKey]),
         vmFileSystemStorage: .new(sizeInGbsPerNode: .literal(220)),
       ),
@@ -135,7 +135,7 @@ final class OracleExadataStack extends Stack {
         odbSubnet: clientSubnet.ref,
         backupOdbSubnet: backupSubnet.ref,
         properties: OracleDatabaseCloudVmClusterProperties(
-          licenseType: .literal('LICENSE_INCLUDED'),
+          licenseType: .licenseIncluded,
           cpuCoreCount: .literal(4),
           giVersion: .literal('19.0.0.0'),
           hostnamePrefix: .literal('exa1'),

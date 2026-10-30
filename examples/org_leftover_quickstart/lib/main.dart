@@ -34,7 +34,7 @@ final class OrgLeftoverStack extends Stack {
         shortName: .literal('terradart-fw'),
         rule: [
           ComputeFirewallPolicyWithRulesRule(
-            action: .literal('allow'),
+            action: .allow,
             priority: .literal(1000),
             match: .new(
               srcIpRanges: .literal(['192.0.2.0/24']),
@@ -108,7 +108,7 @@ final class OrgLeftoverStack extends Stack {
       GoogleStorageControlFolderIntelligenceConfig(
         'folder_intel',
         name: .literal('123456789'),
-        editionConfig: .literal('DISABLED'),
+        editionConfig: .disabled,
         dependsOn: apiDeps,
       ),
     );
@@ -116,7 +116,7 @@ final class OrgLeftoverStack extends Stack {
       GoogleStorageControlOrganizationIntelligenceConfig(
         'org_intel',
         name: .literal('123456789'),
-        editionConfig: .literal('DISABLED'),
+        editionConfig: .disabled,
         dependsOn: apiDeps,
       ),
     );

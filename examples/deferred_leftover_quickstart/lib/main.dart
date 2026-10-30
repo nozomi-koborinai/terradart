@@ -213,7 +213,7 @@ final class DeferredLeftoverStack extends Stack {
         parent: .literal('organizations/123456789'),
         cloudControlMetadata: [
           CloudSecurityComplianceFrameworkDeploymentCloudControlMetadata(
-            enforcementMode: .literal('terradart-leftover'),
+            enforcementMode: .detective,
             cloudControlDetails: .new(
               majorRevisionId: .literal('terradart-leftover'),
               name: .literal('terradart-leftover'),
@@ -506,7 +506,7 @@ final class DeferredLeftoverStack extends Stack {
         service: .literal('allServices'),
         auditLogConfig: [
           FolderIamAuditConfigAuditLogConfig(
-            logType: .literal('terradart-leftover'),
+            logType: .adminRead,
           ),
         ],
       ),
@@ -647,7 +647,7 @@ final class DeferredLeftoverStack extends Stack {
         clientId: .literal('terradart-leftover'),
         clientSecret: .literal('terradart-leftover'),
         deletionPolicy: .literal('DELETE'),
-        idpId: .literal('google.com'),
+        idpId: .googleCom,
       ),
     );
 
@@ -672,7 +672,7 @@ final class DeferredLeftoverStack extends Stack {
         clientId: .literal('terradart-leftover'),
         clientSecret: .literal('terradart-leftover'),
         deletionPolicy: .literal('DELETE'),
-        idpId: .literal('google.com'),
+        idpId: .googleCom,
         tenant: .literal('terradart-leftover'),
       ),
     );
@@ -849,7 +849,7 @@ final class DeferredLeftoverStack extends Stack {
         service: .literal('allServices'),
         auditLogConfig: [
           OrganizationIamAuditConfigAuditLogConfig(
-            logType: .literal('terradart-leftover'),
+            logType: .adminRead,
           ),
         ],
       ),
@@ -915,7 +915,7 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleProjectDefaultServiceAccounts(
         'projectdefaultserviceaccount',
-        action: .literal('DEPRIVILEGE'),
+        action: .deprivilege,
         project: .literal(projectId),
       ),
     );

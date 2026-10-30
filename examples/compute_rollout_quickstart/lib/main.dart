@@ -49,7 +49,7 @@ final class ComputeRolloutStack extends Stack {
               ),
             ],
             validation: .new(
-              type: .literal('time'),
+              type: .time,
               timeBasedValidationMetadata: .new(waitDuration: .literal('0s')),
             ),
             orchestrationOptions: .new(
