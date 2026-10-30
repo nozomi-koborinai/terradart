@@ -29,6 +29,17 @@ List<String>? parseEnumValuesFromDescription(String? description) {
     if (quoted.length >= 2) return quoted;
   }
 
+  // `One of "READ_ONLY" or "READ_WRITE".` A sentence that opens with the
+  // phrase and lists only quoted values: mid-sentence ("the scheme must be
+  // one of ...") it constrains part of the value, not the value.
+  final om = _oneOf.firstMatch(description);
+  if (om != null) {
+    return [
+      for (final q in RegExp(r'"([^"]+)"').allMatches(om.group(1)!))
+        q.group(1)!,
+    ];
+  }
+
   // `Possible values: JOB_TYPE_UNSPECIFIED, PIPELINE, QUERY`
   final loose = RegExp(r'Possible values:\s*([A-Z0-9_,\s]+)');
   final lm = loose.firstMatch(description);
@@ -44,6 +55,11 @@ List<String>? parseEnumValuesFromDescription(String? description) {
 
   return null;
 }
+
+final RegExp _oneOf = RegExp(
+  r'(?:^|[.:!?]\s+)(?:One|Must be one) of\s+'
+  r'("[^"]+"(?:(?:\s*,\s*(?:or\s+)?|\s+or\s+)"[^"]+")+)\s*(?=\.|$|\s+[A-Z])',
+);
 
 final RegExp _availableValues = RegExp(
   r'Available values:[ \t]*("(?:[^"\\]|\\.)*"(?:[ \t]*,[ \t]*"(?:[^"\\]|\\.)*")*)',

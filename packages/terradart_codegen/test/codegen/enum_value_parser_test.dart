@@ -31,6 +31,43 @@ void main() {
     expect(parseEnumValuesFromDescription('Possible values: ["ONLY"]'), isNull);
   });
 
+  test('a sentence that opens with One of quoted values', () {
+    expect(
+      parseEnumValuesFromDescription(
+        'The mode in which to attach this disk. One of "READ_ONLY" or '
+        '"READ_WRITE". Default is READ_WRITE.',
+      ),
+      ['READ_ONLY', 'READ_WRITE'],
+    );
+    expect(
+      parseEnumValuesFromDescription(
+        'The deployment source type. Must be one of "code" or "template".',
+      ),
+      ['code', 'template'],
+    );
+    expect(parseEnumValuesFromDescription('One of "A", "B", or "C"'), [
+      'A',
+      'B',
+      'C',
+    ]);
+  });
+
+  test('a mid-sentence one of constrains part of the value', () {
+    expect(
+      parseEnumValuesFromDescription(
+        'The forward proxy URI. Note that the scheme must be one of "http" '
+        'or "https", and the port must be supplied.',
+      ),
+      isNull,
+    );
+    expect(
+      parseEnumValuesFromDescription(
+        'The value can only be one of "global", "us" and "eu".',
+      ),
+      isNull,
+    );
+  });
+
   group('parseAvailableValues', () {
     test('reads the quoted Stainless line', () {
       expect(
