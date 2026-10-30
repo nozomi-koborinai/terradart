@@ -24,14 +24,15 @@ omitted `pointInTimeRestore` still compiles. The 5.12.0 changelog adds
 
 ### Fixed value sets are enums
 
-**Breaking (`terradart_google`, `terradart_cloudflare`).** 55
+**Breaking (`terradart_google`, `terradart_cloudflare`).** 100
 `terradart_google` inputs and 124 `terradart_cloudflare` data-source inputs
 took a raw string, or a list of strings, although the provider accepts only
-a fixed set of values. Each now takes an enum of that set. The Google value
-sets come from Magic Modules `enum_values` (also on list items) or from the
-description when Magic Modules has none. The Cloudflare ones come from
-`Available values:` in the schema and the provider hints. Pass a member with
-a dot shorthand. A value the enum does not list goes through
+a fixed set of values. Each now takes an enum of that set. The Google inputs
+include helper fields of nested blocks. Their value sets come from Magic
+Modules `enum_values` (on nested blocks and list items too), else from the
+description, including the `One of "A" or "B"` form. The Cloudflare ones
+come from `Available values:` in the schema and the provider hints. Pass a
+member with a dot shorthand. A value the enum does not list goes through
 `.arg(.literal(...))`, and `.variable` and `.expression` still work. The
 Terraform JSON for the same value is unchanged.
 
@@ -39,6 +40,7 @@ Terraform JSON for the same value is unchanged.
 |---|---|
 | `GoogleAlloydbBackup('b', type: .literal('ON_DEMAND'), ...)` | `GoogleAlloydbBackup('b', type: .onDemand, ...)` |
 | `GoogleDataCatalogTaxonomy('t', activatedPolicyTypes: .literal(['FINE_GRAINED_ACCESS_CONTROL']), ...)` | `GoogleDataCatalogTaxonomy('t', activatedPolicyTypes: [.fineGrainedAccessControl], ...)` |
+| `ComputeInstanceBootDisk(mode: .literal('READ_ONLY'), ...)` | `ComputeInstanceBootDisk(mode: .readOnly, ...)` |
 | `DataCloudflareAccessRules('rules', direction: .literal('desc'), ...)` | `DataCloudflareAccessRules('rules', direction: .desc, ...)` |
 
 `GoogleNetappVolume.protocols` takes `GoogleNetappVolumeProtocols`, because
@@ -48,9 +50,43 @@ Every retyped `terradart_google` input:
 
 | Input | Before | After |
 |---|---|---|
+| `AccessContextManagerServicePerimeterVpcAccessibleServices.servicePatternsEnforcementScopes` | `TfArg<List<String>>` | `List<AccessContextManagerServicePerimeterServicePatternsEnforcementScopes>` |
+| `AccessContextManagerServicePerimetersVpcAccessibleServices.servicePatternsEnforcementScopes` | `TfArg<List<String>>` | `List<AccessContextManagerServicePerimetersServicePatternsEnforcementScopes>` |
 | `AppEngineStandardAppVersionLegacyServicesAppEngineBundledServices.appEngineBundledServices` | `TfArg<List<String>>` | `List<AppEngineStandardAppVersionAppEngineBundledServices>` |
+| `ArtifactRegistryRepositoryPythonRepositoryPublicRepository.publicRepository` | `TfArg<String>` | `ArtifactRegistryPythonPublicRepository` |
+| `BackupDrManagementServerNetworks.peeringMode` | `TfArg<String>` | `BackupDrManagementServerPeeringMode` |
+| `BeyondcorpSecurityGatewayApplicationProxyProtocol.gatewayIdentity` | `TfArg<String>` | `BeyondcorpSecurityGatewayApplicationGatewayIdentity` |
+| `BeyondcorpSecurityGatewayProxyProtocolConfig.gatewayIdentity` | `TfArg<String>` | `BeyondcorpSecurityGatewayIdentity` |
+| `BigqueryAnalyticsHubQueryTemplateRoutine.routineType` | `TfArg<String>` | `BigqueryAnalyticsHubQueryTemplateRoutineType` |
+| `BigqueryTableCsvOptions.encoding` | `TfArg<String>` | `BigqueryTableEncoding` |
+| `BigqueryTableSchemaForeignTypeInfo.typeSystem` | `TfArg<String>` | `BigqueryTableTypeSystem` |
+| `BigtableInstanceCluster.nodeScalingFactor` | `TfArg<String>` | `BigtableInstanceNodeScalingFactor` |
+| `ComposerEnvironmentPrivateEnvironmentConfig.connectionType` | `TfArg<String>` | `ComposerEnvironmentConnectionType` |
+| `ComputeImageRawDisk.containerType` | `TfArg<String>` | `ComputeImageContainerType` |
+| `ComputeInstanceAttachedDisk.mode` | `TfArg<String>` | `ComputeInstanceMode` |
+| `ComputeInstanceBootDisk.mode` | `TfArg<String>` | `ComputeInstanceMode` |
+| `ComputeInstanceFromTemplateAttachedDisk.mode` | `TfArg<String>` | `ComputeInstanceFromTemplateMode` |
+| `ComputeInstanceFromTemplateBootDisk.mode` | `TfArg<String>` | `ComputeInstanceFromTemplateMode` |
+| `ComputeInstanceFromTemplateInitializeParams.architecture` | `TfArg<String>` | `ComputeInstanceFromTemplateArchitecture` |
+| `ComputeInstanceInitializeParams.architecture` | `TfArg<String>` | `ComputeInstanceArchitecture` |
+| `ComputePreviewFeatureRolloutInput.predefinedRolloutPlan` | `TfArg<String>` | `ComputePreviewFeaturePredefinedRolloutPlan` |
+| `ComputeResourcePolicyGroupPlacementPolicy.collocation` | `TfArg<String>` | `ComputeResourcePolicyCollocation` |
 | `DataGoogleSiteVerificationToken.type` | `TfArg<String>` | `DataSiteVerificationTokenType` |
 | `DataGoogleSiteVerificationToken.verificationMethod` | `TfArg<String>` | `DataSiteVerificationTokenVerificationMethod` |
+| `DataLossPreventionContentPolicyCustomInfoTypes.exclusionType` | `TfArg<String>` | `DataLossPreventionContentPolicyExclusionType` |
+| `DataLossPreventionDeidentifyTemplateExpressions.logicalOperator` | `TfArg<String>` | `DataLossPreventionDeidentifyTemplateLogicalOperator` |
+| `DataLossPreventionDiscoveryConfigTableModifiedCadence.types` | `TfArg<List<String>>` | `List<DataLossPreventionDiscoveryConfigTableModifiedCadenceTypes>` |
+| `DataLossPreventionInspectTemplateCustomInfoTypes.exclusionType` | `TfArg<String>` | `DataLossPreventionInspectTemplateExclusionType` |
+| `DataLossPreventionJobTriggerCustomInfoTypes.exclusionType` | `TfArg<String>` | `DataLossPreventionJobTriggerExclusionType` |
+| `DatastreamStreamBlmtConfig.fileFormat` | `TfArg<String>` | `DatastreamStreamBlmtConfigFileFormat` |
+| `DatastreamStreamBlmtConfig.tableFormat` | `TfArg<String>` | `DatastreamStreamTableFormat` |
+| `DialogflowFulfillmentFeatures.type` | `TfArg<String>` | `DialogflowFulfillmentType` |
+| `DialogflowToolOauthConfig.oauthGrantType` | `TfArg<String>` | `DialogflowToolOauthGrantType` |
+| `DiscoveryEngineControlInterpolationBoostSpec.interpolationType` | `TfArg<String>` | `DiscoveryEngineControlInterpolationType` |
+| `DiscoveryEngineSearchEngineConfig.searchAddOns` | `TfArg<List<String>>` | `List<DiscoveryEngineSearchEngineConfigSearchAddOns>` |
+| `FirestoreFieldModeArrayConfig.arrayConfig` | `TfArg<String>` | `FirestoreFieldArrayConfig` |
+| `FolderAccessApprovalSettingsEnrolledServices.enrollmentLevel` | `TfArg<String>` | `FolderAccessApprovalSettingsEnrollmentLevel` |
+| `GkeBackupRestorePlanVolumeDataRestorePolicyBindings.volumeType` | `TfArg<String>` | `GkeBackupRestorePlanVolumeType` |
 | `GoogleAlloydbBackup.type` | `TfArg<String>` | `AlloydbBackupType` |
 | `GoogleAlloydbCluster.subscriptionType` | `TfArg<String>` | `AlloydbClusterSubscriptionType` |
 | `GoogleAlloydbInstance.activationPolicy` | `TfArg<String>` | `AlloydbInstanceActivationPolicy` |
@@ -75,6 +111,7 @@ Every retyped `terradart_google` input:
 | `GoogleDataCatalogTaxonomy.activatedPolicyTypes` | `TfArg<List<String>>` | `List<DataCatalogTaxonomyActivatedPolicyTypes>` |
 | `GoogleDatabaseMigrationServiceConnectionProfile.role` | `TfArg<String>` | `DatabaseMigrationServiceConnectionProfileRole` |
 | `GoogleDatabaseMigrationServiceMigrationJob.desiredState` | `TfArg<String>` | `DatabaseMigrationServiceMigrationJobDesiredState` |
+| `GoogleDataflowJob.onDelete` | `TfArg<String>` | `DataflowJobOnDelete` |
 | `GoogleDialogflowCxSecuritySettings.purgeDataTypes` | `TfArg<List<String>>` | `List<DialogflowCxSecuritySettingsPurgeDataTypes>` |
 | `GoogleDialogflowIntent.defaultResponsePlatforms` | `TfArg<List<String>>` | `List<DialogflowIntentDefaultResponsePlatforms>` |
 | `GoogleDiscoveryEngineControl.useCases` | `TfArg<List<String>>` | `List<DiscoveryEngineControlUseCases>` |
@@ -103,6 +140,16 @@ Every retyped `terradart_google` input:
 | `GoogleSpannerInstance.defaultBackupScheduleType` | `TfArg<String>` | `SpannerInstanceDefaultBackupScheduleType` |
 | `GoogleSpannerInstance.instanceType` | `TfArg<String>` | `SpannerInstanceType` |
 | `GoogleVectorSearchIndex.distanceMetric` | `TfArg<String>` | `VectorSearchIndexDistanceMetric` |
+| `IamWorkforcePoolProviderExtendedAttributesOauth2Client.attributesType` | `TfArg<String>` | `IamWorkforcePoolProviderExtendedAttributesType` |
+| `IapSettingsAccessSettings.identitySources` | `TfArg<List<String>>` | `List<IapSettingsIdentitySources>` |
+| `IdentityPlatformConfigMfa.enabledProviders` | `TfArg<List<String>>` | `List<IdentityPlatformConfigEnabledProviders>` |
+| `IntegrationConnectorsConnectionEventingConfigAuthConfig.authType` | `TfArg<String>` | `IntegrationConnectorsConnectionAuthConfigAuthType` |
+| `IntegrationConnectorsConnectionSslConfig.clientCertType` | `TfArg<String>` | `IntegrationConnectorsConnectionClientCertType` |
+| `IntegrationConnectorsConnectionSslConfig.serverCertType` | `TfArg<String>` | `IntegrationConnectorsConnectionServerCertType` |
+| `OrganizationAccessApprovalSettingsEnrolledServices.enrollmentLevel` | `TfArg<String>` | `OrganizationAccessApprovalSettingsEnrollmentLevel` |
+| `ProjectAccessApprovalSettingsEnrolledServices.enrollmentLevel` | `TfArg<String>` | `ProjectAccessApprovalSettingsEnrollmentLevel` |
+| `StorageTransferJobNotificationConfig.payloadFormat` | `TfArg<String>` | `StorageTransferJobPayloadFormat` |
+| `WorkbenchInstanceConfidentialInstanceConfig.confidentialInstanceType` | `TfArg<String>` | `WorkbenchInstanceConfidentialInstanceType` |
 
 Every retyped `terradart_cloudflare` input:
 
