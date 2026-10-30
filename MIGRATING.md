@@ -2,6 +2,26 @@
 
 ## Unreleased
 
+### Managed database point-in-time restore is one sealed argument
+
+**Breaking (`terradart_azure`).** The weekly `hashicorp/azurerm` pin moved
+from 5.11.0 to 5.12.0. `terradart_azure` follows that pin. The schema adds
+the optional string `recover_database_id` on `azurerm_mssql_managed_database`.
+The `point_in_time_restore` block is unchanged. `restore_point_in_time` and
+`source_database_id` stay required. The provider sets `ConflictsWith` between
+`recover_database_id` and `point_in_time_restore`.
+`AzurermMssqlManagedDatabase.pointInTimeRestore` is removed. Pass that
+restore on `pointInTimeRestoreOrRecoverDatabaseId`. A null choice sets
+neither. The Terraform JSON for `point_in_time_restore` is unchanged.
+`MssqlManagedDatabasePointInTimeRestore` is unchanged. A constructor that
+omitted `pointInTimeRestore` still compiles. The 5.12.0 changelog adds
+`recover_database_id` for a cross-region or recovery restore.
+
+| Before | After |
+|---|---|
+| `AzurermMssqlManagedDatabase('db', managedInstanceId: instance.id, name: .literal('app'), pointInTimeRestore: MssqlManagedDatabasePointInTimeRestore(restorePointInTime: .literal('2026-01-01T00:00:00Z'), sourceDatabaseId: source.id))` | `AzurermMssqlManagedDatabase('db', managedInstanceId: instance.id, name: .literal('app'), pointInTimeRestoreOrRecoverDatabaseId: .pointInTimeRestore(MssqlManagedDatabasePointInTimeRestore(restorePointInTime: .literal('2026-01-01T00:00:00Z'), sourceDatabaseId: source.id)))` |
+| *(not available)* | `AzurermMssqlManagedDatabase('db', managedInstanceId: instance.id, name: .literal('app'), pointInTimeRestoreOrRecoverDatabaseId: .recoverDatabaseId(source.id))` |
+
 ### Exclusive groups are one sealed argument
 
 **Breaking (`terradart_google`, `terradart_aws`).** Each group below was
