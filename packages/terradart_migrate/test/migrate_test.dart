@@ -846,6 +846,27 @@ resource "google_pubsub_topic" "t" {
       });
     });
 
+    test('an enum filled by a variable is the enum\'s own variable', () {
+      final r = _migrateJson({
+        'terraform': _google,
+        'variable': {
+          'schema_type': {'type': 'string'},
+        },
+        'resource': {
+          'google_pubsub_schema': {
+            's': {'name': 's', 'type': r'${var.schema_type}'},
+          },
+        },
+      });
+      expect(r.report.migratedAddresses, contains('google_pubsub_schema.s'));
+      expect(
+        r.files['lib/demo_stack.dart'],
+        contains("type: .variable('schema_type')"),
+      );
+      expect(r.report.shapes, contains(MigratedShape.enumVariable));
+      expect(r.report.types, contains('PubsubSchemaType'));
+    });
+
     group('a list of enum values', () {
       // `selected_regions` is a bare `List<MonitoringUptimeCheckRegion>`:
       // one member per element, and no single reference fits it.

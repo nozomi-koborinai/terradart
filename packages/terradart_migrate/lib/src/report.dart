@@ -132,6 +132,7 @@ final class MigrationReport {
     this.providers = const [],
     this.expanded = const [],
     this.shapes = const {},
+    this.types = const {},
   });
 
   /// The module name (its directory, or the name the caller gave).
@@ -159,6 +160,10 @@ final class MigrationReport {
 
   /// The typed API shapes the migrated resources' arguments use.
   final Set<MigratedShape> shapes;
+
+  /// The generated helper, sealed variant and enum types the migrated
+  /// arguments construct, including those a dot shorthand leaves unnamed.
+  final Set<String> types;
 
   /// `count` / `for_each` blocks unrolled into one resource per instance;
   /// their instances are listed in [migrated] under the new addresses.

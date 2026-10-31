@@ -146,6 +146,9 @@ final class ValueEmitter {
   /// The typed API shapes the emitted arguments use.
   final Set<MigratedShape> shapes = {};
 
+  /// The generated types the emitted arguments construct.
+  final Set<String> types = {};
+
   /// Declared variables whose handle local a value read.
   final Set<String> usedHandles = {};
 
@@ -1056,6 +1059,7 @@ final class ValueEmitter {
     if (members == null) {
       throw MigrateBlocker('enum $enumName is missing from the manifest');
     }
+    types.add(enumName);
     bool isExpression(Expr e) =>
         e.constantString == null &&
         e is! LiteralExpr &&
@@ -1120,6 +1124,10 @@ final class ValueEmitter {
       if (!isExpression(e)) return member(e);
       final ref = singleReference(e);
       if (ref != null) {
+        if (classifyTraversal(ref) case VariableReference(:final name)) {
+          usedVariables.add(name);
+          return enumCall('.variable(${dartString(name)})');
+        }
         final r = _inPosition(true, () => _refArg(ref, type: 'String'));
         if (r != null) return enumCall(r);
       }
@@ -1248,6 +1256,7 @@ final class ValueEmitter {
     if (helper.reason != null) {
       throw MigrateBlocker('argument "$path" ($name): ${helper.reason}');
     }
+    types.add(name);
     return helper;
   }
 
