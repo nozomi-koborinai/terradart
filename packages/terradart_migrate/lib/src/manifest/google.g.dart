@@ -44400,8 +44400,8 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'allow': 'ComputeFirewallAllowPolicy',
-            'deny': 'ComputeFirewallDenyPolicy',
+            'allow': 'ComputeFirewallRulePolicyAllow',
+            'deny': 'ComputeFirewallRulePolicyDeny',
           },
         ),
         MigrateSlot(
@@ -219555,42 +219555,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'ComputeFirewallAllowPolicy': MigrateHelper(
-      className: 'ComputeFirewallAllowPolicy',
+    'ComputeFirewallAllow': MigrateHelper(
+      className: 'ComputeFirewallAllow',
       slots: <MigrateSlot>[
         MigrateSlot(
-          tfName: '',
-          dartName: 'protocol',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: '',
+          tfName: 'ports',
           dartName: 'ports',
           kind: MigrateSlotKind.scalar,
           required: false,
-          repeated: true,
-          wrapped: false,
-          dartType: 'String',
+          dartType: 'List<String>',
         ),
-        MigrateSlot(
-          tfName: '',
-          dartName: 'additionalRules',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          repeated: true,
-          wrapped: false,
-          helper: 'ComputeFirewallAllowRule',
-        ),
-      ],
-      shorthand: 'allow',
-      reason:
-          'encode() returns a list with more than one map; field `protocol` has no encode entry; field `ports` has no encode entry; field `additionalRules` has no encode entry',
-    ),
-    'ComputeFirewallAllowRule': MigrateHelper(
-      className: 'ComputeFirewallAllowRule',
-      slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'protocol',
           dartName: 'protocol',
@@ -219598,67 +219572,23 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           required: true,
           dartType: 'String',
         ),
+      ],
+    ),
+    'ComputeFirewallDeny': MigrateHelper(
+      className: 'ComputeFirewallDeny',
+      slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'ports',
           dartName: 'ports',
           kind: MigrateSlotKind.scalar,
           required: false,
-          repeated: true,
-          wrapped: false,
-          dartType: 'String',
+          dartType: 'List<String>',
         ),
-      ],
-    ),
-    'ComputeFirewallDenyPolicy': MigrateHelper(
-      className: 'ComputeFirewallDenyPolicy',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: '',
-          dartName: 'protocol',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: '',
-          dartName: 'ports',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          repeated: true,
-          wrapped: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: '',
-          dartName: 'additionalRules',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          repeated: true,
-          wrapped: false,
-          helper: 'ComputeFirewallDenyRule',
-        ),
-      ],
-      shorthand: 'deny',
-      reason:
-          'encode() returns a list with more than one map; field `protocol` has no encode entry; field `ports` has no encode entry; field `additionalRules` has no encode entry',
-    ),
-    'ComputeFirewallDenyRule': MigrateHelper(
-      className: 'ComputeFirewallDenyRule',
-      slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'protocol',
           dartName: 'protocol',
           kind: MigrateSlotKind.scalar,
           required: true,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'ports',
-          dartName: 'ports',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          repeated: true,
-          wrapped: false,
           dartType: 'String',
         ),
       ],
@@ -220130,6 +220060,38 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+    ),
+    'ComputeFirewallRulePolicyAllow': MigrateHelper(
+      className: 'ComputeFirewallRulePolicyAllow',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'allow',
+          dartName: 'allow',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          repeated: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ComputeFirewallAllow',
+        ),
+      ],
+      shorthand: 'allow',
+    ),
+    'ComputeFirewallRulePolicyDeny': MigrateHelper(
+      className: 'ComputeFirewallRulePolicyDeny',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'deny',
+          dartName: 'deny',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          repeated: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ComputeFirewallDeny',
+        ),
+      ],
+      shorthand: 'deny',
     ),
     'ComputeForwardingRuleServiceDirectoryRegistration': MigrateHelper(
       className: 'ComputeForwardingRuleServiceDirectoryRegistration',

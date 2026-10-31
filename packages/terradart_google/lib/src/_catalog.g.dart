@@ -11641,17 +11641,17 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[
       'FirewallDirection',
       'FirewallLogMetadata',
-      'ComputeFirewallRulePolicy',
-      'ComputeFirewallAllowRule',
-      'ComputeFirewallDenyRule',
       'ComputeFirewallLogConfig',
-      'ComputeFirewallAllowPolicy',
-      'ComputeFirewallDenyPolicy',
+      'ComputeFirewallRulePolicy',
+      'ComputeFirewallRulePolicyAllow',
+      'ComputeFirewallRulePolicyDeny',
+      'ComputeFirewallAllow',
+      'ComputeFirewallDeny',
       'ComputeFirewallParams',
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_compute_firewall`.\n\nEach network has its own firewall controlling access to and from the\ninstances.\n\nAll traffic to instances, even from other instances, is blocked by the\nfirewall unless firewall rules are created to allow it.\n\nThe default network has automatically created firewall rules that are shown\nin default firewall rules. No manually created network has automatically\ncreated firewall rules except for a default "allow" rule for outgoing\ntraffic and a default "deny" for incoming traffic. For all networks except\nthe default network, you must create any firewall rules you need.\n\nThis resource models a VPC firewall rule.\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_compute_firewall.`).\n- `name`: GCP firewall rule name.\n- `network`: VPC network this rule attaches to. Typically\n  `vpc.ref` where `vpc` is a `GoogleComputeNetwork`.\n\nChoose exactly one [ComputeFirewallRulePolicy]:\n- [ComputeFirewallAllowPolicy] — permit matching traffic.\n- [ComputeFirewallDenyPolicy] — block matching traffic.\n\nExample:\n```dart\nfinal allowSsh = GoogleComputeFirewall(\n  \'allow_ssh\',\n  name: TfArg.literal(\'allow-ssh\'),\n  network: vpc.ref,\n  direction: FirewallDirection.ingress,\n  priority: TfArg.literal(1000),\n  rulePolicy: ComputeFirewallAllowPolicy(\n    protocol: TfArg.literal(\'tcp\'),\n    ports: [\'22\'],\n  ),\n  sourceRanges: TfArg.literal([\'10.0.0.0/8\']),\n);\n```\n\nComposition pattern: extends `Resource` for runtime behavior. The\n`allow` / `deny` list-typed blocks and the single `log_config` block\nare modeled as helper classes in the `prelude` below.',
+        'Factory wrapper for `google_compute_firewall`.\n\nEach network has its own firewall controlling access to and from the\ninstances.\n\nAll traffic to instances, even from other instances, is blocked by the\nfirewall unless firewall rules are created to allow it.\n\nThe default network has automatically created firewall rules that are shown\nin default firewall rules. No manually created network has automatically\ncreated firewall rules except for a default "allow" rule for outgoing\ntraffic and a default "deny" for incoming traffic. For all networks except\nthe default network, you must create any firewall rules you need.\n\nThis resource models a VPC firewall rule.\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_compute_firewall.`).\n- `name`: GCP firewall rule name.\n- `network`: VPC network this rule attaches to. Typically\n  `vpc.ref` where `vpc` is a `GoogleComputeNetwork`.\n\nChoose exactly one [ComputeFirewallRulePolicy]: `.allow([...])`\npermits matching traffic, `.deny([...])` blocks it.\n\nExample:\n```dart\nfinal allowSsh = GoogleComputeFirewall(\n  \'allow_ssh\',\n  name: TfArg.literal(\'allow-ssh\'),\n  network: vpc.ref,\n  direction: FirewallDirection.ingress,\n  priority: TfArg.literal(1000),\n  rulePolicy: .allow([\n    .new(protocol: .literal(\'tcp\'), ports: .literal([\'22\'])),\n  ]),\n  sourceRanges: TfArg.literal([\'10.0.0.0/8\']),\n);\n```\n\nComposition pattern: extends `Resource` for runtime behavior. The\nsingle `log_config` block is modeled as a helper class in the\n`prelude` below.',
   ),
   CatalogEntry(
     tfType: 'google_compute_firewall_policy',

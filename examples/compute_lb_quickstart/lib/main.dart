@@ -708,7 +708,9 @@ final class ComputeLbStack extends Stack {
         name: .literal('app-allow-lb-health'),
         network: lbVpc.ref,
         direction: .ingress,
-        rulePolicy: .allow(protocol: .literal('tcp'), ports: ['443']),
+        rulePolicy: .allow([
+          .new(protocol: .literal('tcp'), ports: .literal(['443'])),
+        ]),
         sourceRanges: .literal(['130.211.0.0/22', '35.191.0.0/16']),
       ),
     );

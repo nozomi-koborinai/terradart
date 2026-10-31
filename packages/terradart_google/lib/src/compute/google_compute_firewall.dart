@@ -50,62 +50,6 @@ extension type const FirewallLogMetadata._(TfArg<String> _)
   ];
 }
 
-// ===========================================================================
-// ComputeFirewallRulePolicy — sealed (allow | deny)
-// ===========================================================================
-
-sealed class ComputeFirewallRulePolicy {
-  const ComputeFirewallRulePolicy();
-
-  const factory ComputeFirewallRulePolicy.allow({
-    required TfArg<String> protocol,
-    List<String>? ports,
-    List<ComputeFirewallAllowRule> additionalRules,
-  }) = ComputeFirewallAllowPolicy;
-
-  const factory ComputeFirewallRulePolicy.deny({
-    required TfArg<String> protocol,
-    List<String>? ports,
-    List<ComputeFirewallDenyRule> additionalRules,
-  }) = ComputeFirewallDenyPolicy;
-  @internal
-  String get blockKey;
-  @internal
-  List<Map<String, Object?>> encode();
-}
-
-/// One `allow` entry: an IP protocol plus optional list of port specs.
-///
-/// `protocol` is a string rather than an enum because GCP accepts both
-/// well-known names (`tcp`, `udp`, `icmp`, `esp`, `ah`, `sctp`, `ipip`,
-/// `all`) and raw IANA protocol numbers (e.g. `'47'` for GRE).
-///
-/// `ports` entries can be a single port (`'22'`) or a range (`'8000-9000'`).
-/// Leave `ports` null when `protocol` does not support ports
-/// (e.g. `icmp`, `esp`).
-class ComputeFirewallAllowRule {
-  const ComputeFirewallAllowRule({required this.protocol, this.ports});
-  final TfArg<String> protocol;
-  final List<String>? ports;
-  Map<String, Object?> toArgMap() => {
-    'protocol': protocol.toTfJson(),
-    if (ports != null) 'ports': ports,
-  };
-}
-
-/// One `deny` entry. Same shape as [ComputeFirewallAllowRule]; kept separate so
-/// caller intent is obvious at the call site (`allow:` vs `deny:` lists
-/// are mutually exclusive per GCP API).
-class ComputeFirewallDenyRule {
-  const ComputeFirewallDenyRule({required this.protocol, this.ports});
-  final TfArg<String> protocol;
-  final List<String>? ports;
-  Map<String, Object?> toArgMap() => {
-    'protocol': protocol.toTfJson(),
-    if (ports != null) 'ports': ports,
-  };
-}
-
 /// Firewall logging configuration (single block, max_items=1).
 /// Setting this enables Cloud Logging export for matched traffic.
 class ComputeFirewallLogConfig {
@@ -114,46 +58,113 @@ class ComputeFirewallLogConfig {
   Map<String, Object?> toArgMap() => {'metadata': metadata.toTfJson()};
 }
 
-@immutable
-final class ComputeFirewallAllowPolicy extends ComputeFirewallRulePolicy {
-  const ComputeFirewallAllowPolicy({
-    required this.protocol,
-    this.ports,
-    this.additionalRules = const [],
-  });
-  final TfArg<String> protocol;
-  final List<String>? ports;
-  final List<ComputeFirewallAllowRule> additionalRules;
-  @override
+/// Exactly one of `allow`, `deny` on `google_compute_firewall`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.allow(...)`.
+sealed class ComputeFirewallRulePolicy {
+  const ComputeFirewallRulePolicy();
+
+  /// Sets `allow`.
+  const factory ComputeFirewallRulePolicy.allow(
+    List<ComputeFirewallAllow> allow,
+  ) = ComputeFirewallRulePolicyAllow;
+
+  /// Sets `deny`.
+  const factory ComputeFirewallRulePolicy.deny(List<ComputeFirewallDeny> deny) =
+      ComputeFirewallRulePolicyDeny;
+
+  /// The Terraform argument this choice sets.
   @internal
-  String get blockKey => 'allow';
-  @override
+  String get blockKey;
+
   @internal
-  List<Map<String, Object?>> encode() => [
-    {'protocol': protocol.toTfJson(), if (ports != null) 'ports': ports},
-    ...additionalRules.map((r) => r.toArgMap()),
-  ];
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  @internal
+  Map<String, TfArg<Object?>> get argMap;
 }
 
-@immutable
-final class ComputeFirewallDenyPolicy extends ComputeFirewallRulePolicy {
-  const ComputeFirewallDenyPolicy({
-    required this.protocol,
-    this.ports,
-    this.additionalRules = const [],
-  });
-  final TfArg<String> protocol;
-  final List<String>? ports;
-  final List<ComputeFirewallDenyRule> additionalRules;
-  @override
+/// The [ComputeFirewallRulePolicy.allow] choice: sets `allow`.
+final class ComputeFirewallRulePolicyAllow extends ComputeFirewallRulePolicy {
+  const ComputeFirewallRulePolicyAllow(this.allow);
+
+  final List<ComputeFirewallAllow> allow;
+
   @internal
+  @override
+  String get blockKey => 'allow';
+
+  @internal
+  @override
+  Map<String, Object?> encode() => {
+    'allow': [for (final e in allow) e.encode()],
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'allow': TfArg.literal([for (final e in allow) e.encode()]),
+  };
+}
+
+/// The [ComputeFirewallRulePolicy.deny] choice: sets `deny`.
+final class ComputeFirewallRulePolicyDeny extends ComputeFirewallRulePolicy {
+  const ComputeFirewallRulePolicyDeny(this.deny);
+
+  final List<ComputeFirewallDeny> deny;
+
+  @internal
+  @override
   String get blockKey => 'deny';
-  @override
+
   @internal
-  List<Map<String, Object?>> encode() => [
-    {'protocol': protocol.toTfJson(), if (ports != null) 'ports': ports},
-    ...additionalRules.map((r) => r.toArgMap()),
-  ];
+  @override
+  Map<String, Object?> encode() => {
+    'deny': [for (final e in deny) e.encode()],
+  };
+
+  @internal
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'deny': TfArg.literal([for (final e in deny) e.encode()]),
+  };
+}
+
+/// Typed helper for the `allow` block of
+/// `google_compute_firewall` (derived from provider schema).
+@immutable
+final class ComputeFirewallAllow {
+  const ComputeFirewallAllow({this.ports, required this.protocol});
+
+  final TfArg<List<String>>? ports;
+
+  final TfArg<String> protocol;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'ports': ?ports?.toTfJson(),
+    'protocol': protocol.toTfJson(),
+  };
+}
+
+/// Typed helper for the `deny` block of
+/// `google_compute_firewall` (derived from provider schema).
+@immutable
+final class ComputeFirewallDeny {
+  const ComputeFirewallDeny({this.ports, required this.protocol});
+
+  final TfArg<List<String>>? ports;
+
+  final TfArg<String> protocol;
+
+  @internal
+  Map<String, Object?> encode() => {
+    'ports': ?ports?.toTfJson(),
+    'protocol': protocol.toTfJson(),
+  };
 }
 
 /// Typed helper for the `params` block of
@@ -193,9 +204,8 @@ final class ComputeFirewallParams {
 /// - `network`: VPC network this rule attaches to. Typically
 ///   `vpc.ref` where `vpc` is a `GoogleComputeNetwork`.
 ///
-/// Choose exactly one [ComputeFirewallRulePolicy]:
-/// - [ComputeFirewallAllowPolicy] — permit matching traffic.
-/// - [ComputeFirewallDenyPolicy] — block matching traffic.
+/// Choose exactly one [ComputeFirewallRulePolicy]: `.allow([...])`
+/// permits matching traffic, `.deny([...])` blocks it.
 ///
 /// Example:
 /// ```dart
@@ -205,17 +215,16 @@ final class ComputeFirewallParams {
 ///   network: vpc.ref,
 ///   direction: FirewallDirection.ingress,
 ///   priority: TfArg.literal(1000),
-///   rulePolicy: ComputeFirewallAllowPolicy(
-///     protocol: TfArg.literal('tcp'),
-///     ports: ['22'],
-///   ),
+///   rulePolicy: .allow([
+///     .new(protocol: .literal('tcp'), ports: .literal(['22'])),
+///   ]),
 ///   sourceRanges: TfArg.literal(['10.0.0.0/8']),
 /// );
 /// ```
 ///
 /// Composition pattern: extends `Resource` for runtime behavior. The
-/// `allow` / `deny` list-typed blocks and the single `log_config` block
-/// are modeled as helper classes in the `prelude` below.
+/// single `log_config` block is modeled as a helper class in the
+/// `prelude` below.
 final class GoogleComputeFirewall extends Resource {
   static const String tfType = 'google_compute_firewall';
 
@@ -262,7 +271,7 @@ final class GoogleComputeFirewall extends Resource {
            'description': ?description,
            if (params != null) 'params': TfArg.literal(params.encode()),
            'project': ?project,
-           rulePolicy.blockKey: TfArg.literal(rulePolicy.encode()),
+           ...rulePolicy.argMap,
          },
        );
 
