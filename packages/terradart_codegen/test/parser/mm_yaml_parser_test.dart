@@ -64,6 +64,20 @@ properties:
       expect(result.fieldOverrides['desired_state']!.enumValues, ['RUNNING']);
     });
 
+    test('a hint file keys its properties by api_name alone', () {
+      final result = const MmYamlParser().parseString('''
+properties:
+  - api_name: configuration
+    properties:
+      - api_name: resource_types
+        enum_values: [A, B]
+''');
+      expect(
+        result.fieldOverrides['configuration.resource_types']!.enumValues,
+        ['A', 'B'],
+      );
+    });
+
     test('validation.regex / minLength / maxLength are surfaced', () {
       final result = const MmYamlParser().parseString(yaml);
       final c = result.fieldOverrides['name']!;

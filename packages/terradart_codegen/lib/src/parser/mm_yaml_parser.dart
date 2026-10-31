@@ -255,7 +255,7 @@ class MmYamlParser {
     List<List<String>>? groupSink,
     _Relations pathSink,
   ) {
-    final tfName = _toSnakeCase(prop['name'] as String);
+    final tfName = _terraformName(prop);
     final fullKey = prefix.isEmpty ? tfName : '$prefix.$tfName';
     // Terraform lifts a `flatten_object` property's fields into its parent.
     final childPrefix = prop['flatten_object'] == true ? prefix : fullKey;
@@ -307,7 +307,7 @@ class MmYamlParser {
             (n) => pathSink.outputs.contains(
               [
                 if (childPrefix.isNotEmpty) childPrefix,
-                _toSnakeCase((n as YamlMap)['name'] as String),
+                _terraformName(n as YamlMap),
               ].join('.'),
             ),
           )) {
@@ -443,6 +443,12 @@ class MmYamlParser {
       c.maxLength != null ||
       c.enumValues != null ||
       c.deprecationMessage != null;
+
+  /// The Terraform name of [prop]: its snake-cased MM `name`, else the
+  /// `api_name` a provider hint file keys its properties by.
+  String _terraformName(YamlMap prop) => prop['name'] is String
+      ? _toSnakeCase(prop['name'] as String)
+      : prop['api_name'] as String;
 
   /// The Terraform name of an MM `name` (lowerCamelCase; `api_name` is the
   /// REST field, never the Terraform one), snake-cased the way the provider
