@@ -215,10 +215,6 @@ extension type const VertexAiEndpointWithModelGardenDeploymentAcceleratorType._(
     TfArg<String> arg,
   ) : this._(arg);
 
-  static const acceleratorTypeUnspecified =
-      VertexAiEndpointWithModelGardenDeploymentAcceleratorType._(
-        TfArgLiteral('ACCELERATOR_TYPE_UNSPECIFIED'),
-      );
   static const nvidiaTeslaK80 =
       VertexAiEndpointWithModelGardenDeploymentAcceleratorType._(
         TfArgLiteral('NVIDIA_TESLA_K80'),
@@ -267,6 +263,14 @@ extension type const VertexAiEndpointWithModelGardenDeploymentAcceleratorType._(
       VertexAiEndpointWithModelGardenDeploymentAcceleratorType._(
         TfArgLiteral('NVIDIA_B200'),
       );
+  static const nvidiaGb200 =
+      VertexAiEndpointWithModelGardenDeploymentAcceleratorType._(
+        TfArgLiteral('NVIDIA_GB200'),
+      );
+  static const nvidiaRtxPro6000 =
+      VertexAiEndpointWithModelGardenDeploymentAcceleratorType._(
+        TfArgLiteral('NVIDIA_RTX_PRO_6000'),
+      );
   static const tpuV2 =
       VertexAiEndpointWithModelGardenDeploymentAcceleratorType._(
         TfArgLiteral('TPU_V2'),
@@ -286,7 +290,6 @@ extension type const VertexAiEndpointWithModelGardenDeploymentAcceleratorType._(
 
   static const List<VertexAiEndpointWithModelGardenDeploymentAcceleratorType>
   values = [
-    acceleratorTypeUnspecified,
     nvidiaTeslaK80,
     nvidiaTeslaP100,
     nvidiaTeslaV100,
@@ -299,6 +302,8 @@ extension type const VertexAiEndpointWithModelGardenDeploymentAcceleratorType._(
     nvidiaH100Mega80gb,
     nvidiaH200141gb,
     nvidiaB200,
+    nvidiaGb200,
+    nvidiaRtxPro6000,
     tpuV2,
     tpuV3,
     tpuV4Pod,
@@ -345,10 +350,6 @@ extension type const VertexAiEndpointWithModelGardenDeploymentReservationAffinit
     TfArg<String> arg,
   ) : this._(arg);
 
-  static const typeUnspecified =
-      VertexAiEndpointWithModelGardenDeploymentReservationAffinityType._(
-        TfArgLiteral('TYPE_UNSPECIFIED'),
-      );
   static const noReservation =
       VertexAiEndpointWithModelGardenDeploymentReservationAffinityType._(
         TfArgLiteral('NO_RESERVATION'),
@@ -365,12 +366,7 @@ extension type const VertexAiEndpointWithModelGardenDeploymentReservationAffinit
   static const List<
     VertexAiEndpointWithModelGardenDeploymentReservationAffinityType
   >
-  values = [
-    typeUnspecified,
-    noReservation,
-    anyReservation,
-    specificReservation,
-  ];
+  values = [noReservation, anyReservation, specificReservation];
 }
 
 /// Typed helper for the `endpoint_config` block of

@@ -100,9 +100,6 @@ google:
   google_bigquery_dataset.access.special_group:
     values: [projectOwners, projectReaders, projectWriters, allAuthenticatedUsers]
     source: no-enum
-  google_bigquery_dataset_access.dataset.target_types:
-    values: [VIEWS]
-    source: no-enum
   google_bigquery_dataset_access.special_group:
     values: [projectOwners, projectReaders, projectWriters, allAuthenticatedUsers]
     source: no-enum
@@ -326,9 +323,6 @@ google:
     source: no-enum
   google_composer_environment.config.database_config.machine_type:
     values: [db-n1-standard-2, db-n1-standard-4, db-n1-standard-8, db-n1-standard-16]
-    source: no-enum
-  google_composer_environment.config.private_environment_config.connection_type:
-    values: [VPC_PEERING, PRIVATE_SERVICE_CONNECT]
     source: no-enum
   google_composer_environment.config.software_config.web_server_plugins_mode:
     values: [ENABLED, DISABLED]
@@ -662,28 +656,36 @@ google:
     source: no-enum
   google_dns_record_set.routing_policy.geo.health_checked_targets.internal_load_balancers.ip_protocol:
     values: [tcp, udp]
-    source: no-enum
+    upstream: [undefined, tcp, udp]
+    disagrees: 'the hand-written provider resource validates tcp and udp (resource_dns_record_set.go StringInSlice); undefined is the Discovery enum unset value, spelled in lower case like the others'
   google_dns_record_set.routing_policy.geo.health_checked_targets.internal_load_balancers.load_balancer_type:
     values: [regionalL4ilb, regionalL7ilb, globalL7ilb]
-    source: no-enum
+    upstream: [none, globalL7ilb, regionalL4ilb, regionalL7ilb]
+    disagrees: 'the hand-written provider resource validates regionalL4ilb, regionalL7ilb and globalL7ilb (resource_dns_record_set.go StringInSlice); none is the Discovery enum unset value'
   google_dns_record_set.routing_policy.primary_backup.backup_geo.health_checked_targets.internal_load_balancers.ip_protocol:
     values: [tcp, udp]
-    source: no-enum
+    upstream: [undefined, tcp, udp]
+    disagrees: 'the hand-written provider resource validates tcp and udp (resource_dns_record_set.go StringInSlice); undefined is the Discovery enum unset value, spelled in lower case like the others'
   google_dns_record_set.routing_policy.primary_backup.backup_geo.health_checked_targets.internal_load_balancers.load_balancer_type:
     values: [regionalL4ilb, regionalL7ilb, globalL7ilb]
-    source: no-enum
+    upstream: [none, globalL7ilb, regionalL4ilb, regionalL7ilb]
+    disagrees: 'the hand-written provider resource validates regionalL4ilb, regionalL7ilb and globalL7ilb (resource_dns_record_set.go StringInSlice); none is the Discovery enum unset value'
   google_dns_record_set.routing_policy.primary_backup.primary.health_checked_targets.internal_load_balancers.ip_protocol:
     values: [tcp, udp]
-    source: no-enum
+    upstream: [undefined, tcp, udp]
+    disagrees: 'the hand-written provider resource validates tcp and udp (resource_dns_record_set.go StringInSlice); undefined is the Discovery enum unset value, spelled in lower case like the others'
   google_dns_record_set.routing_policy.primary_backup.primary.health_checked_targets.internal_load_balancers.load_balancer_type:
     values: [regionalL4ilb, regionalL7ilb, globalL7ilb]
-    source: no-enum
+    upstream: [none, globalL7ilb, regionalL4ilb, regionalL7ilb]
+    disagrees: 'the hand-written provider resource validates regionalL4ilb, regionalL7ilb and globalL7ilb (resource_dns_record_set.go StringInSlice); none is the Discovery enum unset value'
   google_dns_record_set.routing_policy.wrr.health_checked_targets.internal_load_balancers.ip_protocol:
     values: [tcp, udp]
-    source: no-enum
+    upstream: [undefined, tcp, udp]
+    disagrees: 'the hand-written provider resource validates tcp and udp (resource_dns_record_set.go StringInSlice); undefined is the Discovery enum unset value, spelled in lower case like the others'
   google_dns_record_set.routing_policy.wrr.health_checked_targets.internal_load_balancers.load_balancer_type:
     values: [regionalL4ilb, regionalL7ilb, globalL7ilb]
-    source: no-enum
+    upstream: [none, globalL7ilb, regionalL4ilb, regionalL7ilb]
+    disagrees: 'the hand-written provider resource validates regionalL4ilb, regionalL7ilb and globalL7ilb (resource_dns_record_set.go StringInSlice); none is the Discovery enum unset value'
   google_dns_record_set.type:
     values: [A, AAAA, CNAME, MX, TXT, NS, SOA, PTR, SRV, CAA]
     source: no-enum
@@ -942,12 +944,6 @@ google:
     source: no-enum
   google_storage_notification.payload_format:
     values: [JSON_API_V1, NONE]
-    source: no-enum
-  google_vertex_ai_endpoint_with_model_garden_deployment.deploy_config.dedicated_resources.machine_spec.accelerator_type:
-    values: [ACCELERATOR_TYPE_UNSPECIFIED, NVIDIA_TESLA_K80, NVIDIA_TESLA_P100, NVIDIA_TESLA_V100, NVIDIA_TESLA_P4, NVIDIA_TESLA_T4, NVIDIA_TESLA_A100, NVIDIA_A100_80GB, NVIDIA_L4, NVIDIA_H100_80GB, NVIDIA_H100_MEGA_80GB, NVIDIA_H200_141GB, NVIDIA_B200, TPU_V2, TPU_V3, TPU_V4_POD, TPU_V5_LITEPOD]
-    source: no-enum
-  google_vertex_ai_endpoint_with_model_garden_deployment.deploy_config.dedicated_resources.machine_spec.reservation_affinity.reservation_affinity_type:
-    values: [TYPE_UNSPECIFIED, NO_RESERVATION, ANY_RESERVATION, SPECIFIC_RESERVATION]
     source: no-enum
   google_vertex_ai_endpoint_with_model_garden_deployment.model_config.container_spec.health_probe.http_get.scheme:
     values: [HTTP, HTTPS]

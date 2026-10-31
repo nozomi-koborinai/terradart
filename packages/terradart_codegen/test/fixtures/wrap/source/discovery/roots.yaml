@@ -5,7 +5,7 @@
 # and fails the wrap gate when a document no longer matches its digest.
 provider_version: 8.8.1
 upstream_ref: 62273cb679bf27bd33e40ee33ab7e4dc43e608f8
-hand_roots: a888e6c97abdc83e
+hand_roots: 8aa1ba0a2a96bfe5
 digests:
   accessapproval.v1: 2e1a675eef1c5406c3da02c23243b3807bb659f8376244e5add2773d56cfa11c
   accesscontextmanager.v1: 16b1703745319e4b5ce71376ed19bc010fff2aa3b60ca5b82fba058932c473cc
@@ -522,6 +522,8 @@ resources:
   google_bigquery_dataset_access:
     doc: bigquery.v2
     schema: Dataset
+    paths:
+      dataset: access.dataset
   google_bigquery_dataset_iam_binding: null  # no Magic Modules YAML and no hand root
   google_bigquery_dataset_iam_member: null  # no Magic Modules YAML and no hand root
   google_bigquery_dataset_iam_policy: null  # no Magic Modules YAML and no hand root
@@ -815,6 +817,8 @@ resources:
   google_composer_environment:
     doc: composer.v1
     schema: Environment
+    paths:
+      config.private_environment_config.connection_type: config.privateEnvironmentConfig.networkingConfig.connectionType
   google_composer_user_workloads_config_map:
     doc: composer.v1
     schema: UserWorkloadsConfigMap
@@ -1734,6 +1738,11 @@ resources:
   google_dns_record_set:
     doc: dns.v1
     schema: ResourceRecordSet
+    paths:
+      routing_policy.geo: routingPolicy.geo.items
+      routing_policy.wrr: routingPolicy.wrr.items
+      routing_policy.primary_backup.primary.health_checked_targets: routingPolicy.primaryBackup.primaryTargets
+      routing_policy.primary_backup.backup_geo: routingPolicy.primaryBackup.backupGeoTargets.items
   google_dns_response_policy:
     doc: dns.v1
     schema: ResponsePolicy
@@ -3042,6 +3051,8 @@ resources:
   google_vertex_ai_endpoint_with_model_garden_deployment:
     doc: aiplatform.v1
     schema: GoogleCloudAiplatformV1Endpoint
+    paths:
+      deploy_config: deployedModels
   google_vertex_ai_evaluation_metric:
     doc: aiplatform.v1
     schema: GoogleCloudAiplatformV1EvaluationMetric
@@ -3324,6 +3335,8 @@ data_sources:
   google_composer_environment:
     doc: composer.v1
     schema: Environment
+    paths:
+      config.private_environment_config.connection_type: config.privateEnvironmentConfig.networkingConfig.connectionType
   google_composer_image_versions: null  # no Magic Modules YAML and no hand root
   google_composer_user_workloads_config_map:
     doc: composer.v1
@@ -3607,6 +3620,11 @@ data_sources:
   google_dns_record_set:
     doc: dns.v1
     schema: ResourceRecordSet
+    paths:
+      routing_policy.geo: routingPolicy.geo.items
+      routing_policy.wrr: routingPolicy.wrr.items
+      routing_policy.primary_backup.primary.health_checked_targets: routingPolicy.primaryBackup.primaryTargets
+      routing_policy.primary_backup.backup_geo: routingPolicy.primaryBackup.backupGeoTargets.items
   google_dns_record_sets: null  # no Magic Modules YAML and no hand root
   google_endpoints_service_consumers_iam_policy: null  # no Magic Modules YAML and no hand root
   google_endpoints_service_iam_policy: null  # no Magic Modules YAML and no hand root

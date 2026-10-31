@@ -50,7 +50,7 @@ prelude: |
   }
 
   /// Target resource types an authorized [BigqueryDatasetAccessAuthorizedDataset]
-  /// applies to. Currently only views are supported.
+  /// applies to.
   extension type const BigqueryDatasetAccessDatasetTargetType._(TfArg<String> _) implements TfArg<String> {
     BigqueryDatasetAccessDatasetTargetType.variable(String name) : this._(TfArg.variable(name));
     BigqueryDatasetAccessDatasetTargetType.expression(String template) : this._(TfArg.expression(template));
@@ -59,7 +59,10 @@ prelude: |
     /// The entry applies to views in the dataset.
     static const views = BigqueryDatasetAccessDatasetTargetType._(TfArgLiteral('VIEWS'));
 
-    static const List<BigqueryDatasetAccessDatasetTargetType> values = [views];
+    /// The entry applies to routines in the dataset.
+    static const routines = BigqueryDatasetAccessDatasetTargetType._(TfArgLiteral('ROUTINES'));
+
+    static const List<BigqueryDatasetAccessDatasetTargetType> values = [views, routines];
   }
 
   /// A reference to a BigQuery dataset (`project_id` + `dataset_id`).

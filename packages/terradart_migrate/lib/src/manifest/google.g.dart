@@ -330081,7 +330081,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     ),
     'BigqueryDatasetAccessDatasetTargetType': MigrateEnum(
       name: 'BigqueryDatasetAccessDatasetTargetType',
-      members: <String, String>{'VIEWS': 'views'},
+      members: <String, String>{'VIEWS': 'views', 'ROUTINES': 'routines'},
     ),
     'BigqueryDatasetAccessPredefinedGroup': MigrateEnum(
       name: 'BigqueryDatasetAccessPredefinedGroup',
@@ -342670,7 +342670,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'VertexAiEndpointWithModelGardenDeploymentAcceleratorType': MigrateEnum(
       name: 'VertexAiEndpointWithModelGardenDeploymentAcceleratorType',
       members: <String, String>{
-        'ACCELERATOR_TYPE_UNSPECIFIED': 'acceleratorTypeUnspecified',
         'NVIDIA_TESLA_K80': 'nvidiaTeslaK80',
         'NVIDIA_TESLA_P100': 'nvidiaTeslaP100',
         'NVIDIA_TESLA_V100': 'nvidiaTeslaV100',
@@ -342683,6 +342682,8 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'NVIDIA_H100_MEGA_80GB': 'nvidiaH100Mega80gb',
         'NVIDIA_H200_141GB': 'nvidiaH200141gb',
         'NVIDIA_B200': 'nvidiaB200',
+        'NVIDIA_GB200': 'nvidiaGb200',
+        'NVIDIA_RTX_PRO_6000': 'nvidiaRtxPro6000',
         'TPU_V2': 'tpuV2',
         'TPU_V3': 'tpuV3',
         'TPU_V4_POD': 'tpuV4Pod',
@@ -342694,7 +342695,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           name:
               'VertexAiEndpointWithModelGardenDeploymentReservationAffinityType',
           members: <String, String>{
-            'TYPE_UNSPECIFIED': 'typeUnspecified',
             'NO_RESERVATION': 'noReservation',
             'ANY_RESERVATION': 'anyReservation',
             'SPECIFIC_RESERVATION': 'specificReservation',

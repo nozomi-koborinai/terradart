@@ -44,11 +44,7 @@ LaneSources _sources() => LaneSources(
       },
     },
     resources: {
-      _discoveryType: (
-        doc: 'thing.v1',
-        schema: 'Thing',
-        paths: const {},
-      ),
+      _discoveryType: (doc: 'thing.v1', schema: 'Thing', paths: const {}),
     },
     dataSources: const {},
   ),
@@ -91,10 +87,7 @@ void main() {
       test('$lane: every emitted enum is placed on a site', () {
         expect(universe.failures, isEmpty);
         final emitted = emittedEnums(coordinates.outputPackage);
-        expect(
-          emitted.map((e) => e.name).toSet(),
-          manifest.enums.keys.toSet(),
-        );
+        expect(emitted.map((e) => e.name).toSet(), manifest.enums.keys.toSet());
         expect(
           inputs.length,
           greaterThan(stringInputs(manifest).length),
@@ -239,6 +232,13 @@ void main() {
         ]);
       });
 
+      test('$lane: every Discovery attachment names its input', () {
+        expect(
+          checkAttachments(inputs, sources, laneAttachmentRules(lane)),
+          isEmpty,
+        );
+      });
+
       test('$lane: a seeded drift in a prose entry fails', () {
         if (prose.isEmpty) return;
         final label = prose.keys.first;
@@ -250,6 +250,120 @@ void main() {
         expect(check.failures, [contains('$label: $proseSourcesPath lists')]);
       });
     }
+  });
+
+  group('checkAttachments', () {
+    final providersYaml = File('tool/providers.yaml').readAsStringSync();
+    final coordinates = discoveryLanes(providersYaml)['google']!;
+    final sources = LaneSources.load(coordinates.schemaDir);
+    final inputs = laneEnumSites(providersYaml, 'google').sites;
+    final rules = laneAttachmentRules('google');
+    const bigtable = 'google_bigtable_instance';
+    final key = _key(bigtable, 'instance_type');
+    LaneSources withPaths(Map<String, List<String>> paths) {
+      final root = sources.discovery.resources[bigtable]!;
+      return LaneSources(
+        mm: sources.mm,
+        discovery: DiscoveryEnums(
+          docs: sources.discovery.docs,
+          resources: {
+            ...sources.discovery.resources,
+            bigtable: (doc: root.doc, schema: root.schema, paths: paths),
+          },
+          dataSources: sources.discovery.dataSources,
+          parameters: sources.discovery.parameters,
+        ),
+      );
+    }
+
+    test('bigtable instance_type is attached to Instance.type', () {
+      expect(inputs[key], isNotNull);
+      expect(sources.discoveryEnum(key)?.field, 'Instance.type');
+    });
+
+    test('a dropped hand path relabeled no-enum fails', () {
+      final dropped = withPaths(const {});
+      expect(dropped.discoveryEnum(key), isNull);
+      final relabeled = checkSources(
+        {key: inputs[key]},
+        dropped,
+        {inputLabel(key): _entry(inputs[key]!, 'no-enum')},
+      );
+      expect(relabeled.failures, isEmpty, reason: 'the value check alone');
+      expect(checkAttachments(inputs, dropped, rules), [
+        allOf(
+          startsWith('$bigtable.instance_type: no Discovery enum is attached'),
+          contains('type'),
+        ),
+      ]);
+    });
+
+    test('a hand path to the wrong field fails', () {
+      final wrong = withPaths(const {
+        'instance_type': ['state'],
+      });
+      expect(wrong.discoveryEnum(key)?.field, 'Instance.state');
+      expect(checkAttachments(inputs, wrong, rules), [
+        allOf(
+          startsWith('$bigtable.instance_type: attached to Discovery'),
+          contains('Instance.state'),
+        ),
+      ]);
+    });
+
+    test('an alias admits a renamed field, and goes stale unused', () {
+      final wrong = withPaths(const {
+        'instance_type': ['state'],
+      });
+      final aliased = (
+        aliases: {
+          'instance_type': {'state': 'seeded'},
+        },
+        unrelated: <String, String>{},
+      );
+      expect(checkAttachments({key: inputs[key]}, wrong, aliased), isEmpty);
+      expect(checkAttachments({key: inputs[key]}, sources, aliased), [
+        contains('instance_type: state: stale'),
+      ]);
+    });
+
+    test('an unrelated entry admits a candidate, and goes stale', () {
+      final dropped = withPaths(const {});
+      final unrelated = (
+        aliases: <String, Map<String, String>>{},
+        unrelated: {inputLabel(key): 'seeded'},
+      );
+      expect(checkAttachments({key: inputs[key]}, dropped, unrelated), isEmpty);
+      expect(checkAttachments({key: inputs[key]}, sources, unrelated), [
+        contains('stale $discoveryAttachmentsPath unrelated entry (not an'),
+      ]);
+    });
+  });
+
+  group('discoveryLeafMatches', () {
+    test('accepts the same name, a plural and context words', () {
+      expect(discoveryLeafMatches('ip_protocol', 'IPProtocol', 'Rule'), isTrue);
+      expect(discoveryLeafMatches('target_type', 'targetTypes', 'X'), isTrue);
+      expect(discoveryLeafMatches('instance_type', 'type', 'Instance'), isTrue);
+      expect(
+        discoveryLeafMatches(
+          'logging_variant',
+          'loggingConfig.variantConfig.variant',
+          'Cluster',
+        ),
+        isTrue,
+      );
+      expect(discoveryLeafMatches('mode', 'V2Key?mode', 'V2Key'), isTrue);
+    });
+
+    test('rejects another field', () {
+      expect(
+        discoveryLeafMatches('instance_type', 'state', 'Instance'),
+        isFalse,
+      );
+      expect(discoveryLeafMatches('delete_rule', 'autoDelete', 'X'), isFalse);
+      expect(discoveryLeafMatches('cluster_type', 'type', 'Instance'), isFalse);
+    });
   });
 
   group('enumSites', () {
@@ -378,10 +492,7 @@ void main() {
 
     test('an enum placed on a plain string input fails', () {
       final check = enumSites(
-        {
-          ...inputs,
-          _key('google_x_job', 'kind'): null,
-        },
+        {...inputs, _key('google_x_job', 'kind'): null},
         manifest,
         [
           emitted('XJobState', 'kind', ['DRAFT', 'DONE']),

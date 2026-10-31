@@ -1,0 +1,22 @@
+# The reviewed exceptions of the Discovery attachment check
+# (tool/google_enum_sources.dart checkAttachments). Each enum site compared
+# against Discovery must be attached to a field that names it, and an enum
+# site with no attachment must have no same-named enum in its schema.
+#   aliases:   Terraform leaf → Discovery field leaf → why the two name one
+#              field
+#   unrelated: input label → why its schema's same-named enum is another
+#              field
+# An entry no site uses is stale.
+google:
+  aliases:
+    delete_rule:
+      autoDelete: >-
+        the provider names the stateful policy's preservedState autoDelete
+        rule delete_rule (ON_PERMANENT_INSTANCE_DELETION / NEVER)
+    network_tier:
+      defaultNetworkTier: >-
+        google_compute_project_default_network_tier sets the project's
+        defaultNetworkTier as network_tier
+    operator:
+      op: >-
+        the WAF exclusion field params spell the REST op field operator

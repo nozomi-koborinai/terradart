@@ -383,6 +383,232 @@ InputKey _parseLabel(String label) {
   return (sites: sites, failures: failures);
 }
 
+const discoveryAttachmentsPath = 'tool/discovery_attachments.yaml';
+
+/// The reviewed exceptions of [checkAttachments] for one lane: Terraform
+/// leaf → Discovery field leaf pairs that name one thing
+/// (`delete_rule` → `autoDelete`), and inputs whose Discovery schema has a
+/// same-named enum that is another field; each with why.
+typedef AttachmentRules = ({
+  Map<String, Map<String, String>> aliases,
+  Map<String, String> unrelated,
+});
+
+const AttachmentRules noAttachmentRules = (aliases: {}, unrelated: {});
+
+/// Parses one lane's section of tool/discovery_attachments.yaml.
+AttachmentRules parseAttachmentRules(String yamlText, String lane) {
+  final doc = loadYaml(yamlText);
+  final section = doc is YamlMap ? doc[lane] : null;
+  if (section is! YamlMap) return noAttachmentRules;
+  Map<String, String> strings(Object? node, String where) => {
+    for (final MapEntry(:key, :value)
+        in (node as YamlMap? ?? YamlMap()).entries)
+      '$key': value is String
+          ? value
+          : throw FormatException(
+              '$discoveryAttachmentsPath: $lane.$where.$key needs a reason',
+            ),
+  };
+  return (
+    aliases: {
+      for (final MapEntry(:key, :value)
+          in (section['aliases'] as YamlMap? ?? YamlMap()).entries)
+        '$key': strings(value, 'aliases.$key'),
+    },
+    unrelated: strings(section['unrelated'], 'unrelated'),
+  );
+}
+
+List<String> _words(String s) => s
+    .replaceAllMapped(RegExp('([a-z0-9])([A-Z])'), (m) => '${m[1]}_${m[2]}')
+    .toLowerCase()
+    .split(RegExp('[^a-z0-9]+'))
+    .where((w) => w.isNotEmpty)
+    .toList();
+
+bool _sameName(String a, String b) {
+  String norm(String s) => s.toLowerCase().replaceAll(RegExp('[^a-z0-9]'), '');
+  final (x, y) = (norm(a), norm(b));
+  return x == y ||
+      '${x}s' == y ||
+      '${y}s' == x ||
+      '${x}es' == y ||
+      '${y}es' == x ||
+      (x.endsWith('y') && '${x.substring(0, x.length - 1)}ies' == y) ||
+      (y.endsWith('y') && '${y.substring(0, y.length - 1)}ies' == x);
+}
+
+/// Whether [longer]'s words end with [shorter]'s and every word before
+/// them is in [context].
+bool _endsWithName(
+  List<String> longer,
+  List<String> shorter,
+  Set<String> context,
+) =>
+    shorter.isNotEmpty &&
+    longer.length >= shorter.length &&
+    _sameName(
+      longer.sublist(longer.length - shorter.length).join('_'),
+      shorter.join('_'),
+    ) &&
+    longer.sublist(0, longer.length - shorter.length).every(context.contains);
+
+/// Whether the Terraform leaf [tfLeaf] and the Discovery [field] (dotted
+/// below [schema]; `?param` for a method parameter) name one thing: the
+/// same letters or their plural, or one is the other with words of the
+/// schema or the field's parents in front (`instance_type` is
+/// `Instance.type`, `logging_variant` is `loggingConfig.variantConfig.variant`).
+bool discoveryLeafMatches(String tfLeaf, String field, String schema) {
+  final segments = field.split(RegExp(r'[.?]'));
+  final leaf = segments.last;
+  if (_sameName(tfLeaf, leaf)) return true;
+  final context = {
+    ..._words(schema),
+    for (final s in segments.take(segments.length - 1)) ..._words(s),
+  };
+  final (tf, discovery) = (_words(tfLeaf), _words(leaf));
+  return _endsWithName(tf, discovery, context) ||
+      _endsWithName(discovery, tf, context);
+}
+
+/// Every enum field below [root] in [schemas], dotted.
+List<String> discoveryEnumFields(Map<String, Object?> schemas, String root) {
+  final out = <String>[];
+  void walk(Object? node, List<String> path, Set<String> refs) {
+    for (var hops = 0; hops < 8 && node is Map; hops++) {
+      if (node['enum'] != null) {
+        out.add(path.join('.'));
+        return;
+      }
+      if (node['properties'] case final Map<String, Object?> props) {
+        for (final MapEntry(:key, :value) in props.entries) {
+          walk(value, [...path, '$key'], refs);
+        }
+        return;
+      }
+      if (node[r'$ref'] case final String ref) {
+        if (refs.contains(ref)) return;
+        refs = {...refs, ref};
+        node = schemas[ref];
+      } else {
+        node = node['items'] ?? node['additionalProperties'];
+      }
+    }
+  }
+
+  walk(schemas[root], const [], {root});
+  return out;
+}
+
+/// The enum fields of [key]'s Discovery schema a dropped or missing
+/// attachment would have found: those whose leaf [discoveryLeafMatches]
+/// [key]'s, at most two deep for a top-level input and else below a field
+/// named like [key]'s parent.
+List<String> discoveryCandidates(InputKey key, LaneSources sources) {
+  final root = (key.$1 == CatalogKind.dataSource
+      ? sources.discovery.dataSources
+      : sources.discovery.resources)[key.$2];
+  final schemas = root == null ? null : sources.discovery.docs[root.doc];
+  if (root == null || schemas == null) return const [];
+  final segments = key.$3.split('.');
+  final parent = segments.length > 1 ? segments[segments.length - 2] : null;
+  return [
+    for (final field in discoveryEnumFields(schemas, root.schema))
+      if (discoveryLeafMatches(segments.last, field, root.schema) &&
+          switch (parent) {
+            null => field.split('.').length <= 2,
+            final parent =>
+              field
+                  .split('.')
+                  .reversed
+                  .skip(1)
+                  .any(
+                    (a) =>
+                        _endsWithName(_words(a), _words(parent), const {}) ||
+                        _endsWithName(_words(parent), _words(a), const {}),
+                  ),
+          })
+        field,
+  ];
+}
+
+/// Checks each Discovery attachment of [sites] by name, independently of
+/// how it was found (a hand path, a Magic Modules REST path, the segment
+/// match): an attached field whose leaf does not name the input's fails
+/// unless [rules] aliases the pair, and an enum site with no attachment
+/// fails when its schema has a [discoveryCandidates] field, unless [rules]
+/// records it as unrelated. An exception nothing uses is stale.
+List<String> checkAttachments(
+  Map<InputKey, InputSite> sites,
+  LaneSources sources,
+  AttachmentRules rules,
+) {
+  final failures = <String>[];
+  final usedAliases = <(String, String)>{};
+  final usedUnrelated = <String>{};
+  for (final MapEntry(:key, value: emitted) in sites.entries) {
+    if (emitted == null || sources.mmValues(key) != null) continue;
+    final label = inputLabel(key);
+    final tfLeaf = key.$3.split('.').last;
+    if (sources.discoveryEnum(key) case final disc?) {
+      final cut = disc.field.indexOf(RegExp(r'[.?]'));
+      final schema = disc.field.substring(0, cut);
+      final field = disc.field.substring(cut + 1);
+      final leaf = field.split(RegExp(r'[.?]')).last;
+      if (discoveryLeafMatches(tfLeaf, field, schema)) continue;
+      if (rules.aliases[tfLeaf]?[leaf] != null) {
+        usedAliases.add((tfLeaf, leaf));
+        continue;
+      }
+      failures.add(
+        '$label: attached to Discovery ${disc.doc} ${disc.field}, which does '
+        'not name `$tfLeaf`; fix its hand path in tool/discovery_sources.yaml, '
+        'or record `$tfLeaf: $leaf` as an alias in $discoveryAttachmentsPath',
+      );
+      continue;
+    }
+    final candidates = discoveryCandidates(key, sources);
+    if (rules.unrelated.containsKey(label)) {
+      usedUnrelated.add(label);
+      if (candidates.isEmpty) {
+        failures.add(
+          '$label: stale $discoveryAttachmentsPath unrelated entry (its '
+          'schema has no same-named enum)',
+        );
+      }
+      continue;
+    }
+    if (candidates.isNotEmpty) {
+      failures.add(
+        '$label: no Discovery enum is attached, but its schema has '
+        '$candidates; attach it with a hand path in '
+        'tool/discovery_sources.yaml, or record why it is another field '
+        'under unrelated in $discoveryAttachmentsPath',
+      );
+    }
+  }
+  for (final MapEntry(key: tf, value: pairs) in rules.aliases.entries) {
+    for (final leaf in pairs.keys) {
+      if (!usedAliases.contains((tf, leaf))) {
+        failures.add(
+          '$tf: $leaf: stale $discoveryAttachmentsPath alias (no attachment '
+          'uses it)',
+        );
+      }
+    }
+  }
+  for (final label in rules.unrelated.keys) {
+    if (!usedUnrelated.contains(label)) {
+      failures.add(
+        '$label: stale $discoveryAttachmentsPath unrelated entry (not an '
+        'unattached enum site)',
+      );
+    }
+  }
+  return failures;
+}
+
 /// The machine sources of one discovery lane.
 final class LaneSources {
   LaneSources({required this.mm, required this.discovery});
@@ -689,6 +915,14 @@ Map<String, ({String schemaDir, String outputPackage})> discoveryLanes(
   );
 }
 
+/// [lane]'s section of tool/discovery_attachments.yaml.
+AttachmentRules laneAttachmentRules(String lane) {
+  final file = File(discoveryAttachmentsPath);
+  return file.existsSync()
+      ? parseAttachmentRules(file.readAsStringSync(), lane)
+      : noAttachmentRules;
+}
+
 String renderProseSources(Map<String, Map<String, ProseEntry>> lanes) {
   final out = StringBuffer()
     ..writeln(
@@ -753,12 +987,17 @@ void main(List<String> args) {
     providersYaml,
   ).entries) {
     final universe = laneEnumSites(providersYaml, lane);
+    final sources = LaneSources.load(coordinates.schemaDir);
     final check = checkSources(
       universe.sites,
-      LaneSources.load(coordinates.schemaDir),
+      sources,
       parseProseSources(proseText, lane),
     );
-    final failures = [...universe.failures, ...check.failures];
+    final failures = [
+      ...universe.failures,
+      ...check.failures,
+      ...checkAttachments(universe.sites, sources, laneAttachmentRules(lane)),
+    ];
     wanted[lane] = check.wanted;
     print(
       'google_enum_sources ($lane): ${check.mm} Magic Modules, '

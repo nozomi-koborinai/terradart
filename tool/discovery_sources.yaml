@@ -30,13 +30,24 @@ google:
     google_apikeys_key: {api: apikeys, version: v2, schema: V2Key}
     google_app_engine_application: {api: appengine, version: v1, schema: Application}
     google_assured_workloads_workload: {api: assuredworkloads, version: v1, schema: GoogleCloudAssuredworkloadsV1Workload}
+    google_bigquery_dataset_access:
+      api: bigquery
+      version: v2
+      schema: Dataset
+      paths:
+        dataset: access.dataset
     google_bigtable_instance:
       api: bigtableadmin
       version: v2
       schema: Instance
       paths:
         instance_type: type
-    google_composer_environment: {api: composer, version: v1, schema: Environment}
+    google_composer_environment:
+      api: composer
+      version: v1
+      schema: Environment
+      paths:
+        config.private_environment_config.connection_type: config.privateEnvironmentConfig.networkingConfig.connectionType
     google_compute_attached_disk: {api: compute, version: v1, schema: AttachedDisk}
     google_compute_global_address: {api: compute, version: v1, schema: Address}
     google_compute_instance: &compute_instance
@@ -141,7 +152,15 @@ google:
         cluster_config: config
         cluster_config.preemptible_worker_config: config.secondaryWorkerConfig
     google_dataproc_workflow_template: {api: dataproc, version: v1, schema: WorkflowTemplate}
-    google_dns_record_set: {api: dns, version: v1, schema: ResourceRecordSet}
+    google_dns_record_set:
+      api: dns
+      version: v1
+      schema: ResourceRecordSet
+      paths:
+        routing_policy.geo: routingPolicy.geo.items
+        routing_policy.wrr: routingPolicy.wrr.items
+        routing_policy.primary_backup.primary.health_checked_targets: routingPolicy.primaryBackup.primaryTargets
+        routing_policy.primary_backup.backup_geo: routingPolicy.primaryBackup.backupGeoTargets.items
     google_firebaserules_ruleset: {api: firebaserules, version: v1, schema: Ruleset}
     google_folder_iam_audit_config: &audit_config
       api: cloudresourcemanager
@@ -172,6 +191,12 @@ google:
     google_storage_bucket_object: {api: storage, version: v1, schema: Object}
     google_storage_notification: {api: storage, version: v1, schema: Notification}
     google_storage_transfer_job: {api: storagetransfer, version: v1, schema: TransferJob}
+    google_vertex_ai_endpoint_with_model_garden_deployment:
+      api: aiplatform
+      version: v1
+      schema: GoogleCloudAiplatformV1Endpoint
+      paths:
+        deploy_config: deployedModels
 google-beta:
   products:
     monitoring: {api: monitoring, version: v3}
