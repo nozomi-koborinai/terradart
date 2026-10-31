@@ -44,7 +44,7 @@ LunchApis addApisAndRepository(Stack stack) {
     GoogleArtifactRegistryRepository(
       'app_images',
       repositoryId: .literal(repositoryId),
-      format: .literal('DOCKER'),
+      format: .docker,
       location: .literal(region),
       description: .literal('Lunch Concierge demo container images'),
       dependsOn: apiDeps,
