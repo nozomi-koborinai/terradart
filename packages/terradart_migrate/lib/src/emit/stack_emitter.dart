@@ -1328,12 +1328,8 @@ final class StackEmitter {
         module: moduleName,
         stackClass: stackClass,
         migrated: List.unmodifiable(_migrated),
-        shapes: Set.unmodifiable({
-          for (final e in emitted.values) ...e.shapes,
-        }),
-        types: Set.unmodifiable({
-          for (final e in emitted.values) ...e.types,
-        }),
+        shapes: Set.unmodifiable({for (final e in emitted.values) ...e.shapes}),
+        types: Set.unmodifiable({for (final e in emitted.values) ...e.types}),
         kept: List.unmodifiable(_kept),
         warnings: List.unmodifiable(ctx.warnings),
         packages: packages,
