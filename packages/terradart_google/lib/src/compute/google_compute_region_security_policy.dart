@@ -206,6 +206,8 @@ final class ComputeRegionSecurityPolicyRulesMatchConfigChoice
   final SecurityPolicyRuleMatchVersionedExpr versionedExpr;
   final ComputeRegionSecurityPolicyRulesMatchConfig config;
 
+  /// The key `terradart migrate` tells this variant by. It has two
+  /// required fields, so the key cannot be inferred.
   @internal
   String get blockKey => 'versioned_expr';
 

@@ -6,8 +6,10 @@
 
 **Breaking (`terradart_google`).** `terradart migrate` now writes every
 Google input with its typed shape. Ten inputs had a hand-written shape that
-it could not build, so it kept their resources in Terraform. They now take
-the shape the rest of the package uses. The Terraform JSON for the same
+it could not build for every value, and it kept those resources in
+Terraform. For the four enum lists, that happened only with a whole-list
+variable or expression. They now take the shape the rest of the package
+uses. The Terraform JSON for the same
 value is unchanged.
 
 Four enum lists were a bare Dart list. They take `EnumList<E>`, so the
