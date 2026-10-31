@@ -25,52 +25,95 @@ omitted `pointInTimeRestore` still compiles. The 5.12.0 changelog adds
 ### Fixed value sets are enums
 
 **Breaking (`terradart_google`, `terradart_google_beta`, `terradart_aws`,
-`terradart_azure`, `terradart_cloudflare`).** 1374 inputs took a raw string,
+`terradart_azure`, `terradart_cloudflare`).** 1702 inputs took a raw string,
 or a list of strings, although the provider accepts only a fixed set of
-values. Each now takes an enum of that set. By package, 490 are in
-`terradart_google`, 10 in `terradart_google_beta`, 9 in `terradart_aws`, 738
+values. Each now takes an enum of that set. By package, 737 are in
+`terradart_google`, 20 in `terradart_google_beta`, 9 in `terradart_aws`, 809
 in `terradart_azure` and 127 in `terradart_cloudflare`. They include helper
-fields of nested blocks. The Google value sets come from Magic Modules
-`enum_values` (on nested blocks and list items too), else from the
-description. The description reader, shared by every package, reads
-`Possible values:` lists separated by commas or by spaces, `Allowed values`,
+fields of nested blocks, and 22 fields whose block also moved to a new
+helper or sealed variant (each listed with its new home).
+
+A value set comes from a checked-in machine source wherever one has it. On
+Google, Magic Modules `enum_values` come first (on nested blocks and list
+items too). An input Magic Modules leaves a plain string takes the enum that
+the Google API Discovery document of its API declares, read from the copy
+`tool/fetch_discovery_enums.dart` keeps beside the schema fixture, without
+the `*_UNSPECIFIED` sentinel. The aws, azure and Cloudflare value sets come
+from the provider hints, which the provider validators give. The description
+is the last resort, and the reader, shared by every package, reads `Possible
+values:` lists separated by commas or by spaces, `Allowed values`,
 `Supported values`, `Valid values` and `Accepted values`, `One of A or B`
 and `Must be one of` with or without quotes, `either A or B`, and a list of
 quoted values each on its own line with a description, or with a call shape
-such as `deny(403)`. The aws, azure and Cloudflare ones also come from the
-provider hints, which the provider validators give and which win over the
-description, and the Cloudflare ones from `Available values:` too. Where the
-upstream set is wrong, sits in prose no reader closes, or is only linked, an
-`enumValues` entry in the wrapper override gives it, checked against the
-REST reference or the API discovery document. Examples are the Google App
-Engine `instance_class` classes, the Discovery Engine data connector
-`entities.entity_name` names, the lower-case Apigee quota `time_unit` values
-and the linked Dialogflow CX `DataStoreType`. Pass a member with a dot
-shorthand. A value the enum does not list goes through
-`.arg(.literal(...))`. A single value still takes `.variable(...)` and
-`.expression(...)`. The 97 list inputs (an After of `List<...>`) take a Dart
-list of members, so each element still takes `.variable(...)` or
-`.expression(...)`, but the whole list can no longer be one variable or one
-expression. `activatedPolicyTypes: .variable('types')` stops compiling, and
-`activatedPolicyTypes: [.variable('type')]` works. The Terraform JSON for
-the same value is unchanged, the wire value of every member being the one
-the provider takes (`NoProxy` for the App Service
-`forward_proxy_convention`, `thresholds.$key` for
+such as `deny(403)`. The Cloudflare ones also come from `Available values:`.
+Where no source has the set right, an `enumValues` entry in the wrapper
+override gives it. Examples are the Google App Engine `instance_class`
+classes, the lower-case Apigee quota `time_unit` values, the linked
+Dialogflow CX `DataStoreType`, and the `BROKER` mirroring endpoint group
+type that the public Discovery document hides.
+
+Pass a member with a dot shorthand. A value the enum does not list goes
+through `.arg(.literal(...))`. A single value still takes `.variable(...)`
+and `.expression(...)`. The 133 list inputs take `EnumList<E>` from
+`terradart_core`, which is `TfArg<List<E>>`. Pass the members with
+`.literal([...])`. The whole list still takes `.variable(...)` or
+`.expression(...)`, and each member of a literal list takes its enum's
+`.variable(...)` or `.expression(...)`. Two of them were a bare Dart list
+(`List<String>` or `List<TfArg<String>>`), so their members now go inside
+`.literal(...)`. The Terraform JSON for the same value is unchanged, the
+wire value of every member being the one the provider takes (`NoProxy` for
+the App Service `forward_proxy_convention`, `thresholds.$key` for
 `cloudflare_api_shield_operations`).
+
+| Before | After |
+|---|---|
+| `GoogleAlloydbBackup('b', type: .literal('ON_DEMAND'), ...)` | `GoogleAlloydbBackup('b', type: .onDemand, ...)` |
+| `GoogleDataCatalogTaxonomy('t', activatedPolicyTypes: .literal(['FINE_GRAINED_ACCESS_CONTROL']), ...)` | `GoogleDataCatalogTaxonomy('t', activatedPolicyTypes: .literal([.fineGrainedAccessControl]), ...)` |
+| `GoogleDataCatalogTaxonomy('t', activatedPolicyTypes: .variable('types'), ...)` | `GoogleDataCatalogTaxonomy('t', activatedPolicyTypes: .variable('types'), ...)` (unchanged) |
+| `ComputeRouterBgp(asn: .literal(64514), advertisedGroups: ['ALL_SUBNETS'])` | `ComputeRouterBgp(asn: .literal(64514), advertisedGroups: .literal([.allSubnets]))` |
+| `BigqueryDatasetAccessChild(dataset: ..., targetTypes: [.literal('VIEWS')])` | `BigqueryDatasetAccessChild(dataset: ..., targetTypes: .literal([.views]))` |
+| `ComputeInstanceBootDisk(mode: .literal('READ_ONLY'), ...)` | `ComputeInstanceBootDisk(mode: .readOnly, ...)` |
+| `ComputeInstanceBootDisk(interface: .literal('NVME'), ...)` | `ComputeInstanceBootDisk(interface: .nvme, ...)` |
+| `LinuxWebAppIpRestriction(action: .literal('Allow'), ...)` | `LinuxWebAppIpRestriction(action: .allow, ...)` |
+| `DataCloudflareAccessRules('rules', direction: .literal('desc'), ...)` | `DataCloudflareAccessRules('rules', direction: .desc, ...)` |
+
+Some Google enums lose members, or change them, because the checked-in
+source has no such value for the API version the provider calls.
+`AssuredWorkloadsWorkloadKajEnrollmentType` keeps only
+`keyAccessTransparencyOff`, the one value its description says is
+implemented and the only one assuredworkloads v1 lists.
+`VertexAiReasoningEngineLanguage` keeps only `python`.
+`ComputeDiskGuestOsFeatureType.suspendResumeCompatible`,
+`DatabaseVersion.sqlserver2025Web` and
+`DataprocMetastoreFederationBackendType.dataplex` are removed, because
+compute v1, sqladmin v1 and metastore v1 do not list them. A caller that
+still needs one of these values passes it with `.arg(.literal(...))`.
+`MigrationCenterAssetsExportJobFileFormat` had `fileFormatCsv` and
+`fileFormatJson`, whose wire values the API rejects. It now has `csv` and
+`xlsx`, so the Terraform JSON of a CSV export changes from `FILE_FORMAT_CSV`
+to `CSV`. `ComputeBackendServicePolicy.name` (the
+`locality_lb_policies.policy.name` input) took `LocalityLbPolicy`. It now
+takes `ComputeBackendServicePolicyName`, the six values Magic Modules lists,
+without `weightedMaglev` and `weightedRoundRobin`. The top-level
+`localityLbPolicy` keeps `LocalityLbPolicy`.
+`GkeHubFeatureMembershipMesh.management` takes
+`GkeHubFeatureMembershipMeshManagement`, because the
+`configmanagement.management` input is now an enum with other values,
+`GkeHubFeatureMembershipConfigmanagementManagement`. A dot shorthand needs
+no change for either rename.
+
+`ComputeGlobalVmExtensionPolicyRolloutInput.plan` keeps its
+`.predefinedRolloutPlan(...)` variant, which now takes
+`ComputeGlobalVmExtensionPolicyPredefinedRolloutPlan` (`fastRollout`,
+`slowRollout`). The variant class is
+`ComputeGlobalVmExtensionPolicyPredefinedRolloutPlanChoice`, because the
+enum takes the old name. Write `plan: .predefinedRolloutPlan(.slowRollout)`
+for `plan: .predefinedRolloutPlan(.literal('SLOW_ROLLOUT'))`.
 
 `CloudfunctionsFunctionStatus` is new, for the output `status` of
 `google_cloudfunctions_function`. Magic Modules lists `ACTOVE`, so the
 override gives the set, with `active` for the `ACTIVE` the provider returns.
 The `status` getter is unchanged, and no Terraform JSON changes.
-
-| Before | After |
-|---|---|
-| `GoogleAlloydbBackup('b', type: .literal('ON_DEMAND'), ...)` | `GoogleAlloydbBackup('b', type: .onDemand, ...)` |
-| `GoogleDataCatalogTaxonomy('t', activatedPolicyTypes: .literal(['FINE_GRAINED_ACCESS_CONTROL']), ...)` | `GoogleDataCatalogTaxonomy('t', activatedPolicyTypes: [.fineGrainedAccessControl], ...)` |
-| `ComputeInstanceBootDisk(mode: .literal('READ_ONLY'), ...)` | `ComputeInstanceBootDisk(mode: .readOnly, ...)` |
-| `ComputeInstanceBootDisk(interface: .literal('NVME'), ...)` | `ComputeInstanceBootDisk(interface: .nvme, ...)` |
-| `LinuxWebAppIpRestriction(action: .literal('Allow'), ...)` | `LinuxWebAppIpRestriction(action: .allow, ...)` |
-| `DataCloudflareAccessRules('rules', direction: .literal('desc'), ...)` | `DataCloudflareAccessRules('rules', direction: .desc, ...)` |
 
 `GoogleNetappVolume.protocols` takes `GoogleNetappVolumeProtocols`, because
 `terradart_azure` already publishes `NetappVolumeProtocols`. The
@@ -78,18 +121,17 @@ The `status` getter is unchanged, and no Terraform JSON changes.
 `ConnectionProperties` from their names
 (`OracleDatabaseGoldengateConnectionSnowflakeAuthenticationType`).
 
-Two blocks that shared one helper now differ, because only one copy
-documents a value set.
+Two `google_container_cluster` blocks that shared one helper now differ,
+because their value sets come from different sources.
 `ContainerClusterNetworkConfig.networkPerformanceConfig` (the
 `node_pool.network_config` copy) takes
 `ContainerClusterNetworkConfigNetworkPerformanceConfig`, whose
-`totalEgressBandwidthTier` is an enum. The cluster-level
-`networkPerformanceConfig` keeps `ContainerClusterNetworkPerformanceConfig`.
-`CesToolsetMcpToolset.apiAuthentication` takes
-`CesToolsetMcpToolsetApiAuthentication` with
-`CesToolsetApiAuthenticationApiKeyConfig`. The `open_api_toolset` copy keeps
-`CesToolsetApiAuthentication` and `CesToolsetApiKeyConfig`, whose
-`requestLocation` is an enum.
+`totalEgressBandwidthTier` takes
+`ContainerClusterNetworkPerformanceConfigTotalEgressBandwidthTier`, the two
+values the description lists. The cluster-level `networkPerformanceConfig`
+keeps `ContainerClusterNetworkPerformanceConfig`, whose
+`totalEgressBandwidthTier` takes `ContainerClusterTotalEgressBandwidthTier`
+(`tier1`) from the container v1 Discovery document.
 
 `GoogleVertexAiOnlineEvaluator` derives its nested blocks. `config`,
 `cloudObservability` and `metricSources` took a `Map<String, dynamic>` (a
@@ -102,22 +144,24 @@ Every retyped `terradart_google` input:
 
 | Input | Before | After |
 |---|---|---|
-| `AccessContextManagerServicePerimeterVpcAccessibleServices.servicePatternsEnforcementScopes` | `TfArg<List<String>>` | `List<AccessContextManagerServicePerimeterServicePatternsEnforcementScopes>` |
-| `AccessContextManagerServicePerimetersVpcAccessibleServices.servicePatternsEnforcementScopes` | `TfArg<List<String>>` | `List<AccessContextManagerServicePerimetersServicePatternsEnforcementScopes>` |
+| `AccessContextManagerServicePerimeterVpcAccessibleServices.servicePatternsEnforcementScopes` | `TfArg<List<String>>` | `EnumList<AccessContextManagerServicePerimeterServicePatternsEnforcementScopes>` |
+| `AccessContextManagerServicePerimetersVpcAccessibleServices.servicePatternsEnforcementScopes` | `TfArg<List<String>>` | `EnumList<AccessContextManagerServicePerimetersServicePatternsEnforcementScopes>` |
 | `AgenticApplicationsAnalystAgentPersonaDocumentGenerationOptions.exportFormat` | `TfArg<String>` | `AgenticApplicationsAnalystAgentPersonaDocumentGenerationOptionsExportFormat` |
 | `AgenticApplicationsAnalystAgentPersonaMethodologyExportOptions.exportFormat` | `TfArg<String>` | `AgenticApplicationsAnalystAgentPersonaMethodologyExportOptionsExportFormat` |
 | `AgenticApplicationsAnalystAgentPersonaSlideGenerationOptions.exportFormat` | `TfArg<String>` | `AgenticApplicationsAnalystAgentPersonaSlideGenerationOptionsExportFormat` |
 | `AgenticApplicationsAnalystAgentPersonaVisualizationOptions.visualizationMode` | `TfArg<String>` | `AgenticApplicationsAnalystAgentPersonaVisualizationMode` |
-| `ApigeeApiProductGraphqlOperationGroupOperations.operationTypes` | `TfArg<List<String>>` | `List<ApigeeApiProductOperationTypes>` |
+| `ApigeeApiProductGraphqlOperationGroupOperations.operationTypes` | `TfArg<List<String>>` | `EnumList<ApigeeApiProductOperationTypes>` |
 | `ApigeeApiProductOperationConfigsQuota.timeUnit` | `TfArg<String>` | `ApigeeApiProductTimeUnit` |
-| `ApigeeSecurityActionConditionConfig.httpMethods` | `TfArg<List<String>>` | `List<ApigeeSecurityActionHttpMethods>` |
+| `ApigeeSecurityActionConditionConfig.httpMethods` | `TfArg<List<String>>` | `EnumList<ApigeeSecurityActionHttpMethods>` |
 | `ApihubApiHubInstanceConfig.encryptionType` | `TfArg<String>` | `ApihubApiHubInstanceEncryptionType` |
 | `ApihubPluginActionsConfig.triggerMode` | `TfArg<String>` | `ApihubPluginTriggerMode` |
 | `ApihubPluginAdditionalConfigTemplate.valueType` | `TfArg<String>` | `ApihubPluginValueType` |
+| `ApihubPluginAuthConfigTemplate.supportedAuthTypes` | `TfArg<List<String>>` | `EnumList<ApihubPluginSupportedAuthTypes>` |
 | `ApihubPluginInstanceApiKeyConfig.httpElementLocation` | `TfArg<String>` | `ApihubPluginInstanceHttpElementLocation` |
 | `ApihubPluginInstanceAuthConfig.authType` | `TfArg<String>` | `ApihubPluginInstanceAuthType` |
 | `ApihubPluginInstanceCurationConfig.curationType` | `TfArg<String>` | `ApihubPluginInstanceCurationType` |
-| `AppEngineStandardAppVersionLegacyServicesAppEngineBundledServices.appEngineBundledServices` | `TfArg<List<String>>` | `List<AppEngineStandardAppVersionAppEngineBundledServices>` |
+| `AppEngineStandardAppVersionLegacyServicesAppEngineBundledServices.appEngineBundledServices` | `TfArg<List<String>>` | `EnumList<AppEngineStandardAppVersionAppEngineBundledServices>` |
+| `AppEngineStandardAppVersionVpcAccessConnector.egressSetting` | `TfArg<String>` | `AppEngineStandardAppVersionEgressSetting` |
 | `ArtifactRegistryRepositoryPythonRepositoryPublicRepository.publicRepository` | `TfArg<String>` | `ArtifactRegistryPythonPublicRepository` |
 | `BackupDrManagementServerNetworks.peeringMode` | `TfArg<String>` | `BackupDrManagementServerPeeringMode` |
 | `BeyondcorpSecurityGatewayApplicationProxyProtocol.gatewayIdentity` | `TfArg<String>` | `BeyondcorpSecurityGatewayApplicationGatewayIdentity` |
@@ -125,13 +169,27 @@ Every retyped `terradart_google` input:
 | `BiglakeIcebergTableSortOrderFields.direction` | `TfArg<String>` | `BiglakeIcebergTableDirection` |
 | `BiglakeIcebergTableSortOrderFields.nullOrder` | `TfArg<String>` | `BiglakeIcebergTableNullOrder` |
 | `BigqueryAnalyticsHubQueryTemplateRoutine.routineType` | `TfArg<String>` | `BigqueryAnalyticsHubQueryTemplateRoutineType` |
+| `BigqueryDatasetAccessChild.targetTypes` | `List<TfArg<String>>` | `EnumList<BigqueryDatasetAccessTargetType>` |
 | `BigqueryDatasetAccessSpecialGroup.specialGroup` | `TfArg<String>` | `BigqueryDatasetSpecialGroup` |
 | `BigqueryJobLoad.encoding` | `TfArg<String>` | `BigqueryJobEncoding` |
+| `BigqueryJobLoad.jsonExtension` | `TfArg<String>` | `BigqueryJobJsonExtension` |
+| `BigqueryJobLoad.schemaUpdateOptions` | `TfArg<List<String>>` | `EnumList<BigqueryJobSchemaUpdateOptions>` |
+| `BigqueryJobQuery.schemaUpdateOptions` | `TfArg<List<String>>` | `EnumList<BigqueryJobSchemaUpdateOptions>` |
+| `BigqueryTableBiglakeConfiguration.fileFormat` | `TfArg<String>` | `BigqueryTableFileFormat` |
+| `BigqueryTableBiglakeConfiguration.tableFormat` | `TfArg<String>` | `BigqueryTableFormat` |
+| `BigqueryTableColumn.encoding` | `TfArg<String>` | `BigqueryTableColumnFamilyEncoding` |
+| `BigqueryTableColumn.type` | `TfArg<String>` | `BigqueryTableColumnFamilyType` |
+| `BigqueryTableColumnFamily.encoding` | `TfArg<String>` | `BigqueryTableColumnFamilyEncoding` |
+| `BigqueryTableColumnFamily.type` | `TfArg<String>` | `BigqueryTableColumnFamilyType` |
 | `BigqueryTableCsvOptions.encoding` | `TfArg<String>` | `BigqueryTableEncoding` |
 | `BigqueryTableCsvOptions.sourceColumnMatch` | `TfArg<String>` | `BigqueryTableSourceColumnMatch` |
+| `BigqueryTableExternalDataConfiguration.decimalTargetTypes` | `TfArg<List<String>>` | `EnumList<BigqueryTableDecimalTargetTypes>` |
+| `BigqueryTableExternalDataConfiguration.jsonExtension` | `TfArg<String>` | `BigqueryTableJsonExtension` |
 | `BigqueryTableJsonOptions.encoding` | `TfArg<String>` | `BigqueryTableJsonOptionsEncoding` |
 | `BigqueryTableSchemaForeignTypeInfo.typeSystem` | `TfArg<String>` | `BigqueryTableTypeSystem` |
 | `BigtableInstanceCluster.nodeScalingFactor` | `TfArg<String>` | `BigtableInstanceNodeScalingFactor` |
+| `BinaryAuthorizationAttestorPkixPublicKey.signatureAlgorithm` | `TfArg<String>` | `BinaryAuthorizationAttestorSignatureAlgorithm` |
+| `CertificateManagerCertificateMapEntryMatchMatcher.matcher` | `TfArg<String>` | `CertificateManagerCertificateMapEntryMatcher` |
 | `CesAgentApiKeyConfig.requestLocation` | `TfArg<String>` | `CesAgentRequestLocation` |
 | `CesAgentOauthConfig.oauthGrantType` | `TfArg<String>` | `CesAgentOauthGrantType` |
 | `CesAppAmbientSoundConfig.prebuiltAmbientSound` | `TfArg<String>` | `CesAppPrebuiltAmbientSound` |
@@ -153,7 +211,7 @@ Every retyped `terradart_google` input:
 | `CesToolModalityConfigs.modalityType` | `TfArg<String>` | `CesToolModalityType` |
 | `CesToolParameters.type` | `TfArg<String>` | `CesToolParametersType` |
 | `CesToolResponse.type` | `TfArg<String>` | `CesToolParametersType` |
-| `CesToolsetApiKeyConfig.requestLocation` | `TfArg<String>` | `CesToolsetOpenApiToolsetRequestLocation` |
+| `CesToolsetApiKeyConfig.requestLocation` | `TfArg<String>` | `CesToolsetRequestLocation` |
 | `CesToolsetEntityOperation.operation` | `TfArg<String>` | `CesToolsetOperation` |
 | `CesToolsetOauthConfig.oauthGrantType` | `TfArg<String>` | `CesToolsetOauthGrantType` |
 | `ChronicleFeedAmazonS3Settings.sourceDeletionOption` | `TfArg<String>` | `ChronicleFeedAmazonS3SettingsSourceDeletionOption` |
@@ -185,110 +243,254 @@ Every retyped `terradart_google` input:
 | `ChronicleParserExtensionFieldExtractors.logFormat` | `TfArg<String>` | `ChronicleParserExtensionLogFormat` |
 | `ChronicleParserExtractors.preconditionOp` | `TfArg<String>` | `ChronicleParserPreconditionOp` |
 | `ChronicleParserFieldExtractors.logFormat` | `TfArg<String>` | `ChronicleParserLogFormat` |
+| `CloudRunServiceCsi.driver` | `TfArg<String>` | `CloudRunServiceDriver` |
 | `CloudRunServicePorts.name` | `TfArg<String>` | `CloudRunServicePortsName` |
 | `CloudRunV2InstancePorts.name` | `TfArg<String>` | `CloudRunV2InstancePortsName` |
 | `CloudRunV2JobPorts.name` | `TfArg<String>` | `CloudRunV2JobPortsName` |
 | `CloudRunV2ServicePorts.name` | `TfArg<String>` | `CloudRunV2ServicePortsName` |
+| `CloudSchedulerJobAppEngineHttpTarget.httpMethod` | `TfArg<String>` | `CloudSchedulerJobHttpMethod` |
+| `CloudSchedulerJobHttpTarget.httpMethod` | `TfArg<String>` | `CloudSchedulerJobHttpMethod` |
 | `CloudSecurityComplianceCloudControlParameterSpec.valueType` | `TfArg<String>` | `CloudSecurityComplianceCloudControlValueType` |
 | `CloudSecurityComplianceCloudControlSubParameters.valueType` | `TfArg<String>` | `CloudSecurityComplianceCloudControlValueType` |
 | `CloudSecurityComplianceCloudControlSubParametersSubParameters.valueType` | `TfArg<String>` | `CloudSecurityComplianceCloudControlValueType` |
 | `CloudSecurityComplianceFrameworkDeploymentCloudControlMetadata.enforcementMode` | `TfArg<String>` | `CloudSecurityComplianceFrameworkDeploymentEnforcementMode` |
+| `CloudbuildTriggerOptions.machineType` | `TfArg<String>` | `CloudbuildTriggerMachineType` |
+| `ClouddeployTargetExecutionConfigs.usages` | `TfArg<List<String>>` | `EnumList<ClouddeployTargetUsages>` |
+| `ClouddomainsRegistrationContactSettings.privacy` | `TfArg<String>` | `ClouddomainsRegistrationPrivacy` |
+| `ClouddomainsRegistrationDsRecords.algorithm` | `TfArg<String>` | `ClouddomainsRegistrationAlgorithm` |
+| `ClouddomainsRegistrationDsRecords.digestType` | `TfArg<String>` | `ClouddomainsRegistrationDigestType` |
+| `ClouddomainsRegistrationManagementSettings.preferredRenewalMethod` | `TfArg<String>` | `ClouddomainsRegistrationPreferredRenewalMethod` |
+| `ClouddomainsRegistrationManagementSettings.transferLockState` | `TfArg<String>` | `ClouddomainsRegistrationTransferLockState` |
+| `ColabNotebookExecutionMachineSpec.acceleratorType` | `TfArg<String>` | `ColabNotebookExecutionAcceleratorType` |
+| `ColabRuntimeTemplateMachineSpec.acceleratorType` | `TfArg<String>` | `ColabRuntimeTemplateAcceleratorType` |
 | `ColabScheduleMachineSpec.acceleratorType` | `TfArg<String>` | `ColabScheduleAcceleratorType` |
 | `ColabSchedulePersistentDiskSpec.diskType` | `TfArg<String>` | `ColabScheduleDiskType` |
 | `ColabScheduleReservationAffinity.reservationAffinityType` | `TfArg<String>` | `ColabScheduleReservationAffinityType` |
 | `ColabScheduleRuntimeConfig.failurePolicy` | `TfArg<String>` | `ColabScheduleFailurePolicy` |
+| `ComposerEnvironmentAirflowMetadataRetentionConfig.retentionMode` | `TfArg<String>` | `ComposerEnvironmentRetentionMode` |
+| `ComposerEnvironmentConfig.environmentSize` | `TfArg<String>` | `ComposerEnvironmentSize` |
+| `ComposerEnvironmentConfig.resilienceMode` | `TfArg<String>` | `ComposerEnvironmentResilienceMode` |
 | `ComposerEnvironmentDatabaseConfig.machineType` | `TfArg<String>` | `ComposerEnvironmentDatabaseConfigMachineType` |
 | `ComposerEnvironmentPrivateEnvironmentConfig.connectionType` | `TfArg<String>` | `ComposerEnvironmentConnectionType` |
 | `ComposerEnvironmentSoftwareConfig.webServerPluginsMode` | `TfArg<String>` | `ComposerEnvironmentWebServerPluginsMode` |
+| `ComposerEnvironmentTaskLogsRetentionConfig.storageMode` | `TfArg<String>` | `ComposerEnvironmentStorageMode` |
 | `ComposerEnvironmentWebServerConfig.machineType` | `TfArg<String>` | `ComposerEnvironmentWebServerConfigMachineType` |
 | `ComputeFirewallPolicyWithRulesRule.action` | `TfArg<String>` | `ComputeFirewallPolicyWithRulesAction` |
+| `ComputeGlobalVmExtensionPolicyPredefinedRolloutPlan.predefinedRolloutPlan` | `TfArg<String>` | `ComputeGlobalVmExtensionPolicyPredefinedRolloutPlan` (now in `ComputeGlobalVmExtensionPolicyPredefinedRolloutPlanChoice`) |
+| `ComputeImageDbs.fileType` | `TfArg<String>` | `ComputeImageFileType` |
+| `ComputeImageDbxs.fileType` | `TfArg<String>` | `ComputeImageFileType` |
+| `ComputeImageKeks.fileType` | `TfArg<String>` | `ComputeImageFileType` |
+| `ComputeImagePk.fileType` | `TfArg<String>` | `ComputeImageFileType` |
 | `ComputeImageRawDisk.containerType` | `TfArg<String>` | `ComputeImageContainerType` |
 | `ComputeInstanceAttachedDisk.mode` | `TfArg<String>` | `ComputeInstanceMode` |
 | `ComputeInstanceBootDisk.interface` | `TfArg<String>` | `ComputeInstanceInterface` |
 | `ComputeInstanceBootDisk.mode` | `TfArg<String>` | `ComputeInstanceMode` |
-| `ComputeInstanceFromTemplateAccessConfig.networkTier` | `TfArg<String>` | `ComputeInstanceFromTemplateNetworkTier` |
+| `ComputeInstanceFromTemplateAccessConfig.networkTier` | `TfArg<String>` | `ComputeInstanceFromTemplateAccessConfigNetworkTier` |
 | `ComputeInstanceFromTemplateAdvancedMachineFeatures.performanceMonitoringUnit` | `TfArg<String>` | `ComputeInstanceFromTemplatePerformanceMonitoringUnit` |
 | `ComputeInstanceFromTemplateAttachedDisk.mode` | `TfArg<String>` | `ComputeInstanceFromTemplateMode` |
 | `ComputeInstanceFromTemplateBootDisk.interface` | `TfArg<String>` | `ComputeInstanceFromTemplateInterface` |
 | `ComputeInstanceFromTemplateBootDisk.mode` | `TfArg<String>` | `ComputeInstanceFromTemplateMode` |
 | `ComputeInstanceFromTemplateConfidentialInstanceConfig.confidentialInstanceType` | `TfArg<String>` | `ComputeInstanceFromTemplateConfidentialInstanceType` |
 | `ComputeInstanceFromTemplateInitializeParams.architecture` | `TfArg<String>` | `ComputeInstanceFromTemplateArchitecture` |
+| `ComputeInstanceFromTemplateIpv6AccessConfig.networkTier` | `TfArg<String>` | `ComputeInstanceFromTemplateIpv6AccessConfigNetworkTier` |
+| `ComputeInstanceFromTemplateNetworkInterface.igmpQuery` | `TfArg<String>` | `ComputeInstanceFromTemplateIgmpQuery` |
+| `ComputeInstanceFromTemplateNetworkInterface.stackType` | `TfArg<String>` | `ComputeInstanceFromTemplateStackType` |
+| `ComputeInstanceFromTemplateNodeAffinities.operator` | `TfArg<String>` | `ComputeInstanceFromTemplateOperator` |
+| `ComputeInstanceFromTemplateScheduling.instanceTerminationAction` | `TfArg<String>` | `ComputeInstanceFromTemplateInstanceTerminationAction` |
 | `ComputeInstanceFromTemplateScheduling.onHostMaintenance` | `TfArg<String>` | `ComputeInstanceFromTemplateOnHostMaintenance` |
 | `ComputeInstanceFromTemplateScheduling.provisioningModel` | `TfArg<String>` | `ComputeInstanceFromTemplateProvisioningModel` |
 | `ComputeInstanceFromTemplateScratchDisk.interface` | `TfArg<String>` | `ComputeInstanceFromTemplateInterface` |
 | `ComputeInstanceGroupManagerInstanceLifecyclePolicy.defaultActionOnFailure` | `TfArg<String>` | `InstanceGroupManagerDefaultActionOnFailure` |
 | `ComputeInstanceGroupManagerInstanceLifecyclePolicy.forceUpdateOnRepair` | `TfArg<String>` | `InstanceGroupManagerForceUpdateOnRepair` |
+| `ComputeInstanceGroupManagerStandbyPolicy.mode` | `TfArg<String>` | `InstanceGroupManagerStandbyPolicyMode` |
+| `ComputeInstanceGroupManagerStatefulDisk.deleteRule` | `TfArg<String>` | `ComputeInstanceGroupManagerStatefulDeleteRule` |
+| `ComputeInstanceGroupManagerStatefulIp.deleteRule` | `TfArg<String>` | `ComputeInstanceGroupManagerStatefulDeleteRule` |
+| `ComputeInstanceGroupManagerTargetSizePolicy.mode` | `TfArg<String>` | `InstanceGroupManagerTargetSizePolicyMode` |
 | `ComputeInstanceInitializeParams.architecture` | `TfArg<String>` | `ComputeInstanceArchitecture` |
+| `ComputeInstanceNetworkInterface.igmpQuery` | `TfArg<String>` | `ComputeInstanceIgmpQuery` |
+| `ComputeInstanceNetworkInterface.stackType` | `TfArg<String>` | `ComputeInstanceStackType` |
+| `ComputeInstanceNodeAffinities.operator` | `TfArg<String>` | `ComputeInstanceOperator` |
 | `ComputeInstanceTemplateDisk.architecture` | `TfArg<String>` | `ComputeInstanceTemplateArchitecture` |
+| `ComputeInstanceTemplateDisk.interface` | `TfArg<String>` | `ComputeInstanceTemplateInterface` |
 | `ComputeInstanceTemplateDisk.type` | `TfArg<String>` | `ComputeInstanceTemplateType` |
+| `ComputeInstanceTemplateNetworkInterface.igmpQuery` | `TfArg<String>` | `ComputeInstanceTemplateIgmpQuery` |
+| `ComputeInstanceTemplateNetworkInterface.stackType` | `TfArg<String>` | `ComputeInstanceTemplateStackType` |
+| `ComputeInstanceTemplateNodeAffinities.operator` | `TfArg<String>` | `ComputeInstanceTemplateOperator` |
 | `ComputeNetworkFirewallPolicyWithRulesRule.action` | `TfArg<String>` | `ComputeNetworkFirewallPolicyWithRulesAction` |
+| `ComputeOrganizationSecurityPolicyRuleMatch.versionedExpr` | `TfArg<String>` | `ComputeOrganizationSecurityPolicyRuleVersionedExpr` |
+| `ComputeOrganizationSecurityPolicyRuleRedirectOptions.type` | `TfArg<String>` | `ComputeOrganizationSecurityPolicyRuleType` |
+| `ComputeOrganizationSecurityPolicyRuleRequestCookie.operator` | `TfArg<String>` | `ComputeOrganizationSecurityPolicyRuleOperator` |
+| `ComputeOrganizationSecurityPolicyRuleRequestHeader.operator` | `TfArg<String>` | `ComputeOrganizationSecurityPolicyRuleOperator` |
+| `ComputeOrganizationSecurityPolicyRuleRequestQueryParam.operator` | `TfArg<String>` | `ComputeOrganizationSecurityPolicyRuleOperator` |
+| `ComputeOrganizationSecurityPolicyRuleRequestUri.operator` | `TfArg<String>` | `ComputeOrganizationSecurityPolicyRuleOperator` |
 | `ComputePreviewFeatureRolloutInput.predefinedRolloutPlan` | `TfArg<String>` | `ComputePreviewFeaturePredefinedRolloutPlan` |
 | `ComputeRegionCommitmentResources.type` | `TfArg<String>` | `ComputeRegionCommitmentResourcesType` |
 | `ComputeRegionInstanceGroupManagerInstanceLifecyclePolicy.defaultActionOnFailure` | `TfArg<String>` | `RegionInstanceGroupManagerDefaultActionOnFailure` |
 | `ComputeRegionInstanceGroupManagerInstanceLifecyclePolicy.forceUpdateOnRepair` | `TfArg<String>` | `RegionInstanceGroupManagerForceUpdateOnRepair` |
+| `ComputeRegionInstanceGroupManagerStandbyPolicy.mode` | `TfArg<String>` | `RegionInstanceGroupManagerStandbyPolicyMode` |
+| `ComputeRegionInstanceGroupManagerStatefulDisk.deleteRule` | `TfArg<String>` | `ComputeRegionInstanceGroupManagerStatefulDeleteRule` |
+| `ComputeRegionInstanceGroupManagerStatefulIp.deleteRule` | `TfArg<String>` | `ComputeRegionInstanceGroupManagerStatefulDeleteRule` |
+| `ComputeRegionInstanceGroupManagerTargetSizePolicy.mode` | `TfArg<String>` | `RegionInstanceGroupManagerTargetSizePolicyMode` |
+| `ComputeRegionInstanceTemplateAccessConfig.networkTier` | `TfArg<String>` | `ComputeRegionInstanceTemplateNetworkTier` |
 | `ComputeRegionInstanceTemplateAdvancedMachineFeatures.performanceMonitoringUnit` | `TfArg<String>` | `ComputeRegionInstanceTemplatePerformanceMonitoringUnit` |
 | `ComputeRegionInstanceTemplateConfidentialInstanceConfig.confidentialInstanceType` | `TfArg<String>` | `ComputeRegionInstanceTemplateConfidentialInstanceType` |
 | `ComputeRegionInstanceTemplateDisk.architecture` | `TfArg<String>` | `ComputeRegionInstanceTemplateArchitecture` |
+| `ComputeRegionInstanceTemplateDisk.interface` | `TfArg<String>` | `ComputeRegionInstanceTemplateInterface` |
 | `ComputeRegionInstanceTemplateDisk.mode` | `TfArg<String>` | `ComputeRegionInstanceTemplateMode` |
 | `ComputeRegionInstanceTemplateDisk.type` | `TfArg<String>` | `ComputeRegionInstanceTemplateType` |
+| `ComputeRegionInstanceTemplateIpv6AccessConfig.networkTier` | `TfArg<String>` | `ComputeRegionInstanceTemplateNetworkTier` |
+| `ComputeRegionInstanceTemplateNetworkInterface.igmpQuery` | `TfArg<String>` | `ComputeRegionInstanceTemplateIgmpQuery` |
+| `ComputeRegionInstanceTemplateNetworkInterface.stackType` | `TfArg<String>` | `ComputeRegionInstanceTemplateStackType` |
+| `ComputeRegionInstanceTemplateNodeAffinities.operator` | `TfArg<String>` | `ComputeRegionInstanceTemplateOperator` |
+| `ComputeRegionInstanceTemplateScheduling.instanceTerminationAction` | `TfArg<String>` | `ComputeRegionInstanceTemplateInstanceTerminationAction` |
+| `ComputeRegionInstanceTemplateScheduling.onHostMaintenance` | `TfArg<String>` | `ComputeRegionInstanceTemplateOnHostMaintenance` |
 | `ComputeRegionInstanceTemplateScheduling.provisioningModel` | `TfArg<String>` | `ComputeRegionInstanceTemplateProvisioningModel` |
 | `ComputeRegionNetworkFirewallPolicyWithRulesRule.action` | `TfArg<String>` | `ComputeRegionNetworkFirewallPolicyWithRulesAction` |
 | `ComputeRegionSecurityPolicyRules.action` | `TfArg<String>` | `ComputeRegionSecurityPolicyRulesAction` |
 | `ComputeRegionSecurityPolicyRulesRateLimitOptions.exceedAction` | `TfArg<String>` | `ComputeRegionSecurityPolicyExceedAction` |
-| `ComputeRegionUrlMapPathRuleRetryPolicy.retryConditions` | `TfArg<List<String>>` | `List<ComputeRegionUrlMapRetryConditions>` |
-| `ComputeRegionUrlMapRetryPolicy.retryConditions` | `TfArg<List<String>>` | `List<ComputeRegionUrlMapRetryConditions>` |
-| `ComputeRegionUrlMapRouteRulesRetryPolicy.retryConditions` | `TfArg<List<String>>` | `List<ComputeRegionUrlMapRetryConditions>` |
+| `ComputeRegionUrlMapPathRuleRetryPolicy.retryConditions` | `TfArg<List<String>>` | `EnumList<ComputeRegionUrlMapRetryConditions>` |
+| `ComputeRegionUrlMapRetryPolicy.retryConditions` | `TfArg<List<String>>` | `EnumList<ComputeRegionUrlMapRetryConditions>` |
+| `ComputeRegionUrlMapRouteRulesRetryPolicy.retryConditions` | `TfArg<List<String>>` | `EnumList<ComputeRegionUrlMapRetryConditions>` |
 | `ComputeResourcePolicyGroupPlacementPolicy.collocation` | `TfArg<String>` | `ComputeResourcePolicyCollocation` |
 | `ComputeRolloutPlanValidation.type` | `TfArg<String>` | `ComputeRolloutPlanValidationType` |
-| `ComputeRouterNatSubnetwork.sourceIpRangesToNat` | `TfArg<List<String>>` | `List<ComputeRouterNatSourceIpRangesToNat>` |
+| `ComputeRouterBgp.advertisedGroups` | `List<String>` | `EnumList<ComputeRouterBgpAdvertisedGroup>` |
+| `ComputeRouterNatSubnetwork.sourceIpRangesToNat` | `TfArg<List<String>>` | `EnumList<ComputeRouterNatSourceIpRangesToNat>` |
+| `ComputeSecurityPolicyAdvancedOptionsConfig.requestBodyInspectionSize` | `TfArg<String>` | `ComputeSecurityPolicyRequestBodyInspectionSize` |
 | `ComputeSecurityPolicyLayer7DdosDefenseConfig.ruleVisibility` | `TfArg<String>` | `SecurityPolicyRuleVisibility` |
+| `ComputeSecurityPolicyRuleRedirectOptions.type` | `TfArg<String>` | `ComputeSecurityPolicyRuleType` |
 | `ComputeSecurityPolicyRulesRateLimitOptions.exceedAction` | `TfArg<String>` | `ComputeSecurityPolicyExceedAction` |
-| `ComputeUrlMapPathRuleRetryPolicy.retryConditions` | `TfArg<List<String>>` | `List<ComputeUrlMapRetryConditions>` |
-| `ComputeUrlMapRetryPolicy.retryConditions` | `TfArg<List<String>>` | `List<ComputeUrlMapRetryConditions>` |
-| `ComputeUrlMapRouteRulesRetryPolicy.retryConditions` | `TfArg<List<String>>` | `List<ComputeUrlMapRetryConditions>` |
+| `ComputeSecurityPolicyRulesRedirectOptions.type` | `TfArg<String>` | `SecurityPolicyRedirectType` |
+| `ComputeSecurityPolicyTrafficGranularityConfig.type` | `TfArg<String>` | `SecurityPolicyTrafficGranularityType` |
+| `ComputeUrlMapPathRuleRetryPolicy.retryConditions` | `TfArg<List<String>>` | `EnumList<ComputeUrlMapRetryConditions>` |
+| `ComputeUrlMapRetryPolicy.retryConditions` | `TfArg<List<String>>` | `EnumList<ComputeUrlMapRetryConditions>` |
+| `ComputeUrlMapRouteRulesRetryPolicy.retryConditions` | `TfArg<List<String>>` | `EnumList<ComputeUrlMapRetryConditions>` |
+| `ComputeWireGroupWireProperties.bandwidthAllocation` | `TfArg<String>` | `ComputeWireGroupBandwidthAllocation` |
+| `ComputeWireGroupWireProperties.faultResponse` | `TfArg<String>` | `ComputeWireGroupFaultResponse` |
 | `ContactCenterInsightsQaQuestionPredefinedQuestionConfig.type` | `TfArg<String>` | `ContactCenterInsightsQaQuestionPredefinedQuestionConfigType` |
-| `ContainerClusterAnonymousAuthenticationConfig.mode` | `TfArg<String>` | `ContainerClusterMode` |
-| `ContainerClusterFilter.eventType` | `TfArg<List<String>>` | `List<ContainerClusterEventType>` |
+| `ContactCenterInsightsQaQuestionTuningMetadata.datasetValidationWarnings` | `TfArg<List<String>>` | `EnumList<ContactCenterInsightsQaQuestionDatasetValidationWarnings>` |
+| `ContainerClusterAdditionalIpRangesConfig.status` | `TfArg<String>` | `ContainerClusterStatus` |
+| `ContainerClusterAdvancedMachineFeatures.performanceMonitoringUnit` | `TfArg<String>` | `ContainerClusterPerformanceMonitoringUnit` |
+| `ContainerClusterAnonymousAuthenticationConfig.mode` | `TfArg<String>` | `ContainerClusterAnonymousAuthenticationConfigMode` |
+| `ContainerClusterAutoMonitoringConfig.scope` | `TfArg<String>` | `ContainerClusterAutoMonitoringConfigScope` |
+| `ContainerClusterAutoProvisioningDefaultsUpgradeSettings.strategy` | `TfArg<String>` | `ContainerClusterStrategy` |
+| `ContainerClusterAutoscaling.autoscalingProfile` | `TfArg<String>` | `ContainerClusterAutoscalingProfile` |
+| `ContainerClusterBinaryAuthorization.evaluationMode` | `TfArg<String>` | `ContainerClusterEvaluationMode` |
+| `ContainerClusterCloudrunConfig.loadBalancerType` | `TfArg<String>` | `ContainerClusterLoadBalancerType` |
+| `ContainerClusterConfidentialNodes.confidentialInstanceType` | `TfArg<String>` | `ContainerClusterConfidentialInstanceType` |
+| `ContainerClusterDatabaseEncryption.state` | `TfArg<String>` | `ContainerClusterState` |
+| `ContainerClusterDnsConfig.clusterDns` | `TfArg<String>` | `ContainerClusterDns` |
+| `ContainerClusterDnsConfig.clusterDnsScope` | `TfArg<String>` | `ContainerClusterDnsScope` |
+| `ContainerClusterEnterpriseConfig.desiredTier` | `TfArg<String>` | `ContainerClusterDesiredTier` |
+| `ContainerClusterExclusionOptions.endTimeBehavior` | `TfArg<String>` | `ContainerClusterEndTimeBehavior` |
+| `ContainerClusterExclusionOptions.scope` | `TfArg<String>` | `ContainerClusterExclusionOptionsScope` |
+| `ContainerClusterFilter.eventType` | `TfArg<List<String>>` | `EnumList<ContainerClusterEventType>` |
+| `ContainerClusterFleet.membershipType` | `TfArg<String>` | `ContainerClusterMembershipType` |
+| `ContainerClusterGatewayApiConfig.channel` | `TfArg<String>` | `ContainerClusterGatewayApiConfigChannel` |
 | `ContainerClusterGkeAutoUpgradeConfig.patchMode` | `TfArg<String>` | `ContainerClusterPatchMode` |
+| `ContainerClusterGpuDriverInstallationConfig.gpuDriverVersion` | `TfArg<String>` | `ContainerClusterGpuDriverVersion` |
 | `ContainerClusterGpuSharingConfig.gpuSharingStrategy` | `TfArg<String>` | `ContainerClusterGpuSharingStrategy` |
+| `ContainerClusterHosts.capabilities` | `TfArg<List<String>>` | `EnumList<ContainerClusterCapabilities>` |
+| `ContainerClusterIpAllocationPolicy.stackType` | `TfArg<String>` | `ContainerClusterStackType` |
 | `ContainerClusterKubeletConfig.insecureKubeletReadonlyPortEnabled` | `TfArg<String>` | `ContainerClusterInsecureKubeletReadonlyPortEnabled` |
-| `ContainerClusterLoggingConfig.enableComponents` | `TfArg<List<String>>` | `List<ContainerClusterLoggingConfigEnableComponents>` |
-| `ContainerClusterMonitoringConfig.enableComponents` | `TfArg<List<String>>` | `List<ContainerClusterMonitoringConfigEnableComponents>` |
+| `ContainerClusterLoggingConfig.enableComponents` | `TfArg<List<String>>` | `EnumList<ContainerClusterLoggingConfigEnableComponents>` |
+| `ContainerClusterManagedOpentelemetryConfig.scope` | `TfArg<String>` | `ContainerClusterScope` |
+| `ContainerClusterMonitoringConfig.enableComponents` | `TfArg<List<String>>` | `EnumList<ContainerClusterMonitoringConfigEnableComponents>` |
+| `ContainerClusterNetworkPerformanceConfig.totalEgressBandwidthTier` | `TfArg<String>` | `ContainerClusterTotalEgressBandwidthTier` |
+| `ContainerClusterNetworkPolicy.provider` | `TfArg<String>` | `ContainerClusterProvider` |
+| `ContainerClusterNetworkTierConfig.networkTier` | `TfArg<String>` | `ContainerClusterNetworkTier` |
+| `ContainerClusterNodeAffinity.operator` | `TfArg<String>` | `ContainerClusterOperator` |
+| `ContainerClusterNodeConfig.gpudirectStrategy` | `TfArg<String>` | `ContainerClusterGpudirectStrategy` |
+| `ContainerClusterNodeConfig.localSsdEncryptionMode` | `TfArg<String>` | `ContainerClusterLocalSsdEncryptionMode` |
 | `ContainerClusterNodeConfig.loggingVariant` | `TfArg<String>` | `ContainerClusterLoggingVariant` |
 | `ContainerClusterNodeConfigDefaults.insecureKubeletReadonlyPortEnabled` | `TfArg<String>` | `ContainerClusterInsecureKubeletReadonlyPortEnabled` |
 | `ContainerClusterNodeConfigDefaults.loggingVariant` | `TfArg<String>` | `ContainerClusterLoggingVariant` |
+| `ContainerClusterNodeConfigLinuxNodeConfig.cgroupMode` | `TfArg<String>` | `ContainerClusterCgroupMode` |
+| `ContainerClusterNodeConfigLinuxNodeConfig.transparentHugepageDefrag` | `TfArg<String>` | `ContainerClusterTransparentHugepageDefrag` |
+| `ContainerClusterNodeConfigLinuxNodeConfig.transparentHugepageEnabled` | `TfArg<String>` | `ContainerClusterTransparentHugepageEnabled` |
 | `ContainerClusterNodeCreationConfig.nodeCreationMode` | `TfArg<String>` | `ContainerClusterNodeCreationMode` |
+| `ContainerClusterNodeKernelModuleLoading.policy` | `TfArg<String>` | `ContainerClusterPolicy` |
 | `ContainerClusterNodeKubeletConfig.insecureKubeletReadonlyPortEnabled` | `TfArg<String>` | `ContainerClusterInsecureKubeletReadonlyPortEnabled` |
-| `ContainerClusterReleaseChannel.channel` | `TfArg<String>` | `ContainerClusterChannel` |
-| `ContainerClusterTopologyManager.scope` | `TfArg<String>` | `ContainerClusterScope` |
+| `ContainerClusterNodePoolAutoConfigLinuxNodeConfig.cgroupMode` | `TfArg<String>` | `ContainerClusterCgroupMode` |
+| `ContainerClusterNodePoolAutoscaling.locationPolicy` | `TfArg<String>` | `ContainerClusterLocationPolicy` |
+| `ContainerClusterPlacementPolicy.type` | `TfArg<String>` | `ContainerClusterPlacementPolicyType` |
+| `ContainerClusterPodAutoscaling.hpaProfile` | `TfArg<String>` | `ContainerClusterHpaProfile` |
+| `ContainerClusterReleaseChannel.channel` | `TfArg<String>` | `ContainerClusterReleaseChannelChannel` |
+| `ContainerClusterReservationAffinity.consumeReservationType` | `TfArg<String>` | `ContainerClusterConsumeReservationType` |
+| `ContainerClusterSandboxConfig.type` | `TfArg<String>` | `ContainerClusterSandboxConfigType` |
+| `ContainerClusterSecondaryBootDisks.mode` | `TfArg<String>` | `ContainerClusterSecondaryBootDisksMode` |
+| `ContainerClusterSecurityPostureConfig.mode` | `TfArg<String>` | `ContainerClusterSecurityPostureConfigMode` |
+| `ContainerClusterSecurityPostureConfig.vulnerabilityMode` | `TfArg<String>` | `ContainerClusterVulnerabilityMode` |
+| `ContainerClusterTaint.effect` | `TfArg<String>` | `ContainerClusterEffect` |
+| `ContainerClusterTaintConfig.architectureTaintBehavior` | `TfArg<String>` | `ContainerClusterArchitectureTaintBehavior` |
+| `ContainerClusterTopologyManager.scope` | `TfArg<String>` | `ContainerClusterTopologyManagerScope` |
+| `ContainerClusterUpgradeSettings.strategy` | `TfArg<String>` | `ContainerClusterStrategy` |
+| `ContainerClusterWindowsNodeConfig.osversion` | `TfArg<String>` | `ContainerClusterOsversion` |
+| `ContainerClusterWorkloadMetadataConfig.mode` | `TfArg<String>` | `ContainerClusterWorkloadMetadataConfigMode` |
+| `ContainerNodePoolAdvancedMachineFeatures.performanceMonitoringUnit` | `TfArg<String>` | `ContainerNodePoolPerformanceMonitoringUnit` |
+| `ContainerNodePoolAutoscaling.locationPolicy` | `TfArg<String>` | `ContainerNodePoolLocationPolicy` |
+| `ContainerNodePoolConfidentialNodes.confidentialInstanceType` | `TfArg<String>` | `ContainerNodePoolConfidentialInstanceType` |
+| `ContainerNodePoolGpuDriverInstallationConfig.gpuDriverVersion` | `TfArg<String>` | `ContainerNodePoolGpuDriverVersion` |
 | `ContainerNodePoolGpuSharingConfig.gpuSharingStrategy` | `TfArg<String>` | `ContainerNodePoolGpuSharingStrategy` |
+| `ContainerNodePoolHosts.capabilities` | `TfArg<List<String>>` | `EnumList<ContainerNodePoolCapabilities>` |
 | `ContainerNodePoolKubeletConfig.insecureKubeletReadonlyPortEnabled` | `TfArg<String>` | `ContainerNodePoolInsecureKubeletReadonlyPortEnabled` |
+| `ContainerNodePoolLinuxNodeConfig.cgroupMode` | `TfArg<String>` | `ContainerNodePoolCgroupMode` |
+| `ContainerNodePoolLinuxNodeConfig.transparentHugepageDefrag` | `TfArg<String>` | `ContainerNodePoolTransparentHugepageDefrag` |
+| `ContainerNodePoolLinuxNodeConfig.transparentHugepageEnabled` | `TfArg<String>` | `ContainerNodePoolTransparentHugepageEnabled` |
 | `ContainerNodePoolNetworkPerformanceConfig.totalEgressBandwidthTier` | `TfArg<String>` | `ContainerNodePoolTotalEgressBandwidthTier` |
+| `ContainerNodePoolNodeAffinity.operator` | `TfArg<String>` | `ContainerNodePoolOperator` |
+| `ContainerNodePoolNodeConfig.gpudirectStrategy` | `TfArg<String>` | `ContainerNodePoolGpudirectStrategy` |
+| `ContainerNodePoolNodeConfig.localSsdEncryptionMode` | `TfArg<String>` | `ContainerNodePoolLocalSsdEncryptionMode` |
 | `ContainerNodePoolNodeConfig.loggingVariant` | `TfArg<String>` | `ContainerNodePoolLoggingVariant` |
+| `ContainerNodePoolNodeKernelModuleLoading.policy` | `TfArg<String>` | `ContainerNodePoolPolicy` |
+| `ContainerNodePoolPlacementPolicy.type` | `TfArg<String>` | `ContainerNodePoolType` |
+| `ContainerNodePoolReservationAffinity.consumeReservationType` | `TfArg<String>` | `ContainerNodePoolConsumeReservationType` |
+| `ContainerNodePoolSandboxConfig.type` | `TfArg<String>` | `ContainerNodePoolSandboxConfigType` |
+| `ContainerNodePoolSecondaryBootDisks.mode` | `TfArg<String>` | `ContainerNodePoolSecondaryBootDisksMode` |
+| `ContainerNodePoolTaint.effect` | `TfArg<String>` | `ContainerNodePoolEffect` |
+| `ContainerNodePoolTaintConfig.architectureTaintBehavior` | `TfArg<String>` | `ContainerNodePoolArchitectureTaintBehavior` |
 | `ContainerNodePoolTopologyManager.scope` | `TfArg<String>` | `ContainerNodePoolScope` |
+| `ContainerNodePoolUpgradeSettings.strategy` | `TfArg<String>` | `ContainerNodePoolStrategy` |
+| `ContainerNodePoolWindowsNodeConfig.osversion` | `TfArg<String>` | `ContainerNodePoolOsversion` |
+| `ContainerNodePoolWorkloadMetadataConfig.mode` | `TfArg<String>` | `ContainerNodePoolWorkloadMetadataConfigMode` |
 | `DataGoogleDiscoveryEngineDataStore.location` | `TfArg<String>` | `DataDiscoveryEngineDataStoreLocation` |
 | `DataGoogleDiscoveryEngineDataStores.location` | `TfArg<String>` | `DataDiscoveryEngineDataStoresLocation` |
 | `DataGoogleSiteVerificationToken.type` | `TfArg<String>` | `DataSiteVerificationTokenType` |
 | `DataGoogleSiteVerificationToken.verificationMethod` | `TfArg<String>` | `DataSiteVerificationTokenVerificationMethod` |
+| `DataGoogleSqlDatabaseInstances.databaseVersion` | `TfArg<String>` | `DataSqlDatabaseInstancesDatabaseVersion` |
 | `DataGoogleSqlDatabaseInstances.state` | `TfArg<String>` | `DataSqlDatabaseInstancesState` |
 | `DataGoogleStorageControlFolderIntelligenceFindingsSummary.resourceScope` | `TfArg<String>` | `DataStorageControlFolderIntelligenceFindingsSummaryResourceScope` |
 | `DataGoogleStorageControlOrganizationIntelligenceFindingsSummary.resourceScope` | `TfArg<String>` | `DataStorageControlOrganizationIntelligenceFindingsSummaryResourceScope` |
 | `DataGoogleStorageControlProjectIntelligenceFindingsSummary.resourceScope` | `TfArg<String>` | `DataStorageControlProjectIntelligenceFindingsSummaryResourceScope` |
 | `DataLossPreventionContentPolicyCustomInfoTypes.exclusionType` | `TfArg<String>` | `DataLossPreventionContentPolicyExclusionType` |
 | `DataLossPreventionDeidentifyTemplateExpressions.logicalOperator` | `TfArg<String>` | `DataLossPreventionDeidentifyTemplateLogicalOperator` |
-| `DataLossPreventionDiscoveryConfigTableModifiedCadence.types` | `TfArg<List<String>>` | `List<DataLossPreventionDiscoveryConfigTableModifiedCadenceTypes>` |
+| `DataLossPreventionDiscoveryConfigTableModifiedCadence.types` | `TfArg<List<String>>` | `EnumList<DataLossPreventionDiscoveryConfigTableModifiedCadenceTypes>` |
 | `DataLossPreventionInspectTemplateCustomInfoTypes.exclusionType` | `TfArg<String>` | `DataLossPreventionInspectTemplateExclusionType` |
 | `DataLossPreventionJobTriggerCustomInfoTypes.exclusionType` | `TfArg<String>` | `DataLossPreventionJobTriggerExclusionType` |
 | `DatabaseMigrationServiceConnectionProfileCloudsqlSettings.databaseVersion` | `TfArg<String>` | `DatabaseMigrationServiceConnectionProfileDatabaseVersion` |
+| `DataplexMetadataFeedFilters.changeTypes` | `TfArg<List<String>>` | `EnumList<DataplexMetadataFeedChangeTypes>` |
+| `DataprocClusterAttachedDiskConfig.diskType` | `TfArg<String>` | `DataprocClusterDiskType` |
+| `DataprocClusterConfidentialInstanceConfig.confidentialInstanceType` | `TfArg<String>` | `DataprocClusterConfidentialInstanceType` |
+| `DataprocClusterConfig.clusterTier` | `TfArg<String>` | `DataprocClusterTier` |
+| `DataprocClusterConfig.clusterType` | `TfArg<String>` | `DataprocClusterType` |
+| `DataprocClusterConfig.engine` | `TfArg<String>` | `DataprocClusterEngine` |
 | `DataprocClusterDiskConfig.localSsdInterface` | `TfArg<String>` | `DataprocClusterLocalSsdInterface` |
+| `DataprocClusterMetrics.metricSource` | `TfArg<String>` | `DataprocClusterMetricSource` |
+| `DataprocClusterNodeGroup.roles` | `TfArg<List<String>>` | `EnumList<DataprocClusterRoles>` |
 | `DataprocClusterNodeGroupConfigDiskConfig.localSsdInterface` | `TfArg<String>` | `DataprocClusterLocalSsdInterface` |
+| `DataprocClusterNodePoolTarget.roles` | `TfArg<List<String>>` | `EnumList<DataprocClusterNodePoolTargetRoles>` |
+| `DataprocClusterPreemptibleWorkerConfig.preemptibility` | `TfArg<String>` | `DataprocClusterPreemptibility` |
+| `DataprocClusterReservationAffinity.consumeReservationType` | `TfArg<String>` | `DataprocClusterConsumeReservationType` |
+| `DataprocClusterSoftwareConfig.optionalComponents` | `TfArg<List<String>>` | `EnumList<DataprocClusterOptionalComponents>` |
+| `DataprocWorkflowTemplateAttachedDiskConfig.diskType` | `TfArg<String>` | `DataprocWorkflowTemplateDiskType` |
 | `DataprocWorkflowTemplateDiskConfig.bootDiskType` | `TfArg<String>` | `DataprocWorkflowTemplateBootDiskType` |
 | `DataprocWorkflowTemplateDiskConfig.localSsdInterface` | `TfArg<String>` | `DataprocWorkflowTemplateLocalSsdInterface` |
+| `DataprocWorkflowTemplateSoftwareConfig.optionalComponents` | `TfArg<List<String>>` | `EnumList<DataprocWorkflowTemplateOptionalComponents>` |
 | `DatastreamStreamBlmtConfig.fileFormat` | `TfArg<String>` | `DatastreamStreamBlmtConfigFileFormat` |
 | `DatastreamStreamBlmtConfig.tableFormat` | `TfArg<String>` | `DatastreamStreamTableFormat` |
 | `DeveloperConnectAccountConnectorCustomOauthConfig.scmProvider` | `TfArg<String>` | `DeveloperConnectAccountConnectorScmProvider` |
 | `DeveloperConnectAccountConnectorProviderOauthConfig.systemProviderId` | `TfArg<String>` | `DeveloperConnectAccountConnectorSystemProviderId` |
 | `DeveloperConnectConnectionGithubConfig.githubApp` | `TfArg<String>` | `DeveloperConnectConnectionGithubApp` |
+| `DialogflowConversationProfileSuggestionFeature.type` | `TfArg<String>` | `DialogflowConversationProfileType` |
 | `DialogflowCxGenerativeSettingsGenerativeSafetySettings.defaultBannedPhraseMatchStrategy` | `TfArg<String>` | `DialogflowCxGenerativeSettingsDefaultBannedPhraseMatchStrategy` |
 | `DialogflowCxToolApiKeyConfig.requestLocation` | `TfArg<String>` | `DialogflowCxToolRequestLocation` |
 | `DialogflowCxToolDataStoreConnections.dataStoreType` | `TfArg<String>` | `DialogflowCxToolDataStoreType` |
@@ -306,24 +508,35 @@ Every retyped `terradart_google` input:
 | `DiscoveryEngineAssistantModelArmorConfig.failureMode` | `TfArg<String>` | `DiscoveryEngineAssistantFailureMode` |
 | `DiscoveryEngineChatEngineAgentCreationConfig.location` | `TfArg<String>` | `DiscoveryEngineChatEngineAgentCreationConfigLocation` |
 | `DiscoveryEngineControlInterpolationBoostSpec.interpolationType` | `TfArg<String>` | `DiscoveryEngineControlInterpolationType` |
-| `DiscoveryEngineDataConnectorBapConfig.enabledActions` | `TfArg<List<String>>` | `List<DiscoveryEngineDataConnectorEnabledActions>` |
-| `DiscoveryEngineDataConnectorBapConfig.supportedConnectorModes` | `TfArg<List<String>>` | `List<DiscoveryEngineDataConnectorSupportedConnectorModes>` |
+| `DiscoveryEngineDataConnectorBapConfig.enabledActions` | `TfArg<List<String>>` | `EnumList<DiscoveryEngineDataConnectorEnabledActions>` |
+| `DiscoveryEngineDataConnectorBapConfig.supportedConnectorModes` | `TfArg<List<String>>` | `EnumList<DiscoveryEngineDataConnectorSupportedConnectorModes>` |
 | `DiscoveryEngineDataConnectorEntities.entityName` | `TfArg<String>` | `DiscoveryEngineDataConnectorEntityName` |
-| `DiscoveryEngineDataStoreLayoutParsingConfig.structuredContentTypes` | `TfArg<List<String>>` | `List<DiscoveryEngineDataStoreStructuredContentTypes>` |
+| `DiscoveryEngineDataStoreLayoutParsingConfig.structuredContentTypes` | `TfArg<List<String>>` | `EnumList<DiscoveryEngineDataStoreStructuredContentTypes>` |
 | `DiscoveryEngineRecommendationEngineMediaRecommendationEngineConfig.optimizationObjective` | `TfArg<String>` | `DiscoveryEngineRecommendationEngineOptimizationObjective` |
 | `DiscoveryEngineRecommendationEngineMediaRecommendationEngineConfig.type` | `TfArg<String>` | `DiscoveryEngineRecommendationEngineType` |
 | `DiscoveryEngineRecommendationEngineOptimizationObjectiveConfig.targetField` | `TfArg<String>` | `DiscoveryEngineRecommendationEngineTargetField` |
 | `DiscoveryEngineRecommendationEngineRecommendedForYouConfig.contextEventType` | `TfArg<String>` | `DiscoveryEngineRecommendationEngineContextEventType` |
-| `DiscoveryEngineSearchEngineConfig.searchAddOns` | `TfArg<List<String>>` | `List<DiscoveryEngineSearchEngineConfigSearchAddOns>` |
+| `DiscoveryEngineSearchEngineConfig.searchAddOns` | `TfArg<List<String>>` | `EnumList<DiscoveryEngineSearchEngineConfigSearchAddOns>` |
 | `FirestoreFieldModeArrayConfig.arrayConfig` | `TfArg<String>` | `FirestoreFieldArrayConfig` |
+| `FirestoreIndexFieldTextSpecEntry.indexType` | `TfArg<String>` | `FirestoreIndexTextIndexType` |
+| `FirestoreIndexFieldTextSpecEntry.matchType` | `TfArg<String>` | `FirestoreIndexTextMatchType` |
 | `FolderAccessApprovalSettingsEnrolledServices.cloudProduct` | `TfArg<String>` | `FolderAccessApprovalSettingsCloudProduct` |
 | `FolderAccessApprovalSettingsEnrolledServices.enrollmentLevel` | `TfArg<String>` | `FolderAccessApprovalSettingsEnrollmentLevel` |
 | `FolderIamAuditConfigAuditLogConfig.logType` | `TfArg<String>` | `FolderIamAuditConfigLogType` |
 | `GkeBackupRestorePlanVolumeDataRestorePolicyBindings.volumeType` | `TfArg<String>` | `GkeBackupRestorePlanVolumeType` |
+| `GkeHubFeatureMembershipConfigmanagement.management` | `TfArg<String>` | `GkeHubFeatureMembershipConfigmanagementManagement` |
 | `GkeHubFeatureMembershipGit.secretType` | `TfArg<String>` | `GkeHubFeatureMembershipGitSecretType` |
+| `GkeHubFeatureMembershipMonitoring.backends` | `TfArg<List<String>>` | `EnumList<GkeHubFeatureMembershipBackends>` |
 | `GkeHubFeatureMembershipOci.secretType` | `TfArg<String>` | `GkeHubFeatureMembershipOciSecretType` |
-| `GkeHubRolloutSequenceRolloutCreationScope.upgradeTypes` | `TfArg<List<String>>` | `List<GkeHubRolloutSequenceUpgradeTypes>` |
+| `GkeHubRolloutSequenceRolloutCreationScope.upgradeTypes` | `TfArg<List<String>>` | `EnumList<GkeHubRolloutSequenceUpgradeTypes>` |
+| `GkeonpremBareMetalAdminClusterLoadBalancerNodePoolConfigNodePoolConfig.operatingSystem` | `TfArg<String>` | `GkeonpremBareMetalAdminClusterOperatingSystem` |
+| `GkeonpremBareMetalAdminClusterNodePoolConfig.operatingSystem` | `TfArg<String>` | `GkeonpremBareMetalAdminClusterOperatingSystem` |
+| `GkeonpremBareMetalAdminClusterNodePoolConfigTaints.effect` | `TfArg<String>` | `GkeonpremBareMetalAdminClusterTaintsEffect` |
+| `GkeonpremBareMetalClusterLoadBalancerNodePoolConfigNodePoolConfig.operatingSystem` | `TfArg<String>` | `GkeonpremBareMetalClusterOperatingSystem` |
+| `GkeonpremBareMetalClusterNodePoolConfig.operatingSystem` | `TfArg<String>` | `GkeonpremBareMetalClusterOperatingSystem` |
+| `GkeonpremBareMetalNodePoolConfig.operatingSystem` | `TfArg<String>` | `GkeonpremBareMetalNodePoolOperatingSystem` |
 | `GoogleAlloydbBackup.type` | `TfArg<String>` | `AlloydbBackupType` |
+| `GoogleAlloydbCluster.databaseVersion` | `TfArg<String>` | `AlloydbClusterDatabaseVersion` |
 | `GoogleAlloydbCluster.subscriptionType` | `TfArg<String>` | `AlloydbClusterSubscriptionType` |
 | `GoogleAlloydbInstance.activationPolicy` | `TfArg<String>` | `AlloydbInstanceActivationPolicy` |
 | `GoogleAlloydbInstance.availabilityType` | `TfArg<String>` | `AlloydbInstanceAvailabilityType` |
@@ -332,14 +545,20 @@ Every retyped `terradart_google` input:
 | `GoogleApigeeFlowhook.flowHookPoint` | `TfArg<String>` | `ApigeeFlowhookFlowHookPoint` |
 | `GoogleApigeeInstance.peeringCidrRange` | `TfArg<String>` | `ApigeeInstancePeeringCidrRange` |
 | `GoogleApigeeKeystoresAliasesSelfSignedCert.sigAlg` | `TfArg<String>` | `ApigeeKeystoresAliasesSelfSignedCertSigAlg` |
+| `GoogleApigeeOrganization.billingType` | `TfArg<String>` | `ApigeeOrganizationBillingType` |
 | `GoogleApihubPlugin.pluginCategory` | `TfArg<String>` | `ApihubPluginCategory` |
 | `GoogleApikeysKey.checkExistingUsage` | `TfArg<String>` | `ApikeysKeyCheckExistingUsage` |
-| `GoogleAppEngineFlexibleAppVersion.inboundServices` | `TfArg<List<String>>` | `List<AppEngineFlexibleAppVersionInboundServices>` |
+| `GoogleAppEngineApplication.sslPolicy` | `TfArg<String>` | `AppEngineApplicationSslPolicy` |
+| `GoogleAppEngineFlexibleAppVersion.inboundServices` | `TfArg<List<String>>` | `EnumList<AppEngineFlexibleAppVersionInboundServices>` |
 | `GoogleAppEngineFlexibleAppVersion.instanceClass` | `TfArg<String>` | `AppEngineFlexibleAppVersionInstanceClass` |
-| `GoogleAppEngineStandardAppVersion.inboundServices` | `TfArg<List<String>>` | `List<AppEngineStandardAppVersionInboundServices>` |
+| `GoogleAppEngineStandardAppVersion.inboundServices` | `TfArg<List<String>>` | `EnumList<AppEngineStandardAppVersionInboundServices>` |
 | `GoogleAppEngineStandardAppVersion.instanceClass` | `TfArg<String>` | `AppEngineStandardAppVersionInstanceClass` |
+| `GoogleArtifactRegistryRepository.format` | `TfArg<String>` | `ArtifactRegistryRepositoryFormat` |
+| `GoogleBiglakeDatabase.type` | `TfArg<String>` | `BiglakeDatabaseType` |
 | `GoogleBiglakeTable.type` | `TfArg<String>` | `BiglakeTableType` |
+| `GoogleBigqueryAnalyticsHubListing.categories` | `TfArg<List<String>>` | `EnumList<BigqueryAnalyticsHubListingCategories>` |
 | `GoogleBinaryAuthorizationPolicy.globalPolicyEvaluationMode` | `TfArg<String>` | `BinaryAuthorizationPolicyGlobalPolicyEvaluationMode` |
+| `GoogleCesApp.toolExecutionMode` | `TfArg<String>` | `CesAppToolExecutionMode` |
 | `GoogleCesTool.executionType` | `TfArg<String>` | `CesToolExecutionType` |
 | `GoogleCesToolset.executionType` | `TfArg<String>` | `CesToolsetExecutionType` |
 | `GoogleChronicleBigQueryExport.bigQueryExportPackage` | `TfArg<String>` | `ChronicleBigQueryExportPackage` |
@@ -354,12 +573,17 @@ Every retyped `terradart_google` input:
 | `GoogleCloudfunctionsFunction.dockerRegistry` | `TfArg<String>` | `CloudfunctionsFunctionDockerRegistry` |
 | `GoogleCloudfunctionsFunction.ingressSettings` | `TfArg<String>` | `CloudfunctionsFunctionIngressSettings` |
 | `GoogleCloudfunctionsFunction.vpcConnectorEgressSettings` | `TfArg<String>` | `CloudfunctionsFunctionVpcConnectorEgressSettings` |
+| `GoogleComputeAddress.purpose` | `TfArg<String>` | `ComputeAddressPurpose` |
 | `GoogleComputeAttachedDisk.interface` | `TfArg<String>` | `ComputeAttachedDiskInterface` |
 | `GoogleComputeAttachedDisk.mode` | `TfArg<String>` | `ComputeAttachedDiskMode` |
 | `GoogleComputeInstance.desiredStatus` | `TfArg<String>` | `ComputeInstanceDesiredStatus` |
+| `GoogleComputeInstance.keyRevocationActionType` | `TfArg<String>` | `ComputeInstanceKeyRevocationActionType` |
 | `GoogleComputeInstanceFromTemplate.desiredStatus` | `TfArg<String>` | `ComputeInstanceFromTemplateDesiredStatus` |
-| `GoogleComputeInterconnect.requestedFeatures` | `TfArg<List<String>>` | `List<ComputeInterconnectRequestedFeatures>` |
+| `GoogleComputeInstanceFromTemplate.keyRevocationActionType` | `TfArg<String>` | `ComputeInstanceFromTemplateKeyRevocationActionType` |
+| `GoogleComputeInstanceTemplate.keyRevocationActionType` | `TfArg<String>` | `ComputeInstanceTemplateKeyRevocationActionType` |
+| `GoogleComputeInterconnect.requestedFeatures` | `TfArg<List<String>>` | `EnumList<ComputeInterconnectRequestedFeatures>` |
 | `GoogleComputeInterconnectAttachment.bandwidth` | `TfArg<String>` | `ComputeInterconnectAttachmentBandwidth` |
+| `GoogleComputeInterconnectAttachment.edgeAvailabilityDomain` | `TfArg<String>` | `ComputeInterconnectAttachmentEdgeAvailabilityDomain` |
 | `GoogleComputeInterconnectAttachment.mtu` | `TfArg<String>` | `ComputeInterconnectAttachmentMtu` |
 | `GoogleComputeNetworkFirewallPolicy.policyType` | `TfArg<String>` | `ComputeNetworkFirewallPolicyType` |
 | `GoogleComputeNetworkFirewallPolicyRule.targetType` | `TfArg<String>` | `ComputeNetworkFirewallPolicyRuleTargetType` |
@@ -370,30 +594,40 @@ Every retyped `terradart_google` input:
 | `GoogleComputePerInstanceConfig.mostDisruptiveAllowedAction` | `TfArg<String>` | `ComputePerInstanceConfigMostDisruptiveAllowedAction` |
 | `GoogleComputePublicAdvertisedPrefix.ipv6AccessType` | `TfArg<String>` | `ComputePublicAdvertisedPrefixIpv6AccessType` |
 | `GoogleComputeRegionCommitment.type` | `TfArg<String>` | `ComputeRegionCommitmentType` |
+| `GoogleComputeRegionInstanceTemplate.keyRevocationActionType` | `TfArg<String>` | `ComputeRegionInstanceTemplateKeyRevocationActionType` |
 | `GoogleComputeRegionNetworkFirewallPolicyWithRules.policyType` | `TfArg<String>` | `ComputeRegionNetworkFirewallPolicyWithRulesPolicyType` |
 | `GoogleComputeRegionPerInstanceConfig.minimalAction` | `TfArg<String>` | `ComputeRegionPerInstanceConfigMinimalAction` |
 | `GoogleComputeRegionPerInstanceConfig.mostDisruptiveAllowedAction` | `TfArg<String>` | `ComputeRegionPerInstanceConfigMostDisruptiveAllowedAction` |
 | `GoogleComputeRegionSecurityPolicyRule.action` | `TfArg<String>` | `ComputeRegionSecurityPolicyRuleAction` |
-| `GoogleComputeRouterNat.endpointTypes` | `TfArg<List<String>>` | `List<ComputeRouterNatEndpointTypes>` |
+| `GoogleComputeRouterNat.endpointTypes` | `TfArg<List<String>>` | `EnumList<ComputeRouterNatEndpointTypes>` |
+| `GoogleComputeRouterPeer.advertisedGroups` | `TfArg<List<String>>` | `EnumList<ComputeRouterPeerAdvertisedGroups>` |
 | `GoogleComputeSecurityPolicyRule.action` | `TfArg<String>` | `ComputeSecurityPolicyRuleAction` |
+| `GoogleComputeSubnetwork.privateIpv6GoogleAccess` | `TfArg<String>` | `ComputeSubnetworkPrivateIpv6GoogleAccess` |
+| `GoogleComputeTargetPool.sessionAffinity` | `TfArg<String>` | `ComputeTargetPoolSessionAffinity` |
 | `GoogleContactCenterInsightsQaQuestion.questionType` | `TfArg<String>` | `ContactCenterInsightsQaQuestionType` |
 | `GoogleContainerAttachedCluster.distribution` | `TfArg<String>` | `ContainerAttachedClusterDistribution` |
+| `GoogleContainerCluster.datapathProvider` | `TfArg<String>` | `ContainerClusterDatapathProvider` |
+| `GoogleContainerCluster.inTransitEncryptionConfig` | `TfArg<String>` | `ContainerClusterInTransitEncryptionConfig` |
+| `GoogleContainerCluster.privateIpv6GoogleAccess` | `TfArg<String>` | `ContainerClusterPrivateIpv6GoogleAccess` |
 | `GoogleContainerRegistry.location` | `TfArg<String>` | `ContainerRegistryLocation` |
-| `GoogleDataCatalogTaxonomy.activatedPolicyTypes` | `TfArg<List<String>>` | `List<DataCatalogTaxonomyActivatedPolicyTypes>` |
+| `GoogleDataCatalogTaxonomy.activatedPolicyTypes` | `TfArg<List<String>>` | `EnumList<DataCatalogTaxonomyActivatedPolicyTypes>` |
 | `GoogleDatabaseMigrationServiceConnectionProfile.role` | `TfArg<String>` | `DatabaseMigrationServiceConnectionProfileRole` |
 | `GoogleDatabaseMigrationServiceMigrationJob.desiredState` | `TfArg<String>` | `DatabaseMigrationServiceMigrationJobDesiredState` |
+| `GoogleDataflowJob.ipConfiguration` | `TfArg<String>` | `DataflowJobIpConfiguration` |
 | `GoogleDataflowJob.onDelete` | `TfArg<String>` | `DataflowJobOnDelete` |
-| `GoogleDialogflowCxSecuritySettings.purgeDataTypes` | `TfArg<List<String>>` | `List<DialogflowCxSecuritySettingsPurgeDataTypes>` |
-| `GoogleDialogflowIntent.defaultResponsePlatforms` | `TfArg<List<String>>` | `List<DialogflowIntentDefaultResponsePlatforms>` |
+| `GoogleDialogflowCxSecuritySettings.purgeDataTypes` | `TfArg<List<String>>` | `EnumList<DialogflowCxSecuritySettingsPurgeDataTypes>` |
+| `GoogleDialogflowIntent.defaultResponsePlatforms` | `TfArg<List<String>>` | `EnumList<DialogflowIntentDefaultResponsePlatforms>` |
 | `GoogleDiscoveryEngineAclConfig.location` | `TfArg<String>` | `DiscoveryEngineAclConfigLocation` |
 | `GoogleDiscoveryEngineAssistant.location` | `TfArg<String>` | `DiscoveryEngineAssistantLocation` |
 | `GoogleDiscoveryEngineAssistant.webGroundingType` | `TfArg<String>` | `DiscoveryEngineAssistantWebGroundingType` |
 | `GoogleDiscoveryEngineCmekConfig.location` | `TfArg<String>` | `DiscoveryEngineCmekConfigLocation` |
 | `GoogleDiscoveryEngineControl.location` | `TfArg<String>` | `DiscoveryEngineControlLocation` |
-| `GoogleDiscoveryEngineControl.useCases` | `TfArg<List<String>>` | `List<DiscoveryEngineControlUseCases>` |
+| `GoogleDiscoveryEngineControl.useCases` | `TfArg<List<String>>` | `EnumList<DiscoveryEngineControlUseCases>` |
+| `GoogleDiscoveryEngineDataConnector.connectorModes` | `TfArg<List<String>>` | `EnumList<DiscoveryEngineDataConnectorModes>` |
 | `GoogleDiscoveryEngineDataConnector.location` | `TfArg<String>` | `DiscoveryEngineDataConnectorLocation` |
+| `GoogleDiscoveryEngineDataConnector.syncMode` | `TfArg<String>` | `DiscoveryEngineDataConnectorSyncMode` |
 | `GoogleDiscoveryEngineDataStore.location` | `TfArg<String>` | `DiscoveryEngineDataStoreLocation` |
-| `GoogleDiscoveryEngineDataStore.solutionTypes` | `TfArg<List<String>>` | `List<DiscoveryEngineDataStoreSolutionTypes>` |
+| `GoogleDiscoveryEngineDataStore.solutionTypes` | `TfArg<List<String>>` | `EnumList<DiscoveryEngineDataStoreSolutionTypes>` |
 | `GoogleDiscoveryEngineLicenseConfig.location` | `TfArg<String>` | `DiscoveryEngineLicenseConfigLocation` |
 | `GoogleDiscoveryEngineRecommendationEngine.location` | `TfArg<String>` | `DiscoveryEngineRecommendationEngineLocation` |
 | `GoogleDiscoveryEngineSchema.location` | `TfArg<String>` | `DiscoveryEngineSchemaLocation` |
@@ -404,13 +638,15 @@ Every retyped `terradart_google` input:
 | `GoogleDiscoveryEngineUserStore.location` | `TfArg<String>` | `DiscoveryEngineUserStoreLocation` |
 | `GoogleDiscoveryEngineWidgetConfig.location` | `TfArg<String>` | `DiscoveryEngineWidgetConfigLocation` |
 | `GoogleEdgecontainerCluster.releaseChannel` | `TfArg<String>` | `EdgecontainerClusterReleaseChannel` |
+| `GoogleEssentialContactsContact.notificationCategorySubscriptions` | `TfArg<List<String>>` | `EnumList<EssentialContactsContactNotificationCategorySubscriptions>` |
 | `GoogleGeminiGeminiGcpEnablementSetting.webGroundingType` | `TfArg<String>` | `GeminiGeminiGcpEnablementSettingWebGroundingType` |
 | `GoogleGeminiLoggingSettingBinding.product` | `TfArg<String>` | `GeminiLoggingSettingBindingProduct` |
 | `GoogleGeminiReleaseChannelSetting.releaseChannel` | `TfArg<String>` | `GeminiReleaseChannelSettingReleaseChannel` |
 | `GoogleGeminiReleaseChannelSettingBinding.product` | `TfArg<String>` | `GeminiReleaseChannelSettingBindingProduct` |
-| `GoogleGkeonpremVmwareCluster.skipValidations` | `TfArg<List<String>>` | `List<GkeonpremVmwareClusterSkipValidations>` |
+| `GoogleGkeonpremVmwareCluster.skipValidations` | `TfArg<List<String>>` | `EnumList<GkeonpremVmwareClusterSkipValidations>` |
 | `GoogleHealthcareFhirStore.complexDataTypeReferenceParsing` | `TfArg<String>` | `HealthcareFhirStoreComplexDataTypeReferenceParsing` |
 | `GoogleIamFoldersPolicyBinding.policyKind` | `TfArg<String>` | `IamFoldersPolicyBindingPolicyKind` |
+| `GoogleIamOauthClient.allowedGrantTypes` | `TfArg<List<String>>` | `EnumList<IamOauthClientAllowedGrantTypes>` |
 | `GoogleIamOauthClient.clientType` | `TfArg<String>` | `IamOauthClientType` |
 | `GoogleIamOrganizationsPolicyBinding.policyKind` | `TfArg<String>` | `IamOrganizationsPolicyBindingPolicyKind` |
 | `GoogleIamProjectsPolicyBinding.policyKind` | `TfArg<String>` | `IamProjectsPolicyBindingPolicyKind` |
@@ -422,25 +658,29 @@ Every retyped `terradart_google` input:
 | `GoogleMemorystoreInstance.mode` | `TfArg<String>` | `MemorystoreInstanceMode` |
 | `GoogleMemorystoreInstance.nodeType` | `TfArg<String>` | `MemorystoreInstanceNodeType` |
 | `GoogleMemorystoreInstance.transitEncryptionMode` | `TfArg<String>` | `MemorystoreInstanceTransitEncryptionMode` |
+| `GoogleModelArmorFloorsetting.integratedServices` | `TfArg<List<String>>` | `EnumList<ModelArmorFloorsettingIntegratedServices>` |
 | `GoogleMonitoringUptimeCheckConfig.period` | `TfArg<String>` | `MonitoringUptimeCheckConfigPeriod` |
 | `GoogleNetappBackupVault.backupVaultType` | `TfArg<String>` | `NetappBackupVaultType` |
-| `GoogleNetappVolume.protocols` | `TfArg<List<String>>` | `List<GoogleNetappVolumeProtocols>` |
-| `GoogleNetappVolume.restrictedActions` | `TfArg<List<String>>` | `List<NetappVolumeRestrictedActions>` |
+| `GoogleNetappVolume.protocols` | `TfArg<List<String>>` | `EnumList<GoogleNetappVolumeProtocols>` |
+| `GoogleNetappVolume.restrictedActions` | `TfArg<List<String>>` | `EnumList<NetappVolumeRestrictedActions>` |
 | `GoogleNetappVolume.securityStyle` | `TfArg<String>` | `NetappVolumeSecurityStyle` |
-| `GoogleNetappVolume.smbSettings` | `TfArg<List<String>>` | `List<NetappVolumeSmbSettings>` |
+| `GoogleNetappVolume.smbSettings` | `TfArg<List<String>>` | `EnumList<NetappVolumeSmbSettings>` |
 | `GoogleNetworkConnectivityHub.policyMode` | `TfArg<String>` | `NetworkConnectivityHubPolicyMode` |
 | `GoogleNetworkConnectivityHub.presetTopology` | `TfArg<String>` | `NetworkConnectivityHubPresetTopology` |
-| `GoogleNetworkConnectivityInternalRange.overlaps` | `TfArg<List<String>>` | `List<NetworkConnectivityInternalRangeOverlaps>` |
+| `GoogleNetworkConnectivityInternalRange.overlaps` | `TfArg<List<String>>` | `EnumList<NetworkConnectivityInternalRangeOverlaps>` |
+| `GoogleNetworkConnectivityTransport.bandwidth` | `TfArg<String>` | `NetworkConnectivityTransportBandwidth` |
+| `GoogleNetworkManagementNetworkMonitoringProvider.providerType` | `TfArg<String>` | `NetworkManagementNetworkMonitoringProviderType` |
 | `GoogleNetworkManagementOrganizationVpcFlowLogsConfig.aggregationInterval` | `TfArg<String>` | `NetworkManagementOrganizationVpcFlowLogsConfigAggregationInterval` |
 | `GoogleNetworkManagementOrganizationVpcFlowLogsConfig.crossProjectMetadata` | `TfArg<String>` | `NetworkManagementOrganizationVpcFlowLogsConfigCrossProjectMetadata` |
 | `GoogleNetworkManagementOrganizationVpcFlowLogsConfig.metadata` | `TfArg<String>` | `NetworkManagementOrganizationVpcFlowLogsConfigMetadata` |
 | `GoogleNetworkManagementOrganizationVpcFlowLogsConfig.state` | `TfArg<String>` | `NetworkManagementOrganizationVpcFlowLogsConfigState` |
 | `GoogleNetworkSecurityAuthzPolicy.policyProfile` | `TfArg<String>` | `NetworkSecurityAuthzPolicyProfile` |
 | `GoogleNetworkSecurityMirroringEndpointGroup.type` | `TfArg<String>` | `NetworkSecurityMirroringEndpointGroupType` |
-| `GoogleNetworkServicesAgentConnectivityTemplate.accessTypes` | `TfArg<List<String>>` | `List<NetworkServicesAgentConnectivityTemplateAccessTypes>` |
-| `GoogleNetworkServicesAgentGateway.protocols` | `TfArg<List<String>>` | `List<NetworkServicesAgentGatewayProtocols>` |
-| `GoogleNetworkServicesEdgeCacheOrigin.retryConditions` | `TfArg<List<String>>` | `List<NetworkServicesEdgeCacheOriginRetryConditions>` |
+| `GoogleNetworkServicesAgentConnectivityTemplate.accessTypes` | `TfArg<List<String>>` | `EnumList<NetworkServicesAgentConnectivityTemplateAccessTypes>` |
+| `GoogleNetworkServicesAgentGateway.protocols` | `TfArg<List<String>>` | `EnumList<NetworkServicesAgentGatewayProtocols>` |
+| `GoogleNetworkServicesEdgeCacheOrigin.retryConditions` | `TfArg<List<String>>` | `EnumList<NetworkServicesEdgeCacheOriginRetryConditions>` |
 | `GoogleNetworkServicesMulticastGroupRange.distributionScope` | `TfArg<String>` | `NetworkServicesMulticastGroupRangeDistributionScope` |
+| `GoogleOrgPolicyCustomConstraint.methodTypes` | `TfArg<List<String>>` | `EnumList<OrgPolicyCustomConstraintMethodTypes>` |
 | `GoogleOsConfigV2PolicyOrchestrator.action` | `TfArg<String>` | `OsConfigV2PolicyOrchestratorAction` |
 | `GoogleOsConfigV2PolicyOrchestratorForFolder.action` | `TfArg<String>` | `OsConfigV2PolicyOrchestratorForFolderAction` |
 | `GoogleOsConfigV2PolicyOrchestratorForOrganization.action` | `TfArg<String>` | `OsConfigV2PolicyOrchestratorForOrganizationAction` |
@@ -448,27 +688,35 @@ Every retyped `terradart_google` input:
 | `GoogleParallelstoreInstance.fileStripeLevel` | `TfArg<String>` | `ParallelstoreInstanceFileStripeLevel` |
 | `GoogleProjectDefaultServiceAccounts.action` | `TfArg<String>` | `ProjectDefaultServiceAccountsAction` |
 | `GoogleProjectDefaultServiceAccounts.restorePolicy` | `TfArg<String>` | `ProjectDefaultServiceAccountsRestorePolicy` |
-| `GoogleResourceManagerCapabilityConfig.types` | `TfArg<List<String>>` | `List<ResourceManagerCapabilityConfigTypes>` |
-| `GoogleSecureSourceManagerHook.events` | `TfArg<List<String>>` | `List<SecureSourceManagerHookEvents>` |
+| `GoogleResourceManagerCapabilityConfig.types` | `TfArg<List<String>>` | `EnumList<ResourceManagerCapabilityConfigTypes>` |
+| `GoogleSccV2FolderMuteConfig.type` | `TfArg<String>` | `SccV2FolderMuteConfigType` |
+| `GoogleSccV2OrganizationMuteConfig.type` | `TfArg<String>` | `SccV2OrganizationMuteConfigType` |
+| `GoogleSccV2ProjectMuteConfig.type` | `TfArg<String>` | `SccV2ProjectMuteConfigType` |
+| `GoogleSecretManagerRegionalSecret.secretType` | `TfArg<String>` | `SecretManagerRegionalSecretType` |
+| `GoogleSecretManagerSecret.secretType` | `TfArg<String>` | `SecretManagerSecretType` |
+| `GoogleSecureSourceManagerHook.events` | `TfArg<List<String>>` | `EnumList<SecureSourceManagerHookEvents>` |
 | `GoogleSpannerInstance.defaultBackupScheduleType` | `TfArg<String>` | `SpannerInstanceDefaultBackupScheduleType` |
 | `GoogleSpannerInstance.instanceType` | `TfArg<String>` | `SpannerInstanceType` |
 | `GoogleSqlDatabaseInstance.instanceType` | `TfArg<String>` | `SqlDatabaseInstanceType` |
 | `GoogleSqlSourceRepresentationInstance.databaseVersion` | `TfArg<String>` | `SqlSourceRepresentationInstanceDatabaseVersion` |
 | `GoogleStorageControlFolderIntelligenceConfig.editionConfig` | `TfArg<String>` | `StorageControlFolderIntelligenceConfigEditionConfig` |
 | `GoogleStorageControlOrganizationIntelligenceConfig.editionConfig` | `TfArg<String>` | `StorageControlOrganizationIntelligenceConfigEditionConfig` |
+| `GoogleStorageTransferJob.status` | `TfArg<String>` | `StorageTransferJobStatus` |
 | `GoogleVectorSearchIndex.distanceMetric` | `TfArg<String>` | `VectorSearchIndexDistanceMetric` |
 | `GoogleVertexAiFeaturestoreEntitytypeFeature.valueType` | `TfArg<String>` | `VertexAiFeaturestoreEntitytypeFeatureValueType` |
+| `GoogleVertexAiIndex.indexUpdateMethod` | `TfArg<String>` | `VertexAiIndexUpdateMethod` |
 | `HypercomputeclusterClusterAutoclass.terminalStorageClass` | `TfArg<String>` | `HypercomputeclusterClusterTerminalStorageClass` |
 | `HypercomputeclusterClusterNewBucket.storageClass` | `TfArg<String>` | `HypercomputeclusterClusterStorageClass` |
 | `HypercomputeclusterClusterNewLustre.perUnitStorageThroughput` | `TfArg<String>` | `HypercomputeclusterClusterPerUnitStorageThroughput` |
 | `HypercomputeclusterClusterNewSpotInstances.terminationAction` | `TfArg<String>` | `HypercomputeclusterClusterTerminationAction` |
 | `IamPrincipalAccessBoundaryPolicyRules.effect` | `TfArg<String>` | `IamPrincipalAccessBoundaryPolicyEffect` |
 | `IamWorkforcePoolProviderExtendedAttributesOauth2Client.attributesType` | `TfArg<String>` | `IamWorkforcePoolProviderExtendedAttributesType` |
-| `IapSettingsAccessSettings.identitySources` | `TfArg<List<String>>` | `List<IapSettingsIdentitySources>` |
-| `IdentityPlatformConfigMfa.enabledProviders` | `TfArg<List<String>>` | `List<IdentityPlatformConfigEnabledProviders>` |
+| `IapSettingsAccessSettings.identitySources` | `TfArg<List<String>>` | `EnumList<IapSettingsIdentitySources>` |
+| `IdentityPlatformConfigMfa.enabledProviders` | `TfArg<List<String>>` | `EnumList<IdentityPlatformConfigEnabledProviders>` |
 | `IntegrationConnectorsConnectionEventingConfigAuthConfig.authType` | `TfArg<String>` | `IntegrationConnectorsConnectionAuthConfigAuthType` |
 | `IntegrationConnectorsConnectionSslConfig.clientCertType` | `TfArg<String>` | `IntegrationConnectorsConnectionClientCertType` |
 | `IntegrationConnectorsConnectionSslConfig.serverCertType` | `TfArg<String>` | `IntegrationConnectorsConnectionServerCertType` |
+| `KmsCryptoKeyVersionTemplate.algorithm` | `TfArg<String>` | `KmsCryptoKeyVersionAlgorithm` |
 | `LustreInstanceAccessRules.squashMode` | `TfArg<String>` | `LustreInstanceSquashMode` |
 | `LustreInstanceAccessRulesOptions.defaultSquashMode` | `TfArg<String>` | `LustreInstanceDefaultSquashMode` |
 | `LustreInstanceDynamicTierOptions.mode` | `TfArg<String>` | `LustreInstanceMode` |
@@ -495,20 +743,24 @@ Every retyped `terradart_google` input:
 | `ModelArmorTemplateFilterVersionSelectorAlias.alias` | `TfArg<String>` | `ModelArmorTemplateAlias` |
 | `ModelArmorTemplateMaliciousUriFilterSettings.filterEnforcement` | `TfArg<String>` | `ModelArmorTemplateFilterEnforcement` |
 | `ModelArmorTemplateMetadata.enforcementType` | `TfArg<String>` | `ModelArmorTemplateEnforcementType` |
-| `ModelArmorTemplateMetadata.modalities` | `TfArg<List<String>>` | `List<ModelArmorTemplateModalities>` |
+| `ModelArmorTemplateMetadata.modalities` | `TfArg<List<String>>` | `EnumList<ModelArmorTemplateModalities>` |
 | `ModelArmorTemplatePiAndJailbreakFilterSettings.confidenceLevel` | `TfArg<String>` | `ModelArmorTemplateConfidenceLevel` |
 | `ModelArmorTemplatePiAndJailbreakFilterSettings.filterEnforcement` | `TfArg<String>` | `ModelArmorTemplateFilterEnforcement` |
 | `ModelArmorTemplateRaiFilters.confidenceLevel` | `TfArg<String>` | `ModelArmorTemplateConfidenceLevel` |
 | `ModelArmorTemplateRaiFilters.filterType` | `TfArg<String>` | `ModelArmorTemplateFilterType` |
 | `NetworkConnectivityPolicyBasedRouteFilter.ipProtocol` | `TfArg<String>` | `NetworkConnectivityPolicyBasedRouteIpProtocol` |
 | `NetworkSecurityAuthzPolicyMethods.name` | `TfArg<String>` | `NetworkSecurityAuthzPolicyMethodsName` |
-| `NetworkServicesEdgeCacheOriginRedirect.redirectConditions` | `TfArg<List<String>>` | `List<NetworkServicesEdgeCacheOriginRedirectConditions>` |
-| `NetworkServicesLbRouteExtensionExtensions.supportedEvents` | `TfArg<List<String>>` | `List<NetworkServicesLbRouteExtensionSupportedEvents>` |
-| `NetworkServicesLbTrafficExtensionExtensions.supportedEvents` | `TfArg<List<String>>` | `List<NetworkServicesLbTrafficExtensionSupportedEvents>` |
+| `NetworkServicesEdgeCacheOriginRedirect.redirectConditions` | `TfArg<List<String>>` | `EnumList<NetworkServicesEdgeCacheOriginRedirectConditions>` |
+| `NetworkServicesHttpRouteRedirect.responseCode` | `TfArg<String>` | `NetworkServicesHttpRouteResponseCode` |
+| `NetworkServicesLbEdgeExtensionExtensions.supportedEvents` | `TfArg<List<String>>` | `EnumList<NetworkServicesLbEdgeExtensionSupportedEvents>` |
+| `NetworkServicesLbRouteExtensionExtensions.supportedEvents` | `TfArg<List<String>>` | `EnumList<NetworkServicesLbRouteExtensionSupportedEvents>` |
+| `NetworkServicesLbTrafficExtensionExtensions.supportedEvents` | `TfArg<List<String>>` | `EnumList<NetworkServicesLbTrafficExtensionSupportedEvents>` |
 | `NetworkServicesMulticastDomainConnectionConfig.connectionType` | `TfArg<String>` | `NetworkServicesMulticastDomainConnectionType` |
 | `OracleDatabaseAutonomousDatabaseProperties.dbEdition` | `TfArg<String>` | `OracleDatabaseAutonomousDatabaseDbEdition` |
 | `OracleDatabaseAutonomousDatabaseProperties.maintenanceScheduleType` | `TfArg<String>` | `OracleDatabaseAutonomousDatabaseMaintenanceScheduleType` |
 | `OracleDatabaseAutonomousDatabaseProperties.operationsInsightsState` | `TfArg<String>` | `OracleDatabaseAutonomousDatabaseOperationsInsightsState` |
+| `OracleDatabaseCloudExadataInfrastructureMaintenanceWindow.daysOfWeek` | `TfArg<List<String>>` | `EnumList<OracleDatabaseCloudExadataInfrastructureDaysOfWeek>` |
+| `OracleDatabaseCloudExadataInfrastructureMaintenanceWindow.months` | `TfArg<List<String>>` | `EnumList<OracleDatabaseCloudExadataInfrastructureMonths>` |
 | `OracleDatabaseCloudExadataInfrastructureMaintenanceWindow.patchingMode` | `TfArg<String>` | `OracleDatabaseCloudExadataInfrastructurePatchingMode` |
 | `OracleDatabaseCloudExadataInfrastructureMaintenanceWindow.preference` | `TfArg<String>` | `OracleDatabaseCloudExadataInfrastructurePreference` |
 | `OracleDatabaseCloudVmClusterProperties.diskRedundancy` | `TfArg<String>` | `OracleDatabaseCloudVmClusterDiskRedundancy` |
@@ -551,6 +803,7 @@ Every retyped `terradart_google` input:
 | `OracleDatabaseGoldengateConnectionStorage.storageType` | `TfArg<String>` | `OracleDatabaseGoldengateConnectionStorageType` |
 | `OracleDatabaseGoldengateDeploymentMaintenanceWindow.day` | `TfArg<String>` | `OracleDatabaseGoldengateDeploymentDay` |
 | `OracleDatabaseGoldengateDeploymentProperties.licenseModel` | `TfArg<String>` | `OracleDatabaseGoldengateDeploymentLicenseModel` |
+| `OrgPolicyPolicyRules.allowAll` | `TfArg<String>` | `OrgPolicyPolicyAllowAll` |
 | `OrganizationAccessApprovalSettingsEnrolledServices.cloudProduct` | `TfArg<String>` | `OrganizationAccessApprovalSettingsCloudProduct` |
 | `OrganizationAccessApprovalSettingsEnrolledServices.enrollmentLevel` | `TfArg<String>` | `OrganizationAccessApprovalSettingsEnrollmentLevel` |
 | `OrganizationIamAuditConfigAuditLogConfig.logType` | `TfArg<String>` | `OrganizationIamAuditConfigLogType` |
@@ -566,16 +819,51 @@ Every retyped `terradart_google` input:
 | `OsConfigV2PolicyOrchestratorPkg.desiredState` | `TfArg<String>` | `OsConfigV2PolicyOrchestratorDesiredState` |
 | `OsConfigV2PolicyOrchestratorRepositoryApt.archiveType` | `TfArg<String>` | `OsConfigV2PolicyOrchestratorArchiveType` |
 | `OsConfigV2PolicyOrchestratorValidate.interpreter` | `TfArg<String>` | `OsConfigV2PolicyOrchestratorInterpreter` |
+| `PrivatecaCertificateTemplatePassthroughExtensions.knownExtensions` | `TfArg<List<String>>` | `EnumList<PrivatecaCertificateTemplateKnownExtensions>` |
 | `ProjectAccessApprovalSettingsEnrolledServices.cloudProduct` | `TfArg<String>` | `ProjectAccessApprovalSettingsCloudProduct` |
 | `ProjectAccessApprovalSettingsEnrolledServices.enrollmentLevel` | `TfArg<String>` | `ProjectAccessApprovalSettingsEnrollmentLevel` |
 | `ProjectIamAuditConfigAuditLogConfig.logType` | `TfArg<String>` | `ProjectIamAuditConfigAuditLogConfigLogType` |
 | `SecureSourceManagerRepositoryInitialConfig.readme` | `TfArg<String>` | `SecureSourceManagerRepositoryReadme` |
+| `SecurityposturePostureCustomConstraint.methodTypes` | `TfArg<List<String>>` | `EnumList<SecurityposturePostureMethodTypes>` |
+| `SqlDatabaseInstanceActiveDirectoryConfig.mode` | `TfArg<String>` | `SqlDatabaseInstanceMode` |
+| `SqlDatabaseInstanceBackupRetentionSettings.retentionUnit` | `TfArg<String>` | `SqlDatabaseInstanceRetentionUnit` |
+| `SqlDatabaseInstanceIpConfiguration.serverCaMode` | `TfArg<String>` | `SqlDatabaseInstanceServerCaMode` |
+| `SqlDatabaseInstanceIpConfiguration.serverCertificateRotationMode` | `TfArg<String>` | `SqlDatabaseInstanceServerCertificateRotationMode` |
+| `SqlDatabaseInstanceIpConfiguration.sslMode` | `TfArg<String>` | `SqlDatabaseInstanceSslMode` |
+| `SqlDatabaseInstanceMaintenanceWindow.updateTrack` | `TfArg<String>` | `SqlDatabaseInstanceUpdateTrack` |
+| `SqlDatabaseInstancePasswordValidationPolicy.complexity` | `TfArg<String>` | `SqlDatabaseInstanceComplexity` |
+| `SqlDatabaseInstanceSettings.connectorEnforcement` | `TfArg<String>` | `SqlDatabaseInstanceConnectorEnforcement` |
+| `SqlDatabaseInstanceSettings.dataApiAccess` | `TfArg<String>` | `SqlDatabaseInstanceDataApiAccess` |
+| `SqlDatabaseInstanceSettings.pricingPlan` | `TfArg<String>` | `SqlDatabaseInstancePricingPlan` |
+| `StorageBatchOperationsJobPutObjectHold.eventBasedHold` | `TfArg<String>` | `StorageBatchOperationsJobEventBasedHold` |
+| `StorageBatchOperationsJobPutObjectHold.temporaryHold` | `TfArg<String>` | `StorageBatchOperationsJobTemporaryHold` |
 | `StorageBucketAutoclass.terminalStorageClass` | `TfArg<String>` | `StorageBucketTerminalStorageClass` |
-| `StorageBucketCondition.matchesStorageClass` | `TfArg<List<String>>` | `List<StorageBucketMatchesStorageClass>` |
+| `StorageBucketCondition.matchesStorageClass` | `TfArg<List<String>>` | `EnumList<StorageBucketMatchesStorageClass>` |
 | `StorageBucketCondition.withState` | `TfArg<String>` | `StorageBucketWithState` |
+| `StorageBucketCustomerManagedEncryptionEnforcementConfig.restrictionMode` | `TfArg<String>` | `StorageBucketRestrictionMode` |
+| `StorageBucketCustomerSuppliedEncryptionEnforcementConfig.restrictionMode` | `TfArg<String>` | `StorageBucketRestrictionMode` |
+| `StorageBucketGoogleManagedEncryptionEnforcementConfig.restrictionMode` | `TfArg<String>` | `StorageBucketRestrictionMode` |
 | `StorageBucketIpFilter.mode` | `TfArg<String>` | `StorageBucketMode` |
 | `StorageBucketObjectRetention.mode` | `TfArg<String>` | `StorageBucketObjectRetentionMode` |
+| `StorageFtpUserCredentials.credentialType` | `TfArg<String>` | `StorageFtpUserCredentialType` |
+| `StorageTransferJobLoggingConfig.logActionStates` | `TfArg<List<String>>` | `EnumList<StorageTransferJobLogActionStates>` |
+| `StorageTransferJobLoggingConfig.logActions` | `TfArg<List<String>>` | `EnumList<StorageTransferJobLogActions>` |
+| `StorageTransferJobMetadataOptions.acl` | `TfArg<String>` | `StorageTransferJobAcl` |
+| `StorageTransferJobMetadataOptions.gid` | `TfArg<String>` | `StorageTransferJobGid` |
+| `StorageTransferJobMetadataOptions.kmsKey` | `TfArg<String>` | `StorageTransferJobKmsKey` |
+| `StorageTransferJobMetadataOptions.mode` | `TfArg<String>` | `StorageTransferJobMode` |
+| `StorageTransferJobMetadataOptions.storageClass` | `TfArg<String>` | `StorageTransferJobStorageClass` |
+| `StorageTransferJobMetadataOptions.symlink` | `TfArg<String>` | `StorageTransferJobSymlink` |
+| `StorageTransferJobMetadataOptions.temporaryHold` | `TfArg<String>` | `StorageTransferJobTemporaryHold` |
+| `StorageTransferJobMetadataOptions.timeCreated` | `TfArg<String>` | `StorageTransferJobTimeCreated` |
+| `StorageTransferJobMetadataOptions.uid` | `TfArg<String>` | `StorageTransferJobUid` |
+| `StorageTransferJobNotificationConfig.eventTypes` | `TfArg<List<String>>` | `EnumList<StorageTransferJobEventTypes>` |
 | `StorageTransferJobNotificationConfig.payloadFormat` | `TfArg<String>` | `StorageTransferJobPayloadFormat` |
+| `StorageTransferJobS3Metadata.authMethod` | `TfArg<String>` | `StorageTransferJobAuthMethod` |
+| `StorageTransferJobS3Metadata.listApi` | `TfArg<String>` | `StorageTransferJobListApi` |
+| `StorageTransferJobS3Metadata.protocol` | `TfArg<String>` | `StorageTransferJobProtocol` |
+| `StorageTransferJobS3Metadata.requestModel` | `TfArg<String>` | `StorageTransferJobRequestModel` |
+| `StorageTransferJobTransferOptions.overwriteWhen` | `TfArg<String>` | `StorageTransferJobOverwriteWhen` |
 | `VectorSearchCollectionVertexEmbeddingConfig.taskType` | `TfArg<String>` | `VectorSearchCollectionTaskType` |
 | `VertexAiDeploymentResourcePoolMachineSpec.acceleratorType` | `TfArg<String>` | `VertexAiDeploymentResourcePoolAcceleratorType` |
 | `VertexAiEndpointWithModelGardenDeploymentHttpGet.scheme` | `TfArg<String>` | `VertexAiEndpointWithModelGardenDeploymentScheme` |
@@ -589,6 +877,7 @@ Every retyped `terradart_google` input:
 | `VertexAiPersistentResourceDiskSpec.bootDiskType` | `TfArg<String>` | `VertexAiPersistentResourceBootDiskType` |
 | `VertexAiPersistentResourceMachineSpec.acceleratorType` | `TfArg<String>` | `VertexAiPersistentResourceAcceleratorType` |
 | `VertexAiReasoningEngineContent.role` | `TfArg<String>` | `VertexAiReasoningEngineRole` |
+| `VertexAiReasoningEngineManagedMemoryTopic.managedTopicEnum` | `TfArg<String>` | `VertexAiReasoningEngineManagedTopicEnum` |
 | `VmwareengineClusterDatastoreMountConfig.accessMode` | `TfArg<String>` | `VmwareengineClusterAccessMode` |
 | `VmwareengineClusterDatastoreMountConfig.nfsVersion` | `TfArg<String>` | `VmwareengineClusterNfsVersion` |
 | `WorkbenchInstanceConfidentialInstanceConfig.confidentialInstanceType` | `TfArg<String>` | `WorkbenchInstanceConfidentialInstanceType` |
@@ -597,16 +886,26 @@ Every retyped `terradart_google_beta` input:
 
 | Input | Before | After |
 |---|---|---|
-| `ComputeInstanceFromMachineImageAccessConfig.networkTier` | `TfArg<String>` | `ComputeInstanceFromMachineImageNetworkTier` |
+| `CesEvaluationScenario.taskCompletionBehavior` | `TfArg<String>` | `CesEvaluationTaskCompletionBehavior` |
+| `CesEvaluationScenario.userGoalBehavior` | `TfArg<String>` | `CesEvaluationUserGoalBehavior` |
+| `ComputeInstanceFromMachineImageAccessConfig.networkTier` | `TfArg<String>` | `ComputeInstanceFromMachineImageAccessConfigNetworkTier` |
 | `ComputeInstanceFromMachineImageAdvancedMachineFeatures.performanceMonitoringUnit` | `TfArg<String>` | `ComputeInstanceFromMachineImagePerformanceMonitoringUnit` |
 | `ComputeInstanceFromMachineImageConfidentialInstanceConfig.confidentialInstanceType` | `TfArg<String>` | `ComputeInstanceFromMachineImageConfidentialInstanceType` |
+| `ComputeInstanceFromMachineImageIpv6AccessConfig.networkTier` | `TfArg<String>` | `ComputeInstanceFromMachineImageIpv6AccessConfigNetworkTier` |
+| `ComputeInstanceFromMachineImageNetworkInterface.igmpQuery` | `TfArg<String>` | `ComputeInstanceFromMachineImageIgmpQuery` |
+| `ComputeInstanceFromMachineImageNetworkInterface.stackType` | `TfArg<String>` | `ComputeInstanceFromMachineImageStackType` |
+| `ComputeInstanceFromMachineImageNodeAffinities.operator` | `TfArg<String>` | `ComputeInstanceFromMachineImageOperator` |
+| `ComputeInstanceFromMachineImageScheduling.instanceTerminationAction` | `TfArg<String>` | `ComputeInstanceFromMachineImageInstanceTerminationAction` |
+| `ComputeInstanceFromMachineImageScheduling.maintenanceInterval` | `TfArg<String>` | `ComputeInstanceFromMachineImageMaintenanceInterval` |
 | `ComputeInstanceFromMachineImageScheduling.onHostMaintenance` | `TfArg<String>` | `ComputeInstanceFromMachineImageOnHostMaintenance` |
 | `ComputeInstanceFromMachineImageScheduling.provisioningModel` | `TfArg<String>` | `ComputeInstanceFromMachineImageProvisioningModel` |
 | `FirebaseAiLogicConfigTelemetryConfig.mode` | `TfArg<String>` | `FirebaseAiLogicConfigMode` |
 | `GoogleComputeInstanceFromMachineImage.desiredStatus` | `TfArg<String>` | `ComputeInstanceFromMachineImageDesiredStatus` |
+| `GoogleComputeInstanceFromMachineImage.keyRevocationActionType` | `TfArg<String>` | `ComputeInstanceFromMachineImageKeyRevocationActionType` |
 | `GoogleSaasRuntimeUnit.managementMode` | `TfArg<String>` | `SaasRuntimeUnitManagementMode` |
 | `SaasRuntimeUnitKindScope.type` | `TfArg<String>` | `SaasRuntimeUnitKindType` |
 | `SaasRuntimeUnitOperationInputVariables.type` | `TfArg<String>` | `SaasRuntimeUnitOperationType` |
+| `TpuV2VmAcceleratorConfig.type` | `TfArg<String>` | `TpuV2VmType` |
 
 Every retyped `terradart_aws` input:
 
@@ -639,15 +938,17 @@ Every retyped `terradart_azure` input:
 | `ApplicationGatewayBackendHttpSettings.protocol` | `TfArg<String>` | `ApplicationGatewayBackendHttpSettingsProtocol` |
 | `ApplicationGatewayHttpListener.protocol` | `TfArg<String>` | `ApplicationGatewayBackendHttpSettingsProtocol` |
 | `ApplicationGatewayListener.protocol` | `TfArg<String>` | `ApplicationGatewayBackendProtocol` |
-| `ApplicationGatewaySslPolicy.cipherSuites` | `TfArg<List<String>>` | `List<ApplicationGatewayCipherSuites>` |
-| `ApplicationGatewaySslPolicy.disabledProtocols` | `TfArg<List<String>>` | `List<ApplicationGatewayDisabledProtocols>` |
+| `ApplicationGatewaySslPolicy.cipherSuites` | `TfArg<List<String>>` | `EnumList<ApplicationGatewayCipherSuites>` |
+| `ApplicationGatewaySslPolicy.disabledProtocols` | `TfArg<List<String>>` | `EnumList<ApplicationGatewayDisabledProtocols>` |
 | `ApplicationGatewaySslPolicy.minProtocolVersion` | `TfArg<String>` | `ApplicationGatewayMinProtocolVersion` |
 | `ApplicationGatewaySslPolicy.policyType` | `TfArg<String>` | `ApplicationGatewayPolicyType` |
 | `ApplicationGatewaySslProfile.verifyClientCertificateRevocation` | `TfArg<String>` | `ApplicationGatewayVerifyClientCertificateRevocation` |
 | `ArcKubernetesFluxConfigurationGitRepository.referenceType` | `TfArg<String>` | `ArcKubernetesFluxConfigurationReferenceType` |
+| `AutomanageConfigurationRetentionDuration.durationType` | `TfArg<String>` | `AutomanageConfigurationDailyScheduleDurationType, AutomanageConfigurationWeeklyScheduleDurationType` (now in `AutomanageConfigurationDailyScheduleRetentionDuration`, `AutomanageConfigurationWeeklyScheduleRetentionDuration`) |
 | `AutomanageConfigurationRetentionPolicy.retentionPolicyType` | `TfArg<String>` | `AutomanageConfigurationRetentionPolicyType` |
 | `AutomanageConfigurationSchedulePolicy.schedulePolicyType` | `TfArg<String>` | `AutomanageConfigurationSchedulePolicyType` |
 | `AzurermAadb2cDirectory.skuName` | `TfArg<String>` | `Aadb2cDirectorySkuName` |
+| `AzurermApiManagementEmailTemplate.templateName` | `TfArg<String>` | `ApiManagementEmailTemplateName` |
 | `AzurermApiManagementStandaloneGateway.virtualNetworkType` | `TfArg<String>` | `ApiManagementStandaloneGatewayVirtualNetworkType` |
 | `AzurermApiManagementUser.state` | `TfArg<String>` | `ApiManagementUserState` |
 | `AzurermAppConfigurationKey.type` | `TfArg<String>` | `AppConfigurationKeyType` |
@@ -657,7 +958,7 @@ Every retyped `terradart_azure` input:
 | `AzurermAppServiceEnvironmentV3.internalLoadBalancingMode` | `TfArg<String>` | `AppServiceEnvironmentV3InternalLoadBalancingMode` |
 | `AzurermAppServiceSlotCustomHostnameBinding.sslState` | `TfArg<String>` | `AppServiceSlotCustomHostnameBindingSslState` |
 | `AzurermApplicationInsightsAnalyticsItem.type` | `TfArg<String>` | `ApplicationInsightsAnalyticsItemType` |
-| `AzurermApplicationInsightsApiKey.writePermissions` | `TfArg<List<String>>` | `List<ApplicationInsightsApiKeyWritePermissions>` |
+| `AzurermApplicationInsightsApiKey.writePermissions` | `TfArg<List<String>>` | `EnumList<ApplicationInsightsApiKeyWritePermissions>` |
 | `AzurermApplicationInsightsWebTest.kind` | `TfArg<String>` | `ApplicationInsightsWebTestKind` |
 | `AzurermArcResourceBridgeAppliance.distro` | `TfArg<String>` | `ArcResourceBridgeApplianceDistro` |
 | `AzurermBackupPolicyVm.consistencyType` | `TfArg<String>` | `BackupPolicyVmConsistencyType` |
@@ -709,16 +1010,19 @@ Every retyped `terradart_azure` input:
 | `AzurermHdinsightKafkaCluster.tlsMinVersion` | `TfArg<String>` | `HdinsightKafkaClusterTlsMinVersion` |
 | `AzurermHdinsightSparkCluster.tier` | `TfArg<String>` | `HdinsightSparkClusterTier` |
 | `AzurermHdinsightSparkCluster.tlsMinVersion` | `TfArg<String>` | `HdinsightSparkClusterTlsMinVersion` |
-| `AzurermIotSecuritySolution.eventsToExport` | `TfArg<List<String>>` | `List<IotSecuritySolutionEventsToExport>` |
+| `AzurermIotSecuritySolution.eventsToExport` | `TfArg<List<String>>` | `EnumList<IotSecuritySolutionEventsToExport>` |
 | `AzurermIothub.minTlsVersion` | `TfArg<String>` | `IothubMinTlsVersion` |
 | `AzurermIothubFallbackRoute.source` | `TfArg<String>` | `IothubFallbackRouteSource` |
 | `AzurermIothubRoute.source` | `TfArg<String>` | `IothubRouteSource` |
-| `AzurermKeyVaultAccessPolicy.storagePermissions` | `TfArg<List<String>>` | `List<KeyVaultAccessPolicyStoragePermissions>` |
-| `AzurermKeyVaultKey.keyOpts` | `TfArg<List<String>>` | `List<KeyVaultKeyOpts>` |
+| `AzurermKeyVaultAccessPolicy.certificatePermissions` | `TfArg<List<String>>` | `EnumList<KeyVaultAccessPolicyCertificatePermissions>` |
+| `AzurermKeyVaultAccessPolicy.keyPermissions` | `TfArg<List<String>>` | `EnumList<KeyVaultAccessPolicyKeyPermissions>` |
+| `AzurermKeyVaultAccessPolicy.secretPermissions` | `TfArg<List<String>>` | `EnumList<KeyVaultAccessPolicySecretPermissions>` |
+| `AzurermKeyVaultAccessPolicy.storagePermissions` | `TfArg<List<String>>` | `EnumList<KeyVaultAccessPolicyStoragePermissions>` |
+| `AzurermKeyVaultKey.keyOpts` | `TfArg<List<String>>` | `EnumList<KeyVaultKeyOpts>` |
 | `AzurermKeyVaultKey.keyType` | `TfArg<String>` | `KeyVaultKeyType` |
 | `AzurermKeyVaultManagedHardwareSecurityModule.skuName` | `TfArg<String>` | `KeyVaultManagedHardwareSecurityModuleSkuName` |
 | `AzurermKeyVaultManagedHardwareSecurityModuleKey.curve` | `TfArg<String>` | `KeyVaultManagedHardwareSecurityModuleKeyCurve` |
-| `AzurermKeyVaultManagedHardwareSecurityModuleKey.keyOpts` | `TfArg<List<String>>` | `List<KeyVaultManagedHardwareSecurityModuleKeyOpts>` |
+| `AzurermKeyVaultManagedHardwareSecurityModuleKey.keyOpts` | `TfArg<List<String>>` | `EnumList<KeyVaultManagedHardwareSecurityModuleKeyOpts>` |
 | `AzurermKeyVaultManagedHardwareSecurityModuleKey.keyType` | `TfArg<String>` | `KeyVaultManagedHardwareSecurityModuleKeyType` |
 | `AzurermKubernetesCluster.automaticUpgradeChannel` | `TfArg<String>` | `KubernetesClusterAutomaticUpgradeChannel` |
 | `AzurermKubernetesClusterNodePool.gpuInstance` | `TfArg<String>` | `KubernetesClusterNodePoolGpuInstance` |
@@ -732,9 +1036,11 @@ Every retyped `terradart_azure` input:
 | `AzurermLinuxVirtualMachine.rebootSetting` | `TfArg<String>` | `LinuxVirtualMachineRebootSetting` |
 | `AzurermLinuxVirtualMachineScaleSet.priority` | `TfArg<String>` | `LinuxVirtualMachineScaleSetPriority` |
 | `AzurermLogAnalyticsWorkspace.sku` | `TfArg<String>` | `LogAnalyticsWorkspaceSku` |
+| `AzurermLogicAppActionHttp.method` | `TfArg<String>` | `LogicAppActionHttpMethod` |
 | `AzurermLogicAppIntegrationAccount.skuName` | `TfArg<String>` | `LogicAppIntegrationAccountSkuName` |
 | `AzurermLogicAppIntegrationAccountAgreement.agreementType` | `TfArg<String>` | `LogicAppIntegrationAccountAgreementType` |
 | `AzurermLogicAppStandard.publicNetworkAccess` | `TfArg<String>` | `LogicAppStandardPublicNetworkAccess` |
+| `AzurermLogicAppTriggerHttpRequest.method` | `TfArg<String>` | `LogicAppTriggerHttpRequestMethod` |
 | `AzurermMachineLearningComputeInstance.authorizationType` | `TfArg<String>` | `MachineLearningComputeInstanceAuthorizationType` |
 | `AzurermMachineLearningWorkspace.skuName` | `TfArg<String>` | `MachineLearningWorkspaceSkuName` |
 | `AzurermMachineLearningWorkspace.storageAccountAccessType` | `TfArg<String>` | `MachineLearningWorkspaceStorageAccountAccessType` |
@@ -743,6 +1049,8 @@ Every retyped `terradart_azure` input:
 | `AzurermManagedDisk.createOption` | `TfArg<String>` | `ManagedDiskCreateOption` |
 | `AzurermManagedDisk.securityType` | `TfArg<String>` | `ManagedDiskSecurityType` |
 | `AzurermManagedDiskSasToken.accessLevel` | `TfArg<String>` | `ManagedDiskSasTokenAccessLevel` |
+| `AzurermManagedLustreFileSystem.skuName` | `TfArg<String>` | `ManagedLustreFileSystemSkuName` |
+| `AzurermManagedRedis.skuName` | `TfArg<String>` | `ManagedRedisSkuName` |
 | `AzurermManagementLock.lockLevel` | `TfArg<String>` | `ManagementLockLevel` |
 | `AzurermMongoCluster.createMode` | `TfArg<String>` | `MongoClusterCreateMode` |
 | `AzurermMongoCluster.highAvailabilityMode` | `TfArg<String>` | `MongoClusterHighAvailabilityMode` |
@@ -762,7 +1070,7 @@ Every retyped `terradart_azure` input:
 | `AzurermNetappVolume.serviceLevel` | `TfArg<String>` | `NetappVolumeServiceLevel` |
 | `AzurermNetworkInterface.auxiliaryMode` | `TfArg<String>` | `NetworkInterfaceAuxiliaryMode` |
 | `AzurermNetworkInterface.auxiliarySku` | `TfArg<String>` | `NetworkInterfaceAuxiliarySku` |
-| `AzurermNetworkManager.scopeAccesses` | `TfArg<List<String>>` | `List<NetworkManagerScopeAccesses>` |
+| `AzurermNetworkManager.scopeAccesses` | `TfArg<List<String>>` | `EnumList<NetworkManagerScopeAccesses>` |
 | `AzurermNetworkManagerDeployment.scopeAccess` | `TfArg<String>` | `NetworkManagerDeploymentScopeAccess` |
 | `AzurermOracleAutonomousDatabaseBackup.type` | `TfArg<String>` | `OracleAutonomousDatabaseBackupType` |
 | `AzurermOrchestratedVirtualMachineScaleSet.priority` | `TfArg<String>` | `OrchestratedVirtualMachineScaleSetPriority` |
@@ -784,14 +1092,15 @@ Every retyped `terradart_azure` input:
 | `AzurermRelayNamespace.skuName` | `TfArg<String>` | `RelayNamespaceSkuName` |
 | `AzurermRouteServer.sku` | `TfArg<String>` | `RouteServerSku` |
 | `AzurermSearchService.semanticSearchSku` | `TfArg<String>` | `SearchServiceSemanticSearchSku` |
-| `AzurermSecurityCenterAssessmentPolicy.categories` | `TfArg<List<String>>` | `List<SecurityCenterAssessmentPolicyCategories>` |
+| `AzurermSecurityCenterAssessmentPolicy.categories` | `TfArg<List<String>>` | `EnumList<SecurityCenterAssessmentPolicyCategories>` |
 | `AzurermSecurityCenterServerVulnerabilityAssessmentsSetting.vulnerabilityAssessmentProvider` | `TfArg<String>` | `SecurityCenterServerVulnerabilityAssessmentsSettingVulnerabilityAssessmentProvider` |
 | `AzurermSecurityCenterSetting.settingName` | `TfArg<String>` | `SecurityCenterSettingName` |
+| `AzurermServicePlan.skuName` | `TfArg<String>` | `ServicePlanSkuName` |
 | `AzurermServicebusNamespace.minimumTlsVersion` | `TfArg<String>` | `ServicebusNamespaceMinimumTlsVersion` |
 | `AzurermServicebusQueue.status` | `TfArg<String>` | `ServicebusQueueStatus` |
 | `AzurermServicebusSubscription.status` | `TfArg<String>` | `ServicebusSubscriptionStatus` |
 | `AzurermServicebusTopic.status` | `TfArg<String>` | `ServicebusTopicStatus` |
-| `AzurermSharedImage.diskTypesNotAllowed` | `TfArg<List<String>>` | `List<SharedImageDiskTypesNotAllowed>` |
+| `AzurermSharedImage.diskTypesNotAllowed` | `TfArg<List<String>>` | `EnumList<SharedImageDiskTypesNotAllowed>` |
 | `AzurermSnapshot.createOption` | `TfArg<String>` | `SnapshotCreateOption` |
 | `AzurermSpringCloudAccelerator.name` | `TfArg<String>` | `SpringCloudAcceleratorName` |
 | `AzurermSpringCloudApiPortal.name` | `TfArg<String>` | `SpringCloudApiPortalName` |
@@ -845,19 +1154,19 @@ Every retyped `terradart_azure` input:
 | `AzurermWindowsVirtualMachine.rebootSetting` | `TfArg<String>` | `WindowsVirtualMachineRebootSetting` |
 | `AzurermWindowsVirtualMachineScaleSet.priority` | `TfArg<String>` | `WindowsVirtualMachineScaleSetPriority` |
 | `BackupPolicyFileShareBackup.frequency` | `TfArg<String>` | `BackupPolicyFileShareFrequency` |
-| `BackupPolicyFileShareRetentionMonthly.weeks` | `TfArg<List<String>>` | `List<BackupPolicyFileShareWeeks>` |
-| `BackupPolicyFileShareRetentionYearly.weeks` | `TfArg<List<String>>` | `List<BackupPolicyFileShareWeeks>` |
+| `BackupPolicyFileShareRetentionMonthly.weeks` | `TfArg<List<String>>` | `EnumList<BackupPolicyFileShareWeeks>` |
+| `BackupPolicyFileShareRetentionYearly.weeks` | `TfArg<List<String>>` | `EnumList<BackupPolicyFileShareWeeks>` |
 | `BackupPolicyVmArchivedRestorePoint.durationType` | `TfArg<String>` | `BackupPolicyVmDurationType` |
 | `BackupPolicyVmArchivedRestorePoint.mode` | `TfArg<String>` | `BackupPolicyVmMode` |
 | `BackupPolicyVmBackup.frequency` | `TfArg<String>` | `BackupPolicyVmFrequency` |
-| `BackupPolicyVmRetentionMonthly.weeks` | `TfArg<List<String>>` | `List<BackupPolicyVmWeeks>` |
-| `BackupPolicyVmRetentionYearly.weeks` | `TfArg<List<String>>` | `List<BackupPolicyVmWeeks>` |
+| `BackupPolicyVmRetentionMonthly.weeks` | `TfArg<List<String>>` | `EnumList<BackupPolicyVmWeeks>` |
+| `BackupPolicyVmRetentionYearly.weeks` | `TfArg<List<String>>` | `EnumList<BackupPolicyVmWeeks>` |
 | `BackupPolicyVmWorkloadBackup.frequency` | `TfArg<String>` | `BackupPolicyVmWorkloadFrequency` |
 | `BackupPolicyVmWorkloadProtectionPolicy.policyType` | `TfArg<String>` | `BackupPolicyVmWorkloadPolicyType` |
 | `BackupPolicyVmWorkloadRetentionMonthly.formatType` | `TfArg<String>` | `BackupPolicyVmWorkloadFormatType` |
-| `BackupPolicyVmWorkloadRetentionMonthly.weeks` | `TfArg<List<String>>` | `List<BackupPolicyVmWorkloadWeeks>` |
+| `BackupPolicyVmWorkloadRetentionMonthly.weeks` | `TfArg<List<String>>` | `EnumList<BackupPolicyVmWorkloadWeeks>` |
 | `BackupPolicyVmWorkloadRetentionYearly.formatType` | `TfArg<String>` | `BackupPolicyVmWorkloadFormatType` |
-| `BackupPolicyVmWorkloadRetentionYearly.weeks` | `TfArg<List<String>>` | `List<BackupPolicyVmWorkloadWeeks>` |
+| `BackupPolicyVmWorkloadRetentionYearly.weeks` | `TfArg<List<String>>` | `EnumList<BackupPolicyVmWorkloadWeeks>` |
 | `BatchAccountAccess.defaultAction` | `TfArg<String>` | `BatchAccountDefaultAction` |
 | `BatchAccountIpRule.action` | `TfArg<String>` | `BatchAccountAction` |
 | `BatchAccountNodeManagementAccess.defaultAction` | `TfArg<String>` | `BatchAccountDefaultAction` |
@@ -866,45 +1175,83 @@ Every retyped `terradart_azure` input:
 | `CdnEndpointCustomDomainUserManagedHttps.tlsVersion` | `TfArg<String>` | `CdnEndpointCustomDomainTlsVersion` |
 | `CdnEndpointGeoFilter.action` | `TfArg<String>` | `CdnEndpointAction` |
 | `CdnFrontdoorBatchRuleSetCaching.behaviour` | `TfArg<String>` | `CdnFrontdoorBatchRuleSetBehaviour` |
-| `CdnFrontdoorBatchRuleSetHostName.transforms` | `TfArg<List<String>>` | `List<CdnFrontdoorBatchRuleSetTransforms>` |
-| `CdnFrontdoorBatchRuleSetHttpVersion.values` | `TfArg<List<String>>` | `List<CdnFrontdoorBatchRuleSetHttpVersionValues>` |
-| `CdnFrontdoorBatchRuleSetModifyRequestHeader.operator` | `TfArg<String>` | `CdnFrontdoorBatchRuleSetOperator` |
-| `CdnFrontdoorBatchRuleSetModifyResponseHeader.operator` | `TfArg<String>` | `CdnFrontdoorBatchRuleSetOperator` |
-| `CdnFrontdoorBatchRuleSetPostArgument.transforms` | `TfArg<List<String>>` | `List<CdnFrontdoorBatchRuleSetTransforms>` |
-| `CdnFrontdoorBatchRuleSetQueryString.transforms` | `TfArg<List<String>>` | `List<CdnFrontdoorBatchRuleSetTransforms>` |
-| `CdnFrontdoorBatchRuleSetRequestBody.transforms` | `TfArg<List<String>>` | `List<CdnFrontdoorBatchRuleSetTransforms>` |
-| `CdnFrontdoorBatchRuleSetRequestCookies.transforms` | `TfArg<List<String>>` | `List<CdnFrontdoorBatchRuleSetTransforms>` |
-| `CdnFrontdoorBatchRuleSetRequestFileExtension.transforms` | `TfArg<List<String>>` | `List<CdnFrontdoorBatchRuleSetTransforms>` |
-| `CdnFrontdoorBatchRuleSetRequestFilename.transforms` | `TfArg<List<String>>` | `List<CdnFrontdoorBatchRuleSetTransforms>` |
-| `CdnFrontdoorBatchRuleSetRequestHeader.transforms` | `TfArg<List<String>>` | `List<CdnFrontdoorBatchRuleSetTransforms>` |
-| `CdnFrontdoorBatchRuleSetRequestPath.transforms` | `TfArg<List<String>>` | `List<CdnFrontdoorBatchRuleSetTransforms>` |
-| `CdnFrontdoorBatchRuleSetRequestUrl.transforms` | `TfArg<List<String>>` | `List<CdnFrontdoorBatchRuleSetTransforms>` |
-| `CdnFrontdoorBatchRuleSetServerPort.values` | `TfArg<List<String>>` | `List<CdnFrontdoorBatchRuleSetServerPortValues>` |
+| `CdnFrontdoorBatchRuleSetClientPort.operator` | `TfArg<String>` | `CdnFrontdoorBatchRuleSetClientPortOperator` |
+| `CdnFrontdoorBatchRuleSetDeviceType.operator` | `TfArg<String>` | `CdnFrontdoorBatchRuleSetDeviceTypeOperator` |
+| `CdnFrontdoorBatchRuleSetHostName.operator` | `TfArg<String>` | `CdnFrontdoorBatchRuleSetClientPortOperator` |
+| `CdnFrontdoorBatchRuleSetHostName.transforms` | `TfArg<List<String>>` | `EnumList<CdnFrontdoorBatchRuleSetTransforms>` |
+| `CdnFrontdoorBatchRuleSetHttpVersion.operator` | `TfArg<String>` | `CdnFrontdoorBatchRuleSetDeviceTypeOperator` |
+| `CdnFrontdoorBatchRuleSetHttpVersion.values` | `TfArg<List<String>>` | `EnumList<CdnFrontdoorBatchRuleSetHttpVersionValues>` |
+| `CdnFrontdoorBatchRuleSetModifyRequestHeader.operator` | `TfArg<String>` | `CdnFrontdoorBatchRuleSetModifyRequestHeaderOperator` |
+| `CdnFrontdoorBatchRuleSetModifyResponseHeader.operator` | `TfArg<String>` | `CdnFrontdoorBatchRuleSetModifyRequestHeaderOperator` |
+| `CdnFrontdoorBatchRuleSetPostArgument.operator` | `TfArg<String>` | `CdnFrontdoorBatchRuleSetClientPortOperator` |
+| `CdnFrontdoorBatchRuleSetPostArgument.transforms` | `TfArg<List<String>>` | `EnumList<CdnFrontdoorBatchRuleSetTransforms>` |
+| `CdnFrontdoorBatchRuleSetQueryString.operator` | `TfArg<String>` | `CdnFrontdoorBatchRuleSetClientPortOperator` |
+| `CdnFrontdoorBatchRuleSetQueryString.transforms` | `TfArg<List<String>>` | `EnumList<CdnFrontdoorBatchRuleSetTransforms>` |
+| `CdnFrontdoorBatchRuleSetRemoteAddress.operator` | `TfArg<String>` | `CdnFrontdoorBatchRuleSetRemoteAddressOperator` |
+| `CdnFrontdoorBatchRuleSetRequestBody.operator` | `TfArg<String>` | `CdnFrontdoorBatchRuleSetClientPortOperator` |
+| `CdnFrontdoorBatchRuleSetRequestBody.transforms` | `TfArg<List<String>>` | `EnumList<CdnFrontdoorBatchRuleSetTransforms>` |
+| `CdnFrontdoorBatchRuleSetRequestCookies.operator` | `TfArg<String>` | `CdnFrontdoorBatchRuleSetClientPortOperator` |
+| `CdnFrontdoorBatchRuleSetRequestCookies.transforms` | `TfArg<List<String>>` | `EnumList<CdnFrontdoorBatchRuleSetTransforms>` |
+| `CdnFrontdoorBatchRuleSetRequestFileExtension.operator` | `TfArg<String>` | `CdnFrontdoorBatchRuleSetClientPortOperator` |
+| `CdnFrontdoorBatchRuleSetRequestFileExtension.transforms` | `TfArg<List<String>>` | `EnumList<CdnFrontdoorBatchRuleSetTransforms>` |
+| `CdnFrontdoorBatchRuleSetRequestFilename.operator` | `TfArg<String>` | `CdnFrontdoorBatchRuleSetClientPortOperator` |
+| `CdnFrontdoorBatchRuleSetRequestFilename.transforms` | `TfArg<List<String>>` | `EnumList<CdnFrontdoorBatchRuleSetTransforms>` |
+| `CdnFrontdoorBatchRuleSetRequestHeader.operator` | `TfArg<String>` | `CdnFrontdoorBatchRuleSetClientPortOperator` |
+| `CdnFrontdoorBatchRuleSetRequestHeader.transforms` | `TfArg<List<String>>` | `EnumList<CdnFrontdoorBatchRuleSetTransforms>` |
+| `CdnFrontdoorBatchRuleSetRequestMethod.operator` | `TfArg<String>` | `CdnFrontdoorBatchRuleSetDeviceTypeOperator` |
+| `CdnFrontdoorBatchRuleSetRequestPath.operator` | `TfArg<String>` | `CdnFrontdoorBatchRuleSetRequestPathOperator` |
+| `CdnFrontdoorBatchRuleSetRequestPath.transforms` | `TfArg<List<String>>` | `EnumList<CdnFrontdoorBatchRuleSetTransforms>` |
+| `CdnFrontdoorBatchRuleSetRequestScheme.operator` | `TfArg<String>` | `CdnFrontdoorBatchRuleSetDeviceTypeOperator` |
+| `CdnFrontdoorBatchRuleSetRequestUrl.operator` | `TfArg<String>` | `CdnFrontdoorBatchRuleSetClientPortOperator` |
+| `CdnFrontdoorBatchRuleSetRequestUrl.transforms` | `TfArg<List<String>>` | `EnumList<CdnFrontdoorBatchRuleSetTransforms>` |
+| `CdnFrontdoorBatchRuleSetServerPort.operator` | `TfArg<String>` | `CdnFrontdoorBatchRuleSetClientPortOperator` |
+| `CdnFrontdoorBatchRuleSetServerPort.values` | `TfArg<List<String>>` | `EnumList<CdnFrontdoorBatchRuleSetServerPortValues>` |
+| `CdnFrontdoorBatchRuleSetSocketAddress.operator` | `TfArg<String>` | `CdnFrontdoorBatchRuleSetSocketAddressOperator` |
+| `CdnFrontdoorBatchRuleSetSslProtocol.operator` | `TfArg<String>` | `CdnFrontdoorBatchRuleSetDeviceTypeOperator` |
 | `CdnFrontdoorCustomDomainCipherSuite.type` | `TfArg<String>` | `CdnFrontdoorCustomDomainType` |
-| `CdnFrontdoorCustomDomainCustomCiphers.tls12` | `TfArg<List<String>>` | `List<CdnFrontdoorCustomDomainTls12>` |
+| `CdnFrontdoorCustomDomainCustomCiphers.tls12` | `TfArg<List<String>>` | `EnumList<CdnFrontdoorCustomDomainTls12>` |
 | `CdnFrontdoorCustomDomainTls.certificateType` | `TfArg<String>` | `CdnFrontdoorCustomDomainCertificateType` |
 | `CdnFrontdoorCustomDomainTls.minimumVersion` | `TfArg<String>` | `CdnFrontdoorCustomDomainMinimumVersion` |
 | `CdnFrontdoorFirewallPolicyCustomRule.action` | `TfArg<String>` | `CdnFrontdoorFirewallPolicyCustomRuleAction` |
 | `CdnFrontdoorFirewallPolicyManagedRule.action` | `TfArg<String>` | `CdnFrontdoorFirewallPolicyManagedRuleAction` |
 | `CdnFrontdoorOriginGroupHealthProbe.protocol` | `TfArg<String>` | `CdnFrontdoorOriginGroupProtocol` |
 | `CdnFrontdoorOriginGroupHealthProbe.requestType` | `TfArg<String>` | `CdnFrontdoorOriginGroupRequestType` |
-| `CdnFrontdoorRouteCache.contentTypesToCompress` | `TfArg<List<String>>` | `List<CdnFrontdoorRouteContentTypesToCompress>` |
+| `CdnFrontdoorRouteCache.contentTypesToCompress` | `TfArg<List<String>>` | `EnumList<CdnFrontdoorRouteContentTypesToCompress>` |
 | `CdnFrontdoorRuleCaching.behaviour` | `TfArg<String>` | `CdnFrontdoorRuleBehaviour` |
-| `CdnFrontdoorRuleHostName.transforms` | `TfArg<List<String>>` | `List<CdnFrontdoorRuleTransforms>` |
-| `CdnFrontdoorRuleHttpVersion.values` | `TfArg<List<String>>` | `List<CdnFrontdoorRuleHttpVersionValues>` |
-| `CdnFrontdoorRuleModifyRequestHeader.operator` | `TfArg<String>` | `CdnFrontdoorRuleOperator` |
-| `CdnFrontdoorRuleModifyResponseHeader.operator` | `TfArg<String>` | `CdnFrontdoorRuleOperator` |
-| `CdnFrontdoorRulePostArgument.transforms` | `TfArg<List<String>>` | `List<CdnFrontdoorRuleTransforms>` |
-| `CdnFrontdoorRuleQueryString.transforms` | `TfArg<List<String>>` | `List<CdnFrontdoorRuleTransforms>` |
-| `CdnFrontdoorRuleRequestBody.transforms` | `TfArg<List<String>>` | `List<CdnFrontdoorRuleTransforms>` |
-| `CdnFrontdoorRuleRequestCookies.transforms` | `TfArg<List<String>>` | `List<CdnFrontdoorRuleTransforms>` |
-| `CdnFrontdoorRuleRequestFileExtension.transforms` | `TfArg<List<String>>` | `List<CdnFrontdoorRuleTransforms>` |
-| `CdnFrontdoorRuleRequestFilename.transforms` | `TfArg<List<String>>` | `List<CdnFrontdoorRuleTransforms>` |
-| `CdnFrontdoorRuleRequestHeader.transforms` | `TfArg<List<String>>` | `List<CdnFrontdoorRuleTransforms>` |
-| `CdnFrontdoorRuleRequestPath.transforms` | `TfArg<List<String>>` | `List<CdnFrontdoorRuleTransforms>` |
-| `CdnFrontdoorRuleRequestUrl.transforms` | `TfArg<List<String>>` | `List<CdnFrontdoorRuleTransforms>` |
-| `CdnFrontdoorRuleServerPort.values` | `TfArg<List<String>>` | `List<CdnFrontdoorRuleServerPortValues>` |
-| `CdnFrontdoorSecurityPolicyAssociation.patternsToMatch` | `TfArg<List<String>>` | `List<CdnFrontdoorSecurityPolicyPatternsToMatch>` |
+| `CdnFrontdoorRuleClientPort.operator` | `TfArg<String>` | `CdnFrontdoorRuleClientPortOperator` |
+| `CdnFrontdoorRuleDeviceType.operator` | `TfArg<String>` | `CdnFrontdoorRuleDeviceTypeOperator` |
+| `CdnFrontdoorRuleHostName.operator` | `TfArg<String>` | `CdnFrontdoorRuleClientPortOperator` |
+| `CdnFrontdoorRuleHostName.transforms` | `TfArg<List<String>>` | `EnumList<CdnFrontdoorRuleTransforms>` |
+| `CdnFrontdoorRuleHttpVersion.operator` | `TfArg<String>` | `CdnFrontdoorRuleDeviceTypeOperator` |
+| `CdnFrontdoorRuleHttpVersion.values` | `TfArg<List<String>>` | `EnumList<CdnFrontdoorRuleHttpVersionValues>` |
+| `CdnFrontdoorRuleModifyRequestHeader.operator` | `TfArg<String>` | `CdnFrontdoorRuleModifyRequestHeaderOperator` |
+| `CdnFrontdoorRuleModifyResponseHeader.operator` | `TfArg<String>` | `CdnFrontdoorRuleModifyRequestHeaderOperator` |
+| `CdnFrontdoorRulePostArgument.operator` | `TfArg<String>` | `CdnFrontdoorRuleClientPortOperator` |
+| `CdnFrontdoorRulePostArgument.transforms` | `TfArg<List<String>>` | `EnumList<CdnFrontdoorRuleTransforms>` |
+| `CdnFrontdoorRuleQueryString.operator` | `TfArg<String>` | `CdnFrontdoorRuleClientPortOperator` |
+| `CdnFrontdoorRuleQueryString.transforms` | `TfArg<List<String>>` | `EnumList<CdnFrontdoorRuleTransforms>` |
+| `CdnFrontdoorRuleRemoteAddress.operator` | `TfArg<String>` | `CdnFrontdoorRuleRemoteAddressOperator` |
+| `CdnFrontdoorRuleRequestBody.operator` | `TfArg<String>` | `CdnFrontdoorRuleClientPortOperator` |
+| `CdnFrontdoorRuleRequestBody.transforms` | `TfArg<List<String>>` | `EnumList<CdnFrontdoorRuleTransforms>` |
+| `CdnFrontdoorRuleRequestCookies.operator` | `TfArg<String>` | `CdnFrontdoorRuleClientPortOperator` |
+| `CdnFrontdoorRuleRequestCookies.transforms` | `TfArg<List<String>>` | `EnumList<CdnFrontdoorRuleTransforms>` |
+| `CdnFrontdoorRuleRequestFileExtension.operator` | `TfArg<String>` | `CdnFrontdoorRuleClientPortOperator` |
+| `CdnFrontdoorRuleRequestFileExtension.transforms` | `TfArg<List<String>>` | `EnumList<CdnFrontdoorRuleTransforms>` |
+| `CdnFrontdoorRuleRequestFilename.operator` | `TfArg<String>` | `CdnFrontdoorRuleClientPortOperator` |
+| `CdnFrontdoorRuleRequestFilename.transforms` | `TfArg<List<String>>` | `EnumList<CdnFrontdoorRuleTransforms>` |
+| `CdnFrontdoorRuleRequestHeader.operator` | `TfArg<String>` | `CdnFrontdoorRuleClientPortOperator` |
+| `CdnFrontdoorRuleRequestHeader.transforms` | `TfArg<List<String>>` | `EnumList<CdnFrontdoorRuleTransforms>` |
+| `CdnFrontdoorRuleRequestMethod.operator` | `TfArg<String>` | `CdnFrontdoorRuleDeviceTypeOperator` |
+| `CdnFrontdoorRuleRequestPath.operator` | `TfArg<String>` | `CdnFrontdoorRuleRequestPathOperator` |
+| `CdnFrontdoorRuleRequestPath.transforms` | `TfArg<List<String>>` | `EnumList<CdnFrontdoorRuleTransforms>` |
+| `CdnFrontdoorRuleRequestScheme.operator` | `TfArg<String>` | `CdnFrontdoorRuleDeviceTypeOperator` |
+| `CdnFrontdoorRuleRequestUrl.operator` | `TfArg<String>` | `CdnFrontdoorRuleClientPortOperator` |
+| `CdnFrontdoorRuleRequestUrl.transforms` | `TfArg<List<String>>` | `EnumList<CdnFrontdoorRuleTransforms>` |
+| `CdnFrontdoorRuleServerPort.operator` | `TfArg<String>` | `CdnFrontdoorRuleClientPortOperator` |
+| `CdnFrontdoorRuleServerPort.values` | `TfArg<List<String>>` | `EnumList<CdnFrontdoorRuleServerPortValues>` |
+| `CdnFrontdoorRuleSocketAddress.operator` | `TfArg<String>` | `CdnFrontdoorRuleSocketAddressOperator` |
+| `CdnFrontdoorRuleSslProtocol.operator` | `TfArg<String>` | `CdnFrontdoorRuleDeviceTypeOperator` |
+| `CdnFrontdoorSecurityPolicyAssociation.patternsToMatch` | `TfArg<List<String>>` | `EnumList<CdnFrontdoorSecurityPolicyPatternsToMatch>` |
 | `ChaosStudioExperimentActions.actionType` | `TfArg<String>` | `ChaosStudioExperimentActionType` |
 | `CognitiveAccountNetworkInjection.scenario` | `TfArg<String>` | `CognitiveAccountScenario` |
 | `ContainerAppCustomScaleRule.customRuleType` | `TfArg<String>` | `ContainerAppCustomRuleType` |
@@ -925,7 +1272,7 @@ Every retyped `terradart_azure` input:
 | `ContainerConnectedRegistryNotification.action` | `TfArg<String>` | `ContainerConnectedRegistryAction` |
 | `ContainerGroupHttpGet.scheme` | `TfArg<String>` | `ContainerGroupScheme` |
 | `ContainerGroupPorts.protocol` | `TfArg<String>` | `ContainerGroupProtocol` |
-| `CosmosdbAccountCorsRule.allowedMethods` | `TfArg<List<String>>` | `List<CosmosdbAccountAllowedMethods>` |
+| `CosmosdbAccountCorsRule.allowedMethods` | `TfArg<List<String>>` | `EnumList<CosmosdbAccountAllowedMethods>` |
 | `CosmosdbCassandraTableClusterKey.orderBy` | `TfArg<String>` | `CosmosdbCassandraTableOrderBy` |
 | `CosmosdbGremlinGraphConflictResolutionPolicy.mode` | `TfArg<String>` | `CosmosdbGremlinGraphMode` |
 | `CosmosdbGremlinGraphIndex.order` | `TfArg<String>` | `CosmosdbGremlinGraphOrder` |
@@ -937,6 +1284,7 @@ Every retyped `terradart_azure` input:
 | `DataAzurermPublicMaintenanceConfigurations.recurEvery` | `TfArg<String>` | `DataPublicMaintenanceConfigurationsRecurEvery` |
 | `DataAzurermPublicMaintenanceConfigurations.scope` | `TfArg<String>` | `DataPublicMaintenanceConfigurationsScope` |
 | `DataFactoryDatasetBinaryCompression.type` | `TfArg<String>` | `DataFactoryDatasetBinaryType` |
+| `DataOracleDatabaseSystemVersionsDatabaseSystemShape.databaseSystemShape` | `TfArg<String>` | `DataOracleDatabaseSystemVersionsDatabaseSystemShape` (now in `DataOracleDatabaseSystemVersionsDatabaseSystemShapeChoice`) |
 | `DataProtectionBackupPolicyBlobStorageLifeCycle.dataStoreType` | `TfArg<String>` | `DataProtectionBackupPolicyBlobStorageDataStoreType` |
 | `DataProtectionBackupPolicyKubernetesClusterLifeCycle.dataStoreType` | `TfArg<String>` | `DataProtectionBackupPolicyKubernetesClusterDataStoreType` |
 | `DataProtectionBackupPolicyMysqlFlexibleServerLifeCycle.dataStoreType` | `TfArg<String>` | `DataProtectionBackupPolicyMysqlFlexibleServerDataStoreType` |
@@ -959,7 +1307,7 @@ Every retyped `terradart_azure` input:
 | `FabricCapacitySku.tier` | `TfArg<String>` | `FabricCapacityTier` |
 | `FirewallPolicyRuleCollectionGroupApplicationRuleCollectionProtocols.type` | `TfArg<String>` | `FirewallPolicyRuleCollectionGroupType` |
 | `FirewallPolicyRuleCollectionGroupNatRuleCollection.action` | `TfArg<String>` | `FirewallPolicyRuleCollectionGroupNatRuleCollectionAction` |
-| `FirewallPolicyRuleCollectionGroupNatRuleCollectionRule.protocols` | `TfArg<List<String>>` | `List<FirewallPolicyRuleCollectionGroupNatRuleCollectionProtocols>` |
+| `FirewallPolicyRuleCollectionGroupNatRuleCollectionRule.protocols` | `TfArg<List<String>>` | `EnumList<FirewallPolicyRuleCollectionGroupNatRuleCollectionProtocols>` |
 | `FunctionAppConnectionAuthentication.type` | `TfArg<String>` | `FunctionAppConnectionType` |
 | `FunctionAppFlexConsumptionAuthSettings.defaultProvider` | `TfArg<String>` | `FunctionAppFlexConsumptionDefaultProvider` |
 | `FunctionAppFlexConsumptionAuthSettings.unauthenticatedClientAction` | `TfArg<String>` | `FunctionAppFlexConsumptionUnauthenticatedClientAction` |
@@ -996,6 +1344,8 @@ Every retyped `terradart_azure` input:
 | `IothubFallbackRoute.source` | `TfArg<String>` | `IothubSource` |
 | `KeyVaultCertificateKeyProperties.keyType` | `TfArg<String>` | `KeyVaultCertificateKeyType` |
 | `KeyVaultKeyParameterCurve.curve` | `TfArg<String>` | `KeyVaultKeyCurve` |
+| `KeyVaultManagedHardwareSecurityModuleRoleDefinitionPermission.dataActions` | `TfArg<List<String>>` | `EnumList<KeyVaultManagedHardwareSecurityModuleRoleDefinitionDataActions>` |
+| `KeyVaultManagedHardwareSecurityModuleRoleDefinitionPermission.notDataActions` | `TfArg<List<String>>` | `EnumList<KeyVaultManagedHardwareSecurityModuleRoleDefinitionNotDataActions>` |
 | `KubernetesAutomaticClusterWebAppRoutingIngress.defaultNginxController` | `TfArg<String>` | `KubernetesAutomaticClusterDefaultNginxController` |
 | `KubernetesClusterNetworkProfile.networkPluginMode` | `TfArg<String>` | `KubernetesClusterNetworkPluginMode` |
 | `KubernetesClusterNetworkProfile.networkPolicy` | `TfArg<String>` | `KubernetesClusterNetworkPolicy` |
@@ -1012,6 +1362,11 @@ Every retyped `terradart_azure` input:
 | `KubernetesFluxConfigurationGitRepository.referenceType` | `TfArg<String>` | `KubernetesFluxConfigurationReferenceType` |
 | `KubernetesFluxConfigurationSubstituteFrom.kind` | `TfArg<String>` | `KubernetesFluxConfigurationKind` |
 | `LighthouseDefinitionJustInTimeAccessPolicy.multiFactorAuthProvider` | `TfArg<String>` | `LighthouseDefinitionMultiFactorAuthProvider` |
+| `LinuxFunctionAppApplicationStack.dotnetVersion` | `TfArg<String>` | `LinuxFunctionAppDotnetVersion` (now in `LinuxFunctionAppRuntimeDotnetVersion`) |
+| `LinuxFunctionAppApplicationStack.javaVersion` | `TfArg<String>` | `LinuxFunctionAppJavaVersion` (now in `LinuxFunctionAppRuntimeJavaVersion`) |
+| `LinuxFunctionAppApplicationStack.nodeVersion` | `TfArg<String>` | `LinuxFunctionAppNodeVersion` (now in `LinuxFunctionAppRuntimeNodeVersion`) |
+| `LinuxFunctionAppApplicationStack.powershellCoreVersion` | `TfArg<String>` | `LinuxFunctionAppPowershellCoreVersion` (now in `LinuxFunctionAppRuntimePowershellCoreVersion`) |
+| `LinuxFunctionAppApplicationStack.pythonVersion` | `TfArg<String>` | `LinuxFunctionAppPythonVersion` (now in `LinuxFunctionAppRuntimePythonVersion`) |
 | `LinuxFunctionAppAuthSettings.defaultProvider` | `TfArg<String>` | `LinuxFunctionAppDefaultProvider` |
 | `LinuxFunctionAppAuthSettings.unauthenticatedClientAction` | `TfArg<String>` | `LinuxFunctionAppUnauthenticatedClientAction` |
 | `LinuxFunctionAppAuthSettingsV2.forwardProxyConvention` | `TfArg<String>` | `LinuxFunctionAppForwardProxyConvention` |
@@ -1030,6 +1385,11 @@ Every retyped `terradart_azure` input:
 | `LinuxFunctionAppSiteConfig.remoteDebuggingVersion` | `TfArg<String>` | `LinuxFunctionAppRemoteDebuggingVersion` |
 | `LinuxFunctionAppSiteConfig.scmIpRestrictionDefaultAction` | `TfArg<String>` | `LinuxFunctionAppScmIpRestrictionDefaultAction` |
 | `LinuxFunctionAppSiteConfig.scmMinimumTlsVersion` | `TfArg<String>` | `LinuxFunctionAppScmMinimumTlsVersion` |
+| `LinuxFunctionAppSlotApplicationStack.dotnetVersion` | `TfArg<String>` | `LinuxFunctionAppSlotDotnetVersion` (now in `LinuxFunctionAppSlotRuntimeDotnetVersion`) |
+| `LinuxFunctionAppSlotApplicationStack.javaVersion` | `TfArg<String>` | `LinuxFunctionAppSlotJavaVersion` (now in `LinuxFunctionAppSlotRuntimeJavaVersion`) |
+| `LinuxFunctionAppSlotApplicationStack.nodeVersion` | `TfArg<String>` | `LinuxFunctionAppSlotNodeVersion` (now in `LinuxFunctionAppSlotRuntimeNodeVersion`) |
+| `LinuxFunctionAppSlotApplicationStack.powershellCoreVersion` | `TfArg<String>` | `LinuxFunctionAppSlotPowershellCoreVersion` (now in `LinuxFunctionAppSlotRuntimePowershellCoreVersion`) |
+| `LinuxFunctionAppSlotApplicationStack.pythonVersion` | `TfArg<String>` | `LinuxFunctionAppSlotPythonVersion` (now in `LinuxFunctionAppSlotRuntimePythonVersion`) |
 | `LinuxFunctionAppSlotAuthSettings.defaultProvider` | `TfArg<String>` | `LinuxFunctionAppSlotDefaultProvider` |
 | `LinuxFunctionAppSlotAuthSettings.unauthenticatedClientAction` | `TfArg<String>` | `LinuxFunctionAppSlotUnauthenticatedClientAction` |
 | `LinuxFunctionAppSlotAuthSettingsV2.forwardProxyConvention` | `TfArg<String>` | `LinuxFunctionAppSlotForwardProxyConvention` |
@@ -1141,12 +1501,13 @@ Every retyped `terradart_azure` input:
 | `ManagedDevopsPoolAutomaticResourcePrediction.predictionPreference` | `TfArg<String>` | `ManagedDevopsPoolPredictionPreference` |
 | `ManagedDevopsPoolStorage.caching` | `TfArg<String>` | `ManagedDevopsPoolCaching` |
 | `ManagedLustreFileSystemRootSquash.mode` | `TfArg<String>` | `ManagedLustreFileSystemMode` |
+| `ManagedRedisDurabilityPersistenceAppendOnlyFileBackupFrequency.persistenceAppendOnlyFileBackupFrequency` | `TfArg<String>` | `ManagedRedisPersistenceAppendOnlyFileBackupFrequency` |
 | `MongoClusterUserRole.name` | `TfArg<String>` | `MongoClusterUserName` |
 | `MonitorAutoscaleSettingMetricTrigger.statistic` | `TfArg<String>` | `MonitorAutoscaleSettingStatistic` |
 | `MonitorAutoscaleSettingPredictive.scaleMode` | `TfArg<String>` | `MonitorAutoscaleSettingScaleMode` |
 | `MonitorAutoscaleSettingScaleAction.direction` | `TfArg<String>` | `MonitorAutoscaleSettingDirection` |
 | `MonitorDataCollectionRuleLabelIncludeFilter.label` | `TfArg<String>` | `MonitorDataCollectionRuleLabel` |
-| `MonitorDataCollectionRulePrometheusForwarder.streams` | `TfArg<List<String>>` | `List<MonitorDataCollectionRuleStreams>` |
+| `MonitorDataCollectionRulePrometheusForwarder.streams` | `TfArg<List<String>>` | `EnumList<MonitorDataCollectionRuleStreams>` |
 | `MonitorScheduledQueryRulesAlertV2Criteria.operator` | `TfArg<String>` | `MonitorScheduledQueryRulesAlertV2Operator` |
 | `MonitorScheduledQueryRulesLogDimension.operator` | `TfArg<String>` | `MonitorScheduledQueryRulesLogOperator` |
 | `MssqlDatabaseImport.storageKeyType` | `TfArg<String>` | `MssqlDatabaseStorageKeyType` |
@@ -1159,7 +1520,7 @@ Every retyped `terradart_azure` input:
 | `NetworkConnectionMonitorEndpoint.targetResourceType` | `TfArg<String>` | `NetworkConnectionMonitorTargetResourceType` |
 | `NetworkConnectionMonitorFilter.type` | `TfArg<String>` | `NetworkConnectionMonitorType` |
 | `NetworkConnectionMonitorItem.type` | `TfArg<String>` | `NetworkConnectionMonitorItemType` |
-| `NetworkFunctionCollectorPolicyIpfxEmission.destinationTypes` | `TfArg<List<String>>` | `List<NetworkFunctionCollectorPolicyDestinationTypes>` |
+| `NetworkFunctionCollectorPolicyIpfxEmission.destinationTypes` | `TfArg<List<String>>` | `EnumList<NetworkFunctionCollectorPolicyDestinationTypes>` |
 | `NetworkManagerAdminRuleDestination.addressPrefixType` | `TfArg<String>` | `NetworkManagerAdminRuleAddressPrefixType` |
 | `NetworkManagerAdminRuleSource.addressPrefixType` | `TfArg<String>` | `NetworkManagerAdminRuleAddressPrefixType` |
 | `NewRelicMonitorPlan.planId` | `TfArg<String>` | `NewRelicMonitorPlanId` |
@@ -1192,6 +1553,7 @@ Every retyped `terradart_azure` input:
 | `RedhatOpenshiftClusterIdentity.type` | `TfArg<String>` | `RedhatOpenshiftClusterType` |
 | `RoleManagementPolicyApproverNotifications.notificationLevel` | `TfArg<String>` | `RoleManagementPolicyNotificationLevel` |
 | `RoleManagementPolicyAssigneeNotifications.notificationLevel` | `TfArg<String>` | `RoleManagementPolicyNotificationLevel` |
+| `RoleManagementPolicyEligibleActivationsAdminNotifications.notificationLevel` | `TfArg<String>` | `RoleManagementPolicyNotificationLevel` (now in `RoleManagementPolicyAdminNotifications`) |
 | `ServiceFabricManagedClusterCertificate.type` | `TfArg<String>` | `ServiceFabricManagedClusterType` |
 | `ServiceFabricManagedClusterLbRule.probeProtocol` | `TfArg<String>` | `ServiceFabricManagedClusterProbeProtocol` |
 | `ServiceFabricManagedClusterLbRule.protocol` | `TfArg<String>` | `ServiceFabricManagedClusterProtocol` |
@@ -1200,8 +1562,8 @@ Every retyped `terradart_azure` input:
 | `SpringCloudServiceSshAuth.hostKeyAlgorithm` | `TfArg<String>` | `SpringCloudServiceHostKeyAlgorithm` |
 | `StaticWebAppBasicAuth.environments` | `TfArg<String>` | `StaticWebAppEnvironments` |
 | `StorageAccountAzureFilesAuthentication.directoryType` | `TfArg<String>` | `StorageAccountDirectoryType` |
-| `StorageAccountCorsRule.allowedMethods` | `TfArg<List<String>>` | `List<StorageAccountAllowedMethods>` |
-| `StorageDiscoveryWorkspaceScope.resourceTypes` | `TfArg<List<String>>` | `List<StorageDiscoveryWorkspaceResourceTypes>` |
+| `StorageAccountCorsRule.allowedMethods` | `TfArg<List<String>>` | `EnumList<StorageAccountAllowedMethods>` |
+| `StorageDiscoveryWorkspaceScope.resourceTypes` | `TfArg<List<String>>` | `EnumList<StorageDiscoveryWorkspaceResourceTypes>` |
 | `StorageManagementPolicyMatchBlobIndexTag.operation` | `TfArg<String>` | `StorageManagementPolicyOperation` |
 | `StreamAnalyticsJobStorageAccount.authenticationMode` | `TfArg<String>` | `StreamAnalyticsJobAuthenticationMode` |
 | `StreamAnalyticsOutputBlobSerialization.encoding` | `TfArg<String>` | `StreamAnalyticsOutputBlobEncoding` |
@@ -1244,6 +1606,10 @@ Every retyped `terradart_azure` input:
 | `VirtualMachineStorageOsDisk.managedDiskType` | `TfArg<String>` | `VirtualMachineStorageOsDiskManagedDiskType` |
 | `WebApplicationFirewallPolicyCustomRules.action` | `TfArg<String>` | `WebApplicationFirewallPolicyAction` |
 | `WebPubsubSocketioSku.name` | `TfArg<String>` | `WebPubsubSocketioSkuName` |
+| `WindowsFunctionAppApplicationStack.dotnetVersion` | `TfArg<String>` | `WindowsFunctionAppDotnetVersion` (now in `WindowsFunctionAppRuntimeDotnetVersion`) |
+| `WindowsFunctionAppApplicationStack.javaVersion` | `TfArg<String>` | `WindowsFunctionAppJavaVersion` (now in `WindowsFunctionAppRuntimeJavaVersion`) |
+| `WindowsFunctionAppApplicationStack.nodeVersion` | `TfArg<String>` | `WindowsFunctionAppNodeVersion` (now in `WindowsFunctionAppRuntimeNodeVersion`) |
+| `WindowsFunctionAppApplicationStack.powershellCoreVersion` | `TfArg<String>` | `WindowsFunctionAppPowershellCoreVersion` (now in `WindowsFunctionAppRuntimePowershellCoreVersion`) |
 | `WindowsFunctionAppAuthSettings.defaultProvider` | `TfArg<String>` | `WindowsFunctionAppDefaultProvider` |
 | `WindowsFunctionAppAuthSettings.unauthenticatedClientAction` | `TfArg<String>` | `WindowsFunctionAppUnauthenticatedClientAction` |
 | `WindowsFunctionAppAuthSettingsV2.forwardProxyConvention` | `TfArg<String>` | `WindowsFunctionAppForwardProxyConvention` |
@@ -1262,6 +1628,10 @@ Every retyped `terradart_azure` input:
 | `WindowsFunctionAppSiteConfig.remoteDebuggingVersion` | `TfArg<String>` | `WindowsFunctionAppRemoteDebuggingVersion` |
 | `WindowsFunctionAppSiteConfig.scmIpRestrictionDefaultAction` | `TfArg<String>` | `WindowsFunctionAppScmIpRestrictionDefaultAction` |
 | `WindowsFunctionAppSiteConfig.scmMinimumTlsVersion` | `TfArg<String>` | `WindowsFunctionAppScmMinimumTlsVersion` |
+| `WindowsFunctionAppSlotApplicationStack.dotnetVersion` | `TfArg<String>` | `WindowsFunctionAppSlotDotnetVersion` (now in `WindowsFunctionAppSlotRuntimeDotnetVersion`) |
+| `WindowsFunctionAppSlotApplicationStack.javaVersion` | `TfArg<String>` | `WindowsFunctionAppSlotJavaVersion` (now in `WindowsFunctionAppSlotRuntimeJavaVersion`) |
+| `WindowsFunctionAppSlotApplicationStack.nodeVersion` | `TfArg<String>` | `WindowsFunctionAppSlotNodeVersion` (now in `WindowsFunctionAppSlotRuntimeNodeVersion`) |
+| `WindowsFunctionAppSlotApplicationStack.powershellCoreVersion` | `TfArg<String>` | `WindowsFunctionAppSlotPowershellCoreVersion` (now in `WindowsFunctionAppSlotRuntimePowershellCoreVersion`) |
 | `WindowsFunctionAppSlotAuthSettings.defaultProvider` | `TfArg<String>` | `WindowsFunctionAppSlotDefaultProvider` |
 | `WindowsFunctionAppSlotAuthSettings.unauthenticatedClientAction` | `TfArg<String>` | `WindowsFunctionAppSlotUnauthenticatedClientAction` |
 | `WindowsFunctionAppSlotAuthSettingsV2.forwardProxyConvention` | `TfArg<String>` | `WindowsFunctionAppSlotForwardProxyConvention` |
@@ -1369,7 +1739,7 @@ Every retyped `terradart_cloudflare` input:
 
 | Input | Before | After |
 |---|---|---|
-| `CloudflareSecretsStoreSecret.scopes` | `TfArg<List<String>>` | `List<SecretsStoreSecretScopes>` |
+| `CloudflareSecretsStoreSecret.scopes` | `TfArg<List<String>>` | `EnumList<SecretsStoreSecretScopes>` |
 | `DataCloudflareAccessRules.direction` | `TfArg<String>` | `DataAccessRulesDirection` |
 | `DataCloudflareAccessRules.match` | `TfArg<String>` | `DataAccessRulesMatch` |
 | `DataCloudflareAccessRules.mode` | `TfArg<String>` | `DataAccessRulesMode` |
@@ -1499,12 +1869,14 @@ Every retyped `terradart_cloudflare` input:
 
 ### Long and repeated type names are shorter
 
-**Breaking (`terradart_google`, `terradart_aws`, `terradart_cloudflare`).**
-These derived types had names over 80 characters, or repeated words of their
-resource name, and were held in `tool/type_name_length_debt.yaml` and
-`tool/type_name_stutter_debt.yaml`. Both files are now empty. Fields, enum
-members and the Terraform JSON are unchanged. Only the type name moves. A
-dot shorthand (`.new(...)`, `.static`) needs no change.
+**Breaking (`terradart_google`, `terradart_aws`, `terradart_azure` and
+`terradart_cloudflare`).** These derived types had names over 80 characters,
+repeated words of their resource name, or shared one name across two
+differently shaped inputs. The long and repeated ones were held in
+`tool/type_name_length_debt.yaml` and `tool/type_name_stutter_debt.yaml`,
+and both files are now empty. Fields, enum members and the Terraform JSON
+are unchanged. Only the type name moves. A dot shorthand (`.new(...)`,
+`.static`) needs no change.
 
 | Before | After |
 |---|---|
@@ -1605,7 +1977,7 @@ type prefix.
 | `LinuxWebAppActiveDirectoryV2(clientId: id, tenantAuthEndpoint: url, clientSecretSettingName: name)` | `LinuxWebAppActiveDirectoryV2(clientId: id, tenantAuthEndpoint: url, clientCredential: .clientSecretSettingName(name))` |
 | `LinuxWebAppLogin(tokenStorePath: path)` | `LinuxWebAppLogin(tokenStore: .tokenStorePath(path))` |
 | `LinuxWebAppLogs(httpLogs: .new(fileSystem: fs))` | `LinuxWebAppLogs(httpLogs: .fileSystem(fs))` |
-| `LinuxFunctionAppApplicationStack(pythonVersion: .literal('3.12'))` | `LinuxFunctionAppApplicationStack(runtime: .pythonVersion(.literal('3.12')))` |
+| `LinuxFunctionAppApplicationStack(pythonVersion: .literal('3.12'))` | `LinuxFunctionAppApplicationStack(runtime: .pythonVersion(.v3p12))` |
 | `LinuxVirtualMachineOsDisk(caching: .readwrite, diskEncryptionSetId: set.ref)` | `LinuxVirtualMachineOsDisk(caching: .readwrite, encryptionSet: .diskEncryptionSetId(set.ref))` |
 | `LinuxVirtualMachineScaleSetExtension(protectedSettingsFromKeyVault: kv, ...)` | `LinuxVirtualMachineScaleSetExtension(protectedSettings: .protectedSettingsFromKeyVault(kv), ...)` |
 | `KubernetesClusterNodePoolUpgradeSettings(maxSurge: .literal('10%'))` | `KubernetesClusterNodePoolUpgradeSettings(upgradeCapacity: .maxSurge(.literal('10%')))` |
